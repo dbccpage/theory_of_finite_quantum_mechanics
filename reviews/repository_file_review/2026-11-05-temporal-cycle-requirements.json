@@ -1,0 +1,584 @@
+{
+  "AuthorityEffect": "None",
+  "groups": {
+    "scalar": {
+      "requirement": "Decode native int/Fraction/GaussianRational or trusted exact SymPy rational/I expressions with Add, Mul and integer powers. Reject text, bytes, floats, bool, foreign conversion hooks, symbols and unadmitted functions before evaluation. Preflight at most 64 nodes, depth 8 and powers -16..16; prescreen rational components before Fraction construction.",
+      "tests": [
+        "test_native_and_symbolic_exact_atoms",
+        "test_text_and_foreign_hooks_are_never_executed",
+        "test_expression_arithmetic_against_symbolic_oracle",
+        "test_grammar_refusals_and_zero_negative_power",
+        "test_shape_preflight_before_expression_evaluation",
+        "test_node_depth_power_and_component_budgets"
+      ]
+    },
+    "matrix": {
+      "requirement": "Own immutable Gaussian rows with dimensions 1..18, complete shape preflight before scalar admission, exact addition/scaling/adjoint/products and row-pivoted determinants. Preserve swap signs, complex phases and singular zero. Public determinant queries return Outcome; internal value operations raise typed Violation.",
+      "tests": [
+        "test_gaussian_matrix_determinant_and_adjoint",
+        "test_gaussian_matrix_products_and_scaling",
+        "test_gaussian_matrix_shape_domain_preflight",
+        "test_gaussian_matrix_boundaries_and_ownership",
+        "test_gaussian_matrix_intermediate_budget_cancellation",
+        "test_gaussian_matrix_pivots_and_complex_phase"
+      ]
+    },
+    "cycle": {
+      "requirement": "Own an immutable tuple of 2, 4 or 6 three-color SU(3) links, with all link admissions before unitary arithmetic. Cache antiperiodic forward transport. Real mass and nonzero Q(i) fugacity define mI+(zT-T*/z)/2. Preserve legacy SymPy exports and provide typed native-matrix queries; nonunit fugacity remains available for explicit counterexamples.",
+      "tests": [
+        "test_cycle_transport_and_dirac_against_block_oracle",
+        "test_cycle_input_domains_preflight_and_immutable_state",
+        "test_fixed_cycle_hopping_scale_and_activity",
+        "test_application_original_payload_and_live_case_counter"
+      ]
+    },
+    "center": {
+      "requirement": "Own seven Q(i) Laurent coefficients ordered by degrees -3..3. Bound convolution degrees and arithmetic. Evaluate at the three declared C3 roots in Q(i,sqrt(3)) using direct rational/imaginary-basis embedding and a fixed 21-element phase table. The unnormalized orbit sum retains multiples of three with factor three. Derive the boundary determinant from the checked SU(3) link through the 3x3 Schur expression and six signed permutations.",
+      "tests": [
+        "test_center_projection_and_values_against_root_sum",
+        "test_boundary_polynomial_against_full_six_by_six_determinant",
+        "test_center_domains_budgets_and_reentrancy",
+        "test_center_basis_phases_and_convolution"
+      ]
+    },
+    "budgets": {
+      "requirement": "Each owned Gaussian component and every completed Gaussian operation has normalized rational components of at most 4096 bits. Check matrix/polynomial terms and prefixes before later cancellation. Each normal coordinate of the trusted degree-four algebraic field is also admitted at 4096 bits after embedding, multiplication and addition. Bound symbol syntax and dimensions before arithmetic or dense-matrix copies.",
+      "tests": [
+        "test_node_depth_power_and_component_budgets",
+        "test_shape_preflight_before_expression_evaluation",
+        "test_gaussian_matrix_shape_domain_preflight",
+        "test_gaussian_matrix_intermediate_budget_cancellation",
+        "test_center_domains_budgets_and_reentrancy",
+        "test_legacy_booleans_matrix_comparison_and_rejection_adapters"
+      ]
+    },
+    "adapters": {
+      "requirement": "Preserve gaussian, TemporalCycle transport/dirac/links, matrix equality, rejection probes and exact original CLI fields/results. Guard conditions accept native bool or exact SymPy true/false; arbitrary truthy objects refuse. Rejection probes execute a callable and require an input/resource refusal. Mutable matrix comparisons are snapshotted only after shape admission.",
+      "tests": [
+        "test_text_and_foreign_hooks_are_never_executed",
+        "test_cycle_transport_and_dirac_against_block_oracle",
+        "test_legacy_booleans_matrix_comparison_and_rejection_adapters",
+        "test_quiet_import_and_original_cli"
+      ]
+    },
+    "certificate": {
+      "requirement": "Own the three fixed temporal cycles and boundary. Preserve the original 27 lattice cases, rational determinant examples, Schur checks, gamma-only negative witness, zero-mass and real-fugacity witnesses, center sum 345/32 and nine rejection names. Add independent native determinant and center comparisons. Report 140 actual per-run Cases guard calls separately from the 27 lattice cases, preserving byte-identical CLI output.",
+      "tests": [
+        "test_application_original_payload_and_live_case_counter",
+        "test_application_failure_translation_and_cancellation",
+        "test_quiet_import_and_original_cli"
+      ]
+    },
+    "lifecycle": {
+      "requirement": "Keep owned values immutable, exports detached, imports quiet and counters fresh. Constructors/internal operations raise typed Violation; public query/result boundaries return Outcome. RuntimeError, KeyboardInterrupt and SystemExit propagate. Expected CLI failures return nonzero. Tests use scoped patches/loaders/captures and time-bounded subprocesses; timeouts remain inconclusive in fault accounting.",
+      "tests": [
+        "test_owned_values_reentrancy_and_refusal_helper",
+        "test_unexpected_failures_and_cancellation_propagate",
+        "test_gaussian_matrix_boundaries_and_ownership",
+        "test_cycle_input_domains_preflight_and_immutable_state",
+        "test_center_domains_budgets_and_reentrancy",
+        "test_application_original_payload_and_live_case_counter",
+        "test_application_failure_translation_and_cancellation",
+        "test_quiet_import_and_original_cli"
+      ]
+    }
+  },
+  "declarations": {
+    "checks/checker_support/gaussian_expression.py": {
+      "_atom": [
+        "scalar",
+        "budgets",
+        "lifecycle"
+      ],
+      "_shape": [
+        "scalar",
+        "budgets",
+        "lifecycle"
+      ],
+      "_power": [
+        "scalar",
+        "budgets",
+        "lifecycle"
+      ],
+      "_value": [
+        "scalar",
+        "budgets",
+        "lifecycle"
+      ],
+      "_decode": [
+        "scalar",
+        "budgets",
+        "lifecycle"
+      ],
+      "decode": [
+        "scalar",
+        "budgets",
+        "lifecycle"
+      ],
+      "_encode": [
+        "scalar",
+        "budgets",
+        "lifecycle"
+      ],
+      "encode": [
+        "scalar",
+        "budgets",
+        "lifecycle"
+      ]
+    },
+    "checks/checker_support/gaussian_matrix.py": {
+      "_dot": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "_eliminate": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.__init__": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.eye": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.shape": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.require_shape": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix._operand": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.add": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.neg": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.scale": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.adjoint": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.mul": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.determinant": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.determinant_result": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.to_sympy": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ],
+      "GaussianMatrix.from_sympy": [
+        "matrix",
+        "budgets",
+        "lifecycle"
+      ]
+    },
+    "checks/checker_support/temporal_cycle.py": {
+      "_link": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "_transport": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycle": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycle.__init__": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycle.sites": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycle.links": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycle.transport": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycle.transport_result": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycle._dirac": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycle.dirac": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycle.dirac_result": [
+        "cycle",
+        "budgets",
+        "lifecycle"
+      ]
+    },
+    "checks/checker_support/center_orbit.py": {
+      "_field_admit": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "_coefficient": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "_one": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "_entry": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial.__init__": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial.add": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial.scale": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial.mul": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial.expression": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial._evaluate": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial.evaluate": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial._center": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial.center": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial._from_boundary": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "LaurentCenterPolynomial.from_boundary": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ]
+    },
+    "checks/independent/fsp-imaginary-mu-real-det.py": {
+      "_condition": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "require": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "_guard": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "gaussian": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "_matrix": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "equal_matrix": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "matrix_equal": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "expect_rejection": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls.__init__": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls._case": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls._lattices": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls._witnesses": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls._center": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls._center.canonical": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls._rejected": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls._verify": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ImaginaryMuControls.verify": [
+        "certificate",
+        "lifecycle"
+      ],
+      "_main": [
+        "certificate",
+        "lifecycle"
+      ],
+      "main": [
+        "certificate",
+        "lifecycle"
+      ]
+    },
+    "checks/tests/test_temporal_cycles.py": {
+      "load": [
+        "lifecycle"
+      ],
+      "rotation": [
+        "cycle",
+        "center",
+        "matrix"
+      ],
+      "transport_oracle": [
+        "cycle",
+        "center",
+        "matrix"
+      ],
+      "field_value": [
+        "cycle",
+        "center",
+        "matrix"
+      ],
+      "TemporalCycleTests": [
+        "lifecycle"
+      ],
+      "TemporalCycleTests.accepted": [
+        "lifecycle"
+      ],
+      "TemporalCycleTests.refused": [
+        "scalar",
+        "budgets",
+        "adapters",
+        "lifecycle"
+      ],
+      "TemporalCycleTests.test_native_and_symbolic_exact_atoms": [
+        "scalar"
+      ],
+      "TemporalCycleTests.test_text_and_foreign_hooks_are_never_executed": [
+        "scalar",
+        "adapters"
+      ],
+      "TemporalCycleTests.test_expression_arithmetic_against_symbolic_oracle": [
+        "scalar"
+      ],
+      "TemporalCycleTests.test_grammar_refusals_and_zero_negative_power": [
+        "scalar"
+      ],
+      "TemporalCycleTests.test_shape_preflight_before_expression_evaluation": [
+        "scalar",
+        "budgets"
+      ],
+      "TemporalCycleTests.test_node_depth_power_and_component_budgets": [
+        "scalar",
+        "budgets"
+      ],
+      "TemporalCycleTests.test_owned_values_reentrancy_and_refusal_helper": [
+        "lifecycle"
+      ],
+      "TemporalCycleTests.test_unexpected_failures_and_cancellation_propagate": [
+        "lifecycle"
+      ],
+      "TemporalCycleTests.test_gaussian_matrix_determinant_and_adjoint": [
+        "matrix"
+      ],
+      "TemporalCycleTests.test_gaussian_matrix_products_and_scaling": [
+        "matrix"
+      ],
+      "TemporalCycleTests.test_gaussian_matrix_shape_domain_preflight": [
+        "matrix",
+        "budgets"
+      ],
+      "TemporalCycleTests.test_gaussian_matrix_boundaries_and_ownership": [
+        "matrix",
+        "lifecycle"
+      ],
+      "TemporalCycleTests.test_gaussian_matrix_intermediate_budget_cancellation": [
+        "matrix",
+        "budgets"
+      ],
+      "TemporalCycleTests.test_gaussian_matrix_pivots_and_complex_phase": [
+        "matrix"
+      ],
+      "TemporalCycleTests.test_cycle_transport_and_dirac_against_block_oracle": [
+        "cycle",
+        "adapters"
+      ],
+      "TemporalCycleTests.test_cycle_input_domains_preflight_and_immutable_state": [
+        "cycle",
+        "lifecycle"
+      ],
+      "TemporalCycleTests.test_fixed_cycle_hopping_scale_and_activity": [
+        "cycle"
+      ],
+      "TemporalCycleTests.test_center_projection_and_values_against_root_sum": [
+        "center"
+      ],
+      "TemporalCycleTests.test_boundary_polynomial_against_full_six_by_six_determinant": [
+        "center"
+      ],
+      "TemporalCycleTests.test_center_domains_budgets_and_reentrancy": [
+        "center",
+        "budgets",
+        "lifecycle"
+      ],
+      "TemporalCycleTests.test_center_basis_phases_and_convolution": [
+        "center"
+      ],
+      "TemporalCycleTests.test_application_original_payload_and_live_case_counter": [
+        "cycle",
+        "certificate",
+        "lifecycle"
+      ],
+      "TemporalCycleTests.test_application_original_payload_and_live_case_counter.record": [
+        "cycle",
+        "certificate",
+        "lifecycle"
+      ],
+      "TemporalCycleTests.test_legacy_booleans_matrix_comparison_and_rejection_adapters": [
+        "budgets",
+        "adapters"
+      ],
+      "TemporalCycleTests.test_application_failure_translation_and_cancellation": [
+        "certificate",
+        "lifecycle"
+      ],
+      "TemporalCycleTests.test_quiet_import_and_original_cli": [
+        "adapters",
+        "certificate",
+        "lifecycle"
+      ]
+    }
+  },
+  "origins": [
+    {
+      "path": "lean4/FermionSignImaginaryMuRealDet.lean",
+      "sha256": "fa5f4b2f76560be37d6fccff11842fa7edf1504c4488dd8b1bb2b7d09267504c"
+    },
+    {
+      "path": "reviews/repository_file_review/2026-11-05-temporal-cycle-original-fsp-imaginary-mu-real-det.py.txt",
+      "sha256": "ac19770608212101081358398a29af59f440a541d91f29fe233e5eaf62c2d81d"
+    }
+  ]
+}

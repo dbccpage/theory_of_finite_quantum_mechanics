@@ -8,7 +8,7 @@ maturity: production
 claim_status: verified
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_scope.rs
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/descent_engine.rs
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/mod.rs
@@ -36,7 +36,7 @@ $$\boxed{\begin{aligned}
 1. **Protocol Stages are Verifiers & State Machines:** Stages (Prime -1, Prime 000, Prime 001, Prime 002) are state-machine checkpoints, compilers, and behavioral runners. They live under runtime crates:
    - [`omega_prime_algos`](../../../../../omega_engine/crates_rs/omega_wdp/src/prime_algos/) (dedicated sovereign crate)
    - [`omega_discrete_deformation_calculus`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/) (bridge & alphabet)
-   - [`omega_symbol_game::prime`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/code/)
+   - [`omega_symbol_game::prime`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/code/)
 2. **Domain Types are Immutable Nouns:** Data structures (`CandidatePacket`, `DeclarationPacket`, `AdmissionDecision`, `LossEntry`, `LossLedger`, `CanContinueInput`, `ScopeBinding`) represent mathematical evidence and propositions. They live under domain crates:
    - [`omega_types::prime`](../../../../../omega_engine/crates_rs/omega_types/src/prime.rs)
    - [`omega_types::causal_trace`](../../../../../omega_engine/crates_rs/omega_types/src/causal_trace.rs)

@@ -104,9 +104,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py`
+### Python: `atlas/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py)
 - sha256 (`bytes`): `57117378b52d703d4e87e147f28bab3f674f1bee1bb441aecb01f5234a237ffb`
 - cited in: record TFQ-0485
 
@@ -117,9 +117,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py`
+### Python: `atlas/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py)
 - sha256 (`bytes`): `fb475699dcb8105f7f31273322af46202f82907f93c1dc03d6cda217dabefdd3`
 - cited in: record TFQ-0485
 
@@ -129,23 +129,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md)
 - sha256 (`lf-normalised`): `0ad9844d2a72386cc8fe11716177f0e34739b8da51a628fc15c5f227a174de3d`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md)
 - sha256 (`lf-normalised`): `944082e39e6e9a2434ed0be8206b9731233731ecf3ccdc908d222d0b997cfcfe`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md)
 - sha256 (`lf-normalised`): `01c934e8579575e2e090a55fc70d524efde43dd1286704bb9c90578c0bb51d95`
 - cited in: node.source
 - counts toward the grade: yes
@@ -153,7 +153,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md`
 
 - file: [dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md](../../../dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md)
-- sha256 (`lf-normalised`): `d38769ea23510b025a408fd025967ecba6df2b58264cf30e50c2c6b9216b1fd5`
+- sha256 (`lf-normalised`): `7217ad23a42e95565dc8d4d80fb26bddd0c164bd1f16d077c0da7f649eed45ea`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0485
 - counts toward the grade: no

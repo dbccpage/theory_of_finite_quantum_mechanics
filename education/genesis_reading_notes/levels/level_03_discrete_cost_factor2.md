@@ -12,11 +12,11 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/xry/cost.py
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/notes.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/third/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean
+  - atlas/finite_obstruction_calculus/genesis_ongoing/code/xry/cost.py
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/notes.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/third/reading_the_seed.md
 last_verified: 2026-10-11
 ---
 
@@ -26,7 +26,7 @@ last_verified: 2026-10-11
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 03: fewest changes, claim D8](../_images/genesis_ongoing_03_discrete_cost_factor2.svg)
 
@@ -48,9 +48,9 @@ The research notes in `research/notes.md` (Note 3) and `research/third/reading_t
 
 ## Files
 
-- [`paper/claim_ledger.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
-- [`lean4/H3V7N5QF/Paths.lean`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean)
-- [`code/xry/cost.py`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/xry/cost.py)
-- [`research/notes.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/notes.md)
-- [`research/third/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/third/reading_the_seed.md)
+- [`paper/claim_ledger.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
+- [`lean4/H3V7N5QF/Paths.lean`](/atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean)
+- [`code/xry/cost.py`](/atlas/finite_obstruction_calculus/genesis_ongoing/code/xry/cost.py)
+- [`research/notes.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/notes.md)
+- [`research/third/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/third/reading_the_seed.md)
 

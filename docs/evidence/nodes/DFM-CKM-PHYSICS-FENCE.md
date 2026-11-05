@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-ckm-physics-fence.py`
 
 - file: [checks/independent/dfm-ckm-physics-fence.py](../../../checks/independent/dfm-ckm-physics-fence.py)
-- sha256 (`bytes`): `c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b`
+- sha256 (`bytes`): `6267564e2d8c562532503700a4887ea05b6a7e01bf945db543a73f42848b1735`
 - cited in: node.source, record TFQ-1128
 - counts toward the grade: yes
 

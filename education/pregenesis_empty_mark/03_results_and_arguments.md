@@ -110,7 +110,7 @@ full-history replay produced "Verified." and "Retracted." in response to
 Prompt 17. Their supplied contexts differed. This contrast motivates the
 theorem; it is not an independently checked pair with equal complete auditor
 inputs and different adopted states
-([T2 981 to 1031](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt#L981)).
+([T2 981 to 1031](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt#L981)).
 
 **Sufficient summaries.** On a finite declared history population H, a
 reconstruction function exists on the image π(H) exactly when σ is constant

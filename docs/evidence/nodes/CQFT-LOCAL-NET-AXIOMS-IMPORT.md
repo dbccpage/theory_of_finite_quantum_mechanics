@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/cqft-local-net-axioms-import.py`
 
 - file: [checks/independent/cqft-local-net-axioms-import.py](../../../checks/independent/cqft-local-net-axioms-import.py)
-- sha256 (`bytes`): `dfb013648776b7adad411c5a10779b82086a053aa9351434bdeb37b62fbd5ff4`
+- sha256 (`bytes`): `5824ee27a9ad830d0d59d10e1169236885346238543e5b69124e9b25658b7675`
 - cited in: node.source, record TFQ-2103
 - counts toward the grade: yes
 

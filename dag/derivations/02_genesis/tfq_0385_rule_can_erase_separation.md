@@ -30,11 +30,11 @@ In accordance with strict constructive principles:
 - The opened fragments Inertia.lean and Run.lean are not cited for this counterexample.
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/imposition.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for atlas/finite_obstruction_calculus/genesis/code/rust/src/imposition.rs`](../../code/rust/src/)
 - [`absent: missing obligation: imposition.rs must be able to show a rule that drops a prior separation`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py`](../../code/python/)
 - [`absent: missing obligation: replay the two-data AdmitRuleAll counterexample from ledger row WDP-P000-017`](../../code/python/)
 
 ---

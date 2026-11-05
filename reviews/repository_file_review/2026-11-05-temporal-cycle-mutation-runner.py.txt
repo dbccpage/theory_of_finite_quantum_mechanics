@@ -1,0 +1,73 @@
+import ast
+import hashlib
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+from tempfile import TemporaryDirectory
+
+root=Path.cwd()
+checks=root/"checks"
+sys.path.insert(0,str(checks/"tests"))
+from run_support_mutations import classify, detection, _save
+
+manifest=checks/"tests/temporal_cycle_mutations.json"
+cases=json.loads(manifest.read_bytes())
+if len({r["identity"] for r in cases})!=len(cases):raise ValueError("Duplicate mutation identities")
+suite=checks/"tests/test_temporal_cycles.py"
+names={n.name for n in ast.walk(ast.parse(suite.read_bytes())) if isinstance(n,ast.FunctionDef)}
+if any(test not in names for row in cases for test in row["tests"]):raise ValueError("Missing selected test")
+originals={row["source"]:(checks/row["source"]).read_bytes() for row in cases}
+inputs=[*sorted((checks/"checker_support").glob("*.py")),checks/"independent/fsp-imaginary-mu-real-det.py",suite,manifest,checks/"tests/run_support_mutations.py",Path(__file__),root/"reviews/repository_file_review/2026-11-05-temporal-cycle-initial-review.json"]
+receipt={"AuthorityEffect":"None","python":sys.version,"inputs_sha256":{p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs},"baseline":"unrun",
+         "mutants":[dict(identity=r["identity"],source=r["source"],tests=r["tests"],outcome="unrun") for r in cases]}
+output=root/"reviews/repository_file_review/2026-11-05-temporal-cycle-mutations.json"
+def run(snapshot,tests):
+    command=[sys.executable,"-I","-B","-X","utf8",str(snapshot/"tests/test_temporal_cycles.py"),"-f"]
+    command += ["TemporalCycleTests."+test for test in tests]
+    return subprocess.run(command,capture_output=True,text=True,encoding="utf-8",timeout=30 if tests else 180)
+try:
+    with TemporaryDirectory(dir=root/".review_work",prefix="temporal-cycle-mutation-") as directory:
+        snapshot=Path(directory)/"checks"
+        shutil.copytree(checks/"checker_support",snapshot/"checker_support",ignore=shutil.ignore_patterns("__pycache__","*.yaml","*.md"))
+        (snapshot/"independent").mkdir()
+        (snapshot/"tests").mkdir()
+        shutil.copy2(checks/"independent/fsp-imaginary-mu-real-det.py",snapshot/"independent/fsp-imaginary-mu-real-det.py")
+        shutil.copy2(suite,snapshot/"tests/test_temporal_cycles.py")
+        evidence=snapshot.parent/"reviews/repository_file_review"
+        evidence.mkdir(parents=True)
+        shutil.copy2(root/"reviews/repository_file_review/2026-11-05-temporal-cycle-initial-review.json",evidence)
+        baseline=run(snapshot,[])
+        receipt["baseline"]={"returncode":baseline.returncode,"output":baseline.stdout+baseline.stderr}
+        if classify(baseline.returncode,baseline.stdout+baseline.stderr)!="survived":
+            raise ValueError("Unmodified snapshot failed")
+        for index,case in enumerate(cases):
+            target=snapshot/case["source"]
+            source=originals[case["source"]].decode("utf-8")
+            if source.count(case["before"])!=1:raise ValueError(("Stale mutation",case["identity"]))
+            changed=source.replace(case["before"],case["after"])
+            record=receipt["mutants"][index]
+            try:
+                compile(changed,case["source"],"exec")
+            except SyntaxError as error:
+                record.update(outcome="invalid",reason=str(error))
+                continue
+            try:
+                target.write_text(changed,encoding="utf-8",newline="\n")
+                result=run(snapshot,case["tests"])
+                record.update(outcome=classify(result.returncode,result.stdout+result.stderr),returncode=result.returncode,
+                              output=result.stdout+result.stderr,mutant_sha256=hashlib.sha256(target.read_bytes()).hexdigest())
+            except subprocess.TimeoutExpired:
+                record.update(outcome="inconclusive",reason="30-second worker timeout")
+            except OSError as error:
+                record.update(outcome="inconclusive",reason=str(error))
+            finally:
+                target.write_bytes(originals[case["source"]])
+            receipt["summary"]=detection(receipt["mutants"])
+            _save(output,receipt)
+            print(index+1,len(cases),case["identity"],record["outcome"],flush=True)
+finally:
+    receipt["summary"]=detection(receipt["mutants"])
+    _save(output,receipt)
+raise SystemExit(int(any(r["outcome"]!="killed" for r in receipt["mutants"])))

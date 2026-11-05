@@ -15,10 +15,10 @@ source_paths:
   - omega_engine/crates_rs/omega_wdp/src/ddc/dda_alphabet.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/licensed_lift_gate.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/05_lambda_structural_lift.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/structural_lift.py
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/StructuralLift.lean
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/05_lambda_structural_lift.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/structural_lift.py
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/StructuralLift.lean
   - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/quotient_transport.contract.yaml
 last_verified: 2026-10-01
 ---
@@ -127,7 +127,7 @@ Every successful Level 05 structural lift emits a machine-verifiable `LiftReceip
 | **DDC-Λ-03** | Structural lift requires discrete licence; otherwise `UnlicensedLift`. | Licensing firewall | [`licensed_lift_gate.rs::tests`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/licensed_lift_gate.rs) | `test_automaton.py::test_unlicensed_lift` |
 
 ### Lean 4 Proof Kernel
-[`lean4/Ddc/StructuralLift.lean`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/StructuralLift.lean):
+[`lean4/Ddc/StructuralLift.lean`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/StructuralLift.lean):
 ```lean
 theorem Ddc.Lambda_norm_invariant : ∀ (v : Vector ℚ n), norm₁ (lift_vector v k) = norm₁ v
 ```

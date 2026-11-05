@@ -28,7 +28,7 @@ and transaction behavior require their own semantics.
 Projecting onto A loses a protected question: “is C=c0?” The first two
 tuples have the same projected report a0 and opposite answers. Thus no
 decoder from the A report alone can recover that question. This is the
-[WDP fiber-constancy criterion](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md),
+[WDP fiber-constancy criterion](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md),
 with an explicit conflicting fiber. Protecting only “is A=a0?” would allow
 the projection. Adequacy depends on the declared question.
 

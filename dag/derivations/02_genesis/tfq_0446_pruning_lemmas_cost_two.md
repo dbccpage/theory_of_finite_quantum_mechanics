@@ -37,12 +37,12 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean::rule_item_never_minimal`](../../../lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs::iter_cost2_deltas`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs::pruned_and_unpruned_agree_on_valid_deltas`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs::iter_cost2_deltas`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs::pruned_and_unpruned_agree_on_valid_deltas`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::iter_cost2_deltas`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::iter_full_deltas`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::iter_cost2_deltas`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::iter_full_deltas`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
 
 ---
 
@@ -55,6 +55,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:414-422`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:414-422`
   - `lean4/Imported/GenesisDerivation/Derivation/Mention.lean:94-96`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:742-747`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:742-747`

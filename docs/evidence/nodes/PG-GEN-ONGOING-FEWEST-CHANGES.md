@@ -151,9 +151,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
 - sha256 (`lf-normalised`): `34530ca3f714274f7f03a1cd5dffcdd1fb76e50ec20749a03a72956e5f93fd1c`
 - cited in: node.source
 - counts toward the grade: yes
@@ -161,7 +161,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md`
 
 - file: [dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md](../../../dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md)
-- sha256 (`lf-normalised`): `ed2bb542c65f9f5ad4c900763d6c38069e1179b9b5732c8a40839664c348dd76`
+- sha256 (`lf-normalised`): `d6ce5af137ce217d9fe41ef511d39bb69ce98b10b844f6f2317191d117240120`
 - generated view: listed, not counted
 - cited in: record TFQ-0389
 - counts toward the grade: no

@@ -44,10 +44,10 @@ A reference in a generated paper or view, or in a sealed run artifact, follows f
 |---|---|
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/029_the_anomalon_boundary/lean4` -> `lean4/Imported/AnomalonBoundary/` | 1 |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/009_conditional_density_lift_and_dual_witness_xi_functional/lean4` -> `lean4/Imported/ConditionalDensityLift/` | 1 |
-| `atlas/papers/projection_obstruction/coordinate_wise_additivity/lean4` -> `lean4/Imported/CoordinateWiseAdditivity/` | 2 |
-| `atlas/papers/finite_obstruction_calculus/genesis/lean4` -> `lean4/Imported/Genesis19l57g1/` | 80 |
-| `atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4` -> `lean4/Imported/GenesisOngoing/` | 83 |
-| `atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4_core` -> `lean4/Imported/GenesisOngoingCore/` | 28 |
+| `atlas/projection_obstruction/coordinate_wise_additivity/lean4` -> `lean4/Imported/CoordinateWiseAdditivity/` | 2 |
+| `atlas/finite_obstruction_calculus/genesis/lean4` -> `lean4/Imported/Genesis19l57g1/` | 80 |
+| `atlas/finite_obstruction_calculus/genesis_ongoing/lean4` -> `lean4/Imported/GenesisOngoing/` | 83 |
+| `atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core` -> `lean4/Imported/GenesisOngoingCore/` | 28 |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/003_l1_obstruction_framework/lean4` -> `lean4/Imported/L1ObstructionFramework/` | 2 |
 | `omega_engine_education/documentation/001_oegen/primitives/lean4` -> `lean4/Imported/OeGenPrimitives/` | 1 |
 | `omega_engine_education/documentation/003_oemssn/lean4` -> `lean4/Imported/OeMssn/` | 1 |
@@ -56,9 +56,9 @@ A reference in a generated paper or view, or in a sealed run artifact, follows f
 | `omega_engine_education/documentation/002_oesn/lean4` -> `lean4/Imported/OeSn/` | 4 |
 | `omega_engine_education/documentation/006_oewdp/lean4` -> `lean4/Imported/OeWdp/` | 1 |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4` -> `lean4/Imported/OperatorLifts/` | 1 |
-| `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4` -> `lean4/Imported/PreGenesisToMssn/` | 10 |
-| `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4` -> `lean4/Imported/SnMssn/` | 1 |
-| `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4` -> `lean4/Imported/WitnessedDifference/` | 17 |
+| `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4` -> `lean4/Imported/PreGenesisToMssn/` | 10 |
+| `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4` -> `lean4/Imported/SnMssn/` | 1 |
+| `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4` -> `lean4/Imported/WitnessedDifference/` | 17 |
 
 3 cited path(s) were not imported because this repository already holds a file with that role (see the import manifest); the references now name the in-repo file:
 
@@ -113,21 +113,21 @@ The table lists each group of sibling-tree paths that this checkout cites. *live
 | `omega_engine_atlas/coda_atlas/F002_continuum` | 14 (14/0/0) | 25 | 115 | 46 | 0 | 3 Python, 2 Lean |
 | `omega_engine_atlas/coda_atlas/F003_omega_engine` | 19 (19/0/0) | 57 | 137 | 64 | 0 | 4 Lean, 2 Python |
 | `omega_engine_atlas/coda_atlas/papers` | 8 (4/0/4) | 19 | 3 | 5 | 0 | 1 paper / document |
-| `atlas/papers/finite_obstruction_calculus/genesis` | 85 (85/0/0) | 586 | 267 | 155 | 82 | 36 Lean, 23 Rust, 13 Python, 7 paper / document |
-| `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems` | 14 (14/0/0) | 100 | 55 | 464 | 21 | 7 Lean, 2 Python, 1 Rust, 1 paper / document |
-| `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme` | 50 (50/0/0) | 246 | 101 | 282 | 38 | 24 Python, 15 Lean, 7 paper / document, 1 Rust |
-| `atlas/papers/finite_obstruction_calculus/genesis_ongoing` | 52 (52/0/0) | 171 | 67 | 154 | 14 | 27 Lean, 13 paper / document, 11 Python |
-| `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems` | 9 (9/0/0) | 61 | 34 | 282 | 10 | 2 Python, 2 Lean, 2 paper / document |
+| `atlas/finite_obstruction_calculus/genesis` | 85 (85/0/0) | 586 | 267 | 155 | 82 | 36 Lean, 23 Rust, 13 Python, 7 paper / document |
+| `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems` | 14 (14/0/0) | 100 | 55 | 464 | 21 | 7 Lean, 2 Python, 1 Rust, 1 paper / document |
+| `atlas/finite_obstruction_calculus/witnessed_difference_programme` | 50 (50/0/0) | 246 | 101 | 282 | 38 | 24 Python, 15 Lean, 7 paper / document, 1 Rust |
+| `atlas/finite_obstruction_calculus/genesis_ongoing` | 52 (52/0/0) | 171 | 67 | 154 | 14 | 27 Lean, 13 paper / document, 11 Python |
+| `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems` | 9 (9/0/0) | 61 | 34 | 282 | 10 | 2 Python, 2 Lean, 2 paper / document |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/002_l1_native_cohomology` | 2 (2/0/0) | 0 | 2 | 0 | 0 | - |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/003_l1_obstruction_framework` | 3 (3/0/0) | 7 | 3 | 21 | 2 | 1 paper / document, 1 Lean |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/009_conditional_density_lift_and_dual_witness_xi_functional` | 2 (2/0/0) | 5 | 1 | 16 | 1 | 1 paper / document, 1 Lean |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits` | 2 (2/0/0) | 5 | 1 | 13 | 1 | 1 Lean, 1 paper / document |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/029_the_anomalon_boundary` | 2 (2/0/0) | 5 | 3 | 20 | 1 | 1 Lean, 1 paper / document |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/plans` | 1 (0/0/1) | 1 | 0 | 0 | 0 | - |
-| `atlas/papers/projection_obstruction` | 1 (1/0/0) | 4 | 1 | 5 | 1 | - |
-| `atlas/papers/projection_obstruction/projection_obstruction_paper` | 1 (1/0/0) | 0 | 1 | 0 | 0 | - |
-| `atlas/papers/projection_obstruction/coordinate_wise_additivity` | 2 (2/0/0) | 7 | 1 | 15 | 2 | 1 paper / document, 1 Lean |
-| `atlas/papers/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy` | 4 (4/0/0) | 7 | 7 | 3 | 0 | 2 Python |
+| `atlas/projection_obstruction` | 1 (1/0/0) | 4 | 1 | 5 | 1 | - |
+| `atlas/projection_obstruction/projection_obstruction_paper` | 1 (1/0/0) | 0 | 1 | 0 | 0 | - |
+| `atlas/projection_obstruction/coordinate_wise_additivity` | 2 (2/0/0) | 7 | 1 | 15 | 2 | 1 paper / document, 1 Lean |
+| `atlas/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy` | 4 (4/0/0) | 7 | 7 | 3 | 0 | 2 Python |
 | `sources/atlas/papers/quantum_foundations` | 77 (0/40/37) | 0 | 77 | 0 | 0 | - |
 | `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/002_cofiber_to_banach_quotient_bridge` | 1 (0/0/1) | 4 | 0 | 5 | 1 | - |
 | `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/003_residual_density_calculus_l1_l2_boundary` | 1 (0/0/1) | 6 | 1 | 10 | 2 | - |
@@ -287,28 +287,28 @@ The papers, claim registers and data files that DAG nodes and records cite as `s
 | File | size | references |
 |---|---|---|
 | `omega_engine_atlas/coda_atlas/F004_papers/plans/goal_dag.jsonl` | 1.1 MB | 9 |
-| `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md` | 999.2 KB | 86 |
-| `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md` | 898.0 KB | 85 |
+| `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md` | 999.2 KB | 86 |
+| `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md` | 898.0 KB | 85 |
 | `sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml` (removed) | 542.1 KB | 30 |
 | `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md` (removed) | 410.7 KB | 68 |
-| `atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md` | 336.2 KB | 11 |
-| `atlas/papers/finite_obstruction_calculus/genesis/lean4/axiom_report.txt` | 172.0 KB | 8 |
+| `atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md` | 336.2 KB | 11 |
+| `atlas/finite_obstruction_calculus/genesis/lean4/axiom_report.txt` | 172.0 KB | 8 |
 | `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md` (removed) | 152.8 KB | 254 |
 | `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md` | 129.4 KB | 27 |
-| `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt` | 81.2 KB | 83 |
+| `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt` | 81.2 KB | 83 |
 | `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml` (removed) | 74.2 KB | 206 |
-| `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt` | 57.6 KB | 107 |
-| `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md` | 57.3 KB | 34 |
-| `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md` | 51.2 KB | 105 |
+| `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt` | 57.6 KB | 107 |
+| `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md` | 57.3 KB | 34 |
+| `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md` | 51.2 KB | 105 |
 | `omega_engine_operations/use_cases/cicd/f64_contract.json` | 44.5 KB | 14 |
-| `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt` | 39.0 KB | 44 |
-| `atlas/papers/finite_obstruction_calculus/genesis/paper.md` | 36.8 KB | 121 |
+| `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt` | 39.0 KB | 44 |
+| `atlas/finite_obstruction_calculus/genesis/paper.md` | 36.8 KB | 121 |
 | `omega_engine_product_planning_office/plans/review_remediation/evidence/batch_13/c4_native_actual.json` | 34.0 KB | 6 |
-| `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fourth/claim_ledger.md` | 32.2 KB | 8 |
+| `atlas/finite_obstruction_calculus/genesis_ongoing/paper/fourth/claim_ledger.md` | 32.2 KB | 8 |
 | `omega_engine_atlas/coda_atlas/F004_papers/010_mub6/research/derivation_dag_20261011.json` (removed) | 31.0 KB | 1 |
 | `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md` | 30.0 KB | 29 |
 | `omega_engine_education/documentation/006_oewdp/levels/level_09_behavioral_quotients_finite_states.md` | 30.0 KB | 6 |
-| `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md` | 29.5 KB | 8 |
+| `atlas/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md` | 29.5 KB | 8 |
 | `omega_engine_product_planning_office/architecture_review/06_genesis_native_route.md` | 27.3 KB | 9 |
 | `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml` (removed) | 27.1 KB | 71 |
 
@@ -382,20 +382,20 @@ Per paper or sub-folder (only folders with at least one path that resolves now o
 | `omega_engine_atlas/coda_atlas/F002_continuum` | **NOT YET SAFE** | 5 existing file(s) are cited by live files of this repo (3 Python, 2 Lean; 5.5 KB) |
 | `omega_engine_atlas/coda_atlas/F003_omega_engine` | **NOT YET SAFE** | 6 existing file(s) are cited by live files of this repo (4 Lean, 2 Python; 20.9 KB) |
 | `omega_engine_atlas/coda_atlas/papers` | **NOT YET SAFE** | 1 existing file(s) are cited by live files of this repo (1 paper / document; 38.1 KB) |
-| `atlas/papers/finite_obstruction_calculus/genesis` | **NOT YET SAFE** | 79 existing file(s) are cited by live files of this repo (36 Lean, 23 Rust, 13 Python, 7 paper / document; 1.1 MB) |
-| `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems` | **NOT YET SAFE** | 11 existing file(s) are cited by live files of this repo (7 Lean, 2 Python, 1 Rust, 1 paper / document; 133.8 KB) |
-| `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme` | **NOT YET SAFE** | 47 existing file(s) are cited by live files of this repo (24 Python, 15 Lean, 7 paper / document, 1 Rust; 2.3 MB) |
-| `atlas/papers/finite_obstruction_calculus/genesis_ongoing` | **NOT YET SAFE** | 51 existing file(s) are cited by live files of this repo (27 Lean, 13 paper / document, 11 Python; 894.6 KB) |
-| `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems` | **NOT YET SAFE** | 6 existing file(s) are cited by live files of this repo (2 Python, 2 Lean, 2 paper / document; 55.0 KB) |
+| `atlas/finite_obstruction_calculus/genesis` | **NOT YET SAFE** | 79 existing file(s) are cited by live files of this repo (36 Lean, 23 Rust, 13 Python, 7 paper / document; 1.1 MB) |
+| `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems` | **NOT YET SAFE** | 11 existing file(s) are cited by live files of this repo (7 Lean, 2 Python, 1 Rust, 1 paper / document; 133.8 KB) |
+| `atlas/finite_obstruction_calculus/witnessed_difference_programme` | **NOT YET SAFE** | 47 existing file(s) are cited by live files of this repo (24 Python, 15 Lean, 7 paper / document, 1 Rust; 2.3 MB) |
+| `atlas/finite_obstruction_calculus/genesis_ongoing` | **NOT YET SAFE** | 51 existing file(s) are cited by live files of this repo (27 Lean, 13 paper / document, 11 Python; 894.6 KB) |
+| `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems` | **NOT YET SAFE** | 6 existing file(s) are cited by live files of this repo (2 Python, 2 Lean, 2 paper / document; 55.0 KB) |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/002_l1_native_cohomology` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/003_l1_obstruction_framework` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (1 paper / document, 1 Lean; 21.5 KB) |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/009_conditional_density_lift_and_dual_witness_xi_functional` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (1 paper / document, 1 Lean; 22.7 KB) |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (1 Lean, 1 paper / document; 12.2 KB) |
 | `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/029_the_anomalon_boundary` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (1 Lean, 1 paper / document; 20.1 KB) |
-| `atlas/papers/projection_obstruction` | **SAFE TO DELETE** | every live reference names a path that is not in the atlas (already broken); nothing is lost |
-| `atlas/papers/projection_obstruction/projection_obstruction_paper` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
-| `atlas/papers/projection_obstruction/coordinate_wise_additivity` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (1 paper / document, 1 Lean; 61.4 KB) |
-| `atlas/papers/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (2 Python; 88.2 KB) |
+| `atlas/projection_obstruction` | **SAFE TO DELETE** | every live reference names a path that is not in the atlas (already broken); nothing is lost |
+| `atlas/projection_obstruction/projection_obstruction_paper` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
+| `atlas/projection_obstruction/coordinate_wise_additivity` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (1 paper / document, 1 Lean; 61.4 KB) |
+| `atlas/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (2 Python; 88.2 KB) |
 | `sources/atlas/papers/quantum_foundations` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
 | `sources/atlas/papers/quantum_foundations/_code` | **ALREADY REMOVED** | 2 cited file(s) (2 Python; 5.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
 | `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm` | **ALREADY REMOVED** | 2 cited file(s) (1 yaml (other), 1 Python; 39.1 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |

@@ -8,7 +8,7 @@ claim_status: written-theorems-and-finite-examples
 authority_effect: 'None'
 source_version: "2.4.1"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
 ---
 
 # Observation budgets, calibrated reports and joint supports

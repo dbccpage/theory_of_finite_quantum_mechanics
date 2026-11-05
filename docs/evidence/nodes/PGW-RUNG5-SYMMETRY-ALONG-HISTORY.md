@@ -44,9 +44,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
 - sha256 (`lf-normalised`): `7e774b9a5cd0b326f884716c49a18055df522968e659438910dceeaa332b73ad`
 - cited in: node.source
 - counts toward the grade: yes
@@ -54,7 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0468_rung5_symmetry_along_history.md`
 
 - file: [dag/derivations/02_genesis/tfq_0468_rung5_symmetry_along_history.md](../../../dag/derivations/02_genesis/tfq_0468_rung5_symmetry_along_history.md)
-- sha256 (`lf-normalised`): `dc6153a02bb25ea3cc15f89b95d17fdc31f25eda9662dcc4f0b1e387a815b500`
+- sha256 (`lf-normalised`): `705174427ec8e315b2853792be6cc86238fcaccedde6ad099d786b10f5668ce2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0468
 - counts toward the grade: no

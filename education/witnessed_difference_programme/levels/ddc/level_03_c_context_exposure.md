@@ -14,10 +14,10 @@ authority_effect: "None"
 source_paths:
   - omega_engine/crates_rs/omega_wdp/src/ddc/dda_alphabet.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/03_c_context_exposure.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/context_exposure.py
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ContextExposure.lean
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/03_c_context_exposure.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/context_exposure.py
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ContextExposure.lean
   - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/context_embedding_operator.contract.yaml
 last_verified: 2026-10-01
 ---
@@ -120,7 +120,7 @@ Every successful Level 03 window exposure emits a machine-verifiable `ContextExp
 | **DDC-C-03** | A `C` step leaving the carrier identical is rejected as a fake restructure. | Structural change required | [`op_verification.rs::restructuring_op_that_restructures_nothing_is_rejected`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs#L737) | `test_automaton.py::test_carrier_unchanged` |
 
 ### Lean 4 Proof Kernel
-[`lean4/Ddc/ContextExposure.lean`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ContextExposure.lean):
+[`lean4/Ddc/ContextExposure.lean`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ContextExposure.lean):
 ```lean
 theorem Ddc.C_monotonicity : ∀ (s s' : State), C_step s s' → s'.phi ≥ s.phi ∧ s'.gamma ≥ s.gamma
 ```

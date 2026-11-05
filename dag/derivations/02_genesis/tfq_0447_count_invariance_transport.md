@@ -36,12 +36,12 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Derivation/IsoCollapse.lean::collapsed_transport`](../../../lean4/Imported/GenesisDerivation/Derivation/IsoCollapse.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/closure.rs::a_single_collapsed_pair_transports_under_renaming`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/closure.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/closure.rs::a_single_collapsed_pair_transports_under_renaming`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/closure.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py::rename`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py::collapsed_pairs`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py::rename`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py::collapsed_pairs`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py)
 
 ---
 
@@ -54,5 +54,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:607-618`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:759-772`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:607-618`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:759-772`

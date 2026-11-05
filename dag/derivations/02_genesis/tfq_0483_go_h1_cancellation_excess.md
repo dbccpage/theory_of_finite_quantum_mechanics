@@ -42,9 +42,9 @@ In accordance with strict constructive principles:
 - `missing obligation: the H3V7N5QF package holds no Rust`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py::cost`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py::excess`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py::plain`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py::cost`](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py::excess`](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py::plain`](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py)
 
 ---
 
@@ -57,6 +57,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md:50`
-  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md:53`
+  - `atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md:50`
+  - `atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md:53`
   - `external:sha256:f016b739d1272d0f46037a65694f050bde85456ebe26cab5e029212bdbf8e34e:47`

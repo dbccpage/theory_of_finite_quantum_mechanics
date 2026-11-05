@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust recognizer for mssn.ebnf`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py::grammar_inventory_matches`](../../../atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py::grammar_inventory_matches`](../../../atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py)
 - `external:sha256:f2944b0fca54f5d5a13593c337da8f9887447e447a6ffe2cc7c4731e750cec63::main` (private upstream source, not in this repository)
 
 ---
@@ -52,4 +52,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `education/minimal_symbol_systems/grammar/mssn.ebnf:3-4`
   - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:58-67`
-  - `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:679-680`
+  - `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:679-680`

@@ -1,6 +1,6 @@
 # Frozen source crosswalk
 
-AuthorityEffect: None. Source `f1d56c010e6ba10a3b9418bd7cc5953c067250f2`. This index covers all 121 immediate research directories and 23 top-level entries listed in the review specification. File counts were checked against the pinned git tree. The source has 3147 tracked files. Navigation and disposition are not a claim that every branch verifier was rerun. The [publication source ledger](/atlas/papers/finite_obstruction_calculus/genesis/README.md) owns the complete source inventory.
+AuthorityEffect: None. Source `f1d56c010e6ba10a3b9418bd7cc5953c067250f2`. This index covers all 121 immediate research directories and 23 top-level entries listed in the review specification. File counts were checked against the pinned git tree. The source has 3147 tracked files. Navigation and disposition are not a claim that every branch verifier was rerun. The [publication source ledger](/atlas/finite_obstruction_calculus/genesis/README.md) owns the complete source inventory.
 
 The original source is read-only. Its local registration table, Lean-job inventory, historical receipts and this companion's test results are separate evidence populations. `NOT_A_ROW_IN_GENERATED_TABLE` does not mean a branch has no verifier.
 

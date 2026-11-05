@@ -37,11 +37,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Probability.lean::sum_normalizedMultiplicity`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Probability.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs::MultiplicityDistribution`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs::MultiplicityDistribution`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py::disjoint_additivity`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py::event_probability`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py::disjoint_additivity`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py::event_probability`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3218-3257`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3334-3399`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3456-3467`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3218-3257`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3334-3399`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3456-3467`

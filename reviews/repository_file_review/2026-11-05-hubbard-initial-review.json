@@ -1,0 +1,49 @@
+{
+  "AuthorityEffect": "None",
+  "originals": [
+    {
+      "path": "checks/independent/fsp-hubbard-protected-representations.py",
+      "sha256": "3f54d7bb5f8495a9732a4faa6ec799f9cfc73be699af0da3aa3be2b83ee55916",
+      "archive": "reviews/repository_file_review/2026-11-05-hubbard-original-fsp-hubbard-protected-representations.py.txt"
+    }
+  ],
+  "origins": [
+    {
+      "path": "lean4/FermionSignHubbardProtected.lean",
+      "sha256": "365483617d0e2261ff3450ab9e5a891e0c51a8bc2ee69bfecbb702d00544f2e9"
+    },
+    {
+      "path": "dag/derivations/independent/fsp-hubbard-protected-representations.md",
+      "sha256": "063cc88f2b49307f6e58edd7951eaffb0018b811f334c3b4ee113d6ccf5ae969"
+    },
+    {
+      "path": "code/python/src/fsp/hubbard_scaling.py",
+      "sha256": "ea03969a9ecabd64cce7c12bfa5be2f6e15309beccbede3410052de6279562be"
+    },
+    {
+      "path": "code/python/src/fsp/sign_sql/exact_models.py",
+      "sha256": "404e726779953ca9e746332ba09f5f4f9c82438465d672401487ced2065edabb"
+    }
+  ],
+  "runs": [
+    {
+      "optimized": false,
+      "returncode": 0,
+      "stdout": "=== Running Independent Check for FSP-HUBBARD-PROTECTED-REPRESENTATIONS ===\n\n[1/4] Verifying attractive spin-balanced pairing across all 64 fields (triangle, 2 slices, z=3/2, hs=2, r=3/2)...\n  \u2713 All 64 fields satisfy d_up == d_down and W(s) >= 0.\n\n[2/4] Verifying half-filled bipartite pairing across all 256 fields (4-site ring, 2 slices, z=1, hs=2, r=3/2)...\n  \u2713 All 256 fields satisfy d_down == d_up / h^(sum s) and W(s) >= 0.\n\n[3/4] Recomputing negative determinant witness 1: Doped 4-site ring (mask 15721)...\n  d_up   = 11072073737867929807204939234025/2305843009213693952 > 0\n  d_down = -1034021712177776419381618902295/147573952589676412928 < 0\n  W(15721) = -11448764643788789633389299083665210593647227349065798614587375/340282366920938463463374607431768211456 < 0\n  \u2713 Witness 1 verified: strictly negative determinant weight outside half-filling protection.\n\n[4/4] Recomputing negative determinant witness 2: Frustrated 3-site triangle (mask 1281)...\n  d_up   = 2661572208368287551525625/9223372036854775808 > 0\n  d_down = -323903084369592224375/35184372088832 < 0\n  W(1281)  = -862091447562875338563475227905478168562109375/324518553658426726783156020576256 < 0\n  \u2713 Witness 2 verified: strictly negative determinant weight outside bipartite protection.\n\n=== All independent checks passed successfully! ===\n",
+      "stderr": ""
+    },
+    {
+      "optimized": true,
+      "returncode": 0,
+      "stdout": "=== Running Independent Check for FSP-HUBBARD-PROTECTED-REPRESENTATIONS ===\n\n[1/4] Verifying attractive spin-balanced pairing across all 64 fields (triangle, 2 slices, z=3/2, hs=2, r=3/2)...\n  \u2713 All 64 fields satisfy d_up == d_down and W(s) >= 0.\n\n[2/4] Verifying half-filled bipartite pairing across all 256 fields (4-site ring, 2 slices, z=1, hs=2, r=3/2)...\n  \u2713 All 256 fields satisfy d_down == d_up / h^(sum s) and W(s) >= 0.\n\n[3/4] Recomputing negative determinant witness 1: Doped 4-site ring (mask 15721)...\n  d_up   = 11072073737867929807204939234025/2305843009213693952 > 0\n  d_down = -1034021712177776419381618902295/147573952589676412928 < 0\n  W(15721) = -11448764643788789633389299083665210593647227349065798614587375/340282366920938463463374607431768211456 < 0\n  \u2713 Witness 1 verified: strictly negative determinant weight outside half-filling protection.\n\n[4/4] Recomputing negative determinant witness 2: Frustrated 3-site triangle (mask 1281)...\n  d_up   = 2661572208368287551525625/9223372036854775808 > 0\n  d_down = -323903084369592224375/35184372088832 < 0\n  W(1281)  = -862091447562875338563475227905478168562109375/324518553658426726783156020576256 < 0\n  \u2713 Witness 2 verified: strictly negative determinant weight outside bipartite protection.\n\n=== All independent checks passed successfully! ===\n",
+      "stderr": ""
+    }
+  ],
+  "initial_retention": 4,
+  "findings": [
+    "Every mathematical check uses assert and disappears under optimized Python.",
+    "Scalar, dimensions, field-mask and resource boundaries are absent; negative masks and ignored high mask bits alias admitted fields.",
+    "The stated 320-field and two-witness numerical claims are correctly scoped; Lean proves arithmetic consequences of supplied pairing hypotheses and stored rational pairs."
+  ],
+  "assert_count": 23
+}

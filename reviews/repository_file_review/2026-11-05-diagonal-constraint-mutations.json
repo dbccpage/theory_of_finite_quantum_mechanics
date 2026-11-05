@@ -1,0 +1,552 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 2.287s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work/run_diagonal_constraint_mutations.py": "be4e870624fb7121b05bc1c9b0917a4b11f691207f49e3d8848e901319f0b2c0",
+    "checks/checker_support/binary_frame_system.py": "843503239990f18ad076a7c5078fd084d73be12cd8314a5e9ae8f20bd6a77eb8",
+    "checks/checker_support/binary_sign_cochain.py": "b1540901c370f9464ba425922b3093507bb335c1e2ba3f08029a7b3065fa3e77",
+    "checks/checker_support/boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks/checker_support/cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks/checker_support/cech_complex.py": "6f973fc65d6fa66ebb9078c6cc1af60683a5150b97b5510ca853517b650227dd",
+    "checks/checker_support/diagonal_constraint.py": "0a6fe16223f178f266b9331f05dce342cd72a591a00181b5adb8e600ef6fedeb",
+    "checks/checker_support/domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks/checker_support/empirical_model.py": "612562ec192efe40b5b9a0bb151486d4e77caf399bd853d2da712f5ca465172c",
+    "checks/checker_support/equatorial_ray_geometry.py": "ae4f3583fc892bcbfa5ed5acacdc41b88c09f2f4fe0a4811a12ec48d5c503622",
+    "checks/checker_support/exact_json_document.py": "e162590c25fab02fe87d73bc50f1e52e8083580b9faafae14ba4c50b8efb9f8c",
+    "checks/checker_support/exact_linear_program.py": "c771280ccd6473deaa011e37ca22c3e1856ccb9fbd2025580c81b87a0513f65f",
+    "checks/checker_support/gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks/checker_support/gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks/checker_support/gaussian_vector3.py": "7499bff94cb4a71a8dc8e4fa7ed3e08a00ac3a0e5096f925eb3e10b290f8a23e",
+    "checks/checker_support/happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks/checker_support/hermitian_tomography.py": "df1760dcfb384e13a48fc572613d6d25fe051361d6ab77954dec083f498e2c69",
+    "checks/checker_support/inert_prime_residual.py": "55f11b7d004c29e7feb7b44461117c003821ee7781fd940e973eb8a02f3b57aa",
+    "checks/checker_support/integer_quadratic_equation.py": "7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4",
+    "checks/checker_support/linear_program_certificate.py": "cfe2167737de71125118fb749a6e9ba5a2501cbee49ebc7828d2d55cc81636dc",
+    "checks/checker_support/measurement_scenario.py": "c441ba2036eca8083869d4b0fb4a49fdbc84638ca29b3cd2e90f8a07b5d71a3c",
+    "checks/checker_support/mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks/checker_support/orthogonal_gaussian_pair.py": "e5402c6601acc653d2958eb28e46bf0cc99e7616b2a9bcbc5f82611eba5f78d3",
+    "checks/checker_support/outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks/checker_support/rational_inverse.py": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+    "checks/checker_support/rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks/checker_support/signed_triangle.py": "f5432fcdc944d75bf124bcc8362466a31ac6d647786073d3c03549454304d49f",
+    "checks/checker_support/simplex_tableau.py": "c5254540e60b3bd68f8bd7776162878d6a919724f88b2098f9874bb980d2c145",
+    "checks/checker_support/wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks/independent/fsp-discrete-wdw-constraint.py": "ea96a01d3133a6d3f7614e702ee3f9d92201453c99ced04ad2519a855ac22011",
+    "checks/tests/diagonal_constraint_mutations.json": "c360197ba0aa7b81818c4d344b483fe119b67a87085dd1c9e7a14baa6cb11b4e",
+    "checks/tests/run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks/tests/test_diagonal_constraints.py": "5aa476b6cca0113338d1167d600f791f7b8dd1447d5349a51c2c7adf288c3368"
+  },
+  "mutants": [
+    {
+      "identity": "rational-admission",
+      "mutant_sha256": "e9df45bd0df4faf4acc98fe9e9e386a35acbc238813b0e93fc3572790fd1a447",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_domains_shapes_and_input_budgets (__main__.DiagonalConstraintTests.test_exact_domains_shapes_and_input_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 141, in test_exact_domains_shapes_and_input_budgets\n    self.refused(evaluate(DiagonalConstraint,invalid))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 58, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_exact_domains_shapes_and_input_budgets"
+      ]
+    },
+    {
+      "identity": "vector-shape-preflight",
+      "mutant_sha256": "41ec027bb85e4eb6357efb98d410880e2b36bc2c9ca6b252cbd9527ebed12d0f",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_preflight_and_refusal_helper_strength (__main__.DiagonalConstraintTests.test_preflight_and_refusal_helper_strength)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 174, in test_preflight_and_refusal_helper_strength\n    self.refused(evaluate(DiagonalConstraint,(1,2)))\n                 ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\checker_support\\diagonal_constraint.py\", line 42, in __init__\n    object.__setattr__(self, \"diagonal\", _vector(diagonal))\n                                         ~~~~~~~^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\checker_support\\diagonal_constraint.py\", line 17, in _vector\n    x, y, z = (rational(entry, \"constraint coordinate\")\n    ^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\checker_support\\diagonal_constraint.py\", line 17, in <genexpr>\n    x, y, z = (rational(entry, \"constraint coordinate\")\n               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not map\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_preflight_and_refusal_helper_strength"
+      ]
+    },
+    {
+      "identity": "coordinate-order",
+      "mutant_sha256": "73014c90639526c4d45c5729799377ed668a68d744c9fba228ce5d888bc5495b",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_owned_inputs_and_reentrant_queries (__main__.DiagonalConstraintTests.test_owned_inputs_and_reentrant_queries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 128, in test_owned_inputs_and_reentrant_queries\n    self.assertEqual(model.diagonal,(Q(0),Q(2),Q(-1)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(-1, 1), Fraction(2, 1), Fraction(0, 1)) != (Fraction(0, 1), Fraction(2, 1), Fraction(-1, 1))\n\nFirst differing element 0:\nFraction(-1, 1)\nFraction(0, 1)\n\n- (Fraction(-1, 1), Fraction(2, 1), Fraction(0, 1))\n+ (Fraction(0, 1), Fraction(2, 1), Fraction(-1, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_owned_inputs_and_reentrant_queries"
+      ]
+    },
+    {
+      "identity": "column-orientation",
+      "mutant_sha256": "1f95e5784cbc126ea9a20bd8436cbfb5d639974f92de22e52c0629a73d2e27e7",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_operator_and_quadratic_against_symbolic_matrices (__main__.DiagonalConstraintTests.test_operator_and_quadratic_against_symbolic_matrices)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 64, in test_operator_and_quadratic_against_symbolic_matrices\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 72, in test_operator_and_quadratic_against_symbolic_matrices\n    self.assertEqual(self.accepted(model.apply(vector)),tuple(exact(v) for v in expected))\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 54, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='input', message='matrix multiplication dimensions disagree') is not None\nFailing test case: test_operator_and_quadratic_against_symbolic_matrices(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_operator_and_quadratic_against_symbolic_matrices>,\n    diagonal=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n    vector=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.671s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_operator_and_quadratic_against_symbolic_matrices"
+      ]
+    },
+    {
+      "identity": "result-coordinate-order",
+      "mutant_sha256": "5fb08b0d0860ccc50540b916f8e4152db92076482323237151cc108b470adb7b",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_operator_and_quadratic_against_symbolic_matrices (__main__.DiagonalConstraintTests.test_operator_and_quadratic_against_symbolic_matrices)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 64, in test_operator_and_quadratic_against_symbolic_matrices\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 72, in test_operator_and_quadratic_against_symbolic_matrices\n    self.assertEqual(self.accepted(model.apply(vector)),tuple(exact(v) for v in expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)) != (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1))\n\nFirst differing element 0:\nFraction(0, 1)\nFraction(1, 1)\n\n- (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n+ (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1))\nFailing test case: test_operator_and_quadratic_against_symbolic_matrices(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_operator_and_quadratic_against_symbolic_matrices>,\n    diagonal=(\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n    ),\n    vector=(\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n    ),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 9.184s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_operator_and_quadratic_against_symbolic_matrices"
+      ]
+    },
+    {
+      "identity": "diagonal-off-diagonal",
+      "mutant_sha256": "68fb5f3517edf7f490f1a9ba6d1ab2061a19df5dfb02cfe64fb3f2fe14e1e70b",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_operator_and_quadratic_against_symbolic_matrices (__main__.DiagonalConstraintTests.test_operator_and_quadratic_against_symbolic_matrices)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 64, in test_operator_and_quadratic_against_symbolic_matrices\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 71, in test_operator_and_quadratic_against_symbolic_matrices\n    self.assertEqual(sp.ImmutableMatrix(model.matrix.rows),matrix)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 1, 1],\n[1, 0, 1],\n[1, 1, 0]]) != Matrix([\n[0, 0, 0],\n[0, 0, 0],\n[0, 0, 0]])\nFailing test case: test_operator_and_quadratic_against_symbolic_matrices(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_operator_and_quadratic_against_symbolic_matrices>,\n    diagonal=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n    vector=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 5.842s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_operator_and_quadratic_against_symbolic_matrices"
+      ]
+    },
+    {
+      "identity": "coefficient-ownership",
+      "mutant_sha256": "1521d435b935b2d192aa0222a3ca4196056cda2257e7ec01490b4316b848c199",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_owned_inputs_and_reentrant_queries (__main__.DiagonalConstraintTests.test_owned_inputs_and_reentrant_queries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 128, in test_owned_inputs_and_reentrant_queries\n    self.assertEqual(model.diagonal,(Q(0),Q(2),Q(-1)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [0, 9, -1] != (Fraction(0, 1), Fraction(2, 1), Fraction(-1, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_owned_inputs_and_reentrant_queries"
+      ]
+    },
+    {
+      "identity": "kernel-projector-mask",
+      "mutant_sha256": "5e19cff24143329d3a65ecc7cf6ed937e2927cba17cfa42ddaa37078f38d0a83",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_kernel_projector_from_independent_nullspace (__main__.DiagonalConstraintTests.test_kernel_projector_from_independent_nullspace)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 83, in test_kernel_projector_from_independent_nullspace\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 93, in test_kernel_projector_from_independent_nullspace\n    self.assertEqual(sp.ImmutableMatrix(model.kernel_projector.rows),projector)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0],\n[0, 0, 0],\n[0, 0, 0]]) != Matrix([\n[1, 0, 0],\n[0, 1, 0],\n[0, 0, 1]])\nFailing test case: test_kernel_projector_from_independent_nullspace(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_kernel_projector_from_independent_nullspace>,\n    diagonal=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n    vector=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 5.922s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_kernel_projector_from_independent_nullspace"
+      ]
+    },
+    {
+      "identity": "kernel-basis-selection",
+      "mutant_sha256": "066a3ac1cf7c3fd729d09056a3ee9fcfefc546c9562ad3f57325aa9848060d31",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_kernel_projector_from_independent_nullspace (__main__.DiagonalConstraintTests.test_kernel_projector_from_independent_nullspace)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 83, in test_kernel_projector_from_independent_nullspace\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 94, in test_kernel_projector_from_independent_nullspace\n    self.assertEqual(model.kernel_basis,tuple(tuple(exact(x) for x in v) for v in basis))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: () != ((Fraction(1, 1), Fraction(0, 1), Fraction[103 chars] 1)))\n\nSecond tuple contains 3 additional elements.\nFirst extra element 0:\n(Fraction(1, 1), Fraction(0, 1), Fraction(0, 1))\n\n- ()\n+ ((Fraction(1, 1), Fraction(0, 1), Fraction(0, 1)),\n+  (Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)),\n+  (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)))\nFailing test case: test_kernel_projector_from_independent_nullspace(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_kernel_projector_from_independent_nullspace>,\n    diagonal=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n    vector=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 7.132s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_kernel_projector_from_independent_nullspace"
+      ]
+    },
+    {
+      "identity": "rank-counts-zeros",
+      "mutant_sha256": "d6cc743859d27db9fc43e0ed098294180640bdaecf42f4a6023c1743f8cc951d",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_zero_patterns_and_spectral_multiplicities (__main__.DiagonalConstraintTests.test_all_zero_patterns_and_spectral_multiplicities)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 110, in test_all_zero_patterns_and_spectral_multiplicities\n    self.assertEqual(model.rank,matrix.rank())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 3\n\n----------------------------------------------------------------------\nRan 1 test in 0.033s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_all_zero_patterns_and_spectral_multiplicities"
+      ]
+    },
+    {
+      "identity": "nullity-equals-rank",
+      "mutant_sha256": "51746d614296565eaf6ccf7a2eeef55eea88bfa100c27ec585ba405602092a73",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_zero_patterns_and_spectral_multiplicities (__main__.DiagonalConstraintTests.test_all_zero_patterns_and_spectral_multiplicities)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 111, in test_all_zero_patterns_and_spectral_multiplicities\n    self.assertEqual(model.kernel_dimension,3-matrix.rank())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 3 != 0\n\n----------------------------------------------------------------------\nRan 1 test in 0.030s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_all_zero_patterns_and_spectral_multiplicities"
+      ]
+    },
+    {
+      "identity": "spectral-multiplicity",
+      "mutant_sha256": "d083ae83e53af5559540047191e69244f1980cd6ee00f6f833ce3eb4de82db91",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_zero_patterns_and_spectral_multiplicities (__main__.DiagonalConstraintTests.test_all_zero_patterns_and_spectral_multiplicities)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 112, in test_all_zero_patterns_and_spectral_multiplicities\n    self.assertEqual(sum(multiplicity for _,multiplicity in model.spectrum),3)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 3\n\n----------------------------------------------------------------------\nRan 1 test in 0.024s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_all_zero_patterns_and_spectral_multiplicities"
+      ]
+    },
+    {
+      "identity": "projector-unit-eigenvalue",
+      "mutant_sha256": "8d17f1aa71b2c3b34ebdbff58298ba99dfb4f5c3c79bf6687507ba72dac58f05",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_zero_patterns_and_spectral_multiplicities (__main__.DiagonalConstraintTests.test_all_zero_patterns_and_spectral_multiplicities)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 114, in test_all_zero_patterns_and_spectral_multiplicities\n    self.assertEqual(model.is_projector,matrix*matrix==matrix)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False != True\n\n----------------------------------------------------------------------\nRan 1 test in 0.038s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_all_zero_patterns_and_spectral_multiplicities"
+      ]
+    },
+    {
+      "identity": "semidefinite-strict",
+      "mutant_sha256": "5a57668dccc1f67e7457351b7a56e6b68b54d74797dcdc5ab5f034c7c97feef2",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_zero_patterns_and_spectral_multiplicities (__main__.DiagonalConstraintTests.test_all_zero_patterns_and_spectral_multiplicities)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 115, in test_all_zero_patterns_and_spectral_multiplicities\n    self.assertEqual(model.is_positive_semidefinite,all(value>=0 for value in diagonal))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False != True\n\n----------------------------------------------------------------------\nRan 1 test in 0.037s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_all_zero_patterns_and_spectral_multiplicities"
+      ]
+    },
+    {
+      "identity": "indefinite-disjunction",
+      "mutant_sha256": "7be10d042f1b259460dd0e87b8577a1ab43a6d42e377d94969b3a47b36a71d0e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_zero_patterns_and_spectral_multiplicities (__main__.DiagonalConstraintTests.test_all_zero_patterns_and_spectral_multiplicities)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 116, in test_all_zero_patterns_and_spectral_multiplicities\n    self.assertEqual(model.is_indefinite,min(diagonal)<0<max(diagonal))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\n\n----------------------------------------------------------------------\nRan 1 test in 0.029s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_all_zero_patterns_and_spectral_multiplicities"
+      ]
+    },
+    {
+      "identity": "apply-uses-projector",
+      "mutant_sha256": "13a5ef3d13715a32d61c3dd6b1f73cc02ea1070f1ef8295ec9f7710c44b1d205",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_operator_and_quadratic_against_symbolic_matrices (__main__.DiagonalConstraintTests.test_operator_and_quadratic_against_symbolic_matrices)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 64, in test_operator_and_quadratic_against_symbolic_matrices\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 72, in test_operator_and_quadratic_against_symbolic_matrices\n    self.assertEqual(self.accepted(model.apply(vector)),tuple(exact(v) for v in expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)) != (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n\nFirst differing element 2:\nFraction(1, 1)\nFraction(0, 1)\n\n- (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n?                                           ^\n\n+ (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n?                                           ^\n\nFailing test case: test_operator_and_quadratic_against_symbolic_matrices(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_operator_and_quadratic_against_symbolic_matrices>,\n    diagonal=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n    vector=(\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n    ),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 7.685s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_operator_and_quadratic_against_symbolic_matrices"
+      ]
+    },
+    {
+      "identity": "project-uses-constraint",
+      "mutant_sha256": "2a012252eb17261c086d7d901004698036fce59fd90491cd3014e6cd3480d259",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_kernel_projector_from_independent_nullspace (__main__.DiagonalConstraintTests.test_kernel_projector_from_independent_nullspace)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 83, in test_kernel_projector_from_independent_nullspace\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 99, in test_kernel_projector_from_independent_nullspace\n    self.assertEqual(actual,tuple(exact(value) for value in projected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)) != (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n\nFirst differing element 2:\nFraction(0, 1)\nFraction(1, 1)\n\n- (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n?                                           ^\n\n+ (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n?                                           ^\n\nFailing test case: test_kernel_projector_from_independent_nullspace(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_kernel_projector_from_independent_nullspace>,\n    diagonal=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n    vector=(\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n    ),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 7.509s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_kernel_projector_from_independent_nullspace"
+      ]
+    },
+    {
+      "identity": "kernel-membership-conjunction",
+      "mutant_sha256": "4a6f3d1e0ec43a577984978aab243b28be01e47117ce320b0a93dc6abe5fcd37",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_kernel_projector_from_independent_nullspace (__main__.DiagonalConstraintTests.test_kernel_projector_from_independent_nullspace)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 83, in test_kernel_projector_from_independent_nullspace\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 101, in test_kernel_projector_from_independent_nullspace\n    self.assertTrue(self.accepted(model.contains(actual)))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\nFailing test case: test_kernel_projector_from_independent_nullspace(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_kernel_projector_from_independent_nullspace>,\n    diagonal=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n    vector=(\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n    ),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 6.084s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_kernel_projector_from_independent_nullspace"
+      ]
+    },
+    {
+      "identity": "membership-admission",
+      "mutant_sha256": "4538eae16c716865890e01cfc3e33623814478510c7fba6714830f726f03d35b",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_domains_shapes_and_input_budgets (__main__.DiagonalConstraintTests.test_exact_domains_shapes_and_input_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 143, in test_exact_domains_shapes_and_input_budgets\n    self.refused(operation(invalid))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 58, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_exact_domains_shapes_and_input_budgets"
+      ]
+    },
+    {
+      "identity": "quadratic-squares-constraint",
+      "mutant_sha256": "4b20672e5c98074ecdbb911fe7404f58d34dd2f65afb272b404e6a7c6cef38ec",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_operator_and_quadratic_against_symbolic_matrices (__main__.DiagonalConstraintTests.test_operator_and_quadratic_against_symbolic_matrices)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 64, in test_operator_and_quadratic_against_symbolic_matrices\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 73, in test_operator_and_quadratic_against_symbolic_matrices\n    self.assertEqual(self.accepted(model.quadratic(vector)),exact((column.T*matrix*column)[0]))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 1) != Fraction(-1, 1)\nFailing test case: test_operator_and_quadratic_against_symbolic_matrices(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_operator_and_quadratic_against_symbolic_matrices>,\n    diagonal=(\n        Fraction(\n            -1,\n            1,  # or any other generated value\n        ),\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n    ),\n    vector=(\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n    ),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 7.629s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_operator_and_quadratic_against_symbolic_matrices"
+      ]
+    },
+    {
+      "identity": "quadratic-linear-result",
+      "mutant_sha256": "283fea56072532406aad1c953b0645908be051420da9ff7a011b81c0faba3803",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_operator_and_quadratic_against_symbolic_matrices (__main__.DiagonalConstraintTests.test_operator_and_quadratic_against_symbolic_matrices)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 64, in test_operator_and_quadratic_against_symbolic_matrices\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 73, in test_operator_and_quadratic_against_symbolic_matrices\n    self.assertEqual(self.accepted(model.quadratic(vector)),exact((column.T*matrix*column)[0]))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-1, 1) != Fraction(1, 1)\nFailing test case: test_operator_and_quadratic_against_symbolic_matrices(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_operator_and_quadratic_against_symbolic_matrices>,\n    diagonal=(\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n    ),\n    vector=(\n        Fraction(\n            -1,\n            1,  # or any other generated value\n        ),\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n    ),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 7.918s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_operator_and_quadratic_against_symbolic_matrices"
+      ]
+    },
+    {
+      "identity": "public-apply-dispatch",
+      "mutant_sha256": "34a1fbcbabcae6540fd3a767d23d1f13200b4586a8672a6b544def12517430a6",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_operator_and_quadratic_against_symbolic_matrices (__main__.DiagonalConstraintTests.test_operator_and_quadratic_against_symbolic_matrices)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 64, in test_operator_and_quadratic_against_symbolic_matrices\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 72, in test_operator_and_quadratic_against_symbolic_matrices\n    self.assertEqual(self.accepted(model.apply(vector)),tuple(exact(v) for v in expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)) != (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n\nFirst differing element 2:\nFraction(1, 1)\nFraction(0, 1)\n\n- (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n?                                           ^\n\n+ (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n?                                           ^\n\nFailing test case: test_operator_and_quadratic_against_symbolic_matrices(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_operator_and_quadratic_against_symbolic_matrices>,\n    diagonal=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n    vector=(\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n    ),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 6.270s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_operator_and_quadratic_against_symbolic_matrices"
+      ]
+    },
+    {
+      "identity": "untranslated-project-refusal",
+      "mutant_sha256": "4b67deff62c4f6197ab9d6d77bb57b940faf691065f26482260cbfca3a68da6a",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_exact_domains_shapes_and_input_budgets (__main__.DiagonalConstraintTests.test_exact_domains_shapes_and_input_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 143, in test_exact_domains_shapes_and_input_budgets\n    self.refused(operation(invalid))\n                 ~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\checker_support\\diagonal_constraint.py\", line 94, in project\n    return Outcome(value=self._project(vector))\n                         ~~~~~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\checker_support\\diagonal_constraint.py\", line 90, in _project\n    column = _column(vector)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\checker_support\\diagonal_constraint.py\", line 23, in _column\n    return RationalMatrix(tuple((entry,) for entry in _vector(value)))\n                                                      ~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\checker_support\\diagonal_constraint.py\", line 18, in _vector\n    for entry in sequence(value, \"three coordinates\", 3, 3))\n                 ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\checker_support\\domains.py\", line 91, in sequence\n    raise _violation(\"input\", f\"{name} must be a list or tuple\")\nchecker_support.boundary.Violation: three coordinates must be a list or tuple\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/diagonal_constraint.py",
+      "tests": [
+        "test_exact_domains_shapes_and_input_budgets"
+      ]
+    },
+    {
+      "identity": "radius-coercion",
+      "mutant_sha256": "a9c625fed9d5db9d57c9690a8b313e4239402ab0944b636acf16aa787c8b6db3",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_candidate_scope_and_radius_policy (__main__.DiagonalConstraintTests.test_candidate_scope_and_radius_policy)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 192, in test_candidate_scope_and_radius_policy\n    self.refused(evaluate(module.ConstraintKernelControls,radius=radius))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 58, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.050s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_candidate_scope_and_radius_policy"
+      ]
+    },
+    {
+      "identity": "radius-budget",
+      "mutant_sha256": "a967037e0a0a0af3150ed36cac4ed55f95f632e3e88388eb80002a2b6fdee0a5",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_candidate_scope_and_radius_policy (__main__.DiagonalConstraintTests.test_candidate_scope_and_radius_policy)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 193, in test_candidate_scope_and_radius_policy\n    self.refused(evaluate(module.ConstraintKernelControls,radius=5),\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 58, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.050s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_candidate_scope_and_radius_policy"
+      ]
+    },
+    {
+      "identity": "candidate-ignored",
+      "mutant_sha256": "282388b91e1234bba2da943eeca19ae6701089537f1a1c03b58ad26ecafc64de",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_candidate_scope_and_radius_policy (__main__.DiagonalConstraintTests.test_candidate_scope_and_radius_policy)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 190, in test_candidate_scope_and_radius_policy\n    self.assertEqual(accepted,[(0,2,-1)])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(-1, -1, -1), (-1, -1, 0), (-1, -1, 1), (-[704 chars], 2)] != [(0, 2, -1)]\n\nFirst differing element 0:\n(-1, -1, -1)\n(0, 2, -1)\n\nFirst list contains 63 additional elements.\nFirst extra element 1:\n(-1, -1, 0)\n\nDiff is 959 characters long. Set self.maxDiff to None to see it.\n\n----------------------------------------------------------------------\nRan 1 test in 0.139s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_candidate_scope_and_radius_policy"
+      ]
+    },
+    {
+      "identity": "candidate-type",
+      "mutant_sha256": "63b27914fae9609831490cbd6f083730e6ccb00e75f4ec7ea09991904f5966c3",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_candidate_scope_and_radius_policy (__main__.DiagonalConstraintTests.test_candidate_scope_and_radius_policy)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 195, in test_candidate_scope_and_radius_policy\n    self.refused(evaluate(module.ConstraintKernelControls,invalid_candidate))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 58, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.055s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_candidate_scope_and_radius_policy"
+      ]
+    },
+    {
+      "identity": "symmetry-guard-removed",
+      "mutant_sha256": "2e20ec8386995d57f8d78fab1676f6f265c7401129ab640f6cf7184655ad374a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 211, in test_original_census_and_actual_case_counter\n    self.assertEqual(report[\"checks\"],638)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 637 != 638\n\n----------------------------------------------------------------------\nRan 1 test in 0.087s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "spectrum-guard-removed",
+      "mutant_sha256": "4529ce384f61dcfdace5cda0817d5114619fbdc6d867ea36a18e03a58a2bffed",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 211, in test_original_census_and_actual_case_counter\n    self.assertEqual(report[\"checks\"],638)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 637 != 638\n\n----------------------------------------------------------------------\nRan 1 test in 0.083s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "projector-guard-removed",
+      "mutant_sha256": "0e2b3a7940e0e2040b34c7190ae18777d5ec2a2b1197ae7c7965d0637117a6ee",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 211, in test_original_census_and_actual_case_counter\n    self.assertEqual(report[\"checks\"],638)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 637 != 638\n\n----------------------------------------------------------------------\nRan 1 test in 0.082s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "kernel-coordinate-predicate",
+      "mutant_sha256": "76077e1cd4e164a9fb9c98b02f9c5cc569bfd25333691778da1cefa255405fba",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 208, in test_original_census_and_actual_case_counter\n    report=self.accepted(controls.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 54, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='kernel coordinates') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.033s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "fixed-point-operator",
+      "mutant_sha256": "ddfaa387604932851bc6dcbc6cf71a12f6cc769c50f3e9339106dfd247e9a85f",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 208, in test_original_census_and_actual_case_counter\n    report=self.accepted(controls.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 54, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='projector fixed points') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.041s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "application-guard-removed",
+      "mutant_sha256": "a8a421ed7df7b0e386e88fdb94f5ba8a18d3e6cd4d371057d616daaa3e2b7d3f",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 211, in test_original_census_and_actual_case_counter\n    self.assertEqual(report[\"checks\"],638)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 513 != 638\n\n----------------------------------------------------------------------\nRan 1 test in 0.074s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "census-range",
+      "mutant_sha256": "95191243aa8b93c8068aa879d310abc94ff9059465ad157b33de6c71f80e9499",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 209, in test_original_census_and_actual_case_counter\n    self.assertEqual((report[\"vectors\"],report[\"rank\"],report[\"kernel_dimension\"]),(125,2,1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (64, 2, 1) != (125, 2, 1)\n\nFirst differing element 0:\n64\n125\n\n- (64, 2, 1)\n?  ^^\n\n+ (125, 2, 1)\n?  ^^^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.056s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "positive-witness",
+      "mutant_sha256": "b3c4900e1093f206e35d15db689ded10f225125313c4534c27dc9bab712c885b",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 208, in test_original_census_and_actual_case_counter\n    report=self.accepted(controls.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 54, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='indefinite quadratic witnesses') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.085s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "reported-nullity",
+      "mutant_sha256": "a52afec33b5ad35cc6101558d20f42fe185c46a5b7618dfa8960ce2517abb609",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 209, in test_original_census_and_actual_case_counter\n    self.assertEqual((report[\"vectors\"],report[\"rank\"],report[\"kernel_dimension\"]),(125,2,1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (125, 2, 2) != (125, 2, 1)\n\nFirst differing element 2:\n2\n1\n\n- (125, 2, 2)\n?          ^\n\n+ (125, 2, 1)\n?          ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.076s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "reported-nonprojector",
+      "mutant_sha256": "5af31987b4fde14125e69496685249f6b1e0cc970595fc74f18cd9e17496cb22",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 210, in test_original_census_and_actual_case_counter\n    self.assertEqual((report[\"positive\"],report[\"negative\"],report[\"nonprojector\"]),(Q(2),Q(-1),True))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(2, 1), Fraction(-1, 1), False) != (Fraction(2, 1), Fraction(-1, 1), True)\n\nFirst differing element 2:\nFalse\nTrue\n\n- (Fraction(2, 1), Fraction(-1, 1), False)\n?                                   ^^^^\n\n+ (Fraction(2, 1), Fraction(-1, 1), True)\n?                                   ^^^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.078s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "reported-count",
+      "mutant_sha256": "d0f0c8478db91979b2d8a178b76c30b5bab8fdc0b63b2d0d5ce2b42d060b6e8e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 211, in test_original_census_and_actual_case_counter\n    self.assertEqual(report[\"checks\"],638)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 639 != 638\n\n----------------------------------------------------------------------\nRan 1 test in 0.086s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "shared-counter",
+      "mutant_sha256": "f38350e06d064b5e96528deefc11714a3b5a108bf9b3cd8fd3cbb45224c8b563",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_census_and_actual_case_counter (__main__.DiagonalConstraintTests.test_original_census_and_actual_case_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 215, in test_original_census_and_actual_case_counter\n    self.assertEqual(report,self.accepted(controls.verify()))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'vec[92 chars]on(-1, 1), 'nonprojector': True, 'failures': 0, 'checks': 638} != {'vec[92 chars]on(-1, 1), 'nonprojector': True, 'failures': 0, 'checks': 1276}\n- {'checks': 638,\n?             --\n\n+ {'checks': 1276,\n?            +++\n\n   'failures': 0,\n   'kernel_dimension': 1,\n   'negative': Fraction(-1, 1),\n   'nonprojector': True,\n   'positive': Fraction(2, 1),\n   'rank': 2,\n   'vectors': 125}\n\n----------------------------------------------------------------------\nRan 1 test in 0.136s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_original_census_and_actual_case_counter"
+      ]
+    },
+    {
+      "identity": "cli-refusal",
+      "mutant_sha256": "c6d36270e57691421df7667fecb5b1589cd59db235aa45ccec185ea32b0436cf",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_failure_translation_and_cancellation (__main__.DiagonalConstraintTests.test_failure_translation_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 226, in test_failure_translation_and_cancellation\n    self.assertEqual(module.main(),1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.116s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-discrete-wdw-constraint.py",
+      "tests": [
+        "test_failure_translation_and_cancellation"
+      ]
+    },
+    {
+      "identity": "dependency-term-budget",
+      "mutant_sha256": "a8ce46afc66db606c5267020d5fa69a52a519f59454fac67f0634f7c261b5b7e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_arithmetic_terms_and_prefixes_before_cancellation (__main__.DiagonalConstraintTests.test_arithmetic_terms_and_prefixes_before_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 164, in test_arithmetic_terms_and_prefixes_before_cancellation\n    self.refused(DiagonalConstraint((-maximum,1,0)).quadratic((1,large,0)),\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 58, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_arithmetic_terms_and_prefixes_before_cancellation"
+      ]
+    },
+    {
+      "identity": "dependency-prefix-budget",
+      "mutant_sha256": "286369c6c8d733293c5647cc632e0037cc64ab6483294be2367c5aede750f940",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_arithmetic_terms_and_prefixes_before_cancellation (__main__.DiagonalConstraintTests.test_arithmetic_terms_and_prefixes_before_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 166, in test_arithmetic_terms_and_prefixes_before_cancellation\n    self.refused(DiagonalConstraint((1,1,-1)).quadratic((bounded,bounded,bounded)),\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 58, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_arithmetic_terms_and_prefixes_before_cancellation"
+      ]
+    },
+    {
+      "identity": "refusal-test-helper",
+      "mutant_sha256": "0c6912a03e0f51a71d4e0fee42f499557c11ee8655a65414c88bc02ee386a551",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_preflight_and_refusal_helper_strength (__main__.DiagonalConstraintTests.test_preflight_and_refusal_helper_strength)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 168, in test_preflight_and_refusal_helper_strength\n    with self.assertRaises(AssertionError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nAssertionError: AssertionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_diagonal_constraints.py",
+      "tests": [
+        "test_preflight_and_refusal_helper_strength"
+      ]
+    },
+    {
+      "identity": "rational-oracle-denominator",
+      "mutant_sha256": "733dfa86cb651b5ebe61d200ea0473f1c8b1e72f0b6bdf382f5183b745799733",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_operator_and_quadratic_against_symbolic_matrices (__main__.DiagonalConstraintTests.test_operator_and_quadratic_against_symbolic_matrices)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 64, in test_operator_and_quadratic_against_symbolic_matrices\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 77, in test_operator_and_quadratic_against_symbolic_matrices\n    self.assertEqual(dict(model.spectrum),eigenvalues)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {Fraction(0, 1): 2, Fraction(1, 2): 1} != {Fraction(0, 1): 2, Fraction(1, 1): 1}\n- {Fraction(0, 1): 2, Fraction(1, 2): 1}\n?                                 ^\n\n+ {Fraction(0, 1): 2, Fraction(1, 1): 1}\n?                                 ^\n\nFailing test case: test_operator_and_quadratic_against_symbolic_matrices(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_operator_and_quadratic_against_symbolic_matrices>,\n    diagonal=(\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n        Fraction(1, 2),\n    ),\n    vector=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\external\\pythonmpq.py:128\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\simplify\\radsimp.py:1133\n\n----------------------------------------------------------------------\nRan 1 test in 7.401s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_diagonal_constraints.py",
+      "tests": [
+        "test_operator_and_quadratic_against_symbolic_matrices"
+      ]
+    },
+    {
+      "identity": "nullspace-projector-oracle",
+      "mutant_sha256": "ae8d410bb5bc561e24190dcf6331177b664c4f94665f4ac2ad8a7d3c6a0dc8cb",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_kernel_projector_from_independent_nullspace (__main__.DiagonalConstraintTests.test_kernel_projector_from_independent_nullspace)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 83, in test_kernel_projector_from_independent_nullspace\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\diagonal-constraint-mutation-0fmyfa_o\\checks\\tests\\test_diagonal_constraints.py\", line 93, in test_kernel_projector_from_independent_nullspace\n    self.assertEqual(sp.ImmutableMatrix(model.kernel_projector.rows),projector)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1, 0, 0],\n[0, 1, 0],\n[0, 0, 0]]) != Matrix([\n[1, 0, 0],\n[0, 1, 0],\n[0, 0, 1]])\nFailing test case: test_kernel_projector_from_independent_nullspace(\n    # The test sometimes passed when commented parts were varied together.\n    self=<__main__.DiagonalConstraintTests testMethod=test_kernel_projector_from_independent_nullspace>,\n    diagonal=(\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n    ),\n    vector=(Fraction(0, 1),\n        Fraction(0, 1),\n        Fraction(0, 1)),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\numbers.py:1908\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\subspaces.py:76\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\str.py:678\n\n----------------------------------------------------------------------\nRan 1 test in 3.753s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_diagonal_constraints.py",
+      "tests": [
+        "test_kernel_projector_from_independent_nullspace"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 45,
+      "survived": 0,
+      "unrun": 0
+    },
+    "detected_fraction": 1.0,
+    "eligible": 45
+  }
+}

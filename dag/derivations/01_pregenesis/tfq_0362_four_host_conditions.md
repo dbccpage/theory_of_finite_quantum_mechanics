@@ -33,11 +33,11 @@ In accordance with strict constructive principles:
 - [`absent: missing declaration obligation: a four-constructor host condition in 000_pre_genesis_to_mssn/lean4/Paper.lean matching ledger row WDP-P000-001`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs`](../../code/rust/src/)
 - [`absent: missing obligation: an enum in crate pre_mssn_preservation with those four host conditions`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
 - [`absent: missing obligation: four-way classifier beside preservation.report_factor for absent payload, empty word, literal <>, and admitted ground`](../../code/python/)
 
 ---

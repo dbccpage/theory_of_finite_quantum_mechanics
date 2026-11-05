@@ -537,7 +537,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fq-gleason-qi3-frame-functions.md`
 
 - file: [dag/derivations/independent/fq-gleason-qi3-frame-functions.md](../../../dag/derivations/independent/fq-gleason-qi3-frame-functions.md)
-- sha256 (`lf-normalised`): `d9646057b4548d5f4cc1dbf13424899e28394032d8e87c8d8ddd5ae41f8c1350`
+- sha256 (`lf-normalised`): `9e5f0878cd1565d478b5235b99e65b24138c0df26a367650097850ad25cad81e`
 - cited in: node.source
 - counts toward the grade: yes
 

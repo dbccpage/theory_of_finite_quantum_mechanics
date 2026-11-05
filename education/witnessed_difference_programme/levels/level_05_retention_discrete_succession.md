@@ -10,8 +10,8 @@ maturity: production
 claim_status: source-grounded
 authority_effect: None
 source_paths:
-- atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
-- atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
+- atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
+- atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
 ledger_rows:
 - WDP-CH06-D01
 - WDP-CH06-P01
@@ -195,7 +195,7 @@ incomparable.
 ## 4. Evidence bindings
 
 Paths are relative to the monograph package
-[`witnessed_difference_programme/`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/).
+[`witnessed_difference_programme/`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/).
 
 | Row | Status | Ledger evidence | Lean | Executable binding | Notebook |
 | :--- | :--- | :--- | :--- | :--- | :--- |

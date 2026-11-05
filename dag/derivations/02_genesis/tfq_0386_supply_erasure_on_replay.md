@@ -31,7 +31,7 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`declaration obligation: erase_replay against ledger row WDP-P000-013, education filter file left unread`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Erasure.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Erasure.lean`](../../code/lean4/)
 - [`education/genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply`](../../code/lean4/)
 - [`education/genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only`](../../code/lean4/)
 
@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - [`missing obligation: replay.rs must show supply-deletion leaves the core regime unchanged, file listed and not opened`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_genesis_supply_erasure_witness`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/replay.rs`](../../code/rust/src/)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/replay.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: a replay filter in 000_genesis_19l57g1/code/derivation/engine.py, listed and not opened, that drops supply events and compares regimes`](../../code/python/)

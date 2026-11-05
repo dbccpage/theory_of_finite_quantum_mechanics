@@ -41,7 +41,7 @@ In accordance with strict constructive principles:
 - `missing obligation: the H3V7N5QF package holds no Rust`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/fourth/invariants.py::never_decreases`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/fourth/invariants.py)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/code/fourth/invariants.py::never_decreases`](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/fourth/invariants.py)
 
 ---
 
@@ -55,5 +55,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `lean4/Imported/GenesisOngoing/Fourth/Contain.lean:15-16`
-  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fourth/claim_ledger.md:59`
+  - `atlas/finite_obstruction_calculus/genesis_ongoing/paper/fourth/claim_ledger.md:59`
   - `external:sha256:8b8d536217ef3d16457e9c7a2cdbc492da7bf00addbd2f6c83cfdae08870f395:37`

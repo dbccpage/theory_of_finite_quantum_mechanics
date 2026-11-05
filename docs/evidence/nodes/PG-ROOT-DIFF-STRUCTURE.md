@@ -140,7 +140,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md](../../../dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md)
-- sha256 (`lf-normalised`): `8b2271e6cc33b434323d97a58135ec4edcc0066aa3cb4fc1c339397da5adcd28`
+- sha256 (`lf-normalised`): `7a701f942dceffb3874381dab72f998a7b761e4f43a7a9b16f414b77511d5337`
 - generated view: listed, not counted
 - cited in: record TFQ-0392 (shared)
 - counts toward the grade: no

@@ -1,0 +1,134 @@
+"""Temporal-cycle scalar and matrix regression checks. AuthorityEffect: None."""
+from __future__ import annotations
+
+import builtins
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import importlib.util
+from pathlib import Path
+import sys
+from types import ModuleType, SimpleNamespace
+from typing import Any, TypeVar, cast
+import unittest
+from unittest.mock import Mock, patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+CHECKS=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(CHECKS))
+from checker_support.boundary import Violation
+from checker_support.gaussian_expression import decode, encode
+from checker_support.gaussian_rational import GaussianRational as G
+from checker_support.outcome import Outcome
+
+APP=CHECKS/'independent/fsp-imaginary-mu-real-det.py'
+PROPERTY=settings(max_examples=60,derandomize=True,deadline=None,database=None)
+POSITIVE=st.builds(Q,st.integers(1,8),st.integers(1,7))
+SCALAR=st.builds(Q,st.integers(-8,8),st.integers(1,7))
+T=TypeVar('T')
+
+
+def load() -> ModuleType:
+    spec=importlib.util.spec_from_file_location('reviewed_temporal_cycle',APP)
+    if spec is None or spec.loader is None:
+        raise RuntimeError('Cannot load temporal-cycle controls')
+    module=importlib.util.module_from_spec(spec)
+    with patch.dict(sys.modules,{spec.name:module}):
+        spec.loader.exec_module(module)
+    return module
+
+
+class TemporalCycleTests(unittest.TestCase):
+    def accepted(self,result: Outcome[T]) -> T:
+        self.assertIsNone(result.error)
+        return cast(T,result.value)
+
+    def refused(self,result: Outcome[Any],kind: str='input') -> None:
+        self.assertIsNotNone(result.error)
+        if result.error is None:
+            self.fail('Expected typed refusal')
+        self.assertEqual(result.error.kind,kind)
+
+    def test_native_and_symbolic_exact_atoms(self) -> None:
+        for value in (0,1,-1,2,Q(1,2),sp.Integer(3),sp.Rational(-1,2),sp.I,-sp.I,G(Q(2,3),Q(-1,4))):
+            decoded=self.accepted(decode(value))
+            self.assertEqual(self.accepted(decode(self.accepted(encode(decoded)))),decoded)
+        self.assertEqual(self.accepted(decode(sp.I)),G(0,1))
+        self.refused(encode((1,0)))
+
+    def test_text_and_foreign_hooks_are_never_executed(self) -> None:
+        probe=Mock(return_value=sp.Integer(3))
+        text="__import__('builtins')._tfq_scalar_probe()"
+        with patch.object(builtins,'_tfq_scalar_probe',probe,create=True):
+            self.refused(decode(text))
+            with self.assertRaises(Violation):
+                load().gaussian(text)
+        probe.assert_not_called()
+        hook=Mock(return_value=sp.Integer(3))
+        self.refused(decode(SimpleNamespace(_sympy_=hook)))
+        hook.assert_not_called()
+        for value in (True,False,1.0,complex(1),b'1','1',[1],None):
+            self.refused(decode(value))
+
+    @PROPERTY
+    @given(POSITIVE,SCALAR,SCALAR,SCALAR,st.integers(-3,3))
+    def test_expression_arithmetic_against_symbolic_oracle(self,a: Q,b: Q,c: Q,d: Q,power: int) -> None:
+        left=sp.Rational(a.numerator,a.denominator)+sp.I*sp.Rational(b.numerator,b.denominator)
+        right=sp.Rational(c.numerator,c.denominator)+sp.I*sp.Rational(d.numerator,d.denominator)
+        expressions=(sp.Add(left,right,evaluate=False),sp.Mul(left,right,evaluate=False),
+                     sp.Pow(left,power,evaluate=False))
+        for expression in expressions:
+            actual=self.accepted(encode(self.accepted(decode(expression))))
+            self.assertEqual(sp.expand_complex(actual-sp.expand_complex(expression)),0)
+
+    def test_grammar_refusals_and_zero_negative_power(self) -> None:
+        expressions=(sp.Symbol('x'),sp.sqrt(2),sp.sin(sp.Integer(1),evaluate=False),sp.Float('0.5'),
+                     sp.Pow(1+sp.I,sp.I,evaluate=False),sp.Pow(1+sp.I,sp.Rational(1,2),evaluate=False),
+                     sp.Pow(1+sp.I,sp.Add(1,1,evaluate=False),evaluate=False),sp.Pow(0,-1,evaluate=False))
+        for expression in expressions:
+            self.refused(decode(expression))
+        self.assertEqual(self.accepted(decode(sp.Pow(0,0,evaluate=False))),G(1))
+        self.assertEqual(self.accepted(decode(sp.Pow(sp.I,-3,evaluate=False))),G(0,1))
+
+    def test_shape_preflight_before_expression_evaluation(self) -> None:
+        oversized=sp.Add(*([sp.Integer(1)]*64),evaluate=False)
+        invalid=sp.Add(sp.Integer(1),sp.Symbol('x'),evaluate=False)
+        with patch.dict(decode.__globals__,_value=Mock(side_effect=RuntimeError('must not evaluate'))):
+            self.refused(decode(oversized),'resource')
+            self.refused(decode(invalid))
+
+    def test_node_depth_power_and_component_budgets(self) -> None:
+        self.assertEqual(self.accepted(decode(sp.Add(*([sp.Integer(1)]*63),evaluate=False))),G(63))
+        self.refused(decode(sp.Add(*([sp.Integer(1)]*64),evaluate=False)),'resource')
+        expression=sp.I
+        for _ in range(9):
+            expression=sp.Pow(expression,1,evaluate=False)
+        self.refused(decode(expression),'resource')
+        for expression in (sp.Pow(1,17,evaluate=False),sp.Pow(1,-17,evaluate=False),
+                           sp.Integer(1<<4096),sp.Rational(1,1<<4096),
+                           sp.Pow(sp.Integer(1<<2048),2,evaluate=False)):
+            self.refused(decode(expression),'resource')
+        maximum=(1<<4096)-1
+        self.assertEqual(self.accepted(decode(sp.Rational(1,maximum))),G(Q(1,maximum)))
+
+    def test_owned_values_reentrancy_and_refusal_helper(self) -> None:
+        original=G(Q(3,5),Q(4,5))
+        decoded=self.accepted(decode(original))
+        self.assertEqual(decoded,original)
+        self.assertIsNot(decoded,original)
+        self.assertEqual(self.accepted(decode(self.accepted(encode(original)))),original)
+        with self.assertRaises(FrozenInstanceError):
+            decoded.re=Q(0)  # type: ignore[misc]
+        with self.assertRaises(AssertionError):
+            self.refused(decode(1))
+
+    def test_unexpected_failures_and_cancellation_propagate(self) -> None:
+        for exception in (RuntimeError,KeyboardInterrupt,SystemExit):
+            with patch.dict(decode.__globals__,_shape=Mock(side_effect=exception)):
+                with self.assertRaises(exception):
+                    decode(sp.I)
+
+
+if __name__=='__main__':
+    unittest.main()

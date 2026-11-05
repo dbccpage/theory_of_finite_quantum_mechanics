@@ -57,22 +57,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py)
 - sha256 (`bytes`): `5a88f14b6c7d3118868d35e112487ee944ca200ee690736a22a867f2c461ca9b`
 - cited in: record TFQ-0548
-- check: `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate`
+- check: `python -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_worked_filled_triangle_signature_and_certificate` (python_test) | yes | yes | yes | - | `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate` |
+| `test_worked_filled_triangle_signature_and_certificate` (python_test) | yes | yes | yes | - | `python -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate` |
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0548_wdp_filled_triangle.md`
 
 - file: [dag/derivations/06_wdp/tfq_0548_wdp_filled_triangle.md](../../../dag/derivations/06_wdp/tfq_0548_wdp_filled_triangle.md)
-- sha256 (`lf-normalised`): `7c6e2f1ef22c7bdd659a3c61207a3345f2df804f2b13f6c6060a489d5692f47a`
+- sha256 (`lf-normalised`): `1deaea48d4392d98937447763fccf77315258c8e32ca10fd97a9338512a5daa3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0548
 - counts toward the grade: no

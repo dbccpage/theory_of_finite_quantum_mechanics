@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs`
+### Rust: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs)
 - sha256 (`bytes`): `46eef81dc7a61055531f7ceeede4815c71f6d2ae0df682f48f7305767c15c736`
 - cited in: node.rust, record TFQ-0552
 
@@ -70,9 +70,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/probability.py)
 - sha256 (`bytes`): `667a6a74e1b3a006ec92b682df4eddf7422d7d84acce9cc8bc3a8ac164850581`
 - cited in: record TFQ-0552
 
@@ -83,9 +83,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0552_wdp_finite_valuations.md`
 
 - file: [dag/derivations/06_wdp/tfq_0552_wdp_finite_valuations.md](../../../dag/derivations/06_wdp/tfq_0552_wdp_finite_valuations.md)
-- sha256 (`lf-normalised`): `4068b4a80700b375892712c54d5a002b4a5ce0ab9cc78d573fe9166c7edc4b32`
+- sha256 (`lf-normalised`): `c3853a112fd67da1eb4f4f902b6db4acc172ea65c45d6a934f01b1df066fc554`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0552
 - counts toward the grade: no

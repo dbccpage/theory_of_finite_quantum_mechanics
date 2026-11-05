@@ -12,10 +12,10 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Ninth/State.lean
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/ninth/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/ninth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Ninth/State.lean
+  - atlas/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/ninth/reading_the_seed.md
 last_verified: 2026-10-11
 ---
 
@@ -25,7 +25,7 @@ last_verified: 2026-10-11
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 09: `swap9_swap`](../_images/genesis_ongoing_09_involution_swap.svg)
 
@@ -46,8 +46,8 @@ The ninth manuscript is `paper/ninth/paper.md`. The review row says the swap evi
 
 ## Files
 
-- [`paper/ninth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/paper.md)
-- [`lean4/Ninth/State.lean`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Ninth/State.lean)
-- [`meta/review/derivation_review.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md)
-- [`research/ninth/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/ninth/reading_the_seed.md)
+- [`paper/ninth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/ninth/paper.md)
+- [`lean4/Ninth/State.lean`](/atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Ninth/State.lean)
+- [`meta/review/derivation_review.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md)
+- [`research/ninth/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/ninth/reading_the_seed.md)
 

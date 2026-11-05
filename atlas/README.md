@@ -4,7 +4,7 @@ AuthorityEffect: None.
 
 ## What this is
 
-Seven paper folders copied from a private research repository. Each file is byte for byte except 323 files edited on 2026-10-26, when links into that repository were removed and paths were updated to the renamed folders (six of them were also changed by the certifi bump in #450). Those files are marked `edited_after_copy` in `PROVENANCE.json`, which also keeps their original sha256. On 2026-10-26 the folders were renamed to descriptive names under `atlas/papers/` (the old-to-new map is `destination_renames` in `PROVENANCE.json`):
+The original import copied seven paper folders from a private research repository. Its manifest records 5,613 files, including 323 files with recorded edits on 2026-10-26, when links into that repository were removed and paths were updated to the renamed folders (six of them were also changed by the certifi bump in #450). Those files are marked `edited_after_copy` in `PROVENANCE.json`, which also keeps their original sha256. On 2026-10-26 the folders were renamed to descriptive names under `atlas/` (the old-to-new map is `destination_renames` in `PROVENANCE.json`):
 
 - `finite_obstruction_calculus/genesis`
 - `finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems`
@@ -20,7 +20,7 @@ Each folder holds a paper (Markdown, TeX, PDF), its Lean 4 sources, and the Pyth
 
 They are source texts. Whatever a file in `atlas/` says about being proved, verified or checked is the source's own wording. It is not a status in this repository, and it changes no node in `dag/derivation_dag.json`. The statuses in the DAG govern; see [`docs/evidence/README.md`](../docs/evidence/README.md) for how each status is backed.
 
-Nothing here is scanned or scored by this repository's checks: the contract/score checker, the overclaim scanner, the evidence builder and the README facts inventory read explicit paths (`code/`, `lean4/`, `papers/`, `dag/`, `docs/`), and `scripts/build_readme_facts.py` skips `atlas/` so archive files do not inflate its counts. The Lean files were not built here. DAG citations of upstream paths whose files are copied here now name the copy in `atlas/papers/`.
+The original import was a source-custody operation. The governed code-scoring policy names its own source populations, and `scripts/build_readme_facts.py` treats `atlas/` as an archive. The current byte audit is linked below. A build or theorem claim requires the corresponding module, toolchain and verification receipt. DAG citations of copied upstream files use their current atlas paths.
 
 ## Bytes and provenance
 
@@ -41,3 +41,27 @@ Left out of the copy (counts and sizes are in `PROVENANCE.json`):
 No file over 25 MB is kept, and no file matched a secret pattern. Absolute local paths from the original machine remain in some logs and receipts; they were left as written.
 
 Because files were removed, the `MANIFEST.sha256` and `SHA256SUMS` files inside the copied folders may list files that are not here.
+
+The papers directory contents were moved directly under `atlas/` on 2026-11-05. The provenance manifest records the current locations and retains the historical rename map.
+
+## Current import audit
+
+The November 5 byte audit
+compares every recorded import entry with the current tree. It finds 5,558
+matching entries, 53 with different bytes or sizes, and 2 missing generated
+auxiliary/log files. The manifest retains the recorded hashes, and the audit
+lists each discrepancy with its observed hash and size.
+
+The current atlas also contains 1,548 files outside that original import
+manifest, mainly under core and foundations. Their origin needs to be read from
+their own source records. The manifest's original import totals and exclusion
+counts describe that import operation.
+
+For historical source citations beginning with `atlas/papers/`, the current
+local prefix is `atlas/`. Imported snapshots and their recorded byte hashes
+preserve the original citation text. Mutable education and derivation links
+have a separate [relocation receipt](../reviews/repository_file_review/2026-11-05-atlas-reference-cleanup.json).
+
+The [publication relocation audit](../reviews/repository_file_review/2026-11-05-publication-atlas.json) checks this PR tree. Earlier November 5 cleanup receipts record observations in the maintainer's older source checkout; their mismatches and missing files do not describe this publication checkout. The later `everett_mw` notes are outside the original 5,613-file import manifest.
+
+The publication audit matches 5,606 of the original 5,613 import records. Seven requirements/lock files already differed from those recorded import bytes on the PR base; the move preserves those files and the original manifest digests. All 5,613 manifest destinations are present.

@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust port of the passage-system obstP; obstruction.rs::obstructed is the kernel's exhausted-menu notion, a different predicate`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py::obst_p`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py::obst_p`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py)
 
 ---
 

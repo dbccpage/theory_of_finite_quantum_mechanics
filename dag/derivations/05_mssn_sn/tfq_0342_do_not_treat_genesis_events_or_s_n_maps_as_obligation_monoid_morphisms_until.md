@@ -45,7 +45,7 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.traceObligation_append`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean::supply_no_op`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean::supply_no_op`](../../code/lean4/)
 - [`education/symmetric_group_presentations/lean4/SnCarrier.lean::BasePresentation`](../../code/lean4/)
 - [`education/symmetric_group_presentations/lean4/SnCarrier.lean::RetractOutcome`](../../code/lean4/)
 - [`education/symmetric_group_presentations/lean4/SnCarrier.lean::retractionDownMap`](../../code/lean4/)

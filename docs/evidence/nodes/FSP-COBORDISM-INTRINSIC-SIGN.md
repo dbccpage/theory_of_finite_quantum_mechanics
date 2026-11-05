@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/fsp-cobordism-intrinsic-sign.py`
 
 - file: [checks/independent/fsp-cobordism-intrinsic-sign.py](../../../checks/independent/fsp-cobordism-intrinsic-sign.py)
-- sha256 (`bytes`): `f3b7bf730dfeca78e102054fbae9b6df8493110d91ebce7567f75db85535f078`
+- sha256 (`bytes`): `99dc50c9c7ad9175f125adafaba37b865226062cafeecb156ecd5b16d1b0b427`
 - cited in: record TFQ-1211
 - counts toward the grade: yes
 

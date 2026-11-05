@@ -1,0 +1,341 @@
+{
+  "AuthorityEffect": "None",
+  "groups": {
+    "graph": {
+      "requirement": "Own 1..4 native integer sites and at most six simple undirected bonds, snapshot and normalize endpoints lexically, refuse duplicate edges and invalid shapes/domains before transfer arithmetic.",
+      "tests": [
+        "test_graph_domains_normalization_and_ownership",
+        "test_model_preflight_and_refusal_helper_strength",
+        "test_empty_bonds_order_reversal_and_detached_queries"
+      ]
+    },
+    "transfer": {
+      "requirement": "Own an admitted graph, 1..4 native integer slices, positive native integer/Fraction r, h, fugacity, and a bool channel. Cache the lexical forward/reverse kinetic product. Decode time-major masks of exactly sites*slices bits, accumulate spin propagators and return det(I+P) for each spin with the channel's field prefactor.",
+      "tests": [
+        "test_generated_fields_against_independent_symbolic_model",
+        "test_all_original_protected_fields_and_witnesses",
+        "test_model_domains_and_field_mask_preflight",
+        "test_empty_bonds_order_reversal_and_detached_queries"
+      ]
+    },
+    "determinant": {
+      "requirement": "Accept an owned square RationalMatrix, dimension 1..64, and use row-pivoted exact elimination with swap signs and singular result zero. Preserve the input matrix. Public determinant queries return Outcome and admit every pivot product, factor, elimination product and difference under the rational budget.",
+      "tests": [
+        "test_determinant_against_bareiss",
+        "test_determinant_pivots_shape_and_resource_paths"
+      ]
+    },
+    "result": {
+      "requirement": "Own rational up/down determinants, strictly positive prefactor and native integer field sum -16..16. Derive the weight from admitted products; callers cannot supply a contradictory weight. This is a value carrier; its constructor alone does not certify transfer-matrix provenance.",
+      "tests": [
+        "test_result_invariants_and_power_budgets",
+        "test_all_original_protected_fields_and_witnesses",
+        "test_generated_fields_against_independent_symbolic_model"
+      ]
+    },
+    "budgets": {
+      "requirement": "Stored rational components, each matrix dot term/prefix, scalar product/power and determinant elimination intermediate have at most 4096 bits per normalized numerator/denominator. Check terms and prefixes before later cancellation. Reject malformed masks before matrix allocation. Prescreen symbolic rational components before Fraction division.",
+      "tests": [
+        "test_determinant_pivots_shape_and_resource_paths",
+        "test_result_invariants_and_power_budgets",
+        "test_model_domains_and_field_mask_preflight",
+        "test_model_preflight_and_refusal_helper_strength",
+        "test_legacy_exact_adapters"
+      ]
+    },
+    "adapters": {
+      "requirement": "Preserve the legacy validate_bonds, kinetic_matrix and compute_hubbard_determinants names and admitted list/SymPy result representations. Exact SymPy Integer/Rational scalars are admitted with component budgets; floats, bool, strings and irrational expressions are refused. Legacy helpers raise Violation on expected refusals, modern queries return Outcome.",
+      "tests": [
+        "test_legacy_exact_adapters",
+        "test_empty_bonds_order_reversal_and_detached_queries"
+      ]
+    },
+    "certificate": {
+      "requirement": "Preserve every original fixture guard and stdout: 64 attractive triangle fields, 256 half-filled ring fields, doped ring 15721, frustrated triangle 1281, the ring half-filling comparison, exact determinant/weight fractions and denominator powers. Count 659 actual default guards from the live per-run Cases aggregate.",
+      "tests": [
+        "test_all_original_protected_fields_and_witnesses",
+        "test_original_guards_actual_counters_and_repeatability",
+        "test_check_failures_typed_resources_and_cancellation",
+        "test_quiet_import_and_original_cli"
+      ]
+    },
+    "lifecycle": {
+      "requirement": "Own immutable graphs, parameters, models and results; keep counters fresh, imports quiet and mutable exports detached. Expected input, duplicate, check and resource failures are typed. RuntimeError, KeyboardInterrupt and SystemExit propagate. CLI refusal returns nonzero and guards remain active under optimized Python.",
+      "tests": [
+        "test_graph_domains_normalization_and_ownership",
+        "test_empty_bonds_order_reversal_and_detached_queries",
+        "test_result_invariants_and_power_budgets",
+        "test_original_guards_actual_counters_and_repeatability",
+        "test_check_failures_typed_resources_and_cancellation",
+        "test_quiet_import_and_original_cli",
+        "test_model_preflight_and_refusal_helper_strength"
+      ]
+    }
+  },
+  "declarations": {
+    "checks/checker_support/bond_graph.py": {
+      "_edge": [
+        "graph",
+        "lifecycle"
+      ],
+      "BondGraph": [
+        "graph",
+        "lifecycle"
+      ],
+      "BondGraph.__init__": [
+        "graph",
+        "lifecycle"
+      ]
+    },
+    "checks/checker_support/hubbard_determinants.py": {
+      "HubbardDeterminants": [
+        "result",
+        "budgets",
+        "lifecycle"
+      ],
+      "HubbardDeterminants.__init__": [
+        "result",
+        "budgets",
+        "lifecycle"
+      ]
+    },
+    "checks/checker_support/rational_determinant.py": {
+      "_reduce": [
+        "determinant",
+        "budgets",
+        "lifecycle"
+      ],
+      "_determinant": [
+        "determinant",
+        "budgets",
+        "lifecycle"
+      ],
+      "determinant": [
+        "determinant",
+        "budgets",
+        "lifecycle"
+      ]
+    },
+    "checks/checker_support/hubbard_transfer.py": {
+      "_kinetic": [
+        "transfer",
+        "budgets",
+        "lifecycle"
+      ],
+      "_power": [
+        "transfer",
+        "budgets",
+        "lifecycle"
+      ],
+      "_potential": [
+        "transfer",
+        "budgets",
+        "lifecycle"
+      ],
+      "HubbardTransfer": [
+        "transfer",
+        "budgets",
+        "lifecycle"
+      ],
+      "HubbardTransfer.__init__": [
+        "transfer",
+        "budgets",
+        "lifecycle"
+      ],
+      "HubbardTransfer.field_count": [
+        "transfer",
+        "budgets",
+        "lifecycle"
+      ],
+      "HubbardTransfer._determinants": [
+        "transfer",
+        "budgets",
+        "lifecycle"
+      ],
+      "HubbardTransfer.determinants": [
+        "transfer",
+        "budgets",
+        "lifecycle"
+      ]
+    },
+    "checks/independent/fsp-hubbard-protected-representations.py": {
+      "_exact": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "validate_bonds": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "kinetic_matrix": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "_values": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "_field": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "compute_hubbard_determinants": [
+        "adapters",
+        "budgets",
+        "lifecycle"
+      ],
+      "HubbardControls": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardControls.__init__": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardControls._attractive": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardControls._half_filled": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardControls._doped": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardControls._triangle": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardControls._verify": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardControls.verify": [
+        "certificate",
+        "lifecycle"
+      ],
+      "_main": [
+        "certificate",
+        "lifecycle"
+      ],
+      "main": [
+        "certificate",
+        "lifecycle"
+      ]
+    },
+    "checks/tests/test_hubbard_transfer.py": {
+      "load": [
+        "lifecycle"
+      ],
+      "exact": [
+        "transfer",
+        "determinant",
+        "result"
+      ],
+      "kinetic_oracle": [
+        "transfer",
+        "determinant",
+        "result"
+      ],
+      "oracle": [
+        "transfer",
+        "determinant",
+        "result"
+      ],
+      "HubbardTransferTests": [
+        "lifecycle"
+      ],
+      "HubbardTransferTests.accepted": [
+        "lifecycle"
+      ],
+      "HubbardTransferTests.refused": [
+        "graph",
+        "budgets",
+        "adapters",
+        "lifecycle"
+      ],
+      "HubbardTransferTests.check_field": [
+        "transfer",
+        "determinant",
+        "result"
+      ],
+      "HubbardTransferTests.test_generated_fields_against_independent_symbolic_model": [
+        "transfer",
+        "result"
+      ],
+      "HubbardTransferTests.test_all_original_protected_fields_and_witnesses": [
+        "transfer",
+        "result",
+        "certificate"
+      ],
+      "HubbardTransferTests.test_determinant_against_bareiss": [
+        "determinant"
+      ],
+      "HubbardTransferTests.test_determinant_pivots_shape_and_resource_paths": [
+        "determinant",
+        "budgets"
+      ],
+      "HubbardTransferTests.test_graph_domains_normalization_and_ownership": [
+        "graph",
+        "lifecycle"
+      ],
+      "HubbardTransferTests.test_model_domains_and_field_mask_preflight": [
+        "transfer",
+        "budgets"
+      ],
+      "HubbardTransferTests.test_model_preflight_and_refusal_helper_strength": [
+        "graph",
+        "budgets",
+        "lifecycle"
+      ],
+      "HubbardTransferTests.test_result_invariants_and_power_budgets": [
+        "result",
+        "budgets",
+        "lifecycle"
+      ],
+      "HubbardTransferTests.test_empty_bonds_order_reversal_and_detached_queries": [
+        "graph",
+        "transfer",
+        "adapters",
+        "lifecycle"
+      ],
+      "HubbardTransferTests.test_legacy_exact_adapters": [
+        "budgets",
+        "adapters"
+      ],
+      "HubbardTransferTests.test_original_guards_actual_counters_and_repeatability": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardTransferTests.test_original_guards_actual_counters_and_repeatability.record": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardTransferTests.test_check_failures_typed_resources_and_cancellation": [
+        "certificate",
+        "lifecycle"
+      ],
+      "HubbardTransferTests.test_quiet_import_and_original_cli": [
+        "certificate",
+        "lifecycle"
+      ]
+    }
+  },
+  "origins": [
+    {
+      "path": "lean4/FermionSignHubbardProtected.lean",
+      "sha256": "365483617d0e2261ff3450ab9e5a891e0c51a8bc2ee69bfecbb702d00544f2e9"
+    },
+    {
+      "path": "reviews/repository_file_review/2026-11-05-hubbard-original-fsp-hubbard-protected-representations.py.txt",
+      "sha256": "3f54d7bb5f8495a9732a4faa6ec799f9cfc73be699af0da3aa3be2b83ee55916"
+    }
+  ]
+}

@@ -1,0 +1,451 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.729s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work/run_binary_cocycle_mutations.py": "2b1efe6aca0890aab0dbcd894adf387f59acd6bd0918c66788085db3c530b5a4",
+    "checks/checker_support/binary_frame_system.py": "843503239990f18ad076a7c5078fd084d73be12cd8314a5e9ae8f20bd6a77eb8",
+    "checks/checker_support/binary_sign_cochain.py": "b1540901c370f9464ba425922b3093507bb335c1e2ba3f08029a7b3065fa3e77",
+    "checks/checker_support/boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks/checker_support/cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks/checker_support/cech_complex.py": "6f973fc65d6fa66ebb9078c6cc1af60683a5150b97b5510ca853517b650227dd",
+    "checks/checker_support/domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks/checker_support/empirical_model.py": "612562ec192efe40b5b9a0bb151486d4e77caf399bd853d2da712f5ca465172c",
+    "checks/checker_support/equatorial_ray_geometry.py": "ae4f3583fc892bcbfa5ed5acacdc41b88c09f2f4fe0a4811a12ec48d5c503622",
+    "checks/checker_support/exact_json_document.py": "e162590c25fab02fe87d73bc50f1e52e8083580b9faafae14ba4c50b8efb9f8c",
+    "checks/checker_support/exact_linear_program.py": "c771280ccd6473deaa011e37ca22c3e1856ccb9fbd2025580c81b87a0513f65f",
+    "checks/checker_support/gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks/checker_support/gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks/checker_support/gaussian_vector3.py": "7499bff94cb4a71a8dc8e4fa7ed3e08a00ac3a0e5096f925eb3e10b290f8a23e",
+    "checks/checker_support/happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks/checker_support/hermitian_tomography.py": "df1760dcfb384e13a48fc572613d6d25fe051361d6ab77954dec083f498e2c69",
+    "checks/checker_support/inert_prime_residual.py": "55f11b7d004c29e7feb7b44461117c003821ee7781fd940e973eb8a02f3b57aa",
+    "checks/checker_support/integer_quadratic_equation.py": "7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4",
+    "checks/checker_support/linear_program_certificate.py": "cfe2167737de71125118fb749a6e9ba5a2501cbee49ebc7828d2d55cc81636dc",
+    "checks/checker_support/measurement_scenario.py": "c441ba2036eca8083869d4b0fb4a49fdbc84638ca29b3cd2e90f8a07b5d71a3c",
+    "checks/checker_support/mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks/checker_support/orthogonal_gaussian_pair.py": "e5402c6601acc653d2958eb28e46bf0cc99e7616b2a9bcbc5f82611eba5f78d3",
+    "checks/checker_support/outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks/checker_support/rational_inverse.py": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+    "checks/checker_support/rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks/checker_support/simplex_tableau.py": "c5254540e60b3bd68f8bd7776162878d6a919724f88b2098f9874bb980d2c145",
+    "checks/checker_support/wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks/independent/fsp-bf-2group-sign-claim.py": "b0f8c454ba96ddbd7ef6fc65a758c125c397b5ab86cd50ce7d34b7f87a2bdfd1",
+    "checks/tests/binary_cocycle_mutations.json": "744311d34cc09a9389c417b00ae9a2b23ff3a8e6a52d7fd56309133e7f0b6b6d",
+    "checks/tests/run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks/tests/test_binary_sign_cochains.py": "0d33c0ccabe6971e7bceff58394c018927a78b6a72bc94c4e04e955cf860726e"
+  },
+  "mutants": [
+    {
+      "identity": "sign-coercion",
+      "mutant_sha256": "9949836151a627ea6af1ab0c6dc9886f221945105c0c41b7a1e62c548b867114",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_degrees_signs_and_shapes (__main__.BinaryCochainTests.test_exact_degrees_signs_and_shapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 133, in test_exact_degrees_signs_and_shapes\n    self.refused(evaluate(Cochain, 2, phases))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 62, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_exact_degrees_signs_and_shapes"
+      ]
+    },
+    {
+      "identity": "sign-zero-admission",
+      "mutant_sha256": "06cfb6323ae2b80582be7a02299ebc6acd08e2e5484ab874faf327962eb9f874",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_degrees_signs_and_shapes (__main__.BinaryCochainTests.test_exact_degrees_signs_and_shapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 133, in test_exact_degrees_signs_and_shapes\n    self.refused(evaluate(Cochain, 2, phases))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 62, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_exact_degrees_signs_and_shapes"
+      ]
+    },
+    {
+      "identity": "degree-coercion",
+      "mutant_sha256": "472b043b5f7ffd077b85c61d6b80bcd1a9e27fd0e26d8f8a29c6f0fb096310b2",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_degrees_signs_and_shapes (__main__.BinaryCochainTests.test_exact_degrees_signs_and_shapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 128, in test_exact_degrees_signs_and_shapes\n    self.refused(evaluate(Cochain, degree, (1,)*4))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 62, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_exact_degrees_signs_and_shapes"
+      ]
+    },
+    {
+      "identity": "degree-budget-preflight",
+      "mutant_sha256": "04a5c4d29257c3a11ab7b561848f8bc71ca792d65013fd766e63f4600e3c184d",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_admission_precedes_dependent_operations (__main__.BinaryCochainTests.test_admission_precedes_dependent_operations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 200, in test_admission_precedes_dependent_operations\n    self.refused(evaluate(Cochain, 4, (1,)*4), \"resource\")\n                 ~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\checker_support\\binary_sign_cochain.py\", line 32, in __init__\n    admitted_phases = tuple(_sign(value) for value in sequence(phases, \"cochain phases\", 2**admitted_degree, 8))\n                                                      ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not admit\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_admission_precedes_dependent_operations"
+      ]
+    },
+    {
+      "identity": "phase-table-arity",
+      "mutant_sha256": "ddf07a9d309c07210a7e4465cc776e6619fa791a674c29218c81b583c2ed25d3",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_degrees_signs_and_shapes (__main__.BinaryCochainTests.test_exact_degrees_signs_and_shapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 133, in test_exact_degrees_signs_and_shapes\n    self.refused(evaluate(Cochain, 2, phases))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 62, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_exact_degrees_signs_and_shapes"
+      ]
+    },
+    {
+      "identity": "phase-table-order",
+      "mutant_sha256": "65c4626db55ddd46327a612832451e31d3d0bea2e02b3706b4617b6008ed7d6e",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_generated_point_order_products_and_owned_snapshots (__main__.BinaryCochainTests.test_generated_point_order_products_and_owned_snapshots)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 104, in test_generated_point_order_products_and_owned_snapshots\n  |     @given(st.sampled_from((2, 3)), SIGNS, SIGNS, SIGNS)\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 120, in test_generated_point_order_products_and_owned_snapshots\n    |     self.assertEqual(result.value.phases, expected)\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1142, in assertTupleEqual\n    |     self.assertSequenceEqual(tuple1, tuple2, msg, seq_type=tuple)\n    |     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1113, in assertSequenceEqual\n    |     self.fail(msg)\n    |     ~~~~~~~~~^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 750, in fail\n    |     raise self.failureException(msg)\n    | AssertionError: Tuples differ: (1, 1, 1, -1) != (-1, 1, 1, 1)\n    | \n    | First differing element 0:\n    | 1\n    | -1\n    | \n    | - (1, 1, 1, -1)\n    | ?           -\n    | \n    | + (-1, 1, 1, 1)\n    | ?  +\n    | \n    | Failing test case: test_generated_point_order_products_and_owned_snapshots(\n    |     # The test always failed when commented parts were varied together.\n    |     self=<__main__.BinaryCochainTests testMethod=test_generated_point_order_products_and_owned_snapshots>,\n    |     degree=2,  # or any other generated value\n    |     first=[-1, -1, -1, -1, -1, -1, -1, -1],\n    |     second=[-1, -1, -1, 1, -1, -1, -1, -1],\n    |     third=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 121, in test_generated_point_order_products_and_owned_snapshots\n    |     self.assertEqual(result.value.multiply(last).value, cochain._multiply(other._multiply(last)))\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 918, in _baseAssertEqual\n    |     raise self.failureException(msg)\n    | AssertionError: BinarySignCochain(degree=2, phases=(-1, -1, -1, 1)) != BinarySignCochain(degree=2, phases=(1, -1, -1, -1))\n    | Failing test case: test_generated_point_order_products_and_owned_snapshots(\n    |     # The test always failed when commented parts were varied together.\n    |     self=<__main__.BinaryCochainTests testMethod=test_generated_point_order_products_and_owned_snapshots>,\n    |     degree=2,  # or any other generated value\n    |     first=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     second=[-1, -1, -1, -1, -1, -1, -1, -1],\n    |     third=[-1, -1, -1, 1, -1, -1, -1, -1],\n    | )\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 5.189s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_generated_point_order_products_and_owned_snapshots"
+      ]
+    },
+    {
+      "identity": "phase-snapshot-ownership",
+      "mutant_sha256": "f0d8ce52a87258bed4d301134ceba63b3c620b67cfdffd5ed4e16693a0e877e2",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_generated_point_order_products_and_owned_snapshots (__main__.BinaryCochainTests.test_generated_point_order_products_and_owned_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 104, in test_generated_point_order_products_and_owned_snapshots\n    @given(st.sampled_from((2, 3)), SIGNS, SIGNS, SIGNS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 112, in test_generated_point_order_products_and_owned_snapshots\n    self.assertEqual(cochain.at(point).value, value)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != -1\nFailing test case: test_generated_point_order_products_and_owned_snapshots(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BinaryCochainTests testMethod=test_generated_point_order_products_and_owned_snapshots>,\n    degree=2,  # or any other generated value\n    first=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    second=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    third=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 3.569s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_generated_point_order_products_and_owned_snapshots"
+      ]
+    },
+    {
+      "identity": "point-coordinate-coercion",
+      "mutant_sha256": "caab9eaa832a9969abbe38513463a7ebf47baf48b2c7f53b6d6bf597bbe7ea94",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_degrees_signs_and_shapes (__main__.BinaryCochainTests.test_exact_degrees_signs_and_shapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 138, in test_exact_degrees_signs_and_shapes\n    self.refused(cochain.at(bad))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 62, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_exact_degrees_signs_and_shapes"
+      ]
+    },
+    {
+      "identity": "point-arity",
+      "mutant_sha256": "85af90d24f00cd131b5b8be33ca0f0cf084874e548b320744acbb645c1f1d32a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_degrees_signs_and_shapes (__main__.BinaryCochainTests.test_exact_degrees_signs_and_shapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 138, in test_exact_degrees_signs_and_shapes\n    self.refused(cochain.at(bad))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 62, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_exact_degrees_signs_and_shapes"
+      ]
+    },
+    {
+      "identity": "point-index-order",
+      "mutant_sha256": "3ddbf8e1f575cbfb1e7761a032fc5a081342feae82966d1f395d1e7d40b23587",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_generated_point_order_products_and_owned_snapshots (__main__.BinaryCochainTests.test_generated_point_order_products_and_owned_snapshots)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 104, in test_generated_point_order_products_and_owned_snapshots\n  |     @given(st.sampled_from((2, 3)), SIGNS, SIGNS, SIGNS)\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 112, in test_generated_point_order_products_and_owned_snapshots\n    |     self.assertEqual(cochain.at(point).value, value)\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 918, in _baseAssertEqual\n    |     raise self.failureException(msg)\n    | AssertionError: 1 != -1\n    | Failing test case: test_generated_point_order_products_and_owned_snapshots(\n    |     # The test sometimes passed when commented parts were varied together.\n    |     self=<__main__.BinaryCochainTests testMethod=test_generated_point_order_products_and_owned_snapshots>,\n    |     degree=2,  # or any other generated value\n    |     first=[-1, -1, 1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     second=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     third=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 112, in test_generated_point_order_products_and_owned_snapshots\n    |     self.assertEqual(cochain.at(point).value, value)\n    |                      ~~~~~~~~~~^^^^^^^\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\checker_support\\binary_sign_cochain.py\", line 45, in at\n    |     return evaluate(self._at, point)\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    |     return Outcome(value=operation(*args, **kwargs))\n    |                          ~~~~~~~~~^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\checker_support\\binary_sign_cochain.py\", line 42, in _at\n    |     return self.phases[index]\n    |            ~~~~~~~~~~~^^^^^^^\n    | IndexError: tuple index out of range\n    | Failing test case: test_generated_point_order_products_and_owned_snapshots(\n    |     # The test always failed when commented parts were varied together.\n    |     self=<__main__.BinaryCochainTests testMethod=test_generated_point_order_products_and_owned_snapshots>,\n    |     degree=2,\n    |     first=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     second=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     third=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    | )\n    | Explanation:\n    |     These lines were always and only run by failing test cases:\n    |         C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\checker_support\\boundary.py:31\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 10.170s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_generated_point_order_products_and_owned_snapshots"
+      ]
+    },
+    {
+      "identity": "normalization-origin",
+      "mutant_sha256": "debd659ca3c77a1bf41cce958190caccf14967c6e49fd3d472eeb83d79ef8390",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_two_boundaries_against_boolean_oracle (__main__.BinaryCochainTests.test_all_degree_two_boundaries_against_boolean_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 72, in test_all_degree_two_boundaries_against_boolean_oracle\n    self.assertEqual(cochain.is_normalized(), phases[:3] == (1, 1, 1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_all_degree_two_boundaries_against_boolean_oracle"
+      ]
+    },
+    {
+      "identity": "normalization-sign",
+      "mutant_sha256": "8aef17bb9bbe327e8ba67b55861163abdcd03040bf4801b60aa376a4d50ae8ac",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_three_cochains_and_pentagon_points (__main__.BinaryCochainTests.test_all_degree_three_cochains_and_pentagon_points)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 95, in test_all_degree_three_cochains_and_pentagon_points\n    self.assertEqual(cochain.is_normalized(), phases[:7] == (1,)*7)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_all_degree_three_cochains_and_pentagon_points"
+      ]
+    },
+    {
+      "identity": "boundary-degree",
+      "mutant_sha256": "8a2f57401be2bbd697a0567f96958e2d5251a0785afefb8beccc8d054d45c1cf",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_two_boundaries_against_boolean_oracle (__main__.BinaryCochainTests.test_all_degree_two_boundaries_against_boolean_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 74, in test_all_degree_two_boundaries_against_boolean_oracle\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='input', message='coboundary requires a degree-two cochain') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_all_degree_two_boundaries_against_boolean_oracle"
+      ]
+    },
+    {
+      "identity": "boundary-leading-point",
+      "mutant_sha256": "6acb7d1be146a2d3e079f6a25a064d8228250bae35df243250fc789fc9e56c37",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_two_boundaries_against_boolean_oracle (__main__.BinaryCochainTests.test_all_degree_two_boundaries_against_boolean_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 79, in test_all_degree_two_boundaries_against_boolean_oracle\n    self.assertEqual(result.value.phases, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 1, 1, -1, 1, -1, 1, 1) != (1, 1, 1, 1, 1, 1, 1, 1)\n\nFirst differing element 3:\n-1\n1\n\n- (1, 1, 1, -1, 1, -1, 1, 1)\n?           -      -\n\n+ (1, 1, 1, 1, 1, 1, 1, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_all_degree_two_boundaries_against_boolean_oracle"
+      ]
+    },
+    {
+      "identity": "boundary-group-addition",
+      "mutant_sha256": "98b1822249a9340d8c0274cac339b29a9c83ed27e686c0e6f74c5006975cf658",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_two_boundaries_against_boolean_oracle (__main__.BinaryCochainTests.test_all_degree_two_boundaries_against_boolean_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 79, in test_all_degree_two_boundaries_against_boolean_oracle\n    self.assertEqual(result.value.phases, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 1, 1, 1, 1, 1, 1, -1) != (1, 1, 1, 1, 1, 1, 1, 1)\n\nFirst differing element 7:\n-1\n1\n\n- (1, 1, 1, 1, 1, 1, 1, -1)\n?                       -\n\n+ (1, 1, 1, 1, 1, 1, 1, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_all_degree_two_boundaries_against_boolean_oracle"
+      ]
+    },
+    {
+      "identity": "boundary-last-factor",
+      "mutant_sha256": "ad2a0c8412a0f66f60c19cb319de3609c437cde8b41be699b612a4cc2912258c",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_two_boundaries_against_boolean_oracle (__main__.BinaryCochainTests.test_all_degree_two_boundaries_against_boolean_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 79, in test_all_degree_two_boundaries_against_boolean_oracle\n    self.assertEqual(result.value.phases, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (-1, -1, -1, -1, -1, -1, -1, -1) != (1, 1, 1, 1, 1, 1, 1, 1)\n\nFirst differing element 0:\n-1\n1\n\n- (-1, -1, -1, -1, -1, -1, -1, -1)\n?  -   -   -   -   -   -   -   -\n\n+ (1, 1, 1, 1, 1, 1, 1, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_all_degree_two_boundaries_against_boolean_oracle"
+      ]
+    },
+    {
+      "identity": "pentagon-degree",
+      "mutant_sha256": "8f1c9471fc2ad4f3a4fc5112f0e9398b3d8f869771ddbb808a4ca88973da1266",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_three_cochains_and_pentagon_points (__main__.BinaryCochainTests.test_all_degree_three_cochains_and_pentagon_points)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 98, in test_all_degree_three_cochains_and_pentagon_points\n    self.assertEqual(actual, tuple(1-2*bit for bit in expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (None, None, None, None, None, None, None,[49 chars]None) != (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -[17 chars], -1)\n\nFirst differing element 0:\nNone\n-1\n\n+ (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1)\n- (None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None,\n-  None)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_all_degree_three_cochains_and_pentagon_points"
+      ]
+    },
+    {
+      "identity": "pentagon-group-addition",
+      "mutant_sha256": "bdf176a21042060bfa3fc823dd864399349ce3ee3720e7b07b687e88b87b2b1d",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_three_cochains_and_pentagon_points (__main__.BinaryCochainTests.test_all_degree_three_cochains_and_pentagon_points)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 98, in test_all_degree_three_cochains_and_pentagon_points\n    self.assertEqual(actual, tuple(1-2*bit for bit in expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1) != (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1)\n\nFirst differing element 15:\n1\n-1\n\n- (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1)\n+ (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1)\n?                                                              +\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_all_degree_three_cochains_and_pentagon_points"
+      ]
+    },
+    {
+      "identity": "pentagon-last-factor",
+      "mutant_sha256": "54ca7facb67a0008eadae16d0554df537b9f72ca5cce8a1b12312d6931813d5e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_three_cochains_and_pentagon_points (__main__.BinaryCochainTests.test_all_degree_three_cochains_and_pentagon_points)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 98, in test_all_degree_three_cochains_and_pentagon_points\n    self.assertEqual(actual, tuple(1-2*bit for bit in expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1) != (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1)\n\nFirst differing element 0:\n1\n-1\n\n- (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)\n+ (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1)\n?  +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_all_degree_three_cochains_and_pentagon_points"
+      ]
+    },
+    {
+      "identity": "product-omits-operand",
+      "mutant_sha256": "f8ec53d43a7a8f165a5cdc456fce4df53b6e222617cac3cfa8e67a66679ca50a",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_generated_point_order_products_and_owned_snapshots (__main__.BinaryCochainTests.test_generated_point_order_products_and_owned_snapshots)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 104, in test_generated_point_order_products_and_owned_snapshots\n  |     @given(st.sampled_from((2, 3)), SIGNS, SIGNS, SIGNS)\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 122, in test_generated_point_order_products_and_owned_snapshots\n    |     self.assertEqual(cochain.multiply(cochain).value, Cochain(degree, (1,)*(2**degree)))\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 918, in _baseAssertEqual\n    |     raise self.failureException(msg)\n    | AssertionError: BinarySignCochain(degree=2, phases=(-1, -1, -1, -1)) != BinarySignCochain(degree=2, phases=(1, 1, 1, 1))\n    | Failing test case: test_generated_point_order_products_and_owned_snapshots(\n    |     # The test always failed when commented parts were varied together.\n    |     self=<__main__.BinaryCochainTests testMethod=test_generated_point_order_products_and_owned_snapshots>,\n    |     degree=2,  # or any other generated value\n    |     first=[-1, -1, -1, -1, -1, -1, -1, -1],\n    |     second=[1, 1, 1, 1, -1, -1, -1, -1],\n    |     third=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 120, in test_generated_point_order_products_and_owned_snapshots\n    |     self.assertEqual(result.value.phases, expected)\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1142, in assertTupleEqual\n    |     self.assertSequenceEqual(tuple1, tuple2, msg, seq_type=tuple)\n    |     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1113, in assertSequenceEqual\n    |     self.fail(msg)\n    |     ~~~~~~~~~^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 750, in fail\n    |     raise self.failureException(msg)\n    | AssertionError: Tuples differ: (-1, -1, -1, -1) != (1, 1, 1, 1)\n    | \n    | First differing element 0:\n    | -1\n    | 1\n    | \n    | - (-1, -1, -1, -1)\n    | ?  -   -   -   -\n    | \n    | + (1, 1, 1, 1)\n    | Failing test case: test_generated_point_order_products_and_owned_snapshots(\n    |     # The test always failed when commented parts were varied together.\n    |     self=<__main__.BinaryCochainTests testMethod=test_generated_point_order_products_and_owned_snapshots>,\n    |     degree=2,  # or any other generated value\n    |     first=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     second=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     third=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    | )\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 6.876s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_generated_point_order_products_and_owned_snapshots"
+      ]
+    },
+    {
+      "identity": "product-reverses-operand",
+      "mutant_sha256": "79852f42de26c6e8ed87fc9871bbf69d0a9c3be3ac8b9769b453a2013af6ec75",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_generated_point_order_products_and_owned_snapshots (__main__.BinaryCochainTests.test_generated_point_order_products_and_owned_snapshots)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 104, in test_generated_point_order_products_and_owned_snapshots\n  |     @given(st.sampled_from((2, 3)), SIGNS, SIGNS, SIGNS)\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 120, in test_generated_point_order_products_and_owned_snapshots\n    |     self.assertEqual(result.value.phases, expected)\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1142, in assertTupleEqual\n    |     self.assertSequenceEqual(tuple1, tuple2, msg, seq_type=tuple)\n    |     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1113, in assertSequenceEqual\n    |     self.fail(msg)\n    |     ~~~~~~~~~^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 750, in fail\n    |     raise self.failureException(msg)\n    | AssertionError: Tuples differ: (-1, 1, 1, 1) != (1, 1, 1, -1)\n    | \n    | First differing element 0:\n    | -1\n    | 1\n    | \n    | - (-1, 1, 1, 1)\n    | + (1, 1, 1, -1)\n    | Failing test case: test_generated_point_order_products_and_owned_snapshots(\n    |     # The test always failed when commented parts were varied together.\n    |     self=<__main__.BinaryCochainTests testMethod=test_generated_point_order_products_and_owned_snapshots>,\n    |     degree=2,  # or any other generated value\n    |     first=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     second=[-1, -1, -1, 1, -1, -1, -1, -1],\n    |     third=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 121, in test_generated_point_order_products_and_owned_snapshots\n    |     self.assertEqual(result.value.multiply(last).value, cochain._multiply(other._multiply(last)))\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 918, in _baseAssertEqual\n    |     raise self.failureException(msg)\n    | AssertionError: BinarySignCochain(degree=2, phases=(1, -1, -1, -1)) != BinarySignCochain(degree=2, phases=(-1, -1, -1, 1))\n    | Failing test case: test_generated_point_order_products_and_owned_snapshots(\n    |     self=<__main__.BinaryCochainTests testMethod=test_generated_point_order_products_and_owned_snapshots>,\n    |     degree=2,  # or any other generated value\n    |     first=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     second=[-1, -1, -1, -1, -1, -1, -1, -1],  # or any other generated value\n    |     third=[-1, -1, -1, 1, -1, -1, -1, -1],\n    | )\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 12.570s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_generated_point_order_products_and_owned_snapshots"
+      ]
+    },
+    {
+      "identity": "generator-formula",
+      "mutant_sha256": "b14f55ce97ad36202e488f56e62b7c025210adc3144a0fa944fd7fb838b91ffe",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_rephasing_and_generator_sign_for_all_two_cochains (__main__.BinaryCochainTests.test_rephasing_and_generator_sign_for_all_two_cochains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 156, in test_rephasing_and_generator_sign_for_all_two_cochains\n    self.assertEqual(omega.phases, (1, 1, 1, 1, 1, 1, 1, -1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 1, 1, 1, 1, 1, -1, -1) != (1, 1, 1, 1, 1, 1, 1, -1)\n\nFirst differing element 6:\n-1\n1\n\n- (1, 1, 1, 1, 1, 1, -1, -1)\n?                    -\n\n+ (1, 1, 1, 1, 1, 1, 1, -1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_sign_cochain.py",
+      "tests": [
+        "test_rephasing_and_generator_sign_for_all_two_cochains"
+      ]
+    },
+    {
+      "identity": "candidate-ignored",
+      "mutant_sha256": "f54f9d89e01e1b14f2ec5de630d62e8d0f4883764638c26df0b6ab25f053476f",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 178, in test_all_candidates_and_actual_case_count\n    self.assertEqual(accepted, [Cochain.generator().phases])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(-1, -1, -1, -1, -1, -1, -1, -1), (-1, -1,[7632 chars], 1)] != [(1, 1, 1, 1, 1, 1, 1, -1)]\n\nFirst differing element 0:\n(-1, -1, -1, -1, -1, -1, -1, -1)\n(1, 1, 1, 1, 1, 1, 1, -1)\n\nFirst list contains 255 additional elements.\nFirst extra element 1:\n(-1, -1, -1, -1, -1, -1, -1, 1)\n\nDiff is 8547 characters long. Set self.maxDiff to None to see it.\n\n----------------------------------------------------------------------\nRan 1 test in 0.099s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "candidate-degree",
+      "mutant_sha256": "9e226fbdb4d6963e51c3b31d72d874f80bf64428ec36d4444d5233e1b2bb53bc",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 192, in test_all_candidates_and_actual_case_count\n    self.refused(evaluate(module.SignCocycleControls, invalid))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 62, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "pentagon-audit-removed",
+      "mutant_sha256": "b1c8da9abbb9fdaedde71bc9188fec4f72c47d96eb1c9d40477ea4ca078ce119",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 188, in test_all_candidates_and_actual_case_count\n    self.assertEqual(report[\"checks\"], 26)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 10 != 26\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "normalization-audit-removed",
+      "mutant_sha256": "2e0ace00496b44b4bceff79421f5bfde5abeaf198e84b8b9e8093fec76814471",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 178, in test_all_candidates_and_actual_case_count\n    self.assertEqual(accepted, [Cochain.generator().phases])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(1, -1, 1, -1, -1, 1, -1, -1), (1, -1, 1, -1,[67 chars] -1)] != [(1, 1, 1, 1, 1, 1, 1, -1)]\n\nFirst differing element 0:\n(1, -1, 1, -1, -1, 1, -1, -1)\n(1, 1, 1, 1, 1, 1, 1, -1)\n\nFirst list contains 3 additional elements.\nFirst extra element 1:\n(1, -1, 1, -1, 1, -1, 1, -1)\n\n- [(1, -1, 1, -1, -1, 1, -1, -1),\n-  (1, -1, 1, -1, 1, -1, 1, -1),\n-  (1, 1, 1, 1, -1, -1, -1, -1),\n-  (1, 1, 1, 1, 1, 1, 1, -1)]\n? ^\n\n+ [(1, 1, 1, 1, 1, 1, 1, -1)]\n? ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.015s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "normalized-filter-reversed",
+      "mutant_sha256": "59b51c7a59df62c8037d702181f03f33f9d57a233bf3404ddd9dfba76a5bdf43",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 178, in test_all_candidates_and_actual_case_count\n    self.assertEqual(accepted, [Cochain.generator().phases])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [] != [(1, 1, 1, 1, 1, 1, 1, -1)]\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n(1, 1, 1, 1, 1, 1, 1, -1)\n\n- []\n+ [(1, 1, 1, 1, 1, 1, 1, -1)]\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "generator-obstruction-removed",
+      "mutant_sha256": "36d21414ce67f5b9e5b6c70075a4ec795fbddd4b7fc8e904517ea34b6980b809",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 188, in test_all_candidates_and_actual_case_count\n    self.assertEqual(report[\"checks\"], 26)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 24 != 26\n\n----------------------------------------------------------------------\nRan 1 test in 0.016s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "negative-generator-sign",
+      "mutant_sha256": "75620d820caeb8204599acced2a28b3357f9b5021fd0926d1dfd8263a8ed305e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 178, in test_all_candidates_and_actual_case_count\n    self.assertEqual(accepted, [Cochain.generator().phases])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [] != [(1, 1, 1, 1, 1, 1, 1, -1)]\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n(1, 1, 1, 1, 1, 1, 1, -1)\n\n- []\n+ [(1, 1, 1, 1, 1, 1, 1, -1)]\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "normalized-population",
+      "mutant_sha256": "01ee8666fe90c3ba8873153197cc4a258d6a31036e58c0f14d72d4ca35ca6f58",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 178, in test_all_candidates_and_actual_case_count\n    self.assertEqual(accepted, [Cochain.generator().phases])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [] != [(1, 1, 1, 1, 1, 1, 1, -1)]\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n(1, 1, 1, 1, 1, 1, 1, -1)\n\n- []\n+ [(1, 1, 1, 1, 1, 1, 1, -1)]\n\n----------------------------------------------------------------------\nRan 1 test in 0.023s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "reported-counter",
+      "mutant_sha256": "ff0be20e9b17f81d76e954d51a5a041e5339d461dee97306424ddd11e82637fc",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 187, in test_all_candidates_and_actual_case_count\n    self.assertEqual(report[\"checks\"], len(observed))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 27 != 26\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "cochain-population",
+      "mutant_sha256": "da87fb17f0fdd84a3e9a4de5fce3c410bab69f7f3d30b2a032bfb0c3901190c6",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 177, in test_all_candidates_and_actual_case_count\n    self.refused(result, \"check\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 65, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'input' != 'check'\n- input\n+ check\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "counter-retained-between-runs",
+      "mutant_sha256": "d0a6c34196f556ac1f4bd03d216d08b1179e0aecd4646b3274226ac2e052ca30",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_candidates_and_actual_case_count (__main__.BinaryCochainTests.test_all_candidates_and_actual_case_count)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 187, in test_all_candidates_and_actual_case_count\n    self.assertEqual(report[\"checks\"], len(observed))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 885 != 26\n\n----------------------------------------------------------------------\nRan 1 test in 0.015s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_all_candidates_and_actual_case_count"
+      ]
+    },
+    {
+      "identity": "cli-refusal-exit",
+      "mutant_sha256": "f1aaaa5e7e298b9ed8cfb7f513c385791fde72e91a1fe517cb1c173337a0ef42",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_failure_translation_and_unexpected_exceptions (__main__.BinaryCochainTests.test_failure_translation_and_unexpected_exceptions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 210, in test_failure_translation_and_unexpected_exceptions\n    self.assertEqual(module.main(), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-bf-2group-sign-claim.py",
+      "tests": [
+        "test_failure_translation_and_unexpected_exceptions"
+      ]
+    },
+    {
+      "identity": "refusal-test-helper",
+      "mutant_sha256": "c0dd757948dc5054cd91492c67a816fd81a4009ca8466d7b985dc619615ea974",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_admission_precedes_dependent_operations (__main__.BinaryCochainTests.test_admission_precedes_dependent_operations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 194, in test_admission_precedes_dependent_operations\n    with self.assertRaises(AssertionError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nAssertionError: AssertionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_binary_sign_cochains.py",
+      "tests": [
+        "test_admission_precedes_dependent_operations"
+      ]
+    },
+    {
+      "identity": "boolean-oracle-sign",
+      "mutant_sha256": "07d46228546e34db7c763f1b5dd857c1f15f56f382d0c271787c2f590dab4dba",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_degree_three_cochains_and_pentagon_points (__main__.BinaryCochainTests.test_all_degree_three_cochains_and_pentagon_points)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\binary-cocycle-mutation-p45_nksu\\checks\\tests\\test_binary_sign_cochains.py\", line 98, in test_all_degree_three_cochains_and_pentagon_points\n    self.assertEqual(actual, tuple(1-2*bit for bit in expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1) != (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)\n\nFirst differing element 0:\n-1\n1\n\n- (-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1)\n?  -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -\n\n+ (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_binary_sign_cochains.py",
+      "tests": [
+        "test_all_degree_three_cochains_and_pentagon_points"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 36,
+      "survived": 0,
+      "unrun": 0
+    },
+    "detected_fraction": 1.0,
+    "eligible": 36
+  }
+}

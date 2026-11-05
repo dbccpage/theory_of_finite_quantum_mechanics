@@ -57,9 +57,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py](../../../atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py)
 - sha256 (`bytes`): `570c898692c070d22f655f96d74e0e468e1f4905ea52f917d28237056b7589c1`
 - cited in: record TFQ-0428
 
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md](../../../dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md)
-- sha256 (`lf-normalised`): `bb2c8598c36b124f99d8f730d1fadcf1735a780d1f6e6dc3c14dd64b508b136a`
+- sha256 (`lf-normalised`): `c857358cfb483b140a54ca07c0f1143665ece4cd14b9bc40875c17c68ec2632d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0428
 - counts toward the grade: no

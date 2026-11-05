@@ -8,7 +8,7 @@ maturity: production
 claim_status: source-grounded
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/descent_engine.rs
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0.rs
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/licensed_lift_gate.rs

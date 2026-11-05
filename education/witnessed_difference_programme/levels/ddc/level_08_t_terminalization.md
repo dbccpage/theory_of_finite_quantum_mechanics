@@ -15,10 +15,10 @@ source_paths:
   - omega_engine/crates_rs/omega_wdp/src/ddc/dda_alphabet.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/non_authority.rs
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/08_t_terminalization.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/terminalization.py
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Terminalization.lean
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/08_t_terminalization.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/terminalization.py
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Terminalization.lean
   - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/dda_packets.contract.yaml
 last_verified: 2026-10-01
 ---
@@ -131,7 +131,7 @@ Every successful Level 08 terminalization emits a machine-verifiable `TerminalRe
 | **DDC-T-04** | Terminal receipt asserts `AuthorityEffect::None` unconditionally. | Sovereign Non-Authority | [`op_verification.rs::verified_trace_threads_state_and_still_mints_nothing`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs#L753) | `test_terminalization.py::test_authority_none` |
 
 ### Lean 4 Proof Kernel
-[`lean4/Ddc/Terminalization.lean`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Terminalization.lean):
+[`lean4/Ddc/Terminalization.lean`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Terminalization.lean):
 ```lean
 theorem Ddc.terminal_absorbing : ∀ (s : State) (op : DdcOp), step (Terminal s) op = Terminal s
 ```

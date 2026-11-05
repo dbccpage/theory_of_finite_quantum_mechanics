@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-relational-time-fence.py`
 
 - file: [checks/independent/dfm-relational-time-fence.py](../../../checks/independent/dfm-relational-time-fence.py)
-- sha256 (`bytes`): `cb011f2b1d9f811d83462d65b8540a2c5965abed525a5edda99e1c9a061f734c`
+- sha256 (`bytes`): `f4e203fc55960cee6395ec6b1c873f4feef131ac388e792269dbf1ebe9e69439`
 - cited in: node.source, record TFQ-1117
 - counts toward the grade: yes
 

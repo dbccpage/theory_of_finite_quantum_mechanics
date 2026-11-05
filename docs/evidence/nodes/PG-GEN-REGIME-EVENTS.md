@@ -75,9 +75,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- file: [atlas/finite_obstruction_calculus/genesis/paper.md](../../../atlas/finite_obstruction_calculus/genesis/paper.md)
 - sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
 - cited in: node.source
 - counts toward the grade: yes
@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0378_regime_tuple_and_events.md`
 
 - file: [dag/derivations/02_genesis/tfq_0378_regime_tuple_and_events.md](../../../dag/derivations/02_genesis/tfq_0378_regime_tuple_and_events.md)
-- sha256 (`lf-normalised`): `c40d2e7ae2a4cc40694fcbdee3440a070f2c6a258218244927a5c4ac69be0007`
+- sha256 (`lf-normalised`): `d6c04c724a469eaac5e0a6a9ad6cdca7dd8cda6d1bb12dc2809f8733dd42edc4`
 - generated view: listed, not counted
 - cited in: record TFQ-0378
 - counts toward the grade: no
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md](../../../dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md)
-- sha256 (`lf-normalised`): `94fa68799954cbb2621d5632f6f42a7c44c8c824ad0f51a7d74326cd21a8975c`
+- sha256 (`lf-normalised`): `d2aa58398ed7af60afe0f89c74092f4e56baa6a0b3a7080808b9a0888b7d613f`
 - generated view: listed, not counted
 - cited in: record TFQ-0342 (shared)
 - counts toward the grade: no

@@ -8,7 +8,7 @@ maturity: production
 claim_status: source-grounded
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_candidate.rs
   - omega_engine/crates_rs/omega_types/src/prime.rs
 last_verified: 2026-10-01
@@ -131,7 +131,7 @@ pub enum CandidateStatus {
 ```
 Notice that `CandidateStatus` has only one variant: `ProposedOnly`. There is deliberately no variant for "Admitted" on this struct; admission requires passing through the Prime 000 admission gate which outputs a distinct Rust type [`AdmittedDeclaration`](../../../../../omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0_admission.rs).
 
-### Python Reference: [`oe_prime_algorithms.py`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/code/oe_prime_algorithms.py#L1098-L1125)
+### Python Reference: [`oe_prime_algorithms.py`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/code/oe_prime_algorithms.py#L1098-L1125)
 
 ```python
 @dataclass(frozen=True)
@@ -195,4 +195,4 @@ class IntakeTrace:
    - Prime -1 candidate packets remain in `proposed_only` status until every slot in the Prime 000 declaration order is verified.
 4. **Next test needed:**
    - Run candidate proposal unit tests: `cargo test --manifest-path omega_engine/crates_rs/omega_wdp/src/prime_algos/Cargo.toml --lib prime_candidate`.
-   - Run candidate proposal intake tests via `py -3.12 -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/code/test_oe_prime_algorithms.py -k test_intake`.
+   - Run candidate proposal intake tests via `py -3.12 -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/code/test_oe_prime_algorithms.py -k test_intake`.

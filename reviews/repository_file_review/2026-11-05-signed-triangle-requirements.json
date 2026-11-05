@@ -1,0 +1,201 @@
+{
+  "AuthorityEffect": "None",
+  "groups": {
+    "graph_input": {
+      "requirement": "Own exactly three native integer signs in edge order 01, 12, 20. Edge and gauge values are -1 or 1, excluding bool, float and Fraction. Admit whole shapes before mapping signs. Oversized sequences refuse as resources; malformed values refuse as input.",
+      "tests": [
+        "test_exact_triangle_and_gauge_admission",
+        "test_owned_edges_results_and_immutable_family"
+      ]
+    },
+    "graph_action": {
+      "requirement": "Construct symmetric zero-diagonal adjacency, preserve the cycle product under vertex gauges, provide the explicit normalizing gauge, and expose exact switching as an owned new triangle.",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles",
+        "test_group_action_orbits_and_positive_classification"
+      ]
+    },
+    "matrix_input": {
+      "requirement": "Admit exactly 3x3 native integer matrices, at most 4096 bits per stored value. Snapshot both operands before multiplication; wrong shapes, scalar aliases and budgets refuse through the shared typed boundary.",
+      "tests": [
+        "test_matrix_shapes_scalar_domains_and_preflight",
+        "test_matrix_budgets_cover_terms_and_prefix_cancellation"
+      ]
+    },
+    "matrix_arithmetic": {
+      "requirement": "Preserve legacy multiply results on admitted matrices and offer an Outcome-based matrix_product. Bound each product and each dot prefix before later cancellation.",
+      "tests": [
+        "test_matrix_products_against_symbolic_oracle",
+        "test_matrix_budgets_cover_terms_and_prefix_cancellation",
+        "test_matrix_shapes_scalar_domains_and_preflight"
+      ]
+    },
+    "certificate": {
+      "requirement": "Own all eight signed triangles and enumerate all 64 vertex switchings. Retain cycle, constructive normal-form, positive-reachability and population controls, with 64 additional comparisons between full matrix conjugation and edge switching. Record 145 actual successful guard calls.",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations",
+        "test_owned_edges_results_and_immutable_family",
+        "test_quiet_import_and_original_cli_output"
+      ]
+    },
+    "lifecycle": {
+      "requirement": "Keep owned graph/family values immutable, results detached, imports quiet and counters fresh. Typed Violation and the shared exception translation serve internal/legacy operations; public fallible queries return Outcome. RuntimeError, KeyboardInterrupt and SystemExit propagate. CLI refusals return nonzero.",
+      "tests": [
+        "test_owned_edges_results_and_immutable_family",
+        "test_failure_paths_and_cancellation_propagation",
+        "test_quiet_import_and_original_cli_output",
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    }
+  },
+  "declarations": {
+    "checks/checker_support/signed_triangle.py": {
+      "_sign": [
+        "graph_input",
+        "lifecycle"
+      ],
+      "_signs": [
+        "graph_input",
+        "lifecycle"
+      ],
+      "SignedTriangle": [
+        "graph_input",
+        "lifecycle"
+      ],
+      "SignedTriangle.__init__": [
+        "graph_input",
+        "lifecycle"
+      ],
+      "SignedTriangle.cycle_product": [
+        "graph_action",
+        "lifecycle"
+      ],
+      "SignedTriangle.is_balanced": [
+        "graph_action",
+        "lifecycle"
+      ],
+      "SignedTriangle.normalizing_gauge": [
+        "graph_action",
+        "lifecycle"
+      ],
+      "SignedTriangle.adjacency": [
+        "graph_action",
+        "lifecycle"
+      ],
+      "SignedTriangle._switch": [
+        "graph_action",
+        "lifecycle"
+      ],
+      "SignedTriangle.switch": [
+        "graph_action",
+        "lifecycle"
+      ]
+    },
+    "checks/independent/fsp-cobordism-intrinsic-sign.py": {
+      "_matrix": [
+        "matrix_input",
+        "matrix_arithmetic",
+        "lifecycle"
+      ],
+      "multiply": [
+        "matrix_input",
+        "matrix_arithmetic",
+        "lifecycle"
+      ],
+      "TriangleSwitchingControls": [
+        "certificate",
+        "lifecycle"
+      ],
+      "TriangleSwitchingControls.__init__": [
+        "certificate",
+        "lifecycle"
+      ],
+      "TriangleSwitchingControls.matrix_product": [
+        "matrix_input",
+        "matrix_arithmetic",
+        "lifecycle"
+      ],
+      "TriangleSwitchingControls._verify": [
+        "certificate",
+        "lifecycle"
+      ],
+      "TriangleSwitchingControls.verify": [
+        "certificate",
+        "lifecycle"
+      ],
+      "_main": [
+        "certificate",
+        "lifecycle"
+      ],
+      "main": [
+        "certificate",
+        "lifecycle"
+      ]
+    },
+    "checks/tests/test_signed_triangle_switching.py": {
+      "load": [
+        "lifecycle"
+      ],
+      "rows": [
+        "matrix_arithmetic"
+      ],
+      "SignedTriangleTests": [
+        "lifecycle"
+      ],
+      "SignedTriangleTests.accepted": [
+        "lifecycle"
+      ],
+      "SignedTriangleTests.refused": [
+        "graph_input",
+        "matrix_input",
+        "lifecycle"
+      ],
+      "SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles": [
+        "graph_action"
+      ],
+      "SignedTriangleTests.test_group_action_orbits_and_positive_classification": [
+        "graph_action"
+      ],
+      "SignedTriangleTests.test_matrix_products_against_symbolic_oracle": [
+        "matrix_arithmetic"
+      ],
+      "SignedTriangleTests.test_owned_edges_results_and_immutable_family": [
+        "graph_input",
+        "certificate",
+        "lifecycle"
+      ],
+      "SignedTriangleTests.test_exact_triangle_and_gauge_admission": [
+        "graph_input"
+      ],
+      "SignedTriangleTests.test_matrix_shapes_scalar_domains_and_preflight": [
+        "matrix_input",
+        "matrix_arithmetic"
+      ],
+      "SignedTriangleTests.test_matrix_budgets_cover_terms_and_prefix_cancellation": [
+        "matrix_input",
+        "matrix_arithmetic"
+      ],
+      "SignedTriangleTests.test_actual_per_run_counter_and_original_populations": [
+        "certificate",
+        "lifecycle"
+      ],
+      "SignedTriangleTests.test_actual_per_run_counter_and_original_populations.record": [
+        "certificate",
+        "lifecycle"
+      ],
+      "SignedTriangleTests.test_failure_paths_and_cancellation_propagation": [
+        "lifecycle"
+      ],
+      "SignedTriangleTests.test_quiet_import_and_original_cli_output": [
+        "certificate",
+        "lifecycle"
+      ]
+    }
+  },
+  "origins": [
+    {
+      "path": "lean4/SignedTriangleSwitching.lean",
+      "sha256": "4ffc345ebf79bff4b3ad6ecc5ecbcecf84681f0373a6a95d8a86f1e81381beb8"
+    }
+  ]
+}

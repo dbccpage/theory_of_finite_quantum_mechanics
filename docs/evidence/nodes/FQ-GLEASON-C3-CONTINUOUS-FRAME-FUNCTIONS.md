@@ -1,6 +1,6 @@
 # FQ-GLEASON-C3-CONTINUOUS-FRAME-FUNCTIONS
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- distinct cited Lean declarations covered by a current replay receipt: 0
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -49,12 +49,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/GleasonComplexSphere.lean](../../../lean4/GleasonComplexSphere.lean)
 - sha256 (`bytes`): `72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc`
 - cited in: node.lean, node.source, record TFQ-1059
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonComplexSphere`): recorded sha256 `72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonComplexSphere`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `GleasonComplex.gleason_complex` | yes | yes | yes | - | `#print axioms GleasonComplex.gleason_complex` |
+| `GleasonComplex.gleason_complex` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GleasonComplex.gleason_complex` |
 
 - counts toward the grade: yes
 
@@ -63,12 +64,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/GleasonRealSphere.lean](../../../lean4/GleasonRealSphere.lean)
 - sha256 (`bytes`): `ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb`
 - cited in: node.lean, node.source, record TFQ-1059
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonRealSphere`): recorded sha256 `ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonRealSphere`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `GleasonReal.gleason_real` | yes | yes | yes | - | `#print axioms GleasonReal.gleason_real` |
+| `GleasonReal.gleason_real` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GleasonReal.gleason_real` |
 
 - counts toward the grade: yes
 

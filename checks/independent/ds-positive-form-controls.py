@@ -255,6 +255,27 @@ def verify_decoherence(cases: Cases) -> None:
     run.require(gram[0][0]+2*gram[0][1]+gram[1][1] == 4, "expanded Gram at ones")
 
 
+def verify_selection_witness(cases: Cases) -> None:
+    """Retain the eleven original PrimToQmSelection integer obligations."""
+    run = _recorder(cases)
+    quadratic, quartic = (_masses((1, 2), exponent) for exponent in (2, 4))
+    quadratic_total, quartic_total = sum(quadratic), sum(quartic)
+    run.require((*quadratic, quadratic_total) == (1, 4, 5), "selection quadratic numerators")
+    run.require((*quartic, quartic_total) == (1, 16, 17), "selection quartic numerators")
+    run.require(all(value > 0 for value in quadratic+quartic), "selection positivity")
+    run.require(sum(quadratic) == quadratic_total and sum(quartic) == quartic_total, "selection normalization sums")
+    square_weights, fourth_weights = (_power_shares((1, 2), degree) for degree in (2, 4))
+    run.require(square_weights == (Q(1, 5), Q(4, 5)), "selection quadratic weights")
+    run.require(fourth_weights == (Q(1, 17), Q(16, 17)), "selection quartic weights")
+    left, right = quadratic[0]*quartic_total, quartic[0]*quadratic_total
+    run.require(square_weights[0] != fourth_weights[0] and left != right, "selection rules differ")
+    run.require((left, right) == (17, 5), "selection cross products")
+    symmetric_square, symmetric_fourth = (_masses((1, 1), degree) for degree in (2, 4))
+    run.require((*symmetric_square, sum(symmetric_square), *symmetric_fourth, sum(symmetric_fourth)) == (1, 1, 2, 1, 1, 2), "selection symmetric numerators")
+    run.require(_power_shares((1, 1), 2)[0] == Q(1, 2), "selection symmetric quadratic")
+    run.require(_power_shares((1, 1), 4)[0] == Q(1, 2), "selection symmetric quartic")
+
+
 def verify_born_boundary(cases: Cases) -> None:
     run = _recorder(cases)
     for a, b in product(range(-5, 6), repeat=2):
@@ -279,6 +300,7 @@ def verify_born_boundary(cases: Cases) -> None:
     rotated = _rotation((3, 4), (3, 4))
     run.require(rotated == (-7, 24) and _masses(rotated, 2) == (49, 576) and _dot(rotated, rotated) == 625, "rotation witness")
     run.require(sum(squares)*sum(squares) == 625, "scaled norm witness")
+    verify_selection_witness(run)
 
 
 def main() -> None:

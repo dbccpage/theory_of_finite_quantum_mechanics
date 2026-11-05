@@ -45,7 +45,7 @@ oneHole_iff_split is an iff by induction on the slot list; ofSplit_injective is 
 - `code/python/src/qm/genesis_tm.py::context_counts`
 
 ### Cited by the source, not in this checkout
-- `external:atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Basic.lean::plug`
+- `external:atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Basic.lean::plug`
 
 ---
 

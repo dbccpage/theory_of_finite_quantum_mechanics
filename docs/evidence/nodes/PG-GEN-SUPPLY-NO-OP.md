@@ -79,9 +79,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- file: [atlas/finite_obstruction_calculus/genesis/paper.md](../../../atlas/finite_obstruction_calculus/genesis/paper.md)
 - sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
 - cited in: node.source
 - counts toward the grade: yes
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md`
 
 - file: [dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md](../../../dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md)
-- sha256 (`lf-normalised`): `477b2f6d8bf58ab6402a803ddaac23e8f0e903f98e5ae620a5ffb75212b4de84`
+- sha256 (`lf-normalised`): `00be23b9e2259df80908e0566923b6ea3bb64217772ebf87644cc0727123002c`
 - generated view: listed, not counted
 - cited in: record TFQ-0379
 - counts toward the grade: no
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0380_readings_left_unselected.md`
 
 - file: [dag/derivations/02_genesis/tfq_0380_readings_left_unselected.md](../../../dag/derivations/02_genesis/tfq_0380_readings_left_unselected.md)
-- sha256 (`lf-normalised`): `e9bb41b35ac1a11e92429101f1c9aeb3630f9f8270d659e348fd6004e276138f`
+- sha256 (`lf-normalised`): `efd54c369187034e7f414d46c1a3d1124a003baa55d15a819beb44f191acbc09`
 - generated view: listed, not counted
 - cited in: record TFQ-0380
 - counts toward the grade: no
@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pg-gen-supply-erasure.md`
 
 - file: [dag/derivations/independent/pg-gen-supply-erasure.md](../../../dag/derivations/independent/pg-gen-supply-erasure.md)
-- sha256 (`lf-normalised`): `add9d5680c4e88f25cd10db8bb36c3c02f858cab3e166a4aa6317b6611f878f2`
+- sha256 (`lf-normalised`): `42dcb7fa7080074cc809349c58a1970bd1ca671654a36637e705cd19e785dcc2`
 - cited in: node.source
 - counts toward the grade: yes
 

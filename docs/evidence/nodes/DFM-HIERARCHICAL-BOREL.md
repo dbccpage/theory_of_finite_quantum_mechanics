@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-hierarchical-borel.py`
 
 - file: [checks/independent/dfm-hierarchical-borel.py](../../../checks/independent/dfm-hierarchical-borel.py)
-- sha256 (`bytes`): `0fadffb5b1cff5acd5e6433bacc93e69fa1c04183f97b891eadef46ab8b4557a`
+- sha256 (`bytes`): `0c756ef227684efbaea2244f0bb85bcea37dd535219ebd524b34ae3115a27c82`
 - cited in: node.source, record TFQ-0400
 - counts toward the grade: yes
 

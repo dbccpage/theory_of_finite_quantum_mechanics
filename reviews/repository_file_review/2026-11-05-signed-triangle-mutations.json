@@ -1,0 +1,474 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.825s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work/run_signed_triangle_mutations.py": "de6db391d33bb575cabdbd1e40b33f2a47cedb100340a4244ebc8193bada7eb2",
+    "checks/checker_support/binary_frame_system.py": "843503239990f18ad076a7c5078fd084d73be12cd8314a5e9ae8f20bd6a77eb8",
+    "checks/checker_support/binary_sign_cochain.py": "b1540901c370f9464ba425922b3093507bb335c1e2ba3f08029a7b3065fa3e77",
+    "checks/checker_support/boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks/checker_support/cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks/checker_support/cech_complex.py": "6f973fc65d6fa66ebb9078c6cc1af60683a5150b97b5510ca853517b650227dd",
+    "checks/checker_support/domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks/checker_support/empirical_model.py": "612562ec192efe40b5b9a0bb151486d4e77caf399bd853d2da712f5ca465172c",
+    "checks/checker_support/equatorial_ray_geometry.py": "ae4f3583fc892bcbfa5ed5acacdc41b88c09f2f4fe0a4811a12ec48d5c503622",
+    "checks/checker_support/exact_json_document.py": "e162590c25fab02fe87d73bc50f1e52e8083580b9faafae14ba4c50b8efb9f8c",
+    "checks/checker_support/exact_linear_program.py": "c771280ccd6473deaa011e37ca22c3e1856ccb9fbd2025580c81b87a0513f65f",
+    "checks/checker_support/gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks/checker_support/gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks/checker_support/gaussian_vector3.py": "7499bff94cb4a71a8dc8e4fa7ed3e08a00ac3a0e5096f925eb3e10b290f8a23e",
+    "checks/checker_support/happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks/checker_support/hermitian_tomography.py": "df1760dcfb384e13a48fc572613d6d25fe051361d6ab77954dec083f498e2c69",
+    "checks/checker_support/inert_prime_residual.py": "55f11b7d004c29e7feb7b44461117c003821ee7781fd940e973eb8a02f3b57aa",
+    "checks/checker_support/integer_quadratic_equation.py": "7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4",
+    "checks/checker_support/linear_program_certificate.py": "cfe2167737de71125118fb749a6e9ba5a2501cbee49ebc7828d2d55cc81636dc",
+    "checks/checker_support/measurement_scenario.py": "c441ba2036eca8083869d4b0fb4a49fdbc84638ca29b3cd2e90f8a07b5d71a3c",
+    "checks/checker_support/mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks/checker_support/orthogonal_gaussian_pair.py": "e5402c6601acc653d2958eb28e46bf0cc99e7616b2a9bcbc5f82611eba5f78d3",
+    "checks/checker_support/outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks/checker_support/rational_inverse.py": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+    "checks/checker_support/rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks/checker_support/signed_triangle.py": "f5432fcdc944d75bf124bcc8362466a31ac6d647786073d3c03549454304d49f",
+    "checks/checker_support/simplex_tableau.py": "c5254540e60b3bd68f8bd7776162878d6a919724f88b2098f9874bb980d2c145",
+    "checks/checker_support/wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks/independent/fsp-cobordism-intrinsic-sign.py": "99dc50c9c7ad9175f125adafaba37b865226062cafeecb156ecd5b16d1b0b427",
+    "checks/tests/run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks/tests/signed_triangle_mutations.json": "13d0563a3bbdb31b6c024743df62b5c5c223931f228c66b6c6bc4145ef0999d9",
+    "checks/tests/test_signed_triangle_switching.py": "1553263853cecf711d15c99ddc74ed67e0b7f3ab4440ca0e692cbbb122e64c90"
+  },
+  "mutants": [
+    {
+      "identity": "sign-coercion",
+      "mutant_sha256": "c10763bc39ea8c276ec69b1d0e5d63b64cfd880168a70e56c7eb9f3b9e998d1c",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_triangle_and_gauge_admission (__main__.SignedTriangleTests.test_exact_triangle_and_gauge_admission)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 131, in test_exact_triangle_and_gauge_admission\n    self.refused(evaluate(SignedTriangle,value))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 56, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_exact_triangle_and_gauge_admission"
+      ]
+    },
+    {
+      "identity": "sign-zero-admission",
+      "mutant_sha256": "961f18886ef2357cfb710f80a2b22f905b30ba9ceb146b5634b5c6764bf226be",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_triangle_and_gauge_admission (__main__.SignedTriangleTests.test_exact_triangle_and_gauge_admission)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 131, in test_exact_triangle_and_gauge_admission\n    self.refused(evaluate(SignedTriangle,value))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 56, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_exact_triangle_and_gauge_admission"
+      ]
+    },
+    {
+      "identity": "shape-preflight",
+      "mutant_sha256": "7b9c07009f5a88ee69bd0213cd5131df900c9182edda0975c00600b0f55cfb73",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_exact_triangle_and_gauge_admission (__main__.SignedTriangleTests.test_exact_triangle_and_gauge_admission)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 136, in test_exact_triangle_and_gauge_admission\n    self.refused(evaluate(SignedTriangle,(1,1)))\n                 ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\checker_support\\signed_triangle.py\", line 30, in __init__\n    object.__setattr__(self, \"edges\", _signs(edges, \"triangle edges\"))\n                                      ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\checker_support\\signed_triangle.py\", line 20, in _signs\n    a, b, c = (_sign(item) for item in sequence(value, name, maximum=3))\n    ^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\checker_support\\signed_triangle.py\", line 20, in <genexpr>\n    a, b, c = (_sign(item) for item in sequence(value, name, maximum=3))\n               ~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not map\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_exact_triangle_and_gauge_admission"
+      ]
+    },
+    {
+      "identity": "edge-snapshot",
+      "mutant_sha256": "9945264903aa2d96eed249feb7b921acd1bc0c5b2a9eecdf4852c4e259d5641b",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_owned_edges_results_and_immutable_family (__main__.SignedTriangleTests.test_owned_edges_results_and_immutable_family)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 114, in test_owned_edges_results_and_immutable_family\n    self.assertEqual(triangle.edges,(-1,-1,1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [1, -1, 1] != (-1, -1, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_owned_edges_results_and_immutable_family"
+      ]
+    },
+    {
+      "identity": "cycle-last-edge",
+      "mutant_sha256": "ac3181c7e7891634e91a47c31482c20d661571b12c898a6d60a701ea18847c08",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 68, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(triangle.cycle_product,1-2*parity)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != -1\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    },
+    {
+      "identity": "balance-parity",
+      "mutant_sha256": "32f5aa36e034362da653cfbc270ec93c6b25b1ba938ba9bc8d853eddcbf10fbb",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 69, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(triangle.is_balanced,parity==0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    },
+    {
+      "identity": "normalizing-gauge",
+      "mutant_sha256": "feb7dea311f1b57b7a1af7a1ebf2df7da8de634b4543ed06611d57342bb417d1",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 79, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(triangle.normalizing_gauge,(1,a,a*b))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, -1, -1) != (1, -1, 1)\n\nFirst differing element 2:\n-1\n1\n\n- (1, -1, -1)\n?         -\n\n+ (1, -1, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    },
+    {
+      "identity": "adjacency-edge-order",
+      "mutant_sha256": "3b6c7b3ce816bcc9a117f0ae708922776461db155311a0f20771cd7f42b53cec",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 73, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(sp.ImmutableMatrix(switched.adjacency.rows),diagonal*matrix*diagonal)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0,  1,  1],\n[1,  0, -1],\n[1, -1,  0]]) != Matrix([\n[ 0, 1, -1],\n[ 1, 0,  1],\n[-1, 1,  0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    },
+    {
+      "identity": "adjacency-diagonal",
+      "mutant_sha256": "5fde5b64943af746f676fdc0311d97117c3dbf9d755e2abf7af0a0d617d46ef8",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 66, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(sp.ImmutableMatrix(triangle.adjacency.rows),matrix)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[ 1, -1, -1],\n[-1,  0, -1],\n[-1, -1,  0]]) != Matrix([\n[ 0, -1, -1],\n[-1,  0, -1],\n[-1, -1,  0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    },
+    {
+      "identity": "switch-first-vertex",
+      "mutant_sha256": "b12e673364117046740ba2212f362d0e260f075c05706e30adf9975a31311e1f",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 73, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(sp.ImmutableMatrix(switched.adjacency.rows),diagonal*matrix*diagonal)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 1, 1],\n[1, 0, 1],\n[1, 1, 0]]) != Matrix([\n[ 0, -1, 1],\n[-1,  0, 1],\n[ 1,  1, 0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    },
+    {
+      "identity": "switch-second-edge",
+      "mutant_sha256": "04df41b9c6a86b2b364b43ae730632ff3c4c1e9246b308d2772eab362cfff017",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 73, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(sp.ImmutableMatrix(switched.adjacency.rows),diagonal*matrix*diagonal)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[ 0, -1, -1],\n[-1,  0, -1],\n[-1, -1,  0]]) != Matrix([\n[ 0, -1, -1],\n[-1,  0,  1],\n[-1,  1,  0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    },
+    {
+      "identity": "switch-last-vertex",
+      "mutant_sha256": "6520de144c43d0335508447ed5214035ed28134b26c3251b69aaeca8b15550a1",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 73, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(sp.ImmutableMatrix(switched.adjacency.rows),diagonal*matrix*diagonal)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 1, 1],\n[1, 0, 1],\n[1, 1, 0]]) != Matrix([\n[ 0, 1, -1],\n[ 1, 0,  1],\n[-1, 1,  0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    },
+    {
+      "identity": "switch-ignores-gauge",
+      "mutant_sha256": "5bd4c81ea17e6eabb577c78d04a0d710219d24f6cd0cc8e083a90f408a0f6983",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_group_action_orbits_and_positive_classification (__main__.SignedTriangleTests.test_group_action_orbits_and_positive_classification)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 94, in test_group_action_orbits_and_positive_classification\n    self.assertEqual(len(orbit),4)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: 1 != 4\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_group_action_orbits_and_positive_classification"
+      ]
+    },
+    {
+      "identity": "switch-ignores-operation",
+      "mutant_sha256": "ab413692d6312f11325d42a62ebfa854ac66144441345e988fab8cef7424f5b6",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_group_action_orbits_and_positive_classification (__main__.SignedTriangleTests.test_group_action_orbits_and_positive_classification)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 94, in test_group_action_orbits_and_positive_classification\n    self.assertEqual(len(orbit),4)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: 1 != 4\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_group_action_orbits_and_positive_classification"
+      ]
+    },
+    {
+      "identity": "switch-untranslated-refusal",
+      "mutant_sha256": "7060007537ddb01ea3114e87312d8f629ef3ab21b8c963eefa09aa7a5fcf735b",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_exact_triangle_and_gauge_admission (__main__.SignedTriangleTests.test_exact_triangle_and_gauge_admission)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 132, in test_exact_triangle_and_gauge_admission\n    self.refused(triangle.switch(value))\n                 ~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\checker_support\\signed_triangle.py\", line 57, in switch\n    return Outcome(value=self._switch(gauge))\n                         ~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\checker_support\\signed_triangle.py\", line 52, in _switch\n    g0, g1, g2 = _signs(gauge, \"vertex gauge\")\n                 ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\checker_support\\signed_triangle.py\", line 20, in _signs\n    a, b, c = (_sign(item) for item in sequence(value, name, 3, 3))\n                                       ~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\checker_support\\domains.py\", line 91, in sequence\n    raise _violation(\"input\", f\"{name} must be a list or tuple\")\nchecker_support.boundary.Violation: vertex gauge must be a list or tuple\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/signed_triangle.py",
+      "tests": [
+        "test_exact_triangle_and_gauge_admission"
+      ]
+    },
+    {
+      "identity": "matrix-integer-domain",
+      "mutant_sha256": "71db3546c749c2e6c4b99d80d92b72ad0477ae215b35212f4b25d99033ae4a92",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_matrix_shapes_scalar_domains_and_preflight (__main__.SignedTriangleTests.test_matrix_shapes_scalar_domains_and_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 144, in test_matrix_shapes_scalar_domains_and_preflight\n    self.refused(controls.matrix_product(value,zero))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 56, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_matrix_shapes_scalar_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "matrix-row-budget",
+      "mutant_sha256": "38a31b2291e11d2f9b04ef5d4b75f0869453210cc978b2cb5a225a570b14f5a8",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_matrix_shapes_scalar_domains_and_preflight (__main__.SignedTriangleTests.test_matrix_shapes_scalar_domains_and_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 147, in test_matrix_shapes_scalar_domains_and_preflight\n    self.refused(controls.matrix_product(((0,)*3,)*4,zero),\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 56, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_matrix_shapes_scalar_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "matrix-column-budget",
+      "mutant_sha256": "3160c46143c6e60f3fa3683fe4069591556cedbaeb9c04c682348c2d45252df2",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_matrix_shapes_scalar_domains_and_preflight (__main__.SignedTriangleTests.test_matrix_shapes_scalar_domains_and_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 145, in test_matrix_shapes_scalar_domains_and_preflight\n    self.refused(controls.matrix_product(zero,value))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 56, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_matrix_shapes_scalar_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "matrix-product-order",
+      "mutant_sha256": "fbd7b2d5d466978863b92657e8fc20c4b1f93b941f69eab07ce580d7acd98666",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_matrix_products_against_symbolic_oracle (__main__.SignedTriangleTests.test_matrix_products_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 99, in test_matrix_products_against_symbolic_oracle\n    @given(MATRIX,MATRIX)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 105, in test_matrix_products_against_symbolic_oracle\n    self.assertEqual(sp.ImmutableMatrix(actual),expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0],\n[0, 0, 0],\n[0, 0, 0]]) != Matrix([\n[0, 0, 0],\n[0, 0, 0],\n[0, 1, 0]])\nFailing test case: test_matrix_products_against_symbolic_oracle(\n    self=<__main__.SignedTriangleTests testMethod=test_matrix_products_against_symbolic_oracle>,\n    first=[0, 0, 0, 0, 0, 0, 0, 0, 1],\n    second=[0, 0, 0, 0, 0, 0, 0, 1, 0],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\str.py:678\n\n----------------------------------------------------------------------\nRan 1 test in 1.135s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_matrix_products_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-right-operand",
+      "mutant_sha256": "89deef98ad282049732462f4f9d129047ee8ed8a1cdfbe6cc614371c222d0ece",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_matrix_shapes_scalar_domains_and_preflight (__main__.SignedTriangleTests.test_matrix_shapes_scalar_domains_and_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 145, in test_matrix_shapes_scalar_domains_and_preflight\n    self.refused(controls.matrix_product(zero,value))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 56, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_matrix_shapes_scalar_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "matrix-railway-order",
+      "mutant_sha256": "798782bae4ef6be6828016b5c168460eb5361dbc71e125162e5886af7aa34199",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_matrix_products_against_symbolic_oracle (__main__.SignedTriangleTests.test_matrix_products_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 99, in test_matrix_products_against_symbolic_oracle\n    @given(MATRIX,MATRIX)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 107, in test_matrix_products_against_symbolic_oracle\n    self.assertEqual(sp.ImmutableMatrix(self.accepted(result)),expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0],\n[0, 0, 0],\n[0, 0, 0]]) != Matrix([\n[0, 0, 0],\n[0, 0, 0],\n[0, 1, 0]])\nFailing test case: test_matrix_products_against_symbolic_oracle(\n    self=<__main__.SignedTriangleTests testMethod=test_matrix_products_against_symbolic_oracle>,\n    first=[0, 0, 0, 0, 0, 0, 0, 0, 1],\n    second=[0, 0, 0, 0, 0, 0, 0, 1, 0],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\str.py:678\n\n----------------------------------------------------------------------\nRan 1 test in 0.976s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_matrix_products_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "family-population",
+      "mutant_sha256": "1cbc10b0f9a2b1309633a1a30c524795d89be0be88719dd04dc790a45746863c",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_owned_edges_results_and_immutable_family (__main__.SignedTriangleTests.test_owned_edges_results_and_immutable_family)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 123, in test_owned_edges_results_and_immutable_family\n    self.assertEqual(tuple(t.edges for t in controls.triangles),tuple(product((-1,1),repeat=3)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((-1,[32 chars]1), (-1, 1, 1), (1, -1, -1), (1, -1, 1), (1, 1, -1)) != ((-1,[32 chars]1), (-1, 1, 1), (1, -1, -1), (1, -1, 1), (1, 1, -1), (1, 1, 1))\n\nSecond tuple contains 1 additional elements.\nFirst extra element 7:\n(1, 1, 1)\n\n  ((-1, -1, -1),\n   (-1, -1, 1),\n   (-1, 1, -1),\n   (-1, 1, 1),\n   (1, -1, -1),\n   (1, -1, 1),\n-  (1, 1, -1))\n?            ^\n\n+  (1, 1, -1),\n?            ^\n\n+  (1, 1, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_owned_edges_results_and_immutable_family"
+      ]
+    },
+    {
+      "identity": "gauge-population",
+      "mutant_sha256": "5059bd83e2c5b1c46de7ba887b74f0b9e7e262d11d836beafd8aa0f2f274b35a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 176, in test_actual_per_run_counter_and_original_populations\n    result=self.accepted(controls.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 52, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='finite family population') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "matrix-comparison-removed",
+      "mutant_sha256": "1616339e6603628321d2201987635304ee95104eda61a362b9c636a7f9e989d6",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 178, in test_actual_per_run_counter_and_original_populations\n    self.assertEqual(result[\"checks\"],145)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 81 != 145\n\n----------------------------------------------------------------------\nRan 1 test in 0.013s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "cycle-guard-removed",
+      "mutant_sha256": "79c5e65163b2cb9039e2a4590e3478a26dd84e769ee9f0d71a4b58966e73fa93",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 178, in test_actual_per_run_counter_and_original_populations\n    self.assertEqual(result[\"checks\"],145)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 81 != 145\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "normal-form-guard-removed",
+      "mutant_sha256": "ea7cf4e90f1ab4a5ef1520dd41e272db6d9667b54fe007c40f5709c2f5bf6e23",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 178, in test_actual_per_run_counter_and_original_populations\n    self.assertEqual(result[\"checks\"],145)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 137 != 145\n\n----------------------------------------------------------------------\nRan 1 test in 0.015s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "classification-guard-removed",
+      "mutant_sha256": "47b014b84f002e01e7cf083a756ca99484c5dd711e886a17426fe09a995c8cda",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 178, in test_actual_per_run_counter_and_original_populations\n    self.assertEqual(result[\"checks\"],145)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 137 != 145\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "positive-reachability",
+      "mutant_sha256": "e64f1882a60268773b1a521c8d131f66a02af2d623b294e56d7669d9c45a458c",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 176, in test_actual_per_run_counter_and_original_populations\n    result=self.accepted(controls.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 52, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='switching classification') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "balanced-family",
+      "mutant_sha256": "57f51c1da479427334f9d700b341af66f91c1805cfe07e0a763cd5843ea8ba0d",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 176, in test_actual_per_run_counter_and_original_populations\n    result=self.accepted(controls.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 52, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='finite family population') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.015s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "reported-counter",
+      "mutant_sha256": "f82ef4851678de99fa2fa3ebbe3720a32f6a2d10c137026a074143c260fb3c8f",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 177, in test_actual_per_run_counter_and_original_populations\n    self.assertEqual(result[\"checks\"],len(observed))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 146 != 145\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "reported-obstructed",
+      "mutant_sha256": "1bce7820c4a37c799e56dfc99245fd497fd601d213ef5b2c58c7bcf7ddc93345",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 183, in test_actual_per_run_counter_and_original_populations\n    self.assertEqual((result[\"triangles\"],result[\"switching_cases\"],result[\"balanced\"],result[\"obstructed\"]),(8,64,4,4))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (8, 64, 4, 12) != (8, 64, 4, 4)\n\nFirst differing element 3:\n12\n4\n\n- (8, 64, 4, 12)\n?            ^^\n\n+ (8, 64, 4, 4)\n?            ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "shared-counter-state",
+      "mutant_sha256": "fa0943670ad619f3ba079b94def54ecf390cb71578cd61f23bcbbdaff0d518fe",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_actual_per_run_counter_and_original_populations (__main__.SignedTriangleTests.test_actual_per_run_counter_and_original_populations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 184, in test_actual_per_run_counter_and_original_populations\n    self.assertEqual(result,self.accepted(controls.verify()))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'tri[33 chars], 'balanced': 4, 'obstructed': 4, 'failures': 0, 'checks': 145} != {'tri[33 chars], 'balanced': 4, 'obstructed': 4, 'failures': 0, 'checks': 290}\n  {'balanced': 4,\n-  'checks': 145,\n?            ^^^\n\n+  'checks': 290,\n?            ^^^\n\n   'failures': 0,\n   'obstructed': 4,\n   'switching_cases': 64,\n   'triangles': 8}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_actual_per_run_counter_and_original_populations"
+      ]
+    },
+    {
+      "identity": "cli-refusal",
+      "mutant_sha256": "e0d6a5bbc7aa72a114d0f68b2f89709f291d0d6420f17ee9d5bbd1dee2ec7fe9",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_failure_paths_and_cancellation_propagation (__main__.SignedTriangleTests.test_failure_paths_and_cancellation_propagation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 195, in test_failure_paths_and_cancellation_propagation\n    self.assertEqual(module.main(),1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fsp-cobordism-intrinsic-sign.py",
+      "tests": [
+        "test_failure_paths_and_cancellation_propagation"
+      ]
+    },
+    {
+      "identity": "dependency-term-budget",
+      "mutant_sha256": "a8ce46afc66db606c5267020d5fa69a52a519f59454fac67f0634f7c261b5b7e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_matrix_budgets_cover_terms_and_prefix_cancellation (__main__.SignedTriangleTests.test_matrix_budgets_cover_terms_and_prefix_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 164, in test_matrix_budgets_cover_terms_and_prefix_cancellation\n    self.refused(controls.matrix_product(((-maximum,large,0),(0,0,0),(0,0,0)),((1,0,0),(large,0,0),(0,0,0))),\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 56, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_budgets_cover_terms_and_prefix_cancellation"
+      ]
+    },
+    {
+      "identity": "dependency-prefix-budget",
+      "mutant_sha256": "286369c6c8d733293c5647cc632e0037cc64ab6483294be2367c5aede750f940",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_matrix_budgets_cover_terms_and_prefix_cancellation (__main__.SignedTriangleTests.test_matrix_budgets_cover_terms_and_prefix_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 166, in test_matrix_budgets_cover_terms_and_prefix_cancellation\n    self.refused(controls.matrix_product(((maximum,1,-1),(0,0,0),(0,0,0)),((1,0,0),(1,0,0),(1,0,0))),\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 56, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_budgets_cover_terms_and_prefix_cancellation"
+      ]
+    },
+    {
+      "identity": "test-refusal-helper",
+      "mutant_sha256": "96dcd373c668497662bbdcb354a653e1910d5ab8951571fad2165022b32fe6ba",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_matrix_shapes_scalar_domains_and_preflight (__main__.SignedTriangleTests.test_matrix_shapes_scalar_domains_and_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 147, in test_matrix_shapes_scalar_domains_and_preflight\n    with self.assertRaises(AssertionError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nAssertionError: AssertionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_signed_triangle_switching.py",
+      "tests": [
+        "test_matrix_shapes_scalar_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "boolean-oracle-parity",
+      "mutant_sha256": "cadc3c0c2cd294de708bc9db579ef2f64ecc60715e628eabc8deb8031040b0e8",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 68, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(triangle.cycle_product,1-2*parity)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: -1 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_signed_triangle_switching.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    },
+    {
+      "identity": "matrix-oracle-conjugation",
+      "mutant_sha256": "ceb51d9eed8ff920d859b95404fd42697237f384ac988260d8a560caa8018a01",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_graphs_and_gauges_against_matrix_and_boolean_oracles (__main__.SignedTriangleTests.test_all_graphs_and_gauges_against_matrix_and_boolean_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\signed-triangle-mutation-akdu8c0f\\checks\\tests\\test_signed_triangle_switching.py\", line 73, in test_all_graphs_and_gauges_against_matrix_and_boolean_oracles\n    self.assertEqual(sp.ImmutableMatrix(switched.adjacency.rows),matrix)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[ 0, -1, 1],\n[-1,  0, 1],\n[ 1,  1, 0]]) != Matrix([\n[ 0, -1, -1],\n[-1,  0, -1],\n[-1, -1,  0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_signed_triangle_switching.py",
+      "tests": [
+        "test_all_graphs_and_gauges_against_matrix_and_boolean_oracles"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 38,
+      "survived": 0,
+      "unrun": 0
+    },
+    "detected_fraction": 1.0,
+    "eligible": 38
+  }
+}

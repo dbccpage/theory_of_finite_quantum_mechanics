@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
 - sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0495_genesis_to_sn_crosswalk.md`
 
 - file: [dag/derivations/02_genesis/tfq_0495_genesis_to_sn_crosswalk.md](../../../dag/derivations/02_genesis/tfq_0495_genesis_to_sn_crosswalk.md)
-- sha256 (`lf-normalised`): `1a0bde20a9dab5740bcb79d325e52706b6a49d29082afaf56dcf49f290417f12`
+- sha256 (`lf-normalised`): `720dd2e90429ad19e1101e56ef4470c3dba5dd67bb5fdf5a2014de0fdb03c509`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0495
 - counts toward the grade: no

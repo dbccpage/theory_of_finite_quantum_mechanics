@@ -12,7 +12,7 @@ claim_status: source-grounded
 authority_effect: "None"
 source_paths:
   - omega_engine_education/documentation/research_papers/03_coda_ddc_and_prime_triad_foundations.md@81ba20500^
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
 last_verified: 2026-09-30
 ---
 
@@ -174,4 +174,4 @@ Python orchestrates workflow coordination, while exact combinatorial contraction
    - CODA provides a formal, typed mathematical framework for certifying obstruction descent and enforcing halting boundaries over finite cochain complexes.
 4. **Next test needed:**
    - Run the dual witness certification tests:
-     `py -3.12 -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/tests/test_cochain.py --basetemp=scratch/pytest_tmp`
+     `py -3.12 -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/tests/test_cochain.py --basetemp=scratch/pytest_tmp`

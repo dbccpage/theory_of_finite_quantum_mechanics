@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
 - sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md](../../../dag/derivations/05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md)
-- sha256 (`lf-normalised`): `e1eaae2200e83de9ce712d953408c602a8eae6399007684bda34e5b807d40747`
+- sha256 (`lf-normalised`): `71da6e0b7859bcc301e531edf3474249bc5b6d91122bcd6d16d33dc4cb8d441b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0523
 - counts toward the grade: no

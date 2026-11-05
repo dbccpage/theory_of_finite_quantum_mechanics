@@ -152,16 +152,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
 - sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md](../../../atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md)
 - sha256 (`lf-normalised`): `ca7ad135453d393688ceadf73eb214ccc6976589928f1dc43597e287bbfc6209`
 - cited in: node.source
 - counts toward the grade: yes
@@ -169,7 +169,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md](../../../dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md)
-- sha256 (`lf-normalised`): `36a0aad821af3477fea51f8126fcf4452c30015f294ea2decaef5454ea2cd104`
+- sha256 (`lf-normalised`): `acd0812b44d822099435ee32b64af987aebd5486c7ff9fe51c334070e9d16b9e`
 - generated view: listed, not counted
 - cited in: record TFQ-0375
 - counts toward the grade: no
@@ -177,7 +177,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md](../../../dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md)
-- sha256 (`lf-normalised`): `fe2ea39dd76f240033b4cdd5934ad45accaed60b489cc8a3aa81e65f0008a1b0`
+- sha256 (`lf-normalised`): `cd913a4e4e06b16c0895629cf4897b3168fc43f87e23d5f8a82acd3591eb311e`
 - generated view: listed, not counted
 - cited in: record TFQ-0337
 - counts toward the grade: no
@@ -185,7 +185,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md`
 
 - file: [dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md](../../../dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md)
-- sha256 (`lf-normalised`): `a3f593ff7910ebfaf1a0be3247c6690513d5c22ee4ef772b6ce7a07f0e292484`
+- sha256 (`lf-normalised`): `c3daa59544b59dd0a2b1a0ae1859cd7bdde35611d7cb12faaf805267280909f6`
 - generated view: listed, not counted
 - cited in: record TFQ-0346 (shared)
 - counts toward the grade: no
