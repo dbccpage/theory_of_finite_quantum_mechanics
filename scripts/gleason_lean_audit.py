@@ -56,12 +56,19 @@ MODULES = (
     "GleasonComplexSphere",
     "GleasonGaussianBridge",
     "GleasonBornCompletion",
+    "BornGaussianFiniteModel",
 )
 DEPENDENCIES = (
     "BornGaussRat",
     "BornGaussianRationalFrameObstruction",
+    "BornGaussianRationalNoColouring",
     "BornGaussianFrameRays",
     "BornGaussianTomographyReduction",
+    "BornEffectValuation",
+    "BornLinearExtension",
+    "BornHermitianCarrier",
+    "BornHermitianPsdDecomposition",
+    "BornHermitianTraceRepresentation",
 )
 EXTERNAL_PACKAGES = (
     "Mathlib",
@@ -452,6 +459,7 @@ def emit(root: Path, target: Path) -> int:
         "      | _ => pure ()",
         "      if env.isProjectionFn name then continue",
         "      if let .str p s := name then",
+        "        if let some (.ctorInfo _) := env.find? p then continue",
         "        if indAux.contains s then",
         "          if let some (.inductInfo _) := env.find? p then continue",
         "      let rendered := name.toString (escape := false)",

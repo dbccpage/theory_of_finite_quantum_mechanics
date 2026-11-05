@@ -122,3 +122,105 @@ bound proved. Projector linearity must not be silently assumed, since it already
 the desired rigidity. The review also gives a separate effect-additive route and the
 additional obligations for arbitrary complex states, higher finite dimensions, and
 infinite-dimensional trace-class states.
+
+## Phase 2 finite and exact-arithmetic Gleason model (`lean4/BornGaussianFiniteModel.lean`)
+
+`lean4/BornGaussianFiniteModel.lean` (checked by the six-module Gleason audit in
+`dag/research/gleason_lean_audit.json` across 478 declarations using only `propext`,
+`Classical.choice`, and `Quot.sound`, with companion exact rational certificate checks in
+`scripts/verify_gleason_finite_certificates.py` and
+`dag/research/gleason_finite_model_receipt.json`) formalizes the finite and exact-arithmetic
+Gleason model over $\mathbb{Q}(i)^3$:
+
+1. **Five-way distinction of "finite":**
+   - **(i) Genuinely finite measurement scenario (`FiniteFrameScenario`):** a finite list of
+     nonzero rays and admissible orthogonal frames. Every global `IsFrameFunction` restricts
+     to a scenario valuation (`global_frameFunction_restricts_to_scenario`). The 9-ray
+     single-frame scenario (`nineAnchorSingleFrameScenario`) admits a $\{0,1\}$-valued
+     deterministic valuation (`nineAnchorSingleFrameScenario_admits_zero_one`), whereas the
+     49-ray `NoColouring` scenario excludes $\{0,1\}$ valuations (`no_zero_one_frame_function`)
+     while global $\mathbb{Q}(i)^3$ still admits the $\{0, 1/3, 2/3\}$-valued nonquadratic frame
+     function `exoticQi3` (`finite_scenario_vs_global_frame_dichotomy`).
+   - **(ii) Finite-dimensional vector space over an infinite field ($\mathbb{Q}(i)^3$):**
+     exhibits an infinite family of pairwise non-collinear rays (`rayFamily_raySinSq_pos`) and
+     orthogonal frames (`frameFamily_isFrame`).
+   - **(iii) Finite collection of fixed tomography anchors and completing partners:** any
+     zero-weight residual vanishing on the 9 tomography anchors (`nineAnchorsList`) also
+     vanishes on all 6 completing axis-plane bisector partners (`sixBisectorPartnersList`,
+     `vanishes_on_six_bisector_partners`), yielding 15 fixed zero rays in total.
+   - **(iv) Finite presentation or certificate (`FixedAnchorBound`):** formalizes the
+     fixed-anchor bound $|g(x)| \le A \max_{y \in Y} |g(y)| + B r$ over all bounded zero-weight
+     anchor-vanishing residuals $g$ (`|g| \le B`).
+   - **(v) Directed family of finite approximations:** formalizes the sufficiency theorem
+     (`fixedAnchor_sufficiency_of_pointwiseRayContinuous_at_anchors`) showing that if a target
+     ray $x$ admits a fixed $A \ge 0$ and finite probe lists $Y$ approaching `nineAnchorsList`
+     in `raySinSq` with $r \to 0$, then every bounded zero-weight anchor-vanishing residual
+     that is pointwise ray-continuous at the 9 anchors vanishes at $x$.
+
+2. **Normalization and boundedness consequences:**
+   - Origin normalization (`normalizeAtZero`) preserves `IsFrameFunction` and
+     `IsZeroWeightFrameFunction` (`normalizeAtZero_isFrameFunction`,
+     `normalizeAtZero_isZeroWeightFrameFunction`).
+   - Nonnegative frame functions satisfy $|f(v) - \text{quadRay}(\text{tomographyForm}(f), v)|
+     \le 1 + \text{coeffNorm}(\text{tomographyForm}(f))$ on every nonzero ray
+     (`abs_residual_le_one_add_coeffNorm_of_nonneg`), and $\le 1$ whenever
+     $0 \le \text{quadRay}(\text{tomographyForm}(f), v) \le 1$
+     (`abs_residual_le_one_of_nonneg_and_quadRay_bounds`).
+
+3. **Exact bridge from operator-level effect additivity to ray-level quadratic rigidity:**
+   - Establishes the explicit bijection between `GVec` and `Fin 3 -> GaussRat` (`vecOfGVec`,
+     `gvecOfVec`) and between $3 \times 3$ Hermitian Gaussian-rational matrices and `HermForm3`
+     (`hermForm3OfGaussMatrix`, `gaussMatrixOfHermForm3`, `hf_eq_quadNum_hermForm3OfGaussMatrix`).
+   - Shows that every operator-level `EffectValuation (HermitianCarrier.space 3)` restricts on
+     rank-1 projectors `P (vecOfGVec v)` to `quadRay (hermForm3OfDensity W) v`
+     (`effectValuation_rankOne_eq_quadRay`), inducing a nonnegative frame function that factors
+     linearly through `rayProj` (`rayValuationOfEffect_factorsThroughRayProjLinear`) with zero
+     tomography residual (`rayValuationOfEffect_residual_eq_zero`).
+   - Shows that operator-level effect additivity excludes `exoticQi3` and every prime-indexed
+     counterexample $(1 + \text{sp}_p)/3$ without any topological continuity hypothesis
+     (`no_effectValuation_induces_exoticQi3`, `no_effectValuation_induces_sp`).
+
+4. **Exact rational equivalence of vector-level and projective ray-level pointwise continuity:**
+   - Proves the rational inequality `raySinSq u v₀ <= distSqVec u v₀ / normSqVec v₀`
+     (`raySinSq_le_distSqVec_div`) and the exact orthogonal projection identity
+     `distSqVec (GVec.smul (projScalar u v₀) u) v₀ = normSqVec v₀ * raySinSq u v₀`
+     (`distSqVec_projScalar_smul`).
+   - Concludes `IsPointwiseRayContinuousAt g v₀ <-> IsArchimedeanContinuousAt g v₀` and
+     `IsPointwiseRayContinuous g <-> IsArchimedeanContinuousEverywhere g` for all
+     scale-invariant ray functions (`isPointwiseRayContinuousAt_iff_isArchimedeanContinuousAt`,
+     `isPointwiseRayContinuous_iff_isArchimedeanContinuousEverywhere`).
+
+5. **Fixed-anchor certificate structure, meridian pair antisymmetry, prime-valuation and
+   coordinate-plane obstructions, and Chinese Remainder collisions (`TFQ-1057`):**
+   - **Exact 2-frame meridian antisymmetry:** for every zero-weight residual $g$ vanishing on
+     the 9 anchors, $g(1,1,1) + g(-2,1,1) = 0$ (`residual_witness111_add_neg211_eq_zero`), and
+     for every $t \ge 0$, $g(1,1,1) + g(-2,1,1) = g(1+t, 1, 1) + g(-2, 1+t, 1+t)$ with
+     $(1+t,1,1) \to e_1$ and $(-2,1+t,1+t) \to e_{23}$
+     (`meridian_pair_sum_eq_approaching_anchors`).
+   - **Prime-valuation obstruction (`fixedAnchor_prime_valuation_obstruction`,
+     `fixedAnchor_remainder_ge_one_of_even_vpRat`):** any `FixedAnchorBound A r Y x` with
+     $A \ge 0$, $r < 1$, and $\text{sp}_p(x) \ne 0$ for an inert prime $p$ must include a probe
+     $y \in Y$ with odd $p$-adic norm valuation `vpRat p (normSqVec y) % 2 != 0`.
+   - **Coordinate-refined 3-adic residuals (`s3_leadX`, `s3_leadAll`) and coordinate-plane
+     obstruction (`fixedAnchor_obstruction_of_not_isLead3All`):** `s3_leadAll` is a bounded
+     zero-weight anchor-vanishing residual (`|s3_leadAll| <= 1`) with
+     `s3_leadAll witness_111 = 1` that vanishes on the union of the three coordinate planes
+     `u.x = 0 \/ u.y = 0 \/ u.z = 0` (`s3_leadAll_eq_zero_of_coord_zero`), forcing $r \ge 1$
+     whenever all probes satisfy `~ isLead3All y`.
+   - **Chinese Remainder Archimedean/3-adic collision sequence (`crtApproachE1`):**
+     `crtApproachE1 m = (1 + 9*(m+1), 1, 1)` satisfies `s3_leadAll (crtApproachE1 m) = 1` for
+     every $m \in \mathbb{N}$ (`crtApproachE1_s3_leadAll_eq_one`) while converging in projective
+     ray distance `raySinSq` to `tomo_e1 = (1, 0, 0)` at rate $\le 2 / (1 + 9(m+1))^2$
+     (`crtApproachE1_raySinSq_tomo_e1_le`).
+
+6. **Explicit proof-obligation separations:**
+   - Moving rational near-maximizers without a rational maximizer for $- (3q^2 - 1)^2$ on
+     $\mathbb{Q}$ (`three_mul_sq_ne_sq`,
+     `moving_rational_near_maximizer_no_rational_maximizer`).
+   - Linear accumulation $L\varepsilon$ of step-wise $\varepsilon$ chain drift
+     (`chain_step_error_accumulates`, `linearDriftChain_attains_bound`).
+   - Scale-invariant $\{0,1\}$-valued Dedekind ray cut `dedekindRayCut` on
+     $\mathbb{Q}(i)^3 \setminus \{0\}$ across the irrational cone $3|u_y|^4 = \|u\|^4$
+     (`dedekindRayCut_isScaleInvariantOnRays`, `dedekindRayCut_gap_ne_zero`,
+     `dedekindRayCut_jump_on_pell_pair`).
+

@@ -67,6 +67,11 @@ MODULE_SOURCE = {
         "  theorem after_noncomputable_section : True := trivial\n"
         "end BornFinite.BornCompletion\n"
     ),
+    "BornGaussianFiniteModel": (
+        "namespace BornFinite.GaussianFiniteModel\n"
+        "  theorem finite_model_one : True := trivial\n"
+        "end BornFinite.GaussianFiniteModel\n"
+    ),
 }
 
 # Independent ground-truth inventory for MODULE_SOURCE (never computed via audit.inventory).
@@ -100,6 +105,9 @@ EXPECTED_DECLARATIONS: dict[str, list[str]] = {
         "BornFinite.BornCompletion.Qc",
         "BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay",
         "BornFinite.BornCompletion.after_noncomputable_section",
+    ],
+    "BornGaussianFiniteModel": [
+        "BornFinite.GaussianFiniteModel.finite_model_one",
     ],
 }
 

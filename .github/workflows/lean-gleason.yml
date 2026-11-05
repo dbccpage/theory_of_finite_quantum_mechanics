@@ -1,4 +1,4 @@
-# Builds the five Gleason Lean targets (non-default Lake targets, so the default build never
+# Builds the six Gleason Lean targets (non-default Lake targets, so the default build never
 # compiles them) and runs the fail-closed axiom audit of scripts/gleason_lean_audit.py.
 # AuthorityEffect: None.
 name: lean-gleason
@@ -11,16 +11,26 @@ on:
       - "lean4/GleasonComplexSphere.lean"
       - "lean4/GleasonGaussianBridge.lean"
       - "lean4/GleasonBornCompletion.lean"
+      - "lean4/BornGaussianFiniteModel.lean"
       - "lean4/BornGaussRat.lean"
       - "lean4/BornGaussianRationalFrameObstruction.lean"
+      - "lean4/BornGaussianRationalNoColouring.lean"
       - "lean4/BornGaussianFrameRays.lean"
       - "lean4/BornGaussianTomographyReduction.lean"
+      - "lean4/BornEffectValuation.lean"
+      - "lean4/BornLinearExtension.lean"
+      - "lean4/BornHermitianCarrier.lean"
+      - "lean4/BornHermitianPsdDecomposition.lean"
+      - "lean4/BornHermitianTraceRepresentation.lean"
       - "lean4/lakefile.lean"
       - "lean4/lake-manifest.json"
       - "lean4/lean-toolchain"
       - "scripts/gleason_lean_audit.py"
       - "scripts/test_gleason_lean_audit.py"
+      - "scripts/verify_gleason_finite_certificates.py"
+      - "scripts/test_gleason_finite_certificates.py"
       - "dag/research/gleason_lean_audit.json"
+      - "dag/research/gleason_finite_model_receipt.json"
       - ".github/workflows/lean-gleason.yml"
   push:
     branches: [main]
@@ -28,7 +38,10 @@ on:
       - "lean4/**"
       - "scripts/gleason_lean_audit.py"
       - "scripts/test_gleason_lean_audit.py"
+      - "scripts/verify_gleason_finite_certificates.py"
+      - "scripts/test_gleason_finite_certificates.py"
       - "dag/research/gleason_lean_audit.json"
+      - "dag/research/gleason_finite_model_receipt.json"
       - ".github/workflows/lean-gleason.yml"
   workflow_dispatch:
 
@@ -54,19 +67,21 @@ jobs:
       - name: Install pytest
         run: python -m pip install --disable-pip-version-check pytest
 
-      - name: Test the audit tool (fail-closed cases)
-        run: python -I -X utf8 -m pytest scripts/test_gleason_lean_audit.py -q -p no:cacheprovider
+      - name: Test the audit tool and finite Gleason certificate verifier
+        run: |
+          python -I -X utf8 -m pytest scripts/test_gleason_lean_audit.py scripts/test_gleason_finite_certificates.py -q -p no:cacheprovider
+          python -I -X utf8 scripts/verify_gleason_finite_certificates.py --check
 
       - name: Emit the audit file from the current sources
         run: python -I -X utf8 scripts/gleason_lean_audit.py emit lean4/.audit/GleasonAudit.lean
 
-      - name: Build the five Gleason targets (Mathlib from cache.mathlib.org)
+      - name: Build the six Gleason targets (Mathlib from cache.mathlib.org)
         uses: leanprover/lean-action@v1
         with:
           lake-package-directory: lean4
           auto-config: false
           build: true
-          build-args: "BornGaussianParallelogramRigidity GleasonRealSphere GleasonComplexSphere GleasonGaussianBridge GleasonBornCompletion"
+          build-args: "BornGaussianParallelogramRigidity GleasonRealSphere GleasonComplexSphere GleasonGaussianBridge GleasonBornCompletion BornGaussianFiniteModel"
           test: false
           lint: false
           use-mathlib-cache: true
