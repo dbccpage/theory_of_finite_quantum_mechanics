@@ -1,5 +1,4 @@
 <title>Holographic Brain Audit</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
 <style>
 /* Layout: one plain column of cards on white, thin rules, one sans face; each card = picture, one equation, one line, what it rests on, verdict bar */
@@ -347,18 +346,5 @@ grid.addEventListener("input",e=>{
 });
 localLoad(); CARDS.forEach(c=>paint(c.id));
 
-(async()=>{
-  let d=null; try{ d = window.claude && window.claude.use ? await window.claude.use("db") : null; }catch(e){ d=null; }
-  if(!d){ statusEl.textContent="Marks are saved in this browser only (shared marks unavailable here)."; return; }
-  db=d; statusEl.textContent="Loading shared marks…";
-  const t=setTimeout(()=>{statusEl.textContent="Shared marks are slow to load; your marks still save.";},10000);
-  db.collection("marks").onSnapshot(snap=>{
-    clearTimeout(t);
-    snap.docs.forEach(doc=>{
-      if(dirty[doc.id]) return;                          // a local edit is pending: keep it, it will be saved
-      const v=doc.data()||{}; state[doc.id]={verdict:v.verdict||"",note:v.note||""}; paint(doc.id); });
-    const n=snap.docs.filter(x=>(x.data()||{}).verdict).length;
-    statusEl.textContent = `Shared marks: ${n} of ${CARDS.length} cards marked. They are read back by the author.`;
-  }, err=>{ clearTimeout(t); statusEl.textContent="Could not load shared marks ("+(err&&err.code||"error")+"). Your marks save in this browser."; db=null; });
-})();
+statusEl.textContent="Marks are saved in this browser only.";
 </script>

@@ -12,7 +12,7 @@ Kept here as the public text that claims_ledger.md §0b compares against the mon
 > Under what observer?
 > What was compared? What counted as defect? What repairs were allowed? What residual survived? Who got to declare the result finished?
 
-Sections: 1 The Cartoon Version (block towers, rule card) · 2 The Clock Example · 3 What an Observer Is Not · 4 The Declared Observer Packet · 5 What the Hell Is Gauge? · 6 The Mathematical Spine and Cochain Defect · 7 Same Data, Different Observer · 8 Closure and Terminal Status · 9 Perspective Is Not an Input · 10 What the Hell Is a Quantum Observer? · 11 What the Hell Is an AI-LLM Observer? · 12 What the Hell Is a Conscious Observer? · 13 Science and Institutions · 14 Observer-Relative Does Not Mean Arbitrary · 15 Final Compression
+Sections: 1 The Cartoon Version (block towers, rule card) · 2 The Clock Example · 3 What an Observer Is Not · 4 The Declared Observer Packet · 5 What the Hell Is Gauge? · 6 The Mathematical Spine and Cochain Defect · 7 Same Data, Different Observer · 8 Closure and Terminal Status · 9 Perspective Is Not an Input · 10 What the Hell Is a Quantum Observer? · 11 What the Hell Is an AI Observer? · 12 What the Hell Is a Conscious Observer? · 13 Science and Institutions · 14 Observer-Relative Does Not Mean Arbitrary · 15 Final Compression
 
 **§4 packet.** $O = (K, F, R, \delta, \mathrm{Adm}, d_0, d_1, J, M, \tau)$: comparison base; local state spaces; comparability; defect map; admissible repairs; difference/repair operator $d_0:\mathrm{Adm}\to C^1(K)$; optional closure $d_1$; gauge/norm $J$; compatible transformations $M$; terminalizer $\tau$.
 
