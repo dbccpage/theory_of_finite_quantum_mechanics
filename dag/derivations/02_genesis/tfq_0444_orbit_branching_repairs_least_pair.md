@@ -36,11 +36,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean::validCount_rename`](../../../lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs::pair_orbits`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs::pair_orbits`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py::pair_orbits`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py::pair_orbits`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:371-379`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:385-391`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:371-379`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:385-391`
   - `lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean:1067-1072`

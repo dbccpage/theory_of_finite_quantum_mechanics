@@ -73,9 +73,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs`
+### Rust: `atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
+- file: [atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
 - sha256 (`bytes`): `bd91e864bb54ade9ed3890a65d89f57500cef2fb66e060eb5e18359d6c6187ea`
 - cited in: node.rust, record TFQ-0431
 
@@ -85,9 +85,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py)
 - sha256 (`bytes`): `b0f1f3bcf05126111a07706f4388a9fff5e30455d4b8f127966cf99ab0d0886e`
 - cited in: record TFQ-0431
 
@@ -97,29 +97,29 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py](../../../atlas/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py)
 - sha256 (`bytes`): `a2b7a7b6452e649b40a4c36803dd498e3444499643455c35a5c625a72f3062cf`
 - cited in: record TFQ-0431
-- check: `python -m pytest atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses`
+- check: `python -m pytest atlas/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_unordered_requirement_identifies_unary_endpoint_responses` (python_test) | yes | yes | yes | - | `python -m pytest atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses` |
+| `test_unordered_requirement_identifies_unary_endpoint_responses` (python_test) | yes | yes | yes | - | `python -m pytest atlas/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses` |
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
 - sha256 (`lf-normalised`): `8e0a3f2333e9ae5740b26c59f88fd41cd1ee9c9b92ca4f0a19dad53747ddf3cd`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- file: [atlas/finite_obstruction_calculus/genesis/paper.md](../../../atlas/finite_obstruction_calculus/genesis/paper.md)
 - sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
 - cited in: node.source
 - counts toward the grade: yes
@@ -127,7 +127,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md`
 
 - file: [dag/derivations/02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md](../../../dag/derivations/02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md)
-- sha256 (`lf-normalised`): `72387517d1fd957ab34ddc24122602a7931b1402215afd501036004c201386d1`
+- sha256 (`lf-normalised`): `3e2149b4b8837750fd7a7256d180711440080724bfbafee69b0cc5d7e2631590`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0431
 - counts toward the grade: no

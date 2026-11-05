@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/auth-rice-theorem-import.py`
 
 - file: [checks/independent/auth-rice-theorem-import.py](../../../checks/independent/auth-rice-theorem-import.py)
-- sha256 (`bytes`): `4cbd652df0398e081232c960b75d61d868f52e9ac040619cf1d4a6cb9d5a11fb`
+- sha256 (`bytes`): `a7ef8368ce4d3c127cc9d149e7c189996e55195d8d4cdc3381aca8482ce3d2e4`
 - cited in: record TFQ-1337
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

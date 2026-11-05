@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/ads-cft-duality-import.py`
 
 - file: [checks/independent/ads-cft-duality-import.py](../../../checks/independent/ads-cft-duality-import.py)
-- sha256 (`bytes`): `33a8f4e4f820bf0c0f84f21af5602d80b0f89877e880abc0d8220f1d3db40ef7`
+- sha256 (`bytes`): `c67201bdad59b1460be9badf3517fe9f26bdf45f697c18fd96a5ef9422125e16`
 - cited in: node.source, record TFQ-2202
 - counts toward the grade: yes
 
@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ads-cft-duality-import.md`
 
 - file: [dag/derivations/independent/ads-cft-duality-import.md](../../../dag/derivations/independent/ads-cft-duality-import.md)
-- sha256 (`lf-normalised`): `01b23af1ec664eb54ad3bb3f9f16e401b4193fdbdee4710e6c95f9d5eaeab03b`
+- sha256 (`lf-normalised`): `7dbe906b2a7a9af1426d5d3fa916e0b34428f086a30f66c1a4b7bafe2a256406`
 - cited in: node.source
 - counts toward the grade: yes
 

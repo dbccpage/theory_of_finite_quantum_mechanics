@@ -35,10 +35,10 @@ In accordance with strict constructive principles:
 - [`lean4/PregenesisContextFidelity.lean::stale_not_transferred`](../../../lean4/PregenesisContextFidelity.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs::certifies`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/certification.rs::certifies`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/certification.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py::certify`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/model.py::certify`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/model.py)
 - [`checks/independent/pgw-context-fidelity.py::main`](../../../checks/independent/pgw-context-fidelity.py)
 
 ---

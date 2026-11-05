@@ -314,21 +314,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/fq-gleason-qi3-extension.py`
 
 - file: [checks/independent/fq-gleason-qi3-extension.py](../../../checks/independent/fq-gleason-qi3-extension.py)
-- sha256 (`bytes`): `e54fbb9b4babc7324cf22aa43cab27a89b72208ba1f482c893cbf18128a99d0d`
+- sha256 (`bytes`): `3659d64137f730882d6f8eb5a0c8fee8664d87bba11585ea34332537b9f820f3`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Python: `checks/independent/fq-gleason-qi3-frame-functions.py`
 
 - file: [checks/independent/fq-gleason-qi3-frame-functions.py](../../../checks/independent/fq-gleason-qi3-frame-functions.py)
-- sha256 (`bytes`): `79b9d9fac2eea13b1e5a498c6aefa6017c787e3f5a8c9224e503c7d71e1c939d`
+- sha256 (`bytes`): `095c7807d4e52b2b87bbc05645d905b56cc175285fdb6ee0493b69df30def5e2`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Python: `checks/independent/fq-gleason-qi3-tomography.py`
 
 - file: [checks/independent/fq-gleason-qi3-tomography.py](../../../checks/independent/fq-gleason-qi3-tomography.py)
-- sha256 (`bytes`): `0b15de52c8a1778095cebc10e550b3a9c2772250ae82c52cc0c2fb8d04305676`
+- sha256 (`bytes`): `7a777da1b3a92090566a7cd9727064cbdabb880bbef203cda09fa420891f6532`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -381,7 +381,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fq-gleason-qi3-frame-functions.md`
 
 - file: [dag/derivations/independent/fq-gleason-qi3-frame-functions.md](../../../dag/derivations/independent/fq-gleason-qi3-frame-functions.md)
-- sha256 (`lf-normalised`): `d9646057b4548d5f4cc1dbf13424899e28394032d8e87c8d8ddd5ae41f8c1350`
+- sha256 (`lf-normalised`): `9e5f0878cd1565d478b5235b99e65b24138c0df26a367650097850ad25cad81e`
 - cited in: node.source
 - counts toward the grade: yes
 

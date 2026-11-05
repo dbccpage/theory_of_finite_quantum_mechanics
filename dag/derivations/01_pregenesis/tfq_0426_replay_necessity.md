@@ -38,11 +38,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Paper000.lean::no_factor_through_common_view`](../../../lean4/Imported/GenesisDerivation/Paper000.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs::factor`](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs::factor`](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py::history_auditor`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py::history_auditor`](../../../atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`](../../../atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
 
 ---
 

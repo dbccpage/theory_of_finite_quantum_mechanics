@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-bphz-continuum-fence.py`
 
 - file: [checks/independent/dfm-bphz-continuum-fence.py](../../../checks/independent/dfm-bphz-continuum-fence.py)
-- sha256 (`bytes`): `0cad33ad25b1937de952b38c978ac1ef1058f91a938dc39efb5ad18f5be27752`
+- sha256 (`bytes`): `ab7cab34c584e8ed44ff97bd1de64aaa90c197bafafc93762bf39336df7865c3`
 - cited in: record TFQ-1110
 - counts toward the grade: yes
 

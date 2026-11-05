@@ -1,0 +1,46 @@
+import builtins
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import subprocess
+import sys
+from unittest.mock import patch
+
+root=Path.cwd()
+target=Path(r'C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics')
+base=root/'reviews/repository_file_review'
+source=Path('checks/independent/fsp-imaginary-mu-real-det.py')
+originals=[]
+for relative in (source,source.with_suffix('.contract.score.yaml')):
+    data=(root/relative).read_bytes()
+    if data!=(target/relative).read_bytes():raise ValueError(('Concurrent source edit',relative))
+    archive=base/('2026-11-05-temporal-cycle-original-'+relative.name+'.txt')
+    if archive.exists():raise FileExistsError(archive)
+    archive.write_bytes(data)
+    originals.append({'path':relative.as_posix(),'sha256':hashlib.sha256(data).hexdigest(),'archive':archive.relative_to(root).as_posix()})
+receipt={'AuthorityEffect':'None','originals':originals,'origins':[{'path':'lean4/FermionSignImaginaryMuRealDet.lean','sha256':hashlib.sha256((root/'lean4/FermionSignImaginaryMuRealDet.lean').read_bytes()).hexdigest()}],
+    'initial_retention':4,'runs':[],'probes':[]}
+spec=importlib.util.spec_from_file_location('original_temporal_cycle',root/source)
+module=importlib.util.module_from_spec(spec)
+with patch.dict(sys.modules,{spec.name:module}):
+    spec.loader.exec_module(module)
+calls=[]
+def harmless_probe():
+    calls.append('called')
+    return 3
+with patch.object(builtins,'_tfq_scalar_probe',harmless_probe,create=True):
+    value=module.gaussian("__import__('builtins')._tfq_scalar_probe()")
+receipt['probes'].append({'name':'text scalar invokes host callable','input':"__import__('builtins')._tfq_scalar_probe()",'result':str(value),'host_call_count':len(calls),'meaning':'The Q(i) scalar boundary evaluates supplied text as Python code. The probe is harmless and its temporary builtins entry is restored.'})
+import sympy as sp
+large=module.gaussian(sp.Integer(1<<4096))
+receipt['probes'].append({'name':'unbounded rational component','accepted':True,'component_bits':int(large).bit_length()})
+receipt['findings']=['Public gaussian scalar admission calls sympify on untrusted text, and the harmless probe establishes host code execution. Reject textual inputs before expression parsing.','Rational component and symbolic-expression resource bounds are absent. Add exact type/shape preflight and a declared computational budget.','The 27 lattice cases are correctly labeled lattice_cases rather than guard counts. Keep that population distinct from the number of runtime guards.','The cited Lean module scopes its determinant and center-orbit theorems explicitly; preserve that distinction from continuum/QCD claims.']
+output=base/'2026-11-05-temporal-cycle-initial-review.json'
+output.write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8',newline='\n')
+for flags in ([],['-O']):
+    result=subprocess.run([sys.executable,'-I','-B',*flags,'-X','utf8',str(source)],capture_output=True,text=True,encoding='utf-8',timeout=180)
+    receipt['runs'].append({'optimized':bool(flags),'returncode':result.returncode,'stdout':result.stdout,'stderr':result.stderr})
+    output.write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8',newline='\n')
+    if result.returncode:raise ValueError(result.stderr)
+print('Temporal cycle original bytes, harmless scalar-execution probe and both baselines retained')

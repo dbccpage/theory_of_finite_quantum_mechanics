@@ -12,14 +12,14 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/reading_the_seed.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/notes.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/identification_only.py
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/xry/state.py
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/prompt/seed_prompt.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/notes.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/identification_only.py
+  - atlas/finite_obstruction_calculus/genesis_ongoing/code/xry/state.py
+  - atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean
+  - atlas/finite_obstruction_calculus/genesis_ongoing/prompt/seed_prompt.md
 last_verified: 2026-10-08
 ---
 
@@ -29,13 +29,13 @@ last_verified: 2026-10-08
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 00: the base seed, two terms and `arb`](../_images/genesis_ongoing_00_primordial_seed.svg)
 
 The drawing `genesis_ongoing_00_primordial_seed.svg` is an education schematic in this documentation tree. The sentences below are taken from the pinned package.
 
-The base manuscript is derivation 1, [`paper/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/paper.md). The seed gives terms written with letters, an assertion `xry`, `arb` asserted, no `xrx`, and four changes: identify two terms, remove an assertion, add a term, add an assertion.
+The base manuscript is derivation 1, [`paper/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/paper.md). The seed gives terms written with letters, an assertion `xry`, `arb` asserted, no `xrx`, and four changes: identify two terms, remove an assertion, add a term, add an assertion.
 
 `code/xry/state.py` builds what is given with `given(bra, sameness)`. Terms are `a` written 0 and `b` written 1. `arb` is asserted. `bra` is asserted only when the caller passes `bra=True`. `GIVEN_TERMS` is 2 and `GIVEN_ASSERTIONS` is 1.
 
@@ -55,11 +55,11 @@ The working research notes record the textual decisions and mathematical propert
 
 ## Files
 
-- [`paper/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/paper.md)
-- [`paper/claim_ledger.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
-- [`research/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/reading_the_seed.md)
-- [`research/notes.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/notes.md)
-- [`research/identification_only.py`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/identification_only.py)
-- [`code/xry/state.py`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/xry/state.py)
-- [`lean4/H3V7N5QF/Basic.lean`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean)
-- [`prompt/seed_prompt.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/prompt/seed_prompt.md)
+- [`paper/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/paper.md)
+- [`paper/claim_ledger.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
+- [`research/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/reading_the_seed.md)
+- [`research/notes.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/notes.md)
+- [`research/identification_only.py`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/identification_only.py)
+- [`code/xry/state.py`](/atlas/finite_obstruction_calculus/genesis_ongoing/code/xry/state.py)
+- [`lean4/H3V7N5QF/Basic.lean`](/atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean)
+- [`prompt/seed_prompt.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/prompt/seed_prompt.md)

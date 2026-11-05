@@ -115,14 +115,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-continuum-interface.py`
 
 - file: [checks/independent/dfm-continuum-interface.py](../../../checks/independent/dfm-continuum-interface.py)
-- sha256 (`bytes`): `17f37543b78c25ba4f84e40ffb904c0df8a0e37cb16436302d7ec7e4b5aa19de`
+- sha256 (`bytes`): `781befaf52b5624891b537efd5d983e14c1ca15942fa74080d19251c984198af`
 - cited in: record TFQ-0401
 - counts toward the grade: yes
 
 ### Python: `checks/independent/dfm-continuum-refinement-limit.py`
 
 - file: [checks/independent/dfm-continuum-refinement-limit.py](../../../checks/independent/dfm-continuum-refinement-limit.py)
-- sha256 (`bytes`): `f4954a40a525a19e69588eb436c2810f2c021e4456e6d4f3595998ff41c0220d`
+- sha256 (`bytes`): `e61e1c31a0a2b6732464f85eccdebc86bcdd7ad9847cd8e5b867f4594ac633db`
 - cited in: node.source, record TFQ-0401
 - counts toward the grade: yes
 

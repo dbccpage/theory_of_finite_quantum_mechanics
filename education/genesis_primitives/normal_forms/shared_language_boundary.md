@@ -60,7 +60,7 @@ general proof backend for HoTT or arbitrary mathematical statements.
 The first complete milestone is: one versioned contract through AutoP/PTIR,
 SQL storage and queries, an actual native certificate check, independent replay,
 and rejection of altered data or an incompatible reconstruction claim. The selected milestone is now delivered by the
-[native/SQL presentation](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/sql_normal_form_presentation.md) and its
+[native/SQL presentation](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/sql_normal_form_presentation.md) and its
 [normal form standards](../../014_normal_forms/contracts_nf_standards/normal_forms_schema.sql). Eight native and
 twenty-two actual compiler/SQLite checks pass. It admits immutable text sets,
 FDs and binary splits, separately reporting BCNF, lossless join and dependency
@@ -101,5 +101,5 @@ is a second actual domain using the same interface with preservation evidence. F
 kernel or a universal claim about twenty disciplines should wait until those
 paths show which abstractions are actually shared. The
 [Genesis/WDP crosswalk](../wdp_integration.md) and
-[native owner map](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/native_owner_decomposition.md) keep the central reference connected
+[native owner map](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/native_owner_decomposition.md) keep the central reference connected
 to its current implementations.

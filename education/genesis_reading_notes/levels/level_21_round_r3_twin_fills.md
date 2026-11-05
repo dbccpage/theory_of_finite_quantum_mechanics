@@ -12,11 +12,11 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h3_twin_fills/3b_fill_three/score.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfourth/reading_the_seed.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h3_twin_fills/3b_fill_three/score.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/twentyfourth/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md
 last_verified: 2026-10-11
 ---
 
@@ -26,7 +26,7 @@ last_verified: 2026-10-11
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 21: H3 twin fills, derivations 24 and 25](../_images/genesis_ongoing_21_round_r3_twin_fills.svg)
 
@@ -57,9 +57,9 @@ The 3B score names Lean `told_iff`, `nothing_balanced`, `cone_decides`, and `bli
 
 ## Files
 
-- [`meta/climbing/h3_twin_fills/3b_fill_three/score.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h3_twin_fills/3b_fill_three/score.md)
-- [`paper/twentyfourth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/paper.md)
-- [`paper/twentyfifth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/paper.md)
-- [`research/twentyfourth/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfourth/reading_the_seed.md)
-- [`research/twentyfifth/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md)
+- [`meta/climbing/h3_twin_fills/3b_fill_three/score.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h3_twin_fills/3b_fill_three/score.md)
+- [`paper/twentyfourth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/paper.md)
+- [`paper/twentyfifth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/paper.md)
+- [`research/twentyfourth/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/twentyfourth/reading_the_seed.md)
+- [`research/twentyfifth/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md)
 

@@ -44,8 +44,8 @@ In accordance with strict constructive principles:
 - `missing obligation: the H3V7N5QF package holds no Rust`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py::around`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py::raise_term`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py::around`](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py::raise_term`](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py)
 
 ---
 
@@ -58,6 +58,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md:52`
-  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md:53`
-  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md:55`
+  - `atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md:52`
+  - `atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md:53`
+  - `atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md:55`

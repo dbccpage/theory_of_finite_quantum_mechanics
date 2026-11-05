@@ -41,7 +41,7 @@ In accordance with strict constructive principles:
 - `missing obligation: the H3V7N5QF package holds no Rust`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/xry/explore.py::explore`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/xry/explore.py)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/code/xry/explore.py::explore`](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/xry/explore.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md:44`
-  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md:82`
+  - `atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md:44`
+  - `atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md:82`
   - `external:sha256:e9980870b3fbf4a10e6edee3b299b40d21596bee9bdc3d22a5c5e9cd871589c7:33`

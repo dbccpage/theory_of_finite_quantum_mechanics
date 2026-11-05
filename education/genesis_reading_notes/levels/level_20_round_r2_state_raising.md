@@ -12,9 +12,9 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h2_raising/score.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentythird/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h2_raising/score.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/twentythird/reading_the_seed.md
 last_verified: 2026-10-11
 ---
 
@@ -24,7 +24,7 @@ last_verified: 2026-10-11
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 20: H2 raising, scored on derivation 23](../_images/genesis_ongoing_20_round_r2_state_raising.svg)
 
@@ -53,7 +53,7 @@ The score file says the prediction file was not edited, and it checks the predic
 
 ## Files
 
-- [`meta/climbing/h2_raising/score.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h2_raising/score.md)
-- [`paper/twentythird/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/paper.md)
-- [`research/twentythird/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentythird/reading_the_seed.md)
+- [`meta/climbing/h2_raising/score.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h2_raising/score.md)
+- [`paper/twentythird/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/paper.md)
+- [`research/twentythird/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/twentythird/reading_the_seed.md)
 

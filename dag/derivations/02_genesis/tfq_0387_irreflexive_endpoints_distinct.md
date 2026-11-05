@@ -34,11 +34,11 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`declaration obligation: given_distinct and irreflexive_endpoints, with bra left undecided`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::irreflexive_endpoints`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean::bra_not_derived`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean::given_distinct`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::irreflexive_endpoints`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean::bra_not_derived`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean::given_distinct`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: no Rust seed module was listed under 001_genesis_ongoing_h3v7n5qf; the ban on xrx still needs a carrier there or an explicit absence`](../../code/rust/src/)
@@ -73,6 +73,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-IRREFLEXIVE-DISTINCT): 4*idx(56) + 3*stage_rank(2) + route_degree(3) == 233` ($\text{value} = 233$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-IRREFLEXIVE-DISTINCT): R_raw(122) - G_cob(60) - S_decoy(2) == 60 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 60$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::irreflexive_endpoints`
+- **Lean 4 Theorem Anchor**: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::irreflexive_endpoints`
 - **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 8f1cffbc0186add7276a30f822a9178f627251412b13baf6210a8daa2bffaae3`

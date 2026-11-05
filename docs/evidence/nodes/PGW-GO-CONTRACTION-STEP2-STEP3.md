@@ -74,9 +74,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/second/reach.py`
+### Python: `atlas/finite_obstruction_calculus/genesis_ongoing/code/second/reach.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/second/reach.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/second/reach.py)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/code/second/reach.py](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/second/reach.py)
 - sha256 (`bytes`): `961d2ad0323f9ed5939089a1d5653cab1ce6549d4001fb834581d7eae7e934db`
 - cited in: record TFQ-0478
 
@@ -86,9 +86,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/third/reach.py`
+### Python: `atlas/finite_obstruction_calculus/genesis_ongoing/code/third/reach.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/third/reach.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/third/reach.py)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/code/third/reach.py](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/third/reach.py)
 - sha256 (`bytes`): `1dda0ce25f95722cf7e212b063b3f25f985edb92fe99d537d10d200045103ae1`
 - cited in: record TFQ-0478
 
@@ -98,16 +98,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md)
 - sha256 (`lf-normalised`): `4fe64144a7b8389c0720d6dd57974282e7112487608aea21e47b243eb62e5c8a`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md)
 - sha256 (`lf-normalised`): `ba648ff3183dbc72eb805e09e3f1d3a96c977ba87f6e3133d72bb3afb5abd5da`
 - cited in: node.source
 - counts toward the grade: yes
@@ -115,7 +115,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md`
 
 - file: [dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md](../../../dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md)
-- sha256 (`lf-normalised`): `7f12fde8124710eb89c15e140ea419e095cf6acf5857ab546b62cd7970bf11fb`
+- sha256 (`lf-normalised`): `a6463a3fb72ceea402da88e7367f28883e9de585fe8dfb5a548e4a36dd8bd265`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0478
 - counts toward the grade: no

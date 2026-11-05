@@ -74,9 +74,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs`
+### Rust: `atlas/finite_obstruction_calculus/genesis/code/rust/src/certification.rs`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs)
+- file: [atlas/finite_obstruction_calculus/genesis/code/rust/src/certification.rs](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/certification.rs)
 - sha256 (`bytes`): `7f4c3644fa58c2ae38411c8258d17bdbe74bd8d992da18bf3110099c3ffa2aaf`
 - cited in: node.rust, record TFQ-0427
 
@@ -86,9 +86,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/derivation/model.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/derivation/model.py](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/model.py)
 - sha256 (`bytes`): `6a7fd2ba9688d47e9291514c623a811cde3c6b9e8fda1d12a608dc9bb0b1f3c2`
 - cited in: record TFQ-0427
 
@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md](../../../dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md)
-- sha256 (`lf-normalised`): `6b6de5f147b323dd49aa43be8c657bfdf4c6efa6b4495c2296ff2d9595cb8878`
+- sha256 (`lf-normalised`): `52bbe48fbaf96f14ac099264357ac771525352bea4b126fbe3ff58f396af2f6a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0427
 - counts toward the grade: no

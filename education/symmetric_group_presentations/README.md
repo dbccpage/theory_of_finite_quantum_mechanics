@@ -41,9 +41,9 @@ admitted data. Supply and admission remain distinct operations.
 | [papers](papers/README.md) | Navigation to the consolidated paper |
 | [_images](_images) | Schematics retained with the corresponding lesson identifiers |
 
-The active combined paper is [From Pre-Genesis to MSS-N](/atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
+The active combined paper is [From Pre-Genesis to MSS-N](/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
 The Rust primitive owner is [omega_ooutwire_primitives](../../../omega_engine/crates_rs/omega_ooutwire_primitives/src/lib.rs);
-its planned name is `omega_genesis`. The [WDP construction](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/genesis_construction.md)
+its planned name is `omega_genesis`. The [WDP construction](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/genesis_construction.md)
 is the executable continuation from literal `<>` through recorded admissions
 to a chosen finite simplicial interpretation.
 

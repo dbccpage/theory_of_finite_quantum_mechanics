@@ -41,11 +41,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::Iso`](../../../lean4/Imported/GenesisDerivation/Derivation/Minimality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::find_iso`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::find_iso`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py::find_iso`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py::find_iso`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses`](../../../atlas/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py)
 
 ---
 
@@ -59,6 +59,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:206-212`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:168-173`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:206-212`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:168-173`
   - `lean4/Imported/GenesisDerivation/Derivation/IsoCanon.lean:44-47`

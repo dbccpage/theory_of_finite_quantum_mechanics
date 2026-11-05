@@ -10,8 +10,8 @@ maturity: production
 claim_status: source-grounded
 authority_effect: None
 source_paths:
-- atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
-- atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
+- atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
+- atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
 ledger_rows:
 - WDP-CH00-N01
 - WDP-CH00-N02
@@ -22,7 +22,7 @@ ledger_rows:
 - WDP-CH01-N01
 prerequisites:
 - ../../002_s_n/sn.md
-- atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+- atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
 aliases:
 - wdp_level_00
 - admitted_cut
@@ -37,7 +37,7 @@ last_verified: '2026-10-01'
 **Part:** Part I: Difference, Witness, and Finite Obstruction\
 **Bound Evidence:** P; C; L:exact(pointed_relation_independence_fin)\
 **Ledger Rows:** `WDP-CH01-D01`, `WDP-CH01-P01`, `WDP-CH01-P02`, `WDP-CH01-N01` (retaining canonical foundational nonclaims `WDP-CH00-N01`..`N03`)\
-**Implementations:** [`ground.py`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py), [`pointed_relation.py`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/pointed_relation.py)\
+**Implementations:** [`ground.py`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py), [`pointed_relation.py`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/pointed_relation.py)\
 
 ---
 
@@ -172,7 +172,7 @@ nothing beyond it.
 ## 4. Evidence Bindings & Executable Verification
 
 Paths are relative to the monograph package
-[`witnessed_difference_programme/`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/).
+[`witnessed_difference_programme/`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/).
 
 | Row | Status | Ledger evidence | Lean | Executable binding | Notebook |
 | :--- | :--- | :--- | :--- | :--- | :--- |

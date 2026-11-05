@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of a per-level import ledger; the class-relative exclusion G1Class.g1_class_exclusion motivates it (TFQ-0487)`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/outside.rs::Outside`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/outside.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/outside.rs::Outside`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/outside.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py::build_tree`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py::build_tree`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py)
 
 ---
 
@@ -56,6 +56,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:186-190`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:186-190`
   - `github:dbccpage/19L57G1@85a83ae7c/docs/ALPHA_HANDOFF.md:78-88`
   - `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:947`

@@ -1595,3 +1595,6 @@ lean_lib GleasonContinuumShadow where
 lean_lib GleasonContinuumDevelopment where
   roots := #[`GleasonContinuumDevelopment]
 
+lean_lib ContinuumDerivationSpine where
+  roots := #[`ContinuumDerivationSpine]
+

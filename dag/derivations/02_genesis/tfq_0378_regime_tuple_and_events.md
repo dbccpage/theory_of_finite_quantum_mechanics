@@ -34,8 +34,8 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean::supply_no_op`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean::supply_no_op`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
@@ -43,12 +43,12 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
 - [`external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::interpret_event`](../../code/rust/src/)
 - [`external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::interpret_regime`](../../code/rust/src/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/event.rs`](../../code/rust/src/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/regime.rs`](../../code/rust/src/)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/event.rs`](../../code/rust/src/)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/regime.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: model.py was listed and not opened; the five regime fields still need a local check against WDP-P000-006`](../../code/python/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py`](../../code/python/)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/model.py`](../../code/python/)
 - [`code/rust/src/wdp/fixtures/observe.py`](../../code/python/)
 
 ---

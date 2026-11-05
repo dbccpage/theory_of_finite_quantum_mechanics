@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust statement of RegimeExt; the Rust regime stores instances, rules and requirements as BTreeSet collections, so list order does not arise there`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py::Regime`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/model.py::Regime`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/model.py)
 
 ---
 
@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:114-123`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:123-126`
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:272-277`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:114-123`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:123-126`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:272-277`

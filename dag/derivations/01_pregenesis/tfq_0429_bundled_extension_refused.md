@@ -37,8 +37,8 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust count of the capabilities a proposed extension adds`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py::form_then_instance`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_admission_cost_and_pair_rounds`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py::form_then_instance`](../../../atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_admission_cost_and_pair_rounds`](../../../atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
 
 ---
 

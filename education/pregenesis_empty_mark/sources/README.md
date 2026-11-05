@@ -18,11 +18,11 @@ markdown paths as if they were present.
 | File | Original name | What it is |
 | --- | --- | --- |
 | `design_derivation_v0.md` | `omega_engine_derivation_v0.md` | The experimental design, written before any trial: principles, hidden comparison targets, pre-registered branches, controls. |
-| `trial_1_transcript.md` | `oe_prompt_and_response_deepseek_v0.0.md` | Absent. The atlas path `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt` is also absent from this working tree. Not opened. |
+| `trial_1_transcript.md` | `oe_prompt_and_response_deepseek_v0.0.md` | Absent. The atlas path `atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt` is also absent from this working tree. Not opened. |
 | `analysis_derivation_v1.md` | `omega_engine_derivation_v1.md` | Analysis of Trial 1 (lines 1 to 583) and of Trial 2 up to Result 16 (lines 585 to 1190). Written in the second person to the author; who wrote it is not recorded. |
-| `trial_2_transcript.md` | `oe_prompt_and_response_deepseek_v1.0.md` | Absent. The atlas path `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt` is also absent from this working tree. Not opened. |
-| `full_replay_prompt_pack.md` | `oe_prompt_and_response_deepseek_v1.1.md` | Absent. The atlas path `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_prompt_pack.txt` is also absent from this working tree. Not opened. |
-| `full_replay_transcript.md` | `oe_full_generator_results_v1.md` | Absent. The atlas path `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_transcript.txt` is also absent from this working tree. Not opened. |
+| `trial_2_transcript.md` | `oe_prompt_and_response_deepseek_v1.0.md` | Absent. The atlas path `atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt` is also absent from this working tree. Not opened. |
+| `full_replay_prompt_pack.md` | `oe_prompt_and_response_deepseek_v1.1.md` | Absent. The atlas path `atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_prompt_pack.txt` is also absent from this working tree. Not opened. |
+| `full_replay_transcript.md` | `oe_full_generator_results_v1.md` | Absent. The atlas path `atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_transcript.txt` is also absent from this working tree. Not opened. |
 
 What the record does not contain:
 

@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:489`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:485`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:483`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:489`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:485`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:483`

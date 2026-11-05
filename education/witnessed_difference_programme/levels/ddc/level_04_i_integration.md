@@ -15,11 +15,11 @@ source_paths:
   - omega_engine/crates_rs/omega_wdp/src/ddc/dda_alphabet.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/dda_trace.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/04_i_integration.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/integration_tape.py
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/automaton.py
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Integration.lean
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/04_i_integration.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/integration_tape.py
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/automaton.py
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Integration.lean
   - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/dda_trace_cochain.contract.yaml
 last_verified: 2026-10-01
 ---
@@ -59,7 +59,7 @@ where $\mathrm{json}(r_t)$ is canonical RFC 8785 JSON.
 ### Proposition 4.1 (DDC-I-01: Hash-Chain Determinism & Non-Repudiation)
 If two tapes $T$ and $T'$ have identical initial digests $h_0 = h_0'$ and identical receipt sequences, their rolling heads coincide at every step:
 $$\forall t, \quad h_t = h_t'$$
-Under the collision resistance of SHA-256, it is computationally infeasible to produce two distinct receipt sequences yielding identical tape heads. [`ExecutionTape`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/integration_tape.py) and [`DdcTrace`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/dda_trace.rs) enforce this determinism.
+Under the collision resistance of SHA-256, it is computationally infeasible to produce two distinct receipt sequences yielding identical tape heads. [`ExecutionTape`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/integration_tape.py) and [`DdcTrace`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/dda_trace.rs) enforce this determinism.
 
 ---
 
@@ -116,7 +116,7 @@ Every successful Level 04 ledger integration emits a machine-verifiable `Integra
 | **DDC-I-03** | Missing receipt witness halts execution as `MissingReceipt` (Law 5). | Receipt requirement | [`op_verification.rs::tests`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs) | `test_automaton.py::test_missing_receipt` |
 
 ### Lean 4 Proof Kernel
-[`lean4/Ddc/Integration.lean`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Integration.lean):
+[`lean4/Ddc/Integration.lean`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Integration.lean):
 ```lean
 theorem Ddc.I_preserves_state : ∀ (s s' : State), I_step s s' → s' = s
 ```

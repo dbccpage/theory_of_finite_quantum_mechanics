@@ -57,4 +57,4 @@ Selection of a declared quantum model or readout from primitive difference stays
   - `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml:105`
   - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:367`
   - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:1332`
-  - `checks/independent/fq-prim-to-qm-selection-open.py`
+  - `checks/independent/ds-positive-form-controls.py`

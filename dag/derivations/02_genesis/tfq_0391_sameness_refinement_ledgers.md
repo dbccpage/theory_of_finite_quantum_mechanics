@@ -31,9 +31,9 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`missing declaration obligation: row ids in the four later claim ledgers were not read`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Sixteenth/State.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Twentieth/Order.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Twentyfirst/Refusal.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Sixteenth/State.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Twentieth/Order.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Twentyfirst/Refusal.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: no Rust sameness crate was listed; do not add one from the unread ledgers`](../../code/rust/src/)
@@ -68,6 +68,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-SAMENESS-REFINEMENTS): 4*idx(60) + 3*stage_rank(2) + route_degree(2) == 248` ($\text{value} = 248$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-SAMENESS-REFINEMENTS): R_raw(130) - G_cob(64) - S_decoy(2) == 64 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 64$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Twentyfirst/Refusal.lean`
+- **Lean 4 Theorem Anchor**: `atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Twentyfirst/Refusal.lean`
 - **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 54c5105a12cd6989f091128778bcd2408bb87ef4497685f87c1d912ac8a753a7`

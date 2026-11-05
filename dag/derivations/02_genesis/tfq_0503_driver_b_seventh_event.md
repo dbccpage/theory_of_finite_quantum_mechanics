@@ -44,7 +44,7 @@ In accordance with strict constructive principles:
 - [`lean4/PregenesisDriverBSeventhEvent.lean::six_labels_admitted`](../../../lean4/PregenesisDriverBSeventhEvent.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/event.rs::Event`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/event.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/event.rs::Event`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/event.rs)
 
 ### Python Oracles & Numerical Evaluators
 - [`checks/independent/pgw-driver-b-seventh-event.py::main`](../../../checks/independent/pgw-driver-b-seventh-event.py)
@@ -61,8 +61,8 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:70-71`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:176`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:70-71`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:176`
   - `github:dbccpage/19L57G1@85a83ae7c/docs/ALPHA_HANDOFF.md:179-192`
   - `dag/derivations/independent/pgw-driver-b-seventh-event.md:5`
   - `dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json:6`

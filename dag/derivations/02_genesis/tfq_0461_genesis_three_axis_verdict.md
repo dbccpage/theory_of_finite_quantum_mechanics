@@ -33,12 +33,12 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of the verdicts or of the fresh-label defect; the axiom census is the compiled lean4/axiom_report.txt`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/bin/genesis_replay.rs::run`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/bin/genesis_replay.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/bin/genesis_replay.rs::run`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/bin/genesis_replay.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::delta_events`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py::compare_rust`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::delta_events`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/reproduce.py::compare_rust`](../../../atlas/finite_obstruction_calculus/genesis/code/reproduce.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/finite_obstruction_calculus/genesis/code/reproduce.py)
 
 ---
 
@@ -51,6 +51,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:582-592`
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:585-591`
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:593-601`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:582-592`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:585-591`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:593-601`

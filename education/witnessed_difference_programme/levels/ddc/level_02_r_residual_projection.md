@@ -15,10 +15,10 @@ source_paths:
   - omega_engine/crates_rs/omega_wdp/src/ddc/dda_alphabet.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/mub_cochain.rs
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/02_r_residual_projection.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/residual_projection.py
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ResidualProjection.lean
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/02_r_residual_projection.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/residual_projection.py
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ResidualProjection.lean
   - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/residual_projection.contract.yaml
   - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/tie_r.contract.yaml
 last_verified: 2026-10-01
@@ -56,7 +56,7 @@ Every 1-cochain defect $x \in C^1$ splits uniquely into exact ($x_E$), co-exact 
 - Along an oriented simple cycle $\gamma = (e_1, e_2, \ldots, e_k)$ of length $k$, the mean circulation is calculated deterministically as:
   $$c_H = \frac{1}{k} \sum_{j=1}^k x(e_j)$$
   yielding the exact deviation $x_E(e_j) = x(e_j) - c_H$ (with $\sum_j x_E(e_j) = 0$) and harmonic residual $x_R(e_j) = c_H$.
-- [`cochain.hodge_split`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/cochain.py) computes this decomposition exactly over $\mathbb{Q}$.
+- [`cochain.hodge_split`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/cochain.py) computes this decomposition exactly over $\mathbb{Q}$.
 
 ### Canonical Representative & First Betti Number Register
 The canonical representative of `R` subtracts the coboundary of a potential matching the defect on a spanning forest $T \subseteq E$. What remains is supported entirely on the chords $E \setminus T$:
@@ -66,7 +66,7 @@ For a graph $K = (V, E)$ with $c$ connected components, the residual register po
 
 $$b_1 = |E| - |V| + c$$
 
-coordinates. These coordinates represent the circulations of the defect around the fundamental cycles of the graph with respect to $T$. All $b_1$ coordinates vanish if and only if the defect is exact. [`GraphResidualProjector`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/residual_projection.py) implements this canonical projection for arbitrary finite graphs.
+coordinates. These coordinates represent the circulations of the defect around the fundamental cycles of the graph with respect to $T$. All $b_1$ coordinates vanish if and only if the defect is exact. [`GraphResidualProjector`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/residual_projection.py) implements this canonical projection for arbitrary finite graphs.
 
 ---
 
@@ -151,7 +151,7 @@ Every successful Level 02 projection emits a machine-verifiable `ResidualProject
 | **DDC-R-06** | Register has $b_1 = |E| - |V| + c$ coordinates vanishing iff exact. | Spanning tree duality | [`degree_tower.rs::tests`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/degree_tower.rs) | `test_cochain.py::test_a_hollow_cycle_carries_a_closed_residual` |
 
 ### Lean 4 Proof Kernel
-[`lean4/Ddc/ResidualProjection.lean`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ResidualProjection.lean):
+[`lean4/Ddc/ResidualProjection.lean`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ResidualProjection.lean):
 ```lean
 theorem Ddc.R_preserves_gamma2 : ∀ (x : C¹), Γ₂ (R x) = Γ₂ x
 ```
@@ -164,7 +164,7 @@ theorem Ddc.R_preserves_gamma2 : ∀ (x : C¹), Γ₂ (R x) = Γ₂ x
   - `test_xi_tie_precondition_requires_primary_diagnostic_tie()`: Asserts strict precondition enforcement.
 
 ### Python Reference Test Bindings
-- [`code/tests/test_residual_projection.py`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/tests/test_residual_projection.py):
+- [`code/tests/test_residual_projection.py`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/tests/test_residual_projection.py):
   - `test_pure_harmonic_defect()`: Validates pure circulation retention.
   - `test_mixed_harmonic_and_exact_defect()`: Validates conservation of defect sum.
   - `test_xi_tie_break_success_and_equality()`: Validates $\Xi$ tie-breaking under equal diagnostics.

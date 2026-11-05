@@ -47,10 +47,10 @@ In accordance with strict constructive principles:
 - [`lean4/PregenesisKItemDeltaGrammar.lean::well_formed_singles_are`](../../../lean4/PregenesisKItemDeltaGrammar.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs::iter_cost2_deltas`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs::iter_cost2_deltas`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::iter_cost2_deltas`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::iter_cost2_deltas`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
 - [`checks/independent/pgw-k-item-delta-grammar.py`](../../../checks/independent/pgw-k-item-delta-grammar.py)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_stream/stream.py::iter_k_item_deltas`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stream/stream.py)
 
@@ -65,6 +65,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1081-1084`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:414-433`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1081-1084`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:414-433`
   - `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:1101`

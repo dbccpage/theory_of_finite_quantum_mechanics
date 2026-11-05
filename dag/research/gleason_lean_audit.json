@@ -10,7 +10,8 @@
     "GleasonBornCompletion",
     "BornGaussianFiniteModel",
     "GleasonContinuumShadow",
-    "GleasonContinuumDevelopment"
+    "GleasonContinuumDevelopment",
+    "ContinuumDerivationSpine"
   ],
   "dependencies": [
     "BornGaussRat",
@@ -38,6 +39,7 @@
     "lean4/BornGaussianFiniteModel.lean": "b52871c5966676474a71a10da12d97a8d10564adf1e3e56518fbb45693f6c8ae",
     "lean4/GleasonContinuumShadow.lean": "2d075ba8c361092e7ca3656198a909d5df47a79f883f084eeec34faca0b0ce24",
     "lean4/GleasonContinuumDevelopment.lean": "27ab1a68c190c853db89a2b5acd3b6625bb7e6ed4c823e90807abf5f2c504b3d",
+    "lean4/ContinuumDerivationSpine.lean": "1f984b460b3a0b478f1770c557c2285ca01aedf04eabd21424dd60a93d222af0",
     "lean4/BornGaussRat.lean": "5e44685120e200cf66416fe13f3fe762da0cb072157b62b92454dc9f4089665b",
     "lean4/BornGaussianRationalFrameObstruction.lean": "5564b1a4dd947620281406208466d2df9792aedc5e7eeae3073b7ba52a8134c2",
     "lean4/BornGaussianRationalNoColouring.lean": "fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778",
@@ -50,7 +52,7 @@
     "lean4/BornHermitianTraceRepresentation.lean": "06463b9a757cf3b567ecdc07cee15df0dde4cad5cf2f214e2b3fcb8b304bad3d",
     "lean4/lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
     "lean4/lake-manifest.json": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1",
-    "lean4/lakefile.lean": "a965933338b106b52dade11a5a1a612667fd080c35596819b8628a7350631670"
+    "lean4/lakefile.lean": "b7cec011f4f11cffabeed5e9ccfe27a49d76861f3a4f7ad6efe549ae10186cac"
   },
   "declarations": {
     "BornGaussianParallelogramRigidity": [
@@ -699,6 +701,48 @@
       "BornFinite.ContinuumDevelopment.basisEscapeState_normalized_at_stage",
       "BornFinite.ContinuumDevelopment.basisEscapeState_compression_eq_zero_of_ge",
       "BornFinite.ContinuumDevelopment.basisEscapeState_escapes_to_zero_without_tightness"
+    ],
+    "ContinuumDerivationSpine": [
+      "BornFinite.ContinuumDerivationSpine.gaussRat_normSq_mul",
+      "BornFinite.ContinuumDerivationSpine.gaussRat_interference_cross_term",
+      "BornFinite.ContinuumDerivationSpine.gaussRat_phase_shifted_interference",
+      "BornFinite.ContinuumDerivationSpine.gaussRat_re_from_normSq",
+      "BornFinite.ContinuumDerivationSpine.gaussRat_im_from_normSq",
+      "BornFinite.ContinuumDerivationSpine.parallelogram_law_nsq",
+      "BornFinite.ContinuumDerivationSpine.dotC_re_polarization",
+      "BornFinite.ContinuumDerivationSpine.dotC_im_polarization",
+      "BornFinite.ContinuumDerivationSpine.dotC_eq_zero_iff_polarized_norms_eq",
+      "BornFinite.ContinuumDerivationSpine.gvec_inner_normSq_le",
+      "BornFinite.ContinuumDerivationSpine.normSqVec_mulConjTransposeVec_le",
+      "BornFinite.ContinuumDerivationSpine.factorizedState3_quadRay_in_unit_interval",
+      "BornFinite.ContinuumDerivationSpine.factorizedState3_frame_prob_sum_eq_one",
+      "BornFinite.ContinuumDerivationSpine.complexHermitianDim",
+      "BornFinite.ContinuumDerivationSpine.realSymmetricDimTwice",
+      "BornFinite.ContinuumDerivationSpine.complexHermitianDim_mul",
+      "BornFinite.ContinuumDerivationSpine.real_symmetric_local_tomography_deficit",
+      "BornFinite.ContinuumDerivationSpine.real_symmetric_fails_local_tomography",
+      "BornFinite.ContinuumDerivationSpine.tensor_diag_trace_mul",
+      "BornFinite.ContinuumDerivationSpine.IsUnitary3",
+      "BornFinite.ContinuumDerivationSpine.dotC_mulVec_mulVec",
+      "BornFinite.ContinuumDerivationSpine.unitary_preserves_dotC",
+      "BornFinite.ContinuumDerivationSpine.unitary_preserves_nsq",
+      "BornFinite.ContinuumDerivationSpine.unitary_preserves_born_transition",
+      "BornFinite.ContinuumDerivationSpine.IsSkewHermitian3",
+      "BornFinite.ContinuumDerivationSpine.skewHermitian_re_dotC_self_zero",
+      "BornFinite.ContinuumDerivationSpine.cayley_transform_nsq_eq",
+      "BornFinite.ContinuumDerivationSpine.IsKrausComplete",
+      "BornFinite.ContinuumDerivationSpine.krausQuadForm",
+      "BornFinite.ContinuumDerivationSpine.krausQuadForm_nonneg_of_posSemidef",
+      "BornFinite.ContinuumDerivationSpine.nsq_mulVec_eq_re_dotC",
+      "BornFinite.ContinuumDerivationSpine.luders_conditional_weight_normalized",
+      "BornFinite.ContinuumDerivationSpine.IsCauchyRefinement",
+      "BornFinite.ContinuumDerivationSpine.cauchyRefinement_limit_error_le",
+      "BornFinite.ContinuumDerivationSpine.tight_window_observable_tail_le",
+      "BornFinite.ContinuumDerivationSpine.latticeDirichletEnergy",
+      "BornFinite.ContinuumDerivationSpine.latticeDirichletEnergy_nonneg",
+      "BornFinite.ContinuumDerivationSpine.latticeDirichletEnergy_const_zero",
+      "BornFinite.ContinuumDerivationSpine.discrete_laplacian_exact_on_quadratic",
+      "BornFinite.ContinuumDerivationSpine.discrete_laplacian_quartic_taylor_remainder"
     ]
   },
   "lean_toolchain": "leanprover/lean4:v4.35.0"

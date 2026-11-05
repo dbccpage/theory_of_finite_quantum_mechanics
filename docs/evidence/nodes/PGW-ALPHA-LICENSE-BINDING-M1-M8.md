@@ -43,9 +43,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt)
 - sha256 (`lf-normalised`): `c613e357809438876d1fcec34ea896548f17f4e9d4ea7f21048fafe9451651ac`
 - cited in: node.source
 - counts toward the grade: yes
@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/04_authorization/tfq_0505_alpha_license_binding_m1_m8.md`
 
 - file: [dag/derivations/04_authorization/tfq_0505_alpha_license_binding_m1_m8.md](../../../dag/derivations/04_authorization/tfq_0505_alpha_license_binding_m1_m8.md)
-- sha256 (`lf-normalised`): `7ebca68994c6b82f695988263be3fb6047ce959ad05d3db676b4fdfff7fb1e05`
+- sha256 (`lf-normalised`): `4d03f6107fa87ac4ff7ae184004e742fbaa0b03d0f26b1d42f7f94ae01be7485`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0505
 - counts toward the grade: no

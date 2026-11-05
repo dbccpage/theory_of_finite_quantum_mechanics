@@ -1,43 +1,48 @@
 # Threads replies to wisdomandlogos
 
-Revised 2026-11-05 after the self-audit ([self_audit.md](../04_self_audit/self_audit.md), section A). Each post is under 500 characters; `code/self_audit_checks.py` (S5) counts them. Rhymed alternates are in [replies_alternates.md](replies_alternates.md). The earlier versions, and why each was changed, are in [self_audit.md](../04_self_audit/self_audit.md) and [board_repair_log.md](../04_self_audit/board_repair_log.md).
+Revised 2026-11-05, second plain-prose pass. Jeremy asked for 3 to 5 terse replies in plain, clear reasoning, with no poetry and no in-house terms. This set is built on the plain set merged in #526. Each post is at most 500 characters; `code/self_audit_checks.py` (S5) counts them. What changed from #526, and why, is in [self_audit.md](../04_self_audit/self_audit.md) section H.
 
-Order: the tree, the game, the paper, the closer. The Thales line is held for later.
+The five posts form one sequence and follow the order of her post: the human-versus-device line, the word "render", the paper she linked, the paper's math, and the standard any account has to meet. Post 5 carries the link to the full reconstruction of the paper.
 
-Post 1, the tree
+Post 1, the observer
 
-> Two snapshots: two trees standing, then one lying flat.
-> The fall, the air, the crash, the sound: you added all of that.
-> Same tree in both pictures? Supplied. Upright versus down? Supplied too.
-> Something happening in between? Inferred, not in view.
-> Not saying it didn't happen. Saying it came in on the side.
-> So when the universe "doesn't render," who checks? Who decides?
-> And what record would show it, and what test would it provide?
+> You say the human-versus-device question misses the point. It is the point, because it is the one the experiment answers. Interference disappears whenever any device records which slit, whether or not a person ever reads the record. The effect follows the record, not a mind. If consciousness does the work, what changes when a person reads the record versus when nobody does? Who decides what counts as looking?
 
 ---
 
-Post 2, the game
+Post 2, the word "render"
 
-> Pro gamer tip: a game can skip three chores. Drawing the pixels. Running the physics. Keeping what's behind the doors. Minecraft stops ticking far chunks; the rest get generated from the seed when you arrive, same diamonds every time. So which does the universe skip? (1) nothing's there, (2) nothing moves, (3) nobody kept a receipt. Number 3 is just Tuesday. For 1 or 2: what comes out different when you peek? And who decides?
-
----
-
-Post 3, after reading her link
-
-> Read your paper, cover to appendix. Lovely water, lovely light, 2.5 petabytes of hypothetical hologram, one simulation shown. Not one line about rendering the universe. It calls vision perhaps the most important link between "the outside world of the observable phenomena" and the mind: world first, brain images it. How a quantum mind perceives the macro-world? "Yet another mystery altogether." Your source brought the world and honestly left the observer open. Who decides it backs you?
+> "Does not render" can mean three things: it is not shown, it does not change, or it is not stored. The first is true of anything unseen and predicts nothing. If it does not change, a clock left in an empty room would still show the time you left. It does not. If it is rebuilt perfectly whenever we look, no measurement can tell, and again the claim predicts nothing. Which one do you mean?
 
 ---
 
-Post 4, the closer
+Post 3, what the paper says
 
-> Dr. Johnson kicked a stone to refute Berkeley. Bold move, sore toe. I'll go gentler: name one thing that happens differently when nobody's looking, and how we'd know. Einstein asked Pais whether the moon is there only when someone looks. Fair question, still. But define the look, or the moon gets the final say. And who decides it counts: a detector, a record, or a feeling in the chest? Until then it's a gorgeous story, not yet a test.
-
----
-
-Held for later, Thales
-
-> Even Thales reaches us second-hand: nothing he wrote survives, only what Herodotus, Aristotle and later writers kept. The past is a record someone kept. Who kept yours?
+> I read the paper you linked, appendices included. It proposes that coherent light from water in the brain stores memory as holograms, supported by a model and one simulation, not a measurement. "Render" never appears. It calls vision "perhaps the most important link between the outside world of the observable phenomena and the inner life of our mind", and how a quantum mind could perceive it "yet another mystery altogether". It does not make your claim.
 
 ---
 
-Fact notes: "render" occurs 0 times in the paper. The vision quote is from §6 (Concluding Remarks); "yet another mystery altogether" is from the Discussion. The paper shows one configuration (N = 4, Figs. 4–6). Johnson's stone: Boswell, *Life of Johnson*, 6 August 1763. Einstein and the moon: Pais, *Rev. Mod. Phys.* 51 (1979) 863. Minecraft: unvisited chunks are generated from the world seed on arrival, deterministically for a given seed and game version. Herodotus mentions Thales (*Histories* 1.74–75, 1.170).
+Post 4, the paper's math
+
+> Two of its derivations fail on its own terms. In Appendix A, the two conditions it imposes, fed into its own equation (A7), freeze the charge density, yet the light pulse it derives needs that density to oscillate. In a rerun of its simulation, Gauss's law is violated by more than the charge changes it reports. The 2.5 PB treats 2 mm of cortex as one uniform optical medium, and no energy barrier is given that would hold a memory for a year.
+
+---
+
+Post 5, the bar
+
+> So here is the bar, the same one every account has to clear, mine included. Name one measurement that comes out differently if unobserved regions are not "rendered", and say what does the observing: a detector, a record, or an experience. Until then your account and ordinary physics predict the same data, and the data cannot choose. The paper, taken apart line by line: [link]
+
+---
+
+Before posting, replace `[link]` in post 5 with the reconstruction's public address. The reconstruction is `03_critique/paper_dissection.md`, "The holographic brain paper, taken apart and put back together". Its GitHub address is 191 characters, longer than the budget below, so post 5 needs a short address for it. Post 5 is 378 characters with the placeholder, so the address may be up to 128 characters. The learning boards (`05_boards/learning_boards.html`) can be linked from the reconstruction.
+
+Fact notes:
+- "render" occurs 0 times in the paper.
+- The vision sentence is from §6 (Concluding Remarks): "Vision is perhaps the most important link between the outside world of the observable phenomena and the inner life of our mind."
+- "But how a quantum mind could perceive the macro-world is yet another mystery altogether" is from §5 (Discussion).
+- The paper shows one simulated configuration (N = 4, Figures 4 to 6). It reports no measurement of its own.
+- Double slit: interference is lost when which-path information is recorded in any physical system, whether or not a person reads it. This is textbook quantum mechanics, confirmed in many which-path experiments.
+- Appendix A: $A^0 = 0$ with $\nabla\cdot\mathbf A = 0$, put into (A7), forces $\partial_t\lvert\varphi\rvert^2 = 0$. The pulse of (A38) needs the oscillating coherence. Checks S2a and `critique_checks.py` check 1.
+- Appendix C: in our rerun of the paper's simulation, the Gauss-law residual is 1.1 to 2.3 times the charge change (`04_self_audit/retest_log.md`). The rerun matches the paper's density dips to within about 10%; nobody has compared it with the authors' code.
+- 2.5 PB: the paper's inputs (a 2 mm cortex as one uniform optical medium, $n_r = 1.3$, 500 nm). A surface hologram over the same area holds about 0.5 TB (`03_critique/assumptions_mutation_audit.md` row Y1).
+- Retention: one barrier needs $k_BT\ln(1\,\text{yr}/\tau_0)$, 1.2 eV for $\tau_0 = 1$ ps or 0.46 eV for 1 s. The paper gives no barrier (S3e, S3e2).

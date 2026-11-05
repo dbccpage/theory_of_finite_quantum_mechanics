@@ -88,9 +88,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py`
+### Python: `atlas/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py)
 - sha256 (`bytes`): `5138e0126e482c5d960255a1073db17b856851c9cff885dc96d39f35f19fed5b`
 - cited in: record TFQ-0483
 
@@ -102,9 +102,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md)
 - sha256 (`lf-normalised`): `7e91bbdb06f407ab74633d875470289b724dcfff465477529a8d49f5d1df7f08`
 - cited in: node.source
 - counts toward the grade: yes
@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md`
 
 - file: [dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md](../../../dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md)
-- sha256 (`lf-normalised`): `5a41309c8290fc7fba1ee78848eb446deaa63da54d7cd9231d674ef188b5a484`
+- sha256 (`lf-normalised`): `53ed397c861562b721c634df4f252cf0ae82e562432fd562640b6064493ab7e0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0483
 - counts toward the grade: no

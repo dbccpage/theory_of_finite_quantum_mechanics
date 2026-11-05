@@ -12,10 +12,10 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/tenth/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/sixteenth/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/sixteenth/reading_the_seed.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Sixteenth/Reach.lean
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/tenth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/sixteenth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/sixteenth/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Sixteenth/Reach.lean
 last_verified: 2026-10-08
 ---
 
@@ -25,7 +25,7 @@ last_verified: 2026-10-08
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 18: leftover feedback, `Reach16.unbounded`](../_images/genesis_ongoing_18_leftovers_unboundedness.svg)
 
@@ -46,7 +46,7 @@ The working notes for the sixteenth derivation (`research/sixteenth/reading_the_
 
 ## Files
 
-- [`paper/tenth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/tenth/paper.md)
-- [`paper/sixteenth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/sixteenth/paper.md)
-- [`research/sixteenth/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/sixteenth/reading_the_seed.md)
-- [`lean4/Sixteenth/Reach.lean`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Sixteenth/Reach.lean)
+- [`paper/tenth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/tenth/paper.md)
+- [`paper/sixteenth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/sixteenth/paper.md)
+- [`research/sixteenth/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/sixteenth/reading_the_seed.md)
+- [`lean4/Sixteenth/Reach.lean`](/atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Sixteenth/Reach.lean)

@@ -1,0 +1,81 @@
+{
+  "AuthorityEffect": "None",
+  "originals": [
+    {
+      "path": "checks/independent/fsp-cobordism-intrinsic-sign.py",
+      "sha256": "f3b7bf730dfeca78e102054fbae9b6df8493110d91ebce7567f75db85535f078",
+      "archive": "reviews/repository_file_review/2026-11-05-signed-triangle-original-fsp-cobordism-intrinsic-sign.py.txt"
+    },
+    {
+      "path": "checks/independent/fsp-cobordism-intrinsic-sign.contract.score.yaml",
+      "sha256": "e1eba6a8933132caad2cc5539c5d13cc26a896109d9d465656ba1d74ffc39d25",
+      "archive": "reviews/repository_file_review/2026-11-05-signed-triangle-original-fsp-cobordism-intrinsic-sign.contract.score.yaml.txt"
+    }
+  ],
+  "runs": [
+    {
+      "optimized": false,
+      "returncode": 0,
+      "stdout": "triangles=8 switching_cases=64 balanced=4 obstructed=4 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "optimized": true,
+      "returncode": 0,
+      "stdout": "triangles=8 switching_cases=64 balanced=4 obstructed=4 failures=0\n",
+      "stderr": ""
+    }
+  ],
+  "origins": [
+    {
+      "path": "lean4/SignedTriangleSwitching.lean",
+      "sha256": "4ffc345ebf79bff4b3ad6ecc5ecbcecf84681f0373a6a95d8a86f1e81381beb8"
+    }
+  ],
+  "initial_retention": 4,
+  "findings": [
+    "Fixed switching calculation matches the declared Boolean three-cycle model.",
+    "The matrix helper admits bool and float inputs and lacks explicit shape/resource boundaries.",
+    "Expected failures use process termination and the source lacks an independent test suite."
+  ],
+  "probes": {
+    "bool": {
+      "result": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    "float": {
+      "result": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  }
+}

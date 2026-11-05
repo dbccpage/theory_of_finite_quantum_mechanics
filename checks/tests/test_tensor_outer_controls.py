@@ -1,0 +1,147 @@
+"""Independent integer minor and rank oracles. AuthorityEffect: None."""
+from __future__ import annotations
+
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import importlib.util
+import io
+import json
+from pathlib import Path
+import subprocess
+import sys
+from types import ModuleType
+from typing import cast
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+CHECKS = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(CHECKS))
+from checker_support.boundary import Violation, evaluate
+from checker_support.cases import Cases
+from checker_support.rational_matrix import RationalMatrix
+
+APP = CHECKS / "independent/fq-gap-tensor-uniqueness.py"
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+MATRIX = st.lists(st.lists(st.integers(-100, 100), min_size=2, max_size=2), min_size=2, max_size=2)
+
+
+def load() -> ModuleType:
+    spec = importlib.util.spec_from_file_location("reviewed_tensor_outer_controls", APP)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("Cannot load tensor controls")
+    module = importlib.util.module_from_spec(spec)
+    with patch.dict(sys.modules, {spec.name: module}):
+        spec.loader.exec_module(module)
+    return module
+
+
+class TensorOuterTests(unittest.TestCase):
+    @PROPERTY
+    @given(MATRIX)
+    def test_independent_minor_and_rank(self, rows: list[list[int]]) -> None:
+        module = load()
+        reference = sp.Matrix(rows)
+        self.assertEqual(module.det(rows), int(reference.det()))
+        self.assertEqual(module.rank(rows), int(reference.rank()))
+        controls = module.TensorOuterProductControls()
+        self.assertEqual(controls.determinant(rows).value, int(reference.det()))
+        self.assertEqual(controls.matrix_rank(rows).value, int(reference.rank()))
+
+    @PROPERTY
+    @given(st.tuples(*(st.integers(-100, 100) for _ in range(4))))
+    def test_outer_orientation_and_ownership(self, values: tuple[int, int, int, int]) -> None:
+        module = load()
+        mutable = list(values)
+        outcome = module.TensorOuterProductControls.outer_product(mutable)
+        self.assertIsNone(outcome.error)
+        matrix = cast(RationalMatrix, outcome.value)
+        expected = sp.Matrix(values[:2]) * sp.Matrix([values[2:]])
+        self.assertEqual(sp.Matrix(matrix.rows), expected)
+        mutable[0] += 1
+        self.assertEqual(sp.Matrix(matrix.rows), expected)
+
+    def test_exact_shapes_and_scalar_domains(self) -> None:
+        module = load()
+        controls = module.TensorOuterProductControls()
+        for invalid in (None, [], [[1]], [[1, 2]], [[1, 2], [3]], [[1, 2, 3], [4, 5, 6]],
+                        [[True, 0], [0, 1]], [[0.5, 0], [0, 1]], [[Q(1), 0], [0, 1]],
+                        [[complex(1), 0], [0, 1]]):
+            for operation in (controls.determinant, controls.matrix_rank):
+                with self.subTest(value=invalid, operation=operation):
+                    self.assertEqual(operation(invalid).error.kind, "input")
+        for invalid_vector in (None, (), (1, 2, 3), (1, 2, 3, 4, 5), (True, 0, 1, 0),
+                               (0.5, 0, 1, 0), (Q(1), 0, 1, 0)):
+            self.assertEqual(controls.outer_product(invalid_vector).error.kind, "input")
+
+    def test_pivots_and_singular_cases(self) -> None:
+        module = load()
+        for rows, rank in ((((0, 0), (0, 0)), 0), (((0, 1), (0, 0)), 1),
+                           (((0, 0), (1, 2)), 1), (((0, 1), (1, 0)), 2),
+                           (((1, 2), (2, 4)), 1), (((11, 14), (15, 21)), 2)):
+            self.assertEqual(module.rank(rows), rank)
+        with patch.dict(module.rank.__globals__, det=lambda _: 999):
+            self.assertEqual(module.rank(((1, 2), (2, 4))), 1)
+
+    def test_resource_terms_before_cancellation(self) -> None:
+        controls = load().TensorOuterProductControls()
+        oversized = 1 << 4096
+        for operation in (controls.determinant, controls.matrix_rank):
+            self.assertEqual(operation(((oversized, 0), (0, 1))).error.kind, "resource")
+        # Each determinant product exceeds the budget, although their difference is zero.
+        large = 1 << 2048
+        self.assertEqual(controls.determinant(((large, large), (large, large))).error.kind, "resource")
+        self.assertEqual(controls.matrix_rank(((1, large), (large, (1 << 4096)-1))).error.kind, "resource")
+        self.assertEqual(controls.matrix_rank((((1 << 4096)-1, 1), (1, (1 << 4096)-1))).error.kind, "resource")
+        self.assertEqual(controls.outer_product((large, 1, large, 0)).error.kind, "resource")
+        self.assertEqual(controls.outer_product((oversized, 0, 0, 0)).error.kind, "resource")
+        self.assertEqual(controls.determinant((((1 << 4096)-1, 0), (0, 1))).value, (1 << 4096)-1)
+
+    def test_policy_and_counter(self) -> None:
+        module = load()
+        for value in (True, 0.5, Q(1), -1, 6, None):
+            self.assertIsNotNone(evaluate(module.TensorOuterProductControls, value).error)
+        controls = module.TensorOuterProductControls()
+        with self.assertRaises(FrozenInstanceError):
+            controls.radius = 4
+        observed: list[str] = []
+        implementation = Cases.require
+        def record(cases: Cases, condition: bool, label: str) -> None:
+            observed.append(label)
+            implementation(cases, condition, label)
+        with patch.object(Cases, "require", record):
+            report = controls.verify().value
+        self.assertEqual(report["checks"], 7212)
+        self.assertEqual(report["checks"], len(observed))
+        self.assertEqual(report["input_vectors"], 2403)
+        self.assertEqual(module.TensorOuterProductControls(0).verify().value["checks"], 12)
+        self.assertEqual(module.TensorOuterProductControls(5).verify().value["checks"], 43932)
+        self.assertEqual(report, controls.verify().value)
+
+    def test_failures_cli_and_cancellation(self) -> None:
+        module = load()
+        for error in (Violation("check", "injected"), Violation("resource", "injected")):
+            with patch.dict(module._main.__globals__, TensorOuterProductControls=unittest.mock.Mock(side_effect=error)):
+                with contextlib.redirect_stderr(io.StringIO()) as captured:
+                    self.assertEqual(module.main(), 1)
+                self.assertEqual(json.loads(captured.getvalue())["kind"], error.failure.kind)
+        for exception in (RuntimeError, KeyboardInterrupt, SystemExit):
+            with patch.object(module.TensorOuterProductControls, "_verify", side_effect=exception):
+                with self.assertRaises(exception):
+                    module.TensorOuterProductControls().verify()
+
+    def test_import_and_default_cli(self) -> None:
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            module = load()
+        self.assertEqual(output.getvalue(), "")
+        result = subprocess.run([sys.executable, "-I", "-B", str(APP)], capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), module.TensorOuterProductControls().verify().value)
+
+
+if __name__ == "__main__":
+    unittest.main()

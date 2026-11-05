@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py`
 
 - file: [checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py](../../../checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py)
-- sha256 (`bytes`): `d13536813242beff678ef462534b95a1c0f8e3b6b9fa7bac7de552a924cdcf39`
+- sha256 (`bytes`): `d97d80fa3f996b81e930deffcee848d12f9841f236ff255807be811f330da244`
 - cited in: node.source, record TFQ-1219
 - counts toward the grade: yes
 

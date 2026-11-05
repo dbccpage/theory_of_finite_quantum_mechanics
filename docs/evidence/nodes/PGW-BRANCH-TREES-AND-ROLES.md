@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Rust: `atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/role.rs`
+### Rust: `atlas/finite_obstruction_calculus/genesis/code/rust/src/role.rs`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/role.rs](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/role.rs)
+- file: [atlas/finite_obstruction_calculus/genesis/code/rust/src/role.rs](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/role.rs)
 - sha256 (`bytes`): `76b089e5c804fb5477b44614daef467f8592fa4a536ef764a41778e9e221e0b1`
 - cited in: node.rust, record TFQ-0448
 
@@ -54,9 +54,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs`
+### Rust: `atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs)
+- file: [atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs)
 - sha256 (`bytes`): `9099aba7ae1495a15c2291865db9bdd38d8a1779158d4900dacb827e72111f97`
 - cited in: node.rust, record TFQ-0448
 
@@ -67,9 +67,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py)
 - sha256 (`bytes`): `23803a3dcce2adf0dee623caba33791d41a25d2da3fdfd226da3cad2ee140b5e`
 - cited in: record TFQ-0448
 
@@ -79,9 +79,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
 - sha256 (`lf-normalised`): `8e0a3f2333e9ae5740b26c59f88fd41cd1ee9c9b92ca4f0a19dad53747ddf3cd`
 - cited in: node.source
 - counts toward the grade: yes
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0448_branch_trees_and_roles.md`
 
 - file: [dag/derivations/02_genesis/tfq_0448_branch_trees_and_roles.md](../../../dag/derivations/02_genesis/tfq_0448_branch_trees_and_roles.md)
-- sha256 (`lf-normalised`): `3214d21e6f2a974577f4d7cbba8c84a8fdb783816e3a0369d410ff4bd9a89609`
+- sha256 (`lf-normalised`): `75bc9e5168fb44c22741ad12736bce85baf5fae0c5540b2dfed6fa8f8afa900c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0448
 - counts toward the grade: no

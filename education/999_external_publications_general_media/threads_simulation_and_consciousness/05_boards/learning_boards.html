@@ -1,345 +1,486 @@
-<title>Holographic Brain, Taken Apart</title>
+<title>Does the Universe Render?</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: six boards behind a wrapping tab row; each board = question, picture, numbered logic, what would change it, a plain reply. Tokens follow markup_board.html. */
+/* Layout: one board at a time, a numbered strip of six boards plus the method; each board = claim, picture, tagged steps, result, your turn, back page */
 :root{
   --paper:#F5F8F7; --card:#FFFFFF; --ink:#18262E; --mute:#5B6B72; --rule:#D5DFDD;
-  --teal:#0F7C78; --teal-soft:#DCEFEC; --supplied:#B5651D; --supplied-soft:#F6E7D8;
-  --wit:#2F6FB0; --wit-soft:#DCE8F5; --no:#B23A3A; --no-soft:#F5DEDE; --num:#6A4FA0; --num-soft:#ECE6F6;
-  --display:"Literata",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --teal:#0F7C78; --teal-soft:#DCEFEC;
+  --wit:#2F6FB0; --wit-soft:#DCE8F5; --sup:#A85A17; --sup-soft:#F6E7D8;
+  --num:#6A55A8; --num-soft:#E9E4F5; --open:#B23A3A; --open-soft:#F5DEDE; --cite:#56656B; --cite-soft:#E6ECEB;
+  --display:"Literata",Georgia,"Times New Roman",serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#0F1719; --card:#162125; --ink:#E4ECEA; --mute:#93A5A9; --rule:#2A3A3F;
-  --teal:#4FC2BB; --teal-soft:#173B3A; --supplied:#E39B5B; --supplied-soft:#3A2A1C;
-  --wit:#7FB2E8; --wit-soft:#1C2E42; --no:#E67C7C; --no-soft:#3E2223; --num:#B9A2EA; --num-soft:#2A2340; color-scheme:dark}}
+  --teal:#4FC2BB; --teal-soft:#173B3A; --wit:#7FB2E8; --wit-soft:#1C2E42; --sup:#E39B5B; --sup-soft:#3A2A1C;
+  --num:#B4A3EC; --num-soft:#2A2440; --open:#E67C7C; --open-soft:#3E2223; --cite:#A9B8BB; --cite-soft:#24302F; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#0F1719; --card:#162125; --ink:#E4ECEA; --mute:#93A5A9; --rule:#2A3A3F;
-  --teal:#4FC2BB; --teal-soft:#173B3A; --supplied:#E39B5B; --supplied-soft:#3A2A1C;
-  --wit:#7FB2E8; --wit-soft:#1C2E42; --no:#E67C7C; --no-soft:#3E2223; --num:#B9A2EA; --num-soft:#2A2340; color-scheme:dark}
+  --teal:#4FC2BB; --teal-soft:#173B3A; --wit:#7FB2E8; --wit-soft:#1C2E42; --sup:#E39B5B; --sup-soft:#3A2A1C;
+  --num:#B4A3EC; --num-soft:#2A2440; --open:#E67C7C; --open-soft:#3E2223; --cite:#A9B8BB; --cite-soft:#24302F; color-scheme:dark}
 body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
-.wrap{max-width:980px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:18px}
-h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.6vw,44px);line-height:1.1;margin:0;text-wrap:balance}
-.lede{color:var(--mute);margin:0;max-width:66ch}
-.tags{display:flex;flex-wrap:wrap;gap:6px;font-family:var(--mono);font-size:12px}
-.t{display:inline-block;padding:1px 8px;border-radius:999px;font-family:var(--mono);font-size:12px;white-space:nowrap}
-.t.w{background:var(--wit-soft);color:var(--wit)} .t.d{background:var(--teal-soft);color:var(--teal)} .t.n{background:var(--num-soft);color:var(--num)}
-.t.s{background:var(--supplied-soft);color:var(--supplied)} .t.o{background:var(--no-soft);color:var(--no)}
-nav{display:flex;flex-wrap:wrap;gap:6px}
-nav a{font:500 14px var(--body);text-decoration:none;color:var(--ink);padding:7px 12px;border:1px solid var(--rule);border-radius:6px;background:var(--card)}
-nav a[aria-current="page"]{border-color:var(--teal);background:var(--teal-soft);color:var(--teal)}
-nav a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
-.board{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px 18px 20px;display:grid;gap:14px;min-width:0}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0}
-.board h2{font-family:var(--display);font-weight:500;font-size:clamp(22px,3vw,28px);line-height:1.2;margin:0;text-wrap:balance}
-.board h3{font-size:15px;font-weight:600;margin:0}
-.pic{overflow-x:auto} .pic svg{display:block;width:100%;height:auto;max-width:100%} svg text{font-family:var(--mono)}
-ol.logic{margin:0;padding-left:22px;display:grid;gap:8px;max-width:72ch}
-ol.logic li{padding-left:4px}
-.box{border-left:3px solid var(--rule);padding:4px 0 4px 12px;max-width:72ch}
-.box.change{border-color:var(--supplied)} .box.reply{border-color:var(--teal)}
-.reply blockquote{margin:6px 0 0;font-size:15px}
-.reply .n{font-family:var(--mono);font-size:11px;color:var(--mute)}
-.ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.ctl .lab{font-family:var(--mono);font-size:12px;color:var(--mute)}
-button{font:500 14px var(--body);padding:6px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer}
-button[aria-pressed="true"]{background:var(--teal-soft);border-color:var(--teal);color:var(--teal)}
-button:disabled{opacity:.45;cursor:default}
-input[type=range]{width:min(100%,320px);accent-color:var(--teal)}
-.out{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:15px}
-.verdict{margin:0;font-weight:600}
-.tbl{overflow-x:auto} table{border-collapse:collapse;font-size:14px;min-width:100%} th,td{border-bottom:1px solid var(--rule);padding:6px 8px;text-align:left;vertical-align:top}
-td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono)}
-.steps{list-style:none;margin:0;padding:0;display:grid;gap:5px}
-.steps li{display:flex;gap:10px;align-items:baseline;padding:5px 9px;border-radius:6px;background:var(--paper);font-size:15px;min-width:0}
-.steps li[data-on="false"]{opacity:.35}
-.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px}
-.stage{border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--paper);display:grid;gap:6px;align-content:start;font-size:14.5px;min-width:0}
-.stage.open{border-style:dashed;border-color:var(--no)}
-.stage ul{margin:0;padding-left:18px;display:grid;gap:4px}
-code,.m{font-family:var(--mono);font-size:.92em}
-footer{color:var(--mute);font-size:13px;max-width:72ch}
+[hidden]{display:none!important}
+.wrap>*,.board>*,main{min-width:0}
+.wrap{max-width:880px;margin:0 auto;padding-block:28px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:22px}
+header{display:grid;gap:12px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin:0}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,46px);line-height:1.08;margin:0;text-wrap:balance}
+.lede{margin:0;max-width:64ch}
+.quote{margin:0;padding:10px 14px;border-left:3px solid var(--sup);background:var(--card);border-radius:0 8px 8px 0;font-family:var(--display);font-size:18px;line-height:1.45;max-width:64ch}
+.cite-line{margin:0;font-size:14px;color:var(--mute);max-width:70ch}
+.cite-line a{color:var(--teal)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0;padding:0;list-style:none;font-size:13px;color:var(--mute)}
+.legend li{display:flex;gap:6px;align-items:baseline}
+.t{font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:1px 7px;border-radius:999px;white-space:nowrap;font-weight:500}
+.t.wit{background:var(--wit-soft);color:var(--wit)} .t.der{background:var(--teal-soft);color:var(--teal)} .t.num{background:var(--num-soft);color:var(--num)}
+.t.cite{background:var(--cite-soft);color:var(--cite)} .t.sup{background:var(--sup-soft);color:var(--sup)} .t.open{background:var(--open-soft);color:var(--open)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:8px;border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.tabs a{flex:0 0 auto;display:flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--ink);font-size:14px;padding:6px 12px;border:1px solid var(--rule);border-radius:999px;background:var(--card)}
+.tabs a .n{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.tabs a[aria-current="true"]{border-color:var(--teal);background:var(--teal-soft);color:var(--teal)}
+.tabs a[aria-current="true"] .n{color:var(--teal)}
+.tabs a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.board{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:22px clamp(16px,3.5vw,32px) 24px;display:grid;gap:16px;min-width:0}
+.eyebrow{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.eyebrow b{color:var(--teal);font-weight:500}
+.board h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.6vw,32px);line-height:1.15;margin:0;text-wrap:balance}
+.claim{margin:0;font-size:17px;max-width:64ch}
+.pic{overflow-x:auto;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding-block:10px}
+.pic svg{display:block;width:100%;min-width:480px;height:auto}
+svg text{font-family:var(--mono)}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+ol.steps li{display:grid;grid-template-columns:2.2em 1fr;gap:4px 10px;align-items:start;counter-increment:s;min-width:0}
+ol.steps li::before{content:counter(s);font-family:var(--mono);font-size:13px;color:var(--mute);padding-top:3px;text-align:right}
+ol.steps .tx{min-width:0}
+ol.steps .tags{display:inline-flex;gap:4px;margin-right:6px;vertical-align:1px}
+.so{margin:0;padding:12px 14px;border-radius:8px;background:var(--teal-soft);color:var(--ink);font-weight:500;max-width:70ch}
+.so b{color:var(--teal);font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-right:8px;font-weight:500}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600;font-size:13px;color:var(--mute)}
+td.q{font-family:var(--display);font-size:16px;white-space:nowrap}
+.tw{overflow-x:auto}
+.mk{font-family:var(--mono);font-size:12px;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.mk.done{background:var(--teal-soft);color:var(--teal)} .mk.skip{border:1px dashed var(--mute);color:var(--mute)}
+.chain{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.chain li{border:1px solid var(--rule);border-radius:8px;padding:10px 12px;display:grid;gap:6px;align-content:start;background:var(--paper);min-width:0}
+.chain li.need{border-color:var(--open)}
+.chain .h{font-family:var(--display);font-weight:500;font-size:17px}
+.chain p{margin:0;font-size:14px;color:var(--mute)}
+@media (max-width:640px){.chain{grid-template-columns:1fr}}
+.ledger{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ledger li{display:grid;grid-template-columns:8.5em 1fr;gap:4px 12px;padding:10px 0;border-top:1px solid var(--rule);min-width:0}
+.ledger li:first-child{border-top:0}
+.ledger .st{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;padding-top:3px}
+.st.holds{color:var(--teal)} .st.breaks{color:var(--open)} .st.gap{color:var(--sup)} .st.assumed{color:var(--sup)} .st.open{color:var(--mute)}
+.ledger .tx{min-width:0} .ledger .tx b{font-weight:600}
+@media (max-width:560px){.ledger li{grid-template-columns:1fr}}
+.turn{border:1px solid var(--rule);border-radius:8px;padding:12px 14px;display:grid;gap:8px;background:var(--paper)}
+.turn .lab{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin:0}
+.turn p{margin:0}
+details summary{cursor:pointer;font-weight:500;color:var(--teal);width:max-content;max-width:100%}
+details[open] summary{margin-bottom:6px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+button{font:500 14px var(--body);padding:7px 14px;border-radius:6px;border:1px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer}
+button[aria-expanded="true"]{border-color:var(--teal);color:var(--teal);background:var(--teal-soft)}
+.pager{display:flex;gap:8px;margin-left:auto}
+.back{border-top:1px dashed var(--rule);padding-top:14px;display:grid;gap:10px;min-width:0}
+.back h3{margin:0;font-family:var(--display);font-weight:500;font-size:19px}
+.back p{margin:0;max-width:68ch}
+.math{overflow-x:auto;padding:4px 0;font-size:17px}
+.method{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:m}
+.method li{display:grid;grid-template-columns:2.2em 1fr;gap:10px;counter-increment:m}
+.method li::before{content:counter(m);font-family:var(--display);font-weight:700;font-size:20px;color:var(--teal);text-align:right;line-height:1.2}
+.review{border-top:1px solid var(--rule);padding-top:12px;display:grid;gap:8px}
+.review .lab{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0}
+.review .btns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.review button[aria-pressed="true"][data-v="right"]{background:var(--teal-soft);border-color:var(--teal);color:var(--teal)}
+.review button[aria-pressed="true"][data-v="wrong"]{background:var(--open-soft);border-color:var(--open);color:var(--open)}
+.review button[aria-pressed="true"][data-v="unsure"]{background:var(--sup-soft);border-color:var(--sup);color:var(--sup)}
+.review textarea{width:100%;box-sizing:border-box;min-height:56px;resize:vertical;font:14px var(--body);padding:8px 10px;border-radius:6px;border:1px solid var(--rule);background:var(--card);color:var(--ink)}
+.review .saved{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--mute)}
+footer{font-size:13px;color:var(--mute);max-width:70ch}
 </style>
 
 <div class="wrap">
-<header style="display:grid;gap:10px">
-  <h1>Holographic Brain, Taken Apart</h1>
-  <p class="lede">Six boards on one post and one paper. The post said the universe "does not render what is offscreen" and cited Nishiyama et al., <i>Holographic Brain Theory</i>, IJMS 25:2399 (2024). Boards 1 to 3 use finite pictures: records, reports and counting. Boards 4 and 5 check the paper with its own continuum equations. Board 6 shows the method.</p>
-  <div class="tags"><span class="t w">witnessed: quoted record</span><span class="t d">derived: exact check</span><span class="t n">numerical: rerun</span><span class="t s">supplied: an assumption</span><span class="t o">open</span></div>
+<header>
+  <p class="kicker">Six boards on one post and one paper</p>
+  <h1>Does the universe render?</h1>
+  <p class="lede">A post in a thread about the double slit said:</p>
+  <p class="quote">“It's just like a video game, the universe does not render what is offscreen.”</p>
+  <p class="lede">It linked a 2024 paper. These boards check the sentence and the paper the same way, one move per board. Each move works on any claim.</p>
+  <p class="cite-line">The paper: Nishiyama, Tanaka, Tuszynski and Tsenkova, “Holographic Brain Theory: Super-Radiance, Memory Capacity and Control Theory”, <i>International Journal of Molecular Sciences</i> 25(4):2399 (2024), <a href="https://doi.org/10.3390/ijms25042399" target="_blank" rel="noopener">doi:10.3390/ijms25042399</a>.</p>
+  <ul class="legend" aria-label="What each tag means">
+    <li><span class="t wit">Witnessed</span> a record exists</li>
+    <li><span class="t der">Derived</span> follows by stated steps</li>
+    <li><span class="t num">Numerical</span> a computer rerun</li>
+    <li><span class="t cite">Cited</span> reported by others, not rechecked here</li>
+    <li><span class="t sup">Supplied</span> put in by someone</li>
+    <li><span class="t open">Open</span> not yet defined or settled</li>
+  </ul>
 </header>
 
-<nav aria-label="Boards">
-  <a href="#witnessed">1 · What was witnessed</a>
-  <a href="#offscreen">2 · What "offscreen" claims</a>
-  <a href="#likelihood">3 · Same report, same theory?</a>
-  <a href="#paper">4 · What the paper shows</a>
-  <a href="#breaks">5 · Where its math fails</a>
-  <a href="#method">6 · How to take a paper apart</a>
-</nav>
+<nav aria-label="Boards"><div class="tabs" id="tabs">
+  <a href="#board-1" data-b="board-1"><span class="n">1</span>Sort</a>
+  <a href="#board-2" data-b="board-2"><span class="n">2</span>Split</a>
+  <a href="#board-3" data-b="board-3"><span class="n">3</span>Channels</a>
+  <a href="#board-4" data-b="board-4"><span class="n">4</span>Chances</a>
+  <a href="#board-5" data-b="board-5"><span class="n">5</span>Source</a>
+  <a href="#board-6" data-b="board-6"><span class="n">6</span>Math</a>
+  <a href="#method" data-b="method"><span class="n">+</span>Method</a>
+</div></nav>
 
-<main>
-<!-- Board 1 -->
-<section class="board" id="b-witnessed" data-view="witnessed">
-  <p class="eyebrow">Board 1 · finite</p>
-  <h2>What did we actually witness?</h2>
-  <div class="pic" id="tree-svg"></div>
-  <div class="ctl"><button type="button" id="tree-back">Remove last</button><button type="button" id="tree-next">Add next assumption</button><span class="lab" id="tree-count"></span></div>
-  <ol class="steps" id="tree-steps"></ol>
-  <p class="verdict" id="tree-verdict"></p>
-  <h3>The logic</h3>
-  <ol class="logic">
-    <li>Two records exist. Under a declared way of reading them (lines, lengths, directions), they differ. <span class="t w">witnessed</span></li>
-    <li>"The same tree fell between them" adds identity across the records, an order in time, and a transition. None of these is in either record. <span class="t s">supplied</span></li>
-    <li>"It made a sound" adds a model of air, and "someone heard it" adds a receiver and a record of hearing. <span class="t s">supplied</span> <span class="t o">open</span></li>
-    <li>Many different histories end in the second record. So a witnessed difference does not fix one history. <span class="t d">derived</span></li>
+<main id="boards">
+
+<!-- BOARD 1 -->
+<section class="board" id="board-1" aria-labelledby="h-b1">
+  <p class="eyebrow">Board 1 of 6 · <b>sort before you argue</b></p>
+  <h2 id="h-b1">What is on the record?</h2>
+  <p class="claim">Start with an old question. A tree falls in a forest with nobody there. Did it make a sound?</p>
+  <div class="pic"><svg viewBox="0 0 560 200" role="img" aria-label="Two records. Record 1 shows two upright strokes. Record 2 shows one upright stroke and one flat stroke. Nothing between them is recorded." xmlns="http://www.w3.org/2000/svg">
+    <text x="40" y="26" fill="var(--mute)" font-size="13">record 1</text>
+    <line x1="70" y1="170" x2="70" y2="58" stroke="var(--wit)" stroke-width="6" stroke-linecap="round"/>
+    <line x1="130" y1="170" x2="130" y2="58" stroke="var(--wit)" stroke-width="6" stroke-linecap="round"/>
+    <text x="400" y="26" fill="var(--mute)" font-size="13">record 2</text>
+    <line x1="420" y1="170" x2="420" y2="58" stroke="var(--wit)" stroke-width="6" stroke-linecap="round"/>
+    <line x1="456" y1="166" x2="540" y2="166" stroke="var(--wit)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M172 112 Q 275 40 378 112" fill="none" stroke="var(--sup)" stroke-width="2" stroke-dasharray="6 6"/>
+    <text x="214" y="64" fill="var(--sup)" font-size="12">a fall? nothing recorded</text>
+    <text x="232" y="132" fill="var(--sup)" font-size="12">a sound?</text>
+    <text x="446" y="192" fill="var(--sup)" font-size="12">which one is this?</text>
+  </svg></div>
+  <ol class="steps">
+    <li><span class="tx"><span class="tags"><span class="t wit">Witnessed</span></span>Two records. In the first, two upright strokes. In the second, one upright stroke and one flat one.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t sup">Supplied</span></span>That the flat stroke is one of the upright ones. The records do not label them.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t sup">Supplied</span></span>A fall between the two records. Nothing between them was recorded.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t sup">Supplied</span></span>A sound. That takes a model of air, and no microphone left a record.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>So “did it make a sound?” is a question about the supplied parts. The records alone cannot answer it.</span></li>
   </ol>
-  <div class="box change"><h3>What would change this</h3>A third record, or a record that carries order (a timestamp, tree rings), adds witnessed structure. Every claim should say which record carries it.</div>
-  <div class="box reply"><h3>Reply</h3><blockquote id="r1"></blockquote><span class="n" id="r1n"></span></div>
-</section>
-
-<!-- Board 2 -->
-<section class="board" id="b-offscreen" data-view="offscreen">
-  <p class="eyebrow">Board 2 · finite</p>
-  <h2>What does "the universe does not render what is offscreen" claim?</h2>
-  <div class="tbl"><table>
-    <thead><tr><th>Reading</th><th>What it says</th><th>Testable?</th></tr></thead>
+  <p class="claim">The same sort, applied to the post:</p>
+  <div class="tw"><table>
+    <thead><tr><th>Word</th><th>Tag</th><th>Why</th></tr></thead>
     <tbody>
-      <tr><td>(i) stops existing</td><td>Unobserved things are not there.</td><td>Only if it predicts something different when observation resumes.</td></tr>
-      <tr><td>(ii) stops evolving</td><td>Unobserved things are frozen.</td><td>Yes, in principle: a frozen system would lag behind one that kept running. It depends on the dynamics claimed.</td></tr>
-      <tr><td>(iii) is not experienced</td><td>Nobody perceives what nobody perceives.</td><td>True of everything, and needs no simulation.</td></tr>
-    </tbody></table></div>
-  <ol class="logic">
-    <li>(i) implies (iii): what does not exist is not experienced. <span class="t d">derived</span></li>
-    <li>(ii) implies neither of the others. A paused, saved game chunk stops evolving and keeps its state. A frozen frame stops evolving and can still be seen. <span class="t d">derived</span></li>
-    <li>So these are three different claims, not three strengths of one claim. The post has to say which it means.</li>
-  </ol>
-  <h3>Same screen, different worlds</h3>
-  <div class="pic" id="render-svg"></div>
-  <div class="ctl" role="group" aria-label="Viewport"><span class="lab">viewport</span><button type="button" data-vp="0">left</button><button type="button" data-vp="1">middle</button><button type="button" data-vp="2">right</button></div>
-  <div class="ctl" role="group" aria-label="Channel"><span class="lab">channel</span><button type="button" data-ch="screen">screen only</button><button type="button" data-ch="count">screen + object count</button></div>
-  <p class="verdict" id="render-verdict"></p>
-  <ol class="logic" start="4">
-    <li><b>A.</b> This observer cannot tell the two worlds apart with this channel.</li>
-    <li><b>B.</b> No possible observation can tell them apart.</li>
-    <li><b>C.</b> The two worlds are physically the same.</li>
-    <li>A does not give B: widen the channel and the difference can show. B does not give C. And failing to show C does not show that they differ. <span class="t d">derived</span></li>
-  </ol>
-  <div class="box change"><h3>What would change this</h3>A named channel on which "rendered" and "not rendered" give different records. Then the claim becomes a physics claim and can be tested.</div>
-  <div class="box reply"><h3>Reply</h3><blockquote id="r2"></blockquote><span class="n" id="r2n"></span></div>
-</section>
-
-<!-- Board 3 -->
-<section class="board" id="b-likelihood" data-view="likelihood">
-  <p class="eyebrow">Board 3 · finite</p>
-  <h2>If two worlds give the same report, are the theories equally good?</h2>
-  <ol class="logic">
-    <li>If states <i>a</i> and <i>b</i> give the same report, any judge that sees only the report gives them the same verdict. (Lean: <code>presentation_blind_spot</code>.) <span class="t d">derived</span></li>
-    <li>A theory is not one state. It assigns odds to states, and so to reports. Theories are compared by the odds they give the data that was recorded: the Bayes factor.</li>
-    <li>Equal reports for two states do not make two theories' odds equal. Try it below. <span class="t d">derived</span></li>
-  </ol>
-  <div class="pic" id="bf-svg"></div>
-  <div class="ctl"><label class="lab" for="bf-r">theory H2's weight on state a</label><input id="bf-r" type="range" min="5" max="100" step="5" value="50"><span class="out" id="bf-out"></span></div>
-  <ol class="logic" start="4">
-    <li>The Bayes factor is 1 only when both theories give the <i>same distribution</i> of reports, and only when that distribution is nonzero for what was seen. <span class="t d">derived</span></li>
-    <li>For a run of reports, multiplying single-report odds needs independence. One fair coin flipped twice and one flip copied twice agree on each report, yet give "TT" odds of ¼ and ½: a Bayes factor of 2. <span class="t d">derived</span></li>
-  </ol>
-  <div class="box change"><h3>What would change this</h3>A rendering theory that states its odds for some record, where ordinary physics gives different odds. Without that, its Bayes factor is undefined, not 1.</div>
-  <div class="box reply"><h3>Reply</h3><blockquote id="r3"></blockquote><span class="n" id="r3n"></span></div>
-</section>
-
-<!-- Board 4 -->
-<section class="board" id="b-paper" data-view="paper">
-  <p class="eyebrow">Board 4 · the paper</p>
-  <h2>What does the paper show, and how far does it reach?</h2>
-  <div class="stages">
-    <div class="stage" style="border-color:var(--teal)"><h3>1 · A mathematical model</h3><ul>
-      <li>Water conformational states as charged bosons in QED <span class="t s">supplied</span></li>
-      <li>A Dicke super-radiant pulse from those inputs <span class="t d">derived</span></li>
-      <li>The hologram, $|\varphi|^2\propto|r+o|^2$ in (A51), and the object wave <i>o</i> has no equation <span class="t s">supplied</span></li>
-      <li>Capacity $4n_rd/\lambda^3$: 2.5 PB vs 30 TB at 1 bit per synapse <span class="t d">derived</span></li>
-      <li>One simulation shown, with density dips of 1.3% to 21% <span class="t w">witnessed</span></li>
-    </ul></div>
-    <div class="stage open"><h3>2 · In living brains?</h3><ul>
-      <li>No measurement in this paper that brain water has these states. It cites one 2022 MRI study.</li>
-      <li>No hologram measured in tissue.</li>
-      <li>Manipulating memory is left to "a future experimental study". <span class="t w">witnessed</span></li>
-    </ul></div>
-    <div class="stage open"><h3>3 · About the unobserved?</h3><ul>
-      <li>The word "render" appears 0 times in the paper. <span class="t w">witnessed</span></li>
-      <li>It assumes an outside world ("the outside world of the observable phenomena"). It does not test one.</li>
-      <li>It calls how a quantum mind could perceive the world "yet another mystery altogether". <span class="t w">witnessed</span></li>
-    </ul></div>
+      <tr><td class="q">render</td><td><span class="t open">Open</span></td><td>No rule says what rendering is, or how to measure it.</td></tr>
+      <tr><td class="q">what is offscreen</td><td><span class="t sup">Supplied</span></td><td>A screen, and a place to look from.</td></tr>
+      <tr><td class="q">our consciousness</td><td><span class="t open">Open</span></td><td>From the same post: “it's our consciousness.” Named, with no carrier, record or rule.</td></tr>
+      <tr><td class="q">just like a video game</td><td><span class="t sup">Supplied</span></td><td>An analogy. It shows the claim can be pictured. It does not show the claim holds.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="so"><b>So</b>No part of the sentence points to a record of rendering yet. That does not make it false. It means nothing in it has been checked. The paper it linked is checked on board 5.</p>
+  <div class="turn">
+    <p class="lab">Your turn</p>
+    <p>“The fridge light goes off when the door closes.” Sort it.</p>
+    <details><summary>Show an answer</summary><p>Witnessed: each time you open the door, the light is on. Supplied: what happens while the door is shut. To get a record, leave a phone inside, filming. That adds a new way of looking, and the film shows the light going off. A claim about what nobody sees can be checked once someone adds a way to look.</p></details>
   </div>
-  <div class="tbl"><table>
-    <thead><tr><th>Capacity, recomputed</th><th class="r">paper</th><th class="r">unrounded</th></tr></thead>
-    <tbody>
-      <tr><td>$4n_rd/\lambda^3$ with $n_r$=1.3, d=2 mm, λ=500 nm</td><td class="r">8e10 bit/mm²</td><td class="r">8.32e10 bit/mm²</td></tr>
-      <tr><td>× neocortex area 2500 cm²</td><td class="r">2.5 PB</td><td class="r">2.6 PB</td></tr>
-      <tr><td>250×10¹² synapses × 1 bit</td><td class="r">30 TB</td><td class="r">31.25 TB</td></tr>
-    </tbody></table></div>
-  <ol class="logic">
-    <li>Every input to the capacity figure is chosen: wavelength, thickness, refractive index, area, and bits per synapse. The output compares one assumption with another. <span class="t s">supplied</span></li>
-    <li>Even if stage 2 were shown, it would describe how a brain stores information. It would not reach stage 3. <span class="t d">derived</span></li>
-  </ol>
-  <div class="box change"><h3>What would change this</h3>For stage 2: a measurement of the proposed coherent states or holograms in tissue. For stage 3: an argument from brain storage to the unobserved, which nobody has given.</div>
-  <div class="box reply"><h3>Reply</h3><blockquote id="r4"></blockquote><span class="n" id="r4n"></span></div>
+  <div class="row"><button type="button" class="flip" aria-expanded="false" aria-controls="back-1">Back page: the math</button><span class="pager"><button type="button" data-go="board-2">Next: split the word</button></span></div>
+  <div class="back" id="back-1" hidden>
+    <h3>The sort, written out</h3>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mn>1</mn></msub><mo mathvariant="normal">≠</mo><msub><mi>R</mi><mn>2</mn></msub><mspace width="2em"/><mtext>witnessed</mtext></mrow><annotation encoding="application/x-tex">R_1 \neq R_2 \qquad \text{witnessed}</annotation></semantics></math></span></div>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>L</mi><mn>2</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo>=</mo><msub><mi>L</mi><mn>2</mn></msub><mo separator="true">,</mo><mspace width="2em"/><msub><mi>R</mi><mn>1</mn></msub><mo>→</mo><msub><mi>R</mi><mn>2</mn></msub><mo separator="true">,</mo><mspace width="2em"/><mtext>a sound</mtext><mspace width="2em"/><mtext>supplied</mtext></mrow><annotation encoding="application/x-tex">L_2&#x27; = L_2, \qquad R_1 \to R_2, \qquad \text{a sound} \qquad \text{supplied}</annotation></semantics></math></span></div>
+    <p>Here R₁ and R₂ are the two records, and L₂′ = L₂ says the flat stroke is the second upright one. A question can be answered from the records only if it is about the witnessed line.</p>
+  </div>
 </section>
 
-<!-- Board 5 -->
-<section class="board" id="b-breaks" data-view="breaks">
-  <p class="eyebrow">Board 5 · the paper, continuum</p>
-  <h2>Where does the paper's own mathematics fail?</h2>
-  <h3>Appendix A: the gauge freezes the charge it needs to move</h3>
-  <ol class="logic">
-    <li>The paper sets $A^0=0$ and $\nabla\cdot\mathbf A=0$. Then $\partial^\nu F_{\nu0}=\partial^i(\partial_iA_0-\partial_0A_i)=0$. <span class="t d">derived</span></li>
-    <li>Its own (A7), $\partial^\nu F_{\nu 0}=J_0+c(\mathbf x)$, then forces $J_0=-e|\varphi|^2$ to stay fixed in time. <span class="t d">derived</span></li>
-    <li>The super-radiant transition current has $\nabla\cdot(\phi_0\nabla\phi_1-\phi_1\nabla\phi_0)=-2m(E_1-E_0)\,\phi_0\phi_1\neq0$, so by continuity the density must oscillate. The populations also move during the pulse. <span class="t d">derived</span></li>
-    <li>So, as written, Appendix A is consistent only for stationary states, and its radiating solution violates its own constraint. <span class="t d">derived</span></li>
+<!-- BOARD 2 -->
+<section class="board" id="board-2" aria-labelledby="h-b2" hidden>
+  <p class="eyebrow">Board 2 of 6 · <b>split the word</b></p>
+  <h2 id="h-b2">Which job does the universe skip?</h2>
+  <p class="claim">In a game, “render” covers three separate jobs. A game can skip any of them where the player is not looking.</p>
+  <div class="pic tw"><table>
+    <thead><tr><th>Where</th><th>Draw<br><small>make the pixels</small></th><th>Run<br><small>update the state</small></th><th>Keep<br><small>store the state</small></th></tr></thead>
+    <tbody>
+      <tr><td>Behind the player</td><td><span class="mk skip">skipped</span></td><td><span class="mk done">done</span></td><td><span class="mk done">done</span></td></tr>
+      <tr><td>Far away, saved</td><td><span class="mk skip">skipped</span></td><td><span class="mk skip">skipped</span></td><td><span class="mk done">done</span></td></tr>
+      <tr><td>Never visited</td><td><span class="mk skip">skipped</span></td><td><span class="mk skip">skipped</span></td><td><span class="mk skip">skipped</span> built from the world seed on arrival</td></tr>
+    </tbody>
+  </table></div>
+  <ol class="steps">
+    <li><span class="tx"><span class="tags"><span class="t cite">Cited</span></span>Games skip these jobs separately. Minecraft, for one, stops updating chunks far from the player, and builds chunks nobody has visited from the world seed on arrival, the same way every time for a given seed and game version.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>None of the three jobs follows from another. The table has a case of each: run and kept but not drawn, and kept but not run.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t sup">Supplied</span></span>Which job the universe skips. The post does not say, and each choice is a different claim.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>Each reading either predicts some record that would come out differently, or predicts the same records as a world that does every job.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t wit">Witnessed</span></span>“Not run” predicts that things stop changing while nobody looks. The records say otherwise. A clock left in an empty room keeps time. Ice in a closed box melts. Rock layers that formed with nobody watching carry a long history.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>“Not drawn”, and “skipped, then caught up in full when someone looks”, predict the same records as a world that does every job. No record can favor them over the ordinary account. Board 4 shows why.</span></li>
   </ol>
-  <h3>Appendix C: the simulation does not keep Gauss's law</h3>
-  <ol class="logic" start="5">
-    <li>From the paper's (A82)–(A86): $\partial_t(\nabla\cdot\mathbf E-J^0)=-M^2\nabla\cdot\mathbf A-\gamma\,\partial_t\nabla\cdot\mathbf A+v\,\nabla\cdot\mathbf A^{(n\pm1)}$. The Maxwell part cancels exactly; the added terms do not. <span class="t d">derived</span></li>
-    <li>The targets (10)–(11) are curl-free, so $\nabla\cdot\mathbf A\neq0$. The hologram is written in exactly the part that breaks. <span class="t d">derived</span></li>
-    <li>A rerun of the paper's simulation at its parameters reproduces its density dips. Along that run, the Gauss residual is as large as the charge change itself. <span class="t n">numerical</span></li>
-  </ol>
-  <div class="tbl"><table>
-    <thead><tr><th class="r">m·x⁰</th><th class="r">dip, rerun</th><th class="r">dip, paper</th><th class="r">Gauss residual ÷ charge change (rms)</th></tr></thead>
-    <tbody><tr><td class="r">5</td><td class="r">1.44%</td><td class="r">1.3%</td><td class="r">2.3</td></tr>
-    <tr><td class="r">20</td><td class="r">4.98%</td><td class="r">4.5%</td><td class="r">1.14</td></tr>
-    <tr><td class="r">40</td><td class="r">9.07%</td><td class="r">9.1%</td><td class="r">1.12</td></tr></tbody></table></div>
-  <p class="lede" style="font-size:14px">The stencil's own error, measured term by term, is about 10⁻⁷ against about 10⁻² from the added terms. The rerun has not been compared with the authors' code. <span class="t o">open</span></p>
-  <h3>Retention: how long would a record last?</h3>
-  <ol class="logic" start="8">
-    <li>For a record held by one energy barrier, keeping it for a time <i>t</i> at temperature <i>T</i> needs $\Delta E\approx k_BT\ln(t/\tau_0)$, where $\tau_0$ is an attempt time someone must supply. <span class="t s">supplied</span></li>
-    <li>The paper gives no barrier and no $\tau_0$. A collective record could have a much larger barrier. <span class="t o">open</span></li>
-  </ol>
-  <div class="ctl"><label class="lab" for="tau">attempt time τ₀</label><input id="tau" type="range" min="-13" max="0" step="1" value="-12"><span class="out" id="tau-out"></span></div>
-  <ol class="logic" start="10">
-    <li>Landauer's $k_BT\ln2$ (18.5 meV at 310 K) bounds the cost of irreversibly discarding a bit. It says nothing about how long a record lasts. <span class="t d">derived</span></li>
-  </ol>
-  <div class="box change"><h3>What would change this</h3>A transverse-only version of Appendix C that keeps Gauss's law and still forms the hologram, plus a stated barrier and attempt time.</div>
-  <div class="box reply"><h3>Two questions for the authors</h3><blockquote>Does $\nabla\cdot\mathbf E=J^0+e$ hold along your Figure 6 run? What energy barrier holds a record, with what attempt time?</blockquote></div>
+  <p class="so"><b>So</b>Name the job. Then name what you would see that you would not see otherwise. If the answer is “nothing”, the claim adds a story and no test.</p>
+  <div class="turn">
+    <p class="lab">Your turn</p>
+    <p>Someone says the universe skips the “run” job, then catches up at once whenever you look. What experiment would test that?</p>
+    <details><summary>Show an answer</summary><p>None that uses records. Every record would come out the same as if it had run all along, because the catch-up was built to erase the difference. That protects the claim from every test. For the same reason, no test can ever support it.</p></details>
+  </div>
+  <div class="row"><button type="button" class="flip" aria-expanded="false" aria-controls="back-2">Back page: the math</button><span class="pager"><button type="button" data-go="board-1">Back</button><button type="button" data-go="board-3">Next: count the channels</button></span></div>
+  <div class="back" id="back-2" hidden>
+    <h3>When a reading can be tested</h3>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>testable</mtext><mtext>  </mtext><mo>⟺</mo><mtext>  </mtext><mtext>some record </mtext><mi>r</mi><mtext> has </mtext><mi>P</mi><mo stretchy="false">(</mo><mi>r</mi><mo>∣</mo><mtext>skips</mtext><mo stretchy="false">)</mo><mo mathvariant="normal">≠</mo><mi>P</mi><mo stretchy="false">(</mo><mi>r</mi><mo>∣</mo><mtext>does every job</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{testable} \iff \text{some record } r \text{ has } P(r \mid \text{skips}) \neq P(r \mid \text{does every job})</annotation></semantics></math></span></div>
+    <p>“Not run” gives a stopped clock a high chance. The ordinary account gives it almost none. So the clock is a test, and every clock that kept time counts against “not run”.</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>caught up in full:</mtext><mspace width="1em"/><mi>P</mi><mo stretchy="false">(</mo><mi>r</mi><mo>∣</mo><mtext>skips</mtext><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>r</mi><mo>∣</mo><mtext>does every job</mtext><mo stretchy="false">)</mo><mtext>  for every </mtext><mi>r</mi></mrow><annotation encoding="application/x-tex">\text{caught up in full:}\quad P(r \mid \text{skips}) = P(r \mid \text{does every job}) \ \text{ for every } r</annotation></semantics></math></span></div>
+    <p>A full catch-up makes the two chances equal for every record by construction, so no record can tell them apart.</p>
+  </div>
 </section>
 
-<!-- Board 6 -->
-<section class="board" id="b-method" data-view="method">
-  <p class="eyebrow">Board 6 · method</p>
-  <h2>How to take a paper apart</h2>
-  <div class="pic" id="method-svg"></div>
-  <ol class="logic">
-    <li><b>Claim.</b> Quote it exactly, with its equation or page.</li>
-    <li><b>Break.</b> Find the weakest step. Try a counterexample, a recomputation, or a rerun of the paper's own equations.</li>
-    <li><b>Repair.</b> Keep what survives and restate it narrowly enough to check.</li>
-    <li><b>Retest.</b> Run the repaired claim against the counterexample that broke it. A repair that only survives one exchange is not done.</li>
-    <li><b>Residual obligation.</b> List every assumption the repair added, as something still owed.</li>
+<!-- BOARD 3 -->
+<section class="board" id="board-3" aria-labelledby="h-b3" hidden>
+  <p class="eyebrow">Board 3 of 6 · <b>count the channels</b></p>
+  <h2 id="h-b3">Can't tell on this channel, or can't tell at all?</h2>
+  <p class="claim">Take two worlds. World A has one extra thing in a place nobody looks. World B does not.</p>
+  <div class="pic"><svg viewBox="0 0 560 220" role="img" aria-label="Worlds A and B share three marks and differ only in a fourth place nobody looks. The channels in use read the first three marks and give the same report. A new channel reads the fourth place, where A and B differ." xmlns="http://www.w3.org/2000/svg">
+    <text x="214" y="22" fill="var(--mute)" font-size="12">nobody looks here</text>
+    <text x="20" y="66" fill="var(--ink)" font-size="15" font-weight="500">A</text>
+    <rect x="50" y="51" width="18" height="18" rx="3" fill="var(--wit)"/><rect x="88" y="51" width="18" height="18" rx="3" fill="var(--wit)"/><rect x="126" y="51" width="18" height="18" rx="3" fill="var(--wit)"/>
+    <rect x="236" y="51" width="18" height="18" rx="3" fill="var(--sup)" transform="rotate(45 245 60)"/>
+    <text x="20" y="156" fill="var(--ink)" font-size="15" font-weight="500">B</text>
+    <rect x="50" y="141" width="18" height="18" rx="3" fill="var(--wit)"/><rect x="88" y="141" width="18" height="18" rx="3" fill="var(--wit)"/><rect x="126" y="141" width="18" height="18" rx="3" fill="var(--wit)"/>
+    <text x="240" y="156" fill="var(--mute)" font-size="14">·</text>
+    <path d="M150 60 C 240 60 260 90 336 96" fill="none" stroke="var(--teal)" stroke-width="1.8"/>
+    <path d="M150 150 C 240 150 260 110 336 104" fill="none" stroke="var(--teal)" stroke-width="1.8"/>
+    <text x="344" y="96" fill="var(--teal)" font-size="12">channels in use</text>
+    <text x="344" y="113" fill="var(--teal)" font-size="12">same report for A and B</text>
+    <path d="M258 66 C 290 120 300 170 336 176" fill="none" stroke="var(--sup)" stroke-width="1.8" stroke-dasharray="5 4"/>
+    <path d="M252 156 C 290 170 300 180 336 182" fill="none" stroke="var(--sup)" stroke-width="1.8" stroke-dasharray="5 4"/>
+    <text x="344" y="176" fill="var(--sup)" font-size="12">a new channel</text>
+    <text x="344" y="193" fill="var(--sup)" font-size="12">A and B differ</text>
+  </svg></div>
+  <ol class="steps">
+    <li><span class="tx"><span class="tags"><span class="t sup">Supplied</span></span>A and B differ only where nobody looks.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t sup">Supplied</span></span>Read “nobody looks there” as: every channel in use reports A and B the same way. This is our reading of the post's word.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>So any rule that decides from those reports alone gives A and B the same verdict.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>Keep three claims apart. (a) These channels cannot tell A from B. (b) No channel could. (c) A and B are the same world. Step 3 proves (a) and nothing more. A new channel, like the phone in the fridge, can split A from B, so (a) does not give (b). Going from (b) to (c) takes an extra rule: worlds that no channel can split are the same. That rule is supplied.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>When there are more states than reports, two states must share a report. So anything with fewer possible reports than the states it looks at has blind spots. With at least as many reports as states, every state can get its own. Blind spots are ordinary. They are not a sign of a simulation.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t cite">Cited</span></span>The post set aside the question of a human observer versus a measurement device. That is the question the double slit can settle. When any device records which slit, the interference fringes go away. Whether a person ever reads the record makes no difference.</span></li>
   </ol>
-  <div class="tbl"><table>
-    <thead><tr><th>Our own errors, found this way</th><th>Repair</th></tr></thead>
-    <tbody>
-      <tr><td>"Equal reports give a Bayes factor of 1"</td><td>Only with equal report distributions, nonzero odds and, for sequences, independence (Board 3)</td></tr>
-      <tr><td>"Every finite observer has unreported differences"</td><td>Only when states outnumber reports</td></tr>
-      <tr><td>"Games keep simulating offscreen"</td><td>Drawing, simulating and keeping state are three different jobs</td></tr>
-      <tr><td>"The three readings are a chain"</td><td>A paused, saved chunk stops evolving and keeps its state (Board 2)</td></tr>
-      <tr><td>"One year needs 1.2 eV"</td><td>Only for one barrier with τ₀ = 1 ps; 0.46 eV for τ₀ = 1 s (Board 5)</td></tr>
-      <tr><td>"The Ward identity forbids longitudinal self-energy"</td><td>Wrong: media screen charge. The condition is four-dimensional transversality</td></tr>
-    </tbody></table></div>
-  <div class="box change"><h3>The rule that matters most</h3>Agreement is not evidence. Several language models reviewed this work, and their agreement counts for nothing. A claim stands only on a quoted record, an exact check, a proof, or a rerun.</div>
+  <p class="so"><b>So</b>To make the claim checkable, name a channel on which A and B would differ, and say what it would show.</p>
+  <div class="turn">
+    <p class="lab">Your turn</p>
+    <p>A thermometer shows one decimal place. It reads 20.0 for both 20.01° and 20.04°. Which of (a), (b) and (c) hold?</p>
+    <details><summary>Show an answer</summary><p>(a) holds: this thermometer cannot tell them apart. (b) fails: a finer thermometer can. (c) fails: they are different temperatures.</p></details>
+  </div>
+  <div class="row"><button type="button" class="flip" aria-expanded="false" aria-controls="back-3">Back page: the math</button><span class="pager"><button type="button" data-go="board-2">Back</button><button type="button" data-go="board-4">Next: compare chances</button></span></div>
+  <div class="back" id="back-3" hidden>
+    <h3>Blind spots, written out</h3>
+    <p>Let q be the report a channel gives for a state. If two states get the same report, every rule J that sees only the report gives them the same verdict:</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>q</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><mi>J</mi><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">(</mo><mi>q</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">)</mo><mo>=</mo><mi>J</mi><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">(</mo><mi>q</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">)</mo><mspace width="1em"/><mtext>for every rule </mtext><mi>J</mi><mtext> that reads only </mtext><mi>q</mi></mrow><annotation encoding="application/x-tex">q(a) = q(b) \;\Longrightarrow\; J\big(q(a)\big) = J\big(q(b)\big) \quad \text{for every rule } J \text{ that reads only } q</annotation></semantics></math></span></div>
+    <p>With S the set of states and P the set of reports, more states than reports forces a shared report. This is the pigeonhole principle:</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>S</mi><mi mathvariant="normal">∣</mi><mo>&gt;</mo><mi mathvariant="normal">∣</mi><mi>P</mi><mi mathvariant="normal">∣</mi><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><mtext>there are </mtext><mi>s</mi><mo mathvariant="normal">≠</mo><msup><mi>s</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mtext> with </mtext><mi>q</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mi>q</mi><mo stretchy="false">(</mo><msup><mi>s</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">|S| &gt; |P| \;\Longrightarrow\; \text{there are } s \neq s&#x27; \text{ with } q(s) = q(s&#x27;)</annotation></semantics></math></span></div>
+    <p>And the condition matters. With enough reports, no blind spot is forced:</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>S</mi><mi mathvariant="normal">∣</mi><mo>≤</mo><mi mathvariant="normal">∣</mi><mi>P</mi><mi mathvariant="normal">∣</mi><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><mtext>some </mtext><mi>q</mi><mtext> gives every state its own report</mtext></mrow><annotation encoding="application/x-tex">|S| \le |P| \;\Longrightarrow\; \text{some } q \text{ gives every state its own report}</annotation></semantics></math></span></div>
+  </div>
 </section>
+
+<!-- BOARD 4 -->
+<section class="board" id="board-4" aria-labelledby="h-b4" hidden>
+  <p class="eyebrow">Board 4 of 6 · <b>compare chances, not stories</b></p>
+  <h2 id="h-b4">Does matching the data make it evidence?</h2>
+  <p class="claim">The first reply in the thread said: if a simulation reproduces quantum mechanics exactly, the double-slit data cannot favor it. Here is what that rests on.</p>
+  <div class="pic"><svg viewBox="0 0 560 210" role="img" aria-label="Two separate fair coins give HH, HT, TH and TT a chance of one quarter each. One fair coin read twice gives HH and TT one half each and HT and TH zero. Each single reading is heads half the time in both, but heads-then-heads is one quarter against one half." xmlns="http://www.w3.org/2000/svg">
+    <text x="20" y="22" fill="var(--mute)" font-size="12">two separate fair coins</text>
+    <text x="300" y="22" fill="var(--mute)" font-size="12">one fair coin, read twice</text>
+    <g font-size="12">
+      <text x="20" y="50" fill="var(--teal)" font-weight="500">HH</text><rect x="56" y="38" width="100" height="16" rx="2" fill="var(--teal)"/><text x="162" y="50" fill="var(--teal)">1/4</text>
+      <text x="20" y="76" fill="var(--ink)">HT</text><rect x="56" y="64" width="100" height="16" rx="2" fill="var(--wit)"/><text x="162" y="76" fill="var(--mute)">1/4</text>
+      <text x="20" y="102" fill="var(--ink)">TH</text><rect x="56" y="90" width="100" height="16" rx="2" fill="var(--wit)"/><text x="162" y="102" fill="var(--mute)">1/4</text>
+      <text x="20" y="128" fill="var(--ink)">TT</text><rect x="56" y="116" width="100" height="16" rx="2" fill="var(--wit)"/><text x="162" y="128" fill="var(--mute)">1/4</text>
+      <text x="300" y="50" fill="var(--teal)" font-weight="500">HH</text><rect x="336" y="38" width="200" height="16" rx="2" fill="var(--teal)"/><text x="512" y="66" fill="var(--teal)">1/2</text>
+      <text x="300" y="76" fill="var(--ink)">HT</text><text x="336" y="76" fill="var(--mute)">0</text>
+      <text x="300" y="102" fill="var(--ink)">TH</text><text x="336" y="102" fill="var(--mute)">0</text>
+      <text x="300" y="128" fill="var(--ink)">TT</text><rect x="336" y="116" width="200" height="16" rx="2" fill="var(--wit)"/><text x="512" y="146" fill="var(--mute)">1/2</text>
+    </g>
+    <line x1="20" y1="160" x2="540" y2="160" stroke="var(--rule)"/>
+    <text x="20" y="180" fill="var(--mute)" font-size="12">each single reading: heads half the time, in both</text>
+    <text x="20" y="200" fill="var(--teal)" font-size="12" font-weight="500">heads-then-heads: 1/4 against 1/2, a factor of 2</text>
+  </svg></div>
+  <ol class="steps">
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>Measure evidence by a ratio: the chance of the data under one story, divided by its chance under the other. This is the Bayes factor. Above 1 favors the first story, below 1 the second, and exactly 1 favors neither.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>Allowing the same results is not enough. Story A gives heads 9 times in 10, story B 5 times in 10. Both allow heads. One head has a chance of 0.9 against 0.5, a factor of 1.8.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>Equal chances one reading at a time are not enough either. Take two separate fair coins, or one fair coin read twice. Each reading is heads half the time in both. Heads-then-heads has a chance of 1/4 against 1/2, a factor of 2. Compare the chance of the whole record, not its pieces.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>When two stories give every whole record the same chance, and the record has a chance above zero, the factor is exactly 1. That is the case the first reply named.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t sup">Supplied</span></span>The post's simulation gives no chances at all, so its factor cannot be computed yet.</span></li>
+  </ol>
+  <p class="so"><b>So</b>A story built to match the ordinary account on every record can never be favored over it by a record, and never counted against by one either. To become evidence, it has to risk a different number somewhere.</p>
+  <div class="turn">
+    <p class="lab">Your turn</p>
+    <p>Story X: the die is fair. Story Y: the die is fair, and someone unseen watches every roll. You roll a 4. What is the factor?</p>
+    <details><summary>Show an answer</summary><p>1. Both stories give a 4 a chance of 1/6. The roll says nothing for or against the watcher. Only a record whose chance the watcher changes could.</p></details>
+  </div>
+  <div class="row"><button type="button" class="flip" aria-expanded="false" aria-controls="back-4">Back page: the math</button><span class="pager"><button type="button" data-go="board-3">Back</button><button type="button" data-go="board-5">Next: find the sentence</button></span></div>
+  <div class="back" id="back-4" hidden>
+    <h3>The Bayes factor, with its conditions</h3>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>K</mi><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>D</mi><mo>∣</mo><msub><mi>H</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>D</mi><mo>∣</mo><msub><mi>H</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">K = \frac{P(D \mid H_1)}{P(D \mid H_2)}</annotation></semantics></math></span></div>
+    <p>Same reports allowed, different chances:</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mtext>heads</mtext><mo>∣</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>9</mn><mn>10</mn></mfrac></mstyle><mo separator="true">,</mo><mspace width="1em"/><mi>P</mi><mo stretchy="false">(</mo><mtext>heads</mtext><mo>∣</mo><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>5</mn><mn>10</mn></mfrac></mstyle><mo separator="true">,</mo><mspace width="1em"/><mi>K</mi><mo>=</mo><mn>1.8</mn></mrow><annotation encoding="application/x-tex">P(\text{heads} \mid A) = \tfrac{9}{10}, \quad P(\text{heads} \mid B) = \tfrac{5}{10}, \quad K = 1.8</annotation></semantics></math></span></div>
+    <p>Same chance for each reading, different chance for the record:</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mtext>HH</mtext><mo>∣</mo><mtext>two coins</mtext><mo stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo separator="true">,</mo><mspace width="1em"/><mi>P</mi><mo stretchy="false">(</mo><mtext>HH</mtext><mo>∣</mo><mtext>one coin read twice</mtext><mo stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo separator="true">,</mo><mspace width="1em"/><mi>K</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">P(\text{HH} \mid \text{two coins}) = \tfrac14, \quad P(\text{HH} \mid \text{one coin read twice}) = \tfrac12, \quad K = 2</annotation></semantics></math></span></div>
+    <p>Multiplying the chances of single readings gives the chance of the record only under independence. The coin read twice is the case where it fails:</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>d</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>d</mi><mi>n</mi></msub><mo>∣</mo><mi>H</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>P</mi><mo stretchy="false">(</mo><msub><mi>d</mi><mi>i</mi></msub><mo>∣</mo><mi>H</mi><mo stretchy="false">)</mo><mspace width="1em"/><mtext>only when the draws are independent</mtext></mrow><annotation encoding="application/x-tex">P(d_1, \dots, d_n \mid H) = \prod_{i=1}^{n} P(d_i \mid H) \quad \text{only when the draws are independent}</annotation></semantics></math></span></div>
+    <p>The first reply's case, with the condition it needs. The denominator must be above zero, or the ratio is not defined:</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>D</mi><mo>∣</mo><msub><mi>H</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>D</mi><mo>∣</mo><msub><mi>H</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><mi>K</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">P(D \mid H_1) = P(D \mid H_2) &gt; 0 \;\Longrightarrow\; K = 1</annotation></semantics></math></span></div>
+  </div>
+</section>
+
+<!-- BOARD 5 -->
+<section class="board" id="board-5" aria-labelledby="h-b5" hidden>
+  <p class="eyebrow">Board 5 of 6 · <b>find the sentence</b></p>
+  <h2 id="h-b5">Does the linked paper say it?</h2>
+  <p class="claim">A link supports a claim only if the linked text makes the claim. So read the paper and look for the sentence.</p>
+  <ol class="chain" aria-label="Three steps from the paper to the post's claim">
+    <li><span class="h">1 · The model</span><p>Equations, chosen inputs, and one simulated configuration.</p><span><span class="t der">Derived</span> <span class="t sup">from supplied inputs</span></span></li>
+    <li><span class="h">2 · In living brains?</span><p>Does this happen in real brain tissue?</p><span><span class="t open">Open</span> not tested in the paper</span></li>
+    <li class="need"><span class="h">3 · Where nobody looks?</span><p>Does it say what the universe does there? The post needs this step.</p><span><span class="t open">Open</span> not addressed</span></li>
+  </ol>
+  <ol class="steps">
+    <li><span class="tx"><span class="tags"><span class="t wit">Witnessed</span></span>The paper proposes a model. Coherent light from water in the brain (super-radiance) writes and reads holograms, with an estimated memory capacity of 2.5 petabytes in the cortex.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t wit">Witnessed</span></span>Its evidence is the model: equations, inputs, and one simulated configuration shown in three figures. It reports no measurement of its own.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t wit">Witnessed</span></span>The word “render” does not occur in it.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t wit">Witnessed</span></span>It puts the world first: “Vision is perhaps the most important link between the outside world of the observable phenomena and the inner life of our mind.” The world comes in, and the brain forms an image of it.</span></li>
+    <li><span class="tx"><span class="tags"><span class="t wit">Witnessed</span></span>On perception it is candid. How a quantum mind “could perceive the macro-world is yet another mystery altogether.”</span></li>
+    <li><span class="tx"><span class="tags"><span class="t der">Derived</span></span>So the paper assumes an outside world, models no observer, and leaves perception open. It neither supports nor refutes the post's claim. It does not address it.</span></li>
+  </ol>
+  <p class="so"><b>So</b>The paper is careful about what it does not know. The post asks it to carry a claim it never makes.</p>
+  <div class="turn">
+    <p class="lab">Your turn</p>
+    <p>A headline says a study “proves coffee makes you live longer.” What do you look for first?</p>
+    <details><summary>Show an answer</summary><p>The sentence in the study that says it. Then what that sentence rests on: a measurement (who, how many, compared with whom) or a model. Then compare the verbs. “Causes” and “is associated with” are different claims.</p></details>
+  </div>
+  <div class="row"><button type="button" class="flip" aria-expanded="false" aria-controls="back-5">Back page: where it says it</button><span class="pager"><button type="button" data-go="board-4">Back</button><button type="button" data-go="board-6">Next: check the math</button></span></div>
+  <div class="back" id="back-5" hidden>
+    <h3>Where each line sits in the paper</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Line</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>2.5 PB in the cortex, against 30 TB for one bit per synapse</td><td>Section 3 (memory capacity), repeated in the Discussion</td></tr>
+        <tr><td>One simulated configuration</td><td>Section 4 and Appendix C, Figures 4 to 6</td></tr>
+        <tr><td>“yet another mystery altogether”</td><td>Discussion</td></tr>
+        <tr><td>“Vision is perhaps the most important link …”</td><td>Section 6, Concluding Remarks</td></tr>
+        <tr><td>“render”</td><td>Nowhere: the word occurs zero times</td></tr>
+      </tbody>
+    </table></div>
+    <p>What would test step 2: a measurement of super-radiance in living brain tissue, and a stored pattern read back. What would test step 3 is the channel board 3 asks for.</p>
+  </div>
+</section>
+
+<!-- BOARD 6 -->
+<section class="board" id="board-6" aria-labelledby="h-b6" hidden>
+  <p class="eyebrow">Board 6 of 6 · <b>check it on its own terms</b></p>
+  <h2 id="h-b6">Where does the paper's math hold?</h2>
+  <p class="claim">A fair test uses the paper's own equations and inputs. Give credit where they hold, name the exact step where they break, and keep the rest open.</p>
+  <ul class="ledger">
+    <li><span class="st holds">Holds</span><span class="tx"><span class="tags"><span class="t der">Derived</span></span><b>The capacity arithmetic.</b> From the paper's own inputs, 2.6 petabytes without its intermediate rounding (the paper says 2.5), against 31 terabytes for one bit per synapse (the paper says 30). The inputs are supplied: a 2 mm cortex treated as one uniform optical medium, 500 nm light, and a storage bound taken from another paper. Almost all of the 2.6 petabytes comes from counting the 2 mm thickness as storage. A hologram on the surface alone, over the same area, holds about 0.5 terabytes, less than the synapse estimate.</span></li>
+    <li><span class="st breaks">Breaks</span><span class="tx"><span class="tags"><span class="t der">Derived</span></span><b>The light pulse in Appendix A.</b> The paper fixes its fields with two conditions. Put into its own equation (A7), they force the charge density to stay constant. The pulse needs that density to oscillate. So the conditions used to derive the pulse rule the pulse out. The paper calls the two conditions the Coulomb gauge, which fixes only the second and lets the scalar potential follow the charge. Done that way, the pulse comes back, at the price of an extra Coulomb term the paper would have to show is small.</span></li>
+    <li><span class="st breaks">Breaks</span><span class="tx"><span class="tags"><span class="t der">Derived</span><span class="t num">Numerical</span></span><b>The simulations in Appendix C.</b> Gauss's law ties the electric field to the charge at every moment. The paper's Maxwell terms keep it. Three added terms break it: a mass term, a damping term, and the coupling between layers. In a rerun of the paper's simulation, the error in Gauss's law is 1.1 to 2.3 times the size of the change in charge it should match.</span></li>
+    <li><span class="st gap">Does not follow</span><span class="tx"><span class="tags"><span class="t der">Derived</span><span class="t sup">Supplied</span></span><b>“No risk of thermal degradation.”</b> The paper compares a 2.4 eV photon with 20 meV, the least heat released in erasing one bit at body temperature, under conditions given on the back page. That bound is about erasing, and the photon's energy is not a barrier. It says nothing about how long a stored pattern lasts. A record held by one energy barrier needs about 1.2 eV to last a year at body temperature if the barrier is tested every picosecond, or 0.46 eV if every second. That rate is supplied, and the paper gives no barrier.</span></li>
+    <li><span class="st assumed">Assumed</span><span class="tx"><span class="tags"><span class="t wit">Witnessed</span></span><b>The hologram.</b> The paper supposes the stored pattern is the interference of a reference wave and an object wave. The object wave has no equation in the model. So the model shows how a hologram would be read once one is written.</span></li>
+    <li><span class="st open">Open</span><span class="tx"><span class="tags"><span class="t open">Open</span></span><b>Still unsettled.</b> The size of the input (the paper says about 3, and our recursion of its formulas gives 2.13). The near-field term dropped in Appendix A. The value of the mass scale m. A comparison of our rerun with the authors' own code. A record spread over many molecules, which could have a larger barrier than one molecule.</span></li>
+  </ul>
+  <p class="so"><b>So</b>The arithmetic holds. Two derivations break under the paper's own equations. The central step, writing the hologram, is assumed. None of it is about what the universe renders.</p>
+  <div class="turn">
+    <p class="lab">Your turn</p>
+    <p>A paper says its simulation output “approaches the target”. What do you ask?</p>
+    <details><summary>Show an answer</summary><p>Who chose the target? Is there an error number, or only the word “approaches”? Do the equations keep the laws they rely on? This paper picks its own targets, says the output approaches them “due to damping term”, and gives no error measure.</p></details>
+  </div>
+  <div class="row"><button type="button" class="flip" aria-expanded="false" aria-controls="back-6">Back page: the math</button><span class="pager"><button type="button" data-go="board-5">Back</button><button type="button" data-go="method">Next: the method</button></span></div>
+  <div class="back" id="back-6" hidden>
+    <h3>Appendix A: the two conditions freeze the charge</h3>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>A</mi><mn>0</mn></msup><mo>=</mo><mn>0</mn><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><mi mathvariant="normal">∇</mi><mo>⋅</mo><mi mathvariant="bold">E</mi><mo>=</mo><mo>−</mo><mtext> </mtext><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi mathvariant="normal">∇</mi><mo>⋅</mo><mi mathvariant="bold">A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A^0 = 0 \;\Longrightarrow\; \nabla\cdot\mathbf E = -\,\partial_t(\nabla\cdot\mathbf A)</annotation></semantics></math></span></div>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>(A7):</mtext><mspace width="1em"/><mi mathvariant="normal">∇</mi><mo>⋅</mo><mi mathvariant="bold">E</mi><mo>=</mo><msub><mi>J</mi><mn>0</mn></msub><mo>=</mo><mo>−</mo><mi>e</mi><mtext> </mtext><mo stretchy="false">∣</mo><mi>φ</mi><msup><mo stretchy="false">∣</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\text{(A7):}\quad \nabla\cdot\mathbf E = J_0 = -e\,\lvert\varphi\rvert^2</annotation></semantics></math></span></div>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">∇</mi><mo>⋅</mo><mi mathvariant="bold">A</mi><mo>=</mo><mn>0</mn><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mo stretchy="false">∣</mo><mi>φ</mi><msup><mo stretchy="false">∣</mo><mn>2</mn></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\nabla\cdot\mathbf A = 0 \;\Longrightarrow\; \partial_t \lvert\varphi\rvert^2 = 0</annotation></semantics></math></span></div>
+    <p>The paper sets the time-independent part of (A7) to zero. With it kept, the density can only be static. The pulse comes from the part of the density that oscillates at the transition frequency, so either way there is no pulse. The repair keeps ∇·A = 0 and lets the scalar potential solve Poisson's equation:</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi mathvariant="normal">∇</mi><mn>2</mn></msup><msup><mi>A</mi><mn>0</mn></msup><mo>=</mo><mo>−</mo><msub><mi>J</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\nabla^2 A^0 = -J_0</annotation></semantics></math></span></div>
+    <p>Then (A7) no longer forces the density to stay fixed, and the pulse returns. The new Coulomb term is of order e²N/L, and the paper would have to show it is negligible.</p>
+    <h3>Appendix C: what breaks Gauss's law</h3>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">(</mo><mi mathvariant="normal">∇</mi><mo>⋅</mo><mi mathvariant="bold">E</mi><mo>−</mo><msup><mi>J</mi><mn>0</mn></msup><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">)</mo><mo>=</mo><mo>−</mo><msup><mi>M</mi><mn>2</mn></msup><mtext> </mtext><mi mathvariant="normal">∇</mi><mo>⋅</mo><mi mathvariant="bold">A</mi><mtext>  </mtext><mo>−</mo><mtext>  </mtext><mi>γ</mi><mtext> </mtext><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mi mathvariant="normal">∇</mi><mo>⋅</mo><mi mathvariant="bold">A</mi><mtext>  </mtext><mo>+</mo><mtext>  </mtext><mi>v</mi><mtext> </mtext><mi mathvariant="normal">∇</mi><mo>⋅</mo><msup><mi mathvariant="bold">A</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>±</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\partial_t\big(\nabla\cdot\mathbf E - J^0\big) = -M^2\,\nabla\cdot\mathbf A \;-\; \gamma\,\partial_t \nabla\cdot\mathbf A \;+\; v\,\nabla\cdot\mathbf A^{(n\pm1)}</annotation></semantics></math></span></div>
+    <p>Everything else cancels exactly. The three terms on the right are the mass term M², the damping γ and the layer coupling v. This uses e²|φ|²/m, as in (A71) and (A82). The e|φ|²/m printed in (A76) and (A78) would break Gauss's law even without the added terms, so it is probably a typo. The rerun matches the paper's density dips to within about 10%, so it is very likely the same simulation. Nobody has yet compared it with the authors' code.</p>
+    <h3>Retention: how long a record lasts</h3>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>E</mi><mo>=</mo><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi><mi>ln</mi><mo>⁡</mo><mfrac><mi>t</mi><msub><mi>τ</mi><mn>0</mn></msub></mfrac><mo separator="true">,</mo><mspace width="2em"/><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi><msub><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">∣</mo><mrow><mn>310</mn><mtext> </mtext><mi mathvariant="normal">K</mi></mrow></msub><mo>=</mo><mn>26.7</mn><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">V</mi></mrow></mrow><annotation encoding="application/x-tex">\Delta E = k_B T \ln\frac{t}{\tau_0}, \qquad k_B T\big|_{310\,\mathrm K} = 26.7\ \mathrm{meV}</annotation></semantics></math></span></div>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>t</mi><mo>=</mo><mn>1</mn><mtext> </mtext><mrow><mi mathvariant="normal">y</mi><mi mathvariant="normal">r</mi></mrow><mo>:</mo><mspace width="2em"/><msub><mi>τ</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn><mtext> </mtext><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">s</mi></mrow><mo>⇒</mo><mi mathvariant="normal">Δ</mi><mi>E</mi><mo>=</mo><mn>1.20</mn><mtext> </mtext><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">V</mi></mrow><mo separator="true">,</mo><mspace width="2em"/><msub><mi>τ</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn><mtext> </mtext><mi mathvariant="normal">s</mi><mo>⇒</mo><mi mathvariant="normal">Δ</mi><mi>E</mi><mo>=</mo><mn>0.461</mn><mtext> </mtext><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">V</mi></mrow></mrow><annotation encoding="application/x-tex">t = 1\ \mathrm{yr}: \qquad \tau_0 = 1\ \mathrm{ps} \Rightarrow \Delta E = 1.20\ \mathrm{eV}, \qquad \tau_0 = 1\ \mathrm s \Rightarrow \Delta E = 0.461\ \mathrm{eV}</annotation></semantics></math></span></div>
+    <p>Here τ₀ is how often the barrier is tested. It is an input. The formula assumes one barrier. A photon's energy does not enter: once the photon is absorbed, what holds the pattern in place is the barrier, and the paper names none.</p>
+    <h3>What the erasure bound says</h3>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi><mi>ln</mi><mo>⁡</mo><mn>2</mn><msub><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">∣</mo><mrow><mn>310</mn><mtext> </mtext><mi mathvariant="normal">K</mi></mrow></msub><mo>=</mo><mn>18.5</mn><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">V</mi></mrow><mo separator="true">,</mo><mspace width="2em"/><mfrac><mrow><mi>h</mi><mi>c</mi></mrow><mrow><mn>500</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">m</mi></mrow></mrow></mfrac><mo>=</mo><mn>2.48</mn><mtext> </mtext><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">V</mi></mrow></mrow><annotation encoding="application/x-tex">k_B T \ln 2 \big|_{310\,\mathrm K} = 18.5\ \mathrm{meV}, \qquad \frac{hc}{500\ \mathrm{nm}} = 2.48\ \mathrm{eV}</annotation></semantics></math></span></div>
+    <p>k<sub>B</sub>T ln 2 is the least heat released when one bit is erased into surroundings at temperature T, under three conditions: the bit's value is unknown, it carries a full bit of uncertainty, and nothing kept is correlated with it. If an identical copy is kept, the bit can be reset reversibly at no such cost. The bound is about erasing, and says nothing about retention. The paper rounds 18.5 meV to 20 meV and 2.48 eV to 2.4 eV.</p>
+    <h3>Capacity</h3>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><mn>4</mn><mtext> </mtext><msub><mi>n</mi><mi>r</mi></msub><mtext> </mtext><mi>d</mi></mrow><msup><mi>λ</mi><mn>3</mn></msup></mfrac><mo>=</mo><mfrac><mrow><mn>4</mn><mo>×</mo><mn>1.3</mn><mo>×</mo><mn>2</mn><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">m</mi></mrow></mrow><mrow><mo stretchy="false">(</mo><mn>500</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">m</mi></mrow><msup><mo stretchy="false">)</mo><mn>3</mn></msup></mrow></mfrac><mo>=</mo><mn>8.32</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>10</mn></msup><mtext> </mtext><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">m</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup></mrow></mrow><annotation encoding="application/x-tex">\frac{4\,n_r\,d}{\lambda^3} = \frac{4 \times 1.3 \times 2\ \mathrm{mm}}{(500\ \mathrm{nm})^3} = 8.32 \times 10^{10}\ \mathrm{bit/mm^2}</annotation></semantics></math></span></div>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>8.32</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>10</mn></msup><mtext> </mtext><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">m</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup></mrow><mo>×</mo><mn>2500</mn><mtext> </mtext><mrow><mi mathvariant="normal">c</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup></mrow><mo>=</mo><mn>2.08</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>16</mn></msup><mtext> </mtext><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><mo>=</mo><mn>2.6</mn><mtext> </mtext><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">B</mi></mrow></mrow><annotation encoding="application/x-tex">8.32 \times 10^{10}\ \mathrm{bit/mm^2} \times 2500\ \mathrm{cm^2} = 2.08 \times 10^{16}\ \mathrm{bit} = 2.6\ \mathrm{PB}</annotation></semantics></math></span></div>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>2.5</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>14</mn></msup><mtext> synapses</mtext><mo>×</mo><mn>1</mn><mtext> </mtext><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><mo>=</mo><mn>31.25</mn><mtext> </mtext><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">B</mi></mrow></mrow><annotation encoding="application/x-tex">2.5 \times 10^{14}\ \text{synapses} \times 1\ \mathrm{bit} = 31.25\ \mathrm{TB}</annotation></semantics></math></span></div>
+    <p>The same bound on the surface alone, with no thickness:</p>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mn>4</mn><msup><mi>λ</mi><mn>2</mn></msup></mfrac><mo>×</mo><mn>2500</mn><mtext> </mtext><mrow><mi mathvariant="normal">c</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup></mrow><mo>=</mo><mfrac><mn>4</mn><mrow><mo stretchy="false">(</mo><mn>500</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">m</mi></mrow><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></mfrac><mo>×</mo><mn>2500</mn><mtext> </mtext><mrow><mi mathvariant="normal">c</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup></mrow><mo>=</mo><mn>4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>12</mn></msup><mtext> </mtext><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><mo>=</mo><mn>0.5</mn><mtext> </mtext><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">B</mi></mrow></mrow><annotation encoding="application/x-tex">\frac{4}{\lambda^2} \times 2500\ \mathrm{cm^2} = \frac{4}{(500\ \mathrm{nm})^2} \times 2500\ \mathrm{cm^2} = 4 \times 10^{12}\ \mathrm{bit} = 0.5\ \mathrm{TB}</annotation></semantics></math></span></div>
+    <div class="math"><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><msub><mi>n</mi><mi>r</mi></msub><mtext> </mtext><mi>d</mi></mrow><mi>λ</mi></mfrac><mo>=</mo><mfrac><mrow><mn>1.3</mn><mo>×</mo><mn>2</mn><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">m</mi></mrow></mrow><mrow><mn>500</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">m</mi></mrow></mrow></mfrac><mo>=</mo><mn>5200</mn><mo separator="true">,</mo><mspace width="2em"/><mn>0.5</mn><mtext> </mtext><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">B</mi></mrow><mo>×</mo><mn>5200</mn><mo>=</mo><mn>2.6</mn><mtext> </mtext><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">B</mi></mrow></mrow><annotation encoding="application/x-tex">\frac{n_r\,d}{\lambda} = \frac{1.3 \times 2\ \mathrm{mm}}{500\ \mathrm{nm}} = 5200, \qquad 0.5\ \mathrm{TB} \times 5200 = 2.6\ \mathrm{PB}</annotation></semantics></math></span></div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="board" id="method" aria-labelledby="h-m" hidden>
+  <p class="eyebrow">The method behind every board</p>
+  <h2 id="h-m">How to take a claim apart</h2>
+  <ol class="method">
+    <li><span>State the claim in one sentence, in the speaker's own words.</span></li>
+    <li><span>Sort its parts: witnessed, derived, numerical, cited, supplied, open.</span></li>
+    <li><span>Try to break each part. Look for a counterexample, or a check that fails.</span></li>
+    <li><span>Repair what broke, and write down what changed and why.</span></li>
+    <li><span>Run the check again on the repair.</span></li>
+    <li><span>List what is still owed.</span></li>
+  </ol>
+  <p class="claim">We ran this on our own replies too, and found our own mistakes. One was a wrong fact about how Minecraft stores its world. Another was a quote from the paper read as being about the unobserved world, when it is about the observed one. Both are fixed above.</p>
+  <p class="so"><b>Rule</b>Several AI reviewers checked this work, and their agreement counts for nothing. What counts is a check anyone can run again: a quote you can find, a computation, or a machine-checked proof.</p>
+  <p class="claim">Every step on these boards has such a check behind it. The full record lists each one, with the paper's equations, the computations and the proofs.</p>
+  <div class="row"><span class="pager"><button type="button" data-go="board-6">Back</button><button type="button" data-go="board-1">Start again</button></span></div>
+</section>
+
 </main>
-
-<footer>Files: <code>education/999_external_publications_general_media/threads_simulation_and_consciousness/</code> in the theory_of_finite_quantum_mechanics repository. The checks are in <code>code/</code> and the finite proofs in <code>lean4/ThreadsReply.lean</code>. No expert human review yet.</footer>
+<footer>Written to be read by anyone. The tags say what each line rests on, so you can check the ones you doubt.</footer>
 </div>
 
 <script>
-const S=(b,vb="0 0 520 220")=>`<svg viewBox="${vb}" role="img" xmlns="http://www.w3.org/2000/svg">${b}</svg>`;
-const W="var(--wit)",SU="var(--supplied)",T="var(--teal)",N="var(--no)",I="var(--ink)",M="var(--mute)",R="var(--rule)";
+(function(){
+  const ids=["board-1","board-2","board-3","board-4","board-5","board-6","method"];
+  const tabs=[...document.querySelectorAll("#tabs a")];
+  function show(id,scroll){
+    if(!ids.includes(id)) id="board-1";
+    ids.forEach(b=>{document.getElementById(b).hidden=(b!==id);});
+    tabs.forEach(a=>a.setAttribute("aria-current",a.dataset.b===id?"true":"false"));
+    const cur=tabs.find(a=>a.dataset.b===id); if(cur&&cur.scrollIntoView) cur.scrollIntoView({block:"nearest",inline:"nearest"});
+    if(scroll){ const n=document.querySelector("nav"); window.scrollTo({top:Math.max(0,n.offsetTop-4),behavior:"auto"}); }
+  }
+  function go(id){ if(location.hash!=="#"+id){ location.hash=id; } else { show(id,true); } }
+  window.addEventListener("hashchange",()=>show(location.hash.slice(1),true));
+  document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
+  document.querySelectorAll("button.flip").forEach(b=>b.addEventListener("click",()=>{
+    const el=document.getElementById(b.getAttribute("aria-controls")); const open=el.hidden;
+    el.hidden=!open; b.setAttribute("aria-expanded",open?"true":"false");
+    b.textContent=(open?"Front page":(b.dataset.label||b.textContent));
+  }));
+  document.querySelectorAll("button.flip").forEach(b=>{b.dataset.label=b.textContent;});
+  show(location.hash.slice(1),false);
 
-/* Replies: plain logic, each at most 500 characters (checked below) */
-const REPLIES={
- r1:"Two records differ: that is what was observed. \"A tree fell and made a sound\" adds five things neither record shows: that it is the same tree, which record came first, a fall between them, air carrying a wave, and someone hearing it. Each is a reasonable assumption, but each is an assumption. Which of them do you count as observed, and how?",
- r2:"\"Doesn't render offscreen\" can mean three things: it stops existing, it stops evolving, or nobody experiences it. The third is true of everything we don't look at and needs no simulation. The first two are physics claims. A frozen world would lag behind a running one once we look again. Which do you mean, and what record would show the difference?",
- r3:"Two worlds can give the same screen and still not be equally likely. Theories are judged by the odds they give to what we record. Ordinary physics gives odds for every detector click. What odds does your rendering theory give that ordinary physics doesn't? If it gives the same odds for everything, the data can't favour it. If it gives none, it can't be scored at all.",
- r4:"I read the paper. It models holographic memory in brain water, estimates a storage capacity from chosen inputs, and shows one simulation. The word \"render\" never appears, and it assumes an outside world rather than testing one. Even if the brain mechanism were confirmed, it would describe how a brain stores information. It would not tell us what happens to things nobody is watching."
-};
-for(const k in REPLIES){ const t=REPLIES[k]; document.getElementById(k).textContent=t; document.getElementById(k+"n").textContent=`${t.length} characters`+(t.length>500?" (over 500)":""); }
-
-/* Board 1: the tree */
-const TREE=[["w","witnessed","R1 and R2 differ, read as lines."],["s","supplied","L1′ is L1, and L2′ is L2: the same objects in both."],["s","supplied","R1 came before R2. These two records carry no clock."],["s","supplied","Something happened between them: a fall."],["s","supplied","The fall sent pressure waves through air."],["o","open","Someone heard it. That needs a receiver and a record."]];
-let treeN=1;
-function drawTree(){
-  const c=(i,col)=>i<treeN?col:"var(--rule)";
-  document.getElementById("tree-svg").innerHTML=S(`
-   <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${c(2,SU)}"/></marker></defs>
-   <text x="20" y="22" fill="${M}" font-size="12">R1</text>
-   <line x1="60" y1="190" x2="60" y2="70" stroke="${W}" stroke-width="7" stroke-linecap="round"/><line x1="120" y1="190" x2="120" y2="70" stroke="${W}" stroke-width="7" stroke-linecap="round"/>
-   <text x="360" y="22" fill="${M}" font-size="12">R2</text>
-   <line x1="390" y1="190" x2="390" y2="70" stroke="${W}" stroke-width="7" stroke-linecap="round"/><line x1="430" y1="186" x2="510" y2="186" stroke="${W}" stroke-width="7" stroke-linecap="round"/>
-   <text x="175" y="40" fill="${c(0,W)}" font-size="12">differ (read as lines)</text>
-   <path d="M120 60 Q 255 10 470 170" fill="none" stroke="${c(1,SU)}" stroke-width="2" stroke-dasharray="5 5"/><text x="200" y="66" fill="${c(1,SU)}" font-size="12">same tree?</text>
-   <line x1="160" y1="110" x2="340" y2="110" stroke="${c(2,SU)}" stroke-width="2" marker-end="url(#ar)"/><text x="200" y="102" fill="${c(2,SU)}" font-size="12">before → after</text>
-   <text x="200" y="134" fill="${c(3,SU)}" font-size="12">a fall in between</text>
-   ${[0,1,2].map(k=>`<path d="M${200+k*22} 175 q 8 -12 0 -24" fill="none" stroke="${c(4,SU)}" stroke-width="2"/>`).join("")}<text x="270" y="168" fill="${c(4,SU)}" font-size="12">waves in air</text>
-   <text x="200" y="206" fill="${c(5,N)}" font-size="12">heard by whom?</text>`);
-  document.getElementById("tree-steps").innerHTML=TREE.map((t,i)=>`<li data-on="${i<treeN}"><span class="t ${t[0]}">${t[1]}</span><span>${t[2]}</span></li>`).join("");
-  document.getElementById("tree-count").textContent=`${treeN} of ${TREE.length} admitted`;
-  document.getElementById("tree-back").disabled=treeN<=1; document.getElementById("tree-next").disabled=treeN>=TREE.length;
-  document.getElementById("tree-verdict").textContent= treeN===1?"Only a difference is witnessed so far.":`${treeN-1} assumption${treeN>2?"s":""} on top of one witnessed difference.`;
-}
-document.getElementById("tree-next").onclick=()=>{ if(treeN<TREE.length){treeN++;drawTree();} };
-document.getElementById("tree-back").onclick=()=>{ if(treeN>1){treeN--;drawTree();} };
-drawTree();
-
-/* Board 2: same screen, different worlds (world A has one extra object, column 7) */
-let vp=1, ch="screen"; const COLS=9, VIEW=3, base=[[1,1],[4,2],[5,0]], extra=[7,1];
-const inView=x=>x>=vp*3&&x<vp*3+VIEW;
-const report=w=>{const o=w==="A"?[...base,extra]:base; const s=o.filter(p=>inView(p[0])).map(p=>p.join(",")).sort().join(";"); return ch==="count"?s+"|n="+o.length:s;};
-function drawRender(){
-  const row=(y0,w)=>{const o=w==="A"?[...base,extra]:base; return `<text x="4" y="${y0+16}" fill="${M}" font-size="12">${w}</text>`+
-    Array.from({length:COLS},(_,x)=>Array.from({length:3},(_,y)=>`<rect x="${40+x*52}" y="${y0+y*26}" width="50" height="24" rx="3" fill="${inView(x)?"var(--wit-soft)":"none"}" stroke="${R}"/>`).join("")).join("")+
-    o.map(p=>`<circle cx="${40+p[0]*52+25}" cy="${y0+p[1]*26+12}" r="7" fill="${p===extra?SU:W}"/>`).join("")+
-    `<rect x="${40+vp*3*52-2}" y="${y0-2}" width="${VIEW*52+2}" height="80" fill="none" stroke="${W}" stroke-width="2.5"/>`;};
-  document.getElementById("render-svg").innerHTML=S(row(6,"A")+row(100,"B"),"0 0 520 182");
-  document.querySelectorAll("[data-vp]").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.vp===vp)));
-  document.querySelectorAll("[data-ch]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.ch===ch)));
-  const same=report("A")===report("B");
-  document.getElementById("render-verdict").textContent= same?"Same report from A and B on this channel. That is claim A only. Move the viewport right, or add a count.":(ch==="count"&&!inView(extra[0])?"Different reports. The count separates A from B though the extra object is never on screen.":"Different reports. This view shows the extra object.");
-}
-document.querySelectorAll("[data-vp]").forEach(b=>b.onclick=()=>{vp=+b.dataset.vp;drawRender();});
-document.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>{ch=b.dataset.ch;drawRender();});
-drawRender();
-
-/* Board 3: Bayes factor. States a,b report 0; state c reports 1. H1 = {a: 1/2, b: 1/2}. H2 = {a: r, c: 1-r}. Data: report 0. */
-function drawBF(){
-  const r=+document.getElementById("bf-r").value/100, p1=1, p2=r, bf=p1/p2;
-  const bar=(x,h,col,lab,val)=>`<rect x="${x}" y="${170-h*130}" width="70" height="${h*130}" rx="3" fill="${col}"/><text x="${x}" y="190" fill="${M}" font-size="12">${lab}</text><text x="${x}" y="${162-h*130}" fill="${I}" font-size="12">${val}</text>`;
-  document.getElementById("bf-svg").innerHTML=S(`
-   <text x="10" y="20" fill="${M}" font-size="12">states a and b both report 0; state c reports 1. Recorded: 0.</text>
-   <line x1="40" y1="170" x2="300" y2="170" stroke="${R}"/>
-   ${bar(70,p1,W,"P(0 | H1)","1")}${bar(190,p2,SU,"P(0 | H2)",p2.toFixed(2))}
-   <text x="330" y="80" fill="${M}" font-size="12">H1 = ½ a + ½ b</text><text x="330" y="100" fill="${M}" font-size="12">H2 = ${r.toFixed(2)} a + ${(1-r).toFixed(2)} c</text>
-   <text x="330" y="140" fill="${T}" font-size="16">Bayes factor = ${bf.toFixed(2)}</text>`);
-  document.getElementById("bf-out").textContent=`${r.toFixed(2)} → factor ${bf.toFixed(2)}`;
-}
-document.getElementById("bf-r").addEventListener("input",drawBF); drawBF();
-
-/* Board 5: retention barrier for one year at 310 K */
-const kB=8.617333262e-5, Tk=310, YEAR=31557600;
-function drawTau(){
-  const e=+document.getElementById("tau").value, tau=Math.pow(10,e), dE=kB*Tk*Math.log(YEAR/tau);
-  const lab=e===-12?"1 ps":e===0?"1 s":e===-9?"1 ns":e===-6?"1 µs":e===-3?"1 ms":`10^${e} s`;
-  document.getElementById("tau-out").textContent=`τ₀ = ${lab}  →  ΔE for one year ≈ ${dE.toFixed(3)} eV`;
-}
-document.getElementById("tau").addEventListener("input",drawTau); drawTau();
-
-/* Board 6: the cycle */
-document.getElementById("method-svg").innerHTML=S(["claim","break","repair","retest","obligation"].map((s,i)=>{const x=10+i*102;return `<rect x="${x}" y="30" width="92" height="44" rx="8" fill="${i===1?"var(--no-soft)":i===3?"var(--teal-soft)":"var(--paper)"}" stroke="${i===1?N:i===3?T:R}"/><text x="${x+10}" y="57" fill="${I}" font-size="13">${s}</text>`+(i<4?`<path d="M${x+92} 52 h10" stroke="${I}" stroke-width="1.5"/>`:"");}).join("")+`<path d="M470 76 C 470 110 330 110 330 78" fill="none" stroke="${T}" stroke-width="1.5" stroke-dasharray="4 4"/><text x="300" y="118" fill="${T}" font-size="11">a new obligation reopens the cycle</text>`,"0 0 520 130");
-
-/* Routing: one board per view, chosen by #name */
-const VIEWS=["witnessed","offscreen","likelihood","paper","breaks","method"];
-function route(){
-  const h=location.hash.slice(1), v=VIEWS.includes(h)?h:"witnessed";
-  document.querySelectorAll(".board").forEach(b=>b.hidden=b.dataset.view!==v);
-  document.querySelectorAll("nav a").forEach(a=>a.setAttribute("aria-current",a.getAttribute("href")==="#"+v?"page":"false"));
-}
-addEventListener("hashchange",route); route();
+  // Review marks: shown only to people who can edit this page (the author). Everyone else sees the boards alone.
+  (async()=>{
+    let user=null, db=null;
+    try{ user=(window.claude&&window.claude.use)?await window.claude.use("user"):null; }catch(e){ user=null; }
+    let canEdit=false; try{ canEdit=user?await user.canEdit():false; }catch(e){ canEdit=false; }
+    if(!canEdit) return;
+    try{ db=await window.claude.use("db"); }catch(e){ db=null; }
+    if(!db) return;
+    const state={};
+    ids.forEach(id=>{
+      const sec=document.getElementById(id);
+      const box=document.createElement("div"); box.className="review";
+      box.innerHTML=`<p class="lab">Your review of this board (only editors see this)</p>
+        <div class="btns"><button type="button" data-v="right" aria-pressed="false">Right</button><button type="button" data-v="wrong" aria-pressed="false">Wrong</button><button type="button" data-v="unsure" aria-pressed="false">Unsure</button><span class="saved" aria-live="polite"></span></div>
+        <textarea id="note-${id}" aria-label="Note on this board" placeholder="What is wrong, or what to change"></textarea>`;
+      sec.appendChild(box);
+      const saved=box.querySelector(".saved"), ta=box.querySelector("textarea");
+      const paint=()=>{ const s=state[id]||{}; box.querySelectorAll("[data-v]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===s.verdict?"true":"false")); if(document.activeElement!==ta) ta.value=s.note||""; };
+      const save=async()=>{ const s=state[id]||{}; saved.textContent="saving…";
+        try{ await db.collection("marks").doc(id).set({verdict:s.verdict||"",note:s.note||"",updatedAt:new Date().toISOString()}); saved.textContent="saved"; }
+        catch(e){ saved.textContent="not saved ("+(e&&e.code||"error")+")"; } };
+      box.querySelectorAll("[data-v]").forEach(x=>x.addEventListener("click",()=>{ const s=state[id]=state[id]||{}; s.verdict=(s.verdict===x.dataset.v?"":x.dataset.v); paint(); save(); }));
+      let t=null; ta.addEventListener("input",()=>{ const s=state[id]=state[id]||{}; s.note=ta.value; clearTimeout(t); t=setTimeout(save,700); });
+      box._paint=paint;
+    });
+    const timer=setTimeout(()=>{},10000);
+    db.collection("marks").onSnapshot(snap=>{
+      clearTimeout(timer);
+      snap.docs.forEach(d=>{ const v=d.data()||{}; state[d.id]={verdict:v.verdict||"",note:v.note||""}; const sec=document.getElementById(d.id); const box=sec&&sec.querySelector(".review"); if(box&&box._paint) box._paint(); });
+    },()=>{ clearTimeout(timer); });
+  })();
+})();
 </script>

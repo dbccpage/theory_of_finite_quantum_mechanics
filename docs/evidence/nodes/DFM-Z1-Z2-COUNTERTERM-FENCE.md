@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-z1-z2-counterterm-fence.py`
 
 - file: [checks/independent/dfm-z1-z2-counterterm-fence.py](../../../checks/independent/dfm-z1-z2-counterterm-fence.py)
-- sha256 (`bytes`): `a5ccfe72d0a135be03328e30e84036db839d646112f5a6c484a83186239ff556`
+- sha256 (`bytes`): `862e7756450d2695113c3e053a1792b055a544eb5fb418b18f9d38346813faf5`
 - cited in: node.source, record TFQ-1114
 - counts toward the grade: yes
 

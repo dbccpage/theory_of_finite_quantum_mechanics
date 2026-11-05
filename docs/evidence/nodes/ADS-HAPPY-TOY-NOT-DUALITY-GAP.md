@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/ads-happy-toy-not-duality-gap.py`
 
 - file: [checks/independent/ads-happy-toy-not-duality-gap.py](../../../checks/independent/ads-happy-toy-not-duality-gap.py)
-- sha256 (`bytes`): `d123071557f5014d5e2fb57f88969974a8c68ff84a8595dffa0981c2c8f76e2a`
+- sha256 (`bytes`): `c183b90bf0c9b9a8e13cbbcd768ed0c658cc3897d54e0c9f8ec63eb9f9cc8e5e`
 - cited in: node.source, record TFQ-2212
 - counts toward the grade: yes
 

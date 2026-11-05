@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/ct-information-media-interoperability.py`
 
 - file: [checks/independent/ct-information-media-interoperability.py](../../../checks/independent/ct-information-media-interoperability.py)
-- sha256 (`bytes`): `15b0f6e62a64db4abb02d6f3af2a1b22957eb3b04028ec61067806316e20d17f`
+- sha256 (`bytes`): `567ebe8cb3559e645dcf449470b06102e5f8e232388d36d1644584eab40b46cd`
 - cited in: record TFQ-2006
 - counts toward the grade: yes
 
