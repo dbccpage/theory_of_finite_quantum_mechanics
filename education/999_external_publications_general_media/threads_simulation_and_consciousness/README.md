@@ -15,9 +15,10 @@ Two rules run through every file:
 2. `02_paper/ijms-25-02399.md`: the paper. All 91 equations are re-typeset; the original PDF sits next to it.
 3. `03_critique/analysis.md`, then `03_critique/claims_ledger.md`: what the post and the paper each supply, derive and witness.
 4. `03_critique/adversarial_review.md` and `03_critique/critique_wdp_po.md`: the mathematical teardown.
-5. `04_self_audit/self_review.md` and `04_self_audit/self_audit.md`: our own work, broken and repaired.
-6. `01_thread/replies.md`: the posts that survived all of the above.
-7. `05_boards/learning_boards.html`: six plain-logic boards for any reader, one reasoning move each. `05_boards/learning_boards_references.md` lists the check behind every line.
+5. `03_critique/assumptions_ledger.md`, then `03_critique/assumptions_mutation_audit.md`: 78 assumptions, each checked against the paper, mutated, and the paper's claim tried for recovery.
+6. `04_self_audit/self_review.md` and `04_self_audit/self_audit.md`: our own work, broken and repaired.
+7. `01_thread/replies.md`: the posts that survived all of the above.
+8. `05_boards/learning_boards.html`: six plain-logic boards for any reader, one reasoning move each. `05_boards/learning_boards_references.md` lists the check behind every line.
 
 ## Layout
 
@@ -33,8 +34,10 @@ Two rules run through every file:
 | | `adversarial_review.md` | Round 1: ChatGPT's review broken and recovered (Gauss's law in Appendix C, Landauer, capacity) | record |
 | | `adversary_of_chatgpt.md` | Two ChatGPT arguments broken and recovered, round 2 retest, and a round 3 pointer | record |
 | | `critique_wdp_po.md` | Audit with the Witnessed Difference Programme and Projection Obstruction | **live** |
+| | `assumptions_ledger.md` | A 78-row assumption ledger forwarded from another reviewer, kept verbatim (say-so) | record |
+| | `assumptions_mutation_audit.md` | Every ledger row checked against the paper, mutated, and the claim tried for recovery: 29 unchanged, 24 recover with a price, 25 do not recover; the classical-comparator test | **live** |
 | `04_self_audit/` | `self_review.md` | The math critique, attacked and repaired | live |
-| | `self_audit.md` | Replies, boards, Lean and ledger, attacked and repaired. 79 entries, including Jeremy's review (§F) and the learning boards (§G) | **live** |
+| | `self_audit.md` | Replies, boards, Lean and ledger, attacked and repaired. 80 entries, including Jeremy's review (§F) and the learning boards (§G) | **live** |
 | | `retest_log.md` | Four regression cases: claim, counterexample, repair, retest, residual obligation | record |
 | | `board_repair_log.md` | The board repairs after the card-by-card review | record |
 | `05_boards/` | `markup_board.html` | The reply board: three pictures (tree, rendering claim, paper chain), supporting cards, final posts | live |
@@ -61,6 +64,8 @@ Each line names the file that carries it.
 - **No energy barrier is given for retention.** A record held by one barrier needs $\Delta E = k_BT\ln(1\,\text{yr}/\tau_0)$. With a supplied $\tau_0 = 1$ ps that is 1.2 eV; with 1 s it is 0.46 eV (Derived, S3e). A collective record could have a larger barrier (Open).
 - **The hologram is assumed.** (A51) supposes $\lvert\varphi\rvert^2\propto\lvert r+o\rvert^2$, and the object wave $o$ has no equation (Witnessed).
 - **The capacity arithmetic holds.** Unrounded it gives 2.6 PB; the paper says 2.5 PB (Derived, S3f–g).
+- **The petabyte is the thickness.** A surface hologram over the same area holds 0.5 TB; the factor $n_r d/\lambda = 5200$ makes it 2.6 PB (Derived, `assumptions_mutation_audit.md` Y1).
+- **The gauge pair can be repaired at a price.** Letting $A^0$ obey Poisson's equation restores the coherence and adds a Coulomb term the paper would have to bound (Derived, row D1).
 - **The paper makes no rendering claim.** The word "render" occurs zero times. The paper calls how a quantum mind perceives the macro-world "yet another mystery altogether" (Witnessed).
 
 Still open:

@@ -58,7 +58,9 @@ All quotes are from `02_paper/ijms-25-02399.md` (the full text; the PDF is besid
 | Line | Backing |
 |---|---|
 | Capacity 8.32e10 bit/mm², 2.6 PB, 31.25 TB | Derived: checks S3f, S3g and S3h in `code/self_audit_checks.py`. |
+| The 2.6 PB is the thickness; a surface hologram holds 0.5 TB (factor 5200) | Derived: `03_critique/assumptions_mutation_audit.md` row Y1. |
 | Appendix A: the two conditions freeze the charge and rule out the pulse | Derived: check S2a; check 1 in `code/critique_checks.py`; `03_critique/critique_wdp_po.md` §2.1 and §2.2; self-audit C2. |
+| The pair is misnamed the Coulomb gauge; with A⁰ from Poisson's equation the pulse returns, at the price of a Coulomb term | Derived: `03_critique/assumptions_mutation_audit.md` rows D1 and E1 (recovers, with a price). |
 | Appendix C: only the M², γ and v terms break Gauss's law | Derived: check 1a in `code/adversarial_review_checks.py`; `03_critique/adversarial_review.md` steps 5 and 6. |
 | The printed e/m in (A76) and (A78) | Derived: check 1b in `code/adversarial_review_checks.py`; `03_critique/claims_ledger.md` §4 item 4. |
 | Error 1.1 to 2.3 times the charge change; dips within about 10% | Numerical: `code/retest_checks.py`; table and result in `04_self_audit/retest_log.md`. |

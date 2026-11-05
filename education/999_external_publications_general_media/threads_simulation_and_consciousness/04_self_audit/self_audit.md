@@ -142,7 +142,7 @@ The review compiled nothing in Lean. Here, `lean lean4/ThreadsReply.lean` exits 
 
 ## G. Learning boards (`05_boards/learning_boards.html`, 2026-11-05)
 
-Jeremy asked for about five boards in plain logic, with no poetry, that answer the post and the paper and teach a reusable move. Six boards and a method page were drafted, then attacked line by line before the first publish. Each board's backing is listed in `05_boards/learning_boards_references.md`.
+Jeremy asked for about five boards in plain logic, with no poetry, that answer the post and the paper and teach a reusable move. Six boards and a method page were drafted, then attacked line by line before the first publish. G15 came after the assumptions audit merged. Each board's backing is listed in `05_boards/learning_boards_references.md`.
 
 | # | Draft line | Break | Repair | Status |
 |---|---|---|---|---|
@@ -160,10 +160,11 @@ Jeremy asked for about five boards in plain logic, with no poetry, that answer t
 | G12 | All boards: sections marked `hidden` but styled `display:grid`. | First screenshot: all six boards and every back page showed at once, so the "one board at a time" and "back page" design did nothing. | `[hidden]{display:none!important}` added to the page's own CSS. | REPAIRED |
 | G13 | Phone layout. | First screenshot at 390 px: the page scrolled sideways to 638 px. Grid children kept the pictures' 480 px minimum width. | `min-width:0` on the board's children. The pictures scroll inside their own frame. | REPAIRED |
 | G14 | Spelling: "favour", "favours", "favoured". | The folder uses American spelling, for example "favoring" in the thread and "color" throughout. | Changed to "favor", "favors" and "favored". | REPAIRED |
+| G15 | Board 6, written before the assumptions audit merged (#523). Capacity: "the inputs are supplied". Appendix A: "A version that keeps the scalar potential might avoid this. The paper does not give one." | Both lines undersell what is now derived. The audit's row Y1 shows that the 2.6 PB rests on the thickness: a surface hologram over the same area holds 0.5 TB. Rows D1 and E1 show the repair: the Coulomb gauge fixes only $\nabla\cdot\mathbf A = 0$, and with $A^0$ from Poisson's equation the pulse returns, at the price of a Coulomb term. | Board 6 and its back page now state both. The arithmetic is rechecked by S7b. | REPAIRED |
 
 ## E. Tally and what is still open
 
-- **This file:** 79 entries: 61 repaired, 4 withdrawn, 14 kept. Section F holds the five review findings on 1eea606; each one broke an earlier repair here. Section G holds the fourteen repairs to the learning boards.
+- **This file:** 80 entries: 62 repaired, 4 withdrawn, 14 kept. Section F holds the five review findings on 1eea606; each one broke an earlier repair here. Section G holds the fifteen repairs to the learning boards.
 - **Fact errors found in Claude's own text:** the Minecraft save file (A15), the vision quote read as being about the unobserved world (A19, B9, C8), the misplaced correction about authority in `analysis.md` (C7), and the Knox limerick credited to Berkeley (A25).
 - **Open:**
   - The input amplitude, about 3 against the rerun's 2.13 (`self_review.md` A6).

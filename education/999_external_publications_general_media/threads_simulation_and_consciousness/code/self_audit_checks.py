@@ -113,8 +113,10 @@ ltxt = re.sub(r"<[^>]+>", " ", lb.read_text(encoding="utf-8")) if lb.is_file() e
 lsent = [s for s in re.split(r"(?<=[.])\s", ltxt) if "1.2 eV" in s]
 check("S7a every learning-board sentence with 1.2 eV also states the attempt time",
       bool(lsent) and all(("picosecond" in s or "1 ps" in s) and ("0.46 eV" in s) for s in lsent), f"{len(lsent)} sentence(s)")
-check("S7b learning boards quote 2.6 PB, 31 TB, 1.1 to 2.3, 0.9 against 0.5, 1/4 against 1/2",
-      all(x in ltxt for x in ["2.6 petabytes", "31 terabytes", "1.1 to 2.3", "0.9 against 0.5", "1/4 against 1/2"]))
+surface_TB = 4/(500e-9)**2 * 2500e-4 / 8 / 1e12                 # surface-only hologram, no thickness
+check("S7b learning boards quote 2.6 PB, 31 TB, 0.5 TB on the surface, 1.1 to 2.3, 0.9 against 0.5, 1/4 against 1/2",
+      all(x in ltxt for x in ["2.6 petabytes", "31 terabytes", "0.5 terabytes", "1.1 to 2.3", "0.9 against 0.5", "1/4 against 1/2"])
+      and abs(surface_TB - 0.5) < 1e-9 and abs(1.3*2e-3/500e-9 - 5200) < 1e-6, f"surface {surface_TB:.2f} TB, factor {1.3*2e-3/500e-9:.0f}")
 check("S7c learning boards: 9/10 over 5/10 is 1.8, and 18.5 meV rounds to the paper's 20",
       abs(0.9/0.5 - 1.8) < 1e-12 and abs(kT*math.log(2) - 0.0185) < 1e-4, f"kT ln2 = {kT*math.log(2)*1e3:.2f} meV")
 check("S7d learning boards name no files, proofs by name, or retired words", all(w.lower() not in ltxt.lower() for w in ["metaphys", "ontolog", "philosoph", "apparatus", "lean", ".py", ".md"]))
