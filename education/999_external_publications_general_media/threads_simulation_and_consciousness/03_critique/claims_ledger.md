@@ -41,7 +41,7 @@ A validated observation passes all five. Any failure is only an *attempt*, and t
 - *Acceptance is not authority.* An evaluator can accept a report that no authority grants.
 - *Resolution limit.* An observer with a smaller report grammar than its state set is not finest: two distinct states share a report (pigeonhole).
 
-`analysis.md` keeps Authority as its own row, separate from the observer, which matches the canonical definition: authority is outside the observer. (An earlier version of this line said the opposite; that "correction" was wrong. See [self_audit.md](self_audit.md) C7.) The informal slots map onto the canonical ones as follows: carrier → $X, P$; gauge and reference → contexts $\mathcal C$ and the allowed redescriptions; comparison → defect, repair and cost; judgment → terminalizer; authority → a separate regime.
+`analysis.md` keeps Authority as its own row, separate from the observer, which matches the canonical definition: authority is outside the observer. (An earlier version of this line said the opposite; that "correction" was wrong. See [self_audit.md](../04_self_audit/self_audit.md) C7.) The informal slots map onto the canonical ones as follows: carrier → $X, P$; gauge and reference → contexts $\mathcal C$ and the allowed redescriptions; comparison → defect, repair and cost; judgment → terminalizer; authority → a separate regime.
 
 ## 0b. The public definition (LinkedIn, "What the Hell Is an Observer?", 2026-05-23) against Chapter 10
 
@@ -108,7 +108,7 @@ The tree example came up in our first reply, so its words are listed first. "Lad
 
 A second proved fact sharpens this. An observer whose report grammar has fewer values than the states it looks at must report two different states identically (pigeonhole). So *when states outnumber reports*, the observer has an offscreen: states it cannot tell apart. An observer of a small enough domain can report every state. For a tree, the air or a brain, the condition is supplied, not proved. Even so, an offscreen is a normal feature of an observer with limited reports, not a special sign of a simulated world.
 
-(Repaired 2026-11-05 after review. See [board_repair_log.md](board_repair_log.md).)
+(Repaired 2026-11-05 after review. See [board_repair_log.md](../04_self_audit/board_repair_log.md).)
 
 ## 2. The exchange
 
@@ -146,7 +146,7 @@ A second proved fact sharpens this. An observer whose report grammar has fewer v
 2. (A23) and (A26) carry "+ +".
 3. (A52) has $\tilde A_i$ (the input) on the left; from (A49) it is the response $A_i$.
 4. (A76) and (A78) carry $e|\bar\varphi|^2/m$; (A71) and (A82) carry $e^2|\bar\varphi|^2/m$.
-5. Section 4 says the input maximum is "approximately 3 due to the factor" $0.1\times2^4/0.8^4 = 3.9$. That factor is a prefactor, not the computed maximum, and the realized maximum is not printed. The rerun's recursion gives 2.13 ([self_review.md](self_review.md) A6, open).
+5. Section 4 says the input maximum is "approximately 3 due to the factor" $0.1\times2^4/0.8^4 = 3.9$. That factor is a prefactor, not the computed maximum, and the realized maximum is not printed. The rerun's recursion gives 2.13 ([self_review.md](../04_self_audit/self_review.md) A6, open).
 
 All five are typesetting slips. None changes a result. They belong in the ledger because a careful reader should find them.
 

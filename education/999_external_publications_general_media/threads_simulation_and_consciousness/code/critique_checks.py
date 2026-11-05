@@ -1,9 +1,9 @@
-"""Replay of every number and symbolic claim in ../critique_wdp_po.md.
+"""Replay of every number and symbolic claim in ../03_critique/critique_wdp_po.md.
 
 Provenance: written 2026-11-05 for the Witnessed Difference Programme (WDP) and
 Projection Obstruction (PO) audit of Nishiyama, Tanaka, Tuszynski, Tsenkova,
 "Holographic Brain Theory: Super-Radiance, Memory Capacity and Control Theory",
-IJMS 25(4):2399 (2024). Equation numbers refer to ../ijms-25-02399.md.
+IJMS 25(4):2399 (2024). Equation numbers refer to ../02_paper/ijms-25-02399.md.
 
 Run:  python -I critique_checks.py        (needs numpy and sympy; no scipy)
       python -I critique_checks.py --demo-failure   (deliberately failing fixture)

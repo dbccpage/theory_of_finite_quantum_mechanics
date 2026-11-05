@@ -1,6 +1,6 @@
 # Retest log: claim → counterexample → repair → retest → residual obligation
 
-Date: 2026-11-05. This answers ChatGPT's second-round review. That review confirmed parts of [adversarial_review.md](adversarial_review.md) and named new overclaims in the recovered arguments. Each item below runs the full cycle, ending with what is still owed. Checks are in [code/retest_checks.py](code/retest_checks.py). R1 is a floating-point numerical rerun. R2 to R4 are exact.
+Date: 2026-11-05. This answers ChatGPT's second-round review. That review confirmed parts of [adversarial_review.md](../03_critique/adversarial_review.md) and named new overclaims in the recovered arguments. Each item below runs the full cycle, ending with what is still owed. Checks are in [code/retest_checks.py](../code/retest_checks.py). R1 is a floating-point numerical rerun. R2 to R4 are exact.
 
 **Standing caution.** Agreement between ChatGPT and Claude is not evidence that something is true. Two language models agreeing after an exchange is a fact about the exchange, not about the physics. In this log only three things count as evidence: an exact computation, the rerun of the paper's own equations, and quoted text from the paper. Every result carries its tag: **Witnessed** (a record exists), **Derived** (an exact check here), **Numerical** (a floating-point rerun), **Supplied** (an assumption), or **Open**. Nothing here has had human review. The unchecked list is at the end.
 
@@ -16,7 +16,7 @@ Two of the claims ChatGPT audits were not in `adversarial_review.md`. The roughl
 
 $$\partial_3 j = \phi_0\phi_1'' - \phi_1\phi_0'' = -2m(E_1 - E_0)\,\phi_0\phi_1 \neq 0 .$$
 
-Checked symbolically for oscillator states ([R2](code/retest_checks.py)): $\partial_x j = -2m\omega\,\psi_0\psi_1$. So the Appendix A source current is not divergence-free. By continuity it needs a density oscillating at $\Omega$, which is exactly the part that $A^0 = 0$ drops. *Derived.* ChatGPT's general caveat is correct but does not apply to this mechanism.
+Checked symbolically for oscillator states ([R2](../code/retest_checks.py)): $\partial_x j = -2m\omega\,\psi_0\psi_1$. So the Appendix A source current is not divergence-free. By continuity it needs a density oscillating at $\Omega$, which is exactly the part that $A^0 = 0$ drops. *Derived.* ChatGPT's general caveat is correct but does not apply to this mechanism.
 
 **Retest B: Appendix C, by rerunning the simulation.** In round 1, `adversarial_review.md` showed symbolically that the $M^2$, $\gamma$ and $v$ terms break Gauss's law, and left the size of the violation **Open**. I reran Section 4 at the paper's parameters: $N = 4$ layers, a $128^2$ periodic lattice, $e = 0.3$, $v = 0.8$, $\gamma = 0.2$, $M^2 = 2$, $\gamma_2 = 0.01$, $dt = 0.001$, RK4. I then measured $G = \nabla\cdot\mathbf E - J^0 - e$ on the output layer, with $\mathbf E$ taken from the paper's own (A83).
 
@@ -55,7 +55,7 @@ The stencil contributes about five orders of magnitude less than the paper's add
 
 **Claim (board and ledger, before repair).** $q(A) = q(B) \Rightarrow BF = 1$.
 
-**Counterexample.** Let $q(a) = q(b) = 0$ and $q(c) = 1$. Hypothesis $H_1$ puts mass ½ on each of $a, b$. Hypothesis $H_2$ puts mass ½ on each of $a, c$. Then $a$ and $b$ give the same report, but $P(D{=}0\mid H_1) = 1$ and $P(D{=}0\mid H_2) = ½$, so $BF = 2$ ([R3](code/retest_checks.py)). *Derived, exact.*
+**Counterexample.** Let $q(a) = q(b) = 0$ and $q(c) = 1$. Hypothesis $H_1$ puts mass ½ on each of $a, b$. Hypothesis $H_2$ puts mass ½ on each of $a, c$. Then $a$ and $b$ give the same report, but $P(D{=}0\mid H_1) = 1$ and $P(D{=}0\mid H_2) = ½$, so $BF = 2$ ([R3](../code/retest_checks.py)). *Derived, exact.*
 
 **Repair.** $BF = 1$ holds when each hypothesis is a single state and the report is deterministic, or more generally when both hypotheses give the same *distribution* of reports. The board's blind-spot card and §1b of the ledger now state this condition: "on this channel".
 
@@ -67,7 +67,7 @@ The stencil contributes about five orders of magnitude less than the paper's add
 
 **Claim (board, before repair).** "Every finite observer has differences it cannot report."
 
-**Counterexample.** Three states and three reports, with $q$ injective. Every pair is separated ([R4](code/retest_checks.py)). *Exact.*
+**Counterexample.** Three states and three reports, with $q$ injective. Every pair is separated ([R4](../code/retest_checks.py)). *Exact.*
 
 **Repair.** The condition is $\lvert P\rvert < \lvert X\rvert$, as in the Lean theorem `pigeonhole_resolution_limit`. Both the board and the ledger now state it.
 

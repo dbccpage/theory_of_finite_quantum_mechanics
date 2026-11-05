@@ -1,6 +1,6 @@
 # Reply alternates (rhymed, comedy and culture)
 
-Alternates to [replies.md](replies.md). Each stays under 500 characters and keeps the finite content: what "offscreen" means, what the paper does and does not say, which job a game skips, and the ask for one testable difference. Each asks *who decides*, in the present tense. Repairs from [self_review.md](self_review.md) §C are applied: C3 (the three readings are different and not exclusive, and they are not a chain either), C5 ("doesn't reach" replaces "tells us nothing"), C6 ("one simulation shown"), C7 (Minecraft: unvisited chunks are never built, but the seed fixes them).
+Alternates to [replies.md](replies.md). Each stays under 500 characters and keeps the finite content: what "offscreen" means, what the paper does and does not say, which job a game skips, and the ask for one testable difference. Each asks *who decides*, in the present tense. Repairs from [self_review.md](../04_self_audit/self_review.md) §C are applied: C3 (the three readings are different and not exclusive, and they are not a chain either), C5 ("doesn't reach" replaces "tells us nothing"), C6 ("one simulation shown"), C7 (Minecraft: unvisited chunks are never built, but the seed fixes them).
 
 Fact notes: A51 is supplied in the paper. The word "render" appears 0 times in the paper. Johnson's stone is from Boswell. The Einstein–Pais exchange is from Pais's own account. Berkeley's watching God in the quad is Ronald Knox's limerick image.
 

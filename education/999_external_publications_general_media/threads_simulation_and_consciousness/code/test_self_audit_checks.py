@@ -9,7 +9,7 @@ import pathlib, subprocess, sys, tempfile, unittest
 
 HERE = pathlib.Path(__file__).resolve().parent
 CHECKER = HERE / "self_audit_checks.py"
-REPLIES = HERE.parent / "replies.md"
+REPLIES = HERE.parent / "01_thread" / "replies.md"
 
 
 def run(replies_path):

@@ -9,7 +9,9 @@ import argparse, math, pathlib, re, sys
 import sympy as sp
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--replies", default=str(pathlib.Path(__file__).resolve().parent.parent / "replies.md"))
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+ap.add_argument("--replies", default=str(ROOT / "01_thread" / "replies.md"))
+ap.add_argument("--board", default=str(ROOT / "05_boards" / "markup_board.html"))
 ap.add_argument("--expect-blocks", type=int, default=5)
 args = ap.parse_args()
 
@@ -94,9 +96,9 @@ else:
         check(f"S5.{i} reply block at most 500 chars", len(text) <= 500, f"{len(text)} chars")
 
 # --- S6. The board's retention note names the supplied attempt time (review finding 4) ---
-board = pathlib.Path(args.replies).resolve().parent / "markup_board.html"
+board = pathlib.Path(args.board)
 if not board.is_file():
-    board = pathlib.Path(__file__).resolve().parent.parent / "markup_board.html"
+    check("S6 board file present", False, str(board))
 btxt = board.read_text(encoding="utf-8") if board.is_file() else ""
 sent = [s for s in re.split(r"(?<=[.])\s", btxt) if "1.2 eV" in s]
 check("S6 every board sentence with 1.2 eV also states the attempt time 1 ps",
