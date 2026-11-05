@@ -1,0 +1,424 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/ds-positive-form-controls.py": {
+      "role": "Composed scalar/Gram verification application with owned bounded Gram forms, exact event/partition operations, explicit linear/quadratic/quartic shares and scaled rotations",
+      "origin": "lean4/CptpCompletePositivity.lean",
+      "profile": "Exact",
+      "cost": "M,N1..16, at most256 owned integer feature entries; nonnegative integer scale. Every integer input, dot product term/prefix, Gram/scale result, diagonal prefix and denominator square has at most4096 bits; temporary multiplication/addition at most8192/4097 bits before admission. Bilinear/quadratic O(MN+M), Gram O(MN^2), diagonal O(MN), event O(NlogN+MN); valid coarse graining O(MN). Partition admission may inspect16 groups of16 indices before rejecting overlaps/missing coverage; valid partition has exactlyN indices and at mostN groups. Default4017 obligations =619 scalar positivity+3398 Gram/normalization controls; original648+3459=4107 loses49 duplicate nonnegative-product and61 duplicate square checks, while shared square range adds20. Added mass normalization owns1..16 amplitudes; exponents exactly1,2,4. At most16 exponentiations, each raw power at most16384 bits before4096-bit admission, and16 bounded sum prefixes. Each output Fraction has numerator/denominator at most4096 bits. Rotation owns two pairs and performs four bounded products/two bounded sums; temporary products at most8192 bits and additions4097 bits. Default6550 obligations retain4017 prior checks and add2533=121 pair+2401 rotation+11 fixed separation/normalization controls.",
+      "groups": [
+        {
+          "requirement": "Own a nonempty rectangular1..16 by1..16 integer feature array and bounded nonnegative scale. Exact integer inputs exclude bool/float/Fraction/text. Admit all vector shapes/entries before projection. Bound every product/prefix and scale result, including when later cancellation or a zero scale would fit.",
+          "symbols": [
+            "_bounded",
+            "_nonnegative",
+            "_dot",
+            "IntegerGramForm",
+            "IntegerGramForm.__init__",
+            "IntegerGramForm.dimension",
+            "IntegerGramForm._vector",
+            "IntegerGramForm._coordinates"
+          ],
+          "tests": [
+            "PositiveFormTests.test_input_shapes_scalars_and_full_budgets",
+            "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+            "PositiveFormTests.test_snapshot_ownership",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-1"
+        },
+        {
+          "requirement": "Compute scale*A^T*A from admitted feature columns. Bilinear values can be negative and remain successful values; quadratic values are nonnegative when computation completes. Return matrix/bilinear/quadratic queries through Outcome. All arithmetic paths retain declared intermediate budgets.",
+          "symbols": [
+            "IntegerGramForm._bilinear",
+            "IntegerGramForm.bilinear",
+            "IntegerGramForm._quadratic",
+            "IntegerGramForm.quadratic",
+            "IntegerGramForm._gram",
+            "IntegerGramForm.gram"
+          ],
+          "tests": [
+            "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+            "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic",
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-2"
+        },
+        {
+          "requirement": "Events are owned distinct in-range indices, canonicalized increasingly; empty event has weight0. Normalize event quadratic and diagonal trace independently by the admitted positive integer denominator squared. Do not infer physical normalization or equality of global/coarse and diagonal weights. Admit denominator before dependent arithmetic even for empty events.",
+          "symbols": [
+            "_denominator",
+            "IntegerGramForm._event",
+            "IntegerGramForm._event_weight",
+            "IntegerGramForm.event_weight",
+            "IntegerGramForm._diagonal_weight",
+            "IntegerGramForm.diagonal_weight"
+          ],
+          "tests": [
+            "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+            "PositiveFormTests.test_distinct_normalization_witnesses",
+            "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+            "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-3"
+        },
+        {
+          "requirement": "A partition is a nonempty ordered list of nonempty, disjoint canonical events covering every coordinate exactly once. Preserve group order and scale; group features are checked sums in canonical index order. Return a new owned Gram form. Changing within-group order cannot change resource acceptance or values.",
+          "symbols": [
+            "IntegerGramForm._partition",
+            "IntegerGramForm._coarse_grained",
+            "IntegerGramForm.coarse_grained"
+          ],
+          "tests": [
+            "PositiveFormTests.test_coarse_graining_against_incidence_matrix",
+            "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+            "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+            "PositiveFormTests.test_snapshot_ownership",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-4"
+        },
+        {
+          "requirement": "Keep the signed off-diagonal pairing as an actual2x2 form acting on(1,-1), yielding-2t; it is separate from the positive Gram form. Nonnegative products validate both operands before multiplication, including zero/oversized combinations.",
+          "symbols": [
+            "off_diagonal_pairing",
+            "nonnegative_product"
+          ],
+          "tests": [
+            "PositiveFormTests.test_negative_pairing_and_nonnegative_products",
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-5"
+        },
+        {
+          "requirement": "Compose both original scalar applications without importing on-load checks/global counters. Require Cases, separately count619 positivity and3398 decoherence obligations, preserve two distinct normalized witnesses(1,1)/2 and(3,4)/5, actual rank-one matrix/determinant/Gram controls and coarse global weights. Emit6550 JSON checks with619/3398/2533 sections and nonzero expected-failure exit; propagate cancellation/programming errors.",
+          "symbols": [
+            "_recorder",
+            "verify_positivity",
+            "_normalization_controls",
+            "verify_decoherence",
+            "main"
+          ],
+          "tests": [
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle",
+            "PositiveFormTests.test_executable_receipt_and_failure_exit",
+            "PositiveFormTests.test_distinct_normalization_witnesses",
+            "PositiveFormTests.test_oracles_and_import_lifecycle"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-6"
+        },
+        {
+          "requirement": "Own1..16 exact bounded integer amplitudes and admit an explicit exact degree1,2,4 before powering. Bound each powered mass and running total; zero total is input refusal. Return exact ordered Fraction shares through Outcome. Linear shares may be signed and negative total is legal. Normalization never selects an exponent or probability interpretation.",
+          "symbols": [
+            "_masses",
+            "_power_shares",
+            "power_shares"
+          ],
+          "tests": [
+            "PositiveFormTests.test_power_shares_against_symbolic_normalization",
+            "PositiveFormTests.test_fixed_shares_and_rotation_orientation",
+            "PositiveFormTests.test_born_exact_domains_and_zero_totals",
+            "PositiveFormTests.test_born_full_arithmetic_budgets",
+            "PositiveFormTests.test_born_preflight_lifecycle_and_section_counts"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-7"
+        },
+        {
+          "requirement": "Own two exact bounded integer pairs and admit both before dependent arithmetic. Apply scaled rotation matrix[[r,-s],[s,r]], bound each product/prefix and return exact immutable integer pair through Outcome. No unit-norm requirement; zero coefficients are legal.",
+          "symbols": [
+            "_rotation",
+            "rotation"
+          ],
+          "tests": [
+            "PositiveFormTests.test_rotations_against_symbolic_matrix_and_complex_product",
+            "PositiveFormTests.test_fixed_shares_and_rotation_orientation",
+            "PositiveFormTests.test_born_exact_domains_and_zero_totals",
+            "PositiveFormTests.test_born_full_arithmetic_budgets",
+            "PositiveFormTests.test_born_preflight_lifecycle_and_section_counts"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-8"
+        },
+        {
+          "requirement": "Preserve121 pair-sum and2401 rotation cases; replace aggregate group count by2533 individual obligations including all original7,25,337,3033/2025,75/63,-7/24,49/576,625 witnesses and actual distinct normalized shares. Require Cases; imports remain silent, counters reentrant and expected failures nonzero. No Born uniqueness, continuity, dimension, frame/effect or Lp result follows.",
+          "symbols": [
+            "verify_born_boundary"
+          ],
+          "tests": [
+            "PositiveFormTests.test_born_preflight_lifecycle_and_section_counts",
+            "PositiveFormTests.test_executable_receipt_and_failure_exit",
+            "PositiveFormTests.test_fixed_shares_and_rotation_orientation"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-9"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "4dcfb6f1fa67d11c33284657e4cdc333848ff80df7b557390a93f5c19099830a",
+      "symbols": [
+        "IntegerGramForm",
+        "IntegerGramForm.__init__",
+        "IntegerGramForm._bilinear",
+        "IntegerGramForm._coarse_grained",
+        "IntegerGramForm._coordinates",
+        "IntegerGramForm._diagonal_weight",
+        "IntegerGramForm._event",
+        "IntegerGramForm._event_weight",
+        "IntegerGramForm._gram",
+        "IntegerGramForm._partition",
+        "IntegerGramForm._quadratic",
+        "IntegerGramForm._vector",
+        "IntegerGramForm.bilinear",
+        "IntegerGramForm.coarse_grained",
+        "IntegerGramForm.diagonal_weight",
+        "IntegerGramForm.dimension",
+        "IntegerGramForm.event_weight",
+        "IntegerGramForm.gram",
+        "IntegerGramForm.quadratic",
+        "_bounded",
+        "_denominator",
+        "_dot",
+        "_masses",
+        "_nonnegative",
+        "_normalization_controls",
+        "_power_shares",
+        "_recorder",
+        "_rotation",
+        "main",
+        "nonnegative_product",
+        "off_diagonal_pairing",
+        "power_shares",
+        "rotation",
+        "verify_born_boundary",
+        "verify_decoherence",
+        "verify_positivity"
+      ],
+      "origin_sha256": "29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0",
+      "consumers": [
+        {
+          "path": "checks/tests/test_positive_form_controls.py",
+          "sha256": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a",
+          "state": "pre-change consumer audit"
+        },
+        {
+          "path": "checks/tests/positive_form_mutations.json",
+          "sha256": "a0853d61bebce1256561452c25b6698ff37a75f1cc0cde555e52ee51e82882d1",
+          "state": "pre-change consumer audit"
+        },
+        {
+          "path": "checks/tests/test_positive_form_controls.py",
+          "sha256": "e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "df43fb4d1f7b407d4186900a33564894cad687079e1f1d9de00f3d2069f86b8a",
+          "state": "current local consumer"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-qm204-born-uniqueness-import-boundary-precommit.md",
+          "sha256": "90ad0cb57f06f36c8b956cb29bdef5d37aefdaff204324c141c5e9a18a767679",
+          "state": "historical Born-source reference preserved through archive mapping"
+        },
+        {
+          "path": "dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json",
+          "sha256": "4f3b85eb37109bc0910adfdd2af7a1b5d344d4adbaaad0ad16438892cef05250",
+          "state": "historical Born-source reference preserved through archive mapping"
+        }
+      ],
+      "consumer_boundary": "Original Born checker has only two historical references:2026-10-26 precommit note and dated Lean replay independent_check command. Preserve both unchanged and map to archived exact source. Existing positive-form executable/API and14 prior test groups remain, with CLI expanded4017->6550 and six added groups. Full BornUniquenessIntegerSlice and derivation note read, alongside prior two Gram origins. Universal Lean rotation identity and bounded executable cases remain distinct; no new Lean build or DAG status promotion. Explicit chosen exponents supply algebraic shares, not Born uniqueness or measure pairings. Prior sources/contracts/mutation manifest preserved.",
+      "origins": [
+        {
+          "path": "lean4/CptpCompletePositivity.lean",
+          "sha256": "29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0"
+        },
+        {
+          "path": "lean4/DecoherenceFunctionalGram.lean",
+          "sha256": "456535c1ea379be8081e785984de7183d3890d78c3e000ce5843f9144c6e2a86"
+        },
+        {
+          "path": "lean4/BornUniquenessIntegerSlice.lean",
+          "sha256": "b864a81a1b53f2fbd8c94d77ee31217f7b487fec0470f158d1c79c9388422b14"
+        }
+      ],
+      "retired_inputs": [
+        {
+          "path": "checks/independent/ds-qm204-born-uniqueness-import-boundary.py",
+          "sha256": "34daa44cda49e02392bfc765d4acd67c930f3cf02e689fcb2e70824b36f2abb5",
+          "archive": "reviews/repository_file_review/retired_born_controls_sources/ds-qm204-born-uniqueness-import-boundary.py.txt"
+        }
+      ],
+      "prior_assessed_sources": [
+        {
+          "path": "checks/independent/ds-positive-form-controls.py",
+          "sha256": "47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959",
+          "archive": "reviews/repository_file_review/2026-11-03-born-controls-prior-ds-positive-form-controls.py.txt",
+          "contract_sha256": "847ea31cd5101d506d712b0417bd0abeb0787789573f2444c59bfa7e611577e2"
+        },
+        {
+          "path": "checks/tests/test_positive_form_controls.py",
+          "sha256": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a",
+          "archive": "reviews/repository_file_review/2026-11-03-born-controls-prior-test_positive_form_controls.py.txt",
+          "contract_sha256": "dda5e1c7843a2b7b07cabd87da54e5fe2aaf929b9f5a206e4131a83cdd4ccbbc"
+        }
+      ]
+    },
+    "checks/tests/test_positive_form_controls.py": {
+      "role": "Independent scalar/Gram verification application with symbolic Gram/incidence oracles, exact mass normalization and scaled-rotation/complex-product oracles, bounded-domain and lifecycle challenges",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "20 groups;80 deterministic examples per generated property, M,N1..4, small integer features/vectors and scale0..5. Symbolic exact Gram/selector matrices independently verify bilinear, normalized event/trace and coarse values. Fixed16x16 identity tests full dimensions. Resource witnesses use4096/4097-bit terms/prefixes and denominator squares; executable timeout30s with scoped runpy/mocks/captures/subprocess. Six added groups include80 deterministic samples each for mass arrays1..16 with coefficients-8..8/exponent1,2,4 and rotation pairs-20..20. Fixed signed/zero-total/domain/4096-bit and16-entry boundaries; independent exact symbolic matrix and complex-product calculations. All14 prior groups retained except expanded CLI receipt.",
+      "groups": [
+        {
+          "requirement": "Retain every previous Gram/incidence, ownership, normalization, resource, admission and lifecycle obligation. Add independent symbolic normalized masses, scaled matrix and complex-product rotation oracles; fixed signed shares and asymmetric orientations; exact type/length/exponent/zero-total refusals; full output and intermediate arithmetic budgets; preflight mocks; reentrant section counts and exception propagation.",
+          "symbols": [
+            "load",
+            "_rows",
+            "_partition",
+            "_selector",
+            "PositiveFormTests",
+            "PositiveFormTests.refused",
+            "PositiveFormTests.test_oracles_and_import_lifecycle",
+            "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+            "PositiveFormTests.test_coarse_graining_against_incidence_matrix",
+            "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+            "PositiveFormTests.test_distinct_normalization_witnesses",
+            "PositiveFormTests.test_input_shapes_scalars_and_full_budgets",
+            "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+            "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+            "PositiveFormTests.test_snapshot_ownership",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic",
+            "PositiveFormTests.test_negative_pairing_and_nonnegative_products",
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle",
+            "PositiveFormTests.test_executable_receipt_and_failure_exit",
+            "PositiveFormTests.test_power_shares_against_symbolic_normalization",
+            "PositiveFormTests.test_rotations_against_symbolic_matrix_and_complex_product",
+            "PositiveFormTests.test_fixed_shares_and_rotation_orientation",
+            "PositiveFormTests.test_born_exact_domains_and_zero_totals",
+            "PositiveFormTests.test_born_full_arithmetic_budgets",
+            "PositiveFormTests.test_born_preflight_lifecycle_and_section_counts"
+          ],
+          "tests": [
+            "PositiveFormTests.test_oracles_and_import_lifecycle",
+            "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+            "PositiveFormTests.test_coarse_graining_against_incidence_matrix",
+            "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+            "PositiveFormTests.test_distinct_normalization_witnesses",
+            "PositiveFormTests.test_input_shapes_scalars_and_full_budgets",
+            "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+            "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+            "PositiveFormTests.test_snapshot_ownership",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic",
+            "PositiveFormTests.test_negative_pairing_and_nonnegative_products",
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle",
+            "PositiveFormTests.test_executable_receipt_and_failure_exit",
+            "PositiveFormTests.test_power_shares_against_symbolic_normalization",
+            "PositiveFormTests.test_rotations_against_symbolic_matrix_and_complex_product",
+            "PositiveFormTests.test_fixed_shares_and_rotation_orientation",
+            "PositiveFormTests.test_born_exact_domains_and_zero_totals",
+            "PositiveFormTests.test_born_full_arithmetic_budgets",
+            "PositiveFormTests.test_born_preflight_lifecycle_and_section_counts"
+          ],
+          "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-TEST-POSITIVE-FORM-CONTROLS-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd",
+      "symbols": [
+        "PositiveFormTests",
+        "PositiveFormTests.refused",
+        "PositiveFormTests.test_admission_precedes_dependent_arithmetic",
+        "PositiveFormTests.test_born_exact_domains_and_zero_totals",
+        "PositiveFormTests.test_born_full_arithmetic_budgets",
+        "PositiveFormTests.test_born_preflight_lifecycle_and_section_counts",
+        "PositiveFormTests.test_coarse_graining_against_incidence_matrix",
+        "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle",
+        "PositiveFormTests.test_distinct_normalization_witnesses",
+        "PositiveFormTests.test_executable_receipt_and_failure_exit",
+        "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+        "PositiveFormTests.test_fixed_shares_and_rotation_orientation",
+        "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+        "PositiveFormTests.test_input_shapes_scalars_and_full_budgets",
+        "PositiveFormTests.test_negative_pairing_and_nonnegative_products",
+        "PositiveFormTests.test_oracles_and_import_lifecycle",
+        "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+        "PositiveFormTests.test_power_shares_against_symbolic_normalization",
+        "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+        "PositiveFormTests.test_rotations_against_symbolic_matrix_and_complex_product",
+        "PositiveFormTests.test_snapshot_ownership",
+        "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+        "_partition",
+        "_rows",
+        "_selector",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/tests/README.md",
+          "sha256": "73e7bf9d3520df3f7f312b407d45e08d73bd693e6c48aa6ade7f783795aeb818",
+          "state": "pre-change consumer audit"
+        },
+        {
+          "path": "checks/tests/positive_form_mutations.json",
+          "sha256": "a0853d61bebce1256561452c25b6698ff37a75f1cc0cde555e52ee51e82882d1",
+          "state": "pre-change consumer audit"
+        },
+        {
+          "path": "checks/independent/ds-positive-form-controls.py",
+          "sha256": "4dcfb6f1fa67d11c33284657e4cdc333848ff80df7b557390a93f5c19099830a",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "df43fb4d1f7b407d4186900a33564894cad687079e1f1d9de00f3d2069f86b8a",
+          "state": "current local consumer"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-qm204-born-uniqueness-import-boundary-precommit.md",
+          "sha256": "90ad0cb57f06f36c8b956cb29bdef5d37aefdaff204324c141c5e9a18a767679",
+          "state": "historical Born-source reference preserved through archive mapping"
+        },
+        {
+          "path": "dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json",
+          "sha256": "4f3b85eb37109bc0910adfdd2af7a1b5d344d4adbaaad0ad16438892cef05250",
+          "state": "historical Born-source reference preserved through archive mapping"
+        }
+      ],
+      "consumer_boundary": "Original Born checker has only two historical references:2026-10-26 precommit note and dated Lean replay independent_check command. Preserve both unchanged and map to archived exact source. Existing positive-form executable/API and14 prior test groups remain, with CLI expanded4017->6550 and six added groups. Full BornUniquenessIntegerSlice and derivation note read, alongside prior two Gram origins. Universal Lean rotation identity and bounded executable cases remain distinct; no new Lean build or DAG status promotion. Explicit chosen exponents supply algebraic shares, not Born uniqueness or measure pairings. Prior sources/contracts/mutation manifest preserved.",
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        }
+      ],
+      "retired_inputs": [
+        {
+          "path": "checks/independent/ds-qm204-born-uniqueness-import-boundary.py",
+          "sha256": "34daa44cda49e02392bfc765d4acd67c930f3cf02e689fcb2e70824b36f2abb5",
+          "archive": "reviews/repository_file_review/retired_born_controls_sources/ds-qm204-born-uniqueness-import-boundary.py.txt"
+        }
+      ],
+      "prior_assessed_sources": [
+        {
+          "path": "checks/independent/ds-positive-form-controls.py",
+          "sha256": "47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959",
+          "archive": "reviews/repository_file_review/2026-11-03-born-controls-prior-ds-positive-form-controls.py.txt",
+          "contract_sha256": "847ea31cd5101d506d712b0417bd0abeb0787789573f2444c59bfa7e611577e2"
+        },
+        {
+          "path": "checks/tests/test_positive_form_controls.py",
+          "sha256": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a",
+          "archive": "reviews/repository_file_review/2026-11-03-born-controls-prior-test_positive_form_controls.py.txt",
+          "contract_sha256": "dda5e1c7843a2b7b07cabd87da54e5fe2aaf929b9f5a206e4131a83cdd4ccbbc"
+        }
+      ]
+    }
+  }
+}

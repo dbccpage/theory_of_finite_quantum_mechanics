@@ -1,0 +1,312 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-z1-z2-counterterm-fence.py": {
+      "role": "Exact finite Dirac-kernel verification application with owned rational momentum/mass, immutable Gaussian4x4 operators, bounded mass-shell arithmetic, off-shell Railway propagators and composed lowered vertex contractions",
+      "origin": "lean4/DressingFieldZ1Z2CountertermFence.lean",
+      "profile": "Exact",
+      "cost": "Four rational momentum coordinates and one rational mass, each<=4096-bit numerator/denominator. Stored4x4 Gaussian entries and every Gaussian product/dot-prefix result have4096-bit components; raw Gaussian binary intermediates before reduction/admission use at most4B+1 numerator and4B denominator bits, B=4096. Mass-shell squares and each signed prefix are independently bounded. Fixed matrix product has64 Gaussian products,16 length4 sums; Dirac contraction8 matrix products; factored vertex10; lowered contraction40. Collection admission snapshots at most4096 elements before exact4-shape refusal. Default25 obligations =16 Clifford pairs+2 inverse differences+4 two-sided inverse checks+1 sandwich+1 lowered contraction+1 entry matrix.",
+      "groups": [
+        {
+          "requirement": "Admit complete4x4 list/tuple shapes before arithmetic and require exact GaussianRational entries; export immutable tuple rows. Admit exactly four rational momentum coordinates and mass, excluding bool/float/text. Lorentz index is exact integer0..3. Compose shared Gaussian arithmetic, with every resulting component bounded and no local duplicate scalar implementation.",
+          "symbols": [
+            "_matrix",
+            "_entry",
+            "_momentum",
+            "_index",
+            "zero_matrix",
+            "eye",
+            "_combine",
+            "madd",
+            "msub",
+            "_scale",
+            "mscale",
+            "_dot",
+            "_multiply",
+            "mmul"
+          ],
+          "tests": [
+            "CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle",
+            "CountertermCheckerTests.test_oracles_and_basis",
+            "CountertermCheckerTests.test_kernel_ownership_and_scalar_vector_domains",
+            "CountertermCheckerTests.test_matrix_index_domains_and_snapshot",
+            "CountertermCheckerTests.test_matrix_preflight_before_arithmetic",
+            "CountertermCheckerTests.test_resource_budgets_and_cancellation"
+          ],
+          "requirement_id": "TFQM-COUNTERTERM-REVIEW-DFM-Z1-Z2-COUNTERTERM-FENCE-1"
+        },
+        {
+          "requirement": "Construct the immutable Dirac representation with gamma0 diagonal(+,+,-,-) and spatial Pauli off-diagonal blocks of opposite sign. Use signature(+---) for slash and lowered indices. Private gamma construction only receives0..3 from the fixed family initialization.",
+          "symbols": [
+            "_gamma",
+            "_slash",
+            "slash"
+          ],
+          "tests": [
+            "CountertermCheckerTests.test_oracles_and_basis",
+            "CountertermCheckerTests.test_kernel_inverse_against_matrix_inversion",
+            "CountertermCheckerTests.test_generated_inverse_difference_and_sandwich",
+            "CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction"
+          ],
+          "requirement_id": "TFQM-COUNTERTERM-REVIEW-DFM-Z1-Z2-COUNTERTERM-FENCE-2"
+        },
+        {
+          "requirement": "DiracKernel owns exact momentum and signed mass. Its inverse operator slash(p)-mI is defined also on shell. Propagator requires nonzero p0^2-p1^2-p2^2-p3^2-m^2, checks every square and prefix, and computes(slash(p)+mI)/denominator with a rational reciprocal. Return both operations through Outcome, with singular input and resource failure distinct. Legacy prop/prop_inv helpers retain matrix-valued semantics with typed failures via the outer boundary.",
+          "symbols": [
+            "DiracKernel",
+            "DiracKernel.__init__",
+            "DiracKernel._inverse_operator",
+            "DiracKernel.inverse_operator",
+            "DiracKernel._denominator",
+            "DiracKernel._propagator",
+            "DiracKernel.propagator",
+            "prop_inv",
+            "prop"
+          ],
+          "tests": [
+            "CountertermCheckerTests.test_kernel_inverse_against_matrix_inversion",
+            "CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell",
+            "CountertermCheckerTests.test_kernel_ownership_and_scalar_vector_domains",
+            "CountertermCheckerTests.test_resource_budgets_and_cancellation",
+            "CountertermCheckerTests.test_generated_inverse_difference_and_sandwich",
+            "CountertermCheckerTests.test_counts_faults_and_lifecycle"
+          ],
+          "requirement_id": "TFQM-COUNTERTERM-REVIEW-DFM-Z1-Z2-COUNTERTERM-FENCE-3"
+        },
+        {
+          "requirement": "Dirac contraction sums gamma_nu A eta_nu gamma_nu. Factor vertex as dirac(left gamma_mu right), preserving order. Lower a supplied q with(+---) before summing four vertices. Admit every matrix/index/vector before dependent operations; test nonreal noncommuting matrices and nonzero spatial q, not just the original sparse witness.",
+          "symbols": [
+            "_dirac",
+            "dirac",
+            "_vertex",
+            "vertex",
+            "contract"
+          ],
+          "tests": [
+            "CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction",
+            "CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell",
+            "CountertermCheckerTests.test_matrix_index_domains_and_snapshot",
+            "CountertermCheckerTests.test_matrix_preflight_before_arithmetic",
+            "CountertermCheckerTests.test_counts_faults_and_lifecycle"
+          ],
+          "requirement_id": "TFQM-COUNTERTERM-REVIEW-DFM-Z1-Z2-COUNTERTERM-FENCE-4"
+        },
+        {
+          "requirement": "Require Cases and record25 actual mathematical obligations, including all16 Clifford pairs and both sides of both supplied propagator inversions in addition to original inverse differences/sandwich/contraction/witness. Preserve exact witness fractions, emit JSON and nonzero expected failure exit; unexpected programming errors and cancellation propagate.",
+          "symbols": [
+            "_basis_controls",
+            "_inverse_difference",
+            "verify",
+            "main"
+          ],
+          "tests": [
+            "CountertermCheckerTests.test_counts_faults_and_lifecycle",
+            "CountertermCheckerTests.test_executable_receipt_and_failure_exit",
+            "CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell"
+          ],
+          "requirement_id": "TFQM-COUNTERTERM-REVIEW-DFM-Z1-Z2-COUNTERTERM-FENCE-5"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "862e7756450d2695113c3e053a1792b055a544eb5fb418b18f9d38346813faf5",
+      "symbols": [
+        "DiracKernel",
+        "DiracKernel.__init__",
+        "DiracKernel._denominator",
+        "DiracKernel._inverse_operator",
+        "DiracKernel._propagator",
+        "DiracKernel.inverse_operator",
+        "DiracKernel.propagator",
+        "_basis_controls",
+        "_combine",
+        "_dirac",
+        "_dot",
+        "_entry",
+        "_gamma",
+        "_index",
+        "_inverse_difference",
+        "_matrix",
+        "_momentum",
+        "_multiply",
+        "_scale",
+        "_slash",
+        "_vertex",
+        "contract",
+        "dirac",
+        "eye",
+        "madd",
+        "main",
+        "mmul",
+        "mscale",
+        "msub",
+        "prop",
+        "prop_inv",
+        "slash",
+        "verify",
+        "vertex",
+        "zero_matrix"
+      ],
+      "origin_sha256": "b659387aa156095a4c861ee8e922918cdf6b71a88529c5e23e2a26f5f62fafaf",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-Z1-Z2-COUNTERTERM-FENCE.md",
+          "sha256": "d8d77a38c11c0c57c579c1f771b29e4edad9db2365e2fb53c54dafbd53cd418b",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/unified_dag.json",
+          "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/operads/dfm_z1_z2_counterterm_fence.yaml",
+          "sha256": "955c45a5ad364ecb058e96c1640b1a4910a12797d7316888a44ea7a4c7cdbb8b",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
+          "sha256": "ead83d2cc4fd3e439eebbbadd86e035f9886f6ab410cb95afcda48000bac3c90",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_dfm-z1-z2-counterterm-fence_governance_assessment.json",
+          "sha256": "6f5209fee5e37ae63538e5b66b9f29ef7c066f1e50bd3bd41d314f17107df412",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_counterterm_checker.py",
+          "sha256": "f89120f14ed07ffc06f43a8d57ae4cc91978f47371e8766958024fb675389908",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "de0b6509479e97ef2b07b8b2e05ac6b514f44e9887e51356cdbef0f75e3d40d7",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable and slash/prop/prop_inv/dirac/vertex/matrix-operation names remain. Unreferenced local exact/g/add/sub/mul/scale and g0..g3/require helpers are composed into shared GaussianRational, one gamma-family constructor and Cases. Matrix inputs/outputs deliberately use immutable4x4 GaussianRational rows rather than mutable nested scalar pairs; no external Python caller of these old internals was found. Integer propagator inputs now work exactly instead of constructing a float reciprocal. Full Lean source and derivation note reviewed: Lean raw G/gsum4 representation has denominator conventions for its specific expressions and is not reused as a general rational matrix library. Its universal integer inverse-difference theorem and fixed propagator/contraction theorems remain distinct from generated runtime tests. CLI counts25 actual obligations; no integral, subtraction scheme or Z1/Z2 ratio is computed and DAG remains OPEN. Historical receipts preserve old hashes."
+    },
+    "checks/tests/test_counterterm_checker.py": {
+      "role": "Independent Dirac verification application with Kronecker Pauli basis, symbolic complex matrix arithmetic/inversion, generated rational kernels/sandwich identities, nonreal order/lowering witnesses and exact resource/lifecycle challenges",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "13 groups;80 deterministic examples per generated property. Matrices fixed4x4, Gaussian test components small integers, momentum/mass fractions numerator-4..4/denominator1..4. Generated off-shell sandwich uses explicit admissibility filtering. Fixed exact boundary witnesses use2048/4096-bit values. Executable timeout30s; runpy/captures/mocks/subprocess lifetimes scoped.",
+      "groups": [
+        {
+          "requirement": "Cross-check independent Kronecker gamma basis, exact Gaussian conversion/indexing and symbolic matrix inversion. Compare generated matrix operations, kernels and sandwich identities; independently expand all nonreal vertices and spatially lowered contraction. Test original integer-input bug and witness, positive/negative mass, all exact shape/index/scalar domains, snapshots, mass-shell and matrix budgets, eager matrix preflight, failure/cancellation propagation and executable counts/exits.",
+          "symbols": [
+            "load",
+            "_symbolic",
+            "_rows",
+            "_basis",
+            "_inverse_operator",
+            "CountertermCheckerTests",
+            "CountertermCheckerTests.refused",
+            "CountertermCheckerTests.test_oracles_and_basis",
+            "CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign",
+            "CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle",
+            "CountertermCheckerTests.test_kernel_inverse_against_matrix_inversion",
+            "CountertermCheckerTests.test_generated_inverse_difference_and_sandwich",
+            "CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction",
+            "CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell",
+            "CountertermCheckerTests.test_kernel_ownership_and_scalar_vector_domains",
+            "CountertermCheckerTests.test_matrix_index_domains_and_snapshot",
+            "CountertermCheckerTests.test_resource_budgets_and_cancellation",
+            "CountertermCheckerTests.test_matrix_preflight_before_arithmetic",
+            "CountertermCheckerTests.test_counts_faults_and_lifecycle",
+            "CountertermCheckerTests.test_executable_receipt_and_failure_exit"
+          ],
+          "tests": [
+            "CountertermCheckerTests.test_oracles_and_basis",
+            "CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign",
+            "CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle",
+            "CountertermCheckerTests.test_kernel_inverse_against_matrix_inversion",
+            "CountertermCheckerTests.test_generated_inverse_difference_and_sandwich",
+            "CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction",
+            "CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell",
+            "CountertermCheckerTests.test_kernel_ownership_and_scalar_vector_domains",
+            "CountertermCheckerTests.test_matrix_index_domains_and_snapshot",
+            "CountertermCheckerTests.test_resource_budgets_and_cancellation",
+            "CountertermCheckerTests.test_matrix_preflight_before_arithmetic",
+            "CountertermCheckerTests.test_counts_faults_and_lifecycle",
+            "CountertermCheckerTests.test_executable_receipt_and_failure_exit"
+          ],
+          "requirement_id": "TFQM-COUNTERTERM-REVIEW-TEST-COUNTERTERM-CHECKER-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "f89120f14ed07ffc06f43a8d57ae4cc91978f47371e8766958024fb675389908",
+      "symbols": [
+        "CountertermCheckerTests",
+        "CountertermCheckerTests.refused",
+        "CountertermCheckerTests.test_counts_faults_and_lifecycle",
+        "CountertermCheckerTests.test_executable_receipt_and_failure_exit",
+        "CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle",
+        "CountertermCheckerTests.test_generated_inverse_difference_and_sandwich",
+        "CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell",
+        "CountertermCheckerTests.test_kernel_inverse_against_matrix_inversion",
+        "CountertermCheckerTests.test_kernel_ownership_and_scalar_vector_domains",
+        "CountertermCheckerTests.test_matrix_index_domains_and_snapshot",
+        "CountertermCheckerTests.test_matrix_preflight_before_arithmetic",
+        "CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction",
+        "CountertermCheckerTests.test_oracles_and_basis",
+        "CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign",
+        "CountertermCheckerTests.test_resource_budgets_and_cancellation",
+        "_basis",
+        "_inverse_operator",
+        "_rows",
+        "_symbolic",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-z1-z2-counterterm-fence.py",
+          "sha256": "862e7756450d2695113c3e053a1792b055a544eb5fb418b18f9d38346813faf5",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "de0b6509479e97ef2b07b8b2e05ac6b514f44e9887e51356cdbef0f75e3d40d7",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable and slash/prop/prop_inv/dirac/vertex/matrix-operation names remain. Unreferenced local exact/g/add/sub/mul/scale and g0..g3/require helpers are composed into shared GaussianRational, one gamma-family constructor and Cases. Matrix inputs/outputs deliberately use immutable4x4 GaussianRational rows rather than mutable nested scalar pairs; no external Python caller of these old internals was found. Integer propagator inputs now work exactly instead of constructing a float reciprocal. Full Lean source and derivation note reviewed: Lean raw G/gsum4 representation has denominator conventions for its specific expressions and is not reused as a general rational matrix library. Its universal integer inverse-difference theorem and fixed propagator/contraction theorems remain distinct from generated runtime tests. CLI counts25 actual obligations; no integral, subtraction scheme or Z1/Z2 ratio is computed and DAG remains OPEN. Historical receipts preserve old hashes."
+    }
+  }
+}

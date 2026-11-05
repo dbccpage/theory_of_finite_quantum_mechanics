@@ -1,0 +1,69 @@
+{
+  "AuthorityEffect": "None",
+  "prior_sha256": "f220f08ba26d4551bba16854d3ef85b9b15093f5198101dd4662590400b0b150",
+  "source_and_test_sha256": {
+    ".review_work/run_lineon_mutations.py": "dd87ecee6835cb1475e14b538669b98fa50e0cb47c245dbac69c75b095e6b1bc",
+    "checks/checker_support/boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks/checker_support/cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks/checker_support/domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks/checker_support/gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks/checker_support/gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks/checker_support/happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks/checker_support/mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks/checker_support/outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks/checker_support/wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py": "d97d80fa3f996b81e930deffcee848d12f9841f236ff255807be811f330da244",
+    "checks/tests/run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks/tests/test_lineon_checker.py": "379f6ae72f3b11f769275f8be69074d1121e4dbf24d7a4768b912dbac9baf4fa",
+    "checks/tests/test_review_repairs.py": "d8da6e2d1a57e6fabb85c294585296bb5c92491367e5a4c352bfbbe706603676"
+  },
+  "manifest_before_sha256": "afbe8f3cfb5b30dd240ceab6261398c33586354cf8e8bb9cdcf44de42b443825",
+  "manifest_after_sha256": "d18090d1c09ea16942e0e11bb55c718c184be9baf7a5beab7280663f0ad5375a",
+  "amendment": "No source or test bytes changed. The original selected 80-example path property did not hit two faults; add the existing fixed positive/negative path fixture suite to those candidates. All 48 source recipes remain identical; original outcomes are retained.",
+  "mutants": [
+    {
+      "identity": "path-site-collision",
+      "mutant_sha256": "7288dc6dc575b2c792345b99870c2f24d0549e6e13f27558fd105133af6580f0",
+      "outcome": "killed",
+      "output": "test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... ok\ntest_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-followup-ko1gall7\\tests\\test_lineon_checker.py\", line 248, in test_default_receipt_and_sections_have_unique_exact_statuses\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[124 chars]ks': 3, 'failures': ['collision_path_refused_0[75 chars]alse} != {'rec[124 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FSP-HINGE-LINEON-SIGN-CLAIM',\n-  'failed_checks': 3,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['collision_path_refused_0',\n-               'collision_path_refused_1',\n-               'collision_path_refused_3'],\n   'record_id': 'TFQ-1219',\n   'total_checks': 77}\n\n----------------------------------------------------------------------\nRan 2 tests in 0.641s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_order_against_site_and_edge_oracle",
+        "test_default_receipt_and_sections_have_unique_exact_statuses"
+      ],
+      "baseline": {
+        "returncode": 0,
+        "output": "test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... ok\ntest_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.623s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "path-distance-update",
+      "mutant_sha256": "d27e238eb27e53d4d6ed729badf95ef85e3b17fcd4ad7cf1db46b71851b85212",
+      "outcome": "killed",
+      "output": "test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... ok\ntest_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-followup-ko1gall7\\tests\\test_lineon_checker.py\", line 248, in test_default_receipt_and_sections_have_unique_exact_statuses\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[124 chars]ks': 4, 'failures': ['collision_path_refused_0[103 chars]alse} != {'rec[124 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FSP-HINGE-LINEON-SIGN-CLAIM',\n-  'failed_checks': 4,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['collision_path_refused_0',\n-               'collision_path_refused_1',\n-               'collision_path_refused_2',\n-               'collision_path_refused_3'],\n   'record_id': 'TFQ-1219',\n   'total_checks': 77}\n\n----------------------------------------------------------------------\nRan 2 tests in 0.618s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_order_against_site_and_edge_oracle",
+        "test_default_receipt_and_sections_have_unique_exact_statuses"
+      ],
+      "baseline": {
+        "returncode": 0,
+        "output": "test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... ok\ntest_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.634s\n\nOK\n"
+      }
+    }
+  ],
+  "combined_accounting": {
+    "counts": {
+      "killed": 48,
+      "survived": 0,
+      "equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "eligible": 48,
+    "detected_fraction": 1.0
+  }
+}

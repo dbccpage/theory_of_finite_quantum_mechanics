@@ -1,0 +1,58 @@
+{
+  "AuthorityEffect": "None",
+  "source_sha256": "0fadffb5b1cff5acd5e6433bacc93e69fa1c04183f97b891eadef46ab8b4557a",
+  "sections": [
+    {
+      "name": "check_symbolic_factorization",
+      "checks": 6
+    },
+    {
+      "name": "check_path_and_diamond",
+      "checks": 75
+    },
+    {
+      "name": "check_curvature",
+      "checks": 4
+    },
+    {
+      "name": "check_dimension_and_source",
+      "checks": 7
+    },
+    {
+      "name": "check_anchored_uniqueness",
+      "checks": 7
+    }
+  ],
+  "checks": 99,
+  "defects": [
+    {
+      "input": "inv((2,6,0,3))",
+      "returned_types": [
+        "float",
+        "float",
+        "Fraction",
+        "float"
+      ],
+      "values": [
+        "0.5",
+        "-1.0",
+        "0",
+        "0.3333333333333333"
+      ]
+    },
+    {
+      "input": "transport_of({0:0,1:0},0,{True:M(2,6,0,3)})",
+      "boolean_label_key_accepted": true,
+      "returned_vertices": [
+        0,
+        1
+      ]
+    }
+  ],
+  "retired_checks": {
+    "literal_dimension_comparison": 1,
+    "source_substring_scan": 6,
+    "reason": "Neither a literal2!=3 nor substring absence establishes model dimensions or proof admission; source provenance is tracked by reviewed contracts and Lean receipts remain separate."
+  },
+  "added_check": "symbolic torus projection homomorphism for two general upper-triangular matrices"
+}

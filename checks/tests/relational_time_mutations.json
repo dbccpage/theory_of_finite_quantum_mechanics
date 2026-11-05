@@ -1,0 +1,417 @@
+[
+  {
+    "identity": "matrix-constructor-transpose",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return RationalMatrix(rows).rows",
+    "after": "return RationalMatrix(rows).transpose().rows",
+    "tests": [
+      "test_matrix_vector_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-product-order",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return left.mul(right).rows",
+    "after": "return right.mul(left).rows",
+    "tests": [
+      "test_matrix_vector_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-transpose-omitted",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return RationalMatrix(a).transpose().rows",
+    "after": "return RationalMatrix(a).rows",
+    "tests": [
+      "test_matrix_vector_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "vector-exactness",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "rational(value, \"vector component\")",
+    "after": "Q(value)",
+    "tests": [
+      "test_matrix_vector_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "permutation-order",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return a[b[0]], a[b[1]], a[b[2]]",
+    "after": "return b[a[0]], b[a[1]], b[a[2]]",
+    "tests": [
+      "test_full_s3_census_and_exact_domains"
+    ]
+  },
+  {
+    "identity": "permutation-inverse",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return a.index(0), a.index(1), a.index(2)",
+    "after": "return a",
+    "tests": [
+      "test_full_s3_census_and_exact_domains"
+    ]
+  },
+  {
+    "identity": "compose-first-admission",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "_compose(permutation3(a), permutation3(b))",
+    "after": "_compose(a, permutation3(b))",
+    "tests": [
+      "test_full_s3_census_and_exact_domains"
+    ]
+  },
+  {
+    "identity": "compose-second-admission",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "_compose(permutation3(a), permutation3(b))",
+    "after": "_compose(permutation3(a), b)",
+    "tests": [
+      "test_full_s3_census_and_exact_domains"
+    ]
+  },
+  {
+    "identity": "inverse-admission",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return _inverse(permutation3(a))",
+    "after": "return _inverse(a)",
+    "tests": [
+      "test_full_s3_census_and_exact_domains"
+    ]
+  },
+  {
+    "identity": "state-bool",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "state = integer(value, \"S3 state\")",
+    "after": "state = int(value)",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals"
+    ]
+  },
+  {
+    "identity": "state-range",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "if not 0 <= state < 3:",
+    "after": "if False:",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals"
+    ]
+  },
+  {
+    "identity": "frozen-schedule",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "@dataclass(frozen=True, slots=True, init=False)",
+    "after": "@dataclass(slots=True, init=False)",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals"
+    ]
+  },
+  {
+    "identity": "period-budget",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "sequence(links, \"schedule\", maximum=64)",
+    "after": "sequence(links, \"schedule\", maximum=65)",
+    "tests": [
+      "test_empty_boundary_and_full_period_budget"
+    ]
+  },
+  {
+    "identity": "root-frame",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "frames = [UNIT]",
+    "after": "frames = [(1, 0, 2)]",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals"
+    ]
+  },
+  {
+    "identity": "chronological-order",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "frames.append(_compose(link, frames[-1]))",
+    "after": "frames.append(_compose(frames[-1], link))",
+    "tests": [
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "empty-closure",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return \"emptyPeriod\"",
+    "after": "return \"ok\"",
+    "tests": [
+      "test_empty_boundary_and_full_period_budget"
+    ]
+  },
+  {
+    "identity": "nonclosing-closure",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return \"nontrivialHolonomy\"",
+    "after": "return \"ok\"",
+    "tests": [
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "closure-railway",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return evaluate(self._closed)",
+    "after": "return Outcome(value=self._closed())",
+    "tests": [
+      "test_empty_boundary_and_full_period_budget"
+    ]
+  },
+  {
+    "identity": "blocks-empty-refusal",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "if not self.links:\n            raise Violation(\"input\", \"emptyPeriod\")",
+    "after": "if False:\n            raise Violation(\"input\", \"emptyPeriod\")",
+    "tests": [
+      "test_empty_boundary_and_full_period_budget"
+    ]
+  },
+  {
+    "identity": "seam-erased",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "self.frame_values[(t+1) % len(self.links)]",
+    "after": "self.frame_values[t+1]",
+    "tests": [
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "blocks-railway",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return evaluate(self._blocks)",
+    "after": "return Outcome(value=self._blocks())",
+    "tests": [
+      "test_empty_boundary_and_full_period_budget"
+    ]
+  },
+  {
+    "identity": "changed-target-inverse",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "_compose(_inverse(owned[t+1]), _compose(link, owned[t]))",
+    "after": "_compose(owned[t+1], _compose(link, owned[t]))",
+    "tests": [
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "changed-source-endpoint",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "_compose(link, owned[t])",
+    "after": "_compose(link, owned[0])",
+    "tests": [
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "changed-railway",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return evaluate(self._changed, gauges)",
+    "after": "return Outcome(value=self._changed(gauges))",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals"
+    ]
+  },
+  {
+    "identity": "history-railway",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return evaluate(self._history, initial)",
+    "after": "return Outcome(value=self._history(initial))",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals"
+    ]
+  },
+  {
+    "identity": "history-transport",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return tuple(frame[state] for frame in self.frame_values)",
+    "after": "return tuple(state for frame in self.frame_values)",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals",
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "evolution-inverted",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "owned[t+1] == link[owned[t]]",
+    "after": "owned[t+1] == _inverse(link)[owned[t]]",
+    "tests": [
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "evolution-shortcut",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return all(owned[t+1] == link[owned[t]] for t, link in enumerate(self.links))",
+    "after": "return True",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals"
+    ]
+  },
+  {
+    "identity": "evolution-railway",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return evaluate(self._evolves, history)",
+    "after": "return Outcome(value=self._evolves(history))",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals"
+    ]
+  },
+  {
+    "identity": "coordinates-inverse",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "_inverse(gauge)[state] for state, gauge",
+    "after": "gauge[state] for state, gauge",
+    "tests": [
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "coordinates-railway",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return evaluate(self._coordinates, history, gauges)",
+    "after": "return Outcome(value=self._coordinates(history, gauges))",
+    "tests": [
+      "test_snapshot_ownership_and_all_railway_refusals"
+    ]
+  },
+  {
+    "identity": "recorder-type",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "if type(cases) is not Cases:",
+    "after": "if False:",
+    "tests": [
+      "test_guard_faults_and_cancellation"
+    ]
+  },
+  {
+    "identity": "packed-clock-wrap",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "nxt = (t+1) % 4",
+    "after": "nxt = t",
+    "tests": [
+      "test_packed_clock_and_fixed_control_counts"
+    ]
+  },
+  {
+    "identity": "packed-adjoint",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "return mul(transp(dressing), mul(walk, dressing)), mat(shift)",
+    "after": "return mul(dressing, mul(walk, dressing)), mat(shift)",
+    "tests": [
+      "test_packed_clock_and_fixed_control_counts"
+    ]
+  },
+  {
+    "identity": "vector-recovery-guard",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "run.require(apply(transp(power), apply(power, psi)) == psi,",
+    "after": "run.require(apply(transp(power), apply(power, psi)) != psi,",
+    "tests": [
+      "test_packed_clock_and_fixed_control_counts"
+    ]
+  },
+  {
+    "identity": "initial-gauge-factor",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "_compose(frame, gauges[0])",
+    "after": "frame",
+    "tests": [
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "negative-history-check",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "run.require(not changed._evolves(bad_coords),",
+    "after": "run.require(changed._evolves(bad_coords),",
+    "tests": [
+      "test_noninvolutive_endpoint_fixture"
+    ]
+  },
+  {
+    "identity": "zero-gauge-regression",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "if not schedule.links:\n        raise Violation(\"input\", \"nonempty gauge regression required\")",
+    "after": "if False:\n        raise Violation(\"input\", \"nonempty gauge regression required\")",
+    "tests": [
+      "test_empty_boundary_and_full_period_budget"
+    ]
+  },
+  {
+    "identity": "zero-cycle-regression",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "if not schedule.links:\n        raise Violation(\"input\", \"nonempty cycle regression required\")",
+    "after": "if False:\n        raise Violation(\"input\", \"nonempty cycle regression required\")",
+    "tests": [
+      "test_empty_boundary_and_full_period_budget"
+    ]
+  },
+  {
+    "identity": "main-schedule-range",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "for length in range(1, 5):",
+    "after": "for length in range(1, 4):",
+    "tests": [
+      "test_full_enumeration_and_executable_failure_exit"
+    ]
+  },
+  {
+    "identity": "closed-counter",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "closed += closure(links) == \"ok\"",
+    "after": "closed += 1",
+    "tests": [
+      "test_full_enumeration_and_executable_failure_exit"
+    ]
+  },
+  {
+    "identity": "receipt-count",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "\"checks\": run.checks",
+    "after": "\"checks\": count",
+    "tests": [
+      "test_full_enumeration_and_executable_failure_exit"
+    ]
+  },
+  {
+    "identity": "failure-exit",
+    "source": "independent/dfm-relational-time-fence.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_full_enumeration_and_executable_failure_exit"
+    ]
+  },
+  {
+    "identity": "oracle-inverse",
+    "source": "tests/test_relational_time.py",
+    "before": "return table[0], table[1], table[2]",
+    "after": "return table[1], table[0], table[2]",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "oracle-frame-order",
+    "source": "tests/test_relational_time.py",
+    "before": "images = [link[state] for state in images]",
+    "after": "images = [images[state] for state in link]",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "refusal-helper",
+    "source": "tests/test_relational_time.py",
+    "before": "self.assertFalse(result.ok)",
+    "after": "self.assertTrue(result.ok)",
+    "tests": [
+      "test_full_s3_census_and_exact_domains"
+    ]
+  }
+]

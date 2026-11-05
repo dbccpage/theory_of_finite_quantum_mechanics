@@ -1,0 +1,801 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... ok\ntest_injected_faults_cli_and_cancellation (__main__.CqftCheckerTests.test_injected_faults_cli_and_cancellation) ... ok\ntest_local_generated_receipt_accounting (__main__.CqftCheckerTests.test_local_generated_receipt_accounting) ... ok\ntest_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries) ... ok\ntest_local_two_by_two_api_against_symbolic_oracle (__main__.CqftCheckerTests.test_local_two_by_two_api_against_symbolic_oracle) ... ok\ntest_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... ok\ntest_matrix_output_and_intermediate_budgets (__main__.CqftCheckerTests.test_matrix_output_and_intermediate_budgets) ... ok\ntest_matrix_owns_snapshots_and_exports_are_detached (__main__.CqftCheckerTests.test_matrix_owns_snapshots_and_exports_are_detached) ... ok\ntest_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... ok\ntest_ordered_product_and_unimodular_refusals (__main__.CqftCheckerTests.test_ordered_product_and_unimodular_refusals) ... ok\ntest_rectangular_multiplication_and_integer_export (__main__.CqftCheckerTests.test_rectangular_multiplication_and_integer_export) ... ok\ntest_refusal_helper_and_symbolic_conversion_oracles (__main__.CqftCheckerTests.test_refusal_helper_and_symbolic_conversion_oracles) ... ok\ntest_unfolding_and_full_system_input_refusals (__main__.CqftCheckerTests.test_unfolding_and_full_system_input_refusals) ... ok\ntest_unfolding_indices_against_bit_insertion (__main__.CqftCheckerTests.test_unfolding_indices_against_bit_insertion) ... ok\ntest_unimodular_inverse_and_ordered_products (__main__.CqftCheckerTests.test_unimodular_inverse_and_ordered_products) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 3.828s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_cqft_mutations_closure.py": "76ec4c9c65f03fb174d5d8d0af40fecd9cdcc130e09588aa8df7497a3867db87",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\cqft-causal-factorization-import.py": "b58f2f35f740f4fb081fcab8da2a8724f02f94c0b71b4c6a0076dc2616039833",
+    "checks\\independent\\cqft-local-net-axioms-import.py": "5824ee27a9ad830d0d59d10e1169236885346238543e5b69124e9b25658b7675",
+    "checks\\independent\\cqft-reeh-schlieder-theorem-import.py": "2a639082e9bfe78086ae46a4be4ea5d5cfb79e9f009a55522b1210614bbe4cd8",
+    "checks\\tests\\cqft_mutations.json": "82b7e8ae9acf3c7909d5772b316b229b521ea0e835c5b6f5ef20aaa0f76389f1",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_cqft_checkers.py": "b4fff4cbed9d5d013e42371ab34b2d64ca132aed4e530cff7357da6ca9be24d7",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "mutants": [
+    {
+      "identity": "matrix-frozen",
+      "mutant_sha256": "5a9a200a1a4d626161948659f8f3793c0866b6d6433be5b230393a94e2bb086f",
+      "outcome": "killed",
+      "output": "test_matrix_owns_snapshots_and_exports_are_detached (__main__.CqftCheckerTests.test_matrix_owns_snapshots_and_exports_are_detached) ... FAIL\n\n======================================================================\nFAIL: test_matrix_owns_snapshots_and_exports_are_detached (__main__.CqftCheckerTests.test_matrix_owns_snapshots_and_exports_are_detached)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 155, in test_matrix_owns_snapshots_and_exports_are_detached\n    with self.assertRaises(FrozenInstanceError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: FrozenInstanceError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_owns_snapshots_and_exports_are_detached"
+      ]
+    },
+    {
+      "identity": "matrix-row-limit",
+      "mutant_sha256": "be19f9bc371454f18e8bd09a74af5481ec4e45b0f02607e934a371d4c85858d3",
+      "outcome": "killed",
+      "output": "test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 101, in test_matrix_shape_scalar_and_resource_boundaries\n    self.refused(Matrix, bad, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_shape_scalar_and_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "matrix-column-limit",
+      "mutant_sha256": "b938498e87bce9edb0b1ae7e2c7583ff9839899d1fd1fa6cfebfb10ffa05d365",
+      "outcome": "survived",
+      "output": "test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n",
+      "returncode": 0,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_shape_scalar_and_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "matrix-entry-admission",
+      "mutant_sha256": "ff7e0dcdfa97ad89391680a1cec3e7f8202cebb01eaed5aa2e9b2dab846e3016",
+      "outcome": "killed",
+      "output": "test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 99, in test_matrix_shape_scalar_and_resource_boundaries\n    self.refused(Matrix, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_shape_scalar_and_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "matrix-row-snapshot",
+      "mutant_sha256": "23782b233ef2a525285051652103d130bd288f7fc98f764d7d9703258f1fdc8a",
+      "outcome": "killed",
+      "output": "test_matrix_owns_snapshots_and_exports_are_detached (__main__.CqftCheckerTests.test_matrix_owns_snapshots_and_exports_are_detached) ... FAIL\n\n======================================================================\nFAIL: test_matrix_owns_snapshots_and_exports_are_detached (__main__.CqftCheckerTests.test_matrix_owns_snapshots_and_exports_are_detached)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 148, in test_matrix_owns_snapshots_and_exports_are_detached\n    self.assertEqual(direct.rows, ((Q(1, 2), Q(2)), (Q(3), Q(4, 5))))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [] != ((Fraction(1, 2), Fraction(2, 1)), (Fraction(3, 1), Fraction(4, 5)))\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_owns_snapshots_and_exports_are_detached"
+      ]
+    },
+    {
+      "identity": "matrix-integer-admission",
+      "mutant_sha256": "a7e18f56b85e87bdbbd8c4391cb8f03d21ecf8fbd82c9948f5d1bbc195a7a615",
+      "outcome": "killed",
+      "output": "test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 103, in test_matrix_shape_scalar_and_resource_boundaries\n    self.refused(Matrix.from_integers, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_shape_scalar_and_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "matrix-flat-order",
+      "mutant_sha256": "eff72231cf04bb154b3cc3c07fe107d10e0fe65669b776255d63d6aa4f436808",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 69, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(a.add(b).rows, _rows(sa+sb))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(0, 1), Fraction(1, 1)), (Fraction(0, 1), Fraction(0, 1))) != ((Fraction(0, 1), Fraction(0, 1)), (Fraction(1, 1), Fraction(0, 1)))\n\nFirst differing element 0:\n(Fraction(0, 1), Fraction(1, 1))\n(Fraction(0, 1), Fraction(0, 1))\n\n- ((Fraction(0, 1), Fraction(1, 1)), (Fraction(0, 1), Fraction(0, 1)))\n+ ((Fraction(0, 1), Fraction(0, 1)), (Fraction(1, 1), Fraction(0, 1)))\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),  # or any other generated value\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 5.897s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "identity-diagonal",
+      "mutant_sha256": "258cf34e20ea7f3b9775fd00beb25f98934c497a46c15576447a91ce8346cfa4",
+      "outcome": "killed",
+      "output": "test_rectangular_multiplication_and_integer_export (__main__.CqftCheckerTests.test_rectangular_multiplication_and_integer_export) ... FAIL\n\n======================================================================\nFAIL: test_rectangular_multiplication_and_integer_export (__main__.CqftCheckerTests.test_rectangular_multiplication_and_integer_export)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 83, in test_rectangular_multiplication_and_integer_export\n    @given(m=st.integers(1, 4), n=st.integers(1, 4), p=st.integers(1, 4), seed=st.lists(st.integers(-5, 5), min_size=32, max_size=32))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 93, in test_rectangular_multiplication_and_integer_export\n    self.assertEqual(a.mul(Matrix.eye(n)), a)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RationalMatrix(rows=((Fraction(0, 1),),)) != RationalMatrix(rows=((Fraction(1, 1),),))\nFailing test case: test_rectangular_multiplication_and_integer_export(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_rectangular_multiplication_and_integer_export>,\n    m=1,  # or any other generated value\n    n=1,  # or any other generated value\n    p=1,  # or any other generated value\n    seed=[1,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\repmatrix.py:215\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1450\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1507\n\n----------------------------------------------------------------------\nRan 1 test in 1.428s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_rectangular_multiplication_and_integer_export"
+      ]
+    },
+    {
+      "identity": "identity-size-domain",
+      "mutant_sha256": "8ea7abf0d12580ee59dda42a9ffa77f2e247802b1ff9c5f4141c119cf18cd824",
+      "outcome": "killed",
+      "output": "test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 105, in test_matrix_shape_scalar_and_resource_boundaries\n    self.refused(Matrix.eye, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_shape_scalar_and_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "matrix-shape-fence",
+      "mutant_sha256": "60b595a7faca7215028ff17f1ff791ada110ae8f556db04840903c92c5cee37f",
+      "outcome": "killed",
+      "output": "test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 109, in test_matrix_shape_scalar_and_resource_boundaries\n    self.refused(matrix.require_shape, 2, 1)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_shape_scalar_and_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "integer-export-domain",
+      "mutant_sha256": "b1a6c04f88d790323eb28fc3b2718158ea68611f79e1540d4cb1bd4be121ec2e",
+      "outcome": "killed",
+      "output": "test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 119, in test_matrix_shape_scalar_and_resource_boundaries\n    self.refused(Matrix([[Q(1, 2)]]).integer_rows)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_shape_scalar_and_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "integer-export-value",
+      "mutant_sha256": "273860273757d40c6af89f1c11950ce83e7c26c7e126ebc19f5061f970fe8340",
+      "outcome": "killed",
+      "output": "test_rectangular_multiplication_and_integer_export (__main__.CqftCheckerTests.test_rectangular_multiplication_and_integer_export) ... FAIL\n\n======================================================================\nFAIL: test_rectangular_multiplication_and_integer_export (__main__.CqftCheckerTests.test_rectangular_multiplication_and_integer_export)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 83, in test_rectangular_multiplication_and_integer_export\n    @given(m=st.integers(1, 4), n=st.integers(1, 4), p=st.integers(1, 4), seed=st.lists(st.integers(-5, 5), min_size=32, max_size=32))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 90, in test_rectangular_multiplication_and_integer_export\n    self.assertEqual(a.mul(b).integer_rows(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((1,),) != ((Fraction(0, 1),),)\n\nFirst differing element 0:\n(1,)\n(Fraction(0, 1),)\n\n- ((1,),)\n+ ((Fraction(0, 1),),)\nFailing test case: test_rectangular_multiplication_and_integer_export(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_rectangular_multiplication_and_integer_export>,\n    m=1,  # or any other generated value\n    n=1,  # or any other generated value\n    p=1,  # or any other generated value\n    seed=[0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.183s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_rectangular_multiplication_and_integer_export"
+      ]
+    },
+    {
+      "identity": "matrix-add-sign",
+      "mutant_sha256": "86bf56563b06b5b9319cc61208116803cac1aef88d27800463df285990970be3",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 69, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(a.add(b).rows, _rows(sa+sb))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(-1, 1))) != ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1)))\n\nFirst differing element 1:\n(Fraction(0, 1), Fraction(-1, 1))\n(Fraction(0, 1), Fraction(1, 1))\n\n- ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(-1, 1)))\n?                                                              -\n\n+ ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1)))\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),  # or any other generated value\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 5.911s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-negation",
+      "mutant_sha256": "c8e79bd28ab916d3b2103e7116cbe444459c32c435da114f57f9fbfb99ae8103",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 71, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(a.neg().rows, _rows(-sa))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1))) != ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(-1, 1)))\n\nFirst differing element 1:\n(Fraction(0, 1), Fraction(1, 1))\n(Fraction(0, 1), Fraction(-1, 1))\n\n- ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1)))\n+ ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(-1, 1)))\n?                                                              +\n\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)),\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1507\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1509\n\n----------------------------------------------------------------------\nRan 1 test in 6.287s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-transpose",
+      "mutant_sha256": "5bed737b126ee14dbfd481e7b005505e7bff7a7efddc48899b22152cbac533f7",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 72, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(a.transpose().rows, _rows(sa.T))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(0, 1), Fraction(0, 1)), (Fraction(1, 1), Fraction(0, 1))) != ((Fraction(0, 1), Fraction(1, 1)), (Fraction(0, 1), Fraction(0, 1)))\n\nFirst differing element 0:\n(Fraction(0, 1), Fraction(0, 1))\n(Fraction(0, 1), Fraction(1, 1))\n\n- ((Fraction(0, 1), Fraction(0, 1)), (Fraction(1, 1), Fraction(0, 1)))\n+ ((Fraction(0, 1), Fraction(1, 1)), (Fraction(0, 1), Fraction(0, 1)))\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)),\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 5.802s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "multiply-right-transpose",
+      "mutant_sha256": "47f10873e4718d7525de54afe9fcdcbc7a1fe08af463364100c4f3434f431cbf",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... ERROR\n\n======================================================================\nERROR: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n  |     @given(left=FLAT2, right=FLAT2)\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 78, in test_matrix_operations_against_symbolic_oracle\n    |     self.assertEqual(a.mul(inverse), Matrix.eye(2))\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 918, in _baseAssertEqual\n    |     raise self.failureException(msg)\n    | AssertionError: Ratio[21 chars]tion(-1, 1), Fraction(0, 1)), (Fraction(0, 1),[14 chars]1)))) != Ratio[21 chars]tion(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(1, 1))))\n    | Failing test case: test_matrix_operations_against_symbolic_oracle(\n    |     # The test sometimes passed when commented parts were varied together.\n    |     self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    |     left=(Fraction(0, 1), Fraction(1, 1), Fraction(-1, 1), Fraction(0, 1)),\n    |     right=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 70, in test_matrix_operations_against_symbolic_oracle\n    |     self.assertEqual(a.mul(b).rows, _rows(sa*sb))\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1142, in assertTupleEqual\n    |     self.assertSequenceEqual(tuple1, tuple2, msg, seq_type=tuple)\n    |     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1113, in assertSequenceEqual\n    |     self.fail(msg)\n    |     ~~~~~~~~~^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 750, in fail\n    |     raise self.failureException(msg)\n    | AssertionError: Tuples differ: ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1))) != ((Fraction(0, 1), Fraction(0, 1)), (Fraction(1, 1), Fraction(0, 1)))\n    | \n    | First differing element 1:\n    | (Fraction(0, 1), Fraction(0, 1))\n    | (Fraction(1, 1), Fraction(0, 1))\n    | \n    | - ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)))\n    | ?                                                 ----------------\n    | \n    | + ((Fraction(0, 1), Fraction(0, 1)), (Fraction(1, 1), Fraction(0, 1)))\n    | ?                                     ++++++++++++++++\n    | \n    | Failing test case: test_matrix_operations_against_symbolic_oracle(\n    |     # The test always failed when commented parts were varied together.\n    |     self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    |     left=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)),\n    |     right=(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)),\n    | )\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 8.998s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "multiply-dimension-fence",
+      "mutant_sha256": "4573d161fb960d54296d7895084c1efb2872085dad40d7900803111f0c5e258c",
+      "outcome": "killed",
+      "output": "test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 115, in test_matrix_shape_scalar_and_resource_boundaries\n    self.refused(matrix.mul, Matrix.eye(3))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_shape_scalar_and_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "dot-product-addition",
+      "mutant_sha256": "9f54bd8693dd896c9a4053ec93b10ce1baa00ce9dd76113a86c374caa17d4fc8",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 70, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(a.mul(b).rows, _rows(sa*sb))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(0, 1), Fraction(1, 1)), (Fraction(0, 1), Fraction(1, 1))) != ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)))\n\nFirst differing element 0:\n(Fraction(0, 1), Fraction(1, 1))\n(Fraction(0, 1), Fraction(0, 1))\n\n- ((Fraction(0, 1), Fraction(1, 1)), (Fraction(0, 1), Fraction(1, 1)))\n?                            ^                                 ^\n\n+ ((Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)))\n?                            ^                                 ^\n\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),  # or any other generated value\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 5.585s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "dot-intermediate-budget",
+      "mutant_sha256": "8bf2c538cd29d32af109db220220b9d8b763bbdcd3d9ee8cf85271ee404098ba",
+      "outcome": "killed",
+      "output": "test_matrix_output_and_intermediate_budgets (__main__.CqftCheckerTests.test_matrix_output_and_intermediate_budgets) ... FAIL\n\n======================================================================\nFAIL: test_matrix_output_and_intermediate_budgets (__main__.CqftCheckerTests.test_matrix_output_and_intermediate_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 135, in test_matrix_output_and_intermediate_budgets\n    self.refused(left.mul, Matrix([[2], [-2]]), kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_output_and_intermediate_budgets"
+      ]
+    },
+    {
+      "identity": "tensor-row-preflight",
+      "mutant_sha256": "287ddfa64e6e9d22a03b2b26699d037adb6460a7ec8ac2defb03d7d59f60037e",
+      "outcome": "killed",
+      "output": "test_matrix_output_and_intermediate_budgets (__main__.CqftCheckerTests.test_matrix_output_and_intermediate_budgets) ... FAIL\n\n======================================================================\nFAIL: test_matrix_output_and_intermediate_budgets (__main__.CqftCheckerTests.test_matrix_output_and_intermediate_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 140, in test_matrix_output_and_intermediate_budgets\n    self.refused(tall_a.kron, tall_b, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 48, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 48, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\checker_support\\rational_matrix.py\", line 104, in kron\n    return RationalMatrix(tuple(tuple(a * b for a in left for b in right)\n                                for left in self.rows for right in rhs.rows))\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nAssertionError: oversized output construction\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_output_and_intermediate_budgets"
+      ]
+    },
+    {
+      "identity": "tensor-column-preflight",
+      "mutant_sha256": "a0e5f43ffa7e954ea8c400454b16ca24633ecf64144940e9128ce2c4bd46d893",
+      "outcome": "killed",
+      "output": "test_matrix_output_and_intermediate_budgets (__main__.CqftCheckerTests.test_matrix_output_and_intermediate_budgets) ... FAIL\n\n======================================================================\nFAIL: test_matrix_output_and_intermediate_budgets (__main__.CqftCheckerTests.test_matrix_output_and_intermediate_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 141, in test_matrix_output_and_intermediate_budgets\n    self.refused(wide_a.kron, wide_b, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 48, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 48, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\checker_support\\rational_matrix.py\", line 104, in kron\n    return RationalMatrix(tuple(tuple(a * b for a in left for b in right)\n                                for left in self.rows for right in rhs.rows))\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nAssertionError: oversized output construction\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_output_and_intermediate_budgets"
+      ]
+    },
+    {
+      "identity": "tensor-block-order",
+      "mutant_sha256": "8c79932068bd32ec3eb9608185941cd16972e5b0d090f6660b61e502d621274c",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 73, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(a.kron(b).rows, _rows(sp.kronecker_product(sa, sb)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fra[196 chars]raction(0, 1), Fraction(1, 1), Fraction(0, 1), Fraction(0, 1))) != ((Fra[196 chars]raction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)))\n\nFirst differing element 3:\n(Fraction(0, 1), Fraction(1, 1), Fraction(0, 1), Fraction(0, 1))\n(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1))\n\n  ((Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),\n   (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),\n   (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),\n-  (Fraction(0, 1), Fraction(1, 1), Fraction(0, 1), Fraction(0, 1)))\n?                                               ----------------\n\n+  (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)))\n?                  ++++++++++++++++\n\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)),\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 7.716s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "tensor-row-order",
+      "mutant_sha256": "fcf555d20955a415970311a18d362bc8e59bb5ca49ea4ed4a1ba7149bde8807b",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 73, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(a.kron(b).rows, _rows(sp.kronecker_product(sa, sb)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fra[115 chars]tion(1, 1)), (Fraction(0, 1), Fraction(0, 1), [93 chars] 1))) != ((Fra[115 chars]tion(0, 1)), (Fraction(0, 1), Fraction(0, 1), [93 chars] 1)))\n\nFirst differing element 1:\n(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n\n  ((Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),\n+  (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),\n   (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)),\n-  (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),\n   (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)))\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)),\n    right=(Fraction(0, 1), Fraction(1, 1), Fraction(0, 1), Fraction(0, 1)),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 6.050s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "determinant-sign",
+      "mutant_sha256": "bd0d4464cea34a0f76459d60704a550ef343627516b1650dbfa58daed5829ae6",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 74, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(a.det2(), Q(int(sa.det().p), int(sa.det().q)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 1) != Fraction(-1, 1)\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(1, 1), Fraction(1, 1), Fraction(0, 1)),\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 5.621s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "determinant-intermediate-budget",
+      "mutant_sha256": "f3596ae479760984545813da72f87598ae0563637841367eaa58a7c43c8f7b44",
+      "outcome": "killed",
+      "output": "test_matrix_output_and_intermediate_budgets (__main__.CqftCheckerTests.test_matrix_output_and_intermediate_budgets) ... FAIL\n\n======================================================================\nFAIL: test_matrix_output_and_intermediate_budgets (__main__.CqftCheckerTests.test_matrix_output_and_intermediate_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 132, in test_matrix_output_and_intermediate_budgets\n    self.refused(Matrix([[large, large], [2, 2]]).det2, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_output_and_intermediate_budgets"
+      ]
+    },
+    {
+      "identity": "inverse-offdiag-sign",
+      "mutant_sha256": "39b06c04a86ba78acfa27f6d7ccea05d6ead82846e9f9eb451dfdaf6c6cf5884",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 77, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(inverse.rows, _rows(sa.inv()))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(0, 1), Fraction(1, 1)), (Fraction(-1, 1), Fraction(0, 1))) != ((Fraction(0, 1), Fraction(1, 1)), (Fraction(1, 1), Fraction(0, 1)))\n\nFirst differing element 1:\n(Fraction(-1, 1), Fraction(0, 1))\n(Fraction(1, 1), Fraction(0, 1))\n\n- ((Fraction(0, 1), Fraction(1, 1)), (Fraction(-1, 1), Fraction(0, 1)))\n?                                              -\n\n+ ((Fraction(0, 1), Fraction(1, 1)), (Fraction(1, 1), Fraction(0, 1)))\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(1, 1), Fraction(1, 1), Fraction(0, 1)),\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 6.938s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "inverse-scale",
+      "mutant_sha256": "ecae9912413ca97091f6577068acc5fd3aa372e8b689db1a75cfa29926b679e7",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.CqftCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 65, in test_matrix_operations_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 77, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(inverse.rows, _rows(sa.inv()))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(0, 1), Fraction(-1, 1)), (Fraction(-1, 1), Fraction(0, 1))) != ((Fraction(0, 1), Fraction(1, 1)), (Fraction(1, 1), Fraction(0, 1)))\n\nFirst differing element 0:\n(Fraction(0, 1), Fraction(-1, 1))\n(Fraction(0, 1), Fraction(1, 1))\n\n- ((Fraction(0, 1), Fraction(-1, 1)), (Fraction(-1, 1), Fraction(0, 1)))\n?                            -                  -\n\n+ ((Fraction(0, 1), Fraction(1, 1)), (Fraction(1, 1), Fraction(0, 1)))\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test sometimes passed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(1, 1), Fraction(1, 1), Fraction(0, 1)),\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 7.481s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-complete-column-limit",
+      "mutant_sha256": "56b5b4bf51941a155d7e40571a42b2f91e7bed52d8763679f255ab84a21e1cd5",
+      "outcome": "killed",
+      "output": "test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_matrix_shape_scalar_and_resource_boundaries (__main__.CqftCheckerTests.test_matrix_shape_scalar_and_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 101, in test_matrix_shape_scalar_and_resource_boundaries\n    self.refused(Matrix, bad, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/rational_matrix.py",
+      "tests": [
+        "test_matrix_shape_scalar_and_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "causal-det-negative-one",
+      "mutant_sha256": "ec6efd53833a6a49c013df0ebe086ee79ea1c6f5d74e8d3b5fb6ddac7d56eb1a",
+      "outcome": "killed",
+      "output": "test_unimodular_inverse_and_ordered_products (__main__.CqftCheckerTests.test_unimodular_inverse_and_ordered_products) ... ERROR\n\n======================================================================\nERROR: test_unimodular_inverse_and_ordered_products (__main__.CqftCheckerTests.test_unimodular_inverse_and_ordered_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 165, in test_unimodular_inverse_and_ordered_products\n    @given(a=st.integers(-50, 50), b=st.integers(-50, 50), sign=st.sampled_from((-1, 1)))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 171, in test_unimodular_inverse_and_ordered_products\n    self.assertEqual(causal.mat2_inv_unimodular(matrix), expected)\n                     ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\independent\\cqft-causal-factorization-import.py\", line 69, in mat2_inv_unimodular\n    raise Violation(\"input\", \"inverse requires an integer unimodular matrix\")\nchecker_support.boundary.Violation: inverse requires an integer unimodular matrix\nFailing test case: test_unimodular_inverse_and_ordered_products(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_unimodular_inverse_and_ordered_products>,\n    a=0,  # or any other generated value\n    b=0,  # or any other generated value\n    sign=-1,\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\independent\\cqft-causal-factorization-import.py:69\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\external\\pythonmpq.py:273\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\domainmatrix.py:1557\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\domainmatrix.py:1640\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:838\n\n----------------------------------------------------------------------\nRan 1 test in 2.383s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_unimodular_inverse_and_ordered_products"
+      ]
+    },
+    {
+      "identity": "causal-unimodular-fence",
+      "mutant_sha256": "7f7b0c2d05b2ce20a39ef6835b074f1ca784655ca97a35114ab8ed28797a00e3",
+      "outcome": "survived",
+      "output": "test_ordered_product_and_unimodular_refusals (__main__.CqftCheckerTests.test_ordered_product_and_unimodular_refusals) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_ordered_product_and_unimodular_refusals"
+      ]
+    },
+    {
+      "identity": "ordered-point-domain",
+      "mutant_sha256": "8e2ac8f0100021cfe0611827dbba7065a89a43be31ffeb5fe7dc331ab36ad578",
+      "outcome": "killed",
+      "output": "test_ordered_product_and_unimodular_refusals (__main__.CqftCheckerTests.test_ordered_product_and_unimodular_refusals) ... FAIL\n\n======================================================================\nFAIL: test_ordered_product_and_unimodular_refusals (__main__.CqftCheckerTests.test_ordered_product_and_unimodular_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 189, in test_ordered_product_and_unimodular_refusals\n    self.refused(module.ordered_prod, {0: module.I2, 1: module.X2}, (bad,))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_ordered_product_and_unimodular_refusals"
+      ]
+    },
+    {
+      "identity": "ordered-key-domain",
+      "mutant_sha256": "4bba5b3699bcfcaa201af267e4566175481f17bfe798a97c551c1d690d1049a9",
+      "outcome": "killed",
+      "output": "test_ordered_product_and_unimodular_refusals (__main__.CqftCheckerTests.test_ordered_product_and_unimodular_refusals) ... FAIL\n\n======================================================================\nFAIL: test_ordered_product_and_unimodular_refusals (__main__.CqftCheckerTests.test_ordered_product_and_unimodular_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 186, in test_ordered_product_and_unimodular_refusals\n    self.refused(module.ordered_prod, assignment, points)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_ordered_product_and_unimodular_refusals"
+      ]
+    },
+    {
+      "identity": "ordered-sequence-bound",
+      "mutant_sha256": "fec1c42d59dedbe01970bdf5da47031e4cbe80ef770a94b82b983acded043298",
+      "outcome": "killed",
+      "output": "test_ordered_product_and_unimodular_refusals (__main__.CqftCheckerTests.test_ordered_product_and_unimodular_refusals) ... FAIL\n\n======================================================================\nFAIL: test_ordered_product_and_unimodular_refusals (__main__.CqftCheckerTests.test_ordered_product_and_unimodular_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 186, in test_ordered_product_and_unimodular_refusals\n    self.refused(module.ordered_prod, assignment, points)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_ordered_product_and_unimodular_refusals"
+      ]
+    },
+    {
+      "identity": "ordered-product-direction",
+      "mutant_sha256": "b19676cfe06bce936f2dbacf76827ba3bf62f9ed797500dd1f01451dd981570f",
+      "outcome": "killed",
+      "output": "test_unimodular_inverse_and_ordered_products (__main__.CqftCheckerTests.test_unimodular_inverse_and_ordered_products) ... FAIL\n\n======================================================================\nFAIL: test_unimodular_inverse_and_ordered_products (__main__.CqftCheckerTests.test_unimodular_inverse_and_ordered_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 165, in test_unimodular_inverse_and_ordered_products\n    @given(a=st.integers(-50, 50), b=st.integers(-50, 50), sign=st.sampled_from((-1, 1)))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 174, in test_unimodular_inverse_and_ordered_products\n    self.assertEqual(causal.ordered_prod({0: matrix, 1: causal.X2}, (0, 1)), _rows(sp.Matrix(matrix)*sp.Matrix(causal.X2)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, -1), (1, 0)) != ((Fraction(0, 1), Fraction(1, 1)), (Fraction(-1, 1), Fraction(0, 1)))\n\nFirst differing element 0:\n(0, -1)\n(Fraction(0, 1), Fraction(1, 1))\n\n- ((0, -1), (1, 0))\n+ ((Fraction(0, 1), Fraction(1, 1)), (Fraction(-1, 1), Fraction(0, 1)))\nFailing test case: test_unimodular_inverse_and_ordered_products(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_unimodular_inverse_and_ordered_products>,\n    a=0,  # or any other generated value\n    b=0,  # or any other generated value\n    sign=-1,\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:2029\n\n----------------------------------------------------------------------\nRan 1 test in 3.750s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_unimodular_inverse_and_ordered_products"
+      ]
+    },
+    {
+      "identity": "causal-c2-edge",
+      "mutant_sha256": "8563ba446de01548e12593c7a9f4dd956daeb846e1a2e95e21cc2e153464f001",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 258, in test_all_finite_sections_and_default_counts\n    self.assertEqual(causal.verify_bogoliubov_and_c2_asymmetry(), (484, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (484, 2) != (484, 0)\n\nFirst differing element 1:\n2\n0\n\n- (484, 2)\n?       ^\n\n+ (484, 0)\n?       ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.187s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "causal-spacelike-reflexivity",
+      "mutant_sha256": "136ec48ac0cad39219a2a04012b03f24fe2b84cd6d27d971d2f1773e43655115",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 258, in test_all_finite_sections_and_default_counts\n    self.assertEqual(causal.verify_bogoliubov_and_c2_asymmetry(), (484, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (484, 4) != (484, 0)\n\nFirst differing element 1:\n4\n0\n\n- (484, 4)\n?       ^\n\n+ (484, 0)\n?       ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.213s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "n-order-edge",
+      "mutant_sha256": "2ea84eb957bccf84e78183a39879c6f2af9a8a3eed11c0e4ff3bd58607b62ca1",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 259, in test_all_finite_sections_and_default_counts\n    self.assertEqual(causal.verify_poset_n_swap_connectivity(), (32, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (32, 3) != (32, 0)\n\nFirst differing element 1:\n3\n0\n\n- (32, 3)\n?      ^\n\n+ (32, 0)\n?      ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.198s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "n-adjacent-swap",
+      "mutant_sha256": "12dac901be3942ea3e6a10e663794514fd4ba7a3c038cf4b39f07eb2ddb7d449",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 259, in test_all_finite_sections_and_default_counts\n    self.assertEqual(causal.verify_poset_n_swap_connectivity(), (32, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (32, 6) != (32, 0)\n\nFirst differing element 1:\n6\n0\n\n- (32, 6)\n?      ^\n\n+ (32, 0)\n?      ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.194s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "n-bfs-visit",
+      "mutant_sha256": "a5e0bf3342f8fb5c94702335ab81280434f57364f16475cab403e722e3deec05",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 259, in test_all_finite_sections_and_default_counts\n    self.assertEqual(causal.verify_poset_n_swap_connectivity(), (32, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (32, 1) != (32, 0)\n\nFirst differing element 1:\n1\n0\n\n- (32, 1)\n?      ^\n\n+ (32, 0)\n?      ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.211s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "counterterm-divisor",
+      "mutant_sha256": "3313199f053d82c4032f138bf0f6b9cee9efff592fa43f4f946875267978f697",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 260, in test_all_finite_sections_and_default_counts\n    self.assertEqual(causal.verify_diagonal_counterterm_fence(), (407, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (407, 7) != (407, 0)\n\nFirst differing element 1:\n7\n0\n\n- (407, 7)\n?       ^\n\n+ (407, 0)\n?       ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.189s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "counterterm-diagonal",
+      "mutant_sha256": "b517fe9375c1b9aeb2ff73718177659d8d07a4f7734a084fb418980d3df475a7",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 260, in test_all_finite_sections_and_default_counts\n    self.assertEqual(causal.verify_diagonal_counterterm_fence(), (407, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (407, 80) != (407, 0)\n\nFirst differing element 1:\n80\n0\n\n- (407, 80)\n?       -\n\n+ (407, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.195s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "counterterm-offdiag",
+      "mutant_sha256": "026f9c32c51c25140b205f3672ae11d3d2376e5b3afc295fc239149bf0b81fa5",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 260, in test_all_finite_sections_and_default_counts\n    self.assertEqual(causal.verify_diagonal_counterterm_fence(), (407, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (407, 288) != (407, 0)\n\nFirst differing element 1:\n288\n0\n\n- (407, 288)\n?       ^^^\n\n+ (407, 0)\n?       ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.198s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "causal-cli-failure",
+      "mutant_sha256": "4f7de8d09970030784ab0c9b32278c87088276721f30afd2d3faa00c0940afb4",
+      "outcome": "killed",
+      "output": "test_injected_faults_cli_and_cancellation (__main__.CqftCheckerTests.test_injected_faults_cli_and_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_injected_faults_cli_and_cancellation (__main__.CqftCheckerTests.test_injected_faults_cli_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 279, in test_injected_faults_cli_and_cancellation\n    self.assertEqual(cli(causal.main), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.129s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_injected_faults_cli_and_cancellation"
+      ]
+    },
+    {
+      "identity": "causal-receipt-count",
+      "mutant_sha256": "b5e56e19bf60eaf05f5742a61a7f3587ddd66f9383829b88c2ef2ddc35270d53",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 258, in test_all_finite_sections_and_default_counts\n    self.assertEqual(causal.verify_bogoliubov_and_c2_asymmetry(), (484, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (485, 0) != (484, 0)\n\nFirst differing element 0:\n485\n484\n\n- (485, 0)\n?    ^\n\n+ (484, 0)\n?    ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.374s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "causal-failure-count",
+      "mutant_sha256": "6e386cf0081a431c1f6bd91b641fd44650d34a2d111c7483b73b1b4ea3111320",
+      "outcome": "killed",
+      "output": "test_injected_faults_cli_and_cancellation (__main__.CqftCheckerTests.test_injected_faults_cli_and_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_injected_faults_cli_and_cancellation (__main__.CqftCheckerTests.test_injected_faults_cli_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 277, in test_injected_faults_cli_and_cancellation\n    self.assertGreater(causal.verify_bogoliubov_and_c2_asymmetry()[1], 0)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 not greater than 0\n\n----------------------------------------------------------------------\nRan 1 test in 0.141s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-causal-factorization-import.py",
+      "tests": [
+        "test_injected_faults_cli_and_cancellation"
+      ]
+    },
+    {
+      "identity": "local-relation-edge",
+      "mutant_sha256": "ca5d817d1a45bbcd28a4050181575cbd6b5a1b0b5f07846edf0ff1cc2c34732e",
+      "outcome": "killed",
+      "output": "test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 206, in test_local_order_tensor_and_flat_boundaries\n    self.assertIs(module.rel(i, j), (i, j) in relation)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not False\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_order_tensor_and_flat_boundaries"
+      ]
+    },
+    {
+      "identity": "local-point-bound",
+      "mutant_sha256": "74ad2768e416f2efc5f4fb2e8d52b6f5c45f2ceadaf816e935e239e88a835b52",
+      "outcome": "killed",
+      "output": "test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 210, in test_local_order_tensor_and_flat_boundaries\n    self.refused(function, bad, 0)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_order_tensor_and_flat_boundaries"
+      ]
+    },
+    {
+      "identity": "local-spacelike-equality",
+      "mutant_sha256": "70ae86f33e892c751e414b39c3cfdf9722b50d4ee9f7932d09359beb04e191a2",
+      "outcome": "killed",
+      "output": "test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 207, in test_local_order_tensor_and_flat_boundaries\n    self.assertIs(module.spacelike(i, j), i != j and not ({(i, j), (j, i)} & relation))\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not False\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_order_tensor_and_flat_boundaries"
+      ]
+    },
+    {
+      "identity": "local-kron-left-domain",
+      "mutant_sha256": "080b7c706f2d178bee501db1790a6effd7509ace436b0a17271fafd65ba6f09d",
+      "outcome": "killed",
+      "output": "test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 223, in test_local_order_tensor_and_flat_boundaries\n    self.refused(module.kron_blocks, (Q(1, 2), 0, 0, 1), (2, 0, 0, 2))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_order_tensor_and_flat_boundaries"
+      ]
+    },
+    {
+      "identity": "local-count",
+      "mutant_sha256": "0c004ea0ad3ebbe5b42436bedb493c4584eade2ca7245dcd4bc821abb43e43e4",
+      "outcome": "killed",
+      "output": "test_local_generated_receipt_accounting (__main__.CqftCheckerTests.test_local_generated_receipt_accounting) ... FAIL\n\n======================================================================\nFAIL: test_local_generated_receipt_accounting (__main__.CqftCheckerTests.test_local_generated_receipt_accounting)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 295, in test_local_generated_receipt_accounting\n    @given(statuses=st.lists(st.booleans(), max_size=20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 304, in test_local_generated_receipt_accounting\n    self.assertEqual(result[\"total_checks\"], 13+len(statuses))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 14 != 13\nFailing test case: test_local_generated_receipt_accounting(\n    self=<__main__.CqftCheckerTests testMethod=test_local_generated_receipt_accounting>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.555s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_generated_receipt_accounting"
+      ]
+    },
+    {
+      "identity": "local-failure-selection",
+      "mutant_sha256": "353674fc6794309c7a66625dea5a178828fe4536f94e61241d5443590ee28103",
+      "outcome": "killed",
+      "output": "test_local_generated_receipt_accounting (__main__.CqftCheckerTests.test_local_generated_receipt_accounting) ... FAIL\n\n======================================================================\nFAIL: test_local_generated_receipt_accounting (__main__.CqftCheckerTests.test_local_generated_receipt_accounting)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 295, in test_local_generated_receipt_accounting\n    @given(statuses=st.lists(st.booleans(), max_size=20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 305, in test_local_generated_receipt_accounting\n    self.assertEqual(result[\"failed_checks\"], len(failures))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 13 != 0\nFailing test case: test_local_generated_receipt_accounting(\n    self=<__main__.CqftCheckerTests testMethod=test_local_generated_receipt_accounting>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.501s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_generated_receipt_accounting"
+      ]
+    },
+    {
+      "identity": "local-false-success",
+      "mutant_sha256": "e1032cde22f306d682d8e3b818910e57d7eba9a9e5b26f951e86d6f3182a1685",
+      "outcome": "killed",
+      "output": "test_local_generated_receipt_accounting (__main__.CqftCheckerTests.test_local_generated_receipt_accounting) ... FAIL\n\n======================================================================\nFAIL: test_local_generated_receipt_accounting (__main__.CqftCheckerTests.test_local_generated_receipt_accounting)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 295, in test_local_generated_receipt_accounting\n    @given(statuses=st.lists(st.booleans(), max_size=20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 307, in test_local_generated_receipt_accounting\n    self.assertIs(result[\"all_passed\"], not failures)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not False\nFailing test case: test_local_generated_receipt_accounting(\n    self=<__main__.CqftCheckerTests testMethod=test_local_generated_receipt_accounting>,\n    statuses=[False],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.222s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_generated_receipt_accounting"
+      ]
+    },
+    {
+      "identity": "local-multiply-operation",
+      "mutant_sha256": "aa41003af665eb0ef3014f3e7f4a591ab0791a7a09fd93f4df0de3945d101e96",
+      "outcome": "killed",
+      "output": "test_local_two_by_two_api_against_symbolic_oracle (__main__.CqftCheckerTests.test_local_two_by_two_api_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_local_two_by_two_api_against_symbolic_oracle (__main__.CqftCheckerTests.test_local_two_by_two_api_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 193, in test_local_two_by_two_api_against_symbolic_oracle\n    @given(left=FLAT2, right=FLAT2)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 198, in test_local_two_by_two_api_against_symbolic_oracle\n    self.assertEqual(operation(left, right), tuple(x for row in _rows(expected) for x in row))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)) != (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n\nFirst differing element 3:\nFraction(1, 1)\nFraction(0, 1)\n\n- (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n?                                                           ^\n\n+ (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n?                                                           ^\n\nFailing test case: test_local_two_by_two_api_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CqftCheckerTests testMethod=test_local_two_by_two_api_against_symbolic_oracle>,\n    left=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),  # or any other generated value\n    right=(Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 6.726s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_two_by_two_api_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "local-flat-shape",
+      "mutant_sha256": "02016bb4344c8fd538a4be0e6042efde210754da6be4e3a602de25fb28c1a972",
+      "outcome": "killed",
+      "output": "test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 222, in test_local_order_tensor_and_flat_boundaries\n    self.refused(module.flat, [[1]])\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_order_tensor_and_flat_boundaries"
+      ]
+    },
+    {
+      "identity": "local-mm4-left-shape",
+      "mutant_sha256": "9608b0c1c2aed0da6641e46486b4dc75a248379a68f4237edacd5338d02d5dec",
+      "outcome": "killed",
+      "output": "test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 220, in test_local_order_tensor_and_flat_boundaries\n    self.refused(module.mm4, [[1, 0, 0, 0]], eye4)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_order_tensor_and_flat_boundaries"
+      ]
+    },
+    {
+      "identity": "local-mm4-right-shape",
+      "mutant_sha256": "d24578e4539816e462df3c785d82da3ac604dfc5638b40d46fcb5408790bc2d5",
+      "outcome": "killed",
+      "output": "test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_local_order_tensor_and_flat_boundaries (__main__.CqftCheckerTests.test_local_order_tensor_and_flat_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 221, in test_local_order_tensor_and_flat_boundaries\n    self.refused(module.mm4, eye4, [[1], [0], [0], [0]])\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-local-net-axioms-import.py",
+      "tests": [
+        "test_local_order_tensor_and_flat_boundaries"
+      ]
+    },
+    {
+      "identity": "coefficient-shape",
+      "mutant_sha256": "a4ed904310e8db2d1c74c626c1a7aaf2455a9b6f4d6b3e036b8895da056bcae7",
+      "outcome": "killed",
+      "output": "test_unfolding_and_full_system_input_refusals (__main__.CqftCheckerTests.test_unfolding_and_full_system_input_refusals) ... ERROR\n\n======================================================================\nERROR: test_unfolding_and_full_system_input_refusals (__main__.CqftCheckerTests.test_unfolding_and_full_system_input_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 247, in test_unfolding_and_full_system_input_refusals\n    self.refused(function, coefficients, 0)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 48, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 48, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\independent\\cqft-reeh-schlieder-theorem-import.py\", line 61, in single_site_matrix\n    return [[coefficients[combine_single_site(s, a, b)] for b in range(4)] for a in range(2)]\n             ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_unfolding_and_full_system_input_refusals"
+      ]
+    },
+    {
+      "identity": "bit-complement-order",
+      "mutant_sha256": "86a0633b8abccd9597f34c0b3733b8079cbef15c41ea11931627c0fe05b85256",
+      "outcome": "killed",
+      "output": "test_unfolding_indices_against_bit_insertion (__main__.CqftCheckerTests.test_unfolding_indices_against_bit_insertion) ... FAIL\n\n======================================================================\nFAIL: test_unfolding_indices_against_bit_insertion (__main__.CqftCheckerTests.test_unfolding_indices_against_bit_insertion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 226, in test_unfolding_indices_against_bit_insertion\n    @given(coefficients=st.lists(st.integers(-50, 50), min_size=8, max_size=8))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 237, in test_unfolding_indices_against_bit_insertion\n    self.assertEqual(module.combine_single_site(site, bit, complement), index)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 2\nFailing test case: test_unfolding_indices_against_bit_insertion(\n    self=<__main__.CqftCheckerTests testMethod=test_unfolding_indices_against_bit_insertion>,\n    coefficients=[0, 0, 0, 0, 0, 0, 0, 0],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.085s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_unfolding_indices_against_bit_insertion"
+      ]
+    },
+    {
+      "identity": "bit-site-position",
+      "mutant_sha256": "60750d3ffe4b82977c3aeccf7f87195030607e0a340834fb344d75154b8a2343",
+      "outcome": "killed",
+      "output": "test_unfolding_indices_against_bit_insertion (__main__.CqftCheckerTests.test_unfolding_indices_against_bit_insertion) ... FAIL\n\n======================================================================\nFAIL: test_unfolding_indices_against_bit_insertion (__main__.CqftCheckerTests.test_unfolding_indices_against_bit_insertion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 226, in test_unfolding_indices_against_bit_insertion\n    @given(coefficients=st.lists(st.integers(-50, 50), min_size=8, max_size=8))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 237, in test_unfolding_indices_against_bit_insertion\n    self.assertEqual(module.combine_single_site(site, bit, complement), index)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 3 != 2\nFailing test case: test_unfolding_indices_against_bit_insertion(\n    self=<__main__.CqftCheckerTests testMethod=test_unfolding_indices_against_bit_insertion>,\n    coefficients=[0, 0, 0, 0, 0, 0, 0, 0],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.111s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_unfolding_indices_against_bit_insertion"
+      ]
+    },
+    {
+      "identity": "bit-weight",
+      "mutant_sha256": "e98d080fb7fa6d54a9c5d5d9baf6c1f07a6089994b80f5d6dfd8f39e3d4c6f89",
+      "outcome": "killed",
+      "output": "test_unfolding_indices_against_bit_insertion (__main__.CqftCheckerTests.test_unfolding_indices_against_bit_insertion) ... FAIL\n\n======================================================================\nFAIL: test_unfolding_indices_against_bit_insertion (__main__.CqftCheckerTests.test_unfolding_indices_against_bit_insertion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 226, in test_unfolding_indices_against_bit_insertion\n    @given(coefficients=st.lists(st.integers(-50, 50), min_size=8, max_size=8))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 237, in test_unfolding_indices_against_bit_insertion\n    self.assertEqual(module.combine_single_site(site, bit, complement), index)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4 != 2\nFailing test case: test_unfolding_indices_against_bit_insertion(\n    self=<__main__.CqftCheckerTests testMethod=test_unfolding_indices_against_bit_insertion>,\n    coefficients=[0, 0, 0, 0, 0, 0, 0, 0],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.115s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_unfolding_indices_against_bit_insertion"
+      ]
+    },
+    {
+      "identity": "bit-site-domain",
+      "mutant_sha256": "2d37a7b0bcdf53af19f7c934868d2db781597524c0acfaa8cad24518399a3ac2",
+      "outcome": "killed",
+      "output": "test_unfolding_and_full_system_input_refusals (__main__.CqftCheckerTests.test_unfolding_and_full_system_input_refusals) ... FAIL\n\n======================================================================\nFAIL: test_unfolding_and_full_system_input_refusals (__main__.CqftCheckerTests.test_unfolding_and_full_system_input_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 249, in test_unfolding_and_full_system_input_refusals\n    self.refused(module.combine_single_site, *triple)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_unfolding_and_full_system_input_refusals"
+      ]
+    },
+    {
+      "identity": "bit-value-domain",
+      "mutant_sha256": "48648e1cadf918712efb72cd19f8fb55af4646eae2071a75fdb4c84250a7a2fc",
+      "outcome": "killed",
+      "output": "test_unfolding_and_full_system_input_refusals (__main__.CqftCheckerTests.test_unfolding_and_full_system_input_refusals) ... FAIL\n\n======================================================================\nFAIL: test_unfolding_and_full_system_input_refusals (__main__.CqftCheckerTests.test_unfolding_and_full_system_input_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 249, in test_unfolding_and_full_system_input_refusals\n    self.refused(module.combine_single_site, *triple)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_unfolding_and_full_system_input_refusals"
+      ]
+    },
+    {
+      "identity": "complement-domain",
+      "mutant_sha256": "d522b969b3784650f76cea7a7d77e5aa4d37a09b95a6735a025b5d4e1bc1655e",
+      "outcome": "killed",
+      "output": "test_unfolding_and_full_system_input_refusals (__main__.CqftCheckerTests.test_unfolding_and_full_system_input_refusals) ... FAIL\n\n======================================================================\nFAIL: test_unfolding_and_full_system_input_refusals (__main__.CqftCheckerTests.test_unfolding_and_full_system_input_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 249, in test_unfolding_and_full_system_input_refusals\n    self.refused(module.combine_single_site, *triple)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_unfolding_and_full_system_input_refusals"
+      ]
+    },
+    {
+      "identity": "ghz-amplitudes",
+      "mutant_sha256": "c0055576ed7fedce69f9bee70fefc369f4fb3cfe508cf8dfb184c65a87712914",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 262, in test_all_finite_sections_and_default_counts\n    self.assertEqual(reeh.verify_three_and_four_qubit_census(), (24, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (24, 3) != (24, 0)\n\nFirst differing element 1:\n3\n0\n\n- (24, 3)\n?      ^\n\n+ (24, 0)\n?      ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.207s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "w-amplitudes",
+      "mutant_sha256": "c7a9952e7497b670914b8837d708caa015f7e454fb9c74b9ca3e71066e37eb94",
+      "outcome": "killed",
+      "output": "test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts) ... FAIL\n\n======================================================================\nFAIL: test_all_finite_sections_and_default_counts (__main__.CqftCheckerTests.test_all_finite_sections_and_default_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 262, in test_all_finite_sections_and_default_counts\n    self.assertEqual(reeh.verify_three_and_four_qubit_census(), (24, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (24, 4) != (24, 0)\n\nFirst differing element 1:\n4\n0\n\n- (24, 4)\n?      ^\n\n+ (24, 0)\n?      ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.206s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_all_finite_sections_and_default_counts"
+      ]
+    },
+    {
+      "identity": "reeh-cli-failure",
+      "mutant_sha256": "05e86f7519cebaffed1c2cb65e6f4e9aef4cccbae5acdd6db24d2f75e89a552e",
+      "outcome": "killed",
+      "output": "test_injected_faults_cli_and_cancellation (__main__.CqftCheckerTests.test_injected_faults_cli_and_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_injected_faults_cli_and_cancellation (__main__.CqftCheckerTests.test_injected_faults_cli_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 283, in test_injected_faults_cli_and_cancellation\n    self.assertEqual(cli(reeh.main), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.146s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_injected_faults_cli_and_cancellation"
+      ]
+    },
+    {
+      "identity": "reeh-recorded-failures",
+      "mutant_sha256": "1abbb835863d610c75b69aea6fc6972f76ae2f34190b7267d41e0875397a8df7",
+      "outcome": "killed",
+      "output": "test_injected_faults_cli_and_cancellation (__main__.CqftCheckerTests.test_injected_faults_cli_and_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_injected_faults_cli_and_cancellation (__main__.CqftCheckerTests.test_injected_faults_cli_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 281, in test_injected_faults_cli_and_cancellation\n    self.assertGreater(reeh.verify_three_and_four_qubit_census()[1], 0)\n    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 not greater than 0\n\n----------------------------------------------------------------------\nRan 1 test in 0.139s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+      "tests": [
+        "test_injected_faults_cli_and_cancellation"
+      ]
+    },
+    {
+      "identity": "test-refusal-helper",
+      "mutant_sha256": "bec2201899a5769e80d7528b869ac250ba7e4d98ac5b15919e8cdf10c5ee143c",
+      "outcome": "killed",
+      "output": "test_refusal_helper_and_symbolic_conversion_oracles (__main__.CqftCheckerTests.test_refusal_helper_and_symbolic_conversion_oracles) ... FAIL\n\n======================================================================\nFAIL: test_refusal_helper_and_symbolic_conversion_oracles (__main__.CqftCheckerTests.test_refusal_helper_and_symbolic_conversion_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 59, in test_refusal_helper_and_symbolic_conversion_oracles\n    with self.assertRaises(AssertionError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nAssertionError: AssertionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_cqft_checkers.py",
+      "tests": [
+        "test_refusal_helper_and_symbolic_conversion_oracles"
+      ]
+    },
+    {
+      "identity": "test-symbolic-row-order",
+      "mutant_sha256": "d7df722d99b98f8391af75689aa1a53a2c96a91b17d786e21f8c74e356993b66",
+      "outcome": "killed",
+      "output": "test_refusal_helper_and_symbolic_conversion_oracles (__main__.CqftCheckerTests.test_refusal_helper_and_symbolic_conversion_oracles) ... FAIL\n\n======================================================================\nFAIL: test_refusal_helper_and_symbolic_conversion_oracles (__main__.CqftCheckerTests.test_refusal_helper_and_symbolic_conversion_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\cqft-mutation-369943oc\\tests\\test_cqft_checkers.py\", line 61, in test_refusal_helper_and_symbolic_conversion_oracles\n    self.assertEqual(_rows(_symbolic(values)), ((Q(1, 2), Q(-2, 3)), (Q(5), Q(7, 11))))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(1, 2), Fraction(5, 3)), (Fraction(-2, 1), Fraction(7, 11))) != ((Fraction(1, 2), Fraction(-2, 3)), (Fraction(5, 1), Fraction(7, 11)))\n\nFirst differing element 0:\n(Fraction(1, 2), Fraction(5, 3))\n(Fraction(1, 2), Fraction(-2, 3))\n\n- ((Fraction(1, 2), Fraction(5, 3)), (Fraction(-2, 1), Fraction(7, 11)))\n+ ((Fraction(1, 2), Fraction(-2, 3)), (Fraction(5, 1), Fraction(7, 11)))\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_cqft_checkers.py",
+      "tests": [
+        "test_refusal_helper_and_symbolic_conversion_oracles"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 67,
+      "survived": 2,
+      "unrun": 0
+    },
+    "detected_fraction": 0.9710144927536232,
+    "eligible": 69
+  }
+}

@@ -1,0 +1,374 @@
+[
+  {
+    "identity": "ray-exact-input",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "number=integer(value,'ray integer')",
+    "after": "number=int(value)",
+    "tests": [
+      "test_exact_domains_zero_even_representatives_and_ownership"
+    ]
+  },
+  {
+    "identity": "ray-input-bits",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if number.bit_length()>4096:",
+    "after": "if number.bit_length()>4097:",
+    "tests": [
+      "test_input_product_prefix_and_scaling_resource_limits"
+    ]
+  },
+  {
+    "identity": "ray-vector-shape",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "sequence(value,'ray vector',3,3)",
+    "after": "sequence(value,'ray vector',maximum=4)",
+    "tests": [
+      "test_exact_domains_zero_even_representatives_and_ownership"
+    ]
+  },
+  {
+    "identity": "ray-dot-product-budget",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "total=_integer(total+_integer(a*b))",
+    "after": "total=_integer(total+a*b)",
+    "tests": [
+      "test_input_product_prefix_and_scaling_resource_limits",
+      "test_isolated_intermediate_bounds_and_nonorthogonal_completion"
+    ]
+  },
+  {
+    "identity": "ray-dot-prefix-budget",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "total=_integer(total+_integer(a*b))",
+    "after": "total=total+_integer(a*b)",
+    "tests": [
+      "test_input_product_prefix_and_scaling_resource_limits"
+    ]
+  },
+  {
+    "identity": "ray-cross-product-budget",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "_integer(left[j]*right[k])",
+    "after": "(left[j]*right[k])",
+    "tests": [
+      "test_input_product_prefix_and_scaling_resource_limits"
+    ]
+  },
+  {
+    "identity": "ray-cross-difference-budget",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "_integer(_integer(left[j]*right[k])-_integer(left[k]*right[j]))",
+    "after": "(_integer(left[j]*right[k])-_integer(left[k]*right[j]))",
+    "tests": [
+      "test_input_product_prefix_and_scaling_resource_limits",
+      "test_isolated_intermediate_bounds_and_nonorthogonal_completion"
+    ]
+  },
+  {
+    "identity": "ray-cross-orientation",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "((1,2),(2,0),(0,1))",
+    "after": "((1,2),(0,2),(0,1))",
+    "tests": [
+      "test_generated_completion_against_symbolic_cross_product"
+    ]
+  },
+  {
+    "identity": "ray-pair-odd-domain",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if a % 2 != 1 or b % 2 != 1:",
+    "after": "if a % 2 != 1 and b % 2 != 1:",
+    "tests": [
+      "test_exact_domains_zero_even_representatives_and_ownership"
+    ]
+  },
+  {
+    "identity": "ray-pair-modulus",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "a % 4 == b % 4",
+    "after": "a % 2 == b % 2",
+    "tests": [
+      "test_original_raw_domain_and_full_mod4_congruence"
+    ]
+  },
+  {
+    "identity": "ray-content-normalization",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "content=gcd(*coordinates)",
+    "after": "content=1",
+    "tests": [
+      "test_generated_canonical_ray_and_independent_residue_value"
+    ]
+  },
+  {
+    "identity": "ray-zero-domain",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if content==0:",
+    "after": "if False:",
+    "tests": [
+      "test_exact_domains_zero_even_representatives_and_ownership"
+    ]
+  },
+  {
+    "identity": "ray-representative-sign",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "divisor=-content if leading<0 else content",
+    "after": "divisor=content",
+    "tests": [
+      "test_generated_canonical_ray_and_independent_residue_value"
+    ]
+  },
+  {
+    "identity": "ray-odd-pattern",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if x % 2)",
+    "after": "if x % 2 == 0)",
+    "tests": [
+      "test_generated_canonical_ray_and_independent_residue_value"
+    ]
+  },
+  {
+    "identity": "ray-weight-two-condition",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if len(odd)==2 else 0",
+    "after": "if len(odd)==1 else 0",
+    "tests": [
+      "test_generated_canonical_ray_and_independent_residue_value"
+    ]
+  },
+  {
+    "identity": "ray-value-sign",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "return Q(1+sign,3)",
+    "after": "return Q(1-sign,3)",
+    "tests": [
+      "test_generated_canonical_ray_and_independent_residue_value"
+    ]
+  },
+  {
+    "identity": "ray-value-denominator",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "return Q(1+sign,3)",
+    "after": "return Q(1+sign,2)",
+    "tests": [
+      "test_generated_canonical_ray_and_independent_residue_value"
+    ]
+  },
+  {
+    "identity": "ray-operand-domain",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if type(value) is not IntegerRay3:",
+    "after": "if False:",
+    "tests": [
+      "test_operand_and_scaling_domains_and_preflight"
+    ]
+  },
+  {
+    "identity": "ray-completion-orthogonality",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if _dot(self.coordinates,right.coordinates)!=0:",
+    "after": "if False:",
+    "tests": [
+      "test_operand_and_scaling_domains_and_preflight",
+      "test_isolated_intermediate_bounds_and_nonorthogonal_completion"
+    ]
+  },
+  {
+    "identity": "ray-scaling-zero",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if scalar==0:",
+    "after": "if False:",
+    "tests": [
+      "test_operand_and_scaling_domains_and_preflight"
+    ]
+  },
+  {
+    "identity": "ray-scaling-product-budget",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "_integer(scalar*x)",
+    "after": "(scalar*x)",
+    "tests": [
+      "test_input_product_prefix_and_scaling_resource_limits"
+    ]
+  },
+  {
+    "identity": "ray-quadratic-square",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "_integer(x*x) for x in self.coordinates",
+    "after": "_integer(x) for x in self.coordinates",
+    "tests": [
+      "test_generated_quadratic_rows_against_symbolic_polynomial"
+    ]
+  },
+  {
+    "identity": "ray-quadratic-cross-factor",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "_integer(2*_integer(x*y))",
+    "after": "_integer(_integer(x*y))",
+    "tests": [
+      "test_generated_quadratic_rows_against_symbolic_polynomial"
+    ]
+  },
+  {
+    "identity": "ray-quadratic-cross-budget",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "_integer(2*_integer(x*y))",
+    "after": "(2*_integer(x*y))",
+    "tests": [
+      "test_completion_orientation_and_quadratic_intermediate_preflight"
+    ]
+  },
+  {
+    "identity": "ray-quadratic-target",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "rational(self.value*norm)",
+    "after": "rational(self.value)",
+    "tests": [
+      "test_generated_quadratic_rows_against_symbolic_polynomial"
+    ]
+  },
+  {
+    "identity": "ray-box-budget",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "integer(radius,'ray box radius',1,6)",
+    "after": "integer(radius,'ray box radius',1,7)",
+    "tests": [
+      "test_operand_and_scaling_domains_and_preflight"
+    ]
+  },
+  {
+    "identity": "ray-box-zero-coordinates",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if any(vector)}",
+    "after": "if all(vector)}",
+    "tests": [
+      "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration"
+    ]
+  },
+  {
+    "identity": "ray-frame-orthogonality",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if _dot(left.coordinates,right.coordinates)==0:",
+    "after": "if _dot(left.coordinates,right.coordinates)!=0:",
+    "tests": [
+      "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration"
+    ]
+  },
+  {
+    "identity": "ray-frame-completion",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "third=left._complete(right)",
+    "after": "third=left",
+    "tests": [
+      "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration"
+    ]
+  },
+  {
+    "identity": "ray-frame-census",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "count+=1\n    return count",
+    "after": "count+=0\n    return count",
+    "tests": [
+      "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration"
+    ]
+  },
+  {
+    "identity": "ray-congruence-domain",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "for a,b,c,d in product((1,3),repeat=4):",
+    "after": "for a,b,c,d in product((1,1),repeat=4):",
+    "tests": [
+      "test_original_raw_domain_and_full_mod4_congruence"
+    ]
+  },
+  {
+    "identity": "ray-congruence-orthogonality",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if (a*c+b*d+e*f) % 4==0:",
+    "after": "if (a*c+b*d+e*f) % 4==2:",
+    "tests": [
+      "test_original_raw_domain_and_full_mod4_congruence"
+    ]
+  },
+  {
+    "identity": "ray-congruence-census",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "count==32",
+    "after": "count==16",
+    "tests": [
+      "test_original_raw_domain_and_full_mod4_congruence"
+    ]
+  },
+  {
+    "identity": "ray-obstruction-inconsistency",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "fitted.rows[6]!=target.rows[6]",
+    "after": "fitted.rows[6]==target.rows[6]",
+    "tests": [
+      "test_seven_ray_independent_rank_nullspace_and_residual"
+    ]
+  },
+  {
+    "identity": "ray-obstruction-null-witness",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "((-1,-1,-1,1,1,1,-1),)",
+    "after": "((0,-1,-1,1,1,1,-1),)",
+    "tests": [
+      "test_seven_ray_independent_rank_nullspace_and_residual"
+    ]
+  },
+  {
+    "identity": "ray-obstruction-target-residual",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "RationalMatrix(((-2,),))",
+    "after": "RationalMatrix(((0,),))",
+    "tests": [
+      "test_seven_ray_independent_rank_nullspace_and_residual"
+    ]
+  },
+  {
+    "identity": "ray-range-two-thirds",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "ray.value in (Q(0),Q(1,3),Q(2,3))",
+    "after": "ray.value in (Q(0),Q(1,3))",
+    "tests": [
+      "test_import_reentrant_counts_and_cli_failure_lifecycle"
+    ]
+  },
+  {
+    "identity": "ray-recorder-domain",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "if type(cases) is not Cases:",
+    "after": "if False:",
+    "tests": [
+      "test_operand_and_scaling_domains_and_preflight"
+    ]
+  },
+  {
+    "identity": "ray-cli-exit",
+    "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "raise SystemExit(1)",
+    "tests": [
+      "test_import_reentrant_counts_and_cli_failure_lifecycle"
+    ]
+  },
+  {
+    "identity": "ray-oracle-sign",
+    "source": "tests/test_rational_ray_obstruction.py",
+    "before": "signs={(1,1):-1,(1,3):1,(3,1):1,(3,3):-1}",
+    "after": "signs={(1,1):1,(1,3):1,(3,1):1,(3,3):-1}",
+    "tests": [
+      "test_generated_canonical_ray_and_independent_residue_value"
+    ]
+  },
+  {
+    "identity": "ray-oracle-symbolic-offdiagonal",
+    "source": "tests/test_rational_ray_obstruction.py",
+    "before": "(symbols[0],symbols[3],symbols[4])",
+    "after": "(symbols[0],symbols[4],symbols[3])",
+    "tests": [
+      "test_generated_quadratic_rows_against_symbolic_polynomial"
+    ]
+  }
+]

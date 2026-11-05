@@ -1,0 +1,542 @@
+{
+  "AuthorityEffect": "None",
+  "initial_receipt_sha256": "209c354fcc7e4d1edce95f438f0f8c00069e5e0b3ca516646f1e2800387a1406",
+  "manifest_sha256": "9e26a6612229fa866b6a0c3ac61f2e9989d908a6bd81925218206ade63275cce",
+  "extra_manifest": "checks/tests/hierarchical_borel_cycle_mutation.json",
+  "extra_manifest_sha256": "5411db2b796d934f8d82d138ea373433522ac16bc1329bfc3943fa65eb58fb4b",
+  "test_before_sha256": "156887d7e6497a19f061aad9919712aa3dcdc798a9ef7a748a7496aa9476241a",
+  "test_after_sha256": "41f4cab654580a40ad9862fdc3259ec38a98297470d92433bdc1ecfda4c33ae6",
+  "added_text": "    def test_cycle_detection_lookup_bound(self) -> None:\n        module = load()\n        parent = {0: 0, 1: 2, 2: 1}\n        lookups = 0\n        def lookup(vertex: int) -> int:\n            nonlocal lookups\n            lookups += 1\n            if lookups > len(parent):\n                raise RuntimeError(\"cycle guard exceeded the finite lookup budget\")\n            return parent[vertex]\n        from unittest.mock import MagicMock\n        carrier = MagicMock()\n        carrier.__iter__.side_effect = lambda: iter(parent)\n        carrier.__getitem__.side_effect = lookup\n        self.refused(module._tree_order, carrier, 0)\n        self.assertEqual(lookups, 2)\n\n",
+  "reason": "Extend the44-candidate campaign with complete cycle-guard removal. A counted mapping sentinel gives a specific finite-lookup test failure instead of waiting for a harness timeout.",
+  "mutants": [
+    {
+      "identity": "cycle-guard-removed",
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_cycle_detection_lookup_bound"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_cycle_detection_lookup_bound (__main__.HierarchicalBorelTests.test_cycle_detection_lookup_bound) ... ERROR\n\n======================================================================\nERROR: test_cycle_detection_lookup_bound (__main__.HierarchicalBorelTests.test_cycle_detection_lookup_bound)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\tests\\test_hierarchical_borel.py\", line 251, in test_cycle_detection_lookup_bound\n    self.refused(module._tree_order, carrier, 0)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\tests\\test_hierarchical_borel.py\", line 63, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\tests\\test_hierarchical_borel.py\", line 63, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\independent\\dfm-hierarchical-borel.py\", line 111, in _tree_order\n    cursor = parent[cursor]\n             ~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1247, in _execute_mock_call\n    result = effect(*args, **kwargs)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\tests\\test_hierarchical_borel.py\", line 245, in lookup\n    raise RuntimeError(\"cycle guard exceeded the finite lookup budget\")\nRuntimeError: cycle guard exceeded the finite lookup budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "mutant_sha256": "31efcebf5daac4d41c260e472d49c48f05df6cad6d73ad0eb0f018717a307d15",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_cycle_detection_lookup_bound (__main__.HierarchicalBorelTests.test_cycle_detection_lookup_bound) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nOK\n"
+      }
+    }
+  ],
+  "adjudicated_mutants": [
+    {
+      "identity": "flat-exactness",
+      "mutant_sha256": "f0a1e5082b51ac45c6b37a434007eb8dff12bd0d67608c9d9fa92b69672dfc4a",
+      "outcome": "killed",
+      "output": "test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences) ... FAIL\ntest_full_resource_limits_and_conservative_arithmetic (__main__.HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 145, in test_matrix_admission_and_singular_fences\n    self.refused(module.M, invalid_scalar, 0, 0, 1)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_full_resource_limits_and_conservative_arithmetic (__main__.HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 209, in test_full_resource_limits_and_conservative_arithmetic\n    self.refused(module.M, 2**4096, 0, 0, 1, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 2 tests in 0.045s\n\nFAILED (failures=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_matrix_admission_and_singular_fences",
+        "test_full_resource_limits_and_conservative_arithmetic"
+      ]
+    },
+    {
+      "identity": "multiply-order",
+      "mutant_sha256": "29c5a88b6726f0759a3e553a88eb3b4b2e2e7507ae37700e96d7e4d80010ea92",
+      "outcome": "killed",
+      "output": "test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression) ... FAIL\n\n======================================================================\nFAIL: test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 127, in test_noncommuting_integer_regression\n    self.assertEqual(module.mul(first, second), (8, 32, 0, 15))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(8, 1), Fraction(27, 1), Fraction(0, 1), Fraction(15, 1)) != (8, 32, 0, 15)\n\nFirst differing element 1:\nFraction(27, 1)\n32\n\n- (Fraction(8, 1), Fraction(27, 1), Fraction(0, 1), Fraction(15, 1))\n+ (8, 32, 0, 15)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_noncommuting_integer_regression"
+      ]
+    },
+    {
+      "identity": "upper-triangular",
+      "mutant_sha256": "af7820b5d5b60c4fbf053caccdb823f6e3a202e304ae338f26294ea0a60ed123",
+      "outcome": "killed",
+      "output": "test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences) ... FAIL\n\n======================================================================\nFAIL: test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 148, in test_matrix_admission_and_singular_fences\n    self.refused(operation, value)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_matrix_admission_and_singular_fences"
+      ]
+    },
+    {
+      "identity": "invertibility",
+      "mutant_sha256": "e1e75846df01cc56a7cd5f810987a05402a416ae05cf1febfb9c516f5d44b2a5",
+      "outcome": "killed",
+      "output": "test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences) ... FAIL\n\n======================================================================\nFAIL: test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 148, in test_matrix_admission_and_singular_fences\n    self.refused(operation, value)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_matrix_admission_and_singular_fences"
+      ]
+    },
+    {
+      "identity": "inverse-floats",
+      "mutant_sha256": "b986a71bdd108ec2b521cef8ac0f15d5b68d46e2346742bb2cec2aa8b28f4212",
+      "outcome": "killed",
+      "output": "test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression) ... FAIL\n\n======================================================================\nFAIL: test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 125, in test_noncommuting_integer_regression\n    self.assertTrue(all(type(value) is Q for value in inverse))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_noncommuting_integer_regression"
+      ]
+    },
+    {
+      "identity": "torus-second-diagonal",
+      "mutant_sha256": "630c24b640b57c162fdfe06611bfce0992a6bf14ef7f9503211fe1e3f5f814d0",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 242, in test_fixed_control_sections_and_counts\n    operation(run)\n    ~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 255, in check_path_and_diamond\n    _check_vertex(value, run)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 209, in _check_vertex\n    run.require(mul(diagonal, unipotent(value)) == value, \"Borel factorization\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: Borel factorization\n\n----------------------------------------------------------------------\nRan 1 test in 0.118s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "unipotent-denominator",
+      "mutant_sha256": "a07d1c51f66b4ce2b1b03b7d30d3926e5f14efeb38846717fbc0a0131eddc4bc",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 242, in test_fixed_control_sections_and_counts\n    operation(run)\n    ~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 255, in check_path_and_diamond\n    _check_vertex(value, run)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 209, in _check_vertex\n    run.require(mul(diagonal, unipotent(value)) == value, \"Borel factorization\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: Borel factorization\n\n----------------------------------------------------------------------\nRan 1 test in 0.120s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "torus-predicate",
+      "mutant_sha256": "1af349f226daddb5eafeb5dd05004d01e68159fe93b74f3a052782aaf612808d",
+      "outcome": "killed",
+      "output": "test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences) ... FAIL\n\n======================================================================\nFAIL: test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 152, in test_matrix_admission_and_singular_fences\n    self.assertFalse(module.is_torus((1, 0, 1, 1)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_matrix_admission_and_singular_fences"
+      ]
+    },
+    {
+      "identity": "unipotent-predicate",
+      "mutant_sha256": "f90155ffcd7bb6c699aed3f953eb5369f6d16771497a174c7cb5b2e049dacc40",
+      "outcome": "killed",
+      "output": "test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences) ... FAIL\n\n======================================================================\nFAIL: test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 155, in test_matrix_admission_and_singular_fences\n    self.assertFalse(module.is_unipotent((1, 0, 0, 2)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_matrix_admission_and_singular_fences"
+      ]
+    },
+    {
+      "identity": "stage-one-sign",
+      "mutant_sha256": "d7eb2e967bdeca07593f9f75bd6f1ac0b73517e1f4a09a35634014a6a9ffedf2",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 242, in test_fixed_control_sections_and_counts\n    operation(run)\n    ~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 255, in check_path_and_diamond\n    _check_vertex(value, run)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 210, in _check_vertex\n    run.require(field == mul(mul(diagonal, inv(unipotent(value))), inv(diagonal)), \"unipotent conjugate\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: unipotent conjugate\n\n----------------------------------------------------------------------\nRan 1 test in 0.121s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "dress-source-inverse",
+      "mutant_sha256": "9fd804cf8716904201e8c7d7f9b7f3e015a0be8ab802e0310a3c2ad95f29cf77",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 242, in test_fixed_control_sections_and_counts\n    operation(run)\n    ~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 257, in check_path_and_diamond\n    _check_tree_edge(tree, vertex, transport, run)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 221, in _check_tree_edge\n    run.require(dressed == mul(target_diagonal, inv(source_diagonal)), \"diagonal tree edge\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: diagonal tree edge\n\n----------------------------------------------------------------------\nRan 1 test in 0.118s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "vertex-exactness",
+      "mutant_sha256": "3a3de03febb6c1bfcfa7e093a585f45bd67abcc2dba841c1f983486607293183",
+      "outcome": "killed",
+      "output": "test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases) ... FAIL\n\n======================================================================\nFAIL: test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 168, in test_tree_domains_cycles_and_boolean_aliases\n    self.refused(module.BorelTree, parent, root, labels)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_domains_cycles_and_boolean_aliases"
+      ]
+    },
+    {
+      "identity": "mapping-budget",
+      "mutant_sha256": "2b8ed5b46185c55f3f54828648d2f4c6d0764777ab2f62fad9c2f3b6e442bd72",
+      "outcome": "killed",
+      "output": "test_full_resource_limits_and_conservative_arithmetic (__main__.HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_full_resource_limits_and_conservative_arithmetic (__main__.HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 207, in test_full_resource_limits_and_conservative_arithmetic\n    self.refused(module.BorelTree, {i: 0 for i in range(1025)}, 0, {}, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 68, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'input' != 'resource'\n- input\n+ resource\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.040s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_full_resource_limits_and_conservative_arithmetic"
+      ]
+    },
+    {
+      "identity": "mapping-type",
+      "mutant_sha256": "3c9e34508cdee4999b047edb5964c70ca6a983574c73b195b717e37e5084d18f",
+      "outcome": "killed",
+      "output": "test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases) ... FAIL\n\n======================================================================\nFAIL: test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 168, in test_tree_domains_cycles_and_boolean_aliases\n    self.refused(module.BorelTree, parent, root, labels)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_domains_cycles_and_boolean_aliases"
+      ]
+    },
+    {
+      "identity": "cycle-guard",
+      "mutant_sha256": "236ebd441682d5d07d1eebf902beb60907e4fed92ca6a531c21cf204d6a599c7",
+      "outcome": "killed",
+      "output": "test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression) ... ERROR\n\n======================================================================\nERROR: test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 132, in test_noncommuting_integer_regression\n    tree = module.BorelTree({99: 2, 2: 7, 7: 7}, 7, {2: first, 99: second})\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 134, in __init__\n    order = _tree_order(parents, origin)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 108, in _tree_order\n    raise Violation(\"input\", \"parent map has a cycle off the root\")\nchecker_support.boundary.Violation: parent map has a cycle off the root\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_noncommuting_integer_regression"
+      ]
+    },
+    {
+      "identity": "tree-order-direction",
+      "mutant_sha256": "35c72d7ab29d91a609539e94709ab320c7f76dbe71448f8c6c86f154813db61b",
+      "outcome": "killed",
+      "output": "test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression) ... ERROR\n\n======================================================================\nERROR: test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 133, in test_noncommuting_integer_regression\n    self.assertEqual(tree.transport().value[99], (8, 27, 0, 15))\n                     ~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 148, in transport\n    return evaluate(self._transport)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 144, in _transport\n    result[vertex] = mul(self.labels[vertex], result[self.parent[vertex]])\n                                              ~~~~~~^^^^^^^^^^^^^^^^^^^^^\nKeyError: 2\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_noncommuting_integer_regression"
+      ]
+    },
+    {
+      "identity": "parent-key-exactness",
+      "mutant_sha256": "3bbddeca423e543859e03796d9d190dd680b58b04d42f7de645a9fcb577acdb7",
+      "outcome": "killed",
+      "output": "test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases) ... FAIL\n\n======================================================================\nFAIL: test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 168, in test_tree_domains_cycles_and_boolean_aliases\n    self.refused(module.BorelTree, parent, root, labels)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_domains_cycles_and_boolean_aliases"
+      ]
+    },
+    {
+      "identity": "label-key-exactness",
+      "mutant_sha256": "643c2598a805dccada4dbe64a0ae7d68294c21c1009b83d731481cdd3be247e4",
+      "outcome": "killed",
+      "output": "test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases) ... FAIL\n\n======================================================================\nFAIL: test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 168, in test_tree_domains_cycles_and_boolean_aliases\n    self.refused(module.BorelTree, parent, root, labels)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_domains_cycles_and_boolean_aliases"
+      ]
+    },
+    {
+      "identity": "root-fixed",
+      "mutant_sha256": "ce03f2bd9f0295b5a5d5b8eb6353ba25bdfc91dc3ab564fd7c14969a392ac32a",
+      "outcome": "killed",
+      "output": "test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases) ... FAIL\n\n======================================================================\nFAIL: test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 168, in test_tree_domains_cycles_and_boolean_aliases\n    self.refused(module.BorelTree, parent, root, labels)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_domains_cycles_and_boolean_aliases"
+      ]
+    },
+    {
+      "identity": "label-set",
+      "mutant_sha256": "f6b7795bcdb4be7de53a435e85ffdf4081cf8dbf9e61df7cb368b66b40e43380",
+      "outcome": "killed",
+      "output": "test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases) ... FAIL\n\n======================================================================\nFAIL: test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 168, in test_tree_domains_cycles_and_boolean_aliases\n    self.refused(module.BorelTree, parent, root, labels)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_domains_cycles_and_boolean_aliases"
+      ]
+    },
+    {
+      "identity": "label-invertibility",
+      "mutant_sha256": "0764c28024877d16acfea8b962cc3e7fb17619019b0a7db9934d7eec9dafc2f2",
+      "outcome": "killed",
+      "output": "test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases) ... FAIL\n\n======================================================================\nFAIL: test_tree_domains_cycles_and_boolean_aliases (__main__.HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 168, in test_tree_domains_cycles_and_boolean_aliases\n    self.refused(module.BorelTree, parent, root, labels)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_domains_cycles_and_boolean_aliases"
+      ]
+    },
+    {
+      "identity": "frozen-tree",
+      "mutant_sha256": "337b0f9dd7587085bcde11cee2957f1bf21ab862454bf1d43bac5530bf85006a",
+      "outcome": "killed",
+      "output": "test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 182, in test_tree_snapshot_ownership_and_railway_refusals\n    with self.assertRaises(FrozenInstanceError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: FrozenInstanceError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_snapshot_ownership_and_railway_refusals"
+      ]
+    },
+    {
+      "identity": "parent-readonly",
+      "mutant_sha256": "ad756a67a7a7c2da5d4e1f87312c0b242214609826b0b36b6aae8714eb46d8f5",
+      "outcome": "killed",
+      "output": "test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 184, in test_tree_snapshot_ownership_and_railway_refusals\n    with self.assertRaises(TypeError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: TypeError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_snapshot_ownership_and_railway_refusals"
+      ]
+    },
+    {
+      "identity": "label-readonly",
+      "mutant_sha256": "8cd66100e9a25b816c393f5ea1e6543813f8b666658f6809e7cdbeb0df6e223c",
+      "outcome": "killed",
+      "output": "test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 186, in test_tree_snapshot_ownership_and_railway_refusals\n    with self.assertRaises(TypeError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: TypeError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_snapshot_ownership_and_railway_refusals"
+      ]
+    },
+    {
+      "identity": "root-transport",
+      "mutant_sha256": "d3f4501da085accb7d8cb4b2e129d18c5bb647153a76efa6e5af3d1fe2ce73bc",
+      "outcome": "killed",
+      "output": "test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression) ... FAIL\n\n======================================================================\nFAIL: test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 133, in test_noncommuting_integer_regression\n    self.assertEqual(tree.transport().value[99], (8, 27, 0, 15))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(16, 1), Fraction(27, 1), Fraction(0, 1), Fraction(15, 1)) != (8, 27, 0, 15)\n\nFirst differing element 0:\nFraction(16, 1)\n8\n\n- (Fraction(16, 1), Fraction(27, 1), Fraction(0, 1), Fraction(15, 1))\n+ (8, 27, 0, 15)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_noncommuting_integer_regression"
+      ]
+    },
+    {
+      "identity": "transport-order",
+      "mutant_sha256": "e26c11e2eb2bb9adcd49e40fcf3c52c80297d8a2718bdb69864cdc2ec3e7d8ea",
+      "outcome": "killed",
+      "output": "test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression) ... FAIL\n\n======================================================================\nFAIL: test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 133, in test_noncommuting_integer_regression\n    self.assertEqual(tree.transport().value[99], (8, 27, 0, 15))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(8, 1), Fraction(32, 1), Fraction(0, 1), Fraction(15, 1)) != (8, 27, 0, 15)\n\nFirst differing element 1:\nFraction(32, 1)\n27\n\n- (Fraction(8, 1), Fraction(32, 1), Fraction(0, 1), Fraction(15, 1))\n+ (8, 27, 0, 15)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_noncommuting_integer_regression"
+      ]
+    },
+    {
+      "identity": "transport-readonly",
+      "mutant_sha256": "5dce2a19824a300f2f84a4837552a29e47b8f9342af493a1c4330c2a7825df6b",
+      "outcome": "killed",
+      "output": "test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 190, in test_tree_snapshot_ownership_and_railway_refusals\n    with self.assertRaises(TypeError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: TypeError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_snapshot_ownership_and_railway_refusals"
+      ]
+    },
+    {
+      "identity": "transport-railway",
+      "mutant_sha256": "0c348d8e31cd80a93b4ce57655b66d3c8e75ea587ee8b9712e8abd4e767e6249",
+      "outcome": "killed",
+      "output": "test_full_resource_limits_and_conservative_arithmetic (__main__.HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic) ... ERROR\n\n======================================================================\nERROR: test_full_resource_limits_and_conservative_arithmetic (__main__.HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 215, in test_full_resource_limits_and_conservative_arithmetic\n    self.assertEqual(overflowing.transport().error.kind, \"resource\")\n                     ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 148, in transport\n    return Outcome(value=self._transport())\n                         ~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 144, in _transport\n    result[vertex] = mul(self.labels[vertex], result[self.parent[vertex]])\n                     ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 35, in mul\n    return left.mul(right).flat2()\n           ~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\rational_matrix.py\", line 98, in mul\n    return RationalMatrix(tuple(tuple(_dot(row, column) for column in columns) for row in self.rows))\n                          ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\rational_matrix.py\", line 98, in <genexpr>\n    return RationalMatrix(tuple(tuple(_dot(row, column) for column in columns) for row in self.rows))\n                                ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\rational_matrix.py\", line 98, in <genexpr>\n    return RationalMatrix(tuple(tuple(_dot(row, column) for column in columns) for row in self.rows))\n                                      ~~~~^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\rational_matrix.py\", line 23, in _dot\n    total = rational(total + rational(a * b, \"matrix product\"), \"matrix dot sum\")\n                             ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\domains.py\", line 75, in rational\n    admitted = _exact_fraction(value, name)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\domains.py\", line 69, in _exact_fraction\n    raise _violation(\"resource\", f\"{name} exceeds the {MAX_RATIONAL_BITS}-bit rational budget\")\nchecker_support.boundary.Violation: matrix product exceeds the 4096-bit rational budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.040s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_full_resource_limits_and_conservative_arithmetic"
+      ]
+    },
+    {
+      "identity": "edge-endpoints",
+      "mutant_sha256": "42f1dde2189cf484feef452eeae9040c1b0626f3c3ac6b404981ef30c149ac13",
+      "outcome": "killed",
+      "output": "test_preflight_and_unexpected_errors (__main__.HierarchicalBorelTests.test_preflight_and_unexpected_errors) ... ERROR\n\n======================================================================\nERROR: test_preflight_and_unexpected_errors (__main__.HierarchicalBorelTests.test_preflight_and_unexpected_errors)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 224, in test_preflight_and_unexpected_errors\n    result = tree.edge_residual(0, 9, identity)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 159, in edge_residual\n    return evaluate(self._edge_residual, source, target, label)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 155, in _edge_residual\n    transport = self._transport()\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 144, in _transport\n    result[vertex] = mul(self.labels[vertex], result[self.parent[vertex]])\n                     ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 35, in mul\n    return left.mul(right).flat2()\n           ~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: arithmetic\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_preflight_and_unexpected_errors"
+      ]
+    },
+    {
+      "identity": "edge-target-inverse",
+      "mutant_sha256": "0456988f85d14a5edfb8ecdf06fff343c667c98fb8acd1c7d9ced72dcdea28ba",
+      "outcome": "killed",
+      "output": "test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression) ... FAIL\n\n======================================================================\nFAIL: test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 134, in test_noncommuting_integer_regression\n    self.assertEqual(tree.edge_residual(7, 99, (1, 7, 0, 1)).value, (Q(1, 8), Q(13, 20), 0, Q(1, 15)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(8, 1), Fraction(83, 1), Fraction(0, 1), Fraction(15, 1)) != (Fraction(1, 8), Fraction(13, 20), 0, Fraction(1, 15))\n\nFirst differing element 0:\nFraction(8, 1)\nFraction(1, 8)\n\n- (Fraction(8, 1), Fraction(83, 1), Fraction(0, 1), Fraction(15, 1))\n+ (Fraction(1, 8), Fraction(13, 20), 0, Fraction(1, 15))\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_noncommuting_integer_regression"
+      ]
+    },
+    {
+      "identity": "edge-railway",
+      "mutant_sha256": "b20cd62206ff76cfe5664837186429b99526f0144d8186ed39b16d2dfd526f55",
+      "outcome": "killed",
+      "output": "test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals) ... ERROR\n\n======================================================================\nERROR: test_tree_snapshot_ownership_and_railway_refusals (__main__.HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 193, in test_tree_snapshot_ownership_and_railway_refusals\n    refused = tree.edge_residual(source, target, edge)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 159, in edge_residual\n    return Outcome(value=self._edge_residual(source, target, label))\n                         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 151, in _edge_residual\n    start, finish = _vertex(source), _vertex(target)\n                    ~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 87, in _vertex\n    return integer(value, \"vertex identifier\", 0, 2**31-1)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\domains.py\", line 55, in integer\n    raise _violation(\"input\", f\"{name} must be an integer, excluding bool\")\nchecker_support.boundary.Violation: vertex identifier must be an integer, excluding bool\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_tree_snapshot_ownership_and_railway_refusals"
+      ]
+    },
+    {
+      "identity": "recorder-type",
+      "mutant_sha256": "3f7c61bc0e42d96c7b801f30a9e52e7c11c5165b803228861c54ddeb1b39535c",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 244, in test_fixed_control_sections_and_counts\n    self.refused(operation, None)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 63, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 63, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 179, in check_symbolic_factorization\n    run.require(sp.simplify(diagonal * factor - matrix) == sp.zeros(2), 'symbolic Borel factorization')\n    ^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'require'\n\n----------------------------------------------------------------------\nRan 1 test in 0.118s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "unique-factorization-guard",
+      "mutant_sha256": "e400f701e6d731e6aafb43a6e44614a7d412604bda490bde7384c6d4a97ed5cf",
+      "outcome": "killed",
+      "output": "test_symbolic_failure_and_executable_exit (__main__.HierarchicalBorelTests.test_symbolic_failure_and_executable_exit) ... FAIL\n\n======================================================================\nFAIL: test_symbolic_failure_and_executable_exit (__main__.HierarchicalBorelTests.test_symbolic_failure_and_executable_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 253, in test_symbolic_failure_and_executable_exit\n    self.refused(module.check_symbolic_factorization, Cases(), kind=\"check\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.109s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_symbolic_failure_and_executable_exit"
+      ]
+    },
+    {
+      "identity": "normality-shift",
+      "mutant_sha256": "aaf60687fd8125aba1c1f111d837ae34334647dc65b8e76daa11775b77597335",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 242, in test_fixed_control_sections_and_counts\n    operation(run)\n    ~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 192, in check_symbolic_factorization\n    run.require(sp.simplify(conjugated[0, 1] - d2 / d1 * shift) == 0, 'normality off-diagonal action')\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: normality off-diagonal action\n\n----------------------------------------------------------------------\nRan 1 test in 0.125s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "torus-homomorphism",
+      "mutant_sha256": "151a6be7e2bc8dfb082d4efa877ecb62caf9ebff001b14f4f7369fa9c54cbbdf",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 242, in test_fixed_control_sections_and_counts\n    operation(run)\n    ~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 205, in check_symbolic_factorization\n    run.require(sp.diag(composite[0, 0], composite[1, 1]) != diagonal * sp.diag(e1, e2), \"torus projection homomorphism\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: torus projection homomorphism\n\n----------------------------------------------------------------------\nRan 1 test in 0.120s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "source-only-witness",
+      "mutant_sha256": "cdf34ef9089efe73ce6e62ef3a904273f06d98bafb2e52f0e7e2b0d346077ddb",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 242, in test_fixed_control_sections_and_counts\n    operation(run)\n    ~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 278, in check_curvature\n    run.require(witness == 0, 'source-only covariance counterexample')\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: source-only covariance counterexample\n\n----------------------------------------------------------------------\nRan 1 test in 0.143s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "bianchi-sign",
+      "mutant_sha256": "63d6306c8f11f8a9a37307f6d609de69e418d959853b89776bf9b32c697aa2c5",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 242, in test_fixed_control_sections_and_counts\n    operation(run)\n    ~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 292, in check_curvature\n    run.require(sp.expand(bianchi) == 0, 'commutative discrete Bianchi identity')\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: commutative discrete Bianchi identity\n\n----------------------------------------------------------------------\nRan 1 test in 0.143s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "anchoring-control",
+      "mutant_sha256": "2755e37c8849be1a71ce659787f0a3c0ef7e584d3f00d9712fe0c53e5a5acb42",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... ERROR\n\n======================================================================\nERROR: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 242, in test_fixed_control_sections_and_counts\n    operation(run)\n    ~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\independent\\dfm-hierarchical-borel.py\", line 306, in check_anchored_uniqueness\n    run.require(other[0] == eye(), \"the alternative field must fail anchoring\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: the alternative field must fail anchoring\n\n----------------------------------------------------------------------\nRan 1 test in 0.143s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "main-missing-curvature",
+      "mutant_sha256": "0987df0a96c5e60bc1730ac5391ad2d1d3dc04fe1610154073af231b713eed2b",
+      "outcome": "killed",
+      "output": "test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts) ... FAIL\n\n======================================================================\nFAIL: test_fixed_control_sections_and_counts (__main__.HierarchicalBorelTests.test_fixed_control_sections_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 248, in test_fixed_control_sections_and_counts\n    self.assertEqual(json.loads(output.getvalue())[\"checks\"], 93)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 89 != 93\n\n----------------------------------------------------------------------\nRan 1 test in 0.149s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_fixed_control_sections_and_counts"
+      ]
+    },
+    {
+      "identity": "receipt-count",
+      "mutant_sha256": "e303795ba3b51fdf25b5089f6bcb6b00ee58ee0a71c52cbcc3042a32cbbc8aa0",
+      "outcome": "killed",
+      "output": "test_symbolic_failure_and_executable_exit (__main__.HierarchicalBorelTests.test_symbolic_failure_and_executable_exit) ... FAIL\n\n======================================================================\nFAIL: test_symbolic_failure_and_executable_exit (__main__.HierarchicalBorelTests.test_symbolic_failure_and_executable_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 263, in test_symbolic_failure_and_executable_exit\n    self.assertEqual((receipt[\"status\"], receipt[\"checks\"]), (\"passed\", 93))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ('passed', 99) != ('passed', 93)\n\nFirst differing element 1:\n99\n93\n\n- ('passed', 99)\n?             ^\n\n+ ('passed', 93)\n?             ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.774s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_symbolic_failure_and_executable_exit"
+      ]
+    },
+    {
+      "identity": "failure-exit",
+      "mutant_sha256": "703f191e9e0baacacf15036a8c2994817eae3d1fa65b1787777b62ec5ecc85d8",
+      "outcome": "killed",
+      "output": "test_symbolic_failure_and_executable_exit (__main__.HierarchicalBorelTests.test_symbolic_failure_and_executable_exit) ... FAIL\n\n======================================================================\nFAIL: test_symbolic_failure_and_executable_exit (__main__.HierarchicalBorelTests.test_symbolic_failure_and_executable_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 265, in test_symbolic_failure_and_executable_exit\n    with self.assertRaises(SystemExit) as failure:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: SystemExit not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.820s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_symbolic_failure_and_executable_exit"
+      ]
+    },
+    {
+      "identity": "oracle-order",
+      "mutant_sha256": "0f0ca9c4216104298398b58aa572577901c9e503f761000a6270508eafc6e6fa",
+      "outcome": "killed",
+      "output": "test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression) ... FAIL\n\n======================================================================\nFAIL: test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 131, in test_noncommuting_integer_regression\n    self.assertEqual(oracle[2], (8, 27, 0, 15))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(8, 1), Fraction(32, 1), Fraction(0, 1), Fraction(15, 1)) != (8, 27, 0, 15)\n\nFirst differing element 1:\nFraction(32, 1)\n27\n\n- (Fraction(8, 1), Fraction(32, 1), Fraction(0, 1), Fraction(15, 1))\n+ (8, 27, 0, 15)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_hierarchical_borel.py",
+      "tests": [
+        "test_noncommuting_integer_regression"
+      ]
+    },
+    {
+      "identity": "oracle-entry",
+      "mutant_sha256": "1d65452abf1bb51d55c00ac8320985d385170f637241f5d1df026c11dbdbde8c",
+      "outcome": "killed",
+      "output": "test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression) ... FAIL\n\n======================================================================\nFAIL: test_noncommuting_integer_regression (__main__.HierarchicalBorelTests.test_noncommuting_integer_regression)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 131, in test_noncommuting_integer_regression\n    self.assertEqual(oracle[2], (8, 27, 0, 15))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(8, 1), Fraction(0, 1), Fraction(27, 1), Fraction(15, 1)) != (8, 27, 0, 15)\n\nFirst differing element 1:\nFraction(0, 1)\n27\n\n- (Fraction(8, 1), Fraction(0, 1), Fraction(27, 1), Fraction(15, 1))\n+ (8, 27, 0, 15)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_hierarchical_borel.py",
+      "tests": [
+        "test_noncommuting_integer_regression"
+      ]
+    },
+    {
+      "identity": "refusal-helper",
+      "mutant_sha256": "16db3306a67e724e1e000d345cabfe1ab20e0e0de9aed8fee55e2426c24d64f7",
+      "outcome": "killed",
+      "output": "test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences) ... FAIL\n\n======================================================================\nFAIL: test_matrix_admission_and_singular_fences (__main__.HierarchicalBorelTests.test_matrix_admission_and_singular_fences)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 141, in test_matrix_admission_and_singular_fences\n    self.refused(operation, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical_borel-mutation-w5ynfg5f\\tests\\test_hierarchical_borel.py\", line 64, in refused\n    self.assertTrue(result.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_hierarchical_borel.py",
+      "tests": [
+        "test_matrix_admission_and_singular_fences"
+      ]
+    },
+    {
+      "identity": "cycle-guard-removed",
+      "source": "independent/dfm-hierarchical-borel.py",
+      "tests": [
+        "test_cycle_detection_lookup_bound"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_cycle_detection_lookup_bound (__main__.HierarchicalBorelTests.test_cycle_detection_lookup_bound) ... ERROR\n\n======================================================================\nERROR: test_cycle_detection_lookup_bound (__main__.HierarchicalBorelTests.test_cycle_detection_lookup_bound)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\tests\\test_hierarchical_borel.py\", line 251, in test_cycle_detection_lookup_bound\n    self.refused(module._tree_order, carrier, 0)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\tests\\test_hierarchical_borel.py\", line 63, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\tests\\test_hierarchical_borel.py\", line 63, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\independent\\dfm-hierarchical-borel.py\", line 111, in _tree_order\n    cursor = parent[cursor]\n             ~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1247, in _execute_mock_call\n    result = effect(*args, **kwargs)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\hierarchical-cycle-1qa1jhwe\\tests\\test_hierarchical_borel.py\", line 245, in lookup\n    raise RuntimeError(\"cycle guard exceeded the finite lookup budget\")\nRuntimeError: cycle guard exceeded the finite lookup budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "mutant_sha256": "31efcebf5daac4d41c260e472d49c48f05df6cad6d73ad0eb0f018717a307d15",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_cycle_detection_lookup_bound (__main__.HierarchicalBorelTests.test_cycle_detection_lookup_bound) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nOK\n"
+      }
+    }
+  ],
+  "summary": {
+    "counts": {
+      "killed": 45,
+      "survived": 0,
+      "equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "eligible": 45,
+    "detected_fraction": 1.0
+  }
+}

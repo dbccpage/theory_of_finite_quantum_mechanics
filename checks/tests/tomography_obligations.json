@@ -1,0 +1,537 @@
+{
+  "AuthorityEffect": "None",
+  "original_source_sha256": "15f391680b1e0ee48ac5665665022a330190527a75fef8caacb0bf6e784f567c",
+  "original_static_sites": 65,
+  "original_runtime_checks": 315,
+  "rows": [
+    {
+      "obligation_id": 1,
+      "line": 189,
+      "condition": "rho == rho.conjugate().T",
+      "label": "'candidate is Hermitian'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._reconstruction"
+    },
+    {
+      "obligation_id": 2,
+      "line": 201,
+      "condition": "all((zero(x - y) for x, y in zip(values, expected)))",
+      "label": "'all nine evaluations, including imaginary signs'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._reconstruction"
+    },
+    {
+      "obligation_id": 3,
+      "line": 205,
+      "condition": "tomography.det() != 0",
+      "label": "'tomography has exact rank nine'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._reconstruction"
+    },
+    {
+      "obligation_id": 4,
+      "line": 217,
+      "condition": "all((zero(value.subs(substitution) - measurement) for value, measurement in zip(values, measurements)))",
+      "label": "'candidate recovers arbitrary rational measurements'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._reconstruction"
+    },
+    {
+      "obligation_id": 5,
+      "line": 229,
+      "condition": "zero(numerator - expansion)",
+      "label": "'generic quadratic expansion'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._expansion"
+    },
+    {
+      "obligation_id": 6,
+      "line": 230,
+      "condition": "zero(sp.im(numerator))",
+      "label": "'quadratic numerator is rational over Q(i)'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._expansion"
+    },
+    {
+      "obligation_id": 7,
+      "line": 238,
+      "condition": "all((zero(entry) for entry in identity_residual))",
+      "label": "'generic three by three adjugate identity'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._adjugate"
+    },
+    {
+      "obligation_id": 8,
+      "line": 243,
+      "condition": "sp.cancel(sp.Rational(1, 3) - epsilon * bound - epsilon) == 0",
+      "label": "'rescaled lower bound'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._rescaling"
+    },
+    {
+      "obligation_id": 9,
+      "line": 245,
+      "condition": "sp.cancel(sp.Rational(1, 3) + epsilon * bound - (2 * bound + 1) / (3 * (bound + 1))) == 0",
+      "label": "'rescaled upper bound'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._rescaling"
+    },
+    {
+      "obligation_id": 10,
+      "line": 248,
+      "condition": "sp.cancel(sp.Rational(2, 3) - (2 * bound + 1) / (3 * (bound + 1)) - epsilon) == 0",
+      "label": "'upper bound is strictly below two thirds'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._rescaling"
+    },
+    {
+      "obligation_id": 11,
+      "line": 251,
+      "condition": "epsilon.is_positive is True",
+      "label": "'rescaling is positive, including B=0'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._rescaling"
+    },
+    {
+      "obligation_id": 12,
+      "line": 252,
+      "condition": "epsilon.subs(bound, 0) == sp.Rational(1, 3)",
+      "label": "'zero-bound control'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._rescaling"
+    },
+    {
+      "obligation_id": 13,
+      "line": 255,
+      "condition": "not zero(values[4] - ((diagonal[0] + diagonal[1]) / 2 + imag_part[0]))",
+      "label": "'negative control rejects reversed imaginary sign'",
+      "target_source": "checks/checker_support/hermitian_tomography.py",
+      "target_symbol": "HermitianTomography._reconstruction"
+    },
+    {
+      "obligation_id": 14,
+      "line": 266,
+      "condition": "zero(kernel_comb)",
+      "label": "'7-ray projector kernel relation vanishes identically for every HermForm3'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._kernel_controls"
+    },
+    {
+      "obligation_id": 15,
+      "line": 283,
+      "condition": "zero(kernel_comb_p7)",
+      "label": "'9-ray projector kernel relation for witness_p7 vanishes identically for every HermForm3'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._kernel_controls"
+    },
+    {
+      "obligation_id": 16,
+      "line": 298,
+      "condition": "all((s3(r) == 0 for r in nine_rays_gvec))",
+      "label": "'s3 vanishes on all nine tomography rays'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._fixture_values"
+    },
+    {
+      "obligation_id": 17,
+      "line": 299,
+      "condition": "all((exotic_qi3(r) == Fraction(1, 3) for r in nine_rays_gvec))",
+      "label": "'exotic_qi3 equals 1/3 on all nine tomography rays'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._fixture_values"
+    },
+    {
+      "obligation_id": 18,
+      "line": 305,
+      "condition": "is_one_plus_i_primitive_gvec(witness_111) and vec_norm_sq(witness_111) == 3 and (s3(witness_111) == 1)",
+      "label": "'s3(1, 1, 1) == 1 on (1+i)-primitive norm-3 witness'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._fixture_values"
+    },
+    {
+      "obligation_id": 19,
+      "line": 311,
+      "condition": "is_one_plus_i_primitive_gvec(witness_div4) and vec_norm_sq(witness_div4) == 12 and (s3(witness_div4) == -1)",
+      "label": "'s3 == -1 on (1+i)-primitive norm-12 (4|N) witness'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._fixture_values"
+    },
+    {
+      "obligation_id": 20,
+      "line": 317,
+      "condition": "is_one_plus_i_primitive_gvec(witness_div8) and vec_norm_sq(witness_div8) == 24 and (s3(witness_div8) == 1)",
+      "label": "'s3 == 1 on (1+i)-primitive norm-24 (8|N) witness'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._fixture_values"
+    },
+    {
+      "obligation_id": 21,
+      "line": 337,
+      "condition": "s3_kernel_eval == 1 and exotic_kernel_eval == Fraction(1, 3)",
+      "label": "'s3 and exotic_qi3 constructively separate the 7-ray projector kernel'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._kernel_controls"
+    },
+    {
+      "obligation_id": 22,
+      "line": 349,
+      "condition": "g_inner(u, v) == (0, 0) and g_inner(u, w) == (0, 0) and (g_inner(v, w) == (0, 0))",
+      "label": "'orthogonal completion via Hermitian cross product'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._frame"
+    },
+    {
+      "obligation_id": 23,
+      "line": 351,
+      "condition": "(v3_rat(vec_norm_sq(u)) + v3_rat(vec_norm_sq(v)) + v3_rat(vec_norm_sq(w))) % 2 == 0",
+      "label": "'sum of 3-adic norm valuations on orthogonal frame is even'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._frame"
+    },
+    {
+      "obligation_id": 24,
+      "line": 353,
+      "condition": "s3(u) + s3(v) + s3(w) == 0",
+      "label": "'s3 is a zero-weight frame function'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._frame"
+    },
+    {
+      "obligation_id": 25,
+      "line": 354,
+      "condition": "exotic_qi3(u) + exotic_qi3(v) + exotic_qi3(w) == 1",
+      "label": "'exotic_qi3 is a weight-1 frame function'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._frame"
+    },
+    {
+      "obligation_id": 26,
+      "line": 359,
+      "condition": "is_one_plus_i_primitive_gvec(witness_p7) and vec_norm_sq(witness_p7) == 7 and (s3(witness_p7) == 0) and (sp_residual(witness_p7, 7) == 1) and (sp_residual(witness_111, 7) == 0)",
+      "label": "'s3 and s7 are linearly independent bounded zero-weight residuals'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._fixture_values"
+    },
+    {
+      "obligation_id": 27,
+      "line": 367,
+      "condition": "all((sp_residual(r, 7) == 0 for r in nine_rays_gvec))",
+      "label": "'s7 vanishes on all nine tomography rays'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._fixture_values"
+    },
+    {
+      "obligation_id": 28,
+      "line": 371,
+      "condition": "sp_residual(u7, 7) + sp_residual(v7, 7) + sp_residual(w7, 7) == 0",
+      "label": "'s7 satisfies zero-weight additivity on odd-v7 orthogonal frame'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._frame"
+    },
+    {
+      "obligation_id": 29,
+      "line": 377,
+      "condition": "abs(s3(u0)) + abs(s3(v0)) + abs(s3(w0)) == 2",
+      "label": "'negative control: unsigned 3-adic parity fails zero-weight sum'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._frames"
+    },
+    {
+      "obligation_id": 30,
+      "line": 405,
+      "condition": "s3(pos3_int) == 1 and s3(pos3_ray) == 1 and (exotic_qi3(pos3_ray) == Fraction(2, 3)) and (dist_pos3 == Fraction(1, 3 * k * k))",
+      "label": "'positive 3-adic perturbation ray approaches e1 with s3 == +1'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._oscillations"
+    },
+    {
+      "obligation_id": 31,
+      "line": 412,
+      "condition": "s3(neg3_int) == -1 and s3(neg3_ray) == -1 and (exotic_qi3(neg3_ray) == Fraction(0)) and (dist_neg3 == Fraction(1, 3 * k * k))",
+      "label": "'negative 3-adic perturbation ray approaches e1 with s3 == -1'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._oscillations"
+    },
+    {
+      "obligation_id": 32,
+      "line": 438,
+      "condition": "sp_residual(pos7_ray, 7) == 1 and sp_residual(neg7_ray, 7) == -1 and (s3(pos7_ray) == 0) and (s3(neg7_ray) == 0) and (dist_pos7 == Fraction(1, 7 * k * k))",
+      "label": "'7-adic perturbation rays approach e1 with s7 == +/-1 and s3 == 0'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._oscillations"
+    },
+    {
+      "obligation_id": 33,
+      "line": 459,
+      "condition": "s3(pos3_7k_ray) == 1 and s3(neg3_7k_ray) == -1 and (sp_residual(pos3_7k_ray, 7) == 0) and (sp_residual(neg3_7k_ray, 7) == 0)",
+      "label": "'subsequence 3-adic perturbation rays (7*k) have s3 == +/-1 and s7 == 0'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._oscillations"
+    },
+    {
+      "obligation_id": 34,
+      "line": 469,
+      "condition": "exotic_qi7(witness_p7) == Fraction(2, 3) and exotic_qi7(witness_111) == Fraction(1, 3) and (exotic_qi7(u7) + exotic_qi7(v7) + exotic_qi7(w7) == Fraction(1)) and (exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), u7) + exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), v7) + exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), w7) == Fraction(1))",
+      "label": "'exoticQi7 and exoticComb37 are weight-1 nonnegative frame functions separating witness_p7 from witness_111'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._mixture_controls"
+    },
+    {
+      "obligation_id": 35,
+      "line": 490,
+      "condition": "kernel_p7_eval(lambda u: sp_residual(u, 7)) == Fraction(1) and kernel_p7_eval(s3) == Fraction(0) and (kernel_p7_eval(lambda u: Fraction(2, 5) * s3(u) - Fraction(3, 7) * sp_residual(u, 7)) == Fraction(-3, 7))",
+      "label": "'s7_witness_p7_kernel_separation evaluates to 1 on s7, 0 on s3, and c7 on combResidual37 c3 c7'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._kernel_controls"
+    },
+    {
+      "obligation_id": 36,
+      "line": 503,
+      "condition": "zero((u_s3.conjugate().T * p_s3)[0]) and zero((u_s3.conjugate().T * q_s3)[0]) and zero((p_s3.conjugate().T * q_s3)[0])",
+      "label": "'Q(i, sqrt(3))^3 frame (witness_111, p_s3, q_s3) is pairwise orthogonal'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._quadratic_extensions"
+    },
+    {
+      "obligation_id": 37,
+      "line": 509,
+      "condition": "sp.expand((u_s3.conjugate().T * u_s3)[0]) == 3 and sp.expand((p_s3.conjugate().T * p_s3)[0]) == 18 and (sp.expand((q_s3.conjugate().T * q_s3)[0]) == 18) and (vp_rat(Fraction(18), 3) == 2) and (vp_rat(Fraction(18), 7) == 0)",
+      "label": "'Q(i, sqrt(3))^3 frame has rational squared norms (3, 18, 18) with even v3 and v7 on partners'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._quadratic_extensions"
+    },
+    {
+      "obligation_id": 38,
+      "line": 524,
+      "condition": "zero((u_s7.conjugate().T * p_s7)[0]) and zero((u_s7.conjugate().T * q_s7)[0]) and zero((p_s7.conjugate().T * q_s7)[0])",
+      "label": "'Q(i, sqrt(7))^3 frame (witness_p7, p_s7, q_s7) is pairwise orthogonal'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._quadratic_extensions"
+    },
+    {
+      "obligation_id": 39,
+      "line": 530,
+      "condition": "sp.expand((u_s7.conjugate().T * u_s7)[0]) == 7 and sp.expand((p_s7.conjugate().T * p_s7)[0]) == 245 and (sp.expand((q_s7.conjugate().T * q_s7)[0]) == 245) and (vp_rat(Fraction(245), 3) == 0) and (vp_rat(Fraction(245), 7) == 2) and (vp_rat(Fraction(245), 11) == 0)",
+      "label": "'Q(i, sqrt(7))^3 frame has rational squared norms (7, 245, 245) with even v3, v7, and v11 on partners'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._quadratic_extensions"
+    },
+    {
+      "obligation_id": 40,
+      "line": 554,
+      "condition": "zero(kernel_comb_p11)",
+      "label": "'7-ray projector kernel relation for witness_p11 = (1, 3, 1) vanishes identically for every HermForm3'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._kernel_controls"
+    },
+    {
+      "obligation_id": 41,
+      "line": 558,
+      "condition": "is_one_plus_i_primitive_gvec(witness_p11) and vec_norm_sq(witness_p11) == 11 and all((sp_residual(r, 11) == 0 for r in nine_rays_gvec))",
+      "label": "'witness_p11 = (1, 3, 1) is (1+i)-primitive of norm 11 and sp 11 vanishes on all nine tomography rays'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._fixture_values"
+    },
+    {
+      "obligation_id": 42,
+      "line": 569,
+      "condition": "sp_residual(w_j, p_i) == expected_delta",
+      "label": "f'3x3 Kronecker-delta duality failed at p={p_i}, witness index={j_idx}'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._fixture_values"
+    },
+    {
+      "obligation_id": 43,
+      "line": 576,
+      "condition": "g_inner(u11, v11) == (0, 0) and (vp_rat(vec_norm_sq(u11), 11) + vp_rat(vec_norm_sq(v11), 11) + vp_rat(vec_norm_sq(w11), 11)) % 2 == 0 and (sp_residual(u11, 11) + sp_residual(v11, 11) + sp_residual(w11, 11) == 0)",
+      "label": "'sp 11 satisfies zero-weight additivity on odd-v11 orthogonal frame'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._frame"
+    },
+    {
+      "obligation_id": 44,
+      "line": 592,
+      "condition": "kernel_p11_eval(lambda u: sp_residual(u, 11)) == Fraction(1) and kernel_p11_eval(lambda u: sp_residual(u, 3)) == Fraction(0) and (kernel_p11_eval(lambda u: sp_residual(u, 7)) == Fraction(0)) and (kernel_p11_eval(lambda u: Fraction(1, 5) * sp_residual(u, 3) - Fraction(2, 7) * sp_residual(u, 7) + Fraction(4, 11) * sp_residual(u, 11)) == Fraction(4, 11))",
+      "label": "'sp11_witness_p11_kernel_separation evaluates to 1 on sp 11, 0 on sp 3 and sp 7, and c11 on combResidual3_7_11'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._kernel_controls"
+    },
+    {
+      "obligation_id": 45,
+      "line": 623,
+      "condition": "sp_residual(r_pos, q_prime) == 1 and sp_residual(r_neg, q_prime) == -1",
+      "label": "f'selective oscillation diagonal failed at p={p_target}'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._oscillations"
+    },
+    {
+      "obligation_id": 46,
+      "line": 628,
+      "condition": "sp_residual(r_pos, q_prime) == 0 and sp_residual(r_neg, q_prime) == 0",
+      "label": "f'selective oscillation off-diagonal failed at p={p_target}, q={q_prime}'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._oscillations"
+    },
+    {
+      "obligation_id": 47,
+      "line": 639,
+      "condition": "zero((u_s11.conjugate().T * p_s11)[0]) and zero((u_s11.conjugate().T * q_s11)[0]) and zero((p_s11.conjugate().T * q_s11)[0])",
+      "label": "'Q(i, sqrt(11))^3 frame (witness_p11, p_s11, q_s11) is pairwise orthogonal'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._quadratic_extensions"
+    },
+    {
+      "obligation_id": 48,
+      "line": 645,
+      "condition": "sp.expand((u_s11.conjugate().T * u_s11)[0]) == 11 and sp.expand((p_s11.conjugate().T * p_s11)[0]) == 1210 and (sp.expand((q_s11.conjugate().T * q_s11)[0]) == 1210) and (vp_rat(Fraction(18), 11) == 0) and (vp_rat(Fraction(1210), 3) == 0) and (vp_rat(Fraction(1210), 7) == 0) and (vp_rat(Fraction(1210), 11) == 2)",
+      "label": "'Q(i, sqrt(11))^3 frame has rational squared norms (11, 1210, 1210) with even v3, v7, and v11 on partners'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._quadratic_extensions"
+    },
+    {
+      "obligation_id": 49,
+      "line": 726,
+      "condition": "quad_ray_e1(w_vec) == 0 and sp_residual(w_vec, 3) == e3 and (sp_residual(w_vec, 7) == e7) and (sp_residual(w_vec, 11) == e11)",
+      "label": "'equatorial witness table isolates (sp 3, sp 7, sp 11) with +-1 in e1^perp'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._equator_witnesses"
+    },
+    {
+      "obligation_id": 50,
+      "line": 746,
+      "condition": "zero(q_add + q_sub - 2 * nu_sp / (nu_sp + nv_sp) * q_u - 2 * nv_sp / (nu_sp + nv_sp) * q_v)",
+      "label": "'symbolic operator-space orthogonal parallelogram identity holds for every HermForm3'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._rotation_controls"
+    },
+    {
+      "obligation_id": 51,
+      "line": 756,
+      "condition": "g_inner(ru_c, rv_c) == (Fraction(0), Fraction(0)) and vec_norm_sq(ru_c) == g_norm_sq(alpha_c) * vec_norm_sq(u_p) + g_norm_sq(beta_c) * vec_norm_sq(v_p) and (vec_norm_sq(rv_c) == vec_norm_sq(u_p) * vec_norm_sq(v_p) * vec_norm_sq(ru_c)) and (quad_ray_e1(ru_c) + quad_ray_e1(rv_c) == quad_ray_e1(u_p) + quad_ray_e1(v_p)) and all((sp_residual(ru_c, p_chk) + sp_residual(rv_c, p_chk) == sp_residual(u_p, p_chk) + sp_residual(v_p, p_chk) for p_chk in (3, 7, 11)))",
+      "label": "'planar frame-rotation pairs preserve orthogonality, norm identities, and 2D subspace sums'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._rotated_pair"
+    },
+    {
+      "obligation_id": 52,
+      "line": 782,
+      "condition": "g_inner(nine_rays_gvec[0], w_pos) == (Fraction(0), Fraction(0)) and sp_residual(nine_rays_gvec[0], p_prime) == Fraction(0) and (sp_residual(w_pos, p_prime) == Fraction(0)) and (sp_residual(u_plus, p_prime) == Fraction(1)) and (sp_residual(u_minus, p_prime) == Fraction(1)) and (sp_residual(u_plus, p_prime) + sp_residual(u_minus, p_prime) == Fraction(2))",
+      "label": "f'sp {p_prime} violates orthogonal parallelogram zero law on (e1, w_pos)'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._parallelogram_counterexamples"
+    },
+    {
+      "obligation_id": 53,
+      "line": 801,
+      "condition": "p_step == rot_pair_u(u_base, v_base, (Fraction(1), Fraction(0)), (Fraction(1), Fraction(0))) and p_part == rot_pair_v(u_base, v_base, (Fraction(1), Fraction(0)), (Fraction(1), Fraction(0))) and (g_inner(u_base, v_base) == (Fraction(0), Fraction(0))) and (g_inner(u_base, w_mer) == (Fraction(0), Fraction(0))) and (g_inner(v_base, w_mer) == (Fraction(0), Fraction(0))) and (g_inner(p_step, p_part) == (Fraction(0), Fraction(0)))",
+      "label": "'Piron base and rotated frames are pairwise orthogonal'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._piron_sample"
+    },
+    {
+      "obligation_id": 54,
+      "line": 810,
+      "condition": "quad_ray_e1(p_step) + quad_ray_e1(p_part) == quad_ray_e1(u_base) + quad_ray_e1(v_base) and quad_ray_e1(p_step) <= quad_ray_e1(u_base) and (quad_ray_e1(u_base) + quad_ray_e1(w_mer) == Fraction(1)) and (vec_norm_sq(g_sub_vec(p_step, u_base)) == vec_norm_sq(y_eq) / Fraction(k_step * k_step))",
+      "label": "'Piron frame-rotation sum, monotone descent, meridian complement, and step distance hold'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._piron_sample"
+    },
+    {
+      "obligation_id": 55,
+      "line": 818,
+      "condition": "y_rot[0] == (Fraction(0), Fraction(0)) and vec_norm_sq(y_rot) == vec_norm_sq(y_eq) and (vec_norm_sq(g_add_vec(nine_rays_gvec[0], y_rot)) == vec_norm_sq(u_base)) and (quad_ray_e1(g_add_vec(nine_rays_gvec[0], y_rot)) == quad_ray_e1(u_base))",
+      "label": "'Pythagorean equatorial rotation preserves norm and north-pole Born weight'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._piron_sample"
+    },
+    {
+      "obligation_id": 56,
+      "line": 837,
+      "condition": "eq_ortho(eq_ortho(y_eq)) == neg_y and pythag_eq_rot(y_eq, 1) == eq_ortho(y_eq) and (pythag_eq_rot(pythag_eq_rot(y_eq, 1), 1) == neg_y) and (eq_tangent_step(eq_tangent_step(y_eq, Fraction(1)), Fraction(1)) == g_smul_vec((Fraction(2), Fraction(0)), eq_ortho(y_eq)))",
+      "label": "'eqOrtho involution, pythagEqRot k=1 90-degree rotation, and two-step tangent identity hold'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._quarter_kelvin"
+    },
+    {
+      "obligation_id": 57,
+      "line": 850,
+      "condition": "y_kelvin[0] == (Fraction(0), Fraction(0)) and vec_norm_sq(y_kelvin) == Fraction(1) / ny and (g_smul_vec((-Fraction(1) / ny, Fraction(0)), meridian_ortho(y_eq)) == u_kelvin) and (quad_ray_e1(u_base) + quad_ray_e1(u_kelvin) == Fraction(1)) and (quad_ray_e1(u_2eq) <= quad_ray_e1(u_step1) <= quad_ray_e1(u_base))",
+      "label": "'Kelvin-inverted equatorial vector satisfies norm inversion, meridian ray identity, and two-step descent'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._quarter_kelvin"
+    },
+    {
+      "obligation_id": 58,
+      "line": 865,
+      "condition": "ts_comp == ts_rhs",
+      "label": "'two-step equatorial tangent composition identity holds'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._tangent_sample"
+    },
+    {
+      "obligation_id": 59,
+      "line": 875,
+      "condition": "u_tstep == g_add_vec(nine_rays_gvec[0], eq_tangent_step(y_eq, t_step)) and vec_norm_sq(eq_tangent_step(y_eq, t_step)) == scale_out * ny and (eq_ortho(eq_tangent_step(y_eq, t_step)) == g_add_vec(g_smul_vec((-t_step, Fraction(0)), y_eq), eq_ortho(y_eq))) and (t_cancel == g_smul_vec((scale_out, Fraction(0)), y_eq)) and (quad_ray_e1(u_out) <= quad_ray_e1(u_tstep) <= quad_ray_e1(u_base) <= quad_ray_e1(u_in))",
+      "label": "'two-step Piron tangent cancellation and outward/inward radial monotonicity hold'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._tangent_sample"
+    },
+    {
+      "obligation_id": 60,
+      "line": 893,
+      "condition": "y_rot == eq_tangent_step(g_smul_vec((r_in, Fraction(0)), y_eq), t_k) and eq_tangent_step(y_rot, -t_k) == g_smul_vec((r_out, Fraction(0)), y_eq) and (quad_ray_e1(u_rad_out) <= quad_ray_e1(u_rot) <= quad_ray_e1(u_rad_in)) and (vec_norm_sq(g_sub_vec(u_rad_in, u_base)) == (r_in - 1) * (r_in - 1) * ny) and (vec_norm_sq(g_sub_vec(u_rad_out, u_base)) == (r_out - 1) * (r_out - 1) * ny)",
+      "label": "'Piron-Pythagorean two-sided sandwich and radial distance formulas hold'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._sandwich_sample"
+    },
+    {
+      "obligation_id": 61,
+      "line": 902,
+      "condition": "any((quad_ray_e1(g_add_vec(nine_rays_gvec[0], g_smul_vec((Fraction(k_e * k_e - 1, k_e * k_e + 1), Fraction(0)), y_eq))) - quad_ray_e1(g_add_vec(nine_rays_gvec[0], g_smul_vec((Fraction(k_e * k_e + 1, k_e * k_e - 1), Fraction(0)), y_eq))) < eps and abs(quad_ray_e1(g_add_vec(nine_rays_gvec[0], pythag_eq_rot(y_eq, k_e))) - quad_ray_e1(u_base)) < eps for k_e in range(2, 40)))",
+      "label": "'Archimedean radial continuity squeeze forces Pythagorean equatorial rotation gap below epsilon'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._equatorial_controls"
+    },
+    {
+      "obligation_id": 62,
+      "line": 923,
+      "condition": "quad_ray_e1(y_eq) == Fraction(0) and quad_ray_e1(eq_ortho(y_eq)) == Fraction(0)",
+      "label": "'Pure north-pole Born weight vanishes on equatorial frame vectors (e1, y, eqOrtho y)'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._equatorial_controls"
+    },
+    {
+      "obligation_id": 63,
+      "line": 930,
+      "condition": "vec_norm_sq(w_swap) == vec_norm_sq(w_pos) and sp_residual(g_add_vec(nine_rays_gvec[0], w_swap), p_prime) == sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime) == Fraction(1)",
+      "label": "f'sp {p_prime} depends only on equatorial norm on e1 + y'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._symmetry_samples"
+    },
+    {
+      "obligation_id": 64,
+      "line": 939,
+      "condition": "sp_residual(u_rot, p_prime) == Fraction(1)",
+      "label": "f'sp {p_prime} is invariant under all Pythagorean equatorial rotations on e1 + w_pos'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._symmetry_samples"
+    },
+    {
+      "obligation_id": 65,
+      "line": 945,
+      "condition": "w_180 == g_smul_vec((Fraction(-1), Fraction(0)), w_pos) and sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime) + sp_residual(g_add_vec(nine_rays_gvec[0], w_180), p_prime) == Fraction(2)",
+      "label": "f'sp {p_prime} is 90-degree rotationally invariant yet violates SatisfiesOrthoParallelogramZero at e1'",
+      "target_source": "checks/independent/fq-gleason-qi3-tomography.py",
+      "target_symbol": "GaussianTomographyControls._symmetry_samples"
+    }
+  ],
+  "correspondence_notes": [
+    "All original symbolic identities retained. Hermitian model uses the original interleaved nine-ray order, while numeric legacy kernels are remapped into that order; independent projector matrices verify each coefficient table.",
+    "All original six orthogonal frames retained; each now checks all three selected primes, all completion inner products and nonzero completion. Original special norm12/norm24 witnesses retained.",
+    "All original k1..7 p3/p7 curves and p3 denominator21k subsequence retained; all selective denominator231k curves k1..4 retained. Distances and scaled/unscaled signs checked for each.",
+    "All three original quadratic-extension frames reconstructed from the same literal orthogonal partners and Hermitian cross completions. Partner valuations are checked exactly2 on the matchingprime and0 on both other selected primes.",
+    "Piron step/partner identities are implemented by OrthogonalGaussianPair rotation in EquatorialRayGeometry._piron; the symbolic rotation formulas and norms are independently tested. Original3equatorial vectors,k1..4,6two-step vectors,t=1/2,2/3,-3/4,s=1/3,-t,k2..5,eps1/5,1/25,1/100 andsearch k2..39 retained.",
+    "Original3parallelogram witnesses, swaps and k1..5 symmetry samples retained. Labels now describe these finite samples without claiming a continuity implication.",
+    "Runtime checks rise315->979 because conjunctions are separated and cross-prime checks strengthened. Counts are independently observed through the per-run recorder; old static and runtime trace retained."
+  ]
+}

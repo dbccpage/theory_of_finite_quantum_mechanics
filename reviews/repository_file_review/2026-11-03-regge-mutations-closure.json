@@ -1,0 +1,397 @@
+{
+  "AuthorityEffect": "None",
+  "initial_receipt_sha256": "fc94ba7d6c5bbbf0785e4ddb9eb6bdfc75e02acee5a21a600a673b8188288bc6",
+  "manifest_sha256": "2c140923e2631bb9e81e7ac2c50abd5d749b769436970f1ab022f9c96f53598a",
+  "test_before_sha256": "2ec45545041a743fbcd14abef5ea3ed9198731566d035d2ce651638421e3635a",
+  "test_after_sha256": "7e51a0af8daff9cc3df1d462be8f1495744064660ae71d66f373f7c38f420d51",
+  "added_text": "    def test_denominator_budget_before_exact_cancellation(self) -> None:\n        module = load()\n        b, c = Q(2**2048-49, 5), Q(2**2048-5, 5)\n        numerator, denominator = b*b+c*c, 2*b*c\n        quotient = numerator/denominator\n        self.assertEqual(numerator.numerator.bit_length(), 4093)\n        self.assertEqual(denominator.numerator.bit_length(), 4097)\n        self.assertEqual((quotient.numerator.bit_length(), quotient.denominator.bit_length()), (4096, 4096))\n        self.refused(module.cos_law, 0, b, c, kind=\"resource\")\n\n",
+  "reason": "The first denominator overflow fixture was also rejected by a later numerator check. Add b=(2^2048-49)/5,c=(2^2048-5)/5,a=0: numerator4093 bits, denominator4097 bits, reduced quotient4096/4096 bits. Removing the denominator guard now wrongly succeeds.",
+  "mutants": [
+    {
+      "identity": "cosine-denominator-budget",
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_denominator_budget_before_exact_cancellation"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_denominator_budget_before_exact_cancellation (__main__.ReggeCheckerTests.test_denominator_budget_before_exact_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_denominator_budget_before_exact_cancellation (__main__.ReggeCheckerTests.test_denominator_budget_before_exact_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-followup-com6gq5s\\tests\\test_regge_checker.py\", line 174, in test_denominator_budget_before_exact_cancellation\n    self.refused(module.cos_law, 0, b, c, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-followup-com6gq5s\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "cd9510dbf013998ada1429dabe3848b04f85fb5580eea80f75256995003f740d",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_denominator_budget_before_exact_cancellation (__main__.ReggeCheckerTests.test_denominator_budget_before_exact_cancellation) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+      }
+    }
+  ],
+  "adjudicated_mutants": [
+    {
+      "identity": "exact-admission",
+      "mutant_sha256": "702ee73ea653dea0f561ceb7bcc4e03b80cd5e0f40028fada9960da7f3aea588",
+      "outcome": "killed",
+      "output": "test_invalid_domains_and_poles (__main__.ReggeCheckerTests.test_invalid_domains_and_poles) ... FAIL\ntest_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets) ... FAIL\n\n======================================================================\nFAIL: test_invalid_domains_and_poles (__main__.ReggeCheckerTests.test_invalid_domains_and_poles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 124, in test_invalid_domains_and_poles\n    self.refused(operation, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 138, in test_component_square_and_prefix_budgets\n    self.refused(module.exact, 2**4096, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 2 tests in 0.011s\n\nFAILED (failures=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_invalid_domains_and_poles",
+        "test_component_square_and_prefix_budgets"
+      ]
+    },
+    {
+      "identity": "numerator-sign",
+      "mutant_sha256": "c4f563cd92ce377416e0c2a05eddbf8e7ea5e38f4d4888c449b392db77fae651",
+      "outcome": "killed",
+      "output": "test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation) ... FAIL\n\n======================================================================\nFAIL: test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 108, in test_fixed_values_signed_domain_and_parameter_separation\n    self.assertEqual(tuple(module.cos_num(*row) for row in ((5, 3, 4), (3, 4, 5), (4, 3, 5))), (0, 32, 18))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(50, 1), Fraction(50, 1), Fraction(50, 1)) != (0, 32, 18)\n\nFirst differing element 0:\nFraction(50, 1)\n0\n\n- (Fraction(50, 1), Fraction(50, 1), Fraction(50, 1))\n+ (0, 32, 18)\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_fixed_values_signed_domain_and_parameter_separation"
+      ]
+    },
+    {
+      "identity": "square-budget",
+      "mutant_sha256": "c471795e7bb7adae87b0e214c487aaa03cacaa2fa3b09338dc2340b271dac832",
+      "outcome": "killed",
+      "output": "test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets) ... FAIL\n\n======================================================================\nFAIL: test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 140, in test_component_square_and_prefix_budgets\n    self.refused(module.cos_num, 2**2048, 1, 1, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_component_square_and_prefix_budgets"
+      ]
+    },
+    {
+      "identity": "square-sum-budget",
+      "mutant_sha256": "b3418026a7e6f096d1d64cc5264c6453ce8731cb73b7e3d7db6d9443c0f6d942",
+      "outcome": "killed",
+      "output": "test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets) ... FAIL\n\n======================================================================\nFAIL: test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 144, in test_component_square_and_prefix_budgets\n    self.refused(module.cos_num, large, large, large, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_component_square_and_prefix_budgets"
+      ]
+    },
+    {
+      "identity": "cosine-factor-two",
+      "mutant_sha256": "963db3909e45e8bc2210e3a3f9f9f6f1701eaa1bc3edc1096a669c1a79437d65",
+      "outcome": "killed",
+      "output": "test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation) ... FAIL\n\n======================================================================\nFAIL: test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 109, in test_fixed_values_signed_domain_and_parameter_separation\n    self.assertEqual(tuple(module.cos_law(*row) for row in ((5, 3, 4), (3, 4, 5), (4, 3, 5))), (0, Q(4, 5), Q(3, 5)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(8, 5), Fraction(6, 5)) != (0, Fraction(4, 5), Fraction(3, 5))\n\nFirst differing element 1:\nFraction(8, 5)\nFraction(4, 5)\n\n- (Fraction(0, 1), Fraction(8, 5), Fraction(6, 5))\n+ (0, Fraction(4, 5), Fraction(3, 5))\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_fixed_values_signed_domain_and_parameter_separation"
+      ]
+    },
+    {
+      "identity": "cosine-zero-preflight",
+      "mutant_sha256": "569af2d0eddc9f62f764fbf3af273524984410835dda51c626c0a3e10fc8153c",
+      "outcome": "killed",
+      "output": "test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets) ... FAIL\n\n======================================================================\nFAIL: test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 146, in test_component_square_and_prefix_budgets\n    self.refused(module.cos_law, 2**2048, 0, 1)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 51, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'resource' != 'input'\n- resource\n+ input\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_component_square_and_prefix_budgets"
+      ]
+    },
+    {
+      "identity": "cosine-denominator-budget",
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_denominator_budget_before_exact_cancellation"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_denominator_budget_before_exact_cancellation (__main__.ReggeCheckerTests.test_denominator_budget_before_exact_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_denominator_budget_before_exact_cancellation (__main__.ReggeCheckerTests.test_denominator_budget_before_exact_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-followup-com6gq5s\\tests\\test_regge_checker.py\", line 174, in test_denominator_budget_before_exact_cancellation\n    self.refused(module.cos_law, 0, b, c, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-followup-com6gq5s\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "cd9510dbf013998ada1429dabe3848b04f85fb5580eea80f75256995003f740d",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_denominator_budget_before_exact_cancellation (__main__.ReggeCheckerTests.test_denominator_budget_before_exact_cancellation) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "cosine-division",
+      "mutant_sha256": "153efb4dfc55d79deb0d36b0934f76c25cc6235601591352ec04775e7dac11e0",
+      "outcome": "killed",
+      "output": "test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation) ... FAIL\n\n======================================================================\nFAIL: test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 109, in test_fixed_values_signed_domain_and_parameter_separation\n    self.assertEqual(tuple(module.cos_law(*row) for row in ((5, 3, 4), (3, 4, 5), (4, 3, 5))), (0, Q(4, 5), Q(3, 5)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(1280, 1), Fraction(540, 1)) != (0, Fraction(4, 5), Fraction(3, 5))\n\nFirst differing element 1:\nFraction(1280, 1)\nFraction(4, 5)\n\n- (Fraction(0, 1), Fraction(1280, 1), Fraction(540, 1))\n+ (0, Fraction(4, 5), Fraction(3, 5))\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_fixed_values_signed_domain_and_parameter_separation"
+      ]
+    },
+    {
+      "identity": "block-frozen",
+      "mutant_sha256": "f2b2d7a731f1f3ce7e746667c4117f0986a1421d70d74e25f586288996bfab48",
+      "outcome": "killed",
+      "output": "test_owned_parameter_and_railway_paths (__main__.ReggeCheckerTests.test_owned_parameter_and_railway_paths) ... FAIL\n\n======================================================================\nFAIL: test_owned_parameter_and_railway_paths (__main__.ReggeCheckerTests.test_owned_parameter_and_railway_paths)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 159, in test_owned_parameter_and_railway_paths\n    with self.assertRaises(FrozenInstanceError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: FrozenInstanceError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_owned_parameter_and_railway_paths"
+      ]
+    },
+    {
+      "identity": "parameter-square-budget",
+      "mutant_sha256": "e8e16672489f5a4ab442f00083dec567c36b64ff893ecca96f15283e639a93df",
+      "outcome": "killed",
+      "output": "test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets) ... FAIL\n\n======================================================================\nFAIL: test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 147, in test_component_square_and_prefix_budgets\n    self.refused(module.CayleyBlock, 2**2048, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_component_square_and_prefix_budgets"
+      ]
+    },
+    {
+      "identity": "block-pole",
+      "mutant_sha256": "5f9d15321cb8f17afc2d15781db818c05d0a33c1afc3cde8199cc1a198d0be3e",
+      "outcome": "killed",
+      "output": "test_invalid_domains_and_poles (__main__.ReggeCheckerTests.test_invalid_domains_and_poles) ... FAIL\n\n======================================================================\nFAIL: test_invalid_domains_and_poles (__main__.ReggeCheckerTests.test_invalid_domains_and_poles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 130, in test_invalid_domains_and_poles\n    self.refused(operation, pole)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_invalid_domains_and_poles"
+      ]
+    },
+    {
+      "identity": "block-denominator-sign",
+      "mutant_sha256": "1e2cd6a2d5c6c416ae73eaf2eb42109a11a170513f1cbadc49f9f1852dc96d56",
+      "outcome": "killed",
+      "output": "test_owned_parameter_and_railway_paths (__main__.ReggeCheckerTests.test_owned_parameter_and_railway_paths) ... FAIL\n\n======================================================================\nFAIL: test_owned_parameter_and_railway_paths (__main__.ReggeCheckerTests.test_owned_parameter_and_railway_paths)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 158, in test_owned_parameter_and_railway_paths\n    self.assertEqual((value.parameter, value.square, value.denominator), (Q(1, 2), Q(1, 4), Q(3, 4)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(1, 2), Fraction(1, 4), Fraction(5, 4)) != (Fraction(1, 2), Fraction(1, 4), Fraction(3, 4))\n\nFirst differing element 2:\nFraction(5, 4)\nFraction(3, 4)\n\n- (Fraction(1, 2), Fraction(1, 4), Fraction(5, 4))\n?                                           ^\n\n+ (Fraction(1, 2), Fraction(1, 4), Fraction(3, 4))\n?                                           ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_owned_parameter_and_railway_paths"
+      ]
+    },
+    {
+      "identity": "gamma-sign",
+      "mutant_sha256": "c49baa4501e8ef824b51efc26462d05d5762f99dad1c318b6f98b0282391d83f",
+      "outcome": "killed",
+      "output": "test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation) ... FAIL\n\n======================================================================\nFAIL: test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 114, in test_fixed_values_signed_domain_and_parameter_separation\n    self.assertEqual(sp.ImmutableMatrix(block.matrix().value.rows), _block(beta))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[  1, 4/3, 0, 0],\n[4/3,   1, 0, 0],\n[  0, [25 chars] 1]]) != Matrix([\n[5/3, 4/3, 0, 0],\n[4/3, 5/3, 0, 0],\n[  0, [25 chars] 1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_fixed_values_signed_domain_and_parameter_separation"
+      ]
+    },
+    {
+      "identity": "off-factor-two",
+      "mutant_sha256": "5f6276221af87a5f2c24505b8fc6fbc4f4adf240f6f58a14cbe154dbc4659e5f",
+      "outcome": "killed",
+      "output": "test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation) ... FAIL\n\n======================================================================\nFAIL: test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 114, in test_fixed_values_signed_domain_and_parameter_separation\n    self.assertEqual(sp.ImmutableMatrix(block.matrix().value.rows), _block(beta))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[5/3, 2/3, 0, 0],\n[2/3, 5/3, 0, 0],\n[  0,   0, [20 chars] 1]]) != Matrix([\n[5/3, 4/3, 0, 0],\n[4/3, 5/3, 0, 0],\n[  0,   0, [20 chars] 1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_fixed_values_signed_domain_and_parameter_separation"
+      ]
+    },
+    {
+      "identity": "off-sign",
+      "mutant_sha256": "956954cbf98c02a4b6c7bad0d89fea598588c4d7015f6d3220b34f7279eb797a",
+      "outcome": "killed",
+      "output": "test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation) ... FAIL\n\n======================================================================\nFAIL: test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 114, in test_fixed_values_signed_domain_and_parameter_separation\n    self.assertEqual(sp.ImmutableMatrix(block.matrix().value.rows), _block(beta))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[ 5/3, 4/3, 0, 0],\n[-4/3, 5/3, 0, 0],\n[   [29 chars] 1]]) != Matrix([\n[5/3, 4/3, 0, 0],\n[4/3, 5/3, 0, 0],\n[  0, [25 chars] 1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_fixed_values_signed_domain_and_parameter_separation"
+      ]
+    },
+    {
+      "identity": "spectator-identity",
+      "mutant_sha256": "5921036376c95ae492896d35c504b6431b96e459e86dd2365497eaa5531169e7",
+      "outcome": "killed",
+      "output": "test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation) ... FAIL\n\n======================================================================\nFAIL: test_fixed_values_signed_domain_and_parameter_separation (__main__.ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 114, in test_fixed_values_signed_domain_and_parameter_separation\n    self.assertEqual(sp.ImmutableMatrix(block.matrix().value.rows), _block(beta))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1, 0, 0, 0],\n[0, 1, 0, 0],\n[0, 0, 1, 0],\n[0, 0, 0, 0]]) != Matrix([\n[1, 0, 0, 0],\n[0, 1, 0, 0],\n[0, 0, 1, 0],\n[0, 0, 0, 1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_fixed_values_signed_domain_and_parameter_separation"
+      ]
+    },
+    {
+      "identity": "matrix-railway",
+      "mutant_sha256": "edbe6281454d35d6a961bfc4d47156a8661dfb09b296c66476381548308cae2e",
+      "outcome": "killed",
+      "output": "test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets) ... ERROR\n\n======================================================================\nERROR: test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 149, in test_component_square_and_prefix_budgets\n    self.assertEqual(near_pole.matrix().error.kind, \"resource\")\n                     ~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 75, in matrix\n    return Outcome(value=self._matrix())\n                         ~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 71, in _matrix\n    diagonal, off = self._gamma(), self._off_diagonal()\n                    ~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 65, in _gamma\n    return rational(rational(1+self.square, \"diagonal numerator\")/self.denominator, \"block diagonal\")\n                    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\domains.py\", line 75, in rational\n    admitted = _exact_fraction(value, name)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\domains.py\", line 69, in _exact_fraction\n    raise _violation(\"resource\", f\"{name} exceeds the {MAX_RATIONAL_BITS}-bit rational budget\")\nchecker_support.boundary.Violation: diagonal numerator exceeds the 4096-bit rational budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_component_square_and_prefix_budgets"
+      ]
+    },
+    {
+      "identity": "trace-one-spectator",
+      "mutant_sha256": "5286a48c236306c1a817a415544cbf5207dac08cd88a32cfb33ad9a2ba0d09ed",
+      "outcome": "killed",
+      "output": "test_actual_trace_accumulation_and_fault_propagation (__main__.ReggeCheckerTests.test_actual_trace_accumulation_and_fault_propagation) ... FAIL\n\n======================================================================\nFAIL: test_actual_trace_accumulation_and_fault_propagation (__main__.ReggeCheckerTests.test_actual_trace_accumulation_and_fault_propagation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 172, in test_actual_trace_accumulation_and_fault_propagation\n    self.assertEqual(block.trace().value, 10)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(6, 1) != 10\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_actual_trace_accumulation_and_fault_propagation"
+      ]
+    },
+    {
+      "identity": "trace-off-diagonal",
+      "mutant_sha256": "c9cf186d4ff50ab13d9cc87892f7ac5363e4384e7a958a7ce63e63b955d518ff",
+      "outcome": "killed",
+      "output": "test_actual_trace_accumulation_and_fault_propagation (__main__.ReggeCheckerTests.test_actual_trace_accumulation_and_fault_propagation) ... FAIL\n\n======================================================================\nFAIL: test_actual_trace_accumulation_and_fault_propagation (__main__.ReggeCheckerTests.test_actual_trace_accumulation_and_fault_propagation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 172, in test_actual_trace_accumulation_and_fault_propagation\n    self.assertEqual(block.trace().value, 10)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 1) != 10\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_actual_trace_accumulation_and_fault_propagation"
+      ]
+    },
+    {
+      "identity": "trace-prefix-budget",
+      "mutant_sha256": "7c9cc556283807c7af8a9d6c1a160ce357fffbb8f123744d26c1e73836c491fc",
+      "outcome": "killed",
+      "output": "test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets) ... ERROR\n\n======================================================================\nERROR: test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 153, in test_component_square_and_prefix_budgets\n    self.assertEqual(wide.trace().error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_component_square_and_prefix_budgets"
+      ]
+    },
+    {
+      "identity": "trace-railway",
+      "mutant_sha256": "9cbc59fb45e17fab32b842c47ec893911770979462a6dbee5e3bf340804866a5",
+      "outcome": "killed",
+      "output": "test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets) ... ERROR\n\n======================================================================\nERROR: test_component_square_and_prefix_budgets (__main__.ReggeCheckerTests.test_component_square_and_prefix_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 150, in test_component_square_and_prefix_budgets\n    self.assertEqual(near_pole.trace().error.kind, \"resource\")\n                     ~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 85, in trace\n    return Outcome(value=self._trace())\n                         ~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 78, in _trace\n    matrix = self._matrix()\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 71, in _matrix\n    diagonal, off = self._gamma(), self._off_diagonal()\n                    ~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 65, in _gamma\n    return rational(rational(1+self.square, \"diagonal numerator\")/self.denominator, \"block diagonal\")\n                    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\domains.py\", line 75, in rational\n    admitted = _exact_fraction(value, name)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\domains.py\", line 69, in _exact_fraction\n    raise _violation(\"resource\", f\"{name} exceeds the {MAX_RATIONAL_BITS}-bit rational budget\")\nchecker_support.boundary.Violation: diagonal numerator exceeds the 4096-bit rational budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_component_square_and_prefix_budgets"
+      ]
+    },
+    {
+      "identity": "recorder-type",
+      "mutant_sha256": "7b18e5d1ff6b208a87fcc8573cc1a2d02b1ab0ccc3ffa51cdfe9253873fcda1e",
+      "outcome": "killed",
+      "output": "test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample) ... ERROR\n\n======================================================================\nERROR: test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 188, in test_counts_guards_and_counterexample\n    self.refused(module.check_numerator_identity, None)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 46, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 46, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 106, in check_numerator_identity\n    run.require(sp.expand(residual) == 0, \"symbolic numerator identity\")\n    ^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'require'\n\n----------------------------------------------------------------------\nRan 1 test in 0.033s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_counts_guards_and_counterexample"
+      ]
+    },
+    {
+      "identity": "symbolic-guard",
+      "mutant_sha256": "798057e561ec7c5d4026577e05a1861955ea32aca6ebcafbdba560fb29bd31c2",
+      "outcome": "killed",
+      "output": "test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample) ... FAIL\n\n======================================================================\nFAIL: test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 194, in test_counts_guards_and_counterexample\n    self.refused(module.check_numerator_identity, Cases(), kind=\"check\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.032s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_counts_guards_and_counterexample"
+      ]
+    },
+    {
+      "identity": "negative-sample-sign",
+      "mutant_sha256": "b27c684f3582e6230db59bfa7470c6bd8e3cccbf21bddc4ee767bf8eea6eb74c",
+      "outcome": "killed",
+      "output": "test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample) ... ERROR\n\n======================================================================\nERROR: test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 181, in test_counts_guards_and_counterexample\n    module.check_numerator_identity(run)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 110, in check_numerator_identity\n    run.require(cos_num(first, second, third)+cos_num(second, first, third)+cos_num(third, first, second)\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                != first*first+second*second+third*third, \"rational numerator sum\")\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: rational numerator sum\n\n----------------------------------------------------------------------\nRan 1 test in 0.030s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_counts_guards_and_counterexample"
+      ]
+    },
+    {
+      "identity": "length-numerator-witness",
+      "mutant_sha256": "77440f89a939b4640ce73feb1e210460142fc52e76fe3f624560d8b5bfd735bf",
+      "outcome": "killed",
+      "output": "test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample) ... ERROR\n\n======================================================================\nERROR: test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 183, in test_counts_guards_and_counterexample\n    total = module.check_lengths(run)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 119, in check_lengths\n    run.require(actual == expected, \"3-4-5 numerator\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: 3-4-5 numerator\n\n----------------------------------------------------------------------\nRan 1 test in 0.030s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_counts_guards_and_counterexample"
+      ]
+    },
+    {
+      "identity": "length-cosine-witness",
+      "mutant_sha256": "c6d1fb64b76714961ced8deb8f0fc86559dfaf7339bb848cab0d6549a567015b",
+      "outcome": "killed",
+      "output": "test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample) ... ERROR\n\n======================================================================\nERROR: test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 183, in test_counts_guards_and_counterexample\n    total = module.check_lengths(run)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\independent\\dfm-regge-gravity-fence.py\", line 123, in check_lengths\n    run.require(actual_cosine == expected_cosine, \"3-4-5 cosine\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: 3-4-5 cosine\n\n----------------------------------------------------------------------\nRan 1 test in 0.030s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_counts_guards_and_counterexample"
+      ]
+    },
+    {
+      "identity": "comparison-erased",
+      "mutant_sha256": "25682125942092c8ceea9b6d974688795feaa223798c8c840dd78260077bac52",
+      "outcome": "killed",
+      "output": "test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample) ... FAIL\n\n======================================================================\nFAIL: test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 192, in test_counts_guards_and_counterexample\n    self.refused(module.check_block, Q(16, 3), Cases(), kind=\"check\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.031s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_counts_guards_and_counterexample"
+      ]
+    },
+    {
+      "identity": "main-missing-block",
+      "mutant_sha256": "28f716c27607b9088d69e008ae18f5cd99de478ab5b1328e0094405def09ba39",
+      "outcome": "killed",
+      "output": "test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample) ... FAIL\n\n======================================================================\nFAIL: test_counts_guards_and_counterexample (__main__.ReggeCheckerTests.test_counts_guards_and_counterexample)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 198, in test_counts_guards_and_counterexample\n    self.assertEqual(json.loads(output.getvalue())[\"checks\"], 19)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 13 != 19\n\n----------------------------------------------------------------------\nRan 1 test in 0.031s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_counts_guards_and_counterexample"
+      ]
+    },
+    {
+      "identity": "receipt-count",
+      "mutant_sha256": "ee115931ab0766234f70e08f46963d17473777a4c4b3dc0be0f6677cfc28c146",
+      "outcome": "killed",
+      "output": "test_executable_cli_and_failure_exit (__main__.ReggeCheckerTests.test_executable_cli_and_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_executable_cli_and_failure_exit (__main__.ReggeCheckerTests.test_executable_cli_and_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 207, in test_executable_cli_and_failure_exit\n    self.assertEqual((receipt[\"status\"], receipt[\"checks\"]), (\"passed\", 19))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ('passed', 14) != ('passed', 19)\n\nFirst differing element 1:\n14\n19\n\n- ('passed', 14)\n?             ^\n\n+ ('passed', 19)\n?             ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.645s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_executable_cli_and_failure_exit"
+      ]
+    },
+    {
+      "identity": "failure-exit",
+      "mutant_sha256": "9d074edae40ed9727e0f6937828b9abed57693385d34c7122baef55c845f2d48",
+      "outcome": "killed",
+      "output": "test_executable_cli_and_failure_exit (__main__.ReggeCheckerTests.test_executable_cli_and_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_executable_cli_and_failure_exit (__main__.ReggeCheckerTests.test_executable_cli_and_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 209, in test_executable_cli_and_failure_exit\n    with self.assertRaises(SystemExit) as failure:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: SystemExit not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.683s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-regge-gravity-fence.py",
+      "tests": [
+        "test_executable_cli_and_failure_exit"
+      ]
+    },
+    {
+      "identity": "oracle-cayley-denominator",
+      "mutant_sha256": "8bc4da0835a1d7006f8e12da3de02d5b75ad5827ddff29ae3ee32fb549e5f7d8",
+      "outcome": "killed",
+      "output": "test_oracle_and_import_lifecycle (__main__.ReggeCheckerTests.test_oracle_and_import_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_oracle_and_import_lifecycle (__main__.ReggeCheckerTests.test_oracle_and_import_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 56, in test_oracle_and_import_lifecycle\n    self.assertEqual(_block(Q(1, 2)), sp.ImmutableMatrix([[sp.Rational(5, 3), sp.Rational(4, 3), 0, 0],\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                                        [sp.Rational(4, 3), sp.Rational(5, 3), 0, 0],\n                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                                        [0, 0, 1, 0], [0, 0, 0, 1]]))\n                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1, 0, 0, 0],\n[0, 1, 0, 0],\n[0, 0, 1, 0],\n[0, 0, 0, 1]]) != Matrix([\n[5/3, 4/3, 0, 0],\n[4/3, 5/3, 0, 0],\n[  0, [25 chars] 1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_regge_checker.py",
+      "tests": [
+        "test_oracle_and_import_lifecycle"
+      ]
+    },
+    {
+      "identity": "test-refusal-helper",
+      "mutant_sha256": "1dbf359531dce209b953c39d867dcc6b1ff29d806beb92e0bbe1a6d30888c810",
+      "outcome": "killed",
+      "output": "test_invalid_domains_and_poles (__main__.ReggeCheckerTests.test_invalid_domains_and_poles) ... FAIL\n\n======================================================================\nFAIL: test_invalid_domains_and_poles (__main__.ReggeCheckerTests.test_invalid_domains_and_poles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 124, in test_invalid_domains_and_poles\n    self.refused(operation, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\regge-mutation-ku3hom7_\\tests\\test_regge_checker.py\", line 47, in refused\n    self.assertTrue(result.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_regge_checker.py",
+      "tests": [
+        "test_invalid_domains_and_poles"
+      ]
+    }
+  ],
+  "summary": {
+    "counts": {
+      "killed": 32,
+      "survived": 0,
+      "equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "eligible": 32,
+    "detected_fraction": 1.0
+  }
+}

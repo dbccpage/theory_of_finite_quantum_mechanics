@@ -1,0 +1,515 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/ct-information-media-interoperability.py": {
+      "role": "Finite functional-task verification application with owned total endofunction tables, exact reversible/local-factor certificates, checked composition/product construction, blank-slice predicates and Railway results",
+      "origin": "lean4/InformationProductBoundary.lean",
+      "profile": "Exact",
+      "cost": "Each carrier dimension1..64, table length1..4096. Admission, lookup-table composition, inverse and local-factor checks are O(left*right); apply is O(1) after fixed point validation. Parallel dimensions are checked before at most4096 lookups. Only the fixed4-state fixture enumerates permutations (24), never an arbitrary user carrier. Default18 obligations =5 controlled-permutation+13 cloning controls.",
+      "groups": [
+        {
+          "requirement": "Own a frozen, total row-major task table on the finite product carrier, admitting exact integer sizes1..64 and in-carrier output pairs. Snapshot caller lists and reject bool/float, missing/extra table entries and malformed pairs. Public application validates its point and returns Outcome; internal _at is used only on admitted points.",
+          "symbols": [
+            "FiniteProductTask",
+            "FiniteProductTask.__init__",
+            "FiniteProductTask._at",
+            "FiniteProductTask._apply",
+            "FiniteProductTask.apply"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_task_domain_refusals_and_shape_equality",
+            "ConstructorTheoryTests.test_task_owns_snapshots_and_parallel_checks_budget_first",
+            "ConstructorTheoryTests.test_task_application_and_composition_dictionary_oracle"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-CT-INFORMATION-MEDIA-INTEROPERABILITY-1"
+        },
+        {
+          "requirement": "A task is reversible exactly when all output points are distinct. Return the two local component functions exactly when both output coordinates depend only on their own input coordinate. Inversion refuses a nonbijective task and correctly handles rectangular carriers.",
+          "symbols": [
+            "FiniteProductTask.is_reversible",
+            "FiniteProductTask.local_factors",
+            "FiniteProductTask._inverse",
+            "FiniteProductTask.inverse"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_exhaustive_binary_tasks_factorization_and_inverse",
+            "ConstructorTheoryTests.test_task_owns_snapshots_and_parallel_checks_budget_first",
+            "ConstructorTheoryTests.test_cloning_only_constrains_blank_slice"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-CT-INFORMATION-MEDIA-INTEROPERABILITY-2"
+        },
+        {
+          "requirement": "Compose self after other only on equal ordered carrier dimensions. Parallel composition regroups paired carriers using explicit row-major encoding and checks both product dimensions before lookup/allocation. Require another admitted task, never an arbitrary callback, and preserve typed Outcome failures/cancellation.",
+          "symbols": [
+            "FiniteProductTask._other",
+            "FiniteProductTask._compose",
+            "FiniteProductTask.compose",
+            "FiniteProductTask._parallel",
+            "FiniteProductTask.parallel"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_task_application_and_composition_dictionary_oracle",
+            "ConstructorTheoryTests.test_parallel_regrouping_and_cloning_dictionary_oracle",
+            "ConstructorTheoryTests.test_task_domain_refusals_and_shape_equality",
+            "ConstructorTheoryTests.test_task_owns_snapshots_and_parallel_checks_budget_first",
+            "ConstructorTheoryTests.test_cli_resources_cancellation_and_task_result_refusal"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-CT-INFORMATION-MEDIA-INTEROPERABILITY-3"
+        },
+        {
+          "requirement": "The cloning predicate requires equal carrier sizes and one admitted blank label. It constrains only (label,blank) inputs and does not imply global copying, physical availability or irreversibility.",
+          "symbols": [
+            "FiniteProductTask._clones",
+            "FiniteProductTask.clones"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_exhaustive_binary_tasks_factorization_and_inverse",
+            "ConstructorTheoryTests.test_cloning_only_constrains_blank_slice",
+            "ConstructorTheoryTests.test_task_domain_refusals_and_shape_equality"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-CT-INFORMATION-MEDIA-INTEROPERABILITY-4"
+        },
+        {
+          "requirement": "Admit exact binary point labels, check controlled flip/inverse/composition and its failure to factor locally, enumerate the four local permutations among24 composite permutations, and check12 product-cloning inputs plus their blank predicates. Use per-run named Cases accounting and retain main check refusal semantics used by existing regression callers.",
+          "symbols": [
+            "controlled",
+            "check_controlled_permutation",
+            "check_product_cloning",
+            "run_checks",
+            "main"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_information_controls_cli_and_repeatability",
+            "ConstructorTheoryTests.test_information_generated_receipt_accounting",
+            "ConstructorTheoryTests.test_task_domain_refusals_and_shape_equality",
+            "ConstructorTheoryTests.test_cli_resources_cancellation_and_task_result_refusal"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-CT-INFORMATION-MEDIA-INTEROPERABILITY-5"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "567ebe8cb3559e645dcf449470b06102e5f8e232388d36d1644584eab40b46cd",
+      "symbols": [
+        "FiniteProductTask",
+        "FiniteProductTask.__init__",
+        "FiniteProductTask._apply",
+        "FiniteProductTask._at",
+        "FiniteProductTask._clones",
+        "FiniteProductTask._compose",
+        "FiniteProductTask._inverse",
+        "FiniteProductTask._other",
+        "FiniteProductTask._parallel",
+        "FiniteProductTask.apply",
+        "FiniteProductTask.clones",
+        "FiniteProductTask.compose",
+        "FiniteProductTask.inverse",
+        "FiniteProductTask.is_reversible",
+        "FiniteProductTask.local_factors",
+        "FiniteProductTask.parallel",
+        "check_controlled_permutation",
+        "check_product_cloning",
+        "controlled",
+        "main",
+        "run_checks"
+      ],
+      "origin_sha256": "b9fb0fc2e132c89a49c4068013d2e5e36de23d25b366bf9c6ea9e8f400780687",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/frontier_branches.json",
+          "sha256": "ab83607806c0663345c7d43eee646989486cd2156ff8c8831e0c7c8d500bd1b7",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr_round2_combined_validation.json",
+          "sha256": "d553d1f3b2d63799205fb8f870dec0a5b8baad4d348d3808bfc80a0c708b1e13",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr_381_round2_replay.json",
+          "sha256": "8ca35b3903f3159b57fb0f610440a93ef21d723c069e2c6633995110be4d4bfa",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json",
+          "sha256": "f06441262630cd2f64087940c11d19dd79698ea74d508356bc0999856385c336",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/CONSTRUCTOR_THEORY.md",
+          "sha256": "2e5c54373a93c1d55ef0c86b091689607fef659a9bbc4acf5bfccb26fa53adb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/CT-INFORMATION-MEDIA-INTEROPERABILITY.md",
+          "sha256": "4815f7e2f69daffd9bf351ed725d06a995740b3d3080ebef713150296636d1b6",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/independent/ct-local-mediator-entanglement-import.py",
+          "sha256": "d7b5914f0897035fb75fe5b07af0bfd735c05b5715b83f7eceaa5297f41fb5e5",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_constructor_theory.py",
+          "sha256": "5bca112965a3eef178340e8fc65adfcb13cd4c9f9e1f68ff005a97232e98ce38",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "d79941d88bda04e6c856075fef12b7f9b438331348c8b6ab5d9e3e86beb6d3b6",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Both executable paths and existing regression entry points remain. The small information script now exposes a bounded finite task API and18 executed controls. Mediator direct group calls remain valid; its trusted optional recorder allows actual318-obligation accounting. The internal check_locc_kraus_branch_preservation name is replaced by check_product_branch_preservation after a caller audit found no external use. Derived concurrence values now have explicit4096-bit resource gates. Historical DAG/evidence hashes and imported scientific statuses are unchanged."
+    },
+    "checks/independent/ct-local-mediator-entanglement-import.py": {
+      "role": "Exact symbolic and finite pure-state verification application with typed per-run recorders, normalized bounded Gaussian-phase concurrence, independently replayed rank cases and explicit mediator-claim boundaries",
+      "origin": "lean4/ConstructorTheoryMediatorEntanglement.lean",
+      "profile": "Exact",
+      "cost": "Symbolic expressions have fixed2x2 dimensions and fixed variable sets, with no caller-supplied expressions. The deterministic rank family has300 matrices with dimensions<=5 and entries generated from -3..3, including rank-one products. Phase input components<=4096 bits; derived norm/defect/normalizer/denominator/result admitted to4096 bits. Intermediate Gaussian norm components are bounded by fixed operations on those inputs, with no unbounded iterative algebra. Default318 attempted require calls in seven groups; false obligations stop the run.",
+      "groups": [
+        {
+          "requirement": "Use an explicit Cases recorder or create one for a direct group invocation. Reject foreign recorder objects. Count actual require calls, preserve typed mathematical failure and cancellation, and print318 obligations across seven groups on the default successful run.",
+          "symbols": [
+            "_cases",
+            "main"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_mediator_counts_recorders_and_symbolic_failures",
+            "ConstructorTheoryTests.test_cli_resources_cancellation_and_task_result_refusal"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT-1"
+        },
+        {
+          "requirement": "Check fixed symbolic determinant multiplicativity and the nonzero/zero M00 charts, pure product determinant preservation and row-major Kronecker vectorisation. A supplied product-vector branch is a pair of local maps; it does not establish a mediator model or general LOCC behavior.",
+          "symbols": [
+            "check_symbolic_local_action_determinant",
+            "check_product_state_zero_determinant",
+            "check_product_branch_preservation",
+            "check_kron_vectorisation_matches_AMBT"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_mediator_counts_recorders_and_symbolic_failures"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT-2"
+        },
+        {
+          "requirement": "Use the correct norm for the general two-qubit phase family and its exact Pythagorean unit phase. The reusable API admits Gaussian-rational input, bounds derived values and returns exact normalized concurrence rather than a clipped number or an unnormalized determinant expression.",
+          "symbols": [
+            "check_phase_family_determinant_and_concurrence",
+            "check_exact_pythagorean_concurrence",
+            "normalized_concurrence_squared"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_concurrence_against_complex_matrix_normalization",
+            "ConstructorTheoryTests.test_unit_phase_concurrence",
+            "ConstructorTheoryTests.test_concurrence_domain_budget_and_extremes",
+            "ConstructorTheoryTests.test_mediator_counts_recorders_and_symbolic_failures"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT-3"
+        },
+        {
+          "requirement": "Recreate the deterministic300-case rank family locally per invocation, including rectangular and deficient matrices. Check rank(A M B^T)<=rank(M), count all300 attempts and report91 strict decreases. Independent forward elimination must reproduce all600 rank observations and both displayed counts.",
+          "symbols": [
+            "check_rank_nonincrease_exact_family"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_rank_family_against_independent_elimination",
+            "ConstructorTheoryTests.test_mediator_counts_recorders_and_symbolic_failures"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT-4"
+        }
+      ],
+      "nested_declarations": {
+        "check_kron_vectorisation_matches_AMBT.vec": {
+          "owned_by": "check_kron_vectorisation_matches_AMBT",
+          "requirements_via": "check_kron_vectorisation_matches_AMBT"
+        },
+        "check_rank_nonincrease_exact_family.nxt": {
+          "owned_by": "check_rank_nonincrease_exact_family",
+          "requirements_via": "check_rank_nonincrease_exact_family"
+        },
+        "check_rank_nonincrease_exact_family.rand": {
+          "owned_by": "check_rank_nonincrease_exact_family",
+          "requirements_via": "check_rank_nonincrease_exact_family"
+        }
+      },
+      "source_sha256": "d7b5914f0897035fb75fe5b07af0bfd735c05b5715b83f7eceaa5297f41fb5e5",
+      "symbols": [
+        "_cases",
+        "check_exact_pythagorean_concurrence",
+        "check_kron_vectorisation_matches_AMBT",
+        "check_phase_family_determinant_and_concurrence",
+        "check_product_branch_preservation",
+        "check_product_state_zero_determinant",
+        "check_rank_nonincrease_exact_family",
+        "check_symbolic_local_action_determinant",
+        "main",
+        "normalized_concurrence_squared"
+      ],
+      "origin_sha256": "370825e363db8a2687c082c86b7038f8acb8a672ba9f367528f5d2eb5768d468",
+      "consumers": [
+        {
+          "path": "dag/fragments/frontier_branches.json",
+          "sha256": "ab83607806c0663345c7d43eee646989486cd2156ff8c8831e0c7c8d500bd1b7",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/independent/ct-local-mediator-entanglement-import.md",
+          "sha256": "5ed6b88d65928fa8dc2aa8febc81936fd5925ed6b5e9c9010096ca80e32920a3",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md",
+          "sha256": "cb05b1452d07f20c26223ab373376944689b1c7280e857a2ebe77c892b3e0c57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/independent/ct-information-media-interoperability.py",
+          "sha256": "567ebe8cb3559e645dcf449470b06102e5f8e232388d36d1644584eab40b46cd",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_constructor_theory.py",
+          "sha256": "5bca112965a3eef178340e8fc65adfcb13cd4c9f9e1f68ff005a97232e98ce38",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "d79941d88bda04e6c856075fef12b7f9b438331348c8b6ab5d9e3e86beb6d3b6",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Both executable paths and existing regression entry points remain. The small information script now exposes a bounded finite task API and18 executed controls. Mediator direct group calls remain valid; its trusted optional recorder allows actual318-obligation accounting. The internal check_locc_kraus_branch_preservation name is replaced by check_product_branch_preservation after a caller audit found no external use. Derived concurrence values now have explicit4096-bit resource gates. Historical DAG/evidence hashes and imported scientific statuses are unchanged."
+    },
+    "checks/tests/test_constructor_theory.py": {
+      "role": "Independent finite-task and pure-state verification application with exhaustive binary function census, dictionary/bit-carrier oracles, complex-matrix normalization, independent rational elimination and typed failure/lifecycle challenges",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "16 groups,80 deterministic examples per generated property. Exhaustive256 binary-product endofunctions give24 reversible functions,16 local functions and4 local permutations. Task properties use dimensions<=3; resource tests exercise64x64 tables. Exact phase oracles use bounded small rational2x2 complex matrices and a4096-bit coprime-denominator norm boundary. Forward elimination replays600 rank calls on dimensions<=5. Mocks/captures/import registration restore ownership.",
+      "groups": [
+        {
+          "requirement": "Independently verify task application/composition with dictionaries, product regrouping by enumerating four separate coordinates, the entire256-map binary census and non-square inverse witnesses. Cross-check concurrence through complex-matrix determinant/norm and rank through forward elimination with oracle metatests. Assert actual and printed counts, runtime domains, snapshots, preflight resource gates and failure/cancellation propagation.",
+          "symbols": [
+            "_rank",
+            "ConstructorTheoryTests",
+            "ConstructorTheoryTests.refused",
+            "ConstructorTheoryTests.test_refusal_helper_and_rank_oracle",
+            "ConstructorTheoryTests.test_exhaustive_binary_tasks_factorization_and_inverse",
+            "ConstructorTheoryTests.test_task_application_and_composition_dictionary_oracle",
+            "ConstructorTheoryTests.test_parallel_regrouping_and_cloning_dictionary_oracle",
+            "ConstructorTheoryTests.test_task_domain_refusals_and_shape_equality",
+            "ConstructorTheoryTests.test_task_owns_snapshots_and_parallel_checks_budget_first",
+            "ConstructorTheoryTests.test_cloning_only_constrains_blank_slice",
+            "ConstructorTheoryTests.test_information_controls_cli_and_repeatability",
+            "ConstructorTheoryTests.test_information_generated_receipt_accounting",
+            "ConstructorTheoryTests.test_concurrence_against_complex_matrix_normalization",
+            "ConstructorTheoryTests.test_unit_phase_concurrence",
+            "ConstructorTheoryTests.test_concurrence_domain_budget_and_extremes",
+            "ConstructorTheoryTests.test_mediator_counts_recorders_and_symbolic_failures",
+            "ConstructorTheoryTests.test_gaussian_norm_bit_bound_with_coprime_denominators",
+            "ConstructorTheoryTests.test_rank_family_against_independent_elimination",
+            "ConstructorTheoryTests.test_cli_resources_cancellation_and_task_result_refusal"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_refusal_helper_and_rank_oracle",
+            "ConstructorTheoryTests.test_exhaustive_binary_tasks_factorization_and_inverse",
+            "ConstructorTheoryTests.test_task_application_and_composition_dictionary_oracle",
+            "ConstructorTheoryTests.test_parallel_regrouping_and_cloning_dictionary_oracle",
+            "ConstructorTheoryTests.test_task_domain_refusals_and_shape_equality",
+            "ConstructorTheoryTests.test_task_owns_snapshots_and_parallel_checks_budget_first",
+            "ConstructorTheoryTests.test_cloning_only_constrains_blank_slice",
+            "ConstructorTheoryTests.test_information_controls_cli_and_repeatability",
+            "ConstructorTheoryTests.test_information_generated_receipt_accounting",
+            "ConstructorTheoryTests.test_concurrence_against_complex_matrix_normalization",
+            "ConstructorTheoryTests.test_unit_phase_concurrence",
+            "ConstructorTheoryTests.test_concurrence_domain_budget_and_extremes",
+            "ConstructorTheoryTests.test_mediator_counts_recorders_and_symbolic_failures",
+            "ConstructorTheoryTests.test_gaussian_norm_bit_bound_with_coprime_denominators",
+            "ConstructorTheoryTests.test_rank_family_against_independent_elimination",
+            "ConstructorTheoryTests.test_cli_resources_cancellation_and_task_result_refusal"
+          ],
+          "requirement_id": "TFQM-CT-REVIEW-TEST-CONSTRUCTOR-THEORY-1"
+        }
+      ],
+      "nested_declarations": {
+        "ConstructorTheoryTests.test_information_generated_receipt_accounting.supplied": {
+          "owned_by": "ConstructorTheoryTests.test_information_generated_receipt_accounting",
+          "requirements_via": "ConstructorTheoryTests"
+        },
+        "ConstructorTheoryTests.test_rank_family_against_independent_elimination.independently_rank": {
+          "owned_by": "ConstructorTheoryTests.test_rank_family_against_independent_elimination",
+          "requirements_via": "ConstructorTheoryTests"
+        }
+      },
+      "source_sha256": "5bca112965a3eef178340e8fc65adfcb13cd4c9f9e1f68ff005a97232e98ce38",
+      "symbols": [
+        "ConstructorTheoryTests",
+        "ConstructorTheoryTests.refused",
+        "ConstructorTheoryTests.test_cli_resources_cancellation_and_task_result_refusal",
+        "ConstructorTheoryTests.test_cloning_only_constrains_blank_slice",
+        "ConstructorTheoryTests.test_concurrence_against_complex_matrix_normalization",
+        "ConstructorTheoryTests.test_concurrence_domain_budget_and_extremes",
+        "ConstructorTheoryTests.test_exhaustive_binary_tasks_factorization_and_inverse",
+        "ConstructorTheoryTests.test_gaussian_norm_bit_bound_with_coprime_denominators",
+        "ConstructorTheoryTests.test_information_controls_cli_and_repeatability",
+        "ConstructorTheoryTests.test_information_generated_receipt_accounting",
+        "ConstructorTheoryTests.test_mediator_counts_recorders_and_symbolic_failures",
+        "ConstructorTheoryTests.test_parallel_regrouping_and_cloning_dictionary_oracle",
+        "ConstructorTheoryTests.test_rank_family_against_independent_elimination",
+        "ConstructorTheoryTests.test_refusal_helper_and_rank_oracle",
+        "ConstructorTheoryTests.test_task_application_and_composition_dictionary_oracle",
+        "ConstructorTheoryTests.test_task_domain_refusals_and_shape_equality",
+        "ConstructorTheoryTests.test_task_owns_snapshots_and_parallel_checks_budget_first",
+        "ConstructorTheoryTests.test_unit_phase_concurrence",
+        "_rank"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/ct-information-media-interoperability.py",
+          "sha256": "567ebe8cb3559e645dcf449470b06102e5f8e232388d36d1644584eab40b46cd",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/independent/ct-local-mediator-entanglement-import.py",
+          "sha256": "d7b5914f0897035fb75fe5b07af0bfd735c05b5715b83f7eceaa5297f41fb5e5",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "d79941d88bda04e6c856075fef12b7f9b438331348c8b6ab5d9e3e86beb6d3b6",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Both executable paths and existing regression entry points remain. The small information script now exposes a bounded finite task API and18 executed controls. Mediator direct group calls remain valid; its trusted optional recorder allows actual318-obligation accounting. The internal check_locc_kraus_branch_preservation name is replaced by check_product_branch_preservation after a caller audit found no external use. Derived concurrence values now have explicit4096-bit resource gates. Historical DAG/evidence hashes and imported scientific statuses are unchanged."
+    },
+    "checks/checker_support/gaussian_rational.py": {
+      "role": "Bounded immutable Gaussian-rational value object with exact arithmetic, typed domain/resource refusals and independently tested consumer integration",
+      "origin": "SCORING.md",
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "profile": "Exact",
+      "source_sha256": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+      "symbols": [
+        "GaussianRational",
+        "GaussianRational.__add__",
+        "GaussianRational.__init__",
+        "GaussianRational.__mul__",
+        "GaussianRational.__sub__",
+        "GaussianRational._admit_other",
+        "GaussianRational.conj",
+        "GaussianRational.div",
+        "GaussianRational.inv",
+        "GaussianRational.mul",
+        "GaussianRational.norm_sq"
+      ],
+      "nested_declarations": {},
+      "cost": "Fixed exact rational operations on components with numerator/denominator at most B=4096 bits. For re=a/b and im=c/d, norm=(a^2*d^2+c^2*b^2)/(b^2*d^2): numerator at most4B+1 bits, denominator at most4B bits. The norm return is not itself gated to B bits. Inverse intermediates have at most5B+1 bits before result-component admission. Returned Gaussian components are always admitted to B bits; no iterative unbounded algebra.",
+      "groups": [
+        {
+          "requirement": "Validate immutable exact Q(i) components; reject float/bool components and non-Gaussian operands.",
+          "requirement_id": "TFQM-CHECKER-GAUSSIAN-RATIONAL-1",
+          "symbols": [
+            "GaussianRational",
+            "GaussianRational.__init__",
+            "GaussianRational._admit_other"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability"
+          ]
+        },
+        {
+          "requirement": "Preserve exact Q(i) operations and conjugation; inversion refuses zero and never approximates.",
+          "requirement_id": "TFQM-CHECKER-GAUSSIAN-RATIONAL-2",
+          "symbols": [
+            "GaussianRational.__add__",
+            "GaussianRational.__sub__",
+            "GaussianRational.__mul__",
+            "GaussianRational.mul",
+            "GaussianRational.conj",
+            "GaussianRational.norm_sq",
+            "GaussianRational.inv",
+            "GaussianRational.div"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic",
+            "CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability"
+          ]
+        },
+        {
+          "requirement_id": "TFQM-GAUSSIAN-NORM-BIT-BOUND-1",
+          "requirement": "Expose the exact norm without imposing the component B-bit limit on its rational return; correct its cost bound to4B+1 numerator/4B denominator and demonstrate consumer resource refusal.",
+          "symbols": [
+            "GaussianRational.norm_sq"
+          ],
+          "tests": [
+            "ConstructorTheoryTests.test_gaussian_norm_bit_bound_with_coprime_denominators"
+          ]
+        }
+      ],
+      "consumers": [
+        {
+          "path": "checks/tests/test_constructor_theory.py",
+          "sha256": "5bca112965a3eef178340e8fc65adfcb13cd4c9f9e1f68ff005a97232e98ce38",
+          "state": "current consumer"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee",
+          "state": "current consumer"
+        },
+        {
+          "path": "checks/independent/ct-local-mediator-entanglement-import.py",
+          "sha256": "d7b5914f0897035fb75fe5b07af0bfd735c05b5715b83f7eceaa5297f41fb5e5",
+          "state": "current consumer"
+        },
+        {
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "911ac822e2d935b78a8edb19a8e35965926660a6e3f5520530bc0f2fa1bfa9d5",
+          "state": "current consumer"
+        },
+        {
+          "path": "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+          "sha256": "d97d80fa3f996b81e930deffcee848d12f9841f236ff255807be811f330da244",
+          "state": "current consumer"
+        },
+        {
+          "path": "checks/checker_support/gaussian_matrix2.py",
+          "sha256": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+          "state": "current consumer"
+        }
+      ],
+      "consumer_boundary": "Source bytes and exact arithmetic are unchanged. This assessment corrects an understated norm cost in the previous companion and README, retains their historical records and adds the coprime-denominator regression. Constructor-theory consumer admission is tested in the same receipt."
+    }
+  }
+}

@@ -1,0 +1,325 @@
+[
+  {
+    "identity": "word-ownership",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "object.__setattr__(self, \"word\", binary_word(word))",
+    "after": "object.__setattr__(self, \"word\", word)",
+    "tests": [
+      "test_cell_ownership_and_resource_boundaries",
+      "test_word_depth_and_callback_preflight"
+    ]
+  },
+  {
+    "identity": "little-endian",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "enumerate(self.word)",
+    "after": "enumerate(reversed(self.word))",
+    "tests": [
+      "test_cells_partition_against_recursive_oracle",
+      "test_cell_ownership_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "endpoint-width",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "Q(numerator+1, denominator)",
+    "after": "Q(numerator+2, denominator)",
+    "tests": [
+      "test_cells_partition_against_recursive_oracle"
+    ]
+  },
+  {
+    "identity": "endpoint-denominator",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "denominator = 2**len(self.word)",
+    "after": "denominator = 2**(len(self.word)+1)",
+    "tests": [
+      "test_cells_partition_against_recursive_oracle"
+    ]
+  },
+  {
+    "identity": "depth-budget",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "\"refinement depth\", 0, 12",
+    "after": "\"refinement depth\", 0, 13",
+    "tests": [
+      "test_cell_ownership_and_resource_boundaries",
+      "test_word_depth_and_callback_preflight"
+    ]
+  },
+  {
+    "identity": "combined-word-budget",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "if len(self.word)+levels > 64:",
+    "after": "if False:",
+    "tests": [
+      "test_cell_ownership_and_resource_boundaries",
+      "test_word_depth_and_callback_preflight"
+    ]
+  },
+  {
+    "identity": "combined-off-by-one",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "if len(self.word)+levels > 64:",
+    "after": "if len(self.word)+levels >= 64:",
+    "tests": [
+      "test_cell_ownership_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "leaf-prefix-order",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "tuple(reversed(bits))+self.word",
+    "after": "tuple(bits)+self.word",
+    "tests": [
+      "test_cells_partition_against_recursive_oracle"
+    ]
+  },
+  {
+    "identity": "leaf-parent-location",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "tuple(reversed(bits))+self.word",
+    "after": "self.word+tuple(reversed(bits))",
+    "tests": [
+      "test_cells_partition_against_recursive_oracle"
+    ]
+  },
+  {
+    "identity": "leaf-binary-order",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "product((False, True), repeat=levels)",
+    "after": "product((True, False), repeat=levels)",
+    "tests": [
+      "test_cells_partition_against_recursive_oracle"
+    ]
+  },
+  {
+    "identity": "refine-railway",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "return evaluate(self._refined_words, depth)",
+    "after": "return Outcome(value=self._refined_words(depth))",
+    "tests": [
+      "test_railway_callbacks_recorders_and_cancellation"
+    ]
+  },
+  {
+    "identity": "scalar-result-admission",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "value = rational(function(leaf), \"scalar edge value\")",
+    "after": "value = function(leaf)",
+    "tests": [
+      "test_scalar_edge_exactness_and_accumulator_budget"
+    ]
+  },
+  {
+    "identity": "scalar-accumulator-budget",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "total = rational(total+value, \"scalar transport accumulation\")",
+    "after": "total = total+value",
+    "tests": [
+      "test_scalar_edge_exactness_and_accumulator_budget"
+    ]
+  },
+  {
+    "identity": "scalar-subtraction",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "rational(total+value, \"scalar transport accumulation\")",
+    "after": "rational(total-value, \"scalar transport accumulation\")",
+    "tests": [
+      "test_scalar_transport_against_recursive_oracle",
+      "test_scalar_edge_exactness_and_accumulator_budget"
+    ]
+  },
+  {
+    "identity": "scalar-approximation",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "        return total\n",
+    "after": "        return float(total)\n",
+    "tests": [
+      "test_scalar_edge_exactness_and_accumulator_budget"
+    ]
+  },
+  {
+    "identity": "scalar-railway",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "return evaluate(self._scalar, edge, depth)",
+    "after": "return Outcome(value=self._scalar(edge, depth))",
+    "tests": [
+      "test_railway_callbacks_recorders_and_cancellation"
+    ]
+  },
+  {
+    "identity": "ordered-product-order",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "result = mul(function(leaf), result)",
+    "after": "result = mul(result, function(leaf))",
+    "tests": [
+      "test_ordered_transport_against_recursive_action",
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "ordered-railway",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "return evaluate(self._ordered, edge, depth)",
+    "after": "return Outcome(value=self._ordered(edge, depth))",
+    "tests": [
+      "test_railway_callbacks_recorders_and_cancellation"
+    ]
+  },
+  {
+    "identity": "permutation-composition",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "return left[right[0]], left[right[1]], left[right[2]]",
+    "after": "return right[left[0]], right[left[1]], right[left[2]]",
+    "tests": [
+      "test_permutation_full_census_and_domains"
+    ]
+  },
+  {
+    "identity": "permutation-inverse",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "return value.index(0), value.index(1), value.index(2)",
+    "after": "return value",
+    "tests": [
+      "test_permutation_full_census_and_domains"
+    ]
+  },
+  {
+    "identity": "fixture-word-population",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "for length in range(4)",
+    "after": "for length in range(3)",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "scalar-gauge-sign",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "return edge(word)-_scalar_gauge(right)+_scalar_gauge(left)",
+    "after": "return edge(word)+_scalar_gauge(right)+_scalar_gauge(left)",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "geometric-depth-factor",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "limit+offset*q**length*(2*q)**depth",
+    "after": "limit+offset*q**length*q**depth",
+    "tests": [
+      "test_geometric_and_threshold_closed_forms",
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "geometric-offset",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "slope/2**len(word)+offset*q**len(word)",
+    "after": "slope/2**len(word)-offset*q**len(word)",
+    "tests": [
+      "test_geometric_and_threshold_closed_forms"
+    ]
+  },
+  {
+    "identity": "tail-denominator",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "bound*q**length*(2*q)**depth/(1-2*q), \"sharp tail bound\"",
+    "after": "bound*q**length*(2*q)**depth/(1-q), \"sharp tail bound\"",
+    "tests": [
+      "test_geometric_and_threshold_closed_forms"
+    ]
+  },
+  {
+    "identity": "increment-factor",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "increment == bound*q**length*(2*q)**depth",
+    "after": "increment == bound*q**length*q**depth",
+    "tests": [
+      "test_geometric_and_threshold_closed_forms"
+    ]
+  },
+  {
+    "identity": "alternating-baseline",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "Q(3, 2**len(word))+(-1)**sum(word)",
+    "after": "Q(4, 2**len(word))+(-1)**sum(word)",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "critical-edge",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "return Q(len(word), 2**len(word))",
+    "after": "return Q(len(word)+1, 2**len(word))",
+    "tests": [
+      "test_geometric_and_threshold_closed_forms",
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "threshold-depth",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "scalar_transport(_critical_edge, (), depth) == depth",
+    "after": "scalar_transport(_critical_edge, (), depth) == depth+1",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "binary-negative-control",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "abs(values[1]-values[2]) > Q(1, 2)*q",
+    "after": "abs(values[1]-values[2]) <= Q(1, 2)*q",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "permutation-target-inverse",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "mul(mul(inv(_permutation_gauge(right)), _permutation_edge(word)), _permutation_gauge(left))",
+    "after": "mul(mul(_permutation_gauge(right), _permutation_edge(word)), _permutation_gauge(left))",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "coherent-inverse",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "mul(_permutation_gauge(right), inv(_permutation_gauge(left)))",
+    "after": "mul(_permutation_gauge(right), _permutation_gauge(left))",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "ignore-order-counterexample",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "cases.require(order_fault, \"swapping ordered products must be detected\")",
+    "after": "cases.require(True, \"swapping ordered products must be detected\")",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "ignore-inverse-counterexample",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "cases.require(inverse_fault, \"omitting target inverse must be detected\")",
+    "after": "cases.require(True, \"omitting target inverse must be detected\")",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  },
+  {
+    "identity": "reported-case-count",
+    "source": "independent/dfm-continuum-refinement-limit.py",
+    "before": "\"checks\": counter.checks",
+    "after": "\"checks\": counter.checks+1",
+    "tests": [
+      "test_fixed_controls_counts_receipt_and_negative_challenges"
+    ]
+  }
+]

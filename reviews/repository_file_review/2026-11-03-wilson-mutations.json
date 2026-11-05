@@ -1,0 +1,226 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli (__main__.WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli) ... ok\ntest_cancellation_and_resource_failures_keep_distinct_semantics (__main__.WilsonCheckerTests.test_cancellation_and_resource_failures_keep_distinct_semantics) ... ok\ntest_complete_receipt_and_repeatability (__main__.WilsonCheckerTests.test_complete_receipt_and_repeatability) ... ok\ntest_direct_determinant_fault_cannot_hide_behind_polynomial (__main__.WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial) ... ok\ntest_generated_named_cases_are_counted_without_loss (__main__.WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss) ... ok\ntest_malformed_statuses_and_duplicate_ids_are_refused (__main__.WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused) ... ok\ntest_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.983s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_wilson_mutations.py": "0d275226cbdb59c33f2b2714f987e397e143de932e29598e774cdc7015e2d759",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py": "b5aeeb696fb4f8901e0da3ca4f220fa385ab9c52023dfb9eee2d24d567028c52",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_review_repairs.py": "d8da6e2d1a57e6fabb85c294585296bb5c92491367e5a4c352bfbbe706603676",
+    "checks\\tests\\test_wilson_checker.py": "6ea7cb0a6408ea7b9860b90c3cffc9aa4c86411128581dcd6ba45b3470bc7e90",
+    "checks\\tests\\wilson_mutations.json": "5cf81e0b6f066dd0e42079f27c5f2bf88f8b397ca38911d410e49ba9f62da000"
+  },
+  "mutants": [
+    {
+      "identity": "status-truthiness",
+      "mutant_sha256": "a97c8f16a7069dc1d881e647bf6518a0a0e9e6d2b962005a6d6b1623f4bc4f02",
+      "outcome": "killed",
+      "output": "test_malformed_statuses_and_duplicate_ids_are_refused (__main__.WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused) ... FAIL\n\n======================================================================\nFAIL: test_malformed_statuses_and_duplicate_ids_are_refused (__main__.WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 63, in test_malformed_statuses_and_duplicate_ids_are_refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.091s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_malformed_statuses_and_duplicate_ids_are_refused"
+      ]
+    },
+    {
+      "identity": "chiral-trace",
+      "mutant_sha256": "b20488803c978adac402429fe705ff01f27a6a0c1f726ec8cfa6b9eb418690e5",
+      "outcome": "killed",
+      "output": "test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named) ... FAIL\n\n======================================================================\nFAIL: test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 105, in test_section_obligations_are_exact_booleans_and_named\n    self.assertTrue(all(type(status) is bool and status for _, status in rows))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_section_obligations_are_exact_booleans_and_named"
+      ]
+    },
+    {
+      "identity": "forward-real",
+      "mutant_sha256": "52d0fd2bb61f50c9314728764389dbe5298cda1a37e5a9862c0374d1cb5c5e26",
+      "outcome": "killed",
+      "output": "test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named) ... FAIL\n\n======================================================================\nFAIL: test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 105, in test_section_obligations_are_exact_booleans_and_named\n    self.assertTrue(all(type(status) is bool and status for _, status in rows))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_section_obligations_are_exact_booleans_and_named"
+      ]
+    },
+    {
+      "identity": "forward-imag",
+      "mutant_sha256": "7c04177f2c1db6d64093ef436aeedf6d845ccd1fa16c79203665dc482c8738b2",
+      "outcome": "killed",
+      "output": "test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named) ... FAIL\n\n======================================================================\nFAIL: test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 105, in test_section_obligations_are_exact_booleans_and_named\n    self.assertTrue(all(type(status) is bool and status for _, status in rows))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_section_obligations_are_exact_booleans_and_named"
+      ]
+    },
+    {
+      "identity": "forward-complex-product",
+      "mutant_sha256": "cd3115f3cd483f43f1ce1a5fbf825e841776978310e222a930c0417ea6953e69",
+      "outcome": "killed",
+      "output": "test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named) ... FAIL\n\n======================================================================\nFAIL: test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 105, in test_section_obligations_are_exact_booleans_and_named\n    self.assertTrue(all(type(status) is bool and status for _, status in rows))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_section_obligations_are_exact_booleans_and_named"
+      ]
+    },
+    {
+      "identity": "backward-real",
+      "mutant_sha256": "f0532e49c7ffbb1fe86c9b8322c1d9b97956cffaeb7fe51c85b7ea760e2b6605",
+      "outcome": "killed",
+      "output": "test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named) ... FAIL\n\n======================================================================\nFAIL: test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 105, in test_section_obligations_are_exact_booleans_and_named\n    self.assertTrue(all(type(status) is bool and status for _, status in rows))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_section_obligations_are_exact_booleans_and_named"
+      ]
+    },
+    {
+      "identity": "backward-conjugate",
+      "mutant_sha256": "682903ded2dab8b47dae75a6b2114e4b272519918d898c4c49a4515f86dba7d6",
+      "outcome": "killed",
+      "output": "test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named) ... FAIL\n\n======================================================================\nFAIL: test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 105, in test_section_obligations_are_exact_booleans_and_named\n    self.assertTrue(all(type(status) is bool and status for _, status in rows))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_section_obligations_are_exact_booleans_and_named"
+      ]
+    },
+    {
+      "identity": "onsite-d2",
+      "mutant_sha256": "9a6bb0ae1de858c131acfa89419fb644194122b50c73c0591fa2adf54f852357",
+      "outcome": "killed",
+      "output": "test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named) ... FAIL\n\n======================================================================\nFAIL: test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 105, in test_section_obligations_are_exact_booleans_and_named\n    self.assertTrue(all(type(status) is bool and status for _, status in rows))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_section_obligations_are_exact_booleans_and_named"
+      ]
+    },
+    {
+      "identity": "onsite-d4",
+      "mutant_sha256": "815e997a8b5682c70b74612d1bb8258a2d5a824b804694ec9edc48107a21135d",
+      "outcome": "killed",
+      "output": "test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named) ... FAIL\n\n======================================================================\nFAIL: test_section_obligations_are_exact_booleans_and_named (__main__.WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 105, in test_section_obligations_are_exact_booleans_and_named\n    self.assertTrue(all(type(status) is bool and status for _, status in rows))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_section_obligations_are_exact_booleans_and_named"
+      ]
+    },
+    {
+      "identity": "determinant-sign",
+      "mutant_sha256": "d0559080df92f63a3e83c28b1cce2dbeb5480e907081729208ee93afba229055",
+      "outcome": "killed",
+      "output": "test_complete_receipt_and_repeatability (__main__.WilsonCheckerTests.test_complete_receipt_and_repeatability) ... FAIL\n\n======================================================================\nFAIL: test_complete_receipt_and_repeatability (__main__.WilsonCheckerTests.test_complete_receipt_and_repeatability)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 32, in test_complete_receipt_and_repeatability\n    self.assertEqual(first, {\"record_id\": \"TFQ-1050\", \"dag_node\": \"FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY\",\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                            \"authority_effect\": \"None\", \"total_checks\": 110, \"failed_checks\": 0,\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                            \"failures\": [], \"all_passed\": True})\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[134 chars]ks': 12, 'failures': ['det_dw_2x2_m_minus_1_ne[421 chars]alse} != {'rec[134 chars]ks': 0, 'failures': [], 'all_passed': True}\nDiff is 965 characters long. Set self.maxDiff to None to see it.\n\n----------------------------------------------------------------------\nRan 1 test in 0.174s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_complete_receipt_and_repeatability"
+      ]
+    },
+    {
+      "identity": "determinant-polynomial",
+      "mutant_sha256": "fdebc3a43b45e5cdbd5691f92fe5688029a207614e7675658b214e1435c9606d",
+      "outcome": "killed",
+      "output": "test_complete_receipt_and_repeatability (__main__.WilsonCheckerTests.test_complete_receipt_and_repeatability) ... FAIL\n\n======================================================================\nFAIL: test_complete_receipt_and_repeatability (__main__.WilsonCheckerTests.test_complete_receipt_and_repeatability)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 32, in test_complete_receipt_and_repeatability\n    self.assertEqual(first, {\"record_id\": \"TFQ-1050\", \"dag_node\": \"FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY\",\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                            \"authority_effect\": \"None\", \"total_checks\": 110, \"failed_checks\": 0,\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                            \"failures\": [], \"all_passed\": True})\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[134 chars]ks': 12, 'failures': ['det_dw_2x2_m_minus_1_ne[421 chars]alse} != {'rec[134 chars]ks': 0, 'failures': [], 'all_passed': True}\nDiff is 965 characters long. Set self.maxDiff to None to see it.\n\n----------------------------------------------------------------------\nRan 1 test in 0.183s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_complete_receipt_and_repeatability"
+      ]
+    },
+    {
+      "identity": "matrix-comparison",
+      "mutant_sha256": "389a671cf6f81043bbc3c5b85f3bb56051c9a7226df0bdaee07179771efd0de3",
+      "outcome": "killed",
+      "output": "test_direct_determinant_fault_cannot_hide_behind_polynomial (__main__.WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial) ... FAIL\n\n======================================================================\nFAIL: test_direct_determinant_fault_cannot_hide_behind_polynomial (__main__.WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 94, in test_direct_determinant_fault_cannot_hide_behind_polynomial\n    self.assertEqual(receipt[\"failed_checks\"], 13)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 13\n\n----------------------------------------------------------------------\nRan 1 test in 0.088s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_direct_determinant_fault_cannot_hide_behind_polynomial"
+      ]
+    },
+    {
+      "identity": "assembled-bypass",
+      "mutant_sha256": "a43bcd77faee4d5f83eca265876d4ef975a066610d76c76b514cc774771b57a3",
+      "outcome": "killed",
+      "output": "test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli (__main__.WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli) ... FAIL\n\n======================================================================\nFAIL: test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli (__main__.WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 82, in test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli\n    self.assertEqual(receipt[\"failed_checks\"], 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli"
+      ]
+    },
+    {
+      "identity": "failed-case-loss",
+      "mutant_sha256": "1d001a80f1bc240c26ae63472f47c68e3ca06ea6996123c1a46e0d3c77acd7a2",
+      "outcome": "killed",
+      "output": "test_generated_named_cases_are_counted_without_loss (__main__.WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss) ... FAIL\n\n======================================================================\nFAIL: test_generated_named_cases_are_counted_without_loss (__main__.WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 41, in test_generated_named_cases_are_counted_without_loss\n    @given(statuses=st.lists(st.booleans(), max_size=30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 52, in test_generated_named_cases_are_counted_without_loss\n    self.assertEqual(receipt[\"failed_checks\"], len(failures))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 18 != 0\nFailing test case: test_generated_named_cases_are_counted_without_loss(\n    self=<__main__.WilsonCheckerTests testMethod=test_generated_named_cases_are_counted_without_loss>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.618s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_generated_named_cases_are_counted_without_loss"
+      ]
+    },
+    {
+      "identity": "count-one-off",
+      "mutant_sha256": "2b812023df142247043af1e19ad0932e15fd0a1063584f3f1658f9d596899429",
+      "outcome": "killed",
+      "output": "test_generated_named_cases_are_counted_without_loss (__main__.WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss) ... FAIL\n\n======================================================================\nFAIL: test_generated_named_cases_are_counted_without_loss (__main__.WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 41, in test_generated_named_cases_are_counted_without_loss\n    @given(statuses=st.lists(st.booleans(), max_size=30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 51, in test_generated_named_cases_are_counted_without_loss\n    self.assertEqual(receipt[\"total_checks\"], 18+len(statuses))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 19 != 18\nFailing test case: test_generated_named_cases_are_counted_without_loss(\n    self=<__main__.WilsonCheckerTests testMethod=test_generated_named_cases_are_counted_without_loss>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.574s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_generated_named_cases_are_counted_without_loss"
+      ]
+    },
+    {
+      "identity": "all-passed-forged",
+      "mutant_sha256": "c23d1826dd2fd56244672e0690b3d4e050c614d17f69b85d7a16086d57cf1870",
+      "outcome": "killed",
+      "output": "test_generated_named_cases_are_counted_without_loss (__main__.WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss) ... FAIL\n\n======================================================================\nFAIL: test_generated_named_cases_are_counted_without_loss (__main__.WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 41, in test_generated_named_cases_are_counted_without_loss\n    @given(statuses=st.lists(st.booleans(), max_size=30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 54, in test_generated_named_cases_are_counted_without_loss\n    self.assertIs(receipt[\"all_passed\"], not failures)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not False\nFailing test case: test_generated_named_cases_are_counted_without_loss(\n    self=<__main__.WilsonCheckerTests testMethod=test_generated_named_cases_are_counted_without_loss>,\n    statuses=[False],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.233s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_generated_named_cases_are_counted_without_loss"
+      ]
+    },
+    {
+      "identity": "cli-failure-status",
+      "mutant_sha256": "3bdca34502455efd7008cf93585cd7e39f12628b92420156f52653d3f9c8b0ac",
+      "outcome": "killed",
+      "output": "test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli (__main__.WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli) ... FAIL\n\n======================================================================\nFAIL: test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli (__main__.WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\wilson-mutation-4m15e9er\\tests\\test_wilson_checker.py\", line 87, in test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli\n    self.assertEqual(cli(module.main), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.016s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+      "tests": [
+        "test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 17,
+      "survived": 0,
+      "unrun": 0
+    },
+    "detected_fraction": 1.0,
+    "eligible": 17
+  }
+}

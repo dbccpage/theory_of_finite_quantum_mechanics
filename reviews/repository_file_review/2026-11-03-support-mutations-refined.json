@@ -1,0 +1,702 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_boundary_errors_cancellation_and_required_boolean (__main__.CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean) ... ok\ntest_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration) ... ok\ntest_cli_exit_domain_and_failure_wire_format (__main__.CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format) ... ok\ntest_collection_admission_and_snapshot_ownership (__main__.CheckerSupportTests.test_collection_admission_and_snapshot_ownership) ... ok\ntest_counter_is_invocation_owned_and_counts_failed_obligations (__main__.CheckerSupportTests.test_counter_is_invocation_owned_and_counts_failed_obligations) ... ok\ntest_failure_value_and_exception_bridge (__main__.CheckerSupportTests.test_failure_value_and_exception_bridge) ... ok\ntest_gaussian_field_against_symbolic_complex_arithmetic (__main__.CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic) ... ok\ntest_gaussian_invalid_components_operands_and_immutability (__main__.CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability) ... ok\ntest_gaussian_matrix_invariants (__main__.CheckerSupportTests.test_gaussian_matrix_invariants) ... ok\ntest_integer_boundaries (__main__.CheckerSupportTests.test_integer_boundaries) ... ok\ntest_matrix_word_and_permutation_domains (__main__.CheckerSupportTests.test_matrix_word_and_permutation_domains) ... ok\ntest_mutation_request_admission_and_exact_replacement (__main__.CheckerSupportTests.test_mutation_request_admission_and_exact_replacement) ... ok\ntest_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success) ... ok\ntest_outcome_transitions_preserve_errors (__main__.CheckerSupportTests.test_outcome_transitions_preserve_errors) ... ok\ntest_railway_associativity (__main__.CheckerSupportTests.test_railway_associativity) ... ok\ntest_rank_against_explicit_vector_span (__main__.CheckerSupportTests.test_rank_against_explicit_vector_span) ... ok\ntest_rational_boundaries_and_resource_budget (__main__.CheckerSupportTests.test_rational_boundaries_and_resource_budget) ... ok\ntest_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot) ... ok\ntest_stabilizer_mincut_independent_assignments (__main__.CheckerSupportTests.test_stabilizer_mincut_independent_assignments) ... ok\ntest_wilson_determinant_independent_symbolic_elimination (__main__.CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination) ... ok\ntest_wilson_operator_independent_block_construction (__main__.CheckerSupportTests.test_wilson_operator_independent_block_construction) ... ok\ntest_wilson_shapes_and_chirality_boundaries (__main__.CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries) ... ok\ntest_word_replacement_preserves_context (__main__.CheckerSupportTests.test_word_replacement_preserves_context) ... ok\ntest_word_replacement_refusals (__main__.CheckerSupportTests.test_word_replacement_refusals) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 1.368s\n\nOK\n",
+    "returncode": 0
+  },
+  "input_sha256": {
+    "checks\\checker_support\\boundary.py": "6408a9df1a0fd697b09ac4d18154c2a6f48c3af94621b5a467b645a0dd07fc9e",
+    "checks\\checker_support\\cases.py": "62209644ca03b9d6786d2a1e039fd07ab3870855e40dbcc144c7c45390daed44",
+    "checks\\checker_support\\domains.py": "ae90340efaeac3a5d9b246c15764be8d4a74c3ac2b3a2561e0e2cd6a42d6ad79",
+    "checks\\checker_support\\failure.py": "fe17d527b1231e24c2cfe810ffb46d8adbd85fd3a96745cfce2e82f3b1505e6c",
+    "checks\\checker_support\\gaussian_matrix2.py": "b5ab774081a8b563fe3f4a11ccc4e91451222e1c0298a40c055d39a7b71fd467",
+    "checks\\checker_support\\gaussian_rational.py": "6c10359c1ab0055a3c55bc0a810f1636e2cc7e21ab10fd250002f1fe945113cf",
+    "checks\\checker_support\\happy_boundary.py": "4039c322cdfbfbc94b847bf9359b16f45bf95cfd76d28e1960b379cf21dae2cc",
+    "checks\\checker_support\\mutation_case.py": "4649277465a7ced66a6f457288401db2e07250271623fa2e30c147b774bef16a",
+    "checks\\checker_support\\outcome.py": "5df4f5bc79eee2d9e9a166ba9b88e68d30d54b773f939d9c123eb4c3c15efe77",
+    "checks\\checker_support\\run_counter.py": "056d060cc52d63ae631f70d2606d01ab2db1c4dde99df8caad530e4cc0d9eaa5",
+    "checks\\checker_support\\violation.py": "b2169cc06fa44104eb2d9304f7ae84defd270710b6e56239995a377de2d73dda",
+    "checks\\checker_support\\wilson_determinant.py": "d132921089a0ec1e60d99b6ab55092249ba78a487a5f6dabec5798822d752850",
+    "checks\\checker_support\\wilson_operator.py": "879b0095b665cc7a96d6341dce227f8f79e9e09fcfb915dac2075304536d3a01",
+    "checks\\checker_support\\word_replacement.py": "afe8d3666b0d47a7822e88fcaf7d0917b52787d87f0d6c0a8975ce0a2d325fa2",
+    "checks\\tests\\run_support_mutations.py": "8f4753949df217e49eed6e31c0cebef9b81bc6bba923652f4132ffa87a35ea55",
+    "checks\\tests\\support_mutations.json": "ae55306a0087ced6e5228d4adbfa70ffe57b6e9a2999b7de562971e8e727f345",
+    "checks\\tests\\test_checker_support.py": "abb3fae9212130757791c1990dcd87ad0c599931b5ee7a7249a306730031e749"
+  },
+  "mutants": [
+    {
+      "identity": "failure-kind-bypass",
+      "outcome": "killed",
+      "output": "test_failure_value_and_exception_bridge (__main__.CheckerSupportTests.test_failure_value_and_exception_bridge) ... FAIL\n\n======================================================================\nFAIL: test_failure_value_and_exception_bridge (__main__.CheckerSupportTests.test_failure_value_and_exception_bridge)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 74, in test_failure_value_and_exception_bridge\n    self.refused(Failure, invalid_kind, message)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "failure.py",
+      "tests": [
+        "test_failure_value_and_exception_bridge"
+      ]
+    },
+    {
+      "identity": "failure-message-bypass",
+      "outcome": "killed",
+      "output": "test_failure_value_and_exception_bridge (__main__.CheckerSupportTests.test_failure_value_and_exception_bridge) ... FAIL\n\n======================================================================\nFAIL: test_failure_value_and_exception_bridge (__main__.CheckerSupportTests.test_failure_value_and_exception_bridge)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 74, in test_failure_value_and_exception_bridge\n    self.refused(Failure, invalid_kind, message)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "failure.py",
+      "tests": [
+        "test_failure_value_and_exception_bridge"
+      ]
+    },
+    {
+      "identity": "failure-wire-kind",
+      "outcome": "killed",
+      "output": "test_failure_value_and_exception_bridge (__main__.CheckerSupportTests.test_failure_value_and_exception_bridge) ... FAIL\n\n======================================================================\nFAIL: test_failure_value_and_exception_bridge (__main__.CheckerSupportTests.test_failure_value_and_exception_bridge)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 67, in test_failure_value_and_exception_bridge\n    self.assertEqual(record, {\"kind\": kind, \"message\": \"cause\"})\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'kind': 'input', 'message': 'cause'} != {'kind': 'resource', 'message': 'cause'}\n- {'kind': 'input', 'message': 'cause'}\n?           ^^^ ^\n\n+ {'kind': 'resource', 'message': 'cause'}\n?           ^^^^ ^^^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "failure.py",
+      "tests": [
+        "test_failure_value_and_exception_bridge"
+      ]
+    },
+    {
+      "identity": "violation-loses-kind",
+      "outcome": "killed",
+      "output": "test_failure_value_and_exception_bridge (__main__.CheckerSupportTests.test_failure_value_and_exception_bridge) ... FAIL\n\n======================================================================\nFAIL: test_failure_value_and_exception_bridge (__main__.CheckerSupportTests.test_failure_value_and_exception_bridge)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 75, in test_failure_value_and_exception_bridge\n    self.refused(Violation, invalid_kind, message)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "violation.py",
+      "tests": [
+        "test_failure_value_and_exception_bridge"
+      ]
+    },
+    {
+      "identity": "result-dual-variant",
+      "outcome": "killed",
+      "output": "test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success) ... FAIL\n\n======================================================================\nFAIL: test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 84, in test_outcome_construction_and_nullable_success\n    self.refused(Outcome, *args, **kwargs)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "outcome.py",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ]
+    },
+    {
+      "identity": "result-missing-variant",
+      "outcome": "killed",
+      "output": "test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success) ... FAIL\n\n======================================================================\nFAIL: test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 84, in test_outcome_construction_and_nullable_success\n    self.refused(Outcome, *args, **kwargs)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "outcome.py",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ]
+    },
+    {
+      "identity": "result-invalid-failure",
+      "outcome": "killed",
+      "output": "test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success) ... FAIL\n\n======================================================================\nFAIL: test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 84, in test_outcome_construction_and_nullable_success\n    self.refused(Outcome, *args, **kwargs)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "outcome.py",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ]
+    },
+    {
+      "identity": "result-failure-success",
+      "outcome": "killed",
+      "output": "test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success) ... FAIL\n\n======================================================================\nFAIL: test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 84, in test_outcome_construction_and_nullable_success\n    self.refused(Outcome, *args, **kwargs)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "outcome.py",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ]
+    },
+    {
+      "identity": "result-bypasses-short-circuit",
+      "outcome": "killed",
+      "output": "test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success) ... FAIL\n\n======================================================================\nFAIL: test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 91, in test_outcome_construction_and_nullable_success\n    self.assertEqual(failed.bind(lambda _: self.fail(\"must short circuit\")).error, failure)\n                     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\checker_support\\outcome.py\", line 47, in bind\n    result = function(cast(T, self.value))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 91, in <lambda>\n    self.assertEqual(failed.bind(lambda _: self.fail(\"must short circuit\")).error, failure)\n                                           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: must short circuit\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "outcome.py",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ]
+    },
+    {
+      "identity": "result-accepts-untyped-transition",
+      "outcome": "killed",
+      "output": "test_outcome_transitions_preserve_errors (__main__.CheckerSupportTests.test_outcome_transitions_preserve_errors) ... ERROR\n\n======================================================================\nERROR: test_outcome_transitions_preserve_errors (__main__.CheckerSupportTests.test_outcome_transitions_preserve_errors)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 101, in test_outcome_transitions_preserve_errors\n    self.assertFalse(invalid(lambda _: 3).ok)\n                     ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'int' object has no attribute 'ok'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "outcome.py",
+      "tests": [
+        "test_outcome_transitions_preserve_errors"
+      ]
+    },
+    {
+      "identity": "result-fallback-inverted",
+      "outcome": "killed",
+      "output": "test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success) ... FAIL\ntest_outcome_transitions_preserve_errors (__main__.CheckerSupportTests.test_outcome_transitions_preserve_errors) ... FAIL\n\n======================================================================\nFAIL: test_outcome_construction_and_nullable_success (__main__.CheckerSupportTests.test_outcome_construction_and_nullable_success)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 90, in test_outcome_construction_and_nullable_success\n    self.assertEqual(failed.value_or(8), 8)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 8\n\n======================================================================\nFAIL: test_outcome_transitions_preserve_errors (__main__.CheckerSupportTests.test_outcome_transitions_preserve_errors)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 98, in test_outcome_transitions_preserve_errors\n    self.assertEqual(start.value_or(0), 4)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 4\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=2)\n",
+      "returncode": 1,
+      "source": "outcome.py",
+      "tests": [
+        "test_outcome_construction_and_nullable_success",
+        "test_outcome_transitions_preserve_errors"
+      ]
+    },
+    {
+      "identity": "boundary-all-success-exit",
+      "outcome": "killed",
+      "output": "test_cli_exit_domain_and_failure_wire_format (__main__.CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format) ... FAIL\n\n======================================================================\nFAIL: test_cli_exit_domain_and_failure_wire_format (__main__.CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 142, in test_cli_exit_domain_and_failure_wire_format\n    self.assertEqual(actual, 0 if status is None else status)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "boundary.py",
+      "tests": [
+        "test_cli_exit_domain_and_failure_wire_format"
+      ]
+    },
+    {
+      "identity": "boundary-boolean-status",
+      "outcome": "killed",
+      "output": "test_cli_exit_domain_and_failure_wire_format (__main__.CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format) ... ERROR\n\n======================================================================\nERROR: test_cli_exit_domain_and_failure_wire_format (__main__.CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 149, in test_cli_exit_domain_and_failure_wire_format\n    self.assertEqual(json.loads(stream.getvalue())[\"kind\"], \"input\")\n                     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\json\\__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\json\\decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\json\\decoder.py\", line 363, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "boundary.py",
+      "tests": [
+        "test_cli_exit_domain_and_failure_wire_format"
+      ]
+    },
+    {
+      "identity": "boundary-exit-256",
+      "outcome": "killed",
+      "output": "test_cli_exit_domain_and_failure_wire_format (__main__.CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format) ... FAIL\n\n======================================================================\nFAIL: test_cli_exit_domain_and_failure_wire_format (__main__.CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 148, in test_cli_exit_domain_and_failure_wire_format\n    self.assertEqual(action(lambda: invalid_status), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 256 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "boundary.py",
+      "tests": [
+        "test_cli_exit_domain_and_failure_wire_format"
+      ]
+    },
+    {
+      "identity": "guard-disables-false-check",
+      "outcome": "killed",
+      "output": "test_boundary_errors_cancellation_and_required_boolean (__main__.CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean) ... FAIL\n\n======================================================================\nFAIL: test_boundary_errors_cancellation_and_required_boolean (__main__.CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 131, in test_boundary_errors_cancellation_and_required_boolean\n    self.refused(require, False, \"false obligation\", kind=\"check\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "boundary.py",
+      "tests": [
+        "test_boundary_errors_cancellation_and_required_boolean"
+      ]
+    },
+    {
+      "identity": "guard-accepts-truthy-nonbool",
+      "outcome": "killed",
+      "output": "test_boundary_errors_cancellation_and_required_boolean (__main__.CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean) ... FAIL\n\n======================================================================\nFAIL: test_boundary_errors_cancellation_and_required_boolean (__main__.CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 133, in test_boundary_errors_cancellation_and_required_boolean\n    self.refused(require, condition, \"not a bool\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 58, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'check' != 'input'\n- check\n+ input\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "boundary.py",
+      "tests": [
+        "test_boundary_errors_cancellation_and_required_boolean"
+      ]
+    },
+    {
+      "identity": "guard-accepts-empty-description",
+      "outcome": "killed",
+      "output": "test_boundary_errors_cancellation_and_required_boolean (__main__.CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean) ... FAIL\n\n======================================================================\nFAIL: test_boundary_errors_cancellation_and_required_boolean (__main__.CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 135, in test_boundary_errors_cancellation_and_required_boolean\n    self.refused(require, True, message)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "boundary.py",
+      "tests": [
+        "test_boundary_errors_cancellation_and_required_boolean"
+      ]
+    },
+    {
+      "identity": "integer-boolean-admission",
+      "outcome": "killed",
+      "output": "test_integer_boundaries (__main__.CheckerSupportTests.test_integer_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_integer_boundaries (__main__.CheckerSupportTests.test_integer_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 158, in test_integer_boundaries\n    self.refused(d.integer, value)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_integer_boundaries"
+      ]
+    },
+    {
+      "identity": "integer-minimum-open",
+      "outcome": "killed",
+      "output": "test_integer_boundaries (__main__.CheckerSupportTests.test_integer_boundaries) ... ERROR\n\n======================================================================\nERROR: test_integer_boundaries (__main__.CheckerSupportTests.test_integer_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 164, in test_integer_boundaries\n    self.assertEqual(d.integer(-1, minimum=-1, maximum=-1), -1)\n                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\checker_support\\domains.py\", line 29, in integer\n    raise Violation(\"input\", f\"{name} must be >= {minimum}\")\nchecker_support.violation.Violation: integer must be >= -1\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_integer_boundaries"
+      ]
+    },
+    {
+      "identity": "integer-maximum-open",
+      "outcome": "killed",
+      "output": "test_integer_boundaries (__main__.CheckerSupportTests.test_integer_boundaries) ... ERROR\n\n======================================================================\nERROR: test_integer_boundaries (__main__.CheckerSupportTests.test_integer_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 164, in test_integer_boundaries\n    self.assertEqual(d.integer(-1, minimum=-1, maximum=-1), -1)\n                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\checker_support\\domains.py\", line 31, in integer\n    raise Violation(\"resource\", f\"{name} must be <= {maximum}\")\nchecker_support.violation.Violation: integer must be <= -1\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_integer_boundaries"
+      ]
+    },
+    {
+      "identity": "integer-inverted-limits",
+      "outcome": "killed",
+      "output": "test_integer_boundaries (__main__.CheckerSupportTests.test_integer_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_integer_boundaries (__main__.CheckerSupportTests.test_integer_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 162, in test_integer_boundaries\n    self.refused(d.integer, 2, minimum=2, maximum=1)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 58, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'resource' != 'input'\n- resource\n+ input\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_integer_boundaries"
+      ]
+    },
+    {
+      "identity": "rational-bit-budget-bypass",
+      "outcome": "killed",
+      "output": "test_rational_boundaries_and_resource_budget (__main__.CheckerSupportTests.test_rational_boundaries_and_resource_budget) ... FAIL\n\n======================================================================\nFAIL: test_rational_boundaries_and_resource_budget (__main__.CheckerSupportTests.test_rational_boundaries_and_resource_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 176, in test_rational_boundaries_and_resource_budget\n    self.refused(d.rational, oversized, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_rational_boundaries_and_resource_budget"
+      ]
+    },
+    {
+      "identity": "rational-positive-zero",
+      "outcome": "killed",
+      "output": "test_rational_boundaries_and_resource_budget (__main__.CheckerSupportTests.test_rational_boundaries_and_resource_budget) ... FAIL\n\n======================================================================\nFAIL: test_rational_boundaries_and_resource_budget (__main__.CheckerSupportTests.test_rational_boundaries_and_resource_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 174, in test_rational_boundaries_and_resource_budget\n    self.refused(d.rational, value, strictly_positive=True)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_rational_boundaries_and_resource_budget"
+      ]
+    },
+    {
+      "identity": "rational-minimum-bypass",
+      "outcome": "killed",
+      "output": "test_rational_boundaries_and_resource_budget (__main__.CheckerSupportTests.test_rational_boundaries_and_resource_budget) ... FAIL\n\n======================================================================\nFAIL: test_rational_boundaries_and_resource_budget (__main__.CheckerSupportTests.test_rational_boundaries_and_resource_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 171, in test_rational_boundaries_and_resource_budget\n    self.refused(d.rational, 1, minimum=True)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_rational_boundaries_and_resource_budget"
+      ]
+    },
+    {
+      "identity": "sequence-budget-bypass",
+      "outcome": "killed",
+      "output": "test_collection_admission_and_snapshot_ownership (__main__.CheckerSupportTests.test_collection_admission_and_snapshot_ownership) ... FAIL\n\n======================================================================\nFAIL: test_collection_admission_and_snapshot_ownership (__main__.CheckerSupportTests.test_collection_admission_and_snapshot_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 188, in test_collection_admission_and_snapshot_ownership\n    self.refused(d.sequence, [1], maximum=0, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_collection_admission_and_snapshot_ownership"
+      ]
+    },
+    {
+      "identity": "sequence-size-bypass",
+      "outcome": "killed",
+      "output": "test_collection_admission_and_snapshot_ownership (__main__.CheckerSupportTests.test_collection_admission_and_snapshot_ownership) ... FAIL\n\n======================================================================\nFAIL: test_collection_admission_and_snapshot_ownership (__main__.CheckerSupportTests.test_collection_admission_and_snapshot_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 186, in test_collection_admission_and_snapshot_ownership\n    self.refused(d.sequence, [1], **kwargs)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_collection_admission_and_snapshot_ownership"
+      ]
+    },
+    {
+      "identity": "matrix-total-budget",
+      "outcome": "killed",
+      "output": "test_matrix_word_and_permutation_domains (__main__.CheckerSupportTests.test_matrix_word_and_permutation_domains) ... FAIL\n\n======================================================================\nFAIL: test_matrix_word_and_permutation_domains (__main__.CheckerSupportTests.test_matrix_word_and_permutation_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 201, in test_matrix_word_and_permutation_domains\n    self.refused(d.integer_matrix, [[0]*65]*65, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_matrix_word_and_permutation_domains"
+      ]
+    },
+    {
+      "identity": "word-bool-boundary",
+      "outcome": "killed",
+      "output": "test_matrix_word_and_permutation_domains (__main__.CheckerSupportTests.test_matrix_word_and_permutation_domains) ... FAIL\n\n======================================================================\nFAIL: test_matrix_word_and_permutation_domains (__main__.CheckerSupportTests.test_matrix_word_and_permutation_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 209, in test_matrix_word_and_permutation_domains\n    self.refused(d.binary_word, [1])\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_matrix_word_and_permutation_domains"
+      ]
+    },
+    {
+      "identity": "permutation-bijection",
+      "outcome": "killed",
+      "output": "test_matrix_word_and_permutation_domains (__main__.CheckerSupportTests.test_matrix_word_and_permutation_domains) ... FAIL\n\n======================================================================\nFAIL: test_matrix_word_and_permutation_domains (__main__.CheckerSupportTests.test_matrix_word_and_permutation_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 213, in test_matrix_word_and_permutation_domains\n    self.refused(d.permutation3, value)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "domains.py",
+      "tests": [
+        "test_matrix_word_and_permutation_domains"
+      ]
+    },
+    {
+      "identity": "case-duplicate-admission",
+      "outcome": "killed",
+      "output": "test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration) ... FAIL\n\n======================================================================\nFAIL: test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 221, in test_cases_transactional_admission_and_iteration\n    self.assertFalse(cases.record(\"x\", False).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "cases.py",
+      "tests": [
+        "test_cases_transactional_admission_and_iteration"
+      ]
+    },
+    {
+      "identity": "case-status-admission",
+      "outcome": "killed",
+      "output": "test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration) ... FAIL\n\n======================================================================\nFAIL: test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 218, in test_cases_transactional_admission_and_iteration\n    self.refused(cases.append, row)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "cases.py",
+      "tests": [
+        "test_cases_transactional_admission_and_iteration"
+      ]
+    },
+    {
+      "identity": "case-budget-bypass",
+      "outcome": "killed",
+      "output": "test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration) ... FAIL\n\n======================================================================\nFAIL: test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 229, in test_cases_transactional_admission_and_iteration\n    self.refused(cases.append, (\"z\", True), kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "cases.py",
+      "tests": [
+        "test_cases_transactional_admission_and_iteration"
+      ]
+    },
+    {
+      "identity": "case-iteration-live-view",
+      "outcome": "killed",
+      "output": "test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration) ... FAIL\n\n======================================================================\nFAIL: test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 223, in test_cases_transactional_admission_and_iteration\n    self.assertEqual(tuple(snapshot), ((\"x\", True),))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (('x', True), ('y', False)) != (('x', True),)\n\nFirst tuple contains 1 additional elements.\nFirst extra element 1:\n('y', False)\n\n- (('x', True), ('y', False))\n+ (('x', True),)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "cases.py",
+      "tests": [
+        "test_cases_transactional_admission_and_iteration"
+      ]
+    },
+    {
+      "identity": "counter-reset-per-check",
+      "outcome": "killed",
+      "output": "test_counter_is_invocation_owned_and_counts_failed_obligations (__main__.CheckerSupportTests.test_counter_is_invocation_owned_and_counts_failed_obligations) ... FAIL\n\n======================================================================\nFAIL: test_counter_is_invocation_owned_and_counts_failed_obligations (__main__.CheckerSupportTests.test_counter_is_invocation_owned_and_counts_failed_obligations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 238, in test_counter_is_invocation_owned_and_counts_failed_obligations\n    self.assertEqual(counter.checks, 2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 2\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "run_counter.py",
+      "tests": [
+        "test_counter_is_invocation_owned_and_counts_failed_obligations"
+      ]
+    },
+    {
+      "identity": "counter-failure-not-counted",
+      "outcome": "killed",
+      "output": "test_counter_is_invocation_owned_and_counts_failed_obligations (__main__.CheckerSupportTests.test_counter_is_invocation_owned_and_counts_failed_obligations) ... FAIL\n\n======================================================================\nFAIL: test_counter_is_invocation_owned_and_counts_failed_obligations (__main__.CheckerSupportTests.test_counter_is_invocation_owned_and_counts_failed_obligations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 238, in test_counter_is_invocation_owned_and_counts_failed_obligations\n    self.assertEqual(counter.checks, 2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 2\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "run_counter.py",
+      "tests": [
+        "test_counter_is_invocation_owned_and_counts_failed_obligations"
+      ]
+    },
+    {
+      "identity": "gaussian-add-wrong-sign",
+      "outcome": "killed",
+      "output": "test_gaussian_field_against_symbolic_complex_arithmetic (__main__.CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_field_against_symbolic_complex_arithmetic (__main__.CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 276, in test_gaussian_field_against_symbolic_complex_arithmetic\n    def test_gaussian_field_against_symbolic_complex_arithmetic(self, a: Q, b: Q, c: Q, e: Q) -> None:\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 282, in test_gaussian_field_against_symbolic_complex_arithmetic\n    self.assertEqual(actual.re, sp.re(sp.expand(expected)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-1, 1) != 1\nFailing test case: test_gaussian_field_against_symbolic_complex_arithmetic(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CheckerSupportTests testMethod=test_gaussian_field_against_symbolic_complex_arithmetic>,\n    a=Fraction(0, 1),  # or any other generated value\n    b=Fraction(0, 1),  # or any other generated value\n    c=Fraction(1, 1),\n    e=Fraction(0, 1),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:336\n\n----------------------------------------------------------------------\nRan 1 test in 7.678s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_rational.py",
+      "tests": [
+        "test_gaussian_field_against_symbolic_complex_arithmetic"
+      ]
+    },
+    {
+      "identity": "gaussian-sub-wrong-sign",
+      "outcome": "killed",
+      "output": "test_gaussian_field_against_symbolic_complex_arithmetic (__main__.CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_field_against_symbolic_complex_arithmetic (__main__.CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 276, in test_gaussian_field_against_symbolic_complex_arithmetic\n    def test_gaussian_field_against_symbolic_complex_arithmetic(self, a: Q, b: Q, c: Q, e: Q) -> None:\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 282, in test_gaussian_field_against_symbolic_complex_arithmetic\n    self.assertEqual(actual.re, sp.re(sp.expand(expected)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 1) != -1\nFailing test case: test_gaussian_field_against_symbolic_complex_arithmetic(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CheckerSupportTests testMethod=test_gaussian_field_against_symbolic_complex_arithmetic>,\n    a=Fraction(0, 1),  # or any other generated value\n    b=Fraction(0, 1),  # or any other generated value\n    c=Fraction(1, 1),\n    e=Fraction(0, 1),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:336\n\n----------------------------------------------------------------------\nRan 1 test in 7.781s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_rational.py",
+      "tests": [
+        "test_gaussian_field_against_symbolic_complex_arithmetic"
+      ]
+    },
+    {
+      "identity": "gaussian-product-sign",
+      "outcome": "killed",
+      "output": "test_gaussian_field_against_symbolic_complex_arithmetic (__main__.CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_field_against_symbolic_complex_arithmetic (__main__.CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 276, in test_gaussian_field_against_symbolic_complex_arithmetic\n    def test_gaussian_field_against_symbolic_complex_arithmetic(self, a: Q, b: Q, c: Q, e: Q) -> None:\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 287, in test_gaussian_field_against_symbolic_complex_arithmetic\n    self.assertEqual(right.inv()*right, G(1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: GaussianRational(re=Fraction(-1, 1), im=Fraction(0, 1)) != GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1))\nFailing test case: test_gaussian_field_against_symbolic_complex_arithmetic(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CheckerSupportTests testMethod=test_gaussian_field_against_symbolic_complex_arithmetic>,\n    a=Fraction(0, 1),  # or any other generated value\n    b=Fraction(0, 1),  # or any other generated value\n    c=Fraction(0, 1),  # or any other generated value\n    e=Fraction(1, 1),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 8.291s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_rational.py",
+      "tests": [
+        "test_gaussian_field_against_symbolic_complex_arithmetic"
+      ]
+    },
+    {
+      "identity": "gaussian-conjugate-identity",
+      "outcome": "killed",
+      "output": "test_gaussian_invalid_components_operands_and_immutability (__main__.CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_invalid_components_operands_and_immutability (__main__.CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 271, in test_gaussian_invalid_components_operands_and_immutability\n    self.assertEqual(G(2, 3).conj(), G(2, -3))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: GaussianRational(re=Fraction(2, 1), im=Fraction(3, 1)) != GaussianRational(re=Fraction(2, 1), im=Fraction(-3, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_rational.py",
+      "tests": [
+        "test_gaussian_invalid_components_operands_and_immutability"
+      ]
+    },
+    {
+      "identity": "gaussian-norm-indefinite",
+      "outcome": "killed",
+      "output": "test_gaussian_invalid_components_operands_and_immutability (__main__.CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_invalid_components_operands_and_immutability (__main__.CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 272, in test_gaussian_invalid_components_operands_and_immutability\n    self.assertEqual(G(2, 3).norm_sq(), Q(13))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-5, 1) != Fraction(13, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_rational.py",
+      "tests": [
+        "test_gaussian_invalid_components_operands_and_immutability"
+      ]
+    },
+    {
+      "identity": "gaussian-inverse-sign",
+      "outcome": "killed",
+      "output": "test_gaussian_field_against_symbolic_complex_arithmetic (__main__.CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_field_against_symbolic_complex_arithmetic (__main__.CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 276, in test_gaussian_field_against_symbolic_complex_arithmetic\n    def test_gaussian_field_against_symbolic_complex_arithmetic(self, a: Q, b: Q, c: Q, e: Q) -> None:\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 287, in test_gaussian_field_against_symbolic_complex_arithmetic\n    self.assertEqual(right.inv()*right, G(1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: GaussianRational(re=Fraction(-1, 1), im=Fraction(0, 1)) != GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1))\nFailing test case: test_gaussian_field_against_symbolic_complex_arithmetic(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CheckerSupportTests testMethod=test_gaussian_field_against_symbolic_complex_arithmetic>,\n    a=Fraction(0, 1),  # or any other generated value\n    b=Fraction(0, 1),  # or any other generated value\n    c=Fraction(0, 1),  # or any other generated value\n    e=Fraction(1, 1),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 8.109s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_rational.py",
+      "tests": [
+        "test_gaussian_field_against_symbolic_complex_arithmetic"
+      ]
+    },
+    {
+      "identity": "matrix-determinant-sign",
+      "outcome": "killed",
+      "output": "test_gaussian_matrix_invariants (__main__.CheckerSupportTests.test_gaussian_matrix_invariants) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_matrix_invariants (__main__.CheckerSupportTests.test_gaussian_matrix_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 293, in test_gaussian_matrix_invariants\n    self.refused(M(G(1), G(2), G(2), G(4)).inv)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_matrix2.py",
+      "tests": [
+        "test_gaussian_matrix_invariants"
+      ]
+    },
+    {
+      "identity": "matrix-adjoint-no-transpose",
+      "outcome": "killed",
+      "output": "test_gaussian_matrix_invariants (__main__.CheckerSupportTests.test_gaussian_matrix_invariants) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_matrix_invariants (__main__.CheckerSupportTests.test_gaussian_matrix_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 305, in test_gaussian_matrix_invariants\n    self.assertEqual(matrix.adjoint(), M(G(1,-2), G(0,-3), G(2), G(4,1)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Gauss[100 chars]tion(2, 1), im=Fraction(0, 1)), a21=GaussianRa[101 chars] 1))) != Gauss[100 chars]tion(0, 1), im=Fraction(-3, 1)), a21=GaussianR[101 chars] 1)))\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_matrix2.py",
+      "tests": [
+        "test_gaussian_matrix_invariants"
+      ]
+    },
+    {
+      "identity": "matrix-multiply-entry",
+      "outcome": "killed",
+      "output": "test_gaussian_matrix_invariants (__main__.CheckerSupportTests.test_gaussian_matrix_invariants) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_matrix_invariants (__main__.CheckerSupportTests.test_gaussian_matrix_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 298, in test_gaussian_matrix_invariants\n    self.assertEqual(M.pauli_x().mul(M.pauli_x()), M.eye())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Gauss[39 chars]tion(-1, 1), im=Fraction(0, 1)), a12=GaussianR[161 chars] 1))) != Gauss[39 chars]tion(1, 1), im=Fraction(0, 1)), a12=GaussianRa[160 chars] 1)))\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_matrix2.py",
+      "tests": [
+        "test_gaussian_matrix_invariants"
+      ]
+    },
+    {
+      "identity": "matrix-inverse-sign",
+      "outcome": "killed",
+      "output": "test_gaussian_matrix_invariants (__main__.CheckerSupportTests.test_gaussian_matrix_invariants) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_matrix_invariants (__main__.CheckerSupportTests.test_gaussian_matrix_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 303, in test_gaussian_matrix_invariants\n    self.assertEqual(matrix.mul(matrix.inv()), M.eye())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Gauss[99 chars]tion(32, 37), im=Fraction(44, 37)), a21=Gaussi[108 chars]37))) != Gauss[99 chars]tion(0, 1), im=Fraction(0, 1)), a21=GaussianRa[100 chars] 1)))\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "gaussian_matrix2.py",
+      "tests": [
+        "test_gaussian_matrix_invariants"
+      ]
+    },
+    {
+      "identity": "replacement-split-bypass",
+      "outcome": "killed",
+      "output": "test_word_replacement_refusals (__main__.CheckerSupportTests.test_word_replacement_refusals) ... FAIL\n\n======================================================================\nFAIL: test_word_replacement_refusals (__main__.CheckerSupportTests.test_word_replacement_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 318, in test_word_replacement_refusals\n    self.refused(hole, [9], [], [1], [2], [])\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "word_replacement.py",
+      "tests": [
+        "test_word_replacement_refusals"
+      ]
+    },
+    {
+      "identity": "replacement-drops-suffix",
+      "outcome": "killed",
+      "output": "test_word_replacement_preserves_context (__main__.CheckerSupportTests.test_word_replacement_preserves_context) ... FAIL\n\n======================================================================\nFAIL: test_word_replacement_preserves_context (__main__.CheckerSupportTests.test_word_replacement_preserves_context)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 308, in test_word_replacement_preserves_context\n    st.lists(st.integers(-4, 4), max_size=8), st.lists(st.integers(-4, 4), max_size=8))\n        ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 313, in test_word_replacement_preserves_context\n    self.assertEqual(result, left+after+right)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [] != [0]\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n0\n\n- []\n+ [0]\n?  +\n\nFailing test case: test_word_replacement_preserves_context(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CheckerSupportTests testMethod=test_word_replacement_preserves_context>,\n    left=[],  # or any other generated value\n    before=[],  # or any other generated value\n    after=[],  # or any other generated value\n    right=[0],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.707s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "word_replacement.py",
+      "tests": [
+        "test_word_replacement_preserves_context"
+      ]
+    },
+    {
+      "identity": "replacement-output-budget",
+      "outcome": "killed",
+      "output": "test_word_replacement_refusals (__main__.CheckerSupportTests.test_word_replacement_refusals) ... FAIL\n\n======================================================================\nFAIL: test_word_replacement_refusals (__main__.CheckerSupportTests.test_word_replacement_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 320, in test_word_replacement_refusals\n    self.refused(hole, [0]*4096, [0]*4096, [], [1], [], kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "word_replacement.py",
+      "tests": [
+        "test_word_replacement_refusals"
+      ]
+    },
+    {
+      "identity": "rank-counts-dependent-rows",
+      "outcome": "killed",
+      "output": "test_rank_against_explicit_vector_span (__main__.CheckerSupportTests.test_rank_against_explicit_vector_span) ... FAIL\n\n======================================================================\nFAIL: test_rank_against_explicit_vector_span (__main__.CheckerSupportTests.test_rank_against_explicit_vector_span)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 363, in test_rank_against_explicit_vector_span\n    def test_rank_against_explicit_vector_span(self, rows: list[int]) -> None:\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 368, in test_rank_against_explicit_vector_span\n    self.assertEqual(1 << h.gf2_rank(rows), len(span))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2 != 1\nFailing test case: test_rank_against_explicit_vector_span(\n    self=<__main__.CheckerSupportTests testMethod=test_rank_against_explicit_vector_span>,\n    rows=[0],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.128s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "happy_boundary.py",
+      "tests": [
+        "test_rank_against_explicit_vector_span"
+      ]
+    },
+    {
+      "identity": "pauli-x-bit-location",
+      "outcome": "killed",
+      "output": "test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot) ... ERROR\n\n======================================================================\nERROR: test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 325, in test_stabilizer_admission_and_cache_snapshot\n    self.assertEqual(h.validate_generators(gens), tuple(gens))\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\checker_support\\happy_boundary.py\", line 175, in validate_generators\n    _validate_pure_generators(admitted)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\checker_support\\happy_boundary.py\", line 182, in _validate_pure_generators\n    raise Violation(\"input\", \"pure stabilizer fixture requires 20 independent generators\")\nchecker_support.violation.Violation: pure stabilizer fixture requires 20 independent generators\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "happy_boundary.py",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ]
+    },
+    {
+      "identity": "symplectic-commutation-bypass",
+      "outcome": "killed",
+      "output": "test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot) ... FAIL\n\n======================================================================\nFAIL: test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 330, in test_stabilizer_admission_and_cache_snapshot\n    self.refused(h.validate_generators, [1 << i for i in range(20)])\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "happy_boundary.py",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ]
+    },
+    {
+      "identity": "stabilizer-purity-bypass",
+      "outcome": "killed",
+      "output": "test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot) ... FAIL\n\n======================================================================\nFAIL: test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 327, in test_stabilizer_admission_and_cache_snapshot\n    self.refused(h.validate_generators, gens)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "happy_boundary.py",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ]
+    },
+    {
+      "identity": "stabilizer-commutation-bypass",
+      "outcome": "killed",
+      "output": "test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot) ... FAIL\n\n======================================================================\nFAIL: test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 330, in test_stabilizer_admission_and_cache_snapshot\n    self.refused(h.validate_generators, [1 << i for i in range(20)])\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "happy_boundary.py",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ]
+    },
+    {
+      "identity": "interval-closed-endpoint",
+      "outcome": "killed",
+      "output": "test_stabilizer_mincut_independent_assignments (__main__.CheckerSupportTests.test_stabilizer_mincut_independent_assignments) ... FAIL\n\n======================================================================\nFAIL: test_stabilizer_mincut_independent_assignments (__main__.CheckerSupportTests.test_stabilizer_mincut_independent_assignments)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 358, in test_stabilizer_mincut_independent_assignments\n    self.assertEqual(h.interval_mincut(start, length), min(costs))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "happy_boundary.py",
+      "tests": [
+        "test_stabilizer_mincut_independent_assignments"
+      ]
+    },
+    {
+      "identity": "mincut-forces-central-zero",
+      "outcome": "killed",
+      "output": "test_stabilizer_mincut_independent_assignments (__main__.CheckerSupportTests.test_stabilizer_mincut_independent_assignments) ... FAIL\n\n======================================================================\nFAIL: test_stabilizer_mincut_independent_assignments (__main__.CheckerSupportTests.test_stabilizer_mincut_independent_assignments)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 358, in test_stabilizer_mincut_independent_assignments\n    self.assertEqual(h.interval_mincut(start, length), min(costs))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4 != 3\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "happy_boundary.py",
+      "tests": [
+        "test_stabilizer_mincut_independent_assignments"
+      ]
+    },
+    {
+      "identity": "entropy-offset",
+      "outcome": "killed",
+      "output": "test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot) ... FAIL\n\n======================================================================\nFAIL: test_stabilizer_admission_and_cache_snapshot (__main__.CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 343, in test_stabilizer_admission_and_cache_snapshot\n    self.assertEqual(h.interval_entropy(h.BOUNDARY_GENS_20, 0, 20), 0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 40 != 0\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "happy_boundary.py",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ]
+    },
+    {
+      "identity": "determinant-row-swap-sign",
+      "outcome": "survived",
+      "output": "test_wilson_determinant_independent_symbolic_elimination (__main__.CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.372s\n\nOK\n",
+      "returncode": 0,
+      "source": "wilson_determinant.py",
+      "tests": [
+        "test_wilson_determinant_independent_symbolic_elimination"
+      ]
+    },
+    {
+      "identity": "determinant-elimination-sign",
+      "outcome": "killed",
+      "output": "test_wilson_determinant_independent_symbolic_elimination (__main__.CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination) ... FAIL\n\n======================================================================\nFAIL: test_wilson_determinant_independent_symbolic_elimination (__main__.CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 426, in test_wilson_determinant_independent_symbolic_elimination\n    @settings(max_examples=25)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 433, in test_wilson_determinant_independent_symbolic_elimination\n    self.assertEqual(direct_wilson_determinant(mass, wilson), matrix.det(method=\"bareiss\"))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(5984, 25) != 192\nFailing test case: test_wilson_determinant_independent_symbolic_elimination(\n    self=<__main__.CheckerSupportTests testMethod=test_wilson_determinant_independent_symbolic_elimination>,\n    mass=Fraction(0, 1),\n    wilson=Fraction(1, 1),\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\checker_support\\wilson_determinant.py:31\n\n----------------------------------------------------------------------\nRan 1 test in 1.875s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "wilson_determinant.py",
+      "tests": [
+        "test_wilson_determinant_independent_symbolic_elimination"
+      ]
+    },
+    {
+      "identity": "wilson-mass-diagonal",
+      "outcome": "killed",
+      "output": "test_wilson_operator_independent_block_construction (__main__.CheckerSupportTests.test_wilson_operator_independent_block_construction) ... FAIL\n\n======================================================================\nFAIL: test_wilson_operator_independent_block_construction (__main__.CheckerSupportTests.test_wilson_operator_independent_block_construction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 423, in test_wilson_operator_independent_block_construction\n    self.assertEqual(actual, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Matri[14 chars]      1,                 0,                0, [4707 chars] 1]]) != Matri[14 chars]     -1,                 0,                0, [4707 chars]-1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.104s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "wilson_operator.py",
+      "tests": [
+        "test_wilson_operator_independent_block_construction"
+      ]
+    },
+    {
+      "identity": "wilson-link-phase-removed",
+      "outcome": "killed",
+      "output": "test_wilson_operator_independent_block_construction (__main__.CheckerSupportTests.test_wilson_operator_independent_block_construction) ... FAIL\n\n======================================================================\nFAIL: test_wilson_operator_independent_block_construction (__main__.CheckerSupportTests.test_wilson_operator_independent_block_construction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 423, in test_wilson_operator_independent_block_construction\n    self.assertEqual(actual, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[            -1,             0,             0,        [3941 chars]-1]]) != Matrix([\n[              -1,                 0,                0[4709 chars]-1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.118s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "wilson_operator.py",
+      "tests": [
+        "test_wilson_operator_independent_block_construction"
+      ]
+    },
+    {
+      "identity": "wilson-backward-no-conjugate",
+      "outcome": "killed",
+      "output": "test_wilson_operator_independent_block_construction (__main__.CheckerSupportTests.test_wilson_operator_independent_block_construction) ... FAIL\n\n======================================================================\nFAIL: test_wilson_operator_independent_block_construction (__main__.CheckerSupportTests.test_wilson_operator_independent_block_construction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 423, in test_wilson_operator_independent_block_construction\n    self.assertEqual(actual, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Matri[163 chars]        0,                  0,                [4814 chars]-1]]) != Matri[163 chars]     0,                 0,                0,  [4558 chars]-1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.098s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "wilson_operator.py",
+      "tests": [
+        "test_wilson_operator_independent_block_construction"
+      ]
+    },
+    {
+      "identity": "wilson-shape-sign-zero",
+      "outcome": "killed",
+      "output": "test_wilson_shapes_and_chirality_boundaries (__main__.CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_wilson_shapes_and_chirality_boundaries (__main__.CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 376, in test_wilson_shapes_and_chirality_boundaries\n    self.refused(w.clifford_relations, w.gamma_matrices(), [1, 1, 0, -1])\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.109s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "wilson_operator.py",
+      "tests": [
+        "test_wilson_shapes_and_chirality_boundaries"
+      ]
+    },
+    {
+      "identity": "wilson-hermitian-bypass",
+      "outcome": "killed",
+      "output": "test_wilson_shapes_and_chirality_boundaries (__main__.CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_wilson_shapes_and_chirality_boundaries (__main__.CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 398, in test_wilson_shapes_and_chirality_boundaries\n    self.assertFalse(w.clifford_relations(similar))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.133s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "wilson_operator.py",
+      "tests": [
+        "test_wilson_shapes_and_chirality_boundaries"
+      ]
+    },
+    {
+      "identity": "mutation-allows-path-escape",
+      "outcome": "killed",
+      "output": "test_mutation_request_admission_and_exact_replacement (__main__.CheckerSupportTests.test_mutation_request_admission_and_exact_replacement) ... FAIL\n\n======================================================================\nFAIL: test_mutation_request_admission_and_exact_replacement (__main__.CheckerSupportTests.test_mutation_request_admission_and_exact_replacement)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 257, in test_mutation_request_admission_and_exact_replacement\n    self.refused(MutationCase, *changed)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "mutation_case.py",
+      "tests": [
+        "test_mutation_request_admission_and_exact_replacement"
+      ]
+    },
+    {
+      "identity": "mutation-allows-ambiguous-target",
+      "outcome": "killed",
+      "output": "test_mutation_request_admission_and_exact_replacement (__main__.CheckerSupportTests.test_mutation_request_admission_and_exact_replacement) ... FAIL\n\n======================================================================\nFAIL: test_mutation_request_admission_and_exact_replacement (__main__.CheckerSupportTests.test_mutation_request_admission_and_exact_replacement)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 246, in test_mutation_request_admission_and_exact_replacement\n    self.refused(valid.apply, \"old old\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "mutation_case.py",
+      "tests": [
+        "test_mutation_request_admission_and_exact_replacement"
+      ]
+    },
+    {
+      "identity": "mutation-allows-identical-replacement",
+      "outcome": "killed",
+      "output": "test_mutation_request_admission_and_exact_replacement (__main__.CheckerSupportTests.test_mutation_request_admission_and_exact_replacement) ... FAIL\n\n======================================================================\nFAIL: test_mutation_request_admission_and_exact_replacement (__main__.CheckerSupportTests.test_mutation_request_admission_and_exact_replacement)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 257, in test_mutation_request_admission_and_exact_replacement\n    self.refused(MutationCase, *changed)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\reviews\\repository_file_review\\tfqm-mutations-bb8wru0x\\tests\\test_checker_support.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "mutation_case.py",
+      "tests": [
+        "test_mutation_request_admission_and_exact_replacement"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 65,
+      "survived": 1,
+      "unrun": 0
+    },
+    "detected_fraction": 0.9848484848484849,
+    "eligible": 66
+  }
+}

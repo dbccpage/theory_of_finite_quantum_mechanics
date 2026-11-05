@@ -1,0 +1,360 @@
+[
+  {
+    "identity": "empty-edge-name",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "or not value.strip()",
+    "after": "or False",
+    "tests": [
+      "test_label_admission_and_unused_matrices",
+      "test_signed_path_and_footprint_refusals"
+    ]
+  },
+  {
+    "identity": "edge-name-budget",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "\"edge-name characters\", 1, 64",
+    "after": "\"edge-name characters\", 1, 65",
+    "tests": [
+      "test_label_admission_and_unused_matrices"
+    ]
+  },
+  {
+    "identity": "determinant-zero-only",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "if matrix.det2() != 1:",
+    "after": "if matrix.det2() == 0:",
+    "tests": [
+      "test_matrix_and_scalar_domains"
+    ]
+  },
+  {
+    "identity": "determinant-sign",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "if matrix.det2() != 1:",
+    "after": "if abs(matrix.det2()) != 1:",
+    "tests": [
+      "test_matrix_and_scalar_domains"
+    ]
+  },
+  {
+    "identity": "mutable-export",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "return sp.ImmutableMatrix(matrix.integer_rows())",
+    "after": "return sp.Matrix(matrix.integer_rows())",
+    "tests": [
+      "test_matrix_and_scalar_domains"
+    ]
+  },
+  {
+    "identity": "matrix-truncation",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "if any(entry.is_Integer is not True for entry in value):",
+    "after": "if False:",
+    "tests": [
+      "test_label_admission_and_unused_matrices"
+    ]
+  },
+  {
+    "identity": "edge-count-budget",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "\"connection edge count\", 0, 4096",
+    "after": "\"connection edge count\", 0, 4097",
+    "tests": [
+      "test_label_admission_and_unused_matrices"
+    ]
+  },
+  {
+    "identity": "mutable-owned-mapping",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "MappingProxyType(owned)",
+    "after": "owned",
+    "tests": [
+      "test_connection_and_export_snapshot_ownership"
+    ]
+  },
+  {
+    "identity": "orientation-bool",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "if type(sign) is not int or sign not in (-1, 1):",
+    "after": "if sign not in (-1, 1):",
+    "tests": [
+      "test_signed_path_and_footprint_refusals"
+    ]
+  },
+  {
+    "identity": "orientation-zero",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "sign not in (-1, 1)",
+    "after": "sign not in (-1, 0, 1)",
+    "tests": [
+      "test_signed_path_and_footprint_refusals"
+    ]
+  },
+  {
+    "identity": "orientation-snapshot",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "steps.append((name, sign))",
+    "after": "steps.append((name, 1))",
+    "tests": [
+      "test_signed_transport_group_and_footprint_oracle"
+    ]
+  },
+  {
+    "identity": "unchecked-footprint",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "return {edge for edge, _ in _signed_path(path)}",
+    "after": "return {edge for edge, _ in path}",
+    "tests": [
+      "test_signed_path_and_footprint_refusals"
+    ]
+  },
+  {
+    "identity": "empty-footprint",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "return {edge for edge, _ in _signed_path(path)}",
+    "after": "return set()",
+    "tests": [
+      "test_signed_transport_group_and_footprint_oracle",
+      "test_signed_path_and_footprint_refusals"
+    ]
+  },
+  {
+    "identity": "unknown-preflight",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "if any(edge not in self.labels for edge, _ in steps):",
+    "after": "if False:",
+    "tests": [
+      "test_fixed_graph_admission_and_whole_word_preflight"
+    ]
+  },
+  {
+    "identity": "inverse-orientation",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "self.labels[edge] if sign == 1 else self.labels[edge].inverse2()",
+    "after": "self.labels[edge] if sign == -1 else self.labels[edge].inverse2()",
+    "tests": [
+      "test_signed_transport_group_and_footprint_oracle"
+    ]
+  },
+  {
+    "identity": "missing-inverse",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "self.labels[edge] if sign == 1 else self.labels[edge].inverse2()",
+    "after": "self.labels[edge]",
+    "tests": [
+      "test_signed_transport_group_and_footprint_oracle"
+    ]
+  },
+  {
+    "identity": "transport-order",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "result = factor.mul(result)",
+    "after": "result = result.mul(factor)",
+    "tests": [
+      "test_signed_transport_group_and_footprint_oracle",
+      "test_default_counts_and_fixed_fault_detection"
+    ]
+  },
+  {
+    "identity": "path-railway",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "return evaluate(self._path, path)",
+    "after": "return Outcome(value=self._path(path))",
+    "tests": [
+      "test_recorders_railway_and_cancellation"
+    ]
+  },
+  {
+    "identity": "tree-label-preflight",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "if edge not in self.labels:",
+    "after": "if False:",
+    "tests": [
+      "test_fixed_graph_admission_and_whole_word_preflight"
+    ]
+  },
+  {
+    "identity": "tree-adjacency",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "if previous is not None and src != previous:",
+    "after": "if False:",
+    "tests": [
+      "test_fixed_graph_admission_and_whole_word_preflight"
+    ]
+  },
+  {
+    "identity": "tree-target",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "previous = dst",
+    "after": "previous = src",
+    "tests": [
+      "test_fixed_graph_dressing_and_tree_walk_oracle"
+    ]
+  },
+  {
+    "identity": "tree-orientation",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "self._path(tuple((edge, 1) for edge in edges))",
+    "after": "self._path(tuple((edge, -1) for edge in edges))",
+    "tests": [
+      "test_fixed_graph_dressing_and_tree_walk_oracle"
+    ]
+  },
+  {
+    "identity": "tree-railway",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "return evaluate(self._tree, path)",
+    "after": "return Outcome(value=self._tree(path))",
+    "tests": [
+      "test_recorders_railway_and_cancellation"
+    ]
+  },
+  {
+    "identity": "graph-completeness",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "if any(edge not in self.labels for edge in EDGES):",
+    "after": "if False:",
+    "tests": [
+      "test_fixed_graph_admission_and_whole_word_preflight"
+    ]
+  },
+  {
+    "identity": "target-inverse",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "target_inverse = self._tree(TREE_PATH[dst]).inverse2()",
+    "after": "target_inverse = self._tree(TREE_PATH[dst])",
+    "tests": [
+      "test_fixed_graph_dressing_and_tree_walk_oracle",
+      "test_default_counts_and_fixed_fault_detection"
+    ]
+  },
+  {
+    "identity": "source-path",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "self.labels[name]).mul(self._tree(TREE_PATH[src]))",
+    "after": "self.labels[name]).mul(self._tree(TREE_PATH[dst]))",
+    "tests": [
+      "test_fixed_graph_dressing_and_tree_walk_oracle"
+    ]
+  },
+  {
+    "identity": "dressing-order",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "target_inverse.mul(self.labels[name])",
+    "after": "self.labels[name].mul(target_inverse)",
+    "tests": [
+      "test_fixed_graph_dressing_and_tree_walk_oracle",
+      "test_default_counts_and_fixed_fault_detection"
+    ]
+  },
+  {
+    "identity": "dress-railway",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "return evaluate(self._dress, edge)",
+    "after": "return Outcome(value=self._dress(edge))",
+    "tests": [
+      "test_recorders_railway_and_cancellation"
+    ]
+  },
+  {
+    "identity": "chord-formula-order",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": ".mul(owned[\"ePA\"]).mul(owned[\"eRP\"])",
+    "after": ".mul(owned[\"eRP\"]).mul(owned[\"ePA\"])",
+    "tests": [
+      "test_fixed_graph_dressing_and_tree_walk_oracle",
+      "test_default_counts_and_fixed_fault_detection"
+    ]
+  },
+  {
+    "identity": "chord-formula-inverse",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "result = owned[\"eRB\"].inverse2()",
+    "after": "result = owned[\"eRB\"]",
+    "tests": [
+      "test_fixed_graph_dressing_and_tree_walk_oracle"
+    ]
+  },
+  {
+    "identity": "closed-star-source",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "return src in (\"a\", \"b\") or dst in (\"a\", \"b\")",
+    "after": "return src in (\"a\", \"b\")",
+    "tests": [
+      "test_fixed_graph_admission_and_whole_word_preflight",
+      "test_default_counts_and_fixed_fault_detection"
+    ]
+  },
+  {
+    "identity": "scalar-bool",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "integer(value, \"additive label\")",
+    "after": "int(value)",
+    "tests": [
+      "test_matrix_and_scalar_domains"
+    ]
+  },
+  {
+    "identity": "scalar-budget",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "return rational(integer(value, \"additive label\"), \"additive label\").numerator",
+    "after": "return integer(value, \"additive label\")",
+    "tests": [
+      "test_matrix_and_scalar_domains"
+    ]
+  },
+  {
+    "identity": "additive-sign",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "_bounded_integer(-rb + ab + pa + rp)",
+    "after": "_bounded_integer(rb + ab + pa + rp)",
+    "tests": [
+      "test_additive_specialization"
+    ]
+  },
+  {
+    "identity": "additive-output-budget",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "return _bounded_integer(-rb + ab + pa + rp)",
+    "after": "return -rb + ab + pa + rp",
+    "tests": [
+      "test_matrix_and_scalar_domains"
+    ]
+  },
+  {
+    "identity": "fixture-prefix-budget",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "\"fixture prefix\", maximum=4095",
+    "after": "\"fixture prefix\", maximum=4096",
+    "tests": [
+      "test_fixture_scope_and_guard_types"
+    ]
+  },
+  {
+    "identity": "fixture-outside-scope",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "or not footprint(steps) <= {\"x\", \"y\"}",
+    "after": "or False",
+    "tests": [
+      "test_fixture_scope_and_guard_types"
+    ]
+  },
+  {
+    "identity": "printed-word-count",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "{len(paths)} loop words",
+    "after": "{len(paths)+1} loop words",
+    "tests": [
+      "test_default_counts_and_fixed_fault_detection"
+    ]
+  },
+  {
+    "identity": "reported-case-count",
+    "source": "independent/dfm-continuum-interface.py",
+    "before": "\"checks\": cases.checks",
+    "after": "\"checks\": cases.checks+1",
+    "tests": [
+      "test_default_counts_and_fixed_fault_detection"
+    ]
+  }
+]

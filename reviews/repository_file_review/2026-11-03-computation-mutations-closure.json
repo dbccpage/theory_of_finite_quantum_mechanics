@@ -1,0 +1,85 @@
+{
+  "AuthorityEffect": "None",
+  "prior_sha256": "bd826f2ed00e0a4444ef6828d4af45f4c4ccdb7e70c7bfa46db955216dd8625e",
+  "source_and_test_sha256": {
+    ".review_work/run_computation_mutations.py": "d888c03849777d580465bcde93d713e35c32525424f873346ae20d7beed37c0f",
+    "checks/checker_support/boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks/checker_support/cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks/checker_support/domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks/checker_support/gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks/checker_support/gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks/checker_support/happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks/checker_support/mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks/checker_support/outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks/checker_support/wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks/independent/comp-finite-model-controls.py": "b5d1b9e477bc32075c31e1db0f7ae4cba267e6c58fd5c7f3fb3233abc1b0556b",
+    "checks/tests/run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks/tests/test_computation_controls.py": "1d8b39fb1306b118a853044b9fbb10ac63e68f1328d12dfeb5856e191fa361e9",
+    "checks/tests/test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "manifest_before_sha256": "a604f4f63bf7bdeb3189ad03658b3dcb686480e76d6cb0d8a67037a1c479bdca",
+  "manifest_after_sha256": "abbfc14bc94fc2a5accda574488f180d3eb4b7fd9cb41117083106476c656d1c",
+  "amendment": "No source or test bytes changed. The original selected tests missed three faults. Add the existing graph fixed-point property for matching-before-word and fixed six-control suite for merge-symbol and predicate-target. All 64 source recipes remain identical; original outcomes are retained.",
+  "mutants": [
+    {
+      "identity": "matching-before-word",
+      "mutant_sha256": "7e7a5f98e79307e91bce314eb4a62d38c15f938902a0e4cad01df7dbe8adb756",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... ok\ntest_bounded_search_against_context_fixed_point (__main__.ComputationControlTests.test_bounded_search_against_context_fixed_point) ... FAIL\n\n======================================================================\nFAIL: test_bounded_search_against_context_fixed_point (__main__.ComputationControlTests.test_bounded_search_against_context_fixed_point)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-followup-098_m5o6\\tests\\test_computation_controls.py\", line 78, in test_bounded_search_against_context_fixed_point\n    @given(rules=st.lists(st.tuples(WORDS, WORDS), max_size=4, unique=True), bound=st.integers(0, 3), source=WORDS, target=WORDS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-followup-098_m5o6\\tests\\test_computation_controls.py\", line 97, in test_bounded_search_against_context_fixed_point\n    self.assertIsNone(result.value)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: ((0,), ()) is not None\nFailing test case: test_bounded_search_against_context_fixed_point(\n    self=<__main__.ComputationControlTests testMethod=test_bounded_search_against_context_fixed_point>,\n    rules=[((1,), ())],\n    bound=1,\n    source=(0,),\n    target=(),\n)\n\n----------------------------------------------------------------------\nRan 2 tests in 0.924s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal",
+        "test_bounded_search_against_context_fixed_point"
+      ],
+      "baseline": {
+        "returncode": 0,
+        "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... ok\ntest_bounded_search_against_context_fixed_point (__main__.ComputationControlTests.test_bounded_search_against_context_fixed_point) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.588s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "merge-symbol",
+      "mutant_sha256": "9978d91d252e4bafba4ab0fe9905efb64203055ad7a9fdce09d9123cf967f853",
+      "outcome": "killed",
+      "output": "test_constant_writer_halt_persistence_and_natural_merge (__main__.ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge) ... ok\ntest_six_original_controls_and_cli (__main__.ComputationControlTests.test_six_original_controls_and_cli) ... FAIL\n\n======================================================================\nFAIL: test_six_original_controls_and_cli (__main__.ComputationControlTests.test_six_original_controls_and_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-followup-098_m5o6\\tests\\test_computation_controls.py\", line 276, in test_six_original_controls_and_cli\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'sco[100 chars]ks': 2, 'failures': ['c2.merge_distinct', 'c2.[28 chars]alse} != {'sco[100 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n-  'failed_checks': 2,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n-  'failures': ['c2.merge_distinct', 'c2.fix_other'],\n+  'failures': [],\n   'scope': 'six finite computation controls',\n   'total_checks': 50}\n\n----------------------------------------------------------------------\nRan 2 tests in 0.513s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_constant_writer_halt_persistence_and_natural_merge",
+        "test_six_original_controls_and_cli"
+      ],
+      "baseline": {
+        "returncode": 0,
+        "output": "test_constant_writer_halt_persistence_and_natural_merge (__main__.ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge) ... ok\ntest_six_original_controls_and_cli (__main__.ComputationControlTests.test_six_original_controls_and_cli) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.517s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "predicate-target",
+      "mutant_sha256": "f18a487726b79a999075f2cf2b38da9d65e9f19d16cb1e9cb7310bee7a989af9",
+      "outcome": "killed",
+      "output": "test_encoding_and_blank_extension (__main__.ComputationControlTests.test_encoding_and_blank_extension) ... ok\ntest_six_original_controls_and_cli (__main__.ComputationControlTests.test_six_original_controls_and_cli) ... FAIL\n\n======================================================================\nFAIL: test_six_original_controls_and_cli (__main__.ComputationControlTests.test_six_original_controls_and_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-followup-098_m5o6\\tests\\test_computation_controls.py\", line 276, in test_six_original_controls_and_cli\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'sco[100 chars]ks': 2, 'failures': ['c7.predicate.true', 'c7.[35 chars]alse} != {'sco[100 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n-  'failed_checks': 2,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n-  'failures': ['c7.predicate.true', 'c7.composition.true'],\n+  'failures': [],\n   'scope': 'six finite computation controls',\n   'total_checks': 50}\n\n----------------------------------------------------------------------\nRan 2 tests in 0.508s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_encoding_and_blank_extension",
+        "test_six_original_controls_and_cli"
+      ],
+      "baseline": {
+        "returncode": 0,
+        "output": "test_encoding_and_blank_extension (__main__.ComputationControlTests.test_encoding_and_blank_extension) ... ok\ntest_six_original_controls_and_cli (__main__.ComputationControlTests.test_six_original_controls_and_cli) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.504s\n\nOK\n"
+      }
+    }
+  ],
+  "combined_accounting": {
+    "counts": {
+      "killed": 64,
+      "survived": 0,
+      "equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "eligible": 64,
+    "detected_fraction": 1.0
+  }
+}

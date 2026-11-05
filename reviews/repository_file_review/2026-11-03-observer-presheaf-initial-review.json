@@ -1,0 +1,603 @@
+{
+  "AuthorityEffect": "None",
+  "source_sha256": "3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d",
+  "companion_sha256": "4d8c5fea8d54032a2e1f37c197fc51cf34903e55d2d07ab49df9e7c27ced5a4a",
+  "probes": [
+    {
+      "name": "simplex accepts float objective",
+      "value": "([Fraction(1, 1)], [Fraction(3602879701896397, 36028797018963968)])",
+      "refused": false
+    },
+    {
+      "name": "scenario accepts bool measurement count",
+      "value": "[(0,), (1,)]",
+      "refused": false
+    },
+    {
+      "name": "scenario accepts duplicate context positions",
+      "value": "[(0, 0)]",
+      "refused": false
+    },
+    {
+      "name": "noise beyond probability interval",
+      "value": "[{(0, 0): Fraction(-1, 4), (0, 1): Fraction(3, 4), (1, 0): Fraction(3, 4), (1, 1): Fraction(-1, 4)}, {(0, 0): Fraction(-1, 4), (0, 1): Fraction(3, 4), (1, 0): Fraction(3, 4), (1, 1): Fraction(-1, 4)}, {(0, 0): Fraction(-1, 4), (0, 1): Fraction(3, 4), (1, 0): Fraction(3, 4), (1, 1): Fraction(-1, 4)}, {(0, 0): Fraction(3, 4), (0, 1): Fraction(-1, 4), (1, 0): Fraction(-1, 4), (1, 1): Fraction(3, 4)}]",
+      "refused": false
+    },
+    {
+      "name": "mixture silently drops unmatched contexts",
+      "value": "[{(0, 0): Fraction(1, 2), (0, 1): Fraction(0, 1), (1, 0): Fraction(0, 1), (1, 1): Fraction(1, 2)}]",
+      "refused": false
+    },
+    {
+      "name": "negative restriction index aliases last measurement",
+      "value": "(1,)",
+      "refused": false
+    },
+    {
+      "name": "mutable scenario context list can be cleared",
+      "value": "None",
+      "refused": false
+    }
+  ],
+  "original_run": {
+    "returncode": 0,
+    "stdout": "ok  PR box rows are distributions\nok  B1: restriction is functorial on every chain W <= V <= C (PR, noisy 1/4, noisy 1/2)\nok  PR box is no-signalling (all overlap marginals agree)\nok  PR box: |G| = 0\nok  PR box: NCF = 0\nok  PR box: l1 defect = 2\nok  noisy PR lambda=1/4: NCF = 2*lambda = 1/2\nok  noisy PR lambda=1/2: NCF = 2*lambda = 1\nok  noisy PR lambda=1/4: not strongly contextual (|G| = 16 > 0) and l1 defect positive\nok  noisy PR lambda=1/2: |G| = 16\nok  noisy PR lambda=1/2: l1 defect = 0\nok  mixture of (0,0,0,0) and (1,0,0,1): NCF = 1 and |G| = 2\nok  PR box: a signed global section exists, sums to 1, matches all marginals, and has a negative entry\nok  maximal cover, PR box: 0 families\nok  maximal cover, noisy PR 1/2: 16 families, all Unique, none NoGlobalExtension\nok  arc cover, mixture of two assignments: 4 families, 2 Unique, 2 NoGlobalExtension\nok  parity cycles n=3: all 8 target vectors agree with the holonomy statement (|G| in {0,2}, 2 families, NoGlobalExtension iff holonomy 1, NCF 0 iff holonomy 1)\nok  parity cycles n=4: all 16 target vectors agree with the holonomy statement (|G| in {0,2}, 2 families, NoGlobalExtension iff holonomy 1, NCF 0 iff holonomy 1)\nok  parity cycles n=5: all 32 target vectors agree with the holonomy statement (|G| in {0,2}, 2 families, NoGlobalExtension iff holonomy 1, NCF 0 iff holonomy 1)\nok  n=3 nerve: three contexts, three pairs, no triple intersection\nok  Bell nerve: exactly four edges (a 4-cycle) and no triple intersection\nok  Phi_1 upper bound: alpha = 0 gives ||omega||_1 = 2\nok  Bell nerve edges are (0,1), (0,2), (1,3), (2,3)\nok  Phi_1 dual witness: sup norm 1 and phi annihilates delta0 of every basis 0-cochain\nok  Phi_1 lower bound: <phi, omega> = 2, so Phi_1 = 2\nok  gauge invariance: Phi_1(omega + delta0 beta) is again 2 (lower bound by the same witness, upper bound by alpha = beta)\nok  signalling example: delta0 e is nonzero at the pair (0,1) with overlap {0} and unequal marginals\nok  PR box: delta0 e = 0\nok  three contexts through measurement 0: pairs (0,1),(0,2),(1,2) and one triple, overlaps {0}\nok  delta1 delta0 alpha = 0 on the triple (0,1,2), with delta0 alpha not zero\nok  delta1 of a 1-cochain supported on one pair is [1, 0] (a non-cocycle is detected)\nok  path cover: product formula gives a distribution with exactly the three given marginals\nok  path cover: NCF = 1 (the section is a distribution)\nok  GYO: the three-context path and the two-context path are acyclic, the Bell 4-cycle and a triangle are not\nok  Test 482 tables: p_ab and p_bc are distributions that agree on the overlap marginal\nok  Test 482 tables: the product formula p_ab p_bc / p_b has total mass 1 and reproduces both tables exactly\nok  Test 482 covers: GYO accepts {ab, bc} and rejects {ab, bc, ac}\nok  Test 482 triangle: no assignment among the 8 satisfies a = b, b = c and a != c\nok  K row: the PR box on the acyclic sub-cover {ab, ab'} has l1 defect 0 (versus 2 on the Bell cover)\nok  Adm row: the PR box is no-signalling, so its distance to the no-signalling polytope is 0 (versus 2)\nok  norm row: 2 * (l1 defect 2) = 4\nok  terminal row: the defect 2 is below the threshold 3 of the alternative rule, so ExactRepair differs from OpenObstruction\nok  ceilings: 2^20 assignments and 2^22 LP entries; 2^64 > 2^20; 2^21 > 2^20; ten singletons 1024 <= 2^20 and 20*1024 <= 2^22\nok  self-certification packet (p,p,p): all three role pairs coincide\nok  shared-principal case: the pair-by-pair rule flags it while the count rule len(principals) < len(identifiers) does not\nok  evaluator_also_proposer: the count rule misses it too (2 principals, 2 identifiers), the pairwise rule flags it\nok  N3: the renaming sigma commutes with the transition step (hypothesis (i))\nok  N3: the only charge is constant 0 on both states, so it is conserved (hypothesis (ii))\nok  N3: V((a)) = True and V(sigma((a))) = V((b)) = False, so V(sigma(H)) != V(H)\nok  N4: 2^64 assignments wrap to 0 in 64-bit unsigned arithmetic\n50 checks passed\n",
+    "stderr": ""
+  },
+  "consumers": [
+    {
+      "path": "dag/validate_derivation_dag.py",
+      "sha256": "03bc49bfde5c437d04d8c429c6acc51681972d1126394c2230f1f610c46bf5f7"
+    },
+    {
+      "path": "dag/test_foc035_lp_certificates.py",
+      "sha256": "27173d70314e05d9762b4b180d6ceb9ccf3c7e5c55dc40a5c965cfbd9811fb79"
+    },
+    {
+      "path": "dag/sync_genesis_to_higher.py",
+      "sha256": "79debb44595ed581fcecd7ea35313d76c49136ad711c00ec04c31573ce9aea80"
+    },
+    {
+      "path": "dag/sync_frontier_branches.py",
+      "sha256": "84c94ce88005f5f9444b3c504e931aab4393159180c1de9c9fd48e3d0091bbc6"
+    },
+    {
+      "path": "dag/sync_foc035_observer_presheaf.py",
+      "sha256": "134757d5921ef700e2f8db311ebe3ca69e8b44a2b4d8fbe392e073088a4eb43f"
+    },
+    {
+      "path": "dag/sync_application_branches.py",
+      "sha256": "2dbf78d911b66642180c1da66ca5d3c8fef1eae9221b351f8ac59c591bd83463"
+    },
+    {
+      "path": "evidence/quality/pr215_l4_repair/pr244_integrated_pipeline.json",
+      "sha256": "a9d07e38eacb91d918590d8a4b03eb0e996a73ed44f314f5bc1b7f19b1d7ac27"
+    },
+    {
+      "path": "evidence/quality/functor_shell_pr/campaign_checks_attempt1.json",
+      "sha256": "b2fd62d5a56ead47b99c82550d9f0e974462c630ac7231a149080f17f1eccf1e"
+    },
+    {
+      "path": "evidence/quality/functor_shell_pr/campaign_checks.json",
+      "sha256": "e435c67feb9ad4035bee76a5390fe08cfc0bf53257a9520e3a402772da4f61ac"
+    },
+    {
+      "path": "evidence/quality/pr215_l4_repair/final_combined_pipeline.json",
+      "sha256": "5fe198b3ece9298c37330ab98940ca2f533f2e9723c9b5271abea0afabccb729"
+    },
+    {
+      "path": "evidence/quality/pr215_l4_repair/final_acceptance.json",
+      "sha256": "49fe4bd5e7165a16c2c4e5474450e8f641280d0c8bbada01373d344d8045dde0"
+    },
+    {
+      "path": "dag/render_dag_views.py",
+      "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9"
+    },
+    {
+      "path": "dag/fragments/foc035_observer_presheaf.json",
+      "sha256": "0701dafb31eaf958b996fe0a1eb3ecf55aa0c59ae87e37f4b5d631cb0c3a363d"
+    },
+    {
+      "path": "dag/evidence/evidence_map.json",
+      "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
+    },
+    {
+      "path": "dag/derivation_dag_reading_note.md",
+      "sha256": "a647a90f4c8639bd47fcd5b27c583796cf8db8a778a521edbe9157d336751b47"
+    },
+    {
+      "path": "dag/derivation_dag.json",
+      "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
+    },
+    {
+      "path": "dag/pfp/campaign/README.md",
+      "sha256": "f81ecb198204709394cf84a43917ddb5efa9e398161d221e61788d95e5eb81fb"
+    },
+    {
+      "path": "dag/pfp/batch_tools/integrate.py",
+      "sha256": "7efa3346a3adb152ced904056700fcad5b016d9651418ba5a1c87e26d1358dd8"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2532_ops_pr1050_absence.md",
+      "sha256": "75cd1380305342d6bd4e108ccc4602cb601f55b31237c2ed80bfd96231071289"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2531_ops_refuted_earlier_rust.md",
+      "sha256": "14f34d5953641e53b7d8790268320e3e6683333783bcb6c68f687963e3d37aa1"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2530_ops_refuted_earlier_gate.md",
+      "sha256": "8d929eab252d879de780b0b869595ce89562b29f1edeb3fe1fdeb0e96bdb642e"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md",
+      "sha256": "42cd2f9c233e19340b0c1bab9838a05b66b279fea0b6cbbcdd897d4505e08e82"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2528_ops_refuted_axis3_wide.md",
+      "sha256": "4da2d48d94bd95cafbb6363295801f04d95404e34820b99816ea5dd0fbe1151a"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md",
+      "sha256": "e6eefa86822b4bd938b198bc414380a5a7af476a3c40cf992a0fbeb636e5ba0b"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md",
+      "sha256": "eb65609d758831aa4f4248de96a7670bd8ada4de92e933112879a68ef59d8943"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2525_ops_axis2_meta_carrier.md",
+      "sha256": "73ffe14722b92d27b4bc65dcde637cc8f6bb4bdc150fc12f539cf963b1f3bc3b"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md",
+      "sha256": "804ec8a0415a21ba89b81fb7801c1148e1d7d5ba497ecf157bf8412050c5982b"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2523_ops_ap_card_proposal.md",
+      "sha256": "b7e797f3b8cd03f716992e03474b301a23a2787287d129213dae75180dacd609"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md",
+      "sha256": "1d4f1853da8b96aa0b6d9ce150c8dea53ffd20914e9cc709f515636eea77fd6a"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2521_ops_three_role_gate.md",
+      "sha256": "6a63fb190231521b9f45ab19f0c4ca86f20b29b4acca9d294d5c9a60c3b6765e"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md",
+      "sha256": "6005932cabeaa8c8474dbf0420275faca9f403077a018be31015045df5527dc6"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md",
+      "sha256": "81b9253321a4e6c04ffa6d18dfcda030f03f7ca005ecc42a30a68fb153c3408f"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md",
+      "sha256": "0b65f2f7622ca567ece0d9344e34a9abe2cd8ae6c49e6c5125139515d8c2bef7"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md",
+      "sha256": "695a604306e0c75854eda45928600322ccaa18934442cd3278d757c3b8e04702"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md",
+      "sha256": "9293a0fc7778f81e0288c38bccb8d7b396d19fb743c78e1cb15ee5db00e80fa9"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2515_ops_vorobev_path_instance.md",
+      "sha256": "9a6a9f38d4899b7e16b2ac78d1571f0a3d3668d8afbc3bf6a32be64988cd1f15"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md",
+      "sha256": "bfd423842bbee333eb6aa6c528a27252227c5a90454fcad1328873c55877455c"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2513_ops_z2_witness_false_negatives.md",
+      "sha256": "f424c1b1ca2e8cad6578e1a74b8ae4f2bc5c46e3045f4eb59477036e9def850f"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2512_ops_no_signalling_signed_section.md",
+      "sha256": "d6f5d9bdf4cc365ce3c0b0800d8dbc20ef2ce8362571fe766553591c49b059e7"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md",
+      "sha256": "28cbfd394b73d8d25c5c201fa2624c0bb0826ff3f588ef9ce10d2ac749c7909c"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2510_ops_zero_cocycle_blind.md",
+      "sha256": "49e994810705908ecb66b30ceff8685a5ae1ff16dc10b3a794cd58f561a87725"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md",
+      "sha256": "d954a99f0fb5436eda90abd7f1e8d15c628e5482b55f7355c834335de5948fd6"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2508_ops_nge_not_contextuality.md",
+      "sha256": "f1c719c08f466e12a650cbe1bb6faba1c433aa8ed18d655f1c11011df09a1ebf"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md",
+      "sha256": "ca367cf87a3eeb26591f18aa6911256905d24fb7c06dda5d5f644c69e7ceb628"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md",
+      "sha256": "aed67ff30685eb3b5a5c387621696a89018513b56e7df3773b4e6ec6532431eb"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2505_ops_noisy_pr_ncf.md",
+      "sha256": "c146a47465ef73fc7171d602218d9975ad50d9c24d3a253cd72c91379f85d9f5"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md",
+      "sha256": "fc99842addce846400fc7d90c690524235a01e08224329407be41d0f12f0c36c"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md",
+      "sha256": "a089c41e413ea326fb66efc61071ae8a403ddad529ac5b53db0059ff146a6c50"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md",
+      "sha256": "54f42cb65672272b910b32f3814d74b5d1f409cc882038340e563d3870de435b"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md",
+      "sha256": "fe59c997f1d27e7209c17741fddf163a4d89378b14d479f135cc5905d2ac7ffd"
+    },
+    {
+      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2500_ops_observer_tuple.md",
+      "sha256": "770c4324247dce8fb21772b670b5d933ef93707b34c0aaa428ff2e39642826f6"
+    },
+    {
+      "path": "dag/operads/ops_arc_cover_nge_witness.yaml",
+      "sha256": "4120f993b646c61bf957ff0f9f2f2bb201685d7f67d2abb15cd40077080ccbe4"
+    },
+    {
+      "path": "dag/operads/ops_ncf_lhv_equivalence.yaml",
+      "sha256": "7a4ae75cf0d528ad4756bcbee8b54517df2442c6c86b11db657feaf12ca98e72"
+    },
+    {
+      "path": "dag/operads/ops_maximal_cover_descent.yaml",
+      "sha256": "2bdade85a440a564eadcbbbda4f120e381f3174bc0170a611902a702ee1916d8"
+    },
+    {
+      "path": "dag/operads/ops_cech_coboundary.yaml",
+      "sha256": "b277f36134cb8f172fd19462b229471141afa92e622b405d5a6e2fe43f535cff"
+    },
+    {
+      "path": "dag/operads/ops_refuted_axis3_wide.yaml",
+      "sha256": "416cc4b7b520b15907cb69996b2e0490767e83d0dfbe1ad8ec8215cd367094fd"
+    },
+    {
+      "path": "dag/operads/ops_pushforward_functor_lean.yaml",
+      "sha256": "ad17f27ea328b523ee293f7263fccbf342980e299cb767b0bdb5856eeeb8330d"
+    },
+    {
+      "path": "dag/operads/ops_parity_cycle_descent_ncf.yaml",
+      "sha256": "b27ea67650f2a18b8197f1e349d5a164fe50c9e7b1ff3849cf7f95ab5e056ef7"
+    },
+    {
+      "path": "dag/operads/ops_no_signalling_signed_section.yaml",
+      "sha256": "882c16aba444f9bec792e45dcd5b764c5ebb5e93e4919d7690b13edc6f4441f8"
+    },
+    {
+      "path": "dag/operads/ops_noisy_pr_ncf.yaml",
+      "sha256": "d06651bc92eec484f7c57db055c9f58c12319900808566fd30b8ad9d5b3ead04"
+    },
+    {
+      "path": "dag/operads/ops_vorobev_path_instance.yaml",
+      "sha256": "7a3605bbe41e7b2f718fe772df398d2ae2a5531a623ab852cd8e534a45d35fad"
+    },
+    {
+      "path": "dag/operads/ops_underdetermination.yaml",
+      "sha256": "72577f8dcadc7d7cc9333dd684ed436f14256e46335bf72fc38ae0163e7d713e"
+    },
+    {
+      "path": "dag/operads/ops_test_482_repair.yaml",
+      "sha256": "f86e7290f09057e06fd47ab38eee44485a8feed6003cac7032d247669cbb8a02"
+    },
+    {
+      "path": "dag/operads/ops_strong_contextuality_ncf_zero.yaml",
+      "sha256": "7f871cbf9aeedac0f24265016309852ea44923b5056a57e8a8fb6e6af213b5ff"
+    },
+    {
+      "path": "dag/operads/ops_refuted_earlier_rust.yaml",
+      "sha256": "6271a65b352bf49c730a923421ac22c51e459adc2378bc44709089b6fcfb787f"
+    },
+    {
+      "path": "dag/operads/ops_refuted_earlier_gate.yaml",
+      "sha256": "6bec88204d8d01b2fd2a08be3cfe06b23cb43791779473ab68deffd430af894f"
+    },
+    {
+      "path": "dag/research/three_proof_l4_pipeline.json",
+      "sha256": "169e096043d0b298f1111abf9ab9b4530c49c2ad9701085ba8fb5d4e22aeb920"
+    },
+    {
+      "path": "dag/research/three_proof_l4_final_pipeline.json",
+      "sha256": "3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb"
+    },
+    {
+      "path": "dag/research/pr_batch_campaign_validation.json",
+      "sha256": "b39ef0c78e949023f2c40afd97e87bd61540b6183d7218bf8bcc339b7285dec9"
+    },
+    {
+      "path": "dag/research/pr_392_validator_regression.json",
+      "sha256": "c2ac4ce7b4cff4a0c557c5869a13f11eba399f18bcded131d9a2e937f691509a"
+    },
+    {
+      "path": "dag/research/pr_373_integration_merge_checks.json",
+      "sha256": "290cdd3f6af0bc6734d9815808eb07ce2d577850f64906024b9e70b1dc89d436"
+    },
+    {
+      "path": "dag/research/pr_363_regression_validation.json",
+      "sha256": "44430f68692df9a4972fb9acd8cffd795be2b9627b5981c1234ed8092ccacbb4"
+    },
+    {
+      "path": "dag/research/pr_362_regression_validation.json",
+      "sha256": "45f15a476be7296c37f2cbca6582ee7a888a77f1453b990fdb4007dc45827a65"
+    },
+    {
+      "path": "dag/research/pr_320_campaign_pipeline.json",
+      "sha256": "fd0a9f64ce3b08d51a6d057b9c6bb4a02f4cae605734f9d5a3d27c70d3e260ef"
+    },
+    {
+      "path": "dag/research/pr440_preapproval_validation_20261026.json",
+      "sha256": "ef810b27bb3fab40c22ff164c484a1f1ae31a87b261f49e4be7daa56c0fd1904"
+    },
+    {
+      "path": "dag/research/pr440_independent_review_followup_20261026.json",
+      "sha256": "752301040d04dac21137e6d9b78e37d22885db95c220cc11b39710a176a3bf19"
+    },
+    {
+      "path": "dag/research/pr440_approved_acceptance_20261026.json",
+      "sha256": "56c318ec646d42e3725019fd79df9ebcb92ee9100617036a55f91f1f1d2460da"
+    },
+    {
+      "path": "dag/research/pr439_repair_validation_20261026.json",
+      "sha256": "17c42bf7436773a802c6d04e040d7b83726fa89c9341f592b896d8b0babfd610"
+    },
+    {
+      "path": "dag/research/pr439_bottleneck_followup_20261026.json",
+      "sha256": "2726ff0e636d35aaa45bbc1ecc26fbde16667f939404ea6ae158cdb5a9d9867c"
+    },
+    {
+      "path": "dag/research/pr439_approved_acceptance_20261026.json",
+      "sha256": "5721051ce71a6ad15d5a5be3c86c13b74d48928974847276b5032dd036886b7e"
+    },
+    {
+      "path": "dag/research/pr437_current_review_20261026.json",
+      "sha256": "2fbe631f66d387c95060ef1285bcfc5d759fb950bd644c01ea2e0ca54df5e58c"
+    },
+    {
+      "path": "dag/research/pr435_repair_validation_20261026.json",
+      "sha256": "11a6be66a6b2e3d284495aadbcce338d6361c17ff759b1797e3b1f9fcaf26ffd"
+    },
+    {
+      "path": "dag/research/pr435_approved_acceptance_20261026.json",
+      "sha256": "2ab7eff3a06d014c82637f8ca38e949e56b8c847690688b6ca60b9c921d154d2"
+    },
+    {
+      "path": "dag/research/pr434_main_integration_validation_20261026.json",
+      "sha256": "bb6c5dc882a2d0055ea4c8f216ad9009d1c220fffab2b38c2aac652815dc9537"
+    },
+    {
+      "path": "dag/research/pr434_current_review_20261026.json",
+      "sha256": "64edb67185b31d5824613bc87fdce6131e3095f0097ac1eeac70aac3a6d3bbff"
+    },
+    {
+      "path": "dag/research/pr434_back_route_validation_20261026.json",
+      "sha256": "2184917065d58d522ac0d82db3bb058794d7062d9ad66755bf61d8410ba1a96e"
+    },
+    {
+      "path": "dag/research/pr375_merge_readiness.json",
+      "sha256": "17aa595b2f84790b2333e7089ea3b7a821347432a3cf544b28ee2680d5f1dcf1"
+    },
+    {
+      "path": "dag/research/pr375_hosted_review_validation.json",
+      "sha256": "6c40580cf537ecebb273f6d6f26efaff5beb7a424962b31ed3bcc7f6285e11b7"
+    },
+    {
+      "path": "dag/research/pr262_campaign_validation.json",
+      "sha256": "fbdc7d98d76d5e1582f951a6934318b035c5a297c9bdfd07d670f050ac05a724"
+    },
+    {
+      "path": "dag/research/pr247_pipeline.json",
+      "sha256": "5e628973026e26a04e97b2605a04ac708af6a89ee91840d9ecbcdbae32f25edb"
+    },
+    {
+      "path": "dag/research/pr247_followup_validation.json",
+      "sha256": "2a86e934ec76749e0a0f051581b7acacfa22eb05c3225086dd43cf8896b280f6"
+    },
+    {
+      "path": "dag/research/pr239_pipeline.json",
+      "sha256": "822a5bc184b13a0770f3d0aecf3f916e32d354c5845e5b45fac9698ac336c39c"
+    },
+    {
+      "path": "docs/overclaim/reviews/2026-10-22_foc035-observer-presheaf.md",
+      "sha256": "b11ca0bdbb2c0411ebcb19169ad6f9c9bbd3d93d0ccd0ca5599f7c4f82839d96"
+    },
+    {
+      "path": "docs/overclaim/baseline.json",
+      "sha256": "91a09d7e072e610de6a5f7f1ea1a8183b54075525b797f9769625c62e2e32b16"
+    },
+    {
+      "path": "docs/maintenance/pr442_preapproval_validation_20261026.json",
+      "sha256": "3094ba7b31c13a748b8c047096c7e5423a11701ae618d8e75896764f02b8229c"
+    },
+    {
+      "path": "docs/maintenance/pr442_approved_acceptance_20261026.json",
+      "sha256": "5f93f7536d7233489149754d76796f220e223f2caa3a4a11e147b8779fe57131"
+    },
+    {
+      "path": "docs/maintenance/pr441_review_20261026.json",
+      "sha256": "decab10d3542ce3e3384acf600ba2c61e36d4b613caa08f155dbae95d99d3842"
+    },
+    {
+      "path": "docs/maintenance/pr441_expanded_review_20261026.json",
+      "sha256": "435dae51b4fc836420102531fadd43e1dafaae31b5a568ef71e9ae2d8eeaae78"
+    },
+    {
+      "path": "docs/evidence/stages/OBSERVER_PRESHEAF.md",
+      "sha256": "9a0f14574cb8d7fa8d1dac8a1a188464ed31da8e9755fcb43020f47f0efccb67"
+    },
+    {
+      "path": "dag/research/fq_gleason_qi3_validation.json",
+      "sha256": "e8ab6e03a174dad46faa160b2de50792fca5101a8fd7bf0da737ebb0b498f362"
+    },
+    {
+      "path": "dag/research/foc035_observer_presheaf_review_validation.json",
+      "sha256": "deffbd36192cfee7922f6413322230ab9903c1da9c4c30ce397fb4a7c2d68d19"
+    },
+    {
+      "path": "dag/research/foc035_observer_presheaf_review_contract_coverage.json",
+      "sha256": "e3510af66ab128d3209fd8855c47f667812a44fa99d8bcdb0e89e5fa43aa37f9"
+    },
+    {
+      "path": "dag/research/foc035_observer_presheaf_pipeline_review.json",
+      "sha256": "04e726e303c43a7c917ab12ca3282adffa8d9c1c78a17ae2b00b135652e3452e"
+    },
+    {
+      "path": "dag/research/foc035_l4_tests_retry.json",
+      "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+    },
+    {
+      "path": "dag/research/foc035_l4_tests.json",
+      "sha256": "e3d4ff0b3d5bbc6b6ffa00a6eeb61ce03116934e19a881cdeb42005673062bda"
+    },
+    {
+      "path": "dag/research/foc035_l4_sync_replay.json",
+      "sha256": "b768fbd5a130c53cb7cbfdce5eeeea17897bc40fe2e4a258d7cc4eba7775fe04"
+    },
+    {
+      "path": "dag/research/foc035_l4_refactor_equivalence.json",
+      "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+    },
+    {
+      "path": "dag/research/foc035_l4_metrics.json",
+      "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+    },
+    {
+      "path": "dag/research/foc035_l4_exact_replay.json",
+      "sha256": "0a0441cb2e673a6a7aec2c1a36a5993152e79c71f28897b3265c7fe09afdee40"
+    },
+    {
+      "path": "dag/research/foc035_l4_contract_coverage.json",
+      "sha256": "34b9f4a7d7863315efb891a6937cee67bd77e5bc619e6539396341b2247b91df"
+    },
+    {
+      "path": "dag/research/foc035_l4_checker_refactor.json",
+      "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+    },
+    {
+      "path": "dag/research/dfm_ckm_l4_pipeline.json",
+      "sha256": "a2d67069a4f2af8b6c5cfd0a403144d7cc1bebc9f7f953d5688fcba98d8e866b"
+    },
+    {
+      "path": "dag/research/dfm_ckm_l4_final_pipeline.json",
+      "sha256": "9d1d0e53100fd75db775251f3ed5364e9ffc43ba6483ac39c001fea4ac875932"
+    },
+    {
+      "path": "dag/research/approved_finite_proof_merge_checks.json",
+      "sha256": "19510b54880ca7a166c48c51c4b5e29468ab9e03bdf50260593ac7a880825860"
+    },
+    {
+      "path": "dag/research/approved_pr_434_continuum_acceptance_2026_10_26.json",
+      "sha256": "f91732d0136eff6ab7494c0e18d3cd5b417f8e3665fc153f754cae3a3d36c63a"
+    },
+    {
+      "path": "dag/research/approved_pr_433_continuum_acceptance_2026_10_26.json",
+      "sha256": "6fbc773e41daaf8f6a6ff6435a30b551912c9908aa9dfbe26056a87479e561fa"
+    },
+    {
+      "path": "dag/research/campaign_dfm-continuum-refinement-limit_integration_validation.json",
+      "sha256": "f2835df8ed0b39899efb3b9aa7a37116f924ef669849ca2ae6cbe295f30754fb"
+    },
+    {
+      "path": "dag/research/campaign_lqg-projective-limit_integration_validation.json",
+      "sha256": "5dc4a391f1e9f6e6933054cc603f10479aa938708563172745c5c9712fac56bb"
+    },
+    {
+      "path": "dag/research/campaign_fsp-imaginary-mu-real-det_checks.json",
+      "sha256": "d92acf5c50fa23f777269791c02ff5e30a5c2b8c3a6096b17fc7e17d69a2ee4b"
+    },
+    {
+      "path": "dag/research/campaign_fsp-majorana-clifford-parity_checks.json",
+      "sha256": "539f84678151c051ed212aed419bcd1bcf65662d9fe8a76dbc6c121e40df3b30"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-REFUTED-EARLIER-RUST.md",
+      "sha256": "cf4e157cf0377f8d863898a609c0a991ad9128fe09ee3b2537212ddf56a902cd"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-REFUTED-EARLIER-GATE.md",
+      "sha256": "3df550f9a0f4255c612ab820cd853f8efdf724db46172e5ef397632989f65cdb"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-REFUTED-AXIS3-WIDE.md",
+      "sha256": "5882ec333806330cfad842df70afc32c5bf89ccaa3929f94261b9f31f17bf887"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-PUSHFORWARD-FUNCTOR-LEAN.md",
+      "sha256": "224776ad217f95f753d7a455246dc11293a2e58ca7dcdf16150b9da6dbbe27cc"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-PARITY-CYCLE-DESCENT-NCF.md",
+      "sha256": "db7b36a4e86db7f9080789b5cd8e4f5611c61517aeefebb991e6ac8e60f8175a"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-NOISY-PR-NCF.md",
+      "sha256": "f7d2748e2a3daca293d9c98bfec159213943c0992af2d444c53078216124ee67"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-NO-SIGNALLING-SIGNED-SECTION.md",
+      "sha256": "0a86228c48ba0a13707c8ac3d93066e35dc751f4753bbd37ba487a18a28d43ac"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-NCF-LHV-EQUIVALENCE.md",
+      "sha256": "507ac1670becd3030327ed8b23e3df91683aedd8ebd1ad72e5ab64c9b78acba0"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-MAXIMAL-COVER-DESCENT.md",
+      "sha256": "ad806a81f1fd33e14414a9fd641c266f929c3452812fd841b1629d9a97d76f3a"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-CECH-COBOUNDARY.md",
+      "sha256": "d5df8b9960b4ae67a909647af41ae23bcb8b8050e58c9c45ec90bc1baba23d72"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-ARC-COVER-NGE-WITNESS.md",
+      "sha256": "b4051d86b484dc9859c256154265faaa22a4274f0896245e4ef0e9270daf9f5f"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-VOROBEV-PATH-INSTANCE.md",
+      "sha256": "a43cb306b73fc60c57b345c1aef4c005a2e77f34166d6d8e6d8439c19e3c2d44"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-UNDERDETERMINATION.md",
+      "sha256": "68d4f37e5486a69744262519349c57becbbef257acbc077e62cd0ba6ecf2b5d4"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-TEST-482-REPAIR.md",
+      "sha256": "2616a20bd673155240c7d0f0ad6e4220c3690641abd372da1db32e4ea8c73ad7"
+    },
+    {
+      "path": "docs/evidence/nodes/OPS-STRONG-CONTEXTUALITY-NCF-ZERO.md",
+      "sha256": "7b2d535d5d70658fc19c62950dbcc22799cfed435eea8928c0ee84a6535b32cf"
+    }
+  ],
+  "review_findings": [
+    "Unbounded unchecked measurement cardinality, context shape and collection ownership; boolean/index aliases and mutable scenario state.",
+    "Solver accepts float objectives by Fraction coercion, lacks dimensions/bit/pivot limits and uses process exit for mathematical unboundedness; infeasibility None is unpacked by callers.",
+    "Mixture zip silently truncates and noise parameters can leave probability domain; distributions and section/cover shapes unadmitted.",
+    "Module-global CHECKED prevents independent nested/concurrent runs; require/ok accept truthy non-bools.",
+    "Cech dual condition advertises sup norm1 but verifies only annihilation; shifted upper bound is narrated but not calculated.",
+    "Literal2^20/2^22 resource examples do not enforce enumeration limits for this Python implementation; keep source Rust limits distinct from new bounded Python domain.",
+    "Current complexity exceeds B and existing companion only records historical below-L4 regression exception. Current requested L4B needs new actual architecture, regression and mutation evidence."
+  ],
+  "compatibility": [
+    "Keep source executable path and existing verify_lp scalar-return/ValueError adapter used by20 DAG certificate tests.",
+    "Preserve50 named check groups and legacy CLI substring required by dag/test_foc035_observer_presheaf.py; explicitly distinguish any additional per-case checks.",
+    "Do not alter frozen source copies, historical receipts, scientific DAG statuses or unseen code-folder modules."
+  ]
+}

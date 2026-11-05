@@ -101,7 +101,7 @@ When a finite bulk code space $\mathbb{Q}^b$ is embedded into a boundary state s
 - **GKPW Scalar Mass-Dimension Algebra & BF Bound over $\mathbb{Q}$**: `shadowDimension_involutive`, `shadowDimension_sum`, `gkpwMassSq_shadow_eq`, `gkpw_vieta_product`, `gkpw_completed_square`, `gkpw_roots_from_square_discriminant`, `bf_bound_iff_discriminant_nonneg`, `bf_saturation_double_root`, `gkpwMassSq_ge_bfBound`, `no_rational_root_below_bf_bound`, and `recorded_ads5_and_ads3_gkpw_points` in `lean4/AdsCftDualityImport.lean`.
 - **'t Hooft Ribbon-Graph Genus Scaling & $U(N)/SU(N)$ Split**: `thooft_factorization`, `thooft_planar_vs_torus_suppression`, and `recorded_thooft_and_gauge_counts` in `lean4/AdsCftDualityImport.lean`.
 - **Finite Isometric Bulk-to-Boundary Dictionary & Non-Surjectivity Fence**: `pullback_pushforward_id`, `pushforward_mul_of_isometry`, `correlator_dictionary_pullback`, `correlator_dictionary_match`, `codeIsometry12_is_isometry`, `codeIsometry12_projector_ne_one`, and `boundary_annihilator_obstruction` in `lean4/AdsCftDualityImport.lean`.
-- **Independent Verification & Mutation Killing**: 963 exact rational and matrix checks with 0 failures in `checks/independent/ads-cft-duality-import.py`, and 6 of 6 semantic Lean mutations killed in `dag/research/campaign_ads-cft-duality-import_lean_mutation.json`.
+- **Independent Verification & Mutation Killing**: 829 executed finite rational, symbolic, and matrix checks with 0 failures (see the current source-bound replay in `reviews/repository_file_review/2026-11-02-checks-repair-retest.json`) in `checks/independent/ads-cft-duality-import.py`, and 6 of 6 semantic Lean mutations killed in `dag/research/campaign_ads-cft-duality-import_lean_mutation.json`.
 
 ## What is assumed
 

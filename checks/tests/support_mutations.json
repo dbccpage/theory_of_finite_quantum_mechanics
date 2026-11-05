@@ -1,0 +1,633 @@
+[
+  {
+    "identity": "failure-kind-bypass",
+    "source": "domains.py",
+    "before": "if type(self.kind) is not str or self.kind not in FAILURE_KINDS:",
+    "after": "if False:",
+    "tests": [
+      "test_failure_value_and_exception_bridge"
+    ]
+  },
+  {
+    "identity": "failure-message-bypass",
+    "source": "domains.py",
+    "before": "if type(self.message) is not str or not self.message.strip():",
+    "after": "if False:",
+    "tests": [
+      "test_failure_value_and_exception_bridge"
+    ]
+  },
+  {
+    "identity": "failure-wire-kind",
+    "source": "domains.py",
+    "before": "return {\"kind\": self.kind, \"message\": self.message}",
+    "after": "return {\"kind\": \"input\", \"message\": self.message}",
+    "tests": [
+      "test_failure_value_and_exception_bridge"
+    ]
+  },
+  {
+    "identity": "violation-loses-kind",
+    "source": "boundary.py",
+    "before": "self.failure = Failure(kind, message)",
+    "after": "self.failure = Failure(\"input\", message)",
+    "tests": [
+      "test_failure_value_and_exception_bridge"
+    ]
+  },
+  {
+    "identity": "result-dual-variant",
+    "source": "outcome.py",
+    "before": "if error is not None and value is not _MISSING:",
+    "after": "if False:",
+    "tests": [
+      "test_outcome_construction_and_nullable_success"
+    ]
+  },
+  {
+    "identity": "result-missing-variant",
+    "source": "outcome.py",
+    "before": "if value is _MISSING and error is None:",
+    "after": "if False:",
+    "tests": [
+      "test_outcome_construction_and_nullable_success"
+    ]
+  },
+  {
+    "identity": "result-invalid-failure",
+    "source": "outcome.py",
+    "before": "if error is not None and type(error) is not Failure:",
+    "after": "if False:",
+    "tests": [
+      "test_outcome_construction_and_nullable_success"
+    ]
+  },
+  {
+    "identity": "result-failure-success",
+    "source": "outcome.py",
+    "before": "return self.error is None",
+    "after": "return self.error is not None",
+    "tests": [
+      "test_outcome_construction_and_nullable_success"
+    ]
+  },
+  {
+    "identity": "result-bypasses-short-circuit",
+    "source": "outcome.py",
+    "before": "if self.error is not None:\n            return Outcome(error=self.error)",
+    "after": "if False:\n            return Outcome(error=self.error)",
+    "tests": [
+      "test_outcome_construction_and_nullable_success"
+    ]
+  },
+  {
+    "identity": "result-accepts-untyped-transition",
+    "source": "outcome.py",
+    "before": "if not isinstance(result, Outcome):",
+    "after": "if False:",
+    "tests": [
+      "test_outcome_transitions_preserve_errors"
+    ]
+  },
+  {
+    "identity": "result-fallback-inverted",
+    "source": "outcome.py",
+    "before": "return fallback if self.error is not None else cast(T, self.value)",
+    "after": "return fallback if self.error is None else cast(T, self.value)",
+    "tests": [
+      "test_outcome_construction_and_nullable_success",
+      "test_outcome_transitions_preserve_errors"
+    ]
+  },
+  {
+    "identity": "boundary-all-success-exit",
+    "source": "boundary.py",
+    "before": "return result.value\n",
+    "after": "return 0\n",
+    "tests": [
+      "test_cli_exit_domain_and_failure_wire_format"
+    ]
+  },
+  {
+    "identity": "boundary-boolean-status",
+    "source": "boundary.py",
+    "before": "if type(result.value) is not int or not 0 <= result.value <= 255:",
+    "after": "if not isinstance(result.value, int) or not 0 <= result.value <= 255:",
+    "tests": [
+      "test_cli_exit_domain_and_failure_wire_format"
+    ]
+  },
+  {
+    "identity": "boundary-exit-256",
+    "source": "boundary.py",
+    "before": "0 <= result.value <= 255",
+    "after": "0 <= result.value <= 256",
+    "tests": [
+      "test_cli_exit_domain_and_failure_wire_format"
+    ]
+  },
+  {
+    "identity": "guard-disables-false-check",
+    "source": "boundary.py",
+    "before": "if not condition:\n        raise Violation(\"check\", message)",
+    "after": "if False:\n        raise Violation(\"check\", message)",
+    "tests": [
+      "test_boundary_errors_cancellation_and_required_boolean"
+    ]
+  },
+  {
+    "identity": "guard-accepts-truthy-nonbool",
+    "source": "boundary.py",
+    "before": "if type(condition) is not bool:",
+    "after": "if False:",
+    "tests": [
+      "test_boundary_errors_cancellation_and_required_boolean"
+    ]
+  },
+  {
+    "identity": "guard-accepts-empty-description",
+    "source": "boundary.py",
+    "before": "if type(message) is not str or not message.strip():",
+    "after": "if False:",
+    "tests": [
+      "test_boundary_errors_cancellation_and_required_boolean"
+    ]
+  },
+  {
+    "identity": "integer-boolean-admission",
+    "source": "domains.py",
+    "before": "if type(value) is not int:",
+    "after": "if not isinstance(value, int):",
+    "tests": [
+      "test_integer_boundaries"
+    ]
+  },
+  {
+    "identity": "integer-minimum-open",
+    "source": "domains.py",
+    "before": "value < minimum",
+    "after": "value <= minimum",
+    "tests": [
+      "test_integer_boundaries"
+    ]
+  },
+  {
+    "identity": "integer-maximum-open",
+    "source": "domains.py",
+    "before": "value > maximum",
+    "after": "value >= maximum",
+    "tests": [
+      "test_integer_boundaries"
+    ]
+  },
+  {
+    "identity": "integer-inverted-limits",
+    "source": "domains.py",
+    "before": "if minimum is not None and maximum is not None and minimum > maximum:",
+    "after": "if False:",
+    "tests": [
+      "test_integer_boundaries"
+    ]
+  },
+  {
+    "identity": "rational-bit-budget-bypass",
+    "source": "domains.py",
+    "before": "if max(value.numerator.bit_length(), value.denominator.bit_length()) > MAX_RATIONAL_BITS:",
+    "after": "if False:",
+    "tests": [
+      "test_rational_boundaries_and_resource_budget"
+    ]
+  },
+  {
+    "identity": "rational-positive-zero",
+    "source": "domains.py",
+    "before": "strictly_positive and admitted <= 0",
+    "after": "strictly_positive and admitted < 0",
+    "tests": [
+      "test_rational_boundaries_and_resource_budget"
+    ]
+  },
+  {
+    "identity": "rational-minimum-bypass",
+    "source": "domains.py",
+    "before": "if minimum is not None and admitted < _exact_fraction(minimum, \"minimum\"):",
+    "after": "if False:",
+    "tests": [
+      "test_rational_boundaries_and_resource_budget"
+    ]
+  },
+  {
+    "identity": "sequence-budget-bypass",
+    "source": "domains.py",
+    "before": "if len(carrier) > maximum:",
+    "after": "if False:",
+    "tests": [
+      "test_collection_admission_and_snapshot_ownership"
+    ]
+  },
+  {
+    "identity": "sequence-size-bypass",
+    "source": "domains.py",
+    "before": "if size is not None and len(snapshot) != size:",
+    "after": "if False:",
+    "tests": [
+      "test_collection_admission_and_snapshot_ownership"
+    ]
+  },
+  {
+    "identity": "matrix-total-budget",
+    "source": "domains.py",
+    "before": "if len(carrier) * len(first) > MAX_SEQUENCE_LENGTH:",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_word_and_permutation_domains"
+    ]
+  },
+  {
+    "identity": "word-bool-boundary",
+    "source": "domains.py",
+    "before": "if any(type(x) is not bool for x in snapshot):",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_word_and_permutation_domains"
+    ]
+  },
+  {
+    "identity": "permutation-bijection",
+    "source": "domains.py",
+    "before": "if set(snapshot) != {0, 1, 2}:",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_word_and_permutation_domains"
+    ]
+  },
+  {
+    "identity": "case-duplicate-admission",
+    "source": "cases.py",
+    "before": "if name in self._names:",
+    "after": "if False:",
+    "tests": [
+      "test_cases_transactional_admission_and_iteration"
+    ]
+  },
+  {
+    "identity": "case-status-admission",
+    "source": "cases.py",
+    "before": "if type(passed) is not bool:",
+    "after": "if False:",
+    "tests": [
+      "test_cases_transactional_admission_and_iteration"
+    ]
+  },
+  {
+    "identity": "case-budget-bypass",
+    "source": "cases.py",
+    "before": "if len(self._rows) >= MAX_CASES:",
+    "after": "if False:",
+    "tests": [
+      "test_cases_transactional_admission_and_iteration"
+    ]
+  },
+  {
+    "identity": "case-iteration-live-view",
+    "source": "cases.py",
+    "before": "return iter(tuple(self._rows))",
+    "after": "return iter(self._rows)",
+    "tests": [
+      "test_cases_transactional_admission_and_iteration"
+    ]
+  },
+  {
+    "identity": "counter-reset-per-check",
+    "source": "cases.py",
+    "before": "    def require(self, condition: bool, message: str) -> None:\n        self._checks += 1",
+    "after": "    def require(self, condition: bool, message: str) -> None:\n        self._checks = 1",
+    "tests": [
+      "test_counter_is_invocation_owned_and_counts_failed_obligations"
+    ]
+  },
+  {
+    "identity": "counter-failure-not-counted",
+    "source": "cases.py",
+    "before": "self._checks += 1\n        require(condition, message)",
+    "after": "require(condition, message)\n        self._checks += 1",
+    "tests": [
+      "test_counter_is_invocation_owned_and_counts_failed_obligations"
+    ]
+  },
+  {
+    "identity": "gaussian-add-wrong-sign",
+    "source": "gaussian_rational.py",
+    "before": "self.re + other.re, self.im + other.im",
+    "after": "self.re - other.re, self.im + other.im",
+    "tests": [
+      "test_gaussian_field_against_symbolic_complex_arithmetic"
+    ]
+  },
+  {
+    "identity": "gaussian-sub-wrong-sign",
+    "source": "gaussian_rational.py",
+    "before": "self.re - other.re, self.im - other.im",
+    "after": "self.re + other.re, self.im - other.im",
+    "tests": [
+      "test_gaussian_field_against_symbolic_complex_arithmetic"
+    ]
+  },
+  {
+    "identity": "gaussian-product-sign",
+    "source": "gaussian_rational.py",
+    "before": "self.re*other.re - self.im*other.im",
+    "after": "self.re*other.re + self.im*other.im",
+    "tests": [
+      "test_gaussian_field_against_symbolic_complex_arithmetic"
+    ]
+  },
+  {
+    "identity": "gaussian-conjugate-identity",
+    "source": "gaussian_rational.py",
+    "before": "return GaussianRational(self.re, -self.im)",
+    "after": "return GaussianRational(self.re, self.im)",
+    "tests": [
+      "test_gaussian_invalid_components_operands_and_immutability"
+    ]
+  },
+  {
+    "identity": "gaussian-norm-indefinite",
+    "source": "gaussian_rational.py",
+    "before": "return self.re*self.re + self.im*self.im",
+    "after": "return self.re*self.re - self.im*self.im",
+    "tests": [
+      "test_gaussian_invalid_components_operands_and_immutability"
+    ]
+  },
+  {
+    "identity": "gaussian-inverse-sign",
+    "source": "gaussian_rational.py",
+    "before": "self.re/norm, -self.im/norm",
+    "after": "self.re/norm, self.im/norm",
+    "tests": [
+      "test_gaussian_field_against_symbolic_complex_arithmetic"
+    ]
+  },
+  {
+    "identity": "matrix-determinant-sign",
+    "source": "gaussian_matrix2.py",
+    "before": "return self.a11*self.a22-self.a12*self.a21",
+    "after": "return self.a11*self.a22+self.a12*self.a21",
+    "tests": [
+      "test_gaussian_matrix_invariants"
+    ]
+  },
+  {
+    "identity": "matrix-adjoint-no-transpose",
+    "source": "gaussian_matrix2.py",
+    "before": "self.a11.conj(), self.a21.conj(),\n                               self.a12.conj(), self.a22.conj()",
+    "after": "self.a11.conj(), self.a12.conj(),\n                               self.a21.conj(), self.a22.conj()",
+    "tests": [
+      "test_gaussian_matrix_invariants"
+    ]
+  },
+  {
+    "identity": "matrix-multiply-entry",
+    "source": "gaussian_matrix2.py",
+    "before": "self.a11*other.a11+self.a12*other.a21",
+    "after": "self.a11*other.a11-self.a12*other.a21",
+    "tests": [
+      "test_gaussian_matrix_invariants"
+    ]
+  },
+  {
+    "identity": "matrix-inverse-sign",
+    "source": "gaussian_matrix2.py",
+    "before": "self.a22*inv_det,G(-1)*self.a12*inv_det",
+    "after": "self.a22*inv_det,self.a12*inv_det",
+    "tests": [
+      "test_gaussian_matrix_invariants"
+    ]
+  },
+  {
+    "identity": "replacement-split-bypass",
+    "source": "domains.py",
+    "before": "if word_value != prefix + before + suffix:",
+    "after": "if False:",
+    "tests": [
+      "test_word_replacement_refusals"
+    ]
+  },
+  {
+    "identity": "replacement-drops-suffix",
+    "source": "domains.py",
+    "before": "result = prefix + after + suffix",
+    "after": "result = prefix + after",
+    "tests": [
+      "test_word_replacement_preserves_context"
+    ]
+  },
+  {
+    "identity": "replacement-output-budget",
+    "source": "domains.py",
+    "before": "sequence(result, \"replacement word\")",
+    "after": "pass",
+    "tests": [
+      "test_word_replacement_refusals"
+    ]
+  },
+  {
+    "identity": "rank-counts-dependent-rows",
+    "source": "happy_boundary.py",
+    "before": "if cur != 0:",
+    "after": "if True:",
+    "tests": [
+      "test_rank_against_explicit_vector_span"
+    ]
+  },
+  {
+    "identity": "pauli-x-bit-location",
+    "source": "happy_boundary.py",
+    "before": "val |= 1 << (2 * q)",
+    "after": "val |= 1 << (2 * q + 1)",
+    "tests": [
+      "test_stabilizer_admission_and_cache_snapshot"
+    ]
+  },
+  {
+    "identity": "symplectic-commutation-bypass",
+    "source": "happy_boundary.py",
+    "before": "return (s % 2) == 0",
+    "after": "return True",
+    "tests": [
+      "test_stabilizer_admission_and_cache_snapshot"
+    ]
+  },
+  {
+    "identity": "stabilizer-purity-bypass",
+    "source": "happy_boundary.py",
+    "before": "if gf2_rank(list(generators)) != 20:",
+    "after": "if False:",
+    "tests": [
+      "test_stabilizer_admission_and_cache_snapshot"
+    ]
+  },
+  {
+    "identity": "stabilizer-commutation-bypass",
+    "source": "happy_boundary.py",
+    "before": "if any(not commutes_20(u,v) for u in generators for v in generators):",
+    "after": "if False:",
+    "tests": [
+      "test_stabilizer_admission_and_cache_snapshot"
+    ]
+  },
+  {
+    "identity": "interval-closed-endpoint",
+    "source": "happy_boundary.py",
+    "before": "% 20) < length",
+    "after": "% 20) <= length",
+    "tests": [
+      "test_stabilizer_mincut_independent_assignments"
+    ]
+  },
+  {
+    "identity": "mincut-forces-central-zero",
+    "source": "happy_boundary.py",
+    "before": "return min(cost_for_central(0), cost_for_central(1))",
+    "after": "return cost_for_central(0)",
+    "tests": [
+      "test_stabilizer_mincut_independent_assignments"
+    ]
+  },
+  {
+    "identity": "entropy-offset",
+    "source": "happy_boundary.py",
+    "before": "return gf2_rank([g & mask for g in generators]) - length",
+    "after": "return gf2_rank([g & mask for g in generators]) + length",
+    "tests": [
+      "test_stabilizer_admission_and_cache_snapshot"
+    ]
+  },
+  {
+    "identity": "determinant-row-swap-sign",
+    "source": "wilson_operator.py",
+    "before": "det = -det",
+    "after": "det = det",
+    "tests": [
+      "test_wilson_determinant_independent_symbolic_elimination"
+    ]
+  },
+  {
+    "identity": "determinant-elimination-sign",
+    "source": "wilson_operator.py",
+    "before": "a[row][k] -= q * a[col][k]",
+    "after": "a[row][k] += q * a[col][k]",
+    "tests": [
+      "test_wilson_determinant_independent_symbolic_elimination"
+    ]
+  },
+  {
+    "identity": "wilson-mass-diagonal",
+    "source": "wilson_operator.py",
+    "before": "G(-1+4*r)",
+    "after": "G(1+4*r)",
+    "tests": [
+      "test_wilson_operator_independent_block_construction"
+    ]
+  },
+  {
+    "identity": "wilson-link-phase-removed",
+    "source": "wilson_operator.py",
+    "before": "phase=G(Q(3,5),Q(4,5)) if site else ONE",
+    "after": "phase=ONE",
+    "tests": [
+      "test_wilson_operator_independent_block_construction"
+    ]
+  },
+  {
+    "identity": "wilson-backward-no-conjugate",
+    "source": "wilson_operator.py",
+    "before": "plus*reverse[other_color][color].conj()",
+    "after": "plus*reverse[other_color][color]",
+    "tests": [
+      "test_wilson_operator_independent_block_construction"
+    ]
+  },
+  {
+    "identity": "wilson-shape-sign-zero",
+    "source": "wilson_operator.py",
+    "before": "if 0 in signs:",
+    "after": "if False:",
+    "tests": [
+      "test_wilson_shapes_and_chirality_boundaries"
+    ]
+  },
+  {
+    "identity": "wilson-hermitian-bypass",
+    "source": "wilson_operator.py",
+    "before": "if entry != matrices[mu][b][a].conj():",
+    "after": "if False:",
+    "tests": [
+      "test_wilson_shapes_and_chirality_boundaries"
+    ]
+  },
+  {
+    "identity": "mutation-allows-path-escape",
+    "source": "mutation_case.py",
+    "before": "(self.source, r\"[a-z][a-z0-9_]*\\.py\")",
+    "after": "(self.source, r\".*\")",
+    "tests": [
+      "test_mutation_request_admission_and_exact_replacement"
+    ]
+  },
+  {
+    "identity": "mutation-allows-ambiguous-target",
+    "source": "mutation_case.py",
+    "before": "source.count(self.before) != 1",
+    "after": "source.count(self.before) < 1",
+    "tests": [
+      "test_mutation_request_admission_and_exact_replacement"
+    ]
+  },
+  {
+    "identity": "mutation-allows-identical-replacement",
+    "source": "mutation_case.py",
+    "before": "if self.before == self.after:",
+    "after": "if False:",
+    "tests": [
+      "test_mutation_request_admission_and_exact_replacement"
+    ]
+  },
+  {
+    "identity": "wilson-assembled-check-skips-clifford",
+    "source": "wilson_operator.py",
+    "before": "if not clifford_relations(gamma_matrices()):",
+    "after": "if False:",
+    "tests": [
+      "test_wilson_shapes_and_chirality_boundaries"
+    ]
+  },
+  {
+    "identity": "boundary-os-error-not-captured",
+    "source": "boundary.py",
+    "before": "except OSError as error:",
+    "after": "except FileNotFoundError as error:",
+    "tests": [
+      "test_boundary_errors_cancellation_and_required_boolean"
+    ]
+  },
+  {
+    "identity": "outcome-os-error-not-captured",
+    "source": "outcome.py",
+    "before": "except OSError as error:",
+    "after": "except FileNotFoundError as error:",
+    "tests": [
+      "test_outcome_transitions_preserve_errors"
+    ]
+  },
+  {
+    "identity": "boundary-closed-stderr-rethrows",
+    "source": "boundary.py",
+    "before": "        pass\n",
+    "after": "        raise\n",
+    "tests": [
+      "test_cli_exit_domain_and_failure_wire_format"
+    ]
+  }
+]

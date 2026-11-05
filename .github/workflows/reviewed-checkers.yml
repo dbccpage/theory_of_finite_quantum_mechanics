@@ -1,0 +1,365 @@
+name: reviewed-checkers
+
+on:
+  pull_request:
+    paths:
+      - 'checks/**'
+      - 'reviews/repository_file_review/**'
+      - 'scripts/score_scope_contracts.py'
+      - '.github/workflows/reviewed-checkers.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'checks/**'
+      - 'reviews/repository_file_review/**'
+      - 'scripts/score_scope_contracts.py'
+      - '.github/workflows/reviewed-checkers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        python: ['3.12', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --disable-pip-version-check -r checks/tests/requirements.txt
+      - name: Verify reviewed sources and companion histories
+        shell: python
+        run: |
+          import hashlib
+          import json
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, str(Path("scripts").resolve()))
+          from score_scope_contracts import validate_document, valid_current_entry
+
+          entries = json.loads(Path("reviews/repository_file_review/current_file_scores.json").read_bytes())["files"]
+          rows = {row["path"]: row for row in entries}
+          if len(rows) != len(entries) or not any(row.get("scoring_token") == "L4B" for row in entries):
+              raise ValueError("The file ledger must contain unique paths and assessed sources")
+          for row in entries:
+              if row.get("scoring_token") != "L4B":
+                  continue
+              source = Path(row["path"])
+              companion = source.with_suffix(".contract.score.yaml")
+              for artifact in (source, companion):
+                  if hashlib.sha256(artifact.read_bytes()).hexdigest() != rows[artifact.as_posix()]["sha256"]:
+                      raise ValueError(f"Ledger hash differs from checkout for {artifact}")
+              document = json.loads(companion.read_bytes())
+              score = validate_document(document, row["path"], row["sha256"], "Python")
+              if score["score_token"] != row["scoring_token"]:
+                  raise ValueError(f"Score mismatch for {source}")
+              for field in ("contract_history", "scoring_history"):
+                  for entry in document[field]:
+                      error = valid_current_entry(entry)
+                      if error:
+                          raise ValueError(f"{companion} {field}: {error}")
+      - name: Strict checker infrastructure typing
+        run: python -I -B -m mypy --config-file checks/mypy.ini checks/checker_support checks/tests/test_checker_support.py checks/tests/run_support_mutations.py checks/tests/test_mutation_campaign.py
+      - name: Strict reviewed AdS and regression typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/ads-cft-duality-import.py
+          checks/independent/ads-happy-toy-not-duality-gap.py
+          checks/independent/ads-regge-area-rt-gap.py
+          checks/independent/ads-rt-formula-import.py
+          checks/tests/test_review_repairs.py checks/tests/test_ads_checkers.py
+      - name: Checker infrastructure contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_checker_support.py
+          python -I -B -O -X utf8 checks/tests/test_checker_support.py
+          python -I -B -X utf8 checks/tests/test_mutation_campaign.py
+          python -I -B -O -X utf8 checks/tests/test_mutation_campaign.py
+      - name: Normal interpreter
+        run: python -I -B -X utf8 checks/tests/test_review_repairs.py
+      - name: Optimized interpreter
+        run: python -I -B -O -X utf8 checks/tests/test_review_repairs.py
+      - name: AdS boundary and generated-property contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_ads_checkers.py
+          python -I -B -O -X utf8 checks/tests/test_ads_checkers.py
+      - name: Strict authority checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/auth-dtm2-input-request-planned.py
+          checks/independent/auth-rice-theorem-import.py
+          checks/independent/authf-carrier-admission-gate.py
+          checks/tests/test_authority_checkers.py
+      - name: Authority checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_authority_checkers.py
+          python -I -B -O -X utf8 checks/tests/test_authority_checkers.py
+      - name: Strict Wilson checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py
+          checks/tests/test_wilson_checker.py
+      - name: Wilson checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_wilson_checker.py
+          python -I -B -O -X utf8 checks/tests/test_wilson_checker.py
+      - name: Strict strong-coupling checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py
+          checks/tests/test_strong_coupling_checker.py
+      - name: Strong-coupling checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_strong_coupling_checker.py
+          python -I -B -O -X utf8 checks/tests/test_strong_coupling_checker.py
+      - name: Strict hinge-lineon checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py
+          checks/tests/test_lineon_checker.py
+      - name: Hinge-lineon checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_lineon_checker.py
+          python -I -B -O -X utf8 checks/tests/test_lineon_checker.py
+      - name: Strict finite-computation checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/comp-finite-model-controls.py
+          checks/tests/test_computation_controls.py
+      - name: Finite-computation checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_computation_controls.py
+          python -I -B -O -X utf8 checks/tests/test_computation_controls.py
+      - name: Strict causal-QFT checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/checker_support/rational_matrix.py
+          checks/independent/cqft-causal-factorization-import.py
+          checks/independent/cqft-local-net-axioms-import.py
+          checks/independent/cqft-reeh-schlieder-theorem-import.py
+          checks/tests/test_cqft_checkers.py
+      - name: Causal-QFT checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_cqft_checkers.py
+          python -I -B -O -X utf8 checks/tests/test_cqft_checkers.py
+      - name: Strict constructor-theory checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/ct-information-media-interoperability.py
+          checks/independent/ct-local-mediator-entanglement-import.py
+          checks/tests/test_constructor_theory.py
+      - name: Constructor-theory checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_constructor_theory.py
+          python -I -B -O -X utf8 checks/tests/test_constructor_theory.py
+      - name: Strict BPHZ checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-bphz-continuum-fence.py
+          checks/tests/test_bphz_checker.py
+      - name: BPHZ checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_bphz_checker.py
+          python -I -B -O -X utf8 checks/tests/test_bphz_checker.py
+      - name: Strict CKM checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-ckm-physics-fence.py
+          checks/tests/test_ckm_checker.py
+      - name: CKM checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_ckm_checker.py
+          python -I -B -O -X utf8 checks/tests/test_ckm_checker.py
+      - name: Strict continuum-interface checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-continuum-interface.py
+          checks/tests/test_continuum_interface.py
+      - name: Continuum-interface checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_continuum_interface.py
+          python -I -B -O -X utf8 checks/tests/test_continuum_interface.py
+      - name: Strict refinement-limit checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-continuum-refinement-limit.py
+          checks/tests/test_refinement_limit.py
+      - name: Refinement-limit checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_refinement_limit.py
+          python -I -B -O -X utf8 checks/tests/test_refinement_limit.py
+      - name: Strict electroweak checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-electroweak-continuum-fence.py
+          checks/tests/test_electroweak_checker.py
+      - name: Electroweak checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_electroweak_checker.py
+          python -I -B -O -X utf8 checks/tests/test_electroweak_checker.py
+      - name: Strict Gribov checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-gribov-continuum-fence.py
+          checks/tests/test_gribov_checker.py
+      - name: Gribov checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_gribov_checker.py
+          python -I -B -O -X utf8 checks/tests/test_gribov_checker.py
+      - name: Strict hierarchical Borel checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-hierarchical-borel.py
+          checks/tests/test_hierarchical_borel.py
+      - name: Hierarchical Borel checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_hierarchical_borel.py
+          python -I -B -O -X utf8 checks/tests/test_hierarchical_borel.py
+      - name: Strict Regge checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-regge-gravity-fence.py
+          checks/tests/test_regge_checker.py
+      - name: Regge checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_regge_checker.py
+          python -I -B -O -X utf8 checks/tests/test_regge_checker.py
+      - name: Strict relational-time checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-relational-time-fence.py
+          checks/tests/test_relational_time.py
+      - name: Relational-time checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_relational_time.py
+          python -I -B -O -X utf8 checks/tests/test_relational_time.py
+      - name: Strict Symanzik checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-symanzik-qed-ae-fence.py
+          checks/tests/test_symanzik_checker.py
+      - name: Symanzik checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_symanzik_checker.py
+          python -I -B -O -X utf8 checks/tests/test_symanzik_checker.py
+      - name: Strict counterterm checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/dfm-z1-z2-counterterm-fence.py
+          checks/tests/test_counterterm_checker.py
+      - name: Counterterm checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_counterterm_checker.py
+          python -I -B -O -X utf8 checks/tests/test_counterterm_checker.py
+      - name: Strict finite-dynamics checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/ds-continuous-time-exp-generator.py
+          checks/tests/test_continuous_time_checker.py
+      - name: Finite-dynamics checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_continuous_time_checker.py
+          python -I -B -O -X utf8 checks/tests/test_continuous_time_checker.py
+      - name: Strict positive-form checker typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/ds-positive-form-controls.py
+          checks/tests/test_positive_form_controls.py
+      - name: Positive-form checker contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_positive_form_controls.py
+          python -I -B -O -X utf8 checks/tests/test_positive_form_controls.py
+      - name: Strict observer-presheaf typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/foc035_observer_presheaf.py
+          checks/checker_support/exact_linear_program.py
+          checks/checker_support/linear_program_certificate.py
+          checks/checker_support/simplex_tableau.py
+          checks/checker_support/measurement_scenario.py
+          checks/checker_support/empirical_model.py
+          checks/checker_support/cech_complex.py
+          checks/tests/test_exact_linear_program.py
+          checks/tests/test_empirical_model.py
+          checks/tests/test_cech_complex.py
+          checks/tests/test_observer_presheaf.py
+      - name: Observer-presheaf and certificate contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_exact_linear_program.py
+          python -I -B -O -X utf8 checks/tests/test_exact_linear_program.py
+          python -I -B -X utf8 checks/tests/test_empirical_model.py
+          python -I -B -O -X utf8 checks/tests/test_empirical_model.py
+          python -I -B -X utf8 checks/tests/test_cech_complex.py
+          python -I -B -O -X utf8 checks/tests/test_cech_complex.py
+          python -I -B -X utf8 checks/tests/test_observer_presheaf.py
+          python -I -B -O -X utf8 checks/tests/test_observer_presheaf.py
+          python -I -B -m pytest -q -p no:cacheprovider dag/test_foc035_lp_certificates.py
+      - name: Strict Gaussian modulo-two certificate typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/checker_support/rational_inverse.py
+          checks/independent/fq-gap-born-uniqueness-gleason-mod2.py
+          checks/tests/test_mod2_frame_system.py
+      - name: Gaussian modulo-two certificate contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_mod2_frame_system.py
+          python -I -B -O -X utf8 checks/tests/test_mod2_frame_system.py
+      - name: Strict rational-ray obstruction typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py
+          checks/tests/test_rational_ray_obstruction.py
+      - name: Rational-ray obstruction contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_rational_ray_obstruction.py
+          python -I -B -O -X utf8 checks/tests/test_rational_ray_obstruction.py
+      - name: Strict Gaussian extension certificate typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/checker_support/exact_json_document.py
+          checks/independent/fq-gleason-qi3-extension.py
+          checks/tests/test_gaussian_extension_certificate.py
+      - name: Gaussian extension certificate contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_gaussian_extension_certificate.py
+          python -I -B -O -X utf8 checks/tests/test_gaussian_extension_certificate.py
+      - name: Strict rational binary-colouring typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/checker_support/binary_frame_system.py
+          checks/independent/fq-gleason-qi3-frame-functions.py
+          checks/tests/test_binary_colouring.py
+      - name: Rational binary-colouring contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_binary_colouring.py
+          python -I -B -O -X utf8 checks/tests/test_binary_colouring.py
+      - name: Strict Gaussian tomography typing
+        run: >-
+          python -I -B -m mypy --config-file checks/mypy.ini
+          checks/checker_support/gaussian_vector3.py
+          checks/checker_support/inert_prime_residual.py
+          checks/checker_support/orthogonal_gaussian_pair.py
+          checks/checker_support/equatorial_ray_geometry.py
+          checks/checker_support/hermitian_tomography.py
+          checks/independent/fq-gleason-qi3-tomography.py
+          checks/tests/test_inert_prime_geometry.py
+          checks/tests/test_tomography_geometry.py
+          checks/tests/test_gaussian_tomography_controls.py
+      - name: Gaussian tomography contracts
+        run: |
+          python -I -B -X utf8 checks/tests/test_inert_prime_geometry.py
+          python -I -B -O -X utf8 checks/tests/test_inert_prime_geometry.py
+          python -I -B -X utf8 checks/tests/test_tomography_geometry.py
+          python -I -B -O -X utf8 checks/tests/test_tomography_geometry.py
+          python -I -B -X utf8 checks/tests/test_gaussian_tomography_controls.py
+          python -I -B -O -X utf8 checks/tests/test_gaussian_tomography_controls.py
+      - name: Integer obstruction checks
+        run: |
+          python -I -B -m mypy --config-file checks/mypy.ini checks/checker_support/integer_quadratic_equation.py checks/independent/fq-gap-continuum-hilbert-lift.py checks/tests/test_integer_obstructions.py
+          python -I -B -X utf8 checks/tests/test_integer_obstructions.py
+          python -I -B -O -X utf8 checks/tests/test_integer_obstructions.py

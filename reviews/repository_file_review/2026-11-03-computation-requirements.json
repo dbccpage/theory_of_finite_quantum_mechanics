@@ -1,0 +1,860 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/comp-finite-model-controls.py": {
+      "role": "Bounded finite-word verification application integrating immutable rewrite-system ownership, shortest-path and trace certificates, conservative resource accounting, typed refusals and six finite computation controls",
+      "profile": "Exact",
+      "origins": [
+        {
+          "path": "lean4/ComputationC2Step3NotWordStep.lean",
+          "sha256": "5e2c7f853af31126192456d4a3105df7e19805dcef3eae4394e58507fcf48560"
+        },
+        {
+          "path": "lean4/ComputationC3NoFixedBound.lean",
+          "sha256": "3976a6960ee7650cdbb431214f8b8585dbdc9443bc924c7f2d6e4a2d6b78be12"
+        },
+        {
+          "path": "lean4/ComputationC6Tm0OutputFormOpen.lean",
+          "sha256": "df403415af32c9a579466ea33a6aa790896381efbbe521322eb020f74e0d3fc5"
+        },
+        {
+          "path": "lean4/ComputationC7EncodedInstanceReduction.lean",
+          "sha256": "c7a37ac4d24f1a178f6ae1ae0811456eae15ca35a69ac6ea35b3dd263962f284"
+        },
+        {
+          "path": "lean4/ComputationC7FixedTargetOpen.lean",
+          "sha256": "35f492eef55f3248c60df305f6ce55e0803625af848fc4a4caa196a667e2afe0"
+        },
+        {
+          "path": "lean4/ComputationC8MinimalityFence.lean",
+          "sha256": "25c0d482ab5ec38503c85ce2d0e04d0bee0638fb31e31c2f8006a6e228d400eb"
+        }
+      ],
+      "cost": "Alphabet <=32, rules <=32, words <=64 symbols, retained search states <=4096, reserved rule-offset trials <=65536. Each trial compares/copies at most 128 symbols before filtering to 64. Search memory O(states * word length); trace snapshot <=4096 *64 symbols, then bounded rule trials. Helper naturals <=4096 bits. Default receipt executes 50 obligations.",
+      "groups": [
+        {
+          "requirement": "Own a frozen alphabet and distinct nested rule snapshots. Admit 1..32 distinct symbols in 0..4095, <=32 rules, words <=64 symbols and max_length 0..64. Empty rule sides are valid. Reject bool/float, malformed shapes, unknown symbols and over-budget sequences before use.",
+          "symbols": [
+            "_word",
+            "FiniteWordSystem",
+            "FiniteWordSystem.__init__",
+            "FiniteWordSystem.admit_word",
+            "FiniteWordSystem.in_bound"
+          ],
+          "tests": [
+            "ComputationControlTests.test_model_schema_and_word_boundaries",
+            "ComputationControlTests.test_model_owns_immutable_snapshots",
+            "ComputationControlTests.test_six_original_controls_and_cli"
+          ],
+          "requirement_id": "TFQM-COMPUTATION-REVIEW-COMP-FINITE-MODEL-CONTROLS-1"
+        },
+        {
+          "requirement": "Validate an exact one-hole context and rule index, returning its replacement under the global 64-symbol admission limit. apply is a raw witness operation: search max_length is enforced separately. Ordered successor enumeration includes empty-left insertion at the final position and only emits words within max_length.",
+          "symbols": [
+            "FiniteWordSystem.apply",
+            "FiniteWordSystem._successors"
+          ],
+          "tests": [
+            "ComputationControlTests.test_one_hole_replacement_uses_exact_context",
+            "ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal",
+            "ComputationControlTests.test_bounded_search_against_context_fixed_point",
+            "ComputationControlTests.test_model_schema_and_word_boundaries"
+          ],
+          "requirement_id": "TFQM-COMPUTATION-REVIEW-COMP-FINITE-MODEL-CONTROLS-2"
+        },
+        {
+          "requirement": "Breadth-first search returns an owned shortest path, successful None only for completed bounded exhaustion or an out-of-bound target, or a typed input/resource refusal. Validate source/target/budgets before identity. At most 4096 retained states and 65536 rule-offset trials; reserve each expansion before doing work, include the initial state, never overwrite a visited parent and return on first goal discovery.",
+          "symbols": [
+            "FiniteWordSystem._path",
+            "FiniteWordSystem._find_path",
+            "FiniteWordSystem.find_path"
+          ],
+          "tests": [
+            "ComputationControlTests.test_bounded_search_against_context_fixed_point",
+            "ComputationControlTests.test_shortest_route_and_no_path_exhaustion",
+            "ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable",
+            "ComputationControlTests.test_search_parameter_refusals",
+            "ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+          ],
+          "requirement_id": "TFQM-COMPUTATION-REVIEW-COMP-FINITE-MODEL-CONTROLS-3"
+        },
+        {
+          "requirement": "Snapshot a nonempty trace of <=4096 admitted in-bound words. Each adjacent pair must be an actual rule step, including repeated words only when a self-step exists. Reserve bounded rule-offset work before each transition and distinguish malformed input, invalid witness and exhausted resource.",
+          "symbols": [
+            "FiniteWordSystem._verify_trace",
+            "FiniteWordSystem.verify_trace"
+          ],
+          "tests": [
+            "ComputationControlTests.test_one_hole_replacement_uses_exact_context",
+            "ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal",
+            "ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable",
+            "ComputationControlTests.test_model_owns_immutable_snapshots",
+            "ComputationControlTests.test_model_schema_and_word_boundaries",
+            "ComputationControlTests.test_search_parameter_refusals"
+          ],
+          "requirement_id": "TFQM-COMPUTATION-REVIEW-COMP-FINITE-MODEL-CONTROLS-4"
+        },
+        {
+          "requirement": "Preserve the literal merge, halted writer, constant evaluation, finite pair encoding and blank-extension definitions. Naturals admit up to 4096 bits; encoded word symbols up to 4095. Validate all parameters even those ignored by a selected branch. An already halted cell keeps its old value; blank extension owns a new list with total length <=64.",
+          "symbols": [
+            "_natural",
+            "merge01",
+            "write_halt",
+            "eval_const",
+            "start_word",
+            "word_pred",
+            "append_blank"
+          ],
+          "tests": [
+            "ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge",
+            "ComputationControlTests.test_encoding_and_blank_extension",
+            "ComputationControlTests.test_literal_helper_domains"
+          ],
+          "requirement_id": "TFQM-COMPUTATION-REVIEW-COMP-FINITE-MODEL-CONTROLS-5"
+        },
+        {
+          "requirement": "Compose the six original finite controls into 50 unique executed obligations: 5 word moves, 5 no-rule bound controls, 25 writer controls, 6 encoding controls, 2 erasures and 7 tape controls. Preserve exact failure names/counts, per-invocation state, typed CLI diagnostics, nonzero failure exit and cancellation propagation. No claim about infinite reductions, full TM simulation or minimality.",
+          "symbols": [
+            "check_word_moves",
+            "check_no_rule_bound",
+            "check_constant_writer",
+            "check_predicate_composition",
+            "check_fixed_target",
+            "check_marked_tape",
+            "run_checks",
+            "main"
+          ],
+          "tests": [
+            "ComputationControlTests.test_six_original_controls_and_cli",
+            "ComputationControlTests.test_generated_receipt_accounting",
+            "ComputationControlTests.test_expected_failures_cancellation_and_repeated_invocations"
+          ],
+          "requirement_id": "TFQM-COMPUTATION-REVIEW-COMP-FINITE-MODEL-CONTROLS-6"
+        }
+      ],
+      "source_sha256": "b5d1b9e477bc32075c31e1db0f7ae4cba267e6c58fd5c7f3fb3233abc1b0556b",
+      "symbols": [
+        "FiniteWordSystem",
+        "FiniteWordSystem.__init__",
+        "FiniteWordSystem._find_path",
+        "FiniteWordSystem._path",
+        "FiniteWordSystem._successors",
+        "FiniteWordSystem._verify_trace",
+        "FiniteWordSystem.admit_word",
+        "FiniteWordSystem.apply",
+        "FiniteWordSystem.find_path",
+        "FiniteWordSystem.in_bound",
+        "FiniteWordSystem.verify_trace",
+        "_natural",
+        "_word",
+        "append_blank",
+        "check_constant_writer",
+        "check_fixed_target",
+        "check_marked_tape",
+        "check_no_rule_bound",
+        "check_predicate_composition",
+        "check_word_moves",
+        "eval_const",
+        "main",
+        "merge01",
+        "run_checks",
+        "start_word",
+        "word_pred",
+        "write_halt"
+      ],
+      "consumers": [
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_367_review_replay.json",
+          "sha256": "ccdcb7b4db71b4cbaa05c4625c2a042e759713810f7730fb0c6820265ded79af",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c2-step3-not-word-step-precommit.md",
+          "sha256": "c3a40516dddc1ea5117138bbe780a8a5e7bad7a26f6f390c974d01a605b510ac",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-367-repair.md",
+          "sha256": "34903dd80bf04ddf84609f20405d8285613d9cc3e00f11db81f840f4495ba7ce",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c3-no-fixed-bound-precommit.md",
+          "sha256": "1f635fcb56c5db4f58c9aa485b8b8f42928565d2bfebc2aa13e28aebeccf6c75",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_round2_combined_validation.json",
+          "sha256": "d553d1f3b2d63799205fb8f870dec0a5b8baad4d348d3808bfc80a0c708b1e13",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_383_round2_replay.json",
+          "sha256": "c7b15ce6358fb340a59777b6a63d9aa41c989daf803523a5c7d9b43aa83d59d6",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json",
+          "sha256": "2485860d996e1cef41564c255ce168ebada730950eeffb169b479e84bf77f52b",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-368-repair.md",
+          "sha256": "39fed86c83b8c56a4ec3ac0262c4417a824d21be84c1de13ae31e0f3edf5ebc9",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c6-tm0-output-form-open-precommit.md",
+          "sha256": "168ca2a129e404919a34b60ac22544b0740be1f6f30a863c8e941460a4f4e8c4",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_368_review_replay.json",
+          "sha256": "2670af8788ff012b6922376bbd55c57b886bb6b8b979c4636f364d08ca889543",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c7-encoded-instance-reduction-precommit.md",
+          "sha256": "424e55e3c4ad8f8f0c9c2f8aa36709ab532aacce90cddc8b993f53561207f0db",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_round2_combined_validation.json",
+          "sha256": "d553d1f3b2d63799205fb8f870dec0a5b8baad4d348d3808bfc80a0c708b1e13",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_384_round2_replay.json",
+          "sha256": "3bdf81bf005e376c4f3ea134a469599f2a0d4915a197881dc5ebb12597cc5a5c",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json",
+          "sha256": "6391883bf7d2e17c7f9286e1bcf42faca5bba1e508f347b17f82e151190f31f3",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-369-repair.md",
+          "sha256": "e0950bfc7c38d8fff55fc3e293a6356be81cbd3d8ce12d57c2652ab52dd8f461",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c7-fixed-target-open-precommit.md",
+          "sha256": "9ba7f04e76b31b527a5a1f42c3e40e7f1a0b058684f09e49e72d174babd10048",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_369_review_replay.json",
+          "sha256": "9655ba56ef78fa526b564b88b74cd306f38b5628ea8a5610a06219b3486e96d7",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_370_review_replay.json",
+          "sha256": "ab19de762cd4e0aabcd393de01abb0d8fb87c204d91739c018e725f5a2e7c339",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-370-repair.md",
+          "sha256": "6e8faf598ef5bf4038324177be9aaa21ec463774358900d746fb418e496cea42",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c8-minimality-fence-precommit.md",
+          "sha256": "9570416adc29d2823d9ff760a3fcb8d2be1ebb09d0765dffd381a282aa8c3ef5",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "checks/tests/test_computation_controls.py",
+          "sha256": "1d8b39fb1306b118a853044b9fbb10ac63e68f1328d12dfeb5856e191fa361e9",
+          "state": "current composition consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current composition consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "713b8a4f4f13c3e03be46be206f44f679938650d75f12e656e4d453c7d84caf2",
+          "state": "current composition consumer"
+        }
+      ],
+      "consumer_boundary": "The six retired executable entry paths are intentionally removed and mapped to byte-preserved archives. Historical DAG/review references keep their original provenance. Current regression loads the composed application and current workflow runs its suite. Default combined receipt uses 50 executed obligations; old six receipt schemas remain historical. Public source loader remains restricted to the current named alphabetical population."
+    },
+    "checks/tests/test_computation_controls.py": {
+      "role": "Independent finite-graph verification application with separately formulated context and fixed-point oracles, generated properties, resource and lifecycle challenges and six-control integration",
+      "profile": "Exact",
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        }
+      ],
+      "cost": "16 test groups, 80 deterministic cases per generated property. Independent context oracle admits binary words of length <=3 (15 words), <=4 rules and finite Cartesian context enumeration. Boundary tests use <=4097 trace rows and <=4096-bit values. Context-managed mocks/captures and isolated import ownership restore resources.",
+      "groups": [
+        {
+          "requirement": "Independent context-based graph edges and layer fixed-point distances cross-check production scanning/BFS. Explicit oracle metatests, failure-helper metatest, boundary/snapshot cases, generated functional and receipt properties and failure/cancellation tests reject semantic and lifecycle faults.",
+          "symbols": [
+            "_context_graph",
+            "_distances",
+            "ComputationControlTests",
+            "ComputationControlTests.refused",
+            "ComputationControlTests.test_refusal_helper_requires_a_failure",
+            "ComputationControlTests.test_graph_oracles_on_explicit_small_relations",
+            "ComputationControlTests.test_bounded_search_against_context_fixed_point",
+            "ComputationControlTests.test_one_hole_replacement_uses_exact_context",
+            "ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable",
+            "ComputationControlTests.test_shortest_route_and_no_path_exhaustion",
+            "ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal",
+            "ComputationControlTests.test_model_owns_immutable_snapshots",
+            "ComputationControlTests.test_model_schema_and_word_boundaries",
+            "ComputationControlTests.test_search_parameter_refusals",
+            "ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge",
+            "ComputationControlTests.test_encoding_and_blank_extension",
+            "ComputationControlTests.test_literal_helper_domains",
+            "ComputationControlTests.test_six_original_controls_and_cli",
+            "ComputationControlTests.test_generated_receipt_accounting",
+            "ComputationControlTests.test_expected_failures_cancellation_and_repeated_invocations"
+          ],
+          "tests": [
+            "ComputationControlTests.test_refusal_helper_requires_a_failure",
+            "ComputationControlTests.test_graph_oracles_on_explicit_small_relations",
+            "ComputationControlTests.test_bounded_search_against_context_fixed_point",
+            "ComputationControlTests.test_one_hole_replacement_uses_exact_context",
+            "ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable",
+            "ComputationControlTests.test_shortest_route_and_no_path_exhaustion",
+            "ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal",
+            "ComputationControlTests.test_model_owns_immutable_snapshots",
+            "ComputationControlTests.test_model_schema_and_word_boundaries",
+            "ComputationControlTests.test_search_parameter_refusals",
+            "ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge",
+            "ComputationControlTests.test_encoding_and_blank_extension",
+            "ComputationControlTests.test_literal_helper_domains",
+            "ComputationControlTests.test_six_original_controls_and_cli",
+            "ComputationControlTests.test_generated_receipt_accounting",
+            "ComputationControlTests.test_expected_failures_cancellation_and_repeated_invocations"
+          ],
+          "requirement_id": "TFQM-COMPUTATION-REVIEW-TEST-COMPUTATION-CONTROLS-1"
+        }
+      ],
+      "source_sha256": "1d8b39fb1306b118a853044b9fbb10ac63e68f1328d12dfeb5856e191fa361e9",
+      "symbols": [
+        "ComputationControlTests",
+        "ComputationControlTests.refused",
+        "ComputationControlTests.test_bounded_search_against_context_fixed_point",
+        "ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge",
+        "ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal",
+        "ComputationControlTests.test_encoding_and_blank_extension",
+        "ComputationControlTests.test_expected_failures_cancellation_and_repeated_invocations",
+        "ComputationControlTests.test_generated_receipt_accounting",
+        "ComputationControlTests.test_graph_oracles_on_explicit_small_relations",
+        "ComputationControlTests.test_literal_helper_domains",
+        "ComputationControlTests.test_model_owns_immutable_snapshots",
+        "ComputationControlTests.test_model_schema_and_word_boundaries",
+        "ComputationControlTests.test_one_hole_replacement_uses_exact_context",
+        "ComputationControlTests.test_refusal_helper_requires_a_failure",
+        "ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable",
+        "ComputationControlTests.test_search_parameter_refusals",
+        "ComputationControlTests.test_shortest_route_and_no_path_exhaustion",
+        "ComputationControlTests.test_six_original_controls_and_cli",
+        "_context_graph",
+        "_distances"
+      ],
+      "consumers": [
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_367_review_replay.json",
+          "sha256": "ccdcb7b4db71b4cbaa05c4625c2a042e759713810f7730fb0c6820265ded79af",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c2-step3-not-word-step-precommit.md",
+          "sha256": "c3a40516dddc1ea5117138bbe780a8a5e7bad7a26f6f390c974d01a605b510ac",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-367-repair.md",
+          "sha256": "34903dd80bf04ddf84609f20405d8285613d9cc3e00f11db81f840f4495ba7ce",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c3-no-fixed-bound-precommit.md",
+          "sha256": "1f635fcb56c5db4f58c9aa485b8b8f42928565d2bfebc2aa13e28aebeccf6c75",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_round2_combined_validation.json",
+          "sha256": "d553d1f3b2d63799205fb8f870dec0a5b8baad4d348d3808bfc80a0c708b1e13",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_383_round2_replay.json",
+          "sha256": "c7b15ce6358fb340a59777b6a63d9aa41c989daf803523a5c7d9b43aa83d59d6",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json",
+          "sha256": "2485860d996e1cef41564c255ce168ebada730950eeffb169b479e84bf77f52b",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-368-repair.md",
+          "sha256": "39fed86c83b8c56a4ec3ac0262c4417a824d21be84c1de13ae31e0f3edf5ebc9",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c6-tm0-output-form-open-precommit.md",
+          "sha256": "168ca2a129e404919a34b60ac22544b0740be1f6f30a863c8e941460a4f4e8c4",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_368_review_replay.json",
+          "sha256": "2670af8788ff012b6922376bbd55c57b886bb6b8b979c4636f364d08ca889543",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c7-encoded-instance-reduction-precommit.md",
+          "sha256": "424e55e3c4ad8f8f0c9c2f8aa36709ab532aacce90cddc8b993f53561207f0db",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_round2_combined_validation.json",
+          "sha256": "d553d1f3b2d63799205fb8f870dec0a5b8baad4d348d3808bfc80a0c708b1e13",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_384_round2_replay.json",
+          "sha256": "3bdf81bf005e376c4f3ea134a469599f2a0d4915a197881dc5ebb12597cc5a5c",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json",
+          "sha256": "6391883bf7d2e17c7f9286e1bcf42faca5bba1e508f347b17f82e151190f31f3",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-369-repair.md",
+          "sha256": "e0950bfc7c38d8fff55fc3e293a6356be81cbd3d8ce12d57c2652ab52dd8f461",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c7-fixed-target-open-precommit.md",
+          "sha256": "9ba7f04e76b31b527a5a1f42c3e40e7f1a0b058684f09e49e72d174babd10048",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_369_review_replay.json",
+          "sha256": "9655ba56ef78fa526b564b88b74cd306f38b5628ea8a5610a06219b3486e96d7",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_370_review_replay.json",
+          "sha256": "ab19de762cd4e0aabcd393de01abb0d8fb87c204d91739c018e725f5a2e7c339",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-370-repair.md",
+          "sha256": "6e8faf598ef5bf4038324177be9aaa21ec463774358900d746fb418e496cea42",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c8-minimality-fence-precommit.md",
+          "sha256": "9570416adc29d2823d9ff760a3fcb8d2be1ebb09d0765dffd381a282aa8c3ef5",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "checks/tests/test_computation_controls.py",
+          "sha256": "1d8b39fb1306b118a853044b9fbb10ac63e68f1328d12dfeb5856e191fa361e9",
+          "state": "current composition consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current composition consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "713b8a4f4f13c3e03be46be206f44f679938650d75f12e656e4d453c7d84caf2",
+          "state": "current composition consumer"
+        }
+      ],
+      "consumer_boundary": "The six retired executable entry paths are intentionally removed and mapped to byte-preserved archives. Historical DAG/review references keep their original provenance. Current regression loads the composed application and current workflow runs its suite. Default combined receipt uses 50 executed obligations; old six receipt schemas remain historical. Public source loader remains restricted to the current named alphabetical population."
+    },
+    "checks/tests/test_review_repairs.py": {
+      "role": "Integrated independent regression application with restricted/restored source loading, separate exact oracles, typed-refusal checking and bounded subprocess verification through dfm-continuum-refinement-limit",
+      "profile": "Non-Numeric",
+      "cost": "Each of 20 isolated subprocesses has a 45-second limit. Deterministic enumerations include 8200 lineon paths, 1920 projector/vector cases and 380 graph cuts times 64 assignments; no input-controlled population. Import registry and capture contexts restore on failure/cancellation.",
+      "groups": [
+        {
+          "requirement": "Load only reviewed local sources, restore sys.modules during success/errors/cancellation and preserve results while capturing output.",
+          "symbols": [
+            "load",
+            "silent"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_loader_restores_modules_on_success_failure_and_cancellation",
+            "AdsCheckerTests.test_silent_preserves_result_and_propagates_error"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-TEST-REVIEW-REPAIRS-1"
+        },
+        {
+          "requirement": "Independent collision oracle rejects coincidence and sign-crossing for simultaneous integer hops in the enumerated fixtures.",
+          "symbols": [
+            "_collision_free"
+          ],
+          "tests": [
+            "ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-TEST-REVIEW-REPAIRS-2"
+        },
+        {
+          "requirement": "Provide one unittest suite with explicit failure helpers, independent arithmetic/finite enumerations, negative-path refusals and isolated CLI integration. Individual method names state each tested requirement; successful outcomes are never treated as typed refusals.",
+          "symbols": [
+            "ReviewedCheckerRegressionTests",
+            "ReviewedCheckerRegressionTests.refused",
+            "ReviewedCheckerRegressionTests.test_every_checker_cli",
+            "ReviewedCheckerRegressionTests.test_checker_structure_stays_within_reviewed_bounds",
+            "ReviewedCheckerRegressionTests.test_imports_do_not_execute_checks",
+            "ReviewedCheckerRegressionTests.test_railway_result_short_circuits",
+            "ReviewedCheckerRegressionTests.test_duplicate_case_ids_are_refused",
+            "ReviewedCheckerRegressionTests.test_assertion_stripping_mutants_are_killed",
+            "ReviewedCheckerRegressionTests.test_causal_matrix_inverse_boundary",
+            "ReviewedCheckerRegressionTests.test_local_net_boundaries",
+            "ReviewedCheckerRegressionTests.test_reeh_matrix_and_site_boundaries",
+            "ReviewedCheckerRegressionTests.test_normalized_concurrence_off_unit_circle",
+            "ReviewedCheckerRegressionTests.test_rice_and_rewrite_invalid_inputs",
+            "ReviewedCheckerRegressionTests.test_happy_regions_and_independent_rank",
+            "ReviewedCheckerRegressionTests.test_happy_mincut_independent_graph_enumeration",
+            "ReviewedCheckerRegressionTests.test_rt_exact_certificates_and_subdivision",
+            "ReviewedCheckerRegressionTests.test_wilson_determinant_against_bareiss",
+            "ReviewedCheckerRegressionTests.test_chirality_mutant_is_killed",
+            "ReviewedCheckerRegressionTests.test_strong_coupling_phase_and_domains",
+            "ReviewedCheckerRegressionTests.test_lineon_invalid_domains_and_exact_curvature",
+            "ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle",
+            "ReviewedCheckerRegressionTests.test_bphz_shape_and_forest_boundaries",
+            "ReviewedCheckerRegressionTests.test_bphz_joint_kernel_converse_1925_cases",
+            "ReviewedCheckerRegressionTests.test_ckm_immutable_exact_labels_and_budget",
+            "ReviewedCheckerRegressionTests.test_continuum_matrix_bypass_is_refused",
+            "ReviewedCheckerRegressionTests.test_refinement_bounds_group_and_repeatability"
+          ],
+          "tests": [
+            "ReviewedCheckerRegressionTests.test_every_checker_cli",
+            "ReviewedCheckerRegressionTests.test_checker_structure_stays_within_reviewed_bounds",
+            "ReviewedCheckerRegressionTests.test_imports_do_not_execute_checks",
+            "ReviewedCheckerRegressionTests.test_railway_result_short_circuits",
+            "ReviewedCheckerRegressionTests.test_duplicate_case_ids_are_refused",
+            "ReviewedCheckerRegressionTests.test_assertion_stripping_mutants_are_killed",
+            "ReviewedCheckerRegressionTests.test_causal_matrix_inverse_boundary",
+            "ReviewedCheckerRegressionTests.test_local_net_boundaries",
+            "ReviewedCheckerRegressionTests.test_reeh_matrix_and_site_boundaries",
+            "ReviewedCheckerRegressionTests.test_normalized_concurrence_off_unit_circle",
+            "ReviewedCheckerRegressionTests.test_rice_and_rewrite_invalid_inputs",
+            "ReviewedCheckerRegressionTests.test_happy_regions_and_independent_rank",
+            "ReviewedCheckerRegressionTests.test_happy_mincut_independent_graph_enumeration",
+            "ReviewedCheckerRegressionTests.test_rt_exact_certificates_and_subdivision",
+            "ReviewedCheckerRegressionTests.test_wilson_determinant_against_bareiss",
+            "ReviewedCheckerRegressionTests.test_chirality_mutant_is_killed",
+            "ReviewedCheckerRegressionTests.test_strong_coupling_phase_and_domains",
+            "ReviewedCheckerRegressionTests.test_lineon_invalid_domains_and_exact_curvature",
+            "ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle",
+            "ReviewedCheckerRegressionTests.test_bphz_shape_and_forest_boundaries",
+            "ReviewedCheckerRegressionTests.test_bphz_joint_kernel_converse_1925_cases",
+            "ReviewedCheckerRegressionTests.test_ckm_immutable_exact_labels_and_budget",
+            "ReviewedCheckerRegressionTests.test_continuum_matrix_bypass_is_refused",
+            "ReviewedCheckerRegressionTests.test_refinement_bounds_group_and_repeatability",
+            "AdsCheckerTests.test_refusal_helpers_cannot_accept_success_or_wrong_failure"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-TEST-REVIEW-REPAIRS-3"
+        }
+      ],
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        }
+      ],
+      "migration": "Six computation sources compose to one, reducing the named alphabetical population from 25 to 20. Only header, expected population and C2/C7 shared-hole loading changed; the 24 groups and their assertions otherwise remain intact. Existing loader lifecycle/oracle mutation evidence is retained with old source hashes, not represented as a new campaign.",
+      "source_sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+      "symbols": [
+        "ReviewedCheckerRegressionTests",
+        "ReviewedCheckerRegressionTests.refused",
+        "ReviewedCheckerRegressionTests.test_assertion_stripping_mutants_are_killed",
+        "ReviewedCheckerRegressionTests.test_bphz_joint_kernel_converse_1925_cases",
+        "ReviewedCheckerRegressionTests.test_bphz_shape_and_forest_boundaries",
+        "ReviewedCheckerRegressionTests.test_causal_matrix_inverse_boundary",
+        "ReviewedCheckerRegressionTests.test_checker_structure_stays_within_reviewed_bounds",
+        "ReviewedCheckerRegressionTests.test_chirality_mutant_is_killed",
+        "ReviewedCheckerRegressionTests.test_ckm_immutable_exact_labels_and_budget",
+        "ReviewedCheckerRegressionTests.test_continuum_matrix_bypass_is_refused",
+        "ReviewedCheckerRegressionTests.test_duplicate_case_ids_are_refused",
+        "ReviewedCheckerRegressionTests.test_every_checker_cli",
+        "ReviewedCheckerRegressionTests.test_happy_mincut_independent_graph_enumeration",
+        "ReviewedCheckerRegressionTests.test_happy_regions_and_independent_rank",
+        "ReviewedCheckerRegressionTests.test_imports_do_not_execute_checks",
+        "ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle",
+        "ReviewedCheckerRegressionTests.test_lineon_invalid_domains_and_exact_curvature",
+        "ReviewedCheckerRegressionTests.test_local_net_boundaries",
+        "ReviewedCheckerRegressionTests.test_normalized_concurrence_off_unit_circle",
+        "ReviewedCheckerRegressionTests.test_railway_result_short_circuits",
+        "ReviewedCheckerRegressionTests.test_reeh_matrix_and_site_boundaries",
+        "ReviewedCheckerRegressionTests.test_refinement_bounds_group_and_repeatability",
+        "ReviewedCheckerRegressionTests.test_rice_and_rewrite_invalid_inputs",
+        "ReviewedCheckerRegressionTests.test_rt_exact_certificates_and_subdivision",
+        "ReviewedCheckerRegressionTests.test_strong_coupling_phase_and_domains",
+        "ReviewedCheckerRegressionTests.test_wilson_determinant_against_bareiss",
+        "_collision_free",
+        "load",
+        "silent"
+      ],
+      "consumers": [
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_367_review_replay.json",
+          "sha256": "ccdcb7b4db71b4cbaa05c4625c2a042e759713810f7730fb0c6820265ded79af",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c2-step3-not-word-step-precommit.md",
+          "sha256": "c3a40516dddc1ea5117138bbe780a8a5e7bad7a26f6f390c974d01a605b510ac",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-367-repair.md",
+          "sha256": "34903dd80bf04ddf84609f20405d8285613d9cc3e00f11db81f840f4495ba7ce",
+          "refers_to": "checks/independent/comp-c2-step3-not-word-step.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c3-no-fixed-bound-precommit.md",
+          "sha256": "1f635fcb56c5db4f58c9aa485b8b8f42928565d2bfebc2aa13e28aebeccf6c75",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_round2_combined_validation.json",
+          "sha256": "d553d1f3b2d63799205fb8f870dec0a5b8baad4d348d3808bfc80a0c708b1e13",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_383_round2_replay.json",
+          "sha256": "c7b15ce6358fb340a59777b6a63d9aa41c989daf803523a5c7d9b43aa83d59d6",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json",
+          "sha256": "2485860d996e1cef41564c255ce168ebada730950eeffb169b479e84bf77f52b",
+          "refers_to": "checks/independent/comp-c3-no-fixed-bound.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-368-repair.md",
+          "sha256": "39fed86c83b8c56a4ec3ac0262c4417a824d21be84c1de13ae31e0f3edf5ebc9",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c6-tm0-output-form-open-precommit.md",
+          "sha256": "168ca2a129e404919a34b60ac22544b0740be1f6f30a863c8e941460a4f4e8c4",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_368_review_replay.json",
+          "sha256": "2670af8788ff012b6922376bbd55c57b886bb6b8b979c4636f364d08ca889543",
+          "refers_to": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c7-encoded-instance-reduction-precommit.md",
+          "sha256": "424e55e3c4ad8f8f0c9c2f8aa36709ab532aacce90cddc8b993f53561207f0db",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_round2_combined_validation.json",
+          "sha256": "d553d1f3b2d63799205fb8f870dec0a5b8baad4d348d3808bfc80a0c708b1e13",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_384_round2_replay.json",
+          "sha256": "3bdf81bf005e376c4f3ea134a469599f2a0d4915a197881dc5ebb12597cc5a5c",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json",
+          "sha256": "6391883bf7d2e17c7f9286e1bcf42faca5bba1e508f347b17f82e151190f31f3",
+          "refers_to": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-369-repair.md",
+          "sha256": "e0950bfc7c38d8fff55fc3e293a6356be81cbd3d8ce12d57c2652ab52dd8f461",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c7-fixed-target-open-precommit.md",
+          "sha256": "9ba7f04e76b31b527a5a1f42c3e40e7f1a0b058684f09e49e72d174babd10048",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_369_review_replay.json",
+          "sha256": "9655ba56ef78fa526b564b88b74cd306f38b5628ea8a5610a06219b3486e96d7",
+          "refers_to": "checks/independent/comp-c7-fixed-target-open.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "dag/research/pr_370_review_replay.json",
+          "sha256": "ab19de762cd4e0aabcd393de01abb0d8fb87c204d91739c018e725f5a2e7c339",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-370-repair.md",
+          "sha256": "6e8faf598ef5bf4038324177be9aaa21ec463774358900d746fb418e496cea42",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-comp-c8-minimality-fence-precommit.md",
+          "sha256": "9570416adc29d2823d9ff760a3fcb8d2be1ebb09d0765dffd381a282aa8c3ef5",
+          "refers_to": "checks/independent/comp-c8-minimality-fence.py",
+          "state": "pre-migration audit; historical records retained"
+        },
+        {
+          "path": "checks/tests/test_computation_controls.py",
+          "sha256": "1d8b39fb1306b118a853044b9fbb10ac63e68f1328d12dfeb5856e191fa361e9",
+          "state": "current composition consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current composition consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "713b8a4f4f13c3e03be46be206f44f679938650d75f12e656e4d453c7d84caf2",
+          "state": "current composition consumer"
+        }
+      ],
+      "consumer_boundary": "The six retired executable entry paths are intentionally removed and mapped to byte-preserved archives. Historical DAG/review references keep their original provenance. Current regression loads the composed application and current workflow runs its suite. Default combined receipt uses 50 executed obligations; old six receipt schemas remain historical. Public source loader remains restricted to the current named alphabetical population."
+    }
+  }
+}

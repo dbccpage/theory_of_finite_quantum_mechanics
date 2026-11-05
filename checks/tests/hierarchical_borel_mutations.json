@@ -1,0 +1,399 @@
+[
+  {
+    "identity": "flat-exactness",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return flat_matrix2((a, b, c, d))",
+    "after": "return (Fraction(a), Fraction(b), Fraction(c), Fraction(d))",
+    "tests": [
+      "test_matrix_admission_and_singular_fences",
+      "test_full_resource_limits_and_conservative_arithmetic"
+    ]
+  },
+  {
+    "identity": "multiply-order",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return left.mul(right).flat2()",
+    "after": "return right.mul(left).flat2()",
+    "tests": [
+      "test_noncommuting_integer_regression"
+    ]
+  },
+  {
+    "identity": "upper-triangular",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "if c != 0:",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_admission_and_singular_fences"
+    ]
+  },
+  {
+    "identity": "invertibility",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "if invertible and (a == 0 or d == 0):",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_admission_and_singular_fences"
+    ]
+  },
+  {
+    "identity": "inverse-floats",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return RationalMatrix.from_flat2(_upper(x, True)).inverse2().flat2()",
+    "after": "return tuple(float(value) for value in RationalMatrix.from_flat2(_upper(x, True)).inverse2().flat2())",
+    "tests": [
+      "test_noncommuting_integer_regression"
+    ]
+  },
+  {
+    "identity": "torus-second-diagonal",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return M(a, 0, 0, d)",
+    "after": "return M(a, 0, 0, a)",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "unipotent-denominator",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return M(1, rational(b / a), 0, 1)",
+    "after": "return M(1, rational(b), 0, 1)",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "torus-predicate",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return b == 0 and c == 0",
+    "after": "return b == 0",
+    "tests": [
+      "test_matrix_admission_and_singular_fences"
+    ]
+  },
+  {
+    "identity": "unipotent-predicate",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return a == 1 and c == 0 and d == 1",
+    "after": "return a == 1 and c == 0",
+    "tests": [
+      "test_matrix_admission_and_singular_fences"
+    ]
+  },
+  {
+    "identity": "stage-one-sign",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return M(1, rational(-b / d), 0, 1)",
+    "after": "return M(1, rational(b / d), 0, 1)",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "dress-source-inverse",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return mul(mul(target, edge), inv(source))",
+    "after": "return mul(mul(target, edge), source)",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "vertex-exactness",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return integer(value, \"vertex identifier\", 0, 2**31-1)",
+    "after": "return integer(int(value), \"vertex identifier\", 0, 2**31-1)",
+    "tests": [
+      "test_tree_domains_cycles_and_boolean_aliases"
+    ]
+  },
+  {
+    "identity": "mapping-budget",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "if len(mapping) > 1024:",
+    "after": "if len(mapping) > 1025:",
+    "tests": [
+      "test_full_resource_limits_and_conservative_arithmetic"
+    ]
+  },
+  {
+    "identity": "mapping-type",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "if type(value) not in (dict, MappingProxyType):",
+    "after": "if False:",
+    "tests": [
+      "test_tree_domains_cycles_and_boolean_aliases"
+    ]
+  },
+  {
+    "identity": "cycle-guard",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "if cursor in visiting:",
+    "after": "if cursor in visiting or cursor in parent:",
+    "tests": [
+      "test_noncommuting_integer_regression"
+    ]
+  },
+  {
+    "identity": "tree-order-direction",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "for child in reversed(chain):",
+    "after": "for child in chain:",
+    "tests": [
+      "test_noncommuting_integer_regression"
+    ]
+  },
+  {
+    "identity": "parent-key-exactness",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "parents = {_vertex(v): _vertex(p)",
+    "after": "parents = {v: _vertex(p)",
+    "tests": [
+      "test_tree_domains_cycles_and_boolean_aliases"
+    ]
+  },
+  {
+    "identity": "label-key-exactness",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "raw_labels = {_vertex(v): label",
+    "after": "raw_labels = {v: label",
+    "tests": [
+      "test_tree_domains_cycles_and_boolean_aliases"
+    ]
+  },
+  {
+    "identity": "root-fixed",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "parents[origin] != origin",
+    "after": "False",
+    "tests": [
+      "test_tree_domains_cycles_and_boolean_aliases"
+    ]
+  },
+  {
+    "identity": "label-set",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "if set(raw_labels) != set(parents)-{origin}:",
+    "after": "if False:",
+    "tests": [
+      "test_tree_domains_cycles_and_boolean_aliases"
+    ]
+  },
+  {
+    "identity": "label-invertibility",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "owned = {vertex: _upper(label, True)",
+    "after": "owned = {vertex: _upper(label)",
+    "tests": [
+      "test_tree_domains_cycles_and_boolean_aliases"
+    ]
+  },
+  {
+    "identity": "frozen-tree",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "@dataclass(frozen=True, slots=True, init=False)",
+    "after": "@dataclass(slots=True, init=False)",
+    "tests": [
+      "test_tree_snapshot_ownership_and_railway_refusals"
+    ]
+  },
+  {
+    "identity": "parent-readonly",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "MappingProxyType(parents)",
+    "after": "parents",
+    "tests": [
+      "test_tree_snapshot_ownership_and_railway_refusals"
+    ]
+  },
+  {
+    "identity": "label-readonly",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "MappingProxyType(owned)",
+    "after": "owned",
+    "tests": [
+      "test_tree_snapshot_ownership_and_railway_refusals"
+    ]
+  },
+  {
+    "identity": "root-transport",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "result = {self.root: eye()}",
+    "after": "result = {self.root: M(2, 0, 0, 1)}",
+    "tests": [
+      "test_noncommuting_integer_regression"
+    ]
+  },
+  {
+    "identity": "transport-order",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "mul(self.labels[vertex], result[self.parent[vertex]])",
+    "after": "mul(result[self.parent[vertex]], self.labels[vertex])",
+    "tests": [
+      "test_noncommuting_integer_regression"
+    ]
+  },
+  {
+    "identity": "transport-readonly",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return MappingProxyType(result)",
+    "after": "return result",
+    "tests": [
+      "test_tree_snapshot_ownership_and_railway_refusals"
+    ]
+  },
+  {
+    "identity": "transport-railway",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return evaluate(self._transport)",
+    "after": "return Outcome(value=self._transport())",
+    "tests": [
+      "test_full_resource_limits_and_conservative_arithmetic"
+    ]
+  },
+  {
+    "identity": "edge-endpoints",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "if start not in self.parent or finish not in self.parent:",
+    "after": "if False:",
+    "tests": [
+      "test_preflight_and_unexpected_errors"
+    ]
+  },
+  {
+    "identity": "edge-target-inverse",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return mul(mul(inv(transport[finish]), edge), transport[start])",
+    "after": "return mul(mul(transport[finish], edge), transport[start])",
+    "tests": [
+      "test_noncommuting_integer_regression"
+    ]
+  },
+  {
+    "identity": "edge-railway",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "return evaluate(self._edge_residual, source, target, label)",
+    "after": "return Outcome(value=self._edge_residual(source, target, label))",
+    "tests": [
+      "test_tree_snapshot_ownership_and_railway_refusals"
+    ]
+  },
+  {
+    "identity": "recorder-type",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "if type(cases) is not Cases:",
+    "after": "if False:",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "unique-factorization-guard",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "run.require(solution == [{d1p: d1, d2p: d2, off: b / d1}],",
+    "after": "run.require(True,",
+    "tests": [
+      "test_symbolic_failure_and_executable_exit"
+    ]
+  },
+  {
+    "identity": "normality-shift",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "conjugated[0, 1] - d1 / d2 * shift",
+    "after": "conjugated[0, 1] - d2 / d1 * shift",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "torus-homomorphism",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "== diagonal * sp.diag(e1, e2)",
+    "after": "!= diagonal * sp.diag(e1, e2)",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "source-only-witness",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "run.require(witness == 1,",
+    "after": "run.require(witness == 0,",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "bianchi-sign",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "- curv(u, v, w) * entry(w, z)",
+    "after": "+ curv(u, v, w) * entry(w, z)",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "anchoring-control",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "run.require(other[0] != eye(),",
+    "after": "run.require(other[0] == eye(),",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "main-missing-curvature",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "    check_curvature(run)\n",
+    "after": "    pass\n",
+    "tests": [
+      "test_fixed_control_sections_and_counts"
+    ]
+  },
+  {
+    "identity": "receipt-count",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "\"checks\": run.checks",
+    "after": "\"checks\": 99",
+    "tests": [
+      "test_symbolic_failure_and_executable_exit"
+    ]
+  },
+  {
+    "identity": "failure-exit",
+    "source": "independent/dfm-hierarchical-borel.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_symbolic_failure_and_executable_exit"
+    ]
+  },
+  {
+    "identity": "oracle-order",
+    "source": "tests/test_hierarchical_borel.py",
+    "before": "product = product*_symbolic(labels[cursor])",
+    "after": "product = _symbolic(labels[cursor])*product",
+    "tests": [
+      "test_noncommuting_integer_regression"
+    ]
+  },
+  {
+    "identity": "oracle-entry",
+    "source": "tests/test_hierarchical_borel.py",
+    "before": "Q(matrix[0, 1]), Q(matrix[1, 0])",
+    "after": "Q(matrix[1, 0]), Q(matrix[0, 1])",
+    "tests": [
+      "test_noncommuting_integer_regression"
+    ]
+  },
+  {
+    "identity": "refusal-helper",
+    "source": "tests/test_hierarchical_borel.py",
+    "before": "self.assertFalse(result.ok)",
+    "after": "self.assertTrue(result.ok)",
+    "tests": [
+      "test_matrix_admission_and_singular_fences"
+    ]
+  }
+]

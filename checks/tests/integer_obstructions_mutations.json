@@ -1,0 +1,486 @@
+[
+  {
+    "identity": "equation-coefficient-budget",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "if admitted.bit_length() > 4096:",
+    "after": "if admitted.bit_length() > 4097:",
+    "tests": [
+      "test_resource_boundaries_cover_products_prefixes_and_arguments"
+    ]
+  },
+  {
+    "identity": "equation-inclusive-budget",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "if admitted.bit_length() > 4096:",
+    "after": "if admitted.bit_length() >= 4096:",
+    "tests": [
+      "test_resource_boundaries_cover_products_prefixes_and_arguments"
+    ]
+  },
+  {
+    "identity": "equation-integer-types",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "admitted = integer(value, 'polynomial integer')",
+    "after": "admitted = int(value)",
+    "tests": [
+      "test_exact_domains_constant_linear_and_repeated_roots",
+      "test_square_root_boundary_and_independent_square_census"
+    ]
+  },
+  {
+    "identity": "equation-zero-polynomial",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "if a == b == c == 0:",
+    "after": "if False:",
+    "tests": [
+      "test_exact_domains_constant_linear_and_repeated_roots"
+    ]
+  },
+  {
+    "identity": "equation-coefficient-swap",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "'linear', b",
+    "after": "'linear', c",
+    "tests": [
+      "test_owned_coefficients_and_immutable_reentrant_results"
+    ]
+  },
+  {
+    "identity": "equation-negative-square",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "if number < 0:\n        return None",
+    "after": "if number < 0:\n        return 0",
+    "tests": [
+      "test_square_root_boundary_and_independent_square_census"
+    ]
+  },
+  {
+    "identity": "equation-square-floor",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "return root if root*root == number else None",
+    "after": "return root",
+    "tests": [
+      "test_square_root_boundary_and_independent_square_census"
+    ]
+  },
+  {
+    "identity": "equation-zero-square",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "if number < 0:",
+    "after": "if number <= 0:",
+    "tests": [
+      "test_square_root_boundary_and_independent_square_census"
+    ]
+  },
+  {
+    "identity": "equation-horner-linear",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "+self.linear, 'Horner prefix'",
+    "after": "-self.linear, 'Horner prefix'",
+    "tests": [
+      "test_generated_evaluation_and_homogenization"
+    ]
+  },
+  {
+    "identity": "equation-horner-constant",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "+self.constant, 'polynomial value'",
+    "after": "-self.constant, 'polynomial value'",
+    "tests": [
+      "test_generated_evaluation_and_homogenization"
+    ]
+  },
+  {
+    "identity": "equation-horner-input",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "x = rational(value, 'polynomial argument')",
+    "after": "x = Q(value)",
+    "tests": [
+      "test_exact_domains_constant_linear_and_repeated_roots",
+      "test_resource_boundaries_cover_products_prefixes_and_arguments"
+    ]
+  },
+  {
+    "identity": "equation-horner-prefix",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "rational(rational(self.quadratic*x, 'Horner product')+self.linear, 'Horner prefix')",
+    "after": "rational(self.quadratic*x, 'Horner product')+self.linear",
+    "tests": [
+      "test_isolated_arithmetic_prefix_budgets",
+      "test_resource_boundaries_cover_products_prefixes_and_arguments"
+    ]
+  },
+  {
+    "identity": "equation-homogeneous-cross",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "_integer(x*y)",
+    "after": "_integer(x*x)",
+    "tests": [
+      "test_generated_evaluation_and_homogenization"
+    ]
+  },
+  {
+    "identity": "equation-homogeneous-constant",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "_integer(self.constant*square_y)",
+    "after": "_integer(self.constant*square_x)",
+    "tests": [
+      "test_generated_evaluation_and_homogenization"
+    ]
+  },
+  {
+    "identity": "equation-homogeneous-prefix",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "_integer(_integer(terms[0]+terms[1])+terms[2])",
+    "after": "_integer(terms[0]+terms[1])+terms[2]",
+    "tests": [
+      "test_isolated_arithmetic_prefix_budgets",
+      "test_resource_boundaries_cover_products_prefixes_and_arguments"
+    ]
+  },
+  {
+    "identity": "equation-discriminant-sign",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "return _integer(square-product)",
+    "after": "return _integer(square+product)",
+    "tests": [
+      "test_all_small_polynomials_against_independent_factorization"
+    ]
+  },
+  {
+    "identity": "equation-discriminant-factor",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "_integer(4*self.quadratic)",
+    "after": "_integer(2*self.quadratic)",
+    "tests": [
+      "test_all_small_polynomials_against_independent_factorization"
+    ]
+  },
+  {
+    "identity": "equation-discriminant-square",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "square = _integer(self.linear*self.linear)",
+    "after": "square = self.linear*self.linear",
+    "tests": [
+      "test_resource_boundaries_cover_products_prefixes_and_arguments"
+    ]
+  },
+  {
+    "identity": "equation-discriminant-prefix",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "return _integer(square-product)",
+    "after": "return square-product",
+    "tests": [
+      "test_resource_boundaries_cover_products_prefixes_and_arguments"
+    ]
+  },
+  {
+    "identity": "equation-linear-sign",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "Q(-self.constant, self.linear)",
+    "after": "Q(self.constant, self.linear)",
+    "tests": [
+      "test_all_small_polynomials_against_independent_factorization"
+    ]
+  },
+  {
+    "identity": "equation-constant-root",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "if self.linear == 0:\n                return ()",
+    "after": "if self.linear == 0:\n                return (Q(0),)",
+    "tests": [
+      "test_all_small_polynomials_against_independent_factorization"
+    ]
+  },
+  {
+    "identity": "equation-root-denominator",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "denominator = _integer(2*self.quadratic)",
+    "after": "denominator = _integer(self.quadratic)",
+    "tests": [
+      "test_all_small_polynomials_against_independent_factorization"
+    ]
+  },
+  {
+    "identity": "equation-root-signs",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "for sign in (-1, 1)",
+    "after": "for sign in (1,)",
+    "tests": [
+      "test_all_small_polynomials_against_independent_factorization"
+    ]
+  },
+  {
+    "identity": "equation-root-b-sign",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "-self.linear+sign*square_root",
+    "after": "self.linear+sign*square_root",
+    "tests": [
+      "test_all_small_polynomials_against_independent_factorization"
+    ]
+  },
+  {
+    "identity": "equation-root-replay",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "require(all(self._evaluate(root) == 0 for root in roots)",
+    "after": "require(True",
+    "tests": [
+      "test_root_replay_guards_and_unexpected_failures"
+    ]
+  },
+  {
+    "identity": "equation-integer-filter",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "if root.denominator == 1",
+    "after": "if True",
+    "tests": [
+      "test_all_small_polynomials_against_independent_factorization"
+    ]
+  },
+  {
+    "identity": "equation-integer-numerator",
+    "source": "checker_support/integer_quadratic_equation.py",
+    "before": "tuple(root.numerator for root",
+    "after": "tuple(root.denominator for root",
+    "tests": [
+      "test_all_small_polynomials_against_independent_factorization"
+    ]
+  },
+  {
+    "identity": "application-window-domain",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "integer(hilbert_radius, 'Hilbert radius', 0, 64)",
+    "after": "int(hilbert_radius)",
+    "tests": [
+      "test_policy_bounds_zero_pair_admission_and_ownership"
+    ]
+  },
+  {
+    "identity": "application-pair-domain",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "integer(pair_bound, 'natural pair bound', 0, 64)",
+    "after": "int(pair_bound)",
+    "tests": [
+      "test_policy_bounds_zero_pair_admission_and_ownership"
+    ]
+  },
+  {
+    "identity": "application-natural-domain",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "integer(natural_bound, 'natural scan bound', 0, 10000)",
+    "after": "int(natural_bound)",
+    "tests": [
+      "test_policy_bounds_zero_pair_admission_and_ownership"
+    ]
+  },
+  {
+    "identity": "application-box-domain",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "integer(box_radius, 'integer box radius', 0, 16)",
+    "after": "int(box_radius)",
+    "tests": [
+      "test_policy_bounds_zero_pair_admission_and_ownership"
+    ]
+  },
+  {
+    "identity": "application-linear-equation",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "Equation((0, 2, -1))",
+    "after": "Equation((0, 2, -2))",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-hilbert-equation",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "Equation((1, -1, -1))",
+    "after": "Equation((1, -1, 1))",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-ratio-equation",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "Equation((5, 0, -4))",
+    "after": "Equation((4, 0, -4))",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-window-endpoint",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "range(-self.hilbert_radius, self.hilbert_radius+1)",
+    "after": "range(-self.hilbert_radius, self.hilbert_radius)",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-zero-pair-natural",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "if a < 0 or b < 0:",
+    "after": "if False:",
+    "tests": [
+      "test_isolated_admission_and_first_failure",
+      "test_policy_bounds_zero_pair_admission_and_ownership"
+    ]
+  },
+  {
+    "identity": "application-zero-pair-equation",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "if self.four_fifths_equation._homogeneous_value((a, b)) != 0:",
+    "after": "if False:",
+    "tests": [
+      "test_policy_bounds_zero_pair_admission_and_ownership"
+    ]
+  },
+  {
+    "identity": "application-zero-pair-invariant",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "if a != 0 or b != 0:",
+    "after": "if False:",
+    "tests": [
+      "test_policy_bounds_zero_pair_admission_and_ownership"
+    ]
+  },
+  {
+    "identity": "application-residue-table",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "tuple(r*r % 5 for r in range(5))",
+    "after": "tuple(r % 5 for r in range(5))",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-descent-scale-population",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "for value in range(6):",
+    "after": "for value in range(5):",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-pair-count",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "product(range(self.pair_bound+1), repeat=2)",
+    "after": "product(range(self.pair_bound), repeat=2)",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-natural-endpoint",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "range(1, self.natural_bound+1)",
+    "after": "range(1, self.natural_bound)",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-square-helper-ignore",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "_square_root(numerator//5) if numerator % 5 == 0 else None",
+    "after": "None",
+    "tests": [
+      "test_composition_refuses_helper_failures_without_suppressing_them"
+    ]
+  },
+  {
+    "identity": "application-square-helper-failure-mask",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "_square_root(numerator//5) if numerator % 5 == 0 else None",
+    "after": "Equation.square_root(numerator//5).value if numerator % 5 == 0 else None",
+    "tests": [
+      "test_composition_refuses_helper_failures_without_suppressing_them"
+    ]
+  },
+  {
+    "identity": "application-natural-hit-guard",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "cases.require(not is_hit, 'positive denominator has no four-fifths square root')",
+    "after": "cases.require(True, 'positive denominator has no four-fifths square root')",
+    "tests": [
+      "test_isolated_admission_and_first_failure",
+      "test_composition_refuses_helper_failures_without_suppressing_them"
+    ]
+  },
+  {
+    "identity": "application-cleared-second-equation",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "and a*a+b*b == d*d",
+    "after": "and True",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-cleared-first-equation",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "5*(a*a-b*b) == 3*d*d and",
+    "after": "True and",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-cleared-box-endpoint",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "range(-self.box_radius, self.box_radius+1)",
+    "after": "range(-self.box_radius, self.box_radius)",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-skip-roots",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "cases = Cases(); self._root_certificates(cases)",
+    "after": "cases = Cases()",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-skip-residues",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "residues = self._residue_controls(cases)",
+    "after": "residues = (0, 1, 4, 4, 1)",
+    "tests": [
+      "test_original_sample_populations_and_actual_per_run_counter"
+    ]
+  },
+  {
+    "identity": "application-counter-literal",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "'checks': cases.checks",
+    "after": "'checks': 18949",
+    "tests": [
+      "test_policy_bounds_zero_pair_admission_and_ownership"
+    ]
+  },
+  {
+    "identity": "application-cli-success-on-error",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "return cli(_main)",
+    "after": "cli(_main)\n    return 0",
+    "tests": [
+      "test_quiet_import_cli_and_per_run_failure_state"
+    ]
+  },
+  {
+    "identity": "application-root-control-ignore",
+    "source": "independent/fq-gap-continuum-hilbert-lift.py",
+    "before": "cases.require(self.linear_equation._rational_roots() == (Q(1, 2),)",
+    "after": "cases.require(True",
+    "tests": [
+      "test_isolated_admission_and_first_failure",
+      "test_composition_refuses_helper_failures_without_suppressing_them"
+    ]
+  }
+]

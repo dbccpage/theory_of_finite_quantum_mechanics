@@ -1,0 +1,318 @@
+"""Independent symbolic verification of bounded supplied-root normalization.
+
+AuthorityEffect: None. Generated exact controls do not establish field dynamics.
+"""
+from __future__ import annotations
+
+from collections.abc import Callable
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import io
+import importlib.util
+import json
+import runpy
+from pathlib import Path
+import sys
+import subprocess
+from typing import Any
+from types import ModuleType
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import Failure
+from checker_support.gaussian_rational import GaussianRational as G
+
+STEM = "dfm-electroweak-continuum-fence"
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+RATIONAL = st.fractions(-5, 5, max_denominator=12)
+GAUSSIAN = st.tuples(RATIONAL, RATIONAL).map(lambda parts: G(*parts))
+
+
+def load(stem: str) -> ModuleType:
+    if type(stem) is not str or stem != STEM:
+        raise ValueError("only the electroweak checker is admitted")
+    name = "reviewed_electroweak"
+    path = Path(__file__).resolve().parents[1]/"independent"/(stem+".py")
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise OSError("checker import specification unavailable")
+    module = importlib.util.module_from_spec(spec)
+    previous = sys.modules.get(name)
+    try:
+        sys.modules[name] = module
+        spec.loader.exec_module(module)
+        return module
+    finally:
+        if previous is None:
+            sys.modules.pop(name, None)
+        else:
+            sys.modules[name] = previous
+
+
+def _symbolic(z: G) -> Any:
+    return sp.Rational(z.re.numerator, z.re.denominator) + sp.I*sp.Rational(z.im.numerator, z.im.denominator)
+
+
+def _matrix(entries: tuple[G, G, G, G]) -> Any:
+    return sp.ImmutableMatrix(2, 2, [_symbolic(z) for z in entries])
+
+
+def _sphere(a: Q, b: Q, c: Q) -> tuple[G, G]:
+    squared = a*a+b*b+c*c
+    denominator = 1+squared
+    return G((1-squared)/denominator, 2*a/denominator), G(2*b/denominator, 2*c/denominator)
+
+
+def _phase(t: Q) -> G:
+    return G((1-t*t)/(1+t*t), 2*t/(1+t*t))
+
+
+class ElectroweakCheckerTests(unittest.TestCase):
+    def refused(self, operation: Callable[..., object], *args: object, kind: str = "input") -> Failure:
+        result = evaluate(lambda: operation(*args))
+        self.assertFalse(result.ok)
+        self.assertIsNone(result.value)
+        if result.error is None:
+            self.fail("refusal lacks an error")
+        self.assertEqual(result.error.kind, kind)
+        return result.error
+
+    def test_oracles_and_refusal_helper(self) -> None:
+        self.assertEqual(_symbolic(G(Q(1, 2), Q(-1, 3))), sp.Rational(1, 2)-sp.I/3)
+        self.assertEqual(_matrix((G(1), G(2), G(3), G(4))), sp.ImmutableMatrix([[1, 2], [3, 4]]))
+        self.assertEqual(_sphere(Q(1), Q(0), Q(0)), (G(0, 1), G(0)))
+        self.assertEqual(_phase(Q(1)), G(0, 1))
+        with self.assertRaises(AssertionError):
+            self.refused(lambda: None)
+
+    @PROPERTY
+    @given(GAUSSIAN, GAUSSIAN, GAUSSIAN)
+    def test_gaussian_doublet_and_dressing_symbolic(self, p: G, q: G, z: G) -> None:
+        module = load(STEM)
+        a, b, phase = _symbolic(p), _symbolic(q), _symbolic(z)
+        expected = sp.ImmutableMatrix([[sp.conjugate(b), a], [-sp.conjugate(a), b]])
+        self.assertEqual(_matrix(module.U(p, q)), expected)
+        self.assertEqual(module.v2(p, q), Q(sp.expand(a*sp.conjugate(a)+b*sp.conjugate(b))))
+        actual = module.scale(z, p, q)
+        self.assertEqual(tuple(sp.expand(_symbolic(value)) for value in actual), (sp.expand(phase*a), sp.expand(phase*b)))
+        run = Cases()
+        module.check_unnormalized(z, p, q, run)
+        self.assertEqual(run.checks, 2)
+
+    @PROPERTY
+    @given(st.tuples(GAUSSIAN, GAUSSIAN, GAUSSIAN, GAUSSIAN), GAUSSIAN, GAUSSIAN, RATIONAL.filter(bool))
+    def test_matrix_operations_symbolic(self, entries: tuple[G, G, G, G], left: G, right: G, denominator: Q) -> None:
+        module = load(STEM)
+        expected = (_matrix(entries)*sp.diag(_symbolic(left), _symbolic(right))).applyfunc(sp.expand)
+        self.assertEqual(_matrix(module.right_diag(entries, left, right)), expected)
+        self.assertEqual(_matrix(module.scale_mat(entries, denominator)), _matrix(entries)/sp.Rational(denominator.numerator, denominator.denominator))
+
+    @PROPERTY
+    @given(RATIONAL, RATIONAL, RATIONAL, st.fractions(Q(1, 12), 5, max_denominator=12), RATIONAL, RATIONAL)
+    def test_normalization_and_action_on_rational_sphere(self, a: Q, b: Q, c: Q, factor: Q, t: Q, u: Q) -> None:
+        module = load(STEM)
+        p, q = _sphere(a, b, c)
+        self.assertEqual(sp.expand(_symbolic(p)*sp.conjugate(_symbolic(p))+_symbolic(q)*sp.conjugate(_symbolic(q))), 1)
+        scaled = (G(p.re*factor, p.im*factor), G(q.re*factor, q.im*factor))
+        value = module.ElectroweakDoublet(*scaled)
+        normalized = value.normalized(factor)
+        self.assertTrue(normalized.ok)
+        self.assertEqual(normalized.value.components, (p, q))
+        self.assertEqual(normalized.value.norm_squared().value, 1)
+        z, w = _phase(t), _phase(u)
+        acted = normalized.value.acted(z)
+        self.assertTrue(acted.ok)
+        self.assertEqual(tuple(_symbolic(x) for x in acted.value.components), tuple(sp.expand(_symbolic(z)*_symbolic(x)) for x in (p, q)))
+        self.assertEqual(module.unit_action(z, module.unit_action(w, (p, q))), module.unit_action(z*w, (p, q)))
+        self.assertEqual(module.checked_normalize(*scaled, factor), (p, q))
+        run = Cases()
+        module.check_action_case(scaled, factor, (z, w), run)
+        self.assertEqual(run.checks, 10)
+
+    def test_normalization_refusal_order_and_rational_roots(self) -> None:
+        module = load(STEM)
+        for p, q, root, message in ((G(0), G(0), 0, "zeroNorm"), (G(1), G(0), 0, "nonpositiveScale"),
+                                    (G(1), G(0), -1, "nonpositiveScale"), (G(1), G(0), 2, "mismatchedSquare"),
+                                    (G(1), G(1), 1, "mismatchedSquare")):
+            self.assertEqual(self.refused(module.checked_normalize, p, q, root).message, message)
+            outcome = module.ElectroweakDoublet(p, q).normalized(root)
+            self.assertFalse(outcome.ok)
+            self.assertEqual(outcome.error.message, message)
+        for invalid_root in (True, 1.0, "1", None, complex(1)):
+            self.refused(module.checked_normalize, G(0), G(0), invalid_root)
+        self.assertEqual(module.checked_normalize(G(3), G(4), 5), (G(Q(3, 5)), G(Q(4, 5))))
+        self.assertEqual(module.checked_normalize(G(1, 1), G(1, 1), 2), (G(Q(1, 2), Q(1, 2)),)*2)
+
+    def test_all_public_domain_boundaries(self) -> None:
+        module = load(STEM)
+        for bad in (True, 1, Q(1), 1j, None, object()):
+            for operation in (module.v2, module.U, module.ElectroweakDoublet):
+                self.refused(operation, bad, G(0))
+                self.refused(operation, G(0), bad)
+            self.refused(module.scale, bad, G(1), G(0))
+        for bad in ((), (G(1),), (G(1), G(0), G(0)), "10", iter((G(1), G(0)))):
+            self.refused(module.unit_action, G(1), bad)
+        for bad in ((), (G(1),)*3, (G(1),)*5, (G(1), G(0), G(0), 1), "1111"):
+            self.refused(module.right_diag, bad, G(1), G(1))
+            self.refused(module.scale_mat, bad, 1)
+        self.refused(module.right_diag, (G(0),)*4, G(1), 1)
+        self.refused(module.right_diag, (G(0),)*4, 1, G(1))
+        for denominator in (0, True, 1.0, None):
+            self.refused(module.scale_mat, (G(1),)*4, denominator)
+        for phase, pair in ((G(0), (G(1), G(0))), (G(2), (G(1), G(0))), (G(1), (G(2), G(0))), (G(1), (G(0), G(0)))):
+            self.refused(module.unit_action, phase, pair)
+
+    def test_owned_immutable_values_and_railway_paths(self) -> None:
+        module = load(STEM)
+        value = module.ElectroweakDoublet(G(3), G(4))
+        with self.assertRaises(FrozenInstanceError):
+            value.p = G(9)
+        components = list(value.components)
+        components[0] = G(0)
+        self.assertEqual(value.components, (G(3), G(4)))
+        self.assertEqual(value.norm_squared().value, 25)
+        self.assertEqual(value.scaled(G(0, 1)).value.components, (G(0, 3), G(0, 4)))
+        self.assertFalse(value.scaled(1).ok)
+        self.assertFalse(value.acted(G(1)).ok)
+        self.assertTrue(value.normalized(5).value.acted(G(-1)).ok)
+        matrix = [G(1), G(2), G(3), G(4)]
+        actual = module.right_diag(matrix, G(1), G(1))
+        matrix[0] = G(0)
+        self.assertEqual(actual, (G(1), G(2), G(3), G(4)))
+
+    def test_exact_size_and_intermediate_resource_refusals(self) -> None:
+        module = load(STEM)
+        admitted = 2**4095
+        self.assertEqual(module.exact(admitted), admitted)
+        for bad in (2**4096, Q(1, 2**4096)):
+            self.refused(module.exact, bad, kind="resource")
+        large = G(2**2048)
+        self.refused(module.v2, large, G(0), kind="resource")
+        self.assertEqual(module.ElectroweakDoublet(large, G(0)).norm_squared().error.kind, "resource")
+        self.refused(module.checked_normalize, G(1), G(0), 2**2048, kind="resource")
+        self.refused(module.v2, G(2**2047, 2**2047), G(2**2047, 2**2047), kind="resource")
+        self.refused(module.scale, G(2), G(admitted), G(0), kind="resource")
+        self.refused(module.scale_mat, (G(admitted),)*4, Q(1, 2), kind="resource")
+        coprime = G(Q(1, admitted), Q(1, admitted+1))
+        self.refused(module.v2, coprime, G(0), kind="resource")
+        self.refused(module.unit_action, large, (G(1), G(0)), kind="resource")
+
+    def test_preflight_and_phase_census_budget(self) -> None:
+        module = load(STEM)
+        with patch.object(G, "norm_sq", side_effect=RuntimeError("arithmetic before admission")):
+            self.refused(module.v2, G(2**2048), None)
+            self.refused(module.check_action_case, (G(1), G(0)), 1, (G(1),)*65, Cases(), kind="resource")
+        for bad in (True, "phase", iter((G(1),)), (G(1), G(2))):
+            self.refused(module.check_action_case, (G(1), G(0)), 1, bad, Cases())
+        run = Cases()
+        module.check_action_case((G(1), G(0)), 1, (G(1),)*64, run)
+        self.assertEqual(run.checks, 4226)
+        empty = Cases()
+        module.check_action_case((G(1), G(0)), 1, (), empty)
+        self.assertEqual(empty.checks, 2)
+
+    def test_nonunit_own_root_counterexample(self) -> None:
+        module = load(STEM)
+        scaled = module.scale(G(2), G(1), G(0))
+        left = module.scale_mat(module.U(*scaled), 2)
+        right = module.right_diag(module.scale_mat(module.U(G(1), G(0)), 1), G(2), G(2))
+        self.assertEqual(left, (G(0), G(1), G(-1), G(0)))
+        self.assertEqual(right, (G(0), G(2), G(-2), G(0)))
+        self.assertNotEqual(left, right)
+        self.assertEqual(module.scale_mat(module.U(*scaled), 1), right)
+
+    def test_nonreal_fixed_matrix_and_doublet(self) -> None:
+        module = load(STEM)
+        entries = (G(1, 2), G(3, -1), G(-2, 4), G(5, 3))
+        left, right = G(0, 1), G(1, -1)
+        expected = (_matrix(entries)*sp.diag(_symbolic(left), _symbolic(right))).applyfunc(sp.expand)
+        self.assertEqual(_matrix(module.right_diag(entries, left, right)), expected)
+        self.assertEqual(_matrix(module.scale_mat(entries, 2)), _matrix(entries)/2)
+        self.assertEqual(module.checked_normalize(G(1, 1), G(1, 1), 2), (G(Q(1, 2), Q(1, 2)),)*2)
+        run = Cases()
+        module.check_unnormalized(G(1, 2), G(3, -1), G(-2, 4), run)
+        self.assertEqual(run.checks, 2)
+
+    def test_default_counts_and_actual_failure_detection(self) -> None:
+        module = load(STEM)
+        run = Cases()
+        module.check_normalization_api(run)
+        self.assertEqual(run.checks, 748)
+        module._witness_controls(run)
+        self.assertEqual(run.checks, 759)
+        for _ in range(2):
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                module.main()
+            receipt = json.loads(output.getvalue())
+            self.assertEqual(receipt["checks"], 761)
+            self.assertEqual((receipt["doublets"], receipt["phases"]), (9, 8))
+            self.assertEqual(receipt["status"], "passed")
+        with patch.object(module, "checked_normalize", return_value=(G(1), G(0))):
+            self.refused(module._invalid_controls, Cases(), kind="check")
+        with patch.object(module, "right_diag", return_value=(G(0),)*4):
+            self.refused(module._witness_controls, Cases(), kind="check")
+        with patch.object(module.ElectroweakDoublet, "_norm_squared", return_value=Q(2)):
+            self.refused(module.check_unnormalized, G(2), G(1), G(0), Cases(), kind="check")
+
+    def test_recorders_cli_and_programming_errors(self) -> None:
+        module = load(STEM)
+        self.refused(module.check_normalization_api, None)
+        self.refused(module.check_action_case, (G(1), G(0)), 1, (), None)
+        self.refused(module.check_unnormalized, G(1), G(1), G(0), None)
+        with patch.object(module, "check_normalization_api", side_effect=RuntimeError("bug")):
+            with self.assertRaises(RuntimeError):
+                cli(module.main)
+        with patch.object(module, "check_normalization_api", side_effect=KeyboardInterrupt):
+            with self.assertRaises(KeyboardInterrupt):
+                cli(module.main)
+        with patch.object(module, "scale_mat", return_value=(G(0),)*4), contextlib.redirect_stderr(io.StringIO()) as output:
+            self.assertEqual(cli(module.main), 1)
+        self.assertEqual(json.loads(output.getvalue())["kind"], "check")
+
+    def test_loader_registration_and_failures(self) -> None:
+        with self.assertRaises(ValueError):
+            load("../outside")
+        sentinel = ModuleType("sentinel")
+        with patch.dict(sys.modules, {"reviewed_electroweak": sentinel}):
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                load(STEM)
+            self.assertIs(sys.modules["reviewed_electroweak"], sentinel)
+            self.assertEqual(output.getvalue(), "")
+            with patch("importlib.util.spec_from_file_location", return_value=None):
+                with self.assertRaises(OSError):
+                    load(STEM)
+            with patch("importlib.machinery.SourceFileLoader.exec_module", side_effect=RuntimeError("import bug")):
+                with self.assertRaises(RuntimeError):
+                    load(STEM)
+            self.assertIs(sys.modules["reviewed_electroweak"], sentinel)
+        with patch.dict(sys.modules):
+            sys.modules.pop("reviewed_electroweak", None)
+            load(STEM)
+            self.assertNotIn("reviewed_electroweak", sys.modules)
+
+    def test_executable_cli_receipt(self) -> None:
+        flags = [] if __debug__ else ["-O"]
+        path = Path(__file__).resolve().parents[1]/"independent"/(STEM+".py")
+        result = subprocess.run([sys.executable, "-I", "-B", *flags, "-X", "utf8", str(path)],
+                                capture_output=True, text=True, encoding="utf-8", timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stderr, "")
+        self.assertEqual(json.loads(result.stdout)["checks"], 761)
+        with patch.object(Cases, "require", side_effect=Violation("check", "injected failure")), contextlib.redirect_stderr(io.StringIO()) as output:
+            with self.assertRaises(SystemExit) as failure:
+                runpy.run_path(str(path), run_name="__main__")
+        self.assertEqual(failure.exception.code, 1)
+        self.assertEqual(json.loads(output.getvalue())["kind"], "check")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

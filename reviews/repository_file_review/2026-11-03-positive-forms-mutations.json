@@ -1,0 +1,513 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_admission_precedes_dependent_arithmetic (__main__.PositiveFormTests.test_admission_precedes_dependent_arithmetic) ... ok\ntest_coarse_graining_against_incidence_matrix (__main__.PositiveFormTests.test_coarse_graining_against_incidence_matrix) ... ok\ntest_counts_faults_and_programming_error_lifecycle (__main__.PositiveFormTests.test_counts_faults_and_programming_error_lifecycle) ... ok\ntest_distinct_normalization_witnesses (__main__.PositiveFormTests.test_distinct_normalization_witnesses) ... ok\ntest_executable_receipt_and_failure_exit (__main__.PositiveFormTests.test_executable_receipt_and_failure_exit) ... ok\ntest_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples) ... ok\ntest_gram_bilinear_quadratic_and_normalized_weights (__main__.PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights) ... ok\ntest_input_shapes_scalars_and_full_budgets (__main__.PositiveFormTests.test_input_shapes_scalars_and_full_budgets) ... ok\ntest_negative_pairing_and_nonnegative_products (__main__.PositiveFormTests.test_negative_pairing_and_nonnegative_products) ... ok\ntest_oracles_and_import_lifecycle (__main__.PositiveFormTests.test_oracles_and_import_lifecycle) ... ok\ntest_partition_refusals_and_canonical_group_order (__main__.PositiveFormTests.test_partition_refusals_and_canonical_group_order) ... ok\ntest_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... ok\ntest_snapshot_ownership (__main__.PositiveFormTests.test_snapshot_ownership) ... ok\ntest_vectors_events_and_denominator_refusals (__main__.PositiveFormTests.test_vectors_events_and_denominator_refusals) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 1.501s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_positive_forms_mutations.py": "6ce7f99ffb4800341e2f9b17c96b283c4f81007b0badf121fec2b3e58d65ac01",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\ds-positive-form-controls.py": "47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959",
+    "checks\\tests\\positive_form_mutations.json": "a0853d61bebce1256561452c25b6698ff37a75f1cc0cde555e52ee51e82882d1",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_positive_form_controls.py": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "mutants": [
+    {
+      "identity": "integer-coercion",
+      "mutant_sha256": "cb3540c1272fc1b6a10e2897bb2684883bbe577b4e5d261cdd7dc7cb6b19192c",
+      "outcome": "killed",
+      "output": "test_input_shapes_scalars_and_full_budgets (__main__.PositiveFormTests.test_input_shapes_scalars_and_full_budgets) ... FAIL\n\n======================================================================\nFAIL: test_input_shapes_scalars_and_full_budgets (__main__.PositiveFormTests.test_input_shapes_scalars_and_full_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 138, in test_input_shapes_scalars_and_full_budgets\n    self.refused(module.IntegerGramForm, features)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 53, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_input_shapes_scalars_and_full_budgets"
+      ]
+    },
+    {
+      "identity": "integer-bit-budget",
+      "mutant_sha256": "945836e144bc66422592f87de24aced488536cc0e9a17edff3f53c6c3717bc79",
+      "outcome": "killed",
+      "output": "test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 197, in test_resource_boundaries_and_later_cancellation\n    self.refused(module.IntegerGramForm, ((2**4096,),), kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 53, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_resource_boundaries_and_later_cancellation"
+      ]
+    },
+    {
+      "identity": "negative-scale",
+      "mutant_sha256": "e2f4732567a2649e539733ce52ced0a5cb236a7d77c06ce27d38966009d258d1",
+      "outcome": "killed",
+      "output": "test_input_shapes_scalars_and_full_budgets (__main__.PositiveFormTests.test_input_shapes_scalars_and_full_budgets) ... FAIL\n\n======================================================================\nFAIL: test_input_shapes_scalars_and_full_budgets (__main__.PositiveFormTests.test_input_shapes_scalars_and_full_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 140, in test_input_shapes_scalars_and_full_budgets\n    self.refused(module.IntegerGramForm, ((1,),), scale)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 53, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_input_shapes_scalars_and_full_budgets"
+      ]
+    },
+    {
+      "identity": "dot-product-budget",
+      "mutant_sha256": "72e248d5f0254bf9a23872e80b6bc89470c67d4739733afcc61d41db47e4def7",
+      "outcome": "killed",
+      "output": "test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... ERROR\n\n======================================================================\nERROR: test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 204, in test_resource_boundaries_and_later_cancellation\n    self.assertEqual(product.bilinear((1, 2), (0, 0)).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_resource_boundaries_and_later_cancellation"
+      ]
+    },
+    {
+      "identity": "dot-prefix-budget",
+      "mutant_sha256": "e75f470beffa01fac7ba448cc3bd1fa97c697f3918ff541ab7695479c77812f3",
+      "outcome": "killed",
+      "output": "test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... ERROR\n\n======================================================================\nERROR: test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 201, in test_resource_boundaries_and_later_cancellation\n    self.assertEqual(form.bilinear((1, 1, 1), (0, 0, 0)).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_resource_boundaries_and_later_cancellation"
+      ]
+    },
+    {
+      "identity": "dot-sign",
+      "mutant_sha256": "619494092ddf50971eb073cb0b3033933cfe0ff6b42e8d4b6a22b0ac7a8d96ed",
+      "outcome": "killed",
+      "output": "test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 113, in test_fixed_nondiagonal_and_multifeature_examples\n    self.assertEqual(sp.ImmutableMatrix(form.gram().value), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[-20,   8, -22],\n[  8, -16,  20],\n[-22,  20, -34]]) != Matrix([\n[20,  -8,  22],\n[-8,  16, -20],\n[22, -20,  34]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_fixed_nondiagonal_and_multifeature_examples"
+      ]
+    },
+    {
+      "identity": "normalizer-zero",
+      "mutant_sha256": "bb7d78972ce15174411c4a69f4f53cde7b4e9536151980893af117306d72ad5a",
+      "outcome": "killed",
+      "output": "test_admission_precedes_dependent_arithmetic (__main__.PositiveFormTests.test_admission_precedes_dependent_arithmetic) ... ERROR\n\n======================================================================\nERROR: test_admission_precedes_dependent_arithmetic (__main__.PositiveFormTests.test_admission_precedes_dependent_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 223, in test_admission_precedes_dependent_arithmetic\n    self.assertEqual(form.event_weight((), 0).error.kind, \"input\")\n                     ~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\independent\\ds-positive-form-controls.py\", line 118, in event_weight\n    return evaluate(self._event_weight, event, denominator)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\independent\\ds-positive-form-controls.py\", line 115, in _event_weight\n    return Q(self._quadratic(selector), divisor)\n             ~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\independent\\ds-positive-form-controls.py\", line 90, in _quadratic\n    coordinates = self._coordinates(self._vector(vector))\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not project\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_admission_precedes_dependent_arithmetic"
+      ]
+    },
+    {
+      "identity": "normalizer-square",
+      "mutant_sha256": "be856a1a9efec4c4a89f56f7d98507a419c31bfea8485b95743f64175fb2689d",
+      "outcome": "killed",
+      "output": "test_distinct_normalization_witnesses (__main__.PositiveFormTests.test_distinct_normalization_witnesses) ... FAIL\n\n======================================================================\nFAIL: test_distinct_normalization_witnesses (__main__.PositiveFormTests.test_distinct_normalization_witnesses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 125, in test_distinct_normalization_witnesses\n    self.assertEqual(first.diagonal_weight(2).value, Q(1, 2))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 1) != Fraction(1, 2)\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_distinct_normalization_witnesses"
+      ]
+    },
+    {
+      "identity": "normalizer-square-budget",
+      "mutant_sha256": "0ed851ace896445c9f740061d6373e93a78988c0ef8207f97032316e8f06fe14",
+      "outcome": "killed",
+      "output": "test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... ERROR\n\n======================================================================\nERROR: test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 211, in test_resource_boundaries_and_later_cancellation\n    self.assertEqual(scaled.event_weight((), 2**2048).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_resource_boundaries_and_later_cancellation"
+      ]
+    },
+    {
+      "identity": "feature-row-budget",
+      "mutant_sha256": "4ba223cdd62ac8376ed0fe93a20f5deb51bcd19580a8d99a262fdf283bb78380",
+      "outcome": "killed",
+      "output": "test_input_shapes_scalars_and_full_budgets (__main__.PositiveFormTests.test_input_shapes_scalars_and_full_budgets) ... FAIL\n\n======================================================================\nFAIL: test_input_shapes_scalars_and_full_budgets (__main__.PositiveFormTests.test_input_shapes_scalars_and_full_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 141, in test_input_shapes_scalars_and_full_budgets\n    self.refused(module.IntegerGramForm, ((1,),)*17, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 53, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_input_shapes_scalars_and_full_budgets"
+      ]
+    },
+    {
+      "identity": "dimension-selector",
+      "mutant_sha256": "ce846678c459e1835c999df2b4f303fa85c0591586e76e0bb536d7dba679cb3b",
+      "outcome": "killed",
+      "output": "test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 114, in test_fixed_nondiagonal_and_multifeature_examples\n    self.assertEqual(form.bilinear((1, 0, 0), (0, 1, 0)).value, -8)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != -8\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_fixed_nondiagonal_and_multifeature_examples"
+      ]
+    },
+    {
+      "identity": "vector-arity",
+      "mutant_sha256": "5cf690c3c46ec37a42e569b632aff13b325bb89d4f74ed656907e848467fd1de",
+      "outcome": "killed",
+      "output": "test_vectors_events_and_denominator_refusals (__main__.PositiveFormTests.test_vectors_events_and_denominator_refusals) ... ERROR\n\n======================================================================\nERROR: test_vectors_events_and_denominator_refusals (__main__.PositiveFormTests.test_vectors_events_and_denominator_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 155, in test_vectors_events_and_denominator_refusals\n    self.assertEqual(form.quadratic(vector).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_vectors_events_and_denominator_refusals"
+      ]
+    },
+    {
+      "identity": "bilinear-right-vector",
+      "mutant_sha256": "a3e0eb60c0b61aec6fae833e7a84abbac7a154025051f3324abd1f6b13cf80f5",
+      "outcome": "killed",
+      "output": "test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 114, in test_fixed_nondiagonal_and_multifeature_examples\n    self.assertEqual(form.bilinear((1, 0, 0), (0, 1, 0)).value, -8)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 20 != -8\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_fixed_nondiagonal_and_multifeature_examples"
+      ]
+    },
+    {
+      "identity": "bilinear-scale",
+      "mutant_sha256": "d93a349bb952302c52ef9dfb0fddb1e5fd8821c3ddfb1ba89416cea914259c12",
+      "outcome": "killed",
+      "output": "test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 114, in test_fixed_nondiagonal_and_multifeature_examples\n    self.assertEqual(form.bilinear((1, 0, 0), (0, 1, 0)).value, -8)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: -4 != -8\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_fixed_nondiagonal_and_multifeature_examples"
+      ]
+    },
+    {
+      "identity": "bilinear-result-budget",
+      "mutant_sha256": "4a5defcb3febc887c3c6465b0a6660b60831996d5cbbcd889fb40716b0a95235",
+      "outcome": "killed",
+      "output": "test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... ERROR\n\n======================================================================\nERROR: test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 209, in test_resource_boundaries_and_later_cancellation\n    self.assertEqual(scaled.bilinear((2,), (1,)).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_resource_boundaries_and_later_cancellation"
+      ]
+    },
+    {
+      "identity": "quadratic-scale",
+      "mutant_sha256": "f42ec9c603b4e9243542754b576974d0fe5c16d994bc8cd8eb3190a15e9d8127",
+      "outcome": "killed",
+      "output": "test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 116, in test_fixed_nondiagonal_and_multifeature_examples\n    self.assertEqual(form.quadratic((1, -1, 2)).value, 356)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 178 != 356\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_fixed_nondiagonal_and_multifeature_examples"
+      ]
+    },
+    {
+      "identity": "quadratic-result-budget",
+      "mutant_sha256": "f15251c6fe10f6feea2f8542f60f434838c53bbb0af283da1ede4fa570330fb6",
+      "outcome": "killed",
+      "output": "test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... ERROR\n\n======================================================================\nERROR: test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 210, in test_resource_boundaries_and_later_cancellation\n    self.assertEqual(scaled.quadratic((2,)).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_resource_boundaries_and_later_cancellation"
+      ]
+    },
+    {
+      "identity": "gram-column-orientation",
+      "mutant_sha256": "e09f325030b2bf6179d5bcf1c407269893007537408bf89678c2fd8d2bbf3075",
+      "outcome": "killed",
+      "output": "test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 113, in test_fixed_nondiagonal_and_multifeature_examples\n    self.assertEqual(sp.ImmutableMatrix(form.gram().value), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[ 12, -10],\n[-10,  58]]) != Matrix([\n[20,  -8,  22],\n[-8,  16, -20],\n[22, -20,  34]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_fixed_nondiagonal_and_multifeature_examples"
+      ]
+    },
+    {
+      "identity": "gram-scale",
+      "mutant_sha256": "e19ebe2f012a33743d9ae31a6c6f86cd3557d444d1206c2261491475d8468bc8",
+      "outcome": "killed",
+      "output": "test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 113, in test_fixed_nondiagonal_and_multifeature_examples\n    self.assertEqual(sp.ImmutableMatrix(form.gram().value), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[10,  -4,  11],\n[-4,   8, -10],\n[11, -10,  17]]) != Matrix([\n[20,  -8,  22],\n[-8,  16, -20],\n[22, -20,  34]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_fixed_nondiagonal_and_multifeature_examples"
+      ]
+    },
+    {
+      "identity": "gram-result-budget",
+      "mutant_sha256": "783e8721bad4529d891d451a782355aa9282ea3308ef27b036dc41c0ef8663f6",
+      "outcome": "killed",
+      "output": "test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... ERROR\n\n======================================================================\nERROR: test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 215, in test_resource_boundaries_and_later_cancellation\n    self.assertEqual(module.IntegerGramForm(((2,),), large).gram().error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_resource_boundaries_and_later_cancellation"
+      ]
+    },
+    {
+      "identity": "event-negative",
+      "mutant_sha256": "d51d167a42b5dad214da56a5e17a212c67d74843a29850569634f44425c5f6ff",
+      "outcome": "killed",
+      "output": "test_vectors_events_and_denominator_refusals (__main__.PositiveFormTests.test_vectors_events_and_denominator_refusals) ... ERROR\n\n======================================================================\nERROR: test_vectors_events_and_denominator_refusals (__main__.PositiveFormTests.test_vectors_events_and_denominator_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 159, in test_vectors_events_and_denominator_refusals\n    self.assertEqual(form.event_weight(event).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_vectors_events_and_denominator_refusals"
+      ]
+    },
+    {
+      "identity": "event-upper",
+      "mutant_sha256": "75df17c8ca23c46127f539a0f56813258f78e006f536c2fc6cc6f3081688466a",
+      "outcome": "killed",
+      "output": "test_vectors_events_and_denominator_refusals (__main__.PositiveFormTests.test_vectors_events_and_denominator_refusals) ... ERROR\n\n======================================================================\nERROR: test_vectors_events_and_denominator_refusals (__main__.PositiveFormTests.test_vectors_events_and_denominator_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 159, in test_vectors_events_and_denominator_refusals\n    self.assertEqual(form.event_weight(event).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_vectors_events_and_denominator_refusals"
+      ]
+    },
+    {
+      "identity": "event-duplicate",
+      "mutant_sha256": "f2dcdb16f4d32718a34fc6937ed57870d5fc8ea0793a5dd046948a439af4b0cd",
+      "outcome": "killed",
+      "output": "test_vectors_events_and_denominator_refusals (__main__.PositiveFormTests.test_vectors_events_and_denominator_refusals) ... ERROR\n\n======================================================================\nERROR: test_vectors_events_and_denominator_refusals (__main__.PositiveFormTests.test_vectors_events_and_denominator_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 160, in test_vectors_events_and_denominator_refusals\n    self.assertEqual(form.event_weight((0, 0)).error.kind, \"duplicate\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_vectors_events_and_denominator_refusals"
+      ]
+    },
+    {
+      "identity": "event-canonical-order",
+      "mutant_sha256": "e97b86b3716606c24f3dfa472fd4954bf9603c02ba290ce13c40dfcb4b104f56",
+      "outcome": "killed",
+      "output": "test_partition_refusals_and_canonical_group_order (__main__.PositiveFormTests.test_partition_refusals_and_canonical_group_order) ... FAIL\n\n======================================================================\nFAIL: test_partition_refusals_and_canonical_group_order (__main__.PositiveFormTests.test_partition_refusals_and_canonical_group_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 174, in test_partition_refusals_and_canonical_group_order\n    self.assertEqual(form._event((2, 0, 1)), (0, 1, 2))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (2, 0, 1) != (0, 1, 2)\n\nFirst differing element 0:\n2\n0\n\n- (2, 0, 1)\n+ (0, 1, 2)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_partition_refusals_and_canonical_group_order"
+      ]
+    },
+    {
+      "identity": "event-selector",
+      "mutant_sha256": "1dbbc54a71daf3bea02691cc4c0329943b3d442130bcdf7a8910d86516159c37",
+      "outcome": "killed",
+      "output": "test_distinct_normalization_witnesses (__main__.PositiveFormTests.test_distinct_normalization_witnesses) ... FAIL\n\n======================================================================\nFAIL: test_distinct_normalization_witnesses (__main__.PositiveFormTests.test_distinct_normalization_witnesses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 126, in test_distinct_normalization_witnesses\n    self.assertEqual(first.event_weight((0, 1), 2).value, 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(0, 1) != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_distinct_normalization_witnesses"
+      ]
+    },
+    {
+      "identity": "event-normalization",
+      "mutant_sha256": "2db53c186eea0432b59d6111a759a7c2cb4b8fd9639bed7077aa2ca286053b7f",
+      "outcome": "killed",
+      "output": "test_distinct_normalization_witnesses (__main__.PositiveFormTests.test_distinct_normalization_witnesses) ... FAIL\n\n======================================================================\nFAIL: test_distinct_normalization_witnesses (__main__.PositiveFormTests.test_distinct_normalization_witnesses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 126, in test_distinct_normalization_witnesses\n    self.assertEqual(first.event_weight((0, 1), 2).value, 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(4, 1) != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_distinct_normalization_witnesses"
+      ]
+    },
+    {
+      "identity": "diagonal-sum-prefix",
+      "mutant_sha256": "079aa59d97fe582040d7d0ae776271263a487caa4e53ed7d67e6a6db0d3b2361",
+      "outcome": "killed",
+      "output": "test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... ERROR\n\n======================================================================\nERROR: test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 214, in test_resource_boundaries_and_later_cancellation\n    self.assertEqual(norm.diagonal_weight().error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_resource_boundaries_and_later_cancellation"
+      ]
+    },
+    {
+      "identity": "diagonal-scale",
+      "mutant_sha256": "fea708bf245ac60ea1389cd2c4119b48b8110385cf05170bd20435c39faaa9d0",
+      "outcome": "killed",
+      "output": "test_gram_bilinear_quadratic_and_normalized_weights (__main__.PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights) ... FAIL\n\n======================================================================\nFAIL: test_gram_bilinear_quadratic_and_normalized_weights (__main__.PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 70, in test_gram_bilinear_quadratic_and_normalized_weights\n    @given(DATA, st.integers(1, 4), st.integers(1, 4), st.integers(0, 5), VECTOR, VECTOR, st.integers(1, 7))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 82, in test_gram_bilinear_quadratic_and_normalized_weights\n    self.assertEqual(form.diagonal_weight(denominator).value, gram.trace()/denominator**2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 1) != 0\nFailing test case: test_gram_bilinear_quadratic_and_normalized_weights(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.PositiveFormTests testMethod=test_gram_bilinear_quadratic_and_normalized_weights>,\n    values=[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\n    rows=1,  # or any other generated value\n    columns=1,  # or any other generated value\n    scale=0,\n    first=[0, 0, 0, 0],  # or any other generated value\n    second=[0, 0, 0, 0],  # or any other generated value\n    denominator=1,  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:336\n\n----------------------------------------------------------------------\nRan 1 test in 6.439s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_gram_bilinear_quadratic_and_normalized_weights"
+      ]
+    },
+    {
+      "identity": "diagonal-result-budget",
+      "mutant_sha256": "9d9288f2c98a212c615681bbaeca5d1f9e03b72b7fc5afb69017d86e997bcf25",
+      "outcome": "killed",
+      "output": "test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation) ... ERROR\n\n======================================================================\nERROR: test_resource_boundaries_and_later_cancellation (__main__.PositiveFormTests.test_resource_boundaries_and_later_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 216, in test_resource_boundaries_and_later_cancellation\n    self.assertEqual(module.IntegerGramForm(((2,),), large).diagonal_weight().error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_resource_boundaries_and_later_cancellation"
+      ]
+    },
+    {
+      "identity": "partition-empty-group",
+      "mutant_sha256": "71470cf054ed6f5d9ba0ffa2c6407a6e5355b57a236ad91d8aced835b22ea45d",
+      "outcome": "killed",
+      "output": "test_partition_refusals_and_canonical_group_order (__main__.PositiveFormTests.test_partition_refusals_and_canonical_group_order) ... ERROR\n\n======================================================================\nERROR: test_partition_refusals_and_canonical_group_order (__main__.PositiveFormTests.test_partition_refusals_and_canonical_group_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 171, in test_partition_refusals_and_canonical_group_order\n    self.assertEqual(form.coarse_grained(partition).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_partition_refusals_and_canonical_group_order"
+      ]
+    },
+    {
+      "identity": "partition-overlap",
+      "mutant_sha256": "18d116c2292eb0e31822f074284905773d6ae37b8516f204437f32519b3e2fa2",
+      "outcome": "killed",
+      "output": "test_partition_refusals_and_canonical_group_order (__main__.PositiveFormTests.test_partition_refusals_and_canonical_group_order) ... ERROR\n\n======================================================================\nERROR: test_partition_refusals_and_canonical_group_order (__main__.PositiveFormTests.test_partition_refusals_and_canonical_group_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 173, in test_partition_refusals_and_canonical_group_order\n    self.assertEqual(form.coarse_grained(duplicate).error.kind, \"duplicate\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_partition_refusals_and_canonical_group_order"
+      ]
+    },
+    {
+      "identity": "partition-coverage",
+      "mutant_sha256": "103451f3bb800941bbe733bcfad374152fd82d7203f1b6b22bd2e7f40b705146",
+      "outcome": "killed",
+      "output": "test_partition_refusals_and_canonical_group_order (__main__.PositiveFormTests.test_partition_refusals_and_canonical_group_order) ... ERROR\n\n======================================================================\nERROR: test_partition_refusals_and_canonical_group_order (__main__.PositiveFormTests.test_partition_refusals_and_canonical_group_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 171, in test_partition_refusals_and_canonical_group_order\n    self.assertEqual(form.coarse_grained(partition).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_partition_refusals_and_canonical_group_order"
+      ]
+    },
+    {
+      "identity": "coarse-scale",
+      "mutant_sha256": "ea2dd26e0daed22873b4ab0103bb16bc71430a52f1fbbd5e4554dd607dfac382",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership (__main__.PositiveFormTests.test_snapshot_ownership) ... FAIL\n\n======================================================================\nFAIL: test_snapshot_ownership (__main__.PositiveFormTests.test_snapshot_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 192, in test_snapshot_ownership\n    self.assertEqual(coarse.scale, 2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 2\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_snapshot_ownership"
+      ]
+    },
+    {
+      "identity": "coarse-sum",
+      "mutant_sha256": "c6e15fd5c62be4a37a833af4052312c8823b46d15d989c696ed9a38a3094d7d6",
+      "outcome": "killed",
+      "output": "test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nondiagonal_and_multifeature_examples (__main__.PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 117, in test_fixed_nondiagonal_and_multifeature_examples\n    self.assertEqual(form.coarse_grained(((2, 0), (1,))).value.features, ((0, 2), (7, -2)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, 0), (0, 0)) != ((0, 2), (7, -2))\n\nFirst differing element 0:\n(0, 0)\n(0, 2)\n\n- ((0, 0), (0, 0))\n?      ^    ^  ^\n\n+ ((0, 2), (7, -2))\n?      ^    ^  ^^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_fixed_nondiagonal_and_multifeature_examples"
+      ]
+    },
+    {
+      "identity": "negative-pair-vector",
+      "mutant_sha256": "a3471930ca8a983cf047b88176c3bf7b92549c665e48cdd54a0d8b64cfa71476",
+      "outcome": "killed",
+      "output": "test_negative_pairing_and_nonnegative_products (__main__.PositiveFormTests.test_negative_pairing_and_nonnegative_products) ... FAIL\n\n======================================================================\nFAIL: test_negative_pairing_and_nonnegative_products (__main__.PositiveFormTests.test_negative_pairing_and_nonnegative_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 235, in test_negative_pairing_and_nonnegative_products\n    self.assertEqual(module.off_diagonal_pairing(scale), (vector.T*matrix*vector)[0])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: -16 != 16\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_negative_pairing_and_nonnegative_products"
+      ]
+    },
+    {
+      "identity": "nonnegative-product",
+      "mutant_sha256": "57caf645acdf8459076681b0442716c1c9199dc81d0ff536b566a3b9b2739ec6",
+      "outcome": "killed",
+      "output": "test_negative_pairing_and_nonnegative_products (__main__.PositiveFormTests.test_negative_pairing_and_nonnegative_products) ... FAIL\n\n======================================================================\nFAIL: test_negative_pairing_and_nonnegative_products (__main__.PositiveFormTests.test_negative_pairing_and_nonnegative_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 236, in test_negative_pairing_and_nonnegative_products\n    self.assertEqual(module.nonnegative_product(0, 2**4095), 0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 52219444070657625334587635535831219128998[1187 chars]95168 != 0\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_negative_pairing_and_nonnegative_products"
+      ]
+    },
+    {
+      "identity": "omit-bell-case",
+      "mutant_sha256": "5213bb22a1d1a171017adbebdef4195f7903f2f12f433b0785771b85552be8b5",
+      "outcome": "killed",
+      "output": "test_counts_faults_and_programming_error_lifecycle (__main__.PositiveFormTests.test_counts_faults_and_programming_error_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_counts_faults_and_programming_error_lifecycle (__main__.PositiveFormTests.test_counts_faults_and_programming_error_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 251, in test_counts_faults_and_programming_error_lifecycle\n    self.assertEqual(cases.checks, 619)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: 325 != 619\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_counts_faults_and_programming_error_lifecycle"
+      ]
+    },
+    {
+      "identity": "omit-global-witness",
+      "mutant_sha256": "c08c2d3719e7c8f9e8eabdf0b956d7c79e7028b3e04161d88f0c3b07d81a0bd3",
+      "outcome": "killed",
+      "output": "test_counts_faults_and_programming_error_lifecycle (__main__.PositiveFormTests.test_counts_faults_and_programming_error_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_counts_faults_and_programming_error_lifecycle (__main__.PositiveFormTests.test_counts_faults_and_programming_error_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 253, in test_counts_faults_and_programming_error_lifecycle\n    self.assertEqual(cases.checks, 4017)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4015 != 4017\n\n----------------------------------------------------------------------\nRan 1 test in 0.017s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_counts_faults_and_programming_error_lifecycle"
+      ]
+    },
+    {
+      "identity": "false-success-exit",
+      "mutant_sha256": "58de6795123013cb3e3284ab186b48b3716a44ef706ad4739bdd2fe2f7429e7a",
+      "outcome": "killed",
+      "output": "test_executable_receipt_and_failure_exit (__main__.PositiveFormTests.test_executable_receipt_and_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_executable_receipt_and_failure_exit (__main__.PositiveFormTests.test_executable_receipt_and_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 275, in test_executable_receipt_and_failure_exit\n    with self.assertRaises(SystemExit) as failure:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: SystemExit not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.159s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-positive-form-controls.py",
+      "tests": [
+        "test_executable_receipt_and_failure_exit"
+      ]
+    },
+    {
+      "identity": "oracle-row-order",
+      "mutant_sha256": "27a4334b07d7a1154695667b9b1183649a403d6d091a2b37713fa27b8c26d535",
+      "outcome": "killed",
+      "output": "test_oracles_and_import_lifecycle (__main__.PositiveFormTests.test_oracles_and_import_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_import_lifecycle (__main__.PositiveFormTests.test_oracles_and_import_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 61, in test_oracles_and_import_lifecycle\n    self.assertEqual(_rows(list(range(16)), 2, 3), ((0, 1, 2), (3, 4, 5)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, 2, 4), (1, 3, 5)) != ((0, 1, 2), (3, 4, 5))\n\nFirst differing element 0:\n(0, 2, 4)\n(0, 1, 2)\n\n- ((0, 2, 4), (1, 3, 5))\n+ ((0, 1, 2), (3, 4, 5))\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_positive_form_controls.py",
+      "tests": [
+        "test_oracles_and_import_lifecycle"
+      ]
+    },
+    {
+      "identity": "oracle-partition-order",
+      "mutant_sha256": "e37a19e25cb2ea38b44a4df40fc87ea49bcf553c8aa0c1bc8b8c4832cc53f433",
+      "outcome": "killed",
+      "output": "test_oracles_and_import_lifecycle (__main__.PositiveFormTests.test_oracles_and_import_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_import_lifecycle (__main__.PositiveFormTests.test_oracles_and_import_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 62, in test_oracles_and_import_lifecycle\n    self.assertEqual(_partition([2, 1, 2, 0], 4), ((3,), (1,), (0, 2)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, 2), (1,), (3,)) != ((3,), (1,), (0, 2))\n\nFirst differing element 0:\n(0, 2)\n(3,)\n\n- ((0, 2), (1,), (3,))\n?   ^ --          ^\n\n+ ((3,), (1,), (0, 2))\n?   ^           ^ ++\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_positive_form_controls.py",
+      "tests": [
+        "test_oracles_and_import_lifecycle"
+      ]
+    },
+    {
+      "identity": "oracle-selector-inversion",
+      "mutant_sha256": "1434b88c95993e69d81a07862256000d4222ce27f93cd4f2bed69ad3f2fdcfba",
+      "outcome": "killed",
+      "output": "test_oracles_and_import_lifecycle (__main__.PositiveFormTests.test_oracles_and_import_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_import_lifecycle (__main__.PositiveFormTests.test_oracles_and_import_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 63, in test_oracles_and_import_lifecycle\n    self.assertEqual(_selector(((0, 2), (1,)), 3), sp.ImmutableMatrix(((1, 0), (0, 1), (1, 0))))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 1],\n[1, 0],\n[0, 1]]) != Matrix([\n[1, 0],\n[0, 1],\n[1, 0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_positive_form_controls.py",
+      "tests": [
+        "test_oracles_and_import_lifecycle"
+      ]
+    },
+    {
+      "identity": "refusal-helper-polarity",
+      "mutant_sha256": "e4a8e83ed27ca820421a33eb443298242c4a95ba3ce89a3b6581f1346d929d95",
+      "outcome": "killed",
+      "output": "test_input_shapes_scalars_and_full_budgets (__main__.PositiveFormTests.test_input_shapes_scalars_and_full_budgets) ... FAIL\n\n======================================================================\nFAIL: test_input_shapes_scalars_and_full_budgets (__main__.PositiveFormTests.test_input_shapes_scalars_and_full_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 138, in test_input_shapes_scalars_and_full_budgets\n    self.refused(module.IntegerGramForm, features)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\positive-forms-mutation-ogw0phka\\tests\\test_positive_form_controls.py\", line 53, in refused\n    self.assertTrue(result.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_positive_form_controls.py",
+      "tests": [
+        "test_input_shapes_scalars_and_full_budgets"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 43,
+      "survived": 0,
+      "unrun": 0
+    },
+    "detected_fraction": 1.0,
+    "eligible": 43
+  }
+}

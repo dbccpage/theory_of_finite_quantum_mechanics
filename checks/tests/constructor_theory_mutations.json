@@ -1,0 +1,497 @@
+[
+  {
+    "identity": "task-frozen",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "@dataclass(frozen=True, slots=True, init=False)",
+    "after": "@dataclass(frozen=False, slots=True, init=False)",
+    "tests": [
+      "test_task_owns_snapshots_and_parallel_checks_budget_first"
+    ]
+  },
+  {
+    "identity": "task-left-size",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "integer(left_size, \"left carrier size\", 1, 64)",
+    "after": "int(left_size)",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "task-right-size",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "integer(right_size, \"right carrier size\", 1, 64)",
+    "after": "int(right_size)",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "task-totality",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "sequence(outputs, \"total task table\", left*right)",
+    "after": "sequence(outputs, \"total task table\")",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "task-left-output",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "integer(a, \"left output\", 0, left-1)",
+    "after": "int(a)",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "task-right-output",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "integer(b, \"right output\", 0, right-1)",
+    "after": "int(b)",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "task-table-alias",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "object.__setattr__(self, \"outputs\", tuple(table))",
+    "after": "object.__setattr__(self, \"outputs\", outputs)",
+    "tests": [
+      "test_task_owns_snapshots_and_parallel_checks_budget_first"
+    ]
+  },
+  {
+    "identity": "task-point-left",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "integer(a, \"left input\", 0, self.left_size-1)",
+    "after": "int(a)",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "task-point-right",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "integer(b, \"right input\", 0, self.right_size-1)",
+    "after": "int(b)",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "task-row-major",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "self.outputs[point[0]*self.right_size+point[1]]",
+    "after": "self.outputs[point[1]*self.left_size+point[0]]",
+    "tests": [
+      "test_task_application_and_composition_dictionary_oracle"
+    ]
+  },
+  {
+    "identity": "task-reversibility",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "len(set(self.outputs)) == len(self.outputs)",
+    "after": "True",
+    "tests": [
+      "test_exhaustive_binary_tasks_factorization_and_inverse"
+    ]
+  },
+  {
+    "identity": "local-factor-condition",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "self._at((a, b)) != (left[a], right[b])",
+    "after": "self._at((a, b)) == (left[a], right[b])",
+    "tests": [
+      "test_exhaustive_binary_tasks_factorization_and_inverse"
+    ]
+  },
+  {
+    "identity": "local-right-component",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "self._at((0, b))[1]",
+    "after": "self._at((0, b))[0]",
+    "tests": [
+      "test_exhaustive_binary_tasks_factorization_and_inverse"
+    ]
+  },
+  {
+    "identity": "composition-shape",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "if (self.left_size, self.right_size) != (prior.left_size, prior.right_size):",
+    "after": "if self.left_size*self.right_size != prior.left_size*prior.right_size:",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "composition-order",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "tuple(self._at(point) for point in prior.outputs)",
+    "after": "tuple(prior._at(point) for point in self.outputs)",
+    "tests": [
+      "test_task_application_and_composition_dictionary_oracle"
+    ]
+  },
+  {
+    "identity": "inverse-bijection-gate",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "if not self.is_reversible():",
+    "after": "if False:",
+    "tests": [
+      "test_exhaustive_binary_tasks_factorization_and_inverse"
+    ]
+  },
+  {
+    "identity": "inverse-source-index",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "divmod(index, self.right_size)",
+    "after": "divmod(index, self.left_size)",
+    "tests": [
+      "test_task_owns_snapshots_and_parallel_checks_budget_first"
+    ]
+  },
+  {
+    "identity": "inverse-image-index",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "inverse[a*self.right_size+b]",
+    "after": "inverse[b*self.left_size+a]",
+    "tests": [
+      "test_exhaustive_binary_tasks_factorization_and_inverse"
+    ]
+  },
+  {
+    "identity": "parallel-left-preflight",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "integer(self.left_size*rhs.left_size, \"product left size\", 1, 64)",
+    "after": "self.left_size*rhs.left_size",
+    "tests": [
+      "test_task_owns_snapshots_and_parallel_checks_budget_first"
+    ]
+  },
+  {
+    "identity": "parallel-right-preflight",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "integer(self.right_size*rhs.right_size, \"product right size\", 1, 64)",
+    "after": "self.right_size*rhs.right_size",
+    "tests": [
+      "test_task_owns_snapshots_and_parallel_checks_budget_first"
+    ]
+  },
+  {
+    "identity": "parallel-own-coordinates",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "(a//rhs.left_size, b//rhs.right_size)",
+    "after": "(a % self.left_size, b % self.right_size)",
+    "tests": [
+      "test_parallel_regrouping_and_cloning_dictionary_oracle"
+    ]
+  },
+  {
+    "identity": "parallel-other-coordinates",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "(a % rhs.left_size, b % rhs.right_size)",
+    "after": "(a//self.left_size, b//self.right_size)",
+    "tests": [
+      "test_parallel_regrouping_and_cloning_dictionary_oracle"
+    ]
+  },
+  {
+    "identity": "parallel-output-coordinates",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "own[0]*rhs.left_size+theirs[0]",
+    "after": "theirs[0]*self.left_size+own[0]",
+    "tests": [
+      "test_parallel_regrouping_and_cloning_dictionary_oracle"
+    ]
+  },
+  {
+    "identity": "clones-carrier-equality",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "if self.left_size != self.right_size:",
+    "after": "if False:",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "clones-blank-domain",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "integer(blank, \"blank label\", 0, self.right_size-1)",
+    "after": "int(blank)",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "clones-blank-binding",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "self._at((label, admitted))",
+    "after": "self._at((label, 0))",
+    "tests": [
+      "test_cloning_only_constrains_blank_slice"
+    ]
+  },
+  {
+    "identity": "clones-target",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "== (label, label) for label",
+    "after": "== (label, admitted) for label",
+    "tests": [
+      "test_exhaustive_binary_tasks_factorization_and_inverse"
+    ]
+  },
+  {
+    "identity": "controlled-xor",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "return left ^ right, right",
+    "after": "return left, right",
+    "tests": [
+      "test_information_controls_cli_and_repeatability"
+    ]
+  },
+  {
+    "identity": "information-count",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "\"total_checks\": len(cases)",
+    "after": "\"total_checks\": len(cases)+1",
+    "tests": [
+      "test_information_generated_receipt_accounting"
+    ]
+  },
+  {
+    "identity": "information-failures",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "[name for name, passed in cases if not passed]",
+    "after": "[name for name, passed in cases if passed]",
+    "tests": [
+      "test_information_generated_receipt_accounting"
+    ]
+  },
+  {
+    "identity": "information-false-success",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "\"all_passed\": not failures",
+    "after": "\"all_passed\": True",
+    "tests": [
+      "test_information_generated_receipt_accounting"
+    ]
+  },
+  {
+    "identity": "information-cli-failure",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "ensure(result[\"all_passed\"] is True,",
+    "after": "ensure(True,",
+    "tests": [
+      "test_information_controls_cli_and_repeatability"
+    ]
+  },
+  {
+    "identity": "controlled-left-domain",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "def controlled(point: object) -> Point:\n    a, b = sequence(point, \"binary pair\", 2)\n    left, right = integer(a, \"left bit\", 0, 1), integer(b, \"right bit\", 0, 1)\n    return left ^ right, right",
+    "after": "def controlled(point: object) -> Point:\n    a, b = sequence(point, \"binary pair\", 2)\n    left, right = int(a), integer(b, \"right bit\", 0, 1)\n    return left ^ right, right",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "controlled-right-domain",
+    "source": "independent/ct-information-media-interoperability.py",
+    "before": "def controlled(point: object) -> Point:\n    a, b = sequence(point, \"binary pair\", 2)\n    left, right = integer(a, \"left bit\", 0, 1), integer(b, \"right bit\", 0, 1)\n    return left ^ right, right",
+    "after": "def controlled(point: object) -> Point:\n    a, b = sequence(point, \"binary pair\", 2)\n    left, right = integer(a, \"left bit\", 0, 1), int(b)\n    return left ^ right, right",
+    "tests": [
+      "test_task_domain_refusals_and_shape_equality"
+    ]
+  },
+  {
+    "identity": "concurrence-coercion",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "phase = GaussianRational(u_re, u_im)",
+    "after": "phase = GaussianRational(Fraction(u_re), Fraction(u_im))",
+    "tests": [
+      "test_concurrence_domain_budget_and_extremes"
+    ]
+  },
+  {
+    "identity": "concurrence-phase-defect",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "phase-GaussianRational(1)",
+    "after": "phase+GaussianRational(1)",
+    "tests": [
+      "test_concurrence_against_complex_matrix_normalization"
+    ]
+  },
+  {
+    "identity": "concurrence-state-norm",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "rational(3+norm, \"state normalization\")",
+    "after": "rational(1+norm, \"state normalization\")",
+    "tests": [
+      "test_concurrence_against_complex_matrix_normalization"
+    ]
+  },
+  {
+    "identity": "concurrence-normalization-square",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "rational(normalizer*normalizer, \"squared normalization\")",
+    "after": "normalizer",
+    "tests": [
+      "test_concurrence_against_complex_matrix_normalization"
+    ]
+  },
+  {
+    "identity": "concurrence-scale",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "rational(4*defect/denominator, \"normalized concurrence squared\")",
+    "after": "rational(defect/denominator, \"normalized concurrence squared\")",
+    "tests": [
+      "test_unit_phase_concurrence"
+    ]
+  },
+  {
+    "identity": "symbolic-action-transpose",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "transformed = A * M * B.T",
+    "after": "transformed = A * M * B",
+    "tests": [
+      "test_mediator_counts_recorders_and_symbolic_failures"
+    ]
+  },
+  {
+    "identity": "product-state-entry",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "[a1 * b0, a1 * b1]",
+    "after": "[a1 * b0, a1 * b0]",
+    "tests": [
+      "test_mediator_counts_recorders_and_symbolic_failures"
+    ]
+  },
+  {
+    "identity": "phase-matrix-entry",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "[sp.Rational(1, 2), u / 2]",
+    "after": "[sp.Rational(1, 2), u]",
+    "tests": [
+      "test_mediator_counts_recorders_and_symbolic_failures"
+    ]
+  },
+  {
+    "identity": "pythagorean-component",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "u_im = Fraction(4, 5)",
+    "after": "u_im = Fraction(3, 5)",
+    "tests": [
+      "test_mediator_counts_recorders_and_symbolic_failures"
+    ]
+  },
+  {
+    "identity": "kron-order",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "sp.kronecker_product(A, B)",
+    "after": "sp.kronecker_product(B, A)",
+    "tests": [
+      "test_mediator_counts_recorders_and_symbolic_failures"
+    ]
+  },
+  {
+    "identity": "rank-direction",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "r_after <= r_before",
+    "after": "r_after >= r_before",
+    "tests": [
+      "test_rank_family_against_independent_elimination"
+    ]
+  },
+  {
+    "identity": "rank-family-count",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "for _ in range(60):",
+    "after": "for _ in range(59):",
+    "tests": [
+      "test_rank_family_against_independent_elimination"
+    ]
+  },
+  {
+    "identity": "rank-seed",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "seed = 12345",
+    "after": "seed = 12346",
+    "tests": [
+      "test_rank_family_against_independent_elimination"
+    ]
+  },
+  {
+    "identity": "rank-summary-count",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "count += 1",
+    "after": "count += 2",
+    "tests": [
+      "test_rank_family_against_independent_elimination"
+    ]
+  },
+  {
+    "identity": "rank-summary-strict",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "strict += r_after < r_before",
+    "after": "strict += r_after <= r_before",
+    "tests": [
+      "test_rank_family_against_independent_elimination"
+    ]
+  },
+  {
+    "identity": "mediator-global-recorder",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "operation(cases)",
+    "after": "operation(None)",
+    "tests": [
+      "test_mediator_counts_recorders_and_symbolic_failures"
+    ]
+  },
+  {
+    "identity": "mediator-count-output",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "{cases.checks} executed obligations",
+    "after": "{cases.checks+1} executed obligations",
+    "tests": [
+      "test_mediator_counts_recorders_and_symbolic_failures"
+    ]
+  },
+  {
+    "identity": "concurrence-derived-resource-gates",
+    "source": "independent/ct-local-mediator-entanglement-import.py",
+    "before": "def normalized_concurrence_squared(u_re: object, u_im: object) -> Fraction:\n    \"\"\"Exact normalized phase-family concurrence with bounded rational values.\n\n    Every derived norm/defect/normalizer and result is admitted to4096 bits;\n    an exceeded bound is a resource refusal, not a zero or clipped concurrence.\n    \"\"\"\n    phase = GaussianRational(u_re, u_im)\n    norm = rational(phase.norm_sq(), \"phase norm\")\n    defect = rational((phase-GaussianRational(1)).norm_sq(), \"phase defect\")\n    normalizer = rational(3+norm, \"state normalization\")\n    denominator = rational(normalizer*normalizer, \"squared normalization\")\n    return rational(4*defect/denominator, \"normalized concurrence squared\")",
+    "after": "def normalized_concurrence_squared(u_re: object, u_im: object) -> Fraction:\n    \"\"\"Exact normalized phase-family concurrence with bounded rational values.\n\n    Every derived norm/defect/normalizer and result is admitted to4096 bits;\n    an exceeded bound is a resource refusal, not a zero or clipped concurrence.\n    \"\"\"\n    phase = GaussianRational(u_re, u_im)\n    norm = phase.norm_sq()\n    defect = (phase-GaussianRational(1)).norm_sq()\n    normalizer = 3+norm\n    denominator = normalizer*normalizer\n    return 4*defect/denominator",
+    "tests": [
+      "test_concurrence_domain_budget_and_extremes"
+    ]
+  },
+  {
+    "identity": "test-refusal-helper",
+    "source": "tests/test_constructor_theory.py",
+    "before": "        result = evaluate(lambda: operation(*args))",
+    "after": "        return Failure(\"input\", \"fake\")\n        result = evaluate(lambda: operation(*args))",
+    "tests": [
+      "test_refusal_helper_and_rank_oracle"
+    ]
+  },
+  {
+    "identity": "rank-oracle-pivot-zero",
+    "source": "tests/test_constructor_theory.py",
+    "before": "if matrix[row][column] != 0",
+    "after": "if matrix[row][column] == 0",
+    "tests": [
+      "test_refusal_helper_and_rank_oracle"
+    ]
+  },
+  {
+    "identity": "rank-oracle-elimination-sign",
+    "source": "tests/test_constructor_theory.py",
+    "before": "value-factor*base",
+    "after": "value+factor*base",
+    "tests": [
+      "test_refusal_helper_and_rank_oracle"
+    ]
+  }
+]

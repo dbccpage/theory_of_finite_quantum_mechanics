@@ -1,0 +1,683 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/ads-cft-duality-import.py": {
+      "role": "Executable independent AdS algebra checker with validated exact scalar interfaces, invocation-owned check accounting and typed CLI failure transport",
+      "profile": "Exact",
+      "origin": "lean4/AdsCftDualityImport.lean",
+      "cost": "Each rational input has at most 4096 numerator/denominator bits. Fixed-degree polynomial arithmetic uses polynomial bit complexity. The CLI has 829 executed check calls over a fixed 5 by 25 grid, five count triples and matrices no larger than 3 by 3; no input-controlled symbolic expression or loop is accepted.",
+      "groups": [
+        {
+          "requirement": "Compute the rational GKPW polynomial, involution, discriminant and BF bound; signed rational d and root witnesses are admitted, bool/float and excessive components refused.",
+          "symbols": [
+            "gkpw_mass_sq",
+            "shadow_dimension",
+            "gkpw_discriminant",
+            "bf_bound",
+            "gkpw_root_plus",
+            "gkpw_root_minus"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_scalar_admission_every_parameter",
+            "AdsCheckerTests.test_gkpw_exact_polynomial_and_signed_roots"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-CFT-DUALITY-IMPORT-1"
+        },
+        {
+          "requirement": "Verify the fixed rational grid and symbolic identities, five supplied ribbon-count triples, and finite real isometric witnesses; none derives continuum duality. Counts record executed obligations.",
+          "symbols": [
+            "check_gkpw_identities",
+            "check_thooft_scaling",
+            "check_isometric_dictionary_and_fence"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_failed_obligation_is_a_nonzero_railway_cli"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-CFT-DUALITY-IMPORT-2"
+        },
+        {
+          "requirement": "Run all three sections with fresh state, accurate totals and nonzero typed failure; printing failure also passes through the shared CLI boundary.",
+          "symbols": [
+            "main"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_failed_obligation_is_a_nonzero_railway_cli"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-CFT-DUALITY-IMPORT-3"
+        }
+      ],
+      "source_sha256": "c67201bdad59b1460be9badf3517fe9f26bdf45f697c18fd96a5ef9422125e16",
+      "symbols": [
+        "bf_bound",
+        "check_gkpw_identities",
+        "check_isometric_dictionary_and_fence",
+        "check_thooft_scaling",
+        "gkpw_discriminant",
+        "gkpw_mass_sq",
+        "gkpw_root_minus",
+        "gkpw_root_plus",
+        "main",
+        "shadow_dimension"
+      ],
+      "origin_sha256": "19365b284177fa7eb6fbe532f016248ea5143a1a8ead08e77d772539ac89f61b",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57"
+        },
+        {
+          "path": "docs/evidence/stages/ADS_CFT.md",
+          "sha256": "483d08e36d4c570dae33352823144a5f5a5939e15deefab5a1758f24a4525a0b"
+        },
+        {
+          "path": "docs/evidence/nodes/ADS-CFT-DUALITY-IMPORT.md",
+          "sha256": "c155214a30d2688cae283a46b19d7ea28c1d50eaf5577e5c474393b268465755"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-23_campaign-ads-cft-duality-import-precommit.md",
+          "sha256": "799fc86648c408052ae28d139f77a59de3cbfadd310d767584f18be38e47f76e"
+        },
+        {
+          "path": "dag/research/campaign_ads-cft-duality-import_independent.json",
+          "sha256": "084644db1aea5b0bd0dabc81e653f451cceb20c9ed8ad0a34a99f1a6f5cb152b"
+        },
+        {
+          "path": "dag/operads/ads_cft_duality_import.yaml",
+          "sha256": "0545e529acd2472f5fd5e7e5141ac2cadafb5ebc1e5163ca5d6492c8d1d93fc4"
+        },
+        {
+          "path": "dag/fragments/frontier_branches.json",
+          "sha256": "ab83607806c0663345c7d43eee646989486cd2156ff8c8831e0c7c8d500bd1b7"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
+        },
+        {
+          "path": "dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md",
+          "sha256": "ba4dcbaa0e64e9b209f3cf641d762c5f9555a47446767191bbf9f4eaee39f116"
+        },
+        {
+          "path": "dag/derivations/independent/ads-cft-duality-import.md",
+          "sha256": "7dbe906b2a7a9af1426d5d3fa916e0b34428f086a30f66c1a4b7bafe2a256406"
+        }
+      ],
+      "consumer_boundary": "Requested source checkout audited by exact filename references; callers use script entrypoints or the reviewed test loader. Internal check sections receive trusted typed Cases aggregates, never deserialized run state. Historical evidence retains its old version/count scope."
+    },
+    "checks/independent/ads-happy-toy-not-duality-gap.py": {
+      "role": "Finite entropy-census checker composing validated exact Renyi operations with pure-state admission, finite graph/entropy interfaces and invocation-local accounting",
+      "profile": "Exact",
+      "origin": "lean4/AdsHappyToyNotDualityGap.lean",
+      "cost": "Rational inputs are 4096-bit bounded. Renyi operations are fixed-degree exact arithmetic; 499 check calls include all 380 proper boundary intervals. Graph cuts enumerate 64 assignments on six internal vertices; entropy ranks use at most 20 rows of 40 bits. The supplied commuting rank-20 fixture is validated by the source-bound shared support.",
+      "groups": [
+        {
+          "requirement": "Admit positive rational Renyi order and nonnegative entropy, retain negative defects below order one and compute exact flat/CFT factors.",
+          "symbols": [
+            "cft_renyi_factor",
+            "stabilizer_renyi_factor",
+            "renyi_spectrum_defect"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_scalar_admission_every_parameter",
+            "AdsCheckerTests.test_positive_and_nonnegative_boundaries",
+            "AdsCheckerTests.test_renyi_signed_defect"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-HAPPY-TOY-NOT-DUALITY-GAP-1"
+        },
+        {
+          "requirement": "Validate recorded factors, fixture purity, all interval lengths and the 340/40 equality-deficit partition, disconnected mutual information and supplied Hilbert dimensions. The fixture is hand-encoded, not derived tensor contraction.",
+          "symbols": [
+            "check_renyi_factors",
+            "check_interval_census",
+            "check_mutual_information_and_codimension"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_fixture_mismatch_refusals"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-HAPPY-TOY-NOT-DUALITY-GAP-2"
+        },
+        {
+          "requirement": "Each complete invocation owns three Cases aggregates and publishes only counted successful obligations; check failure exits nonzero with typed evidence.",
+          "symbols": [
+            "main"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_failed_obligation_is_a_nonzero_railway_cli"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-HAPPY-TOY-NOT-DUALITY-GAP-3"
+        }
+      ],
+      "source_sha256": "c183b90bf0c9b9a8e13cbbcd768ed0c658cc3897d54e0c9f8ec63eb9f9cc8e5e",
+      "symbols": [
+        "cft_renyi_factor",
+        "check_interval_census",
+        "check_mutual_information_and_codimension",
+        "check_renyi_factors",
+        "main",
+        "renyi_spectrum_defect",
+        "stabilizer_renyi_factor"
+      ],
+      "origin_sha256": "8ae260255f3f65384458080171a83122187b121c24058ea128a30e5d6e9ef5c0",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-23_campaign-ads-happy-toy-not-duality-gap-precommit.md",
+          "sha256": "47a249a2dc5669490b61970f8cb7f53f362f09b2a6ea8bc24d33a373f74833ac"
+        },
+        {
+          "path": "docs/evidence/stages/ADS_CFT.md",
+          "sha256": "483d08e36d4c570dae33352823144a5f5a5939e15deefab5a1758f24a4525a0b"
+        },
+        {
+          "path": "docs/evidence/nodes/ADS-HAPPY-TOY-NOT-DUALITY-GAP.md",
+          "sha256": "0afe64b2f55917ba475cd026f17081965a8168729a3d9b89683fc50878e11408"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
+        },
+        {
+          "path": "dag/fragments/frontier_branches.json",
+          "sha256": "ab83607806c0663345c7d43eee646989486cd2156ff8c8831e0c7c8d500bd1b7"
+        },
+        {
+          "path": "dag/operads/ads_happy_toy_not_duality_gap.yaml",
+          "sha256": "3038f61f0f9437b760780a1e6ac972a29a236aa79db10c0b2bfb5b65bdf7d6b1"
+        },
+        {
+          "path": "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md",
+          "sha256": "8d54e170116d2a0fe10feee741c11feaacd6537c6881b47dd7aa9a9a1e6e7ed4"
+        },
+        {
+          "path": "dag/derivations/independent/ads-happy-toy-not-duality-gap.md",
+          "sha256": "19a0c52cc4b59b8741ff423950d447437e4d0164d4b25cfd4bac20472e60cafb"
+        },
+        {
+          "path": "dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json",
+          "sha256": "78ec0d2dbac4a9843a05de630a4cc5441b3a85a9761df2c0f7bdbebce92000cc"
+        }
+      ],
+      "consumer_boundary": "Requested source checkout audited by exact filename references; callers use script entrypoints or the reviewed test loader. Internal check sections receive trusted typed Cases aggregates, never deserialized run state. Historical evidence retains its old version/count scope."
+    },
+    "checks/independent/ads-regge-area-rt-gap.py": {
+      "role": "Bounded exact subdivision and Regge-versus-cut validation application with explicit rational/integer admission and section-owned check aggregation",
+      "profile": "Exact",
+      "origin": "lean4/AdsReggeAreaRtGap.lean",
+      "cost": "Nonnegative rational areas and positive integer subdivision counts have at most 4096 bits. Subdivision uses closed-form arithmetic, never m iterations. Signed rational action coefficients follow the formal polynomial. The CLI executes 553 checks; its only census is the fixed 380-interval six-vertex cut model.",
+      "groups": [
+        {
+          "requirement": "Return exact linear/squared subdivision sums and loss; reject zero, negative, bool/noninteger counts and excess bit budgets before arithmetic. Zero area and one subdivision remain valid.",
+          "symbols": [
+            "linear_area_subdivision_sum",
+            "sq_area_subdivision_sum",
+            "sq_area_subdivision_defect"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_subdivision_and_regge_action",
+            "AdsCheckerTests.test_subdivision_rejects_invalid_domain_and_budget"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-REGGE-AREA-RT-GAP-1"
+        },
+        {
+          "requirement": "Evaluate the signed rational action polynomial with exact admission of both factors.",
+          "symbols": [
+            "uniform_defect_regge_action"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_scalar_admission_every_parameter",
+            "AdsCheckerTests.test_subdivision_and_regge_action"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-REGGE-AREA-RT-GAP-2"
+        },
+        {
+          "requirement": "Check supplied combinatorial counts, cut histogram, 45 subdivision fixtures with three obligations each, and the conditional fixed-total curvature comparison. No simplicial incidence is derived.",
+          "symbols": [
+            "check_supplied_carrier_counts",
+            "check_subdivisions",
+            "check_defect_weighting"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_fixture_mismatch_refusals"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-REGGE-AREA-RT-GAP-3"
+        },
+        {
+          "requirement": "Own fresh section aggregates, count each validation call and fail through Railway CLI without printing a success report after failure.",
+          "symbols": [
+            "main"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_failed_obligation_is_a_nonzero_railway_cli"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-REGGE-AREA-RT-GAP-4"
+        }
+      ],
+      "source_sha256": "d67f2d9f42c1186bb8e4c89b5b1c1a203f11e8207701a74efa40a41fd14d379a",
+      "symbols": [
+        "check_defect_weighting",
+        "check_subdivisions",
+        "check_supplied_carrier_counts",
+        "linear_area_subdivision_sum",
+        "main",
+        "sq_area_subdivision_defect",
+        "sq_area_subdivision_sum",
+        "uniform_defect_regge_action"
+      ],
+      "origin_sha256": "378777ffedad3a7fa58ad034b1ee51c55cb0551bb1b3bdde5de9b684328dd4d3",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-24_campaign-ads-regge-area-rt-gap-precommit.md",
+          "sha256": "a37ba8aca5a39f0e52e98159f1bb04a7a964c5100a153b30af1c437529e0a7d5"
+        },
+        {
+          "path": "docs/evidence/stages/ADS_CFT.md",
+          "sha256": "483d08e36d4c570dae33352823144a5f5a5939e15deefab5a1758f24a4525a0b"
+        },
+        {
+          "path": "docs/evidence/nodes/ADS-REGGE-AREA-RT-GAP.md",
+          "sha256": "8c4dbd482e11c66e04413da659e0bdd7b700a5ffe837cfdc3ae4f3187685fff0"
+        },
+        {
+          "path": "dag/operads/ads_regge_area_rt_gap.yaml",
+          "sha256": "2b96b54f8bb0421617b1059d0a79c5b77e43710bb26fce62f29dfd320cd59b69"
+        },
+        {
+          "path": "dag/fragments/frontier_branches.json",
+          "sha256": "ab83607806c0663345c7d43eee646989486cd2156ff8c8831e0c7c8d500bd1b7"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
+        },
+        {
+          "path": "dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md",
+          "sha256": "f108042097aa9a33821b75d8ca5030c4521db07b25360483d50b8774497fe0d7"
+        },
+        {
+          "path": "dag/derivations/independent/ads-regge-area-rt-gap.md",
+          "sha256": "19ceff37b4bf875a65213b9f9bb56beab86a588d3d2d7ee3529dfc65bab33b64"
+        },
+        {
+          "path": "dag/research/pr_320_campaign_pipeline.json",
+          "sha256": "fd0a9f64ce3b08d51a6d057b9c6bb4a02f4cae605734f9d5a3d27c70d3e260ef"
+        },
+        {
+          "path": "dag/research/campaign_ads-regge-area-rt-gap_independent.json",
+          "sha256": "2ffced2b6c8e425d0ec37f9e8a7a349b76dcc6363ba1d191e308e90946c05d32"
+        },
+        {
+          "path": "dag/pfp/campaign/LOG.md",
+          "sha256": "3bb6fbbb26486f3c70b44e42e045dc7c2b3dbf93c87a32b9f6c9e23e2e8b8e74"
+        }
+      ],
+      "consumer_boundary": "Requested source checkout audited by exact filename references; callers use script entrypoints or the reviewed test loader. Internal check sections receive trusted typed Cases aggregates, never deserialized run state. Historical evidence retains its old version/count scope."
+    },
+    "checks/independent/ads-rt-formula-import.py": {
+      "role": "Exact finite RT coupling and geometry checker with rational boundary schemas, square certificates and fixed entropy-model integration",
+      "profile": "Exact",
+      "origin": "lean4/AdsRtFormulaImport.lean",
+      "cost": "Rational inputs have at most 4096 component bits; scalar computations have fixed degree and square admission uses integer isqrt. The CLI executes 528 check calls on a fixed 64 coupling grid, 18 pasting examples, four spectra, ten hinges and 380 intervals; no arbitrary symbolic program is admitted.",
+      "groups": [
+        {
+          "requirement": "Validate positive Newton constants/radius and nonnegative area/log/central-charge coefficients, preserving exact RT and Brown-Henneaux algebra.",
+          "symbols": [
+            "rt_leading_entropy",
+            "brown_henneaux_central_charge",
+            "ads3_geodesic_length",
+            "calabrese_cardy_coefficient"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_scalar_admission_every_parameter",
+            "AdsCheckerTests.test_positive_and_nonnegative_boundaries",
+            "AdsCheckerTests.test_rt_coupling_properties"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-RT-FORMULA-IMPORT-1"
+        },
+        {
+          "requirement": "Compute the Cayley-Menger polynomial over all admitted Q inputs, including signed/nongeometric coefficients; certify a nonnegative rational square using numerator and denominator. Return Fraction even for integer inputs.",
+          "symbols": [
+            "cayley_menger_triangle_area_sq",
+            "has_rational_square_root"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_scalar_admission_every_parameter",
+            "AdsCheckerTests.test_cayley_menger_against_determinant",
+            "AdsCheckerTests.test_square_certificate",
+            "AdsCheckerTests.test_positive_and_nonnegative_boundaries"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-RT-FORMULA-IMPORT-2"
+        },
+        {
+          "requirement": "Validate fixed fixture entropy queries and independently check coupling, finite entropy examples, hinge census, fourth-degree scaling and complements. No general Baker or continuum theorem is claimed.",
+          "symbols": [
+            "interval_entropy",
+            "check_rt_coupling",
+            "check_exact_entropy_examples",
+            "check_hinge_geometry",
+            "check_scaling_and_complements"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_fixture_mismatch_refusals"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-RT-FORMULA-IMPORT-3"
+        },
+        {
+          "requirement": "Own fresh counters, count both pasting obligations and both spectral obligations, preserve typed nonzero failure and repeatability.",
+          "symbols": [
+            "main"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_failed_obligation_is_a_nonzero_railway_cli"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-ADS-RT-FORMULA-IMPORT-4"
+        }
+      ],
+      "source_sha256": "2576b4dc72018d97d1ad3199dea86b1514f0cdc691b7a5804ffc4bee973365db",
+      "symbols": [
+        "ads3_geodesic_length",
+        "brown_henneaux_central_charge",
+        "calabrese_cardy_coefficient",
+        "cayley_menger_triangle_area_sq",
+        "check_exact_entropy_examples",
+        "check_hinge_geometry",
+        "check_rt_coupling",
+        "check_scaling_and_complements",
+        "has_rational_square_root",
+        "interval_entropy",
+        "main",
+        "rt_leading_entropy"
+      ],
+      "origin_sha256": "3c2f558eef58018b8667ea9933648b6caa70ace6f6e37388cd7dc2edfe32c29c",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57"
+        },
+        {
+          "path": "docs/evidence/stages/ADS_CFT.md",
+          "sha256": "483d08e36d4c570dae33352823144a5f5a5939e15deefab5a1758f24a4525a0b"
+        },
+        {
+          "path": "docs/evidence/nodes/ADS-RT-FORMULA-IMPORT.md",
+          "sha256": "516278ac023f382de05b2db2c67b8f9c743d62bc34d1ca2784587cde12d13ee1"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-24_campaign-ads-rt-formula-import-precommit.md",
+          "sha256": "7111944c8816fa4dd870b4fb907170b904d1bd5eea499d47ddce65e621c075a7"
+        },
+        {
+          "path": "dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md",
+          "sha256": "1825b86ad4c4ba5a82bb139987ed096d2c18ebf72c4bec64d1af183550465d4c"
+        },
+        {
+          "path": "dag/derivations/independent/ads-rt-formula-import.md",
+          "sha256": "e73bb79d99a937a0fe62ee13d268eaf9871127f11e481ae90ed022823a1a7ce4"
+        },
+        {
+          "path": "dag/pfp/campaign/LOG.md",
+          "sha256": "3bb6fbbb26486f3c70b44e42e045dc7c2b3dbf93c87a32b9f6c9e23e2e8b8e74"
+        },
+        {
+          "path": "dag/operads/ads_rt_formula_import.yaml",
+          "sha256": "fa41439c55d69cc50c5450431e26540ac192102a30a63255c172e333eb9a472c"
+        },
+        {
+          "path": "dag/fragments/frontier_branches.json",
+          "sha256": "ab83607806c0663345c7d43eee646989486cd2156ff8c8831e0c7c8d500bd1b7"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
+        },
+        {
+          "path": "dag/research/campaign_ads-rt-formula-import_independent.json",
+          "sha256": "922dad2f7c56544bfea8c835d6bb1db3c084546006ef8634c2ea3e6ac40f2286"
+        }
+      ],
+      "consumer_boundary": "Requested source checkout audited by exact filename references; callers use script entrypoints or the reviewed test loader. Internal check sections receive trusted typed Cases aggregates, never deserialized run state. Historical evidence retains its old version/count scope."
+    },
+    "checks/tests/test_review_repairs.py": {
+      "role": "Independent regression application for the first 25 checkers with bounded child-process execution, restored dynamic-import ownership and independent finite mathematical oracles",
+      "profile": "Non-Numeric",
+      "origin": "SCORING.md",
+      "cost": "Each of 25 isolated subprocesses has a 45-second limit. Deterministic enumerations include 8200 lineon paths, 1925 projector/vector cases and 380 graph cuts times 64 assignments; no input-controlled population. Import registry and capture contexts restore on failure/cancellation.",
+      "groups": [
+        {
+          "requirement": "Load only reviewed local sources, restore sys.modules during success/errors/cancellation and preserve results while capturing output.",
+          "symbols": [
+            "load",
+            "silent"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_loader_restores_modules_on_success_failure_and_cancellation",
+            "AdsCheckerTests.test_silent_preserves_result_and_propagates_error"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-TEST-REVIEW-REPAIRS-1"
+        },
+        {
+          "requirement": "Independent collision oracle rejects coincidence and sign-crossing for simultaneous integer hops in the enumerated fixtures.",
+          "symbols": [
+            "_collision_free"
+          ],
+          "tests": [
+            "ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-TEST-REVIEW-REPAIRS-2"
+        },
+        {
+          "requirement": "Provide one unittest suite with explicit failure helpers, independent arithmetic/finite enumerations, negative-path refusals and isolated CLI integration. Individual method names state each tested requirement; successful outcomes are never treated as typed refusals.",
+          "symbols": [
+            "ReviewedCheckerRegressionTests",
+            "ReviewedCheckerRegressionTests.refused",
+            "ReviewedCheckerRegressionTests.test_every_checker_cli",
+            "ReviewedCheckerRegressionTests.test_checker_structure_stays_within_reviewed_bounds",
+            "ReviewedCheckerRegressionTests.test_imports_do_not_execute_checks",
+            "ReviewedCheckerRegressionTests.test_railway_result_short_circuits",
+            "ReviewedCheckerRegressionTests.test_duplicate_case_ids_are_refused",
+            "ReviewedCheckerRegressionTests.test_assertion_stripping_mutants_are_killed",
+            "ReviewedCheckerRegressionTests.test_causal_matrix_inverse_boundary",
+            "ReviewedCheckerRegressionTests.test_local_net_boundaries",
+            "ReviewedCheckerRegressionTests.test_reeh_matrix_and_site_boundaries",
+            "ReviewedCheckerRegressionTests.test_normalized_concurrence_off_unit_circle",
+            "ReviewedCheckerRegressionTests.test_rice_and_rewrite_invalid_inputs",
+            "ReviewedCheckerRegressionTests.test_happy_regions_and_independent_rank",
+            "ReviewedCheckerRegressionTests.test_happy_mincut_independent_graph_enumeration",
+            "ReviewedCheckerRegressionTests.test_rt_exact_certificates_and_subdivision",
+            "ReviewedCheckerRegressionTests.test_wilson_determinant_against_bareiss",
+            "ReviewedCheckerRegressionTests.test_chirality_mutant_is_killed",
+            "ReviewedCheckerRegressionTests.test_strong_coupling_phase_and_domains",
+            "ReviewedCheckerRegressionTests.test_lineon_invalid_domains_and_exact_curvature",
+            "ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle",
+            "ReviewedCheckerRegressionTests.test_bphz_shape_and_forest_boundaries",
+            "ReviewedCheckerRegressionTests.test_bphz_joint_kernel_converse_1925_cases",
+            "ReviewedCheckerRegressionTests.test_ckm_immutable_exact_labels_and_budget",
+            "ReviewedCheckerRegressionTests.test_continuum_matrix_bypass_is_refused",
+            "ReviewedCheckerRegressionTests.test_refinement_bounds_group_and_repeatability"
+          ],
+          "tests": [
+            "ReviewedCheckerRegressionTests.test_every_checker_cli",
+            "ReviewedCheckerRegressionTests.test_checker_structure_stays_within_reviewed_bounds",
+            "ReviewedCheckerRegressionTests.test_imports_do_not_execute_checks",
+            "ReviewedCheckerRegressionTests.test_railway_result_short_circuits",
+            "ReviewedCheckerRegressionTests.test_duplicate_case_ids_are_refused",
+            "ReviewedCheckerRegressionTests.test_assertion_stripping_mutants_are_killed",
+            "ReviewedCheckerRegressionTests.test_causal_matrix_inverse_boundary",
+            "ReviewedCheckerRegressionTests.test_local_net_boundaries",
+            "ReviewedCheckerRegressionTests.test_reeh_matrix_and_site_boundaries",
+            "ReviewedCheckerRegressionTests.test_normalized_concurrence_off_unit_circle",
+            "ReviewedCheckerRegressionTests.test_rice_and_rewrite_invalid_inputs",
+            "ReviewedCheckerRegressionTests.test_happy_regions_and_independent_rank",
+            "ReviewedCheckerRegressionTests.test_happy_mincut_independent_graph_enumeration",
+            "ReviewedCheckerRegressionTests.test_rt_exact_certificates_and_subdivision",
+            "ReviewedCheckerRegressionTests.test_wilson_determinant_against_bareiss",
+            "ReviewedCheckerRegressionTests.test_chirality_mutant_is_killed",
+            "ReviewedCheckerRegressionTests.test_strong_coupling_phase_and_domains",
+            "ReviewedCheckerRegressionTests.test_lineon_invalid_domains_and_exact_curvature",
+            "ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle",
+            "ReviewedCheckerRegressionTests.test_bphz_shape_and_forest_boundaries",
+            "ReviewedCheckerRegressionTests.test_bphz_joint_kernel_converse_1925_cases",
+            "ReviewedCheckerRegressionTests.test_ckm_immutable_exact_labels_and_budget",
+            "ReviewedCheckerRegressionTests.test_continuum_matrix_bypass_is_refused",
+            "ReviewedCheckerRegressionTests.test_refinement_bounds_group_and_repeatability",
+            "AdsCheckerTests.test_refusal_helpers_cannot_accept_success_or_wrong_failure"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-TEST-REVIEW-REPAIRS-3"
+        }
+      ],
+      "source_sha256": "d8da6e2d1a57e6fabb85c294585296bb5c92491367e5a4c352bfbbe706603676",
+      "symbols": [
+        "ReviewedCheckerRegressionTests",
+        "ReviewedCheckerRegressionTests.refused",
+        "ReviewedCheckerRegressionTests.test_assertion_stripping_mutants_are_killed",
+        "ReviewedCheckerRegressionTests.test_bphz_joint_kernel_converse_1925_cases",
+        "ReviewedCheckerRegressionTests.test_bphz_shape_and_forest_boundaries",
+        "ReviewedCheckerRegressionTests.test_causal_matrix_inverse_boundary",
+        "ReviewedCheckerRegressionTests.test_checker_structure_stays_within_reviewed_bounds",
+        "ReviewedCheckerRegressionTests.test_chirality_mutant_is_killed",
+        "ReviewedCheckerRegressionTests.test_ckm_immutable_exact_labels_and_budget",
+        "ReviewedCheckerRegressionTests.test_continuum_matrix_bypass_is_refused",
+        "ReviewedCheckerRegressionTests.test_duplicate_case_ids_are_refused",
+        "ReviewedCheckerRegressionTests.test_every_checker_cli",
+        "ReviewedCheckerRegressionTests.test_happy_mincut_independent_graph_enumeration",
+        "ReviewedCheckerRegressionTests.test_happy_regions_and_independent_rank",
+        "ReviewedCheckerRegressionTests.test_imports_do_not_execute_checks",
+        "ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle",
+        "ReviewedCheckerRegressionTests.test_lineon_invalid_domains_and_exact_curvature",
+        "ReviewedCheckerRegressionTests.test_local_net_boundaries",
+        "ReviewedCheckerRegressionTests.test_normalized_concurrence_off_unit_circle",
+        "ReviewedCheckerRegressionTests.test_railway_result_short_circuits",
+        "ReviewedCheckerRegressionTests.test_reeh_matrix_and_site_boundaries",
+        "ReviewedCheckerRegressionTests.test_refinement_bounds_group_and_repeatability",
+        "ReviewedCheckerRegressionTests.test_rice_and_rewrite_invalid_inputs",
+        "ReviewedCheckerRegressionTests.test_rt_exact_certificates_and_subdivision",
+        "ReviewedCheckerRegressionTests.test_strong_coupling_phase_and_domains",
+        "ReviewedCheckerRegressionTests.test_wilson_determinant_against_bareiss",
+        "_collision_free",
+        "load",
+        "silent"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/checker_support/README.md",
+          "sha256": "f24c6317ed0028b8f40dd243b490e7a36595ee7733d30023f16bb3b2426d14db"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "30884f6dadce72546c5310efbb42e3b93b3ecda849df5c6cd78dd39e8dad60ef",
+          "state": "proposed workflow consumer"
+        }
+      ],
+      "consumer_boundary": "Requested source checkout audited by exact filename references; callers use script entrypoints or the reviewed test loader. Internal check sections receive trusted typed Cases aggregates, never deserialized run state. Historical evidence retains its old version/count scope."
+    },
+    "checks/tests/test_ads_checkers.py": {
+      "role": "Contract verification application for exact AdS scalar boundaries and checker lifecycle, with generated independent oracles and fault injection",
+      "profile": "Non-Numeric",
+      "origin": "SCORING.md",
+      "cost": "Deterministic Hypothesis generators use 80 cases per property, except 35 determinant cases; dynamic code imports are allowlisted repository sources. Process isolation is supplied by the regression suite and mutation campaign. No network or external scientific API is called.",
+      "groups": [
+        {
+          "requirement": "Provide one unittest suite with explicit failure helpers, independent arithmetic/finite enumerations, negative-path refusals and isolated CLI integration. Individual method names state each tested requirement; successful outcomes are never treated as typed refusals.",
+          "symbols": [
+            "AdsCheckerTests",
+            "AdsCheckerTests.refused",
+            "AdsCheckerTests.test_scalar_admission_every_parameter",
+            "AdsCheckerTests.test_positive_and_nonnegative_boundaries",
+            "AdsCheckerTests.test_gkpw_exact_polynomial_and_signed_roots",
+            "AdsCheckerTests.test_renyi_signed_defect",
+            "AdsCheckerTests.test_subdivision_and_regge_action",
+            "AdsCheckerTests.test_subdivision_rejects_invalid_domain_and_budget",
+            "AdsCheckerTests.test_rt_coupling_properties",
+            "AdsCheckerTests.test_cayley_menger_against_determinant",
+            "AdsCheckerTests.test_square_certificate",
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_failed_obligation_is_a_nonzero_railway_cli",
+            "AdsCheckerTests.test_fixture_mismatch_refusals",
+            "AdsCheckerTests.test_loader_restores_modules_on_success_failure_and_cancellation",
+            "AdsCheckerTests.test_silent_preserves_result_and_propagates_error",
+            "AdsCheckerTests.test_refusal_helpers_cannot_accept_success_or_wrong_failure"
+          ],
+          "tests": [
+            "AdsCheckerTests.test_scalar_admission_every_parameter",
+            "AdsCheckerTests.test_positive_and_nonnegative_boundaries",
+            "AdsCheckerTests.test_gkpw_exact_polynomial_and_signed_roots",
+            "AdsCheckerTests.test_renyi_signed_defect",
+            "AdsCheckerTests.test_subdivision_and_regge_action",
+            "AdsCheckerTests.test_subdivision_rejects_invalid_domain_and_budget",
+            "AdsCheckerTests.test_rt_coupling_properties",
+            "AdsCheckerTests.test_cayley_menger_against_determinant",
+            "AdsCheckerTests.test_square_certificate",
+            "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+            "AdsCheckerTests.test_failed_obligation_is_a_nonzero_railway_cli",
+            "AdsCheckerTests.test_fixture_mismatch_refusals",
+            "AdsCheckerTests.test_loader_restores_modules_on_success_failure_and_cancellation",
+            "AdsCheckerTests.test_silent_preserves_result_and_propagates_error",
+            "AdsCheckerTests.test_refusal_helpers_cannot_accept_success_or_wrong_failure",
+            "AdsCheckerTests.test_refusal_helpers_cannot_accept_success_or_wrong_failure"
+          ],
+          "requirement_id": "TFQM-ADS-REVIEW-TEST-ADS-CHECKERS-1"
+        }
+      ],
+      "source_sha256": "02b750e0a09a1b9a387c679d4a1926bcfec80abfbb61d19479708a5a96a2cf99",
+      "symbols": [
+        "AdsCheckerTests",
+        "AdsCheckerTests.refused",
+        "AdsCheckerTests.test_cayley_menger_against_determinant",
+        "AdsCheckerTests.test_failed_obligation_is_a_nonzero_railway_cli",
+        "AdsCheckerTests.test_fixture_mismatch_refusals",
+        "AdsCheckerTests.test_gkpw_exact_polynomial_and_signed_roots",
+        "AdsCheckerTests.test_loader_restores_modules_on_success_failure_and_cancellation",
+        "AdsCheckerTests.test_positive_and_nonnegative_boundaries",
+        "AdsCheckerTests.test_refusal_helpers_cannot_accept_success_or_wrong_failure",
+        "AdsCheckerTests.test_renyi_signed_defect",
+        "AdsCheckerTests.test_rt_coupling_properties",
+        "AdsCheckerTests.test_runtime_counts_and_repeatable_reports",
+        "AdsCheckerTests.test_scalar_admission_every_parameter",
+        "AdsCheckerTests.test_silent_preserves_result_and_propagates_error",
+        "AdsCheckerTests.test_square_certificate",
+        "AdsCheckerTests.test_subdivision_and_regge_action",
+        "AdsCheckerTests.test_subdivision_rejects_invalid_domain_and_budget"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "30884f6dadce72546c5310efbb42e3b93b3ecda849df5c6cd78dd39e8dad60ef",
+          "state": "proposed workflow consumer"
+        }
+      ],
+      "consumer_boundary": "Requested source checkout audited by exact filename references; callers use script entrypoints or the reviewed test loader. Internal check sections receive trusted typed Cases aggregates, never deserialized run state. Historical evidence retains its old version/count scope."
+    }
+  }
+}

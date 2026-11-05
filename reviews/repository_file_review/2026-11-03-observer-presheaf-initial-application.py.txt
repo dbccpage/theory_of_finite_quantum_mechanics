@@ -1,0 +1,467 @@
+"""Exact finite observer-presheaf controls with owned scenarios and LP certificates.
+
+AuthorityEffect: None. Finite instances only; no imported Rust replay or general
+presheaf theorem. The50 named groups retain the historical DAG checker interface.
+"""
+from __future__ import annotations
+
+from fractions import Fraction as F
+from itertools import combinations, product
+from pathlib import Path
+import sys
+from typing import cast
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from checker_support.boundary import Violation, cli, require
+from checker_support.cases import Cases
+from checker_support.cech_complex import CechComplex, EdgeValues
+from checker_support.domains import integer, rational, sequence
+from checker_support.empirical_model import EmpiricalModel
+from checker_support.exact_linear_program import ExactLinearProgram, dot
+from checker_support.linear_program_certificate import LinearProgramCertificate
+from checker_support.measurement_scenario import Assignment, Context, Distribution, MeasurementScenario, assignment, cochain, sections
+
+Scenario = MeasurementScenario
+BELL = Scenario(4, ((0, 2), (0, 3), (1, 2), (1, 3)))
+
+
+def _ok(cases: Cases, label: str, condition: bool) -> None:
+    if type(cases) is not Cases:
+        raise Violation("input", "Cases recorder required")
+    cases.require(condition, label)
+    print("ok  "+label)
+
+
+def simplex_min(c: object, A: object, b: object) -> tuple[list[F], list[F]] | None:
+    """Compatibility scalar API; aggregate solve also exposes all three certificate kinds."""
+    certificate = ExactLinearProgram(c, A, b)._solve(4096)
+    if certificate.status == "infeasible":
+        return None
+    if certificate.status == "unbounded":
+        raise Violation("input", "unbounded LP has no finite optimum")
+    return list(certificate.primal), list(certificate.dual)
+
+
+def verify_lp(c: object, A: object, b: object, x: object, y: object) -> F:
+    """Preserve the DAG regression adapter's exact scalar/ValueError interface."""
+    try:
+        program = ExactLinearProgram(c, A, b)
+        return program._verify_optimal(LinearProgramCertificate("optimal", x, y))
+    except Violation as error:
+        raise ValueError(str(error)) from None
+
+
+def parity_dist(target: object) -> Distribution:
+    value = assignment((target,), 1)[0]
+    return {(x, y): (F(1, 2) if (x ^ y) == value else F(0)) for x in (0, 1) for y in (0, 1)}
+
+
+def pr_box() -> list[Distribution]:
+    return [parity_dist(value) for value in (0, 0, 0, 1)]
+
+
+def noisy_pr(lam: object) -> list[Distribution]:
+    noise = rational(lam, "noise fraction", minimum=0)
+    if noise > 1:
+        raise Violation("input", "noise fraction must be at most1")
+    return [{key: rational(rational((1-noise)*value)+rational(noise*F(1, 4))) for key, value in row.items()} for row in pr_box()]
+
+
+def point_mass(scen: Scenario, g: object) -> list[Distribution]:
+    if type(scen) is not Scenario:
+        raise Violation("input", "measurement scenario required")
+    owned = assignment(g, scen.n)
+    return [{key: F(int(scen._restrict(owned, context) == key)) for key in scen._sections(context)} for context in scen.contexts]
+
+
+def mixture(a: object, b: object) -> list[Distribution]:
+    """Historical Bell-fixture adapter; general mixtures bind an EmpiricalModel scenario."""
+    first, second = EmpiricalModel(BELL, a), EmpiricalModel(BELL, b)
+    return list(first._mixture(second).distributions())
+
+
+def _support(scen: Scenario, dists: object) -> list[Assignment]:
+    return list(EmpiricalModel(scen, dists)._support_globals())
+
+
+def _incidence(scen: Scenario) -> list[list[F]]:
+    return [list(row) for row in scen._incidence()]
+
+
+def _optimal(program: ExactLinearProgram) -> LinearProgramCertificate:
+    certificate = program._solve(4096)
+    require(certificate.status == "optimal", "probability-model LP must have a finite optimum")
+    return certificate
+
+
+def ncf(scen: Scenario, dists: object) -> F:
+    model = EmpiricalModel(scen, dists)
+    m, n = len(model.stacked()), 1 << scen.n
+    integer(m, "NCF equations", 1, 32)
+    integer(n+m, "NCF variables", 1, 64)
+    A = scen._incidence()
+    rows = tuple(row+tuple(F(int(j == i)) for j in range(m)) for i, row in enumerate(A))
+    program = ExactLinearProgram((-1,)*n+(0,)*m, rows, model.stacked())
+    certificate = _optimal(program)
+    value = -program._verify_optimal(certificate)
+    require(0 <= value <= 1, "noncontextual fraction outside0..1")
+    return value
+
+
+def l1_defect(scen: Scenario, dists: object) -> F:
+    model = EmpiricalModel(scen, dists)
+    e = model.stacked()
+    m, n = len(e), 1 << scen.n
+    integer(m+1, "distance equations", 1, 32)
+    integer(n+2*m, "distance variables", 1, 64)
+    A = scen._incidence()
+    rows = tuple(row+tuple(F(-int(j == i)) for j in range(m))+tuple(F(int(j == i)) for j in range(m)) for i, row in enumerate(A))
+    rows += ((F(1),)*n+(F(0),)*(2*m),)
+    program = ExactLinearProgram((0,)*n+(1,)*(2*m), rows, e+(F(1),))
+    certificate = _optimal(program)
+    value = program._verify_optimal(certificate)
+    p, phi, y0 = certificate.primal[:n], certificate.dual[:m], certificate.dual[m]
+    residual = tuple(rational(dot(row, p)-entry) for row, entry in zip(A, e))
+    require(dot(tuple(abs(entry) for entry in residual), (F(1),)*m) == value and sum(p) == 1, "distance primal residual mismatch")
+    require(all(abs(entry) <= 1 for entry in phi), "distance dual sup norm exceeds1")
+    require(all(rational(dot(phi, column)+y0) <= 0 for column in zip(*A)), "distance dual feasibility fails")
+    require(rational(dot(phi, e)+y0) == value, "distance dual objective gap")
+    return value
+
+
+def matching_families(scen: Scenario, dists: object, cover: object) -> tuple[int, int, int, int]:
+    return EmpiricalModel(scen, dists)._matching_families(cover)
+
+
+def _restriction_chains(context: Context) -> tuple[tuple[Context, Context], ...]:
+    middles = tuple(subset for size in range(len(context)+1) for subset in combinations(context, size))
+    return tuple((middle, child) for middle in middles for size in range(len(middle)+1) for child in combinations(middle, size))
+
+
+def check_functoriality() -> bool:
+    for dists in (pr_box(), noisy_pr(F(1, 4)), noisy_pr(F(1, 2))):
+        for context, row in zip(BELL.contexts, dists):
+            if BELL._marginal(row, context, context) != row:
+                return False
+            for middle, child in _restriction_chains(context):
+                restricted = BELL._marginal(row, context, middle)
+                if BELL._marginal(row, context, child) != BELL._marginal(restricted, middle, child):
+                    return False
+    return True
+
+
+def check_fixed_models(cases: Cases) -> tuple[list[Distribution], list[Distribution], list[Distribution], F, bool]:
+    # --- fixed models ---
+    pr = pr_box()
+    _ok(cases, "PR box rows are distributions", all(sum(d.values()) == 1 and min(d.values()) >= 0 for d in pr))
+    _ok(cases, "B1: restriction is functorial on every chain W <= V <= C (PR, noisy 1/4, noisy 1/2)", check_functoriality())
+    overlaps_agree = all(
+        BELL._marginal(pr[i], BELL.contexts[i], (p,)) == BELL._marginal(pr[j], BELL.contexts[j], (p,))
+        for i in range(4) for j in range(i + 1, 4) for p in set(BELL.contexts[i]) & set(BELL.contexts[j]))
+    _ok(cases, "PR box is no-signalling (all overlap marginals agree)", overlaps_agree)
+
+    # --- B4: strongly contextual, NCF 0, |G| = 0, defect 2 ---
+    _ok(cases, "PR box: |G| = 0", len(_support(BELL, pr)) == 0)
+    _ok(cases, "PR box: NCF = 0", ncf(BELL, pr) == 0)
+    delta_pr = l1_defect(BELL, pr)
+    _ok(cases, "PR box: l1 defect = 2", delta_pr == 2)
+
+    # --- B5 and B2: noisy PR ---
+    for lam in (F(1, 4), F(1, 2)):
+        _ok(cases, f"noisy PR lambda={lam}: NCF = 2*lambda = {2 * lam}", ncf(BELL, noisy_pr(lam)) == 2 * lam)
+    q = noisy_pr(F(1, 4))
+    _ok(cases, "noisy PR lambda=1/4: not strongly contextual (|G| = 16 > 0) and l1 defect positive",
+       len(_support(BELL, q)) == 16 and l1_defect(BELL, q) > 0)
+    h = noisy_pr(F(1, 2))
+    _ok(cases, "noisy PR lambda=1/2: |G| = 16", len(_support(BELL, h)) == 16)
+    _ok(cases, "noisy PR lambda=1/2: l1 defect = 0", l1_defect(BELL, h) == 0)
+
+    # --- mixture of two deterministic assignments ---
+    g1, g2 = (0, 0, 0, 0), (1, 0, 0, 1)
+    mix = mixture(point_mass(BELL, g1), point_mass(BELL, g2))
+    _ok(cases, "mixture of (0,0,0,0) and (1,0,0,1): NCF = 1 and |G| = 2",
+       ncf(BELL, mix) == 1 and len(_support(BELL, mix)) == 2)
+    return pr, h, mix, delta_pr, overlaps_agree
+
+
+def _signed_section(model: EmpiricalModel) -> tuple[F, ...]:
+    scenario = model.scenario
+    n, m = 1 << scenario.n, len(model.stacked())
+    integer(2*n, "signed-section variables", 1, 64)
+    integer(m+1, "signed-section equations", 1, 32)
+    incidence = scenario._incidence()
+    rows = tuple(row+tuple(-value for value in row) for row in incidence)
+    rows += ((F(1),)*n+(F(-1),)*n,)
+    program = ExactLinearProgram((0,)*(2*n), rows, model.stacked()+(F(1),))
+    certificate = _optimal(program)
+    return tuple(rational(a-b, "signed-section weight") for a, b in zip(certificate.primal[:n], certificate.primal[n:]))
+
+
+def check_signed_section(cases: Cases, pr: list[Distribution]) -> None:
+    model = EmpiricalModel(BELL, pr)
+    signed = _signed_section(model)
+    incidence = BELL._incidence()
+    _ok(cases, "PR box: signed global section of mass1 matches every marginal and has a negative entry",
+        sum(signed) == 1 and min(signed) < 0 and tuple(dot(row, signed) for row in incidence) == model.stacked())
+
+
+def check_descent(cases: Cases, pr: list[Distribution], h: list[Distribution], mix: list[Distribution]) -> None:
+    # --- B6, B7: descent counts ---
+    full = [tuple(c) for c in BELL.contexts]
+    _ok(cases, "maximal cover, PR box: 0 families", matching_families(BELL, pr, full)[0] == 0)
+    fams = matching_families(BELL, h, full)
+    _ok(cases, "maximal cover, noisy PR 1/2: 16 families, all Unique, none NoGlobalExtension", fams == (16, 16, 0, 0))
+    arcs = [(0, 1, 2), (1, 2, 3)]
+    _ok(cases, "arc cover, mixture of two assignments: 4 families, 2 Unique, 2 NoGlobalExtension",
+       matching_families(BELL, mix, arcs) == (4, 2, 0, 2))
+
+
+def _parity_case(scenario: Scenario, targets: tuple[int, ...]) -> bool:
+    distributions = [parity_dist(target) for target in targets]
+    holonomy = sum(targets) % 2
+    size = scenario.n
+    arcs = (tuple(range(size-1)), tuple(range(1, size)))
+    observed = (len(_support(scenario, distributions)), matching_families(scenario, distributions, arcs), ncf(scenario, distributions))
+    expected = (0, (2, 0, 0, 2), F(0)) if holonomy else (2, (2, 2, 0, 0), F(1))
+    return observed == expected
+
+
+def check_parity_cycles(cases: Cases) -> None:
+    for size in (3, 4, 5):
+        contexts = tuple(tuple(sorted((i, (i+1) % size))) for i in range(size))
+        scenario = Scenario(size, contexts)
+        checked = 0
+        for bits in range(1 << size):
+            targets = tuple((bits >> index) & 1 for index in range(size))
+            require(_parity_case(scenario, targets), "parity-cycle support/descent/NCF disagreement")
+            checked += 1
+        _ok(cases, f"Parity cycle size{size}: all{1 << size} targets match support, descent and NCF", checked == 1 << size)
+    _ok(cases, "Triangle nerve has three edges and no triple", CechComplex(Scenario(3, ((0, 1), (1, 2), (0, 2)))).edges == ((0, 1), (0, 2), (1, 2)) and not CechComplex(Scenario(3, ((0, 1), (1, 2), (0, 2)))).triangles)
+
+
+def _check_bell_bounds(cases: Cases, complex_: CechComplex) -> None:
+    pairs = complex_.edges
+    zero = [{key: F(0) for key in BELL._sections(context)} for context in BELL.contexts]
+    omega = {edge: (F(0), F(0)) for edge in pairs}
+    omega[pairs[0]] = (F(1), F(1))
+    phi: EdgeValues = {(0, 1): (F(1), F(1)), (0, 2): (F(-1), F(-1)),
+           (1, 3): (F(1), F(1)), (2, 3): (F(-1), F(-1))}
+    _ok(cases, "Phi1 upper bound: zero primitive has residual norm2", sum(abs(value) for values in omega.values() for value in values) == 2)
+    _ok(cases, "Phi1 dual: bounded norm and annihilation of every zero-cochain basis", all(abs(value) <= 1 for values in phi.values() for value in values) and complex_._annihilates(phi))
+    _ok(cases, "Phi1 lower and upper bounds agree at2", complex_._quotient_value(omega, zero, phi) == 2)
+    beta = [{key: F(i+k) for k, key in enumerate(BELL._sections(context))} for i, context in enumerate(BELL.contexts)]
+    shift = complex_._delta0(beta)
+    shifted = {edge: tuple(a+b for a, b in zip(omega[edge], shift[edge])) for edge in pairs}
+    _ok(cases, "Gauge shift: dual lower bound and actual beta residual both2", complex_._quotient_value(shifted, beta, phi) == 2)
+
+
+def check_bell_cech(cases: Cases, pr: list[Distribution], h: list[Distribution]) -> None:
+    complex_ = CechComplex(BELL)
+    pairs = complex_.edges
+    _ok(cases, "Bell nerve: four edges and no triple", len(pairs) == 4 and not complex_.triangles)
+    _ok(cases, "Bell nerve edge orientation", pairs == ((0, 1), (0, 2), (1, 3), (2, 3)))
+    _check_bell_bounds(cases, complex_)
+    signalling = [dict(row) for row in h]
+    signalling[1] = {(0, 0): F(1, 2), (0, 1): F(1, 2), (1, 0): F(0), (1, 1): F(0)}
+    difference = complex_._delta0(signalling)
+    _ok(cases, "Signalling is detected on edge(0,1) over measurement0", any(value != 0 for value in difference[(0, 1)]) and complex_._overlap((0, 1)) == (0,))
+    _ok(cases, "PR box zero coboundary", all(value == 0 for row in complex_._delta0(pr).values() for value in row))
+
+
+def check_triple_coboundary(cases: Cases) -> None:
+    scenario = Scenario(4, ((0, 1), (0, 2), (0, 3)))
+    complex_ = CechComplex(scenario)
+    _ok(cases, "Three-context nerve has three pairs and one triple over0", complex_.edges == ((0, 1), (0, 2), (1, 2)) and complex_.triangles == ((0, 1, 2),) and complex_._overlap((0, 1, 2)) == (0,))
+    alpha = [{key: F((i*5+k*3) % 7-3) for k, key in enumerate(scenario._sections(context))} for i, context in enumerate(scenario.contexts)]
+    difference = complex_._delta0(alpha)
+    curvature = complex_._delta1(difference)
+    _ok(cases, "Nonzero coboundary has zero next coboundary on a triple", curvature == {(0, 1, 2): (F(0), F(0))} and any(value != 0 for row in difference.values() for value in row))
+    beta = {edge: (F(0), F(0)) for edge in complex_.edges}
+    beta[(0, 1)] = (F(1), F(0))
+    _ok(cases, "A non-cocycle supported on one pair has curvature(1,0)", complex_._delta1(beta) == {(0, 1, 2): (F(1), F(0))})
+
+
+def _vertex(value: object) -> int | str:
+    if type(value) is int:
+        return integer(value, "hypergraph vertex", 0, 63)
+    if type(value) is str and value and len(value) <= 64:
+        return value
+    raise Violation("input", "hypergraph labels require integer0..63 or nonempty text of at most64 characters")
+
+
+def _hyperedges(edges: object) -> list[set[int | str]]:
+    rows = sequence(edges, "hyperedges", maximum=16)
+    result = []
+    for row in rows:
+        if type(row) in (set, frozenset):
+            # Bound native sets before snapshotting; no arbitrary iterable execution.
+            native = cast("set[object] | frozenset[object]", row)
+            integer(len(native), "hyperedge size", 0, 16)
+            row = tuple(native)
+        values = tuple(_vertex(value) for value in sequence(row, "hyperedge", maximum=16))
+        if len(set(values)) != len(values):
+            raise Violation("duplicate", "hyperedge vertices must be distinct")
+        result.append(set(values))
+    integer(len(set(value for row in result for value in row)), "hypergraph vertices", 0, 64)
+    return result
+
+
+def _remove_ears(work: list[set[int | str]]) -> bool:
+    changed = False
+    for vertex in set(value for edge in work for value in edge):
+        holders = [edge for edge in work if vertex in edge]
+        if len(holders) == 1:
+            holders[0].discard(vertex)
+            changed = True
+    return changed
+
+
+def _remove_contained(work: list[set[int | str]]) -> bool:
+    for index, edge in enumerate(work):
+        if any(index != other and edge <= candidate for other, candidate in enumerate(work)):
+            work.pop(index)
+            return True
+    return False
+
+
+def gyo(edges: object) -> bool:
+    work = _hyperedges(edges)
+    changed = True
+    while changed:
+        leaves = _remove_ears(work)
+        contained = _remove_contained(work)
+        changed = leaves or contained
+        work = [edge for edge in work if edge]
+    return not work
+
+
+def check_path_gluing(cases: Cases) -> None:
+    # --- B13: Vorob'ev product formula on the path {0,1},{1,2},{2,3} with parity targets 0,1,1 ---
+    path = Scenario(4, [(0, 1), (1, 2), (2, 3)])
+    pd = [parity_dist(t) for t in (0, 1, 1)]
+    joint = {}
+    for g in path.globals:
+        num = F(1)
+        for k, c in enumerate(path.contexts):
+            num *= pd[k][path._restrict(g, c)]
+        den = F(1)
+        for pos in (1, 2):
+            marg = path._marginal(pd[pos - 1], path.contexts[pos - 1], (pos,))
+            den *= marg[(g[pos],)]
+        joint[g] = num / den if den != 0 else F(0)
+    _ok(cases, "path cover: product formula gives a distribution with exactly the three given marginals",
+       sum(joint.values()) == 1 and min(joint.values()) >= 0 and all(
+           path._marginal({g: v for g, v in joint.items()}, tuple(range(4)), c) == pd[k] for k, c in enumerate(path.contexts)))
+    _ok(cases, "path cover: NCF = 1 (the section is a distribution)", ncf(path, pd) == 1)
+
+    _ok(cases, "GYO: the three-context path and the two-context path are acyclic, the Bell 4-cycle and a triangle are not",
+       gyo([{0, 1}, {1, 2}, {2, 3}]) and gyo([{0, 1}, {1, 2}]) and not gyo([set(c) for c in BELL.contexts])
+       and not gyo([{0, 1}, {1, 2}, {0, 2}]))
+
+
+def _glue_pair(first: object, second: object) -> Distribution:
+    scenario = Scenario(3, ((0, 1), (1, 2)))
+    model = EmpiricalModel(scenario, (first, second))
+    left, right = model.distributions()
+    overlap = scenario._marginal(left, (0, 1), (1,))
+    require(overlap == scenario._marginal(right, (1, 2), (1,)), "path tables disagree on overlap")
+    result: Distribution = {}
+    for a, b, c in scenario.globals:
+        numerator = rational(left[(a, b)]*right[(b, c)], "gluing numerator")
+        denominator = overlap[(b,)]
+        result[(a, b, c)] = rational(numerator/denominator, "gluing quotient") if denominator else F(0)
+    return result
+
+
+def check_repaired_tables(cases: Cases) -> None:
+    p_ab = {(0, 0): F(1, 2), (0, 1): F(1, 6), (1, 0): F(1, 12), (1, 1): F(1, 4)}
+    p_bc = {(0, 0): F(1, 3), (0, 1): F(1, 4), (1, 0): F(1, 6), (1, 1): F(1, 4)}
+    scenario = Scenario(3, ((0, 1), (1, 2)))
+    model = EmpiricalModel(scenario, (p_ab, p_bc))
+    left, right = model.distributions()
+    _ok(cases, "Test482: both distributions agree on their overlap", scenario._marginal(left, (0, 1), (1,)) == scenario._marginal(right, (1, 2), (1,)))
+    joint = _glue_pair(left, right)
+    _ok(cases, "Test482: gluing is normalized and reproduces both tables", sum(joint.values()) == 1 and scenario._marginal(joint, (0, 1, 2), (0, 1)) == left and scenario._marginal(joint, (0, 1, 2), (1, 2)) == right)
+    _ok(cases, "Test482: GYO accepts the path and rejects the triangle", gyo([{"a", "b"}, {"b", "c"}]) and not gyo([{"a", "b"}, {"b", "c"}, {"a", "c"}]))
+    triangle = EmpiricalModel(Scenario(3, ((0, 1), (1, 2), (0, 2))), [parity_dist(value) for value in (0, 0, 1)])
+    _ok(cases, "Test482: no triangle assignment satisfies the odd parity constraints", not triangle._support_globals())
+
+
+def check_underdetermination(cases: Cases, pr: list[Distribution], delta_pr: F, overlaps_agree: bool) -> None:
+    # --- A2: the table of conditional underdetermination (K row, Adm row, norm and terminal arithmetic) ---
+    sub = Scenario(3, [(0, 1), (0, 2)])  # measurements a=0, b=1, b'=2; sub-cover {ab, ab'}
+    prsub = [parity_dist(0), parity_dist(0)]
+    _ok(cases, "K row: the PR box on the acyclic sub-cover {ab, ab'} has l1 defect 0 (versus 2 on the Bell cover)",
+       l1_defect(sub, prsub) == 0 and delta_pr == 2)
+    _ok(cases, "Adm row: the PR box is no-signalling, so its distance to the no-signalling polytope is 0 (versus 2)",
+       overlaps_agree and delta_pr == 2)
+    _ok(cases, "norm row: 2 * (l1 defect 2) = 4", 2 * delta_pr == 4)
+    _ok(cases, "terminal row: the defect 2 is below the threshold 3 of the alternative rule, so ExactRepair differs from OpenObstruction",
+       delta_pr < 3 and _support(BELL, pr) == [])
+
+
+def check_ceilings_and_roles(cases: Cases) -> None:
+    # --- B16: ceilings ---
+    _ok(cases, "ceilings: 2^20 assignments and 2^22 LP entries; 2^64 > 2^20; 2^21 > 2^20; ten singletons 1024 <= 2^20 and 20*1024 <= 2^22",
+       2 ** 20 == 1048576 and 2 ** 22 == 4194304 and 2 ** 64 > 2 ** 20 and 2 ** 21 > 2 ** 20
+       and 2 ** 10 <= 2 ** 20 and 20 * 1024 <= 2 ** 22)
+
+    _check_role_counts(cases)
+
+
+def _check_role_counts(cases: Cases) -> None:
+    # --- C6: the packet (p, p, p) fails pairwise distinctness on three counts ---
+    packet = ("p", "p", "p")
+    fails = [(i, j) for i in range(3) for j in range(i + 1, 3) if packet[i] == packet[j]]
+    _ok(cases, "self-certification packet (p,p,p): all three role pairs coincide", len(fails) == 3)
+    shared = [("id-A", "p1"), ("id-B", "p1"), ("id-A", "p2")]
+    _ok(cases, "shared-principal case: the pair-by-pair rule flags it while the count rule len(principals) < len(identifiers) does not",
+       any(a[0] != b[0] and a[1] == b[1] for i, a in enumerate(shared) for b in shared[i + 1:])
+       and not (len({s[1] for s in shared}) < len({s[0] for s in shared})))
+
+    same = [("A", "p1"), ("A", "p1"), ("B", "p2")]  # evaluator_also_proposer: identical bindings, a third principal
+    _ok(cases, "evaluator_also_proposer: the count rule misses it too (2 principals, 2 identifiers), the pairwise rule flags it",
+       not (len({s[1] for s in same}) < len({s[0] for s in same}))
+       and any(a[0] == b[0] for i, a in enumerate(same) for b in same[i + 1:]))
+
+
+def check_axis_countermodel(cases: Cases) -> None:
+    # --- N3: the countermodel to the wide form of Axis 3 ---
+    sigma = {"a": "b", "b": "a"}
+    step = {"a": "b", "b": "a"}  # the one transition swaps the two states, so sigma commutes with it
+    _ok(cases, "N3: the renaming sigma commutes with the transition step (hypothesis (i))",
+       all(sigma[step[s]] == step[sigma[s]] for s in "ab"))
+    charge = {"a": 0, "b": 0}
+    _ok(cases, "N3: the only charge is constant 0 on both states, so it is conserved (hypothesis (ii))",
+       all(charge[step[s]] == charge[s] for s in "ab"))
+
+    def verdict(history: tuple[str, ...]) -> bool:
+        return history[0] == "a"
+
+    h = ("a",)
+    sh = tuple(sigma[s] for s in h)
+    _ok(cases, "N3: V((a)) = True and V(sigma((a))) = V((b)) = False, so V(sigma(H)) != V(H)",
+       verdict(h) is True and verdict(sh) is False)
+
+    # --- N4: the unchecked product wrapped to zero ---
+    _ok(cases, "N4: 2^64 assignments wrap to 0 in 64-bit unsigned arithmetic", (2 ** 64) % (2 ** 64) == 0 and 2 ** 64 > 2 ** 20)
+
+
+def main() -> None:
+    cases = Cases()
+    pr, h, mix, delta_pr, overlaps_agree = check_fixed_models(cases)
+    check_signed_section(cases, pr)
+    check_descent(cases, pr, h, mix)
+    check_parity_cycles(cases)
+    check_bell_cech(cases, pr, h)
+    check_triple_coboundary(cases)
+    check_path_gluing(cases)
+    check_repaired_tables(cases)
+    check_underdetermination(cases, pr, delta_pr, overlaps_agree)
+    check_ceilings_and_roles(cases)
+    check_axis_countermodel(cases)
+    print(f"{cases.checks} checks passed")
+
+
+if __name__ == "__main__":
+    raise SystemExit(cli(main))

@@ -1,0 +1,336 @@
+"""Finite task and exact pure-state controls; no physical mediator inference.
+
+AuthorityEffect: None. Symbolic/rank checks concern the supplied finite models.
+"""
+from __future__ import annotations
+
+from collections.abc import Callable
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import io
+from itertools import product
+import json
+from pathlib import Path
+import sys
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from test_review_repairs import load
+from checker_support.boundary import cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import Failure
+
+INFO = "ct-information-media-interoperability"
+MEDIATOR = "ct-local-mediator-entanglement-import"
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+FRACTIONS = st.fractions(-8, 8, max_denominator=12)
+
+
+def _rank(rows: tuple[tuple[Q, ...], ...]) -> int:
+    """Independent forward elimination for the bounded exact test fixtures."""
+    if not rows:
+        return 0
+    matrix = [list(row) for row in rows]
+    rank = 0
+    for column in range(len(rows[0])):
+        pivot = next((row for row in range(rank, len(rows)) if matrix[row][column] != 0), None)
+        if pivot is None:
+            continue
+        matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+        for row in range(rank+1, len(rows)):
+            factor = matrix[row][column]/matrix[rank][column]
+            matrix[row] = [value-factor*base for value, base in zip(matrix[row], matrix[rank])]
+        rank += 1
+    return rank
+
+
+class ConstructorTheoryTests(unittest.TestCase):
+    def refused(self, operation: Callable[..., object], *args: object, kind: str | None = None) -> Failure:
+        result = evaluate(lambda: operation(*args))
+        self.assertFalse(result.ok)
+        self.assertIsNone(result.value)
+        if result.error is None:
+            self.fail("refusal lacks an error")
+        if kind is not None:
+            self.assertEqual(result.error.kind, kind)
+        return result.error
+
+    def test_refusal_helper_and_rank_oracle(self) -> None:
+        with self.assertRaises(AssertionError):
+            self.refused(lambda: None)
+        self.assertEqual(_rank(()), 0)
+        for values, expected in (([[0, 0], [0, 0]], 0), ([[1, 2], [2, 4]], 1),
+                                 ([[0, 1, 0], [0, 0, 1]], 2), ([[0, 0], [0, 1], [1, 0]], 2)):
+            self.assertEqual(_rank(tuple(tuple(Q(x) for x in row) for row in values)), expected)
+
+    def test_exhaustive_binary_tasks_factorization_and_inverse(self) -> None:
+        module = load(INFO)
+        points = tuple(product(range(2), repeat=2))
+        local_tables = {tuple((left[a], right[b]) for a, b in points)
+                        for left, right in product(product(range(2), repeat=2), repeat=2)}
+        reversible = 0
+        local_reversible = 0
+        for outputs in product(points, repeat=4):
+            task = module.FiniteProductTask(2, 2, outputs)
+            factors = task.local_factors()
+            self.assertEqual(factors is not None, outputs in local_tables)
+            if factors is not None:
+                self.assertEqual(tuple((factors[0][a], factors[1][b]) for a, b in points), outputs)
+            inverse = task.inverse()
+            bijective = set(outputs) == set(points)
+            self.assertIs(task.is_reversible(), bijective)
+            self.assertIs(inverse.ok, bijective)
+            if bijective:
+                reversible += 1
+                local_reversible += outputs in local_tables
+                for point, image in zip(points, outputs):
+                    self.assertEqual(inverse.value.apply(image).value, point)
+            else:
+                self.assertEqual(inverse.error.kind, "check")
+            lookup = dict(zip(points, outputs))
+            for blank in range(2):
+                result = task.clones(blank)
+                self.assertTrue(result.ok)
+                self.assertEqual(result.value, all(lookup[(a, blank)] == (a, a) for a in range(2)))
+        self.assertEqual((len(local_tables), reversible, local_reversible), (16, 24, 4))
+
+    @PROPERTY
+    @given(left=st.integers(1, 3), right=st.integers(1, 3), images=st.lists(st.integers(0, 8), min_size=18, max_size=18))
+    def test_task_application_and_composition_dictionary_oracle(self, left: int, right: int, images: list[int]) -> None:
+        module = load(INFO)
+        points = tuple(product(range(left), range(right)))
+        first = {point: points[images[index] % len(points)] for index, point in enumerate(points)}
+        second = {point: points[images[index+9] % len(points)] for index, point in enumerate(points)}
+        task = module.FiniteProductTask(left, right, tuple(first.values()))
+        prior = module.FiniteProductTask(left, right, tuple(second.values()))
+        composition = task.compose(prior)
+        self.assertTrue(composition.ok)
+        for point in points:
+            self.assertEqual(task.apply(point).value, first[point])
+            self.assertEqual(composition.value.apply(point).value, first[second[point]])
+        identity = module.FiniteProductTask(left, right, points)
+        self.assertEqual(task.compose(identity).value, task)
+        self.assertEqual(identity.compose(task).value, task)
+
+    @PROPERTY
+    @given(a=st.integers(1, 3), b=st.integers(1, 3), c=st.integers(1, 3), d=st.integers(1, 3), images=st.lists(st.integers(0, 8), min_size=18, max_size=18))
+    def test_parallel_regrouping_and_cloning_dictionary_oracle(self, a: int, b: int, c: int, d: int, images: list[int]) -> None:
+        module = load(INFO)
+        first_points = tuple(product(range(a), range(c)))
+        second_points = tuple(product(range(b), range(d)))
+        first = {point: first_points[images[i] % len(first_points)] for i, point in enumerate(first_points)}
+        second = {point: second_points[images[i+9] % len(second_points)] for i, point in enumerate(second_points)}
+        task = module.FiniteProductTask(a, c, tuple(first.values()))
+        other = module.FiniteProductTask(b, d, tuple(second.values()))
+        combined = task.parallel(other)
+        self.assertTrue(combined.ok)
+        for left_a, left_b, right_a, right_b in product(range(a), range(b), range(c), range(d)):
+            own, theirs = first[(left_a, right_a)], second[(left_b, right_b)]
+            point = (left_a*b+left_b, right_a*d+right_b)
+            expected = (own[0]*b+theirs[0], own[1]*d+theirs[1])
+            self.assertEqual(combined.value.apply(point).value, expected)
+
+    def test_task_domain_refusals_and_shape_equality(self) -> None:
+        module = load(INFO)
+        for left, right, table in ((0, 1, ()), (1, 0, ()), (65, 1, ()), (1, 65, ()),
+                                   (True, 1, ((0, 0),)), (1, Q(1), ((0, 0),)), (1, 1, ()),
+                                   (1, 1, ((0, 0), (0, 0))), (1, 1, ((0,),)),
+                                   (1, 1, ((True, 0),)), (1, 1, ((0, Q(0)),)),
+                                   (1, 1, ((1, 0),)), (1, 1, ((0, -1),)), (1, 1, "table")):
+            self.refused(module.FiniteProductTask, left, right, table)
+        task = module.FiniteProductTask(2, 2, tuple(product(range(2), repeat=2)))
+        for point in ((), (0,), (0, 0, 0), (True, 0), (0, False), (Q(0), 0), (0.0, 0), (-1, 0), (0, 2), "00"):
+            self.assertFalse(task.apply(point).ok)
+            self.refused(module.controlled, point)
+        other: object
+        for other in (None, {}, (1, 2)):
+            self.assertFalse(task.compose(other).ok)
+            self.assertFalse(task.parallel(other).ok)
+        horizontal = module.FiniteProductTask(1, 2, ((0, 0), (0, 1)))
+        vertical = module.FiniteProductTask(2, 1, ((0, 0), (1, 0)))
+        self.assertFalse(horizontal.compose(vertical).ok)
+        self.assertEqual(horizontal.clones(0).error.kind, "input")
+        for blank in (-1, 2, True, Q(0), 0.0):
+            self.assertFalse(task.clones(blank).ok)
+        self.assertEqual(module.controlled((1, 1)), (0, 1))
+
+    def test_task_owns_snapshots_and_parallel_checks_budget_first(self) -> None:
+        module = load(INFO)
+        table = [[0, 0], [0, 1], [1, 0], [1, 1]]
+        task = module.FiniteProductTask(2, 2, table)
+        table[0].clear()
+        table.clear()
+        self.assertEqual(task.outputs, tuple(product(range(2), repeat=2)))
+        with self.assertRaises(FrozenInstanceError):
+            setattr(task, "left_size", 3)
+        first = module.FiniteProductTask(9, 1, ((0, 0),)*9)
+        second = module.FiniteProductTask(8, 1, ((0, 0),)*8)
+        wide = module.FiniteProductTask(1, 9, ((0, 0),)*9)
+        wide_other = module.FiniteProductTask(1, 8, ((0, 0),)*8)
+        with patch.object(module.FiniteProductTask, "_at", side_effect=AssertionError("lookup before resource gate")):
+            self.assertEqual(first.parallel(second).error.kind, "resource")
+            self.assertEqual(wide.parallel(wide_other).error.kind, "resource")
+        maximum = module.FiniteProductTask(64, 64, tuple(product(range(64), repeat=2)))
+        self.assertEqual(maximum.apply((63, 63)).value, (63, 63))
+        self.assertTrue(maximum.is_reversible())
+        self.assertEqual(maximum.inverse().value, maximum)
+        boundary = module.FiniteProductTask(8, 1, tuple((a, 0) for a in range(8)))
+        self.assertEqual(boundary.parallel(boundary).value.left_size, 64)
+        points = tuple(product(range(3), range(2)))
+        images = points[1:]+points[:1]
+        rectangular = module.FiniteProductTask(3, 2, images)
+        inverse = rectangular.inverse()
+        self.assertTrue(inverse.ok)
+        for point, image in zip(points, images):
+            self.assertEqual(inverse.value.apply(image).value, point)
+
+    def test_cloning_only_constrains_blank_slice(self) -> None:
+        module = load(INFO)
+        task = module.FiniteProductTask(2, 2, ((0, 0), (1, 0), (1, 1), (0, 1)))
+        self.assertTrue(task.clones(0).value)
+        self.assertFalse(task.clones(1).value)
+        combined = task.parallel(task)
+        self.assertTrue(combined.value.clones(0).value)
+        self.assertTrue(task.is_reversible())
+        self.assertIsNone(task.local_factors())
+
+    def test_information_controls_cli_and_repeatability(self) -> None:
+        module = load(INFO)
+        result = module.run_checks()
+        self.assertEqual((result["total_checks"], result["failed_checks"], result["all_passed"]), (18, 0, True))
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            self.assertEqual(cli(module.main), 0)
+        self.assertEqual(json.loads(output.getvalue()), result)
+        with patch.object(module, "controlled", lambda point: point):
+            self.assertEqual(module.run_checks()["failures"], ["controlled.nonlocal"])
+            self.refused(module.main, kind="check")
+        self.assertEqual(module.run_checks(), result)
+
+    @PROPERTY
+    @given(statuses=st.lists(st.booleans(), max_size=20))
+    def test_information_generated_receipt_accounting(self, statuses: list[bool]) -> None:
+        module = load(INFO)
+        def supplied(cases: Cases) -> None:
+            for index, status in enumerate(statuses):
+                cases.append((str(index), status))
+        with patch.object(module, "check_product_cloning", supplied):
+            result = module.run_checks()
+        failed = [str(i) for i, status in enumerate(statuses) if not status]
+        self.assertEqual(result["total_checks"], 5+len(statuses))
+        self.assertEqual(result["failed_checks"], len(failed))
+        self.assertEqual(result["failures"], failed)
+        self.assertIs(result["all_passed"], not failed)
+
+    @PROPERTY
+    @given(real=FRACTIONS, imaginary=FRACTIONS)
+    def test_concurrence_against_complex_matrix_normalization(self, real: Q, imaginary: Q) -> None:
+        module = load(MEDIATOR)
+        phase = sp.Rational(real.numerator, real.denominator)+sp.I*sp.Rational(imaginary.numerator, imaginary.denominator)
+        matrix = sp.Matrix([[1, 1], [1, phase]])/2
+        norm = sum(value*sp.conjugate(value) for value in matrix)
+        expected = sp.simplify(4*matrix.det()*sp.conjugate(matrix.det())/(norm*norm))
+        actual = module.normalized_concurrence_squared(real, imaginary)
+        self.assertEqual(actual, Q(int(expected.p), int(expected.q)))
+        self.assertIs(type(actual), Q)
+        self.assertTrue(0 <= actual <= 1)
+        self.assertEqual(actual, module.normalized_concurrence_squared(real, -imaginary))
+
+    @PROPERTY
+    @given(parameter=FRACTIONS)
+    def test_unit_phase_concurrence(self, parameter: Q) -> None:
+        module = load(MEDIATOR)
+        real = (1-parameter**2)/(1+parameter**2)
+        imaginary = 2*parameter/(1+parameter**2)
+        self.assertEqual(module.normalized_concurrence_squared(real, imaginary), (1-real)/2)
+
+    def test_concurrence_domain_budget_and_extremes(self) -> None:
+        module = load(MEDIATOR)
+        for bad in (True, False, 0.0, "0", None, 1 << 4096):
+            self.refused(module.normalized_concurrence_squared, bad, 0)
+            self.refused(module.normalized_concurrence_squared, 0, bad)
+        for value in (1 << 1024, Q(1, 1 << 1024), 1 << 2048):
+            self.refused(module.normalized_concurrence_squared, value, 0, kind="resource")
+        self.assertGreater(module.normalized_concurrence_squared(1 << 1023, 0), 0)
+        for real, imaginary, expected in ((0, 0, Q(4, 9)), (1, 0, Q(0)), (-1, 0, Q(1)), (Q(3, 5), Q(4, 5), Q(1, 5))):
+            self.assertEqual(module.normalized_concurrence_squared(real, imaginary), expected)
+
+    def test_mediator_counts_recorders_and_symbolic_failures(self) -> None:
+        module = load(MEDIATOR)
+        cases = Cases()
+        operations = (module.check_symbolic_local_action_determinant, module.check_product_state_zero_determinant,
+                      module.check_kron_vectorisation_matches_AMBT, module.check_phase_family_determinant_and_concurrence,
+                      module.check_exact_pythagorean_concurrence, module.check_product_branch_preservation,
+                      module.check_rank_nonincrease_exact_family)
+        with contextlib.redirect_stdout(io.StringIO()):
+            for operation, expected in zip(operations, (4, 6, 7, 11, 17, 18, 318)):
+                operation(cases)
+                self.assertEqual(cases.checks, expected)
+                self.refused(operation, object(), kind="input")
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            self.assertEqual(cli(module.main), 0)
+        self.assertIn("318 executed obligations in 7 groups", output.getvalue())
+        with patch.object(module.sp, "simplify", return_value=1):
+            self.refused(module.check_symbolic_local_action_determinant, kind="check")
+
+    def test_gaussian_norm_bit_bound_with_coprime_denominators(self) -> None:
+        module = load(MEDIATOR)
+        bits = 4096
+        first = 1 << (bits-1)
+        second = first+1
+        value = module.GaussianRational(Q(1, first), Q(1, second))
+        norm = value.norm_sq()
+        expected = Q(first*first+second*second, (first*second)**2)
+        self.assertEqual(norm, expected)
+        self.assertGreater(norm.denominator.bit_length(), 2*bits)
+        self.assertLessEqual(norm.numerator.bit_length(), 4*bits+1)
+        self.assertLessEqual(norm.denominator.bit_length(), 4*bits)
+        self.refused(module.normalized_concurrence_squared, value.re, value.im, kind="resource")
+
+    def test_rank_family_against_independent_elimination(self) -> None:
+        module = load(MEDIATOR)
+        observed: list[int] = []
+        def independently_rank(matrix: sp.Matrix) -> int:
+            rows = tuple(tuple(Q(int(value.p), int(value.q)) for value in row) for row in matrix.tolist())
+            result = _rank(rows)
+            observed.append(result)
+            return result
+        cases = Cases()
+        output = io.StringIO()
+        with patch.object(type(sp.Matrix([[1]])), "rank", independently_rank):
+            with contextlib.redirect_stdout(output):
+                module.check_rank_nonincrease_exact_family(cases)
+        self.assertEqual((cases.checks, len(observed)), (300, 600))
+        self.assertEqual(sum(observed[i] < observed[i+1] for i in range(0, 600, 2)), 91)
+        self.assertIn("91 strictly lower", output.getvalue())
+        self.assertIn("on 300 exact rational cases (91 strictly lower)", output.getvalue())
+
+    def test_cli_resources_cancellation_and_task_result_refusal(self) -> None:
+        for stem, operation in ((INFO, "check_product_cloning"), (MEDIATOR, "check_rank_nonincrease_exact_family")):
+            module = load(stem)
+            errors = io.StringIO()
+            with patch.object(module, operation, side_effect=OSError("injected")):
+                with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(errors):
+                    self.assertEqual(cli(module.main), 1)
+            self.assertEqual(json.loads(errors.getvalue())["kind"], "resource")
+            with patch.object(module, operation, side_effect=KeyboardInterrupt):
+                with contextlib.redirect_stdout(io.StringIO()), self.assertRaises(KeyboardInterrupt):
+                    cli(module.main)
+        module = load(INFO)
+        task = module.FiniteProductTask(1, 1, ((0, 0),))
+        with patch.object(module.FiniteProductTask, "_parallel", side_effect=OSError("injected")):
+            self.assertEqual(task.parallel(task).error.kind, "resource")
+            self.refused(module.check_product_cloning, Cases(), kind="resource")
+        with patch.object(module.FiniteProductTask, "_parallel", side_effect=KeyboardInterrupt):
+            with self.assertRaises(KeyboardInterrupt):
+                task.parallel(task)
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

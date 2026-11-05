@@ -1,0 +1,831 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) ... ok\ntest_cluster_series_recurrence_and_partial_sums (__main__.StrongCouplingCheckerTests.test_cluster_series_recurrence_and_partial_sums) ... ok\ntest_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic) ... ok\ntest_decimation_and_collar_products (__main__.StrongCouplingCheckerTests.test_decimation_and_collar_products) ... ok\ntest_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... ok\ntest_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds) ... ok\ntest_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals) ... ok\ntest_invariant_table_snapshots_and_accessor_separation (__main__.StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation) ... ok\ntest_modified_chirality_square_for_nonunit_inputs (__main__.StrongCouplingCheckerTests.test_modified_chirality_square_for_nonunit_inputs) ... ok\ntest_multi_plaquette_bound_from_repeated_factors (__main__.StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors) ... ok\ntest_railway_faults_and_recorder_errors_are_not_swallowed (__main__.StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed) ... ok\ntest_receipt_counts_every_generated_case (__main__.StrongCouplingCheckerTests.test_receipt_counts_every_generated_case) ... ok\ntest_refusal_assertion_requires_actual_failure (__main__.StrongCouplingCheckerTests.test_refusal_assertion_requires_actual_failure) ... ok\ntest_supplied_tables_keep_exact_known_values (__main__.StrongCouplingCheckerTests.test_supplied_tables_keep_exact_known_values) ... ok\ntest_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 10.773s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_strong_mutations.py": "4abe1ff953781a096b3c5535d4c0aaac584a24aa4437e3d5c2abbf508f6ae878",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\check_tfq_1052_fqcd_strong_coupling_area_law.py": "77618e514855b104a320980f413fbd88e69eec35ce988f53b0ccb675510a4619",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\strong_coupling_mutations.json": "cb3a6ca40be6d19b97af211f98617247b7ad8e749d26955b2c40c86a87df69b4",
+    "checks\\tests\\test_review_repairs.py": "d8da6e2d1a57e6fabb85c294585296bb5c92491367e5a4c352bfbbe706603676",
+    "checks\\tests\\test_strong_coupling_checker.py": "1de9ec1cd80735e133e7aa1fb7daa30b103ad0c48d503e9e9be8dc51cc2cfa97"
+  },
+  "mutants": [
+    {
+      "identity": "power-off-by-one",
+      "mutant_sha256": "2c1ea2131bf6488908e824e52d08123915faaf5be690ca19642d42079d22b92f",
+      "outcome": "killed",
+      "output": "test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic) ... ERROR\n\n======================================================================\nERROR: test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 160, in test_combined_power_budget_precedes_arithmetic\n    self.assertIsNone(module._power_budget(65536))\n                      ~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\independent\\check_tfq_1052_fqcd_strong_coupling_area_law.py\", line 62, in _power_budget\n    raise Violation(\"resource\", \"exact power exceeds the 65536-bit work budget\")\nchecker_support.boundary.Violation: exact power exceeds the 65536-bit work budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_combined_power_budget_precedes_arithmetic"
+      ]
+    },
+    {
+      "identity": "power-bypass",
+      "mutant_sha256": "aba880662e061759a14999ca5dda93866516c35acba8b87e150044df19f228d2",
+      "outcome": "killed",
+      "output": "test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 161, in test_combined_power_budget_precedes_arithmetic\n    self.assertEqual(self.refused(module._power_budget, 65537).kind, \"resource\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_combined_power_budget_precedes_arithmetic"
+      ]
+    },
+    {
+      "identity": "complex-product-sign",
+      "mutant_sha256": "e352118b0c25367fcc020fe559ed7768da380270aea04b213b7fc90a55329def",
+      "outcome": "killed",
+      "output": "test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products) ... FAIL\n\n======================================================================\nFAIL: test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 103, in test_theta_phase_against_linear_complex_products\n    @given(t=st.integers(-20, 20), charge=st.integers(-25, 25))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 112, in test_theta_phase_against_linear_complex_products\n    self.assertEqual(actual, (re, im))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(1, 1), Fraction(0, 1)) != (Fraction(-1, 1), Fraction(0, 1))\n\nFirst differing element 0:\nFraction(1, 1)\nFraction(-1, 1)\n\n- (Fraction(1, 1), Fraction(0, 1))\n+ (Fraction(-1, 1), Fraction(0, 1))\n?           +\n\nFailing test case: test_theta_phase_against_linear_complex_products(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_theta_phase_against_linear_complex_products>,\n    t=1,\n    charge=2,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.706s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_theta_phase_against_linear_complex_products"
+      ]
+    },
+    {
+      "identity": "complex-power-parity",
+      "mutant_sha256": "2b88aeebce722fb3b04edf91a64cfee26878cde3089196fc05a7e9bf46a450a0",
+      "outcome": "killed",
+      "output": "test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products) ... FAIL\n\n======================================================================\nFAIL: test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 103, in test_theta_phase_against_linear_complex_products\n    @given(t=st.integers(-20, 20), charge=st.integers(-25, 25))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 112, in test_theta_phase_against_linear_complex_products\n    self.assertEqual(actual, (re, im))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(1, 1), Fraction(0, 1)) != (Fraction(0, 1), Fraction(-1, 1))\n\nFirst differing element 0:\nFraction(1, 1)\nFraction(0, 1)\n\n- (Fraction(1, 1), Fraction(0, 1))\n+ (Fraction(0, 1), Fraction(-1, 1))\nFailing test case: test_theta_phase_against_linear_complex_products(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_theta_phase_against_linear_complex_products>,\n    t=1,\n    charge=1,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.533s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_theta_phase_against_linear_complex_products"
+      ]
+    },
+    {
+      "identity": "complex-power-squaring",
+      "mutant_sha256": "77f5a7b74b84ed30362fe88c7fbbb4f3f1ba5b399fc0cbbc46c4164177fa94c6",
+      "outcome": "killed",
+      "output": "test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products) ... FAIL\n\n======================================================================\nFAIL: test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 103, in test_theta_phase_against_linear_complex_products\n    @given(t=st.integers(-20, 20), charge=st.integers(-25, 25))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 112, in test_theta_phase_against_linear_complex_products\n    self.assertEqual(actual, (re, im))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(-1, 1)) != (Fraction(-1, 1), Fraction(0, 1))\n\nFirst differing element 0:\nFraction(0, 1)\nFraction(-1, 1)\n\n- (Fraction(0, 1), Fraction(-1, 1))\n+ (Fraction(-1, 1), Fraction(0, 1))\nFailing test case: test_theta_phase_against_linear_complex_products(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_theta_phase_against_linear_complex_products>,\n    t=1,\n    charge=2,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.658s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_theta_phase_against_linear_complex_products"
+      ]
+    },
+    {
+      "identity": "complex-power-initial",
+      "mutant_sha256": "d1e90d8ae89fff4462d0fb01971cf1079e39cb214cf66be7a562d0d25650455d",
+      "outcome": "killed",
+      "output": "test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products) ... FAIL\n\n======================================================================\nFAIL: test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 103, in test_theta_phase_against_linear_complex_products\n    @given(t=st.integers(-20, 20), charge=st.integers(-25, 25))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 112, in test_theta_phase_against_linear_complex_products\n    self.assertEqual(actual, (re, im))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(1, 1)) != (Fraction(1, 1), Fraction(0, 1))\n\nFirst differing element 0:\nFraction(0, 1)\nFraction(1, 1)\n\n- (Fraction(0, 1), Fraction(1, 1))\n+ (Fraction(1, 1), Fraction(0, 1))\nFailing test case: test_theta_phase_against_linear_complex_products(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_theta_phase_against_linear_complex_products>,\n    t=0,  # or any other generated value\n    charge=0,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.426s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_theta_phase_against_linear_complex_products"
+      ]
+    },
+    {
+      "identity": "table-name-length",
+      "mutant_sha256": "78c37ec4129f96cc5f9b06ee10976d212e01003a578fdfaf38e9ee0bb16bb8d6",
+      "outcome": "killed",
+      "output": "test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 201, in test_invariant_table_refusals\n    self.refused(module.SubgroupInvariantTable, scalars, intervals)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_refusals"
+      ]
+    },
+    {
+      "identity": "table-interval-order",
+      "mutant_sha256": "9c6a5930fbc0d5eb63eef62538f0b90703f3d8d67a638dd058b421c0d43f92be",
+      "outcome": "killed",
+      "output": "test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 201, in test_invariant_table_refusals\n    self.refused(module.SubgroupInvariantTable, scalars, intervals)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_refusals"
+      ]
+    },
+    {
+      "identity": "table-empty",
+      "mutant_sha256": "f16a478fb104e36a5d29771f590ed7dd6a008396df842c78e9099e2f6b56ec01",
+      "outcome": "killed",
+      "output": "test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 201, in test_invariant_table_refusals\n    self.refused(module.SubgroupInvariantTable, scalars, intervals)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_refusals"
+      ]
+    },
+    {
+      "identity": "table-duplicates",
+      "mutant_sha256": "e24d7ea290df5e2ccd25a54dfc3398804d7e3021a859cc7c25d6abe9f1481584",
+      "outcome": "killed",
+      "output": "test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 201, in test_invariant_table_refusals\n    self.refused(module.SubgroupInvariantTable, scalars, intervals)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_refusals"
+      ]
+    },
+    {
+      "identity": "table-snapshot",
+      "mutant_sha256": "db58404b82019c3359607bd5ebc20a13ec0cb188d7b7f8f93f0579880540ed5f",
+      "outcome": "killed",
+      "output": "test_invariant_table_snapshots_and_accessor_separation (__main__.StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_snapshots_and_accessor_separation (__main__.StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 173, in test_invariant_table_snapshots_and_accessor_separation\n    @given(values=st.lists(st.integers(0, 100), min_size=1, max_size=12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 182, in test_invariant_table_snapshots_and_accessor_separation\n    self.assertEqual(table.value(str(index)), value)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: -999 != 0\nFailing test case: test_invariant_table_snapshots_and_accessor_separation(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_invariant_table_snapshots_and_accessor_separation>,\n    values=[0],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.052s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_snapshots_and_accessor_separation"
+      ]
+    },
+    {
+      "identity": "table-wrong-scalar",
+      "mutant_sha256": "61d6150abf2d3d602fc107f445118d0423b0fa5467aa7c9bdd0562c5de314062",
+      "outcome": "killed",
+      "output": "test_invariant_table_snapshots_and_accessor_separation (__main__.StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_snapshots_and_accessor_separation (__main__.StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 173, in test_invariant_table_snapshots_and_accessor_separation\n    @given(values=st.lists(st.integers(0, 100), min_size=1, max_size=12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 182, in test_invariant_table_snapshots_and_accessor_separation\n    self.assertEqual(table.value(str(index)), value)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 1) != 0\nFailing test case: test_invariant_table_snapshots_and_accessor_separation(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_invariant_table_snapshots_and_accessor_separation>,\n    values=[0],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.029s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_snapshots_and_accessor_separation"
+      ]
+    },
+    {
+      "identity": "table-reversed-bounds",
+      "mutant_sha256": "4f7e426ec079240ae95e9d7c19414cfbc4eedb9ac6e363830fb3793e6b673810",
+      "outcome": "killed",
+      "output": "test_invariant_table_snapshots_and_accessor_separation (__main__.StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_snapshots_and_accessor_separation (__main__.StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 173, in test_invariant_table_snapshots_and_accessor_separation\n    @given(values=st.lists(st.integers(0, 100), min_size=1, max_size=12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 184, in test_invariant_table_snapshots_and_accessor_separation\n    self.assertEqual(table.bounds(\"interval\"), (Q(1, 3), Q(2, 3)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(2, 3), Fraction(1, 3)) != (Fraction(1, 3), Fraction(2, 3))\n\nFirst differing element 0:\nFraction(2, 3)\nFraction(1, 3)\n\n- (Fraction(2, 3), Fraction(1, 3))\n+ (Fraction(1, 3), Fraction(2, 3))\nFailing test case: test_invariant_table_snapshots_and_accessor_separation(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_invariant_table_snapshots_and_accessor_separation>,\n    values=[0],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.184s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_snapshots_and_accessor_separation"
+      ]
+    },
+    {
+      "identity": "coordination-factor",
+      "mutant_sha256": "60c06d935a51eceb62b56b5199ac86a994600dd15eddb1e149d12ddc9fb3f91d",
+      "outcome": "killed",
+      "output": "test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds) ... FAIL\n\n======================================================================\nFAIL: test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 43, in test_geometry_and_thresholds\n    @given(n=st.integers(2, 24), d=st.integers(2, 12), left=st.integers(1, 30), top=st.integers(1, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 47, in test_geometry_and_thresholds\n    self.assertEqual(module.delta_coordination(d), len(directions))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2 != 4\nFailing test case: test_geometry_and_thresholds(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_geometry_and_thresholds>,\n    n=2,  # or any other generated value\n    d=2,  # or any other generated value\n    left=1,  # or any other generated value\n    top=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_geometry_and_thresholds"
+      ]
+    },
+    {
+      "identity": "threshold-os-confusion",
+      "mutant_sha256": "3cc8f657c4245e00379dc59d840270caf6c7c38bb3239e9030986018fd07e9c9",
+      "outcome": "killed",
+      "output": "test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds) ... FAIL\n\n======================================================================\nFAIL: test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 43, in test_geometry_and_thresholds\n    @given(n=st.integers(2, 24), d=st.integers(2, 12), left=st.integers(1, 30), top=st.integers(1, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 55, in test_geometry_and_thresholds\n    self.assertLess(lower, 1 / (factor * e_high))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(71, 6176) not less than Fraction(5132160, 2232105163)\nFailing test case: test_geometry_and_thresholds(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_geometry_and_thresholds>,\n    n=2,  # or any other generated value\n    d=2,  # or any other generated value\n    left=1,  # or any other generated value\n    top=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.280s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_geometry_and_thresholds"
+      ]
+    },
+    {
+      "identity": "threshold-bound-direction",
+      "mutant_sha256": "da9a682b4b02e98a3938bd766c70f3ae5f80292bfbf8ed38f9ff505df2f78da0",
+      "outcome": "killed",
+      "output": "test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds) ... FAIL\n\n======================================================================\nFAIL: test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 43, in test_geometry_and_thresholds\n    @given(n=st.integers(2, 24), d=st.integers(2, 12), left=st.integers(1, 30), top=st.integers(1, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 55, in test_geometry_and_thresholds\n    self.assertLess(lower, 1 / (factor * e_high))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(7, 3040) not less than Fraction(5132160, 2232105163)\nFailing test case: test_geometry_and_thresholds(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_geometry_and_thresholds>,\n    n=2,  # or any other generated value\n    d=2,  # or any other generated value\n    left=1,  # or any other generated value\n    top=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.392s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_geometry_and_thresholds"
+      ]
+    },
+    {
+      "identity": "threshold-midpoint",
+      "mutant_sha256": "a6cf8799e087854f89f20425ae78bd53cebda7d2b3b2b3e4d7a41969bcb362c5",
+      "outcome": "killed",
+      "output": "test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds) ... FAIL\n\n======================================================================\nFAIL: test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 43, in test_geometry_and_thresholds\n    @given(n=st.integers(2, 24), d=st.integers(2, 12), left=st.integers(1, 30), top=st.integers(1, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 57, in test_geometry_and_thresholds\n    self.assertEqual(module.beta0_rational_midpoint(n, d), (lower + upper) / 2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(45, 29336) != Fraction(135, 58672)\nFailing test case: test_geometry_and_thresholds(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_geometry_and_thresholds>,\n    n=2,  # or any other generated value\n    d=2,  # or any other generated value\n    left=1,  # or any other generated value\n    top=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.379s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_geometry_and_thresholds"
+      ]
+    },
+    {
+      "identity": "geometry-area",
+      "mutant_sha256": "2dc0ea4819732869255e9ff0f6795e27001dfcf85c3665feecf0b8fadf3f3459",
+      "outcome": "killed",
+      "output": "test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds) ... FAIL\n\n======================================================================\nFAIL: test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 43, in test_geometry_and_thresholds\n    @given(n=st.integers(2, 24), d=st.integers(2, 12), left=st.integers(1, 30), top=st.integers(1, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 48, in test_geometry_and_thresholds\n    self.assertEqual(module.spanning_area(left, top), sum(left for _ in range(top)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2 != 1\nFailing test case: test_geometry_and_thresholds(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_geometry_and_thresholds>,\n    n=2,  # or any other generated value\n    d=2,  # or any other generated value\n    left=1,  # or any other generated value\n    top=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 3.981s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_geometry_and_thresholds"
+      ]
+    },
+    {
+      "identity": "geometry-perimeter",
+      "mutant_sha256": "78b83de2a50b0237ee59ece51e7a695fb256bfa0a472e80010d1d2a09a0357be",
+      "outcome": "killed",
+      "output": "test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds) ... FAIL\n\n======================================================================\nFAIL: test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 43, in test_geometry_and_thresholds\n    @given(n=st.integers(2, 24), d=st.integers(2, 12), left=st.integers(1, 30), top=st.integers(1, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 49, in test_geometry_and_thresholds\n    self.assertEqual(module.perimeter(left, top), sum((left, top, left, top)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2 != 4\nFailing test case: test_geometry_and_thresholds(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_geometry_and_thresholds>,\n    n=2,  # or any other generated value\n    d=2,  # or any other generated value\n    left=1,  # or any other generated value\n    top=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.213s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_geometry_and_thresholds"
+      ]
+    },
+    {
+      "identity": "cluster-denominator",
+      "mutant_sha256": "2c06a71018d1664dde18307502bae905d66400836463cd647ab4a3f2630d1d7b",
+      "outcome": "killed",
+      "output": "test_cluster_series_recurrence_and_partial_sums (__main__.StrongCouplingCheckerTests.test_cluster_series_recurrence_and_partial_sums) ... FAIL\n\n======================================================================\nFAIL: test_cluster_series_recurrence_and_partial_sums (__main__.StrongCouplingCheckerTests.test_cluster_series_recurrence_and_partial_sums)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 61, in test_cluster_series_recurrence_and_partial_sums\n    @given(numerator=st.integers(0, 19), area=st.integers(1, 20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 67, in test_cluster_series_recurrence_and_partial_sums\n    self.assertEqual(tail, mu ** area + mu * tail)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 21) != Fraction(11, 210)\nFailing test case: test_cluster_series_recurrence_and_partial_sums(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_cluster_series_recurrence_and_partial_sums>,\n    numerator=1,\n    area=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.686s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_cluster_series_recurrence_and_partial_sums"
+      ]
+    },
+    {
+      "identity": "cluster-unit-admission",
+      "mutant_sha256": "af71d9945c2004625b0d412a6fbbbbd1bc720bff85dfc66e3f86a45decffedc8",
+      "outcome": "survived",
+      "output": "test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_all_arithmetic_input_boundaries"
+      ]
+    },
+    {
+      "identity": "area-decay",
+      "mutant_sha256": "9125fc46dfc90b00397539c50998294e009b445728b438753c645ade8342abaa",
+      "outcome": "killed",
+      "output": "test_cluster_series_recurrence_and_partial_sums (__main__.StrongCouplingCheckerTests.test_cluster_series_recurrence_and_partial_sums) ... FAIL\n\n======================================================================\nFAIL: test_cluster_series_recurrence_and_partial_sums (__main__.StrongCouplingCheckerTests.test_cluster_series_recurrence_and_partial_sums)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 61, in test_cluster_series_recurrence_and_partial_sums\n    @given(numerator=st.integers(0, 19), area=st.integers(1, 20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 70, in test_cluster_series_recurrence_and_partial_sums\n    self.assertEqual(module.area_law_bound_rational(area), Q(1, 4) ** area)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 3) != Fraction(1, 4)\nFailing test case: test_cluster_series_recurrence_and_partial_sums(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_cluster_series_recurrence_and_partial_sums>,\n    numerator=0,  # or any other generated value\n    area=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.225s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_cluster_series_recurrence_and_partial_sums"
+      ]
+    },
+    {
+      "identity": "collar-contraction",
+      "mutant_sha256": "8cd84a056abed694b526ac260fda9d43524e6d2b7a1f6edf4d916b82f79f049c",
+      "outcome": "killed",
+      "output": "test_decimation_and_collar_products (__main__.StrongCouplingCheckerTests.test_decimation_and_collar_products) ... FAIL\n\n======================================================================\nFAIL: test_decimation_and_collar_products (__main__.StrongCouplingCheckerTests.test_decimation_and_collar_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 74, in test_decimation_and_collar_products\n    @given(dim=st.integers(1, 12), numerator=st.integers(-10, 10), area=st.integers(1, 12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 86, in test_decimation_and_collar_products\n    self.assertEqual(module.collar_contraction_rational(area), Q(1, 2) ** area)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 3) != Fraction(1, 2)\nFailing test case: test_decimation_and_collar_products(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_decimation_and_collar_products>,\n    dim=1,  # or any other generated value\n    numerator=0,  # or any other generated value\n    area=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.910s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_decimation_and_collar_products"
+      ]
+    },
+    {
+      "identity": "decimation-dimension-power",
+      "mutant_sha256": "b1a6279fbb054285abfb420bb62119a2d15feb0b704d3d950af094a04977fcce",
+      "outcome": "killed",
+      "output": "test_decimation_and_collar_products (__main__.StrongCouplingCheckerTests.test_decimation_and_collar_products) ... FAIL\n\n======================================================================\nFAIL: test_decimation_and_collar_products (__main__.StrongCouplingCheckerTests.test_decimation_and_collar_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 74, in test_decimation_and_collar_products\n    @given(dim=st.integers(1, 12), numerator=st.integers(-10, 10), area=st.integers(1, 12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 81, in test_decimation_and_collar_products\n    self.assertEqual(module.twod_decimation_rational(dim, activity, area), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 26) != Fraction(1, 13)\nFailing test case: test_decimation_and_collar_products(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_decimation_and_collar_products>,\n    dim=2,\n    numerator=1,\n    area=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.689s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_decimation_and_collar_products"
+      ]
+    },
+    {
+      "identity": "general-collar-power",
+      "mutant_sha256": "18390a94cf0095c9b225479c6541457c8025a70310887eee6fb0975927b14880",
+      "outcome": "killed",
+      "output": "test_decimation_and_collar_products (__main__.StrongCouplingCheckerTests.test_decimation_and_collar_products) ... FAIL\n\n======================================================================\nFAIL: test_decimation_and_collar_products (__main__.StrongCouplingCheckerTests.test_decimation_and_collar_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 74, in test_decimation_and_collar_products\n    @given(dim=st.integers(1, 12), numerator=st.integers(-10, 10), area=st.integers(1, 12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 85, in test_decimation_and_collar_products\n    self.assertEqual(module.general_collar_contraction_rational(dim, area), contraction)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 4) != Fraction(1, 2)\nFailing test case: test_decimation_and_collar_products(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_decimation_and_collar_products>,\n    dim=2,\n    numerator=0,  # or any other generated value\n    area=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.096s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_decimation_and_collar_products"
+      ]
+    },
+    {
+      "identity": "normal-directions",
+      "mutant_sha256": "867de683cf74b892ce48facceb841cc3d3d66947b5b85144a9a94e598d6b01e5",
+      "outcome": "killed",
+      "output": "test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds) ... FAIL\n\n======================================================================\nFAIL: test_geometry_and_thresholds (__main__.StrongCouplingCheckerTests.test_geometry_and_thresholds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 43, in test_geometry_and_thresholds\n    @given(n=st.integers(2, 24), d=st.integers(2, 12), left=st.integers(1, 30), top=st.integers(1, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 58, in test_geometry_and_thresholds\n    self.assertEqual(module.normal_directions(d + 1), len([1 for _ in range(d - 1) for _ in (-1, 1)]))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4 != 2\nFailing test case: test_geometry_and_thresholds(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_geometry_and_thresholds>,\n    n=2,  # or any other generated value\n    d=2,  # or any other generated value\n    left=1,  # or any other generated value\n    top=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.171s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_geometry_and_thresholds"
+      ]
+    },
+    {
+      "identity": "collar-normal-count",
+      "mutant_sha256": "a8527e518bbbf76f9ead84eb29840bb2e41cb7519a4a1da2ca21295e8ef42fb5",
+      "outcome": "killed",
+      "output": "test_multi_plaquette_bound_from_repeated_factors (__main__.StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors) ... FAIL\n\n======================================================================\nFAIL: test_multi_plaquette_bound_from_repeated_factors (__main__.StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 91, in test_multi_plaquette_bound_from_repeated_factors\n    @given(perimeter=st.integers(1, 6), width=st.integers(1, 4), dim=st.integers(2, 7), numerator=st.integers(1, 5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 100, in test_multi_plaquette_bound_from_repeated_factors\n    self.assertEqual(module.d4_multi_plaquette_collar_bound(perimeter, width, dim, beta), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(3, 5324) != Fraction(1, 1331)\nFailing test case: test_multi_plaquette_bound_from_repeated_factors(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_multi_plaquette_bound_from_repeated_factors>,\n    perimeter=1,  # or any other generated value\n    width=1,  # or any other generated value\n    dim=2,  # or any other generated value\n    numerator=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.149s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_multi_plaquette_bound_from_repeated_factors"
+      ]
+    },
+    {
+      "identity": "collar-activity-power",
+      "mutant_sha256": "2b7a47cdb04b764a2effce4eb27bb572a30bcc6a33d017464048afd255eeea58",
+      "outcome": "killed",
+      "output": "test_multi_plaquette_bound_from_repeated_factors (__main__.StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors) ... FAIL\n\n======================================================================\nFAIL: test_multi_plaquette_bound_from_repeated_factors (__main__.StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 91, in test_multi_plaquette_bound_from_repeated_factors\n    @given(perimeter=st.integers(1, 6), width=st.integers(1, 4), dim=st.integers(2, 7), numerator=st.integers(1, 5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 100, in test_multi_plaquette_bound_from_repeated_factors\n    self.assertEqual(module.d4_multi_plaquette_collar_bound(perimeter, width, dim, beta), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 121) != Fraction(1, 1331)\nFailing test case: test_multi_plaquette_bound_from_repeated_factors(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_multi_plaquette_bound_from_repeated_factors>,\n    perimeter=1,  # or any other generated value\n    width=1,  # or any other generated value\n    dim=2,  # or any other generated value\n    numerator=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.083s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_multi_plaquette_bound_from_repeated_factors"
+      ]
+    },
+    {
+      "identity": "collar-perimeter-power",
+      "mutant_sha256": "35557fc647cc01dadee631e7811bc13f8b52d7a4adc81f5537e347fb765b3d99",
+      "outcome": "killed",
+      "output": "test_multi_plaquette_bound_from_repeated_factors (__main__.StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors) ... FAIL\n\n======================================================================\nFAIL: test_multi_plaquette_bound_from_repeated_factors (__main__.StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 91, in test_multi_plaquette_bound_from_repeated_factors\n    @given(perimeter=st.integers(1, 6), width=st.integers(1, 4), dim=st.integers(2, 7), numerator=st.integers(1, 5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 100, in test_multi_plaquette_bound_from_repeated_factors\n    self.assertEqual(module.d4_multi_plaquette_collar_bound(perimeter, width, dim, beta), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 1771561) != Fraction(1, 1331)\nFailing test case: test_multi_plaquette_bound_from_repeated_factors(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_multi_plaquette_bound_from_repeated_factors>,\n    perimeter=1,  # or any other generated value\n    width=1,  # or any other generated value\n    dim=2,  # or any other generated value\n    numerator=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.134s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_multi_plaquette_bound_from_repeated_factors"
+      ]
+    },
+    {
+      "identity": "collar-positive-admission",
+      "mutant_sha256": "97882050bb4dab0436be20f7fa099d33d567a7a829bb1c9ff9537137d26403cf",
+      "outcome": "killed",
+      "output": "test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) ... \n  test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) (name='d4_multi_plaquette_collar_bound', args=(1, 1, 2, 0)) ... FAIL\n\n======================================================================\nFAIL: test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) (name='d4_multi_plaquette_collar_bound', args=(1, 1, 2, 0))\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 150, in test_all_arithmetic_input_boundaries\n    self.refused(getattr(module, name), *args)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_all_arithmetic_input_boundaries"
+      ]
+    },
+    {
+      "identity": "phase-unit-admission",
+      "mutant_sha256": "8be7698082c8c4d2649beda7f055fbd1053e54434b9eeb6acdec54dd2ffd9897",
+      "outcome": "killed",
+      "output": "test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) ... \n  test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) (name='theta_phase', args=(1, 1, 2)) ... FAIL\n\n======================================================================\nFAIL: test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) (name='theta_phase', args=(1, 1, 2))\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 150, in test_all_arithmetic_input_boundaries\n    self.refused(getattr(module, name), *args)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_all_arithmetic_input_boundaries"
+      ]
+    },
+    {
+      "identity": "phase-charge-conjugation",
+      "mutant_sha256": "0b97c05bc13b825d48429b961f8d63d61c310aba511b715a227a83cc313ccc32",
+      "outcome": "killed",
+      "output": "test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products) ... FAIL\n\n======================================================================\nFAIL: test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 103, in test_theta_phase_against_linear_complex_products\n    @given(t=st.integers(-20, 20), charge=st.integers(-25, 25))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 112, in test_theta_phase_against_linear_complex_products\n    self.assertEqual(actual, (re, im))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(1, 1)) != (Fraction(0, 1), Fraction(-1, 1))\n\nFirst differing element 1:\nFraction(1, 1)\nFraction(-1, 1)\n\n- (Fraction(0, 1), Fraction(1, 1))\n+ (Fraction(0, 1), Fraction(-1, 1))\n?                           +\n\nFailing test case: test_theta_phase_against_linear_complex_products(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_theta_phase_against_linear_complex_products>,\n    t=1,\n    charge=1,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.546s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_theta_phase_against_linear_complex_products"
+      ]
+    },
+    {
+      "identity": "phase-denominator",
+      "mutant_sha256": "010277eeee0e71302cc2f2d55d5fe76d8e34c1cd5bc3f61d28a3130c1d27187c",
+      "outcome": "killed",
+      "output": "test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products) ... FAIL\n\n======================================================================\nFAIL: test_theta_phase_against_linear_complex_products (__main__.StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 103, in test_theta_phase_against_linear_complex_products\n    @given(t=st.integers(-20, 20), charge=st.integers(-25, 25))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 112, in test_theta_phase_against_linear_complex_products\n    self.assertEqual(actual, (re, im))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(1, 5), Fraction(0, 1)) != (Fraction(1, 1), Fraction(0, 1))\n\nFirst differing element 0:\nFraction(1, 5)\nFraction(1, 1)\n\n- (Fraction(1, 5), Fraction(0, 1))\n?              ^\n\n+ (Fraction(1, 1), Fraction(0, 1))\n?              ^\n\nFailing test case: test_theta_phase_against_linear_complex_products(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_theta_phase_against_linear_complex_products>,\n    t=2,\n    charge=0,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.581s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_theta_phase_against_linear_complex_products"
+      ]
+    },
+    {
+      "identity": "overlap-wrong-gamma",
+      "mutant_sha256": "3b597cc89334c750be581e4fde626302becbae2b69506b1a915805986cc0595e",
+      "outcome": "survived",
+      "output": "test_modified_chirality_square_for_nonunit_inputs (__main__.StrongCouplingCheckerTests.test_modified_chirality_square_for_nonunit_inputs) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 1.113s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_modified_chirality_square_for_nonunit_inputs"
+      ]
+    },
+    {
+      "identity": "receipt-truthiness",
+      "mutant_sha256": "79b67e83709d724c0112a0dcb821a4980bf779878a0b6a71d157819934bb752a",
+      "outcome": "killed",
+      "output": "test_railway_faults_and_recorder_errors_are_not_swallowed (__main__.StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed) ... FAIL\n\n======================================================================\nFAIL: test_railway_faults_and_recorder_errors_are_not_swallowed (__main__.StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 269, in test_railway_faults_and_recorder_errors_are_not_swallowed\n    self.assertEqual(self.refused(module.run_checks).kind, \"input\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.027s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_railway_faults_and_recorder_errors_are_not_swallowed"
+      ]
+    },
+    {
+      "identity": "receipt-failures",
+      "mutant_sha256": "a37eab00e4bd9325f1fd8e74e3eb4d349dd01a3573a2350b8e8689a5e54d3f0e",
+      "outcome": "killed",
+      "output": "test_receipt_counts_every_generated_case (__main__.StrongCouplingCheckerTests.test_receipt_counts_every_generated_case) ... FAIL\n\n======================================================================\nFAIL: test_receipt_counts_every_generated_case (__main__.StrongCouplingCheckerTests.test_receipt_counts_every_generated_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 228, in test_receipt_counts_every_generated_case\n    @given(statuses=st.lists(st.booleans(), max_size=12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 238, in test_receipt_counts_every_generated_case\n    self.assertEqual(result[\"failures\"], failed)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['beta0_rational_midpoint(2, 2) > 0', 'bet[13662 chars] 20'] != []\n\nFirst list contains 241 additional elements.\nFirst extra element 0:\n'beta0_rational_midpoint(2, 2) > 0'\n\nDiff is 14677 characters long. Set self.maxDiff to None to see it.\nFailing test case: test_receipt_counts_every_generated_case(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_receipt_counts_every_generated_case>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 7.309s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_receipt_counts_every_generated_case"
+      ]
+    },
+    {
+      "identity": "receipt-count",
+      "mutant_sha256": "c5bc0663b636489897734ca2d4521fe7a7bc8498ecb65f98eb5831c49f7ea291",
+      "outcome": "killed",
+      "output": "test_receipt_counts_every_generated_case (__main__.StrongCouplingCheckerTests.test_receipt_counts_every_generated_case) ... FAIL\n\n======================================================================\nFAIL: test_receipt_counts_every_generated_case (__main__.StrongCouplingCheckerTests.test_receipt_counts_every_generated_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 228, in test_receipt_counts_every_generated_case\n    @given(statuses=st.lists(st.booleans(), max_size=12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 237, in test_receipt_counts_every_generated_case\n    self.assertEqual(result[\"total_checks\"], 241 + len(statuses))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 242 != 241\nFailing test case: test_receipt_counts_every_generated_case(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_receipt_counts_every_generated_case>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 6.296s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_receipt_counts_every_generated_case"
+      ]
+    },
+    {
+      "identity": "receipt-success",
+      "mutant_sha256": "818e7825820722c694f463ed5613f44358317ef06574bf9c79ebe349e8c48d3d",
+      "outcome": "killed",
+      "output": "test_receipt_counts_every_generated_case (__main__.StrongCouplingCheckerTests.test_receipt_counts_every_generated_case) ... FAIL\n\n======================================================================\nFAIL: test_receipt_counts_every_generated_case (__main__.StrongCouplingCheckerTests.test_receipt_counts_every_generated_case)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 228, in test_receipt_counts_every_generated_case\n    @given(statuses=st.lists(st.booleans(), max_size=12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 240, in test_receipt_counts_every_generated_case\n    self.assertIs(result[\"all_passed\"], not failed)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not False\nFailing test case: test_receipt_counts_every_generated_case(\n    self=<__main__.StrongCouplingCheckerTests testMethod=test_receipt_counts_every_generated_case>,\n    statuses=[False],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.726s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_receipt_counts_every_generated_case"
+      ]
+    },
+    {
+      "identity": "cli-failure",
+      "mutant_sha256": "05587c702ddfc811fe541f41876a6c05b7ce666b59cecc7e98c1918ff89e8edc",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 257, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(cli(module.main), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.041s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "direct-oracle-bypass",
+      "mutant_sha256": "a9dbd2c06b289bb4aecf018f28fe7abe04a6542502d5278d23554b6cb76209bb",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 254, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(receipt[\"failed_checks\"], 31)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 31\n\n----------------------------------------------------------------------\nRan 1 test in 0.027s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "budget-cluster_sum_rational",
+      "mutant_sha256": "8ed33c93fe52becfcea0e0b77e781d1bbb71d8cfd7a6a6b94e6da386402c7beb",
+      "outcome": "killed",
+      "output": "test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 167, in test_combined_power_budget_precedes_arithmetic\n    self.assertEqual(self.refused(operation, *args).kind, \"resource\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 32, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 32, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\independent\\check_tfq_1052_fqcd_strong_coupling_area_law.py\", line 195, in cluster_sum_rational\n    return (mu ** min_area) / (Fraction(1, 1) - mu)\n            ~~~^^~~~~~~~~~\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nAssertionError: power executed before budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.021s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_combined_power_budget_precedes_arithmetic"
+      ]
+    },
+    {
+      "identity": "budget-twod_decimation_rational",
+      "mutant_sha256": "cd3bf8e2c645b598b7b764d7aff52549d7c753eb4a470fe3f0e07d5ea1cb10ea",
+      "outcome": "killed",
+      "output": "test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 167, in test_combined_power_budget_precedes_arithmetic\n    self.assertEqual(self.refused(operation, *args).kind, \"resource\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 32, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 32, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\independent\\check_tfq_1052_fqcd_strong_coupling_area_law.py\", line 232, in twod_decimation_rational\n    return Fraction(1, dim_r ** (area - 1)) * activity_ratio ** area\n                                              ~~~~~~~~~~~~~~~^^~~~~~\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nAssertionError: power executed before budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.020s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_combined_power_budget_precedes_arithmetic"
+      ]
+    },
+    {
+      "identity": "budget-d4_multi_plaquette_collar_bound",
+      "mutant_sha256": "722349981a2b96d92435a8b245b1da72be259af28e4f13484a52fcdf91ccfb91",
+      "outcome": "killed",
+      "output": "test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 167, in test_combined_power_budget_precedes_arithmetic\n    self.assertEqual(self.refused(operation, *args).kind, \"resource\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 32, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 32, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\independent\\check_tfq_1052_fqcd_strong_coupling_area_law.py\", line 278, in d4_multi_plaquette_collar_bound\n    step = Fraction(4, dim_r ** (2 * width_k)) * (beta ** (3 * width_k))\n                                                  ~~~~~^^~~~~~~~~~~~~~~\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nAssertionError: power executed before budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_combined_power_budget_precedes_arithmetic"
+      ]
+    },
+    {
+      "identity": "budget-theta_phase",
+      "mutant_sha256": "fd712fbc88b483e2f13802d313377fe60f29a1be73de38fd4960ce20e502909c",
+      "outcome": "killed",
+      "output": "test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic) ... FAIL\n\n======================================================================\nFAIL: test_combined_power_budget_precedes_arithmetic (__main__.StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 170, in test_combined_power_budget_precedes_arithmetic\n    self.assertEqual(self.refused(module.theta_phase, Q(1-t*t, 1+t*t), Q(2*t, 1+t*t), 4096).kind, \"resource\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 32, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 32, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\independent\\check_tfq_1052_fqcd_strong_coupling_area_law.py\", line 375, in theta_phase\n    re, im = _complex_power((real, imag), abs(q))\n             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nAssertionError: complex power before budget\n\n----------------------------------------------------------------------\nRan 1 test in 0.020s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_combined_power_budget_precedes_arithmetic"
+      ]
+    },
+    {
+      "identity": "coordination-domain",
+      "mutant_sha256": "a8953c4c1ea0a041697d5b2210eb29bd1bfcdbbfa402d2ccc35744b4eea59649",
+      "outcome": "killed",
+      "output": "test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) ... \n  test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) (name='delta_coordination', args=(1,)) ... FAIL\n\n======================================================================\nFAIL: test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) (name='delta_coordination', args=(1,))\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 150, in test_all_arithmetic_input_boundaries\n    self.refused(getattr(module, name), *args)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_all_arithmetic_input_boundaries"
+      ]
+    },
+    {
+      "identity": "exact-activity",
+      "mutant_sha256": "ea1f3343918b14cff978498431d76d1d7f64a74c47281b477c9115ac8464c450",
+      "outcome": "killed",
+      "output": "test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) ... \n  test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) (name='twod_decimation_rational', args=(2, 0.1, 2)) ... FAIL\n\n======================================================================\nFAIL: test_all_arithmetic_input_boundaries (__main__.StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries) (name='twod_decimation_rational', args=(2, 0.1, 2))\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 150, in test_all_arithmetic_input_boundaries\n    self.refused(getattr(module, name), *args)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.017s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_all_arithmetic_input_boundaries"
+      ]
+    },
+    {
+      "identity": "scalar-negative",
+      "mutant_sha256": "b093ebcec57f219d6f2b341c0453ceb3995f4c093db366431232da3d0c4273f1",
+      "outcome": "killed",
+      "output": "test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 201, in test_invariant_table_refusals\n    self.refused(module.SubgroupInvariantTable, scalars, intervals)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_refusals"
+      ]
+    },
+    {
+      "identity": "interval-negative",
+      "mutant_sha256": "ba864f2df62a37311ce2140c1e6b9e4b1c6cb095ec3324ed6e253f6c02b135d0",
+      "outcome": "killed",
+      "output": "test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 201, in test_invariant_table_refusals\n    self.refused(module.SubgroupInvariantTable, scalars, intervals)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.017s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_refusals"
+      ]
+    },
+    {
+      "identity": "scalar-row-budget",
+      "mutant_sha256": "c28ce22c575817fe0e8642dd9e33a93bb1cf8138660aa6a4ee9d8f66cba949c8",
+      "outcome": "killed",
+      "output": "test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals) ... FAIL\n\n======================================================================\nFAIL: test_invariant_table_refusals (__main__.StrongCouplingCheckerTests.test_invariant_table_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 201, in test_invariant_table_refusals\n    self.refused(module.SubgroupInvariantTable, scalars, intervals)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 33, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_invariant_table_refusals"
+      ]
+    },
+    {
+      "identity": "scalar-s3",
+      "mutant_sha256": "048516d3a2a120847f99cec9bf4cc66262c13a1c35d0ffc095ede8e36bbf44d2",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['S_3 cubic character inva[41 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n-  'failures': ['S_3 cubic character invariant == 1/1 (got 5/3)'],\n+  'failures': [],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "scalar-q8",
+      "mutant_sha256": "6f12e149395a6a96acf10915290c69a3505cef4c2234e3670e9e8e1a48d27985",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['Q_8 cubic character inva[39 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n-  'failures': ['Q_8 cubic character invariant == 0/1 (got 2)'],\n+  'failures': [],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "s4-table",
+      "mutant_sha256": "e67cf05733e6d5b11748fe9ee01d3b38be9905091eb4aae17ee694d24bd39c17",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 3, 'failures': ['S_4 standard 3D irrep cu[127 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 3,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['S_4 standard 3D irrep cubic invariant == 1',\n-               'S_4 signed 3D irrep cubic invariant == 1',\n-               'S_4 quotient 2D irrep cubic invariant == 1'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "a5-table",
+      "mutant_sha256": "3103825c5f1493d54092ac6aa53373f9ba247ebca0d6d4d449d756a28f97083c",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 8, 'failures': ['A_5 icosahedral 3_a irre[352 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\nDiff is 824 characters long. Set self.maxDiff to None to see it.\n\n----------------------------------------------------------------------\nRan 1 test in 0.027s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "icosahedral-table",
+      "mutant_sha256": "00751111972d467bd4ee972bc386a146bdd89f4c36354e8b6a5dbe4fdda7c012",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['2I spinorial 4_s cubic i[32 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n-  'failures': ['2I spinorial 4_s cubic invariant == 0'],\n+  'failures': [],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.027s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "valentiner-table",
+      "mutant_sha256": "0ce1f4170240b3e686bdbf0c3384178f78afc8bcc0bf03566ac4e6240d3a8090",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 2, 'failures': ['Sigma(1080) fundamental [191 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 2,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Sigma(1080) fundamental 3_a baryon-singlet cubic invariant I_3 '\n-               '== 1',\n-               'Sigma(1080) matches in the displayed comparison set the '\n-               'continuum SU(3) invariant triple (I_3(3), I_4(3), I_3(8)) = (1, '\n-               '2, 2)'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "defect-table",
+      "mutant_sha256": "f974cf67469afa5a316056373dff40231482b0e167a155fa8c567a404752d958",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 2, 'failures': ['Petcher-Weingarten and B[156 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 2,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Petcher-Weingarten and Bhanot-Rebbi defect bounds ordering',\n-               'Strict monotonic decrease of minimal plaquette defect across '\n-               'SU(2) ADE series Q_8 -> 2T -> 2O -> 2I'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.027s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "su2-table",
+      "mutant_sha256": "850758cb462dcf5f335cd0be4ad0244eb69967bd0bd9413efd2678ba1d86dd78",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['2O tensorial 3 cubic inv[30 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n-  'failures': ['2O tensorial 3 cubic invariant == 1'],\n+  'failures': [],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "su3-table",
+      "mutant_sha256": "758120e0b22fab51a045a8e9138d4fa5b7675cb27142b404f0fbd6064d4ac94f",
+      "outcome": "survived",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.039s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "klein-table",
+      "mutant_sha256": "179e2334e3e2b1594d45730ade68328d9b690fb92d4c28dfa19e1b542b19b6a2",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 3, 'failures': ['Sigma(168) fundamental 3[202 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 3,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Sigma(168) fundamental 3_a invariants I_{1,1}=1, I_2=0, I_3=1',\n-               'Sigma(168) sextet and septet cubic invariants I_3(6)=I_3(7)=2',\n-               'Sigma(168) adjoint 8 has I_2=1 and spurious I_3=3 > 2 = '\n-               'I_3(Sigma(1080), 8_a)'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "quartic-table",
+      "mutant_sha256": "96c4fb82e56e6d846b2018bc23f6fddc51a27f745ceb1993fcff2e2234913ddf",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['SU(2) ADE quartic charac[71 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['SU(2) ADE quartic character invariants I_4(Q_8)=4, '\n-               'I_4(2T)=I_4(2O)=I_4(2I)=2'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "hessian-table",
+      "mutant_sha256": "5cdd337152de8364911d67aa6b8adc417c12c3de261411d14cc66c03dd908df3",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['Principal Sigma(72x3) an[98 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Principal Sigma(72x3) and Hessian Sigma(216x3) satisfy '\n-               'I_{1,1}(3)=I_3(3)=1 and I_4(3)=2 (irreducible 8)'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "higher-spin-table",
+      "mutant_sha256": "bf9b1b197134eb796427f19f44d30982d3a8141d5cc14f72989287b037e72e7c",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['2I spin-2 (5_t) quartic [101 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['2I spin-2 (5_t) quartic Casimir obstruction I_4(2I, 5_t)=11 > 5 '\n-               '= I_4(SU(2), 5) with |A_5|=60 and |2I|=120'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "crystal-table",
+      "mutant_sha256": "455754cdc5c010c4f588fae8af4de275f783980ef581f65facaa73d6519a3699",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['Sigma(36x3) has I_{1,1}([98 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Sigma(36x3) has I_{1,1}(3)=I_3(3)=1, I_4(3)=3 (8 = 4_1 + 4_2) '\n-               'and Sigma(60x3) has <8,8>=2 (8 = 3_a + 5)'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "genus-two-table",
+      "mutant_sha256": "6b1316ee1af6999d9729f11db0af4f2b9e98f802ec9f4257306d54d24e74c2de",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['Exact SU(3) (3, 6, 8, 10[91 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Exact SU(3) (3, 6, 8, 10) and SU(2) (2_s, 3_a, 4_s, 5_t) '\n-               'quadratic Casimir string-tension ratios'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "genus-three-table",
+      "mutant_sha256": "2510fbdbe12a21610207573e0e2ac153d5b7621edb7bed8cb1bd85b1dfd3ab70",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['Perfect Sigma(1080) genu[109 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Perfect Sigma(1080) genus-3 1/9 contraction bound '\n-               'M_3(Sigma(1080)) - 1 < 3/50 < (1/9)(M_2 - 1) vs solvable M_3 > '\n-               '2'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "casimir-table",
+      "mutant_sha256": "df24065dc8c3bb55b572b34416ef1d6c3711107ada1f63d656141d2904064ad0",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['Tensor-power generation [112 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Tensor-power generation depth gaps (6, 4, 3, 2, 4) and parent '\n-               'SU(2)/SU(3) Casimir ratios (21 > 6 > 16/5 > 1, 8/3 > 1)'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "pachner-table",
+      "mutant_sha256": "64471b6d1d99a82c40c2e498b77ce536bc3d3a4d86891b1e1d6ef119924289e6",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['Five tabulated defect su[73 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Five tabulated defect sums and candidate Birkhoff-Hopf values '\n-               'at P_slice=1,2,4'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "wilson-polynomial",
+      "mutant_sha256": "b49dd11936888b025eca821c7cc84764e186e9fc06c33d5a0602349e26be7791",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 24, 'failures': ['Direct 8x8 matrix deter[1461 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\nDiff is 2266 characters long. Set self.maxDiff to None to see it.\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "chemical-potential",
+      "mutant_sha256": "229fe89eb43b1db40b2f5dd68900668b48089c07df0a701668d6d5ff5ef4ad70",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['Chemical-potential asymm[157 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Chemical-potential asymmetry (FSP-QCD-CHEMICAL-POTENTIAL-DET): '\n-               'det D_SU3(2) = 63/8 - 27i, two-flavor square = -42687/64 - '\n-               '(1701/4)i, phase-quenched = 50625/64 > 0'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "overlap-index",
+      "mutant_sha256": "be3e1de6d44b1f27ab17eb3ac10e0a7b8553c6db66f5129af3c3df94f9eeec2a",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['4D Luscher corner index [120 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['4D Luscher corner index sequence (0, 1, -3, 3, -1, 0) across '\n-               'doubler mass shells and 2x2 supercritical det sign flip -576 < '\n-               '0'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "theta-partition",
+      "mutant_sha256": "70ef308c8fc64c98eacffd2f9ad393d0c8dc82978056183250a560b7992122cc",
+      "outcome": "killed",
+      "output": "test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_cli_and_direct_oracle_faults (__main__.StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 246, in test_default_receipt_cli_and_direct_oracle_faults\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[127 chars]ks': 1, 'failures': ['Topological theta-vacuum[143 chars]alse} != {'rec[127 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FQCD-STRONG-COUPLING-AREA-LAW',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['Topological theta-vacuum complex weight '\n-               '(FSP-THETA-TERM-COMPLEX-WEIGHT), CP points theta in {0, pi}, '\n-               'and parity-paired frustration Z(0) - Z(pi) = 20'],\n   'record_id': 'TFQ-1052',\n   'total_checks': 250}\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+      "tests": [
+        "test_default_receipt_cli_and_direct_oracle_faults"
+      ]
+    },
+    {
+      "identity": "test-refusal-helper",
+      "mutant_sha256": "0794edabc63447974db6b3ff7293153d173f39b0de58a2f08b6b0f0670c0598e",
+      "outcome": "killed",
+      "output": "test_refusal_assertion_requires_actual_failure (__main__.StrongCouplingCheckerTests.test_refusal_assertion_requires_actual_failure) ... FAIL\n\n======================================================================\nFAIL: test_refusal_assertion_requires_actual_failure (__main__.StrongCouplingCheckerTests.test_refusal_assertion_requires_actual_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-coupling-mutation-v0_meefg\\tests\\test_strong_coupling_checker.py\", line 40, in test_refusal_assertion_requires_actual_failure\n    with self.assertRaises(AssertionError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nAssertionError: AssertionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_strong_coupling_checker.py",
+      "tests": [
+        "test_refusal_assertion_requires_actual_failure"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 69,
+      "survived": 3,
+      "unrun": 0
+    },
+    "detected_fraction": 0.9583333333333334,
+    "eligible": 72
+  }
+}

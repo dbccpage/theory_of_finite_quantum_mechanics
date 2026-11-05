@@ -1,0 +1,389 @@
+[
+  {
+    "identity": "request-tag",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "HEADER_TAG = 1",
+    "after": "HEADER_TAG = 2",
+    "tests": [
+      "test_request_round_trip_and_independent_layout"
+    ]
+  },
+  {
+    "identity": "request-order",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "+ self.machine + self.input_word",
+    "after": "+ self.input_word + self.machine",
+    "tests": [
+      "test_request_round_trip_and_independent_layout"
+    ]
+  },
+  {
+    "identity": "request-length",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "len(self.machine))",
+    "after": "len(self.input_word))",
+    "tests": [
+      "test_request_round_trip_and_independent_layout"
+    ]
+  },
+  {
+    "identity": "request-combined-budget",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "if len(machine) + len(input_word) > MAX_PAYLOAD:",
+    "after": "if False:",
+    "tests": [
+      "test_request_snapshot_immutability_and_resource_endpoints"
+    ]
+  },
+  {
+    "identity": "request-fuel-admission",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "integer(self.fuel, \"fuel\", 0, MAX_TOKEN)",
+    "after": "pass",
+    "tests": [
+      "test_request_every_token_boundary"
+    ]
+  },
+  {
+    "identity": "request-payload-snapshot",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "object.__setattr__(self, \"machine\", machine)",
+    "after": "pass",
+    "tests": [
+      "test_request_snapshot_immutability_and_resource_endpoints"
+    ]
+  },
+  {
+    "identity": "request-short-header",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "if len(tokens) < 3:",
+    "after": "if len(tokens) < 2:",
+    "tests": [
+      "test_request_every_token_boundary"
+    ]
+  },
+  {
+    "identity": "request-wrong-tag",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "if tag != HEADER_TAG:",
+    "after": "if False:",
+    "tests": [
+      "test_request_every_token_boundary"
+    ]
+  },
+  {
+    "identity": "request-length-truncation",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "if size > len(tokens)-3:",
+    "after": "if False:",
+    "tests": [
+      "test_request_every_token_boundary"
+    ]
+  },
+  {
+    "identity": "request-machine-slice",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "tokens[3:3+size]",
+    "after": "tokens[3:3+size-1]",
+    "tests": [
+      "test_request_round_trip_and_independent_layout"
+    ]
+  },
+  {
+    "identity": "request-input-slice",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "tokens[3+size:]",
+    "after": "tokens[4+size:]",
+    "tests": [
+      "test_request_round_trip_and_independent_layout"
+    ]
+  },
+  {
+    "identity": "request-token-budget",
+    "source": "independent/auth-dtm2-input-request-planned.py",
+    "before": "MAX_TOKEN = (1 << MAX_RATIONAL_BITS) - 1",
+    "after": "MAX_TOKEN = 1 << MAX_RATIONAL_BITS",
+    "tests": [
+      "test_request_every_token_boundary"
+    ]
+  },
+  {
+    "identity": "behavior-empty-table",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "if not rows:",
+    "after": "if False:",
+    "tests": [
+      "test_behavior_constructor_and_property_refusals"
+    ]
+  },
+  {
+    "identity": "behavior-empty-carrier",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "if not first:",
+    "after": "if False:",
+    "tests": [
+      "test_behavior_constructor_and_property_refusals"
+    ]
+  },
+  {
+    "identity": "behavior-output-bound",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "\"behavior output\", 0, width-1",
+    "after": "\"behavior output\", 0, width",
+    "tests": [
+      "test_behavior_constructor_and_property_refusals"
+    ]
+  },
+  {
+    "identity": "behavior-code-bound",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "integer(code, \"code\", 0, len(self.rows)-1)",
+    "after": "pass",
+    "tests": [
+      "test_behavior_constructor_and_property_refusals"
+    ]
+  },
+  {
+    "identity": "behavior-point-bound",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "integer(point, \"carrier point\", 0, len(self.rows[0])-1)",
+    "after": "pass",
+    "tests": [
+      "test_behavior_constructor_and_property_refusals"
+    ]
+  },
+  {
+    "identity": "behavior-identity",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "row == identity",
+    "after": "row != identity",
+    "tests": [
+      "test_generated_behavior_equivalence_and_descent"
+    ]
+  },
+  {
+    "identity": "behavior-quotient",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "groups.setdefault(behavior, []).append(code)",
+    "after": "groups.setdefault((code,), []).append(code)",
+    "tests": [
+      "test_generated_behavior_equivalence_and_descent"
+    ]
+  },
+  {
+    "identity": "behavior-stable-order",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "return tuple(tuple(codes) for codes in groups.values())",
+    "after": "return tuple(tuple(codes) for codes in reversed(tuple(groups.values())))",
+    "tests": [
+      "test_behavior_partition_and_all_three_code_predicates"
+    ]
+  },
+  {
+    "identity": "behavior-property-bool",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "if any(type(value) is not bool for value in values):",
+    "after": "if False:",
+    "tests": [
+      "test_behavior_constructor_and_property_refusals"
+    ]
+  },
+  {
+    "identity": "behavior-property-descent",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "if any(predicate[code] != value for code in codes):",
+    "after": "if False:",
+    "tests": [
+      "test_generated_behavior_equivalence_and_descent"
+    ]
+  },
+  {
+    "identity": "behavior-factor-invert",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "factored.append(value)",
+    "after": "factored.append(not value)",
+    "tests": [
+      "test_generated_behavior_equivalence_and_descent"
+    ]
+  },
+  {
+    "identity": "behavior-nested-snapshot",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "object.__setattr__(self, \"rows\", normalized)",
+    "after": "pass",
+    "tests": [
+      "test_behavior_snapshot_and_maximum_table"
+    ]
+  },
+  {
+    "identity": "behavior-code-ceiling",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "MAX_CODES = 64",
+    "after": "MAX_CODES = 65",
+    "tests": [
+      "test_behavior_constructor_and_property_refusals"
+    ]
+  },
+  {
+    "identity": "behavior-carrier-ceiling",
+    "source": "independent/auth-rice-theorem-import.py",
+    "before": "MAX_CARRIER = 32",
+    "after": "MAX_CARRIER = 33",
+    "tests": [
+      "test_behavior_constructor_and_property_refusals"
+    ]
+  },
+  {
+    "identity": "carrier-schema",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "if _required(record, \"schema_version\") != SCHEMA:",
+    "after": "if False:",
+    "tests": [
+      "test_candidate_schema_and_identity_refusals"
+    ]
+  },
+  {
+    "identity": "carrier-authority",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "if _required(record, \"authority_effect\") != \"None\":",
+    "after": "if False:",
+    "tests": [
+      "test_candidate_schema_and_identity_refusals"
+    ]
+  },
+  {
+    "identity": "carrier-unique-id",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "if len(matches) != 1:",
+    "after": "if len(matches) < 1:",
+    "tests": [
+      "test_candidate_schema_and_identity_refusals"
+    ]
+  },
+  {
+    "identity": "carrier-selected-parser",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "if type(selected) is not bool:",
+    "after": "if False:",
+    "tests": [
+      "test_candidate_fields_and_selection_are_typed"
+    ]
+  },
+  {
+    "identity": "carrier-selected-vo",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "if type(self.selected) is not bool:",
+    "after": "if False:",
+    "tests": [
+      "test_candidate_fields_and_selection_are_typed"
+    ]
+  },
+  {
+    "identity": "carrier-closed-vocabulary",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "or value not in STATUSES",
+    "after": "or False",
+    "tests": [
+      "test_candidate_fields_and_selection_are_typed"
+    ]
+  },
+  {
+    "identity": "carrier-ceiling",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "if actual != (\"open\", \"partial\", \"partial\", \"partial\", \"open\", False):",
+    "after": "if False:",
+    "tests": [
+      "test_candidate_promotion_cannot_become_verification"
+    ]
+  },
+  {
+    "identity": "carrier-selection-ceiling",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "\"partial\", \"partial\", \"open\", False):",
+    "after": "\"partial\", \"partial\", \"open\", True):",
+    "tests": [
+      "test_candidate_promotion_cannot_become_verification"
+    ]
+  },
+  {
+    "identity": "carrier-universality-field",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "_field_status(fields, \"universality\"), selected",
+    "after": "_field_status(fields, \"syntax_and_encoding\"), selected",
+    "tests": [
+      "test_current_source_cli_and_repeatability"
+    ]
+  },
+  {
+    "identity": "carrier-duplicate-json",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "if key in record:",
+    "after": "if False:",
+    "tests": [
+      "test_source_invalid_json_and_bounded_io"
+    ]
+  },
+  {
+    "identity": "carrier-json-constant",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "raise Violation(\"input\", f\"nonstandard JSON constant is forbidden: {value}\")",
+    "after": "return None",
+    "tests": [
+      "test_source_invalid_json_and_bounded_io"
+    ]
+  },
+  {
+    "identity": "carrier-read-limit",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "stream.read(MAX_RECORD_BYTES+1)",
+    "after": "stream.read(MAX_RECORD_BYTES)",
+    "tests": [
+      "test_source_invalid_json_and_bounded_io"
+    ]
+  },
+  {
+    "identity": "carrier-depth-bound",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "if depth > MAX_JSON_DEPTH:",
+    "after": "if depth > MAX_JSON_DEPTH+1:",
+    "tests": [
+      "test_json_depth_ignores_quoted_brackets_and_escapes"
+    ]
+  },
+  {
+    "identity": "carrier-string-depth",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "if state != \"outside\" or byte == 34:",
+    "after": "if False:",
+    "tests": [
+      "test_json_depth_ignores_quoted_brackets_and_escapes"
+    ]
+  },
+  {
+    "identity": "carrier-byte-digest",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "hashlib.sha256(raw).hexdigest()",
+    "after": "hashlib.sha256(b\"other bytes\").hexdigest()",
+    "tests": [
+      "test_source_custody_rejects_changed_ceiling"
+    ]
+  },
+  {
+    "identity": "carrier-verify-bypass",
+    "source": "independent/authf-carrier-admission-gate.py",
+    "before": "ceiling.verify().map(lambda verified: (verified, pair[1]))",
+    "after": "Outcome(value=(ceiling, pair[1]))",
+    "tests": [
+      "test_source_custody_rejects_changed_ceiling"
+    ]
+  },
+  {
+    "identity": "refusal-helper-vacuous",
+    "source": "tests/test_authority_checkers.py",
+    "before": "        self.assertFalse(result.ok)\n        self.assertIsNone(result.value)\n        if result.error is None:\n            self.fail(\"expected a typed refusal\")\n        self.assertEqual(result.error.kind, kind)",
+    "after": "        return",
+    "tests": [
+      "test_refusal_helper_rejects_success_and_wrong_failure_kind"
+    ]
+  }
+]

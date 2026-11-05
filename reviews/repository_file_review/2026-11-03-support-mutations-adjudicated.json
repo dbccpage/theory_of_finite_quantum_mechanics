@@ -1,0 +1,831 @@
+{
+  "AuthorityEffect": "None",
+  "raw_receipt": {
+    "path": "reviews/repository_file_review/2026-11-03-support-mutations-composed.json",
+    "sha256": "90fe9ad62d24997d73c0062bcf90ed8490a8096754308b9af5db9b75a9567961"
+  },
+  "raw_summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 69,
+      "survived": 1,
+      "unrun": 0
+    },
+    "detected_fraction": 0.9857142857142858,
+    "eligible": 70
+  },
+  "adjudicated_counts": {
+    "killed": 69,
+    "equivalent": 1
+  },
+  "detected_fraction_exact": [
+    69,
+    69
+  ],
+  "mutants": [
+    {
+      "identity": "failure-kind-bypass",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_failure_value_and_exception_bridge"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "failure-message-bypass",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_failure_value_and_exception_bridge"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "failure-wire-kind",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_failure_value_and_exception_bridge"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "violation-loses-kind",
+      "source": "boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_failure_value_and_exception_bridge"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "result-dual-variant",
+      "source": "outcome.py",
+      "outcome": "killed",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "result-missing-variant",
+      "source": "outcome.py",
+      "outcome": "killed",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "result-invalid-failure",
+      "source": "outcome.py",
+      "outcome": "killed",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "result-failure-success",
+      "source": "outcome.py",
+      "outcome": "killed",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "result-bypasses-short-circuit",
+      "source": "outcome.py",
+      "outcome": "killed",
+      "tests": [
+        "test_outcome_construction_and_nullable_success"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "result-accepts-untyped-transition",
+      "source": "outcome.py",
+      "outcome": "killed",
+      "tests": [
+        "test_outcome_transitions_preserve_errors"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "result-fallback-inverted",
+      "source": "outcome.py",
+      "outcome": "killed",
+      "tests": [
+        "test_outcome_construction_and_nullable_success",
+        "test_outcome_transitions_preserve_errors"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "boundary-all-success-exit",
+      "source": "boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_cli_exit_domain_and_failure_wire_format"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "boundary-boolean-status",
+      "source": "boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_cli_exit_domain_and_failure_wire_format"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "boundary-exit-256",
+      "source": "boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_cli_exit_domain_and_failure_wire_format"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "guard-disables-false-check",
+      "source": "boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_boundary_errors_cancellation_and_required_boolean"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "guard-accepts-truthy-nonbool",
+      "source": "boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_boundary_errors_cancellation_and_required_boolean"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "guard-accepts-empty-description",
+      "source": "boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_boundary_errors_cancellation_and_required_boolean"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "integer-boolean-admission",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_integer_boundaries"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "integer-minimum-open",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_integer_boundaries"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "integer-maximum-open",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_integer_boundaries"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "integer-inverted-limits",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_integer_boundaries"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "rational-bit-budget-bypass",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_rational_boundaries_and_resource_budget"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "rational-positive-zero",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_rational_boundaries_and_resource_budget"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "rational-minimum-bypass",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_rational_boundaries_and_resource_budget"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "sequence-budget-bypass",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_collection_admission_and_snapshot_ownership"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "sequence-size-bypass",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_collection_admission_and_snapshot_ownership"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "matrix-total-budget",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_matrix_word_and_permutation_domains"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "word-bool-boundary",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_matrix_word_and_permutation_domains"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "permutation-bijection",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_matrix_word_and_permutation_domains"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "case-duplicate-admission",
+      "source": "cases.py",
+      "outcome": "killed",
+      "tests": [
+        "test_cases_transactional_admission_and_iteration"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "case-status-admission",
+      "source": "cases.py",
+      "outcome": "killed",
+      "tests": [
+        "test_cases_transactional_admission_and_iteration"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "case-budget-bypass",
+      "source": "cases.py",
+      "outcome": "killed",
+      "tests": [
+        "test_cases_transactional_admission_and_iteration"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "case-iteration-live-view",
+      "source": "cases.py",
+      "outcome": "killed",
+      "tests": [
+        "test_cases_transactional_admission_and_iteration"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "counter-reset-per-check",
+      "source": "cases.py",
+      "outcome": "killed",
+      "tests": [
+        "test_counter_is_invocation_owned_and_counts_failed_obligations"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "counter-failure-not-counted",
+      "source": "cases.py",
+      "outcome": "killed",
+      "tests": [
+        "test_counter_is_invocation_owned_and_counts_failed_obligations"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "gaussian-add-wrong-sign",
+      "source": "gaussian_rational.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_field_against_symbolic_complex_arithmetic"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "gaussian-sub-wrong-sign",
+      "source": "gaussian_rational.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_field_against_symbolic_complex_arithmetic"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "gaussian-product-sign",
+      "source": "gaussian_rational.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_field_against_symbolic_complex_arithmetic"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "gaussian-conjugate-identity",
+      "source": "gaussian_rational.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_invalid_components_operands_and_immutability"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "gaussian-norm-indefinite",
+      "source": "gaussian_rational.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_invalid_components_operands_and_immutability"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "gaussian-inverse-sign",
+      "source": "gaussian_rational.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_field_against_symbolic_complex_arithmetic"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "matrix-determinant-sign",
+      "source": "gaussian_matrix2.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_matrix_invariants"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "matrix-adjoint-no-transpose",
+      "source": "gaussian_matrix2.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_matrix_invariants"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "matrix-multiply-entry",
+      "source": "gaussian_matrix2.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_matrix_invariants"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "matrix-inverse-sign",
+      "source": "gaussian_matrix2.py",
+      "outcome": "killed",
+      "tests": [
+        "test_gaussian_matrix_invariants"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "replacement-split-bypass",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_word_replacement_refusals"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "replacement-drops-suffix",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_word_replacement_preserves_context"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "replacement-output-budget",
+      "source": "domains.py",
+      "outcome": "killed",
+      "tests": [
+        "test_word_replacement_refusals"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "rank-counts-dependent-rows",
+      "source": "happy_boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_rank_against_explicit_vector_span"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "pauli-x-bit-location",
+      "source": "happy_boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "symplectic-commutation-bypass",
+      "source": "happy_boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "stabilizer-purity-bypass",
+      "source": "happy_boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "stabilizer-commutation-bypass",
+      "source": "happy_boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "interval-closed-endpoint",
+      "source": "happy_boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_stabilizer_mincut_independent_assignments"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "mincut-forces-central-zero",
+      "source": "happy_boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_stabilizer_mincut_independent_assignments"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "entropy-offset",
+      "source": "happy_boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_stabilizer_admission_and_cache_snapshot"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "determinant-row-swap-sign",
+      "source": "wilson_operator.py",
+      "outcome": "equivalent",
+      "tests": [
+        "test_wilson_determinant_independent_symbolic_elimination"
+      ],
+      "observed_outcome": "survived",
+      "justification": {
+        "path": "reviews/repository_file_review/2026-11-03-wilson-swap-equivalence.md",
+        "sha256": "737f0bb2b6f63cc40181ccefc569ab55b473e08db23dce0d7a61fb27f46f2a24"
+      }
+    },
+    {
+      "identity": "determinant-elimination-sign",
+      "source": "wilson_operator.py",
+      "outcome": "killed",
+      "tests": [
+        "test_wilson_determinant_independent_symbolic_elimination"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "wilson-mass-diagonal",
+      "source": "wilson_operator.py",
+      "outcome": "killed",
+      "tests": [
+        "test_wilson_operator_independent_block_construction"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "wilson-link-phase-removed",
+      "source": "wilson_operator.py",
+      "outcome": "killed",
+      "tests": [
+        "test_wilson_operator_independent_block_construction"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "wilson-backward-no-conjugate",
+      "source": "wilson_operator.py",
+      "outcome": "killed",
+      "tests": [
+        "test_wilson_operator_independent_block_construction"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "wilson-shape-sign-zero",
+      "source": "wilson_operator.py",
+      "outcome": "killed",
+      "tests": [
+        "test_wilson_shapes_and_chirality_boundaries"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "wilson-hermitian-bypass",
+      "source": "wilson_operator.py",
+      "outcome": "killed",
+      "tests": [
+        "test_wilson_shapes_and_chirality_boundaries"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "mutation-allows-path-escape",
+      "source": "mutation_case.py",
+      "outcome": "killed",
+      "tests": [
+        "test_mutation_request_admission_and_exact_replacement"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "mutation-allows-ambiguous-target",
+      "source": "mutation_case.py",
+      "outcome": "killed",
+      "tests": [
+        "test_mutation_request_admission_and_exact_replacement"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "mutation-allows-identical-replacement",
+      "source": "mutation_case.py",
+      "outcome": "killed",
+      "tests": [
+        "test_mutation_request_admission_and_exact_replacement"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "wilson-assembled-check-skips-clifford",
+      "source": "wilson_operator.py",
+      "outcome": "killed",
+      "tests": [
+        "test_wilson_shapes_and_chirality_boundaries"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "boundary-os-error-not-captured",
+      "source": "boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_boundary_errors_cancellation_and_required_boolean"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "outcome-os-error-not-captured",
+      "source": "outcome.py",
+      "outcome": "killed",
+      "tests": [
+        "test_outcome_transitions_preserve_errors"
+      ],
+      "observed_outcome": "killed"
+    },
+    {
+      "identity": "boundary-closed-stderr-rethrows",
+      "source": "boundary.py",
+      "outcome": "killed",
+      "tests": [
+        "test_cli_exit_domain_and_failure_wire_format"
+      ],
+      "observed_outcome": "killed"
+    }
+  ],
+  "per_source": {
+    "domains.py": {
+      "counts": {
+        "killed": 18
+      },
+      "eligible": 18,
+      "detected_fraction_exact": [
+        18,
+        18
+      ]
+    },
+    "wilson_operator.py": {
+      "counts": {
+        "equivalent": 1,
+        "killed": 7
+      },
+      "eligible": 7,
+      "detected_fraction_exact": [
+        7,
+        7
+      ]
+    },
+    "boundary.py": {
+      "counts": {
+        "killed": 9
+      },
+      "eligible": 9,
+      "detected_fraction_exact": [
+        9,
+        9
+      ]
+    },
+    "mutation_case.py": {
+      "counts": {
+        "killed": 3
+      },
+      "eligible": 3,
+      "detected_fraction_exact": [
+        3,
+        3
+      ]
+    },
+    "gaussian_rational.py": {
+      "counts": {
+        "killed": 6
+      },
+      "eligible": 6,
+      "detected_fraction_exact": [
+        6,
+        6
+      ]
+    },
+    "cases.py": {
+      "counts": {
+        "killed": 6
+      },
+      "eligible": 6,
+      "detected_fraction_exact": [
+        6,
+        6
+      ]
+    },
+    "outcome.py": {
+      "counts": {
+        "killed": 8
+      },
+      "eligible": 8,
+      "detected_fraction_exact": [
+        8,
+        8
+      ]
+    },
+    "gaussian_matrix2.py": {
+      "counts": {
+        "killed": 4
+      },
+      "eligible": 4,
+      "detected_fraction_exact": [
+        4,
+        4
+      ]
+    },
+    "happy_boundary.py": {
+      "counts": {
+        "killed": 8
+      },
+      "eligible": 8,
+      "detected_fraction_exact": [
+        8,
+        8
+      ]
+    }
+  },
+  "accounting_harness_mutations": {
+    "source": "checks/tests/run_support_mutations.py",
+    "test": "MutationCampaignTests.test_accounting_mutants_are_detected",
+    "generated": 5,
+    "killed": 5,
+    "survived": 0,
+    "invalid": 0,
+    "equivalent": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "method": "Three constant classification replacements and two incorrect denominator replacements must each cause AssertionError in the independent oracle test."
+  },
+  "test_only_amendment": {
+    "path": "checks/tests/test_checker_support.py",
+    "previous_sha256": "78e34cbc0459ec2507391817491bef2ac7bb1d67bf6f13d97bc823c5f099ba9d",
+    "current_sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee",
+    "added_lines": [
+      "        self.assertEqual(cases.checks, 2)\n",
+      "        self.assertEqual(cases.checks, 3)\n",
+      "        self.refused(cases.require, False, \"counted failure\", kind=\"check\")\n",
+      "        self.assertEqual(cases.checks, 4)\n",
+      "        self.assertEqual(len(cases), 3)\n"
+    ],
+    "explanation": "Only additional named-case/count composition assertions were added after the full suites and mutation snapshot. Removing the listed lines exactly reconstructs that recorded test source. All production and integration sources are unchanged.",
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "-m",
+          "mypy",
+          "--config-file",
+          "checks/mypy.ini",
+          "checks/checker_support",
+          "checks/tests/test_checker_support.py",
+          "checks/tests/run_support_mutations.py",
+          "checks/tests/test_mutation_campaign.py"
+        ],
+        "returncode": 0,
+        "stdout": "Success: no issues found in 12 source files\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "-X",
+          "utf8",
+          "checks\\tests\\test_checker_support.py",
+          "CheckerSupportTests.test_cases_transactional_admission_and_iteration"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+      },
+      {
+        "argv": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "-O",
+          "-X",
+          "utf8",
+          "checks\\tests\\test_checker_support.py",
+          "CheckerSupportTests.test_cases_transactional_admission_and_iteration"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_cases_transactional_admission_and_iteration (__main__.CheckerSupportTests.test_cases_transactional_admission_and_iteration) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+      }
+    ]
+  }
+}

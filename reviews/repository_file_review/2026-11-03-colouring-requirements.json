@@ -1,0 +1,359 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/checker_support/binary_frame_system.py": {
+      "profile": "Exact",
+      "role": "Owned finite binary constraint aggregate with bounded complete search and independent model replay",
+      "cost": "Carrier0..64, each of pairs/triples at most4096 rows; distinct pair rows imply at most2016 actual pairs. Row width2/3 and indices below carrier size. Node limit1..65536, default16384. Each propagation pass assigns at least one unknown or terminates, so at most n+1 passes per node. O(B*(n+1)*(P+T+n)) work for B visited nodes, O(P+T+n^2) storage including at most n+1 DFS pending vectors. This is a node bound, not a wall-clock deadline. No unbounded recursion or integer growth; values -1/0/1, indices<=63 and node count<=65536.",
+      "groups": [
+        {
+          "requirement": "Preflight exact non-bool carrier0..64 and whole native constraint collections. Each constraint has exactwidth2/3, distinct indices inside the carrier; normalize each row order and reject duplicate rows. Own immutable carrier/constraints/adjacency. Binary model admission requires a full native vector of exact0/1 values, including the legitimate empty carrier.",
+          "symbols": [
+            "_constraints",
+            "_assignment",
+            "BinaryFrameSystem",
+            "BinaryFrameSystem.__init__"
+          ],
+          "tests": [
+            "BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight",
+            "BinaryColouringTests.test_binary_model_admission_and_nonmodels",
+            "BinaryColouringTests.test_ownership_canonical_constraints_and_reentrant_results"
+          ],
+          "test_source": "checks/tests/test_binary_colouring.py",
+          "requirement_id": "TFQM-COLOURING-REVIEW-BINARY-FRAME-SYSTEM-1"
+        },
+        {
+          "requirement": "Direct model verification separately evaluates pair at-most-one inequalities and triple exactly-one equations; a valid nonmodel returns successfulFalse, malformed input a typed refusal. Pair propagation rules out two ones and forces the other endpoint0. Triple propagation rules out oversaturation or completedzero, forces all missingzero when saturated, and a last missingone when needed. Iterate to a fixed point without changing settled coordinates.",
+          "symbols": [
+            "BinaryFrameSystem._check_assignment",
+            "BinaryFrameSystem.check_assignment",
+            "BinaryFrameSystem._pair_propagation",
+            "BinaryFrameSystem._triple_propagation",
+            "BinaryFrameSystem._propagate"
+          ],
+          "tests": [
+            "BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion",
+            "BinaryColouringTests.test_generated_solver_and_partial_propagation",
+            "BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts",
+            "BinaryColouringTests.test_binary_model_admission_and_nonmodels"
+          ],
+          "test_source": "checks/tests/test_binary_colouring.py",
+          "requirement_id": "TFQM-COLOURING-REVIEW-BINARY-FRAME-SYSTEM-2"
+        },
+        {
+          "requirement": "Iterative DFS explores both binary values of an unknown, copying each branch and preserving state. Degree tie-breaking is deterministic. Complete models are replayed independently before return. Return tuple(model-or-None,visited-nodes) only for a settled SAT or exhaustedUNSAT search. Exhausting the admitted node budget while pending work exists returns resourceFailure, neverUNSAT. Preflight budget before propagation; preserve unexpected failures/cancellation and reentrant state.",
+          "symbols": [
+            "BinaryFrameSystem._search",
+            "BinaryFrameSystem.search"
+          ],
+          "tests": [
+            "BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion",
+            "BinaryColouringTests.test_generated_solver_and_partial_propagation",
+            "BinaryColouringTests.test_search_budget_is_not_unsat_and_boundaries_are_inclusive",
+            "BinaryColouringTests.test_ownership_canonical_constraints_and_reentrant_results",
+            "BinaryColouringTests.test_unexpected_failures_and_cancellation_propagate",
+            "BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts"
+          ],
+          "test_source": "checks/tests/test_binary_colouring.py",
+          "requirement_id": "TFQM-COLOURING-REVIEW-BINARY-FRAME-SYSTEM-3"
+        }
+      ],
+      "source_sha256": "843503239990f18ad076a7c5078fd084d73be12cd8314a5e9ae8f20bd6a77eb8",
+      "symbols": [
+        "BinaryFrameSystem",
+        "BinaryFrameSystem.__init__",
+        "BinaryFrameSystem._check_assignment",
+        "BinaryFrameSystem._pair_propagation",
+        "BinaryFrameSystem._propagate",
+        "BinaryFrameSystem._search",
+        "BinaryFrameSystem._triple_propagation",
+        "BinaryFrameSystem.check_assignment",
+        "BinaryFrameSystem.search",
+        "_assignment",
+        "_constraints"
+      ],
+      "nested_declarations": {},
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        {
+          "path": "checks/checker_support/boundary.py",
+          "sha256": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708"
+        }
+      ],
+      "consumers": [
+        {
+          "path": "checks/independent/fq-gleason-qi3-frame-functions.py",
+          "sha256": "095c7807d4e52b2b87bbc05645d905b56cc175285fdb6ee0493b69df30def5e2",
+          "state": "current direct consumer"
+        },
+        {
+          "path": "checks/tests/test_binary_colouring.py",
+          "sha256": "e940420287f48467fff3813543e99d42a011e7b2064cc48ce48d77efd0b67e5f",
+          "state": "current direct consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2e4e16be9783b2222f9c6d013da38d3e9f700c41309d468ccb3e2ec7cb9a4b75",
+          "state": "current direct consumer"
+        }
+      ],
+      "consumer_boundary": "Nine original path consumers audited; code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass invokesmain without using its returnvalue. No externalcaller of old dot/cross/witness/satisfying_assignment/check_assignment found. Those unowned procedural APIs are replaced by generated fixed geometry and BinaryFrameSystem with typed Outcome. CLIreport and49/138/26/90/11census preserved. The corresponding Lean proof uses82of138pair inequalities, with exact literalgeometry correspondence; no new Lean build, hostedCI or scientific DAG promotion."
+    },
+    "checks/independent/fq-gleason-qi3-frame-functions.py": {
+      "profile": "Exact",
+      "role": "Owned fixed rational-ray geometric witness and composed binary-colouring obstruction application",
+      "cost": "Fixed125 radius-two integer triples,49 primitive rays.1176 pair candidates and18424 triple candidates;138 orthogonal pairs and26internal triples retained. Generated coordinates bounded2, cross-product coordinates bounded8, completion dot totals bounded48. All geometry helpers consume these internal tuples only. Three49-variable searches and two3/4-variable controls, each node-limited16384; mainUNSAT settles in11nodes. Geometry/completion state is immutable; each verification creates fresh solver state.",
+      "groups": [
+        {
+          "requirement": "Enumerate exactly all primitive integer triples in[-2,2]^3 with positive first nonzero coordinate. Generate all orthogonal pairs and every three-clique internal frame using exact fixed-width dot products. Own the resulting49ray geometry and BinaryFrameSystem. Helpers are private to generated geometry; the old ragged-vector procedural surface is withdrawn after caller audit.",
+          "symbols": [
+            "_dot",
+            "_cross",
+            "_rays",
+            "_constraints",
+            "RationalColouringWitness",
+            "RationalColouringWitness.__init__"
+          ],
+          "tests": [
+            "BinaryColouringTests.test_full_projective_geometry_and_completions",
+            "BinaryColouringTests.test_independent_symbolic_full_witness_and_deletion_models",
+            "BinaryColouringTests.test_lean_pruned_constraints_match_literal_vectors_and_remain_unsat"
+          ],
+          "test_source": "checks/tests/test_binary_colouring.py",
+          "requirement_id": "TFQM-COLOURING-REVIEW-FQ-GLEASON-QI3-FRAME-FUNCTIONS-1"
+        },
+        {
+          "requirement": "Every pair inequality is justified by its actual nonzero integer cross completion, checking allthree dot products;90 raw completing vectors leave the box. Validate witness census49/138/26 and completeUNSAT before reporting. The Lean proof uses a sufficient82-pair subset, the same49ray representatives and26frames; compare literal origins and independently check bothsystemsUNSAT. No rational-unit-sphere or arbitrary rational-valued rigidity conclusion follows.",
+          "symbols": [
+            "RationalColouringWitness._completions",
+            "RationalColouringWitness._verify",
+            "RationalColouringWitness.verify",
+            "verify"
+          ],
+          "tests": [
+            "BinaryColouringTests.test_full_projective_geometry_and_completions",
+            "BinaryColouringTests.test_independent_symbolic_full_witness_and_deletion_models",
+            "BinaryColouringTests.test_witness_geometric_guards_and_constraint_deletion_controls",
+            "BinaryColouringTests.test_isolated_witness_census_unsat_and_control_guards",
+            "BinaryColouringTests.test_lean_pruned_constraints_match_literal_vectors_and_remain_unsat"
+          ],
+          "test_source": "checks/tests/test_binary_colouring.py",
+          "requirement_id": "TFQM-COLOURING-REVIEW-FQ-GLEASON-QI3-FRAME-FUNCTIONS-2"
+        },
+        {
+          "requirement": "Triple-only and pair-only systems must beSAT with separately replayed models. Complete3/4-variable control systems compare exhaustiveenumeration to solver results. Quiet imports, repeatable per-call counters, originalCLIJSON including11nodes, typed expected failures/nonzeroCLI and cancellation propagation preserve existingmaincaller compatibility.",
+          "symbols": [
+            "_small_controls",
+            "RationalColouringWitness._controls",
+            "_main",
+            "main"
+          ],
+          "tests": [
+            "BinaryColouringTests.test_independent_symbolic_full_witness_and_deletion_models",
+            "BinaryColouringTests.test_witness_geometric_guards_and_constraint_deletion_controls",
+            "BinaryColouringTests.test_isolated_witness_census_unsat_and_control_guards",
+            "BinaryColouringTests.test_quiet_import_repeatable_cli_and_external_entrypoint",
+            "BinaryColouringTests.test_unexpected_failures_and_cancellation_propagate"
+          ],
+          "test_source": "checks/tests/test_binary_colouring.py",
+          "requirement_id": "TFQM-COLOURING-REVIEW-FQ-GLEASON-QI3-FRAME-FUNCTIONS-3"
+        }
+      ],
+      "source_sha256": "095c7807d4e52b2b87bbc05645d905b56cc175285fdb6ee0493b69df30def5e2",
+      "symbols": [
+        "RationalColouringWitness",
+        "RationalColouringWitness.__init__",
+        "RationalColouringWitness._completions",
+        "RationalColouringWitness._controls",
+        "RationalColouringWitness._verify",
+        "RationalColouringWitness.verify",
+        "_constraints",
+        "_cross",
+        "_dot",
+        "_main",
+        "_rays",
+        "_small_controls",
+        "main",
+        "verify"
+      ],
+      "nested_declarations": {},
+      "origins": [
+        {
+          "path": "lean4/BornGaussianRationalNoColouring.lean",
+          "sha256": "fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778"
+        },
+        {
+          "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+          "sha256": "0be4a26228d9d9291768f79efd128dbe918e7254a3919963d48a52696af4a9d0"
+        }
+      ],
+      "consumers": [
+        {
+          "path": "checks/tests/test_binary_colouring.py",
+          "sha256": "e940420287f48467fff3813543e99d42a011e7b2064cc48ce48d77efd0b67e5f",
+          "state": "current direct consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2e4e16be9783b2222f9c6d013da38d3e9f700c41309d468ccb3e2ec7cb9a4b75",
+          "state": "current direct consumer"
+        },
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "docs/evidence/nodes/FQ-GLEASON-QI3-FRAME-FUNCTIONS.md",
+          "sha256": "66dc3b0007d4650bd52b3b21000e78a7f5ef2755b5fcb863436a9c1eae34b98c",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/operads/fq_gleason_qi3_frame_functions.yaml",
+          "sha256": "002193e2d66a95dd807854dc9c44130e8332bb106c5c38219d709702376c05ef",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+          "sha256": "0be4a26228d9d9291768f79efd128dbe918e7254a3919963d48a52696af4a9d0",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md",
+          "sha256": "7470a257945b734eab0d153f689b3e139b7a803c1f53d02e5c34feef84e5be91",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/research/fq_gleason_qi3_validation.json",
+          "sha256": "e8ab6e03a174dad46faa160b2de50792fca5101a8fd7bf0da737ebb0b498f362",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "b4a861575be98a3c565ea4ee34810dac0e44032cea85a0294b33af89f9b15feb",
+          "state": "historical receipt or unchanged path consumer"
+        }
+      ],
+      "consumer_boundary": "Nine original path consumers audited; code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass invokesmain without using its returnvalue. No externalcaller of old dot/cross/witness/satisfying_assignment/check_assignment found. Those unowned procedural APIs are replaced by generated fixed geometry and BinaryFrameSystem with typed Outcome. CLIreport and49/138/26/90/11census preserved. The corresponding Lean proof uses82of138pair inequalities, with exact literalgeometry correspondence; no new Lean build, hostedCI or scientific DAG promotion."
+    },
+    "checks/tests/test_binary_colouring.py": {
+      "profile": "Exact",
+      "role": "Independent exhaustive, symbolic and geometric verification harness for finite binary-frame search and its rational-ray witness",
+      "cost": "14unittest groups; every1024four-variable constraint subset compared with all16binary assignments and solver outcome.100 deterministic generated0..7-variable systems and partial-propagation checks. Independent projective Fraction census, symbolic dot/cross completion geometry and SymPy dpll2 Boolean formulations for full/pruned49-variable witnesses. Source parsing compares49ray literals,82Lean pairs/completions and26frames. Bounded64-variable/node-limit controls, owned state, scopedpatches/captures and30-second subprocess timeout.",
+      "groups": [
+        {
+          "requirement": "Use a product-versus-one-hot direct enumeration basis independent of production equations, exhaustive and generated SAT/UNSAT/model/partial-state checks, separate symbolic Boolean solver, projective and algebraic geometry, full/pruned Lean source tables, malformed domains and resource-failure separation. Isolate otherwise maskedcensus/UNSAT/control guards; preserve subprocess/import/reentrancy/cancellation behavior.",
+          "symbols": [
+            "load",
+            "models",
+            "partial_models",
+            "projective",
+            "boolean_formula",
+            "BinaryColouringTests",
+            "BinaryColouringTests.accepted",
+            "BinaryColouringTests.refused",
+            "BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion",
+            "BinaryColouringTests.test_generated_solver_and_partial_propagation",
+            "BinaryColouringTests.test_independent_symbolic_full_witness_and_deletion_models",
+            "BinaryColouringTests.test_full_projective_geometry_and_completions",
+            "BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight",
+            "BinaryColouringTests.test_binary_model_admission_and_nonmodels",
+            "BinaryColouringTests.test_ownership_canonical_constraints_and_reentrant_results",
+            "BinaryColouringTests.test_search_budget_is_not_unsat_and_boundaries_are_inclusive",
+            "BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts",
+            "BinaryColouringTests.test_witness_geometric_guards_and_constraint_deletion_controls",
+            "BinaryColouringTests.test_unexpected_failures_and_cancellation_propagate",
+            "BinaryColouringTests.test_quiet_import_repeatable_cli_and_external_entrypoint",
+            "BinaryColouringTests.test_isolated_witness_census_unsat_and_control_guards",
+            "BinaryColouringTests.test_lean_pruned_constraints_match_literal_vectors_and_remain_unsat"
+          ],
+          "tests": [
+            "BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion",
+            "BinaryColouringTests.test_generated_solver_and_partial_propagation",
+            "BinaryColouringTests.test_independent_symbolic_full_witness_and_deletion_models",
+            "BinaryColouringTests.test_full_projective_geometry_and_completions",
+            "BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight",
+            "BinaryColouringTests.test_binary_model_admission_and_nonmodels",
+            "BinaryColouringTests.test_ownership_canonical_constraints_and_reentrant_results",
+            "BinaryColouringTests.test_search_budget_is_not_unsat_and_boundaries_are_inclusive",
+            "BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts",
+            "BinaryColouringTests.test_witness_geometric_guards_and_constraint_deletion_controls",
+            "BinaryColouringTests.test_unexpected_failures_and_cancellation_propagate",
+            "BinaryColouringTests.test_quiet_import_repeatable_cli_and_external_entrypoint",
+            "BinaryColouringTests.test_isolated_witness_census_unsat_and_control_guards",
+            "BinaryColouringTests.test_lean_pruned_constraints_match_literal_vectors_and_remain_unsat"
+          ],
+          "test_source": "checks/tests/test_binary_colouring.py",
+          "requirement_id": "TFQM-COLOURING-REVIEW-TEST-BINARY-COLOURING-1"
+        }
+      ],
+      "source_sha256": "e940420287f48467fff3813543e99d42a011e7b2064cc48ce48d77efd0b67e5f",
+      "symbols": [
+        "BinaryColouringTests",
+        "BinaryColouringTests.accepted",
+        "BinaryColouringTests.refused",
+        "BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion",
+        "BinaryColouringTests.test_binary_model_admission_and_nonmodels",
+        "BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight",
+        "BinaryColouringTests.test_full_projective_geometry_and_completions",
+        "BinaryColouringTests.test_generated_solver_and_partial_propagation",
+        "BinaryColouringTests.test_independent_symbolic_full_witness_and_deletion_models",
+        "BinaryColouringTests.test_isolated_witness_census_unsat_and_control_guards",
+        "BinaryColouringTests.test_lean_pruned_constraints_match_literal_vectors_and_remain_unsat",
+        "BinaryColouringTests.test_ownership_canonical_constraints_and_reentrant_results",
+        "BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts",
+        "BinaryColouringTests.test_quiet_import_repeatable_cli_and_external_entrypoint",
+        "BinaryColouringTests.test_search_budget_is_not_unsat_and_boundaries_are_inclusive",
+        "BinaryColouringTests.test_unexpected_failures_and_cancellation_propagate",
+        "BinaryColouringTests.test_witness_geometric_guards_and_constraint_deletion_controls",
+        "boolean_formula",
+        "load",
+        "models",
+        "partial_models",
+        "projective"
+      ],
+      "nested_declarations": {
+        "BinaryColouringTests.test_lean_pruned_constraints_match_literal_vectors_and_remain_unsat.vectors": {
+          "owned_by": "BinaryColouringTests.test_lean_pruned_constraints_match_literal_vectors_and_remain_unsat",
+          "requirements_via": "BinaryColouringTests"
+        }
+      },
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        {
+          "path": "checks/checker_support/boundary.py",
+          "sha256": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708"
+        }
+      ],
+      "consumers": [
+        {
+          "path": "checks/independent/fq-gleason-qi3-frame-functions.py",
+          "sha256": "095c7807d4e52b2b87bbc05645d905b56cc175285fdb6ee0493b69df30def5e2",
+          "state": "current direct consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2e4e16be9783b2222f9c6d013da38d3e9f700c41309d468ccb3e2ec7cb9a4b75",
+          "state": "current direct consumer"
+        }
+      ],
+      "consumer_boundary": "Nine original path consumers audited; code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass invokesmain without using its returnvalue. No externalcaller of old dot/cross/witness/satisfying_assignment/check_assignment found. Those unowned procedural APIs are replaced by generated fixed geometry and BinaryFrameSystem with typed Outcome. CLIreport and49/138/26/90/11census preserved. The corresponding Lean proof uses82of138pair inequalities, with exact literalgeometry correspondence; no new Lean build, hostedCI or scientific DAG promotion."
+    }
+  }
+}

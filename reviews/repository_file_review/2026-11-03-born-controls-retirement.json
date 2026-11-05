@@ -1,0 +1,39 @@
+{
+  "AuthorityEffect": "None",
+  "files": [
+    {
+      "path": "checks/independent/ds-qm204-born-uniqueness-import-boundary.py",
+      "sha256": "34daa44cda49e02392bfc765d4acd67c930f3cf02e689fcb2e70824b36f2abb5",
+      "archive": "reviews/repository_file_review/retired_born_controls_sources/ds-qm204-born-uniqueness-import-boundary.py.txt",
+      "replacement": "checks/independent/ds-positive-form-controls.py"
+    }
+  ],
+  "prior_assessed_sources": [
+    {
+      "path": "checks/independent/ds-positive-form-controls.py",
+      "sha256": "47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959",
+      "archive": "reviews/repository_file_review/2026-11-03-born-controls-prior-ds-positive-form-controls.py.txt",
+      "contract_sha256": "847ea31cd5101d506d712b0417bd0abeb0787789573f2444c59bfa7e611577e2"
+    },
+    {
+      "path": "checks/tests/test_positive_form_controls.py",
+      "sha256": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a",
+      "archive": "reviews/repository_file_review/2026-11-03-born-controls-prior-test_positive_form_controls.py.txt",
+      "contract_sha256": "dda5e1c7843a2b7b07cabd87da54e5fe2aaf929b9f5a206e4131a83cdd4ccbbc"
+    }
+  ],
+  "consumer_search": [
+    ".\\docs\\overclaim\\reviews\\2026-10-26_campaign-ds-qm204-born-uniqueness-import-boundary-precommit.md",
+    ".\\dag\\research\\campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json"
+  ],
+  "original_run": {
+    "returncode": 0,
+    "stdout": "pair_norm_box: True\ndenom: True\nsquares_parts 9 16 25 25\nsquares: True\nfourths_parts 81 256 337\nfourths: True\nquartic_split 3033 != 2025\nquartic_split: True\nlinear_split 75 != 63\nlinear_split: True\nrotation_box: True\nwitness_parts -7 24 49 576 625 625\nwitness: True\nchecked pair-sum, squares 25, fourths 337, splits 3033!=2025 and 75!=63, rotation box, witness 625\n",
+    "stderr": ""
+  },
+  "findings": [
+    "Eight aggregate checks conceal121 pair and2401 rotation cases; no reusable exact-input/resource/failure API or independent regression suite.",
+    "Separate scalar-normalization implementation duplicates the existing Gram-form boundary context. Compose it with explicit linear/quadratic/quartic shares and rotation queries.",
+    "Both references are historical:2026-10-26 precommit note and dated Lean replay independent_check command. Preserve them and exact old bytes; neither is live execution configuration. No scientific theorem or DAG status changes."
+  ]
+}

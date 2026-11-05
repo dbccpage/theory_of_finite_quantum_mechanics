@@ -1,78 +1,367 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "checks/independent/dfm-ckm-physics-fence.py",
+  "assurance": "Completed exact-source L4B assessment; all prior histories remain intact.",
   "contract": {
-    "schema_id": "tfqm.source-contract.v1",
-    "contract_id": "pr233-l4-repair",
-    "artifact": {
-      "path": "checks/independent/dfm-ckm-physics-fence.py",
-      "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b",
-      "language": "Python"
-    },
     "AuthorityEffect": "None",
-    "purpose": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.",
-    "inputs": [
-      "Table indexed by row and column types; commutative-group labels; optional finite decidability."
-    ],
-    "outputs": [
-      "Explicit success output or nonzero failure for independent exact scenarios."
-    ],
-    "owned_invariants": [
-      "Normalization boundary, idempotence and gauge invariance.",
-      "Computed witness is sound; finite decision is sound and complete.",
-      "Zero is excluded by Units or explicitly refused."
-    ],
-    "boundaries": [
-      "Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.",
-      "Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.",
-      "No promotion of OPEN physical target. Formal proof is general; numerical regression is finite."
-    ],
-    "evidence": [
+    "artifact": {
+      "language": "Python",
+      "path": "checks/independent/dfm-ckm-physics-fence.py",
+      "sha256": "6267564e2d8c562532503700a4887ea05b6a7e01bf945db543a73f42848b1735"
+    },
+    "audited_consumers": [
+      {
+        "path": "dag/theory_of_finite_qm.jsonl",
+        "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "docs/evidence/stages/DRESSING_FIELD.md",
+        "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/fragments/unified_dag.json",
+        "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/fragments/application_branches.json",
+        "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/evidence/evidence_map.json",
+        "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/derivation_dag.json",
+        "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "docs/evidence/nodes/DFM-CKM-PHYSICS-FENCE.md",
+        "sha256": "0b9b9ceb723b5fe5971c1d695a4d57fcead936a1b4675a887b817ee299507b32",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/operads/dfm_ckm_physics_fence.yaml",
+        "sha256": "3536339868b8b226b312de9eb85b2a87c5e21073a8d21b4dd7facb2d7c31791e",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
+        "sha256": "1223f9e974ab70c92fa26c64d1728a881cf0f41b86febbb07e4a3351e4417216",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/research/three_proof_l4_post230_custody.json",
+        "sha256": "7384bd1d8f48e6a23157378cb8db4c290f3017fe9775aa083c5c0d29bf0c6cac",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/research/three_proof_l4_final_pipeline.json",
+        "sha256": "3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/research/three_proof_l4_custody.json",
+        "sha256": "b89fd0b01957abab8c6740f4e7dc9873f52161e798289f8266232a262ac95f1d",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/research/pr237_review_validation.json",
+        "sha256": "a644944088de51f9654710014df396a8165f194feee71e5c2dc77844fad31402",
+        "state": "pre-change consumer/provenance audit"
+      },
       {
         "path": "dag/research/dfm_ckm_l4_replay.json",
-        "sha256": "c1aff67958678130655da5a387283a45353d13291bc06c134d26588aaa7cbda3"
+        "sha256": "f82ab0a39ea245bda4bc2a4841c48195aa1d2fd367b8e3fe2c2ef6b85108e40c",
+        "state": "pre-change consumer/provenance audit"
       },
       {
         "path": "dag/research/dfm_ckm_l4_independent.json",
-        "sha256": "180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c"
+        "sha256": "180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c",
+        "state": "pre-change consumer/provenance audit"
       },
       {
-        "path": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json",
-        "sha256": "c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d"
+        "path": "dag/research/dfm_ckm_l4_custody.json",
+        "sha256": "669ca9b275fa767aee14252a4dc862bc420ff6d9e573cbd25af1fd4e2a8087a4",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/research/campaign_dfm-ckm-physics-fence_review_validation.json",
+        "sha256": "97c2e4df51fadac06657a7b361d251efe8ba29bae1285f279db9d49a655583c7",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "checks/tests/test_ckm_checker.py",
+        "sha256": "efa662973f5d9c2c885d3082480eaef7959aeb4d2f765af1a32ba18c647ccd26",
+        "state": "current local consumer"
+      },
+      {
+        "path": "checks/tests/test_review_repairs.py",
+        "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+        "state": "current local consumer"
+      },
+      {
+        "path": ".github/workflows/reviewed-checkers.yml",
+        "sha256": "62999144fc9dbba36a3148ae18cebc46cee28ec72ca2ecb76862254590629dcc",
+        "state": "current local consumer"
       }
+    ],
+    "boundaries": [
+      "The counting expressions are rational polynomials, not physical measurements.",
+      "Gaussian multiplicative label rephasing assumes no unitarity, Yukawa model or continuum construction.",
+      "Shared Gaussian arithmetic is a dependency; separate complex and gauge-equation oracles supply independent verification.",
+      "No new Lean build, hosted CI or higher-tier assurance is claimed. Retention label5 is not perfection."
+    ],
+    "bounded_context": "Bounded exact Gaussian-table rephasing and rational-polynomial verification; no unitary mixing matrix or measured physics.",
+    "consumer_boundary": "Executable path and original helper names remain. Tables now have64x64 limits and immutable snapshots; all gauges and quartet operands have explicit runtime admission. Counting polynomials have bounded exact outputs. Aggregate public operations return Outcome, distinguishing no witness from input/resource failure. Sign-action enumeration now preflights dimensions/cell budget. A failed refusal check now fails the CLI instead of returning an ignored string. The default receipt counts11381 obligations. No historical DAG status, finite evidence bytes, unitary-model or measured-physics claim is changed.",
+    "contract_urn": "urn:tfqm:checker-review:2026-11-03:dfm-ckm-physics-fence",
+    "evidence": [
+      {
+        "path": "reviews/repository_file_review/2026-11-03-ckm-checker.md",
+        "sha256": "7eccde192d4d6a058ab059d40c0ec1ca07c33c7eb232dd16fc3d6bab434366be"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-ckm-initial-tests.py.txt",
+        "sha256": "1bf55d76248c01953d083ad1d000a467d35656f2d6ea105a951367fd955def18"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-ckm-mutations-closure.json",
+        "sha256": "65e60b5ba9edecd06ec9327efe1df0da71a587abb17c6d2173b0993a74323703"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-ckm-mutations.json",
+        "sha256": "47ad6f40af72c5beb73bde073db1dda4103814fe7772e9bdcb0cb7c7915fa422"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-ckm-quality-before-preflight.json",
+        "sha256": "d9dcbf1a8bbb9a143d786425b027c04a66dd9c8e3f8e707862d2310f8774de38"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-ckm-quality-initial.json",
+        "sha256": "a4f8a2fe39872b9680d86876e296a21291bf8c436eb07ed2e4bb3a25d470ab61"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-ckm-quality.json",
+        "sha256": "ef13dcc1a5f457abe740409907449c268a8e0834a6a12bead4ba8a313d41fef5"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-ckm-requirements.json",
+        "sha256": "6d74c1ff4cca26bc99d186c6c0ec0ce72199e5d90b22c8831c644eb6073c7ac5"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+        "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+        "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-constructor-theory-norm-bound-amendment.json",
+        "sha256": "a39cd6c875e7b63956640da3ae72d81fa64ea055b42b4d009cb007253f7fc514"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+      },
+      {
+        "path": "checks/tests/ckm_mutations.json",
+        "sha256": "aad7b8b16ba6cb36d46bb251e694a3d2f40a70e5a0227cfd74004fdaaf994e29"
+      }
+    ],
+    "failure_policy": "Owned finite inputs are admitted before dependent lookups and arithmetic. Expected input/resource/check/duplicate refusals use typed Violation, evaluate/Outcome and cli; aggregate operations return Outcome directly. Resource refusal differs from mathematical falsehood. Cancellation and unexpected programming errors propagate. Scoped test resources restore captures, mocks and module registration.",
+    "nested_declaration_ownership": {},
+    "operational_cost": "Each table dimension1..64, at most4096 cells. Admission, normalization, action and witness are O(height*width) with a fixed number of bounded Gaussian operations per cell. Stored Gaussian components and each returned polynomial value have<=4096-bit numerator/denominator; shared Gaussian norm/inverse intermediates have their separately corrected fixed-operation bounds, and conservative refusals may precede cancellation. Sign enumeration requires dimensions1..6 and product<=6 before enumeration:<=64 tables,4096 pairs,128 gauge assignments per table. Default11381 obligations include2376 sign actions and4388 pair decisions.",
+    "origin": {
+      "path": "lean4/DressingFieldCkmPhysicsFence.lean",
+      "sha256": "8366d62e75f6c93527df44a35fa92ae53754237c9a7602f205b5279360f9acdf"
+    },
+    "owned_invariants": [
+      "Each table is an owned nonempty rectangular nonzero-Gaussian aggregate with dimensions1..64.",
+      "Stored Gaussian components and returned rational polynomials have4096-bit budgets; conservative intermediate refusal is explicit.",
+      "Quartets permit zero labels and validate all four operands; rephasing tables/gauges require nonzero labels.",
+      "Gauge action uses row multiplication and column division. Witness success with None is distinct from input/resource failure.",
+      "Sign dimensions/cell count and exact table shape are checked before enumeration/algebra; failed refusal tests fail the CLI.",
+      "Default11381 obligations include2376 sign actions and4388 pair decisions."
+    ],
+    "requirements": [
+      {
+        "requirement": "Admit exact rational parameters excluding bool/float/subclass coercion, enforce4096-bit input/output bounds and evaluate the three rational polynomials on signed/fractional inputs without interpreting them as measured physical counts.",
+        "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-1",
+        "symbols": [
+          "exact_rational",
+          "cycle_count",
+          "constraint_count",
+          "cp_count"
+        ],
+        "tests": [
+          "CkmCheckerTests.test_counting_against_polynomial_oracles",
+          "CkmCheckerTests.test_scalar_and_quartet_boundaries"
+        ]
+      },
+      {
+        "requirement": "Require actual GaussianRational values at every quartet position before accessing methods; zero is permitted in quartets. Rephasing labels and gauges require nonzero values. Compute a*b*conj(c)*conj(d) exactly using the reviewed bounded Gaussian value.",
+        "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-2",
+        "symbols": [
+          "_gaussian",
+          "quartet",
+          "_gauges"
+        ],
+        "tests": [
+          "CkmCheckerTests.test_quartets_against_complex_oracle",
+          "CkmCheckerTests.test_scalar_and_quartet_boundaries",
+          "CkmCheckerTests.test_table_gauge_and_witness_domains"
+        ]
+      },
+      {
+        "requirement": "Own a frozen nonempty rectangular table of nonzero Q(i) labels with dimensions<=64. Snapshot nested lists, preserve exact rectangular shape, and reject ragged/empty/zero/foreign entries before algebra.",
+        "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-3",
+        "symbols": [
+          "GaussianRephasingTable",
+          "GaussianRephasingTable.__init__",
+          "GaussianRephasingTable.shape",
+          "shape"
+        ],
+        "tests": [
+          "CkmCheckerTests.test_table_snapshots_singletons_and_maximum",
+          "CkmCheckerTests.test_table_gauge_and_witness_domains",
+          "CkmCheckerTests.test_sign_census_and_enumeration_preflight"
+        ]
+      },
+      {
+        "requirement": "Normalize relative to row0/column0 using all four cross-ratio factors. Gauge action divides by the admitted column gauge. Return Outcome from aggregate operations and retain the raw-success evaluated legacy interfaces. Typed resource refusal is distinct from a classification result.",
+        "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-4",
+        "symbols": [
+          "GaussianRephasingTable._normalized",
+          "GaussianRephasingTable.normalized",
+          "GaussianRephasingTable._act",
+          "GaussianRephasingTable.act",
+          "normalize",
+          "act"
+        ],
+        "tests": [
+          "CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle",
+          "CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness",
+          "CkmCheckerTests.test_table_gauge_and_witness_domains",
+          "CkmCheckerTests.test_table_arithmetic_resource_failure",
+          "CkmCheckerTests.test_recorders_failure_and_cancellation"
+        ]
+      },
+      {
+        "requirement": "Require an admitted table of identical shape. If normalized tables differ, return successful None; otherwise construct row and column gauges and verify their interpretation through independent tests. Input/resource failure is an Outcome error, never None.",
+        "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-5",
+        "symbols": [
+          "GaussianRephasingTable._witness",
+          "GaussianRephasingTable.witness",
+          "witness"
+        ],
+        "tests": [
+          "CkmCheckerTests.test_witness_against_independent_gauge_equations",
+          "CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness",
+          "CkmCheckerTests.test_table_gauge_and_witness_domains",
+          "CkmCheckerTests.test_table_arithmetic_resource_failure",
+          "CkmCheckerTests.test_recorders_failure_and_cancellation"
+        ]
+      },
+      {
+        "requirement": "Preflight exact positive sign-enumeration dimensions and the six-cell budget, then enumerate every sign table. check_sign_actions additionally verifies the supplied table shape before a bounded gauge enumeration.",
+        "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-6",
+        "symbols": [
+          "_sign_shape",
+          "sign_tables",
+          "check_sign_actions"
+        ],
+        "tests": [
+          "CkmCheckerTests.test_sign_census_and_enumeration_preflight",
+          "CkmCheckerTests.test_default_counts_and_fixed_faults",
+          "CkmCheckerTests.test_recorders_failure_and_cancellation"
+        ]
+      },
+      {
+        "requirement": "Use fresh or explicitly admitted Cases recorders. Verify canonical boundary/idempotence, witness soundness and separation, nonreal controls, polynomial/quartet fixtures and the fixed sign-orbit census. Every expected invalid-input refusal must actually return an input Failure; otherwise raise a counted check failure instead of returning an ignored message. Main reports11381 actual obligations and uses nonzero CLI diagnostics.",
+        "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-7",
+        "symbols": [
+          "_cases",
+          "check_canonical",
+          "check_pair",
+          "check_nonreal",
+          "check_rephasing",
+          "check_invalid_inputs",
+          "check_counting_examples",
+          "check_quartet_examples",
+          "main"
+        ],
+        "tests": [
+          "CkmCheckerTests.test_failed_refusal_is_a_failed_check",
+          "CkmCheckerTests.test_default_counts_and_fixed_faults",
+          "CkmCheckerTests.test_recorders_failure_and_cancellation",
+          "CkmCheckerTests.test_witness_against_independent_gauge_equations"
+        ]
+      }
+    ],
+    "role": "Bounded exact Gaussian-rephasing verification application with owned nonzero-table aggregate, constructive gauge witnesses, typed operations and accounted CLI failures",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "GaussianRephasingTable",
+      "GaussianRephasingTable.__init__",
+      "GaussianRephasingTable._act",
+      "GaussianRephasingTable._normalized",
+      "GaussianRephasingTable._witness",
+      "GaussianRephasingTable.act",
+      "GaussianRephasingTable.normalized",
+      "GaussianRephasingTable.shape",
+      "GaussianRephasingTable.witness",
+      "_cases",
+      "_gauges",
+      "_gaussian",
+      "_sign_shape",
+      "act",
+      "check_canonical",
+      "check_counting_examples",
+      "check_invalid_inputs",
+      "check_nonreal",
+      "check_pair",
+      "check_quartet_examples",
+      "check_rephasing",
+      "check_sign_actions",
+      "constraint_count",
+      "cp_count",
+      "cycle_count",
+      "exact_rational",
+      "main",
+      "normalize",
+      "quartet",
+      "shape",
+      "sign_tables",
+      "witness"
     ]
   },
-  "current_contract": "df3128d075bc64f4d86152d1107bf8795b885f28ec9ad95ea8e69a1e43e60a02",
-  "current_scoring": "8cb9679a84a81c3d95b78d7e0875e648105c75e9027d55504b2a21733128920a",
   "contract_history": [
     {
-      "sha256": "b3c31de3435c9cbba8ab5c69ca580fa3abd69bb2c6b7fd201fb320b68668a278",
       "bytes": 1775,
+      "original_paths": [
+        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#independent-review"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"The proof contains rational polynomial identities and two declared Gaussian-rational products, no mixing matrix or phase-space quotient.\",\n    \"The rational formulas are not proved to count graph cycles, unitary constraints, or physical CP phases.\",\n    \"The declared quartets are not asserted to be entries of any unitary CKM matrix.\",\n    \"Full generated-facts and campaign pipeline are not independently certified because the substantive L4 floor is unmet.\"\n  ],\n  \"contract_id\": \"pr233-independent-review\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_review_validation.json\",\n      \"sha256\": \"9e8a7401d1c436fbeb08cbb934f8ee432b6be72d6861202d3f5dee18db3fbbc7\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-233-batch-review.md\",\n      \"sha256\": \"7f8d8cf4a1dfa418ca8f4a2e81f9f8cdf0f6064809b4adbe36c1aa71c99a366b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exact rational arithmetic; no unadmitted scalar conversions in the checker.\",\n    \"No new proof axioms or status promotion.\",\n    \"Only supplied polynomial expressions and fixed quartets are claimed.\"\n  ],\n  \"purpose\": \"Independent exact sample and fixed-case regression checker.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a\",\n  \"subject\": \"checks/independent/dfm-ckm-physics-fence.py\"\n}\n",
       "record": {
-        "schema_id": "tfqm.source-contract.v1",
-        "contract_id": "pr233-independent-review",
-        "subject": "checks/independent/dfm-ckm-physics-fence.py",
-        "source_sha256": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a",
         "artifact": {
+          "language": "Python",
           "path": "checks/independent/dfm-ckm-physics-fence.py",
-          "sha256": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a",
-          "language": "Python"
+          "sha256": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a"
         },
         "authority_effect": "None",
-        "role": "source module",
-        "purpose": "Independent exact sample and fixed-case regression checker.",
-        "owned_invariants": [
-          "Exact rational arithmetic; no unadmitted scalar conversions in the checker.",
-          "No new proof axioms or status promotion.",
-          "Only supplied polynomial expressions and fixed quartets are claimed."
-        ],
         "boundaries": [
           "The proof contains rational polynomial identities and two declared Gaussian-rational products, no mixing matrix or phase-space quotient.",
           "The rational formulas are not proved to count graph cycles, unitary constraints, or physical CP phases.",
           "The declared quartets are not asserted to be entries of any unitary CKM matrix.",
           "Full generated-facts and campaign pipeline are not independently certified because the substantive L4 floor is unmet."
         ],
+        "contract_id": "pr233-independent-review",
         "evidence": [
           {
             "path": "dag/research/campaign_dfm-ckm-physics-fence_review_validation.json",
@@ -86,42 +375,39 @@
             "path": "SCORING.md",
             "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
           }
-        ]
-      },
-      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"The proof contains rational polynomial identities and two declared Gaussian-rational products, no mixing matrix or phase-space quotient.\",\n    \"The rational formulas are not proved to count graph cycles, unitary constraints, or physical CP phases.\",\n    \"The declared quartets are not asserted to be entries of any unitary CKM matrix.\",\n    \"Full generated-facts and campaign pipeline are not independently certified because the substantive L4 floor is unmet.\"\n  ],\n  \"contract_id\": \"pr233-independent-review\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_review_validation.json\",\n      \"sha256\": \"9e8a7401d1c436fbeb08cbb934f8ee432b6be72d6861202d3f5dee18db3fbbc7\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-233-batch-review.md\",\n      \"sha256\": \"7f8d8cf4a1dfa418ca8f4a2e81f9f8cdf0f6064809b4adbe36c1aa71c99a366b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exact rational arithmetic; no unadmitted scalar conversions in the checker.\",\n    \"No new proof axioms or status promotion.\",\n    \"Only supplied polynomial expressions and fixed quartets are claimed.\"\n  ],\n  \"purpose\": \"Independent exact sample and fixed-case regression checker.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a\",\n  \"subject\": \"checks/independent/dfm-ckm-physics-fence.py\"\n}\n",
-      "original_paths": [
-        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#independent-review"
-      ]
-    },
-    {
-      "sha256": "df3128d075bc64f4d86152d1107bf8795b885f28ec9ad95ea8e69a1e43e60a02",
-      "bytes": 1734,
-      "record": {
-        "schema_id": "tfqm.source-contract.v1",
-        "contract_id": "pr233-l4-repair",
-        "artifact": {
-          "path": "checks/independent/dfm-ckm-physics-fence.py",
-          "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b",
-          "language": "Python"
-        },
-        "AuthorityEffect": "None",
-        "purpose": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.",
-        "inputs": [
-          "Table indexed by row and column types; commutative-group labels; optional finite decidability."
-        ],
-        "outputs": [
-          "Explicit success output or nonzero failure for independent exact scenarios."
         ],
         "owned_invariants": [
-          "Normalization boundary, idempotence and gauge invariance.",
-          "Computed witness is sound; finite decision is sound and complete.",
-          "Zero is excluded by Units or explicitly refused."
+          "Exact rational arithmetic; no unadmitted scalar conversions in the checker.",
+          "No new proof axioms or status promotion.",
+          "Only supplied polynomial expressions and fixed quartets are claimed."
         ],
+        "purpose": "Independent exact sample and fixed-case regression checker.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a",
+        "subject": "checks/independent/dfm-ckm-physics-fence.py"
+      },
+      "sha256": "b3c31de3435c9cbba8ab5c69ca580fa3abd69bb2c6b7fd201fb320b68668a278"
+    },
+    {
+      "bytes": 1734,
+      "original_paths": [
+        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#pr233-l4-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b\"\n  },\n  \"boundaries\": [\n    \"Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.\",\n    \"Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.\",\n    \"No promotion of OPEN physical target. Formal proof is general; numerical regression is finite.\"\n  ],\n  \"contract_id\": \"pr233-l4-repair\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_replay.json\",\n      \"sha256\": \"c1aff67958678130655da5a387283a45353d13291bc06c134d26588aaa7cbda3\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_independent.json\",\n      \"sha256\": \"180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json\",\n      \"sha256\": \"c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d\"\n    }\n  ],\n  \"inputs\": [\n    \"Table indexed by row and column types; commutative-group labels; optional finite decidability.\"\n  ],\n  \"outputs\": [\n    \"Explicit success output or nonzero failure for independent exact scenarios.\"\n  ],\n  \"owned_invariants\": [\n    \"Normalization boundary, idempotence and gauge invariance.\",\n    \"Computed witness is sound; finite decision is sound and complete.\",\n    \"Zero is excluded by Units or explicitly refused.\"\n  ],\n  \"purpose\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b"
+        },
         "boundaries": [
           "Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.",
           "Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.",
           "No promotion of OPEN physical target. Formal proof is general; numerical regression is finite."
         ],
+        "contract_id": "pr233-l4-repair",
         "evidence": [
           {
             "path": "dag/research/dfm_ckm_l4_replay.json",
@@ -135,49 +421,538 @@
             "path": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json",
             "sha256": "c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d"
           }
-        ]
+        ],
+        "inputs": [
+          "Table indexed by row and column types; commutative-group labels; optional finite decidability."
+        ],
+        "outputs": [
+          "Explicit success output or nonzero failure for independent exact scenarios."
+        ],
+        "owned_invariants": [
+          "Normalization boundary, idempotence and gauge invariance.",
+          "Computed witness is sound; finite decision is sound and complete.",
+          "Zero is excluded by Units or explicitly refused."
+        ],
+        "purpose": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.",
+        "schema_id": "tfqm.source-contract.v1"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b\"\n  },\n  \"boundaries\": [\n    \"Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.\",\n    \"Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.\",\n    \"No promotion of OPEN physical target. Formal proof is general; numerical regression is finite.\"\n  ],\n  \"contract_id\": \"pr233-l4-repair\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_replay.json\",\n      \"sha256\": \"c1aff67958678130655da5a387283a45353d13291bc06c134d26588aaa7cbda3\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_independent.json\",\n      \"sha256\": \"180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json\",\n      \"sha256\": \"c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d\"\n    }\n  ],\n  \"inputs\": [\n    \"Table indexed by row and column types; commutative-group labels; optional finite decidability.\"\n  ],\n  \"outputs\": [\n    \"Explicit success output or nonzero failure for independent exact scenarios.\"\n  ],\n  \"owned_invariants\": [\n    \"Normalization boundary, idempotence and gauge invariance.\",\n    \"Computed witness is sound; finite decision is sound and complete.\",\n    \"Zero is excluded by Units or explicitly refused.\"\n  ],\n  \"purpose\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
-      "original_paths": [
-        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#pr233-l4-repair"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "df3128d075bc64f4d86152d1107bf8795b885f28ec9ad95ea8e69a1e43e60a02"
+    },
     {
-      "sha256": "88061e5f02c7fa93e58a3bdff042d2deb032c537705c4a5eb9feaf5b38f1ac30",
-      "bytes": 2438,
+      "bytes": 1727,
+      "original_paths": [
+        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#systematic-file-review-dfm-ckm-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b\"\n  },\n  \"boundaries\": [\n    \"Arbitrary nonzero Gaussian-rational rescaling is not the same as unit-modulus physical rephasing.\",\n    \"The finite checker does not derive physical CKM or Yukawa data.\",\n    \"This contract records requirements and does not certify that every requirement is satisfied.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:file-review:2026-11-02:dfm-ckm\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-dfm-ckm.md\",\n      \"sha256\": \"7f3424daa167546612e97a3160111a9c98bbaecee1e358b9e82c4f88abfaeef8\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Finite CLI checks report failure explicitly in normal and optimized Python.\",\n    \"Gaussian-rational labels should preserve exact immutable components and exclude zero at the table boundary.\",\n    \"Enumeration dimensions and resources require explicit bounded validation; current deficiencies are recorded.\"\n  ],\n  \"purpose\": \"Independent finite exact normalization, rephasing-witness and counting examples.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"exact_rational\",\n    \"cycle_count\",\n    \"constraint_count\",\n    \"cp_count\",\n    \"GR\",\n    \"quartet\",\n    \"shape\",\n    \"normalize\",\n    \"act\",\n    \"witness\",\n    \"sign_tables\",\n    \"check_canonical\",\n    \"check_sign_actions\",\n    \"check_pair\",\n    \"check_nonreal\",\n    \"check_rephasing\",\n    \"check_invalid_inputs\",\n    \"main\"\n  ]\n}\n",
       "record": {
-        "schema_version": "2.0.0",
-        "assessment_id": "pr233-independent-review",
-        "assessment_status": "complete_scoped_independent_review",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Python",
           "path": "checks/independent/dfm-ckm-physics-fence.py",
-          "sha256": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a",
-          "language": "Python"
+          "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b"
         },
-        "profile": "Exact",
-        "profile_status": "Reviewed declared profile",
-        "level": "L2",
-        "level_assessment": "Independent exact sample and fixed-case regression checker.",
-        "gates": {
-          "G1": "D",
-          "G2": "D",
-          "G3": "D",
-          "G4": "D",
-          "G5": "D"
+        "boundaries": [
+          "Arbitrary nonzero Gaussian-rational rescaling is not the same as unit-modulus physical rephasing.",
+          "The finite checker does not derive physical CKM or Yukawa data.",
+          "This contract records requirements and does not certify that every requirement is satisfied."
+        ],
+        "contract_urn": "urn:tfqm:file-review:2026-11-02:dfm-ckm",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-dfm-ckm.md",
+            "sha256": "7f3424daa167546612e97a3160111a9c98bbaecee1e358b9e82c4f88abfaeef8"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "owned_invariants": [
+          "Finite CLI checks report failure explicitly in normal and optimized Python.",
+          "Gaussian-rational labels should preserve exact immutable components and exclude zero at the table boundary.",
+          "Enumeration dimensions and resources require explicit bounded validation; current deficiencies are recorded."
+        ],
+        "purpose": "Independent finite exact normalization, rephasing-witness and counting examples.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "exact_rational",
+          "cycle_count",
+          "constraint_count",
+          "cp_count",
+          "GR",
+          "quartet",
+          "shape",
+          "normalize",
+          "act",
+          "witness",
+          "sign_tables",
+          "check_canonical",
+          "check_sign_actions",
+          "check_pair",
+          "check_nonreal",
+          "check_rephasing",
+          "check_invalid_inputs",
+          "main"
+        ]
+      },
+      "sha256": "1d74f62297dbd30034ce962493e6e72d781796f835c5b3f4a148bd96a0c1ad38"
+    },
+    {
+      "bytes": 2887,
+      "original_paths": [
+        "review-repair-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"af21ad966d2b35f3debf2012a5d049b6192b0e3c53f11813fb1541a8f201d33f\"\n  },\n  \"boundaries\": [\n    \"Finite supplied models do not discharge unimplemented general, continuum or physical statements.\",\n    \"Shared checker helpers are not independent confirmation of one another; regression oracles are separately constructed.\",\n    \"This contract does not establish the requested L4B acceptance floor or hosted-CI success.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review-repair:2026-11-02:dfm-ckm-physics-fence\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repairs.md\",\n      \"sha256\": \"82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repair-retest.json\",\n      \"sha256\": \"ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5\"\n    },\n    {\n      \"path\": \"checks/checker_support/README.md\",\n      \"sha256\": \"96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"imports\": [\n    \"__future__\",\n    \"checker_support.boundary\",\n    \"checker_support.domains\",\n    \"checker_support.gaussian_rational\",\n    \"checker_support.violation\",\n    \"collections.abc\",\n    \"fractions\",\n    \"itertools\",\n    \"pathlib\",\n    \"sys\"\n  ],\n  \"owned_invariants\": [\n    \"Current source identity and callable scope are bound by this contract and the exact retest receipt.\",\n    \"Expected independent-checker input failures are represented by Failure/Outcome at the evaluate boundary; CLI refusals exit nonzero.\",\n    \"No executable assertions are relied on; regression verifies normal and optimized Python.\",\n    \"Exact numerical paths reject unadmitted floats and booleans at the repaired input boundaries.\"\n  ],\n  \"purpose\": \"Independent check for DFM-CKM-PHYSICS-FENCE.\\n\\nRational counting expressions and two Gaussian-rational quartets are\\nrecomputed with fractions.Fraction. Imports checker infrastructure only; no production implementation.\",\n  \"role\": \"independent finite checker\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"exact_rational\",\n    \"cycle_count\",\n    \"constraint_count\",\n    \"cp_count\",\n    \"quartet\",\n    \"shape\",\n    \"normalize\",\n    \"act\",\n    \"witness\",\n    \"sign_tables\",\n    \"check_canonical\",\n    \"check_sign_actions\",\n    \"check_pair\",\n    \"check_nonreal\",\n    \"check_rephasing\",\n    \"check_invalid_inputs\",\n    \"check_counting_examples\",\n    \"check_quartet_examples\",\n    \"main\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "af21ad966d2b35f3debf2012a5d049b6192b0e3c53f11813fb1541a8f201d33f"
         },
+        "boundaries": [
+          "Finite supplied models do not discharge unimplemented general, continuum or physical statements.",
+          "Shared checker helpers are not independent confirmation of one another; regression oracles are separately constructed.",
+          "This contract does not establish the requested L4B acceptance floor or hosted-CI success."
+        ],
+        "contract_urn": "urn:tfqm:review-repair:2026-11-02:dfm-ckm-physics-fence",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repairs.md",
+            "sha256": "82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repair-retest.json",
+            "sha256": "ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5"
+          },
+          {
+            "path": "checks/checker_support/README.md",
+            "sha256": "96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "imports": [
+          "__future__",
+          "checker_support.boundary",
+          "checker_support.domains",
+          "checker_support.gaussian_rational",
+          "checker_support.violation",
+          "collections.abc",
+          "fractions",
+          "itertools",
+          "pathlib",
+          "sys"
+        ],
+        "owned_invariants": [
+          "Current source identity and callable scope are bound by this contract and the exact retest receipt.",
+          "Expected independent-checker input failures are represented by Failure/Outcome at the evaluate boundary; CLI refusals exit nonzero.",
+          "No executable assertions are relied on; regression verifies normal and optimized Python.",
+          "Exact numerical paths reject unadmitted floats and booleans at the repaired input boundaries."
+        ],
+        "purpose": "Independent check for DFM-CKM-PHYSICS-FENCE.\n\nRational counting expressions and two Gaussian-rational quartets are\nrecomputed with fractions.Fraction. Imports checker infrastructure only; no production implementation.",
+        "role": "independent finite checker",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "exact_rational",
+          "cycle_count",
+          "constraint_count",
+          "cp_count",
+          "quartet",
+          "shape",
+          "normalize",
+          "act",
+          "witness",
+          "sign_tables",
+          "check_canonical",
+          "check_sign_actions",
+          "check_pair",
+          "check_nonreal",
+          "check_rephasing",
+          "check_invalid_inputs",
+          "check_counting_examples",
+          "check_quartet_examples",
+          "main"
+        ]
+      },
+      "sha256": "b9541b97c5429b1f2fcd73b2a46dc8f2f0dbdeeff069bbf83b6f0a5e4432d252"
+    },
+    {
+      "bytes": 16594,
+      "original_paths": [
+        "ckm-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"6267564e2d8c562532503700a4887ea05b6a7e01bf945db543a73f42848b1735\"\n  },\n  \"audited_consumers\": [\n    {\n      \"path\": \"dag/theory_of_finite_qm.jsonl\",\n      \"sha256\": \"3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"docs/evidence/stages/DRESSING_FIELD.md\",\n      \"sha256\": \"83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/fragments/unified_dag.json\",\n      \"sha256\": \"c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/fragments/application_branches.json\",\n      \"sha256\": \"7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/evidence/evidence_map.json\",\n      \"sha256\": \"6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/derivation_dag.json\",\n      \"sha256\": \"7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/DFM-CKM-PHYSICS-FENCE.md\",\n      \"sha256\": \"0b9b9ceb723b5fe5971c1d695a4d57fcead936a1b4675a887b817ee299507b32\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/operads/dfm_ckm_physics_fence.yaml\",\n      \"sha256\": \"3536339868b8b226b312de9eb85b2a87c5e21073a8d21b4dd7facb2d7c31791e\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md\",\n      \"sha256\": \"1223f9e974ab70c92fa26c64d1728a881cf0f41b86febbb07e4a3351e4417216\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/three_proof_l4_post230_custody.json\",\n      \"sha256\": \"7384bd1d8f48e6a23157378cb8db4c290f3017fe9775aa083c5c0d29bf0c6cac\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/three_proof_l4_final_pipeline.json\",\n      \"sha256\": \"3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/three_proof_l4_custody.json\",\n      \"sha256\": \"b89fd0b01957abab8c6740f4e7dc9873f52161e798289f8266232a262ac95f1d\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/pr237_review_validation.json\",\n      \"sha256\": \"a644944088de51f9654710014df396a8165f194feee71e5c2dc77844fad31402\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_replay.json\",\n      \"sha256\": \"f82ab0a39ea245bda4bc2a4841c48195aa1d2fd367b8e3fe2c2ef6b85108e40c\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_independent.json\",\n      \"sha256\": \"180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_custody.json\",\n      \"sha256\": \"669ca9b275fa767aee14252a4dc862bc420ff6d9e573cbd25af1fd4e2a8087a4\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_review_validation.json\",\n      \"sha256\": \"97c2e4df51fadac06657a7b361d251efe8ba29bae1285f279db9d49a655583c7\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"checks/tests/test_ckm_checker.py\",\n      \"sha256\": \"efa662973f5d9c2c885d3082480eaef7959aeb4d2f765af1a32ba18c647ccd26\",\n      \"state\": \"current local consumer\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4\",\n      \"state\": \"current local consumer\"\n    },\n    {\n      \"path\": \".github/workflows/reviewed-checkers.yml\",\n      \"sha256\": \"62999144fc9dbba36a3148ae18cebc46cee28ec72ca2ecb76862254590629dcc\",\n      \"state\": \"current local consumer\"\n    }\n  ],\n  \"boundaries\": [\n    \"The counting expressions are rational polynomials, not physical measurements.\",\n    \"Gaussian multiplicative label rephasing assumes no unitarity, Yukawa model or continuum construction.\",\n    \"Shared Gaussian arithmetic is a dependency; separate complex and gauge-equation oracles supply independent verification.\",\n    \"No new Lean build, hosted CI or higher-tier assurance is claimed. Retention label5 is not perfection.\"\n  ],\n  \"bounded_context\": \"Bounded exact Gaussian-table rephasing and rational-polynomial verification; no unitary mixing matrix or measured physics.\",\n  \"consumer_boundary\": \"Executable path and original helper names remain. Tables now have64x64 limits and immutable snapshots; all gauges and quartet operands have explicit runtime admission. Counting polynomials have bounded exact outputs. Aggregate public operations return Outcome, distinguishing no witness from input/resource failure. Sign-action enumeration now preflights dimensions/cell budget. A failed refusal check now fails the CLI instead of returning an ignored string. The default receipt counts11381 obligations. No historical DAG status, finite evidence bytes, unitary-model or measured-physics claim is changed.\",\n  \"contract_urn\": \"urn:tfqm:checker-review:2026-11-03:dfm-ckm-physics-fence\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-checker.md\",\n      \"sha256\": \"7eccde192d4d6a058ab059d40c0ec1ca07c33c7eb232dd16fc3d6bab434366be\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-initial-tests.py.txt\",\n      \"sha256\": \"1bf55d76248c01953d083ad1d000a467d35656f2d6ea105a951367fd955def18\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-mutations-closure.json\",\n      \"sha256\": \"65e60b5ba9edecd06ec9327efe1df0da71a587abb17c6d2173b0993a74323703\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-mutations.json\",\n      \"sha256\": \"47ad6f40af72c5beb73bde073db1dda4103814fe7772e9bdcb0cb7c7915fa422\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-quality-before-preflight.json\",\n      \"sha256\": \"d9dcbf1a8bbb9a143d786425b027c04a66dd9c8e3f8e707862d2310f8774de38\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-quality-initial.json\",\n      \"sha256\": \"a4f8a2fe39872b9680d86876e296a21291bf8c436eb07ed2e4bb3a25d470ab61\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-quality.json\",\n      \"sha256\": \"ef13dcc1a5f457abe740409907449c268a8e0834a6a12bead4ba8a313d41fef5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-requirements.json\",\n      \"sha256\": \"6d74c1ff4cca26bc99d186c6c0ec0ce72199e5d90b22c8831c644eb6073c7ac5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-constructor-theory-norm-bound-amendment.json\",\n      \"sha256\": \"a39cd6c875e7b63956640da3ae72d81fa64ea055b42b4d009cb007253f7fc514\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/ckm_mutations.json\",\n      \"sha256\": \"aad7b8b16ba6cb36d46bb251e694a3d2f40a70e5a0227cfd74004fdaaf994e29\"\n    }\n  ],\n  \"failure_policy\": \"Owned finite inputs are admitted before dependent lookups and arithmetic. Expected input/resource/check/duplicate refusals use typed Violation, evaluate/Outcome and cli; aggregate operations return Outcome directly. Resource refusal differs from mathematical falsehood. Cancellation and unexpected programming errors propagate. Scoped test resources restore captures, mocks and module registration.\",\n  \"nested_declaration_ownership\": {},\n  \"operational_cost\": \"Each table dimension1..64, at most4096 cells. Admission, normalization, action and witness are O(height*width) with a fixed number of bounded Gaussian operations per cell. Stored Gaussian components and each returned polynomial value have<=4096-bit numerator/denominator; shared Gaussian norm/inverse intermediates have their separately corrected fixed-operation bounds, and conservative refusals may precede cancellation. Sign enumeration requires dimensions1..6 and product<=6 before enumeration:<=64 tables,4096 pairs,128 gauge assignments per table. Default11381 obligations include2376 sign actions and4388 pair decisions.\",\n  \"origin\": {\n    \"path\": \"lean4/DressingFieldCkmPhysicsFence.lean\",\n    \"sha256\": \"8366d62e75f6c93527df44a35fa92ae53754237c9a7602f205b5279360f9acdf\"\n  },\n  \"owned_invariants\": [\n    \"Each table is an owned nonempty rectangular nonzero-Gaussian aggregate with dimensions1..64.\",\n    \"Stored Gaussian components and returned rational polynomials have4096-bit budgets; conservative intermediate refusal is explicit.\",\n    \"Quartets permit zero labels and validate all four operands; rephasing tables/gauges require nonzero labels.\",\n    \"Gauge action uses row multiplication and column division. Witness success with None is distinct from input/resource failure.\",\n    \"Sign dimensions/cell count and exact table shape are checked before enumeration/algebra; failed refusal tests fail the CLI.\",\n    \"Default11381 obligations include2376 sign actions and4388 pair decisions.\"\n  ],\n  \"requirements\": [\n    {\n      \"requirement\": \"Admit exact rational parameters excluding bool/float/subclass coercion, enforce4096-bit input/output bounds and evaluate the three rational polynomials on signed/fractional inputs without interpreting them as measured physical counts.\",\n      \"requirement_id\": \"TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-1\",\n      \"symbols\": [\n        \"exact_rational\",\n        \"cycle_count\",\n        \"constraint_count\",\n        \"cp_count\"\n      ],\n      \"tests\": [\n        \"CkmCheckerTests.test_counting_against_polynomial_oracles\",\n        \"CkmCheckerTests.test_scalar_and_quartet_boundaries\"\n      ]\n    },\n    {\n      \"requirement\": \"Require actual GaussianRational values at every quartet position before accessing methods; zero is permitted in quartets. Rephasing labels and gauges require nonzero values. Compute a*b*conj(c)*conj(d) exactly using the reviewed bounded Gaussian value.\",\n      \"requirement_id\": \"TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-2\",\n      \"symbols\": [\n        \"_gaussian\",\n        \"quartet\",\n        \"_gauges\"\n      ],\n      \"tests\": [\n        \"CkmCheckerTests.test_quartets_against_complex_oracle\",\n        \"CkmCheckerTests.test_scalar_and_quartet_boundaries\",\n        \"CkmCheckerTests.test_table_gauge_and_witness_domains\"\n      ]\n    },\n    {\n      \"requirement\": \"Own a frozen nonempty rectangular table of nonzero Q(i) labels with dimensions<=64. Snapshot nested lists, preserve exact rectangular shape, and reject ragged/empty/zero/foreign entries before algebra.\",\n      \"requirement_id\": \"TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-3\",\n      \"symbols\": [\n        \"GaussianRephasingTable\",\n        \"GaussianRephasingTable.__init__\",\n        \"GaussianRephasingTable.shape\",\n        \"shape\"\n      ],\n      \"tests\": [\n        \"CkmCheckerTests.test_table_snapshots_singletons_and_maximum\",\n        \"CkmCheckerTests.test_table_gauge_and_witness_domains\",\n        \"CkmCheckerTests.test_sign_census_and_enumeration_preflight\"\n      ]\n    },\n    {\n      \"requirement\": \"Normalize relative to row0/column0 using all four cross-ratio factors. Gauge action divides by the admitted column gauge. Return Outcome from aggregate operations and retain the raw-success evaluated legacy interfaces. Typed resource refusal is distinct from a classification result.\",\n      \"requirement_id\": \"TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-4\",\n      \"symbols\": [\n        \"GaussianRephasingTable._normalized\",\n        \"GaussianRephasingTable.normalized\",\n        \"GaussianRephasingTable._act\",\n        \"GaussianRephasingTable.act\",\n        \"normalize\",\n        \"act\"\n      ],\n      \"tests\": [\n        \"CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle\",\n        \"CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness\",\n        \"CkmCheckerTests.test_table_gauge_and_witness_domains\",\n        \"CkmCheckerTests.test_table_arithmetic_resource_failure\",\n        \"CkmCheckerTests.test_recorders_failure_and_cancellation\"\n      ]\n    },\n    {\n      \"requirement\": \"Require an admitted table of identical shape. If normalized tables differ, return successful None; otherwise construct row and column gauges and verify their interpretation through independent tests. Input/resource failure is an Outcome error, never None.\",\n      \"requirement_id\": \"TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-5\",\n      \"symbols\": [\n        \"GaussianRephasingTable._witness\",\n        \"GaussianRephasingTable.witness\",\n        \"witness\"\n      ],\n      \"tests\": [\n        \"CkmCheckerTests.test_witness_against_independent_gauge_equations\",\n        \"CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness\",\n        \"CkmCheckerTests.test_table_gauge_and_witness_domains\",\n        \"CkmCheckerTests.test_table_arithmetic_resource_failure\",\n        \"CkmCheckerTests.test_recorders_failure_and_cancellation\"\n      ]\n    },\n    {\n      \"requirement\": \"Preflight exact positive sign-enumeration dimensions and the six-cell budget, then enumerate every sign table. check_sign_actions additionally verifies the supplied table shape before a bounded gauge enumeration.\",\n      \"requirement_id\": \"TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-6\",\n      \"symbols\": [\n        \"_sign_shape\",\n        \"sign_tables\",\n        \"check_sign_actions\"\n      ],\n      \"tests\": [\n        \"CkmCheckerTests.test_sign_census_and_enumeration_preflight\",\n        \"CkmCheckerTests.test_default_counts_and_fixed_faults\",\n        \"CkmCheckerTests.test_recorders_failure_and_cancellation\"\n      ]\n    },\n    {\n      \"requirement\": \"Use fresh or explicitly admitted Cases recorders. Verify canonical boundary/idempotence, witness soundness and separation, nonreal controls, polynomial/quartet fixtures and the fixed sign-orbit census. Every expected invalid-input refusal must actually return an input Failure; otherwise raise a counted check failure instead of returning an ignored message. Main reports11381 actual obligations and uses nonzero CLI diagnostics.\",\n      \"requirement_id\": \"TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-7\",\n      \"symbols\": [\n        \"_cases\",\n        \"check_canonical\",\n        \"check_pair\",\n        \"check_nonreal\",\n        \"check_rephasing\",\n        \"check_invalid_inputs\",\n        \"check_counting_examples\",\n        \"check_quartet_examples\",\n        \"main\"\n      ],\n      \"tests\": [\n        \"CkmCheckerTests.test_failed_refusal_is_a_failed_check\",\n        \"CkmCheckerTests.test_default_counts_and_fixed_faults\",\n        \"CkmCheckerTests.test_recorders_failure_and_cancellation\",\n        \"CkmCheckerTests.test_witness_against_independent_gauge_equations\"\n      ]\n    }\n  ],\n  \"role\": \"Bounded exact Gaussian-rephasing verification application with owned nonzero-table aggregate, constructive gauge witnesses, typed operations and accounted CLI failures\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"GaussianRephasingTable\",\n    \"GaussianRephasingTable.__init__\",\n    \"GaussianRephasingTable._act\",\n    \"GaussianRephasingTable._normalized\",\n    \"GaussianRephasingTable._witness\",\n    \"GaussianRephasingTable.act\",\n    \"GaussianRephasingTable.normalized\",\n    \"GaussianRephasingTable.shape\",\n    \"GaussianRephasingTable.witness\",\n    \"_cases\",\n    \"_gauges\",\n    \"_gaussian\",\n    \"_sign_shape\",\n    \"act\",\n    \"check_canonical\",\n    \"check_counting_examples\",\n    \"check_invalid_inputs\",\n    \"check_nonreal\",\n    \"check_pair\",\n    \"check_quartet_examples\",\n    \"check_rephasing\",\n    \"check_sign_actions\",\n    \"constraint_count\",\n    \"cp_count\",\n    \"cycle_count\",\n    \"exact_rational\",\n    \"main\",\n    \"normalize\",\n    \"quartet\",\n    \"shape\",\n    \"sign_tables\",\n    \"witness\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "6267564e2d8c562532503700a4887ea05b6a7e01bf945db543a73f42848b1735"
+        },
+        "audited_consumers": [
+          {
+            "path": "dag/theory_of_finite_qm.jsonl",
+            "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "docs/evidence/stages/DRESSING_FIELD.md",
+            "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/fragments/unified_dag.json",
+            "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/fragments/application_branches.json",
+            "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/evidence/evidence_map.json",
+            "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/derivation_dag.json",
+            "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "docs/evidence/nodes/DFM-CKM-PHYSICS-FENCE.md",
+            "sha256": "0b9b9ceb723b5fe5971c1d695a4d57fcead936a1b4675a887b817ee299507b32",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/operads/dfm_ckm_physics_fence.yaml",
+            "sha256": "3536339868b8b226b312de9eb85b2a87c5e21073a8d21b4dd7facb2d7c31791e",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
+            "sha256": "1223f9e974ab70c92fa26c64d1728a881cf0f41b86febbb07e4a3351e4417216",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/three_proof_l4_post230_custody.json",
+            "sha256": "7384bd1d8f48e6a23157378cb8db4c290f3017fe9775aa083c5c0d29bf0c6cac",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/three_proof_l4_final_pipeline.json",
+            "sha256": "3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/three_proof_l4_custody.json",
+            "sha256": "b89fd0b01957abab8c6740f4e7dc9873f52161e798289f8266232a262ac95f1d",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/pr237_review_validation.json",
+            "sha256": "a644944088de51f9654710014df396a8165f194feee71e5c2dc77844fad31402",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/dfm_ckm_l4_replay.json",
+            "sha256": "f82ab0a39ea245bda4bc2a4841c48195aa1d2fd367b8e3fe2c2ef6b85108e40c",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/dfm_ckm_l4_independent.json",
+            "sha256": "180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/dfm_ckm_l4_custody.json",
+            "sha256": "669ca9b275fa767aee14252a4dc862bc420ff6d9e573cbd25af1fd4e2a8087a4",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/campaign_dfm-ckm-physics-fence_review_validation.json",
+            "sha256": "97c2e4df51fadac06657a7b361d251efe8ba29bae1285f279db9d49a655583c7",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "checks/tests/test_ckm_checker.py",
+            "sha256": "efa662973f5d9c2c885d3082480eaef7959aeb4d2f765af1a32ba18c647ccd26",
+            "state": "current local consumer"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+            "state": "current local consumer"
+          },
+          {
+            "path": ".github/workflows/reviewed-checkers.yml",
+            "sha256": "62999144fc9dbba36a3148ae18cebc46cee28ec72ca2ecb76862254590629dcc",
+            "state": "current local consumer"
+          }
+        ],
+        "boundaries": [
+          "The counting expressions are rational polynomials, not physical measurements.",
+          "Gaussian multiplicative label rephasing assumes no unitarity, Yukawa model or continuum construction.",
+          "Shared Gaussian arithmetic is a dependency; separate complex and gauge-equation oracles supply independent verification.",
+          "No new Lean build, hosted CI or higher-tier assurance is claimed. Retention label5 is not perfection."
+        ],
+        "bounded_context": "Bounded exact Gaussian-table rephasing and rational-polynomial verification; no unitary mixing matrix or measured physics.",
+        "consumer_boundary": "Executable path and original helper names remain. Tables now have64x64 limits and immutable snapshots; all gauges and quartet operands have explicit runtime admission. Counting polynomials have bounded exact outputs. Aggregate public operations return Outcome, distinguishing no witness from input/resource failure. Sign-action enumeration now preflights dimensions/cell budget. A failed refusal check now fails the CLI instead of returning an ignored string. The default receipt counts11381 obligations. No historical DAG status, finite evidence bytes, unitary-model or measured-physics claim is changed.",
+        "contract_urn": "urn:tfqm:checker-review:2026-11-03:dfm-ckm-physics-fence",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-checker.md",
+            "sha256": "7eccde192d4d6a058ab059d40c0ec1ca07c33c7eb232dd16fc3d6bab434366be"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-initial-tests.py.txt",
+            "sha256": "1bf55d76248c01953d083ad1d000a467d35656f2d6ea105a951367fd955def18"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-mutations-closure.json",
+            "sha256": "65e60b5ba9edecd06ec9327efe1df0da71a587abb17c6d2173b0993a74323703"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-mutations.json",
+            "sha256": "47ad6f40af72c5beb73bde073db1dda4103814fe7772e9bdcb0cb7c7915fa422"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-quality-before-preflight.json",
+            "sha256": "d9dcbf1a8bbb9a143d786425b027c04a66dd9c8e3f8e707862d2310f8774de38"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-quality-initial.json",
+            "sha256": "a4f8a2fe39872b9680d86876e296a21291bf8c436eb07ed2e4bb3a25d470ab61"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-quality.json",
+            "sha256": "ef13dcc1a5f457abe740409907449c268a8e0834a6a12bead4ba8a313d41fef5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-requirements.json",
+            "sha256": "6d74c1ff4cca26bc99d186c6c0ec0ce72199e5d90b22c8831c644eb6073c7ac5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-constructor-theory-norm-bound-amendment.json",
+            "sha256": "a39cd6c875e7b63956640da3ae72d81fa64ea055b42b4d009cb007253f7fc514"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/ckm_mutations.json",
+            "sha256": "aad7b8b16ba6cb36d46bb251e694a3d2f40a70e5a0227cfd74004fdaaf994e29"
+          }
+        ],
+        "failure_policy": "Owned finite inputs are admitted before dependent lookups and arithmetic. Expected input/resource/check/duplicate refusals use typed Violation, evaluate/Outcome and cli; aggregate operations return Outcome directly. Resource refusal differs from mathematical falsehood. Cancellation and unexpected programming errors propagate. Scoped test resources restore captures, mocks and module registration.",
+        "nested_declaration_ownership": {},
+        "operational_cost": "Each table dimension1..64, at most4096 cells. Admission, normalization, action and witness are O(height*width) with a fixed number of bounded Gaussian operations per cell. Stored Gaussian components and each returned polynomial value have<=4096-bit numerator/denominator; shared Gaussian norm/inverse intermediates have their separately corrected fixed-operation bounds, and conservative refusals may precede cancellation. Sign enumeration requires dimensions1..6 and product<=6 before enumeration:<=64 tables,4096 pairs,128 gauge assignments per table. Default11381 obligations include2376 sign actions and4388 pair decisions.",
+        "origin": {
+          "path": "lean4/DressingFieldCkmPhysicsFence.lean",
+          "sha256": "8366d62e75f6c93527df44a35fa92ae53754237c9a7602f205b5279360f9acdf"
+        },
+        "owned_invariants": [
+          "Each table is an owned nonempty rectangular nonzero-Gaussian aggregate with dimensions1..64.",
+          "Stored Gaussian components and returned rational polynomials have4096-bit budgets; conservative intermediate refusal is explicit.",
+          "Quartets permit zero labels and validate all four operands; rephasing tables/gauges require nonzero labels.",
+          "Gauge action uses row multiplication and column division. Witness success with None is distinct from input/resource failure.",
+          "Sign dimensions/cell count and exact table shape are checked before enumeration/algebra; failed refusal tests fail the CLI.",
+          "Default11381 obligations include2376 sign actions and4388 pair decisions."
+        ],
+        "requirements": [
+          {
+            "requirement": "Admit exact rational parameters excluding bool/float/subclass coercion, enforce4096-bit input/output bounds and evaluate the three rational polynomials on signed/fractional inputs without interpreting them as measured physical counts.",
+            "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-1",
+            "symbols": [
+              "exact_rational",
+              "cycle_count",
+              "constraint_count",
+              "cp_count"
+            ],
+            "tests": [
+              "CkmCheckerTests.test_counting_against_polynomial_oracles",
+              "CkmCheckerTests.test_scalar_and_quartet_boundaries"
+            ]
+          },
+          {
+            "requirement": "Require actual GaussianRational values at every quartet position before accessing methods; zero is permitted in quartets. Rephasing labels and gauges require nonzero values. Compute a*b*conj(c)*conj(d) exactly using the reviewed bounded Gaussian value.",
+            "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-2",
+            "symbols": [
+              "_gaussian",
+              "quartet",
+              "_gauges"
+            ],
+            "tests": [
+              "CkmCheckerTests.test_quartets_against_complex_oracle",
+              "CkmCheckerTests.test_scalar_and_quartet_boundaries",
+              "CkmCheckerTests.test_table_gauge_and_witness_domains"
+            ]
+          },
+          {
+            "requirement": "Own a frozen nonempty rectangular table of nonzero Q(i) labels with dimensions<=64. Snapshot nested lists, preserve exact rectangular shape, and reject ragged/empty/zero/foreign entries before algebra.",
+            "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-3",
+            "symbols": [
+              "GaussianRephasingTable",
+              "GaussianRephasingTable.__init__",
+              "GaussianRephasingTable.shape",
+              "shape"
+            ],
+            "tests": [
+              "CkmCheckerTests.test_table_snapshots_singletons_and_maximum",
+              "CkmCheckerTests.test_table_gauge_and_witness_domains",
+              "CkmCheckerTests.test_sign_census_and_enumeration_preflight"
+            ]
+          },
+          {
+            "requirement": "Normalize relative to row0/column0 using all four cross-ratio factors. Gauge action divides by the admitted column gauge. Return Outcome from aggregate operations and retain the raw-success evaluated legacy interfaces. Typed resource refusal is distinct from a classification result.",
+            "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-4",
+            "symbols": [
+              "GaussianRephasingTable._normalized",
+              "GaussianRephasingTable.normalized",
+              "GaussianRephasingTable._act",
+              "GaussianRephasingTable.act",
+              "normalize",
+              "act"
+            ],
+            "tests": [
+              "CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle",
+              "CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness",
+              "CkmCheckerTests.test_table_gauge_and_witness_domains",
+              "CkmCheckerTests.test_table_arithmetic_resource_failure",
+              "CkmCheckerTests.test_recorders_failure_and_cancellation"
+            ]
+          },
+          {
+            "requirement": "Require an admitted table of identical shape. If normalized tables differ, return successful None; otherwise construct row and column gauges and verify their interpretation through independent tests. Input/resource failure is an Outcome error, never None.",
+            "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-5",
+            "symbols": [
+              "GaussianRephasingTable._witness",
+              "GaussianRephasingTable.witness",
+              "witness"
+            ],
+            "tests": [
+              "CkmCheckerTests.test_witness_against_independent_gauge_equations",
+              "CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness",
+              "CkmCheckerTests.test_table_gauge_and_witness_domains",
+              "CkmCheckerTests.test_table_arithmetic_resource_failure",
+              "CkmCheckerTests.test_recorders_failure_and_cancellation"
+            ]
+          },
+          {
+            "requirement": "Preflight exact positive sign-enumeration dimensions and the six-cell budget, then enumerate every sign table. check_sign_actions additionally verifies the supplied table shape before a bounded gauge enumeration.",
+            "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-6",
+            "symbols": [
+              "_sign_shape",
+              "sign_tables",
+              "check_sign_actions"
+            ],
+            "tests": [
+              "CkmCheckerTests.test_sign_census_and_enumeration_preflight",
+              "CkmCheckerTests.test_default_counts_and_fixed_faults",
+              "CkmCheckerTests.test_recorders_failure_and_cancellation"
+            ]
+          },
+          {
+            "requirement": "Use fresh or explicitly admitted Cases recorders. Verify canonical boundary/idempotence, witness soundness and separation, nonreal controls, polynomial/quartet fixtures and the fixed sign-orbit census. Every expected invalid-input refusal must actually return an input Failure; otherwise raise a counted check failure instead of returning an ignored message. Main reports11381 actual obligations and uses nonzero CLI diagnostics.",
+            "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-7",
+            "symbols": [
+              "_cases",
+              "check_canonical",
+              "check_pair",
+              "check_nonreal",
+              "check_rephasing",
+              "check_invalid_inputs",
+              "check_counting_examples",
+              "check_quartet_examples",
+              "main"
+            ],
+            "tests": [
+              "CkmCheckerTests.test_failed_refusal_is_a_failed_check",
+              "CkmCheckerTests.test_default_counts_and_fixed_faults",
+              "CkmCheckerTests.test_recorders_failure_and_cancellation",
+              "CkmCheckerTests.test_witness_against_independent_gauge_equations"
+            ]
+          }
+        ],
+        "role": "Bounded exact Gaussian-rephasing verification application with owned nonzero-table aggregate, constructive gauge witnesses, typed operations and accounted CLI failures",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "GaussianRephasingTable",
+          "GaussianRephasingTable.__init__",
+          "GaussianRephasingTable._act",
+          "GaussianRephasingTable._normalized",
+          "GaussianRephasingTable._witness",
+          "GaussianRephasingTable.act",
+          "GaussianRephasingTable.normalized",
+          "GaussianRephasingTable.shape",
+          "GaussianRephasingTable.witness",
+          "_cases",
+          "_gauges",
+          "_gaussian",
+          "_sign_shape",
+          "act",
+          "check_canonical",
+          "check_counting_examples",
+          "check_invalid_inputs",
+          "check_nonreal",
+          "check_pair",
+          "check_quartet_examples",
+          "check_rephasing",
+          "check_sign_actions",
+          "constraint_count",
+          "cp_count",
+          "cycle_count",
+          "exact_rational",
+          "main",
+          "normalize",
+          "quartet",
+          "shape",
+          "sign_tables",
+          "witness"
+        ]
+      },
+      "sha256": "b6e17f4320286ad6789182ac3495ac9e66feb7276bac7779d522d6c7b90cc4e5"
+    }
+  ],
+  "current_contract": "b6e17f4320286ad6789182ac3495ac9e66feb7276bac7779d522d6c7b90cc4e5",
+  "current_scoring": "df738a7fa606612424f593a865945912534ace54f1501cbc9257068b267bccbd",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2438,
+      "original_paths": [
+        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#independent-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a\"\n  },\n  \"assessment_id\": \"pr233-independent-review\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T10:11:48.371760+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_review_validation.json\",\n      \"sha256\": \"9e8a7401d1c436fbeb08cbb934f8ee432b6be72d6861202d3f5dee18db3fbbc7\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-233-batch-review.md\",\n      \"sha256\": \"7f8d8cf4a1dfa418ca8f4a2e81f9f8cdf0f6064809b4adbe36c1aa71c99a366b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Claim-to-declaration review with explicit physical and capability limits.\",\n    \"G2\": \"Kernel-checked rational identities and independent exact recomputation.\",\n    \"G3\": \"Thirty invalid scalar refusals; safe unrelated-object equality; eight allowed axiom reports.\",\n    \"G4\": \"Fresh focused build and direct Lean; normal/O checker, strict mypy and one real formula mutation.\",\n    \"G5\": \"Small bounded formulas; checker CCN 17 and cognitive 20; no general CKM machinery.\"\n  },\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_assessment\": \"Independent exact sample and fixed-case regression checker.\",\n  \"limiting_reason\": \"The proof contains rational polynomial identities and two declared Gaussian-rational products, no mixing matrix or phase-space quotient.; The rational formulas are not proved to count graph cycles, unitary constraints, or physical CP phases.; The declared quartets are not asserted to be entries of any unitary CKM matrix.; Full generated-facts and campaign pipeline are not independently certified because the substantive L4 floor is unmet.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\",\n  \"support_exception\": true\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a"
+        },
+        "assessment_id": "pr233-independent-review",
+        "assessment_status": "complete_scoped_independent_review",
         "composite_grade": "D",
-        "score_token": "L2D",
-        "is_complete": true,
-        "grade_ceiling": "D",
-        "limiting_reason": "The proof contains rational polynomial identities and two declared Gaussian-rational products, no mixing matrix or phase-space quotient.; The rational formulas are not proved to count graph cycles, unitary constraints, or physical CP phases.; The declared quartets are not asserted to be entries of any unitary CKM matrix.; Full generated-facts and campaign pipeline are not independently certified because the substantive L4 floor is unmet.",
-        "required_for_completion": [],
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
-        },
         "evaluation_timestamp": "2026-10-23T10:11:48.371760+00:00",
         "evidence": [
           {
@@ -200,29 +975,6 @@
           "G4": "Fresh focused build and direct Lean; normal/O checker, strict mypy and one real formula mutation.",
           "G5": "Small bounded formulas; checker CCN 17 and cognitive 20; no general CKM machinery."
         },
-        "support_exception": true
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a\"\n  },\n  \"assessment_id\": \"pr233-independent-review\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T10:11:48.371760+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_review_validation.json\",\n      \"sha256\": \"9e8a7401d1c436fbeb08cbb934f8ee432b6be72d6861202d3f5dee18db3fbbc7\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-233-batch-review.md\",\n      \"sha256\": \"7f8d8cf4a1dfa418ca8f4a2e81f9f8cdf0f6064809b4adbe36c1aa71c99a366b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Claim-to-declaration review with explicit physical and capability limits.\",\n    \"G2\": \"Kernel-checked rational identities and independent exact recomputation.\",\n    \"G3\": \"Thirty invalid scalar refusals; safe unrelated-object equality; eight allowed axiom reports.\",\n    \"G4\": \"Fresh focused build and direct Lean; normal/O checker, strict mypy and one real formula mutation.\",\n    \"G5\": \"Small bounded formulas; checker CCN 17 and cognitive 20; no general CKM machinery.\"\n  },\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_assessment\": \"Independent exact sample and fixed-case regression checker.\",\n  \"limiting_reason\": \"The proof contains rational polynomial identities and two declared Gaussian-rational products, no mixing matrix or phase-space quotient.; The rational formulas are not proved to count graph cycles, unitary constraints, or physical CP phases.; The declared quartets are not asserted to be entries of any unitary CKM matrix.; Full generated-facts and campaign pipeline are not independently certified because the substantive L4 floor is unmet.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\",\n  \"support_exception\": true\n}\n",
-      "original_paths": [
-        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#independent-review"
-      ]
-    },
-    {
-      "sha256": "53601549f2098d7098f5c8710baa00cffb2ac00112c7c791c2e712e026db9e0f",
-      "bytes": 2749,
-      "record": {
-        "schema_version": "2.0.0",
-        "assessment_id": "pr233-l4-repair",
-        "assessment_status": "complete",
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "checks/independent/dfm-ckm-physics-fence.py",
-          "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b",
-          "language": "Python"
-        },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.",
         "gates": {
           "G1": "D",
           "G2": "D",
@@ -230,15 +982,48 @@
           "G4": "D",
           "G5": "D"
         },
-        "composite_grade": "D",
-        "score_token": "L3D",
-        "is_complete": true,
         "grade_ceiling": "D",
-        "evaluation_timestamp": "2026-10-23T17:10:07.289314+00:00",
+        "is_complete": true,
+        "level": "L2",
+        "level_assessment": "Independent exact sample and fixed-case regression checker.",
+        "limiting_reason": "The proof contains rational polynomial identities and two declared Gaussian-rational products, no mixing matrix or phase-space quotient.; The rational formulas are not proved to count graph cycles, unitary constraints, or physical CP phases.; The declared quartets are not asserted to be entries of any unitary CKM matrix.; Full generated-facts and campaign pipeline are not independently certified because the substantive L4 floor is unmet.",
+        "profile": "Exact",
+        "profile_status": "Reviewed declared profile",
+        "required_for_completion": [],
         "rubric": {
           "path": "SCORING.md",
           "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
         },
+        "schema_version": "2.0.0",
+        "score_token": "L2D",
+        "support_exception": true
+      },
+      "sha256": "88061e5f02c7fa93e58a3bdff042d2deb032c537705c4a5eb9feaf5b38f1ac30"
+    },
+    {
+      "bytes": 2749,
+      "original_paths": [
+        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#pr233-l4-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b\"\n  },\n  \"assessment_id\": \"pr233-l4-repair\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier. Scope and assumptions are explicit in the derivation note.\",\n    \"G2\": \"Lake build succeeds; 19 transitive axiom audits use only allowed axioms. Independent exact sign actions and nonreal reconstruction agree.\",\n    \"G3\": \"Units excludes zero; checkedLabel none iff zero and value on success are proved. Option axes include empty free index types. Eleven malformed-domain cases refused without asserts.\",\n    \"G4\": \"2376 actions, 4388 decisions, 11 negative cases, normal/optimized execution and strict mypy. Four selected faults killed; not exhaustive mutation coverage.\",\n    \"G5\": \"Proof API separates action, normalization, coordinates and conversion. Independent checker max CCN17, cognitive20. No broad performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T17:10:07.289314+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_replay.json\",\n      \"sha256\": \"c1aff67958678130655da5a387283a45353d13291bc06c134d26588aaa7cbda3\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_independent.json\",\n      \"sha256\": \"180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json\",\n      \"sha256\": \"c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.\",\n  \"open_higher_grade_findings\": [\n    \"Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.\",\n    \"Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.\",\n    \"No promotion of OPEN physical target. Formal proof is general; numerical regression is finite.\",\n    \"No exhaustive mutation campaign or broader consumer performance analysis.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\",\n  \"support_exception\": true\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b"
+        },
+        "assessment_id": "pr233-l4-repair",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier. Scope and assumptions are explicit in the derivation note.",
+          "G2": "Lake build succeeds; 19 transitive axiom audits use only allowed axioms. Independent exact sign actions and nonreal reconstruction agree.",
+          "G3": "Units excludes zero; checkedLabel none iff zero and value on success are proved. Option axes include empty free index types. Eleven malformed-domain cases refused without asserts.",
+          "G4": "2376 actions, 4388 decisions, 11 negative cases, normal/optimized execution and strict mypy. Four selected faults killed; not exhaustive mutation coverage.",
+          "G5": "Proof API separates action, normalization, coordinates and conversion. Independent checker max CCN17, cognitive20. No broad performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T17:10:07.289314+00:00",
         "evidence": [
           {
             "path": "dag/research/dfm_ckm_l4_replay.json",
@@ -253,42 +1038,6 @@
             "sha256": "c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d"
           }
         ],
-        "basis": {
-          "G1": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier. Scope and assumptions are explicit in the derivation note.",
-          "G2": "Lake build succeeds; 19 transitive axiom audits use only allowed axioms. Independent exact sign actions and nonreal reconstruction agree.",
-          "G3": "Units excludes zero; checkedLabel none iff zero and value on success are proved. Option axes include empty free index types. Eleven malformed-domain cases refused without asserts.",
-          "G4": "2376 actions, 4388 decisions, 11 negative cases, normal/optimized execution and strict mypy. Four selected faults killed; not exhaustive mutation coverage.",
-          "G5": "Proof API separates action, normalization, coordinates and conversion. Independent checker max CCN17, cognitive20. No broad performance claim."
-        },
-        "open_higher_grade_findings": [
-          "Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.",
-          "Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.",
-          "No promotion of OPEN physical target. Formal proof is general; numerical regression is finite.",
-          "No exhaustive mutation campaign or broader consumer performance analysis."
-        ],
-        "support_exception": true
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b\"\n  },\n  \"assessment_id\": \"pr233-l4-repair\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier. Scope and assumptions are explicit in the derivation note.\",\n    \"G2\": \"Lake build succeeds; 19 transitive axiom audits use only allowed axioms. Independent exact sign actions and nonreal reconstruction agree.\",\n    \"G3\": \"Units excludes zero; checkedLabel none iff zero and value on success are proved. Option axes include empty free index types. Eleven malformed-domain cases refused without asserts.\",\n    \"G4\": \"2376 actions, 4388 decisions, 11 negative cases, normal/optimized execution and strict mypy. Four selected faults killed; not exhaustive mutation coverage.\",\n    \"G5\": \"Proof API separates action, normalization, coordinates and conversion. Independent checker max CCN17, cognitive20. No broad performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T17:10:07.289314+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_replay.json\",\n      \"sha256\": \"c1aff67958678130655da5a387283a45353d13291bc06c134d26588aaa7cbda3\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_independent.json\",\n      \"sha256\": \"180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json\",\n      \"sha256\": \"c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.\",\n  \"open_higher_grade_findings\": [\n    \"Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.\",\n    \"Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.\",\n    \"No promotion of OPEN physical target. Formal proof is general; numerical regression is finite.\",\n    \"No exhaustive mutation campaign or broader consumer performance analysis.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\",\n  \"support_exception\": true\n}\n",
-      "original_paths": [
-        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#pr233-l4-repair"
-      ]
-    },
-    {
-      "sha256": "8cb9679a84a81c3d95b78d7e0875e648105c75e9027d55504b2a21733128920a",
-      "bytes": 2749,
-      "record": {
-        "schema_version": "2.0.0",
-        "assessment_id": "pr233-l4-repair",
-        "assessment_status": "complete",
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "checks/independent/dfm-ckm-physics-fence.py",
-          "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b",
-          "language": "Python"
-        },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.",
         "gates": {
           "G1": "D",
           "G2": "D",
@@ -296,15 +1045,51 @@
           "G4": "D",
           "G5": "D"
         },
-        "composite_grade": "D",
-        "score_token": "L3D",
-        "is_complete": true,
         "grade_ceiling": "D",
-        "evaluation_timestamp": "2026-10-23T17:10:07.289314+00:00",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.",
+        "open_higher_grade_findings": [
+          "Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.",
+          "Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.",
+          "No promotion of OPEN physical target. Formal proof is general; numerical regression is finite.",
+          "No exhaustive mutation campaign or broader consumer performance analysis."
+        ],
+        "profile": "Exact",
         "rubric": {
           "path": "SCORING.md",
-          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
         },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
+        "support_exception": true
+      },
+      "sha256": "53601549f2098d7098f5c8710baa00cffb2ac00112c7c791c2e712e026db9e0f"
+    },
+    {
+      "bytes": 2749,
+      "original_paths": [
+        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#pr233-integration"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b\"\n  },\n  \"assessment_id\": \"pr233-l4-repair\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier. Scope and assumptions are explicit in the derivation note.\",\n    \"G2\": \"Lake build succeeds; 19 transitive axiom audits use only allowed axioms. Independent exact sign actions and nonreal reconstruction agree.\",\n    \"G3\": \"Units excludes zero; checkedLabel none iff zero and value on success are proved. Option axes include empty free index types. Eleven malformed-domain cases refused without asserts.\",\n    \"G4\": \"2376 actions, 4388 decisions, 11 negative cases, normal/optimized execution and strict mypy. Four selected faults killed; not exhaustive mutation coverage.\",\n    \"G5\": \"Proof API separates action, normalization, coordinates and conversion. Independent checker max CCN17, cognitive20. No broad performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T17:10:07.289314+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_replay.json\",\n      \"sha256\": \"c1aff67958678130655da5a387283a45353d13291bc06c134d26588aaa7cbda3\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_independent.json\",\n      \"sha256\": \"180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json\",\n      \"sha256\": \"c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.\",\n  \"open_higher_grade_findings\": [\n    \"Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.\",\n    \"Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.\",\n    \"No promotion of OPEN physical target. Formal proof is general; numerical regression is finite.\",\n    \"No exhaustive mutation campaign or broader consumer performance analysis.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\",\n  \"support_exception\": true\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b"
+        },
+        "assessment_id": "pr233-l4-repair",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier. Scope and assumptions are explicit in the derivation note.",
+          "G2": "Lake build succeeds; 19 transitive axiom audits use only allowed axioms. Independent exact sign actions and nonreal reconstruction agree.",
+          "G3": "Units excludes zero; checkedLabel none iff zero and value on success are proved. Option axes include empty free index types. Eleven malformed-domain cases refused without asserts.",
+          "G4": "2376 actions, 4388 decisions, 11 negative cases, normal/optimized execution and strict mypy. Four selected faults killed; not exhaustive mutation coverage.",
+          "G5": "Proof API separates action, normalization, coordinates and conversion. Independent checker max CCN17, cognitive20. No broad performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T17:10:07.289314+00:00",
         "evidence": [
           {
             "path": "dag/research/dfm_ckm_l4_replay.json",
@@ -319,28 +1104,246 @@
             "sha256": "c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d"
           }
         ],
-        "basis": {
-          "G1": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier. Scope and assumptions are explicit in the derivation note.",
-          "G2": "Lake build succeeds; 19 transitive axiom audits use only allowed axioms. Independent exact sign actions and nonreal reconstruction agree.",
-          "G3": "Units excludes zero; checkedLabel none iff zero and value on success are proved. Option axes include empty free index types. Eleven malformed-domain cases refused without asserts.",
-          "G4": "2376 actions, 4388 decisions, 11 negative cases, normal/optimized execution and strict mypy. Four selected faults killed; not exhaustive mutation coverage.",
-          "G5": "Proof API separates action, normalization, coordinates and conversion. Independent checker max CCN17, cognitive20. No broad performance claim."
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
         },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.",
         "open_higher_grade_findings": [
           "Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.",
           "Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.",
           "No promotion of OPEN physical target. Formal proof is general; numerical regression is finite.",
           "No exhaustive mutation campaign or broader consumer performance analysis."
         ],
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
         "support_exception": true
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b\"\n  },\n  \"assessment_id\": \"pr233-l4-repair\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier. Scope and assumptions are explicit in the derivation note.\",\n    \"G2\": \"Lake build succeeds; 19 transitive axiom audits use only allowed axioms. Independent exact sign actions and nonreal reconstruction agree.\",\n    \"G3\": \"Units excludes zero; checkedLabel none iff zero and value on success are proved. Option axes include empty free index types. Eleven malformed-domain cases refused without asserts.\",\n    \"G4\": \"2376 actions, 4388 decisions, 11 negative cases, normal/optimized execution and strict mypy. Four selected faults killed; not exhaustive mutation coverage.\",\n    \"G5\": \"Proof API separates action, normalization, coordinates and conversion. Independent checker max CCN17, cognitive20. No broad performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T17:10:07.289314+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_replay.json\",\n      \"sha256\": \"c1aff67958678130655da5a387283a45353d13291bc06c134d26588aaa7cbda3\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_independent.json\",\n      \"sha256\": \"180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json\",\n      \"sha256\": \"c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Independent finite regression and malformed-input checks; user-approved regression support exception, not a production classifier.\",\n  \"open_higher_grade_findings\": [\n    \"Supplied commutative group and designated base row/column; exact instance is nonzero Gaussian rationals.\",\n    \"Arbitrary nonzero rescaling, not unit-modulus phase action, unitarity, physical CKM or Yukawa derivation.\",\n    \"No promotion of OPEN physical target. Formal proof is general; numerical regression is finite.\",\n    \"No exhaustive mutation campaign or broader consumer performance analysis.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\",\n  \"support_exception\": true\n}\n",
+      "sha256": "8cb9679a84a81c3d95b78d7e0875e648105c75e9027d55504b2a21733128920a"
+    },
+    {
+      "bytes": 1735,
       "original_paths": [
-        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#pr233-integration"
-      ]
+        "checks/independent/dfm-ckm-physics-fence.contract.score.yaml#systematic-file-review-dfm-ckm-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b\"\n  },\n  \"assessment_id\": \"systematic-file-review-dfm-ckm-2026-11-02\",\n  \"basis\": {\n    \"G1\": \"Two historical replay evidence hashes no longer match their current files.\",\n    \"G2\": \"A Gaussian-rational value can be mutated to contain a float and is still admitted by the table-shape validator.\",\n    \"G3\": \"Complete typed failure behavior and resource limits remain unassessed.\",\n    \"G4\": \"Normal/optimized finite runs and selected invalid inputs passed; full verification and mutation accounting remain unassessed.\",\n    \"G5\": \"Radon 6.0.1 reports maximum CCN 17, imposing a C ceiling under SCORING.md.\"\n  },\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-11-03T03:59:13.382688+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-dfm-ckm.md\",\n      \"sha256\": \"7f3424daa167546612e97a3160111a9c98bbaecee1e358b9e82c4f88abfaeef8\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": false,\n  \"level\": \"L3\",\n  \"level_basis\": \"Bounded nontrivial exact Gaussian-rational action and witness computation; production-quality resource and verification evidence is not established.\",\n  \"profile\": \"Exact\",\n  \"refusal_reason\": \"At least one gate is unassessed. The requested L4B floor is not established; no completed token is asserted.\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b"
+        },
+        "assessment_id": "systematic-file-review-dfm-ckm-2026-11-02",
+        "basis": {
+          "G1": "Two historical replay evidence hashes no longer match their current files.",
+          "G2": "A Gaussian-rational value can be mutated to contain a float and is still admitted by the table-shape validator.",
+          "G3": "Complete typed failure behavior and resource limits remain unassessed.",
+          "G4": "Normal/optimized finite runs and selected invalid inputs passed; full verification and mutation accounting remain unassessed.",
+          "G5": "Radon 6.0.1 reports maximum CCN 17, imposing a C ceiling under SCORING.md."
+        },
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-11-03T03:59:13.382688+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-dfm-ckm.md",
+            "sha256": "7f3424daa167546612e97a3160111a9c98bbaecee1e358b9e82c4f88abfaeef8"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": null,
+          "G4": null,
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Bounded nontrivial exact Gaussian-rational action and witness computation; production-quality resource and verification evidence is not established.",
+        "profile": "Exact",
+        "refusal_reason": "At least one gate is unassessed. The requested L4B floor is not established; no completed token is asserted.",
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "d278db659cd34dd98b42a0d50b2221f94f1523bd35ee1be23a3f408601aea7d3"
+    },
+    {
+      "bytes": 2912,
+      "original_paths": [
+        "review-repair-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"af21ad966d2b35f3debf2012a5d049b6192b0e3c53f11813fb1541a8f201d33f\"\n  },\n  \"assessment_id\": \"review-repair-retest-2026-11-02\",\n  \"basis\": {\n    \"G1\": \"Source identity, concrete role, imports and scope are declared; fresh evidence replaces stale current bindings while history is retained.\",\n    \"G2\": \"Reported semantic and exact-input defects are repaired; the bounded normal/optimized regression and independent oracles pass.\",\n    \"G3\": \"Known optimization bypasses and invalid-domain successes are repaired; typed evaluation and nonzero CLI failures are exercised.\",\n    \"G4\": \"24 regression groups pass in each interpreter mode, with four specified mutants killed; complete per-artifact branch and mutation evidence for B is not established.\",\n    \"G5\": \"Maximum Radon cyclomatic complexity 12; no assertion-dependent checks and at most one class per checker/support source. Full cognitive complexity, static typing and operational assessment remains unassessed.\"\n  },\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-11-03T04:29:31.875198+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repairs.md\",\n      \"sha256\": \"82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repair-retest.json\",\n      \"sha256\": \"ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5\"\n    },\n    {\n      \"path\": \"checks/checker_support/README.md\",\n      \"sha256\": \"96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"C\",\n  \"is_complete\": false,\n  \"level\": \"L3\",\n  \"level_basis\": \"Capability remains scoped to the delivered finite checker, helper or test harness; repairs do not automatically promote a literal fixture or utility to L4.\",\n  \"open_findings\": [\n    \"Complete five-gate assessment and the user-requested L4B floor remain unmet; no completed score token is asserted.\"\n  ],\n  \"profile\": \"Exact\",\n  \"refusal_reason\": \"The full B-level assessment is incomplete and some delivered utilities/fixtures have capability below L4. Do not promote these bytes by relabeling.\",\n  \"resolved_findings\": [\n    \"Immutable Gaussian-rational labels; positive non-boolean table dimensions and a six-cell enumeration budget. Retains nonzero rescaling versus physical unit-phase distinctions.\"\n  ],\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "af21ad966d2b35f3debf2012a5d049b6192b0e3c53f11813fb1541a8f201d33f"
+        },
+        "assessment_id": "review-repair-retest-2026-11-02",
+        "basis": {
+          "G1": "Source identity, concrete role, imports and scope are declared; fresh evidence replaces stale current bindings while history is retained.",
+          "G2": "Reported semantic and exact-input defects are repaired; the bounded normal/optimized regression and independent oracles pass.",
+          "G3": "Known optimization bypasses and invalid-domain successes are repaired; typed evaluation and nonzero CLI failures are exercised.",
+          "G4": "24 regression groups pass in each interpreter mode, with four specified mutants killed; complete per-artifact branch and mutation evidence for B is not established.",
+          "G5": "Maximum Radon cyclomatic complexity 12; no assertion-dependent checks and at most one class per checker/support source. Full cognitive complexity, static typing and operational assessment remains unassessed."
+        },
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-11-03T04:29:31.875198+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repairs.md",
+            "sha256": "82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repair-retest.json",
+            "sha256": "ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5"
+          },
+          {
+            "path": "checks/checker_support/README.md",
+            "sha256": "96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "C",
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Capability remains scoped to the delivered finite checker, helper or test harness; repairs do not automatically promote a literal fixture or utility to L4.",
+        "open_findings": [
+          "Complete five-gate assessment and the user-requested L4B floor remain unmet; no completed score token is asserted."
+        ],
+        "profile": "Exact",
+        "refusal_reason": "The full B-level assessment is incomplete and some delivered utilities/fixtures have capability below L4. Do not promote these bytes by relabeling.",
+        "resolved_findings": [
+          "Immutable Gaussian-rational labels; positive non-boolean table dimensions and a six-cell enumeration budget. Retains nonzero rescaling versus physical unit-phase distinctions."
+        ],
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "593d0dc1446bd3e5ff113486ca0055805c6eee8011e9b1072a214a697043547f"
+    },
+    {
+      "bytes": 5015,
+      "original_paths": [
+        "ckm-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/dfm-ckm-physics-fence.py\",\n    \"sha256\": \"6267564e2d8c562532503700a4887ea05b6a7e01bf945db543a73f42848b1735\"\n  },\n  \"assessment_id\": \"ckm-production-review-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"Full Lean origin and current consumers audited; every declaration and nested ownership maps bidirectionally to tested requirements, with finite claim ceiling.\",\n    \"G2\": \"Exact admitted Gaussian/rational inputs and conservative bounded outputs; expanded polynomials, complex quartets, rectangular table actions and independently solved gauge equations support positive/separating cases.\",\n    \"G3\": \"Detached frozen nonzero tables, owned gauge snapshots, validated indexing/denominators, preflight enumeration/shape budgets, typed refusal versus no-match results, and cancellation-safe scoped tests.\",\n    \"G4\": \"Strict pinned typing;14 CKM and24 integration groups pass normal/optimized runs;80 deterministic examples per property. All39 mutation candidates retained:38 detected and1 equivalent within the typed boundary. Six initial worker timeouts are preserved and detected by an added exact nonreal fixture; the shape-preflight survivor is detected by a new error-precedence regression. Exact additive test custody is recorded.\",\n    \"G5\": \"CCN 6, cognitive 6, nesting 3; at most one class. Each table dimension1..64, at most4096 cells. Admission, normalization, action and witness are O(height*width) with a fixed number of bounded Gaussian operations per cell. Stored Gaussian components and each returned polynomial value have<=4096-bit numerator/denominator; shared Gaussian norm/inverse intermediates have their separately corrected fixed-operation bounds, and conservative refusals may precede cancellation. Sign enumeration requires dimensions1..6 and product<=6 before enumeration:<=64 tables,4096 pairs,128 gauge assignments per table. Default11381 obligations include2376 sign actions and4388 pair decisions.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-11-03T09:16:27.756258+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-checker.md\",\n      \"sha256\": \"7eccde192d4d6a058ab059d40c0ec1ca07c33c7eb232dd16fc3d6bab434366be\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-initial-tests.py.txt\",\n      \"sha256\": \"1bf55d76248c01953d083ad1d000a467d35656f2d6ea105a951367fd955def18\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-mutations-closure.json\",\n      \"sha256\": \"65e60b5ba9edecd06ec9327efe1df0da71a587abb17c6d2173b0993a74323703\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-mutations.json\",\n      \"sha256\": \"47ad6f40af72c5beb73bde073db1dda4103814fe7772e9bdcb0cb7c7915fa422\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-quality-before-preflight.json\",\n      \"sha256\": \"d9dcbf1a8bbb9a143d786425b027c04a66dd9c8e3f8e707862d2310f8774de38\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-quality-initial.json\",\n      \"sha256\": \"a4f8a2fe39872b9680d86876e296a21291bf8c436eb07ed2e4bb3a25d470ab61\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-quality.json\",\n      \"sha256\": \"ef13dcc1a5f457abe740409907449c268a8e0834a6a12bead4ba8a313d41fef5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-ckm-requirements.json\",\n      \"sha256\": \"6d74c1ff4cca26bc99d186c6c0ec0ce72199e5d90b22c8831c644eb6073c7ac5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-constructor-theory-norm-bound-amendment.json\",\n      \"sha256\": \"a39cd6c875e7b63956640da3ae72d81fa64ea055b42b4d009cb007253f7fc514\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/ckm_mutations.json\",\n      \"sha256\": \"aad7b8b16ba6cb36d46bb251e694a3d2f40a70e5a0227cfd74004fdaaf994e29\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Bounded exact Gaussian-rephasing verification application with owned nonzero-table aggregate, constructive gauge witnesses, typed operations and accounted CLI failures. Explicit bounded API grain, invariant ownership, typed failure paths and independently tested composition supply production craft beyond fixed literal demonstrations.\",\n  \"open_findings\": [],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "6267564e2d8c562532503700a4887ea05b6a7e01bf945db543a73f42848b1735"
+        },
+        "assessment_id": "ckm-production-review-2026-11-03",
+        "basis": {
+          "G1": "Full Lean origin and current consumers audited; every declaration and nested ownership maps bidirectionally to tested requirements, with finite claim ceiling.",
+          "G2": "Exact admitted Gaussian/rational inputs and conservative bounded outputs; expanded polynomials, complex quartets, rectangular table actions and independently solved gauge equations support positive/separating cases.",
+          "G3": "Detached frozen nonzero tables, owned gauge snapshots, validated indexing/denominators, preflight enumeration/shape budgets, typed refusal versus no-match results, and cancellation-safe scoped tests.",
+          "G4": "Strict pinned typing;14 CKM and24 integration groups pass normal/optimized runs;80 deterministic examples per property. All39 mutation candidates retained:38 detected and1 equivalent within the typed boundary. Six initial worker timeouts are preserved and detected by an added exact nonreal fixture; the shape-preflight survivor is detected by a new error-precedence regression. Exact additive test custody is recorded.",
+          "G5": "CCN 6, cognitive 6, nesting 3; at most one class. Each table dimension1..64, at most4096 cells. Admission, normalization, action and witness are O(height*width) with a fixed number of bounded Gaussian operations per cell. Stored Gaussian components and each returned polynomial value have<=4096-bit numerator/denominator; shared Gaussian norm/inverse intermediates have their separately corrected fixed-operation bounds, and conservative refusals may precede cancellation. Sign enumeration requires dimensions1..6 and product<=6 before enumeration:<=64 tables,4096 pairs,128 gauge assignments per table. Default11381 obligations include2376 sign actions and4388 pair decisions."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-11-03T09:16:27.756258+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-checker.md",
+            "sha256": "7eccde192d4d6a058ab059d40c0ec1ca07c33c7eb232dd16fc3d6bab434366be"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-initial-tests.py.txt",
+            "sha256": "1bf55d76248c01953d083ad1d000a467d35656f2d6ea105a951367fd955def18"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-mutations-closure.json",
+            "sha256": "65e60b5ba9edecd06ec9327efe1df0da71a587abb17c6d2173b0993a74323703"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-mutations.json",
+            "sha256": "47ad6f40af72c5beb73bde073db1dda4103814fe7772e9bdcb0cb7c7915fa422"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-quality-before-preflight.json",
+            "sha256": "d9dcbf1a8bbb9a143d786425b027c04a66dd9c8e3f8e707862d2310f8774de38"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-quality-initial.json",
+            "sha256": "a4f8a2fe39872b9680d86876e296a21291bf8c436eb07ed2e4bb3a25d470ab61"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-quality.json",
+            "sha256": "ef13dcc1a5f457abe740409907449c268a8e0834a6a12bead4ba8a313d41fef5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-ckm-requirements.json",
+            "sha256": "6d74c1ff4cca26bc99d186c6c0ec0ce72199e5d90b22c8831c644eb6073c7ac5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-constructor-theory-norm-bound-amendment.json",
+            "sha256": "a39cd6c875e7b63956640da3ae72d81fa64ea055b42b4d009cb007253f7fc514"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/ckm_mutations.json",
+            "sha256": "aad7b8b16ba6cb36d46bb251e694a3d2f40a70e5a0227cfd74004fdaaf994e29"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Bounded exact Gaussian-rephasing verification application with owned nonzero-table aggregate, constructive gauge witnesses, typed operations and accounted CLI failures. Explicit bounded API grain, invariant ownership, typed failure paths and independently tested composition supply production craft beyond fixed literal demonstrations.",
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "df738a7fa606612424f593a865945912534ace54f1501cbc9257068b267bccbd"
     }
-  ],
-  "legacy_paths": {},
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Current scoped assessment binds the repaired source and actual replay; earlier assessments remain historical."
+  ]
 }

@@ -1,0 +1,268 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-regge-gravity-fence.py": {
+      "role": "Bounded exact cosine-formula and supplied rational-block verification application with owned Cayley parameter, explicit intermediate budgets, Railway matrix/trace operations and scientific scope separation",
+      "origin": "lean4/DressingFieldReggeGravityFence.lean",
+      "profile": "Exact",
+      "cost": "Exactly three rational scalar inputs and one rational block parameter, each numerator/denominator<=4096 bits. Each square, side product, denominator, sum, difference, quotient and trace prefix is admitted independently to that budget. Temporary rational binary arithmetic on admitted values is bounded before the next operation. A block owns three Fractions, constructs16 fixed matrix entries and accumulates4 diagonal entries; no variable-size enumeration. Fixed SymPy numerator expression has three variables and degree2. Default19 obligations =5 numerator identity/sample+8 length data+6 supplied-block checks.",
+      "groups": [
+        {
+          "requirement": "Admit exact int/Fraction scalars, exclude bool/float/foreign values, and check every square, square sum and numerator difference. The cosine-law helper is the algebraic signed-rational formula, not a triangle validator; require nonzero2bc before numerator arithmetic and bound products, denominator and final quotient even if later cancellation would fit.",
+          "symbols": [
+            "exact",
+            "_numerator",
+            "cos_num",
+            "cos_law"
+          ],
+          "tests": [
+            "ReggeCheckerTests.test_cosine_formulas_against_gram_and_polynomial_oracles",
+            "ReggeCheckerTests.test_right_triangles_against_coordinate_projections",
+            "ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation",
+            "ReggeCheckerTests.test_invalid_domains_and_poles",
+            "ReggeCheckerTests.test_component_square_and_prefix_budgets",
+            "ReggeCheckerTests.test_denominator_budget_before_exact_cancellation"
+          ],
+          "requirement_id": "TFQM-REGGE-REVIEW-DFM-REGGE-GRAVITY-FENCE-1"
+        },
+        {
+          "requirement": "CayleyBlock owns a supplied exact rational parameter, its bounded square and nonzero1-beta^2 denominator, excluding both poles but allowing signs and magnitudes above1. The parameter is not a velocity or a value inferred from lengths. Compute diagonal(1+beta^2)/(1-beta^2) and off-diagonal2beta/(1-beta^2) with checked intermediates.",
+          "symbols": [
+            "CayleyBlock",
+            "CayleyBlock.__init__",
+            "CayleyBlock._gamma",
+            "CayleyBlock._off_diagonal",
+            "gamma"
+          ],
+          "tests": [
+            "ReggeCheckerTests.test_cayley_matrix_trace_and_metric",
+            "ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation",
+            "ReggeCheckerTests.test_invalid_domains_and_poles",
+            "ReggeCheckerTests.test_component_square_and_prefix_budgets",
+            "ReggeCheckerTests.test_owned_parameter_and_railway_paths"
+          ],
+          "requirement_id": "TFQM-REGGE-REVIEW-DFM-REGGE-GRAVITY-FENCE-2"
+        },
+        {
+          "requirement": "Construct the supplied symmetric2x2 Cayley block plus two spectator identity entries as an owned4x4 RationalMatrix. Return matrix/trace through Outcome, accumulating the actual four diagonal entries with per-prefix budgets. Keep the legacy scalar block_trace helper. Cancellation and unexpected programming errors propagate.",
+          "symbols": [
+            "CayleyBlock._matrix",
+            "CayleyBlock.matrix",
+            "CayleyBlock._trace",
+            "CayleyBlock.trace",
+            "block_trace"
+          ],
+          "tests": [
+            "ReggeCheckerTests.test_cayley_matrix_trace_and_metric",
+            "ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation",
+            "ReggeCheckerTests.test_component_square_and_prefix_budgets",
+            "ReggeCheckerTests.test_owned_parameter_and_railway_paths",
+            "ReggeCheckerTests.test_actual_trace_accumulation_and_fault_propagation"
+          ],
+          "requirement_id": "TFQM-REGGE-REVIEW-DFM-REGGE-GRAVITY-FENCE-3"
+        },
+        {
+          "requirement": "Require Cases recorders and preserve the symbolic numerator identity, four signed/zero sample triples, the3-4-5 data, independently supplied half-parameter block and both inequality controls. Split former compound predicates into19 counted obligations and emit JSON with a nonzero executable failure exit. No hinge/deficit/simplex/continuum conclusion follows.",
+          "symbols": [
+            "_cases",
+            "check_numerator_identity",
+            "check_lengths",
+            "check_block",
+            "main"
+          ],
+          "tests": [
+            "ReggeCheckerTests.test_counts_guards_and_counterexample",
+            "ReggeCheckerTests.test_executable_cli_and_failure_exit",
+            "ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation"
+          ],
+          "requirement_id": "TFQM-REGGE-REVIEW-DFM-REGGE-GRAVITY-FENCE-4"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "5d14869f19d5aa96dbd3a1cfc5a8e4b98839b1427663b33f880bde80ab83ca6b",
+      "symbols": [
+        "CayleyBlock",
+        "CayleyBlock.__init__",
+        "CayleyBlock._gamma",
+        "CayleyBlock._matrix",
+        "CayleyBlock._off_diagonal",
+        "CayleyBlock._trace",
+        "CayleyBlock.matrix",
+        "CayleyBlock.trace",
+        "_cases",
+        "_numerator",
+        "block_trace",
+        "check_block",
+        "check_lengths",
+        "check_numerator_identity",
+        "cos_law",
+        "cos_num",
+        "exact",
+        "gamma",
+        "main"
+      ],
+      "origin_sha256": "09c0b7b66c1a4b90a66f96dc648c22a64ce5519a7a1f1401a217e0f05b6a6d80",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-23_pr-237-repair.md",
+          "sha256": "69654e2e3110b884466d062248150480697d629714e289ac5334736188cb8c18",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-REGGE-GRAVITY-FENCE.md",
+          "sha256": "bba48df48a1509295d41d22f0e7d6823f69fb9827f7299eb0a9eff601c376e68",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr237_review_validation.json",
+          "sha256": "a644944088de51f9654710014df396a8165f194feee71e5c2dc77844fad31402",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr237_review_focused_validation.json",
+          "sha256": "9828a3ff4f0704b69bee27e56f3ecbeb16309e817b657775351bb96f7bfcff50",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/unified_dag.json",
+          "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/operads/dfm_regge_gravity_fence.yaml",
+          "sha256": "0295096f573f43b84f575b79cc96da03c71b1fefde2fa94cd2973258ad83f5a0",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md",
+          "sha256": "08f577a19a3dfd994a3447a98a34f6804b9fba68ee60acd335592467a0662106",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_regge_checker.py",
+          "sha256": "7e51a0af8daff9cc3df1d462be8f1495744064660ae71d66f373f7c38f420d51",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "5e552809ac0823088bbe49600a4e58a58ed2b96a0fdb50f7d2794cb91545c000",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and exact/cos_num/cos_law/gamma/block_trace helper names remain. Signed/zero numerator inputs and all rational block parameters except+-1 retain their algebraic meaning, now under explicit4096-bit intermediate budgets. CayleyBlock owns the parameter and materializes the supplied4x4 matrix so trace is checked from entries; this is an explicit finite executable extension beyond the Lean scalar blockTrace definition, independently tested via a Cayley matrix oracle. The old compound prose checks are split into19 JSON-counted obligations. No external Python consumer of prose output was found. A cosine formula is not a triangle-admission function, the parameter is not derived from side lengths, and no deficit angle, hinge holonomy,4-simplex or continuum equation is claimed. Historical scientific receipts keep their original hashes."
+    },
+    "checks/tests/test_regge_checker.py": {
+      "role": "Independent exact formula/block verification application using coordinate-projection right triangles, a matrix-inverse Cayley oracle, generated signed data and cancellation-sensitive resource witnesses",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "12 groups;80 deterministic examples per generated property. Symbolic oracles use fixed2x2 inversion and4x4 metric/trace/determinant operations, with small generated rational parameters and Pythagorean triangles. Resource witnesses use up to4097-bit intermediates and explicitly verify cancellation to4096-bit output. Executable child timeout30 seconds; runpy/capture/mock lifetimes are scoped.",
+      "groups": [
+        {
+          "requirement": "Cross-check the Cayley oracle and derive its block by(I+tJ)(I-tJ)^-1 rather than the scalar production formula. Test coordinate projections for generated right triangles, signed algebraic cases, supplied-parameter separation, both poles, all exact input failures, immutable ownership, component/denominator/trace-prefix budgets, actual matrix trace accumulation, injected failures, cancellation and executable exits. Preserve the explicit denominator4097->quotient4096 cancellation witness.",
+          "symbols": [
+            "load",
+            "_block",
+            "ReggeCheckerTests",
+            "ReggeCheckerTests.refused",
+            "ReggeCheckerTests.test_oracle_and_import_lifecycle",
+            "ReggeCheckerTests.test_cosine_formulas_against_gram_and_polynomial_oracles",
+            "ReggeCheckerTests.test_cayley_matrix_trace_and_metric",
+            "ReggeCheckerTests.test_right_triangles_against_coordinate_projections",
+            "ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation",
+            "ReggeCheckerTests.test_invalid_domains_and_poles",
+            "ReggeCheckerTests.test_component_square_and_prefix_budgets",
+            "ReggeCheckerTests.test_owned_parameter_and_railway_paths",
+            "ReggeCheckerTests.test_denominator_budget_before_exact_cancellation",
+            "ReggeCheckerTests.test_actual_trace_accumulation_and_fault_propagation",
+            "ReggeCheckerTests.test_counts_guards_and_counterexample",
+            "ReggeCheckerTests.test_executable_cli_and_failure_exit"
+          ],
+          "tests": [
+            "ReggeCheckerTests.test_oracle_and_import_lifecycle",
+            "ReggeCheckerTests.test_cosine_formulas_against_gram_and_polynomial_oracles",
+            "ReggeCheckerTests.test_cayley_matrix_trace_and_metric",
+            "ReggeCheckerTests.test_right_triangles_against_coordinate_projections",
+            "ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation",
+            "ReggeCheckerTests.test_invalid_domains_and_poles",
+            "ReggeCheckerTests.test_component_square_and_prefix_budgets",
+            "ReggeCheckerTests.test_owned_parameter_and_railway_paths",
+            "ReggeCheckerTests.test_denominator_budget_before_exact_cancellation",
+            "ReggeCheckerTests.test_actual_trace_accumulation_and_fault_propagation",
+            "ReggeCheckerTests.test_counts_guards_and_counterexample",
+            "ReggeCheckerTests.test_executable_cli_and_failure_exit"
+          ],
+          "requirement_id": "TFQM-REGGE-REVIEW-TEST-REGGE-CHECKER-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "7e51a0af8daff9cc3df1d462be8f1495744064660ae71d66f373f7c38f420d51",
+      "symbols": [
+        "ReggeCheckerTests",
+        "ReggeCheckerTests.refused",
+        "ReggeCheckerTests.test_actual_trace_accumulation_and_fault_propagation",
+        "ReggeCheckerTests.test_cayley_matrix_trace_and_metric",
+        "ReggeCheckerTests.test_component_square_and_prefix_budgets",
+        "ReggeCheckerTests.test_cosine_formulas_against_gram_and_polynomial_oracles",
+        "ReggeCheckerTests.test_counts_guards_and_counterexample",
+        "ReggeCheckerTests.test_denominator_budget_before_exact_cancellation",
+        "ReggeCheckerTests.test_executable_cli_and_failure_exit",
+        "ReggeCheckerTests.test_fixed_values_signed_domain_and_parameter_separation",
+        "ReggeCheckerTests.test_invalid_domains_and_poles",
+        "ReggeCheckerTests.test_oracle_and_import_lifecycle",
+        "ReggeCheckerTests.test_owned_parameter_and_railway_paths",
+        "ReggeCheckerTests.test_right_triangles_against_coordinate_projections",
+        "_block",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-regge-gravity-fence.py",
+          "sha256": "5d14869f19d5aa96dbd3a1cfc5a8e4b98839b1427663b33f880bde80ab83ca6b",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "5e552809ac0823088bbe49600a4e58a58ed2b96a0fdb50f7d2794cb91545c000",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and exact/cos_num/cos_law/gamma/block_trace helper names remain. Signed/zero numerator inputs and all rational block parameters except+-1 retain their algebraic meaning, now under explicit4096-bit intermediate budgets. CayleyBlock owns the parameter and materializes the supplied4x4 matrix so trace is checked from entries; this is an explicit finite executable extension beyond the Lean scalar blockTrace definition, independently tested via a Cayley matrix oracle. The old compound prose checks are split into19 JSON-counted obligations. No external Python consumer of prose output was found. A cosine formula is not a triangle-admission function, the parameter is not derived from side lengths, and no deficit angle, hinge holonomy,4-simplex or continuum equation is claimed. Historical scientific receipts keep their original hashes."
+    }
+  }
+}

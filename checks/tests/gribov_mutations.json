@@ -1,0 +1,273 @@
+[
+  {
+    "identity": "scalar-admission",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "return rational(value)",
+    "after": "return Q(value)",
+    "tests": [
+      "test_shape_type_and_exact_scalar_boundaries",
+      "test_exact_product_trace_and_difference_budgets"
+    ]
+  },
+  {
+    "identity": "outer-shape",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "sequence(rows, \"3x3 matrix\", 3, 3)",
+    "after": "sequence(rows, \"3x3 matrix\")",
+    "tests": [
+      "test_shape_type_and_exact_scalar_boundaries"
+    ]
+  },
+  {
+    "identity": "row-shape",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "sequence(row, \"3x3 row\", 3, 3)",
+    "after": "sequence(row, \"3x3 row\")",
+    "tests": [
+      "test_shape_type_and_exact_scalar_boundaries"
+    ]
+  },
+  {
+    "identity": "matrix-transpose",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "return _matrix(rows).rows",
+    "after": "return _matrix(rows).transpose().rows",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "multiply-order",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "return left.mul(right).rows",
+    "after": "return right.mul(left).rows",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "trace-index",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "matrix.rows[index][index]",
+    "after": "matrix.rows[index][0]",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "trace-final-term",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "for index in range(3):",
+    "after": "for index in range(2):",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "trace-budget",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "total = rational(total + matrix.rows[index][index], \"trace accumulation\")",
+    "after": "total = total + matrix.rows[index][index]",
+    "tests": [
+      "test_exact_product_trace_and_difference_budgets"
+    ]
+  },
+  {
+    "identity": "diagonal-placement",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "(0, 0, third)))",
+    "after": "(0, third, 0)))",
+    "tests": [
+      "test_original_witnesses_and_counts"
+    ]
+  },
+  {
+    "identity": "frozen-form",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "@dataclass(frozen=True, slots=True, init=False)",
+    "after": "@dataclass(slots=True, init=False)",
+    "tests": [
+      "test_owned_snapshots_and_railway_refusals"
+    ]
+  },
+  {
+    "identity": "weight-transpose",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "object.__setattr__(self, \"weight\", _matrix(weight))",
+    "after": "object.__setattr__(self, \"weight\", _matrix(weight).transpose())",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "square-omitted",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "generator.mul(generator)",
+    "after": "generator",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "square-transpose",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "generator.mul(generator)",
+    "after": "generator.mul(generator.transpose())",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "weight-omitted",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "return _trace(self.weight.mul(generator.mul(generator)))",
+    "after": "return _trace(generator.mul(generator))",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "value-railway",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "return evaluate(self._value, generator)",
+    "after": "return Outcome(value=self._value(generator))",
+    "tests": [
+      "test_owned_snapshots_and_railway_refusals"
+    ]
+  },
+  {
+    "identity": "difference-order",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "self._on(first) - self._on(second)",
+    "after": "self._on(second) - self._on(first)",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "difference-budget",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "return rational(self._on(first) - self._on(second), \"form difference\")",
+    "after": "return self._on(first) - self._on(second)",
+    "tests": [
+      "test_exact_product_trace_and_difference_budgets"
+    ]
+  },
+  {
+    "identity": "difference-preflight",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "first, second = _matrix(left), _matrix(right)\n        return rational(self._on(first) - self._on(second), \"form difference\")",
+    "after": "first = _matrix(left)\n        value = self._on(first)\n        second = _matrix(right)\n        return rational(value - self._on(second), \"form difference\")",
+    "tests": [
+      "test_preflight_precedes_arithmetic"
+    ]
+  },
+  {
+    "identity": "difference-railway",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "return evaluate(self._difference, left, right)",
+    "after": "return Outcome(value=self._difference(left, right))",
+    "tests": [
+      "test_owned_snapshots_and_railway_refusals"
+    ]
+  },
+  {
+    "identity": "recorder-type",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "if type(cases) is not Cases:",
+    "after": "if False:",
+    "tests": [
+      "test_original_witnesses_and_counts"
+    ]
+  },
+  {
+    "identity": "square-guard",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "cases.require(mul(h23, h23) == diag(0, 1, 1),",
+    "after": "cases.require(mul(h23, h23) != diag(0, 1, 1),",
+    "tests": [
+      "test_original_witnesses_and_counts"
+    ]
+  },
+  {
+    "identity": "determinant-guard",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "cases.require(omega[0][0]*omega[1][1]*omega[2][2] == 1,",
+    "after": "cases.require(omega[0][0]*omega[1][1]*omega[2][2] != 1,",
+    "tests": [
+      "test_original_witnesses_and_counts"
+    ]
+  },
+  {
+    "identity": "trace-guard",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "cases.require(trace(omega) == -1,",
+    "after": "cases.require(trace(omega) == 1,",
+    "tests": [
+      "test_original_witnesses_and_counts"
+    ]
+  },
+  {
+    "identity": "form-guard",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "cases.require(indefinite._value(h12) == 0,",
+    "after": "cases.require(indefinite._value(h12) != 0,",
+    "tests": [
+      "test_original_witnesses_and_counts"
+    ]
+  },
+  {
+    "identity": "counterexample-guard",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "cases.require(indefinite._difference(h23, h12) == -2,",
+    "after": "cases.require(indefinite._difference(h23, h12) == 0,",
+    "tests": [
+      "test_original_witnesses_and_counts"
+    ]
+  },
+  {
+    "identity": "missing-control",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "    run_checks(cases)\n",
+    "after": "    pass\n",
+    "tests": [
+      "test_original_witnesses_and_counts"
+    ]
+  },
+  {
+    "identity": "reported-count",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "\"checks\": cases.checks",
+    "after": "\"checks\": 7",
+    "tests": [
+      "test_executable_cli"
+    ]
+  },
+  {
+    "identity": "failure-exit",
+    "source": "independent/dfm-gribov-continuum-fence.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_executable_cli"
+    ]
+  },
+  {
+    "identity": "oracle-transpose",
+    "source": "tests/test_gribov_checker.py",
+    "before": "matrix[i, j]",
+    "after": "matrix[j, i]",
+    "tests": [
+      "test_nonsymmetric_fixed_oracle"
+    ]
+  },
+  {
+    "identity": "refusal-helper",
+    "source": "tests/test_gribov_checker.py",
+    "before": "self.assertFalse(outcome.ok)\n        self.assertIsNone(outcome.value)",
+    "after": "self.assertTrue(outcome.ok)\n        self.assertIsNone(outcome.value)",
+    "tests": [
+      "test_shape_type_and_exact_scalar_boundaries"
+    ]
+  }
+]

@@ -1,0 +1,456 @@
+{
+  "AuthorityEffect": "None",
+  "initial_receipt_sha256": "f6799cd915e350766120721b9c279643fd91bbb3b611c6b3c66ff4f119ffbbd9",
+  "manifest_sha256": "59128d3e0fd902c5eb0162fcfc1cc18b0c6b074989b232717352ae5794855742",
+  "inputs_sha256": {
+    ".review_work/run_symanzik_mutations.py": "064058078032fa72c794eac46e0a5349986845e68b828e2de7407865ecbc7fa7",
+    "checks/checker_support/boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks/checker_support/cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks/checker_support/domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks/checker_support/gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks/checker_support/gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks/checker_support/happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks/checker_support/mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks/checker_support/outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks/checker_support/rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks/checker_support/wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks/independent/dfm-symanzik-qed-ae-fence.py": "123ae907089cdb0a0e99a11eb030111c1af710ace604af13b1d879a604f6a088",
+    "checks/tests/run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks/tests/symanzik_mutations.json": "59128d3e0fd902c5eb0162fcfc1cc18b0c6b074989b232717352ae5794855742",
+    "checks/tests/test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+    "checks/tests/test_symanzik_checker.py": "6dcf6efaebaf67bdc23259b2802154aa10088d837864dad6c2be8907ef8e2a48"
+  },
+  "reason": "The original selected oracle group rejected a success through the missing-error assertion even after refusal-polarity inversion. The existing negative input group directly uses the refusal helper on actual failures and detects that inversion. Production, tests and raw manifest are unchanged; this is an added test selection, not a test amendment or an equivalence claim.",
+  "mutants": [
+    {
+      "identity": "refusal-helper-polarity",
+      "source": "tests/test_symanzik_checker.py",
+      "tests": [
+        "test_mask_and_weight_refusals"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... FAIL\n\n======================================================================\nFAIL: test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-followup-pvc7o0h9\\tests\\test_symanzik_checker.py\", line 160, in test_mask_and_weight_refusals\n    self.refused(module.run, mask)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-followup-pvc7o0h9\\tests\\test_symanzik_checker.py\", line 68, in refused\n    self.assertTrue(result.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "10b6065b41a53b901863d403f188ec4c6ac04c641d5c28ee0563bc7257c6e853",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+      }
+    }
+  ],
+  "adjudicated_mutants": [
+    {
+      "identity": "weight-type-bool",
+      "mutant_sha256": "dc18289b06fc963ae27d81d28ef7d728c21bbb3ccb01c2d7332220ff4a5250a3",
+      "outcome": "killed",
+      "output": "test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... FAIL\n\n======================================================================\nFAIL: test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 163, in test_mask_and_weight_refusals\n    self.assertFalse(graph.cotree_product(31, weights).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_mask_and_weight_refusals"
+      ]
+    },
+    {
+      "identity": "weight-budget",
+      "mutant_sha256": "184147c0a2942a136b6715bfe1da05bb8818760da600cf40ce0ab2f45f11f188",
+      "outcome": "killed",
+      "output": "test_input_product_and_sum_budgets_before_cancellation (__main__.SymanzikCheckerTests.test_input_product_and_sum_budgets_before_cancellation) ... ERROR\n\n======================================================================\nERROR: test_input_product_and_sum_budgets_before_cancellation (__main__.SymanzikCheckerTests.test_input_product_and_sum_budgets_before_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 189, in test_input_product_and_sum_budgets_before_cancellation\n    self.assertEqual(singleton.cotree_product(7, (2**4096, 1, 1)).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_input_product_and_sum_budgets_before_cancellation"
+      ]
+    },
+    {
+      "identity": "vertex-negative",
+      "mutant_sha256": "af0b670ea0a7aa63cb5191bf936bd6214ea6e2ad4a43377d27042153b4e76cfa",
+      "outcome": "killed",
+      "output": "test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 146, in test_constructor_domains_and_full_size_boundaries\n    self.refused(module.CotreeGraph, 4, edges)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 68, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_constructor_domains_and_full_size_boundaries"
+      ]
+    },
+    {
+      "identity": "vertex-outside",
+      "mutant_sha256": "b14f1669a025df53b7ba4122c7f0c7d1a2b98f03750b415ad268365726328f7e",
+      "outcome": "killed",
+      "output": "test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 146, in test_constructor_domains_and_full_size_boundaries\n    self.refused(module.CotreeGraph, 4, edges)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 68, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_constructor_domains_and_full_size_boundaries"
+      ]
+    },
+    {
+      "identity": "edge-second",
+      "mutant_sha256": "9701c216d90af9d2aab162bead3d7bb5e32a26e963a6d684cde5d8c16c21915a",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 89, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.components(mask).value, _components(4, list(module.EDGES), mask))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4 != 3\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "vertex-zero-carrier",
+      "mutant_sha256": "9a9aa8c8a78ffee2222deac8478144a66d577122be135ce6846820d6e64c8fb2",
+      "outcome": "killed",
+      "output": "test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 143, in test_constructor_domains_and_full_size_boundaries\n    self.refused(module.CotreeGraph, count, ())\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 68, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_constructor_domains_and_full_size_boundaries"
+      ]
+    },
+    {
+      "identity": "vertex-budget",
+      "mutant_sha256": "03800f474bd8553b8d7253074dab36f9d080efd7a5c5dd1d6ceee655f5fdafbc",
+      "outcome": "killed",
+      "output": "test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 144, in test_constructor_domains_and_full_size_boundaries\n    self.refused(module.CotreeGraph, 17, (), kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 68, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_constructor_domains_and_full_size_boundaries"
+      ]
+    },
+    {
+      "identity": "edge-budget",
+      "mutant_sha256": "2ff43d7e700438bf1a78887399706d3a3f672900d81e0a5d5f0936b55b476997",
+      "outcome": "killed",
+      "output": "test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_constructor_domains_and_full_size_boundaries (__main__.SymanzikCheckerTests.test_constructor_domains_and_full_size_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 147, in test_constructor_domains_and_full_size_boundaries\n    self.refused(module.CotreeGraph, 2, ((0, 1),)*13, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 68, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_constructor_domains_and_full_size_boundaries"
+      ]
+    },
+    {
+      "identity": "mask-bool",
+      "mutant_sha256": "032c00d3846175681ba3efe81074dc4bd4c9474705e35f3a23c92a7d1679e6f0",
+      "outcome": "killed",
+      "output": "test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... FAIL\n\n======================================================================\nFAIL: test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 158, in test_mask_and_weight_refusals\n    self.assertFalse(graph.components(mask).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_mask_and_weight_refusals"
+      ]
+    },
+    {
+      "identity": "mask-negative",
+      "mutant_sha256": "793b78534824247087a4c492b6fc15588e5ee60fa7709bf769f7bd3e1b9375a5",
+      "outcome": "killed",
+      "output": "test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... FAIL\n\n======================================================================\nFAIL: test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 158, in test_mask_and_weight_refusals\n    self.assertFalse(graph.components(mask).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_mask_and_weight_refusals"
+      ]
+    },
+    {
+      "identity": "mask-high-bits",
+      "mutant_sha256": "d05bb59e358f38be736b7806ffb81c1c73f6655f30a46834812e4bb4ba0d200b",
+      "outcome": "killed",
+      "output": "test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... FAIL\n\n======================================================================\nFAIL: test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 158, in test_mask_and_weight_refusals\n    self.assertFalse(graph.components(mask).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_mask_and_weight_refusals"
+      ]
+    },
+    {
+      "identity": "weight-arity",
+      "mutant_sha256": "13d4734e04cdd66a7f12f1e789e3f5f3b7203d932426549ba84c80446fa0ef38",
+      "outcome": "killed",
+      "output": "test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... FAIL\n\n======================================================================\nFAIL: test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 163, in test_mask_and_weight_refusals\n    self.assertFalse(graph.cotree_product(31, weights).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_mask_and_weight_refusals"
+      ]
+    },
+    {
+      "identity": "collapsed-components",
+      "mutant_sha256": "49ec8bfee972f39649ffff77bdd1ec0d0a06126e22f617073c2422a499ae11b0",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 89, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.components(mask).value, _components(4, list(module.EDGES), mask))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 4\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "components-complement",
+      "mutant_sha256": "b7057e6b5e526d42bff6ac025ca9beb1c8985794554cfe9e4e000c2302a5fe6b",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 89, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.components(mask).value, _components(4, list(module.EDGES), mask))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 4\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "union-identity",
+      "mutant_sha256": "630ac6ed003c704398d2f580c94ea934d59b163444a6972126eedaef9b94524a",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 89, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.components(mask).value, _components(4, list(module.EDGES), mask))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4 != 3\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "component-representatives",
+      "mutant_sha256": "cd1279a3cbb13539e0be8170b423118a86fbf9718039291257a888dd39ee21ec",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 89, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.components(mask).value, _components(4, list(module.EDGES), mask))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4 != 3\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "tree-edge-count",
+      "mutant_sha256": "4226381ae1457172a993f24cc7747f946364df7eb4b2ff717e17007c652c1443",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 94, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.tree_masks().value, (7, 11, 13, 14, 21, 22, 25, 26))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (15, 23, 27, 29, 30) != (7, 11, 13, 14, 21, 22, 25, 26)\n\nFirst differing element 0:\n15\n7\n\nSecond tuple contains 3 additional elements.\nFirst extra element 5:\n22\n\n- (15, 23, 27, 29, 30)\n+ (7, 11, 13, 14, 21, 22, 25, 26)\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "tree-connectivity",
+      "mutant_sha256": "2a882f173b165e2dd71801f4151b5350abde684599c7f18c82de702bfd233c20",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 94, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.tree_masks().value, (7, 11, 13, 14, 21, 22, 25, 26))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (7, 11, 13, 14, 19, 21, 22, 25, 26, 28) != (7, 11, 13, 14, 21, 22, 25, 26)\n\nFirst differing element 4:\n19\n21\n\nFirst tuple contains 2 additional elements.\nFirst extra element 8:\n26\n\n- (7, 11, 13, 14, 19, 21, 22, 25, 26, 28)\n?                 ----              ----\n\n+ (7, 11, 13, 14, 21, 22, 25, 26)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "tree-zero-mask",
+      "mutant_sha256": "0dbfd8b678d3284860d966d0624b6b35e4c0f177b21130782c59f2150d8951db",
+      "outcome": "killed",
+      "output": "test_parallel_edges_loops_zeros_signs_and_empty_products (__main__.SymanzikCheckerTests.test_parallel_edges_loops_zeros_signs_and_empty_products) ... FAIL\n\n======================================================================\nFAIL: test_parallel_edges_loops_zeros_signs_and_empty_products (__main__.SymanzikCheckerTests.test_parallel_edges_loops_zeros_signs_and_empty_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 135, in test_parallel_edges_loops_zeros_signs_and_empty_products\n    self.assertEqual(singleton.tree_masks().value, (0,))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: () != (0,)\n\nSecond tuple contains 1 additional elements.\nFirst extra element 0:\n0\n\n- ()\n+ (0,)\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_parallel_edges_loops_zeros_signs_and_empty_products"
+      ]
+    },
+    {
+      "identity": "product-identity",
+      "mutant_sha256": "377cfbf48d704b4534e36e349bda1f1ded779ed3a9b1fa3713b15eb3a3f2e9d2",
+      "outcome": "killed",
+      "output": "test_parallel_edges_loops_zeros_signs_and_empty_products (__main__.SymanzikCheckerTests.test_parallel_edges_loops_zeros_signs_and_empty_products) ... FAIL\n\n======================================================================\nFAIL: test_parallel_edges_loops_zeros_signs_and_empty_products (__main__.SymanzikCheckerTests.test_parallel_edges_loops_zeros_signs_and_empty_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 128, in test_parallel_edges_loops_zeros_signs_and_empty_products\n    self.assertEqual(graph.cotree_sum((2, 3, 5)).value, 25)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 25\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_parallel_edges_loops_zeros_signs_and_empty_products"
+      ]
+    },
+    {
+      "identity": "product-selected-edges",
+      "mutant_sha256": "9d16e82568e34add92451cc7fbde1a7fd5f3b87b3effb4ba1d364d5589046b93",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 92, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.cotree_product(mask, module.WEIGHTS).value, product)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 2310\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "product-prefix-budget",
+      "mutant_sha256": "66af637b1f8277e9d7f74c70395c2a3fa108cbea26b4d3ee0aed6adf1227d0ac",
+      "outcome": "killed",
+      "output": "test_input_product_and_sum_budgets_before_cancellation (__main__.SymanzikCheckerTests.test_input_product_and_sum_budgets_before_cancellation) ... ERROR\n\n======================================================================\nERROR: test_input_product_and_sum_budgets_before_cancellation (__main__.SymanzikCheckerTests.test_input_product_and_sum_budgets_before_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 190, in test_input_product_and_sum_budgets_before_cancellation\n    self.assertEqual(singleton.cotree_product(0, (2**4095, 2, 0)).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_input_product_and_sum_budgets_before_cancellation"
+      ]
+    },
+    {
+      "identity": "sum-prefix-budget",
+      "mutant_sha256": "9d6001e44a2e902278a023a629a54c2d2511b3b43c805204fa0fa9774e5ad6a0",
+      "outcome": "killed",
+      "output": "test_input_product_and_sum_budgets_before_cancellation (__main__.SymanzikCheckerTests.test_input_product_and_sum_budgets_before_cancellation) ... ERROR\n\n======================================================================\nERROR: test_input_product_and_sum_budgets_before_cancellation (__main__.SymanzikCheckerTests.test_input_product_and_sum_budgets_before_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 198, in test_input_product_and_sum_budgets_before_cancellation\n    self.assertEqual(graph.cotree_sum(weights).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_input_product_and_sum_budgets_before_cancellation"
+      ]
+    },
+    {
+      "identity": "sum-empty-identity",
+      "mutant_sha256": "e078f6ce2169ed84eb292fe650e85fe653a4d357e5e40f491eab3d5f11cdc1c5",
+      "outcome": "killed",
+      "output": "test_parallel_edges_loops_zeros_signs_and_empty_products (__main__.SymanzikCheckerTests.test_parallel_edges_loops_zeros_signs_and_empty_products) ... FAIL\n\n======================================================================\nFAIL: test_parallel_edges_loops_zeros_signs_and_empty_products (__main__.SymanzikCheckerTests.test_parallel_edges_loops_zeros_signs_and_empty_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 128, in test_parallel_edges_loops_zeros_signs_and_empty_products\n    self.assertEqual(graph.cotree_sum((2, 3, 5)).value, 25)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 26 != 25\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_parallel_edges_loops_zeros_signs_and_empty_products"
+      ]
+    },
+    {
+      "identity": "preflight-disconnected",
+      "mutant_sha256": "8e1c9a7f2b667a67750e4c8f3807f637133f5fff1f6e8249565c09e2b029fc62",
+      "outcome": "killed",
+      "output": "test_preflight_admits_every_weight_before_enumeration (__main__.SymanzikCheckerTests.test_preflight_admits_every_weight_before_enumeration) ... ERROR\n\n======================================================================\nERROR: test_preflight_admits_every_weight_before_enumeration (__main__.SymanzikCheckerTests.test_preflight_admits_every_weight_before_enumeration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 204, in test_preflight_admits_every_weight_before_enumeration\n    self.assertEqual(graph.cotree_sum((True,)).error.kind, \"input\")\n                     ~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\independent\\dfm-symanzik-qed-ae-fence.py\", line 107, in cotree_sum\n    return evaluate(self._cotree_sum, weights)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\independent\\dfm-symanzik-qed-ae-fence.py\", line 98, in _cotree_sum\n    if not self._trees():\n           ~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not enumerate\n\n----------------------------------------------------------------------\nRan 1 test in 0.021s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_preflight_admits_every_weight_before_enumeration"
+      ]
+    },
+    {
+      "identity": "public-components",
+      "mutant_sha256": "53e46bfab2aded3b5502b1534aee115c4141f8230ce8bf97cc03c8974f33b774",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\ntest_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 89, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.components(mask).value, _components(4, list(module.EDGES), mask))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4 != 3\n\n======================================================================\nFAIL: test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 158, in test_mask_and_weight_refusals\n    self.assertFalse(graph.components(mask).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 2 tests in 0.007s\n\nFAILED (failures=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products",
+        "test_mask_and_weight_refusals"
+      ]
+    },
+    {
+      "identity": "public-product",
+      "mutant_sha256": "132a840ba29e71481067e1683229242952485dc66895d1029795dac488b9f461",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 92, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(graph.cotree_product(mask, module.WEIGHTS).value, product)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2310 != 1155\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "public-sum",
+      "mutant_sha256": "f4082abefce0a84196c8bcd081d85ba5a3d47e9f8dfba9c9c90e0907e6755074",
+      "outcome": "killed",
+      "output": "test_parallel_edges_loops_zeros_signs_and_empty_products (__main__.SymanzikCheckerTests.test_parallel_edges_loops_zeros_signs_and_empty_products) ... FAIL\n\n======================================================================\nFAIL: test_parallel_edges_loops_zeros_signs_and_empty_products (__main__.SymanzikCheckerTests.test_parallel_edges_loops_zeros_signs_and_empty_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 128, in test_parallel_edges_loops_zeros_signs_and_empty_products\n    self.assertEqual(graph.cotree_sum((2, 3, 5)).value, 25)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 25\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_parallel_edges_loops_zeros_signs_and_empty_products"
+      ]
+    },
+    {
+      "identity": "legacy-run-mask",
+      "mutant_sha256": "be336b325d1bef4597110f756418083ca0fa7c5024e53fa7455d6b0f8f0c93a4",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 90, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(module.run(mask), _components(4, list(module.EDGES), mask))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4 != 3\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "legacy-product-mask",
+      "mutant_sha256": "0429d0170fe1f9911493dbdfd51af5ca14d4f1c8a9e9ef28ab861067960674cc",
+      "outcome": "killed",
+      "output": "test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products) ... FAIL\n\n======================================================================\nFAIL: test_supplied_graph_all_masks_and_individual_products (__main__.SymanzikCheckerTests.test_supplied_graph_all_masks_and_individual_products)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 93, in test_supplied_graph_all_masks_and_individual_products\n    self.assertEqual(module.prod(mask, module.WEIGHTS), product)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2310 != 1155\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_supplied_graph_all_masks_and_individual_products"
+      ]
+    },
+    {
+      "identity": "omit-census-obligation",
+      "mutant_sha256": "10093a82f08dfdfa2f45029d4d6875c7e01985de98d0df40cce63e92c47ada67",
+      "outcome": "killed",
+      "output": "test_counts_faults_cancellation_and_programming_errors (__main__.SymanzikCheckerTests.test_counts_faults_cancellation_and_programming_errors) ... FAIL\n\n======================================================================\nFAIL: test_counts_faults_cancellation_and_programming_errors (__main__.SymanzikCheckerTests.test_counts_faults_cancellation_and_programming_errors)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 213, in test_counts_faults_cancellation_and_programming_errors\n    self.assertEqual(cases.checks, 22)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 21 != 22\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_counts_faults_cancellation_and_programming_errors"
+      ]
+    },
+    {
+      "identity": "omit-weighted-obligation",
+      "mutant_sha256": "f68701ff7764e682ce1891bd3d6273bab43b90d3c269623a2cf1755cd6426696",
+      "outcome": "killed",
+      "output": "test_counts_faults_cancellation_and_programming_errors (__main__.SymanzikCheckerTests.test_counts_faults_cancellation_and_programming_errors) ... FAIL\n\n======================================================================\nFAIL: test_counts_faults_cancellation_and_programming_errors (__main__.SymanzikCheckerTests.test_counts_faults_cancellation_and_programming_errors)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 213, in test_counts_faults_cancellation_and_programming_errors\n    self.assertEqual(cases.checks, 22)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 21 != 22\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_counts_faults_cancellation_and_programming_errors"
+      ]
+    },
+    {
+      "identity": "false-success-exit",
+      "mutant_sha256": "f1e13a01d4f94f1ca6c660b49bb80d254f18a2cd95e914de5c263d251cd7de97",
+      "outcome": "killed",
+      "output": "test_executable_receipt_and_failure_exit (__main__.SymanzikCheckerTests.test_executable_receipt_and_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_executable_receipt_and_failure_exit (__main__.SymanzikCheckerTests.test_executable_receipt_and_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 234, in test_executable_receipt_and_failure_exit\n    with self.assertRaises(SystemExit) as failure:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: SystemExit not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.144s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-symanzik-qed-ae-fence.py",
+      "tests": [
+        "test_executable_receipt_and_failure_exit"
+      ]
+    },
+    {
+      "identity": "oracle-connectivity",
+      "mutant_sha256": "6ede2cb0328bfad3a623dd7b27fae7878625a76b27e42d69c5ea224a12393d35",
+      "outcome": "killed",
+      "output": "test_oracles_and_import_lifecycle (__main__.SymanzikCheckerTests.test_oracles_and_import_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_import_lifecycle (__main__.SymanzikCheckerTests.test_oracles_and_import_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 76, in test_oracles_and_import_lifecycle\n    self.assertEqual(_components(4, [(0, 1), (2, 3)], 3), 2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 2\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_symanzik_checker.py",
+      "tests": [
+        "test_oracles_and_import_lifecycle"
+      ]
+    },
+    {
+      "identity": "oracle-weighted-determinant",
+      "mutant_sha256": "308ce90c01018f235342ef2e6ca691120ab52a670111e52caad3083f6aabf840",
+      "outcome": "killed",
+      "output": "test_oracles_and_import_lifecycle (__main__.SymanzikCheckerTests.test_oracles_and_import_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_import_lifecycle (__main__.SymanzikCheckerTests.test_oracles_and_import_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-mutation-b7wrcg1e\\tests\\test_symanzik_checker.py\", line 77, in test_oracles_and_import_lifecycle\n    self.assertEqual(_determinant_sum(2, [(0, 1), (0, 1), (0, 0)], [2, 3, 5]), 25)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 25\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_symanzik_checker.py",
+      "tests": [
+        "test_oracles_and_import_lifecycle"
+      ]
+    },
+    {
+      "identity": "refusal-helper-polarity",
+      "source": "tests/test_symanzik_checker.py",
+      "tests": [
+        "test_mask_and_weight_refusals"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... FAIL\n\n======================================================================\nFAIL: test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-followup-pvc7o0h9\\tests\\test_symanzik_checker.py\", line 160, in test_mask_and_weight_refusals\n    self.refused(module.run, mask)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\symanzik-followup-pvc7o0h9\\tests\\test_symanzik_checker.py\", line 68, in refused\n    self.assertTrue(result.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "10b6065b41a53b901863d403f188ec4c6ac04c641d5c28ee0563bc7257c6e853",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_mask_and_weight_refusals (__main__.SymanzikCheckerTests.test_mask_and_weight_refusals) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n"
+      }
+    }
+  ],
+  "summary": {
+    "counts": {
+      "killed": 36,
+      "survived": 0,
+      "equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "eligible": 36,
+    "detected_fraction": 1.0
+  }
+}

@@ -1,0 +1,1726 @@
+{
+  "AuthorityEffect": "None",
+  "boundary": "independent finite checking; no production implementation imported",
+  "source_requirements": {
+    "checks/checker_support/boundary.py": {
+      "role": "Railway application boundary",
+      "profile": "Non-Numeric",
+      "cost": "Constant boundary work plus trusted callback cost; owns no callback resources.",
+      "groups": [
+        {
+          "symbols": [
+            "evaluate"
+          ],
+          "requirement": "Translate declared synchronous domain failures to typed results; propagate cancellation and unexpected programmer failures. OS failures are resource refusals.",
+          "tests": [
+            "CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean",
+            "CheckerSupportTests.test_failure_value_and_exception_bridge"
+          ],
+          "requirement_id": "TFQM-CHECKER-BOUNDARY-1"
+        },
+        {
+          "symbols": [
+            "require"
+          ],
+          "requirement": "Only a real bool and a nonblank description form an obligation; false fails under normal and optimized Python.",
+          "tests": [
+            "CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean"
+          ],
+          "requirement_id": "TFQM-CHECKER-BOUNDARY-2"
+        },
+        {
+          "symbols": [
+            "cli",
+            "_write_failure"
+          ],
+          "requirement": "Preserve exact integer exit status 0..255 or None as zero; invalid status or failure emits a JSON diagnostic and exits one. A closed diagnostic stream still yields a nonzero exit status.",
+          "tests": [
+            "CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format"
+          ],
+          "requirement_id": "TFQM-CHECKER-BOUNDARY-3"
+        },
+        {
+          "symbols": [
+            "Violation",
+            "Violation.__init__"
+          ],
+          "requirement": "Validate the closed Failure schema and preserve its typed cause while using Python exception control transfer internally; evaluation returns the cause without reporting success.",
+          "tests": [
+            "CheckerSupportTests.test_failure_value_and_exception_bridge",
+            "CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean"
+          ],
+          "requirement_id": "TFQM-CHECKER-BOUNDARY-4"
+        }
+      ],
+      "source_sha256": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+      "consumers": [
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "line": 25,
+          "sha256": "4ee6fe26c56b18955571713cdf43a64e2ca2c93f0618e32afed1783701faf827"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "line": 29,
+          "sha256": "4ee6fe26c56b18955571713cdf43a64e2ca2c93f0618e32afed1783701faf827"
+        },
+        {
+          "path": "checks/tests/test_mutation_campaign.py",
+          "line": 17,
+          "sha256": "12f9d3ec343ae5dc56dc8f3000d5baba3972f053f4342fdcd381e8193f96cb4c"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 25,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 34,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/run_support_mutations.py",
+          "line": 24,
+          "sha256": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb"
+        },
+        {
+          "path": "checks/tests/run_support_mutations.py",
+          "line": 26,
+          "sha256": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb"
+        },
+        {
+          "path": "checks/independent/cqft-local-net-axioms-import.py",
+          "line": 11,
+          "sha256": "a8956e4f8c2113a37d7500a5002402da46dd16f7cd395aa8007bad74d229996a"
+        },
+        {
+          "path": "checks/independent/cqft-local-net-axioms-import.py",
+          "line": 13,
+          "sha256": "a8956e4f8c2113a37d7500a5002402da46dd16f7cd395aa8007bad74d229996a"
+        },
+        {
+          "path": "checks/independent/cqft-causal-factorization-import.py",
+          "line": 30,
+          "sha256": "3215e24a50f528ec6298d68511a7f2a7ed8180a89c6ceac0ce64c816740c5da4"
+        },
+        {
+          "path": "checks/independent/comp-c8-minimality-fence.py",
+          "line": 13,
+          "sha256": "b9b71c677820433fec06900415ac2cc678ccb4271c7c8fcf5eff24f4a41b9ce1"
+        },
+        {
+          "path": "checks/independent/comp-c7-fixed-target-open.py",
+          "line": 13,
+          "sha256": "2a46154370f94c36dcc86d7ec24d90ff221c2490c7097612aebee8218163ad8b"
+        },
+        {
+          "path": "checks/independent/dfm-continuum-refinement-limit.py",
+          "line": 14,
+          "sha256": "57151e569a5622447d8a899c785bf7e744c46f6991ab9873a1d1b73a46d51d50"
+        },
+        {
+          "path": "checks/independent/dfm-continuum-refinement-limit.py",
+          "line": 16,
+          "sha256": "57151e569a5622447d8a899c785bf7e744c46f6991ab9873a1d1b73a46d51d50"
+        },
+        {
+          "path": "checks/independent/comp-c7-encoded-instance-reduction.py",
+          "line": 13,
+          "sha256": "05cf6566eca559564061cf73917106b2294bf4ac97aa0a4df36cd8e9c7cd71d3"
+        },
+        {
+          "path": "checks/independent/dfm-continuum-interface.py",
+          "line": 21,
+          "sha256": "998ca54c3b9a15ff79b1fa72254211a2ec7a09e0cd7eb84b828a43fca9808d4d"
+        },
+        {
+          "path": "checks/independent/dfm-continuum-interface.py",
+          "line": 23,
+          "sha256": "998ca54c3b9a15ff79b1fa72254211a2ec7a09e0cd7eb84b828a43fca9808d4d"
+        },
+        {
+          "path": "checks/independent/comp-c6-tm0-output-form-open.py",
+          "line": 13,
+          "sha256": "42dccce6097785afa0bbd8d82702bc7775b88ba1e1f39b8489751b21464c2422"
+        },
+        {
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "line": 17,
+          "sha256": "911ac822e2d935b78a8edb19a8e35965926660a6e3f5520530bc0f2fa1bfa9d5"
+        },
+        {
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "line": 19,
+          "sha256": "911ac822e2d935b78a8edb19a8e35965926660a6e3f5520530bc0f2fa1bfa9d5"
+        },
+        {
+          "path": "checks/independent/comp-c3-no-fixed-bound.py",
+          "line": 10,
+          "sha256": "2fa93bec84efdec230b996a0cd383c7bb1abe9ea86392e5cb9247bf1666def81"
+        },
+        {
+          "path": "checks/independent/dfm-bphz-continuum-fence.py",
+          "line": 20,
+          "sha256": "7f740de09a98c5baa35dbc226741b6a6e84b8d323f5ecb5c4a1adb9e05dff1a5"
+        },
+        {
+          "path": "checks/independent/dfm-bphz-continuum-fence.py",
+          "line": 24,
+          "sha256": "7f740de09a98c5baa35dbc226741b6a6e84b8d323f5ecb5c4a1adb9e05dff1a5"
+        },
+        {
+          "path": "checks/independent/ct-local-mediator-entanglement-import.py",
+          "line": 32,
+          "sha256": "3c04275f2b50ebdcbf18ea5708cab3b96f3c44cd23bf10190df8b107e2fb3f09"
+        },
+        {
+          "path": "checks/independent/comp-c2-step3-not-word-step.py",
+          "line": 13,
+          "sha256": "80606470732178cedb6f79651d3b2d772563a315591fa94f5cc541e5220f1964"
+        },
+        {
+          "path": "checks/independent/ct-information-media-interoperability.py",
+          "line": 9,
+          "sha256": "6db5849f2df65e0cec2c4aa3adbc5a8018c28d842d49931601fb3d3aa2137e70"
+        },
+        {
+          "path": "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+          "line": 34,
+          "sha256": "0846def364cc1a71ab10316d2059bfb501e370a69084537759e8f87888e54a45"
+        },
+        {
+          "path": "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+          "line": 36,
+          "sha256": "0846def364cc1a71ab10316d2059bfb501e370a69084537759e8f87888e54a45"
+        },
+        {
+          "path": "checks/independent/cqft-reeh-schlieder-theorem-import.py",
+          "line": 26,
+          "sha256": "43bad87e03495e9010083f5ea47880d53cc5390281f3cd60ef9dc480061b6d6a"
+        },
+        {
+          "path": "checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+          "line": 39,
+          "sha256": "717559beb95ab183d83fd1a0775ddf0558cbcac652101346d5560a43b683dc86"
+        },
+        {
+          "path": "checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+          "line": 41,
+          "sha256": "717559beb95ab183d83fd1a0775ddf0558cbcac652101346d5560a43b683dc86"
+        },
+        {
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "line": 19,
+          "sha256": "67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843"
+        },
+        {
+          "path": "checks/independent/authf-carrier-admission-gate.py",
+          "line": 13,
+          "sha256": "5a3606b384ad5197cfdbbb74eca2119074ae2d3cf4701bd1f6be436e557b5223"
+        },
+        {
+          "path": "checks/independent/auth-rice-theorem-import.py",
+          "line": 6,
+          "sha256": "530a303ec5ed584274b3db519fe2ec50feda842175394ab55813fd2776dada19"
+        },
+        {
+          "path": "checks/independent/auth-dtm2-input-request-planned.py",
+          "line": 13,
+          "sha256": "6f0caa2b67e7061d30e1589f907b09230a86ace97e717706465866a4d627266e"
+        },
+        {
+          "path": "checks/independent/ads-rt-formula-import.py",
+          "line": 34,
+          "sha256": "ec322834cf16e527936b9bf3ca6ad4e7135809a3845787c09d8e309c86a0f224"
+        },
+        {
+          "path": "checks/independent/ads-regge-area-rt-gap.py",
+          "line": 31,
+          "sha256": "c6f633774744bbc577d58dea3276164ac3e62c4ee594b6bd95c8c05cb15cde78"
+        },
+        {
+          "path": "checks/independent/ads-happy-toy-not-duality-gap.py",
+          "line": 27,
+          "sha256": "665357ae57e36ee9d5d3ed3aeb888d48aac7ff1330ddbd72b2da5c26eba8e97b"
+        },
+        {
+          "path": "checks/independent/ads-cft-duality-import.py",
+          "line": 38,
+          "sha256": "be565a5389729dec0d7c84370bb2433e998bec014754c92a5d0679d52977961f"
+        }
+      ],
+      "symbols": [
+        "Violation",
+        "Violation.__init__",
+        "_write_failure",
+        "cli",
+        "evaluate",
+        "require"
+      ]
+    },
+    "checks/checker_support/cases.py": {
+      "role": "Invocation-owned case aggregate",
+      "profile": "Non-Numeric",
+      "cost": "Expected constant-time index lookup plus string hashing; O(n) snapshot; 100000 rows and 1024 characters per identity.",
+      "groups": [
+        {
+          "symbols": [
+            "Cases",
+            "Cases.__init__",
+            "Cases.append",
+            "Cases.record",
+            "Cases.__len__",
+            "Cases.__iter__"
+          ],
+          "requirement": "Atomically enforce unique nonblank identities and exact boolean results; failed admissions leave both indexes unchanged and iteration snapshots the rows.",
+          "tests": [
+            "CheckerSupportTests.test_cases_transactional_admission_and_iteration"
+          ],
+          "requirement_id": "TFQM-CHECKER-CASES-1"
+        },
+        {
+          "symbols": [
+            "Cases.checks",
+            "Cases.require"
+          ],
+          "requirement": "Count every attempted obligation exactly once before validation, including failed obligations; expose a read-only count and no cross-invocation global state.",
+          "tests": [
+            "CheckerSupportTests.test_counter_is_invocation_owned_and_counts_failed_obligations"
+          ],
+          "requirement_id": "TFQM-CHECKER-CASES-2"
+        }
+      ],
+      "source_sha256": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+      "consumers": [
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "line": 26,
+          "sha256": "4ee6fe26c56b18955571713cdf43a64e2ca2c93f0618e32afed1783701faf827"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 26,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 33,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/independent/dfm-continuum-refinement-limit.py",
+          "line": 19,
+          "sha256": "57151e569a5622447d8a899c785bf7e744c46f6991ab9873a1d1b73a46d51d50"
+        },
+        {
+          "path": "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+          "line": 37,
+          "sha256": "0846def364cc1a71ab10316d2059bfb501e370a69084537759e8f87888e54a45"
+        },
+        {
+          "path": "checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+          "line": 42,
+          "sha256": "717559beb95ab183d83fd1a0775ddf0558cbcac652101346d5560a43b683dc86"
+        },
+        {
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "line": 20,
+          "sha256": "67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843"
+        }
+      ],
+      "symbols": [
+        "Cases",
+        "Cases.__init__",
+        "Cases.__iter__",
+        "Cases.__len__",
+        "Cases.append",
+        "Cases.checks",
+        "Cases.record",
+        "Cases.require"
+      ]
+    },
+    "checks/checker_support/domains.py": {
+      "role": "Exact input schema boundary",
+      "profile": "Exact",
+      "cost": "O(n) admission; 4096 collection entries, 4096-bit rational components and 64-bit words; integer comparison depends on bit length.",
+      "groups": [
+        {
+          "symbols": [
+            "_limits",
+            "integer",
+            "_violation"
+          ],
+          "requirement": "Exclude bools; admit ordered exact integer bounds and their endpoints; refuse lower-range violations and upper-budget excess.",
+          "tests": [
+            "CheckerSupportTests.test_integer_boundaries"
+          ],
+          "requirement_id": "TFQM-CHECKER-DOMAINS-1"
+        },
+        {
+          "symbols": [
+            "_exact_fraction",
+            "rational"
+          ],
+          "requirement": "Admit only exact int/Fraction inputs, bound component bits, and enforce lower bounds and an actual boolean positivity flag.",
+          "tests": [
+            "CheckerSupportTests.test_rational_boundaries_and_resource_budget"
+          ],
+          "requirement_id": "TFQM-CHECKER-DOMAINS-2"
+        },
+        {
+          "symbols": [
+            "sequence",
+            "integer_matrix"
+          ],
+          "requirement": "Snapshot admitted list/tuple carriers; enforce exact dimensions, nonempty rectangular matrices and total entry budgets.",
+          "tests": [
+            "CheckerSupportTests.test_collection_admission_and_snapshot_ownership",
+            "CheckerSupportTests.test_matrix_word_and_permutation_domains"
+          ],
+          "requirement_id": "TFQM-CHECKER-DOMAINS-3"
+        },
+        {
+          "symbols": [
+            "flat_matrix2",
+            "binary_word",
+            "permutation3"
+          ],
+          "requirement": "Require four exact rational entries, actual bool words, and a bijection of 0/1/2 respectively.",
+          "tests": [
+            "CheckerSupportTests.test_matrix_word_and_permutation_domains"
+          ],
+          "requirement_id": "TFQM-CHECKER-DOMAINS-4"
+        },
+        {
+          "symbols": [
+            "Failure",
+            "Failure.__post_init__",
+            "Failure.to_record"
+          ],
+          "requirement": "Close the input/resource/check/duplicate vocabulary, reject blank/nontext messages and preserve frozen fields when a caller changes a returned record.",
+          "tests": [
+            "CheckerSupportTests.test_failure_value_and_exception_bridge"
+          ],
+          "requirement_id": "TFQM-CHECKER-DOMAINS-5"
+        },
+        {
+          "symbols": [
+            "hole"
+          ],
+          "requirement": "Validate exact integer words and the supplied prefix/lhs/suffix decomposition; replace only that occurrence, preserve input ownership, and enforce output budget. No rewrite-system or machine claim.",
+          "tests": [
+            "CheckerSupportTests.test_word_replacement_preserves_context",
+            "CheckerSupportTests.test_word_replacement_refusals"
+          ],
+          "requirement_id": "TFQM-CHECKER-DOMAINS-6"
+        }
+      ],
+      "source_sha256": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+      "consumers": [
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "line": 27,
+          "sha256": "4ee6fe26c56b18955571713cdf43a64e2ca2c93f0618e32afed1783701faf827"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 27,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 28,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 37,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/independent/cqft-local-net-axioms-import.py",
+          "line": 12,
+          "sha256": "a8956e4f8c2113a37d7500a5002402da46dd16f7cd395aa8007bad74d229996a"
+        },
+        {
+          "path": "checks/independent/cqft-causal-factorization-import.py",
+          "line": 31,
+          "sha256": "3215e24a50f528ec6298d68511a7f2a7ed8180a89c6ceac0ce64c816740c5da4"
+        },
+        {
+          "path": "checks/independent/comp-c7-fixed-target-open.py",
+          "line": 18,
+          "sha256": "2a46154370f94c36dcc86d7ec24d90ff221c2490c7097612aebee8218163ad8b"
+        },
+        {
+          "path": "checks/independent/dfm-continuum-refinement-limit.py",
+          "line": 15,
+          "sha256": "57151e569a5622447d8a899c785bf7e744c46f6991ab9873a1d1b73a46d51d50"
+        },
+        {
+          "path": "checks/independent/dfm-continuum-refinement-limit.py",
+          "line": 20,
+          "sha256": "57151e569a5622447d8a899c785bf7e744c46f6991ab9873a1d1b73a46d51d50"
+        },
+        {
+          "path": "checks/independent/dfm-continuum-interface.py",
+          "line": 22,
+          "sha256": "998ca54c3b9a15ff79b1fa72254211a2ec7a09e0cd7eb84b828a43fca9808d4d"
+        },
+        {
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "line": 18,
+          "sha256": "911ac822e2d935b78a8edb19a8e35965926660a6e3f5520530bc0f2fa1bfa9d5"
+        },
+        {
+          "path": "checks/independent/dfm-bphz-continuum-fence.py",
+          "line": 22,
+          "sha256": "7f740de09a98c5baa35dbc226741b6a6e84b8d323f5ecb5c4a1adb9e05dff1a5"
+        },
+        {
+          "path": "checks/independent/ct-local-mediator-entanglement-import.py",
+          "line": 33,
+          "sha256": "3c04275f2b50ebdcbf18ea5708cab3b96f3c44cd23bf10190df8b107e2fb3f09"
+        },
+        {
+          "path": "checks/independent/comp-c2-step3-not-word-step.py",
+          "line": 18,
+          "sha256": "80606470732178cedb6f79651d3b2d772563a315591fa94f5cc541e5220f1964"
+        },
+        {
+          "path": "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+          "line": 35,
+          "sha256": "0846def364cc1a71ab10316d2059bfb501e370a69084537759e8f87888e54a45"
+        },
+        {
+          "path": "checks/independent/cqft-reeh-schlieder-theorem-import.py",
+          "line": 27,
+          "sha256": "43bad87e03495e9010083f5ea47880d53cc5390281f3cd60ef9dc480061b6d6a"
+        },
+        {
+          "path": "checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+          "line": 40,
+          "sha256": "717559beb95ab183d83fd1a0775ddf0558cbcac652101346d5560a43b683dc86"
+        },
+        {
+          "path": "checks/independent/auth-rice-theorem-import.py",
+          "line": 7,
+          "sha256": "530a303ec5ed584274b3db519fe2ec50feda842175394ab55813fd2776dada19"
+        },
+        {
+          "path": "checks/independent/ads-rt-formula-import.py",
+          "line": 35,
+          "sha256": "ec322834cf16e527936b9bf3ca6ad4e7135809a3845787c09d8e309c86a0f224"
+        },
+        {
+          "path": "checks/independent/ads-regge-area-rt-gap.py",
+          "line": 32,
+          "sha256": "c6f633774744bbc577d58dea3276164ac3e62c4ee594b6bd95c8c05cb15cde78"
+        },
+        {
+          "path": "checks/independent/ads-happy-toy-not-duality-gap.py",
+          "line": 28,
+          "sha256": "665357ae57e36ee9d5d3ed3aeb888d48aac7ff1330ddbd72b2da5c26eba8e97b"
+        },
+        {
+          "path": "checks/independent/ads-cft-duality-import.py",
+          "line": 39,
+          "sha256": "be565a5389729dec0d7c84370bb2433e998bec014754c92a5d0679d52977961f"
+        }
+      ],
+      "symbols": [
+        "Failure",
+        "Failure.__post_init__",
+        "Failure.to_record",
+        "_exact_fraction",
+        "_limits",
+        "_violation",
+        "binary_word",
+        "flat_matrix2",
+        "hole",
+        "integer",
+        "integer_matrix",
+        "permutation3",
+        "rational",
+        "sequence"
+      ]
+    },
+    "checks/checker_support/gaussian_matrix2.py": {
+      "role": "Gaussian matrix value object",
+      "profile": "Exact",
+      "cost": "Fixed number of exact rational operations on four bounded Gaussian components; zero determinant refuses inversion.",
+      "groups": [
+        {
+          "symbols": [
+            "GaussianMatrix2",
+            "GaussianMatrix2.__post_init__",
+            "GaussianMatrix2.eye",
+            "GaussianMatrix2.pauli_x",
+            "GaussianMatrix2.pauli_z"
+          ],
+          "requirement": "Construct immutable matrices from exactly four admitted Gaussian values, including identity and Pauli matrices.",
+          "tests": [
+            "CheckerSupportTests.test_gaussian_matrix_invariants"
+          ],
+          "requirement_id": "TFQM-CHECKER-GAUSSIAN-MATRIX2-1"
+        },
+        {
+          "symbols": [
+            "GaussianMatrix2.mul",
+            "GaussianMatrix2.trace",
+            "GaussianMatrix2.det",
+            "GaussianMatrix2.inv",
+            "GaussianMatrix2.adjoint",
+            "GaussianMatrix2.is_unitary"
+          ],
+          "requirement": "Implement exact matrix algebra with operand admission, conjugate transpose and typed singular-inverse refusal.",
+          "tests": [
+            "CheckerSupportTests.test_gaussian_matrix_invariants"
+          ],
+          "requirement_id": "TFQM-CHECKER-GAUSSIAN-MATRIX2-2"
+        }
+      ],
+      "source_sha256": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+      "consumers": [
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 29,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+          "line": 44,
+          "sha256": "0846def364cc1a71ab10316d2059bfb501e370a69084537759e8f87888e54a45"
+        }
+      ],
+      "symbols": [
+        "GaussianMatrix2",
+        "GaussianMatrix2.__post_init__",
+        "GaussianMatrix2.adjoint",
+        "GaussianMatrix2.det",
+        "GaussianMatrix2.eye",
+        "GaussianMatrix2.inv",
+        "GaussianMatrix2.is_unitary",
+        "GaussianMatrix2.mul",
+        "GaussianMatrix2.pauli_x",
+        "GaussianMatrix2.pauli_z",
+        "GaussianMatrix2.trace"
+      ]
+    },
+    "checks/checker_support/gaussian_rational.py": {
+      "role": "Gaussian rational value object",
+      "profile": "Exact",
+      "cost": "Fixed rational operations; each stored component at most 4096 bits, norm may use twice that width.",
+      "groups": [
+        {
+          "symbols": [
+            "GaussianRational",
+            "GaussianRational.__init__",
+            "GaussianRational._admit_other"
+          ],
+          "requirement": "Validate immutable exact Q(i) components; reject float/bool components and non-Gaussian operands.",
+          "tests": [
+            "CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability"
+          ],
+          "requirement_id": "TFQM-CHECKER-GAUSSIAN-RATIONAL-1"
+        },
+        {
+          "symbols": [
+            "GaussianRational.__add__",
+            "GaussianRational.__sub__",
+            "GaussianRational.__mul__",
+            "GaussianRational.mul",
+            "GaussianRational.conj",
+            "GaussianRational.norm_sq",
+            "GaussianRational.inv",
+            "GaussianRational.div"
+          ],
+          "requirement": "Preserve exact Q(i) operations and conjugation; inversion refuses zero and never approximates.",
+          "tests": [
+            "CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic",
+            "CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability"
+          ],
+          "requirement_id": "TFQM-CHECKER-GAUSSIAN-RATIONAL-2"
+        }
+      ],
+      "source_sha256": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+      "consumers": [
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 30,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "line": 45,
+          "sha256": "911ac822e2d935b78a8edb19a8e35965926660a6e3f5520530bc0f2fa1bfa9d5"
+        },
+        {
+          "path": "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+          "line": 41,
+          "sha256": "0846def364cc1a71ab10316d2059bfb501e370a69084537759e8f87888e54a45"
+        }
+      ],
+      "symbols": [
+        "GaussianRational",
+        "GaussianRational.__add__",
+        "GaussianRational.__init__",
+        "GaussianRational.__mul__",
+        "GaussianRational.__sub__",
+        "GaussianRational._admit_other",
+        "GaussianRational.conj",
+        "GaussianRational.div",
+        "GaussianRational.inv",
+        "GaussianRational.mul",
+        "GaussianRational.norm_sq"
+      ]
+    },
+    "checks/checker_support/happy_boundary.py": {
+      "role": "Stabilizer and finite cut services",
+      "profile": "Exact",
+      "cost": "GF(2) rank O(40n) on 40-bit words; fixed 20-row purity checks; 16 immutable cached tuples; fixed six-vertex cut model.",
+      "groups": [
+        {
+          "symbols": [
+            "set_xz",
+            "_pattern",
+            "encode_local_gen",
+            "encode_central_gen",
+            "build_boundary_gens_20"
+          ],
+          "requirement": "Validate Pauli bits and block indices; immutable declared fixture constants produce fresh generator lists. No tensor-network construction claim.",
+          "tests": [
+            "CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot"
+          ],
+          "requirement_id": "TFQM-CHECKER-HAPPY-BOUNDARY-1"
+        },
+        {
+          "symbols": [
+            "commutes_20",
+            "gf2_rank",
+            "validate_generators",
+            "_validate_pure_generators"
+          ],
+          "requirement": "Admit 40-bit rows; require rank 20 and pairwise commutation for a pure-state entropy fixture; cache immutable snapshots only.",
+          "tests": [
+            "CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot",
+            "CheckerSupportTests.test_rank_against_explicit_vector_span"
+          ],
+          "requirement_id": "TFQM-CHECKER-HAPPY-BOUNDARY-2"
+        },
+        {
+          "symbols": [
+            "in_contiguous_interval",
+            "interval_bitmask_40",
+            "interval_mincut"
+          ],
+          "requirement": "Cyclic interval and cut calculations agree with all 64 internal assignments for all 420 admitted start/length pairs.",
+          "tests": [
+            "CheckerSupportTests.test_stabilizer_mincut_independent_assignments"
+          ],
+          "requirement_id": "TFQM-CHECKER-HAPPY-BOUNDARY-3"
+        },
+        {
+          "symbols": [
+            "validated_region",
+            "interval_entropy",
+            "region_entropy",
+            "region_mutual_information"
+          ],
+          "requirement": "Refuse duplicate/out-of-carrier/overlapping regions; entropy and mutual information agree with independently specified product and Bell stabilizers.",
+          "tests": [
+            "CheckerSupportTests.test_stabilizer_entropy_for_product_and_bell_states",
+            "CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot"
+          ],
+          "requirement_id": "TFQM-CHECKER-HAPPY-BOUNDARY-4"
+        }
+      ],
+      "source_sha256": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+      "consumers": [
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 327,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 355,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 367,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 380,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/independent/ads-rt-formula-import.py",
+          "line": 65,
+          "sha256": "ec322834cf16e527936b9bf3ca6ad4e7135809a3845787c09d8e309c86a0f224"
+        },
+        {
+          "path": "checks/independent/ads-regge-area-rt-gap.py",
+          "line": 35,
+          "sha256": "c6f633774744bbc577d58dea3276164ac3e62c4ee594b6bd95c8c05cb15cde78"
+        },
+        {
+          "path": "checks/independent/ads-happy-toy-not-duality-gap.py",
+          "line": 46,
+          "sha256": "665357ae57e36ee9d5d3ed3aeb888d48aac7ff1330ddbd72b2da5c26eba8e97b"
+        }
+      ],
+      "symbols": [
+        "_pattern",
+        "_validate_pure_generators",
+        "build_boundary_gens_20",
+        "commutes_20",
+        "encode_central_gen",
+        "encode_local_gen",
+        "gf2_rank",
+        "in_contiguous_interval",
+        "interval_bitmask_40",
+        "interval_entropy",
+        "interval_mincut",
+        "region_entropy",
+        "region_mutual_information",
+        "set_xz",
+        "validate_generators",
+        "validated_region"
+      ]
+    },
+    "checks/checker_support/mutation_case.py": {
+      "role": "Immutable fault-injection request value",
+      "profile": "Non-Numeric",
+      "cost": "8192-character replacement limit, 32 test names; O(source length) unambiguous replacement.",
+      "groups": [
+        {
+          "symbols": [
+            "MutationCase",
+            "MutationCase.__post_init__",
+            "MutationCase.apply"
+          ],
+          "requirement": "Validate identifiers, restricted module basenames, nonidentical replacements and unique test methods; reject path traversal and absent/ambiguous replacement targets.",
+          "tests": [
+            "CheckerSupportTests.test_mutation_request_admission_and_exact_replacement"
+          ],
+          "requirement_id": "TFQM-CHECKER-MUTATION-CASE-1"
+        }
+      ],
+      "source_sha256": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+      "consumers": [
+        {
+          "path": "checks/tests/test_mutation_campaign.py",
+          "line": 16,
+          "sha256": "12f9d3ec343ae5dc56dc8f3000d5baba3972f053f4342fdcd381e8193f96cb4c"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 32,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/run_support_mutations.py",
+          "line": 25,
+          "sha256": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb"
+        }
+      ],
+      "symbols": [
+        "MutationCase",
+        "MutationCase.__post_init__",
+        "MutationCase.apply"
+      ]
+    },
+    "checks/checker_support/outcome.py": {
+      "role": "Typed Railway result value",
+      "profile": "Non-Numeric",
+      "cost": "Constant composition overhead plus trusted synchronous callback cost; no owned external resource.",
+      "groups": [
+        {
+          "symbols": [
+            "Outcome",
+            "Outcome.__init__",
+            "Outcome.ok",
+            "Outcome.value_or"
+          ],
+          "requirement": "Require one explicit success or failure variant. Successful None is distinct from failure; failed variant alone uses a fallback.",
+          "tests": [
+            "CheckerSupportTests.test_outcome_construction_and_nullable_success",
+            "CheckerSupportTests.test_outcome_transitions_preserve_errors"
+          ],
+          "requirement_id": "TFQM-CHECKER-OUTCOME-1"
+        },
+        {
+          "symbols": [
+            "Outcome.bind",
+            "Outcome.map"
+          ],
+          "requirement": "Short-circuit failures; admit callable transitions and Outcome results; preserve typed causes, nullable payloads, associativity and unexpected-exception propagation.",
+          "tests": [
+            "CheckerSupportTests.test_outcome_transitions_preserve_errors",
+            "CheckerSupportTests.test_railway_associativity",
+            "CheckerSupportTests.test_outcome_construction_and_nullable_success"
+          ],
+          "requirement_id": "TFQM-CHECKER-OUTCOME-2"
+        }
+      ],
+      "source_sha256": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+      "consumers": [
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "line": 28,
+          "sha256": "4ee6fe26c56b18955571713cdf43a64e2ca2c93f0618e32afed1783701faf827"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 31,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        }
+      ],
+      "symbols": [
+        "Outcome",
+        "Outcome.__init__",
+        "Outcome.bind",
+        "Outcome.map",
+        "Outcome.ok",
+        "Outcome.value_or"
+      ]
+    },
+    "checks/checker_support/wilson_operator.py": {
+      "role": "Finite lattice operator construction and admission",
+      "profile": "Exact",
+      "cost": "Fixed dimensions 4/16 and bounded site/spin/color/direction indices; O(16^2) validation and fixed-size hopping assembly. The separate 8-by-8 determinant fixture uses O(8^3) rational elimination.",
+      "groups": [
+        {
+          "symbols": [
+            "_matrix",
+            "_entry",
+            "_signs"
+          ],
+          "requirement": "Snapshot square Gaussian matrices and admit exactly four actual integer chirality signs in {-1,+1}.",
+          "tests": [
+            "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+          ],
+          "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-1"
+        },
+        {
+          "symbols": [
+            "gamma_matrices",
+            "_entry_product",
+            "clifford_relations"
+          ],
+          "requirement": "Construct the declared chiral representation; independently test Hermiticity, Clifford anticommutation and gamma5 grading.",
+          "tests": [
+            "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries",
+            "CheckerSupportTests.test_wilson_operator_independent_block_construction"
+          ],
+          "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-2"
+        },
+        {
+          "symbols": [
+            "color_link",
+            "spin_color_index",
+            "_add_hop",
+            "assembled_operator"
+          ],
+          "requirement": "Admit exact parameter and indices; assemble correctly signed, conjugated forward/backward hopping on the fixed two-site torus.",
+          "tests": [
+            "CheckerSupportTests.test_wilson_operator_independent_block_construction",
+            "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+          ],
+          "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-3"
+        },
+        {
+          "symbols": [
+            "gamma5_hermitian",
+            "assembled_operator_checks"
+          ],
+          "requirement": "Reject malformed operators and detect broken gamma5 Hermiticity; failed Clifford admission cannot pass the composed check.",
+          "tests": [
+            "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+          ],
+          "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-4"
+        },
+        {
+          "symbols": [
+            "direct_wilson_determinant"
+          ],
+          "requirement": "Eliminate the declared 8-by-8 fixture independently of its determinant polynomial; exact input admission, pivoting and singular return zero agree with a separate Bareiss implementation.",
+          "tests": [
+            "CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination"
+          ],
+          "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-5"
+        }
+      ],
+      "source_sha256": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+      "consumers": [
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "line": 220,
+          "sha256": "4ee6fe26c56b18955571713cdf43a64e2ca2c93f0618e32afed1783701faf827"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 35,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/tests/test_checker_support.py",
+          "line": 36,
+          "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+        },
+        {
+          "path": "checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+          "line": 45,
+          "sha256": "717559beb95ab183d83fd1a0775ddf0558cbcac652101346d5560a43b683dc86"
+        },
+        {
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "line": 23,
+          "sha256": "67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843"
+        },
+        {
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "line": 26,
+          "sha256": "67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843"
+        }
+      ],
+      "symbols": [
+        "_add_hop",
+        "_entry",
+        "_entry_product",
+        "_matrix",
+        "_signs",
+        "assembled_operator",
+        "assembled_operator_checks",
+        "clifford_relations",
+        "color_link",
+        "direct_wilson_determinant",
+        "gamma5_hermitian",
+        "gamma_matrices",
+        "spin_color_index"
+      ]
+    },
+    "checks/tests/test_checker_support.py": {
+      "role": "Independent exact-oracle and property verification harness",
+      "profile": "Exact",
+      "cost": "Deterministic Hypothesis population (80 generated cases per property; 25 plus six explicit determinant cases), bounded finite enumerations and 30-second child deadlines where applicable. Test-owned temporary directories and patched globals are restored by context managers.",
+      "groups": [
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-1",
+          "symbols": [
+            "raises"
+          ],
+          "requirement": "Exercise raises with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-2",
+          "symbols": [
+            "CheckerSupportTests"
+          ],
+          "requirement": "Exercise CheckerSupportTests with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-3",
+          "symbols": [
+            "CheckerSupportTests.refused"
+          ],
+          "requirement": "Exercise CheckerSupportTests.refused with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-4",
+          "symbols": [
+            "CheckerSupportTests.test_failure_value_and_exception_bridge"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test failure value and exception bridge with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-BOUNDARY-1",
+            "TFQM-CHECKER-BOUNDARY-4",
+            "TFQM-CHECKER-DOMAINS-5"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_failure_value_and_exception_bridge"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-5",
+          "symbols": [
+            "CheckerSupportTests.test_outcome_construction_and_nullable_success"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test outcome construction and nullable success with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-OUTCOME-1",
+            "TFQM-CHECKER-OUTCOME-2"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_outcome_construction_and_nullable_success"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-6",
+          "symbols": [
+            "CheckerSupportTests.test_outcome_transitions_preserve_errors"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test outcome transitions preserve errors with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-OUTCOME-1",
+            "TFQM-CHECKER-OUTCOME-2"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_outcome_transitions_preserve_errors"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-7",
+          "symbols": [
+            "CheckerSupportTests.test_railway_associativity"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test railway associativity with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-OUTCOME-2"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_railway_associativity"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-8",
+          "symbols": [
+            "CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test boundary errors cancellation and required boolean with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-BOUNDARY-1",
+            "TFQM-CHECKER-BOUNDARY-2",
+            "TFQM-CHECKER-BOUNDARY-4"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-9",
+          "symbols": [
+            "CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test cli exit domain and failure wire format with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-BOUNDARY-3"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-10",
+          "symbols": [
+            "CheckerSupportTests.test_integer_boundaries"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test integer boundaries with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-DOMAINS-1"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_integer_boundaries"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-11",
+          "symbols": [
+            "CheckerSupportTests.test_rational_boundaries_and_resource_budget"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test rational boundaries and resource budget with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-DOMAINS-2"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_rational_boundaries_and_resource_budget"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-12",
+          "symbols": [
+            "CheckerSupportTests.test_collection_admission_and_snapshot_ownership"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test collection admission and snapshot ownership with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-DOMAINS-3"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_collection_admission_and_snapshot_ownership"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-13",
+          "symbols": [
+            "CheckerSupportTests.test_matrix_word_and_permutation_domains"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test matrix word and permutation domains with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-DOMAINS-3",
+            "TFQM-CHECKER-DOMAINS-4"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_matrix_word_and_permutation_domains"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-14",
+          "symbols": [
+            "CheckerSupportTests.test_cases_transactional_admission_and_iteration"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test cases transactional admission and iteration with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-CASES-1"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_cases_transactional_admission_and_iteration"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-15",
+          "symbols": [
+            "CheckerSupportTests.test_counter_is_invocation_owned_and_counts_failed_obligations"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test counter is invocation owned and counts failed obligations with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-CASES-2"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_counter_is_invocation_owned_and_counts_failed_obligations"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-16",
+          "symbols": [
+            "CheckerSupportTests.test_mutation_request_admission_and_exact_replacement"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test mutation request admission and exact replacement with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-MUTATION-CASE-1"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_mutation_request_admission_and_exact_replacement"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-17",
+          "symbols": [
+            "CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test gaussian invalid components operands and immutability with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-GAUSSIAN-RATIONAL-1",
+            "TFQM-CHECKER-GAUSSIAN-RATIONAL-2"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-18",
+          "symbols": [
+            "CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test gaussian field against symbolic complex arithmetic with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-GAUSSIAN-RATIONAL-2"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-19",
+          "symbols": [
+            "CheckerSupportTests.test_gaussian_matrix_invariants"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test gaussian matrix invariants with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-GAUSSIAN-MATRIX2-1",
+            "TFQM-CHECKER-GAUSSIAN-MATRIX2-2"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_gaussian_matrix_invariants"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-20",
+          "symbols": [
+            "CheckerSupportTests.test_word_replacement_preserves_context"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test word replacement preserves context with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-DOMAINS-6"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_word_replacement_preserves_context"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-21",
+          "symbols": [
+            "CheckerSupportTests.test_word_replacement_refusals"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test word replacement refusals with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-DOMAINS-6"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_word_replacement_refusals"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-22",
+          "symbols": [
+            "CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test stabilizer admission and cache snapshot with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-HAPPY-BOUNDARY-1",
+            "TFQM-CHECKER-HAPPY-BOUNDARY-2",
+            "TFQM-CHECKER-HAPPY-BOUNDARY-4"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-23",
+          "symbols": [
+            "CheckerSupportTests.test_stabilizer_mincut_independent_assignments"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test stabilizer mincut independent assignments with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-HAPPY-BOUNDARY-3"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_stabilizer_mincut_independent_assignments"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-24",
+          "symbols": [
+            "CheckerSupportTests.test_stabilizer_entropy_for_product_and_bell_states"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test stabilizer entropy for product and bell states with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-HAPPY-BOUNDARY-4"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_stabilizer_entropy_for_product_and_bell_states"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-25",
+          "symbols": [
+            "CheckerSupportTests.test_rank_against_explicit_vector_span"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test rank against explicit vector span with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-HAPPY-BOUNDARY-2"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_rank_against_explicit_vector_span"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-26",
+          "symbols": [
+            "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test wilson shapes and chirality boundaries with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-WILSON-OPERATOR-1",
+            "TFQM-CHECKER-WILSON-OPERATOR-2",
+            "TFQM-CHECKER-WILSON-OPERATOR-3",
+            "TFQM-CHECKER-WILSON-OPERATOR-4"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-27",
+          "symbols": [
+            "CheckerSupportTests.test_wilson_operator_independent_block_construction"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test wilson operator independent block construction with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-WILSON-OPERATOR-2",
+            "TFQM-CHECKER-WILSON-OPERATOR-3"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_wilson_operator_independent_block_construction"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-CHECKER-SUPPORT-28",
+          "symbols": [
+            "CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination"
+          ],
+          "requirement": "Exercise CheckerSupportTests.test wilson determinant independent symbolic elimination with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [
+            "TFQM-CHECKER-WILSON-OPERATOR-5"
+          ],
+          "tests": [
+            "CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        }
+      ],
+      "symbols": [
+        "raises",
+        "CheckerSupportTests",
+        "CheckerSupportTests.refused",
+        "CheckerSupportTests.test_failure_value_and_exception_bridge",
+        "CheckerSupportTests.test_outcome_construction_and_nullable_success",
+        "CheckerSupportTests.test_outcome_transitions_preserve_errors",
+        "CheckerSupportTests.test_railway_associativity",
+        "CheckerSupportTests.test_boundary_errors_cancellation_and_required_boolean",
+        "CheckerSupportTests.test_cli_exit_domain_and_failure_wire_format",
+        "CheckerSupportTests.test_integer_boundaries",
+        "CheckerSupportTests.test_rational_boundaries_and_resource_budget",
+        "CheckerSupportTests.test_collection_admission_and_snapshot_ownership",
+        "CheckerSupportTests.test_matrix_word_and_permutation_domains",
+        "CheckerSupportTests.test_cases_transactional_admission_and_iteration",
+        "CheckerSupportTests.test_counter_is_invocation_owned_and_counts_failed_obligations",
+        "CheckerSupportTests.test_mutation_request_admission_and_exact_replacement",
+        "CheckerSupportTests.test_gaussian_invalid_components_operands_and_immutability",
+        "CheckerSupportTests.test_gaussian_field_against_symbolic_complex_arithmetic",
+        "CheckerSupportTests.test_gaussian_matrix_invariants",
+        "CheckerSupportTests.test_word_replacement_preserves_context",
+        "CheckerSupportTests.test_word_replacement_refusals",
+        "CheckerSupportTests.test_stabilizer_admission_and_cache_snapshot",
+        "CheckerSupportTests.test_stabilizer_mincut_independent_assignments",
+        "CheckerSupportTests.test_stabilizer_entropy_for_product_and_bell_states",
+        "CheckerSupportTests.test_rank_against_explicit_vector_span",
+        "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries",
+        "CheckerSupportTests.test_wilson_operator_independent_block_construction",
+        "CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination"
+      ],
+      "source_sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee",
+      "consumers": [
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "c16f338c7506fc9909290155615d08f350afa9fc8a884491d7cc22d43a954ce3"
+        },
+        {
+          "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+          "role": "Recorded direct normal and optimized CLI executions"
+        }
+      ]
+    },
+    "checks/tests/test_mutation_campaign.py": {
+      "role": "Mutation-accounting and lifecycle fault-injection harness",
+      "profile": "Non-Numeric",
+      "cost": "Deterministic Hypothesis population (80 generated cases per property; 25 plus six explicit determinant cases), bounded finite enumerations and 30-second child deadlines where applicable. Test-owned temporary directories and patched globals are restored by context managers.",
+      "groups": [
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-1",
+          "symbols": [
+            "record"
+          ],
+          "requirement": "Exercise record with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-2",
+          "symbols": [
+            "MutationCampaignTests"
+          ],
+          "requirement": "Exercise MutationCampaignTests with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-3",
+          "symbols": [
+            "MutationCampaignTests.test_accounting_mutants_are_detected"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test accounting mutants are detected with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_accounting_mutants_are_detected"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-4",
+          "symbols": [
+            "MutationCampaignTests.test_status_attribution_excludes_harness_failures"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test status attribution excludes harness failures with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_status_attribution_excludes_harness_failures"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-5",
+          "symbols": [
+            "MutationCampaignTests.test_worker_has_a_timeout_and_isolated_interpreter"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test worker has a timeout and isolated interpreter with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_worker_has_a_timeout_and_isolated_interpreter"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-6",
+          "symbols": [
+            "MutationCampaignTests.test_denominator_retains_unrun_and_inconclusive"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test denominator retains unrun and inconclusive with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_denominator_retains_unrun_and_inconclusive"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-7",
+          "symbols": [
+            "MutationCampaignTests.test_manifest_schema_and_identity_refusal"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test manifest schema and identity refusal with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_manifest_schema_and_identity_refusal"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-8",
+          "symbols": [
+            "MutationCampaignTests.test_execution_restores_bytes_and_classifies_every_outcome"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test execution restores bytes and classifies every outcome with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_execution_restores_bytes_and_classifies_every_outcome"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-9",
+          "symbols": [
+            "MutationCampaignTests.test_campaign_baseline_and_cancellation_preserve_accounting"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test campaign baseline and cancellation preserve accounting with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_campaign_baseline_and_cancellation_preserve_accounting"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-10",
+          "symbols": [
+            "MutationCampaignTests.test_output_cannot_replace_input_and_unknown_source_refused"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test output cannot replace input and unknown source refused with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_output_cannot_replace_input_and_unknown_source_refused"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-11",
+          "symbols": [
+            "MutationCampaignTests.test_atomic_receipt_failure_retains_previous_bytes"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test atomic receipt failure retains previous bytes with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_atomic_receipt_failure_retains_previous_bytes"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        },
+        {
+          "requirement_id": "TFQM-TEST-MUTATION-CAMPAIGN-12",
+          "symbols": [
+            "MutationCampaignTests.test_baseline_timeout_and_cli_resource_translation"
+          ],
+          "requirement": "Exercise MutationCampaignTests.test baseline timeout and cli resource translation with explicit unittest assertions, independent expected results or injected operational failures; no stripped production assertions.",
+          "verifies_requirement_ids": [],
+          "tests": [
+            "MutationCampaignTests.test_baseline_timeout_and_cli_resource_translation"
+          ],
+          "verification_boundary": "Complete normal/optimized suite, strict typing and deliberate source/return-value mutations bind this verifier; no recursive claim that a test proves itself."
+        }
+      ],
+      "symbols": [
+        "record",
+        "MutationCampaignTests",
+        "MutationCampaignTests.test_accounting_mutants_are_detected",
+        "MutationCampaignTests.test_status_attribution_excludes_harness_failures",
+        "MutationCampaignTests.test_worker_has_a_timeout_and_isolated_interpreter",
+        "MutationCampaignTests.test_denominator_retains_unrun_and_inconclusive",
+        "MutationCampaignTests.test_manifest_schema_and_identity_refusal",
+        "MutationCampaignTests.test_execution_restores_bytes_and_classifies_every_outcome",
+        "MutationCampaignTests.test_campaign_baseline_and_cancellation_preserve_accounting",
+        "MutationCampaignTests.test_output_cannot_replace_input_and_unknown_source_refused",
+        "MutationCampaignTests.test_atomic_receipt_failure_retains_previous_bytes",
+        "MutationCampaignTests.test_baseline_timeout_and_cli_resource_translation"
+      ],
+      "source_sha256": "12f9d3ec343ae5dc56dc8f3000d5baba3972f053f4342fdcd381e8193f96cb4c",
+      "consumers": [
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "c16f338c7506fc9909290155615d08f350afa9fc8a884491d7cc22d43a954ce3"
+        },
+        {
+          "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+          "role": "Recorded direct normal and optimized CLI executions"
+        }
+      ]
+    },
+    "checks/tests/run_support_mutations.py": {
+      "role": "Reproducible finite mutation campaign application",
+      "profile": "Non-Numeric",
+      "cost": "At most 256 explicit mutants and 32 test methods per case; 30 seconds per subprocess; one copied checker package; 12000 retained output characters per mutant; receipt updates O(candidate count); context-managed cleanup. Recipes and test code are repository-owned executable inputs.",
+      "groups": [
+        {
+          "requirement_id": "TFQM-MUTATION-CAMPAIGN-1",
+          "symbols": [
+            "load_cases",
+            "_case",
+            "_test_names",
+            "_validate_population"
+          ],
+          "requirement": "Admit bounded unique requests and existing source/test names before launching any mutant.",
+          "tests": [
+            "MutationCampaignTests.test_manifest_schema_and_identity_refusal",
+            "MutationCampaignTests.test_output_cannot_replace_input_and_unknown_source_refused"
+          ]
+        },
+        {
+          "requirement_id": "TFQM-MUTATION-CAMPAIGN-2",
+          "symbols": [
+            "classify",
+            "detection"
+          ],
+          "requirement": "Keep six outcomes distinct; zero tests, skips and harness failures are inconclusive; retain unrun/inconclusive in the conservative denominator.",
+          "tests": [
+            "MutationCampaignTests.test_status_attribution_excludes_harness_failures",
+            "MutationCampaignTests.test_denominator_retains_unrun_and_inconclusive",
+            "MutationCampaignTests.test_accounting_mutants_are_detected"
+          ]
+        },
+        {
+          "requirement_id": "TFQM-MUTATION-CAMPAIGN-3",
+          "symbols": [
+            "_run",
+            "execute"
+          ],
+          "requirement": "Use isolated 30-second subprocesses, retain exact selected test attribution, restore source bytes on all exits and propagate cancellation.",
+          "tests": [
+            "MutationCampaignTests.test_worker_has_a_timeout_and_isolated_interpreter",
+            "MutationCampaignTests.test_execution_restores_bytes_and_classifies_every_outcome"
+          ]
+        },
+        {
+          "requirement_id": "TFQM-MUTATION-CAMPAIGN-4",
+          "symbols": [
+            "_save"
+          ],
+          "requirement": "Atomically replace a receipt on the same filesystem and preserve old bytes if replacement fails.",
+          "tests": [
+            "MutationCampaignTests.test_atomic_receipt_failure_retains_previous_bytes"
+          ]
+        },
+        {
+          "requirement_id": "TFQM-MUTATION-CAMPAIGN-5",
+          "symbols": [
+            "campaign"
+          ],
+          "requirement": "Bind sources/test/manifest hashes, require a passing baseline, retain every candidate on interruption, and clean temporary snapshots.",
+          "tests": [
+            "MutationCampaignTests.test_campaign_baseline_and_cancellation_preserve_accounting",
+            "MutationCampaignTests.test_baseline_timeout_and_cli_resource_translation"
+          ]
+        },
+        {
+          "requirement_id": "TFQM-MUTATION-CAMPAIGN-6",
+          "symbols": [
+            "main"
+          ],
+          "requirement": "Translate expected filesystem/spawn failures to resource refusals at the CLI boundary.",
+          "tests": [
+            "MutationCampaignTests.test_baseline_timeout_and_cli_resource_translation"
+          ]
+        }
+      ],
+      "symbols": [
+        "load_cases",
+        "_case",
+        "classify",
+        "detection",
+        "_run",
+        "execute",
+        "_save",
+        "_test_names",
+        "_validate_population",
+        "campaign",
+        "main"
+      ],
+      "source_sha256": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+      "consumers": [
+        {
+          "path": "checks/tests/test_mutation_campaign.py",
+          "sha256": "12f9d3ec343ae5dc56dc8f3000d5baba3972f053f4342fdcd381e8193f96cb4c"
+        },
+        {
+          "path": "checks/checker_support/README.md",
+          "sha256": "f24c6317ed0028b8f40dd243b490e7a36595ee7733d30023f16bb3b2426d14db"
+        }
+      ]
+    }
+  },
+  "consumer_discovery": "Repository rg search and AST import resolution; hashes bind the audited consumer boundaries."
+}

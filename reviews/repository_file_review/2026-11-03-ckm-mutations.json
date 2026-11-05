@@ -1,0 +1,464 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_counting_against_polynomial_oracles (__main__.CkmCheckerTests.test_counting_against_polynomial_oracles) ... ok\ntest_default_counts_and_fixed_faults (__main__.CkmCheckerTests.test_default_counts_and_fixed_faults) ... ok\ntest_failed_refusal_is_a_failed_check (__main__.CkmCheckerTests.test_failed_refusal_is_a_failed_check) ... ok\ntest_gaussian_table_action_and_normalization_oracle (__main__.CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle) ... ok\ntest_oracles_and_refusal_helper (__main__.CkmCheckerTests.test_oracles_and_refusal_helper) ... ok\ntest_quartets_against_complex_oracle (__main__.CkmCheckerTests.test_quartets_against_complex_oracle) ... ok\ntest_recorders_failure_and_cancellation (__main__.CkmCheckerTests.test_recorders_failure_and_cancellation) ... ok\ntest_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries) ... ok\ntest_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight) ... ok\ntest_table_arithmetic_resource_failure (__main__.CkmCheckerTests.test_table_arithmetic_resource_failure) ... ok\ntest_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains) ... ok\ntest_table_snapshots_singletons_and_maximum (__main__.CkmCheckerTests.test_table_snapshots_singletons_and_maximum) ... ok\ntest_witness_against_independent_gauge_equations (__main__.CkmCheckerTests.test_witness_against_independent_gauge_equations) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 17.570s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_ckm_mutations.py": "20e2c2313f87627e0bd934c9021d50452d22bb2a3559a211f2453f098f3f2ba4",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\dfm-ckm-physics-fence.py": "6267564e2d8c562532503700a4887ea05b6a7e01bf945db543a73f42848b1735",
+    "checks\\tests\\ckm_mutations.json": "aad7b8b16ba6cb36d46bb251e694a3d2f40a70e5a0227cfd74004fdaaf994e29",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_ckm_checker.py": "1bf55d76248c01953d083ad1d000a467d35656f2d6ea105a951367fd955def18",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "mutants": [
+    {
+      "identity": "input-bool",
+      "mutant_sha256": "a596aa282e8e593437adbe1084df0e6b09acee7a5e613307a87553207f45bb39",
+      "outcome": "killed",
+      "output": "test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries) ... FAIL\ntest_failed_refusal_is_a_failed_check (__main__.CkmCheckerTests.test_failed_refusal_is_a_failed_check) ... ERROR\n\n======================================================================\nERROR: test_failed_refusal_is_a_failed_check (__main__.CkmCheckerTests.test_failed_refusal_is_a_failed_check)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 226, in test_failed_refusal_is_a_failed_check\n    module.check_invalid_inputs(cases)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 225, in check_invalid_inputs\n    cases.require(result.error is not None and result.error.kind == \"input\", \"invalid-domain input refused\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: invalid-domain input refused\n\n======================================================================\nFAIL: test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 92, in test_scalar_and_quartet_boundaries\n    self.refused(operation, value)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 2 tests in 0.012s\n\nFAILED (failures=1, errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_scalar_and_quartet_boundaries",
+        "test_failed_refusal_is_a_failed_check"
+      ]
+    },
+    {
+      "identity": "input-budget",
+      "mutant_sha256": "ced12174c11828e5cb47d38c720fe5fa122924242d2cd25657ed7adf90a72722",
+      "outcome": "killed",
+      "output": "test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 92, in test_scalar_and_quartet_boundaries\n    self.refused(operation, value)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_scalar_and_quartet_boundaries"
+      ]
+    },
+    {
+      "identity": "cycle-polynomial",
+      "mutant_sha256": "a8ee107da4a9d39bc2827a77029e76b1c29ccf73b826a6080d4e648a92726040",
+      "outcome": "killed",
+      "output": "test_counting_against_polynomial_oracles (__main__.CkmCheckerTests.test_counting_against_polynomial_oracles) ... FAIL\n\n======================================================================\nFAIL: test_counting_against_polynomial_oracles (__main__.CkmCheckerTests.test_counting_against_polynomial_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 70, in test_counting_against_polynomial_oracles\n    @given(FRACTIONS)\n               ^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 73, in test_counting_against_polynomial_oracles\n    self.assertEqual(module.cycle_count(n), n*n-2*n+1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(2, 1) != Fraction(1, 1)\nFailing test case: test_counting_against_polynomial_oracles(\n    self=<__main__.CkmCheckerTests testMethod=test_counting_against_polynomial_oracles>,\n    n=Fraction(0, 1),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.354s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_counting_against_polynomial_oracles"
+      ]
+    },
+    {
+      "identity": "constraint-denominator",
+      "mutant_sha256": "93a54e3e7c7f6763789d43df4c2d88b8e3f7b059662215d5be3cf4d94a1f3d7d",
+      "outcome": "killed",
+      "output": "test_counting_against_polynomial_oracles (__main__.CkmCheckerTests.test_counting_against_polynomial_oracles) ... FAIL\n\n======================================================================\nFAIL: test_counting_against_polynomial_oracles (__main__.CkmCheckerTests.test_counting_against_polynomial_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 70, in test_counting_against_polynomial_oracles\n    @given(FRACTIONS)\n               ^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 74, in test_counting_against_polynomial_oracles\n    self.assertEqual(module.constraint_count(n), (n*n-n)/2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(2, 3) != Fraction(1, 1)\nFailing test case: test_counting_against_polynomial_oracles(\n    self=<__main__.CkmCheckerTests testMethod=test_counting_against_polynomial_oracles>,\n    n=Fraction(-1, 1),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.416s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_counting_against_polynomial_oracles"
+      ]
+    },
+    {
+      "identity": "cp-shift",
+      "mutant_sha256": "c4cb3a43f26d7b01753597f800b538e9a777dfc738ac98dcc824d299af0017e6",
+      "outcome": "killed",
+      "output": "test_counting_against_polynomial_oracles (__main__.CkmCheckerTests.test_counting_against_polynomial_oracles) ... FAIL\n\n======================================================================\nFAIL: test_counting_against_polynomial_oracles (__main__.CkmCheckerTests.test_counting_against_polynomial_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 70, in test_counting_against_polynomial_oracles\n    @given(FRACTIONS)\n               ^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 75, in test_counting_against_polynomial_oracles\n    self.assertEqual(module.cp_count(n), (n*n-3*n+2)/2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(3, 2) != Fraction(1, 1)\nFailing test case: test_counting_against_polynomial_oracles(\n    self=<__main__.CkmCheckerTests testMethod=test_counting_against_polynomial_oracles>,\n    n=Fraction(0, 1),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.375s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_counting_against_polynomial_oracles"
+      ]
+    },
+    {
+      "identity": "cycle-budget",
+      "mutant_sha256": "d3a7fb8b31d48d2658d644d458334f39998d9af4890cc42f8b49e389068b0944",
+      "outcome": "killed",
+      "output": "test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 95, in test_scalar_and_quartet_boundaries\n    self.refused(operation, 1 << 4095, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_scalar_and_quartet_boundaries"
+      ]
+    },
+    {
+      "identity": "constraint-budget",
+      "mutant_sha256": "cbe4210b40e27c2141cf4ecbbdafdd7a799fe622702494dd2237818185104790",
+      "outcome": "killed",
+      "output": "test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 95, in test_scalar_and_quartet_boundaries\n    self.refused(operation, 1 << 4095, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_scalar_and_quartet_boundaries"
+      ]
+    },
+    {
+      "identity": "cp-budget",
+      "mutant_sha256": "b715c7799d7c580ea7ee7f9ffe8968025c265441ed759cc6d7eff8748eaa6cb2",
+      "outcome": "killed",
+      "output": "test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 95, in test_scalar_and_quartet_boundaries\n    self.refused(operation, 1 << 4095, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_scalar_and_quartet_boundaries"
+      ]
+    },
+    {
+      "identity": "zero-label",
+      "mutant_sha256": "b329d8177feee8abcdf23aedebee774dff95a2632ba03bcea6d717ed576509b7",
+      "outcome": "killed",
+      "output": "test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains) ... FAIL\n\n======================================================================\nFAIL: test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 178, in test_table_gauge_and_witness_domains\n    self.refused(operation, table)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_table_gauge_and_witness_domains"
+      ]
+    },
+    {
+      "identity": "quartet-zero-domain",
+      "mutant_sha256": "3af16b09906bc88421bba43d76af9f36a58c25553c0dd23eff0728b624521cb5",
+      "outcome": "killed",
+      "output": "test_quartets_against_complex_oracle (__main__.CkmCheckerTests.test_quartets_against_complex_oracle) ... ERROR\ntest_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries) ... ERROR\n\n======================================================================\nERROR: test_quartets_against_complex_oracle (__main__.CkmCheckerTests.test_quartets_against_complex_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 79, in test_quartets_against_complex_oracle\n    @given(st.lists(st.tuples(FRACTIONS, FRACTIONS), min_size=4, max_size=4))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 85, in test_quartets_against_complex_oracle\n    value = module.quartet(*labels)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 55, in quartet\n    first, second, third, fourth = (_gaussian(value, True) for value in (a, b, c, d))\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 55, in <genexpr>\n    first, second, third, fourth = (_gaussian(value, True) for value in (a, b, c, d))\n                                    ~~~~~~~~~^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 50, in _gaussian\n    raise Violation(\"input\", \"rephasing labels must be nonzero\")\nchecker_support.boundary.Violation: rephasing labels must be nonzero\nFailing test case: test_quartets_against_complex_oracle(\n    # The test sometimes passed when commented parts were varied together.\n    self=<__main__.CkmCheckerTests testMethod=test_quartets_against_complex_oracle>,\n    parts=[(\n         Fraction(0, 1),  # or any other generated value\n         Fraction(0, 1),  # or any other generated value\n     ), (\n         Fraction(0, 1),  # or any other generated value\n         Fraction(0, 1),  # or any other generated value\n     ), (\n         Fraction(0, 1),  # or any other generated value\n         Fraction(0, 1),  # or any other generated value\n     ), (\n         Fraction(0, 1),  # or any other generated value\n         Fraction(0, 1),  # or any other generated value\n     )],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py:50\n\n======================================================================\nERROR: test_scalar_and_quartet_boundaries (__main__.CkmCheckerTests.test_scalar_and_quartet_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 101, in test_scalar_and_quartet_boundaries\n    self.assertEqual(module.quartet(GR(0), GR(1), GR(1), GR(1)), GR(0))\n                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 55, in quartet\n    first, second, third, fourth = (_gaussian(value, True) for value in (a, b, c, d))\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 55, in <genexpr>\n    first, second, third, fourth = (_gaussian(value, True) for value in (a, b, c, d))\n                                    ~~~~~~~~~^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 50, in _gaussian\n    raise Violation(\"input\", \"rephasing labels must be nonzero\")\nchecker_support.boundary.Violation: rephasing labels must be nonzero\n\n----------------------------------------------------------------------\nRan 2 tests in 9.067s\n\nFAILED (errors=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_quartets_against_complex_oracle",
+        "test_scalar_and_quartet_boundaries"
+      ]
+    },
+    {
+      "identity": "quartet-conjugate-c",
+      "mutant_sha256": "5a55c6c26d10dd67a483dd6ab3bb54bdeef134bf2d9c840f8b56cb96d69effa8",
+      "outcome": "killed",
+      "output": "test_quartets_against_complex_oracle (__main__.CkmCheckerTests.test_quartets_against_complex_oracle) ... FAIL\n\n======================================================================\nFAIL: test_quartets_against_complex_oracle (__main__.CkmCheckerTests.test_quartets_against_complex_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 79, in test_quartets_against_complex_oracle\n    @given(st.lists(st.tuples(FRACTIONS, FRACTIONS), min_size=4, max_size=4))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 86, in test_quartets_against_complex_oracle\n    self.assertEqual((value.re, value.im), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(-1, 1), Fraction(0, 1)) != (Fraction(1, 1), Fraction(0, 1))\n\nFirst differing element 0:\nFraction(-1, 1)\nFraction(1, 1)\n\n- (Fraction(-1, 1), Fraction(0, 1))\n?           -\n\n+ (Fraction(1, 1), Fraction(0, 1))\nFailing test case: test_quartets_against_complex_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CkmCheckerTests testMethod=test_quartets_against_complex_oracle>,\n    parts=[(\n         Fraction(0, 1),  # or any other generated value\n         Fraction(1, 1),\n     ), (\n         Fraction(0, 1),  # or any other generated value\n         Fraction(1, 1),\n     ), (\n         Fraction(0, 1),  # or any other generated value\n         Fraction(1, 1),\n     ), (\n         Fraction(0, 1),  # or any other generated value\n         Fraction(1, 1),\n     )],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 10.673s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_quartets_against_complex_oracle"
+      ]
+    },
+    {
+      "identity": "quartet-conjugate-d",
+      "mutant_sha256": "aef03342e816424e962e7b8e883073e205d0c6ba99691faf276bbd250e94e7d9",
+      "outcome": "killed",
+      "output": "test_quartets_against_complex_oracle (__main__.CkmCheckerTests.test_quartets_against_complex_oracle) ... FAIL\n\n======================================================================\nFAIL: test_quartets_against_complex_oracle (__main__.CkmCheckerTests.test_quartets_against_complex_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 79, in test_quartets_against_complex_oracle\n    @given(st.lists(st.tuples(FRACTIONS, FRACTIONS), min_size=4, max_size=4))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 86, in test_quartets_against_complex_oracle\n    self.assertEqual((value.re, value.im), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(-1, 1), Fraction(0, 1)) != (Fraction(1, 1), Fraction(0, 1))\n\nFirst differing element 0:\nFraction(-1, 1)\nFraction(1, 1)\n\n- (Fraction(-1, 1), Fraction(0, 1))\n?           -\n\n+ (Fraction(1, 1), Fraction(0, 1))\nFailing test case: test_quartets_against_complex_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CkmCheckerTests testMethod=test_quartets_against_complex_oracle>,\n    parts=[(\n         Fraction(0, 1),  # or any other generated value\n         Fraction(1, 1),\n     ), (\n         Fraction(0, 1),  # or any other generated value\n         Fraction(1, 1),\n     ), (\n         Fraction(0, 1),  # or any other generated value\n         Fraction(1, 1),\n     ), (\n         Fraction(0, 1),  # or any other generated value\n         Fraction(1, 1),\n     )],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 11.117s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_quartets_against_complex_oracle"
+      ]
+    },
+    {
+      "identity": "table-height",
+      "mutant_sha256": "15046a9c4bb93bcb2fb426e5ae2125a50a41325c298afbe261fcc982a30f3068",
+      "outcome": "killed",
+      "output": "test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains) ... FAIL\n\n======================================================================\nFAIL: test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 183, in test_table_gauge_and_witness_domains\n    self.refused(module.shape, oversized_table, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_table_gauge_and_witness_domains"
+      ]
+    },
+    {
+      "identity": "row-width",
+      "mutant_sha256": "471e3ba1bcfe6f986ed9edc2f6dbed58ffce6d1cc1e1b8482c9159bfe56275a8",
+      "outcome": "survived",
+      "output": "test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_table_gauge_and_witness_domains"
+      ]
+    },
+    {
+      "identity": "ragged-row",
+      "mutant_sha256": "7f5097b1f1657420bc9a0521ce24ee28a8aaed0db781b57a6a11709fa77be09c",
+      "outcome": "killed",
+      "output": "test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains) ... FAIL\n\n======================================================================\nFAIL: test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 178, in test_table_gauge_and_witness_domains\n    self.refused(operation, table)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_table_gauge_and_witness_domains"
+      ]
+    },
+    {
+      "identity": "retain-input-rows",
+      "mutant_sha256": "e21749e1ee42f33583c0e9880f00ef05272cd1ab4c4372f3aeebf8b545a7b6af",
+      "outcome": "killed",
+      "output": "test_table_snapshots_singletons_and_maximum (__main__.CkmCheckerTests.test_table_snapshots_singletons_and_maximum) ... FAIL\n\n======================================================================\nFAIL: test_table_snapshots_singletons_and_maximum (__main__.CkmCheckerTests.test_table_snapshots_singletons_and_maximum)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 164, in test_table_snapshots_singletons_and_maximum\n    self.assertEqual(owned.cells, ((GR(1), GR(2)), (GR(3), GR(4))))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [] != ((GaussianRational(re=Fraction(1, 1), im=[182 chars]1))))\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_table_snapshots_singletons_and_maximum"
+      ]
+    },
+    {
+      "identity": "shape-transpose",
+      "mutant_sha256": "414d03ad69d87be052515ffb85a967dfd3ea84dc4da33bec8d29ab6fc6cea0bb",
+      "outcome": "killed",
+      "output": "test_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight) ... FAIL\ntest_table_snapshots_singletons_and_maximum (__main__.CkmCheckerTests.test_table_snapshots_singletons_and_maximum) ... ok\n\n======================================================================\nFAIL: test_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 211, in test_sign_census_and_enumeration_preflight\n    self.assertTrue(all(module.shape(table) == (height, width) for table in tables))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 2 tests in 0.018s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_sign_census_and_enumeration_preflight",
+        "test_table_snapshots_singletons_and_maximum"
+      ]
+    },
+    {
+      "identity": "normalization-corner",
+      "outcome": "inconclusive",
+      "reason": "30-second worker timeout",
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_gaussian_table_action_and_normalization_oracle"
+      ]
+    },
+    {
+      "identity": "normalization-row",
+      "mutant_sha256": "7d0f54ebae8e8f39ceac96301519867db82972850bea0cca79f9d44dcbea5d2c",
+      "outcome": "killed",
+      "output": "test_gaussian_table_action_and_normalization_oracle (__main__.CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_table_action_and_normalization_oracle (__main__.CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 105, in test_gaussian_table_action_and_normalization_oracle\n    @given(st.lists(LABELS, min_size=10, max_size=10))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 127, in test_gaussian_table_action_and_normalization_oracle\n    self.assertEqual(module.normalize(other), norm)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Gau[133 chars]tion(0, 1), im=Fraction(1, 1))), (GaussianRati[151 chars]1)))) != ((Gau[133 chars]tion(1, 1), im=Fraction(0, 1))), (GaussianRati[151 chars]1))))\n\nFirst differing element 0:\n(Gaus[100 chars]0, 1)), GaussianRational(re=Fraction(0, 1), im=Fraction(1, 1)))\n(Gaus[100 chars]0, 1)), GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1)))\n\nDiff is 704 characters long. Set self.maxDiff to None to see it.\nFailing test case: test_gaussian_table_action_and_normalization_oracle(\n    self=<__main__.CkmCheckerTests testMethod=test_gaussian_table_action_and_normalization_oracle>,\n    parts=[(Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1))],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 24.800s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_gaussian_table_action_and_normalization_oracle"
+      ]
+    },
+    {
+      "identity": "normalization-division",
+      "mutant_sha256": "47a91414822015a6be6e5ed97e3fd9f7458b7477f2992a3d333c387b4b2f918b",
+      "outcome": "killed",
+      "output": "test_gaussian_table_action_and_normalization_oracle (__main__.CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_table_action_and_normalization_oracle (__main__.CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 105, in test_gaussian_table_action_and_normalization_oracle\n    @given(st.lists(LABELS, min_size=10, max_size=10))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 127, in test_gaussian_table_action_and_normalization_oracle\n    self.assertEqual(module.normalize(other), norm)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Gau[133 chars]tion(-1, 1), im=Fraction(0, 1))), (GaussianRat[153 chars]1)))) != ((Gau[133 chars]tion(1, 1), im=Fraction(0, 1))), (GaussianRati[151 chars]1))))\n\nFirst differing element 0:\n(Gaus[101 chars], 1)), GaussianRational(re=Fraction(-1, 1), im=Fraction(0, 1)))\n(Gaus[101 chars], 1)), GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1)))\n\n  ((GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1)),\n    GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1)),\n-   GaussianRational(re=Fraction(-1, 1), im=Fraction(0, 1))),\n?                                -\n\n+   GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1))),\n   (GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1)),\n    GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1)),\n-   GaussianRational(re=Fraction(-1, 1), im=Fraction(0, 1))))\n?                                -\n\n+   GaussianRational(re=Fraction(1, 1), im=Fraction(0, 1))))\nFailing test case: test_gaussian_table_action_and_normalization_oracle(\n    self=<__main__.CkmCheckerTests testMethod=test_gaussian_table_action_and_normalization_oracle>,\n    parts=[(Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1))],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 24.243s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_gaussian_table_action_and_normalization_oracle"
+      ]
+    },
+    {
+      "identity": "normalization-railway",
+      "mutant_sha256": "e82d78f76d63ee1f3b6423d963bd6bdb6743ba8648cc69fd614c486bca1eb253",
+      "outcome": "killed",
+      "output": "test_recorders_failure_and_cancellation (__main__.CkmCheckerTests.test_recorders_failure_and_cancellation) ... ERROR\ntest_table_arithmetic_resource_failure (__main__.CkmCheckerTests.test_table_arithmetic_resource_failure) ... ERROR\n\n======================================================================\nERROR: test_recorders_failure_and_cancellation (__main__.CkmCheckerTests.test_recorders_failure_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 272, in test_recorders_failure_and_cancellation\n    self.assertEqual(operation(*call_args).error.kind, \"resource\")\n                     ~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 89, in normalized\n    return Outcome(value=self._normalized())\n                         ~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nOSError: injected\n\n======================================================================\nERROR: test_table_arithmetic_resource_failure (__main__.CkmCheckerTests.test_table_arithmetic_resource_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 199, in test_table_arithmetic_resource_failure\n    self.assertEqual(owned.normalized().error.kind, \"resource\")\n                     ~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 89, in normalized\n    return Outcome(value=self._normalized())\n                         ~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 85, in _normalized\n    return GaussianRephasingTable(tuple(tuple(entry.mul(corner).div(row[0].mul(self.cells[0][j]))\n                                  ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 85, in <genexpr>\n    return GaussianRephasingTable(tuple(tuple(entry.mul(corner).div(row[0].mul(self.cells[0][j]))\n                                        ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 85, in <genexpr>\n    return GaussianRephasingTable(tuple(tuple(entry.mul(corner).div(row[0].mul(self.cells[0][j]))\n                                              ~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\gaussian_rational.py\", line 34, in mul\n    return self * other\n           ~~~~~^~~~~~~\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\gaussian_rational.py\", line 30, in __mul__\n    return GaussianRational(self.re*other.re - self.im*other.im,\n                            self.re*other.im + self.im*other.re)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\gaussian_rational.py\", line 17, in __init__\n    object.__setattr__(self, \"re\", rational(re, \"real component\"))\n                                   ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\domains.py\", line 75, in rational\n    admitted = _exact_fraction(value, name)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\domains.py\", line 69, in _exact_fraction\n    raise _violation(\"resource\", f\"{name} exceeds the {MAX_RATIONAL_BITS}-bit rational budget\")\nchecker_support.boundary.Violation: real component exceeds the 4096-bit rational budget\n\n----------------------------------------------------------------------\nRan 2 tests in 0.013s\n\nFAILED (errors=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_recorders_failure_and_cancellation",
+        "test_table_arithmetic_resource_failure"
+      ]
+    },
+    {
+      "identity": "gauge-length",
+      "mutant_sha256": "15a19c41fec6174b733d6b67edf857d4d37547d5a490b53e70672ebc90cdbf5a",
+      "outcome": "killed",
+      "output": "test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains) ... ERROR\n\n======================================================================\nERROR: test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 185, in test_table_gauge_and_witness_domains\n    self.refused(module.act, valid, gauge, (GR(1),))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 53, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 53, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 123, in act\n    return GaussianRephasingTable(matrix)._act(rows, cols).cells\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 94, in _act\n    return GaussianRephasingTable(tuple(tuple(row_gauge[i].mul(value).div(col_gauge[j])\n                                  ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 94, in <genexpr>\n    return GaussianRephasingTable(tuple(tuple(row_gauge[i].mul(value).div(col_gauge[j])\n                                        ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 94, in <genexpr>\n    return GaussianRephasingTable(tuple(tuple(row_gauge[i].mul(value).div(col_gauge[j])\n                                              ~~~~~~~~~^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_table_gauge_and_witness_domains"
+      ]
+    },
+    {
+      "identity": "gauge-row-factor",
+      "mutant_sha256": "777bb96f0f7c8b53e3464581f18754e2fd5ae2b714d057e7bc9064cb57ce583a",
+      "outcome": "killed",
+      "output": "test_gaussian_table_action_and_normalization_oracle (__main__.CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_table_action_and_normalization_oracle (__main__.CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 105, in test_gaussian_table_action_and_normalization_oracle\n    @given(st.lists(LABELS, min_size=10, max_size=10))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 117, in test_gaussian_table_action_and_normalization_oracle\n    self.assertEqual(other, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Gau[21 chars]tion(1, 1), im=Fraction(0, 1)), GaussianRation[263 chars]1)))) != ((Gau[21 chars]tion(0, 1), im=Fraction(1, 1)), GaussianRation[265 chars]1))))\n\nFirst differing element 0:\n(Gaus[20 chars]tion(1, 1), im=Fraction(0, 1)), GaussianRation[92 chars] 1)))\n(Gaus[20 chars]tion(0, 1), im=Fraction(1, 1)), GaussianRation[93 chars] 1)))\n\nDiff is 1082 characters long. Set self.maxDiff to None to see it.\nFailing test case: test_gaussian_table_action_and_normalization_oracle(\n    self=<__main__.CkmCheckerTests testMethod=test_gaussian_table_action_and_normalization_oracle>,\n    parts=[(Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1))],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 22.973s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_gaussian_table_action_and_normalization_oracle"
+      ]
+    },
+    {
+      "identity": "gauge-column-direction",
+      "mutant_sha256": "59bf16c711c1df4ee9b3fcd8e39edc02685a68d9a5d800d0ae5b5dab0f0e73af",
+      "outcome": "killed",
+      "output": "test_gaussian_table_action_and_normalization_oracle (__main__.CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_table_action_and_normalization_oracle (__main__.CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 105, in test_gaussian_table_action_and_normalization_oracle\n    @given(st.lists(LABELS, min_size=10, max_size=10))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 117, in test_gaussian_table_action_and_normalization_oracle\n    self.assertEqual(other, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Gau[40 chars]tion(-1, 1)), GaussianRational(re=Fraction(0, [250 chars]1)))) != ((Gau[40 chars]tion(1, 1)), GaussianRational(re=Fraction(0, 1[246 chars]1))))\n\nFirst differing element 0:\n(Gaus[39 chars]tion(-1, 1)), GaussianRational(re=Fraction(0, [76 chars] 1)))\n(Gaus[39 chars]tion(1, 1)), GaussianRational(re=Fraction(0, 1[74 chars] 1)))\n\nDiff is 828 characters long. Set self.maxDiff to None to see it.\nFailing test case: test_gaussian_table_action_and_normalization_oracle(\n    self=<__main__.CkmCheckerTests testMethod=test_gaussian_table_action_and_normalization_oracle>,\n    parts=[(Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1)),\n     (Fraction(0, 1), Fraction(1, 1))],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 19.840s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_gaussian_table_action_and_normalization_oracle"
+      ]
+    },
+    {
+      "identity": "action-railway",
+      "mutant_sha256": "778d3555e8af303ef05a37b1a5b866ab703456100a69deb67d4f147dde984aff",
+      "outcome": "killed",
+      "output": "test_recorders_failure_and_cancellation (__main__.CkmCheckerTests.test_recorders_failure_and_cancellation) ... ERROR\ntest_table_arithmetic_resource_failure (__main__.CkmCheckerTests.test_table_arithmetic_resource_failure) ... ERROR\n\n======================================================================\nERROR: test_recorders_failure_and_cancellation (__main__.CkmCheckerTests.test_recorders_failure_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 272, in test_recorders_failure_and_cancellation\n    self.assertEqual(operation(*call_args).error.kind, \"resource\")\n                     ~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 98, in act\n    return Outcome(value=self._act(rows, cols))\n                         ~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nOSError: injected\n\n======================================================================\nERROR: test_table_arithmetic_resource_failure (__main__.CkmCheckerTests.test_table_arithmetic_resource_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 200, in test_table_arithmetic_resource_failure\n    self.assertEqual(owned.act((GR(2),), (GR(1),)).error.kind, \"resource\")\n                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 98, in act\n    return Outcome(value=self._act(rows, cols))\n                         ~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 94, in _act\n    return GaussianRephasingTable(tuple(tuple(row_gauge[i].mul(value).div(col_gauge[j])\n                                  ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 94, in <genexpr>\n    return GaussianRephasingTable(tuple(tuple(row_gauge[i].mul(value).div(col_gauge[j])\n                                        ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 94, in <genexpr>\n    return GaussianRephasingTable(tuple(tuple(row_gauge[i].mul(value).div(col_gauge[j])\n                                              ~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\gaussian_rational.py\", line 34, in mul\n    return self * other\n           ~~~~~^~~~~~~\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\gaussian_rational.py\", line 30, in __mul__\n    return GaussianRational(self.re*other.re - self.im*other.im,\n                            self.re*other.im + self.im*other.re)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\gaussian_rational.py\", line 17, in __init__\n    object.__setattr__(self, \"re\", rational(re, \"real component\"))\n                                   ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\domains.py\", line 75, in rational\n    admitted = _exact_fraction(value, name)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\domains.py\", line 69, in _exact_fraction\n    raise _violation(\"resource\", f\"{name} exceeds the {MAX_RATIONAL_BITS}-bit rational budget\")\nchecker_support.boundary.Violation: real component exceeds the 4096-bit rational budget\n\n----------------------------------------------------------------------\nRan 2 tests in 0.013s\n\nFAILED (errors=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_recorders_failure_and_cancellation",
+        "test_table_arithmetic_resource_failure"
+      ]
+    },
+    {
+      "identity": "shape-witness",
+      "mutant_sha256": "e0047b476cbf13856c3a95d849c42f193efad0fa43e432cf1e28444b0dce2ca7",
+      "outcome": "killed",
+      "output": "test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains) ... FAIL\n\n======================================================================\nFAIL: test_table_gauge_and_witness_domains (__main__.CkmCheckerTests.test_table_gauge_and_witness_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 187, in test_table_gauge_and_witness_domains\n    self.refused(module.witness, valid, ((GR(1), GR(1)),))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_table_gauge_and_witness_domains"
+      ]
+    },
+    {
+      "identity": "witness-separation",
+      "outcome": "inconclusive",
+      "reason": "30-second worker timeout",
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_witness_against_independent_gauge_equations"
+      ]
+    },
+    {
+      "identity": "witness-rejection",
+      "outcome": "inconclusive",
+      "reason": "30-second worker timeout",
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_witness_against_independent_gauge_equations"
+      ]
+    },
+    {
+      "identity": "witness-row-ratio",
+      "outcome": "inconclusive",
+      "reason": "30-second worker timeout",
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_witness_against_independent_gauge_equations"
+      ]
+    },
+    {
+      "identity": "witness-column-corner",
+      "outcome": "inconclusive",
+      "reason": "30-second worker timeout",
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_witness_against_independent_gauge_equations"
+      ]
+    },
+    {
+      "identity": "witness-column-direction",
+      "outcome": "inconclusive",
+      "reason": "30-second worker timeout",
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_witness_against_independent_gauge_equations"
+      ]
+    },
+    {
+      "identity": "witness-railway",
+      "mutant_sha256": "1a881b8d52ce257d14062b3e2ba2386b4a19d5172dea79261f48a9ce41f07787",
+      "outcome": "killed",
+      "output": "test_recorders_failure_and_cancellation (__main__.CkmCheckerTests.test_recorders_failure_and_cancellation) ... ERROR\ntest_table_arithmetic_resource_failure (__main__.CkmCheckerTests.test_table_arithmetic_resource_failure) ... ERROR\n\n======================================================================\nERROR: test_recorders_failure_and_cancellation (__main__.CkmCheckerTests.test_recorders_failure_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 272, in test_recorders_failure_and_cancellation\n    self.assertEqual(operation(*call_args).error.kind, \"resource\")\n                     ~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 111, in witness\n    return Outcome(value=self._witness(right))\n                         ~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nOSError: injected\n\n======================================================================\nERROR: test_table_arithmetic_resource_failure (__main__.CkmCheckerTests.test_table_arithmetic_resource_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 201, in test_table_arithmetic_resource_failure\n    self.assertEqual(owned.witness(owned).error.kind, \"resource\")\n                     ~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 111, in witness\n    return Outcome(value=self._witness(right))\n                         ~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 103, in _witness\n    if self._normalized() != right._normalized():\n       ~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 85, in _normalized\n    return GaussianRephasingTable(tuple(tuple(entry.mul(corner).div(row[0].mul(self.cells[0][j]))\n                                  ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 85, in <genexpr>\n    return GaussianRephasingTable(tuple(tuple(entry.mul(corner).div(row[0].mul(self.cells[0][j]))\n                                        ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 85, in <genexpr>\n    return GaussianRephasingTable(tuple(tuple(entry.mul(corner).div(row[0].mul(self.cells[0][j]))\n                                              ~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\gaussian_rational.py\", line 34, in mul\n    return self * other\n           ~~~~~^~~~~~~\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\gaussian_rational.py\", line 30, in __mul__\n    return GaussianRational(self.re*other.re - self.im*other.im,\n                            self.re*other.im + self.im*other.re)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\gaussian_rational.py\", line 17, in __init__\n    object.__setattr__(self, \"re\", rational(re, \"real component\"))\n                                   ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\domains.py\", line 75, in rational\n    admitted = _exact_fraction(value, name)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\checker_support\\domains.py\", line 69, in _exact_fraction\n    raise _violation(\"resource\", f\"{name} exceeds the {MAX_RATIONAL_BITS}-bit rational budget\")\nchecker_support.boundary.Violation: real component exceeds the 4096-bit rational budget\n\n----------------------------------------------------------------------\nRan 2 tests in 0.026s\n\nFAILED (errors=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_recorders_failure_and_cancellation",
+        "test_table_arithmetic_resource_failure"
+      ]
+    },
+    {
+      "identity": "sign-cell-budget",
+      "mutant_sha256": "264adb52ef8e8dd7a9f1eadc616f6a59821a565629fe5baa06d3b68d043275cc",
+      "outcome": "killed",
+      "output": "test_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight) ... FAIL\n\n======================================================================\nFAIL: test_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 215, in test_sign_census_and_enumeration_preflight\n    self.refused(module.sign_tables, *dimensions, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_sign_census_and_enumeration_preflight"
+      ]
+    },
+    {
+      "identity": "sign-enumeration-cells",
+      "mutant_sha256": "acef48085be75c21b80fb1474390bf86dedf116fe4ad555043e9fb01c0f0a032",
+      "outcome": "killed",
+      "output": "test_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight) ... ERROR\n\n======================================================================\nERROR: test_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 208, in test_sign_census_and_enumeration_preflight\n    tables = module.sign_tables(height, width)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 140, in sign_tables\n    return [tuple(tuple(GR(bits[i*cols+j]) for j in range(cols)) for i in range(rows))\n            ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 140, in <genexpr>\n    return [tuple(tuple(GR(bits[i*cols+j]) for j in range(cols)) for i in range(rows))\n                  ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\independent\\dfm-ckm-physics-fence.py\", line 140, in <genexpr>\n    return [tuple(tuple(GR(bits[i*cols+j]) for j in range(cols)) for i in range(rows))\n                           ~~~~^^^^^^^^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_sign_census_and_enumeration_preflight"
+      ]
+    },
+    {
+      "identity": "sign-shape-check",
+      "mutant_sha256": "cd5441853a8871f33385f31df5f878e84166649df8c828de20a8b1e65b7eb735",
+      "outcome": "survived",
+      "output": "test_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_sign_census_and_enumeration_preflight"
+      ]
+    },
+    {
+      "identity": "sign-action-count",
+      "mutant_sha256": "54117f4f4b6a3947dc6c55ba66d926b5418407ca9b0d74df604fc41c30be599f",
+      "outcome": "killed",
+      "output": "test_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight) ... FAIL\ntest_default_counts_and_fixed_faults (__main__.CkmCheckerTests.test_default_counts_and_fixed_faults) ... FAIL\n\n======================================================================\nFAIL: test_sign_census_and_enumeration_preflight (__main__.CkmCheckerTests.test_sign_census_and_enumeration_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 219, in test_sign_census_and_enumeration_preflight\n    self.assertEqual(module.check_sign_actions(((GR(1),),), 1, 1), 4)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 8 != 4\n\n======================================================================\nFAIL: test_default_counts_and_fixed_faults (__main__.CkmCheckerTests.test_default_counts_and_fixed_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 249, in test_default_counts_and_fixed_faults\n    self.assertIn(\"2376 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]\", output.getvalue())\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '2376 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]' not found in 'rephasing: 4752 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]\\n{\\n  \"AuthorityEffect\": \"None\",\\n  \"status\": \"passed\",\\n  \"checks\": 11381,\\n  \"scope\": \"Supplied nonzero Gaussian-label rephasing and rational identities only.\"\\n}\\n'\n\n----------------------------------------------------------------------\nRan 2 tests in 5.851s\n\nFAILED (failures=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_sign_census_and_enumeration_preflight",
+        "test_default_counts_and_fixed_faults"
+      ]
+    },
+    {
+      "identity": "ignored-domain-failure",
+      "mutant_sha256": "11aa04f69b4f593f375ceac57e19b49809de8e179a8691894edf635f2505e10d",
+      "outcome": "killed",
+      "output": "test_failed_refusal_is_a_failed_check (__main__.CkmCheckerTests.test_failed_refusal_is_a_failed_check) ... FAIL\n\n======================================================================\nFAIL: test_failed_refusal_is_a_failed_check (__main__.CkmCheckerTests.test_failed_refusal_is_a_failed_check)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 224, in test_failed_refusal_is_a_failed_check\n    self.refused(module.check_invalid_inputs, kind=\"check\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 54, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_failed_refusal_is_a_failed_check"
+      ]
+    },
+    {
+      "identity": "comparison-count",
+      "mutant_sha256": "3b9c2c09869e3bf2c57664b38ebba998ed82b8d00cd2076670c35254058edaa2",
+      "outcome": "killed",
+      "output": "test_default_counts_and_fixed_faults (__main__.CkmCheckerTests.test_default_counts_and_fixed_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_counts_and_fixed_faults (__main__.CkmCheckerTests.test_default_counts_and_fixed_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 249, in test_default_counts_and_fixed_faults\n    self.assertIn(\"2376 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]\", output.getvalue())\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '2376 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]' not found in 'rephasing: 2376 sign actions, 8776 pair decisions; orbits [1, 1, 1, 2, 4]\\n{\\n  \"AuthorityEffect\": \"None\",\\n  \"status\": \"passed\",\\n  \"checks\": 11381,\\n  \"scope\": \"Supplied nonzero Gaussian-label rephasing and rational identities only.\"\\n}\\n'\n\n----------------------------------------------------------------------\nRan 1 test in 5.499s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_default_counts_and_fixed_faults"
+      ]
+    },
+    {
+      "identity": "reported-case-count",
+      "mutant_sha256": "3ae6fe73e95c4463ed46087532e31805fd729060d44da71b1a5840a09c19345e",
+      "outcome": "killed",
+      "output": "test_default_counts_and_fixed_faults (__main__.CkmCheckerTests.test_default_counts_and_fixed_faults) ... FAIL\n\n======================================================================\nFAIL: test_default_counts_and_fixed_faults (__main__.CkmCheckerTests.test_default_counts_and_fixed_faults)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\ckm-mutation-qqwf78xi\\tests\\test_ckm_checker.py\", line 251, in test_default_counts_and_fixed_faults\n    self.assertEqual(receipt[\"checks\"], 11381)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 11382 != 11381\n\n----------------------------------------------------------------------\nRan 1 test in 5.712s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-ckm-physics-fence.py",
+      "tests": [
+        "test_default_counts_and_fixed_faults"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 6,
+      "invalid": 0,
+      "killed": 31,
+      "survived": 2,
+      "unrun": 0
+    },
+    "detected_fraction": 0.7948717948717948,
+    "eligible": 39
+  }
+}

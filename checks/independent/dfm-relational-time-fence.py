@@ -1,195 +1,290 @@
-"""Independent check for DFM-RELATIONAL-TIME-FENCE.
+"""Bounded exact finite-clock schedules, reversible histories and rational client.
 
-The order-4 step, four clock blocks, and one rational vector are recomputed
-with fractions.Fraction. This file imports no repository code.
+AuthorityEffect: None. The executable uses S3 and supplied rational matrices.
+Arbitrary-group statements belong to Lean; no continuous-time generator is built.
 """
+from __future__ import annotations
 
-from fractions import Fraction
+from dataclasses import dataclass
+from fractions import Fraction as Q
 from itertools import permutations, product
-from collections.abc import Sequence
+import json
+from pathlib import Path as _Path
+import sys as _sys
+from typing import Literal
 
-Matrix = tuple[tuple[Fraction, ...], ...]
-Perm = tuple[int, ...]
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import integer, permutation3, rational, sequence
+from checker_support.outcome import Outcome
+from checker_support.rational_matrix import RationalMatrix, Rows
 
-
-def mat(rows: Sequence[Sequence[int | Fraction]]) -> Matrix:
-    return tuple(tuple(Fraction(x) for x in row) for row in rows)
-
-
-def mul(a: Matrix, b: Matrix) -> Matrix:
-    return tuple(
-        tuple(sum((a[i][k] * b[k][j] for k in range(len(b))), Fraction(0)) for j in range(len(b[0])))
-        for i in range(len(a))
-    )
-
-
-def transp(a: Matrix) -> Matrix:
-    return tuple(tuple(a[j][i] for j in range(len(a))) for i in range(len(a[0])))
+Perm = tuple[int, int, int]
+Closure = Literal["emptyPeriod", "nontrivialHolonomy", "ok"]
+UNIT: Perm = (0, 1, 2)
+PERMS: tuple[Perm, ...] = tuple((a, b, c) for a, b, c in permutations(range(3)))
 
 
-def apply(a: Matrix, v: tuple[Fraction, ...]) -> tuple[Fraction, ...]:
-    return tuple(sum((a[i][k] * v[k] for k in range(len(v))), Fraction(0)) for i in range(len(a)))
+def mat(rows: object) -> Rows:
+    return RationalMatrix(rows).rows
 
 
-def matrix_regression() -> None:
-    eye = mat(((1, 0), (0, 1)))
-    minus = mat(((-1, 0), (0, -1)))
+def mul(a: object, b: object) -> Rows:
+    left, right = RationalMatrix(a), RationalMatrix(b)
+    return left.mul(right).rows
+
+
+def transp(a: object) -> Rows:
+    return RationalMatrix(a).transpose().rows
+
+
+def apply(a: object, vector: object) -> tuple[Q, ...]:
+    matrix = RationalMatrix(a)
+    values = tuple(rational(value, "vector component") for value in sequence(vector, "vector", matrix.shape[1], 64))
+    column = RationalMatrix(tuple((value,) for value in values))
+    return tuple(row[0] for row in matrix.mul(column).rows)
+
+
+def _compose(a: Perm, b: Perm) -> Perm:
+    return a[b[0]], a[b[1]], a[b[2]]
+
+
+def compose(a: object, b: object) -> Perm:
+    return _compose(permutation3(a), permutation3(b))
+
+
+def _inverse(a: Perm) -> Perm:
+    return a.index(0), a.index(1), a.index(2)
+
+
+def inverse(a: object) -> Perm:
+    return _inverse(permutation3(a))
+
+
+def _state(value: object) -> int:
+    state = integer(value, "S3 state")
+    if not 0 <= state < 3:
+        raise Violation("input", "S3 state must be0,1 or2")
+    return state
+
+
+def _gauges(values: object, length: int) -> tuple[Perm, ...]:
+    return tuple(permutation3(value) for value in sequence(values, "endpoint gauges", length, 65))
+
+
+def _history(values: object, length: int) -> tuple[int, ...]:
+    return tuple(_state(value) for value in sequence(values, "history", length, 65))
+
+
+@dataclass(frozen=True, slots=True, init=False)
+class PermutationSchedule:
+    """Owns0..64 S3 links and65 or fewer chronological frames, rooted at identity."""
+    links: tuple[Perm, ...]
+    frame_values: tuple[Perm, ...]
+
+    def __init__(self, links: object) -> None:
+        owned = tuple(permutation3(value) for value in sequence(links, "schedule", maximum=64))
+        frames = [UNIT]
+        for link in owned:
+            frames.append(_compose(link, frames[-1]))
+        object.__setattr__(self, "links", owned)
+        object.__setattr__(self, "frame_values", tuple(frames))
+
+    def closure_tag(self) -> Closure:
+        if not self.links:
+            return "emptyPeriod"
+        if self.frame_values[-1] != UNIT:
+            return "nontrivialHolonomy"
+        return "ok"
+
+    def _closed(self) -> PermutationSchedule:
+        tag = self.closure_tag()
+        if tag != "ok":
+            raise Violation("input", tag)
+        return self
+
+    def closed(self) -> Outcome[PermutationSchedule]:
+        return evaluate(self._closed)
+
+    def _blocks(self) -> tuple[Perm, ...]:
+        if not self.links:
+            raise Violation("input", "emptyPeriod")
+        return tuple(_compose(_inverse(self.frame_values[(t+1) % len(self.links)]), _compose(link, self.frame_values[t]))
+                     for t, link in enumerate(self.links))
+
+    def blocks(self) -> Outcome[tuple[Perm, ...]]:
+        return evaluate(self._blocks)
+
+    def _changed(self, gauges: object) -> PermutationSchedule:
+        owned = _gauges(gauges, len(self.frame_values))
+        return PermutationSchedule(tuple(_compose(_inverse(owned[t+1]), _compose(link, owned[t]))
+                                         for t, link in enumerate(self.links)))
+
+    def changed(self, gauges: object) -> Outcome[PermutationSchedule]:
+        return evaluate(self._changed, gauges)
+
+    def _history(self, initial: object) -> tuple[int, ...]:
+        state = _state(initial)
+        return tuple(frame[state] for frame in self.frame_values)
+
+    def history(self, initial: object) -> Outcome[tuple[int, ...]]:
+        return evaluate(self._history, initial)
+
+    def _evolves(self, history: object) -> bool:
+        owned = _history(history, len(self.frame_values))
+        return all(owned[t+1] == link[owned[t]] for t, link in enumerate(self.links))
+
+    def evolves(self, history: object) -> Outcome[bool]:
+        return evaluate(self._evolves, history)
+
+    def _coordinates(self, history: object, gauges: object) -> tuple[int, ...]:
+        states = _history(history, len(self.frame_values))
+        owned = _gauges(gauges, len(self.frame_values))
+        return tuple(_inverse(gauge)[state] for state, gauge in zip(states, owned))
+
+    def coordinates(self, history: object, gauges: object) -> Outcome[tuple[int, ...]]:
+        return evaluate(self._coordinates, history, gauges)
+
+
+def frames(links: object) -> tuple[Perm, ...]:
+    return PermutationSchedule(links).frame_values
+
+
+def closure(links: object) -> Closure:
+    return PermutationSchedule(links).closure_tag()
+
+
+def _cases(cases: object) -> Cases:
+    if type(cases) is not Cases:
+        raise Violation("input", "Cases recorder required")
+    return cases
+
+
+def _vector_controls(powers: tuple[Rows, ...], run: Cases) -> None:
+    psi = (Q(3, 5), Q(4, 5))
+    run.require(psi[0]*psi[0]+psi[1]*psi[1] == 1, "vector norm")
+    for power in powers[:4]:
+        run.require(apply(transp(power), apply(power, psi)) == psi, "transport recovery")
+    run.require(apply(powers[1], psi)[0] != psi[0], "one step changes vector")
+    run.require(apply(powers[2], psi)[0] != psi[0], "two steps change vector")
+
+
+def _packed_product(powers: tuple[Rows, ...], step: Rows, identity: Rows) -> tuple[Rows, Rows]:
+    walk = [[Q(0) for _ in range(8)] for _ in range(8)]
+    shift = [[Q(0) for _ in range(8)] for _ in range(8)]
+    dressing = [[Q(0) for _ in range(8)] for _ in range(8)]
+    for t in range(4):
+        nxt = (t+1) % 4
+        for row, column in product(range(2), repeat=2):
+            walk[2*nxt+row][2*t+column] = step[row][column]
+            shift[2*nxt+row][2*t+column] = identity[row][column]
+            dressing[2*t+row][2*t+column] = powers[t][row][column]
+    return mul(transp(dressing), mul(walk, dressing)), mat(shift)
+
+
+def matrix_regression(cases: Cases) -> None:
+    run = _cases(cases)
+    identity, minus = mat(((1, 0), (0, 1))), mat(((-1, 0), (0, -1)))
     step = mat(((0, -1), (1, 0)))
-    u0, u1 = eye, step
-    u2 = mul(u1, step)
-    u3 = mul(u2, step)
-    u4 = mul(u3, step)
-    if u2 != minus or u4 != eye or mul(transp(step), step) != eye:
-        raise SystemExit("order")
-    powers = (u0, u1, u2, u3, u4)
+    first, second = step, mul(step, step)
+    third = mul(second, step)
+    fourth = mul(third, step)
+    powers = (identity, first, second, third, fourth)
+    run.require(second == minus, "step square")
+    run.require(fourth == identity, "step order")
+    run.require(mul(transp(step), step) == identity, "step orthogonality")
     for t in range(4):
-        block = mul(mul(transp(powers[t + 1]), step), powers[t])
-        if block != eye:
-            raise SystemExit(f"block {t}")
-    psi = (Fraction(3, 5), Fraction(4, 5))
-    if psi[0] * psi[0] + psi[1] * psi[1] != 1:
-        raise SystemExit("norm")
-    for t in range(4):
-        back = apply(transp(powers[t]), apply(powers[t], psi))
-        if back != psi:
-            raise SystemExit(f"recover {t} {back}")
-    if apply(u1, psi)[0] == psi[0] or apply(u2, psi)[0] == psi[0]:
-        raise SystemExit("order on psi")
-    # Package the same blocks as an 8 by 8 product. Lean does not build this matrix.
-    z = Fraction(0)
-    w = [[z for _ in range(8)] for _ in range(8)]
-    sc = [[z for _ in range(8)] for _ in range(8)]
-    d = [[z for _ in range(8)] for _ in range(8)]
-    dag = [[z for _ in range(8)] for _ in range(8)]
-    for t in range(4):
-        nxt = (t + 1) % 4
-        for r in range(2):
-            for c in range(2):
-                w[2 * nxt + r][2 * t + c] = step[r][c]
-                sc[2 * nxt + r][2 * t + c] = eye[r][c]
-                d[2 * t + r][2 * t + c] = powers[t][r][c]
-                dag[2 * t + r][2 * t + c] = transp(powers[t])[r][c]
-    packed = mul(tuple(tuple(row) for row in dag), mul(tuple(tuple(row) for row in w), tuple(tuple(row) for row in d)))
-    if packed != tuple(tuple(row) for row in sc):
-        raise SystemExit("packed product")
-    print("U^2 = -I; U^4 = I; U^T U = I")
-    print("four blocks equal I; psi norm 1; four transports recover psi")
-    print("U psi and U^2 psi differ from psi; packed 8x8 product matches the clock shift")
-    print("checked: order-4 step, four blocks, one vector, packaged product")
+        run.require(mul(mul(transp(powers[t+1]), step), powers[t]) == identity, "clock block")
+    _vector_controls(powers, run)
+    packed, shift = _packed_product(powers, step, identity)
+    run.require(packed == shift, "packed8x8 product")
 
 
-
-def compose(a: Perm, b: Perm) -> Perm:
-    return tuple(a[x] for x in b)
-
-
-def inverse(a: Perm) -> Perm:
-    return tuple(a.index(x) for x in range(len(a)))
-
-
-def frames(links: tuple[Perm, ...]) -> tuple[Perm, ...]:
-    out: list[Perm] = [(0, 1, 2)]
-    for link in links:
-        out.append(compose(link, out[-1]))
-    return tuple(out)
-
-
-def check(condition: bool, label: str) -> None:
-    if not condition:
-        raise RuntimeError(label)
-
-
-def closure(links: tuple[Perm, ...]) -> str:
-    if not links:
-        return "emptyPeriod"
-    if frames(links)[-1] != (0, 1, 2):
-        return "nontrivialHolonomy"
-    return "ok"
-
-
-def gauge_regression(links: tuple[Perm, ...], g: tuple[Perm, ...]) -> None:
-    f = frames(links)
-    changed = tuple(compose(inverse(g[t + 1]), compose(u, g[t]))
-                    for t, u in enumerate(links))
-    changed_frames = frames(changed)
-    for t in range(len(f)):
-        expected = compose(inverse(g[t]), compose(f[t], g[0]))
-        check(changed_frames[t] == expected, "frame covariance")
+def _gauge_controls(schedule: PermutationSchedule, gauges: tuple[Perm, ...], run: Cases) -> None:
+    changed = schedule._changed(gauges)
+    for t, frame in enumerate(schedule.frame_values):
+        expected = _compose(_inverse(gauges[t]), _compose(frame, gauges[0]))
+        run.require(changed.frame_values[t] == expected, "frame covariance")
     for initial in range(3):
-        history = tuple(a[initial] for a in f)
-        coords = tuple(inverse(g[t])[x] for t, x in enumerate(history))
-        check(all(g[t][x] == history[t] for t, x in enumerate(coords)), "history inverse")
-        check(all(coords[t + 1] == u[coords[t]] for t, u in enumerate(changed)),
-              "evolution covariance")
-        stationary = tuple(inverse(f[t])[x] for t, x in enumerate(history))
-        check(all(x == initial for x in stationary), "stationary coordinates")
-        bad = history[:-1] + ((history[-1] + 1) % 3,)
-        bad_coords = tuple(inverse(g[t])[x] for t, x in enumerate(bad))
-        check(bad_coords[-1] != changed[-1][bad_coords[-2]],
-              "frame change must not turn a nonevolving history into an evolving one")
+        history = schedule._history(initial)
+        coords = schedule._coordinates(history, gauges)
+        run.require(all(gauge[state] == value for gauge, state, value in zip(gauges, coords, history)), "history inverse")
+        run.require(changed._evolves(coords), "evolution covariance")
+        stationary = schedule._coordinates(history, schedule.frame_values)
+        run.require(all(value == initial for value in stationary), "stationary coordinates")
+        bad = history[:-1]+((history[-1]+1) % 3,)
+        bad_coords = schedule._coordinates(bad, gauges)
+        run.require(not changed._evolves(bad_coords), "nonevolving history remains nonevolving")
 
 
-def cycle_regression(links: tuple[Perm, ...]) -> None:
-    f = frames(links)
-    eye = (0, 1, 2)
-    n = len(links)
-    # Direct point application is the independent oracle for product order.
+def gauge_regression(links: object, gauges: object, cases: Cases) -> None:
+    run = _cases(cases)
+    schedule = PermutationSchedule(links)
+    if not schedule.links:
+        raise Violation("input", "nonempty gauge regression required")
+    _gauge_controls(schedule, _gauges(gauges, len(schedule.frame_values)), run)
+
+
+def _cycle_controls(schedule: PermutationSchedule, run: Cases) -> None:
     for initial in range(3):
-        x = initial
-        for t, u in enumerate(links):
-            x = u[x]
-            check(f[t + 1][initial] == x, "chronological transport")
-    for t, u in enumerate(links):
-        block = compose(inverse(f[(t + 1) % n]), compose(u, f[t]))
-        check(block == (eye if t + 1 < n else f[-1]), "seam normal form")
-    expected_status = "ok" if f[-1] == eye else "nontrivialHolonomy"
-    check(closure(links) == expected_status, "closure decision and failure tag")
-    # Exhaust all possible initial frames; edge cancellation forces each later frame.
-    for g0 in permutations(range(3)):
-        g = tuple(compose(a, g0) for a in f)
-        check((g[-1] == g[0]) == (f[-1] == eye), "periodic obstruction iff")
-        gauge_regression(links, g)
-    # Independently chosen nonstationary, nonperiodic frames exercise endpoint terms.
-    ps = tuple(permutations(range(3)))
+        state = initial
+        for t, link in enumerate(schedule.links):
+            state = link[state]
+            run.require(schedule.frame_values[t+1][initial] == state, "chronological transport")
+    for t, block in enumerate(schedule._blocks()):
+        run.require(block == (UNIT if t+1 < len(schedule.links) else schedule.frame_values[-1]), "seam normal form")
+    expected_status = "ok" if schedule.frame_values[-1] == UNIT else "nontrivialHolonomy"
+    run.require(schedule.closure_tag() == expected_status, "closure decision")
+    for initial_frame in PERMS:
+        gauges = tuple(_compose(frame, initial_frame) for frame in schedule.frame_values)
+        run.require((gauges[-1] == gauges[0]) == (schedule.frame_values[-1] == UNIT), "periodic obstruction iff")
+        _gauge_controls(schedule, gauges, run)
     for offset in range(6):
-        gauge_regression(links, tuple(ps[(offset + t * 2) % 6] for t in range(n + 1)))
+        gauges = tuple(PERMS[(offset+t*2) % 6] for t in range(len(schedule.frame_values)))
+        _gauge_controls(schedule, gauges, run)
 
 
-def fault_regression() -> None:
-    a, b, eye = (1, 0, 2), (0, 2, 1), (0, 1, 2)
-    # Four selected semantic mutants; each must disagree with the direct oracle.
-    actual = tuple(b[a[x]] for x in range(3))
-    check(compose(a, b) != actual, "mutant survived: reversed link order")
-    check(eye != frames((a,))[-1], "mutant survived: erase closing seam")
-    u = compose(b, a)
-    check(compose(u, u) != eye, "mutant survived: omit inverse")
-    check(closure(()) != "ok", "mutant survived: accept zero period")
-    print("four incorrect candidate expressions rejected; witness checks, not a source mutation campaign")
+def cycle_regression(links: object, cases: Cases) -> None:
+    run = _cases(cases)
+    schedule = PermutationSchedule(links)
+    if not schedule.links:
+        raise Violation("input", "nonempty cycle regression required")
+    _cycle_controls(schedule, run)
+
+
+def fault_regression(cases: Cases) -> None:
+    """Four incorrect expression witnesses; separate source mutations supply sensitivity evidence."""
+    run = _cases(cases)
+    a, b = (1, 0, 2), (0, 2, 1)
+    actual = tuple(b[a[state]] for state in range(3))
+    run.require(compose(a, b) != actual, "reversed-order witness")
+    run.require(UNIT != frames((a,))[-1], "erased-seam witness")
+    value = compose(b, a)
+    run.require(compose(value, value) != UNIT, "omitted-inverse witness")
+    run.require(closure(()) != "ok", "empty-period witness")
 
 
 def main() -> None:
-    matrix_regression()
-    ps = tuple(permutations(range(3)))
-    check(closure(()) == "emptyPeriod", "zero period refusal")
-    count = 0
-    closed = 0
-    for n in range(1, 5):
-        for links in product(ps, repeat=n):
-            cycle_regression(links)
+    run = Cases()
+    matrix_regression(run)
+    run.require(closure(()) == "emptyPeriod", "zero-period refusal")
+    count, closed = 0, 0
+    for length in range(1, 5):
+        for links in product(PERMS, repeat=length):
+            cycle_regression(links, run)
             count += 1
             closed += closure(links) == "ok"
-    # Constant-step specialization, including period zero as an algebraic boundary.
-    for u in ps:
-        for n in range(9):
-            expected = tuple(range(3))
-            for _ in range(n):
-                expected = tuple(u[x] for x in expected)
-            check(frames((u,) * n)[-1] == expected, "constant-step power")
-    fault_regression()
-    print(f"S3 schedules={count}; closed={closed}; nonclosing={count-closed}; zero-period rejected")
-    print("checked: all seams, closure iff, 12 gauges and 3 histories per schedule, 54 powers")
-    print("finite regression only; the arbitrary-group and arbitrary-period claims are Lean theorems")
+    for step in PERMS:
+        for length in range(9):
+            expected = UNIT
+            for _ in range(length):
+                expected = (step[expected[0]], step[expected[1]], step[expected[2]])
+            run.require(frames((step,)*length)[-1] == expected, "constant-step power")
+    fault_regression(run)
+    print(json.dumps({"status": "passed", "checks": run.checks, "schedules": count, "closed": closed,
+                      "nonclosing": count-closed, "scope": "bounded S3 schedules and rational matrix client; no continuous-time generator"}))
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(cli(main))

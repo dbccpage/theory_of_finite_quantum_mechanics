@@ -1,0 +1,623 @@
+[
+  {
+    "identity": "matrix-frozen",
+    "source": "checker_support/rational_matrix.py",
+    "before": "@dataclass(frozen=True, slots=True, init=False)",
+    "after": "@dataclass(frozen=False, slots=True, init=False)",
+    "tests": [
+      "test_matrix_owns_snapshots_and_exports_are_detached"
+    ]
+  },
+  {
+    "identity": "matrix-row-limit",
+    "source": "checker_support/rational_matrix.py",
+    "before": "sequence(value, \"matrix\", maximum=64)",
+    "after": "sequence(value, \"matrix\", maximum=65)",
+    "tests": [
+      "test_matrix_shape_scalar_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "matrix-column-limit",
+    "source": "checker_support/rational_matrix.py",
+    "before": "sequence(outer[0], \"matrix row\", maximum=64)",
+    "after": "sequence(outer[0], \"matrix row\", maximum=65)",
+    "tests": [
+      "test_matrix_shape_scalar_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "matrix-entry-admission",
+    "source": "checker_support/rational_matrix.py",
+    "before": "rational(x, \"matrix entry\")",
+    "after": "Fraction(x)",
+    "tests": [
+      "test_matrix_shape_scalar_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "matrix-row-snapshot",
+    "source": "checker_support/rational_matrix.py",
+    "before": "object.__setattr__(self, \"rows\", rows)",
+    "after": "object.__setattr__(self, \"rows\", value)",
+    "tests": [
+      "test_matrix_owns_snapshots_and_exports_are_detached"
+    ]
+  },
+  {
+    "identity": "matrix-integer-admission",
+    "source": "checker_support/rational_matrix.py",
+    "before": "return cls(integer_matrix(value))",
+    "after": "return cls(value)",
+    "tests": [
+      "test_matrix_shape_scalar_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "matrix-flat-order",
+    "source": "checker_support/rational_matrix.py",
+    "before": "return cls(((a, b), (c, d)))",
+    "after": "return cls(((a, c), (b, d)))",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "identity-diagonal",
+    "source": "checker_support/rational_matrix.py",
+    "before": "int(i == j)",
+    "after": "int(i != j)",
+    "tests": [
+      "test_rectangular_multiplication_and_integer_export"
+    ]
+  },
+  {
+    "identity": "identity-size-domain",
+    "source": "checker_support/rational_matrix.py",
+    "before": "integer(dimension, \"matrix dimension\", 1, 64)",
+    "after": "int(dimension)",
+    "tests": [
+      "test_matrix_shape_scalar_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "matrix-shape-fence",
+    "source": "checker_support/rational_matrix.py",
+    "before": "if self.shape != expected:",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_shape_scalar_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "integer-export-domain",
+    "source": "checker_support/rational_matrix.py",
+    "before": "if any(x.denominator != 1 for row in self.rows for x in row):",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_shape_scalar_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "integer-export-value",
+    "source": "checker_support/rational_matrix.py",
+    "before": "tuple(x.numerator for x in row)",
+    "after": "tuple(x.denominator for x in row)",
+    "tests": [
+      "test_rectangular_multiplication_and_integer_export"
+    ]
+  },
+  {
+    "identity": "matrix-add-sign",
+    "source": "checker_support/rational_matrix.py",
+    "before": "tuple(a + b for a, b in zip(left, right))",
+    "after": "tuple(a - b for a, b in zip(left, right))",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-negation",
+    "source": "checker_support/rational_matrix.py",
+    "before": "tuple(-x for x in row)",
+    "after": "tuple(x for x in row)",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-transpose",
+    "source": "checker_support/rational_matrix.py",
+    "before": "return RationalMatrix(tuple(zip(*self.rows)))",
+    "after": "return RationalMatrix(self.rows)",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "multiply-right-transpose",
+    "source": "checker_support/rational_matrix.py",
+    "before": "columns = tuple(zip(*rhs.rows))",
+    "after": "columns = rhs.rows",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "multiply-dimension-fence",
+    "source": "checker_support/rational_matrix.py",
+    "before": "if self.shape[1] != rhs.shape[0]:",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_shape_scalar_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "dot-product-addition",
+    "source": "checker_support/rational_matrix.py",
+    "before": "rational(a * b, \"matrix product\")",
+    "after": "rational(a + b, \"matrix product\")",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "dot-intermediate-budget",
+    "source": "checker_support/rational_matrix.py",
+    "before": "total = rational(total + rational(a * b, \"matrix product\"), \"matrix dot sum\")",
+    "after": "total = total + a * b",
+    "tests": [
+      "test_matrix_output_and_intermediate_budgets"
+    ]
+  },
+  {
+    "identity": "tensor-row-preflight",
+    "source": "checker_support/rational_matrix.py",
+    "before": "integer(self.shape[0] * rhs.shape[0], \"tensor row count\", 1, 64)",
+    "after": "pass",
+    "tests": [
+      "test_matrix_output_and_intermediate_budgets"
+    ]
+  },
+  {
+    "identity": "tensor-column-preflight",
+    "source": "checker_support/rational_matrix.py",
+    "before": "integer(self.shape[1] * rhs.shape[1], \"tensor column count\", 1, 64)",
+    "after": "pass",
+    "tests": [
+      "test_matrix_output_and_intermediate_budgets"
+    ]
+  },
+  {
+    "identity": "tensor-block-order",
+    "source": "checker_support/rational_matrix.py",
+    "before": "for a in left for b in right",
+    "after": "for b in right for a in left",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "tensor-row-order",
+    "source": "checker_support/rational_matrix.py",
+    "before": "for left in self.rows for right in rhs.rows",
+    "after": "for right in rhs.rows for left in self.rows",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "determinant-sign",
+    "source": "checker_support/rational_matrix.py",
+    "before": "rational(rational(a * d) - rational(b * c), \"determinant\")",
+    "after": "rational(rational(a * d) + rational(b * c), \"determinant\")",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "determinant-intermediate-budget",
+    "source": "checker_support/rational_matrix.py",
+    "before": "rational(rational(a * d) - rational(b * c), \"determinant\")",
+    "after": "rational(a * d - b * c, \"determinant\")",
+    "tests": [
+      "test_matrix_output_and_intermediate_budgets"
+    ]
+  },
+  {
+    "identity": "inverse-offdiag-sign",
+    "source": "checker_support/rational_matrix.py",
+    "before": "(-c / determinant, a / determinant)",
+    "after": "(c / determinant, a / determinant)",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "inverse-scale",
+    "source": "checker_support/rational_matrix.py",
+    "before": "((d / determinant, -b / determinant), (-c / determinant, a / determinant))",
+    "after": "((d, -b), (-c, a))",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-complete-column-limit",
+    "source": "checker_support/rational_matrix.py",
+    "before": "def __init__(self, value: object) -> None:\n        outer = sequence(value, \"matrix\", maximum=64)\n        if not outer:\n            raise Violation(\"input\", \"matrix must have at least one row\")\n        first = sequence(outer[0], \"matrix row\", maximum=64)\n        if not first:\n            raise Violation(\"input\", \"matrix must have at least one column\")\n        rows = tuple(tuple(rational(x, \"matrix entry\") for x in sequence(row, \"matrix row\", len(first), 64))\n                     for row in outer)\n        object.__setattr__(self, \"rows\", rows)",
+    "after": "def __init__(self, value: object) -> None:\n        outer = sequence(value, \"matrix\", maximum=64)\n        if not outer:\n            raise Violation(\"input\", \"matrix must have at least one row\")\n        first = sequence(outer[0], \"matrix row\", maximum=65)\n        if not first:\n            raise Violation(\"input\", \"matrix must have at least one column\")\n        rows = tuple(tuple(rational(x, \"matrix entry\") for x in sequence(row, \"matrix row\", len(first), 65))\n                     for row in outer)\n        object.__setattr__(self, \"rows\", rows)",
+    "tests": [
+      "test_matrix_shape_scalar_and_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "causal-det-negative-one",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "if matrix.det2() not in (-1, 1):",
+    "after": "if matrix.det2() != 1:",
+    "tests": [
+      "test_unimodular_inverse_and_ordered_products"
+    ]
+  },
+  {
+    "identity": "causal-unimodular-fence",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "if matrix.det2() not in (-1, 1):",
+    "after": "if False:",
+    "tests": [
+      "test_ordered_product_and_unimodular_refusals"
+    ]
+  },
+  {
+    "identity": "ordered-point-domain",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "integer(point, \"ordered point\", 0, 63)",
+    "after": "int(point)",
+    "tests": [
+      "test_ordered_product_and_unimodular_refusals"
+    ]
+  },
+  {
+    "identity": "ordered-key-domain",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "integer(point, \"operator point\", 0, 63)",
+    "after": "int(point)",
+    "tests": [
+      "test_ordered_product_and_unimodular_refusals"
+    ]
+  },
+  {
+    "identity": "ordered-sequence-bound",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "sequence(seq, \"ordered points\", maximum=64)",
+    "after": "sequence(seq, \"ordered points\", maximum=65)",
+    "tests": [
+      "test_ordered_product_and_unimodular_refusals"
+    ]
+  },
+  {
+    "identity": "ordered-product-direction",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "result = result.mul(operators[point])",
+    "after": "result = operators[point].mul(result)",
+    "tests": [
+      "test_unimodular_inverse_and_ordered_products"
+    ]
+  },
+  {
+    "identity": "causal-c2-edge",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "c2_rel = {(0, 1), (0, 2), (0, 3), (1, 3), (2, 3)}",
+    "after": "c2_rel = {(0, 1), (0, 2), (0, 3), (1, 3)}",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "causal-spacelike-reflexivity",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "return x != y and (x, y) not in rel and (y, x) not in rel",
+    "after": "return (x, y) not in rel and (y, x) not in rel",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "n-order-edge",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "n_rel = {(0, 2), (1, 2), (1, 3)}",
+    "after": "n_rel = {(0, 2), (1, 2)}",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "n-adjacent-swap",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "diffs[1] != diffs[0] + 1",
+    "after": "diffs[1] != diffs[0] + 2",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "n-bfs-visit",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "visited.add(nxt)",
+    "after": "visited.add(cur)",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "counterterm-divisor",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "// 24",
+    "after": "// 12",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "counterterm-diagonal",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "+ c if x == y else",
+    "after": "- c if x == y else",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "counterterm-offdiag",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "else t1[x] * t1[y]",
+    "after": "else t1[x] * t1[y] + c",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "causal-cli-failure",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "return 0 if total_failures == 0 else 1",
+    "after": "return 0",
+    "tests": [
+      "test_injected_faults_cli_and_cancellation"
+    ]
+  },
+  {
+    "identity": "causal-receipt-count",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "def verify_bogoliubov_and_c2_asymmetry() -> tuple[int, int]:\n    cases = Cases()\n\n    def check(cond: bool, msg: str) -> None:\n        cases.append((f\"bogoliubov.{len(cases)}:{msg}\", cond))\n\n    # Unimodular 2x2 integer matrix family S(g1, g2) = [[1, g1], [0, 1]] * [[1, 0], [g2, 1]]\n    def s_nonfactor(g: tuple[int, int]) -> Mat2:\n        g1, g2 = g\n        return mat2_mul(((1, g1), (0, 1)), ((1, 0), (g2, 1)))\n\n    # Factorizing shear family S_comm(g1, g2) = [[1, g1 + 2*g2], [0, 1]]\n    def s_factor(g: tuple[int, int]) -> Mat2:\n        g1, g2 = g\n        return ((1, g1 + 2 * g2), (0, 1))\n\n    def bogoliubov_v(s_fn: Callable[[tuple[int, int]], Mat2], g: tuple[int, int], h: tuple[int, int]) -> Mat2:\n        gh = (g[0] + h[0], g[1] + h[1])\n        return mat2_mul(mat2_inv_unimodular(s_fn(g)), s_fn(gh))\n\n    coords = [(-2, -1), (-1, 0), (0, 0), (1, 0), (0, 1), (1, 2), (2, -1)]\n    for g in coords:\n        check(bogoliubov_v(s_nonfactor, g, (0, 0)) == I2, f\"V(g, 0) == I for g={g}\")\n        check(bogoliubov_v(s_factor, g, (0, 0)) == I2, f\"V_comm(g, 0) == I for g={g}\")\n        for h1 in coords[:4]:\n            for h2 in coords[:4]:\n                gh1 = (g[0] + h1[0], g[1] + h1[1])\n                h12 = (h1[0] + h2[0], h1[1] + h2[1])\n                # Telescoping cocycle identity in the nonfactorizing model; the shear family is checked below\n                lhs_nf = mat2_mul(bogoliubov_v(s_nonfactor, g, h1), bogoliubov_v(s_nonfactor, gh1, h2))\n                rhs_nf = bogoliubov_v(s_nonfactor, g, h12)\n                check(lhs_nf == rhs_nf, f\"Cocycle telescoping failed at g={g}, h1={h1}, h2={h2}\")\n                check(mat2_mul(bogoliubov_v(s_factor, g, h1), bogoliubov_v(s_factor, gh1, h2))\n                      == bogoliubov_v(s_factor, g, h12), \"Shear-family cocycle telescoping\")\n\n                # Equivalence: V(g, h1 + h2) == V(g, h1) V(g, h2) <=> V(g + h1, h2) == V(g, h2)\n                fac_nf = bogoliubov_v(s_nonfactor, g, h12) == mat2_mul(\n                    bogoliubov_v(s_nonfactor, g, h1), bogoliubov_v(s_nonfactor, g, h2)\n                )\n                shift_nf = bogoliubov_v(s_nonfactor, gh1, h2) == bogoliubov_v(s_nonfactor, g, h2)\n                check(fac_nf == shift_nf, \"Factorization <-> background shift invariance failed\")\n\n                # Commuting shear family always factorizes\n                check(\n                    bogoliubov_v(s_factor, g, h12)\n                    == mat2_mul(bogoliubov_v(s_factor, g, h1), bogoliubov_v(s_factor, g, h2)),\n                    \"Commuting shear family must factorize\",\n                )\n\n    # Diamond poset C2: 0 < 1, 0 < 2, 1 < 3, 2 < 3, 0 < 3\n    c2_rel = {(0, 1), (0, 2), (0, 3), (1, 3), (2, 3)}\n\n    def is_spacelike(rel: set[tuple[int, int]], x: int, y: int) -> bool:\n        return x != y and (x, y) not in rel and (y, x) not in rel\n\n    def no_in_causal_past(rel: set[tuple[int, int]], l1: list[int], l2: list[int]) -> bool:\n        return all((x, y) not in rel for x in l1 for y in l2)\n\n    def all_spacelike_between(rel: set[tuple[int, int]], l1: list[int], l2: list[int]) -> bool:\n        return all(is_spacelike(rel, x, y) for x in l1 for y in l2)\n\n    levels = (0, 1, 1, 2)\n    for x, y in itertools.product(range(4), repeat=2):\n        check(((x, y) in c2_rel) == (levels[x] < levels[y])\n              and is_spacelike(c2_rel, x, y) == (x != y and levels[x] == levels[y]),\n              f\"C2 relation and separation at {x},{y}\")\n    check(all_spacelike_between(c2_rel, [1], [2]) is True, \"C2 [1], [2] spacelike\")\n    check(no_in_causal_past(c2_rel, [1], [2]) is True, \"C2 noInCausalPast [1], [2]\")\n    check(no_in_causal_past(c2_rel, [2], [1]) is True, \"C2 noInCausalPast [2], [1]\")\n    check(no_in_causal_past(c2_rel, [1, 2, 3], [0]) is True, \"C2 future-before-past [1,2,3], [0]\")\n    check(all_spacelike_between(c2_rel, [1, 2, 3], [0]) is False, \"C2 [1,2,3], [0] not spacelike\")\n    check(no_in_causal_past(c2_rel, [0], [1, 2, 3]) is False, \"C2 past-before-future [0], [1,2,3]\")\n\n    return len(cases), sum(not passed for _, passed in cases)",
+    "after": "def verify_bogoliubov_and_c2_asymmetry() -> tuple[int, int]:\n    cases = Cases()\n\n    def check(cond: bool, msg: str) -> None:\n        cases.append((f\"bogoliubov.{len(cases)}:{msg}\", cond))\n\n    # Unimodular 2x2 integer matrix family S(g1, g2) = [[1, g1], [0, 1]] * [[1, 0], [g2, 1]]\n    def s_nonfactor(g: tuple[int, int]) -> Mat2:\n        g1, g2 = g\n        return mat2_mul(((1, g1), (0, 1)), ((1, 0), (g2, 1)))\n\n    # Factorizing shear family S_comm(g1, g2) = [[1, g1 + 2*g2], [0, 1]]\n    def s_factor(g: tuple[int, int]) -> Mat2:\n        g1, g2 = g\n        return ((1, g1 + 2 * g2), (0, 1))\n\n    def bogoliubov_v(s_fn: Callable[[tuple[int, int]], Mat2], g: tuple[int, int], h: tuple[int, int]) -> Mat2:\n        gh = (g[0] + h[0], g[1] + h[1])\n        return mat2_mul(mat2_inv_unimodular(s_fn(g)), s_fn(gh))\n\n    coords = [(-2, -1), (-1, 0), (0, 0), (1, 0), (0, 1), (1, 2), (2, -1)]\n    for g in coords:\n        check(bogoliubov_v(s_nonfactor, g, (0, 0)) == I2, f\"V(g, 0) == I for g={g}\")\n        check(bogoliubov_v(s_factor, g, (0, 0)) == I2, f\"V_comm(g, 0) == I for g={g}\")\n        for h1 in coords[:4]:\n            for h2 in coords[:4]:\n                gh1 = (g[0] + h1[0], g[1] + h1[1])\n                h12 = (h1[0] + h2[0], h1[1] + h2[1])\n                # Telescoping cocycle identity in the nonfactorizing model; the shear family is checked below\n                lhs_nf = mat2_mul(bogoliubov_v(s_nonfactor, g, h1), bogoliubov_v(s_nonfactor, gh1, h2))\n                rhs_nf = bogoliubov_v(s_nonfactor, g, h12)\n                check(lhs_nf == rhs_nf, f\"Cocycle telescoping failed at g={g}, h1={h1}, h2={h2}\")\n                check(mat2_mul(bogoliubov_v(s_factor, g, h1), bogoliubov_v(s_factor, gh1, h2))\n                      == bogoliubov_v(s_factor, g, h12), \"Shear-family cocycle telescoping\")\n\n                # Equivalence: V(g, h1 + h2) == V(g, h1) V(g, h2) <=> V(g + h1, h2) == V(g, h2)\n                fac_nf = bogoliubov_v(s_nonfactor, g, h12) == mat2_mul(\n                    bogoliubov_v(s_nonfactor, g, h1), bogoliubov_v(s_nonfactor, g, h2)\n                )\n                shift_nf = bogoliubov_v(s_nonfactor, gh1, h2) == bogoliubov_v(s_nonfactor, g, h2)\n                check(fac_nf == shift_nf, \"Factorization <-> background shift invariance failed\")\n\n                # Commuting shear family always factorizes\n                check(\n                    bogoliubov_v(s_factor, g, h12)\n                    == mat2_mul(bogoliubov_v(s_factor, g, h1), bogoliubov_v(s_factor, g, h2)),\n                    \"Commuting shear family must factorize\",\n                )\n\n    # Diamond poset C2: 0 < 1, 0 < 2, 1 < 3, 2 < 3, 0 < 3\n    c2_rel = {(0, 1), (0, 2), (0, 3), (1, 3), (2, 3)}\n\n    def is_spacelike(rel: set[tuple[int, int]], x: int, y: int) -> bool:\n        return x != y and (x, y) not in rel and (y, x) not in rel\n\n    def no_in_causal_past(rel: set[tuple[int, int]], l1: list[int], l2: list[int]) -> bool:\n        return all((x, y) not in rel for x in l1 for y in l2)\n\n    def all_spacelike_between(rel: set[tuple[int, int]], l1: list[int], l2: list[int]) -> bool:\n        return all(is_spacelike(rel, x, y) for x in l1 for y in l2)\n\n    levels = (0, 1, 1, 2)\n    for x, y in itertools.product(range(4), repeat=2):\n        check(((x, y) in c2_rel) == (levels[x] < levels[y])\n              and is_spacelike(c2_rel, x, y) == (x != y and levels[x] == levels[y]),\n              f\"C2 relation and separation at {x},{y}\")\n    check(all_spacelike_between(c2_rel, [1], [2]) is True, \"C2 [1], [2] spacelike\")\n    check(no_in_causal_past(c2_rel, [1], [2]) is True, \"C2 noInCausalPast [1], [2]\")\n    check(no_in_causal_past(c2_rel, [2], [1]) is True, \"C2 noInCausalPast [2], [1]\")\n    check(no_in_causal_past(c2_rel, [1, 2, 3], [0]) is True, \"C2 future-before-past [1,2,3], [0]\")\n    check(all_spacelike_between(c2_rel, [1, 2, 3], [0]) is False, \"C2 [1,2,3], [0] not spacelike\")\n    check(no_in_causal_past(c2_rel, [0], [1, 2, 3]) is False, \"C2 past-before-future [0], [1,2,3]\")\n\n    return len(cases)+1, sum(not passed for _, passed in cases)",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "causal-failure-count",
+    "source": "independent/cqft-causal-factorization-import.py",
+    "before": "def verify_bogoliubov_and_c2_asymmetry() -> tuple[int, int]:\n    cases = Cases()\n\n    def check(cond: bool, msg: str) -> None:\n        cases.append((f\"bogoliubov.{len(cases)}:{msg}\", cond))\n\n    # Unimodular 2x2 integer matrix family S(g1, g2) = [[1, g1], [0, 1]] * [[1, 0], [g2, 1]]\n    def s_nonfactor(g: tuple[int, int]) -> Mat2:\n        g1, g2 = g\n        return mat2_mul(((1, g1), (0, 1)), ((1, 0), (g2, 1)))\n\n    # Factorizing shear family S_comm(g1, g2) = [[1, g1 + 2*g2], [0, 1]]\n    def s_factor(g: tuple[int, int]) -> Mat2:\n        g1, g2 = g\n        return ((1, g1 + 2 * g2), (0, 1))\n\n    def bogoliubov_v(s_fn: Callable[[tuple[int, int]], Mat2], g: tuple[int, int], h: tuple[int, int]) -> Mat2:\n        gh = (g[0] + h[0], g[1] + h[1])\n        return mat2_mul(mat2_inv_unimodular(s_fn(g)), s_fn(gh))\n\n    coords = [(-2, -1), (-1, 0), (0, 0), (1, 0), (0, 1), (1, 2), (2, -1)]\n    for g in coords:\n        check(bogoliubov_v(s_nonfactor, g, (0, 0)) == I2, f\"V(g, 0) == I for g={g}\")\n        check(bogoliubov_v(s_factor, g, (0, 0)) == I2, f\"V_comm(g, 0) == I for g={g}\")\n        for h1 in coords[:4]:\n            for h2 in coords[:4]:\n                gh1 = (g[0] + h1[0], g[1] + h1[1])\n                h12 = (h1[0] + h2[0], h1[1] + h2[1])\n                # Telescoping cocycle identity in the nonfactorizing model; the shear family is checked below\n                lhs_nf = mat2_mul(bogoliubov_v(s_nonfactor, g, h1), bogoliubov_v(s_nonfactor, gh1, h2))\n                rhs_nf = bogoliubov_v(s_nonfactor, g, h12)\n                check(lhs_nf == rhs_nf, f\"Cocycle telescoping failed at g={g}, h1={h1}, h2={h2}\")\n                check(mat2_mul(bogoliubov_v(s_factor, g, h1), bogoliubov_v(s_factor, gh1, h2))\n                      == bogoliubov_v(s_factor, g, h12), \"Shear-family cocycle telescoping\")\n\n                # Equivalence: V(g, h1 + h2) == V(g, h1) V(g, h2) <=> V(g + h1, h2) == V(g, h2)\n                fac_nf = bogoliubov_v(s_nonfactor, g, h12) == mat2_mul(\n                    bogoliubov_v(s_nonfactor, g, h1), bogoliubov_v(s_nonfactor, g, h2)\n                )\n                shift_nf = bogoliubov_v(s_nonfactor, gh1, h2) == bogoliubov_v(s_nonfactor, g, h2)\n                check(fac_nf == shift_nf, \"Factorization <-> background shift invariance failed\")\n\n                # Commuting shear family always factorizes\n                check(\n                    bogoliubov_v(s_factor, g, h12)\n                    == mat2_mul(bogoliubov_v(s_factor, g, h1), bogoliubov_v(s_factor, g, h2)),\n                    \"Commuting shear family must factorize\",\n                )\n\n    # Diamond poset C2: 0 < 1, 0 < 2, 1 < 3, 2 < 3, 0 < 3\n    c2_rel = {(0, 1), (0, 2), (0, 3), (1, 3), (2, 3)}\n\n    def is_spacelike(rel: set[tuple[int, int]], x: int, y: int) -> bool:\n        return x != y and (x, y) not in rel and (y, x) not in rel\n\n    def no_in_causal_past(rel: set[tuple[int, int]], l1: list[int], l2: list[int]) -> bool:\n        return all((x, y) not in rel for x in l1 for y in l2)\n\n    def all_spacelike_between(rel: set[tuple[int, int]], l1: list[int], l2: list[int]) -> bool:\n        return all(is_spacelike(rel, x, y) for x in l1 for y in l2)\n\n    levels = (0, 1, 1, 2)\n    for x, y in itertools.product(range(4), repeat=2):\n        check(((x, y) in c2_rel) == (levels[x] < levels[y])\n              and is_spacelike(c2_rel, x, y) == (x != y and levels[x] == levels[y]),\n              f\"C2 relation and separation at {x},{y}\")\n    check(all_spacelike_between(c2_rel, [1], [2]) is True, \"C2 [1], [2] spacelike\")\n    check(no_in_causal_past(c2_rel, [1], [2]) is True, \"C2 noInCausalPast [1], [2]\")\n    check(no_in_causal_past(c2_rel, [2], [1]) is True, \"C2 noInCausalPast [2], [1]\")\n    check(no_in_causal_past(c2_rel, [1, 2, 3], [0]) is True, \"C2 future-before-past [1,2,3], [0]\")\n    check(all_spacelike_between(c2_rel, [1, 2, 3], [0]) is False, \"C2 [1,2,3], [0] not spacelike\")\n    check(no_in_causal_past(c2_rel, [0], [1, 2, 3]) is False, \"C2 past-before-future [0], [1,2,3]\")\n\n    return len(cases), sum(not passed for _, passed in cases)",
+    "after": "def verify_bogoliubov_and_c2_asymmetry() -> tuple[int, int]:\n    cases = Cases()\n\n    def check(cond: bool, msg: str) -> None:\n        cases.append((f\"bogoliubov.{len(cases)}:{msg}\", cond))\n\n    # Unimodular 2x2 integer matrix family S(g1, g2) = [[1, g1], [0, 1]] * [[1, 0], [g2, 1]]\n    def s_nonfactor(g: tuple[int, int]) -> Mat2:\n        g1, g2 = g\n        return mat2_mul(((1, g1), (0, 1)), ((1, 0), (g2, 1)))\n\n    # Factorizing shear family S_comm(g1, g2) = [[1, g1 + 2*g2], [0, 1]]\n    def s_factor(g: tuple[int, int]) -> Mat2:\n        g1, g2 = g\n        return ((1, g1 + 2 * g2), (0, 1))\n\n    def bogoliubov_v(s_fn: Callable[[tuple[int, int]], Mat2], g: tuple[int, int], h: tuple[int, int]) -> Mat2:\n        gh = (g[0] + h[0], g[1] + h[1])\n        return mat2_mul(mat2_inv_unimodular(s_fn(g)), s_fn(gh))\n\n    coords = [(-2, -1), (-1, 0), (0, 0), (1, 0), (0, 1), (1, 2), (2, -1)]\n    for g in coords:\n        check(bogoliubov_v(s_nonfactor, g, (0, 0)) == I2, f\"V(g, 0) == I for g={g}\")\n        check(bogoliubov_v(s_factor, g, (0, 0)) == I2, f\"V_comm(g, 0) == I for g={g}\")\n        for h1 in coords[:4]:\n            for h2 in coords[:4]:\n                gh1 = (g[0] + h1[0], g[1] + h1[1])\n                h12 = (h1[0] + h2[0], h1[1] + h2[1])\n                # Telescoping cocycle identity in the nonfactorizing model; the shear family is checked below\n                lhs_nf = mat2_mul(bogoliubov_v(s_nonfactor, g, h1), bogoliubov_v(s_nonfactor, gh1, h2))\n                rhs_nf = bogoliubov_v(s_nonfactor, g, h12)\n                check(lhs_nf == rhs_nf, f\"Cocycle telescoping failed at g={g}, h1={h1}, h2={h2}\")\n                check(mat2_mul(bogoliubov_v(s_factor, g, h1), bogoliubov_v(s_factor, gh1, h2))\n                      == bogoliubov_v(s_factor, g, h12), \"Shear-family cocycle telescoping\")\n\n                # Equivalence: V(g, h1 + h2) == V(g, h1) V(g, h2) <=> V(g + h1, h2) == V(g, h2)\n                fac_nf = bogoliubov_v(s_nonfactor, g, h12) == mat2_mul(\n                    bogoliubov_v(s_nonfactor, g, h1), bogoliubov_v(s_nonfactor, g, h2)\n                )\n                shift_nf = bogoliubov_v(s_nonfactor, gh1, h2) == bogoliubov_v(s_nonfactor, g, h2)\n                check(fac_nf == shift_nf, \"Factorization <-> background shift invariance failed\")\n\n                # Commuting shear family always factorizes\n                check(\n                    bogoliubov_v(s_factor, g, h12)\n                    == mat2_mul(bogoliubov_v(s_factor, g, h1), bogoliubov_v(s_factor, g, h2)),\n                    \"Commuting shear family must factorize\",\n                )\n\n    # Diamond poset C2: 0 < 1, 0 < 2, 1 < 3, 2 < 3, 0 < 3\n    c2_rel = {(0, 1), (0, 2), (0, 3), (1, 3), (2, 3)}\n\n    def is_spacelike(rel: set[tuple[int, int]], x: int, y: int) -> bool:\n        return x != y and (x, y) not in rel and (y, x) not in rel\n\n    def no_in_causal_past(rel: set[tuple[int, int]], l1: list[int], l2: list[int]) -> bool:\n        return all((x, y) not in rel for x in l1 for y in l2)\n\n    def all_spacelike_between(rel: set[tuple[int, int]], l1: list[int], l2: list[int]) -> bool:\n        return all(is_spacelike(rel, x, y) for x in l1 for y in l2)\n\n    levels = (0, 1, 1, 2)\n    for x, y in itertools.product(range(4), repeat=2):\n        check(((x, y) in c2_rel) == (levels[x] < levels[y])\n              and is_spacelike(c2_rel, x, y) == (x != y and levels[x] == levels[y]),\n              f\"C2 relation and separation at {x},{y}\")\n    check(all_spacelike_between(c2_rel, [1], [2]) is True, \"C2 [1], [2] spacelike\")\n    check(no_in_causal_past(c2_rel, [1], [2]) is True, \"C2 noInCausalPast [1], [2]\")\n    check(no_in_causal_past(c2_rel, [2], [1]) is True, \"C2 noInCausalPast [2], [1]\")\n    check(no_in_causal_past(c2_rel, [1, 2, 3], [0]) is True, \"C2 future-before-past [1,2,3], [0]\")\n    check(all_spacelike_between(c2_rel, [1, 2, 3], [0]) is False, \"C2 [1,2,3], [0] not spacelike\")\n    check(no_in_causal_past(c2_rel, [0], [1, 2, 3]) is False, \"C2 past-before-future [0], [1,2,3]\")\n\n    return len(cases), 0",
+    "tests": [
+      "test_injected_faults_cli_and_cancellation"
+    ]
+  },
+  {
+    "identity": "local-relation-edge",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "{(0, 2), (1, 2), (1, 3)}",
+    "after": "{(0, 2), (1, 2), (0, 3)}",
+    "tests": [
+      "test_local_order_tensor_and_flat_boundaries"
+    ]
+  },
+  {
+    "identity": "local-point-bound",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "def rel(i: int, j: int) -> bool:\n    left, right = integer(i, \"carrier point\", 0, 3), integer(j, \"carrier point\", 0, 3)\n    return (left, right) in {(0, 2), (1, 2), (1, 3)}",
+    "after": "def rel(i: int, j: int) -> bool:\n    left, right = integer(i, \"carrier point\", 0, 4), integer(j, \"carrier point\", 0, 3)\n    return (left, right) in {(0, 2), (1, 2), (1, 3)}",
+    "tests": [
+      "test_local_order_tensor_and_flat_boundaries"
+    ]
+  },
+  {
+    "identity": "local-spacelike-equality",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "return left != right and not rel(left, right) and not rel(right, left)",
+    "after": "return not rel(left, right) and not rel(right, left)",
+    "tests": [
+      "test_local_order_tensor_and_flat_boundaries"
+    ]
+  },
+  {
+    "identity": "local-kron-left-domain",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "    left.integer_rows()",
+    "after": "    pass",
+    "tests": [
+      "test_local_order_tensor_and_flat_boundaries"
+    ]
+  },
+  {
+    "identity": "local-count",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "\"total_checks\": len(cases)",
+    "after": "\"total_checks\": len(cases)+1",
+    "tests": [
+      "test_local_generated_receipt_accounting"
+    ]
+  },
+  {
+    "identity": "local-failure-selection",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "[name for name, passed in cases if not passed]",
+    "after": "[name for name, passed in cases if passed]",
+    "tests": [
+      "test_local_generated_receipt_accounting"
+    ]
+  },
+  {
+    "identity": "local-false-success",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "\"all_passed\": not failures",
+    "after": "\"all_passed\": True",
+    "tests": [
+      "test_local_generated_receipt_accounting"
+    ]
+  },
+  {
+    "identity": "local-multiply-operation",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "def mm(x: FlatInput, y: FlatInput) -> Flat2:\n    return RationalMatrix.from_flat2(x).mul(RationalMatrix.from_flat2(y)).flat2()",
+    "after": "def mm(x: FlatInput, y: FlatInput) -> Flat2:\n    return RationalMatrix.from_flat2(x).add(RationalMatrix.from_flat2(y)).flat2()",
+    "tests": [
+      "test_local_two_by_two_api_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "local-flat-shape",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "def flat(value: list[list[int]]) -> tuple[int, ...]:\n    rows = RationalMatrix.from_integers(value).require_shape(4, 4).integer_rows()\n    return tuple(x for row in rows for x in row)",
+    "after": "def flat(value: list[list[int]]) -> tuple[int, ...]:\n    rows = RationalMatrix.from_integers(value).integer_rows()\n    return tuple(x for row in rows for x in row)",
+    "tests": [
+      "test_local_order_tensor_and_flat_boundaries"
+    ]
+  },
+  {
+    "identity": "local-mm4-left-shape",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "RationalMatrix.from_integers(p).require_shape(4, 4)",
+    "after": "RationalMatrix.from_integers(p)",
+    "tests": [
+      "test_local_order_tensor_and_flat_boundaries"
+    ]
+  },
+  {
+    "identity": "local-mm4-right-shape",
+    "source": "independent/cqft-local-net-axioms-import.py",
+    "before": "RationalMatrix.from_integers(q).require_shape(4, 4)",
+    "after": "RationalMatrix.from_integers(q)",
+    "tests": [
+      "test_local_order_tensor_and_flat_boundaries"
+    ]
+  },
+  {
+    "identity": "coefficient-shape",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "sequence(psi, \"three-qubit coefficients\", 8)",
+    "after": "sequence(psi, \"three-qubit coefficients\")",
+    "tests": [
+      "test_unfolding_and_full_system_input_refusals"
+    ]
+  },
+  {
+    "identity": "bit-complement-order",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "b0 = b % 2",
+    "after": "b0 = b // 2",
+    "tests": [
+      "test_unfolding_indices_against_bit_insertion"
+    ]
+  },
+  {
+    "identity": "bit-site-position",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "bit0 = a if s == 0 else b0",
+    "after": "bit0 = a if s == 1 else b0",
+    "tests": [
+      "test_unfolding_indices_against_bit_insertion"
+    ]
+  },
+  {
+    "identity": "bit-weight",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "return bit0 + 2 * bit1 + 4 * bit2",
+    "after": "return bit0 + 4 * bit1 + 2 * bit2",
+    "tests": [
+      "test_unfolding_indices_against_bit_insertion"
+    ]
+  },
+  {
+    "identity": "bit-site-domain",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "def combine_single_site(s: int, a: int, b: int) -> int:\n    integer(s, \"site\", 0, 2)\n    integer(a, \"site bit\", 0, 1)\n    integer(b, \"complement index\", 0, 3)\n    b0 = b % 2\n    b1 = b // 2\n    bit0 = a if s == 0 else b0\n    bit1 = a if s == 1 else (b0 if s == 0 else b1)\n    bit2 = a if s == 2 else b1\n    return bit0 + 2 * bit1 + 4 * bit2",
+    "after": "def combine_single_site(s: int, a: int, b: int) -> int:\n    int(s)\n    integer(a, \"site bit\", 0, 1)\n    integer(b, \"complement index\", 0, 3)\n    b0 = b % 2\n    b1 = b // 2\n    bit0 = a if s == 0 else b0\n    bit1 = a if s == 1 else (b0 if s == 0 else b1)\n    bit2 = a if s == 2 else b1\n    return bit0 + 2 * bit1 + 4 * bit2",
+    "tests": [
+      "test_unfolding_and_full_system_input_refusals"
+    ]
+  },
+  {
+    "identity": "bit-value-domain",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "integer(a, \"site bit\", 0, 1)",
+    "after": "int(a)",
+    "tests": [
+      "test_unfolding_and_full_system_input_refusals"
+    ]
+  },
+  {
+    "identity": "complement-domain",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "integer(b, \"complement index\", 0, 3)",
+    "after": "int(b)",
+    "tests": [
+      "test_unfolding_and_full_system_input_refusals"
+    ]
+  },
+  {
+    "identity": "ghz-amplitudes",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "x in (0, 7)",
+    "after": "x in (0, 6)",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "w-amplitudes",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "x in (1, 2, 4)",
+    "after": "x in (1, 2, 3)",
+    "tests": [
+      "test_all_finite_sections_and_default_counts"
+    ]
+  },
+  {
+    "identity": "reeh-cli-failure",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "return 0 if total_failures == 0 else 1",
+    "after": "return 0",
+    "tests": [
+      "test_injected_faults_cli_and_cancellation"
+    ]
+  },
+  {
+    "identity": "reeh-recorded-failures",
+    "source": "independent/cqft-reeh-schlieder-theorem-import.py",
+    "before": "def verify_three_and_four_qubit_census() -> tuple[int, int]:\n    cases = Cases()\n\n    def check(cond: bool, msg: str) -> None:\n        cases.append((f\"census.{len(cases)}:{msg}\", cond))\n\n    psi_ghz3, psi_prod3, psi_w3 = check_three_qubit_unfoldings(check)\n\n    # Full 3-site (8 x 1) unfoldings have left inverses -> cyclic\n    check_full_system_inverses(check, psi_ghz3, psi_prod3, psi_w3)\n\n    # 4-qubit half-system (4 x 4) unfoldings\n    check_four_qubit_unfoldings(check)\n\n    return len(cases), sum(not passed for _, passed in cases)",
+    "after": "def verify_three_and_four_qubit_census() -> tuple[int, int]:\n    cases = Cases()\n\n    def check(cond: bool, msg: str) -> None:\n        cases.append((f\"census.{len(cases)}:{msg}\", cond))\n\n    psi_ghz3, psi_prod3, psi_w3 = check_three_qubit_unfoldings(check)\n\n    # Full 3-site (8 x 1) unfoldings have left inverses -> cyclic\n    check_full_system_inverses(check, psi_ghz3, psi_prod3, psi_w3)\n\n    # 4-qubit half-system (4 x 4) unfoldings\n    check_four_qubit_unfoldings(check)\n\n    return len(cases), 0",
+    "tests": [
+      "test_injected_faults_cli_and_cancellation"
+    ]
+  },
+  {
+    "identity": "test-refusal-helper",
+    "source": "tests/test_cqft_checkers.py",
+    "before": "        result = evaluate(lambda: operation(*args))",
+    "after": "        return Failure(\"input\", \"fake\")\n        result = evaluate(lambda: operation(*args))",
+    "tests": [
+      "test_refusal_helper_and_symbolic_conversion_oracles"
+    ]
+  },
+  {
+    "identity": "test-symbolic-row-order",
+    "source": "tests/test_cqft_checkers.py",
+    "before": "value[i, j].p",
+    "after": "value[j, i].p",
+    "tests": [
+      "test_refusal_helper_and_symbolic_conversion_oracles"
+    ]
+  }
+]

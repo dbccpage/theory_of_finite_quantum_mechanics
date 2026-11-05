@@ -1,0 +1,477 @@
+{
+  "AuthorityEffect": "None",
+  "origins": [
+    {
+      "path": "lean4/ContinuumHilbertLiftIntegerSlice.lean",
+      "sha256": "60e69b20a0335e3481c297d6a5b6e898678d9e3d06b2fa2463c2e33ab704b177"
+    },
+    {
+      "path": "lean4/StoneContinuousTimeIntegerSlice.lean",
+      "sha256": "515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c"
+    },
+    {
+      "path": "lean4/U1CircleIntegerWitness.lean",
+      "sha256": "3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd"
+    }
+  ],
+  "sources": {
+    "checks/checker_support/integer_quadratic_equation.py": {
+      "symbols": {
+        "_integer": [
+          "admit"
+        ],
+        "_square_root": [
+          "roots"
+        ],
+        "IntegerQuadraticEquation": [
+          "admit"
+        ],
+        "IntegerQuadraticEquation.__init__": [
+          "admit"
+        ],
+        "IntegerQuadraticEquation.coefficients": [
+          "admit"
+        ],
+        "IntegerQuadraticEquation._evaluate": [
+          "evaluate"
+        ],
+        "IntegerQuadraticEquation.evaluate": [
+          "evaluate"
+        ],
+        "IntegerQuadraticEquation._homogeneous_value": [
+          "evaluate"
+        ],
+        "IntegerQuadraticEquation.homogeneous_value": [
+          "evaluate"
+        ],
+        "IntegerQuadraticEquation._discriminant": [
+          "roots"
+        ],
+        "IntegerQuadraticEquation.discriminant": [
+          "roots"
+        ],
+        "IntegerQuadraticEquation.square_root": [
+          "roots"
+        ],
+        "IntegerQuadraticEquation._rational_roots": [
+          "roots"
+        ],
+        "IntegerQuadraticEquation.rational_roots": [
+          "roots"
+        ],
+        "IntegerQuadraticEquation._integer_roots": [
+          "roots"
+        ],
+        "IntegerQuadraticEquation.integer_roots": [
+          "roots"
+        ]
+      },
+      "requirements": {
+        "admit": {
+          "description": "Own three exact bounded integer coefficients, reject zero polynomial, accept constant and linear cases.",
+          "tests": [
+            "test_exact_domains_constant_linear_and_repeated_roots",
+            "test_owned_coefficients_and_immutable_reentrant_results",
+            "test_quiet_import_cli_and_per_run_failure_state",
+            "test_isolated_admission_and_first_failure"
+          ],
+          "symbols": [
+            "_integer",
+            "IntegerQuadraticEquation",
+            "IntegerQuadraticEquation.__init__",
+            "IntegerQuadraticEquation.coefficients"
+          ]
+        },
+        "evaluate": {
+          "description": "Evaluate admitted rational arguments and homogeneous integer pairs. Check terms and prefixes before cancellation.",
+          "tests": [
+            "test_generated_evaluation_and_homogenization",
+            "test_resource_boundaries_cover_products_prefixes_and_arguments",
+            "test_isolated_arithmetic_prefix_budgets",
+            "test_isolated_admission_and_first_failure"
+          ],
+          "symbols": [
+            "IntegerQuadraticEquation._evaluate",
+            "IntegerQuadraticEquation.evaluate",
+            "IntegerQuadraticEquation._homogeneous_value",
+            "IntegerQuadraticEquation.homogeneous_value"
+          ]
+        },
+        "roots": {
+          "description": "Return sorted distinct exact rational roots and filter integer roots. Replay each root and distinguish a nonsquare from an input or budget failure.",
+          "tests": [
+            "test_all_small_polynomials_against_independent_factorization",
+            "test_generated_factored_roots_are_complete_sorted_and_distinct",
+            "test_square_root_boundary_and_independent_square_census",
+            "test_exact_domains_constant_linear_and_repeated_roots",
+            "test_resource_boundaries_cover_products_prefixes_and_arguments",
+            "test_root_replay_guards_and_unexpected_failures"
+          ],
+          "symbols": [
+            "_square_root",
+            "IntegerQuadraticEquation._discriminant",
+            "IntegerQuadraticEquation.discriminant",
+            "IntegerQuadraticEquation.square_root",
+            "IntegerQuadraticEquation._rational_roots",
+            "IntegerQuadraticEquation.rational_roots",
+            "IntegerQuadraticEquation._integer_roots",
+            "IntegerQuadraticEquation.integer_roots"
+          ]
+        }
+      }
+    },
+    "checks/independent/fq-gap-continuum-hilbert-lift.py": {
+      "symbols": {
+        "IntegerObstructionControls": [
+          "census"
+        ],
+        "IntegerObstructionControls.__init__": [
+          "census"
+        ],
+        "IntegerObstructionControls._root_certificates": [
+          "roots"
+        ],
+        "IntegerObstructionControls._hilbert_window": [
+          "census"
+        ],
+        "IntegerObstructionControls._zero_pair": [
+          "solution"
+        ],
+        "IntegerObstructionControls.zero_pair": [
+          "solution"
+        ],
+        "IntegerObstructionControls._residue_controls": [
+          "census"
+        ],
+        "IntegerObstructionControls._natural_pairs": [
+          "census"
+        ],
+        "IntegerObstructionControls._positive_denominators": [
+          "census"
+        ],
+        "IntegerObstructionControls._cleared": [
+          "census"
+        ],
+        "IntegerObstructionControls._cleared_box": [
+          "census"
+        ],
+        "IntegerObstructionControls._verify": [
+          "census",
+          "lifecycle"
+        ],
+        "IntegerObstructionControls.verify": [
+          "census",
+          "lifecycle"
+        ],
+        "verify": [
+          "census",
+          "lifecycle"
+        ],
+        "_main": [
+          "census",
+          "lifecycle"
+        ],
+        "main": [
+          "census",
+          "lifecycle"
+        ]
+      },
+      "requirements": {
+        "roots": {
+          "description": "Return sorted distinct exact rational roots and filter integer roots. Replay each root and distinguish a nonsquare from an input or budget failure.",
+          "tests": [
+            "test_all_small_polynomials_against_independent_factorization",
+            "test_generated_factored_roots_are_complete_sorted_and_distinct",
+            "test_square_root_boundary_and_independent_square_census",
+            "test_exact_domains_constant_linear_and_repeated_roots",
+            "test_resource_boundaries_cover_products_prefixes_and_arguments",
+            "test_root_replay_guards_and_unexpected_failures"
+          ],
+          "symbols": [
+            "IntegerObstructionControls._root_certificates"
+          ]
+        },
+        "census": {
+          "description": "Enforce the four census bounds, retain each original sample population and check the actual number of successful guard calls.",
+          "tests": [
+            "test_original_sample_populations_and_actual_per_run_counter",
+            "test_generated_census_policies_against_direct_enumeration",
+            "test_policy_bounds_zero_pair_admission_and_ownership"
+          ],
+          "symbols": [
+            "IntegerObstructionControls",
+            "IntegerObstructionControls.__init__",
+            "IntegerObstructionControls._hilbert_window",
+            "IntegerObstructionControls._residue_controls",
+            "IntegerObstructionControls._natural_pairs",
+            "IntegerObstructionControls._positive_denominators",
+            "IntegerObstructionControls._cleared",
+            "IntegerObstructionControls._cleared_box",
+            "IntegerObstructionControls._verify",
+            "IntegerObstructionControls.verify",
+            "verify",
+            "_main",
+            "main"
+          ]
+        },
+        "solution": {
+          "description": "Admit only nonnegative exact integer solutions of the four-fifths equation and distinguish an inconsistent model from an invalid input.",
+          "tests": [
+            "test_generated_census_policies_against_direct_enumeration",
+            "test_policy_bounds_zero_pair_admission_and_ownership",
+            "test_composition_refuses_helper_failures_without_suppressing_them",
+            "test_isolated_admission_and_first_failure"
+          ],
+          "symbols": [
+            "IntegerObstructionControls._zero_pair",
+            "IntegerObstructionControls.zero_pair"
+          ]
+        },
+        "lifecycle": {
+          "description": "Create fresh state per run, isolate module registration and CLI output, propagate unexpected exceptions and cancellation.",
+          "tests": [
+            "test_owned_coefficients_and_immutable_reentrant_results",
+            "test_root_replay_guards_and_unexpected_failures",
+            "test_composition_refuses_helper_failures_without_suppressing_them",
+            "test_quiet_import_cli_and_per_run_failure_state",
+            "test_application_unexpected_errors_and_cancellation_propagate"
+          ],
+          "symbols": [
+            "IntegerObstructionControls._verify",
+            "IntegerObstructionControls.verify",
+            "verify",
+            "_main",
+            "main"
+          ]
+        }
+      }
+    },
+    "checks/tests/test_integer_obstructions.py": {
+      "symbols": {
+        "load": [
+          "lifecycle"
+        ],
+        "reference_roots": [
+          "roots"
+        ],
+        "IntegerObstructionTests": [
+          "lifecycle"
+        ],
+        "IntegerObstructionTests.accepted": [
+          "lifecycle"
+        ],
+        "IntegerObstructionTests.refused": [
+          "lifecycle"
+        ],
+        "IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization": [
+          "roots"
+        ],
+        "IntegerObstructionTests.test_generated_evaluation_and_homogenization": [
+          "evaluate"
+        ],
+        "IntegerObstructionTests.test_generated_factored_roots_are_complete_sorted_and_distinct": [
+          "roots"
+        ],
+        "IntegerObstructionTests.test_square_root_boundary_and_independent_square_census": [
+          "roots"
+        ],
+        "IntegerObstructionTests.test_exact_domains_constant_linear_and_repeated_roots": [
+          "admit",
+          "roots"
+        ],
+        "IntegerObstructionTests.test_owned_coefficients_and_immutable_reentrant_results": [
+          "admit",
+          "lifecycle"
+        ],
+        "IntegerObstructionTests.test_resource_boundaries_cover_products_prefixes_and_arguments": [
+          "evaluate",
+          "roots"
+        ],
+        "IntegerObstructionTests.test_root_replay_guards_and_unexpected_failures": [
+          "roots",
+          "lifecycle"
+        ],
+        "IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter": [
+          "census"
+        ],
+        "IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter.record": [
+          "census"
+        ],
+        "IntegerObstructionTests.test_generated_census_policies_against_direct_enumeration": [
+          "census",
+          "solution"
+        ],
+        "IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership": [
+          "census",
+          "solution"
+        ],
+        "IntegerObstructionTests.test_composition_refuses_helper_failures_without_suppressing_them": [
+          "solution",
+          "lifecycle"
+        ],
+        "IntegerObstructionTests.test_composition_refuses_helper_failures_without_suppressing_them.refusal": [
+          "solution",
+          "lifecycle"
+        ],
+        "IntegerObstructionTests.test_quiet_import_cli_and_per_run_failure_state": [
+          "admit",
+          "lifecycle"
+        ],
+        "IntegerObstructionTests.test_isolated_arithmetic_prefix_budgets": [
+          "evaluate"
+        ],
+        "IntegerObstructionTests.test_isolated_admission_and_first_failure": [
+          "admit",
+          "evaluate",
+          "solution"
+        ],
+        "IntegerObstructionTests.test_isolated_admission_and_first_failure.bad_square": [
+          "admit",
+          "evaluate",
+          "solution"
+        ],
+        "IntegerObstructionTests.test_isolated_admission_and_first_failure.roots": [
+          "admit",
+          "evaluate",
+          "solution"
+        ],
+        "IntegerObstructionTests.test_application_unexpected_errors_and_cancellation_propagate": [
+          "lifecycle"
+        ]
+      },
+      "requirements": {
+        "admit": {
+          "description": "Own three exact bounded integer coefficients, reject zero polynomial, accept constant and linear cases.",
+          "tests": [
+            "test_exact_domains_constant_linear_and_repeated_roots",
+            "test_owned_coefficients_and_immutable_reentrant_results",
+            "test_quiet_import_cli_and_per_run_failure_state",
+            "test_isolated_admission_and_first_failure"
+          ],
+          "symbols": [
+            "IntegerObstructionTests.test_exact_domains_constant_linear_and_repeated_roots",
+            "IntegerObstructionTests.test_owned_coefficients_and_immutable_reentrant_results",
+            "IntegerObstructionTests.test_quiet_import_cli_and_per_run_failure_state",
+            "IntegerObstructionTests.test_isolated_admission_and_first_failure",
+            "IntegerObstructionTests.test_isolated_admission_and_first_failure.bad_square",
+            "IntegerObstructionTests.test_isolated_admission_and_first_failure.roots"
+          ]
+        },
+        "evaluate": {
+          "description": "Evaluate admitted rational arguments and homogeneous integer pairs. Check terms and prefixes before cancellation.",
+          "tests": [
+            "test_generated_evaluation_and_homogenization",
+            "test_resource_boundaries_cover_products_prefixes_and_arguments",
+            "test_isolated_arithmetic_prefix_budgets",
+            "test_isolated_admission_and_first_failure"
+          ],
+          "symbols": [
+            "IntegerObstructionTests.test_generated_evaluation_and_homogenization",
+            "IntegerObstructionTests.test_resource_boundaries_cover_products_prefixes_and_arguments",
+            "IntegerObstructionTests.test_isolated_arithmetic_prefix_budgets",
+            "IntegerObstructionTests.test_isolated_admission_and_first_failure",
+            "IntegerObstructionTests.test_isolated_admission_and_first_failure.bad_square",
+            "IntegerObstructionTests.test_isolated_admission_and_first_failure.roots"
+          ]
+        },
+        "roots": {
+          "description": "Return sorted distinct exact rational roots and filter integer roots. Replay each root and distinguish a nonsquare from an input or budget failure.",
+          "tests": [
+            "test_all_small_polynomials_against_independent_factorization",
+            "test_generated_factored_roots_are_complete_sorted_and_distinct",
+            "test_square_root_boundary_and_independent_square_census",
+            "test_exact_domains_constant_linear_and_repeated_roots",
+            "test_resource_boundaries_cover_products_prefixes_and_arguments",
+            "test_root_replay_guards_and_unexpected_failures"
+          ],
+          "symbols": [
+            "reference_roots",
+            "IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization",
+            "IntegerObstructionTests.test_generated_factored_roots_are_complete_sorted_and_distinct",
+            "IntegerObstructionTests.test_square_root_boundary_and_independent_square_census",
+            "IntegerObstructionTests.test_exact_domains_constant_linear_and_repeated_roots",
+            "IntegerObstructionTests.test_resource_boundaries_cover_products_prefixes_and_arguments",
+            "IntegerObstructionTests.test_root_replay_guards_and_unexpected_failures"
+          ]
+        },
+        "census": {
+          "description": "Enforce the four census bounds, retain each original sample population and check the actual number of successful guard calls.",
+          "tests": [
+            "test_original_sample_populations_and_actual_per_run_counter",
+            "test_generated_census_policies_against_direct_enumeration",
+            "test_policy_bounds_zero_pair_admission_and_ownership"
+          ],
+          "symbols": [
+            "IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter",
+            "IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter.record",
+            "IntegerObstructionTests.test_generated_census_policies_against_direct_enumeration",
+            "IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership"
+          ]
+        },
+        "solution": {
+          "description": "Admit only nonnegative exact integer solutions of the four-fifths equation and distinguish an inconsistent model from an invalid input.",
+          "tests": [
+            "test_generated_census_policies_against_direct_enumeration",
+            "test_policy_bounds_zero_pair_admission_and_ownership",
+            "test_composition_refuses_helper_failures_without_suppressing_them",
+            "test_isolated_admission_and_first_failure"
+          ],
+          "symbols": [
+            "IntegerObstructionTests.test_generated_census_policies_against_direct_enumeration",
+            "IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership",
+            "IntegerObstructionTests.test_composition_refuses_helper_failures_without_suppressing_them",
+            "IntegerObstructionTests.test_composition_refuses_helper_failures_without_suppressing_them.refusal",
+            "IntegerObstructionTests.test_isolated_admission_and_first_failure",
+            "IntegerObstructionTests.test_isolated_admission_and_first_failure.bad_square",
+            "IntegerObstructionTests.test_isolated_admission_and_first_failure.roots"
+          ]
+        },
+        "lifecycle": {
+          "description": "Create fresh state per run, isolate module registration and CLI output, propagate unexpected exceptions and cancellation.",
+          "tests": [
+            "test_owned_coefficients_and_immutable_reentrant_results",
+            "test_root_replay_guards_and_unexpected_failures",
+            "test_composition_refuses_helper_failures_without_suppressing_them",
+            "test_quiet_import_cli_and_per_run_failure_state",
+            "test_application_unexpected_errors_and_cancellation_propagate"
+          ],
+          "symbols": [
+            "load",
+            "IntegerObstructionTests",
+            "IntegerObstructionTests.accepted",
+            "IntegerObstructionTests.refused",
+            "IntegerObstructionTests.test_owned_coefficients_and_immutable_reentrant_results",
+            "IntegerObstructionTests.test_root_replay_guards_and_unexpected_failures",
+            "IntegerObstructionTests.test_composition_refuses_helper_failures_without_suppressing_them",
+            "IntegerObstructionTests.test_composition_refuses_helper_failures_without_suppressing_them.refusal",
+            "IntegerObstructionTests.test_quiet_import_cli_and_per_run_failure_state",
+            "IntegerObstructionTests.test_application_unexpected_errors_and_cancellation_propagate"
+          ]
+        }
+      }
+    }
+  },
+  "retired": [
+    {
+      "path": "checks/independent/fq-gap-stone-continuous-time.py",
+      "sha256": "2b49b9776fbb92c59475e62eec8dba31a27e5439f9de78e80ff66d3761abff9c",
+      "archive": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.py.txt"
+    },
+    {
+      "path": "checks/independent/fq-gap-stone-continuous-time.contract.score.yaml",
+      "sha256": "7920c9a78543a44ee51b984742e3aeb347b417b37e99a20fe43ce312e3a76aa8",
+      "archive": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.contract.score.yaml.txt"
+    },
+    {
+      "path": "checks/independent/fq-gap-u1-circle.py",
+      "sha256": "3cadf9cad009a4e36b375a1119114491f2524be1d839f6546bbbccfd719c2ba7",
+      "archive": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.py.txt"
+    },
+    {
+      "path": "checks/independent/fq-gap-u1-circle.contract.score.yaml",
+      "sha256": "27d10bb10578b3eb23a4e9ae451df163dff8787a5e20789d6577fc180ab47a1a",
+      "archive": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.contract.score.yaml.txt"
+    }
+  ],
+  "replacement": "checks/independent/fq-gap-continuum-hilbert-lift.py"
+}

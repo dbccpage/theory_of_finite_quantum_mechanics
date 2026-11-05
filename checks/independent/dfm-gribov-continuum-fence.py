@@ -1,67 +1,109 @@
-"""Independent check for DFM-GRIBOV-CONTINUUM-FENCE.
+"""Bounded exact weighted trace forms in the finite Gribov fence.
 
-Three-by-three rational matrices, two generator squares, and the traces
-Tr(Omega1 H^2) are recomputed with fractions.Fraction. This file imports
-no repository code.
+AuthorityEffect: None. No continuum operator, gauge fixing or Gribov region is
+constructed. Shared independent arithmetic is checked by separate matrix oracles.
 """
+from __future__ import annotations
 
-from fractions import Fraction
+from dataclasses import dataclass
+from fractions import Fraction as Q
+import json
+from pathlib import Path as _Path
+import sys as _sys
 
-
-def exact(value):
-    if isinstance(value, Fraction):
-        return value
-    if type(value) is int:
-        return Fraction(value)
-    raise TypeError("expected an int or Fraction (not bool, float, or text)")
-
-
-def mat(rows):
-    return tuple(tuple(exact(x) for x in row) for row in rows)
-
-
-def mul(a, b):
-    return tuple(
-        tuple(sum(a[i][k] * b[k][j] for k in range(3)) for j in range(3))
-        for i in range(3)
-    )
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import rational, sequence
+from checker_support.outcome import Outcome
+from checker_support.rational_matrix import RationalMatrix, Rows
 
 
-def trace(a):
-    return a[0][0] + a[1][1] + a[2][2]
+def exact(value: object) -> Q:
+    return rational(value)
 
 
-def diag(x, y, z):
-    return mat(((x, 0, 0), (0, y, 0), (0, 0, z)))
+def _matrix(rows: object) -> RationalMatrix:
+    outer = sequence(rows, "3x3 matrix", 3, 3)
+    owned = tuple(sequence(row, "3x3 row", 3, 3) for row in outer)
+    return RationalMatrix(owned)
 
 
-def main():
-    eye = diag(1, 1, 1)
-    omega1 = diag(1, -1, -1)
+def mat(rows: object) -> Rows:
+    return _matrix(rows).rows
+
+
+def mul(a: object, b: object) -> Rows:
+    left, right = _matrix(a), _matrix(b)
+    return left.mul(right).rows
+
+
+def _trace(matrix: RationalMatrix) -> Q:
+    total = Q(0)
+    for index in range(3):
+        total = rational(total + matrix.rows[index][index], "trace accumulation")
+    return total
+
+
+def trace(a: object) -> Q:
+    return _trace(_matrix(a))
+
+
+def diag(x: object, y: object, z: object) -> Rows:
+    first, second, third = exact(x), exact(y), exact(z)
+    return mat(((first, 0, 0), (0, second, 0), (0, 0, third)))
+
+
+@dataclass(frozen=True, slots=True, init=False)
+class TraceQuadraticForm:
+    """Owns a rational3x3 weight; Q(H)=Tr(weight*H^2), without positivity claims."""
+    weight: RationalMatrix
+
+    def __init__(self, weight: object) -> None:
+        object.__setattr__(self, "weight", _matrix(weight))
+
+    def _on(self, generator: RationalMatrix) -> Q:
+        return _trace(self.weight.mul(generator.mul(generator)))
+
+    def _value(self, generator: object) -> Q:
+        return self._on(_matrix(generator))
+
+    def value(self, generator: object) -> Outcome[Q]:
+        return evaluate(self._value, generator)
+
+    def _difference(self, left: object, right: object) -> Q:
+        first, second = _matrix(left), _matrix(right)
+        return rational(self._on(first) - self._on(second), "form difference")
+
+    def difference(self, left: object, right: object) -> Outcome[Q]:
+        return evaluate(self._difference, left, right)
+
+
+def run_checks(cases: Cases) -> None:
+    if type(cases) is not Cases:
+        raise Violation("input", "Cases recorder required")
+    eye, omega = diag(1, 1, 1), diag(1, -1, -1)
     h23 = mat(((0, 0, 0), (0, 0, 1), (0, 1, 0)))
     h12 = mat(((0, 1, 0), (1, 0, 0), (0, 0, 0)))
-    if mul(h23, h23) != diag(0, 1, 1):
-        raise SystemExit("H23 square")
-    if mul(h12, h12) != diag(1, 1, 0):
-        raise SystemExit("H12 square")
-    if mul(omega1, omega1) != eye:
-        raise SystemExit("omega1 square")
-    if omega1[0][0] * omega1[1][1] * omega1[2][2] != 1:
-        raise SystemExit("diagonal product")
-    if trace(eye) != 3 or trace(omega1) != -1:
-        raise SystemExit("traces")
-    q_id = trace(mul(eye, mul(h23, h23)))
-    q23 = trace(mul(omega1, mul(h23, h23)))
-    q12 = trace(mul(omega1, mul(h12, h12)))
-    if (q_id, q23, q12) != (2, -2, 0):
-        raise SystemExit(f"forms {q_id} {q23} {q12}")
-    if q23 == q12:
-        raise SystemExit("forms should differ")
-    print("H23^2 = diag(0,1,1); H12^2 = diag(1,1,0)")
-    print("Tr(I) = 3; Tr(Omega1) = -1; Omega1^2 = I; diagonal product 1")
-    print("Tr(I H23^2) = 2; Tr(Omega1 H23^2) = -2; Tr(Omega1 H12^2) = 0")
-    print("checked: generator squares, involution, two quadratic forms")
+    cases.require(mul(h23, h23) == diag(0, 1, 1), "H23 square")
+    cases.require(mul(h12, h12) == diag(1, 1, 0), "H12 square")
+    cases.require(mul(omega, omega) == eye, "weight involution")
+    cases.require(omega[0][0]*omega[1][1]*omega[2][2] == 1, "diagonal determinant")
+    cases.require(trace(eye) == 3, "identity trace")
+    cases.require(trace(omega) == -1, "weight trace")
+    positive, indefinite = TraceQuadraticForm(eye), TraceQuadraticForm(omega)
+    cases.require(positive._value(h23) == 2, "identity form")
+    cases.require(indefinite._value(h23) == -2, "H23 weighted form")
+    cases.require(indefinite._value(h12) == 0, "H12 weighted form")
+    cases.require(indefinite._difference(h23, h12) == -2, "forms differ")
+
+
+def main() -> None:
+    cases = Cases()
+    run_checks(cases)
+    print(json.dumps({"status": "passed", "checks": cases.checks,
+                      "scope": "rational3x3 weighted trace forms; no continuum operator"}))
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(cli(main))

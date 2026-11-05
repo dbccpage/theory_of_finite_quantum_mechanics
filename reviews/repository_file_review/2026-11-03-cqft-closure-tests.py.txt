@@ -1,0 +1,311 @@
+"""Independent exact matrix, finite-order and unfolding verification.
+
+AuthorityEffect: None. These finite controls do not establish continuum AQFT.
+"""
+from __future__ import annotations
+
+from collections.abc import Callable
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import io
+from itertools import product
+import json
+from pathlib import Path
+import sys
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from test_review_repairs import load
+from checker_support.boundary import cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import Failure
+from checker_support.rational_matrix import RationalMatrix as Matrix
+
+CAUSAL = "cqft-causal-factorization-import"
+LOCAL = "cqft-local-net-axioms-import"
+REEH = "cqft-reeh-schlieder-theorem-import"
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+RATIONALS = st.fractions(-10, 10, max_denominator=12)
+FLAT2 = st.lists(RATIONALS, min_size=4, max_size=4).map(tuple)
+
+
+def _symbolic(values: tuple[Q, ...]) -> sp.Matrix:
+    return sp.Matrix(2, 2, [sp.Rational(x.numerator, x.denominator) for x in values])
+
+
+def _rows(value: sp.Matrix) -> tuple[tuple[Q, ...], ...]:
+    return tuple(tuple(Q(int(value[i, j].p), int(value[i, j].q)) for j in range(value.cols))
+                 for i in range(value.rows))
+
+
+class CqftCheckerTests(unittest.TestCase):
+    def refused(self, operation: Callable[..., object], *args: object, kind: str | None = None) -> Failure:
+        result = evaluate(lambda: operation(*args))
+        self.assertFalse(result.ok)
+        self.assertIsNone(result.value)
+        if result.error is None:
+            self.fail("refusal lacks a typed error")
+        if kind is not None:
+            self.assertEqual(result.error.kind, kind)
+        return result.error
+
+    def test_refusal_helper_and_symbolic_conversion_oracles(self) -> None:
+        with self.assertRaises(AssertionError):
+            self.refused(lambda: None)
+        values = (Q(1, 2), Q(-2, 3), Q(5), Q(7, 11))
+        self.assertEqual(_rows(_symbolic(values)), ((Q(1, 2), Q(-2, 3)), (Q(5), Q(7, 11))))
+        self.assertEqual(_rows(sp.Matrix([[2, 3, 4]])), ((Q(2), Q(3), Q(4)),))
+
+    @PROPERTY
+    @given(left=FLAT2, right=FLAT2)
+    def test_matrix_operations_against_symbolic_oracle(self, left: tuple[Q, ...], right: tuple[Q, ...]) -> None:
+        a, b = Matrix.from_flat2(left), Matrix.from_flat2(right)
+        sa, sb = _symbolic(left), _symbolic(right)
+        self.assertEqual(a.add(b).rows, _rows(sa+sb))
+        self.assertEqual(a.mul(b).rows, _rows(sa*sb))
+        self.assertEqual(a.neg().rows, _rows(-sa))
+        self.assertEqual(a.transpose().rows, _rows(sa.T))
+        self.assertEqual(a.kron(b).rows, _rows(sp.kronecker_product(sa, sb)))
+        self.assertEqual(a.det2(), Q(int(sa.det().p), int(sa.det().q)))
+        if sa.det() != 0:
+            inverse = a.inverse2()
+            self.assertEqual(inverse.rows, _rows(sa.inv()))
+            self.assertEqual(a.mul(inverse), Matrix.eye(2))
+        else:
+            self.refused(a.inverse2, kind="input")
+
+    @PROPERTY
+    @given(m=st.integers(1, 4), n=st.integers(1, 4), p=st.integers(1, 4), seed=st.lists(st.integers(-5, 5), min_size=32, max_size=32))
+    def test_rectangular_multiplication_and_integer_export(self, m: int, n: int, p: int, seed: list[int]) -> None:
+        left = [seed[i*n:(i+1)*n] for i in range(m)]
+        right = [seed[16+i*p:16+(i+1)*p] for i in range(n)]
+        a, b = Matrix.from_integers(left), Matrix.from_integers(right)
+        expected = _rows(sp.Matrix(left)*sp.Matrix(right))
+        self.assertEqual(a.mul(b).rows, expected)
+        self.assertEqual(a.mul(b).integer_rows(), expected)
+        self.assertTrue(all(type(value) is int for row in a.integer_rows() for value in row))
+        self.assertEqual(a.transpose().transpose(), a)
+        self.assertEqual(a.mul(Matrix.eye(n)), a)
+        self.assertEqual(Matrix.eye(m).mul(a), a)
+
+    def test_matrix_shape_scalar_and_resource_boundaries(self) -> None:
+        bad: object
+        for bad in (None, (), ((),), ((1, 2), (3,)), "matrix", ((True,),), ((0.5,),), ((complex(1),),)):
+            self.refused(Matrix, bad)
+        for bad in (((1,),)*65, ((1,)*65,), ((1 << 4096,),), ((Q(1, 1 << 4096),),)):
+            self.refused(Matrix, bad, kind="resource")
+        for bad in (((),), ((Q(1),),), ((True,),), ((0.0,),)):
+            self.refused(Matrix.from_integers, bad)
+        for bad in (0, -1, True, 65, 1.0):
+            self.refused(Matrix.eye, bad)
+        matrix = Matrix.eye(2)
+        for bad in (None, (), (1, 2, 3), (1, 2, 3, 4, 5), (True, 0, 0, 1)):
+            self.refused(Matrix.from_flat2, bad)
+        self.refused(matrix.require_shape, 2, 1)
+        self.refused(matrix.require_shape, True, 2)
+        self.assertIs(matrix.require_shape(2, 2), matrix)
+        for operation in (matrix.add, matrix.mul, matrix.kron):
+            self.refused(operation, [[1, 0], [0, 1]])
+        self.refused(matrix.add, Matrix.eye(1))
+        self.refused(matrix.mul, Matrix.eye(3))
+        self.refused(Matrix([[1]]).flat2)
+        self.refused(Matrix([[1]]).det2)
+        self.refused(Matrix([[1]]).inverse2)
+        self.refused(Matrix([[Q(1, 2)]]).integer_rows)
+        self.refused(Matrix([[0, 0], [0, 0]]).inverse2, kind="input")
+        self.assertEqual(Matrix.eye(64).shape, (64, 64))
+
+    def test_matrix_output_and_intermediate_budgets(self) -> None:
+        large = (1 << 4096)-1
+        scalar = Matrix([[large]])
+        self.assertEqual(scalar.integer_rows(), ((large,),))
+        self.refused(scalar.add, Matrix([[1]]), kind="resource")
+        self.refused(scalar.mul, Matrix([[2]]), kind="resource")
+        self.refused(scalar.kron, Matrix([[2]]), kind="resource")
+        self.refused(Matrix.eye(9).kron, Matrix.eye(8), kind="resource")
+        self.refused(Matrix([[large, 0], [0, 2]]).det2, kind="resource")
+        self.refused(Matrix([[large, large], [2, 2]]).det2, kind="resource")
+        # Exact final cancellation is not permission to exceed an intermediate budget.
+        left = Matrix([[large, large]])
+        self.refused(left.mul, Matrix([[2], [-2]]), kind="resource")
+        self.assertEqual(Matrix([[large, 0], [0, 1]]).inverse2().rows, ((Q(1, large), Q(0)), (Q(0), Q(1))))
+        tall_a, tall_b = Matrix([[1]]*9), Matrix([[1]]*8)
+        wide_a, wide_b = Matrix([[1]*9]), Matrix([[1]*8])
+        with patch.object(Matrix, "__init__", side_effect=AssertionError("oversized output construction")):
+            self.refused(tall_a.kron, tall_b, kind="resource")
+            self.refused(wide_a.kron, wide_b, kind="resource")
+
+    def test_matrix_owns_snapshots_and_exports_are_detached(self) -> None:
+        direct_input = [[Q(1, 2), 2], [3, Q(4, 5)]]
+        direct = Matrix(direct_input)
+        direct_input[0].clear()
+        direct_input.clear()
+        self.assertEqual(direct.rows, ((Q(1, 2), Q(2)), (Q(3), Q(4, 5))))
+        raw = [[1, 2], [3, 4]]
+        matrix = Matrix.from_integers(raw)
+        raw[0].clear()
+        raw.append([9])
+        self.assertEqual(matrix.integer_rows(), ((1, 2), (3, 4)))
+        self.assertEqual(matrix.flat2(), (Q(1), Q(2), Q(3), Q(4)))
+        with self.assertRaises(FrozenInstanceError):
+            setattr(matrix, "rows", ((Q(0),),))
+        reeh = load(REEH)
+        left, right = [[1, 2]], [[3], [4]]
+        result = reeh.mat_mul(left, right)
+        result[0].clear()
+        self.assertEqual(left, [[1, 2]])
+        self.assertEqual(right, [[3], [4]])
+
+    @PROPERTY
+    @given(a=st.integers(-50, 50), b=st.integers(-50, 50), sign=st.sampled_from((-1, 1)))
+    def test_unimodular_inverse_and_ordered_products(self, a: int, b: int, sign: int) -> None:
+        causal = load(CAUSAL)
+        matrix = ((1+a*b, a*sign), (b, sign))
+        expected = _rows(sp.Matrix(matrix).inv())
+        self.assertEqual(causal.mat2_det(matrix), sign)
+        self.assertEqual(causal.mat2_inv_unimodular(matrix), expected)
+        self.assertEqual(causal.mat2_mul(matrix, causal.mat2_inv_unimodular(matrix)), causal.I2)
+        self.assertEqual(causal.mat2_neg(matrix), ((-matrix[0][0], -matrix[0][1]), (-b, -sign)))
+        self.assertEqual(causal.ordered_prod({0: matrix, 1: causal.X2}, (0, 1)), _rows(sp.Matrix(matrix)*sp.Matrix(causal.X2)))
+        self.assertEqual(causal.ordered_prod({0: matrix}, ()), causal.I2)
+
+    def test_ordered_product_and_unimodular_refusals(self) -> None:
+        module = load(CAUSAL)
+        for matrix in ((), ((1,),), ((True, 0), (0, 1)), ((Q(1), 0), (0, 1)), ((0, 0), (0, 0)), ((2, 0), (0, 1))):
+            self.refused(module.mat2_inv_unimodular, matrix)
+        self.refused(module.mat2_mul, ((1 << 4096, 0), (0, 1)), module.I2, kind="resource")
+        for assignment, points in ((None, ()), ({True: module.I2}, ()), ({-1: module.I2}, ()),
+                                   ({64: module.I2}, ()), ({0: ((True, 0), (0, 1))}, ()),
+                                   ({0: module.I2}, (1,)), ({0: module.I2}, (True,)),
+                                   ({0: module.I2}, (0,)*65), ({}, "points")):
+            self.refused(module.ordered_prod, assignment, points)
+        self.refused(module.ordered_prod, {i: module.I2 for i in range(65)}, ())
+        for bad in (True, False, Q(1), 0.0, "0"):
+            self.refused(module.ordered_prod, {0: module.I2, 1: module.X2}, (bad,))
+        self.assertEqual(module.ordered_prod({0: module.X2, 1: module.Z2}, (1, 0)), ((0, 1), (-1, 0)))
+
+    @PROPERTY
+    @given(left=FLAT2, right=FLAT2)
+    def test_local_two_by_two_api_against_symbolic_oracle(self, left: tuple[Q, ...], right: tuple[Q, ...]) -> None:
+        module = load(LOCAL)
+        a, b = _symbolic(left), _symbolic(right)
+        for operation, expected in ((module.mm, a*b), (module.add2, a+b)):
+            self.assertEqual(operation(left, right), tuple(x for row in _rows(expected) for x in row))
+        self.assertEqual(module.trp(left), tuple(x for row in _rows(a.T) for x in row))
+        self.assertEqual(module.det2(left), Q(int(a.det().p), int(a.det().q)))
+
+    def test_local_order_tensor_and_flat_boundaries(self) -> None:
+        module = load(LOCAL)
+        relation = {(0, 2), (1, 2), (1, 3)}
+        for i, j in product(range(4), repeat=2):
+            self.assertIs(module.rel(i, j), (i, j) in relation)
+            self.assertIs(module.spacelike(i, j), i != j and not ({(i, j), (j, i)} & relation))
+        for bad in (-1, 4, True, Q(1), 0.0):
+            for function in (module.rel, module.spacelike):
+                self.refused(function, bad, 0)
+                self.refused(function, 0, bad)
+        left, right = (1, 2, 3, 4), (-2, 1, 0, 5)
+        expected = _rows(sp.kronecker_product(sp.Matrix(2, 2, left), sp.Matrix(2, 2, right)))
+        tensor = module.kron_blocks(left, right)
+        self.assertEqual(tuple(map(tuple, tensor)), expected)
+        self.assertEqual(module.flat(tensor), tuple(x for row in expected for x in row))
+        self.assertEqual(module.mm4(tensor, [list(row) for row in Matrix.eye(4).integer_rows()]), tensor)
+        self.refused(module.mm4, [[1]], [[1]])
+        eye4 = [list(row) for row in Matrix.eye(4).integer_rows()]
+        self.refused(module.mm4, [[1, 0, 0, 0]], eye4)
+        self.refused(module.mm4, eye4, [[1], [0], [0], [0]])
+        self.refused(module.flat, [[1]])
+        self.refused(module.kron_blocks, (Q(1, 2), 0, 0, 1), (2, 0, 0, 2))
+
+    @PROPERTY
+    @given(coefficients=st.lists(st.integers(-50, 50), min_size=8, max_size=8))
+    def test_unfolding_indices_against_bit_insertion(self, coefficients: list[int]) -> None:
+        module = load(REEH)
+        for site in range(3):
+            expected = [[0]*4 for _ in range(2)]
+            observed = set()
+            for bit, complement in product(range(2), range(4)):
+                bits = [(complement >> index) & 1 for index in range(2)]
+                bits.insert(site, bit)
+                index = sum(value << place for place, value in enumerate(bits))
+                observed.add(module.combine_single_site(site, bit, complement))
+                self.assertEqual(module.combine_single_site(site, bit, complement), index)
+                expected[bit][complement] = coefficients[index]
+            self.assertEqual(observed, set(range(8)))
+            self.assertEqual(module.single_site_matrix(coefficients, site), expected)
+            self.assertEqual(module.pair_site_matrix(coefficients, site), list(map(list, zip(*expected))))
+
+    def test_unfolding_and_full_system_input_refusals(self) -> None:
+        module = load(REEH)
+        for coefficients in ([], [0]*7, [0]*9, [True]*8, [Q(1)]*8, [1 << 4096]*8):
+            for function in (module.single_site_matrix, module.pair_site_matrix):
+                self.refused(function, coefficients, 0)
+        for triple in ((-1, 0, 0), (3, 0, 0), (True, 0, 0), (0, -1, 0), (0, 2, 0), (0, True, 0), (0, 0, -1), (0, 0, 4), (0, 0, False)):
+            self.refused(module.combine_single_site, *triple)
+        for position in range(3):
+            states = [[1]*8 for _ in range(3)]
+            states[position] = []
+            self.refused(module.check_full_system_inverses, lambda *_: None, *states)
+        self.assertEqual(module.single_site_matrix([1]*8, 0), [[1]*4, [1]*4])
+
+    def test_all_finite_sections_and_default_counts(self) -> None:
+        causal, local, reeh = load(CAUSAL), load(LOCAL), load(REEH)
+        self.assertEqual(causal.verify_bogoliubov_and_c2_asymmetry(), (484, 0))
+        self.assertEqual(causal.verify_poset_n_swap_connectivity(), (32, 0))
+        self.assertEqual(causal.verify_diagonal_counterterm_fence(), (407, 0))
+        self.assertEqual(reeh.verify_commutant_duality_and_kernel_obstruction(), (227, 0))
+        self.assertEqual(reeh.verify_three_and_four_qubit_census(), (24, 0))
+        self.assertEqual(reeh.verify_discrete_translation_fence(), (1, 0))
+        cases = Cases()
+        for operation, total in ((local.check_four_point_order, 71), (local.check_single_site_algebra, 79), (local.check_two_site_products, 84)):
+            operation(cases)
+            self.assertEqual(len(cases), total)
+        result = local.run_checks()
+        self.assertEqual((result["total_checks"], result["failed_checks"], result["failures"], result["all_passed"]), (84, 0, [], True))
+        for module in (causal, local, reeh):
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(cli(module.main), 0)
+
+    def test_injected_faults_cli_and_cancellation(self) -> None:
+        causal, local, reeh = load(CAUSAL), load(LOCAL), load(REEH)
+        with patch.object(causal, "mat2_mul", return_value=causal.X2):
+            self.assertGreater(causal.verify_bogoliubov_and_c2_asymmetry()[1], 0)
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(cli(causal.main), 1)
+        with patch.object(reeh, "single_site_matrix", return_value=[[1]*4, [1]*4]):
+            self.assertGreater(reeh.verify_three_and_four_qubit_census()[1], 0)
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(cli(reeh.main), 1)
+        for module, operation in ((causal, "verify_poset_n_swap_connectivity"), (local, "check_four_point_order"), (reeh, "verify_discrete_translation_fence")):
+            with patch.object(module, operation, side_effect=OSError("injected")):
+                errors = io.StringIO()
+                with contextlib.redirect_stderr(errors):
+                    self.assertEqual(cli(module.main), 1)
+                self.assertEqual(json.loads(errors.getvalue())["kind"], "resource")
+            with patch.object(module, operation, side_effect=KeyboardInterrupt):
+                with self.assertRaises(KeyboardInterrupt):
+                    cli(module.main)
+
+    @PROPERTY
+    @given(statuses=st.lists(st.booleans(), max_size=20))
+    def test_local_generated_receipt_accounting(self, statuses: list[bool]) -> None:
+        module = load(LOCAL)
+        def supplied(cases: Cases) -> None:
+            for index, status in enumerate(statuses):
+                cases.append((str(index), status))
+        with patch.object(module, "check_four_point_order", supplied):
+            result = module.run_checks()
+        failures = [str(index) for index, status in enumerate(statuses) if not status]
+        self.assertEqual(result["total_checks"], 13+len(statuses))
+        self.assertEqual(result["failed_checks"], len(failures))
+        self.assertEqual(result["failures"], failures)
+        self.assertIs(result["all_passed"], not failures)
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

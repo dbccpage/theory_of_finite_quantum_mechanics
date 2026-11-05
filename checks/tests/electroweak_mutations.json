@@ -1,0 +1,354 @@
+[
+  {
+    "identity": "gaussian-admission",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "if type(value) is not GR:",
+    "after": "if False:",
+    "tests": [
+      "test_all_public_domain_boundaries"
+    ]
+  },
+  {
+    "identity": "zero-denominator",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "if denominator == 0:",
+    "after": "if denominator != 0:",
+    "tests": [
+      "test_all_public_domain_boundaries"
+    ]
+  },
+  {
+    "identity": "divide-imaginary",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "value.im / denominator",
+    "after": "value.im * denominator",
+    "tests": [
+      "test_matrix_operations_symbolic"
+    ]
+  },
+  {
+    "identity": "phase-unit",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "!= 1:\n        raise Violation(\"input\", \"unit phase required\")",
+    "after": "== 1:\n        raise Violation(\"input\", \"unit phase required\")",
+    "tests": [
+      "test_normalization_and_action_on_rational_sphere"
+    ]
+  },
+  {
+    "identity": "doublet-second",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "object.__setattr__(self, \"q\", second)",
+    "after": "object.__setattr__(self, \"q\", first)",
+    "tests": [
+      "test_owned_immutable_values_and_railway_paths"
+    ]
+  },
+  {
+    "identity": "doublet-components",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "return self.p, self.q",
+    "after": "return self.q, self.p",
+    "tests": [
+      "test_owned_immutable_values_and_railway_paths"
+    ]
+  },
+  {
+    "identity": "norm-omit-second",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "first + second, \"doublet squared norm\"",
+    "after": "first, \"doublet squared norm\"",
+    "tests": [
+      "test_gaussian_doublet_and_dressing_symbolic"
+    ]
+  },
+  {
+    "identity": "norm-output-budget",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "return rational(first + second, \"doublet squared norm\")",
+    "after": "return first + second",
+    "tests": [
+      "test_exact_size_and_intermediate_resource_refusals"
+    ]
+  },
+  {
+    "identity": "norm-railway",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "return evaluate(self._norm_squared)",
+    "after": "return Outcome(value=self._norm_squared())",
+    "tests": [
+      "test_exact_size_and_intermediate_resource_refusals"
+    ]
+  },
+  {
+    "identity": "scale-second",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "value.mul(self.p), value.mul(self.q)",
+    "after": "value.mul(self.p), self.q",
+    "tests": [
+      "test_gaussian_doublet_and_dressing_symbolic"
+    ]
+  },
+  {
+    "identity": "scale-railway",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "return evaluate(self._scaled, phase)",
+    "after": "return Outcome(value=self._scaled(phase))",
+    "tests": [
+      "test_owned_immutable_values_and_railway_paths"
+    ]
+  },
+  {
+    "identity": "zero-norm-refusal",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "if norm == 0:",
+    "after": "if False:",
+    "tests": [
+      "test_normalization_refusal_order_and_rational_roots"
+    ]
+  },
+  {
+    "identity": "positive-root",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "if denominator <= 0:",
+    "after": "if denominator == 0:",
+    "tests": [
+      "test_normalization_refusal_order_and_rational_roots"
+    ]
+  },
+  {
+    "identity": "root-square",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "if rational(denominator * denominator, \"root square\") != norm:",
+    "after": "if False:",
+    "tests": [
+      "test_normalization_refusal_order_and_rational_roots"
+    ]
+  },
+  {
+    "identity": "root-square-budget",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "rational(denominator * denominator, \"root square\") != norm",
+    "after": "denominator * denominator != norm",
+    "tests": [
+      "test_exact_size_and_intermediate_resource_refusals"
+    ]
+  },
+  {
+    "identity": "normalize-second",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "_divide(self.q, denominator))",
+    "after": "self.q)",
+    "tests": [
+      "test_normalization_and_action_on_rational_sphere"
+    ]
+  },
+  {
+    "identity": "normalize-railway",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "return evaluate(self._normalized, root)",
+    "after": "return Outcome(value=self._normalized(root))",
+    "tests": [
+      "test_normalization_refusal_order_and_rational_roots"
+    ]
+  },
+  {
+    "identity": "action-unit-doublet",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "if self._norm_squared() != 1:",
+    "after": "if False:",
+    "tests": [
+      "test_all_public_domain_boundaries"
+    ]
+  },
+  {
+    "identity": "action-railway",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "return evaluate(self._acted, phase)",
+    "after": "return Outcome(value=self._acted(phase))",
+    "tests": [
+      "test_owned_immutable_values_and_railway_paths"
+    ]
+  },
+  {
+    "identity": "dressing-sign",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "GR(-self.p.re, self.p.im)",
+    "after": "GR(self.p.re, self.p.im)",
+    "tests": [
+      "test_gaussian_doublet_and_dressing_symbolic"
+    ]
+  },
+  {
+    "identity": "dressing-conjugation",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "return self.q.conj(), self.p,",
+    "after": "return self.q, self.p,",
+    "tests": [
+      "test_gaussian_doublet_and_dressing_symbolic"
+    ]
+  },
+  {
+    "identity": "diag-column",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "return a.mul(left), b.mul(right), c.mul(left), d.mul(right)",
+    "after": "return a.mul(left), b.mul(left), c.mul(right), d.mul(right)",
+    "tests": [
+      "test_matrix_operations_symbolic"
+    ]
+  },
+  {
+    "identity": "scale-matrix-last",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "_divide(c, denominator), _divide(d, denominator)",
+    "after": "_divide(c, denominator), d",
+    "tests": [
+      "test_matrix_operations_symbolic"
+    ]
+  },
+  {
+    "identity": "recorder-type",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "if type(cases) is not Cases:",
+    "after": "if False:",
+    "tests": [
+      "test_recorders_cli_and_programming_errors"
+    ]
+  },
+  {
+    "identity": "covariance-guard",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "run.require(transformed.dressing() == right_diag",
+    "after": "run.require(transformed.dressing() != right_diag",
+    "tests": [
+      "test_gaussian_doublet_and_dressing_symbolic"
+    ]
+  },
+  {
+    "identity": "norm-multiplicativity",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "run.require(transformed._norm_squared() == expected,",
+    "after": "run.require(True,",
+    "tests": [
+      "test_default_counts_and_actual_failure_detection",
+      "test_gaussian_doublet_and_dressing_symbolic"
+    ]
+  },
+  {
+    "identity": "phase-budget",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "maximum=64))",
+    "after": "maximum=65))",
+    "tests": [
+      "test_preflight_and_phase_census_budget"
+    ]
+  },
+  {
+    "identity": "normalization-unit-guard",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "run.require(norm._norm_squared() == 1,",
+    "after": "run.require(norm._norm_squared() != 1,",
+    "tests": [
+      "test_default_counts_and_actual_failure_detection"
+    ]
+  },
+  {
+    "identity": "normalization-fixed-guard",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "run.require(norm._normalized(Q(1)) == norm,",
+    "after": "run.require(norm._normalized(Q(1)) != norm,",
+    "tests": [
+      "test_default_counts_and_actual_failure_detection"
+    ]
+  },
+  {
+    "identity": "normalized-covariance-guard",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "run.require(doublet._scaled(z)._normalized(root) == norm._acted(z),",
+    "after": "run.require(doublet._scaled(z)._normalized(root) != norm._acted(z),",
+    "tests": [
+      "test_default_counts_and_actual_failure_detection"
+    ]
+  },
+  {
+    "identity": "composition-guard",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "run.require(norm._acted(w)._acted(z) == norm._acted(z.mul(w)),",
+    "after": "run.require(norm._acted(w)._acted(z) != norm._acted(z.mul(w)),",
+    "tests": [
+      "test_default_counts_and_actual_failure_detection"
+    ]
+  },
+  {
+    "identity": "invalid-controls-ignored",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "run.require(result.error is not None and result.error.kind == \"input\" and result.error.message == message,",
+    "after": "run.require(True,",
+    "tests": [
+      "test_default_counts_and_actual_failure_detection"
+    ]
+  },
+  {
+    "identity": "own-root-negative",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "run.require(own_left != own_right,",
+    "after": "run.require(own_left == own_right,",
+    "tests": [
+      "test_default_counts_and_actual_failure_detection"
+    ]
+  },
+  {
+    "identity": "receipt-count",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "\"checks\": run.checks",
+    "after": "\"checks\": 738",
+    "tests": [
+      "test_executable_cli_receipt"
+    ]
+  },
+  {
+    "identity": "cli-failure-exit",
+    "source": "independent/dfm-electroweak-continuum-fence.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_executable_cli_receipt"
+    ]
+  },
+  {
+    "identity": "test-oracle-sign",
+    "source": "tests/test_electroweak_checker.py",
+    "before": "+ sp.I*sp.Rational",
+    "after": "- sp.I*sp.Rational",
+    "tests": [
+      "test_oracles_and_refusal_helper"
+    ]
+  },
+  {
+    "identity": "test-refusal-helper",
+    "source": "tests/test_electroweak_checker.py",
+    "before": "self.assertFalse(result.ok)",
+    "after": "self.assertTrue(result.ok)",
+    "tests": [
+      "test_all_public_domain_boundaries"
+    ]
+  },
+  {
+    "identity": "loader-prior-restore",
+    "source": "tests/test_electroweak_checker.py",
+    "before": "sys.modules[name] = previous",
+    "after": "sys.modules.pop(name, None)",
+    "tests": [
+      "test_loader_registration_and_failures"
+    ]
+  },
+  {
+    "identity": "loader-cleanup",
+    "source": "tests/test_electroweak_checker.py",
+    "before": "sys.modules.pop(name, None)",
+    "after": "pass",
+    "tests": [
+      "test_loader_registration_and_failures"
+    ]
+  }
+]

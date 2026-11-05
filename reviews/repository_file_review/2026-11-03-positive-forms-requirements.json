@@ -1,0 +1,325 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/ds-positive-form-controls.py": {
+      "role": "Composed scalar-positivity verification application with owned bounded integer Gram forms, exact bilinear/quadratic/event weights, invariant-preserving partitions and separately retained positivity/decoherence boundary controls",
+      "origin": "lean4/CptpCompletePositivity.lean",
+      "profile": "Exact",
+      "cost": "M,N1..16, at most256 owned integer feature entries; nonnegative integer scale. Every integer input, dot product term/prefix, Gram/scale result, diagonal prefix and denominator square has at most4096 bits; temporary multiplication/addition at most8192/4097 bits before admission. Bilinear/quadratic O(MN+M), Gram O(MN^2), diagonal O(MN), event O(NlogN+MN); valid coarse graining O(MN). Partition admission may inspect16 groups of16 indices before rejecting overlaps/missing coverage; valid partition has exactlyN indices and at mostN groups. Default4017 obligations =619 scalar positivity+3398 Gram/normalization controls; original648+3459=4107 loses49 duplicate nonnegative-product and61 duplicate square checks, while shared square range adds20.",
+      "groups": [
+        {
+          "requirement": "Own a nonempty rectangular1..16 by1..16 integer feature array and bounded nonnegative scale. Exact integer inputs exclude bool/float/Fraction/text. Admit all vector shapes/entries before projection. Bound every product/prefix and scale result, including when later cancellation or a zero scale would fit.",
+          "symbols": [
+            "_bounded",
+            "_nonnegative",
+            "_dot",
+            "IntegerGramForm",
+            "IntegerGramForm.__init__",
+            "IntegerGramForm.dimension",
+            "IntegerGramForm._vector",
+            "IntegerGramForm._coordinates"
+          ],
+          "tests": [
+            "PositiveFormTests.test_input_shapes_scalars_and_full_budgets",
+            "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+            "PositiveFormTests.test_snapshot_ownership",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic"
+          ],
+          "requirement_id": "TFQM-POSITIVE-FORMS-REVIEW-DS-POSITIVE-FORM-CONTROLS-1"
+        },
+        {
+          "requirement": "Compute scale*A^T*A from admitted feature columns. Bilinear values can be negative and remain successful values; quadratic values are nonnegative when computation completes. Return matrix/bilinear/quadratic queries through Outcome. All arithmetic paths retain declared intermediate budgets.",
+          "symbols": [
+            "IntegerGramForm._bilinear",
+            "IntegerGramForm.bilinear",
+            "IntegerGramForm._quadratic",
+            "IntegerGramForm.quadratic",
+            "IntegerGramForm._gram",
+            "IntegerGramForm.gram"
+          ],
+          "tests": [
+            "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+            "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic",
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle"
+          ],
+          "requirement_id": "TFQM-POSITIVE-FORMS-REVIEW-DS-POSITIVE-FORM-CONTROLS-2"
+        },
+        {
+          "requirement": "Events are owned distinct in-range indices, canonicalized increasingly; empty event has weight0. Normalize event quadratic and diagonal trace independently by the admitted positive integer denominator squared. Do not infer physical normalization or equality of global/coarse and diagonal weights. Admit denominator before dependent arithmetic even for empty events.",
+          "symbols": [
+            "_denominator",
+            "IntegerGramForm._event",
+            "IntegerGramForm._event_weight",
+            "IntegerGramForm.event_weight",
+            "IntegerGramForm._diagonal_weight",
+            "IntegerGramForm.diagonal_weight"
+          ],
+          "tests": [
+            "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+            "PositiveFormTests.test_distinct_normalization_witnesses",
+            "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+            "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic"
+          ],
+          "requirement_id": "TFQM-POSITIVE-FORMS-REVIEW-DS-POSITIVE-FORM-CONTROLS-3"
+        },
+        {
+          "requirement": "A partition is a nonempty ordered list of nonempty, disjoint canonical events covering every coordinate exactly once. Preserve group order and scale; group features are checked sums in canonical index order. Return a new owned Gram form. Changing within-group order cannot change resource acceptance or values.",
+          "symbols": [
+            "IntegerGramForm._partition",
+            "IntegerGramForm._coarse_grained",
+            "IntegerGramForm.coarse_grained"
+          ],
+          "tests": [
+            "PositiveFormTests.test_coarse_graining_against_incidence_matrix",
+            "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+            "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+            "PositiveFormTests.test_snapshot_ownership",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic"
+          ],
+          "requirement_id": "TFQM-POSITIVE-FORMS-REVIEW-DS-POSITIVE-FORM-CONTROLS-4"
+        },
+        {
+          "requirement": "Keep the signed off-diagonal pairing as an actual2x2 form acting on(1,-1), yielding-2t; it is separate from the positive Gram form. Nonnegative products validate both operands before multiplication, including zero/oversized combinations.",
+          "symbols": [
+            "off_diagonal_pairing",
+            "nonnegative_product"
+          ],
+          "tests": [
+            "PositiveFormTests.test_negative_pairing_and_nonnegative_products",
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle"
+          ],
+          "requirement_id": "TFQM-POSITIVE-FORMS-REVIEW-DS-POSITIVE-FORM-CONTROLS-5"
+        },
+        {
+          "requirement": "Compose both original scalar applications without importing on-load checks/global counters. Require Cases, separately count619 positivity and3398 decoherence obligations, preserve two distinct normalized witnesses(1,1)/2 and(3,4)/5, actual rank-one matrix/determinant/Gram controls and coarse global weights. Emit4017 JSON checks and nonzero expected-failure exit; propagate cancellation/programming errors.",
+          "symbols": [
+            "_recorder",
+            "verify_positivity",
+            "_normalization_controls",
+            "verify_decoherence",
+            "main"
+          ],
+          "tests": [
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle",
+            "PositiveFormTests.test_executable_receipt_and_failure_exit",
+            "PositiveFormTests.test_distinct_normalization_witnesses",
+            "PositiveFormTests.test_oracles_and_import_lifecycle"
+          ],
+          "requirement_id": "TFQM-POSITIVE-FORMS-REVIEW-DS-POSITIVE-FORM-CONTROLS-6"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959",
+      "symbols": [
+        "IntegerGramForm",
+        "IntegerGramForm.__init__",
+        "IntegerGramForm._bilinear",
+        "IntegerGramForm._coarse_grained",
+        "IntegerGramForm._coordinates",
+        "IntegerGramForm._diagonal_weight",
+        "IntegerGramForm._event",
+        "IntegerGramForm._event_weight",
+        "IntegerGramForm._gram",
+        "IntegerGramForm._partition",
+        "IntegerGramForm._quadratic",
+        "IntegerGramForm._vector",
+        "IntegerGramForm.bilinear",
+        "IntegerGramForm.coarse_grained",
+        "IntegerGramForm.diagonal_weight",
+        "IntegerGramForm.dimension",
+        "IntegerGramForm.event_weight",
+        "IntegerGramForm.gram",
+        "IntegerGramForm.quadratic",
+        "_bounded",
+        "_denominator",
+        "_dot",
+        "_nonnegative",
+        "_normalization_controls",
+        "_recorder",
+        "main",
+        "nonnegative_product",
+        "off_diagonal_pairing",
+        "verify_decoherence",
+        "verify_positivity"
+      ],
+      "origin_sha256": "29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0",
+      "consumers": [
+        {
+          "path": "checks/tests/test_positive_form_controls.py",
+          "sha256": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "06f2db3d413f6ff6e4d091f8bebfd1a64c57c3b6e0d9b032a39189789c2febda",
+          "state": "current local consumer"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-cptp-complete-positivity-import-precommit.md",
+          "sha256": "29098d88a4598194ec1b08290886e0969bc2c32ffa1145a3d6886628699c8381",
+          "state": "historical original-path reference preserved through retirement mapping"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-qm043-decoherence-functional-import-precommit.md",
+          "sha256": "3828c6860357a0621cd06065934d4f1fc0c8c16caa80c41c01377fa17d2e6bf0",
+          "state": "historical original-path reference preserved through retirement mapping"
+        }
+      ],
+      "consumer_boundary": "Two unreferenced executable implementations are composed into ds-positive-form-controls.py; only historical precommit review references were found. Exact source archives and retirement mapping preserve those references without rewriting historical notes. Default648+3459=4107 checks become4017 after overlapping square/product controls are shared; combined rank-one diagonal predicates are split and redundant determinant/product identity controls composed, while literal normalization facts become actual event/diagonal/coarse computations. Both full Lean origins and notes were reviewed. Owned bounded multi-feature Gram forms and partitions are an explicit finite executable extension; no density/class operators, trace formula, Kraus/Choi/Stinespring representation, channel, physical normalization or transport bridge is inferred. Scientific DAG statuses remain unchanged.",
+      "origins": [
+        {
+          "path": "lean4/CptpCompletePositivity.lean",
+          "sha256": "29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0"
+        },
+        {
+          "path": "lean4/DecoherenceFunctionalGram.lean",
+          "sha256": "456535c1ea379be8081e785984de7183d3890d78c3e000ce5843f9144c6e2a86"
+        }
+      ],
+      "retired_inputs": [
+        {
+          "path": "checks/independent/ds-cptp-complete-positivity-import.py",
+          "sha256": "126636a968eb7e9b918e5c8a409003f2d38ebb1564fdd79e7282992ae39b1e22",
+          "archive": "reviews/repository_file_review/retired_positive_form_sources/ds-cptp-complete-positivity-import.py.txt"
+        },
+        {
+          "path": "checks/independent/ds-qm043-decoherence-functional-import.py",
+          "sha256": "b5a5487562973d89262e87edc7225d00c8b43ef1bc0fc5ee6485442b3fb8f0c2",
+          "archive": "reviews/repository_file_review/retired_positive_form_sources/ds-qm043-decoherence-functional-import.py.txt"
+        }
+      ]
+    },
+    "checks/tests/test_positive_form_controls.py": {
+      "role": "Independent integer Gram verification application using exact symbolic A^T*A and incidence matrices, generated rectangular features/partitions, explicit normalization distinctions and cancellation-sensitive resource/lifecycle challenges",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "14 groups;80 deterministic examples per generated property, M,N1..4, small integer features/vectors and scale0..5. Symbolic exact Gram/selector matrices independently verify bilinear, normalized event/trace and coarse values. Fixed16x16 identity tests full dimensions. Resource witnesses use4096/4097-bit terms/prefixes and denominator squares; executable timeout30s with scoped runpy/mocks/captures/subprocess.",
+      "groups": [
+        {
+          "requirement": "Cross-check distinct row/column indexing, partition order and selector entries. Verify generated Gram forms via independent symbolic A^T*A, projections and incidence transformations; fixed multifeature negative bilinear and both normalization witnesses. Challenge all exact domains, full sizes, duplicate/outside/missing/empty partitions, canonical within-group order, owned snapshots, term/prefix/scale/denominator limits despite cancellation or zero scale, admission order, repeated counters, typed exits and cancellation/programming errors.",
+          "symbols": [
+            "load",
+            "_rows",
+            "_partition",
+            "_selector",
+            "PositiveFormTests",
+            "PositiveFormTests.refused",
+            "PositiveFormTests.test_oracles_and_import_lifecycle",
+            "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+            "PositiveFormTests.test_coarse_graining_against_incidence_matrix",
+            "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+            "PositiveFormTests.test_distinct_normalization_witnesses",
+            "PositiveFormTests.test_input_shapes_scalars_and_full_budgets",
+            "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+            "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+            "PositiveFormTests.test_snapshot_ownership",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic",
+            "PositiveFormTests.test_negative_pairing_and_nonnegative_products",
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle",
+            "PositiveFormTests.test_executable_receipt_and_failure_exit"
+          ],
+          "tests": [
+            "PositiveFormTests.test_oracles_and_import_lifecycle",
+            "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+            "PositiveFormTests.test_coarse_graining_against_incidence_matrix",
+            "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+            "PositiveFormTests.test_distinct_normalization_witnesses",
+            "PositiveFormTests.test_input_shapes_scalars_and_full_budgets",
+            "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+            "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+            "PositiveFormTests.test_snapshot_ownership",
+            "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+            "PositiveFormTests.test_admission_precedes_dependent_arithmetic",
+            "PositiveFormTests.test_negative_pairing_and_nonnegative_products",
+            "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle",
+            "PositiveFormTests.test_executable_receipt_and_failure_exit"
+          ],
+          "requirement_id": "TFQM-POSITIVE-FORMS-REVIEW-TEST-POSITIVE-FORM-CONTROLS-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a",
+      "symbols": [
+        "PositiveFormTests",
+        "PositiveFormTests.refused",
+        "PositiveFormTests.test_admission_precedes_dependent_arithmetic",
+        "PositiveFormTests.test_coarse_graining_against_incidence_matrix",
+        "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle",
+        "PositiveFormTests.test_distinct_normalization_witnesses",
+        "PositiveFormTests.test_executable_receipt_and_failure_exit",
+        "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+        "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+        "PositiveFormTests.test_input_shapes_scalars_and_full_budgets",
+        "PositiveFormTests.test_negative_pairing_and_nonnegative_products",
+        "PositiveFormTests.test_oracles_and_import_lifecycle",
+        "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+        "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+        "PositiveFormTests.test_snapshot_ownership",
+        "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+        "_partition",
+        "_rows",
+        "_selector",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/ds-positive-form-controls.py",
+          "sha256": "47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "06f2db3d413f6ff6e4d091f8bebfd1a64c57c3b6e0d9b032a39189789c2febda",
+          "state": "current local consumer"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-cptp-complete-positivity-import-precommit.md",
+          "sha256": "29098d88a4598194ec1b08290886e0969bc2c32ffa1145a3d6886628699c8381",
+          "state": "historical original-path reference preserved through retirement mapping"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-qm043-decoherence-functional-import-precommit.md",
+          "sha256": "3828c6860357a0621cd06065934d4f1fc0c8c16caa80c41c01377fa17d2e6bf0",
+          "state": "historical original-path reference preserved through retirement mapping"
+        }
+      ],
+      "consumer_boundary": "Two unreferenced executable implementations are composed into ds-positive-form-controls.py; only historical precommit review references were found. Exact source archives and retirement mapping preserve those references without rewriting historical notes. Default648+3459=4107 checks become4017 after overlapping square/product controls are shared; combined rank-one diagonal predicates are split and redundant determinant/product identity controls composed, while literal normalization facts become actual event/diagonal/coarse computations. Both full Lean origins and notes were reviewed. Owned bounded multi-feature Gram forms and partitions are an explicit finite executable extension; no density/class operators, trace formula, Kraus/Choi/Stinespring representation, channel, physical normalization or transport bridge is inferred. Scientific DAG statuses remain unchanged.",
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        }
+      ],
+      "retired_inputs": [
+        {
+          "path": "checks/independent/ds-cptp-complete-positivity-import.py",
+          "sha256": "126636a968eb7e9b918e5c8a409003f2d38ebb1564fdd79e7282992ae39b1e22",
+          "archive": "reviews/repository_file_review/retired_positive_form_sources/ds-cptp-complete-positivity-import.py.txt"
+        },
+        {
+          "path": "checks/independent/ds-qm043-decoherence-functional-import.py",
+          "sha256": "b5a5487562973d89262e87edc7225d00c8b43ef1bc0fc5ee6485442b3fb8f0c2",
+          "archive": "reviews/repository_file_review/retired_positive_form_sources/ds-qm043-decoherence-functional-import.py.txt"
+        }
+      ]
+    }
+  }
+}

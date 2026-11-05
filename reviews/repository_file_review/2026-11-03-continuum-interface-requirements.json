@@ -1,0 +1,333 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-continuum-interface.py": {
+      "role": "Bounded finite SL2 connection verification application with owned immutable labels, typed signed/fixed-graph transport, rooted dressing and dependency controls",
+      "origin": "lean4/DressingFieldContinuumInterface.lean",
+      "profile": "Exact",
+      "cost": "Connection<=4096 named labels, each1..64 characters and exact integer2x2 determinant-one matrix. Signed/fixed-graph paths<=4096 steps. Admission and transport are O(labels+steps) fixed2x2 operations with4096-bit stored entries and product/dot/determinant budgets. Conservative intermediate refusal may reject a mathematically valid large SL2 matrix or product. Fixed-graph dressing uses the supplied paths of length<=2. Additive inputs/outputs<=4096 bits. Default511 executed obligations,85 loop words and255 append cases. Path-law fixture prefixes<=4095 to reserve one suffix step.",
+      "groups": [
+        {
+          "requirement": "Validate nonempty bounded edge names, fixed-graph membership and exact integer2x2 determinant-one matrices before algebra. Reject bool/float/symbolic/fractional entries, oversized arithmetic and determinant-1 matrices. Export detached immutable SymPy matrices while using the reviewed rational matrix value internally.",
+          "symbols": [
+            "_name",
+            "_graph_edge",
+            "_det_one",
+            "_export",
+            "mat",
+            "_sl2",
+            "eye"
+          ],
+          "tests": [
+            "ContinuumInterfaceTests.test_matrix_and_scalar_domains",
+            "ContinuumInterfaceTests.test_label_admission_and_unused_matrices",
+            "ContinuumInterfaceTests.test_connection_and_export_snapshot_ownership",
+            "ContinuumInterfaceTests.test_resource_boundaries_and_conservative_arithmetic"
+          ],
+          "requirement_id": "TFQM-CONTINUUM-REVIEW-DFM-CONTINUUM-INTERFACE-1"
+        },
+        {
+          "requirement": "Own the complete bounded label dict, including unused entries, as a frozen aggregate over a read-only mapping of immutable rational matrices. Legacy validated_labels returns a new dict of immutable exported values.",
+          "symbols": [
+            "SL2Connection",
+            "SL2Connection.__init__",
+            "validated_labels"
+          ],
+          "tests": [
+            "ContinuumInterfaceTests.test_connection_and_export_snapshot_ownership",
+            "ContinuumInterfaceTests.test_label_admission_and_unused_matrices",
+            "ContinuumInterfaceTests.test_resource_boundaries_and_conservative_arithmetic"
+          ],
+          "requirement_id": "TFQM-CONTINUUM-REVIEW-DFM-CONTINUUM-INTERFACE-2"
+        },
+        {
+          "requirement": "Snapshot each signed word, require exact integer orientation+1/-1, validate names/step shape/budget and reject any unlabelled step before multiplication. Later factors stand on the left; negative orientation inverts the factor. Footprint is the set of validated names and needs no connection. Public aggregate path returns Outcome; legacy path_transport exports exact matrices.",
+          "symbols": [
+            "_signed_path",
+            "footprint",
+            "SL2Connection._path",
+            "SL2Connection.path",
+            "path_transport"
+          ],
+          "tests": [
+            "ContinuumInterfaceTests.test_signed_transport_group_and_footprint_oracle",
+            "ContinuumInterfaceTests.test_signed_path_and_footprint_refusals",
+            "ContinuumInterfaceTests.test_fixed_graph_admission_and_whole_word_preflight",
+            "ContinuumInterfaceTests.test_recorders_railway_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CONTINUUM-REVIEW-DFM-CONTINUUM-INTERFACE-3"
+        },
+        {
+          "requirement": "Admit only composable forward walks on the fixed four-edge graph, allowing any valid start vertex and the empty walk. Require all four labels for dressing. Use inverse target transport times edge label times source transport; keep a separate explicit chord formula. Fixed graph and root paths are immutable supplied data, not a spanning-tree proof.",
+          "symbols": [
+            "SL2Connection._tree",
+            "SL2Connection.tree",
+            "SL2Connection._complete_graph",
+            "SL2Connection._dress",
+            "SL2Connection.dress",
+            "transport",
+            "dress",
+            "formula",
+            "incident"
+          ],
+          "tests": [
+            "ContinuumInterfaceTests.test_fixed_graph_dressing_and_tree_walk_oracle",
+            "ContinuumInterfaceTests.test_fixed_graph_admission_and_whole_word_preflight",
+            "ContinuumInterfaceTests.test_connection_and_export_snapshot_ownership",
+            "ContinuumInterfaceTests.test_recorders_railway_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CONTINUUM-REVIEW-DFM-CONTINUUM-INTERFACE-4"
+        },
+        {
+          "requirement": "Admit exact signed integer additive labels and bounded output, preserving the target minus sign and source/edge contributions. This is the abelian specialization only.",
+          "symbols": [
+            "_bounded_integer",
+            "additive_dress"
+          ],
+          "tests": [
+            "ContinuumInterfaceTests.test_additive_specialization",
+            "ContinuumInterfaceTests.test_matrix_and_scalar_domains"
+          ],
+          "requirement_id": "TFQM-CONTINUUM-REVIEW-DFM-CONTINUUM-INTERFACE-5"
+        },
+        {
+          "requirement": "Use exact Cases recorders and execute the retained fixed nonlocality witnesses. Path-law fixture helper explicitly admits x/y words with x/y/outside labels and reserves the suffix budget. Verify reverse, outside stability, changed-label certificate and append order on85 words; reject invalid paths. Main reports511 executed obligations and typed nonzero CLI failures; cancellation propagates.",
+          "symbols": [
+            "_cases",
+            "check_additive",
+            "check_identity_matrices",
+            "check_noncommutative_order",
+            "check_star_enumeration",
+            "check_path_laws",
+            "check_general_dependencies",
+            "main"
+          ],
+          "tests": [
+            "ContinuumInterfaceTests.test_fixture_scope_and_guard_types",
+            "ContinuumInterfaceTests.test_default_counts_and_fixed_fault_detection",
+            "ContinuumInterfaceTests.test_recorders_railway_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CONTINUUM-REVIEW-DFM-CONTINUUM-INTERFACE-6"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "781befaf52b5624891b537efd5d983e14c1ca15942fa74080d19251c984198af",
+      "symbols": [
+        "SL2Connection",
+        "SL2Connection.__init__",
+        "SL2Connection._complete_graph",
+        "SL2Connection._dress",
+        "SL2Connection._path",
+        "SL2Connection._tree",
+        "SL2Connection.dress",
+        "SL2Connection.path",
+        "SL2Connection.tree",
+        "_bounded_integer",
+        "_cases",
+        "_det_one",
+        "_export",
+        "_graph_edge",
+        "_name",
+        "_signed_path",
+        "_sl2",
+        "additive_dress",
+        "check_additive",
+        "check_general_dependencies",
+        "check_identity_matrices",
+        "check_noncommutative_order",
+        "check_path_laws",
+        "check_star_enumeration",
+        "dress",
+        "eye",
+        "footprint",
+        "formula",
+        "incident",
+        "main",
+        "mat",
+        "path_transport",
+        "transport",
+        "validated_labels"
+      ],
+      "origin_sha256": "3f1ecf2586d69c69db693eba7867a68daafea77f6834dfb26b6369f9125d3f9b",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr243_review_integration.json",
+          "sha256": "1d7716d8713ceb7aeda7dc5b4bb325604d0a39cfdf359f0be14ca67e571a22d9",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr237_review_validation.json",
+          "sha256": "a644944088de51f9654710014df396a8165f194feee71e5c2dc77844fad31402",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr230_repair_integrated_validation.json",
+          "sha256": "24d6a74c37e5ed04ff5613358eb24d10708709eaee5541ec3c759c68bde7861e",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr230_repair_campaign_validation.json",
+          "sha256": "81eaf588ac5b541740454f2ca570e6419048c49b2e9e827616fd9ad92282e62e",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/independent/dfm-continuum-interface.md",
+          "sha256": "ca9575e446a4a0218fc59b6c19eed444ba5206d6a536ece72239f055fb8949a1",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/dfm_continuum_l4_replay.json",
+          "sha256": "76ca2003a443a4ec9f2a0b8c0be3cb4f5b7523162c81ea08de3537ca47c95c58",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/dfm_continuum_l4_mutations.json",
+          "sha256": "24d85df7f377afe9b6bbde4abda061e2cc23af6fe7674683133eb3fe1bb4b042",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_dfm-continuum-interface_review_validation.json",
+          "sha256": "3647682406c23651dd777455615de8146da2431c83b8d6a0da501e98d6de5855",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
+          "sha256": "94dd72fda235d1886d4f57ef6ab30af4a5f042721b759cdbc495b05b7e481f69",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-CONTINUUM-INTERFACE.md",
+          "sha256": "852b3ba0ac6cd036a3e95caf778c7cb21b5eee1f3a2421d70f3a1a3fb0d333a9",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_continuum_interface.py",
+          "sha256": "d9e527056824b2ea05c74c32a63675cbd0e14f9a5baf4df28f648d30744d4a28",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "b669acf8e89215701a4b09f5bba5a48daf55e481960b8aeb890d384a33b53281",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and all original callable names remain; require is composed from the shared strict-bool boundary. Matrix helpers still return immutable SymPy matrices. Internal arithmetic now has explicit4096-bit conservative bounds; labels and both graph maps are owned/immutable. Footprint now admits full signed-word syntax and additive labels exclude bool/float. New aggregate methods return Outcome. check_path_laws explicitly declares its x/y/outside fixture scope and4095 prefix limit. CLI includes511 actual obligations. No historical scientific receipt or DAG status is promoted; this remains finite nonlocality of supplied rooted paths."
+    },
+    "checks/tests/test_continuum_interface.py": {
+      "role": "Independent finite transport verification application with symbolic right-fold/inverse oracle, shear-generated SL2 labels, rooted-graph and additive specialization checks, and ownership/preflight challenges",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "13 groups,80 deterministic examples per property. Generated signed words<=8 per part and fixed graph matrices from small shears. Boundary tests use4096 labels/steps and4096-bit integer entries; conservative determinant test uses2049-bit components. Symbolic independent operations remain2x2; scoped import/mock/capture restoration.",
+      "groups": [
+        {
+          "requirement": "Verify independent oracle helpers, signed group laws and footprints, every composable fixed-graph walk and rooted edge dressing, additive specialization, immutable snapshots/exports, complete runtime domain/resource boundaries, preflight ordering, exact receipt counts, injected faults and cancellation.",
+          "symbols": [
+            "_shears",
+            "_oracle",
+            "ContinuumInterfaceTests",
+            "ContinuumInterfaceTests.refused",
+            "ContinuumInterfaceTests.test_oracle_and_refusal_helper",
+            "ContinuumInterfaceTests.test_signed_transport_group_and_footprint_oracle",
+            "ContinuumInterfaceTests.test_fixed_graph_dressing_and_tree_walk_oracle",
+            "ContinuumInterfaceTests.test_additive_specialization",
+            "ContinuumInterfaceTests.test_matrix_and_scalar_domains",
+            "ContinuumInterfaceTests.test_label_admission_and_unused_matrices",
+            "ContinuumInterfaceTests.test_connection_and_export_snapshot_ownership",
+            "ContinuumInterfaceTests.test_signed_path_and_footprint_refusals",
+            "ContinuumInterfaceTests.test_fixed_graph_admission_and_whole_word_preflight",
+            "ContinuumInterfaceTests.test_resource_boundaries_and_conservative_arithmetic",
+            "ContinuumInterfaceTests.test_fixture_scope_and_guard_types",
+            "ContinuumInterfaceTests.test_default_counts_and_fixed_fault_detection",
+            "ContinuumInterfaceTests.test_recorders_railway_and_cancellation"
+          ],
+          "tests": [
+            "ContinuumInterfaceTests.test_oracle_and_refusal_helper",
+            "ContinuumInterfaceTests.test_signed_transport_group_and_footprint_oracle",
+            "ContinuumInterfaceTests.test_fixed_graph_dressing_and_tree_walk_oracle",
+            "ContinuumInterfaceTests.test_additive_specialization",
+            "ContinuumInterfaceTests.test_matrix_and_scalar_domains",
+            "ContinuumInterfaceTests.test_label_admission_and_unused_matrices",
+            "ContinuumInterfaceTests.test_connection_and_export_snapshot_ownership",
+            "ContinuumInterfaceTests.test_signed_path_and_footprint_refusals",
+            "ContinuumInterfaceTests.test_fixed_graph_admission_and_whole_word_preflight",
+            "ContinuumInterfaceTests.test_resource_boundaries_and_conservative_arithmetic",
+            "ContinuumInterfaceTests.test_fixture_scope_and_guard_types",
+            "ContinuumInterfaceTests.test_default_counts_and_fixed_fault_detection",
+            "ContinuumInterfaceTests.test_recorders_railway_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CONTINUUM-REVIEW-TEST-CONTINUUM-INTERFACE-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "d9e527056824b2ea05c74c32a63675cbd0e14f9a5baf4df28f648d30744d4a28",
+      "symbols": [
+        "ContinuumInterfaceTests",
+        "ContinuumInterfaceTests.refused",
+        "ContinuumInterfaceTests.test_additive_specialization",
+        "ContinuumInterfaceTests.test_connection_and_export_snapshot_ownership",
+        "ContinuumInterfaceTests.test_default_counts_and_fixed_fault_detection",
+        "ContinuumInterfaceTests.test_fixed_graph_admission_and_whole_word_preflight",
+        "ContinuumInterfaceTests.test_fixed_graph_dressing_and_tree_walk_oracle",
+        "ContinuumInterfaceTests.test_fixture_scope_and_guard_types",
+        "ContinuumInterfaceTests.test_label_admission_and_unused_matrices",
+        "ContinuumInterfaceTests.test_matrix_and_scalar_domains",
+        "ContinuumInterfaceTests.test_oracle_and_refusal_helper",
+        "ContinuumInterfaceTests.test_recorders_railway_and_cancellation",
+        "ContinuumInterfaceTests.test_resource_boundaries_and_conservative_arithmetic",
+        "ContinuumInterfaceTests.test_signed_path_and_footprint_refusals",
+        "ContinuumInterfaceTests.test_signed_transport_group_and_footprint_oracle",
+        "_oracle",
+        "_shears"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-continuum-interface.py",
+          "sha256": "781befaf52b5624891b537efd5d983e14c1ca15942fa74080d19251c984198af",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "b669acf8e89215701a4b09f5bba5a48daf55e481960b8aeb890d384a33b53281",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and all original callable names remain; require is composed from the shared strict-bool boundary. Matrix helpers still return immutable SymPy matrices. Internal arithmetic now has explicit4096-bit conservative bounds; labels and both graph maps are owned/immutable. Footprint now admits full signed-word syntax and additive labels exclude bool/float. New aggregate methods return Outcome. check_path_laws explicitly declares its x/y/outside fixture scope and4095 prefix limit. CLI includes511 actual obligations. No historical scientific receipt or DAG status is promoted; this remains finite nonlocality of supplied rooted paths."
+    }
+  }
+}

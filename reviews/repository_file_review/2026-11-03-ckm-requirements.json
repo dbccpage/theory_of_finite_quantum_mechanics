@@ -1,0 +1,357 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-ckm-physics-fence.py": {
+      "role": "Bounded exact Gaussian-rephasing verification application with owned nonzero-table aggregate, constructive gauge witnesses, typed operations and accounted CLI failures",
+      "origin": "lean4/DressingFieldCkmPhysicsFence.lean",
+      "profile": "Exact",
+      "cost": "Each table dimension1..64, at most4096 cells. Admission, normalization, action and witness are O(height*width) with a fixed number of bounded Gaussian operations per cell. Stored Gaussian components and each returned polynomial value have<=4096-bit numerator/denominator; shared Gaussian norm/inverse intermediates have their separately corrected fixed-operation bounds, and conservative refusals may precede cancellation. Sign enumeration requires dimensions1..6 and product<=6 before enumeration:<=64 tables,4096 pairs,128 gauge assignments per table. Default11381 obligations include2376 sign actions and4388 pair decisions.",
+      "groups": [
+        {
+          "requirement": "Admit exact rational parameters excluding bool/float/subclass coercion, enforce4096-bit input/output bounds and evaluate the three rational polynomials on signed/fractional inputs without interpreting them as measured physical counts.",
+          "symbols": [
+            "exact_rational",
+            "cycle_count",
+            "constraint_count",
+            "cp_count"
+          ],
+          "tests": [
+            "CkmCheckerTests.test_counting_against_polynomial_oracles",
+            "CkmCheckerTests.test_scalar_and_quartet_boundaries"
+          ],
+          "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-1"
+        },
+        {
+          "requirement": "Require actual GaussianRational values at every quartet position before accessing methods; zero is permitted in quartets. Rephasing labels and gauges require nonzero values. Compute a*b*conj(c)*conj(d) exactly using the reviewed bounded Gaussian value.",
+          "symbols": [
+            "_gaussian",
+            "quartet",
+            "_gauges"
+          ],
+          "tests": [
+            "CkmCheckerTests.test_quartets_against_complex_oracle",
+            "CkmCheckerTests.test_scalar_and_quartet_boundaries",
+            "CkmCheckerTests.test_table_gauge_and_witness_domains"
+          ],
+          "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-2"
+        },
+        {
+          "requirement": "Own a frozen nonempty rectangular table of nonzero Q(i) labels with dimensions<=64. Snapshot nested lists, preserve exact rectangular shape, and reject ragged/empty/zero/foreign entries before algebra.",
+          "symbols": [
+            "GaussianRephasingTable",
+            "GaussianRephasingTable.__init__",
+            "GaussianRephasingTable.shape",
+            "shape"
+          ],
+          "tests": [
+            "CkmCheckerTests.test_table_snapshots_singletons_and_maximum",
+            "CkmCheckerTests.test_table_gauge_and_witness_domains",
+            "CkmCheckerTests.test_sign_census_and_enumeration_preflight"
+          ],
+          "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-3"
+        },
+        {
+          "requirement": "Normalize relative to row0/column0 using all four cross-ratio factors. Gauge action divides by the admitted column gauge. Return Outcome from aggregate operations and retain the raw-success evaluated legacy interfaces. Typed resource refusal is distinct from a classification result.",
+          "symbols": [
+            "GaussianRephasingTable._normalized",
+            "GaussianRephasingTable.normalized",
+            "GaussianRephasingTable._act",
+            "GaussianRephasingTable.act",
+            "normalize",
+            "act"
+          ],
+          "tests": [
+            "CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle",
+            "CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness",
+            "CkmCheckerTests.test_table_gauge_and_witness_domains",
+            "CkmCheckerTests.test_table_arithmetic_resource_failure",
+            "CkmCheckerTests.test_recorders_failure_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-4"
+        },
+        {
+          "requirement": "Require an admitted table of identical shape. If normalized tables differ, return successful None; otherwise construct row and column gauges and verify their interpretation through independent tests. Input/resource failure is an Outcome error, never None.",
+          "symbols": [
+            "GaussianRephasingTable._witness",
+            "GaussianRephasingTable.witness",
+            "witness"
+          ],
+          "tests": [
+            "CkmCheckerTests.test_witness_against_independent_gauge_equations",
+            "CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness",
+            "CkmCheckerTests.test_table_gauge_and_witness_domains",
+            "CkmCheckerTests.test_table_arithmetic_resource_failure",
+            "CkmCheckerTests.test_recorders_failure_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-5"
+        },
+        {
+          "requirement": "Preflight exact positive sign-enumeration dimensions and the six-cell budget, then enumerate every sign table. check_sign_actions additionally verifies the supplied table shape before a bounded gauge enumeration.",
+          "symbols": [
+            "_sign_shape",
+            "sign_tables",
+            "check_sign_actions"
+          ],
+          "tests": [
+            "CkmCheckerTests.test_sign_census_and_enumeration_preflight",
+            "CkmCheckerTests.test_default_counts_and_fixed_faults",
+            "CkmCheckerTests.test_recorders_failure_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-6"
+        },
+        {
+          "requirement": "Use fresh or explicitly admitted Cases recorders. Verify canonical boundary/idempotence, witness soundness and separation, nonreal controls, polynomial/quartet fixtures and the fixed sign-orbit census. Every expected invalid-input refusal must actually return an input Failure; otherwise raise a counted check failure instead of returning an ignored message. Main reports11381 actual obligations and uses nonzero CLI diagnostics.",
+          "symbols": [
+            "_cases",
+            "check_canonical",
+            "check_pair",
+            "check_nonreal",
+            "check_rephasing",
+            "check_invalid_inputs",
+            "check_counting_examples",
+            "check_quartet_examples",
+            "main"
+          ],
+          "tests": [
+            "CkmCheckerTests.test_failed_refusal_is_a_failed_check",
+            "CkmCheckerTests.test_default_counts_and_fixed_faults",
+            "CkmCheckerTests.test_recorders_failure_and_cancellation",
+            "CkmCheckerTests.test_witness_against_independent_gauge_equations"
+          ],
+          "requirement_id": "TFQM-CKM-REVIEW-DFM-CKM-PHYSICS-FENCE-7"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "6267564e2d8c562532503700a4887ea05b6a7e01bf945db543a73f42848b1735",
+      "symbols": [
+        "GaussianRephasingTable",
+        "GaussianRephasingTable.__init__",
+        "GaussianRephasingTable._act",
+        "GaussianRephasingTable._normalized",
+        "GaussianRephasingTable._witness",
+        "GaussianRephasingTable.act",
+        "GaussianRephasingTable.normalized",
+        "GaussianRephasingTable.shape",
+        "GaussianRephasingTable.witness",
+        "_cases",
+        "_gauges",
+        "_gaussian",
+        "_sign_shape",
+        "act",
+        "check_canonical",
+        "check_counting_examples",
+        "check_invalid_inputs",
+        "check_nonreal",
+        "check_pair",
+        "check_quartet_examples",
+        "check_rephasing",
+        "check_sign_actions",
+        "constraint_count",
+        "cp_count",
+        "cycle_count",
+        "exact_rational",
+        "main",
+        "normalize",
+        "quartet",
+        "shape",
+        "sign_tables",
+        "witness"
+      ],
+      "origin_sha256": "8366d62e75f6c93527df44a35fa92ae53754237c9a7602f205b5279360f9acdf",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/unified_dag.json",
+          "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-CKM-PHYSICS-FENCE.md",
+          "sha256": "0b9b9ceb723b5fe5971c1d695a4d57fcead936a1b4675a887b817ee299507b32",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/operads/dfm_ckm_physics_fence.yaml",
+          "sha256": "3536339868b8b226b312de9eb85b2a87c5e21073a8d21b4dd7facb2d7c31791e",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
+          "sha256": "1223f9e974ab70c92fa26c64d1728a881cf0f41b86febbb07e4a3351e4417216",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/three_proof_l4_post230_custody.json",
+          "sha256": "7384bd1d8f48e6a23157378cb8db4c290f3017fe9775aa083c5c0d29bf0c6cac",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/three_proof_l4_final_pipeline.json",
+          "sha256": "3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/three_proof_l4_custody.json",
+          "sha256": "b89fd0b01957abab8c6740f4e7dc9873f52161e798289f8266232a262ac95f1d",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr237_review_validation.json",
+          "sha256": "a644944088de51f9654710014df396a8165f194feee71e5c2dc77844fad31402",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/dfm_ckm_l4_replay.json",
+          "sha256": "f82ab0a39ea245bda4bc2a4841c48195aa1d2fd367b8e3fe2c2ef6b85108e40c",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/dfm_ckm_l4_independent.json",
+          "sha256": "180171fbda8be477bf5adf959e5709ad2223c7c53f5af32f8ed415be9e85837c",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/dfm_ckm_l4_custody.json",
+          "sha256": "669ca9b275fa767aee14252a4dc862bc420ff6d9e573cbd25af1fd4e2a8087a4",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_dfm-ckm-physics-fence_review_validation.json",
+          "sha256": "97c2e4df51fadac06657a7b361d251efe8ba29bae1285f279db9d49a655583c7",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_ckm_checker.py",
+          "sha256": "efa662973f5d9c2c885d3082480eaef7959aeb4d2f765af1a32ba18c647ccd26",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "62999144fc9dbba36a3148ae18cebc46cee28ec72ca2ecb76862254590629dcc",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and original helper names remain. Tables now have64x64 limits and immutable snapshots; all gauges and quartet operands have explicit runtime admission. Counting polynomials have bounded exact outputs. Aggregate public operations return Outcome, distinguishing no witness from input/resource failure. Sign-action enumeration now preflights dimensions/cell budget. A failed refusal check now fails the CLI instead of returning an ignored string. The default receipt counts11381 obligations. No historical DAG status, finite evidence bytes, unitary-model or measured-physics claim is changed."
+    },
+    "checks/tests/test_ckm_checker.py": {
+      "role": "Independent exact verification application using expanded polynomials, symbolic complex quartets, rectangular table oracles and gauge equations with a distinct base gauge, plus lifecycle/refusal challenges",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "14 groups,80 deterministic examples per generated property. Generated Gaussian components use small rational values; matrices2x2/2x3. Independent gauge-equation solver fixes row0=1, derives all column/row gauges and verifies every cell. An explicit nonreal rectangular fixture supplies a fast deterministic challenge independent of property shrinking. Boundary tests admit64x64 tables, six-cell sign census and4096-bit values. Fixed full census executes11381 obligations. Scoped import/mock/capture restoration.",
+      "groups": [
+        {
+          "requirement": "Verify the independent complex conversion and gauge solver on known cases, compare all scalar/table/witness operations with separate exact oracles, and challenge every input/resource/typed-success distinction. Include full boundaries, snapshots, enumeration preflight, real/nonreal/zero quartets, failure-counter regression, actual printed counts and cancellation.",
+          "symbols": [
+            "_complex",
+            "_components",
+            "_related",
+            "CkmCheckerTests",
+            "CkmCheckerTests.refused",
+            "CkmCheckerTests.test_oracles_and_refusal_helper",
+            "CkmCheckerTests.test_counting_against_polynomial_oracles",
+            "CkmCheckerTests.test_quartets_against_complex_oracle",
+            "CkmCheckerTests.test_scalar_and_quartet_boundaries",
+            "CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle",
+            "CkmCheckerTests.test_witness_against_independent_gauge_equations",
+            "CkmCheckerTests.test_table_snapshots_singletons_and_maximum",
+            "CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness",
+            "CkmCheckerTests.test_table_gauge_and_witness_domains",
+            "CkmCheckerTests.test_table_arithmetic_resource_failure",
+            "CkmCheckerTests.test_sign_census_and_enumeration_preflight",
+            "CkmCheckerTests.test_failed_refusal_is_a_failed_check",
+            "CkmCheckerTests.test_default_counts_and_fixed_faults",
+            "CkmCheckerTests.test_recorders_failure_and_cancellation"
+          ],
+          "tests": [
+            "CkmCheckerTests.test_oracles_and_refusal_helper",
+            "CkmCheckerTests.test_counting_against_polynomial_oracles",
+            "CkmCheckerTests.test_quartets_against_complex_oracle",
+            "CkmCheckerTests.test_scalar_and_quartet_boundaries",
+            "CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle",
+            "CkmCheckerTests.test_witness_against_independent_gauge_equations",
+            "CkmCheckerTests.test_table_snapshots_singletons_and_maximum",
+            "CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness",
+            "CkmCheckerTests.test_table_gauge_and_witness_domains",
+            "CkmCheckerTests.test_table_arithmetic_resource_failure",
+            "CkmCheckerTests.test_sign_census_and_enumeration_preflight",
+            "CkmCheckerTests.test_failed_refusal_is_a_failed_check",
+            "CkmCheckerTests.test_default_counts_and_fixed_faults",
+            "CkmCheckerTests.test_recorders_failure_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CKM-REVIEW-TEST-CKM-CHECKER-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "efa662973f5d9c2c885d3082480eaef7959aeb4d2f765af1a32ba18c647ccd26",
+      "symbols": [
+        "CkmCheckerTests",
+        "CkmCheckerTests.refused",
+        "CkmCheckerTests.test_counting_against_polynomial_oracles",
+        "CkmCheckerTests.test_default_counts_and_fixed_faults",
+        "CkmCheckerTests.test_failed_refusal_is_a_failed_check",
+        "CkmCheckerTests.test_gaussian_table_action_and_normalization_oracle",
+        "CkmCheckerTests.test_nonreal_fixed_normalization_action_and_witness",
+        "CkmCheckerTests.test_oracles_and_refusal_helper",
+        "CkmCheckerTests.test_quartets_against_complex_oracle",
+        "CkmCheckerTests.test_recorders_failure_and_cancellation",
+        "CkmCheckerTests.test_scalar_and_quartet_boundaries",
+        "CkmCheckerTests.test_sign_census_and_enumeration_preflight",
+        "CkmCheckerTests.test_table_arithmetic_resource_failure",
+        "CkmCheckerTests.test_table_gauge_and_witness_domains",
+        "CkmCheckerTests.test_table_snapshots_singletons_and_maximum",
+        "CkmCheckerTests.test_witness_against_independent_gauge_equations",
+        "_complex",
+        "_components",
+        "_related"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-ckm-physics-fence.py",
+          "sha256": "6267564e2d8c562532503700a4887ea05b6a7e01bf945db543a73f42848b1735",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "62999144fc9dbba36a3148ae18cebc46cee28ec72ca2ecb76862254590629dcc",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and original helper names remain. Tables now have64x64 limits and immutable snapshots; all gauges and quartet operands have explicit runtime admission. Counting polynomials have bounded exact outputs. Aggregate public operations return Outcome, distinguishing no witness from input/resource failure. Sign-action enumeration now preflights dimensions/cell budget. A failed refusal check now fails the CLI instead of returning an ignored string. The default receipt counts11381 obligations. No historical DAG status, finite evidence bytes, unitary-model or measured-physics claim is changed."
+    }
+  }
+}

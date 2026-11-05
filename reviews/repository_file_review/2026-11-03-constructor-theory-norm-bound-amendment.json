@@ -1,0 +1,40 @@
+{
+  "AuthorityEffect": "None",
+  "source_sha256": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+  "before_test_sha256": "c8f622ee074b6f40415f653c1cfe904d45900e234706cc1b40a8406a89e0d1d4",
+  "after_test_sha256": "5bca112965a3eef178340e8fc65adfcb13cd4c9f9e1f68ff005a97232e98ce38",
+  "added_text": "    def test_gaussian_norm_bit_bound_with_coprime_denominators(self) -> None:\n        module = load(MEDIATOR)\n        bits = 4096\n        first = 1 << (bits-1)\n        second = first+1\n        value = module.GaussianRational(Q(1, first), Q(1, second))\n        norm = value.norm_sq()\n        expected = Q(first*first+second*second, (first*second)**2)\n        self.assertEqual(norm, expected)\n        self.assertGreater(norm.denominator.bit_length(), 2*bits)\n        self.assertLessEqual(norm.numerator.bit_length(), 4*bits+1)\n        self.assertLessEqual(norm.denominator.bit_length(), 4*bits)\n        self.refused(module.normalized_concurrence_squared, value.re, value.im, kind=\"resource\")\n\n",
+  "old_cost": "Fixed rational operations; each stored component at most 4096 bits, norm may use twice that width.",
+  "corrected_cost": "Fixed exact rational operations on components with numerator/denominator at most B=4096 bits. For re=a/b and im=c/d, norm=(a^2*d^2+c^2*b^2)/(b^2*d^2): numerator at most4B+1 bits, denominator at most4B bits. The norm return is not itself gated to B bits. Inverse intermediates have at most5B+1 bits before result-component admission. Returned Gaussian components are always admitted to B bits; no iterative unbounded algebra.",
+  "derivation": "Each |a|,b,|c|,d<2^B. Each squared numerator term is <2^(4B), their sum <2^(4B+1), denominator <2^(4B); reduction cannot increase either. With b=2^4095 and d=b+1, the reduced norm denominator has16381 bits, disproving the previous8192-bit ceiling. The exact implementation is unchanged. The concurrence API rejects this oversized derived norm with a resource Failure.",
+  "previous_evidence": [
+    {
+      "path": "reviews/repository_file_review/2026-11-03-checker-infrastructure.md",
+      "sha256": "513c66bcb4425d16dfcca24c6a0d70cc1eca9fc5e8d38d5c3a716419af73584b"
+    },
+    {
+      "path": "reviews/repository_file_review/2026-11-03-support-requirements.json",
+      "sha256": "f35bc30bc1c7251fa92dae0adfddd6c7d694781fc3eb4bcbbeeba3db5847cafd"
+    },
+    {
+      "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+      "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+    },
+    {
+      "path": "reviews/repository_file_review/2026-11-03-support-mutations-composed.json",
+      "sha256": "90fe9ad62d24997d73c0062bcf90ed8490a8096754308b9af5db9b75a9567961"
+    },
+    {
+      "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+      "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+    },
+    {
+      "path": "reviews/repository_file_review/2026-11-03-wilson-swap-equivalence.md",
+      "sha256": "737f0bb2b6f63cc40181ccefc569ab55b473e08db23dce0d7a61fb27f46f2a24"
+    },
+    {
+      "path": "SCORING.md",
+      "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+    }
+  ]
+}

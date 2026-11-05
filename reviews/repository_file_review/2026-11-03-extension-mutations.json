@@ -1,0 +1,501 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 1.849s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_extension_mutations.py": "030859207b0377d4ab721e3c86184392a4f915a0edfc76f210277f0769c541f5",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\cech_complex.py": "6f973fc65d6fa66ebb9078c6cc1af60683a5150b97b5510ca853517b650227dd",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\empirical_model.py": "612562ec192efe40b5b9a0bb151486d4e77caf399bd853d2da712f5ca465172c",
+    "checks\\checker_support\\exact_json_document.py": "e162590c25fab02fe87d73bc50f1e52e8083580b9faafae14ba4c50b8efb9f8c",
+    "checks\\checker_support\\exact_linear_program.py": "c771280ccd6473deaa011e37ca22c3e1856ccb9fbd2025580c81b87a0513f65f",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\linear_program_certificate.py": "cfe2167737de71125118fb749a6e9ba5a2501cbee49ebc7828d2d55cc81636dc",
+    "checks\\checker_support\\measurement_scenario.py": "c441ba2036eca8083869d4b0fb4a49fdbc84638ca29b3cd2e90f8a07b5d71a3c",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\rational_inverse.py": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+    "checks\\checker_support\\rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks\\checker_support\\simplex_tableau.py": "c5254540e60b3bd68f8bd7776162878d6a919724f88b2098f9874bb980d2c145",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\data\\fq_gleason_qi3_extension.json": "fd0fd770fd92f7cb60203c2b813936717db74707e9e3ac5954fab3eaed0f226b",
+    "checks\\independent\\fq-gleason-qi3-extension.py": "3659d64137f730882d6f8eb5a0c8fee8664d87bba11585ea34332537b9f820f3",
+    "checks\\tests\\extension_mutations.json": "6f7e57210f3cea6a5f3ce1a4514b91f4f0a2f862c7f79a5d702b4735d52a28a0",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_gaussian_extension_certificate.py": "95ca78a61e7817fea91cc086411348269a74ee0d1394b5bab33db7e01fbfb5dc",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+    "lean4\\BornGaussianRationalExtensionObstruction.lean": "aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33"
+  },
+  "mutants": [
+    {
+      "identity": "schema-unknown-fields",
+      "mutant_sha256": "86910b911eafd09576c055128bd2521c914e8f5af697d3056f3487da31244a2e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_closed_schema_metadata_and_exact_numbers (__main__.GaussianExtensionTests.test_closed_schema_metadata_and_exact_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 153, in test_closed_schema_metadata_and_exact_numbers\n    data = record(); data[key] = value; self.refused(module.verify(data), 'input')\n                                        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_closed_schema_metadata_and_exact_numbers"
+      ]
+    },
+    {
+      "identity": "metadata-target",
+      "mutant_sha256": "fe09261a1ba328d0e6e359aa0d5d12dc8bb6afd977019ddbc684807fd11f2f43",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_closed_schema_metadata_and_exact_numbers (__main__.GaussianExtensionTests.test_closed_schema_metadata_and_exact_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 153, in test_closed_schema_metadata_and_exact_numbers\n    data = record(); data[key] = value; self.refused(module.verify(data), 'input')\n                                        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_closed_schema_metadata_and_exact_numbers"
+      ]
+    },
+    {
+      "identity": "metadata-normalization",
+      "mutant_sha256": "afcb3c46294dcfd164edeff87e1dbafbdf893374a26eced8baf2887d495ec354",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_closed_schema_metadata_and_exact_numbers (__main__.GaussianExtensionTests.test_closed_schema_metadata_and_exact_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 153, in test_closed_schema_metadata_and_exact_numbers\n    data = record(); data[key] = value; self.refused(module.verify(data), 'input')\n                                        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_closed_schema_metadata_and_exact_numbers"
+      ]
+    },
+    {
+      "identity": "metadata-commit",
+      "mutant_sha256": "c8ad51281eff4a4e4c8741cf74bb7cf9687c3923679eae4d3a8f3826adca591a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_closed_schema_metadata_and_exact_numbers (__main__.GaussianExtensionTests.test_closed_schema_metadata_and_exact_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 153, in test_closed_schema_metadata_and_exact_numbers\n    data = record(); data[key] = value; self.refused(module.verify(data), 'input')\n                                        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_closed_schema_metadata_and_exact_numbers"
+      ]
+    },
+    {
+      "identity": "claimed-rhs",
+      "mutant_sha256": "3c030bed1a9af903e1de1bd78e500f515cb9a22244f69165036596322b5fec22",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_closed_schema_metadata_and_exact_numbers (__main__.GaussianExtensionTests.test_closed_schema_metadata_and_exact_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 153, in test_closed_schema_metadata_and_exact_numbers\n    data = record(); data[key] = value; self.refused(module.verify(data), 'input')\n                                        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.017s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_closed_schema_metadata_and_exact_numbers"
+      ]
+    },
+    {
+      "identity": "integer-budget",
+      "mutant_sha256": "cca06fe3b795d922f455279ad98cb3a9adcec02a986f5d6862dd21b73527bd7b",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_integer_products_prefixes_and_aggregate_budgets (__main__.GaussianExtensionTests.test_integer_products_prefixes_and_aggregate_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 212, in test_integer_products_prefixes_and_aggregate_budgets\n    self.refused(module.verify(data), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 71, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'check' != 'resource'\n- check\n+ resource\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_integer_products_prefixes_and_aggregate_budgets"
+      ]
+    },
+    {
+      "identity": "ray-budget",
+      "mutant_sha256": "9552c7e877f685fcc4050e6492b0e5498deda1d74437542b03b253cfd4330a14",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_whole_schema_admission_precedes_geometry (__main__.GaussianExtensionTests.test_whole_schema_admission_precedes_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 183, in test_whole_schema_admission_precedes_geometry\n    self.refused(module.verify(data), kind)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 71, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'duplicate' != 'resource'\n- duplicate\n+ resource\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_whole_schema_admission_precedes_geometry"
+      ]
+    },
+    {
+      "identity": "duplicate-rays",
+      "mutant_sha256": "af5d9bc19a1421067be94038985e8ecae22ab7ae03332c7187ecdfa37a5aa2fe",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_whole_schema_admission_precedes_geometry (__main__.GaussianExtensionTests.test_whole_schema_admission_precedes_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 183, in test_whole_schema_admission_precedes_geometry\n    self.refused(module.verify(data), kind)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 71, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'input' != 'duplicate'\n- input\n+ duplicate\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_whole_schema_admission_precedes_geometry"
+      ]
+    },
+    {
+      "identity": "primitive-nonzero-rays",
+      "mutant_sha256": "0cd1aebf10b6519f7320db0b4d8d63fea7dd2949bb29053b0fe15728b862c68a",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.021s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_whole_schema_admission_precedes_geometry"
+      ]
+    },
+    {
+      "identity": "frame-budget",
+      "mutant_sha256": "02a410d15f94bf0188f985488a098465ec4c86e76b48823f2ab12329976ddc17",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_whole_schema_admission_precedes_geometry (__main__.GaussianExtensionTests.test_whole_schema_admission_precedes_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 183, in test_whole_schema_admission_precedes_geometry\n    self.refused(module.verify(data), kind)\n                 ~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 165, in verify\n    return evaluate(GaussianExtensionCertificate, data).bind(lambda certificate: certificate.verify())\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\outcome.py\", line 47, in bind\n    result = function(cast(T, self.value))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 165, in <lambda>\n    return evaluate(GaussianExtensionCertificate, data).bind(lambda certificate: certificate.verify())\n                                                                                 ~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 161, in verify\n    return evaluate(self._verify)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 151, in _verify\n    frame_total = self._frames(coefficients)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 130, in _frames\n    require(_inner(u, v) == _inner(u, w) == _inner(v, w) == (0, 0),\n            ~~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 182, in <lambda>\n    with patch.dict(module.GaussianExtensionCertificate._frames.__globals__, _inner=lambda *_: self.fail('geometry before schema')):\n                                                                                               ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: geometry before schema\n\n----------------------------------------------------------------------\nRan 1 test in 0.022s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_whole_schema_admission_precedes_geometry"
+      ]
+    },
+    {
+      "identity": "prescription-budget",
+      "mutant_sha256": "167f0b7fc09035a045778fadb4417acecefca0031ee4f79eaa2a60617308ef12",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_whole_schema_admission_precedes_geometry (__main__.GaussianExtensionTests.test_whole_schema_admission_precedes_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 183, in test_whole_schema_admission_precedes_geometry\n    self.refused(module.verify(data), kind)\n                 ~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 165, in verify\n    return evaluate(GaussianExtensionCertificate, data).bind(lambda certificate: certificate.verify())\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\outcome.py\", line 47, in bind\n    result = function(cast(T, self.value))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 165, in <lambda>\n    return evaluate(GaussianExtensionCertificate, data).bind(lambda certificate: certificate.verify())\n                                                                                 ~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 161, in verify\n    return evaluate(self._verify)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 151, in _verify\n    frame_total = self._frames(coefficients)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 130, in _frames\n    require(_inner(u, v) == _inner(u, w) == _inner(v, w) == (0, 0),\n            ~~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 182, in <lambda>\n    with patch.dict(module.GaussianExtensionCertificate._frames.__globals__, _inner=lambda *_: self.fail('geometry before schema')):\n                                                                                               ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: geometry before schema\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_whole_schema_admission_precedes_geometry"
+      ]
+    },
+    {
+      "identity": "zero-weight",
+      "mutant_sha256": "be731ff4c26159c68be447c9826bc9cef95798be47b4c13bdb70fa9599d02105",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_whole_schema_admission_precedes_geometry (__main__.GaussianExtensionTests.test_whole_schema_admission_precedes_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 189, in test_whole_schema_admission_precedes_geometry\n    data = record(); rows(data, key)[0][-1] = 0; self.refused(module.verify(data), 'input')\n                                                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 71, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'check' != 'input'\n- check\n+ input\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_whole_schema_admission_precedes_geometry"
+      ]
+    },
+    {
+      "identity": "negative-index",
+      "mutant_sha256": "0862e50e32e6a08d7db8d36e41bf100744ab5108839bc695a370c66ddf9aee28",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_whole_schema_admission_precedes_geometry (__main__.GaussianExtensionTests.test_whole_schema_admission_precedes_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 188, in test_whole_schema_admission_precedes_geometry\n    data = record(); rows(data, key)[-1][0] = index; self.refused(module.verify(data), 'input')\n                                                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 71, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'check' != 'input'\n- check\n+ input\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.017s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_whole_schema_admission_precedes_geometry"
+      ]
+    },
+    {
+      "identity": "index-upper-bound",
+      "mutant_sha256": "52fa0bead3241b8d969e20d57c8ec5a06c897ce2827ca436b360af4facff3326",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_whole_schema_admission_precedes_geometry (__main__.GaussianExtensionTests.test_whole_schema_admission_precedes_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 188, in test_whole_schema_admission_precedes_geometry\n    data = record(); rows(data, key)[-1][0] = index; self.refused(module.verify(data), 'input')\n                                                                  ~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 165, in verify\n    return evaluate(GaussianExtensionCertificate, data).bind(lambda certificate: certificate.verify())\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\outcome.py\", line 47, in bind\n    result = function(cast(T, self.value))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 165, in <lambda>\n    return evaluate(GaussianExtensionCertificate, data).bind(lambda certificate: certificate.verify())\n                                                                                 ~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 161, in verify\n    return evaluate(self._verify)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 151, in _verify\n    frame_total = self._frames(coefficients)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py\", line 129, in _frames\n    u, v, w = self.rays[a], self.rays[b], self.rays[c]\n              ~~~~~~~~~^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_whole_schema_admission_precedes_geometry"
+      ]
+    },
+    {
+      "identity": "real-hermitian-sign",
+      "mutant_sha256": "02f5fc2bf2dc9f7b9db127d258b052eb495a8d7880ffc469bb2cbeb8578b8c99",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_generated_hermitian_inner_matches_symbolic_algebra (__main__.GaussianExtensionTests.test_generated_hermitian_inner_matches_symbolic_algebra)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 110, in test_generated_hermitian_inner_matches_symbolic_algebra\n    @given(VECTOR, VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 113, in test_generated_hermitian_inner_matches_symbolic_algebra\n    self.assertEqual(load()._inner(tuple(u), tuple(v)), (int(sp.re(expected)), int(sp.im(expected))))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (-1, 0) != (1, 0)\n\nFirst differing element 0:\n-1\n1\n\n- (-1, 0)\n?  -\n\n+ (1, 0)\nFailing test case: test_generated_hermitian_inner_matches_symbolic_algebra(\n    self=<__main__.GaussianExtensionTests testMethod=test_generated_hermitian_inner_matches_symbolic_algebra>,\n    u=[0, 1, 0, 0, 0, 0],\n    v=[0, 1, 0, 0, 0, 0],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.573s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_generated_hermitian_inner_matches_symbolic_algebra"
+      ]
+    },
+    {
+      "identity": "imag-conjugation",
+      "mutant_sha256": "661e25351ec969b5e3df09f0f9c9e249939f1f51b2c2040e71fcc6936c44a1d1",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_generated_hermitian_inner_matches_symbolic_algebra (__main__.GaussianExtensionTests.test_generated_hermitian_inner_matches_symbolic_algebra)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 110, in test_generated_hermitian_inner_matches_symbolic_algebra\n    @given(VECTOR, VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 113, in test_generated_hermitian_inner_matches_symbolic_algebra\n    self.assertEqual(load()._inner(tuple(u), tuple(v)), (int(sp.re(expected)), int(sp.im(expected))))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (0, 1) != (0, -1)\n\nFirst differing element 1:\n1\n-1\n\n- (0, 1)\n+ (0, -1)\n?     +\n\nFailing test case: test_generated_hermitian_inner_matches_symbolic_algebra(\n    self=<__main__.GaussianExtensionTests testMethod=test_generated_hermitian_inner_matches_symbolic_algebra>,\n    u=[0, 1, 0, 0, 0, 0],\n    v=[1, 0, 0, 0, 0, 0],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.578s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_generated_hermitian_inner_matches_symbolic_algebra"
+      ]
+    },
+    {
+      "identity": "real-term-budget",
+      "mutant_sha256": "f24730da134f673a56a383e3fd04c1da4410ffa8f8729d1cacd6451361280bd6",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_integer_products_prefixes_and_aggregate_budgets"
+      ]
+    },
+    {
+      "identity": "imag-term-budget",
+      "mutant_sha256": "b6703b5558363b2f97a481a4d0d60f72b09cb363e026db03260aedfbbc29a53e",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_integer_products_prefixes_and_aggregate_budgets"
+      ]
+    },
+    {
+      "identity": "real-prefix-budget",
+      "mutant_sha256": "3d907cba09cef48baef91b30c2ae130ae7cc250b62ce59219439b6037046cfb3",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_integer_products_prefixes_and_aggregate_budgets (__main__.GaussianExtensionTests.test_integer_products_prefixes_and_aggregate_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 218, in test_integer_products_prefixes_and_aggregate_budgets\n    self.refused(evaluate(module._inner, u, v), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_integer_products_prefixes_and_aggregate_budgets"
+      ]
+    },
+    {
+      "identity": "imag-prefix-budget",
+      "mutant_sha256": "af10f559977b4b57538c5a012dd45e963515750971b5715eb618143fee23fbfb",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_integer_products_prefixes_and_aggregate_budgets (__main__.GaussianExtensionTests.test_integer_products_prefixes_and_aggregate_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 218, in test_integer_products_prefixes_and_aggregate_budgets\n    self.refused(evaluate(module._inner, u, v), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_integer_products_prefixes_and_aggregate_budgets"
+      ]
+    },
+    {
+      "identity": "real-prescription-domain",
+      "mutant_sha256": "5ba7bddebc587d2a4c4ba88d4b9eb0da0ac90bd35d108ab0fc03d747bf36412d",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_geometric_and_algebraic_forgery_refusals"
+      ]
+    },
+    {
+      "identity": "mod4-sign",
+      "mutant_sha256": "c322798cb54b42eed066552281f9aedfb53de6a7cf58443fa4d48bd198385a82",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_generated_real_sign_matches_residue_table (__main__.GaussianExtensionTests.test_generated_real_sign_matches_residue_table)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 116, in test_generated_real_sign_matches_residue_table\n    @given(st.tuples(st.integers(-40, 40), st.integers(-40, 40), st.integers(-40, 40)))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 123, in test_generated_real_sign_matches_residue_table\n    self.assertEqual(load()._sign(ray), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != -1\nFailing test case: test_generated_real_sign_matches_residue_table(\n    self=<__main__.GaussianExtensionTests testMethod=test_generated_real_sign_matches_residue_table>,\n    vector=(0, 1, 1),\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\independent\\fq-gleason-qi3-extension.py:99\n\n----------------------------------------------------------------------\nRan 1 test in 0.204s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_generated_real_sign_matches_residue_table"
+      ]
+    },
+    {
+      "identity": "frame-orthogonality",
+      "mutant_sha256": "33a85f224ad03070f7bb9eebc3b9bc0cb6f8005b559b4c8cb2f31ec6cae0a1a8",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_geometric_and_algebraic_forgery_refusals (__main__.GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 194, in test_geometric_and_algebraic_forgery_refusals\n    self.refused(module.verify(corrupt))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_geometric_and_algebraic_forgery_refusals"
+      ]
+    },
+    {
+      "identity": "frame-coefficient",
+      "mutant_sha256": "ef877a9a419aff7675185e68e2b2ae3ade4e820aff93329d029eeff051e8e3e1",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_full_symbolic_linear_certificate_and_geometry (__main__.GaussianExtensionTests.test_full_symbolic_linear_certificate_and_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 88, in test_full_symbolic_linear_certificate_and_geometry\n    self.assertEqual(self.accepted(module.verify(data)),\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 65, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='linear combination leaves a variable') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.139s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_full_symbolic_linear_certificate_and_geometry"
+      ]
+    },
+    {
+      "identity": "exotic-prescription",
+      "mutant_sha256": "8abf50e715e72e8c4b03f17a354cfad283fd0e161a57becca385e99385ce360a",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.024s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_geometric_and_algebraic_forgery_refusals"
+      ]
+    },
+    {
+      "identity": "real-coefficient",
+      "mutant_sha256": "87af3538cea1f252822f7b7048d6bfc7af428a04f26d2e6a71a89a0049c0fe51",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_full_symbolic_linear_certificate_and_geometry (__main__.GaussianExtensionTests.test_full_symbolic_linear_certificate_and_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 88, in test_full_symbolic_linear_certificate_and_geometry\n    self.assertEqual(self.accepted(module.verify(data)),\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 65, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='linear combination leaves a variable') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.141s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_full_symbolic_linear_certificate_and_geometry"
+      ]
+    },
+    {
+      "identity": "rhs-combination",
+      "mutant_sha256": "ef96feef9e17e415eb47dfb6ba1f1294d34cd74637aaf1373d4a5ba8d15216e0",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_full_symbolic_linear_certificate_and_geometry (__main__.GaussianExtensionTests.test_full_symbolic_linear_certificate_and_geometry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 88, in test_full_symbolic_linear_certificate_and_geometry\n    self.assertEqual(self.accepted(module.verify(data)),\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 65, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='wrong contradiction right side') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.152s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_full_symbolic_linear_certificate_and_geometry"
+      ]
+    },
+    {
+      "identity": "variable-cancellation",
+      "mutant_sha256": "df7ea6781203729501cd6635fcf0a8d188be9516f214a4eb607d520f8e66bec5",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_geometric_and_algebraic_forgery_refusals (__main__.GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 198, in test_geometric_and_algebraic_forgery_refusals\n    self.refused(module.verify(data), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.020s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_geometric_and_algebraic_forgery_refusals"
+      ]
+    },
+    {
+      "identity": "computed-rhs",
+      "mutant_sha256": "39764a41d0cd9df1161079b4f3a3f982f358bf42b67587b156477094223c22c8",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_geometric_and_algebraic_forgery_refusals (__main__.GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 202, in test_geometric_and_algebraic_forgery_refusals\n    self.refused(module.verify(data), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.023s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_geometric_and_algebraic_forgery_refusals"
+      ]
+    },
+    {
+      "identity": "negative-control-acceptance",
+      "mutant_sha256": "c3c90ebd902ec0dee916fe629dbf70e226dc9dcfc1d771a773e0449eb084e36a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_geometric_and_algebraic_forgery_refusals (__main__.GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 203, in test_geometric_and_algebraic_forgery_refusals\n    with patch.dict(module._self_test.__globals__, verify=lambda _: Outcome(value={})), self.assertRaises(Violation):\n                                                                                        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: Violation not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.023s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-extension.py",
+      "tests": [
+        "test_geometric_and_algebraic_forgery_refusals"
+      ]
+    },
+    {
+      "identity": "document-depth",
+      "mutant_sha256": "f9516efecbc10fc39e49b2120f6dc210d429de11aea39e8483e77ce8aeb70751",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_document_depth_size_hash_and_ownership (__main__.GaussianExtensionTests.test_document_depth_size_hash_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 237, in test_document_depth_size_hash_and_ownership\n    self.refused(evaluate(ExactJsonDocument, b'['*17+b'0'+b']'*17), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_document_depth_size_hash_and_ownership"
+      ]
+    },
+    {
+      "identity": "document-quote-state",
+      "mutant_sha256": "cbab88b18f3cc80e635cbacdbe9b5b8b55ca335e33a0980747e1cd15553bc571",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_document_depth_size_hash_and_ownership (__main__.GaussianExtensionTests.test_document_depth_size_hash_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 239, in test_document_depth_size_hash_and_ownership\n    document = ExactJsonDocument(quoted)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\exact_json_document.py\", line 75, in __init__\n    _depth(raw)\n    ~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\exact_json_document.py\", line 40, in _depth\n    raise Violation('resource','exact JSON exceeds16 nested containers')\nchecker_support.boundary.Violation: exact JSON exceeds16 nested containers\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_document_depth_size_hash_and_ownership"
+      ]
+    },
+    {
+      "identity": "document-escape-state",
+      "mutant_sha256": "538de396c2c0ce2cc91ca3d146f8211f5e2c3df078fb47252fb8c5a21d735f72",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.066s\n\nOK\n",
+      "returncode": 0,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_document_depth_size_hash_and_ownership"
+      ]
+    },
+    {
+      "identity": "document-integer-bits",
+      "mutant_sha256": "6a831ff59a0ec405f1242a296c8c671b0c6b6e84c7207fceea8e01436162c010",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_json_numbers_duplicates_unicode_and_syntax (__main__.GaussianExtensionTests.test_exact_json_numbers_duplicates_unicode_and_syntax)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 231, in test_exact_json_numbers_duplicates_unicode_and_syntax\n    self.refused(ExactJsonDocument(encoded).parse(), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_exact_json_numbers_duplicates_unicode_and_syntax"
+      ]
+    },
+    {
+      "identity": "document-integer-digits",
+      "mutant_sha256": "099b7f819e8c3d0e2517f0189c6304caa4f3b68185a976c960a1a0f383909c77",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+      "returncode": 0,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_exact_json_numbers_duplicates_unicode_and_syntax"
+      ]
+    },
+    {
+      "identity": "document-inexact-numbers",
+      "mutant_sha256": "b35cef77cb48ffdaf968be7e4c8c63f309f62b7754eb86df060738ac5c31dd83",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_json_numbers_duplicates_unicode_and_syntax (__main__.GaussianExtensionTests.test_exact_json_numbers_duplicates_unicode_and_syntax)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 225, in test_exact_json_numbers_duplicates_unicode_and_syntax\n    self.refused(ExactJsonDocument(raw).parse(), 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_exact_json_numbers_duplicates_unicode_and_syntax"
+      ]
+    },
+    {
+      "identity": "document-duplicate-members",
+      "mutant_sha256": "642606ad6f2c0f64e064eea03edb25f6eb00bebfc70f21a76e36f06647987575",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_json_numbers_duplicates_unicode_and_syntax (__main__.GaussianExtensionTests.test_exact_json_numbers_duplicates_unicode_and_syntax)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 226, in test_exact_json_numbers_duplicates_unicode_and_syntax\n    self.refused(ExactJsonDocument(b'{\"x\":1,\"x\":2}').parse(), 'duplicate')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_exact_json_numbers_duplicates_unicode_and_syntax"
+      ]
+    },
+    {
+      "identity": "document-byte-type",
+      "mutant_sha256": "3d2c9a37d92bb60df331c6ea91444791d2617aa5bdf5c302fadbd6d81145f173",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_json_numbers_duplicates_unicode_and_syntax (__main__.GaussianExtensionTests.test_exact_json_numbers_duplicates_unicode_and_syntax)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 233, in test_exact_json_numbers_duplicates_unicode_and_syntax\n    self.refused(evaluate(ExactJsonDocument, invalid), 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_exact_json_numbers_duplicates_unicode_and_syntax"
+      ]
+    },
+    {
+      "identity": "document-byte-budget",
+      "mutant_sha256": "57c6ea401a3682659eb1a9fc88a731cc487596803a7d0c5462be34074435a929",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_document_depth_size_hash_and_ownership (__main__.GaussianExtensionTests.test_document_depth_size_hash_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 246, in test_document_depth_size_hash_and_ownership\n    self.refused(evaluate(ExactJsonDocument, b' '*(MAX_BYTES+1)), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.130s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_document_depth_size_hash_and_ownership"
+      ]
+    },
+    {
+      "identity": "document-read-truncation",
+      "mutant_sha256": "fdcf8aa2a688d5d937d6c560c7377a500cffd3f3f83f04430fafae0f0a891b1e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_document_file_lifecycle_and_read_limit (__main__.GaussianExtensionTests.test_document_file_lifecycle_and_read_limit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 261, in test_document_file_lifecycle_and_read_limit\n    self.refused(ExactJsonDocument.read(DATA), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 69, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.074s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_document_file_lifecycle_and_read_limit"
+      ]
+    },
+    {
+      "identity": "document-recursion-refusal",
+      "mutant_sha256": "4d35e292214fc89c7867cc55a54ce2fcb7f4dc8fc73f331a65460e403f6bed6a",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_expected_failure_and_cancellation_propagation (__main__.GaussianExtensionTests.test_expected_failure_and_cancellation_propagation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\tests\\test_gaussian_extension_certificate.py\", line 266, in test_expected_failure_and_cancellation_propagation\n    self.refused(document.parse(), 'resource')\n                 ~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\exact_json_document.py\", line 91, in parse\n    return evaluate(self._parse)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\exact_json_document.py\", line 87, in _parse\n    raise error\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\extension-mutation-9ktpg4py\\checks\\checker_support\\exact_json_document.py\", line 84, in _parse\n    value: object=json.loads(self.raw.decode('utf-8'),object_pairs_hook=_object,\n                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                             parse_int=_integer,parse_float=_inexact,parse_constant=_inexact)\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRecursionError\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_json_document.py",
+      "tests": [
+        "test_expected_failure_and_cancellation_propagation"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 34,
+      "survived": 7,
+      "unrun": 0
+    },
+    "detected_fraction": 0.8292682926829268,
+    "eligible": 41
+  }
+}

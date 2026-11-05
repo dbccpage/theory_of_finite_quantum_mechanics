@@ -1,0 +1,177 @@
+"""Independent exact LP/certificate and resource tests. AuthorityEffect: None."""
+from __future__ import annotations
+
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+from itertools import combinations
+from pathlib import Path
+import sys
+from typing import TypeVar, cast
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from checker_support.boundary import evaluate
+from checker_support.exact_linear_program import ExactLinearProgram, dot
+from checker_support.linear_program_certificate import LinearProgramCertificate
+from checker_support.outcome import Outcome
+from checker_support.simplex_tableau import SimplexTableau
+
+T = TypeVar("T")
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+
+
+def vertex_minimum(coefficients: tuple[tuple[int, ...], ...], target: tuple[int, ...], objective: tuple[int, ...]) -> Q:
+    matrix = sp.ImmutableMatrix(coefficients)
+    rhs = sp.ImmutableMatrix(target)
+    values = []
+    for columns in combinations(range(matrix.cols), matrix.rows):
+        basis = matrix[:, list(columns)]
+        if basis.det() == 0:
+            continue
+        vertex = basis.inv()*rhs
+        if min(vertex) >= 0:
+            values.append(sum(objective[j]*vertex[i] for i, j in enumerate(columns)))
+    if not values:
+        raise ValueError("oracle requires full row rank and a bounded feasible polytope")
+    return Q(min(values))
+
+
+class ExactLinearProgramTests(unittest.TestCase):
+    def accepted(self, result: Outcome[T]) -> T:
+        if result.error is not None:
+            self.fail(str(result.error))
+        return cast(T, result.value)
+
+    def test_oracle_and_three_certificate_kinds(self) -> None:
+        self.assertEqual(vertex_minimum(((1, 1, 1),), (3,), (2, -1, 4)), -3)
+        cases = [
+            ((2,), ((1,),), (3,), "optimal", Q(6)),
+            ((-1,), ((0,),), (0,), "unbounded", None),
+            ((1,), ((0,),), (1,), "infeasible", None),
+            ((1,), ((-1,),), (1,), "infeasible", None),
+            ((1,), ((1,), (1,)), (1, 2), "infeasible", None),
+            ((-1, 0), ((1, -1),), (1,), "unbounded", None),
+            ((1,), ((1,), (2,), (0,)), (3, 6, 0), "optimal", Q(3)),
+            ((1, -2), ((0, 0), (0, 0)), (0, 0), "unbounded", None),
+        ]
+        for cost, rows, target, status, expected in cases:
+            program = ExactLinearProgram(cost, rows, target)
+            certificate = self.accepted(program.solve())
+            self.assertEqual(certificate.status, status)
+            self.assertEqual(self.accepted(program.verify(certificate)), expected)
+
+    @PROPERTY
+    @given(st.integers(1, 7), st.integers(1, 7), st.integers(0, 12), st.integers(-7, 7), st.integers(-7, 7))
+    def test_generated_one_row_minimum(self, a: int, b: int, total: int, c: int, d: int) -> None:
+        program = ExactLinearProgram((c, d), ((a, b),), (total,))
+        certificate = self.accepted(program.solve())
+        self.assertEqual(certificate.status, "optimal")
+        self.assertEqual(self.accepted(program.verify(certificate)), min(Q(c*total, a), Q(d*total, b)))
+
+    @PROPERTY
+    @given(st.lists(st.integers(1, 5), min_size=4, max_size=4), st.lists(st.integers(-5, 5), min_size=4, max_size=4), st.lists(st.integers(0, 4), min_size=4, max_size=4))
+    def test_generated_two_row_minimum_against_vertices(self, values: list[int], costs: list[int], weights: list[int]) -> None:
+        rows = (tuple(values), tuple(value+index for index, value in enumerate(values)))
+        target = tuple(sum(a*b for a, b in zip(row, weights)) for row in rows)
+        program = ExactLinearProgram(costs, rows, target)
+        certificate = self.accepted(program.solve())
+        self.assertEqual(certificate.status, "optimal")
+        self.assertEqual(self.accepted(program.verify(certificate)), vertex_minimum(rows, target, tuple(costs)))
+        for row, rhs in zip(rows, target):
+            self.assertEqual(sum(Q(a)*b for a, b in zip(row, certificate.primal)), rhs)
+
+    def test_certificate_tampering_and_wrong_program(self) -> None:
+        program = ExactLinearProgram((1, 2), ((1, 1),), (3,))
+        good = self.accepted(program.solve())
+        self.assertEqual(self.accepted(program.verify(good)), 3)
+        invalid = [LinearProgramCertificate("optimal", (0, 0), (0,)),
+                   LinearProgramCertificate("optimal", (-1, 4), (1,)),
+                   LinearProgramCertificate("optimal", (3, 0), (2,)),
+                   LinearProgramCertificate("optimal", (3, 0), (0,)),
+                   LinearProgramCertificate("optimal", (3,), (1,)),
+                   LinearProgramCertificate("optimal", (3, 0), (1, 0)),
+                   LinearProgramCertificate("infeasible", dual=(0,)),
+                   LinearProgramCertificate("infeasible", dual=(1,)),
+                   LinearProgramCertificate("unbounded", primal=(3, 0), ray=(1, 0)),
+                   LinearProgramCertificate("unbounded", primal=(3, 0), ray=(1, -1)),
+                   LinearProgramCertificate("unbounded", primal=(3, 0), ray=(0, 0))]
+        for candidate in invalid:
+            self.assertFalse(program.verify(candidate).ok)
+        self.assertFalse(ExactLinearProgram((1, 2), ((1, 1),), (4,)).verify(good).ok)
+        self.assertFalse(program.verify(None).ok)
+        other = ExactLinearProgram((1, 0), ((0, 0),), (0,))
+        self.assertFalse(other.verify(LinearProgramCertificate("unbounded", primal=(0, 0), ray=(1, 0))).ok)
+
+    def test_exact_admission_shapes_and_certificate_variants(self) -> None:
+        for value in (True, 1.0, "1", None):
+            self.assertFalse(evaluate(ExactLinearProgram, (value,), ((1,),), (1,)).ok)
+            self.assertFalse(evaluate(ExactLinearProgram, (1,), ((value,),), (1,)).ok)
+            self.assertFalse(evaluate(ExactLinearProgram, (1,), ((1,),), (value,)).ok)
+            self.assertFalse(evaluate(LinearProgramCertificate, "optimal", (value,), (1,)).ok)
+        for cost, rows, rhs in (((), ((1,),), (1,)), ((1,), (), ()), ((1,), ((1, 2),), (1,)), ((1,), ((1,),), ()), ((1,), ((1,),), (-1,))):
+            self.assertFalse(evaluate(ExactLinearProgram, cost, rows, rhs).ok)
+        for status, primal, dual, ray in (("unknown", (), (), ()), (True, (), (), ()), ("optimal", (), (1,), ()), ("optimal", (1,), (), ()), ("optimal", (1,), (1,), (1,)), ("infeasible", (1,), (1,), ()), ("unbounded", (1,), (), ()), ("unbounded", (1,), (1,), (1,))):
+            self.assertFalse(evaluate(LinearProgramCertificate, status, primal, dual, ray).ok)
+
+    def test_ownership_reentrancy_and_eager_admission(self) -> None:
+        cost, row, rhs = [1], [1], [3]
+        program = ExactLinearProgram(cost, [row], rhs)
+        cost.clear();row.clear();rhs.clear()
+        first = self.accepted(program.solve())
+        second = self.accepted(program.solve())
+        self.assertEqual(first, second)
+        self.assertEqual(program.coefficients, ((Q(1),),))
+        with self.assertRaises(FrozenInstanceError):
+            program.target = (Q(4),)  # type: ignore[misc]
+        values = [Q(3)]
+        certificate = LinearProgramCertificate("optimal", values, [Q(1)])
+        values.clear()
+        self.assertEqual(certificate.primal, (Q(3),))
+        with self.assertRaises(FrozenInstanceError):
+            certificate.status = "unbounded"  # type: ignore[misc]
+        with patch.object(SimplexTableau, "solve", side_effect=RuntimeError("must not run")):
+            for budget in (True, 1.0, -1, 4097):
+                self.assertFalse(program.solve(budget).ok)
+        self.assertFalse(evaluate(SimplexTableau, None, 1).ok)
+
+    def test_sizes_bits_and_pivot_exhaustion_are_resource_refusals(self) -> None:
+        too_many = evaluate(ExactLinearProgram, (1,)*65, ((1,)*65,), (1,))
+        self.assertEqual(too_many.error.kind if too_many.error else None, "resource")
+        too_many_rows = evaluate(ExactLinearProgram, (1,), ((1,),)*33, (1,)*33)
+        self.assertEqual(too_many_rows.error.kind if too_many_rows.error else None, "resource")
+        full = ExactLinearProgram((0,)*64, ((0,)*64,)*32, (0,)*32)
+        self.assertEqual(self.accepted(full.solve(0)).status, "optimal")
+        program = ExactLinearProgram((1,), ((1,),), (1,))
+        result = program.solve(0)
+        self.assertEqual(result.error.kind if result.error else None, "resource")
+        self.assertEqual(self.accepted(program.solve(1)).status, "optimal")
+        self.assertEqual(self.accepted(program.solve(4096)).status, "optimal")
+        for value in (2**4096, Q(1, 2**4096)):
+            refused = evaluate(ExactLinearProgram, (value,), ((1,),), (1,))
+            self.assertEqual(refused.error.kind if refused.error else None, "resource")
+        large = Q(2**4095)
+        for left, right in (((large,), (Q(2),)), ((large, large, -large), (Q(1),)*3), ((-large, large), (Q(1), Q(2)))):
+            dot_refusal = evaluate(dot, left, right)
+            self.assertEqual(dot_refusal.error.kind if dot_refusal.error else None, "resource")
+        overflow = ExactLinearProgram((1,), ((Q(1, 2**4095),),), (2,)).solve()
+        self.assertEqual(overflow.error.kind if overflow.error else None, "resource")
+
+    def test_solver_must_replay_certificate_and_propagate_interruptions(self) -> None:
+        program = ExactLinearProgram((1,), ((1,),), (1,))
+        invalid = LinearProgramCertificate("optimal", (0,), (0,))
+        with patch.object(SimplexTableau, "solve", return_value=invalid):
+            self.assertEqual(program.solve().error.kind, "check")  # type: ignore[union-attr]
+        with patch.object(SimplexTableau, "solve", side_effect=RuntimeError("bug")):
+            with self.assertRaises(RuntimeError):
+                program.solve()
+        with patch.object(SimplexTableau, "solve", side_effect=KeyboardInterrupt):
+            with self.assertRaises(KeyboardInterrupt):
+                program.solve()
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

@@ -1,0 +1,269 @@
+"""Independent recursive-oracle verification of bounded binary transport.
+
+AuthorityEffect: None. The finite tests do not prove analytic completeness or limits.
+"""
+from __future__ import annotations
+
+from collections.abc import Callable
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import io
+from itertools import permutations, product
+import json
+from pathlib import Path
+import sys
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from test_review_repairs import load
+from checker_support.boundary import cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import Failure
+
+STEM = "dfm-continuum-refinement-limit"
+Word = tuple[bool, ...]
+Perm = tuple[int, int, int]
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+WORDS = st.lists(st.booleans(), max_size=8).map(tuple)
+FRACTIONS = st.fractions(-5, 5, max_denominator=12)
+PERMS: tuple[Perm, ...] = tuple((a, b, c) for a, b, c in permutations(range(3)))
+
+
+def _interval(word: Word) -> tuple[Q, Q]:
+    index = int("".join("1" if bit else "0" for bit in reversed(word)) or "0", 2)
+    return Q(index, 2**len(word)), Q(index+1, 2**len(word))
+
+
+def _leaves(word: Word, depth: int) -> list[Word]:
+    if depth == 0:
+        return [word]
+    return _leaves((False,)+word, depth-1)+_leaves((True,)+word, depth-1)
+
+
+def _scalar(edge: Callable[[Word], Q], word: Word, depth: int) -> Q:
+    if depth == 0:
+        return edge(word)
+    return _scalar(edge, (False,)+word, depth-1)+_scalar(edge, (True,)+word, depth-1)
+
+
+def _ordered(edge: Callable[[Word], Perm], word: Word, depth: int) -> Perm:
+    if depth == 0:
+        return edge(word)
+    left, right = _ordered(edge, (False,)+word, depth-1), _ordered(edge, (True,)+word, depth-1)
+    return right[left[0]], right[left[1]], right[left[2]]
+
+
+class RefinementLimitTests(unittest.TestCase):
+    def refused(self, operation: Callable[..., object], *args: object, kind: str = "input") -> Failure:
+        result = evaluate(lambda: operation(*args))
+        self.assertFalse(result.ok)
+        self.assertIsNone(result.value)
+        if result.error is None:
+            self.fail("refusal lacks an error")
+        self.assertEqual(result.error.kind, kind)
+        return result.error
+
+    def test_oracles_and_refusal_helper(self) -> None:
+        self.assertEqual(_interval((True, False)), (Q(1, 4), Q(1, 2)))
+        self.assertEqual(_leaves((), 2), [(False, False), (True, False), (False, True), (True, True)])
+        self.assertEqual(_scalar(lambda word: Q(len(word)), (), 2), 8)
+        edge: Callable[[Word], Perm] = lambda word: (1, 0, 2) if word[0] else (0, 2, 1)
+        self.assertEqual(_ordered(edge, (), 1), (1, 2, 0))
+        with self.assertRaises(AssertionError):
+            self.refused(lambda: None)
+
+    @PROPERTY
+    @given(WORDS, st.integers(0, 5))
+    def test_cells_partition_against_recursive_oracle(self, word: Word, depth: int) -> None:
+        module = load(STEM)
+        expected = _leaves(word, depth)
+        self.assertEqual(module.endpoints(word), _interval(word))
+        self.assertEqual(module.leaves(word, depth), expected)
+        cell = module.DyadicCell(word)
+        result = cell.refine(depth)
+        self.assertTrue(result.ok)
+        self.assertEqual(result.value, tuple(expected))
+        intervals = [_interval(leaf) for leaf in result.value]
+        self.assertEqual(intervals[0][0], _interval(word)[0])
+        self.assertEqual(intervals[-1][1], _interval(word)[1])
+        self.assertTrue(all(a[1] == b[0] for a, b in zip(intervals, intervals[1:])))
+        self.assertTrue(all(right-left == Q(1, 2**(len(word)+depth)) for left, right in intervals))
+
+    @PROPERTY
+    @given(WORDS, st.integers(0, 5), FRACTIONS, FRACTIONS)
+    def test_scalar_transport_against_recursive_oracle(self, word: Word, depth: int, slope: Q, offset: Q) -> None:
+        module = load(STEM)
+        edge: Callable[[Word], Q] = lambda leaf: slope*_interval(leaf)[0]+offset*_interval(leaf)[1]
+        expected = _scalar(edge, word, depth)
+        self.assertEqual(module.scalar_transport(edge, word, depth), expected)
+        result = module.DyadicCell(word).scalar(edge, depth)
+        self.assertTrue(result.ok)
+        self.assertEqual(result.value, expected)
+        gauge: Callable[[Q], Q] = lambda point: point**3+2*point-1
+        dressed: Callable[[Word], Q] = lambda leaf: edge(leaf)-gauge(_interval(leaf)[1])+gauge(_interval(leaf)[0])
+        left, right = _interval(word)
+        self.assertEqual(module.scalar_transport(dressed, word, depth), expected-gauge(right)+gauge(left))
+
+    @PROPERTY
+    @given(WORDS, st.integers(0, 5), st.integers(0, 5))
+    def test_ordered_transport_against_recursive_action(self, word: Word, depth: int, shift: int) -> None:
+        module = load(STEM)
+        edge: Callable[[Word], Perm] = lambda leaf: PERMS[(_interval(leaf)[0].numerator+2*len(leaf)+shift) % 6]
+        expected = _ordered(edge, word, depth)
+        self.assertEqual(module.ordered_transport(edge, word, depth), expected)
+        result = module.DyadicCell(word).ordered(edge, depth)
+        self.assertTrue(result.ok)
+        self.assertEqual(result.value, expected)
+
+    def test_permutation_full_census_and_domains(self) -> None:
+        module = load(STEM)
+        for left, right in product(PERMS, repeat=2):
+            self.assertEqual(module.mul(left, right), tuple(left[value] for value in right))
+        for value in PERMS:
+            inverse = dict(zip(value, range(3)))
+            self.assertEqual(module.inv(value), tuple(inverse[index] for index in range(3)))
+        for invalid in (None, (), (0, 1), (0, 1, 2, 3), (0, 0, 2), (False, 1, 2), (0.0, 1, 2), (0, 1, 3)):
+            self.refused(module.inv, invalid)
+            self.refused(module.mul, invalid, (0, 1, 2))
+            self.refused(module.mul, (0, 1, 2), invalid)
+
+    def test_cell_ownership_and_resource_boundaries(self) -> None:
+        module = load(STEM)
+        word = [True, False]
+        cell = module.DyadicCell(word)
+        word.clear()
+        self.assertEqual(cell.word, (True, False))
+        self.assertEqual(cell.endpoints(), (Q(1, 4), Q(1, 2)))
+        with self.assertRaises(FrozenInstanceError):
+            cell.word = ()
+        exported = module.leaves((True,), 2)
+        exported.clear()
+        self.assertEqual(len(cell.refine(2).value), 4)
+        full = (False,)*64
+        self.assertEqual(module.leaves(full, 0), [full])
+        self.assertEqual(module.endpoints((True,)*64)[1], 1)
+        refined = module.leaves((False,)*52, 12)
+        self.assertEqual((len(refined), len(refined[0])), (4096, 64))
+        self.assertEqual(module.scalar_transport(lambda leaf: 1, (), 12), 4096)
+        for oversized_word, depth in (((), 13), (full, 1), ((False,)*53, 12)):
+            self.refused(module.leaves, oversized_word, depth, kind="resource")
+        self.refused(module.endpoints, (False,)*65, kind="resource")
+
+    def test_word_depth_and_callback_preflight(self) -> None:
+        module = load(STEM)
+        for word in (None, "", (0,), (True, 1), (0.0,), (None,)):
+            self.refused(module.endpoints, word)
+            self.refused(module.scalar_transport, lambda leaf: Q(1), word, 0)
+        for depth in (-1, True, 0.5, None):
+            self.refused(module.leaves, (), depth)
+        for operation in (module.scalar_transport, module.ordered_transport):
+            self.refused(operation, None, (), 0)
+        calls: list[Word] = []
+        def edge(word: Word) -> Q:
+            calls.append(word)
+            return Q(1)
+        self.refused(module.scalar_transport, edge, (), 13, kind="resource")
+        self.refused(module.scalar_transport, edge, (False,)*64, 1, kind="resource")
+        self.assertEqual(calls, [])
+        self.assertEqual(module.scalar_transport(edge, (), 3), 8)
+        self.assertEqual(calls, _leaves((), 3))
+
+    def test_scalar_edge_exactness_and_accumulator_budget(self) -> None:
+        module = load(STEM)
+        for value in (True, 0.5, "1", None, (1, 2)):
+            self.refused(module.scalar_transport, lambda leaf: value, (), 0)
+        self.refused(module.scalar_transport, lambda leaf: 1 << 4096, (), 0, kind="resource")
+        calls: list[Word] = []
+        def cancel_after_overflow(word: Word) -> int:
+            calls.append(word)
+            return (1 << 4095) if len(calls) <= 2 else -(1 << 4095)
+        self.refused(module.scalar_transport, cancel_after_overflow, (), 2, kind="resource")
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(module.scalar_transport(lambda leaf: Q(1, 3), (), 2), Q(4, 3))
+        self.assertEqual(module.scalar_transport(lambda leaf: -2, (), 0), Q(-2))
+        self.assertIs(type(module.scalar_transport(lambda leaf: -2, (), 0)), Q)
+
+    def test_ordered_edge_refusal_and_callback_snapshot(self) -> None:
+        module = load(STEM)
+        for value in (None, (0, 1), (0, 0, 2), (True, 1, 2), (0.0, 1, 2)):
+            self.refused(module.ordered_transport, lambda leaf: value, (), 0)
+        word = [True]
+        seen: list[Word] = []
+        def edge(leaf: Word) -> list[int]:
+            word.clear()
+            seen.append(leaf)
+            return [0, 1, 2]
+        self.assertEqual(module.ordered_transport(edge, word, 2), (0, 1, 2))
+        self.assertEqual(seen, _leaves((True,), 2))
+
+    @PROPERTY
+    @given(WORDS, st.integers(0, 7), FRACTIONS, FRACTIONS)
+    def test_geometric_and_threshold_closed_forms(self, word: Word, numerator: int, slope: Q, offset: Q) -> None:
+        module = load(STEM)
+        q = Q(numerator, 16)
+        edge: Callable[[Word], Q] = lambda leaf: slope/Q(2**len(leaf))+offset*Q(q**len(leaf))
+        for depth in range(4):
+            self.assertEqual(module.scalar_transport(edge, word, depth),
+                             slope/2**len(word)+offset*Q(q**len(word))*Q((2*q)**depth))
+            self.assertEqual(module.scalar_transport(module._critical_edge, word, depth), Q(len(word)+depth, 2**len(word)))
+        self.assertEqual(module._geometric_edge(word, q, slope, offset), edge(word))
+        cases = Cases()
+        module._check_geometric_word(word, q, slope, offset, cases)
+        self.assertEqual(cases.checks, 25)
+
+    def test_fixed_controls_counts_receipt_and_negative_challenges(self) -> None:
+        module = load(STEM)
+        cases = Cases()
+        scalar = module.scalar_controls(cases)
+        self.assertEqual(cases.checks, 14336)
+        noncommutative = module.noncommutative_controls(cases)
+        self.assertEqual(cases.checks, 14642)
+        self.assertEqual(scalar["sharp_geometric_example"][0]["root_transports"], ["1", "1/2", "1/4", "1/8", "1/16", "1/32", "1/64"])
+        self.assertEqual(noncommutative["negative_controls"], ["reversed order", "missing inverse"])
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            self.assertEqual(cli(module.main), 0)
+        self.assertEqual(json.loads(output.getvalue())["checks"], 14642)
+        with patch.object(module, "scalar_transport", return_value=Q(99)):
+            self.refused(module.scalar_controls, kind="check")
+        for flags in ((False, True), (True, False)):
+            with patch.object(module, "_check_noncommutative_word", return_value=flags):
+                self.refused(module.noncommutative_controls, kind="check")
+        with patch.object(module, "_critical_edge", return_value=Q(0)):
+            self.refused(module._check_threshold, Cases(), kind="check")
+
+    def test_railway_callbacks_recorders_and_cancellation(self) -> None:
+        module = load(STEM)
+        self.refused(module.scalar_controls, object())
+        self.refused(module.noncommutative_controls, object())
+        cell = module.DyadicCell(())
+        for operation in (cell.scalar, cell.ordered):
+            with self.subTest(operation=operation):
+                result = operation(None, 0)
+                self.assertFalse(result.ok)
+                self.assertEqual(result.error.kind, "input")
+            def failed(word: Word) -> object:
+                raise OSError("injected")
+            self.assertEqual(operation(failed, 0).error.kind, "resource")
+            def cancelled(word: Word) -> object:
+                raise KeyboardInterrupt
+            with self.assertRaises(KeyboardInterrupt):
+                operation(cancelled, 0)
+            def programming_failure(word: Word) -> object:
+                raise RuntimeError("unexpected")
+            with self.assertRaises(RuntimeError):
+                operation(programming_failure, 0)
+        self.assertEqual(cell.refine(13).error.kind, "resource")
+        errors = io.StringIO()
+        with patch.object(module, "scalar_controls", side_effect=OSError("injected")):
+            with contextlib.redirect_stderr(errors):
+                self.assertEqual(cli(module.main), 1)
+        self.assertEqual(json.loads(errors.getvalue())["kind"], "resource")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

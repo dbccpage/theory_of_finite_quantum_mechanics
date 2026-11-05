@@ -1,0 +1,743 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_bounded_search_against_context_fixed_point (__main__.ComputationControlTests.test_bounded_search_against_context_fixed_point) ... ok\ntest_constant_writer_halt_persistence_and_natural_merge (__main__.ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge) ... ok\ntest_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... ok\ntest_encoding_and_blank_extension (__main__.ComputationControlTests.test_encoding_and_blank_extension) ... ok\ntest_expected_failures_cancellation_and_repeated_invocations (__main__.ComputationControlTests.test_expected_failures_cancellation_and_repeated_invocations) ... ok\ntest_generated_receipt_accounting (__main__.ComputationControlTests.test_generated_receipt_accounting) ... ok\ntest_graph_oracles_on_explicit_small_relations (__main__.ComputationControlTests.test_graph_oracles_on_explicit_small_relations) ... ok\ntest_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains) ... ok\ntest_model_owns_immutable_snapshots (__main__.ComputationControlTests.test_model_owns_immutable_snapshots) ... ok\ntest_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... ok\ntest_one_hole_replacement_uses_exact_context (__main__.ComputationControlTests.test_one_hole_replacement_uses_exact_context) ... ok\ntest_refusal_helper_requires_a_failure (__main__.ComputationControlTests.test_refusal_helper_requires_a_failure) ... ok\ntest_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... ok\ntest_search_parameter_refusals (__main__.ComputationControlTests.test_search_parameter_refusals) ... ok\ntest_shortest_route_and_no_path_exhaustion (__main__.ComputationControlTests.test_shortest_route_and_no_path_exhaustion) ... ok\ntest_six_original_controls_and_cli (__main__.ComputationControlTests.test_six_original_controls_and_cli) ... ok\n\n----------------------------------------------------------------------\nRan 16 tests in 2.115s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_computation_mutations.py": "d888c03849777d580465bcde93d713e35c32525424f873346ae20d7beed37c0f",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\comp-finite-model-controls.py": "b5d1b9e477bc32075c31e1db0f7ae4cba267e6c58fd5c7f3fb3233abc1b0556b",
+    "checks\\tests\\computation_mutations.json": "a604f4f63bf7bdeb3189ad03658b3dcb686480e76d6cb0d8a67037a1c479bdca",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_computation_controls.py": "1d8b39fb1306b118a853044b9fbb10ac63e68f1328d12dfeb5856e191fa361e9",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "mutants": [
+    {
+      "identity": "natural-bit-budget",
+      "mutant_sha256": "4fb0fd466d18d46cdc27a7b31b58ecc51b6cf38e4bb977a34070c1319ba9201f",
+      "outcome": "killed",
+      "output": "test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains) ... FAIL\n\n======================================================================\nFAIL: test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 253, in test_literal_helper_domains\n    self.refused(module.merge01, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_literal_helper_domains"
+      ]
+    },
+    {
+      "identity": "natural-bit-boundary",
+      "mutant_sha256": "a3b09d6e2688beacce2affeff171c27a5a7fc3ace2f2a460401e49486e38f090",
+      "outcome": "killed",
+      "output": "test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains) ... ERROR\n\n======================================================================\nERROR: test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 267, in test_literal_helper_domains\n    self.assertEqual(module.eval_const(maximum, maximum), maximum)\n                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\independent\\comp-finite-model-controls.py\", line 173, in eval_const\n    result = _natural(value, \"constant value\")\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\independent\\comp-finite-model-controls.py\", line 33, in _natural\n    raise Violation(\"resource\", name + \" exceeds 4096 bits\")\nchecker_support.boundary.Violation: constant value exceeds 4096 bits\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_literal_helper_domains"
+      ]
+    },
+    {
+      "identity": "word-exact-symbol",
+      "mutant_sha256": "b38303686b5c3ce5bbf236d8082f2f83fe33857bba6d5c87ea7440a1c4d9682a",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 206, in test_model_schema_and_word_boundaries\n    self.refused(model.admit_word, word)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "word-length-budget",
+      "mutant_sha256": "44c960bcb09f44a01e28b071f971c51f179eec793e4548982ae2a7adc844cae6",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 201, in test_model_schema_and_word_boundaries\n    self.refused(module.FiniteWordSystem, alphabet, rules, bound)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "alphabet-size-budget",
+      "mutant_sha256": "ce74240a6695a5c337f78690bc3bfd7dc500cdba4b2795f0c27995deec417e00",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 201, in test_model_schema_and_word_boundaries\n    self.refused(module.FiniteWordSystem, alphabet, rules, bound)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "alphabet-empty",
+      "mutant_sha256": "3b2e67eeb1adc6135863bf9ae79d81739b18a3462cadca7e4d72f81cc69ccec8",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 201, in test_model_schema_and_word_boundaries\n    self.refused(module.FiniteWordSystem, alphabet, rules, bound)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "alphabet-duplicate",
+      "mutant_sha256": "17324469bb13ffaa869ac7aaf82dcf10c2c1f21033e47e490fb8d4ef4e2ec75a",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 201, in test_model_schema_and_word_boundaries\n    self.refused(module.FiniteWordSystem, alphabet, rules, bound)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "alphabet-exact-symbol",
+      "mutant_sha256": "d135fc325811c49a00096099cba3bf661ad285e2f340f54a7ee2fffd3bea42e5",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 201, in test_model_schema_and_word_boundaries\n    self.refused(module.FiniteWordSystem, alphabet, rules, bound)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "rule-count-budget",
+      "mutant_sha256": "bef4d4f7eb0ad546629a96f810f7225d4d8a48187fb800e7f8d6969c8fb772ad",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 203, in test_model_schema_and_word_boundaries\n    self.assertEqual(self.refused(module.FiniteWordSystem, (0, 1), oversized_rules, 1).kind, \"resource\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "duplicate-rules",
+      "mutant_sha256": "13cad359328b211594e8d7b61f22bebd077c0b61fb57a4de6d1129d170f22388",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 201, in test_model_schema_and_word_boundaries\n    self.refused(module.FiniteWordSystem, alphabet, rules, bound)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "alphabet-membership",
+      "mutant_sha256": "cb286a944bbe0edd3bf0c451b7d35bef5335fb0821151a3162100c0871dbe366",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 201, in test_model_schema_and_word_boundaries\n    self.refused(module.FiniteWordSystem, alphabet, rules, bound)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "length-bound-domain",
+      "mutant_sha256": "ac3dfb9fdf2d7e591b454a6c81eb0742c1065970e15a3cba07158588a38895f1",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 201, in test_model_schema_and_word_boundaries\n    self.refused(module.FiniteWordSystem, alphabet, rules, bound)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "rules-snapshot-alias",
+      "mutant_sha256": "c2d91052f31150be31a9e4938359d291fdf6b4c5121f01c9ffee3765e5ef9f8f",
+      "outcome": "killed",
+      "output": "test_model_owns_immutable_snapshots (__main__.ComputationControlTests.test_model_owns_immutable_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_model_owns_immutable_snapshots (__main__.ComputationControlTests.test_model_owns_immutable_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 183, in test_model_owns_immutable_snapshots\n    self.assertEqual(model.rules, (((0,), (1,)),))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [] != (((0,), (1,)),)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_owns_immutable_snapshots"
+      ]
+    },
+    {
+      "identity": "alphabet-snapshot-alias",
+      "mutant_sha256": "710074a82e238ff814693fbf80cc8f3e079f3937460f6c7739fec9ff0dc06b71",
+      "outcome": "killed",
+      "output": "test_model_owns_immutable_snapshots (__main__.ComputationControlTests.test_model_owns_immutable_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_model_owns_immutable_snapshots (__main__.ComputationControlTests.test_model_owns_immutable_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 182, in test_model_owns_immutable_snapshots\n    self.assertEqual(model.alphabet, frozenset((0, 1)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [] != frozenset({0, 1})\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_owns_immutable_snapshots"
+      ]
+    },
+    {
+      "identity": "aggregate-frozen",
+      "mutant_sha256": "12fe32a497196ede1e4cd949690f2a49cca51cc754cee8c9e8b364a01430ff5c",
+      "outcome": "killed",
+      "output": "test_model_owns_immutable_snapshots (__main__.ComputationControlTests.test_model_owns_immutable_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_model_owns_immutable_snapshots (__main__.ComputationControlTests.test_model_owns_immutable_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 185, in test_model_owns_immutable_snapshots\n    with self.assertRaises(FrozenInstanceError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: FrozenInstanceError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_owns_immutable_snapshots"
+      ]
+    },
+    {
+      "identity": "in-bound-endpoint",
+      "mutant_sha256": "a016cd127c7cc1ee489daed3d2143eec7e194710deea4a7d0c199eefe4f0654b",
+      "outcome": "killed",
+      "output": "test_six_original_controls_and_cli (__main__.ComputationControlTests.test_six_original_controls_and_cli) ... FAIL\n\n======================================================================\nFAIL: test_six_original_controls_and_cli (__main__.ComputationControlTests.test_six_original_controls_and_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 276, in test_six_original_controls_and_cli\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'sco[100 chars]ks': 2, 'failures': ['c3.membership', 'c3.boun[28 chars]alse} != {'sco[100 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n-  'failed_checks': 2,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n-  'failures': ['c3.membership', 'c3.bounded_slice'],\n+  'failures': [],\n   'scope': 'six finite computation controls',\n   'total_checks': 50}\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_six_original_controls_and_cli"
+      ]
+    },
+    {
+      "identity": "rule-index-exact",
+      "mutant_sha256": "027a6e84e9625c85efda344ea6383ab3e483182476fe73df4882e5861a9e42a4",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 209, in test_model_schema_and_word_boundaries\n    self.refused(model.apply, (0,), index, (), ())\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "one-hole-context",
+      "mutant_sha256": "ee5d0aeeed63a6b0008b8bc7b194492a7bc4f0fd6ed75aea1d6ec1bb19546228",
+      "outcome": "killed",
+      "output": "test_one_hole_replacement_uses_exact_context (__main__.ComputationControlTests.test_one_hole_replacement_uses_exact_context) ... FAIL\n\n======================================================================\nFAIL: test_one_hole_replacement_uses_exact_context (__main__.ComputationControlTests.test_one_hole_replacement_uses_exact_context)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 100, in test_one_hole_replacement_uses_exact_context\n    @given(prefix=WORDS, before=WORDS, after=WORDS, suffix=WORDS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 110, in test_one_hole_replacement_uses_exact_context\n    self.refused(model.apply, source+(0,), 0, prefix, suffix)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\nFailing test case: test_one_hole_replacement_uses_exact_context(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ComputationControlTests testMethod=test_one_hole_replacement_uses_exact_context>,\n    prefix=(),  # or any other generated value\n    before=(),  # or any other generated value\n    after=(),  # or any other generated value\n    suffix=(),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.250s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_one_hole_replacement_uses_exact_context"
+      ]
+    },
+    {
+      "identity": "empty-rule-final-position",
+      "mutant_sha256": "199a3f0903df451e8c2c3334ffe6022ebeed30835567949d58e1975353a31375",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... FAIL\n\n======================================================================\nFAIL: test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 165, in test_empty_rules_cycles_insertion_deletion_and_trace_refusal\n    self.assertTrue(edits.verify_trace(((0,), (0, 1), (0,))).ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "matching-before-word",
+      "mutant_sha256": "7e7a5f98e79307e91bce314eb4a62d38c15f938902a0e4cad01df7dbe8adb756",
+      "outcome": "survived",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "replacement-suffix",
+      "mutant_sha256": "ec855e6c31b0526d458d52811611f7a54d42434506344843764f542967da0c89",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... FAIL\n\n======================================================================\nFAIL: test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 165, in test_empty_rules_cycles_insertion_deletion_and_trace_refusal\n    self.assertTrue(edits.verify_trace(((0,), (0, 1), (0,))).ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "successor-length-filter",
+      "mutant_sha256": "f784735973e3d794752cb79b07b3023900b6eb4390115be16887b5e62c0ffb41",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... FAIL\n\n======================================================================\nFAIL: test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 169, in test_empty_rules_cycles_insertion_deletion_and_trace_refusal\n    self.assertTrue(exhausted.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "path-order",
+      "mutant_sha256": "53f20d4a6225b784eb45f21da16fedd75172029874d87166c943681a04cd7dea",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 117, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertEqual(success.value, ((0,), (1,), (2,)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((2,), (1,), (0,)) != ((0,), (1,), (2,))\n\nFirst differing element 0:\n(2,)\n(0,)\n\n- ((2,), (1,), (0,))\n?   ^           ^\n\n+ ((0,), (1,), (2,))\n?   ^           ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "state-budget-domain",
+      "mutant_sha256": "9e275a94cef6646e59359656e2d41a1b6d4e549fc378f515c505d758e6fd8a14",
+      "outcome": "killed",
+      "output": "test_search_parameter_refusals (__main__.ComputationControlTests.test_search_parameter_refusals) ... FAIL\n\n======================================================================\nFAIL: test_search_parameter_refusals (__main__.ComputationControlTests.test_search_parameter_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 219, in test_search_parameter_refusals\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_parameter_refusals"
+      ]
+    },
+    {
+      "identity": "source-length-fence",
+      "mutant_sha256": "04a234aac7e4af18546753a54d4d9535e6dab1989dd77c2651417f73ea38e753",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... ERROR\n\n======================================================================\nERROR: test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 156, in test_empty_rules_cycles_insertion_deletion_and_trace_refusal\n    self.assertEqual(empty.find_path((0, 0), ()).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "target-length-fence",
+      "mutant_sha256": "ab169ea9ecd158557d32afd50f6d47ff2782d1864a29714fd9e6138dc95125ba",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... FAIL\n\n======================================================================\nFAIL: test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 157, in test_empty_rules_cycles_insertion_deletion_and_trace_refusal\n    self.assertTrue(empty.find_path((), (0, 0), 1, 0).ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "reflexive-path",
+      "mutant_sha256": "1643a9410f4c1bcd4ca9e7300a5d9c52484d692047951e7f0d4d64cc89c0e097",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 124, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertEqual(model.find_path((0,), (0,), 1, 0).value, ((0,),))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != ((0,),)\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "bfs-queue-order",
+      "mutant_sha256": "deeeb11d164cfc02cf1d116cc12f06d2a9aa43c85af88a285bff891821bac755",
+      "outcome": "killed",
+      "output": "test_shortest_route_and_no_path_exhaustion (__main__.ComputationControlTests.test_shortest_route_and_no_path_exhaustion) ... FAIL\n\n======================================================================\nFAIL: test_shortest_route_and_no_path_exhaustion (__main__.ComputationControlTests.test_shortest_route_and_no_path_exhaustion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 142, in test_shortest_route_and_no_path_exhaustion\n    self.assertEqual(route.value, ((0,), (1,), (4,)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0,), (2,), (3,), (4,)) != ((0,), (1,), (4,))\n\nFirst differing element 1:\n(2,)\n(1,)\n\nFirst tuple contains 1 additional elements.\nFirst extra element 3:\n(4,)\n\n- ((0,), (2,), (3,), (4,))\n?         ^   ------\n\n+ ((0,), (1,), (4,))\n?         ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_shortest_route_and_no_path_exhaustion"
+      ]
+    },
+    {
+      "identity": "bfs-work-cost",
+      "mutant_sha256": "c66a60e681b3d8633299673a13b449dc4f88c9d67272db99af027cd703c4d1b4",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 120, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "bfs-work-boundary",
+      "mutant_sha256": "3bf206b4b6c93b80014d71a9f5ee74a2ca3b8bb24dbbd3259f369861cb103640",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 116, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertTrue(success.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "bfs-work-refusal",
+      "mutant_sha256": "f7cd5974ecacc8e7e4ae58de6bced5e1089d2f2f975a5382b21cd9678b33cb9a",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 120, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "bfs-visited",
+      "mutant_sha256": "35f76c67fe7477490af752296b5d15f7d92aca6b07d71c2f95324a29088fa875",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... FAIL\n\n======================================================================\nFAIL: test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 160, in test_empty_rules_cycles_insertion_deletion_and_trace_refusal\n    self.assertTrue(cycles.find_path((0,), (), 2, 8).ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "bfs-state-boundary",
+      "mutant_sha256": "92d07d32fc3b2e3241cb3be88d238f1e1e10bbfadd3ced156a69205fff1fdb39",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 120, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "bfs-state-refusal",
+      "mutant_sha256": "96d92184d2c4d9ad82bf6e67c684b79164a5eaaaec471365210aeab70523d674",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 120, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "bfs-parent-binding",
+      "mutant_sha256": "20302608e3a3913ca9ec792a0dd343dead4f015a81744f584b0ae3b26def4144",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 117, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertEqual(success.value, ((0,), (1,), (2,)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0,), (2,)) != ((0,), (1,), (2,))\n\nFirst differing element 1:\n(2,)\n(1,)\n\nSecond tuple contains 1 additional elements.\nFirst extra element 2:\n(2,)\n\n- ((0,), (2,))\n+ ((0,), (1,), (2,))\n?        ++++++\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "bfs-early-goal",
+      "mutant_sha256": "a95b8c16763bce98e97f6f06cf54b6f1c1571cc69c9a1cbef1b70dcc205dfccf",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 116, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertTrue(success.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "trace-count-budget",
+      "mutant_sha256": "8a73af9ab1be1bc371056d89a14a91daa413e8a51e3f24ad9abeaa84e22b336f",
+      "outcome": "killed",
+      "output": "test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_model_schema_and_word_boundaries (__main__.ComputationControlTests.test_model_schema_and_word_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 212, in test_model_schema_and_word_boundaries\n    self.assertTrue(identity.verify_trace(((0,),)*4096).ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_schema_and_word_boundaries"
+      ]
+    },
+    {
+      "identity": "trace-empty-refusal",
+      "mutant_sha256": "137057ddca43621346c83e541d84a2b3291b1b20f3bc7c575bcce24f71413f44",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... ERROR\n\n======================================================================\nERROR: test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 154, in test_empty_rules_cycles_insertion_deletion_and_trace_refusal\n    self.assertEqual(empty.verify_trace(()).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "trace-length-fence",
+      "mutant_sha256": "22f831996525fbff37bf0e586c11665b0f2c34dfc5f18f9c6fde105713705628",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... ERROR\n\n======================================================================\nERROR: test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 155, in test_empty_rules_cycles_insertion_deletion_and_trace_refusal\n    self.assertEqual(empty.verify_trace(((0, 0),)).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "trace-step-validation",
+      "mutant_sha256": "01505941dd4b4826694a0f778adaa4af290ef796a5a6ee23fe8192b79cc23d58",
+      "outcome": "killed",
+      "output": "test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal) ... ERROR\n\n======================================================================\nERROR: test_empty_rules_cycles_insertion_deletion_and_trace_refusal (__main__.ComputationControlTests.test_empty_rules_cycles_insertion_deletion_and_trace_refusal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 153, in test_empty_rules_cycles_insertion_deletion_and_trace_refusal\n    self.assertEqual(empty.verify_trace(((0,), (0,))).error.kind, \"check\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+      ]
+    },
+    {
+      "identity": "trace-work-cost",
+      "mutant_sha256": "c2cc30cdd3c2350296ee899175637394bf8ac5b82fb5a125471b778638c0e48b",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 120, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "trace-work-boundary",
+      "mutant_sha256": "95f3d4cdbd67709fe8313be7ccf98e8d36357187cd82aa30a35cee1382134dba",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 123, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertTrue(model.verify_trace(((0,), (1,), (2,)), 8).ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "trace-work-refusal",
+      "mutant_sha256": "e0f26d18d5452a74da3b0eacc8e9c423187e67c2dabb0b61a1c57c2d5c5b99d2",
+      "outcome": "killed",
+      "output": "test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable) ... FAIL\n\n======================================================================\nFAIL: test_search_and_trace_budgets_never_mean_unreachable (__main__.ComputationControlTests.test_search_and_trace_budgets_never_mean_unreachable)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 120, in test_search_and_trace_budgets_never_mean_unreachable\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_and_trace_budgets_never_mean_unreachable"
+      ]
+    },
+    {
+      "identity": "trace-snapshot-alias",
+      "mutant_sha256": "f3e15df67ac0746ab7d122adc1dadb27644a59e8234e3de56e48274e11c6ccd6",
+      "outcome": "killed",
+      "output": "test_model_owns_immutable_snapshots (__main__.ComputationControlTests.test_model_owns_immutable_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_model_owns_immutable_snapshots (__main__.ComputationControlTests.test_model_owns_immutable_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 190, in test_model_owns_immutable_snapshots\n    self.assertEqual(result.value, ((0,), (1,)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [[], [1]] != ((0,), (1,))\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_model_owns_immutable_snapshots"
+      ]
+    },
+    {
+      "identity": "merge-symbol",
+      "mutant_sha256": "9978d91d252e4bafba4ab0fe9905efb64203055ad7a9fdce09d9123cf967f853",
+      "outcome": "survived",
+      "output": "test_constant_writer_halt_persistence_and_natural_merge (__main__.ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.459s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_constant_writer_halt_persistence_and_natural_merge"
+      ]
+    },
+    {
+      "identity": "writer-persistence",
+      "mutant_sha256": "d4570c72329ca98929667aefc52d4ff3e05b5d063e2619bd15036417782deb71",
+      "outcome": "killed",
+      "output": "test_constant_writer_halt_persistence_and_natural_merge (__main__.ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge) ... FAIL\n\n======================================================================\nFAIL: test_constant_writer_halt_persistence_and_natural_merge (__main__.ComputationControlTests.test_constant_writer_halt_persistence_and_natural_merge)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 227, in test_constant_writer_halt_persistence_and_natural_merge\n    @given(value=st.integers(0, 2**128), argument=st.integers(0, 2**128), current=st.integers(0, 2**128), halted=st.booleans())\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 230, in test_constant_writer_halt_persistence_and_natural_merge\n    self.assertEqual(module.write_halt(value, halted, current), (True, current if halted else value))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (True, 0) != (True, 1)\n\nFirst differing element 1:\n0\n1\n\n- (True, 0)\n?        ^\n\n+ (True, 1)\n?        ^\n\nFailing test case: test_constant_writer_halt_persistence_and_natural_merge(\n    self=<__main__.ComputationControlTests testMethod=test_constant_writer_halt_persistence_and_natural_merge>,\n    value=0,\n    argument=0,  # or any other generated value\n    current=1,\n    halted=True,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.248s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_constant_writer_halt_persistence_and_natural_merge"
+      ]
+    },
+    {
+      "identity": "writer-halted-flag",
+      "mutant_sha256": "e6de32ebcb8649707b0ea955e65c1496a227be8210e3a15a1dce2154da6c15d2",
+      "outcome": "killed",
+      "output": "test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains) ... FAIL\n\n======================================================================\nFAIL: test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 259, in test_literal_helper_domains\n    self.refused(module.write_halt, 1, bad, 0)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_literal_helper_domains"
+      ]
+    },
+    {
+      "identity": "constant-argument-admission",
+      "mutant_sha256": "8b9a38efe54bd276cba4f7f10dbba4bc894d39db4f2e54111a19df33c402119f",
+      "outcome": "killed",
+      "output": "test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains) ... FAIL\n\n======================================================================\nFAIL: test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 255, in test_literal_helper_domains\n    self.refused(module.eval_const, 0, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_literal_helper_domains"
+      ]
+    },
+    {
+      "identity": "encoding-order",
+      "mutant_sha256": "ac0aefdcb15c7313495f14c675af890d521bfb42ef6ade5bbb08abd6039e35aa",
+      "outcome": "killed",
+      "output": "test_encoding_and_blank_extension (__main__.ComputationControlTests.test_encoding_and_blank_extension) ... FAIL\n\n======================================================================\nFAIL: test_encoding_and_blank_extension (__main__.ComputationControlTests.test_encoding_and_blank_extension)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 236, in test_encoding_and_blank_extension\n    @given(code=st.integers(0, 4095), word=st.lists(st.integers(0, 4095), max_size=63))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 239, in test_encoding_and_blank_extension\n    self.assertEqual(module.start_word(code), (code, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (0, 1) != (1, 0)\n\nFirst differing element 0:\n0\n1\n\n- (0, 1)\n+ (1, 0)\nFailing test case: test_encoding_and_blank_extension(\n    self=<__main__.ComputationControlTests testMethod=test_encoding_and_blank_extension>,\n    code=1,\n    word=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.154s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_encoding_and_blank_extension"
+      ]
+    },
+    {
+      "identity": "predicate-target",
+      "mutant_sha256": "f18a487726b79a999075f2cf2b38da9d65e9f19d16cb1e9cb7310bee7a989af9",
+      "outcome": "survived",
+      "output": "test_encoding_and_blank_extension (__main__.ComputationControlTests.test_encoding_and_blank_extension) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.486s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_encoding_and_blank_extension"
+      ]
+    },
+    {
+      "identity": "blank-value",
+      "mutant_sha256": "f1494f56b0038f657007554a6064edd8ee41fef565d311773f0e6ad7a8d995d4",
+      "outcome": "killed",
+      "output": "test_encoding_and_blank_extension (__main__.ComputationControlTests.test_encoding_and_blank_extension) ... FAIL\n\n======================================================================\nFAIL: test_encoding_and_blank_extension (__main__.ComputationControlTests.test_encoding_and_blank_extension)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 236, in test_encoding_and_blank_extension\n    @given(code=st.integers(0, 4095), word=st.lists(st.integers(0, 4095), max_size=63))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 244, in test_encoding_and_blank_extension\n    self.assertEqual(result[-1], 0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\nAssertionError: 1 != 0\nFailing test case: test_encoding_and_blank_extension(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ComputationControlTests testMethod=test_encoding_and_blank_extension>,\n    code=0,  # or any other generated value\n    word=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.949s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_encoding_and_blank_extension"
+      ]
+    },
+    {
+      "identity": "blank-extension-budget",
+      "mutant_sha256": "06494b5ab7d15695257894270aac005a751ab742aa6b9628bdb21207429c9fb0",
+      "outcome": "killed",
+      "output": "test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains) ... FAIL\n\n======================================================================\nFAIL: test_literal_helper_domains (__main__.ComputationControlTests.test_literal_helper_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 265, in test_literal_helper_domains\n    self.refused(module.append_blank, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_literal_helper_domains"
+      ]
+    },
+    {
+      "identity": "receipt-count",
+      "mutant_sha256": "652f17418850afc6df7376f5170c7a7bb808f646c2e890963232e04bb7a2840c",
+      "outcome": "killed",
+      "output": "test_generated_receipt_accounting (__main__.ComputationControlTests.test_generated_receipt_accounting) ... FAIL\n\n======================================================================\nFAIL: test_generated_receipt_accounting (__main__.ComputationControlTests.test_generated_receipt_accounting)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 291, in test_generated_receipt_accounting\n    @given(statuses=st.lists(st.booleans(), max_size=20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 300, in test_generated_receipt_accounting\n    self.assertEqual(result[\"total_checks\"], 45+len(statuses))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 46 != 45\nFailing test case: test_generated_receipt_accounting(\n    self=<__main__.ComputationControlTests testMethod=test_generated_receipt_accounting>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.711s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_generated_receipt_accounting"
+      ]
+    },
+    {
+      "identity": "receipt-failures",
+      "mutant_sha256": "c31d33fba54686aa5a2825e009618b7b18c2ee1b31eb77a73bb7fca573af111d",
+      "outcome": "killed",
+      "output": "test_generated_receipt_accounting (__main__.ComputationControlTests.test_generated_receipt_accounting) ... FAIL\n\n======================================================================\nFAIL: test_generated_receipt_accounting (__main__.ComputationControlTests.test_generated_receipt_accounting)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 291, in test_generated_receipt_accounting\n    @given(statuses=st.lists(st.booleans(), max_size=20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 301, in test_generated_receipt_accounting\n    self.assertEqual(result[\"failures\"], failed)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['c3.lengths', 'c3.membership', 'c3.reflex[754 chars]t_b'] != []\n\nFirst list contains 45 additional elements.\nFirst extra element 0:\n'c3.lengths'\n\nDiff is 941 characters long. Set self.maxDiff to None to see it.\nFailing test case: test_generated_receipt_accounting(\n    self=<__main__.ComputationControlTests testMethod=test_generated_receipt_accounting>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.847s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_generated_receipt_accounting"
+      ]
+    },
+    {
+      "identity": "receipt-status",
+      "mutant_sha256": "9133348b0f5bf490029518036d73dcd2a0a770b203faa54bb50fe9444cd33af3",
+      "outcome": "killed",
+      "output": "test_generated_receipt_accounting (__main__.ComputationControlTests.test_generated_receipt_accounting) ... FAIL\n\n======================================================================\nFAIL: test_generated_receipt_accounting (__main__.ComputationControlTests.test_generated_receipt_accounting)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 291, in test_generated_receipt_accounting\n    @given(statuses=st.lists(st.booleans(), max_size=20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 303, in test_generated_receipt_accounting\n    self.assertIs(result[\"all_passed\"], not failed)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not False\nFailing test case: test_generated_receipt_accounting(\n    self=<__main__.ComputationControlTests testMethod=test_generated_receipt_accounting>,\n    statuses=[False],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.135s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_generated_receipt_accounting"
+      ]
+    },
+    {
+      "identity": "cli-failure-status",
+      "mutant_sha256": "ad42cdda27942ff24cd392191176fbc5ea794e213735c91d7ceeac577a8862b5",
+      "outcome": "killed",
+      "output": "test_expected_failures_cancellation_and_repeated_invocations (__main__.ComputationControlTests.test_expected_failures_cancellation_and_repeated_invocations) ... FAIL\n\n======================================================================\nFAIL: test_expected_failures_cancellation_and_repeated_invocations (__main__.ComputationControlTests.test_expected_failures_cancellation_and_repeated_invocations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 312, in test_expected_failures_cancellation_and_repeated_invocations\n    self.assertEqual(cli(module.main), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_expected_failures_cancellation_and_repeated_invocations"
+      ]
+    },
+    {
+      "identity": "search-trial-domain",
+      "mutant_sha256": "806b26ab36ded3768160231bc1fe9bb8ecfda6a0d23bf48612a5c7f2e552513f",
+      "outcome": "killed",
+      "output": "test_search_parameter_refusals (__main__.ComputationControlTests.test_search_parameter_refusals) ... FAIL\n\n======================================================================\nFAIL: test_search_parameter_refusals (__main__.ComputationControlTests.test_search_parameter_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 219, in test_search_parameter_refusals\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_parameter_refusals"
+      ]
+    },
+    {
+      "identity": "trace-trial-domain",
+      "mutant_sha256": "23bae8d390e09c64635135f56098a97ad9c90a2333b5181774a245dabed8fb78",
+      "outcome": "killed",
+      "output": "test_search_parameter_refusals (__main__.ComputationControlTests.test_search_parameter_refusals) ... FAIL\n\n======================================================================\nFAIL: test_search_parameter_refusals (__main__.ComputationControlTests.test_search_parameter_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 222, in test_search_parameter_refusals\n    self.assertFalse(model.verify_trace(((0,),), value).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_search_parameter_refusals"
+      ]
+    },
+    {
+      "identity": "bfs-exhaustion-result",
+      "mutant_sha256": "17ad3b5e2bd7b92303c22aa338ed0e2b5c6a2e95f6a802af54a96721b478d0cf",
+      "outcome": "killed",
+      "output": "test_shortest_route_and_no_path_exhaustion (__main__.ComputationControlTests.test_shortest_route_and_no_path_exhaustion) ... FAIL\n\n======================================================================\nFAIL: test_shortest_route_and_no_path_exhaustion (__main__.ComputationControlTests.test_shortest_route_and_no_path_exhaustion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 145, in test_shortest_route_and_no_path_exhaustion\n    self.assertIsNone(exhausted.value)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\nAssertionError: ((0,),) is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/comp-finite-model-controls.py",
+      "tests": [
+        "test_shortest_route_and_no_path_exhaustion"
+      ]
+    },
+    {
+      "identity": "oracle-bound-filter",
+      "mutant_sha256": "64dd669c33790db6ecde500ec9c364f5a9ff47d61d867ade9ae3a3b6c4309707",
+      "outcome": "killed",
+      "output": "test_graph_oracles_on_explicit_small_relations (__main__.ComputationControlTests.test_graph_oracles_on_explicit_small_relations) ... FAIL\n\n======================================================================\nFAIL: test_graph_oracles_on_explicit_small_relations (__main__.ComputationControlTests.test_graph_oracles_on_explicit_small_relations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 70, in test_graph_oracles_on_explicit_small_relations\n    self.assertEqual(_context_graph([((0,), (1,))], 1), {((0,), (1,))})\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Items in the first set but not the second:\n((0, 0, 1), (0, 1, 1))\n((0, 0), (0, 1))\n((1, 0), (1, 1))\n((1, 0, 1), (1, 1, 1))\n((1, 0, 0), (1, 1, 0))\n((0, 0, 0), (0, 1, 0))\n((0, 1), (1, 1))\n((0, 0), (1, 0))\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_computation_controls.py",
+      "tests": [
+        "test_graph_oracles_on_explicit_small_relations"
+      ]
+    },
+    {
+      "identity": "oracle-edge-direction",
+      "mutant_sha256": "093cb4db56be1e308b68204b2113d17c0e6cabfc1440bc3f6a5887d2f343a466",
+      "outcome": "killed",
+      "output": "test_graph_oracles_on_explicit_small_relations (__main__.ComputationControlTests.test_graph_oracles_on_explicit_small_relations) ... FAIL\n\n======================================================================\nFAIL: test_graph_oracles_on_explicit_small_relations (__main__.ComputationControlTests.test_graph_oracles_on_explicit_small_relations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 70, in test_graph_oracles_on_explicit_small_relations\n    self.assertEqual(_context_graph([((0,), (1,))], 1), {((0,), (1,))})\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Items in the first set but not the second:\n((1,), (0,))\nItems in the second set but not the first:\n((0,), (1,))\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_computation_controls.py",
+      "tests": [
+        "test_graph_oracles_on_explicit_small_relations"
+      ]
+    },
+    {
+      "identity": "oracle-distance-depth",
+      "mutant_sha256": "52824a57b79bf71b2860767fc6a41a9a4057701ea731a48b5c8051d1b571edb9",
+      "outcome": "killed",
+      "output": "test_graph_oracles_on_explicit_small_relations (__main__.ComputationControlTests.test_graph_oracles_on_explicit_small_relations) ... FAIL\n\n======================================================================\nFAIL: test_graph_oracles_on_explicit_small_relations (__main__.ComputationControlTests.test_graph_oracles_on_explicit_small_relations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 74, in test_graph_oracles_on_explicit_small_relations\n    self.assertEqual(_distances(edges, ()), {(): 0, (0,): 1, (1,): 2})\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {(): 0, (0,): 2, (1,): 4} != {(): 0, (0,): 1, (1,): 2}\n- {(): 0, (0,): 2, (1,): 4}\n?               ^        ^\n\n+ {(): 0, (0,): 1, (1,): 2}\n?               ^        ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_computation_controls.py",
+      "tests": [
+        "test_graph_oracles_on_explicit_small_relations"
+      ]
+    },
+    {
+      "identity": "oracle-distance-seed",
+      "mutant_sha256": "4c97d3365948baadcbc633d30b535041fd0b48d4944eb98fe41ecf1b53ad0b75",
+      "outcome": "killed",
+      "output": "test_graph_oracles_on_explicit_small_relations (__main__.ComputationControlTests.test_graph_oracles_on_explicit_small_relations) ... FAIL\n\n======================================================================\nFAIL: test_graph_oracles_on_explicit_small_relations (__main__.ComputationControlTests.test_graph_oracles_on_explicit_small_relations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 74, in test_graph_oracles_on_explicit_small_relations\n    self.assertEqual(_distances(edges, ()), {(): 0, (0,): 1, (1,): 2})\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {(): 1, (0,): 1, (1,): 2} != {(): 0, (0,): 1, (1,): 2}\n- {(): 1, (0,): 1, (1,): 2}\n?      ^\n\n+ {(): 0, (0,): 1, (1,): 2}\n?      ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_computation_controls.py",
+      "tests": [
+        "test_graph_oracles_on_explicit_small_relations"
+      ]
+    },
+    {
+      "identity": "test-refusal-helper",
+      "mutant_sha256": "40759095c636befff02301ba64c2d30c404b9af608553184abe0c92f537d7101",
+      "outcome": "killed",
+      "output": "test_refusal_helper_requires_a_failure (__main__.ComputationControlTests.test_refusal_helper_requires_a_failure) ... FAIL\n\n======================================================================\nFAIL: test_refusal_helper_requires_a_failure (__main__.ComputationControlTests.test_refusal_helper_requires_a_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\computation-mutation-ick2ws4r\\tests\\test_computation_controls.py\", line 67, in test_refusal_helper_requires_a_failure\n    with self.assertRaises(AssertionError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nAssertionError: AssertionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_computation_controls.py",
+      "tests": [
+        "test_refusal_helper_requires_a_failure"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 61,
+      "survived": 3,
+      "unrun": 0
+    },
+    "detected_fraction": 0.953125,
+    "eligible": 64
+  }
+}

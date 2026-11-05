@@ -1,0 +1,311 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-bphz-continuum-fence.py": {
+      "role": "Bounded finite-forest and supplied-projector verification application with an owned commuting-projector aggregate, exact rational algebra, typed failures and counted CLI controls",
+      "origin": "lean4/DressingFieldBphzContinuumFence.lean",
+      "profile": "Exact",
+      "cost": "Forest labels<=12, each1..64 characters; each edge carrier<=64 exact indices0..4095. Enumeration<=4096 subsets, at most66 pair checks per subset, each set operation O(64). Projector family<=64; admission O(k^2) fixed2x2 matrix products and reduction O(k). Stored values and every matrix product/accumulator are admitted to4096 bits; conservative intermediate rejection may refuse mathematically cancellable expressions. Scalar formulas use a fixed number of bounded exact inputs and admit each returned value. Default575 executed obligations; fixed projector census12 projectors/77 compatible lists.",
+      "groups": [
+        {
+          "requirement": "Admit distinct nonempty bounded labels and the entire supplied finite edge mapping, including unused entries. Require frozenset carriers with exact nonnegative bounded integer indices. Own snapshots before returning the compatibility closure or powerset iterator; refuse missing labels even in singleton forests. Enumerate exactly the subsets whose pairs are nested or disjoint.",
+          "symbols": [
+            "_label",
+            "_names",
+            "_edge_map",
+            "powerset",
+            "compatible",
+            "forests"
+          ],
+          "tests": [
+            "BphzCheckerTests.test_forests_against_bitmask_oracle",
+            "BphzCheckerTests.test_forest_snapshots_and_full_budget",
+            "BphzCheckerTests.test_forest_domains_and_unused_entries"
+          ],
+          "requirement_id": "TFQM-BPHZ-REVIEW-DFM-BPHZ-CONTINUUM-FENCE-1"
+        },
+        {
+          "requirement": "Admit exact int/Fraction scalars excluding bool/float, enforce4096-bit input/output limits, compute the declared polynomial, six-term and inclusion subtractions, and sector ratio with both poles refused. These formulas have no Feynman or continuum interpretation beyond the supplied finite controls.",
+          "symbols": [
+            "exact",
+            "N",
+            "six",
+            "inclusion",
+            "sector_k"
+          ],
+          "tests": [
+            "BphzCheckerTests.test_numerator_and_sector_exact_oracles",
+            "BphzCheckerTests.test_scalar_domains_and_derived_budgets",
+            "BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli"
+          ],
+          "requirement_id": "TFQM-BPHZ-REVIEW-DFM-BPHZ-CONTINUUM-FENCE-2"
+        },
+        {
+          "requirement": "Compose the previously reviewed RationalMatrix value for exact flat2 multiplication and I-P; preserve malformed-shape and conservative intermediate resource refusals.",
+          "symbols": [
+            "multiply",
+            "residual"
+          ],
+          "tests": [
+            "BphzCheckerTests.test_matrix_operations_against_symbolic_oracle",
+            "BphzCheckerTests.test_projector_domains_and_conservative_product_budget"
+          ],
+          "requirement_id": "TFQM-BPHZ-REVIEW-DFM-BPHZ-CONTINUUM-FENCE-3"
+        },
+        {
+          "requirement": "Own a frozen tuple of<=64 Fraction-only rational2x2 projectors. Check every idempotence and distinct pair commutation before admission. Reduction is the right-recursive product of remainders; its public result and two-vector application use Outcome. The legacy checked_reduce boundary preserves raw-flat2 success and typed refusal for evaluated callers.",
+          "symbols": [
+            "_projector",
+            "CommutingProjectorFamily",
+            "CommutingProjectorFamily.__init__",
+            "CommutingProjectorFamily._reduction",
+            "CommutingProjectorFamily.reduction",
+            "CommutingProjectorFamily._apply",
+            "CommutingProjectorFamily.apply",
+            "checked_reduce"
+          ],
+          "tests": [
+            "BphzCheckerTests.test_projector_reduction_and_joint_kernel",
+            "BphzCheckerTests.test_projector_snapshots_maximum_and_empty",
+            "BphzCheckerTests.test_projector_domains_and_conservative_product_budget",
+            "BphzCheckerTests.test_recorders_railway_and_cancellation"
+          ],
+          "requirement_id": "TFQM-BPHZ-REVIEW-DFM-BPHZ-CONTINUUM-FENCE-4"
+        },
+        {
+          "requirement": "Use exact Cases recorders or fresh per-call recorders. Check reduction idempotence, supplied kernels and subfamily absorption on the entire admitted family; duplicate-family fixtures are separate and never cause valid64-projector check_family input to expand past its bound. Enumerate the fixed12-projector/77-family census and two invalid families. Recompute numerator coefficients from evaluations, retain all forest/grid/witness/sector controls, count575 executed obligations and expose nonzero typed CLI failure/cancellation.",
+          "symbols": [
+            "_cases",
+            "check_family",
+            "check_projector_api",
+            "check_invalid_scalars",
+            "check_forest_carriers",
+            "check_numerator_examples",
+            "check_sector_example",
+            "main"
+          ],
+          "tests": [
+            "BphzCheckerTests.test_projector_reduction_and_joint_kernel",
+            "BphzCheckerTests.test_projector_snapshots_maximum_and_empty",
+            "BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli",
+            "BphzCheckerTests.test_recorders_railway_and_cancellation"
+          ],
+          "requirement_id": "TFQM-BPHZ-REVIEW-DFM-BPHZ-CONTINUUM-FENCE-5"
+        }
+      ],
+      "nested_declarations": {
+        "compatible.ok": {
+          "owned_by": "compatible",
+          "requirements_via": "compatible"
+        }
+      },
+      "source_sha256": "ab7cab34c584e8ed44ff97bd1de64aaa90c197bafafc93762bf39336df7865c3",
+      "symbols": [
+        "CommutingProjectorFamily",
+        "CommutingProjectorFamily.__init__",
+        "CommutingProjectorFamily._apply",
+        "CommutingProjectorFamily._reduction",
+        "CommutingProjectorFamily.apply",
+        "CommutingProjectorFamily.reduction",
+        "N",
+        "_cases",
+        "_edge_map",
+        "_label",
+        "_names",
+        "_projector",
+        "check_family",
+        "check_forest_carriers",
+        "check_invalid_scalars",
+        "check_numerator_examples",
+        "check_projector_api",
+        "check_sector_example",
+        "checked_reduce",
+        "compatible",
+        "exact",
+        "forests",
+        "inclusion",
+        "main",
+        "multiply",
+        "powerset",
+        "residual",
+        "sector_k",
+        "six"
+      ],
+      "origin_sha256": "878e25acc8ba9a63eec10dd9d436f8cb5b578fde0e0faca4e6d736b681a0fcaf",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/unified_dag.json",
+          "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
+          "sha256": "e2d2ef1e522afb96bc505eac9300e49542bc6e2e41f1934717567a149da1fc64",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/three_proof_l4_post230_custody.json",
+          "sha256": "7384bd1d8f48e6a23157378cb8db4c290f3017fe9775aa083c5c0d29bf0c6cac",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/three_proof_l4_final_pipeline.json",
+          "sha256": "3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/three_proof_l4_custody.json",
+          "sha256": "b89fd0b01957abab8c6740f4e7dc9873f52161e798289f8266232a262ac95f1d",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr237_review_validation.json",
+          "sha256": "a644944088de51f9654710014df396a8165f194feee71e5c2dc77844fad31402",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr230_repair_integrated_validation.json",
+          "sha256": "24d6a74c37e5ed04ff5613358eb24d10708709eaee5541ec3c759c68bde7861e",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/dfm_bphz_l4_independent.json",
+          "sha256": "3aff80c770a6287b650683f28f9a8fe7bd9811e5c51d5c671184432006fabc31",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_dfm-bphz-continuum-fence_review_validation.json",
+          "sha256": "a7a463c5bb77b720612f5b2b9a6172b04f7fc985d6e7ce6675ced0731308163b",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-BPHZ-CONTINUUM-FENCE.md",
+          "sha256": "90000ffa2c1d6f75a29d03796ceaa4839630e7efbc2cf474d6bc6371c2f8aadb",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_bphz_checker.py",
+          "sha256": "8a4069aa2431072a60f6170445b381516ddc0b7a513d74b1659f062d9f3187ce",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "b7184079f9990f64a8dc4727ab01e88388fb8edfe8a2643b205803e9bfac1d94",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and all original helper names remain. Forest edges now have explicit labels, carrier and exact-index limits; unused malformed entries are refused. Scalar and matrix output/intermediate costs are bounded. check_family accepts the full64-projector domain without constructing an oversized duplicate family. New aggregate methods return Outcome; existing pure helpers retain their evaluated typed-exception interface. CLI now includes a575-obligation JSON receipt. Existing1925 joint-kernel regressions remain. Historical scientific/DAG receipt bytes and statuses are unchanged."
+    },
+    "checks/tests/test_bphz_checker.py": {
+      "role": "Independent exact verification application with bitmask forest oracle, symbolic matrix certificates, conjugated diagonal projector families, joint-kernel equivalence and typed boundary/lifecycle challenges",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "12 groups;80 deterministic examples per generated property. Forest oracle<=5 labels with4-bit carriers; resource boundary exercises4096 subsets. Symbolic2x2 products and conjugated diagonal projectors of length<=8 with repeated length<=16. Exact scalar boundary reaches4096-bit inputs. Full64-projector case uses zero matrices. Mocks/captures and dynamic imports use scoped restoration.",
+      "groups": [
+        {
+          "requirement": "Use bitmask forbidden overlaps, symbolic polynomial/matrix arithmetic, partial fractions and a conjugated diagonal kernel projector as independent oracles. Verify oracle/refusal helpers, snapshots, full resource boundaries, conservative failure, rectangular vector shape, exact counts, injected mathematical faults, Railway propagation and cancellation.",
+          "symbols": [
+            "_flat",
+            "BphzCheckerTests",
+            "BphzCheckerTests.refused",
+            "BphzCheckerTests.test_oracle_and_refusal_helper",
+            "BphzCheckerTests.test_forests_against_bitmask_oracle",
+            "BphzCheckerTests.test_forest_snapshots_and_full_budget",
+            "BphzCheckerTests.test_forest_domains_and_unused_entries",
+            "BphzCheckerTests.test_numerator_and_sector_exact_oracles",
+            "BphzCheckerTests.test_scalar_domains_and_derived_budgets",
+            "BphzCheckerTests.test_matrix_operations_against_symbolic_oracle",
+            "BphzCheckerTests.test_projector_reduction_and_joint_kernel",
+            "BphzCheckerTests.test_projector_snapshots_maximum_and_empty",
+            "BphzCheckerTests.test_projector_domains_and_conservative_product_budget",
+            "BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli",
+            "BphzCheckerTests.test_recorders_railway_and_cancellation"
+          ],
+          "tests": [
+            "BphzCheckerTests.test_oracle_and_refusal_helper",
+            "BphzCheckerTests.test_forests_against_bitmask_oracle",
+            "BphzCheckerTests.test_forest_snapshots_and_full_budget",
+            "BphzCheckerTests.test_forest_domains_and_unused_entries",
+            "BphzCheckerTests.test_numerator_and_sector_exact_oracles",
+            "BphzCheckerTests.test_scalar_domains_and_derived_budgets",
+            "BphzCheckerTests.test_matrix_operations_against_symbolic_oracle",
+            "BphzCheckerTests.test_projector_reduction_and_joint_kernel",
+            "BphzCheckerTests.test_projector_snapshots_maximum_and_empty",
+            "BphzCheckerTests.test_projector_domains_and_conservative_product_budget",
+            "BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli",
+            "BphzCheckerTests.test_recorders_railway_and_cancellation"
+          ],
+          "requirement_id": "TFQM-BPHZ-REVIEW-TEST-BPHZ-CHECKER-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "8a4069aa2431072a60f6170445b381516ddc0b7a513d74b1659f062d9f3187ce",
+      "symbols": [
+        "BphzCheckerTests",
+        "BphzCheckerTests.refused",
+        "BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli",
+        "BphzCheckerTests.test_forest_domains_and_unused_entries",
+        "BphzCheckerTests.test_forest_snapshots_and_full_budget",
+        "BphzCheckerTests.test_forests_against_bitmask_oracle",
+        "BphzCheckerTests.test_matrix_operations_against_symbolic_oracle",
+        "BphzCheckerTests.test_numerator_and_sector_exact_oracles",
+        "BphzCheckerTests.test_oracle_and_refusal_helper",
+        "BphzCheckerTests.test_projector_domains_and_conservative_product_budget",
+        "BphzCheckerTests.test_projector_reduction_and_joint_kernel",
+        "BphzCheckerTests.test_projector_snapshots_maximum_and_empty",
+        "BphzCheckerTests.test_recorders_railway_and_cancellation",
+        "BphzCheckerTests.test_scalar_domains_and_derived_budgets",
+        "_flat"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-bphz-continuum-fence.py",
+          "sha256": "ab7cab34c584e8ed44ff97bd1de64aaa90c197bafafc93762bf39336df7865c3",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "b7184079f9990f64a8dc4727ab01e88388fb8edfe8a2643b205803e9bfac1d94",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and all original helper names remain. Forest edges now have explicit labels, carrier and exact-index limits; unused malformed entries are refused. Scalar and matrix output/intermediate costs are bounded. check_family accepts the full64-projector domain without constructing an oversized duplicate family. New aggregate methods return Outcome; existing pure helpers retain their evaluated typed-exception interface. CLI now includes a575-obligation JSON receipt. Existing1925 joint-kernel regressions remain. Historical scientific/DAG receipt bytes and statuses are unchanged."
+    }
+  }
+}

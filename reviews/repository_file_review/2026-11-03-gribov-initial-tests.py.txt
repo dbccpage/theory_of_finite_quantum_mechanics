@@ -1,0 +1,217 @@
+"""Independent symbolic weighted-trace verification. AuthorityEffect: None."""
+from __future__ import annotations
+
+from collections.abc import Callable
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import io
+import json
+from pathlib import Path
+import runpy
+import subprocess
+import sys
+from types import SimpleNamespace
+from typing import Any
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+CHECKS = Path(__file__).resolve().parents[1]
+APP = CHECKS/"independent/dfm-gribov-continuum-fence.py"
+sys.path.insert(0, str(CHECKS))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import Failure
+from checker_support.rational_matrix import RationalMatrix
+
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+RATIONAL = st.fractions(-4, 4, max_denominator=10)
+MATRICES = st.lists(st.lists(RATIONAL, min_size=3, max_size=3), min_size=3, max_size=3)
+
+
+def load() -> SimpleNamespace:
+    return SimpleNamespace(**runpy.run_path(str(APP)))
+
+
+def _symbolic(rows: object) -> Any:
+    return sp.ImmutableMatrix(rows)
+
+
+def _rows(matrix: Any) -> tuple[tuple[Q, ...], ...]:
+    return tuple(tuple(Q(matrix[i, j]) for j in range(3)) for i in range(3))
+
+
+class GribovCheckerTests(unittest.TestCase):
+    def refused(self, operation: Callable[..., object], *args: object, kind: str = "input") -> Failure:
+        outcome = evaluate(lambda: operation(*args))
+        self.assertFalse(outcome.ok)
+        self.assertIsNone(outcome.value)
+        if outcome.error is None:
+            self.fail("refusal lacks error")
+        self.assertEqual(outcome.error.kind, kind)
+        return outcome.error
+
+    def test_oracles_import_and_refusal_helper(self) -> None:
+        identity = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
+        self.assertEqual(_symbolic(identity), sp.eye(3))
+        self.assertEqual(_rows(sp.eye(3)), identity)
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            load()
+        self.assertEqual(output.getvalue(), "")
+        with self.assertRaises(AssertionError):
+            self.refused(lambda: None)
+
+    @PROPERTY
+    @given(MATRICES, MATRICES)
+    def test_matrix_helpers_against_symbolic_algebra(self, left: list[list[Q]], right: list[list[Q]]) -> None:
+        module = load()
+        self.assertEqual(module.mat(left), tuple(tuple(row) for row in left))
+        self.assertEqual(module.mul(left, right), _rows(_symbolic(left)*_symbolic(right)))
+        self.assertEqual(module.trace(left), Q(_symbolic(left).trace()))
+        self.assertEqual(module.diag(*left[0]), _rows(sp.diag(*left[0])))
+
+    @PROPERTY
+    @given(MATRICES, MATRICES, MATRICES)
+    def test_weighted_forms_and_differences(self, weight: list[list[Q]], left: list[list[Q]], right: list[list[Q]]) -> None:
+        module = load()
+        w, a, b = _symbolic(weight), _symbolic(left), _symbolic(right)
+        expected_left = Q(sp.trace(w*a*a))
+        expected_right = Q(sp.trace(w*b*b))
+        form = module.TraceQuadraticForm(weight)
+        value, difference = form.value(left), form.difference(left, right)
+        self.assertTrue(value.ok)
+        self.assertTrue(difference.ok)
+        self.assertEqual(value.value, expected_left)
+        self.assertEqual(difference.value, expected_left-expected_right)
+        self.assertEqual(form.difference(left, left).value, 0)
+
+    def test_nonsymmetric_fixed_oracle(self) -> None:
+        module = load()
+        weight = ((1, 2, -1), (0, -2, 3), (4, 1, 0))
+        left = ((Q(1, 2), 1, -2), (3, 0, 1), (-1, 4, Q(2, 3)))
+        right = ((0, 1, 0), (2, -1, 4), (3, 0, 1))
+        w, a, b = _symbolic(weight), _symbolic(left), _symbolic(right)
+        self.assertNotEqual(a*b, b*a)
+        self.assertEqual(module.mul(left, right), _rows(a*b))
+        form = module.TraceQuadraticForm(weight)
+        self.assertEqual(form.value(left).value, Q(sp.trace(w*a*a)))
+        self.assertEqual(form.difference(left, right).value, Q(sp.trace(w*(a*a-b*b))))
+        self.assertEqual(module.trace(left), Q(7, 6))
+
+    def test_shape_type_and_exact_scalar_boundaries(self) -> None:
+        module = load()
+        identity = module.diag(1, 1, 1)
+        invalid = ((), ((1,),), ((1, 0, 0),)*2, ((1, 0),)*3,
+                   ((1, 0, 0), (0, 1), (0, 0, 1)), "matrix", iter(identity),
+                   ((1, 0, 0), (0, True, 0), (0, 0, 1)), ((1, 0, 0), (0, 1.0, 0), (0, 0, 1)))
+        for rows in invalid:
+            for operation in (module.mat, module.trace, module.TraceQuadraticForm):
+                self.refused(operation, rows)
+            self.refused(module.mul, rows, identity)
+            self.refused(module.mul, identity, rows)
+        for rows in (((1, 0, 0),)*4, ((1, 0, 0, 0),)*3):
+            self.refused(module.mat, rows, kind="resource")
+        for value in (True, 1.0, "1", None, complex(1)):
+            self.refused(module.exact, value)
+            self.refused(module.diag, value, 1, 1)
+            self.refused(module.diag, 1, value, 1)
+            self.refused(module.diag, 1, 1, value)
+        self.assertEqual(module.exact(Q(-1, 3)), Q(-1, 3))
+
+    def test_owned_snapshots_and_railway_refusals(self) -> None:
+        module = load()
+        rows = [[1, 0, 0], [0, -1, 0], [0, 0, -1]]
+        form = module.TraceQuadraticForm(rows)
+        snapshot = module.mat(rows)
+        rows[0][0] = 99
+        self.assertEqual(form.weight.rows, snapshot)
+        with self.assertRaises(FrozenInstanceError):
+            form.weight = RationalMatrix.eye(3)
+        self.assertFalse(form.value(None).ok)
+        self.assertEqual(form.value(None).error.kind, "input")
+        self.assertFalse(form.difference(snapshot, None).ok)
+        self.assertFalse(form.difference(None, snapshot).ok)
+        self.assertEqual(form.value(module.diag(0, 0, 0)).value, 0)
+
+    def test_exact_product_trace_and_difference_budgets(self) -> None:
+        module = load()
+        large = 2**4095
+        self.assertEqual(module.exact(large), large)
+        self.refused(module.exact, 2**4096, kind="resource")
+        self.refused(module.diag, Q(1, 2**4096), 0, 0, kind="resource")
+        first = module.diag(large, large, -large)
+        self.refused(module.trace, first, kind="resource")
+        self.refused(module.mul, module.diag(large, 0, 0), module.diag(2, 0, 0), kind="resource")
+        form = module.TraceQuadraticForm(module.diag(1, 0, 0))
+        self.assertEqual(form.value(module.diag(2**2048, 0, 0)).error.kind, "resource")
+        weighted = module.TraceQuadraticForm(module.diag(large, -large, 0))
+        left, right = module.diag(1, 0, 0), module.diag(0, 1, 0)
+        self.assertEqual(weighted.value(left).value, large)
+        self.assertEqual(weighted.value(right).value, -large)
+        self.assertEqual(weighted.difference(left, right).error.kind, "resource")
+
+    def test_preflight_precedes_arithmetic(self) -> None:
+        module = load()
+        identity = module.diag(1, 1, 1)
+        form = module.TraceQuadraticForm(identity)
+        with patch.object(RationalMatrix, "mul", side_effect=RuntimeError("arithmetic before admission")):
+            self.refused(module.mul, identity, None)
+            outcome = form.difference(identity, None)
+            self.assertFalse(outcome.ok)
+            self.assertEqual(outcome.error.kind, "input")
+        malformed = [[2**4096, 0, 0], [0, 1], [0, 0, 1]]
+        self.refused(module.mat, malformed)
+
+    def test_original_witnesses_and_counts(self) -> None:
+        module = load()
+        h23 = ((0, 0, 0), (0, 0, 1), (0, 1, 0))
+        h12 = ((0, 1, 0), (1, 0, 0), (0, 0, 0))
+        form = module.TraceQuadraticForm(module.diag(1, -1, -1))
+        self.assertEqual((form.value(h23).value, form.value(h12).value, form.difference(h23, h12).value), (-2, 0, -2))
+        for _ in range(2):
+            run = Cases()
+            module.run_checks(run)
+            self.assertEqual(run.checks, 10)
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                module.main()
+            receipt = json.loads(output.getvalue())
+            self.assertEqual(receipt["checks"], 10)
+            self.assertEqual(receipt["status"], "passed")
+        self.refused(module.run_checks, None)
+
+    def test_injected_failures_and_cancellation(self) -> None:
+        module = load()
+        identity = module.diag(1, 1, 1)
+        form = module.TraceQuadraticForm(identity)
+        with patch.object(RationalMatrix, "mul", return_value=RationalMatrix.eye(3)), contextlib.redirect_stderr(io.StringIO()) as output:
+            self.assertEqual(cli(module.main), 1)
+        self.assertEqual(json.loads(output.getvalue())["kind"], "check")
+        for error in (RuntimeError("bug"), KeyboardInterrupt()):
+            with patch.object(RationalMatrix, "mul", side_effect=error):
+                with self.assertRaises(type(error)):
+                    form.value(identity)
+                with self.assertRaises(type(error)):
+                    cli(module.main)
+
+    def test_executable_cli(self) -> None:
+        flags = [] if __debug__ else ["-O"]
+        result = subprocess.run([sys.executable, "-I", "-B", *flags, "-X", "utf8", str(APP)],
+                                capture_output=True, text=True, encoding="utf-8", timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stderr, "")
+        receipt = json.loads(result.stdout)
+        self.assertEqual(receipt["checks"], 10)
+        self.assertEqual(receipt["status"], "passed")
+        with patch.object(Cases, "require", side_effect=Violation("check", "injected")), contextlib.redirect_stderr(io.StringIO()) as output:
+            with self.assertRaises(SystemExit) as failure:
+                runpy.run_path(str(APP), run_name="__main__")
+        self.assertEqual(failure.exception.code, 1)
+        self.assertEqual(json.loads(output.getvalue())["kind"], "check")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

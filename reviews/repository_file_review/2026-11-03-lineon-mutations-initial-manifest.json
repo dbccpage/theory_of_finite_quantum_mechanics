@@ -1,0 +1,434 @@
+[
+  {
+    "identity": "position-budget-bypass",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if admitted.bit_length() > 4096:",
+    "after": "if False:",
+    "tests": [
+      "test_path_domains_and_resource_extremes"
+    ]
+  },
+  {
+    "identity": "position-budget-boundary",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if admitted.bit_length() > 4096:",
+    "after": "if admitted.bit_length() >= 4096:",
+    "tests": [
+      "test_path_domains_and_resource_extremes"
+    ]
+  },
+  {
+    "identity": "flag-coercion",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if type(value) is not bool:",
+    "after": "if False:",
+    "tests": [
+      "test_trace_and_flag_refusals_precede_branching"
+    ]
+  },
+  {
+    "identity": "hop-left-boundary",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "integer(left, \"unit hop\", -1, 1)",
+    "after": "integer(left, \"unit hop\", -1, 2)",
+    "tests": [
+      "test_path_domains_and_resource_extremes"
+    ]
+  },
+  {
+    "identity": "hop-right-boundary",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "integer(right, \"unit hop\", -1, 1)",
+    "after": "integer(right, \"unit hop\", -2, 1)",
+    "tests": [
+      "test_path_domains_and_resource_extremes"
+    ]
+  },
+  {
+    "identity": "hop-exact-left",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "integer(left, \"unit hop\", -1, 1)",
+    "after": "left",
+    "tests": [
+      "test_path_domains_and_resource_extremes"
+    ]
+  },
+  {
+    "identity": "path-snapshot-alias",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "object.__setattr__(self, \"hops\", tuple(pairs))",
+    "after": "object.__setattr__(self, \"hops\", hops)",
+    "tests": [
+      "test_snapshot_ownership_and_validation_use_the_same_data"
+    ]
+  },
+  {
+    "identity": "path-initial-collision",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "distance = self.second - self.first\n        if distance <= 0:",
+    "after": "distance = self.second - self.first\n        if distance < 0:",
+    "tests": [
+      "test_path_order_against_site_and_edge_oracle"
+    ]
+  },
+  {
+    "identity": "path-site-collision",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "distance += right - left\n            if distance <= 0:",
+    "after": "distance += right - left\n            if distance < 0:",
+    "tests": [
+      "test_path_order_against_site_and_edge_oracle"
+    ]
+  },
+  {
+    "identity": "path-distance-update",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "distance += right - left",
+    "after": "distance += right + left",
+    "tests": [
+      "test_path_order_against_site_and_edge_oracle"
+    ]
+  },
+  {
+    "identity": "trajectory-position-budget",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "tuple(_position(position) for position in sequence(trajectory, \"trajectory\"))",
+    "after": "tuple(integer(position) for position in sequence(trajectory, \"trajectory\"))",
+    "tests": [
+      "test_unit_trajectory_and_ivt_input_refusals"
+    ]
+  },
+  {
+    "identity": "trajectory-unit-gate",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "integer(right-left, \"unit hop\", -1, 1)",
+    "after": "integer(right-left, \"unit hop\", -2, 2)",
+    "tests": [
+      "test_unit_trajectory_and_ivt_input_refusals"
+    ]
+  },
+  {
+    "identity": "trajectory-snapshot-alias",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "return positions\n\n\ndef verify_discrete_ivt_collision_site",
+    "after": "return trajectory\n\n\ndef verify_discrete_ivt_collision_site",
+    "tests": [
+      "test_snapshot_ownership_and_validation_use_the_same_data"
+    ]
+  },
+  {
+    "identity": "ivt-empty-shape",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if len(first) != len(second) or not first:",
+    "after": "if False:",
+    "tests": [
+      "test_unit_trajectory_and_ivt_input_refusals"
+    ]
+  },
+  {
+    "identity": "ivt-initial-order",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if p1 >= p2:\n        return False, -1",
+    "after": "if False:\n        return False, -1",
+    "tests": [
+      "test_ivt_site_edge_and_nonexchange_witness_semantics"
+    ]
+  },
+  {
+    "identity": "ivt-initial-binding",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if first[0] != p1 or second[0] != p2:",
+    "after": "if False:",
+    "tests": [
+      "test_ivt_site_edge_and_nonexchange_witness_semantics"
+    ]
+  },
+  {
+    "identity": "ivt-exchange-binding",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if first[-1] != p2 or second[-1] != p1:",
+    "after": "if False:",
+    "tests": [
+      "test_ivt_site_edge_and_nonexchange_witness_semantics"
+    ]
+  },
+  {
+    "identity": "ivt-meeting-condition",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if first[t] == second[t]:",
+    "after": "if False:",
+    "tests": [
+      "test_ivt_site_edge_and_nonexchange_witness_semantics"
+    ]
+  },
+  {
+    "identity": "ivt-meeting-index",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if first[t] == second[t]:\n            return True, t",
+    "after": "if first[t] == second[t]:\n            return True, t+1",
+    "tests": [
+      "test_ivt_site_edge_and_nonexchange_witness_semantics"
+    ]
+  },
+  {
+    "identity": "ivt-edge-condition",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if first[t] < second[t] and first[t + 1] > second[t + 1]:",
+    "after": "if False:",
+    "tests": [
+      "test_ivt_site_edge_and_nonexchange_witness_semantics"
+    ]
+  },
+  {
+    "identity": "ivt-edge-index",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if first[t] < second[t] and first[t + 1] > second[t + 1]:\n            return True, t",
+    "after": "if first[t] < second[t] and first[t + 1] > second[t + 1]:\n            return True, t+1",
+    "tests": [
+      "test_ivt_site_edge_and_nonexchange_witness_semantics"
+    ]
+  },
+  {
+    "identity": "matrix-operand-admission",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if type(b_xy) is not Mat2x2 or type(b_yz) is not Mat2x2:",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_boundaries_and_singular_inverse"
+    ]
+  },
+  {
+    "identity": "commutator-first-inverse",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "inv_xy = b_xy.inv()",
+    "after": "inv_xy = b_xy",
+    "tests": [
+      "test_commutator_against_symbolic_matrix_oracle"
+    ]
+  },
+  {
+    "identity": "commutator-second-inverse",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "inv_yz = b_yz.inv()",
+    "after": "inv_yz = b_yz",
+    "tests": [
+      "test_commutator_against_symbolic_matrix_oracle"
+    ]
+  },
+  {
+    "identity": "commutator-trace-sign",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "return m_hinge.trace()",
+    "after": "return ComplexRat(-1) * m_hinge.trace()",
+    "tests": [
+      "test_commutator_against_symbolic_matrix_oracle"
+    ]
+  },
+  {
+    "identity": "projection-domain",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "base_trace_re = rational(base_trace_re, \"base trace\")",
+    "after": "base_trace_re = Fraction(base_trace_re)",
+    "tests": [
+      "test_trace_and_flag_refusals_precede_branching"
+    ]
+  },
+  {
+    "identity": "projection-square",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "return base_trace_re * base_trace_re",
+    "after": "return base_trace_re",
+    "tests": [
+      "test_projection_mass_and_routing_are_literal_toy_rules"
+    ]
+  },
+  {
+    "identity": "projection-corner",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if has_corner_lineon:\n        return base_trace_re",
+    "after": "if not has_corner_lineon:\n        return base_trace_re",
+    "tests": [
+      "test_projection_mass_and_routing_are_literal_toy_rules"
+    ]
+  },
+  {
+    "identity": "mass-exactness",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "trace_re = rational(trace_re, \"defect trace\")",
+    "after": "trace_re = Fraction(trace_re)",
+    "tests": [
+      "test_trace_and_flag_refusals_precede_branching"
+    ]
+  },
+  {
+    "identity": "mass-zero-sign",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "return 0 if trace_re >= Fraction(0, 1) else 2",
+    "after": "return 0 if trace_re > Fraction(0, 1) else 2",
+    "tests": [
+      "test_projection_mass_and_routing_are_literal_toy_rules"
+    ]
+  },
+  {
+    "identity": "routing-or",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if is_corner_lineon or is_nonabelian:",
+    "after": "if is_corner_lineon and is_nonabelian:",
+    "tests": [
+      "test_projection_mass_and_routing_are_literal_toy_rules"
+    ]
+  },
+  {
+    "identity": "routing-second-admission",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "is_nonabelian = _flag(is_nonabelian, \"nonabelian flag\")",
+    "after": "is_nonabelian = bool(is_nonabelian)",
+    "tests": [
+      "test_trace_and_flag_refusals_precede_branching"
+    ]
+  },
+  {
+    "identity": "curvature-lower",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "rational(trace_re, \"trace\", minimum=-2)",
+    "after": "rational(trace_re, \"trace\", minimum=-3)",
+    "tests": [
+      "test_trace_and_flag_refusals_precede_branching"
+    ]
+  },
+  {
+    "identity": "curvature-upper",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if trace_re > 2:",
+    "after": "if trace_re > 3:",
+    "tests": [
+      "test_trace_and_flag_refusals_precede_branching"
+    ]
+  },
+  {
+    "identity": "curvature-integral-negative",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "-1: 2 * sp.pi / 3",
+    "after": "-1: sp.pi / 3",
+    "tests": [
+      "test_trace_and_flag_refusals_precede_branching"
+    ]
+  },
+  {
+    "identity": "curvature-integral-positive",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "1: sp.pi / 3, 2: sp.Integer(0)",
+    "after": "1: 2 * sp.pi / 3, 2: sp.Integer(0)",
+    "tests": [
+      "test_trace_and_flag_refusals_precede_branching"
+    ]
+  },
+  {
+    "identity": "curvature-normalization",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "sp.Rational(trace_re.numerator, 2 * trace_re.denominator)",
+    "after": "sp.Rational(trace_re.numerator, trace_re.denominator)",
+    "tests": [
+      "test_curvature_is_exact_bounded_symbolic_construction"
+    ]
+  },
+  {
+    "identity": "curvature-implicit-simplification",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "evaluate=False)",
+    "after": "evaluate=True)",
+    "tests": [
+      "test_curvature_is_exact_bounded_symbolic_construction"
+    ]
+  },
+  {
+    "identity": "parity-collision-refusal",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if not is_valid:\n        raise Violation",
+    "after": "if False:\n        raise Violation",
+    "tests": [
+      "test_path_order_against_site_and_edge_oracle"
+    ]
+  },
+  {
+    "identity": "receipt-case-count",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "total = len(checks)",
+    "after": "total = len(checks)+1",
+    "tests": [
+      "test_generated_case_accounting"
+    ]
+  },
+  {
+    "identity": "receipt-failure-list",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "[name for name, passed in checks if not passed]",
+    "after": "[name for name, passed in checks if passed]",
+    "tests": [
+      "test_generated_case_accounting"
+    ]
+  },
+  {
+    "identity": "receipt-false-success",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "all_passed = len(failures) == 0",
+    "after": "all_passed = True",
+    "tests": [
+      "test_generated_case_accounting"
+    ]
+  },
+  {
+    "identity": "cli-failure-status",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "if not result[\"all_passed\"]:\n        return 1",
+    "after": "if not result[\"all_passed\"]:\n        return 0",
+    "tests": [
+      "test_faults_fail_cli_and_preserve_cancellation"
+    ]
+  },
+  {
+    "identity": "su2-counterexample-entry",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "ComplexRat(Fraction(-3, 5), Fraction(0, 1))",
+    "after": "ComplexRat(Fraction(3, 5), Fraction(0, 1))",
+    "tests": [
+      "test_default_receipt_and_sections_have_unique_exact_statuses"
+    ]
+  },
+  {
+    "identity": "y-junction-sign-convention",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "y_sign = -1 if y_exchanged else 1",
+    "after": "y_sign = 1 if y_exchanged else -1",
+    "tests": [
+      "test_default_receipt_and_sections_have_unique_exact_statuses"
+    ]
+  },
+  {
+    "identity": "y-junction-adjacency",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "(\"Z\", \"0\")}",
+    "after": "(\"Z\", \"X\")}",
+    "tests": [
+      "test_default_receipt_and_sections_have_unique_exact_statuses"
+    ]
+  },
+  {
+    "identity": "parity-odd-value",
+    "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+    "before": "def compute_lineon_permutation_parity(p1: int, p2: int, hops: list[tuple[int, int]] | tuple[tuple[int, int], ...]) -> int:\n    \"\"\"Computes braid permutation parity exponent for 1D lineon trajectories.\n\n    Under 1D collision avoidance, worldline exchange is strictly obstructed,\n    restricting the braid permutation to the trivial identity permutation\n    with transposition parity exponent 0.\n    Returns 0 if the trajectory strictly avoids collision (preserving pos1 < pos2).\n    Refuses malformed, colliding or unordered paths; no odd parity is inferred.\n    \"\"\"\n    is_valid = verify_1d_lineon_collision_avoidance(p1, p2, hops)\n    if not is_valid:\n        raise Violation(\"input\", \"parity is undefined for colliding or unordered trajectories\")\n    return 0",
+    "after": "def compute_lineon_permutation_parity(p1: int, p2: int, hops: list[tuple[int, int]] | tuple[tuple[int, int], ...]) -> int:\n    \"\"\"Computes braid permutation parity exponent for 1D lineon trajectories.\n\n    Under 1D collision avoidance, worldline exchange is strictly obstructed,\n    restricting the braid permutation to the trivial identity permutation\n    with transposition parity exponent 0.\n    Returns 0 if the trajectory strictly avoids collision (preserving pos1 < pos2).\n    Refuses malformed, colliding or unordered paths; no odd parity is inferred.\n    \"\"\"\n    is_valid = verify_1d_lineon_collision_avoidance(p1, p2, hops)\n    if not is_valid:\n        raise Violation(\"input\", \"parity is undefined for colliding or unordered trajectories\")\n    return 1",
+    "tests": [
+      "test_path_order_against_site_and_edge_oracle"
+    ]
+  },
+  {
+    "identity": "test-refusal-helper",
+    "source": "tests/test_lineon_checker.py",
+    "before": "        result = evaluate(lambda: operation(*args))",
+    "after": "        return Failure(\"input\", \"fake refusal\")\n        result = evaluate(lambda: operation(*args))",
+    "tests": [
+      "test_refusal_helper_rejects_success"
+    ]
+  }
+]

@@ -1,0 +1,484 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_fixture_counts_numerator_challenge_and_cli (__main__.BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli) ... ok\ntest_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... ok\ntest_forest_snapshots_and_full_budget (__main__.BphzCheckerTests.test_forest_snapshots_and_full_budget) ... ok\ntest_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle) ... ok\ntest_matrix_operations_against_symbolic_oracle (__main__.BphzCheckerTests.test_matrix_operations_against_symbolic_oracle) ... ok\ntest_numerator_and_sector_exact_oracles (__main__.BphzCheckerTests.test_numerator_and_sector_exact_oracles) ... ok\ntest_oracle_and_refusal_helper (__main__.BphzCheckerTests.test_oracle_and_refusal_helper) ... ok\ntest_projector_domains_and_conservative_product_budget (__main__.BphzCheckerTests.test_projector_domains_and_conservative_product_budget) ... ok\ntest_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel) ... ok\ntest_projector_snapshots_maximum_and_empty (__main__.BphzCheckerTests.test_projector_snapshots_maximum_and_empty) ... ok\ntest_recorders_railway_and_cancellation (__main__.BphzCheckerTests.test_recorders_railway_and_cancellation) ... ok\ntest_scalar_domains_and_derived_budgets (__main__.BphzCheckerTests.test_scalar_domains_and_derived_budgets) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 3.880s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_bphz_mutations.py": "837d83e6c0241c28608ddab8ee4516b27c05b3a3683f7d9381c7775811bebd26",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\dfm-bphz-continuum-fence.py": "ab7cab34c584e8ed44ff97bd1de64aaa90c197bafafc93762bf39336df7865c3",
+    "checks\\tests\\bphz_mutations.json": "1980764dc282bf46304415d68862789fc0a4d88c8fc77f1a3072ff041bd7c1e4",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_bphz_checker.py": "8a4069aa2431072a60f6170445b381516ddc0b7a513d74b1659f062d9f3187ce",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "mutants": [
+    {
+      "identity": "label-empty",
+      "mutant_sha256": "0dac686f36fe271219234ff0a1c8c8bb224f8f88426dee65a20cae2de329398b",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 88, in test_forest_domains_and_unused_entries\n    self.refused(module.powerset, names)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "label-length",
+      "mutant_sha256": "826f1d96169709ab249683b997d5e14ba7adc6afe80d2f3fce28a293f7fb8163",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 90, in test_forest_domains_and_unused_entries\n    self.refused(module.powerset, (\"x\"*65,), kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "name-count",
+      "mutant_sha256": "b24f3b85911a556cb85e8f87e540abf3cd34fe2ddb9189b77e677aa31597053c",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 89, in test_forest_domains_and_unused_entries\n    self.refused(module.powerset, tuple(str(i) for i in range(13)), kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "duplicate-names",
+      "mutant_sha256": "30bb333407a537378d520200c2c71d53fddc54484ab2e04a53c8b36bb9ee3fb2",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 88, in test_forest_domains_and_unused_entries\n    self.refused(module.powerset, names)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "edge-map-size",
+      "mutant_sha256": "c3e523445da4e782b9deb8a508cecce97fa5454a87a1e6e0428cecbce581b464",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 97, in test_forest_domains_and_unused_entries\n    self.refused(module.forests, (), edges, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "edge-carrier-size",
+      "mutant_sha256": "5446f465700e862e644845dacbd2eee23be85c06782c8de8331d7120bd49f4d4",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 97, in test_forest_domains_and_unused_entries\n    self.refused(module.forests, (), edges, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "edge-bool",
+      "mutant_sha256": "46ba1500c7834be363881cc58da3614eccaebc16db80f139743200384f03ad98",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 94, in test_forest_domains_and_unused_entries\n    self.refused(module.forests, (), edges)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "edge-negative",
+      "mutant_sha256": "de85f53207df10bd6de5d18c4a06b67b7ff682e700b0fb385a7da904bc59d2bb",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 94, in test_forest_domains_and_unused_entries\n    self.refused(module.forests, (), edges)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "edge-maximum",
+      "mutant_sha256": "fd27f8725e59ed95595b503e13252747c66885af9de53f4f9495349196b13d95",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 97, in test_forest_domains_and_unused_entries\n    self.refused(module.forests, (), edges, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "powerset-top",
+      "mutant_sha256": "1e8a43c42f773abd89978fd3f10b316bb583a1d6893811eaae90dcd370953b21",
+      "outcome": "killed",
+      "output": "test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle) ... ERROR\n\n======================================================================\nERROR: test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 54, in test_forests_against_bitmask_oracle\n  |     @given(st.lists(st.integers(0, 15), max_size=5))\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 66, in test_forests_against_bitmask_oracle\n    |     self.assertEqual(len(list(module.powerset(names))), 1 << len(masks))\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 918, in _baseAssertEqual\n    |     raise self.failureException(msg)\n    | AssertionError: 3 != 4\n    | Failing test case: test_forests_against_bitmask_oracle(\n    |     self=<__main__.BphzCheckerTests testMethod=test_forests_against_bitmask_oracle>,\n    |     masks=[3, 5],  # or any other generated value\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 65, in test_forests_against_bitmask_oracle\n    |     self.assertEqual(set(module.forests(names, edges)), expected)\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1185, in assertSetEqual\n    |     self.fail(self._formatMessage(msg, standardMsg))\n    |     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 750, in fail\n    |     raise self.failureException(msg)\n    | AssertionError: Items in the second set but not the first:\n    | ()\n    | Failing test case: test_forests_against_bitmask_oracle(\n    |     self=<__main__.BphzCheckerTests testMethod=test_forests_against_bitmask_oracle>,\n    |     masks=[],  # or any other generated value\n    | )\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 4.248s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forests_against_bitmask_oracle"
+      ]
+    },
+    {
+      "identity": "live-edge-mapping",
+      "mutant_sha256": "4cdf50fa9ef6a9834915716b819c11b87d6eb1a9adea0214912b30cd8c3a6f4e",
+      "outcome": "killed",
+      "output": "test_forest_snapshots_and_full_budget (__main__.BphzCheckerTests.test_forest_snapshots_and_full_budget) ... ERROR\ntest_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nERROR: test_forest_snapshots_and_full_budget (__main__.BphzCheckerTests.test_forest_snapshots_and_full_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 74, in test_forest_snapshots_and_full_budget\n    self.assertTrue(predicate(\"a\", \"b\"))\n                    ~~~~~~~~~^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\independent\\dfm-bphz-continuum-fence.py\", line 69, in ok\n    raise Violation(\"input\", \"unknown forest label\")\nchecker_support.boundary.Violation: unknown forest label\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 94, in test_forest_domains_and_unused_entries\n    self.refused(module.forests, (), edges)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 2 tests in 0.014s\n\nFAILED (failures=1, errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_snapshots_and_full_budget",
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "nested-direction",
+      "mutant_sha256": "f94647c49aec0805886cd12834c831cdba0210087d7eef64fc80c7bb7b70ea5d",
+      "outcome": "killed",
+      "output": "test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle) ... FAIL\n\n======================================================================\nFAIL: test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 54, in test_forests_against_bitmask_oracle\n    @given(st.lists(st.integers(0, 15), max_size=5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 65, in test_forests_against_bitmask_oracle\n    self.assertEqual(set(module.forests(names, edges)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Items in the second set but not the first:\n('0', '1')\nFailing test case: test_forests_against_bitmask_oracle(\n    self=<__main__.BphzCheckerTests testMethod=test_forests_against_bitmask_oracle>,\n    masks=[3, 1],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.510s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forests_against_bitmask_oracle"
+      ]
+    },
+    {
+      "identity": "disjoint-missing",
+      "mutant_sha256": "56b8b8975f7e0881e08b06b0fc5ab0517079202d5e146c09c63ca3b6aa33ef27",
+      "outcome": "killed",
+      "output": "test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle) ... FAIL\n\n======================================================================\nFAIL: test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 54, in test_forests_against_bitmask_oracle\n    @given(st.lists(st.integers(0, 15), max_size=5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 65, in test_forests_against_bitmask_oracle\n    self.assertEqual(set(module.forests(names, edges)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Items in the second set but not the first:\n('0', '1')\nFailing test case: test_forests_against_bitmask_oracle(\n    self=<__main__.BphzCheckerTests testMethod=test_forests_against_bitmask_oracle>,\n    masks=[1, 2],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.495s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forests_against_bitmask_oracle"
+      ]
+    },
+    {
+      "identity": "overlap-admitted",
+      "mutant_sha256": "a3fcfeb349e150568a76fcc2084e0df9e6d9827b06c9ad8ec386ea509e404114",
+      "outcome": "killed",
+      "output": "test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle) ... FAIL\n\n======================================================================\nFAIL: test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 54, in test_forests_against_bitmask_oracle\n    @given(st.lists(st.integers(0, 15), max_size=5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 65, in test_forests_against_bitmask_oracle\n    self.assertEqual(set(module.forests(names, edges)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Items in the first set but not the second:\n('0', '1')\nFailing test case: test_forests_against_bitmask_oracle(\n    self=<__main__.BphzCheckerTests testMethod=test_forests_against_bitmask_oracle>,\n    masks=[3, 5],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.635s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forests_against_bitmask_oracle"
+      ]
+    },
+    {
+      "identity": "unknown-singleton",
+      "mutant_sha256": "880b161ac808e5d86bcb658b09b2a56ccd6fbec0636a559cfc570b7fb5f7d4ae",
+      "outcome": "killed",
+      "output": "test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries) ... FAIL\n\n======================================================================\nFAIL: test_forest_domains_and_unused_entries (__main__.BphzCheckerTests.test_forest_domains_and_unused_entries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 98, in test_forest_domains_and_unused_entries\n    self.refused(module.forests, (\"missing\",), {})\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forest_domains_and_unused_entries"
+      ]
+    },
+    {
+      "identity": "all-to-any",
+      "mutant_sha256": "d317cd76c3cb029afcfd3850464ac0bdb4aff112c54323c7281648b723868fbf",
+      "outcome": "killed",
+      "output": "test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle) ... FAIL\n\n======================================================================\nFAIL: test_forests_against_bitmask_oracle (__main__.BphzCheckerTests.test_forests_against_bitmask_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 54, in test_forests_against_bitmask_oracle\n    @given(st.lists(st.integers(0, 15), max_size=5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 65, in test_forests_against_bitmask_oracle\n    self.assertEqual(set(module.forests(names, edges)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Items in the second set but not the first:\n()\nFailing test case: test_forests_against_bitmask_oracle(\n    self=<__main__.BphzCheckerTests testMethod=test_forests_against_bitmask_oracle>,\n    masks=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.153s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_forests_against_bitmask_oracle"
+      ]
+    },
+    {
+      "identity": "scalar-bool",
+      "mutant_sha256": "d4f80072bbf95b98792a2c468e812971905b3c4e7f96a8a04c02d6051c121dc1",
+      "outcome": "killed",
+      "output": "test_scalar_domains_and_derived_budgets (__main__.BphzCheckerTests.test_scalar_domains_and_derived_budgets) ... FAIL\n\n======================================================================\nFAIL: test_scalar_domains_and_derived_budgets (__main__.BphzCheckerTests.test_scalar_domains_and_derived_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 119, in test_scalar_domains_and_derived_budgets\n    self.refused(operation, value, 1)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_scalar_domains_and_derived_budgets"
+      ]
+    },
+    {
+      "identity": "scalar-budget",
+      "mutant_sha256": "c5cbb31ecc4a684dfb7eb6479f89d9a44aef075e6a8b59287ef8cd5779239a9e",
+      "outcome": "killed",
+      "output": "test_scalar_domains_and_derived_budgets (__main__.BphzCheckerTests.test_scalar_domains_and_derived_budgets) ... FAIL\n\n======================================================================\nFAIL: test_scalar_domains_and_derived_budgets (__main__.BphzCheckerTests.test_scalar_domains_and_derived_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 119, in test_scalar_domains_and_derived_budgets\n    self.refused(operation, value, 1)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_scalar_domains_and_derived_budgets"
+      ]
+    },
+    {
+      "identity": "numerator-cross",
+      "mutant_sha256": "fc3312687912e0822744d624be9ac25230b187eb7d01ad74332f623169748a8d",
+      "outcome": "killed",
+      "output": "test_numerator_and_sector_exact_oracles (__main__.BphzCheckerTests.test_numerator_and_sector_exact_oracles) ... FAIL\ntest_fixture_counts_numerator_challenge_and_cli (__main__.BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli) ... ERROR\n\n======================================================================\nERROR: test_fixture_counts_numerator_challenge_and_cli (__main__.BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 207, in test_fixture_counts_numerator_challenge_and_cli\n    check(cases)\n    ~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\independent\\dfm-bphz-continuum-fence.py\", line 227, in check_numerator_examples\n    cases.require((constant, x_coefficient, y_coefficient, mixed_coefficient) == (Q(2), Q(3), Q(5), Q(7)), 'numerator finite-difference coefficients')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: numerator finite-difference coefficients\n\n======================================================================\nFAIL: test_numerator_and_sector_exact_oracles (__main__.BphzCheckerTests.test_numerator_and_sector_exact_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 102, in test_numerator_and_sector_exact_oracles\n    @given(FRACTIONS, FRACTIONS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 108, in test_numerator_and_sector_exact_oracles\n    self.assertEqual(module.N(x, y), Q(int(expected.p), int(expected.q)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(16, 1) != Fraction(17, 1)\nFailing test case: test_numerator_and_sector_exact_oracles(\n    self=<__main__.BphzCheckerTests testMethod=test_numerator_and_sector_exact_oracles>,\n    x=Fraction(1, 1),\n    y=Fraction(1, 1),\n)\n\n----------------------------------------------------------------------\nRan 2 tests in 0.520s\n\nFAILED (failures=1, errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_numerator_and_sector_exact_oracles",
+        "test_fixture_counts_numerator_challenge_and_cli"
+      ]
+    },
+    {
+      "identity": "numerator-output-budget",
+      "mutant_sha256": "6e5108917c38f3f31eb192c42494def78290c29ab2e4e7beaaba03c6d323c452",
+      "outcome": "killed",
+      "output": "test_scalar_domains_and_derived_budgets (__main__.BphzCheckerTests.test_scalar_domains_and_derived_budgets) ... FAIL\n\n======================================================================\nFAIL: test_scalar_domains_and_derived_budgets (__main__.BphzCheckerTests.test_scalar_domains_and_derived_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 127, in test_scalar_domains_and_derived_budgets\n    self.refused(operation, 1 << 4095, 1, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_scalar_domains_and_derived_budgets"
+      ]
+    },
+    {
+      "identity": "six-counterterm",
+      "mutant_sha256": "9e71e3cbd9948882950dc7922bf96ca728b88022cf39de5ac4f47afa491d787f",
+      "outcome": "killed",
+      "output": "test_numerator_and_sector_exact_oracles (__main__.BphzCheckerTests.test_numerator_and_sector_exact_oracles) ... FAIL\n\n======================================================================\nFAIL: test_numerator_and_sector_exact_oracles (__main__.BphzCheckerTests.test_numerator_and_sector_exact_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 102, in test_numerator_and_sector_exact_oracles\n    @given(FRACTIONS, FRACTIONS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 109, in test_numerator_and_sector_exact_oracles\n    self.assertEqual(module.six(x, y), 7*x*y)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-2, 1) != Fraction(0, 1)\nFailing test case: test_numerator_and_sector_exact_oracles(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BphzCheckerTests testMethod=test_numerator_and_sector_exact_oracles>,\n    x=Fraction(0, 1),  # or any other generated value\n    y=Fraction(0, 1),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.614s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_numerator_and_sector_exact_oracles"
+      ]
+    },
+    {
+      "identity": "inclusion-sign",
+      "mutant_sha256": "08b32b67de3fa0ebd65cdea82c8eb9d5f56583d3a7a4dc24211cbf7735e4ddba",
+      "outcome": "killed",
+      "output": "test_numerator_and_sector_exact_oracles (__main__.BphzCheckerTests.test_numerator_and_sector_exact_oracles) ... FAIL\n\n======================================================================\nFAIL: test_numerator_and_sector_exact_oracles (__main__.BphzCheckerTests.test_numerator_and_sector_exact_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 102, in test_numerator_and_sector_exact_oracles\n    @given(FRACTIONS, FRACTIONS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 110, in test_numerator_and_sector_exact_oracles\n    self.assertEqual(module.inclusion(x, y), 7*x*y)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-4, 1) != Fraction(0, 1)\nFailing test case: test_numerator_and_sector_exact_oracles(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BphzCheckerTests testMethod=test_numerator_and_sector_exact_oracles>,\n    x=Fraction(0, 1),  # or any other generated value\n    y=Fraction(0, 1),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.689s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_numerator_and_sector_exact_oracles"
+      ]
+    },
+    {
+      "identity": "sector-numerator",
+      "mutant_sha256": "cd9d2fcfae6f799ab9d274a07d02c343121b540740ade63d864b637a0b4dadbc",
+      "outcome": "killed",
+      "output": "test_numerator_and_sector_exact_oracles (__main__.BphzCheckerTests.test_numerator_and_sector_exact_oracles) ... FAIL\n\n======================================================================\nFAIL: test_numerator_and_sector_exact_oracles (__main__.BphzCheckerTests.test_numerator_and_sector_exact_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 102, in test_numerator_and_sector_exact_oracles\n    @given(FRACTIONS, FRACTIONS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 113, in test_numerator_and_sector_exact_oracles\n    self.assertEqual(module.sector_k(x, y), 1/y+(x-1)/(1+y))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(0, 1) != Fraction(1, 1)\nFailing test case: test_numerator_and_sector_exact_oracles(\n    self=<__main__.BphzCheckerTests testMethod=test_numerator_and_sector_exact_oracles>,\n    x=Fraction(1, 1),\n    y=Fraction(1, 1),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.490s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_numerator_and_sector_exact_oracles"
+      ]
+    },
+    {
+      "identity": "sector-output-budget",
+      "mutant_sha256": "c669c0e0cf7e5bd8bcab83ddbcc7300c4e4c2a0c8aa2f92b64e88b51839dccb3",
+      "outcome": "killed",
+      "output": "test_scalar_domains_and_derived_budgets (__main__.BphzCheckerTests.test_scalar_domains_and_derived_budgets) ... FAIL\n\n======================================================================\nFAIL: test_scalar_domains_and_derived_budgets (__main__.BphzCheckerTests.test_scalar_domains_and_derived_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 128, in test_scalar_domains_and_derived_budgets\n    self.refused(module.sector_k, 0, Q(1, 1 << 4095), kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_scalar_domains_and_derived_budgets"
+      ]
+    },
+    {
+      "identity": "matrix-order",
+      "mutant_sha256": "43e2fd6b9ca169353f574d05bfc1122c70aa675e9502319ec3e3571fb68d6a69",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.BphzCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.BphzCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 131, in test_matrix_operations_against_symbolic_oracle\n    @given(st.lists(FRACTIONS, min_size=8, max_size=8))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 135, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(module.multiply(a, b), _flat(sp.Matrix(2, 2, a)*sp.Matrix(2, 2, b)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)) != (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1))\n\nFirst differing element 2:\nFraction(0, 1)\nFraction(1, 1)\n\n- (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n?                                              ----------------\n\n+ (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1))\n?                                 ++++++++++++++++\n\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BphzCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    values=[Fraction(0, 1),\n     Fraction(0, 1),\n     Fraction(0, 1),\n     Fraction(1, 1),\n     Fraction(0, 1),\n     Fraction(0, 1),\n     Fraction(1, 1),\n     Fraction(0, 1)],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 6.290s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "residual-sign",
+      "mutant_sha256": "f5266cc05b1f42fb22c738bf57d2e7ec01777480a111c4f4249bf7b8e172578b",
+      "outcome": "killed",
+      "output": "test_matrix_operations_against_symbolic_oracle (__main__.BphzCheckerTests.test_matrix_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_operations_against_symbolic_oracle (__main__.BphzCheckerTests.test_matrix_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 131, in test_matrix_operations_against_symbolic_oracle\n    @given(st.lists(FRACTIONS, min_size=8, max_size=8))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 136, in test_matrix_operations_against_symbolic_oracle\n    self.assertEqual(module.residual(a), _flat(sp.eye(2)-sp.Matrix(2, 2, a)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(2, 1)) != (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n\nFirst differing element 3:\nFraction(2, 1)\nFraction(0, 1)\n\n- (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(2, 1))\n?                                                           ^\n\n+ (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n?                                                           ^\n\nFailing test case: test_matrix_operations_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BphzCheckerTests testMethod=test_matrix_operations_against_symbolic_oracle>,\n    values=[Fraction(0, 1),\n     Fraction(0, 1),\n     Fraction(0, 1),\n     Fraction(1, 1),\n     Fraction(0, 1),\n     Fraction(0, 1),\n     Fraction(0, 1),\n     Fraction(0, 1)],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1406\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1409\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1413\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1417\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1507\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1509\n\n----------------------------------------------------------------------\nRan 1 test in 6.835s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_matrix_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "fraction-only",
+      "mutant_sha256": "65b9b71e6380a2d25a134be075178cd688c270e182b5158612f2bc9f8523a92f",
+      "outcome": "killed",
+      "output": "test_projector_domains_and_conservative_product_budget (__main__.BphzCheckerTests.test_projector_domains_and_conservative_product_budget) ... FAIL\n\n======================================================================\nFAIL: test_projector_domains_and_conservative_product_budget (__main__.BphzCheckerTests.test_projector_domains_and_conservative_product_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 185, in test_projector_domains_and_conservative_product_budget\n    self.refused(module.checked_reduce, family)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_projector_domains_and_conservative_product_budget"
+      ]
+    },
+    {
+      "identity": "idempotent-admission",
+      "mutant_sha256": "019abefa25182a8b907d5ea730ab359df8f0c0c99d994f7f7353ca4cb880b38c",
+      "outcome": "killed",
+      "output": "test_projector_domains_and_conservative_product_budget (__main__.BphzCheckerTests.test_projector_domains_and_conservative_product_budget) ... FAIL\n\n======================================================================\nFAIL: test_projector_domains_and_conservative_product_budget (__main__.BphzCheckerTests.test_projector_domains_and_conservative_product_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 185, in test_projector_domains_and_conservative_product_budget\n    self.refused(module.checked_reduce, family)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_projector_domains_and_conservative_product_budget"
+      ]
+    },
+    {
+      "identity": "family-budget",
+      "mutant_sha256": "ed86db5562f5eb4c950a22e14f960b227df2526746b5d3f33791fb86941c8102",
+      "outcome": "killed",
+      "output": "test_projector_snapshots_maximum_and_empty (__main__.BphzCheckerTests.test_projector_snapshots_maximum_and_empty) ... FAIL\n\n======================================================================\nFAIL: test_projector_snapshots_maximum_and_empty (__main__.BphzCheckerTests.test_projector_snapshots_maximum_and_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 178, in test_projector_snapshots_maximum_and_empty\n    self.refused(module.checked_reduce, full+(module.ZERO,), kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.248s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_projector_snapshots_maximum_and_empty"
+      ]
+    },
+    {
+      "identity": "commuting-admission",
+      "mutant_sha256": "8ffe5b3e21e1bc039fd3160719b47c05939db905a64cea9917852aa0e939f6a8",
+      "outcome": "killed",
+      "output": "test_projector_domains_and_conservative_product_budget (__main__.BphzCheckerTests.test_projector_domains_and_conservative_product_budget) ... FAIL\n\n======================================================================\nFAIL: test_projector_domains_and_conservative_product_budget (__main__.BphzCheckerTests.test_projector_domains_and_conservative_product_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 185, in test_projector_domains_and_conservative_product_budget\n    self.refused(module.checked_reduce, family)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 41, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_projector_domains_and_conservative_product_budget"
+      ]
+    },
+    {
+      "identity": "empty-reduction",
+      "mutant_sha256": "f8d9843f147dd85b5263db8e1446a8d76108e84e81d616f88ca312279c41c7a0",
+      "outcome": "killed",
+      "output": "test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel) ... FAIL\ntest_projector_snapshots_maximum_and_empty (__main__.BphzCheckerTests.test_projector_snapshots_maximum_and_empty) ... FAIL\n\n======================================================================\nFAIL: test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 141, in test_projector_reduction_and_joint_kernel\n    @given(st.integers(-5, 5), st.integers(-5, 5), st.lists(st.tuples(st.booleans(), st.booleans()), max_size=8), FRACTIONS, FRACTIONS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 152, in test_projector_reduction_and_joint_kernel\n    self.assertEqual(reduction.value.flat2(), _flat(expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)) != (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n\nFirst differing element 0:\nFraction(0, 1)\nFraction(1, 1)\n\n- (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n+ (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\nFailing test case: test_projector_reduction_and_joint_kernel(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BphzCheckerTests testMethod=test_projector_reduction_and_joint_kernel>,\n    r=0,  # or any other generated value\n    s=0,  # or any other generated value\n    diagonal=[],  # or any other generated value\n    x=Fraction(0, 1),  # or any other generated value\n    y=Fraction(0, 1),  # or any other generated value\n)\n\n======================================================================\nFAIL: test_projector_snapshots_maximum_and_empty (__main__.BphzCheckerTests.test_projector_snapshots_maximum_and_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 171, in test_projector_snapshots_maximum_and_empty\n    self.assertEqual(aggregate.reduction().value.flat2(), (Q(0), Q(-2, 3), Q(0), Q(1)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)) != (Fraction(0, 1), Fraction(-2, 3), Fraction(0, 1), Fraction(1, 1))\n\nFirst differing element 1:\nFraction(0, 1)\nFraction(-2, 3)\n\n- (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n+ (Fraction(0, 1), Fraction(-2, 3), Fraction(0, 1), Fraction(1, 1))\n\n----------------------------------------------------------------------\nRan 2 tests in 7.884s\n\nFAILED (failures=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_projector_reduction_and_joint_kernel",
+        "test_projector_snapshots_maximum_and_empty"
+      ]
+    },
+    {
+      "identity": "projector-remainder",
+      "mutant_sha256": "6b30894acc0ec1f03fcb31587d319b91b04e2cae8b241a80953d4d069ed597f5",
+      "outcome": "killed",
+      "output": "test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel) ... FAIL\n\n======================================================================\nFAIL: test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 141, in test_projector_reduction_and_joint_kernel\n    @given(st.integers(-5, 5), st.integers(-5, 5), st.lists(st.tuples(st.booleans(), st.booleans()), max_size=8), FRACTIONS, FRACTIONS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 152, in test_projector_reduction_and_joint_kernel\n    self.assertEqual(reduction.value.flat2(), _flat(expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)) != (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n\nFirst differing element 0:\nFraction(0, 1)\nFraction(1, 1)\n\n- (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n+ (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\nFailing test case: test_projector_reduction_and_joint_kernel(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BphzCheckerTests testMethod=test_projector_reduction_and_joint_kernel>,\n    r=0,  # or any other generated value\n    s=0,  # or any other generated value\n    diagonal=[(\n         False,  # or any other generated value\n         False,  # or any other generated value\n     )],\n    x=Fraction(0, 1),  # or any other generated value\n    y=Fraction(0, 1),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 7.456s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_projector_reduction_and_joint_kernel"
+      ]
+    },
+    {
+      "identity": "skip-first-projector",
+      "mutant_sha256": "c1b50cb463e4f1f3c22815b81b162480d0af9788017fd71e1cab344f9e596282",
+      "outcome": "killed",
+      "output": "test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel) ... FAIL\n\n======================================================================\nFAIL: test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 141, in test_projector_reduction_and_joint_kernel\n    @given(st.integers(-5, 5), st.integers(-5, 5), st.lists(st.tuples(st.booleans(), st.booleans()), max_size=8), FRACTIONS, FRACTIONS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 152, in test_projector_reduction_and_joint_kernel\n    self.assertEqual(reduction.value.flat2(), _flat(expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)) != (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n\nFirst differing element 3:\nFraction(1, 1)\nFraction(0, 1)\n\n- (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n?                                                           ^\n\n+ (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(0, 1))\n?                                                           ^\n\nFailing test case: test_projector_reduction_and_joint_kernel(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BphzCheckerTests testMethod=test_projector_reduction_and_joint_kernel>,\n    r=0,  # or any other generated value\n    s=0,  # or any other generated value\n    diagonal=[(\n         False,  # or any other generated value\n         True,\n     )],\n    x=Fraction(0, 1),  # or any other generated value\n    y=Fraction(0, 1),  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 6.784s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_projector_reduction_and_joint_kernel"
+      ]
+    },
+    {
+      "identity": "vector-order",
+      "mutant_sha256": "231429765894d47d64d1a56e05171c3d05ceb90b2ac7a684491e171b9567e09e",
+      "outcome": "killed",
+      "output": "test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel) ... FAIL\ntest_projector_snapshots_maximum_and_empty (__main__.BphzCheckerTests.test_projector_snapshots_maximum_and_empty) ... FAIL\n\n======================================================================\nFAIL: test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 141, in test_projector_reduction_and_joint_kernel\n    @given(st.integers(-5, 5), st.integers(-5, 5), st.lists(st.tuples(st.booleans(), st.booleans()), max_size=8), FRACTIONS, FRACTIONS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 160, in test_projector_reduction_and_joint_kernel\n    self.assertEqual(result.value, tuple(Q(int(v.p), int(v.q)) for v in image))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(1, 1), Fraction(0, 1)) != (Fraction(0, 1), Fraction(1, 1))\n\nFirst differing element 0:\nFraction(1, 1)\nFraction(0, 1)\n\n- (Fraction(1, 1), Fraction(0, 1))\n+ (Fraction(0, 1), Fraction(1, 1))\nFailing test case: test_projector_reduction_and_joint_kernel(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BphzCheckerTests testMethod=test_projector_reduction_and_joint_kernel>,\n    r=0,  # or any other generated value\n    s=0,  # or any other generated value\n    diagonal=[],  # or any other generated value\n    x=Fraction(0, 1),\n    y=Fraction(1, 1),\n)\n\n======================================================================\nFAIL: test_projector_snapshots_maximum_and_empty (__main__.BphzCheckerTests.test_projector_snapshots_maximum_and_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 177, in test_projector_snapshots_maximum_and_empty\n    self.assertEqual(module.CommutingProjectorFamily(()).apply((2, 3)).value, (Q(2), Q(3)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(3, 1), Fraction(2, 1)) != (Fraction(2, 1), Fraction(3, 1))\n\nFirst differing element 0:\nFraction(3, 1)\nFraction(2, 1)\n\n- (Fraction(3, 1), Fraction(2, 1))\n+ (Fraction(2, 1), Fraction(3, 1))\n\n----------------------------------------------------------------------\nRan 2 tests in 4.555s\n\nFAILED (failures=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_projector_reduction_and_joint_kernel",
+        "test_projector_snapshots_maximum_and_empty"
+      ]
+    },
+    {
+      "identity": "vector-output",
+      "mutant_sha256": "c150387118b30a3c32149e4f8342a849f6cfbf6c21a32a963f21f31723fb95f8",
+      "outcome": "killed",
+      "output": "test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel) ... FAIL\n\n======================================================================\nFAIL: test_projector_reduction_and_joint_kernel (__main__.BphzCheckerTests.test_projector_reduction_and_joint_kernel)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 141, in test_projector_reduction_and_joint_kernel\n    @given(st.integers(-5, 5), st.integers(-5, 5), st.lists(st.tuples(st.booleans(), st.booleans()), max_size=8), FRACTIONS, FRACTIONS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 160, in test_projector_reduction_and_joint_kernel\n    self.assertEqual(result.value, tuple(Q(int(v.p), int(v.q)) for v in image))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1)) != (Fraction(0, 1), Fraction(1, 1))\n\nFirst differing element 1:\nFraction(0, 1)\nFraction(1, 1)\n\n- (Fraction(0, 1), Fraction(0, 1))\n?                           ^\n\n+ (Fraction(0, 1), Fraction(1, 1))\n?                           ^\n\nFailing test case: test_projector_reduction_and_joint_kernel(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.BphzCheckerTests testMethod=test_projector_reduction_and_joint_kernel>,\n    r=0,  # or any other generated value\n    s=0,  # or any other generated value\n    diagonal=[],  # or any other generated value\n    x=Fraction(0, 1),\n    y=Fraction(1, 1),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.280s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_projector_reduction_and_joint_kernel"
+      ]
+    },
+    {
+      "identity": "railway-resource",
+      "mutant_sha256": "3d58d6129dabed25184438090f4ed43bdfb6f9ea8a880f600aed7afbfd268c65",
+      "outcome": "killed",
+      "output": "test_recorders_railway_and_cancellation (__main__.BphzCheckerTests.test_recorders_railway_and_cancellation) ... ERROR\n\n======================================================================\nERROR: test_recorders_railway_and_cancellation (__main__.BphzCheckerTests.test_recorders_railway_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 234, in test_recorders_railway_and_cancellation\n    self.assertEqual(aggregate.reduction().error.kind, \"resource\")\n                     ~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\independent\\dfm-bphz-continuum-fence.py\", line 147, in reduction\n    return Outcome(value=self._reduction())\n                         ~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nOSError: injected\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_recorders_railway_and_cancellation"
+      ]
+    },
+    {
+      "identity": "vector-railway-resource",
+      "mutant_sha256": "125fb4df73e1bf98ac98e5a5e6480906b9f9d233caf972c6cd18ad781ba98f00",
+      "outcome": "killed",
+      "output": "test_recorders_railway_and_cancellation (__main__.BphzCheckerTests.test_recorders_railway_and_cancellation) ... ERROR\n\n======================================================================\nERROR: test_recorders_railway_and_cancellation (__main__.BphzCheckerTests.test_recorders_railway_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 235, in test_recorders_railway_and_cancellation\n    self.assertEqual(aggregate.apply((1, 2)).error.kind, \"resource\")\n                     ~~~~~~~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\independent\\dfm-bphz-continuum-fence.py\", line 155, in apply\n    return Outcome(value=self._apply(vector))\n                         ~~~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\independent\\dfm-bphz-continuum-fence.py\", line 151, in _apply\n    result = self._reduction().mul(RationalMatrix(((x,), (y,))))\n             ~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nOSError: injected\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_recorders_railway_and_cancellation"
+      ]
+    },
+    {
+      "identity": "fixture-coefficient",
+      "mutant_sha256": "34c42e9c07093ed327508bf844b3f60ffdbbb19553158e65ecf871f410a9ac66",
+      "outcome": "killed",
+      "output": "test_fixture_counts_numerator_challenge_and_cli (__main__.BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli) ... ERROR\n\n======================================================================\nERROR: test_fixture_counts_numerator_challenge_and_cli (__main__.BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 207, in test_fixture_counts_numerator_challenge_and_cli\n    check(cases)\n    ~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\independent\\dfm-bphz-continuum-fence.py\", line 227, in check_numerator_examples\n    cases.require((constant, x_coefficient, y_coefficient, mixed_coefficient) == (Q(2), Q(3), Q(5), Q(6)), 'numerator finite-difference coefficients')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: numerator finite-difference coefficients\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_fixture_counts_numerator_challenge_and_cli"
+      ]
+    },
+    {
+      "identity": "fixture-census-size",
+      "mutant_sha256": "383fcf62ea19aea48c2d25c905605dab576c07a1ae08064bfc518c7dbfba2bf1",
+      "outcome": "killed",
+      "output": "test_fixture_counts_numerator_challenge_and_cli (__main__.BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli) ... FAIL\n\n======================================================================\nFAIL: test_fixture_counts_numerator_challenge_and_cli (__main__.BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 209, in test_fixture_counts_numerator_challenge_and_cli\n    self.assertEqual(counts, [5, 131, 133, 570, 575])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [5, 131, 133, 186, 191] != [5, 131, 133, 570, 575]\n\nFirst differing element 3:\n186\n570\n\n- [5, 131, 133, 186, 191]\n+ [5, 131, 133, 570, 575]\n\n----------------------------------------------------------------------\nRan 1 test in 0.020s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_fixture_counts_numerator_challenge_and_cli"
+      ]
+    },
+    {
+      "identity": "reported-case-count",
+      "mutant_sha256": "b160b81c732614de93fa0deef86fdc278d78c38b489ff4d9c832bbe02cce6c89",
+      "outcome": "killed",
+      "output": "test_fixture_counts_numerator_challenge_and_cli (__main__.BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli) ... FAIL\n\n======================================================================\nFAIL: test_fixture_counts_numerator_challenge_and_cli (__main__.BphzCheckerTests.test_fixture_counts_numerator_challenge_and_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\bphz-mutation-wptwcx0f\\tests\\test_bphz_checker.py\", line 216, in test_fixture_counts_numerator_challenge_and_cli\n    self.assertEqual(receipt[\"checks\"], 575)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 576 != 575\n\n----------------------------------------------------------------------\nRan 1 test in 0.175s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-bphz-continuum-fence.py",
+      "tests": [
+        "test_fixture_counts_numerator_challenge_and_cli"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 40,
+      "survived": 0,
+      "unrun": 0
+    },
+    "detected_fraction": 1.0,
+    "eligible": 40
+  }
+}
