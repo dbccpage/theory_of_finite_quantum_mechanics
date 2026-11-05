@@ -119,7 +119,7 @@ Retest: no screen; no claim that a test is impossible; option 3 is named as ordi
 ## Round 3: self-audit pointer (2026-11-05)
 
 This file is left as written. The repairs to it are recorded in [self_audit.md](self_audit.md) §C:
-- the 1.2 eV figure holds only for a record held by one barrier (C5, and `self_review.md` A9);
+- the 1.2 eV figure holds only for a record held by one barrier, with the supplied attempt time $\tau_0 = 1$ ps; with $\tau_0 = 1$ s it is 0.46 eV (B10, and `self_review.md` A9);
 - $e^{-90}$ holds as a number, but thermal photons are not the noise that matters in tissue (C4);
-- the Landauer line needs the overwrite case: overwriting an occupied medium does cost $k_BT\ln2$ per bit (C5, `self_review.md` A8).
+- the Landauer line needs the overwrite case, with its conditions: an overwrite costs at least $k_BT\ln2$ per bit only when the prior content is unknown, carries a full bit of entropy and is not correlated with anything kept; with a known content or a retained copy it can be reversible (C5).
 The recovered public question in round 2 has been replaced by the game post in [replies.md](replies.md).

@@ -1,10 +1,17 @@
 """Checks behind self_audit.md: every number and equation Claude wrote in this folder.
 
-Run from the folder above:  python code/self_audit_checks.py   (needs sympy)
-Each check prints PASS or FAIL with the value it recomputed.
+Run from the folder above:  python code/self_audit_checks.py [--replies PATH]   (needs sympy)
+Each check prints PASS or FAIL with the value it recomputed. The exit status is 0 only
+if every check passes. A missing replies file, or a file with the wrong number of reply
+blocks, is a failure, not a skip. Regression tests: code/test_self_audit_checks.py.
 """
-import math
+import argparse, math, pathlib, re, sys
 import sympy as sp
+
+ap = argparse.ArgumentParser()
+ap.add_argument("--replies", default=str(pathlib.Path(__file__).resolve().parent.parent / "replies.md"))
+ap.add_argument("--expect-blocks", type=int, default=5)
+args = ap.parse_args()
 
 ok = True
 def check(name, cond, detail=""):
@@ -47,7 +54,9 @@ E500 = 1239.84198/500
 check("S3d photon at 500 nm = 2.48 eV, so with it the exponent is ~ -93", abs(E500/kT - 92.8) < 0.5, f"{E500/kT:.1f}")
 yr, ps = 365.25*86400, 1e-12
 barrier = math.log(yr/ps) * kT
-check("S3e one-year retention, tau0 = 1 ps: 1.20 eV", abs(barrier - 1.20) < 0.01, f"{barrier:.3f} eV, ln = {math.log(yr/ps):.2f}")
+check("S3e one-year retention, single barrier, supplied attempt time tau0 = 1 ps: 1.20 eV", abs(barrier - 1.20) < 0.01, f"{barrier:.3f} eV, ln = {math.log(yr/ps):.2f}")
+barrier_1s = math.log(yr/1.0) * kT
+check("S3e2 same year, tau0 = 1 s instead: 0.46 eV (the attempt time is an input)", abs(barrier_1s - 0.461) < 0.001, f"{barrier_1s:.3f} eV")
 cap = 4*1.3*2e-3/(500e-9)**3 * 1e-6                             # bit per mm^2
 check("S3f capacity 8.32e10 bit/mm^2 (paper rounds to 8e10)", abs(cap/8.32e10 - 1) < 1e-3, f"{cap:.3e}")
 total_PB = cap * 2500e2 / 8 / 1e15
@@ -64,15 +73,34 @@ check("S4a both normalized, both can emit 'true', Bayes factor 1.8 != 1",
 D = [True, False, True]
 hC = dict(hB)  # a second hypothesis with the same weights as B
 LA = math.prod(hC[d] for d in D); LB = math.prod(hB[d] for d in D)
-check("S4b equal weights => Bayes factor 1 on any data", LA == LB)
+check("S4b equal weights, independent reports => equal likelihoods on any data, nonzero here", LA == LB and LB > 0)
+# S4c: the product rule needs independence. Same single-report weights, different joint law.
+indep = {(a, b): 0.25 for a in (True, False) for b in (True, False)}          # two independent fair bits
+repeat = {(a, b): (0.5 if a == b else 0.0) for a in (True, False) for b in (True, False)}  # one fair bit, read twice
+marg = lambda P, i: {v: sum(p for k, p in P.items() if k[i] == v) for v in (True, False)}
+check("S4c equal marginals, unequal joints: P(TT) 1/4 vs 1/2, Bayes factor 2",
+      marg(indep, 0) == marg(repeat, 0) and marg(indep, 1) == marg(repeat, 1)
+      and repeat[(True, True)] / indep[(True, True)] == 2.0)
 
-# --- S5. Reply character counts ---
-import pathlib, re
-rep = pathlib.Path(__file__).resolve().parent.parent / "replies.md"
-if rep.exists():
+# --- S5. Reply character counts (the replies file is required) ---
+rep = pathlib.Path(args.replies)
+if not rep.is_file():
+    check("S5 replies file present", False, str(rep))
+else:
     blocks = re.findall(r"^> (.*(?:\n> .*)*)", rep.read_text(encoding="utf-8"), flags=re.M)
+    check("S5 number of reply blocks", len(blocks) == args.expect_blocks, f"{len(blocks)} found, {args.expect_blocks} expected")
     for i, b in enumerate(blocks, 1):
         text = "\n".join(l[2:] if l.startswith("> ") else l for l in b.split("\n"))
-        check(f"S5.{i} reply block under 500 chars", len(text) <= 500, f"{len(text)} chars")
+        check(f"S5.{i} reply block at most 500 chars", len(text) <= 500, f"{len(text)} chars")
+
+# --- S6. The board's retention note names the supplied attempt time (review finding 4) ---
+board = pathlib.Path(args.replies).resolve().parent / "markup_board.html"
+if not board.is_file():
+    board = pathlib.Path(__file__).resolve().parent.parent / "markup_board.html"
+btxt = board.read_text(encoding="utf-8") if board.is_file() else ""
+sent = [s for s in re.split(r"(?<=[.])\s", btxt) if "1.2 eV" in s]
+check("S6 every board sentence with 1.2 eV also states the attempt time 1 ps",
+      bool(sent) and all("1 ps" in s for s in sent), f"{len(sent)} sentence(s)")
 
 print("ALL PASS" if ok else "SOME CHECKS FAILED")
+sys.exit(0 if ok else 1)
