@@ -45,11 +45,10 @@ jobs:
 
           entries = json.loads(Path("reviews/repository_file_review/current_file_scores.json").read_bytes())["files"]
           rows = {row["path"]: row for row in entries}
-          if len(rows) != len(entries) or not any(row.get("scoring_token") == "L4B" for row in entries):
+          assessed = [row for row in entries if row.get("status") == "reviewed_repaired_verified" or row.get("scoring_token")]
+          if len(rows) != len(entries) or not assessed:
               raise ValueError("The file ledger must contain unique paths and assessed sources")
-          for row in entries:
-              if row.get("scoring_token") != "L4B":
-                  continue
+          for row in assessed:
               source = Path(row["path"])
               companion = source.with_suffix(".contract.score.yaml")
               for artifact in (source, companion):
@@ -57,7 +56,12 @@ jobs:
                       raise ValueError(f"Ledger hash differs from checkout for {artifact}")
               document = json.loads(companion.read_bytes())
               score = validate_document(document, row["path"], row["sha256"], "Python")
-              if score["score_token"] != row["scoring_token"]:
+              grades = {"B", "A", "A+"}
+              if not score["is_complete"] or score["level"] not in {"L4", "L5"} or score["composite_grade"] not in grades:
+                  raise ValueError(f"Assessment below L4B for {source}")
+              if any(grade not in grades for grade in score["gates"].values()):
+                  raise ValueError(f"Assessment gate below B for {source}")
+              if score["score_token"] != score["level"] + score["composite_grade"] or score["score_token"] != row.get("scoring_token"):
                   raise ValueError(f"Score mismatch for {source}")
               for field in ("contract_history", "scoring_history"):
                   for entry in document[field]:
