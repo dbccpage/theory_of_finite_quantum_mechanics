@@ -27,6 +27,7 @@ on:
     paths:
       - "lean4/**"
       - "scripts/gleason_lean_audit.py"
+      - "scripts/test_gleason_lean_audit.py"
       - "dag/research/gleason_lean_audit.json"
       - ".github/workflows/lean-gleason.yml"
   workflow_dispatch:
@@ -72,7 +73,9 @@ jobs:
 
       - name: Print axioms for every inventoried declaration
         working-directory: lean4
-        run: lake env lean .audit/GleasonAudit.lean | tee ../gleason_audit_output.txt
+        run: |
+          set -o pipefail
+          lake env lean .audit/GleasonAudit.lean 2>&1 | tee ../gleason_audit_output.txt
 
       - name: Verify reports, pins and axioms against dag/research/gleason_lean_audit.json
         run: python -I -X utf8 scripts/gleason_lean_audit.py verify --lean-output gleason_audit_output.txt

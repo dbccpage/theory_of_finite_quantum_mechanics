@@ -18,8 +18,12 @@ Full findings, independent rebuild evidence, and the handoff to Claude are in
 - **TFQ-1058 / FQ-GLEASON-FRAME-CARRIERS:** the supplied carriers and frame definitions only.
 - **TFQ-1059 / FQ-GLEASON-C3-CONTINUOUS-FRAME-FUNCTIONS:** the proved continuous signed C^3
   theorem, CONDITIONAL on continuity away from zero.
-- **TFQ-1060 / FQ-BORN-QI3-CONTINUUM-COMPLETION:** OPEN packaging of the existing extension
-  lemmas into a unique complex density-matrix extension and the general quadratic converse.
+- **TFQ-1060 / FQ-BORN-QI3-CONTINUUM-COMPLETION:** CONDITIONAL packaging in
+  `lean4/GleasonBornCompletion.lean` of the existing extension lemmas into a unique complex
+  density-matrix extension (`born_density_matrix_of_uniformlyRayContinuous`), Hermitian quadratic
+  uniqueness (`eq_of_re_dotC_mulVec_self`), and the general quadratic converse
+  (`isUniformlyRayContinuous_quadRay`, `uniformlyRayContinuous_frameFunction_iff`), conditional
+  on uniform ray continuity.
 
 TFQ-0307 remains CONDITIONAL. Its broad Born-uniqueness/operational target is not the literal
 pointwise statement either. None of these results derives the Hilbert carrier or regularity
