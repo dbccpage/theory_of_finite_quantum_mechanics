@@ -28,7 +28,9 @@ class TestGleasonContinuumDevelopment(unittest.TestCase):
         self.assertTrue(res["d1_constant_one"])
         self.assertEqual(res["d2_forced_quadratic_value"], "4/5")
         self.assertEqual(res["d2_counterexample_value"], "1/2")
+        self.assertEqual(res["d2_two_frame_forced_value"], "-1/5")
         self.assertTrue(res["d4_submatrix3D_overlap_verified"])
+        self.assertTrue(res["d4_polarization_uniqueness_verified"])
 
     def test_part_c_continuum_regularity(self) -> None:
         res = vgcd.verify_part_c_continuum_regularity()
@@ -57,7 +59,9 @@ class TestGleasonContinuumDevelopment(unittest.TestCase):
     def test_build_receipt(self) -> None:
         receipt = vgcd.build_receipt()
         self.assertEqual(receipt["schema_version"], "1.0.0")
-        self.assertEqual(receipt["lean_module"], "lean4/GleasonContinuumDevelopment.lean")
+        self.assertEqual(receipt["authority_effect"], "None")
+        self.assertEqual(receipt["lean_module"]["path"], "lean4/GleasonContinuumDevelopment.lean")
+        self.assertEqual(len(receipt["lean_module"]["sha256"]), 64)
         for part_data in receipt["parts"].values():
             self.assertTrue(part_data["verified"])
 

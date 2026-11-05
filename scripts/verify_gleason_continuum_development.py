@@ -14,7 +14,9 @@ bounds formalized in `lean4/GleasonContinuumDevelopment.lean`:
    - d = 0 vacuous uniqueness and d = 1 constant-1 frame valuation.
    - d = 2 explicit non-quadratic frame function `dim2AxisCounterexample` on Q(i)^2
      assigning 1 on y = 0, 0 on x = 0, and 1/2 off-axis, verified on orthogonal
-     2-frames and obstructed on v = (2, 1) where the forced matrix diag(1, 0) gives 4/5 != 1/2.
+     2-frames and obstructed on v = (2, 1) where the forced matrix diag(1, 0) gives 4/5 != 1/2
+     (`dim2AxisCounterexample_not_quadratic`), alongside the two-frame {0, 1} valuation
+     obstruction at (1, -2) where -1/5 < 0 (`dim2_projection_measure_obstruction`).
    - d >= 3 compatibility of 3D coordinate subspace restrictions `submatrix3D` on 1D/2D
      overlaps and global d x d Hermitian polarization uniqueness.
 3. Part C (continuum automatic regularity in d >= 3):
@@ -23,7 +25,7 @@ bounds formalized in `lean4/GleasonContinuumDevelopment.lean`:
      vanishing `f(p) = 1 -> u perp p -> f(u) = 0`.
 4. Part D (infinite-dimensional separable Hilbert spaces & trace escape):
    - Monotone finite-dimensional compressions `compressionTrace(w, N)`, tightness tail bound
-     `sum_{k < M} w(N + k) <= eps`, and moving-bump counterexample `basisEscapeState(k)`
+     `1 - compressionTrace(w, M) <= eps`, and moving-bump counterexample `basisEscapeState(k)`
      demonstrating trace escape without uniform tightness.
 """
 
@@ -31,6 +33,7 @@ from __future__ import annotations
 
 import argparse
 from fractions import Fraction
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -38,6 +41,7 @@ from typing import Any, Callable
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+LEAN_MODULE_PATH = REPO_ROOT / "lean4" / "GleasonContinuumDevelopment.lean"
 DEFAULT_RECEIPT_PATH = REPO_ROOT / "dag" / "research" / "gleason_continuum_development_receipt.json"
 
 
@@ -205,6 +209,20 @@ def verify_part_a_d3_density_and_rayleigh() -> dict[str, Any]:
         if diff > max_rayleigh_diff:
             max_rayleigh_diff = diff
 
+    # Verify 9-ray polarization uniqueness on 3x3 Hermitian matrices (rho_pure vs rho_mixed)
+    nine_rays: list[GVec3] = [
+        (GaussRat(1, 0), GaussRat(0, 0), GaussRat(0, 0)),
+        (GaussRat(0, 0), GaussRat(1, 0), GaussRat(0, 0)),
+        (GaussRat(0, 0), GaussRat(0, 0), GaussRat(1, 0)),
+        (GaussRat(1, 0), GaussRat(1, 0), GaussRat(0, 0)),
+        (GaussRat(1, 0), GaussRat(0, 0), GaussRat(1, 0)),
+        (GaussRat(0, 0), GaussRat(1, 0), GaussRat(1, 0)),
+        (GaussRat(1, 0), GaussRat(0, 1), GaussRat(0, 0)),
+        (GaussRat(1, 0), GaussRat(0, 0), GaussRat(0, 1)),
+        (GaussRat(0, 0), GaussRat(1, 0), GaussRat(0, 1)),
+    ]
+    assert any(herm_rayleigh(rho_pure, r) != herm_rayleigh(rho_mixed, r) for r in nine_rays)
+
     return {
         "verified": True,
         "frob_norm_sq_pure": str(frob_norm_sq(B_pure)),
@@ -213,6 +231,7 @@ def verify_part_a_d3_density_and_rayleigh() -> dict[str, Any]:
         "trace_mixed": "1",
         "max_rayleigh_diff_tested": str(max_rayleigh_diff),
         "entry_l1_upper_bound": str(l1_upper),
+        "nine_ray_polarization_separates_pure_and_mixed": True,
     }
 
 
@@ -242,15 +261,26 @@ def verify_part_b_all_finite_dimensions() -> dict[str, Any]:
         assert dim2_axis_counterexample(v) >= 0
         assert dim2_axis_counterexample(u) + dim2_axis_counterexample(v) == Fraction(1, 1)
 
-    # Obstruction check: matching (1,0)->1, (0,1)->0, (1,1)->1/2, (1,-1)->1/2, (1,i)->1/2, (1,-i)->1/2
-    # forces d1 = 1, d2 = 0, a12 = 0, b12 = 0, which gives 4/5 on (2,1) whereas dim2AxisCounterexample gives 1/2.
+    # Obstruction check 1 (`dim2AxisCounterexample_not_quadratic`):
+    # matching (1,0)->1, (0,1)->0, (1,1)->1/2 forces d1 = 1, d2 = 0, a12 = 0,
+    # which gives 4/5 on (2,1) whereas dim2AxisCounterexample gives 1/2.
     u_obstruction: GVec2 = (GaussRat(2, 0), GaussRat(1, 0))
     forced_quad_ray_21 = Fraction(4, 5)
     actual_val_21 = dim2_axis_counterexample(u_obstruction)
     assert actual_val_21 == Fraction(1, 2)
     assert forced_quad_ray_21 != actual_val_21
 
-    # d = 4 Hermitian matrix compatibility across 3D coordinate subspaces
+    # Obstruction check 2 (`dim2_projection_measure_obstruction`):
+    # matching (1,0)->1, (0,1)->0, (1,1)->1 forces d1 = 1, d2 = 0, a12 = 1/2,
+    # which evaluates to (1*1 + 0*4 + 2*(1/2)*(1*-2)) / 5 = -1/5 < 0 at (1, -2).
+    d1_two_frame = Fraction(1, 1)
+    d2_two_frame = Fraction(0, 1)
+    a12_two_frame = Fraction(1, 2)
+    quad_ray_1_neg2 = (d1_two_frame * 1 + d2_two_frame * 4 + 2 * a12_two_frame * (-2)) / Fraction(5, 1)
+    assert quad_ray_1_neg2 == Fraction(-1, 5)
+    assert not (Fraction(0, 1) <= quad_ray_1_neg2)
+
+    # d = 4 Hermitian matrix compatibility across 3D coordinate subspaces & polarization uniqueness
     herm4 = [
         [GaussRat(Fraction(1, 4), 0), GaussRat(Fraction(1, 8), Fraction(1, 16)), GaussRat(0, Fraction(-1, 8)), GaussRat(Fraction(1, 10), 0)],
         [GaussRat(Fraction(1, 8), Fraction(-1, 16)), GaussRat(Fraction(1, 4), 0), GaussRat(Fraction(1, 12), 0), GaussRat(0, Fraction(1, 9))],
@@ -266,6 +296,30 @@ def verify_part_b_all_finite_dimensions() -> dict[str, Any]:
         for c in (0, 1):
             assert sub_012[r][c] == sub_013[r][c]
 
+    # Verify global 4x4 Hermitian polarization recovery matching `eq_of_complexQuadFormD_eq`
+    def quad4(vec: list[GaussRat]) -> Fraction:
+        acc = GaussRat(0, 0)
+        for i in range(4):
+            for j in range(4):
+                acc = acc + vec[i].conj() * (herm4[i][j] * vec[j])
+        assert acc.im == 0
+        return acc.re
+
+    for i in range(4):
+        ei = [GaussRat(1, 0) if k == i else GaussRat(0, 0) for k in range(4)]
+        assert quad4(ei) == herm4[i][i].re
+        for j in range(i + 1, 4):
+            ej = [GaussRat(1, 0) if k == j else GaussRat(0, 0) for k in range(4)]
+            e_plus = [ei[k] + ej[k] for k in range(4)]
+            e_minus = [ei[k] - ej[k] for k in range(4)]
+            ie_j = [GaussRat(0, 1) * ej[k] for k in range(4)]
+            e_iplus = [ei[k] + ie_j[k] for k in range(4)]
+            e_iminus = [ei[k] - ie_j[k] for k in range(4)]
+            rec_re = (quad4(e_plus) - quad4(e_minus)) / Fraction(4, 1)
+            rec_im = (quad4(e_iminus) - quad4(e_iplus)) / Fraction(4, 1)
+            assert rec_re == herm4[i][j].re
+            assert rec_im == herm4[i][j].im
+
     return {
         "verified": True,
         "d0_vacuously_unique": True,
@@ -274,7 +328,10 @@ def verify_part_b_all_finite_dimensions() -> dict[str, Any]:
         "d2_obstruction_vector": "(2, 1)",
         "d2_forced_quadratic_value": str(forced_quad_ray_21),
         "d2_counterexample_value": str(actual_val_21),
+        "d2_two_frame_obstruction_vector": "(1, -2)",
+        "d2_two_frame_forced_value": str(quad_ray_1_neg2),
         "d4_submatrix3D_overlap_verified": True,
+        "d4_polarization_uniqueness_verified": True,
     }
 
 
@@ -356,10 +413,15 @@ def verify_part_d_infinite_dim_and_trace_escape() -> dict[str, Any]:
 
 
 def build_receipt() -> dict[str, Any]:
+    lean_sha256 = hashlib.sha256(LEAN_MODULE_PATH.read_bytes()).hexdigest()
     return {
         "schema_version": "1.0.0",
+        "authority_effect": "None",
         "phase": "Phase 4 - Continuum Gleason Development",
-        "lean_module": "lean4/GleasonContinuumDevelopment.lean",
+        "lean_module": {
+            "path": "lean4/GleasonContinuumDevelopment.lean",
+            "sha256": lean_sha256,
+        },
         "parts": {
             "part_a_d3_complex_density_and_rayleigh": verify_part_a_d3_density_and_rayleigh(),
             "part_b_all_finite_dimensions": verify_part_b_all_finite_dimensions(),

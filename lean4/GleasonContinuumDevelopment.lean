@@ -11,26 +11,26 @@ This module formalizes Phase 4 of the Gleason campaign across four primary mathe
 * **Constructive Factorized Approximation (`ρ_k = B_k B_k^* / tr(B_k B_k^*)`)**:
   - `GaussMatrix3`: `3 × 3` matrices over `GaussRat` (`ℚ(i)`).
   - `frobNormSq B`: exact rational Frobenius squared norm `∑ i, ∑ j, (B i j).normSq = tr(B B^*)`.
-  - `frobNormSq_pos_of_entry_ne_zero` and `frobNormSq_ne_zero_of_entry_ne_zero`: proves the
+  - `frobNormSq_pos_of_entry_ne_zero` and `frobNormSq_ne_zero_of_entry_ne_zero`: establishes that the
     denominator `tr(B B^*)` is strictly positive and nonzero whenever `B` has at least one nonzero
     entry.
   - `gramHermForm3 B` and `factorizedState3 B`: exact rational Hermitian form of `B B^*` and its
     trace-normalized state `B B^* / tr(B B^*)`.
-  - `mulConjTransposeVec B v` and `quadNum_gramHermForm3`: proves the algebraic sum-of-squares
+  - `mulConjTransposeVec B v` and `quadNum_gramHermForm3`: establishes the algebraic sum-of-squares
     identity `quadNum (gramHermForm3 B) v = normSqVec (B^* v) ≥ 0` for every `v ∈ ℚ(i)³`.
   - `factorizedState3_tr_eq_one`, `factorizedState3_quadNum_nonneg`, and
-    `toMatrix_factorizedState3_posSemidef_and_trace_one`: proves each factorized rational
-    approximant is **exactly positive semidefinite** (`PosSemidef`) and **trace one** (`trace = 1`).
+    `toMatrix_factorizedState3_posSemidef_and_trace_one`: establishes that each factorized rational
+    approximant is **positive semidefinite** (`PosSemidef`) and **trace one** (`trace = 1`).
 * **Real-Valued Frame Data, Quantitative Born Convergence, and Uniqueness on `ℂ³`**:
   - `complexQuadForm M v = Re ⟨v, M v⟩`, `complexRayleigh M v = Re ⟨v, M v⟩ / ‖v‖²`, and
     `matEntryL1Norm A = ∑ i, ∑ j, ‖A i j‖`.
-  - `abs_complexQuadForm_le` and `abs_complexRayleigh_sub_le`: proves the uniform Born-probability
+  - `abs_complexQuadForm_le` and `abs_complexRayleigh_sub_le`: establishes the uniform Born-probability
     stability bound `|complexRayleigh A v - complexRayleigh B v| ≤ matEntryL1Norm (A - B)` on all
     nonzero `v ∈ ℂ³ \ {0}`.
-  - `factorizedState3_born_prob_error_le` and `complex_hermitian_unique_of_rayleigh_eq`: proves that
-    as `toMatrix (factorizedState3 (B k))` converges to a continuum density matrix `ρC` in
-    `matEntryL1Norm`, the Born probabilities converge uniformly on `ℂ³ \ {0}`, and the limiting
-    Hermitian operator is unique.
+  - `factorizedState3_born_prob_error_le` and `complex_hermitian_unique_of_rayleigh_eq`: shows in
+    this model that as `toMatrix (factorizedState3 (B k))` converges to a continuum density matrix
+    `ρC` in `matEntryL1Norm`, the Born probabilities converge uniformly on `ℂ³ \ {0}`, and the
+    limiting Hermitian operator is unique.
 
 ## B. All Finite Dimensions (`d = 0, 1, 2` and `d ≥ 3`)
 * **Dimension `d = 0`**:
@@ -40,43 +40,47 @@ This module formalizes Phase 4 of the Gleason campaign across four primary mathe
   - `IsDim1FrameValuation` and `dim1_frameValuation_eq_one`: every 1-element frame valuation on
     `ℂ¹ \ {0}` is identically `1` on all nonzero vectors and uniquely represented by `I₁`.
 * **Dimension `d = 2` (Projection-Measure Exception vs. Effect-Additive Route)**:
-  - `GVec2`, `IsFrame2`, `IsFrameFunction2`, `HermForm2`, `quadRay2`: 2D orthogonal frame valuations
-    and `2 × 2` Hermitian Rayleigh quotients.
+  - `GVec2`, `IsFrame2`, `IsFrameFunction2`, `IsNonnegFrameFunction2`, `HermForm2`, `quadRay2`: 2D
+    orthogonal frame valuations and `2 × 2` Hermitian Rayleigh quotients.
   - `dim2AxisCounterexample`: an explicit `{0, 1/2, 1}`-valued nonnegative 2D frame function
     assigning `1` to the `e₁` ray (`u.y = 0`), `0` to the `e₂` ray (`u.x = 0`), and `1/2` to all
-    other rays, proved to satisfy 2D frame additivity (`dim2AxisCounterexample_isFrameFunction2`)
-    while refuting representation by any `2 × 2` Hermitian quadratic form with `q(1,1) = 1`
-    (`dim2Counterexample_not_quadratic`), contrasting with the operator-linear `EffectValuation`
-    theorem (`born_trace_representation` in `BornTraceRepresentation.lean`).
+    other rays, shown to satisfy 2D frame additivity and nonnegativity
+    (`dim2AxisCounterexample_isNonnegFrameFunction2`) while admitting no `2 × 2` Hermitian quadratic
+    representation (`dim2AxisCounterexample_not_quadratic`, evaluated at `(2, 1)` where
+    `4 / 5 ≠ 1 / 2`), alongside the two-frame `{0, 1}` valuation obstruction at `(1, -2)` where
+    `-1 / 5 < 0` (`dim2_projection_measure_obstruction`), contrasting with the operator-linear
+    `EffectValuation` route (`born_trace_representation` in `BornHermitianTraceRepresentation.lean`).
 * **Dimensions `d ≥ 3` (Subspace Restrictions, Compatibility, and Global Uniqueness)**:
-  - `embed3D ι` and `submatrix3D M ι` for any injective `ι : Fin 3 ↪ Fin d`.
-  - `complexQuadFormD_embed3D`, `submatrix3D_isHermitian`, `submatrix3D_trace_eq_subspace_weight`,
-    `compat_submatrix3D_overlap`, and `eq_of_complexQuadFormD_eq`: proves compatibility of 3D
-    restrictions, subspace weights, and global `d × d` Hermitian uniqueness by polarization.
+  - `dotCD`, `complexQuadFormD`, and `submatrix3D M ι3` for any `ι3 : Fin 3 → Fin d`.
+  - `submatrix3D_isHermitian`, `submatrix3D_trace_eq_subspace_weight`,
+    `compat_submatrix3D_overlap`, and `eq_of_complexQuadFormD_eq`: establishes compatibility of 3D
+    principal submatrices, subspace weights, and global `d × d` Hermitian uniqueness by polarization.
 
-## C. Automatic Regularity for Nonnegative Continuum Frame Functions (`d = 3`)
+## C. Automatic Regularity Step for Nonnegative Continuum Frame Functions (`d = 3`)
 * `IsContinuumFrame3`, `IsContinuumFrameFunction3`, `IsNonnegContinuumFrameFunction3`.
-* `nonneg_continuum_frameFunction_bounds`: proves `0 ≤ f v ≤ 1` on all unit vectors in `ℂ³` from
-  nonnegativity and 3-frame additivity alone (without continuity).
-* `continuum_eq_zero_on_perp_of_pole_one`: proves equatorial vanishing `f w = 0` for all `w ⊥ u`
-  whenever `f u = 1`.
-* `continuum_piron_subadditivity`: proves the continuum frame-sum inequality `f v + f w ≤ 1` for
-  orthogonal unit vectors `v ⊥ w`.
+* `exists_continuumFrame3_completion`: extends any nonzero vector `u ∈ ℂ³ \ {0}` to an orthogonal
+  3-frame `(u, v, w)`.
+* `nonneg_continuum_frameFunction_bounds`: establishes `0 ≤ f u ≤ 1` on all nonzero vectors in `ℂ³`
+  from nonnegativity and 3-frame additivity alone (without continuity).
+* `continuum_piron_subadditivity`: establishes the Piron–Soler orthogonal subadditivity inequality
+  `f u + f v ≤ 1` for orthogonal nonzero vectors `u ⊥ v`.
+* `continuum_eq_zero_on_perp_of_pole_one`: establishes equatorial vanishing `f v = 0` for all
+  `v ⊥ u` whenever `f u = 1`.
 * Preserves the explicit boundary between continuum automatic regularity on `S(ℂ³)` and the
   rational question `TFQ-1057` on `ℚ(i)³`.
 
 ## D. Infinite-Dimensional Separable Hilbert Spaces (`ℓ²(ℕ)`)
 * `compressionTrace w N = ∑ n ∈ Finset.range N, w n`: finite-dimensional subspace compression trace,
   preserving subunit trace (`compressionTrace w N ≤ 1`) without silent renormalization.
-* `compressionTrace_mono` and `tail_weight_le_of_tight`: monotonicity of finite compressions and
-  control of tail trace loss under tightness (`σ`-additivity).
+* `compressionTrace_mono`, `IsTightState`, and `tail_weight_le_of_tight`: monotonicity of finite
+  compressions and control of tail trace loss `1 - compressionTrace w M ≤ ε` under tightness.
 * **Rank-One Basis Escape Witness (`basisEscapeState k n = if n = k then 1 else 0`)**:
   - `basisEscapeState_normalized_at_stage`: `compressionTrace (basisEscapeState k) (k + 1) = 1`.
   - `basisEscapeState_compression_eq_zero_of_ge`: for every fixed finite cutoff `N` and every stage
     `k ≥ N`, `compressionTrace (basisEscapeState k) N = 0`.
-  - `basisEscapeState_escapes_to_zero_without_tightness`: proves that a sequence of normalized
-    trace-one states on successive orthogonal basis vectors converges to `0` on every finite-dimensional
-    compression while retaining total trace `1`.
+  - `basisEscapeState_escapes_to_zero_without_tightness`: establishes that a sequence of normalized
+    trace-one states on successive orthogonal basis vectors vanishes on every fixed finite-dimensional
+    compression for `k ≥ N` while retaining total trace `1` at stage `k + 1`.
 -/
 
 namespace BornFinite.ContinuumDevelopment
@@ -444,6 +448,32 @@ theorem dim2AxisCounterexample_isNonnegFrameFunction2 :
   · intro u _
     unfold dim2AxisCounterexample
     split_ifs <;> norm_num
+
+/-- `dim2AxisCounterexample` cannot be represented as the Rayleigh quotient `quadRay2 ρ` of any
+`2 × 2` Hermitian form `ρ : HermForm2` on nonzero vectors in `ℚ(i)²`: matching `⟨1, 0⟩`, `⟨0, 1⟩`,
+and `⟨1, 1⟩` forces `quadRay2 ρ ⟨2, 1⟩ = 4 / 5 ≠ 1 / 2 = dim2AxisCounterexample ⟨2, 1⟩`. -/
+theorem dim2AxisCounterexample_not_quadratic :
+    ¬ ∃ ρ : HermForm2, ∀ u : GVec2, u.NonZero → dim2AxisCounterexample u = quadRay2 ρ u := by
+  rintro ⟨ρ, hρ⟩
+  have he1 : dim2AxisCounterexample ⟨1, 0⟩ = quadRay2 ρ ⟨1, 0⟩ :=
+    hρ ⟨1, 0⟩ (Or.inl one_ne_zero)
+  have he2 : dim2AxisCounterexample ⟨0, 1⟩ = quadRay2 ρ ⟨0, 1⟩ :=
+    hρ ⟨0, 1⟩ (Or.inr one_ne_zero)
+  have hd1 : dim2AxisCounterexample ⟨1, 1⟩ = quadRay2 ρ ⟨1, 1⟩ :=
+    hρ ⟨1, 1⟩ (Or.inl one_ne_zero)
+  have hw : dim2AxisCounterexample ⟨2, 1⟩ = quadRay2 ρ ⟨2, 1⟩ :=
+    hρ ⟨2, 1⟩ (Or.inr one_ne_zero)
+  have h1 : ρ.d1 = 1 := by
+    simp [dim2AxisCounterexample, quadRay2, normSqVec2, GaussRat.normSq] at he1
+    linarith
+  have h2 : ρ.d2 = 0 := by
+    simp [dim2AxisCounterexample, quadRay2, normSqVec2, GaussRat.normSq] at he2
+    linarith
+  have ha : ρ.a12 = 0 := by
+    simp [dim2AxisCounterexample, quadRay2, normSqVec2, GaussRat.normSq, h1, h2] at hd1
+    linarith
+  simp [dim2AxisCounterexample, quadRay2, normSqVec2, GaussRat.normSq, h1, h2, ha] at hw
+  norm_num at hw
 
 /-- Two-frame indicator counterexample in `d = 2` assigning `1` to `(1, 0)`, `0` to `(0, 1)`,
 `1` to `(1, 1)`, `0` to `(1, -1)`, and `1/2` elsewhere: no `2 × 2` Hermitian matrix can simultaneously
