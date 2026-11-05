@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/ads-rt-formula-import.py`
 
 - file: [checks/independent/ads-rt-formula-import.py](../../../checks/independent/ads-rt-formula-import.py)
-- sha256 (`bytes`): `62970038b1b56f5446d2a78bbba6b70812b51065abeb02bacaee6a211f323015`
+- sha256 (`bytes`): `2576b4dc72018d97d1ad3199dea86b1514f0cdc691b7a5804ffc4bee973365db`
 - cited in: node.source, record TFQ-2204
 - counts toward the grade: yes
 

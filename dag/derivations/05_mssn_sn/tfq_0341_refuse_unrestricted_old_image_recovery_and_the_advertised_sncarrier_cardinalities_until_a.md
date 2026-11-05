@@ -42,7 +42,7 @@ In accordance with strict constructive principles:
 - [`education/symmetric_group_presentations/lean4/SnCarrier.lean::sectionLift`](../../code/lean4/)
 - [`education/symmetric_group_presentations/lean4/SnTheorems.lean::ground_carrier_empty`](../../code/lean4/)
 - [`education/symmetric_group_presentations/lean4/SnTheorems.lean::old_image_base`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/SnCarrierDischarge.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/SnCarrierDischarge.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:f153673a66e02df95e99c7d046cf7edd90d654f74547e54678f3b3ecb3008a8e::MssnFunctorBridge`](../../code/rust/src/)
@@ -51,7 +51,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py`](../../code/python/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py`](../../code/python/)
 
 ---
 

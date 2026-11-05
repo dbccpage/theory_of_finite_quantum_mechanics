@@ -31,10 +31,10 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`declaration obligation: fewest_changes_A for one legal well-formed writing`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Cost.lean::Reach.names_stay_merged`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean::fewest_changes_A`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean::reach_by_edits`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Cost.lean::Reach.names_stay_merged`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean::fewest_changes_A`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean::reach_by_edits`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: no Rust cost module was listed for the ongoing package; the formula still needs an explicit finite checker or a stated absence`](../../code/rust/src/)
@@ -82,6 +82,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-ONGOING-FEWEST-CHANGES): 4*idx(58) + 3*stage_rank(2) + route_degree(4) == 242` ($\text{value} = 242$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-ONGOING-FEWEST-CHANGES): R_raw(126) - G_cob(62) - S_decoy(2) == 62 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 62$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Cost.lean::Reach.names_stay_merged`
+- **Lean 4 Theorem Anchor**: `atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Cost.lean::Reach.names_stay_merged`
 - **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 98ba09eb426f5b0399ff6c862616dda4d4fa9e05f632223fd60edcabfe5f5b44`

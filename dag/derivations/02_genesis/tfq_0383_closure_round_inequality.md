@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Rounds.lean`](../../lean4/)
+- [`absent: no local lean twin located for atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Rounds.lean`](../../lean4/)
 - [`absent: declaration obligation: closedRun_round_bound under the ledger hypotheses of WDP-P000-009`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

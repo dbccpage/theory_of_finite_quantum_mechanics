@@ -14,10 +14,10 @@ authority_effect: "None"
 source_paths:
   - omega_engine/crates_rs/omega_wdp/src/ddc/dda_alphabet.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/07_m_typed_refusal.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/typed_refusal.py
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/TypedRefusal.lean
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/07_m_typed_refusal.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/typed_refusal.py
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/TypedRefusal.lean
   - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/mutation_operator.contract.yaml
 last_verified: 2026-10-01
 ---
@@ -121,7 +121,7 @@ Every successful Level 07 typed refusal emits a machine-verifiable `RefusalRecei
 | **DDC-M-03** | Missing canonical refusal reason code is rejected as `MissingRefusalReason`. | Refusal code audit | [`op_verification.rs::tests`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs) | `test_automaton.py::test_missing_refusal_reason` |
 
 ### Lean 4 Proof Kernel
-[`lean4/Ddc/TypedRefusal.lean`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/TypedRefusal.lean):
+[`lean4/Ddc/TypedRefusal.lean`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/TypedRefusal.lean):
 ```lean
 theorem Ddc.M_preserves_state : ∀ (s s' : State), M_step s s' → s' = s
 ```

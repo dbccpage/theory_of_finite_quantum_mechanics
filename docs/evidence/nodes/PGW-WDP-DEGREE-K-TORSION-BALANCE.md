@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py)
 - sha256 (`bytes`): `d0ef42d42be42024c1d214899cf0e575b5e2d8a4e63cc4dcf46234af8e06fe5d`
 - cited in: record TFQ-0549
 
@@ -56,9 +56,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md`
 
 - file: [dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md](../../../dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md)
-- sha256 (`lf-normalised`): `23fd328ffb8619339b13bfa26fbbe611e767bc9894fe86e52e5d849a2987c8bd`
+- sha256 (`lf-normalised`): `d5172a79490932bad89f31f0551862e6750b4902dc9ddf1bc2ec6fd4c7274f9d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0549
 - counts toward the grade: no

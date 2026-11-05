@@ -40,13 +40,13 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Derivation/Basic.lean::wfCtx`](../../../lean4/Imported/GenesisDerivation/Derivation/Basic.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/profile.rs::profile`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/profile.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/profile.rs::profile`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/profile.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py::profile`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py::separable`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py::contexts`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py::profile`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py::separable`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py)
 
 ---
 
@@ -62,6 +62,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:140-146`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:147-153`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:140-146`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:147-153`
   - `external:sha256:ad3ab47c05abcec0f914042f034960d1143a7d7f023e1b4cedbfc0efd6023a3a:15`

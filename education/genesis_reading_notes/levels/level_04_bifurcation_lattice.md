@@ -12,12 +12,12 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/tenth/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fifteenth/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/sixteenth/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/tenth/reading_the_seed.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/sixteenth/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/tenth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/fifteenth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/sixteenth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/tenth/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/sixteenth/reading_the_seed.md
 last_verified: 2026-10-11
 ---
 
@@ -27,7 +27,7 @@ last_verified: 2026-10-11
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 04: state and step versus a side record](../_images/genesis_ongoing_04_bifurcation_lattice.svg)
 
@@ -53,10 +53,10 @@ The same review table stops at the twenty-first derivation. Papers 22 through 25
 
 ## Files
 
-- [`meta/review/derivation_review.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md)
-- [`paper/tenth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/tenth/paper.md)
-- [`paper/fifteenth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fifteenth/paper.md)
-- [`paper/sixteenth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/sixteenth/paper.md)
-- [`research/tenth/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/tenth/reading_the_seed.md)
-- [`research/sixteenth/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/sixteenth/reading_the_seed.md)
+- [`meta/review/derivation_review.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md)
+- [`paper/tenth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/tenth/paper.md)
+- [`paper/fifteenth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/fifteenth/paper.md)
+- [`paper/sixteenth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/sixteenth/paper.md)
+- [`research/tenth/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/tenth/reading_the_seed.md)
+- [`research/sixteenth/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/sixteenth/reading_the_seed.md)
 

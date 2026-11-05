@@ -11,7 +11,7 @@ source_paths:
   - omega_engine/crates_rs/omega_wdp/src/coda/coda_gtla.rs
   - omega_engine/crates_rs/omega_wdp/src/coda/layer9_coda_gtla.rs
   - omega_engine/crates_rs/omega_wdp/src/coda/layer1_foc.rs
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs
 ---
 
 # Lesson 740.01: Terminal Factorization and Dual Witness Certification

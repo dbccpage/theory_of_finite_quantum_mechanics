@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/ads-regge-area-rt-gap.py`
 
 - file: [checks/independent/ads-regge-area-rt-gap.py](../../../checks/independent/ads-regge-area-rt-gap.py)
-- sha256 (`bytes`): `30504d898a8d40d9825d3c6cd38bd99248db18ef9f4b29e970e11a725d93e5b1`
+- sha256 (`bytes`): `d67f2d9f42c1186bb8e4c89b5b1c1a203f11e8207701a74efa40a41fd14d379a`
 - cited in: node.source, record TFQ-2211
 - counts toward the grade: yes
 

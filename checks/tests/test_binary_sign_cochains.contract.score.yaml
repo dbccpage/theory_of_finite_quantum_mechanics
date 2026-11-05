@@ -1,0 +1,501 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "checks/tests/test_binary_sign_cochains.py",
+  "assurance": "The current source-bound assessment is completed L4B; historical records retain their original scope and grades.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Python",
+      "path": "checks/tests/test_binary_sign_cochains.py",
+      "sha256": "0d33c0ccabe6971e7bceff58394c018927a78b6a72bc94c4e04e955cf860726e"
+    },
+    "audited_consumers": [
+      ".github/workflows/reviewed-checkers.yml"
+    ],
+    "boundaries": [
+      "The supplied Lean declarations concern the fixed Z2 obstruction. The generic finite table API and extra enumeration results are independently exercised Python implementations.",
+      "The finite obstruction uses the declared trivial coefficient action. Additional BF and 2group physical models require separate definitions.",
+      "Local Python checks and Lean source correspondence are recorded. Fresh kernel builds and hosted CI have their own evidence."
+    ],
+    "bounded_context": "Finite cochains on additive Z2 with multiplicative signs and trivial coefficient action.",
+    "contract_urn": "urn:tfqm:checker-review:binary-cocycle:test_binary_sign_cochains",
+    "evidence": [
+      {
+        "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-initial-review.json",
+        "sha256": "5290440e1e4ea952447dd21e25ce0e4b63f4a546e102e6fe8cfd7d9bc30080ae"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-initial-test-refusals.json",
+        "sha256": "172c855a9b98427ec4db1c9f1e25a13379d22592cceb56740673ea2f6a97d226"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-initial-tests.py.txt",
+        "sha256": "1b1ba01e8e2ccb49c6eb656819d1093fab3f9f70984de74561a53cfd1d797749"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-mutations.json",
+        "sha256": "0fdb45462ab6611cc766f6b1cad838aa47ef1938ffe3289077c2a0523be2b1a2"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.contract.score.yaml.txt",
+        "sha256": "0a6aba2c60c737804b055497ce525d3dec9d178b3ef8edb3dfebb43637154579"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.py.txt",
+        "sha256": "9b1b7c5b3a3ba2735ff1e5bfa6bcd9e918f84c2281b0fa8d1c214e1fc1cf84dc"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-quality.json",
+        "sha256": "e53e3aa23a1542703fee6534d78087242b0d7aa30d972660bce642806684e4f8"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-requirements.json",
+        "sha256": "96a7298c1739c169b0682bfd6dd22da8cabf407a2447082f20438dd6e1a1d60c"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-review.md",
+        "sha256": "ae63e05c332ca543be494b574d190639d70976c3ffb248856fc87ba20549f936"
+      },
+      {
+        "path": "checks/tests/binary_cocycle_mutations.json",
+        "sha256": "744311d34cc09a9389c417b00ae9a2b23ff3a8e6a52d7fd56309133e7f0b6b6d"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+      },
+      {
+        "path": "lean4/BfCocycleObstruction.lean",
+        "sha256": "0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0"
+      }
+    ],
+    "failure_policy": "Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate.",
+    "operational_cost": "All degrees and dimensions are fixed. Admission stores at most8signs, point queries admit at most4bits, coboundary computes8entries and pentagon5factors. Product stores at most8signs. The application visits16four-bit points and16two-cochains. Tests enumerate at most256cochains and16points per cochain; subprocesses have30second limits.",
+    "origins": [
+      {
+        "path": "lean4/BfCocycleObstruction.lean",
+        "sha256": "0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0"
+      }
+    ],
+    "owned_invariants": [
+      "Own a degree2or3 lexicographic table of exactly4or8 native integer signs. Native group coordinates are0or1. Invalid types/lower bounds are input refusals; upper degree/coordinate/sequence budgets are resource refusals.",
+      "Snapshot the table and preserve lexicographic point indexing. Multiply equal-degree tables pointwise with exact signs. Normalization means +1 whenever any coordinate is zero.",
+      "Compute the degree2coboundary and degree3pentagon with trivial action and Z2coordinate addition. Sign inverses equal themselves.",
+      "Preserve the original sixteen pentagons and sixteen candidate2cochains, including two normalized cochains and the surviving negative generator. A supplied candidate is accepted exactly when its finite certificate passes. Record26actual successful calls per default run.",
+      "Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate."
+    ],
+    "requirements": {
+      "admit": {
+        "requirement": "Own a degree2or3 lexicographic table of exactly4or8 native integer signs. Native group coordinates are0or1. Invalid types/lower bounds are input refusals; upper degree/coordinate/sequence budgets are resource refusals.",
+        "tests": [
+          "test_exact_degrees_signs_and_shapes",
+          "test_operation_degree_and_operand_refusals",
+          "test_admission_precedes_dependent_operations"
+        ]
+      },
+      "audit": {
+        "requirement": "Preserve the original sixteen pentagons and sixteen candidate2cochains, including two normalized cochains and the surviving negative generator. A supplied candidate is accepted exactly when its finite certificate passes. Record26actual successful calls per default run.",
+        "tests": [
+          "test_all_candidates_and_actual_case_count",
+          "test_rephasing_and_generator_sign_for_all_two_cochains",
+          "test_quiet_import_and_original_cli"
+        ]
+      },
+      "boundary": {
+        "requirement": "Compute the degree2coboundary and degree3pentagon with trivial action and Z2coordinate addition. Sign inverses equal themselves.",
+        "tests": [
+          "test_all_degree_two_boundaries_against_boolean_oracle",
+          "test_all_degree_three_cochains_and_pentagon_points",
+          "test_rephasing_and_generator_sign_for_all_two_cochains"
+        ]
+      },
+      "evaluate": {
+        "requirement": "Snapshot the table and preserve lexicographic point indexing. Multiply equal-degree tables pointwise with exact signs. Normalization means +1 whenever any coordinate is zero.",
+        "tests": [
+          "test_generated_point_order_products_and_owned_snapshots",
+          "test_all_degree_two_boundaries_against_boolean_oracle",
+          "test_all_degree_three_cochains_and_pentagon_points"
+        ]
+      },
+      "lifecycle": {
+        "requirement": "Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate.",
+        "tests": [
+          "test_generated_point_order_products_and_owned_snapshots",
+          "test_failure_translation_and_unexpected_exceptions",
+          "test_quiet_import_and_original_cli",
+          "test_all_candidates_and_actual_case_count",
+          "test_admission_precedes_dependent_operations"
+        ]
+      }
+    },
+    "role": "Independent Boolean oracle, exhaustive finite-domain and generated lifecycle challenge suite.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": {
+      "BinaryCochainTests": [
+        "lifecycle"
+      ],
+      "BinaryCochainTests.refused": [
+        "admit",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_admission_precedes_dependent_operations": [
+        "admit",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_all_candidates_and_actual_case_count": [
+        "audit",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_all_candidates_and_actual_case_count.record": [
+        "audit",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_all_degree_three_cochains_and_pentagon_points": [
+        "evaluate",
+        "boundary"
+      ],
+      "BinaryCochainTests.test_all_degree_two_boundaries_against_boolean_oracle": [
+        "evaluate",
+        "boundary"
+      ],
+      "BinaryCochainTests.test_exact_degrees_signs_and_shapes": [
+        "admit"
+      ],
+      "BinaryCochainTests.test_failure_translation_and_unexpected_exceptions": [
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_generated_point_order_products_and_owned_snapshots": [
+        "evaluate",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_operation_degree_and_operand_refusals": [
+        "admit"
+      ],
+      "BinaryCochainTests.test_quiet_import_and_original_cli": [
+        "audit",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_rephasing_and_generator_sign_for_all_two_cochains": [
+        "boundary",
+        "audit"
+      ],
+      "boundary_bits": [
+        "boundary",
+        "evaluate"
+      ],
+      "exponent_table": [
+        "boundary",
+        "evaluate"
+      ],
+      "load": [
+        "lifecycle"
+      ],
+      "pentagon_bits": [
+        "boundary",
+        "evaluate"
+      ]
+    }
+  },
+  "contract_history": [
+    {
+      "bytes": 9209,
+      "original_paths": [
+        "binary-cocycle-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/tests/test_binary_sign_cochains.py\",\n    \"sha256\": \"0d33c0ccabe6971e7bceff58394c018927a78b6a72bc94c4e04e955cf860726e\"\n  },\n  \"audited_consumers\": [\n    \".github/workflows/reviewed-checkers.yml\"\n  ],\n  \"boundaries\": [\n    \"The supplied Lean declarations concern the fixed Z2 obstruction. The generic finite table API and extra enumeration results are independently exercised Python implementations.\",\n    \"The finite obstruction uses the declared trivial coefficient action. Additional BF and 2group physical models require separate definitions.\",\n    \"Local Python checks and Lean source correspondence are recorded. Fresh kernel builds and hosted CI have their own evidence.\"\n  ],\n  \"bounded_context\": \"Finite cochains on additive Z2 with multiplicative signs and trivial coefficient action.\",\n  \"contract_urn\": \"urn:tfqm:checker-review:binary-cocycle:test_binary_sign_cochains\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-initial-review.json\",\n      \"sha256\": \"5290440e1e4ea952447dd21e25ce0e4b63f4a546e102e6fe8cfd7d9bc30080ae\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-initial-test-refusals.json\",\n      \"sha256\": \"172c855a9b98427ec4db1c9f1e25a13379d22592cceb56740673ea2f6a97d226\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-initial-tests.py.txt\",\n      \"sha256\": \"1b1ba01e8e2ccb49c6eb656819d1093fab3f9f70984de74561a53cfd1d797749\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-mutations.json\",\n      \"sha256\": \"0fdb45462ab6611cc766f6b1cad838aa47ef1938ffe3289077c2a0523be2b1a2\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.contract.score.yaml.txt\",\n      \"sha256\": \"0a6aba2c60c737804b055497ce525d3dec9d178b3ef8edb3dfebb43637154579\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.py.txt\",\n      \"sha256\": \"9b1b7c5b3a3ba2735ff1e5bfa6bcd9e918f84c2281b0fa8d1c214e1fc1cf84dc\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-quality.json\",\n      \"sha256\": \"e53e3aa23a1542703fee6534d78087242b0d7aa30d972660bce642806684e4f8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-requirements.json\",\n      \"sha256\": \"96a7298c1739c169b0682bfd6dd22da8cabf407a2447082f20438dd6e1a1d60c\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-review.md\",\n      \"sha256\": \"ae63e05c332ca543be494b574d190639d70976c3ffb248856fc87ba20549f936\"\n    },\n    {\n      \"path\": \"checks/tests/binary_cocycle_mutations.json\",\n      \"sha256\": \"744311d34cc09a9389c417b00ae9a2b23ff3a8e6a52d7fd56309133e7f0b6b6d\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"lean4/BfCocycleObstruction.lean\",\n      \"sha256\": \"0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0\"\n    }\n  ],\n  \"failure_policy\": \"Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate.\",\n  \"operational_cost\": \"All degrees and dimensions are fixed. Admission stores at most8signs, point queries admit at most4bits, coboundary computes8entries and pentagon5factors. Product stores at most8signs. The application visits16four-bit points and16two-cochains. Tests enumerate at most256cochains and16points per cochain; subprocesses have30second limits.\",\n  \"origins\": [\n    {\n      \"path\": \"lean4/BfCocycleObstruction.lean\",\n      \"sha256\": \"0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Own a degree2or3 lexicographic table of exactly4or8 native integer signs. Native group coordinates are0or1. Invalid types/lower bounds are input refusals; upper degree/coordinate/sequence budgets are resource refusals.\",\n    \"Snapshot the table and preserve lexicographic point indexing. Multiply equal-degree tables pointwise with exact signs. Normalization means +1 whenever any coordinate is zero.\",\n    \"Compute the degree2coboundary and degree3pentagon with trivial action and Z2coordinate addition. Sign inverses equal themselves.\",\n    \"Preserve the original sixteen pentagons and sixteen candidate2cochains, including two normalized cochains and the surviving negative generator. A supplied candidate is accepted exactly when its finite certificate passes. Record26actual successful calls per default run.\",\n    \"Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate.\"\n  ],\n  \"requirements\": {\n    \"admit\": {\n      \"requirement\": \"Own a degree2or3 lexicographic table of exactly4or8 native integer signs. Native group coordinates are0or1. Invalid types/lower bounds are input refusals; upper degree/coordinate/sequence budgets are resource refusals.\",\n      \"tests\": [\n        \"test_exact_degrees_signs_and_shapes\",\n        \"test_operation_degree_and_operand_refusals\",\n        \"test_admission_precedes_dependent_operations\"\n      ]\n    },\n    \"audit\": {\n      \"requirement\": \"Preserve the original sixteen pentagons and sixteen candidate2cochains, including two normalized cochains and the surviving negative generator. A supplied candidate is accepted exactly when its finite certificate passes. Record26actual successful calls per default run.\",\n      \"tests\": [\n        \"test_all_candidates_and_actual_case_count\",\n        \"test_rephasing_and_generator_sign_for_all_two_cochains\",\n        \"test_quiet_import_and_original_cli\"\n      ]\n    },\n    \"boundary\": {\n      \"requirement\": \"Compute the degree2coboundary and degree3pentagon with trivial action and Z2coordinate addition. Sign inverses equal themselves.\",\n      \"tests\": [\n        \"test_all_degree_two_boundaries_against_boolean_oracle\",\n        \"test_all_degree_three_cochains_and_pentagon_points\",\n        \"test_rephasing_and_generator_sign_for_all_two_cochains\"\n      ]\n    },\n    \"evaluate\": {\n      \"requirement\": \"Snapshot the table and preserve lexicographic point indexing. Multiply equal-degree tables pointwise with exact signs. Normalization means +1 whenever any coordinate is zero.\",\n      \"tests\": [\n        \"test_generated_point_order_products_and_owned_snapshots\",\n        \"test_all_degree_two_boundaries_against_boolean_oracle\",\n        \"test_all_degree_three_cochains_and_pentagon_points\"\n      ]\n    },\n    \"lifecycle\": {\n      \"requirement\": \"Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate.\",\n      \"tests\": [\n        \"test_generated_point_order_products_and_owned_snapshots\",\n        \"test_failure_translation_and_unexpected_exceptions\",\n        \"test_quiet_import_and_original_cli\",\n        \"test_all_candidates_and_actual_case_count\",\n        \"test_admission_precedes_dependent_operations\"\n      ]\n    }\n  },\n  \"role\": \"Independent Boolean oracle, exhaustive finite-domain and generated lifecycle challenge suite.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": {\n    \"BinaryCochainTests\": [\n      \"lifecycle\"\n    ],\n    \"BinaryCochainTests.refused\": [\n      \"admit\",\n      \"lifecycle\"\n    ],\n    \"BinaryCochainTests.test_admission_precedes_dependent_operations\": [\n      \"admit\",\n      \"lifecycle\"\n    ],\n    \"BinaryCochainTests.test_all_candidates_and_actual_case_count\": [\n      \"audit\",\n      \"lifecycle\"\n    ],\n    \"BinaryCochainTests.test_all_candidates_and_actual_case_count.record\": [\n      \"audit\",\n      \"lifecycle\"\n    ],\n    \"BinaryCochainTests.test_all_degree_three_cochains_and_pentagon_points\": [\n      \"evaluate\",\n      \"boundary\"\n    ],\n    \"BinaryCochainTests.test_all_degree_two_boundaries_against_boolean_oracle\": [\n      \"evaluate\",\n      \"boundary\"\n    ],\n    \"BinaryCochainTests.test_exact_degrees_signs_and_shapes\": [\n      \"admit\"\n    ],\n    \"BinaryCochainTests.test_failure_translation_and_unexpected_exceptions\": [\n      \"lifecycle\"\n    ],\n    \"BinaryCochainTests.test_generated_point_order_products_and_owned_snapshots\": [\n      \"evaluate\",\n      \"lifecycle\"\n    ],\n    \"BinaryCochainTests.test_operation_degree_and_operand_refusals\": [\n      \"admit\"\n    ],\n    \"BinaryCochainTests.test_quiet_import_and_original_cli\": [\n      \"audit\",\n      \"lifecycle\"\n    ],\n    \"BinaryCochainTests.test_rephasing_and_generator_sign_for_all_two_cochains\": [\n      \"boundary\",\n      \"audit\"\n    ],\n    \"boundary_bits\": [\n      \"boundary\",\n      \"evaluate\"\n    ],\n    \"exponent_table\": [\n      \"boundary\",\n      \"evaluate\"\n    ],\n    \"load\": [\n      \"lifecycle\"\n    ],\n    \"pentagon_bits\": [\n      \"boundary\",\n      \"evaluate\"\n    ]\n  }\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/tests/test_binary_sign_cochains.py",
+          "sha256": "0d33c0ccabe6971e7bceff58394c018927a78b6a72bc94c4e04e955cf860726e"
+        },
+        "audited_consumers": [
+          ".github/workflows/reviewed-checkers.yml"
+        ],
+        "boundaries": [
+          "The supplied Lean declarations concern the fixed Z2 obstruction. The generic finite table API and extra enumeration results are independently exercised Python implementations.",
+          "The finite obstruction uses the declared trivial coefficient action. Additional BF and 2group physical models require separate definitions.",
+          "Local Python checks and Lean source correspondence are recorded. Fresh kernel builds and hosted CI have their own evidence."
+        ],
+        "bounded_context": "Finite cochains on additive Z2 with multiplicative signs and trivial coefficient action.",
+        "contract_urn": "urn:tfqm:checker-review:binary-cocycle:test_binary_sign_cochains",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-initial-review.json",
+            "sha256": "5290440e1e4ea952447dd21e25ce0e4b63f4a546e102e6fe8cfd7d9bc30080ae"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-initial-test-refusals.json",
+            "sha256": "172c855a9b98427ec4db1c9f1e25a13379d22592cceb56740673ea2f6a97d226"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-initial-tests.py.txt",
+            "sha256": "1b1ba01e8e2ccb49c6eb656819d1093fab3f9f70984de74561a53cfd1d797749"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-mutations.json",
+            "sha256": "0fdb45462ab6611cc766f6b1cad838aa47ef1938ffe3289077c2a0523be2b1a2"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.contract.score.yaml.txt",
+            "sha256": "0a6aba2c60c737804b055497ce525d3dec9d178b3ef8edb3dfebb43637154579"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.py.txt",
+            "sha256": "9b1b7c5b3a3ba2735ff1e5bfa6bcd9e918f84c2281b0fa8d1c214e1fc1cf84dc"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-quality.json",
+            "sha256": "e53e3aa23a1542703fee6534d78087242b0d7aa30d972660bce642806684e4f8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-requirements.json",
+            "sha256": "96a7298c1739c169b0682bfd6dd22da8cabf407a2447082f20438dd6e1a1d60c"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-review.md",
+            "sha256": "ae63e05c332ca543be494b574d190639d70976c3ffb248856fc87ba20549f936"
+          },
+          {
+            "path": "checks/tests/binary_cocycle_mutations.json",
+            "sha256": "744311d34cc09a9389c417b00ae9a2b23ff3a8e6a52d7fd56309133e7f0b6b6d"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "lean4/BfCocycleObstruction.lean",
+            "sha256": "0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0"
+          }
+        ],
+        "failure_policy": "Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate.",
+        "operational_cost": "All degrees and dimensions are fixed. Admission stores at most8signs, point queries admit at most4bits, coboundary computes8entries and pentagon5factors. Product stores at most8signs. The application visits16four-bit points and16two-cochains. Tests enumerate at most256cochains and16points per cochain; subprocesses have30second limits.",
+        "origins": [
+          {
+            "path": "lean4/BfCocycleObstruction.lean",
+            "sha256": "0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0"
+          }
+        ],
+        "owned_invariants": [
+          "Own a degree2or3 lexicographic table of exactly4or8 native integer signs. Native group coordinates are0or1. Invalid types/lower bounds are input refusals; upper degree/coordinate/sequence budgets are resource refusals.",
+          "Snapshot the table and preserve lexicographic point indexing. Multiply equal-degree tables pointwise with exact signs. Normalization means +1 whenever any coordinate is zero.",
+          "Compute the degree2coboundary and degree3pentagon with trivial action and Z2coordinate addition. Sign inverses equal themselves.",
+          "Preserve the original sixteen pentagons and sixteen candidate2cochains, including two normalized cochains and the surviving negative generator. A supplied candidate is accepted exactly when its finite certificate passes. Record26actual successful calls per default run.",
+          "Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate."
+        ],
+        "requirements": {
+          "admit": {
+            "requirement": "Own a degree2or3 lexicographic table of exactly4or8 native integer signs. Native group coordinates are0or1. Invalid types/lower bounds are input refusals; upper degree/coordinate/sequence budgets are resource refusals.",
+            "tests": [
+              "test_exact_degrees_signs_and_shapes",
+              "test_operation_degree_and_operand_refusals",
+              "test_admission_precedes_dependent_operations"
+            ]
+          },
+          "audit": {
+            "requirement": "Preserve the original sixteen pentagons and sixteen candidate2cochains, including two normalized cochains and the surviving negative generator. A supplied candidate is accepted exactly when its finite certificate passes. Record26actual successful calls per default run.",
+            "tests": [
+              "test_all_candidates_and_actual_case_count",
+              "test_rephasing_and_generator_sign_for_all_two_cochains",
+              "test_quiet_import_and_original_cli"
+            ]
+          },
+          "boundary": {
+            "requirement": "Compute the degree2coboundary and degree3pentagon with trivial action and Z2coordinate addition. Sign inverses equal themselves.",
+            "tests": [
+              "test_all_degree_two_boundaries_against_boolean_oracle",
+              "test_all_degree_three_cochains_and_pentagon_points",
+              "test_rephasing_and_generator_sign_for_all_two_cochains"
+            ]
+          },
+          "evaluate": {
+            "requirement": "Snapshot the table and preserve lexicographic point indexing. Multiply equal-degree tables pointwise with exact signs. Normalization means +1 whenever any coordinate is zero.",
+            "tests": [
+              "test_generated_point_order_products_and_owned_snapshots",
+              "test_all_degree_two_boundaries_against_boolean_oracle",
+              "test_all_degree_three_cochains_and_pentagon_points"
+            ]
+          },
+          "lifecycle": {
+            "requirement": "Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate.",
+            "tests": [
+              "test_generated_point_order_products_and_owned_snapshots",
+              "test_failure_translation_and_unexpected_exceptions",
+              "test_quiet_import_and_original_cli",
+              "test_all_candidates_and_actual_case_count",
+              "test_admission_precedes_dependent_operations"
+            ]
+          }
+        },
+        "role": "Independent Boolean oracle, exhaustive finite-domain and generated lifecycle challenge suite.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": {
+          "BinaryCochainTests": [
+            "lifecycle"
+          ],
+          "BinaryCochainTests.refused": [
+            "admit",
+            "lifecycle"
+          ],
+          "BinaryCochainTests.test_admission_precedes_dependent_operations": [
+            "admit",
+            "lifecycle"
+          ],
+          "BinaryCochainTests.test_all_candidates_and_actual_case_count": [
+            "audit",
+            "lifecycle"
+          ],
+          "BinaryCochainTests.test_all_candidates_and_actual_case_count.record": [
+            "audit",
+            "lifecycle"
+          ],
+          "BinaryCochainTests.test_all_degree_three_cochains_and_pentagon_points": [
+            "evaluate",
+            "boundary"
+          ],
+          "BinaryCochainTests.test_all_degree_two_boundaries_against_boolean_oracle": [
+            "evaluate",
+            "boundary"
+          ],
+          "BinaryCochainTests.test_exact_degrees_signs_and_shapes": [
+            "admit"
+          ],
+          "BinaryCochainTests.test_failure_translation_and_unexpected_exceptions": [
+            "lifecycle"
+          ],
+          "BinaryCochainTests.test_generated_point_order_products_and_owned_snapshots": [
+            "evaluate",
+            "lifecycle"
+          ],
+          "BinaryCochainTests.test_operation_degree_and_operand_refusals": [
+            "admit"
+          ],
+          "BinaryCochainTests.test_quiet_import_and_original_cli": [
+            "audit",
+            "lifecycle"
+          ],
+          "BinaryCochainTests.test_rephasing_and_generator_sign_for_all_two_cochains": [
+            "boundary",
+            "audit"
+          ],
+          "boundary_bits": [
+            "boundary",
+            "evaluate"
+          ],
+          "exponent_table": [
+            "boundary",
+            "evaluate"
+          ],
+          "load": [
+            "lifecycle"
+          ],
+          "pentagon_bits": [
+            "boundary",
+            "evaluate"
+          ]
+        }
+      },
+      "sha256": "71181fe714b75590d2caf25cf220193bc99bf6d7315e6cb623889ff71681bfdb"
+    }
+  ],
+  "current_contract": "71181fe714b75590d2caf25cf220193bc99bf6d7315e6cb623889ff71681bfdb",
+  "current_scoring": "91282942d91a36c902d1424da6091b31de7ea699e4279870a437a8e5dab3ad68",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4462,
+      "original_paths": [
+        "binary-cocycle-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/tests/test_binary_sign_cochains.py\",\n    \"sha256\": \"0d33c0ccabe6971e7bceff58394c018927a78b6a72bc94c4e04e955cf860726e\"\n  },\n  \"assessment_id\": \"binary-cocycle-2026-11-05\",\n  \"basis\": {\n    \"G1\": \"All original source and Lean declarations reviewed, with full declaration/requirement/test mapping and explicit consumer and claim scopes. Prior source and contract history remain archived.\",\n    \"G2\": \"Exact signs and native bits, Boolean modular-addition oracle, all16degree2and256degree3tables and every pentagon point. Generated products, coordinate ordering and immutable snapshots supplement the finite enumeration.\",\n    \"G3\": \"Whole-shape admission precedes dependent work. Typed input/resource/check failures, incompatible degrees, invalid operands, fresh counters, quiet imports, scoped mocks/registration, nonzero CLI refusal and unexpected exception/cancellation propagation are covered.\",\n    \"G4\": \"Strict typing,10new groups and24prior integration groups pass normally and optimized.36valid critical fault recipes all killed against final source hashes, including oracle/refusal-helper challenges. Baseline and raw outcomes retained.\",\n    \"G5\": \"CCN 7, cognitive 8, nesting 3; one class per file. All degrees and dimensions are fixed. Admission stores at most8signs, point queries admit at most4bits, coboundary computes8entries and pentagon5factors. Product stores at most8signs. The application visits16four-bit points and16two-cochains. Tests enumerate at most256cochains and16points per cochain; subprocesses have30second limits.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-11-05T04:06:40.666592+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-initial-review.json\",\n      \"sha256\": \"5290440e1e4ea952447dd21e25ce0e4b63f4a546e102e6fe8cfd7d9bc30080ae\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-initial-test-refusals.json\",\n      \"sha256\": \"172c855a9b98427ec4db1c9f1e25a13379d22592cceb56740673ea2f6a97d226\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-initial-tests.py.txt\",\n      \"sha256\": \"1b1ba01e8e2ccb49c6eb656819d1093fab3f9f70984de74561a53cfd1d797749\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-mutations.json\",\n      \"sha256\": \"0fdb45462ab6611cc766f6b1cad838aa47ef1938ffe3289077c2a0523be2b1a2\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.contract.score.yaml.txt\",\n      \"sha256\": \"0a6aba2c60c737804b055497ce525d3dec9d178b3ef8edb3dfebb43637154579\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.py.txt\",\n      \"sha256\": \"9b1b7c5b3a3ba2735ff1e5bfa6bcd9e918f84c2281b0fa8d1c214e1fc1cf84dc\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-quality.json\",\n      \"sha256\": \"e53e3aa23a1542703fee6534d78087242b0d7aa30d972660bce642806684e4f8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-requirements.json\",\n      \"sha256\": \"96a7298c1739c169b0682bfd6dd22da8cabf407a2447082f20438dd6e1a1d60c\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-binary-cocycle-review.md\",\n      \"sha256\": \"ae63e05c332ca543be494b574d190639d70976c3ffb248856fc87ba20549f936\"\n    },\n    {\n      \"path\": \"checks/tests/binary_cocycle_mutations.json\",\n      \"sha256\": \"744311d34cc09a9389c417b00ae9a2b23ff3a8e6a52d7fd56309133e7f0b6b6d\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"lean4/BfCocycleObstruction.lean\",\n      \"sha256\": \"0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Independent Boolean oracle, exhaustive finite-domain and generated lifecycle challenge suite. Supplies a complete owned component or independently challenged application boundary with explicit domain, typed results, immutable state and reentrant lifecycle.\",\n  \"open_findings\": [],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/tests/test_binary_sign_cochains.py",
+          "sha256": "0d33c0ccabe6971e7bceff58394c018927a78b6a72bc94c4e04e955cf860726e"
+        },
+        "assessment_id": "binary-cocycle-2026-11-05",
+        "basis": {
+          "G1": "All original source and Lean declarations reviewed, with full declaration/requirement/test mapping and explicit consumer and claim scopes. Prior source and contract history remain archived.",
+          "G2": "Exact signs and native bits, Boolean modular-addition oracle, all16degree2and256degree3tables and every pentagon point. Generated products, coordinate ordering and immutable snapshots supplement the finite enumeration.",
+          "G3": "Whole-shape admission precedes dependent work. Typed input/resource/check failures, incompatible degrees, invalid operands, fresh counters, quiet imports, scoped mocks/registration, nonzero CLI refusal and unexpected exception/cancellation propagation are covered.",
+          "G4": "Strict typing,10new groups and24prior integration groups pass normally and optimized.36valid critical fault recipes all killed against final source hashes, including oracle/refusal-helper challenges. Baseline and raw outcomes retained.",
+          "G5": "CCN 7, cognitive 8, nesting 3; one class per file. All degrees and dimensions are fixed. Admission stores at most8signs, point queries admit at most4bits, coboundary computes8entries and pentagon5factors. Product stores at most8signs. The application visits16four-bit points and16two-cochains. Tests enumerate at most256cochains and16points per cochain; subprocesses have30second limits."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-11-05T04:06:40.666592+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-initial-review.json",
+            "sha256": "5290440e1e4ea952447dd21e25ce0e4b63f4a546e102e6fe8cfd7d9bc30080ae"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-initial-test-refusals.json",
+            "sha256": "172c855a9b98427ec4db1c9f1e25a13379d22592cceb56740673ea2f6a97d226"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-initial-tests.py.txt",
+            "sha256": "1b1ba01e8e2ccb49c6eb656819d1093fab3f9f70984de74561a53cfd1d797749"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-mutations.json",
+            "sha256": "0fdb45462ab6611cc766f6b1cad838aa47ef1938ffe3289077c2a0523be2b1a2"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.contract.score.yaml.txt",
+            "sha256": "0a6aba2c60c737804b055497ce525d3dec9d178b3ef8edb3dfebb43637154579"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-original-fsp-bf-2group-sign-claim.py.txt",
+            "sha256": "9b1b7c5b3a3ba2735ff1e5bfa6bcd9e918f84c2281b0fa8d1c214e1fc1cf84dc"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-quality.json",
+            "sha256": "e53e3aa23a1542703fee6534d78087242b0d7aa30d972660bce642806684e4f8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-requirements.json",
+            "sha256": "96a7298c1739c169b0682bfd6dd22da8cabf407a2447082f20438dd6e1a1d60c"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-binary-cocycle-review.md",
+            "sha256": "ae63e05c332ca543be494b574d190639d70976c3ffb248856fc87ba20549f936"
+          },
+          {
+            "path": "checks/tests/binary_cocycle_mutations.json",
+            "sha256": "744311d34cc09a9389c417b00ae9a2b23ff3a8e6a52d7fd56309133e7f0b6b6d"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "lean4/BfCocycleObstruction.lean",
+            "sha256": "0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Independent Boolean oracle, exhaustive finite-domain and generated lifecycle challenge suite. Supplies a complete owned component or independently challenged application boundary with explicit domain, typed results, immutable state and reentrant lifecycle.",
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "91282942d91a36c902d1424da6091b31de7ea699e4279870a437a8e5dab3ad68"
+    }
+  ]
+}

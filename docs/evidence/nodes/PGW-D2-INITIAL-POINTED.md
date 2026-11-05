@@ -58,16 +58,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md](../../../atlas/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md)
 - sha256 (`lf-normalised`): `6d4beb7f0f2a00da850d837edb4c21e30deaf47422ddacff68966bc4220311c3`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- file: [atlas/finite_obstruction_calculus/genesis/paper.md](../../../atlas/finite_obstruction_calculus/genesis/paper.md)
 - sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
 - cited in: node.source
 - counts toward the grade: yes
@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0455_d2_initial_pointed.md`
 
 - file: [dag/derivations/02_genesis/tfq_0455_d2_initial_pointed.md](../../../dag/derivations/02_genesis/tfq_0455_d2_initial_pointed.md)
-- sha256 (`lf-normalised`): `3f90ef37b74f7f44824d184d7adcbc73600d74597a53adcc3695a068119bdccc`
+- sha256 (`lf-normalised`): `caea11f4e01e8bd548e8c5fe46fb086d9563f6d7ac6b4c0bfb5c3360844214b5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0455
 - counts toward the grade: no

@@ -107,16 +107,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
 - sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md](../../../atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md)
 - sha256 (`lf-normalised`): `ca7ad135453d393688ceadf73eb214ccc6976589928f1dc43597e287bbfc6209`
 - cited in: node.source
 - counts toward the grade: yes
@@ -124,7 +124,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md](../../../dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md)
-- sha256 (`lf-normalised`): `26a34bcda1da02f1e948f500524c8f9adb959de135e8bb87e3e1a19779d526c4`
+- sha256 (`lf-normalised`): `3786d0dc261301ba41a67cff873dcc3397c4a204b81f52315b5c31faebf54e06`
 - generated view: listed, not counted
 - cited in: record TFQ-0341
 - counts toward the grade: no
@@ -132,7 +132,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md](../../../dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md)
-- sha256 (`lf-normalised`): `94fa68799954cbb2621d5632f6f42a7c44c8c824ad0f51a7d74326cd21a8975c`
+- sha256 (`lf-normalised`): `d2aa58398ed7af60afe0f89c74092f4e56baa6a0b3a7080808b9a0888b7d613f`
 - generated view: listed, not counted
 - cited in: record TFQ-0342 (shared)
 - counts toward the grade: no

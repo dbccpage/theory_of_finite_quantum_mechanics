@@ -36,10 +36,10 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of the responder's minimum, cost or tie (S-3)`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::min_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::min_responses`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::min_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::min_responses`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
 
 ---
 
@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1081-1084`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:217-223`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1054-1059`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1081-1084`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:217-223`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1054-1059`

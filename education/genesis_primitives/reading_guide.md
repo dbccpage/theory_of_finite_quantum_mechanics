@@ -29,7 +29,7 @@ These changes cancel around a marked triple, but a marked triple can still
 have a nonzero diagnostic. Ordinary antisymmetric simplicial coordinates
 require additional zero-loop and reverse-arc conditions.
 
-Read the [source-bound WDP bridge](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md)
+Read the [source-bound WDP bridge](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md)
 for the exact theorem. Term addition and identification can fail to respect
 the quotient. A static matrix fixture therefore does not prove that an
 entire executable source run is faithfully represented.
@@ -41,7 +41,7 @@ Two local pairs produce four tensor coefficients (rr,ri,ir,ii). Expanding
 complex multiplication gives (rr-ii,ri+ir). Work out why the vectors
 (1,0,0,1) and (0,1,-1,0) both disappear under that map.
 
-[Proved] The [balanced tensor derivation](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md)
+[Proved] The [balanced tensor derivation](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md)
 shows that this kernel is exactly the complex balancing relation.
 The remaining carrier represents the declared complex composite, including
 its entangled densities and local instrument statistics. It carries a
@@ -79,7 +79,7 @@ preserves the raw state when admitting, but every reaching change jointly
 canonicalizes r/s and clears the flag. In seed 16, an admitted leftover is
 consumed and adds an r or s assertion. The leftover table affects future
 enabled changes and must survive replay. Both meanings are implemented and
-source-pinned in the [admission execution supplement](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/admission_execution_refinement.md).
+source-pinned in the [admission execution supplement](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/admission_execution_refinement.md).
 
 Try r=2, s=0, L=0 on one term. Two removals leave L=2 under COUNT, but L=1
 under SET. Two occupied diagonal leftovers on two terms merge to L=2 even
@@ -88,7 +88,7 @@ minimum and mass claims cease to apply before using these alternatives.
 
 ## Replay the original primitive regime
 
-The [primitive execution supplement](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/primitive_execution_refinement.md)
+The [primitive execution supplement](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/primitive_execution_refinement.md)
 implements the six original events, both datum readings and the actual
 hole contexts. `Supply` leaves the admitted state unchanged. Admitting
 the same opaque token twice gives one datum under dedup and two occurrences
@@ -109,7 +109,7 @@ source regime and cost; it does not admit an irreflexivity law from glyphs.
 
 ## Work through the complete raising result
 
-Use the [source-23 result derivation](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/gauge_result_refinement.md)
+Use the [source-23 result derivation](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/gauge_result_refinement.md)
 to normalize e=[7,4;-2,9]. Set the root potential to zero, retain both
 loops and obtain [7,2;0,9]. Swap the original table and normalize again:
 the answer is [9,2;0,7]. Swapping the old normal table alone gives a
@@ -126,7 +126,7 @@ different scopes; neither derives a new operational or native stage.
 
 ## Compare source 25's joint mark and future edits
 
-In the [marked-result derivation](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/marked_result_refinement.md), one writing transports both
+In the [marked-result derivation](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/marked_result_refinement.md), one writing transports both
 assertions and oriented fillings. A loop at 0 with filling (0,1,2) differs
 from that same loop with filling (1,2,3), even though the two separate
 component orbits agree. State the incidence that a common writing preserves.
@@ -140,7 +140,7 @@ balance question can be answered.
 
 ## Follow the dyadic branch and its declared topology
 
-[Declared] The [actual cyclic tower](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/dyadic_refinement_and_duality.md)
+[Declared] The [actual cyclic tower](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/dyadic_refinement_and_duality.md)
 maps k modulo 2^n to 2k modulo 2^(n+1). Its algebraic limit consists
 of dyadic rational turns. [Proved] At index 3 modulo 8 the next
 character can have index 3 or 11 modulo 16. Check both on the included
@@ -160,7 +160,7 @@ error estimates, even though its payloads are exact rational numbers.
 
 ## Transport an answer across a declared completion
 
-The [CS/Q metric supplement](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/cs_q_presentation_completion.md)
+The [CS/Q metric supplement](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/cs_q_presentation_completion.md)
 now has a separate Lean proof of its relative-continuity criterion. Start with
 the actual presentation image, not all possible labels. Explain why equal
 profiles give equal answers, why close profiles also need a relative modulus,
@@ -176,7 +176,7 @@ the mechanized metric criterion. Neither branch is selected by the glyph.
 
 ## Separate a common target from a printed continuum label
 
-The [actual Meron refinement](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_time_and_volume_refinement.md)
+The [actual Meron refinement](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_time_and_volume_refinement.md)
 supplies an admitted finite Hamiltonian, parameter and protected partition
 query. Its rational slices and bounded-bond argument prove one time/volume
 target with an explicit error, rather than naming a target after a fit.
@@ -190,7 +190,7 @@ finite program replay and the fifteen metric Lean declarations.
 
 ## Transport a source model and its actual readout
 
-Read the [spin and SQL-query derivation](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_spin_and_observable_transport.md). Its declared
+Read the [spin and SQL-query derivation](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_spin_and_observable_transport.md). Its declared
 Fock carrier has N occupations and parity (-1)^N. The staggered spin map
 preserves them; a report dropping parity cannot select the correct closing
 bond. Identify the additional carrier, law, ensemble and boundary commitments
@@ -212,14 +212,14 @@ not merely the current instance. Replay its recorded FD-closure applications.
 For SJ→T,T→J, compute the closure of T and check the (J,T),(S,T) split.
 Both components are BCNF and the split is lossless; identify why SJ→T is
 nevertheless lost as a locally enforceable dependency. State which edits leave
-the actual image of the projection. The [written argument](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/sql_normal_form_presentation.md)
+the actual image of the projection. The [written argument](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/sql_normal_form_presentation.md)
 and eight native/twenty-two compiler-SQL checks have separate scopes. Explain
 why a zero decision budget is unknown and why a checked snapshot does not
 authorize a migration or establish a universal mathematics language.
 
 ## Add source response without erasing its hypotheses
 
-Use the [source-field extension](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_source_field_response.md) to trace the admitted CAR Hamiltonian,
+Use the [source-field extension](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_source_field_response.md) to trace the admitted CAR Hamiltonian,
 source A, parameter topology and common-target time/volume law. Explain why
 even blocks preserve the staggered source when proving near-additivity.
 Derive the triangular response kernel and its epsilon^-2 error amplification.
@@ -230,7 +230,7 @@ premises rather than consequences of a completed parameter presentation.
 
 ## A pointwise response with an actual regularity witness
 
-The [analytic-source proof](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_analytic_response.md) supplies a uniform source disk and
+The [analytic-source proof](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_analytic_response.md) supplies a uniform source disk and
 derivative bounds for the declared theta<=1/192 region. Trace the support graph across the wrapping bond. Explain why even
 CAR factorization retains both parity sectors despite a matrix parity string.
 Check why the q=3,M=2 example is outside this theorem even though its
@@ -239,7 +239,7 @@ estimates are still needed before claiming a continuum field theory.
 
 ## From the selected circle to a spatial Gaussian source
 
-Read the [spatial-source derivation](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_spatial_gaussian_source.md). Separate the admitted circle, fixed temperature and fluctuation scaling
+Read the [spatial-source derivation](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/meron_spatial_gaussian_source.md). Separate the admitted circle, fixed temperature and fluctuation scaling
 from the derived locality and limit laws. Trace why the integer character
 basis constructs the target without selecting these inputs from a mark.
 For the triangle profile (0,0),(1/2,1),(1,0), compute its norm, Lipschitz
@@ -249,7 +249,7 @@ difference. State what remains needed for an interacting dynamical field.
 
 ## Read CODA through six common constructions
 
-Use [Appendix P and the CODA decomposition](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/coda_mathematical_decomposition.md).
+Use [Appendix P and the CODA decomposition](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/coda_mathematical_decomposition.md).
 First derive the report fiber criterion, then apply it to a repair quotient.
 For the map `(0,0,1,2)` and potential `(0,0,1,0)`, compute the transported
 cycle `−1`; explain why no quotient arrow descends on all representatives.
@@ -263,7 +263,7 @@ physical-model and institutional premises needed before making broader claims.
 
 ## Predict which Genesis edits preserve balance
 
-Read [Appendix P.7](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#p7-complete-balance-preservation-rules-for-the-five-source-25-edits)
+Read [Appendix P.7](/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#p7-complete-balance-preservation-rules-for-the-five-source-25-edits)
 and [lesson 720.24](../witnessed_difference_programme/curriculum/720_wdp_levels/concepts/lesson_720_24_balance_preserving_edits.md).
 Classify an assertion on a forward arc, its reverse, a loop and an identification
 whose merged vertex touches a surviving face. Distinguish one balanced output

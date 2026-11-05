@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-gribov-continuum-fence.py`
 
 - file: [checks/independent/dfm-gribov-continuum-fence.py](../../../checks/independent/dfm-gribov-continuum-fence.py)
-- sha256 (`bytes`): `dd53f5f2af27169d85e9bc94ce76707a4af0401993e84ff3ec3676ac176c2e53`
+- sha256 (`bytes`): `0c002a142eb5b80fda598f127763dd9a2ade4345578c2cd3b73cee23713e6638`
 - cited in: node.source, record TFQ-1132
 - counts toward the grade: yes
 

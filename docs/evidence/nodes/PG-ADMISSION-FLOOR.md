@@ -118,9 +118,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
 - sha256 (`lf-normalised`): `1596c27b09af32aec26710dacafcbe1dcb5081bc06d35d094b4c0b0353932e64`
 - cited in: node.source
 - counts toward the grade: yes
@@ -128,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md](../../../dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md)
-- sha256 (`lf-normalised`): `144cf2a458eaa98b2d5277e88f08d9bd4280270bf9e48f1d681847a36b2d58f0`
+- sha256 (`lf-normalised`): `27309e9f834260e54ce641ecf7c85b5d9d77c427c9c3a046038a0d7f3432db61`
 - generated view: listed, not counted
 - cited in: record TFQ-0395
 - counts toward the grade: no

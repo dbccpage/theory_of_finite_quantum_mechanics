@@ -11,8 +11,8 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 8
-- cited Lean, Rust or Python symbols found in their in-repo files: 16
-- distinct cited Lean declarations covered by a current replay receipt: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 17
+- distinct cited Lean declarations covered by a current replay receipt: 17
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -64,22 +64,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/GleasonBornCompletion.lean](../../../lean4/GleasonBornCompletion.lean)
 - sha256 (`bytes`): `e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646`
-- cited in: node.lean, node.source, record TFQ-1060
-- replay: `none`
+- cited in: node.lean, node.source, receipt dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json (GleasonBornCompletion), record TFQ-1060
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonBornCompletion`): recorded sha256 `e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonBornCompletion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFinite.BornCompletion.F_eq_QcRay` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.F_eq_QcRay` |
-| `BornFinite.BornCompletion.born_density_matrix_of_uniformlyRayContinuous` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.born_density_matrix_of_uniformlyRayContinuous` |
-| `BornFinite.BornCompletion.eq_of_re_dotC_mulVec_self` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.eq_of_re_dotC_mulVec_self` |
-| `BornFinite.BornCompletion.eq_on_nonzero_of_eq_on_ι` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.eq_on_nonzero_of_eq_on_ι` |
-| `BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay` |
-| `BornFinite.BornCompletion.toMatrix` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.toMatrix` |
-| `BornFinite.BornCompletion.toMatrix_isHermitian` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.toMatrix_isHermitian` |
-| `BornFinite.BornCompletion.toMatrix_posSemidef` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.toMatrix_posSemidef` |
-| `BornFinite.BornCompletion.trace_toMatrix` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.trace_toMatrix` |
-| `BornFinite.BornCompletion.uniformlyRayContinuous_frameFunction_iff` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.uniformlyRayContinuous_frameFunction_iff` |
+| `BornFinite.BornCompletion.F_eq_QcRay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.F_eq_QcRay` |
+| `BornFinite.BornCompletion.born_density_matrix_of_uniformlyRayContinuous` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.born_density_matrix_of_uniformlyRayContinuous` |
+| `BornFinite.BornCompletion.eq_of_re_dotC_mulVec_self` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.eq_of_re_dotC_mulVec_self` |
+| `BornFinite.BornCompletion.eq_on_nonzero_of_eq_on_ι` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.eq_on_nonzero_of_eq_on_ι` |
+| `BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay` |
+| `BornFinite.BornCompletion.mulVec_ι` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.mulVec_ι` |
+| `BornFinite.BornCompletion.toMatrix` | yes | yes | yes | module-level | `#print axioms BornFinite.BornCompletion.toMatrix` |
+| `BornFinite.BornCompletion.toMatrix_isHermitian` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.toMatrix_isHermitian` |
+| `BornFinite.BornCompletion.toMatrix_posSemidef` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.toMatrix_posSemidef` |
+| `BornFinite.BornCompletion.trace_toMatrix` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.trace_toMatrix` |
+| `BornFinite.BornCompletion.uniformlyRayContinuous_frameFunction_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.BornCompletion.uniformlyRayContinuous_frameFunction_iff` |
 
 - counts toward the grade: yes
 
@@ -88,15 +90,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/GleasonGaussianBridge.lean](../../../lean4/GleasonGaussianBridge.lean)
 - sha256 (`bytes`): `14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f`
 - cited in: node.lean, node.source, record TFQ-1060
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonGaussianBridge`): recorded sha256 `14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonGaussianBridge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFinite.GleasonBridge.F_ι` | yes | yes | yes | - | `#print axioms BornFinite.GleasonBridge.F_ι` |
-| `BornFinite.GleasonBridge.born_of_uniformlyRayContinuous` | yes | yes | yes | - | `#print axioms BornFinite.GleasonBridge.born_of_uniformlyRayContinuous` |
-| `BornFinite.GleasonBridge.continuousOn_F` | yes | yes | yes | - | `#print axioms BornFinite.GleasonBridge.continuousOn_F` |
-| `BornFinite.GleasonBridge.isFrameFunctionC_F` | yes | yes | yes | - | `#print axioms BornFinite.GleasonBridge.isFrameFunctionC_F` |
+| `BornFinite.GleasonBridge.F_ι` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GleasonBridge.F_ι` |
+| `BornFinite.GleasonBridge.born_of_uniformlyRayContinuous` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GleasonBridge.born_of_uniformlyRayContinuous` |
+| `BornFinite.GleasonBridge.continuousOn_F` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GleasonBridge.continuousOn_F` |
+| `BornFinite.GleasonBridge.isFrameFunctionC_F` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GleasonBridge.isFrameFunctionC_F` |
 
 - counts toward the grade: yes
 
@@ -111,21 +114,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json`
 
 - file: [dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json)
-- sha256 (`lf-normalised`): `19d35178275f5e0444413be2cd519840a3111d5b8bc5b7d03c46d2272e050e0b`
+- sha256 (`lf-normalised`): `d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/gleason_lean_audit.json`
 
 - file: [dag/research/gleason_lean_audit.json](../../../dag/research/gleason_lean_audit.json)
-- sha256 (`lf-normalised`): `e4d40511530afe7735d1fa2a73fca294366d08de1634f7cb5e4dab41c2ded7ab`
+- sha256 (`lf-normalised`): `8fe22217b650fb0e29bd54ccc4ae3093ac9998b7f75e44111c2673422fc1f566`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/pointwise_vs_uniform_note.md`
 
 - file: [dag/research/pointwise_vs_uniform_note.md](../../../dag/research/pointwise_vs_uniform_note.md)
-- sha256 (`lf-normalised`): `9794356d43b714c238d1a49b55e3e10b153e1baccfae11683b1c1891de99980f`
+- sha256 (`lf-normalised`): `478e84b6e5e737cc7b68f52eb837886e6e0f20681e7a43f447478f146ec0bc71`
 - cited in: node.source
 - counts toward the grade: yes
 

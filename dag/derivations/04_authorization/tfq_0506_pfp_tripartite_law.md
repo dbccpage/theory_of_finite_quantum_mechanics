@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of the tripartite law; PrimitivePassage.two_rule is the sealed passage-system analogue on a different carrier`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/license.rs::License`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/license.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/license.rs::License`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/license.rs)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: no Python check of the tripartite law`

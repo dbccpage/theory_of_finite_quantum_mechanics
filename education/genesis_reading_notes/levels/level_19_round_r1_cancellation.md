@@ -12,10 +12,10 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h1_cancellation/packet.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/prompt/twentysecond/seed_prompt.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentysecond/reading_the_seed.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h1_cancellation/packet.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/prompt/twentysecond/seed_prompt.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research/twentysecond/reading_the_seed.md
 last_verified: 2026-10-11
 ---
 
@@ -25,7 +25,7 @@ last_verified: 2026-10-11
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 19: H1 cancellation, installed as derivation 22](../_images/genesis_ongoing_19_round_r1_cancellation.svg)
 
@@ -52,8 +52,8 @@ The score directory is `meta/climbing/h1_cancellation/`. The packet's grading la
 
 ## Files
 
-- [`meta/climbing/h1_cancellation/packet.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h1_cancellation/packet.md)
-- [`paper/twentysecond/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/paper.md)
-- [`prompt/twentysecond/seed_prompt.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/prompt/twentysecond/seed_prompt.md)
-- [`research/twentysecond/reading_the_seed.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentysecond/reading_the_seed.md)
+- [`meta/climbing/h1_cancellation/packet.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/meta/climbing/h1_cancellation/packet.md)
+- [`paper/twentysecond/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/paper.md)
+- [`prompt/twentysecond/seed_prompt.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/prompt/twentysecond/seed_prompt.md)
+- [`research/twentysecond/reading_the_seed.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/research/twentysecond/reading_the_seed.md)
 

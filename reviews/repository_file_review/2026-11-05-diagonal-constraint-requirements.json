@@ -1,0 +1,263 @@
+{
+  "AuthorityEffect": "None",
+  "groups": {
+    "admission": {
+      "requirement": "Own exactly three native integer or Fraction coefficients and admit vector shape before coordinates. Exclude bool, float, complex and strings. Stored numerators and denominators are at most 4096 bits. Malformed inputs and oversized shapes/values have distinct typed refusals.",
+      "tests": [
+        "test_exact_domains_shapes_and_input_budgets",
+        "test_preflight_and_refusal_helper_strength",
+        "test_owned_inputs_and_reentrant_queries"
+      ]
+    },
+    "spectral": {
+      "requirement": "Expose exact diagonal matrix, rank, nullity, spectrum with multiplicities, positivity, indefiniteness and idempotence classification on the admitted rational family.",
+      "tests": [
+        "test_operator_and_quadratic_against_symbolic_matrices",
+        "test_all_zero_patterns_and_spectral_multiplicities"
+      ]
+    },
+    "projection": {
+      "requirement": "Construct the coordinate projector and ordered standard basis for the zero eigenspace; decide membership without coefficient multiplication, and return exact operator, projection and quadratic results through Outcome.",
+      "tests": [
+        "test_kernel_projector_from_independent_nullspace",
+        "test_operator_and_quadratic_against_symbolic_matrices",
+        "test_arithmetic_terms_and_prefixes_before_cancellation"
+      ]
+    },
+    "budgets": {
+      "requirement": "Preflight the full vector before matrix operations. Bound each normalized rational product and dot prefix to 4096 bits before later cancellation. Apply H before the final inner product so a zero operator does not spuriously square large coordinates.",
+      "tests": [
+        "test_exact_domains_shapes_and_input_budgets",
+        "test_arithmetic_terms_and_prefixes_before_cancellation",
+        "test_preflight_and_refusal_helper_strength"
+      ]
+    },
+    "certificate": {
+      "requirement": "Own an admitted candidate and native integer census radius 0..4. Verify the declared diag(0,2,-1) fixture, symbolic residual orthogonality and all 125 default vectors. Preserve original stdout and make 638 actual per-run guard calls; maximum radius 4 has 729 vectors and 3658 guards.",
+      "tests": [
+        "test_candidate_scope_and_radius_policy",
+        "test_original_census_and_actual_case_counter",
+        "test_quiet_import_and_original_cli"
+      ]
+    },
+    "lifecycle": {
+      "requirement": "Owned coefficients and controls remain immutable, results detached, imports quiet and counters fresh. Constructors and private operations raise typed Violation. Public fallible queries return Outcome through the shared boundary. RuntimeError, KeyboardInterrupt and SystemExit propagate; expected CLI refusals return nonzero.",
+      "tests": [
+        "test_owned_inputs_and_reentrant_queries",
+        "test_original_census_and_actual_case_counter",
+        "test_failure_translation_and_cancellation",
+        "test_quiet_import_and_original_cli",
+        "test_preflight_and_refusal_helper_strength"
+      ]
+    }
+  },
+  "declarations": {
+    "checks/checker_support/diagonal_constraint.py": {
+      "_vector": [
+        "admission",
+        "budgets",
+        "lifecycle"
+      ],
+      "_column": [
+        "admission",
+        "budgets",
+        "lifecycle"
+      ],
+      "_entries": [
+        "admission",
+        "budgets",
+        "lifecycle"
+      ],
+      "_diagonal": [
+        "admission",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint": [
+        "admission",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.__init__": [
+        "admission",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.matrix": [
+        "spectral",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.kernel_projector": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.kernel_basis": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.rank": [
+        "spectral",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.kernel_dimension": [
+        "spectral",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.spectrum": [
+        "spectral",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.is_projector": [
+        "spectral",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.is_positive_semidefinite": [
+        "spectral",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.is_indefinite": [
+        "spectral",
+        "lifecycle"
+      ],
+      "DiagonalConstraint._apply": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.apply": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint._project": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.project": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint._contains": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.contains": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint._quadratic": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraint.quadratic": [
+        "projection",
+        "budgets",
+        "lifecycle"
+      ]
+    },
+    "checks/independent/fsp-discrete-wdw-constraint.py": {
+      "ConstraintKernelControls": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ConstraintKernelControls.__init__": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ConstraintKernelControls._verify": [
+        "certificate",
+        "lifecycle"
+      ],
+      "ConstraintKernelControls.verify": [
+        "certificate",
+        "lifecycle"
+      ],
+      "_main": [
+        "certificate",
+        "lifecycle"
+      ],
+      "main": [
+        "certificate",
+        "lifecycle"
+      ]
+    },
+    "checks/tests/test_diagonal_constraints.py": {
+      "load": [
+        "lifecycle"
+      ],
+      "exact": [
+        "spectral",
+        "projection"
+      ],
+      "DiagonalConstraintTests": [
+        "lifecycle"
+      ],
+      "DiagonalConstraintTests.accepted": [
+        "lifecycle"
+      ],
+      "DiagonalConstraintTests.refused": [
+        "admission",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraintTests.test_operator_and_quadratic_against_symbolic_matrices": [
+        "spectral",
+        "projection"
+      ],
+      "DiagonalConstraintTests.test_kernel_projector_from_independent_nullspace": [
+        "projection"
+      ],
+      "DiagonalConstraintTests.test_all_zero_patterns_and_spectral_multiplicities": [
+        "spectral"
+      ],
+      "DiagonalConstraintTests.test_owned_inputs_and_reentrant_queries": [
+        "admission",
+        "lifecycle"
+      ],
+      "DiagonalConstraintTests.test_exact_domains_shapes_and_input_budgets": [
+        "admission",
+        "budgets"
+      ],
+      "DiagonalConstraintTests.test_arithmetic_terms_and_prefixes_before_cancellation": [
+        "projection",
+        "budgets"
+      ],
+      "DiagonalConstraintTests.test_preflight_and_refusal_helper_strength": [
+        "admission",
+        "budgets",
+        "lifecycle"
+      ],
+      "DiagonalConstraintTests.test_candidate_scope_and_radius_policy": [
+        "certificate"
+      ],
+      "DiagonalConstraintTests.test_original_census_and_actual_case_counter": [
+        "certificate",
+        "lifecycle"
+      ],
+      "DiagonalConstraintTests.test_original_census_and_actual_case_counter.record": [
+        "certificate",
+        "lifecycle"
+      ],
+      "DiagonalConstraintTests.test_failure_translation_and_cancellation": [
+        "lifecycle"
+      ],
+      "DiagonalConstraintTests.test_quiet_import_and_original_cli": [
+        "certificate",
+        "lifecycle"
+      ]
+    }
+  },
+  "origins": [
+    {
+      "path": "lean4/ConstraintKernelProjector.lean",
+      "sha256": "daaa910962480e0e1fd97c617f31826c9994bda13618c6e195abee5b7ad3c31f"
+    }
+  ]
+}

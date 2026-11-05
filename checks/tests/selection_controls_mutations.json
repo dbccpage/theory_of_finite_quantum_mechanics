@@ -1,0 +1,695 @@
+[
+  {
+    "identity": "integer-coercion",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "number = integer(value, \"Gram integer\")",
+    "after": "number = int(value)",
+    "tests": [
+      "test_input_shapes_scalars_and_full_budgets"
+    ]
+  },
+  {
+    "identity": "integer-bit-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if number.bit_length() > 4096:",
+    "after": "if False:",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "negative-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if number < 0:",
+    "after": "if False:",
+    "tests": [
+      "test_input_shapes_scalars_and_full_budgets"
+    ]
+  },
+  {
+    "identity": "dot-product-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "total = _bounded(total+_bounded(first*second))",
+    "after": "total = _bounded(total+first*second)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "dot-prefix-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "total = _bounded(total+_bounded(first*second))",
+    "after": "total = total+_bounded(first*second)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "dot-sign",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "total+_bounded(first*second)",
+    "after": "total-_bounded(first*second)",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "normalizer-zero",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if denominator <= 0:",
+    "after": "if denominator < 0:",
+    "tests": [
+      "test_admission_precedes_dependent_arithmetic"
+    ]
+  },
+  {
+    "identity": "normalizer-square",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(denominator*denominator)",
+    "after": "return denominator",
+    "tests": [
+      "test_distinct_normalization_witnesses"
+    ]
+  },
+  {
+    "identity": "normalizer-square-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(denominator*denominator)",
+    "after": "return denominator*denominator",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "feature-row-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "sequence(features, \"feature rows\", maximum=16)",
+    "after": "sequence(features, \"feature rows\", maximum=17)",
+    "tests": [
+      "test_input_shapes_scalars_and_full_budgets"
+    ]
+  },
+  {
+    "identity": "dimension-selector",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return len(self.features[0])",
+    "after": "return len(self.features)",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "vector-arity",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "sequence(value, \"Gram vector\", self.dimension, 16)",
+    "after": "sequence(value, \"Gram vector\", maximum=16)",
+    "tests": [
+      "test_vectors_events_and_denominator_refusals"
+    ]
+  },
+  {
+    "identity": "bilinear-right-vector",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "self._coordinates(first), self._coordinates(second)",
+    "after": "self._coordinates(first), self._coordinates(first)",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "bilinear-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(self.scale*_dot(self._coordinates(first), self._coordinates(second)))",
+    "after": "return _bounded(_dot(self._coordinates(first), self._coordinates(second)))",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "bilinear-result-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(self.scale*_dot(self._coordinates(first), self._coordinates(second)))",
+    "after": "return self.scale*_dot(self._coordinates(first), self._coordinates(second))",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "quadratic-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(self.scale*_dot(coordinates, coordinates))",
+    "after": "return _bounded(_dot(coordinates, coordinates))",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "quadratic-result-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(self.scale*_dot(coordinates, coordinates))",
+    "after": "return self.scale*_dot(coordinates, coordinates)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "gram-column-orientation",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "columns = tuple(zip(*self.features))",
+    "after": "columns = self.features",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "gram-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "_bounded(self.scale*_dot(left, right))",
+    "after": "_bounded(_dot(left, right))",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "gram-result-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "_bounded(self.scale*_dot(left, right))",
+    "after": "self.scale*_dot(left, right)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "event-negative",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "integer(entry, \"event index\", 0)",
+    "after": "integer(entry, \"event index\")",
+    "tests": [
+      "test_vectors_events_and_denominator_refusals"
+    ]
+  },
+  {
+    "identity": "event-upper",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if any(index >= self.dimension for index in indices):",
+    "after": "if False:",
+    "tests": [
+      "test_vectors_events_and_denominator_refusals"
+    ]
+  },
+  {
+    "identity": "event-duplicate",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if len(set(indices)) != len(indices):",
+    "after": "if False:",
+    "tests": [
+      "test_vectors_events_and_denominator_refusals"
+    ]
+  },
+  {
+    "identity": "event-canonical-order",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return tuple(sorted(indices))",
+    "after": "return indices",
+    "tests": [
+      "test_partition_refusals_and_canonical_group_order"
+    ]
+  },
+  {
+    "identity": "event-selector",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "int(index in indices)",
+    "after": "int(index not in indices)",
+    "tests": [
+      "test_distinct_normalization_witnesses"
+    ]
+  },
+  {
+    "identity": "event-normalization",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return Q(self._quadratic(selector), divisor)",
+    "after": "return Q(self._quadratic(selector))",
+    "tests": [
+      "test_distinct_normalization_witnesses"
+    ]
+  },
+  {
+    "identity": "diagonal-sum-prefix",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "total = _bounded(total+_dot(row, row))",
+    "after": "total = total+_dot(row, row)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "diagonal-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return Q(_bounded(self.scale*total), divisor)",
+    "after": "return Q(_bounded(total), divisor)",
+    "tests": [
+      "test_gram_bilinear_quadratic_and_normalized_weights"
+    ]
+  },
+  {
+    "identity": "diagonal-result-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return Q(_bounded(self.scale*total), divisor)",
+    "after": "return Q(self.scale*total, divisor)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "partition-empty-group",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if not groups or any(not group for group in groups):",
+    "after": "if not groups:",
+    "tests": [
+      "test_partition_refusals_and_canonical_group_order"
+    ]
+  },
+  {
+    "identity": "partition-overlap",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if len(set(flattened)) != len(flattened):",
+    "after": "if False:",
+    "tests": [
+      "test_partition_refusals_and_canonical_group_order"
+    ]
+  },
+  {
+    "identity": "partition-coverage",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if set(flattened) != set(range(self.dimension)):",
+    "after": "if False:",
+    "tests": [
+      "test_partition_refusals_and_canonical_group_order"
+    ]
+  },
+  {
+    "identity": "coarse-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return IntegerGramForm(rows, self.scale)",
+    "after": "return IntegerGramForm(rows)",
+    "tests": [
+      "test_snapshot_ownership"
+    ]
+  },
+  {
+    "identity": "coarse-sum",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "(1,)*len(group)",
+    "after": "(0,)*len(group)",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "negative-pair-vector",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "vector = (1, -1)",
+    "after": "vector = (1, 1)",
+    "tests": [
+      "test_negative_pairing_and_nonnegative_products"
+    ]
+  },
+  {
+    "identity": "nonnegative-product",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(left*right)",
+    "after": "return _bounded(left+right)",
+    "tests": [
+      "test_negative_pairing_and_nonnegative_products"
+    ]
+  },
+  {
+    "identity": "omit-bell-case",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(IntegerGramForm(((1, 1),), scale)._quadratic((x, w)) >= 0, \"scaled Bell square\")",
+    "after": "pass",
+    "tests": [
+      "test_counts_faults_and_programming_error_lifecycle"
+    ]
+  },
+  {
+    "identity": "omit-global-witness",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "cases.require(global_weight == expected_global, \"global weight\")",
+    "after": "pass",
+    "tests": [
+      "test_counts_faults_and_programming_error_lifecycle"
+    ]
+  },
+  {
+    "identity": "false-success-exit",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_executable_receipt_and_failure_exit"
+    ]
+  },
+  {
+    "identity": "oracle-row-order",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "values[row*columns+column]",
+    "after": "values[column*rows+row]",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "oracle-partition-order",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "used = sorted(set(labels[:size]))",
+    "after": "used = sorted(set(labels[:size]), reverse=True)",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "oracle-selector-inversion",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "int(row in groups[column])",
+    "after": "int(row not in groups[column])",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "refusal-helper-polarity",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "\n        self.assertFalse(result.ok)\n",
+    "after": "\n        self.assertTrue(result.ok)\n",
+    "tests": [
+      "test_input_shapes_scalars_and_full_budgets"
+    ]
+  },
+  {
+    "identity": "mass-power-selection",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "value**degree",
+    "after": "value**2",
+    "tests": [
+      "test_fixed_shares_and_rotation_orientation"
+    ]
+  },
+  {
+    "identity": "mass-power-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "_bounded(value**degree)",
+    "after": "value**degree",
+    "tests": [
+      "test_born_full_arithmetic_budgets"
+    ]
+  },
+  {
+    "identity": "amplitude-length",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "sequence(amplitudes, \"amplitudes\", maximum=16)",
+    "after": "sequence(amplitudes, \"amplitudes\", maximum=17)",
+    "tests": [
+      "test_born_exact_domains_and_zero_totals"
+    ]
+  },
+  {
+    "identity": "exponent-exact-domain",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "degree = integer(exponent, \"mass exponent\")",
+    "after": "degree = int(exponent)",
+    "tests": [
+      "test_born_preflight_lifecycle_and_section_counts"
+    ]
+  },
+  {
+    "identity": "exponent-selection-domain",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if degree not in (1, 2, 4):",
+    "after": "if False:",
+    "tests": [
+      "test_born_preflight_lifecycle_and_section_counts"
+    ]
+  },
+  {
+    "identity": "amplitude-empty",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if not values:\n        raise Violation(\"input\", \"at least one amplitude required\")",
+    "after": "if False:\n        raise Violation(\"input\", \"at least one amplitude required\")",
+    "tests": [
+      "test_born_preflight_lifecycle_and_section_counts"
+    ]
+  },
+  {
+    "identity": "zero-total-refusal",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if total == 0:\n        raise Violation(\"input\", \"zero total has no normalized shares\")",
+    "after": "if False:\n        raise Violation(\"input\", \"zero total has no normalized shares\")",
+    "tests": [
+      "test_born_exact_domains_and_zero_totals"
+    ]
+  },
+  {
+    "identity": "signed-normalization",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "Q(mass, total)",
+    "after": "Q(mass, abs(total))",
+    "tests": [
+      "test_fixed_shares_and_rotation_orientation"
+    ]
+  },
+  {
+    "identity": "share-denominator",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "Q(mass, total)",
+    "after": "Q(mass)",
+    "tests": [
+      "test_fixed_shares_and_rotation_orientation"
+    ]
+  },
+  {
+    "identity": "share-order",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return tuple(Q(mass, total) for mass in masses)",
+    "after": "return tuple(Q(mass, total) for mass in reversed(masses))",
+    "tests": [
+      "test_fixed_shares_and_rotation_orientation"
+    ]
+  },
+  {
+    "identity": "total-omits-last-mass",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "total = _dot(masses, (1,)*len(masses))",
+    "after": "total = _dot(masses[:-1], (1,)*len(masses[:-1]))",
+    "tests": [
+      "test_fixed_shares_and_rotation_orientation"
+    ]
+  },
+  {
+    "identity": "rotation-pair-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "tuple(_bounded(value) for value in sequence(amplitudes, \"rotation pair\", 2, 2))",
+    "after": "tuple(integer(value) for value in sequence(amplitudes, \"rotation pair\", 2, 2))",
+    "tests": [
+      "test_born_full_arithmetic_budgets"
+    ]
+  },
+  {
+    "identity": "rotation-coefficient-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "tuple(_bounded(value) for value in sequence(coefficients, \"rotation coefficients\", 2, 2))",
+    "after": "tuple(integer(value) for value in sequence(coefficients, \"rotation coefficients\", 2, 2))",
+    "tests": [
+      "test_born_full_arithmetic_budgets"
+    ]
+  },
+  {
+    "identity": "rotation-first-sign",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "_dot((r, -s), (a, b))",
+    "after": "_dot((r, s), (a, b))",
+    "tests": [
+      "test_fixed_shares_and_rotation_orientation"
+    ]
+  },
+  {
+    "identity": "rotation-second-sign",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "_dot((s, r), (a, b))",
+    "after": "_dot((s, -r), (a, b))",
+    "tests": [
+      "test_fixed_shares_and_rotation_orientation"
+    ]
+  },
+  {
+    "identity": "rotation-second-coordinate",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "_dot((s, r), (a, b))",
+    "after": "_dot((s, r), (b, a))",
+    "tests": [
+      "test_fixed_shares_and_rotation_orientation"
+    ]
+  },
+  {
+    "identity": "born-pair-census",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "product(range(-5, 6), repeat=2)",
+    "after": "product(range(-5, 5), repeat=2)",
+    "tests": [
+      "test_born_preflight_lifecycle_and_section_counts"
+    ]
+  },
+  {
+    "identity": "born-rotation-census",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "product(range(-3, 4), repeat=4)",
+    "after": "product(range(-3, 3), repeat=4)",
+    "tests": [
+      "test_born_preflight_lifecycle_and_section_counts"
+    ]
+  },
+  {
+    "identity": "omit-linear-share-witness",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(shares[0] == (Q(3, 7), Q(4, 7)), \"linear shares\")",
+    "after": "pass",
+    "tests": [
+      "test_born_preflight_lifecycle_and_section_counts"
+    ]
+  },
+  {
+    "identity": "omit-born-section",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "    verify_born_boundary(cases)\n",
+    "after": "",
+    "tests": [
+      "test_executable_receipt_and_failure_exit"
+    ]
+  },
+  {
+    "identity": "symbolic-share-power",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "lambda value: value**exponent",
+    "after": "lambda value: value**2",
+    "tests": [
+      "test_power_shares_against_symbolic_normalization"
+    ]
+  },
+  {
+    "identity": "symbolic-rotation-orientation",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "sp.ImmutableMatrix(((r, -s), (s, r)))",
+    "after": "sp.ImmutableMatrix(((r, s), (-s, r)))",
+    "tests": [
+      "test_rotations_against_symbolic_matrix_and_complex_product"
+    ]
+  },
+  {
+    "identity": "selection-guard-1-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require((*quadratic, quadratic_total) == (1, 4, 5), \"selection quadratic numerators\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-2-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require((*quartic, quartic_total) == (1, 16, 17), \"selection quartic numerators\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-3-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(all(value > 0 for value in quadratic+quartic), \"selection positivity\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-4-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(sum(quadratic) == quadratic_total and sum(quartic) == quartic_total, \"selection normalization sums\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-5-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(square_weights == (Q(1, 5), Q(4, 5)), \"selection quadratic weights\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-6-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(fourth_weights == (Q(1, 17), Q(16, 17)), \"selection quartic weights\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-7-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(square_weights[0] != fourth_weights[0] and left != right, \"selection rules differ\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-8-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require((left, right) == (17, 5), \"selection cross products\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-9-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require((*symmetric_square, sum(symmetric_square), *symmetric_fourth, sum(symmetric_fourth)) == (1, 1, 2, 1, 1, 2), \"selection symmetric numerators\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-10-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(_power_shares((1, 1), 2)[0] == Q(1, 2), \"selection symmetric quadratic\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-guard-11-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(_power_shares((1, 1), 4)[0] == Q(1, 2), \"selection symmetric quartic\")",
+    "after": "pass",
+    "tests": [
+      "test_original_selection_witness_and_actual_guard_correspondence"
+    ]
+  },
+  {
+    "identity": "selection-main-composition-removed",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "    verify_selection_witness(run)",
+    "after": "    pass",
+    "tests": [
+      "test_executable_receipt_and_failure_exit"
+    ]
+  }
+]

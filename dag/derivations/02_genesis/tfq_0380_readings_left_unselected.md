@@ -30,11 +30,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Minimality.lean`](../../lean4/)
+- [`absent: no local lean twin located for atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Minimality.lean`](../../lean4/)
 - [`absent: missing declaration obligation: both readings remain parameters of the first-separation statements`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/reading.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for atlas/finite_obstruction_calculus/genesis/code/rust/src/reading.rs`](../../code/rust/src/)
 - [`absent: missing obligation: reading.rs was listed and not opened; it must not collapse L and F if both are represented`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators

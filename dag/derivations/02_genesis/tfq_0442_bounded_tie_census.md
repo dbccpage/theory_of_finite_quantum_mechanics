@@ -36,12 +36,12 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean census of the bounded tie classes; reading-F non-uniqueness has no Lean statement`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::sealed_challenge3_reading_f`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::sealed_challenge3_reading_l`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::sealed_challenge3_reading_f`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::sealed_challenge3_reading_l`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::min_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::min_responses`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/finite_obstruction_calculus/genesis/code/reproduce.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:305-318`
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:326-328`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:305-318`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:326-328`
   - `external:sha256:ad3ab47c05abcec0f914042f034960d1143a7d7f023e1b4cedbfc0efd6023a3a:19`

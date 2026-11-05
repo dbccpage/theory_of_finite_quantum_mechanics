@@ -38,13 +38,13 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::aritySum`](../../../lean4/Imported/GenesisDerivation/Derivation/Minimality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/measure.rs::arity_sum`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/measure.rs)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/response.rs::response_valid_naive`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/response.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/measure.rs::arity_sum`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/measure.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/response.rs::response_valid_naive`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/response.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::mu1`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::mu2`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::response_valid_naive`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::mu1`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::mu2`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::response_valid_naive`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
 
 ---
 
@@ -57,6 +57,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:154-163`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:164-167`
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:339-341`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:154-163`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:164-167`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:339-341`

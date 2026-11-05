@@ -1,0 +1,35 @@
+{
+  "AuthorityEffect": "None",
+  "suite_sha256": "1b1ba01e8e2ccb49c6eb656819d1093fab3f9f70984de74561a53cfd1d797749",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-m",
+        "mypy",
+        "--config-file",
+        "checks/mypy.ini",
+        "--no-incremental",
+        "checks/checker_support/binary_sign_cochain.py",
+        "checks/independent/fsp-bf-2group-sign-claim.py",
+        "checks\\tests\\test_binary_sign_cochains.py"
+      ],
+      "returncode": 1,
+      "stdout": "checks\\tests\\test_binary_sign_cochains.py:117: error: Item \"None\" of \"Failure | None\" has no attribute \"kind\"  [union-attr]\nchecks\\tests\\test_binary_sign_cochains.py:120: error: Item \"None\" of \"Failure | None\" has no attribute \"kind\"  [union-attr]\nchecks\\tests\\test_binary_sign_cochains.py:125: error: Item \"None\" of \"Failure | None\" has no attribute \"kind\"  [union-attr]\nchecks\\tests\\test_binary_sign_cochains.py:126: error: Item \"None\" of \"Failure | None\" has no attribute \"kind\"  [union-attr]\nchecks\\tests\\test_binary_sign_cochains.py:130: error: Item \"None\" of \"Failure | None\" has no attribute \"kind\"  [union-attr]\nchecks\\tests\\test_binary_sign_cochains.py:131: error: Item \"None\" of \"Failure | None\" has no attribute \"kind\"  [union-attr]\nchecks\\tests\\test_binary_sign_cochains.py:133: error: Item \"None\" of \"Failure | None\" has no attribute \"kind\"  [union-attr]\nchecks\\tests\\test_binary_sign_cochains.py:135: error: Item \"None\" of \"Failure | None\" has no attribute \"kind\"  [union-attr]\nchecks\\tests\\test_binary_sign_cochains.py:175: error: Item \"None\" of \"Failure | None\" has no attribute \"kind\"  [union-attr]\nFound 9 errors in 1 file (checked 3 source files)\n",
+      "stderr": "Warning: unused section(s) in checks/mypy.ini: [mypy-sympy.*]\n"
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "checks\\tests\\test_binary_sign_cochains.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "...F..F..\n======================================================================\nFAIL: test_exact_degrees_signs_and_shapes (__main__.BinaryCochainTests.test_exact_degrees_signs_and_shapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\checks\\tests\\test_binary_sign_cochains.py\", line 117, in test_exact_degrees_signs_and_shapes\n    self.assertEqual(evaluate(Cochain, degree, (1,)*4).error.kind, \"input\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'resource' != 'input'\n- resource\n+ input\n\n\n======================================================================\nFAIL: test_operation_degree_and_operand_refusals (__main__.BinaryCochainTests.test_operation_degree_and_operand_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\checks\\tests\\test_binary_sign_cochains.py\", line 135, in test_operation_degree_and_operand_refusals\n    self.assertEqual(three.pentagon(bad).error.kind, \"input\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'resource' != 'input'\n- resource\n+ input\n\n\n----------------------------------------------------------------------\nRan 9 tests in 0.452s\n\nFAILED (failures=2)\n"
+    }
+  ]
+}

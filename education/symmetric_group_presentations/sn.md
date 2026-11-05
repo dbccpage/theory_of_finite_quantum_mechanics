@@ -10,8 +10,8 @@ facts and the extra constructions used to carry them forward.
 
 Read the [source correspondence](source_correspondence.md) before assigning a
 source theorem to a stage label. The active combined manuscript is
-[From Pre-Genesis to MSS-N](/atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
-The [WDP construction](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/genesis_construction.md)
+[From Pre-Genesis to MSS-N](/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
+The [WDP construction](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/genesis_construction.md)
 connects a recorded literal-root history to the canonical Rust primitives and
 a declared finite simplicial interpretation.
 

@@ -49,6 +49,6 @@ labels alone do not repair the wrong initial protocol.
 Protect the action order, queue contents and completion flags when adapting
 this system. Collapsing logs to a multiset loses the send-before-receive
 condition. The [S(n) reading guide](../../reading_guide.md) and
-[WDP replay bridge](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
+[WDP replay bridge](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
 explain why a receipt must replay actual ordered transitions. Such a receipt
 does not grant network or institutional execution permission.

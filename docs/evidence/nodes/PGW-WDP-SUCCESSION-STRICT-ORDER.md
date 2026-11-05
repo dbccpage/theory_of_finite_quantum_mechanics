@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py)
 - sha256 (`bytes`): `e19980ee60160a7e6efd6d2b01583c5815904b2b67700756d463834a9639b5a7`
 - cited in: record TFQ-0550
 
@@ -70,9 +70,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md`
 
 - file: [dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md](../../../dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md)
-- sha256 (`lf-normalised`): `7bf81c61eb3b9769d5ef7436c11811662c921f7092bf079b4ed7dc9c0098f354`
+- sha256 (`lf-normalised`): `7694ae095523264160c10f46b56129c9b1eecb68ea5074295dc9a62db6297164`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0550
 - counts toward the grade: no

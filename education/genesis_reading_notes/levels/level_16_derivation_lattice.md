@@ -12,9 +12,9 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/paper.md
 last_verified: 2026-10-08
 ---
 
@@ -24,7 +24,7 @@ last_verified: 2026-10-08
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 16: the 21-row review and the four later papers](../_images/genesis_ongoing_16_derivation_lattice.svg)
 
@@ -38,6 +38,6 @@ This pin also contains `paper/twentysecond` through `paper/twentyfifth`. Those f
 
 ## Files
 
-- [`meta/review/derivation_review.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md)
-- [`paper/twentysecond/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/paper.md)
-- [`paper/twentyfifth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/paper.md)
+- [`meta/review/derivation_review.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md)
+- [`paper/twentysecond/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/paper.md)
+- [`paper/twentyfifth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/paper.md)

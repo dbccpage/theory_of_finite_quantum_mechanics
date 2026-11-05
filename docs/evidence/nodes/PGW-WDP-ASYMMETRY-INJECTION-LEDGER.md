@@ -57,9 +57,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py)
 - sha256 (`bytes`): `a2b16bc67bc3c996ac3fbcbe03eb409b45d7865634c9a0003059976f792a40f0`
 - cited in: record TFQ-0540
 
@@ -69,9 +69,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md`
 
 - file: [dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md](../../../dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md)
-- sha256 (`lf-normalised`): `1ebac803e8e341ad034ed8db6810a8327a51bc05bf2cc8a4cb843be4e3422369`
+- sha256 (`lf-normalised`): `88e4f6abf6bff1b6985066923df869ffad5b196b6e26e9ea9349cbda8bb10d54`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0540
 - counts toward the grade: no

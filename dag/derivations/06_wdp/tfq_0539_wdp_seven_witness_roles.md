@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `external:sha256:7dade8e5406842b3be776bcb1b6a4747fbaa697b0bdae9f1112e7fae6d9d22dc::adapt_quotient` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py::adapt_quotient`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py::adapt_quotient`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
 
 ---
 
@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:566-599`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:601-609`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:566-599`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:601-609`
   - `external:sha256:a3928cbb59159e343cc8ec518c3015f08d59955caa77d0e07f6e4428202a863f:123-159`

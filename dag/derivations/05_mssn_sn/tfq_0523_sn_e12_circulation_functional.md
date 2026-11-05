@@ -55,6 +55,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:797-803`
+  - `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:797-803`
   - `external:sha256:7756423a02888ae5532df2549868d088c1e68fb2bffc6a5de003d1c89fd93802:48-51`
   - `external:sha256:7756423a02888ae5532df2549868d088c1e68fb2bffc6a5de003d1c89fd93802:52-54`

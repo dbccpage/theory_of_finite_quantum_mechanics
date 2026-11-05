@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
 - sha256 (`lf-normalised`): `7e774b9a5cd0b326f884716c49a18055df522968e659438910dceeaa332b73ad`
 - cited in: node.source
 - counts toward the grade: yes
@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0491_capability_stage_counter.md`
 
 - file: [dag/derivations/02_genesis/tfq_0491_capability_stage_counter.md](../../../dag/derivations/02_genesis/tfq_0491_capability_stage_counter.md)
-- sha256 (`lf-normalised`): `f58c2eee3bd1618e79542320de0274eb1c50298bdaec1a28718313abd082c7ef`
+- sha256 (`lf-normalised`): `eedc8c4efa4b0bc3125a5d0f5e823c0444214906e8fd888cb4ccf25f4c727e6d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0491
 - counts toward the grade: no

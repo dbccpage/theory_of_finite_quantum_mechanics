@@ -36,10 +36,10 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of the closure policy; Lean states the selection-free transition relation and its transport (TFQ-0444)`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/closure.rs::closure_challenge_orbits`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/closure.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/closure.rs::closure_challenge_orbits`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/closure.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py::closure_challenge_orbits`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py::closure_challenge_orbits`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py)
 
 ---
 
@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:174-185`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:186-190`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:357-362`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:174-185`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:186-190`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:357-362`

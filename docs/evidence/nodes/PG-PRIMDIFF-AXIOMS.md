@@ -119,16 +119,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0394
 - counts toward the grade: no
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
 - sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
 - sha256 (`lf-normalised`): `1596c27b09af32aec26710dacafcbe1dcb5081bc06d35d094b4c0b0353932e64`
 - cited in: node.source
 - counts toward the grade: yes
@@ -144,7 +144,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md`
 
 - file: [dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md](../../../dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md)
-- sha256 (`lf-normalised`): `c02bd1400eefba073093838a5da18cd236038b0827d9a784bf2cb742540d5d55`
+- sha256 (`lf-normalised`): `11f5b3f60dbb0a3c3f4e9e14fcba8c669d29d8f1a7b8dcedb8f9b3ea0dc1c0e2`
 - generated view: listed, not counted
 - cited in: record TFQ-0344 (shared)
 - counts toward the grade: no

@@ -9,7 +9,7 @@ potential premise of PG-GEN-NO-RETURN. Outcome classification awaits review.
 ## Source custody and the objects being compared
 
 The source interpreter is `Derivation.stepE` and `Derivation.replayE` in
-`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Basic.lean`.
+`atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Basic.lean`.
 The file's Git blob is exactly `610d8fc982853807eb892eaaf683fc4eb2959cc1`,
 the file fetched from `dbccpage/19L57G1` at the sealed commit
 `3100c4ed5ce70d2b6cff6d2ccd3b0251cf918d0a`. The receipt records both the

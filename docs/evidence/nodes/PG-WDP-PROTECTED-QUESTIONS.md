@@ -116,9 +116,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
 - sha256 (`lf-normalised`): `1596c27b09af32aec26710dacafcbe1dcb5081bc06d35d094b4c0b0353932e64`
 - cited in: node.source
 - counts toward the grade: yes
@@ -134,7 +134,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md`
 
 - file: [dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md](../../../dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md)
-- sha256 (`lf-normalised`): `3b1ec15c906a82c529f424343cd4578a694878720e499274d6abe4c1911240fe`
+- sha256 (`lf-normalised`): `07797a35a6bff4505c946fe3592e87ee8b824eda980081cf2dc620ac4e0d927a`
 - generated view: listed, not counted
 - cited in: record TFQ-0340
 - counts toward the grade: no

@@ -89,9 +89,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/projection_obstruction/m_compatible_gauge_classification`
+### Documents and data: `atlas/projection_obstruction/m_compatible_gauge_classification`
 
-- file: [atlas/papers/projection_obstruction/m_compatible_gauge_classification](../../../atlas/papers/projection_obstruction/m_compatible_gauge_classification)
+- file: [atlas/projection_obstruction/m_compatible_gauge_classification](../../../atlas/projection_obstruction/m_compatible_gauge_classification)
 - cited in: node.source
 - counts toward the grade: yes
 

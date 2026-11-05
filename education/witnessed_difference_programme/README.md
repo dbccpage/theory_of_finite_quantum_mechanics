@@ -12,8 +12,8 @@ claim_status: source-grounded
 authority_effect: "None"
 source_version: "2.4.1"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
 prerequisites:
   - ../symmetric_group_presentations/README.md
   - ../minimal_symbol_systems/README.md
@@ -54,8 +54,8 @@ Differing historical normal-form inputs are retained separately from the correct
 
 **AuthorityEffect:** None.\
 **Curriculum scope:** Levels 00–23 and Level 100 across Parts I–V.\
-**Source monograph:** *The Witnessed Difference Programme: From Finite Distinction to Witnessed Measurement*, edition 2.4.1 (2026-10-11), [`witnessed_difference_programme.md`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md). Start with its [theorem map](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#theorem-map-when-a-presentation-preserves-the-question) (R1–R15).\
-**Claim authority:** the monograph's single live ledger, [`witnessed_difference_programme_claim_ledger.md`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md).\
+**Source monograph:** *The Witnessed Difference Programme: From Finite Distinction to Witnessed Measurement*, edition 2.4.1 (2026-10-11), [`witnessed_difference_programme.md`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md). Start with its [theorem map](/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#theorem-map-when-a-presentation-preserves-the-question) (R1–R15).\
+**Claim authority:** the monograph's single live ledger, [`witnessed_difference_programme_claim_ledger.md`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md).\
 **License:** Creative Commons Attribution 4.0 International (CC-BY-4.0).
 
 ---

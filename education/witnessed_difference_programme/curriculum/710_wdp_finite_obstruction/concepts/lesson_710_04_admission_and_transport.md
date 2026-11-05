@@ -18,7 +18,7 @@ rational arithmetic. It introduces no new Genesis stage.
 
 [Proved] If R(a,b) holds and R(x,x) is forbidden for every admitted x, then
 a and b differ. Replacing b by a would exhibit precisely the forbidden fact.
-The [formal proof and countermodels](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/primitive_admission_and_transport.md)
+The [formal proof and countermodels](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/primitive_admission_and_transport.md)
 state every input. The opaque inscription supplies no relation or law.
 
 Work this example first. Declare `{a,b}`, R=`{(a,b)}`, and the irreflexivity
@@ -60,7 +60,7 @@ homotopy. Altering H2 to `(0,2t)` breaks the equation and is refused.
 ## A raw source change can break quotient agreement
 
 [Source-specific proof and finite checks] The new
-[execution supplement](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_execution_refinement.md)
+[execution supplement](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_execution_refinement.md)
 implements every canonical seed-25 change using the complete assertion
 state. Identifying vertices adds counts from their endpoint fibers in
 each relation separately. The matrix owner computes P M P^T, and a
@@ -110,7 +110,7 @@ the actual refinement maps. For question 5 the new cycle has excesses
 1,0,0; the zero state has 0,0,0. For question 6 use the ordered occurrences
 or the assertion-addition price. These source obligations remain open at
 their full scopes. Continue with the
-[source replay supplement](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_replay_and_remaining_derivations.md)
+[source replay supplement](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_replay_and_remaining_derivations.md)
 to compare the six versus two minimum-response alternatives and the 32
 actually executed source changes with native readouts. Observational
 separation and an admitted irreflexivity law answer different questions.

@@ -94,9 +94,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md](../../../atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md)
 - sha256 (`lf-normalised`): `ca7ad135453d393688ceadf73eb214ccc6976589928f1dc43597e287bbfc6209`
 - cited in: node.source
 - counts toward the grade: yes
@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md](../../../dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md)
-- sha256 (`lf-normalised`): `5e441f6d6cea05a6e47222af1768694b15169fdfbb545da6db8ce7dc84ebd6d5`
+- sha256 (`lf-normalised`): `a0a7d189750cba9bd600bb3bcbf628a1c236c0a5e29138b4aa5a7df476533d4f`
 - generated view: listed, not counted
 - cited in: record TFQ-0335 (shared)
 - counts toward the grade: no

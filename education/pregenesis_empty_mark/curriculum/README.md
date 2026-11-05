@@ -37,7 +37,7 @@ Phase 1: Question & Design ──> Phase 2: Empirical Trials ──> Phase 3: Fo
 | Phase / Hour | Focus | Core Readings | Key Practical Task |
 | :--- | :--- | :--- | :--- |
 | **Phase 1 (Hour 1)** | Foundations & Design | [`../01_experiment_design.md`](../01_experiment_design.md), [`../sources/design_derivation_v0.md`](../sources/design_derivation_v0.md) | Outline the four branches of model response (Lessons 1 & 2). |
-| **Phase 2 (Hour 2)** | Transcripts & Controls | [`../02_trial_record.md`](../02_trial_record.md), [`atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt`](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt), [`atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt`](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt) | Compare Prompt 11 replies across all 3 trials; identify the code-fence confound (Lessons 3 & 4). |
+| **Phase 2 (Hour 2)** | Transcripts & Controls | [`../02_trial_record.md`](../02_trial_record.md), [`atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt`](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt), [`atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt`](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt) | Compare Prompt 11 replies across all 3 trials; identify the code-fence confound (Lessons 3 & 4). |
 | **Phase 3 (Hour 3)** | Proofs & Arguments | [`../03_results_and_arguments.md`](../03_results_and_arguments.md), [`../sources/analysis_derivation_v1.md`](../sources/analysis_derivation_v1.md) | Work through forced separation, quiescence, and replay necessity proofs (Lessons 5, 6 & 7). |
 | **Phase 4 (Hour 4)** | Failure Modes & Code | [`../04_named_failure_modes.md`](../04_named_failure_modes.md), [`../05_method_lessons.md`](../05_method_lessons.md), [`../code/`](../code/) | Run `check_pre_genesis.py` and analyze admission before distinction (Lesson 8). |
 
@@ -71,8 +71,8 @@ Read the primary sources, not only the chapters: the point of this strand is lea
 
 **Read:**
 - [`../02_trial_record.md`](../02_trial_record.md) "Prompts 1 to 10"
-- [`atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt`](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt) lines 1 to 210
-- [`atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt`](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt) lines 1 to 185
+- [`atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt`](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_1_transcript.txt) lines 1 to 210
+- [`atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt`](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt) lines 1 to 185
 
 **Exercises & Answers:**
 1. Quote the first sentence of each run's reply to `<>`.  
@@ -147,7 +147,7 @@ Read the primary sources, not only the chapters: the point of this strand is lea
 
 **Read:**
 - [`../02_trial_record.md`](../02_trial_record.md) "Prompt 13" and "Prompt 16"
-- [`atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt`](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt) lines 571 to 693
+- [`atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt`](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt) lines 571 to 693
 
 **Exercises & Answers:**
 1. Why was flagging "We" wrong?  
@@ -163,8 +163,8 @@ Read the primary sources, not only the chapters: the point of this strand is lea
 
 **Read:**
 - [`../03_results_and_arguments.md`](../03_results_and_arguments.md) results 6 and 7
-- [`atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt`](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt) lines 890 to 1033
-- [`atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_transcript.txt`](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_transcript.txt) lines 1 to 30 and 252 to 316
+- [`atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt`](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt) lines 890 to 1033
+- [`atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_transcript.txt`](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_transcript.txt) lines 1 to 30 and 252 to 316
 
 **Exercises & Answers:**
 1. State and prove replay necessity.  

@@ -100,9 +100,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md`
+### Documents and data: `atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md`
 
-- file: [atlas/papers/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md](../../../atlas/papers/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md)
+- file: [atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md](../../../atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md)
 - sha256 (`lf-normalised`): `8419cdbe706a67b721f246acc93e1875ec692fb3ce05329669221efda32afb29`
 - cited in: node.source
 - counts toward the grade: yes

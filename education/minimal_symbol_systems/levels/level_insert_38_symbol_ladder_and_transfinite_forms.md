@@ -21,7 +21,7 @@ The 38-glyph inventory is a chosen presentation alphabet:
 The [grammar](../grammar/mssn.ebnf) declares how its marks may be combined.
 The alphabet index counts available glyphs; a Genesis stage records admitted
 structure; an MSS row names a proposed capability. These indices are independent.
-The active mathematical account is [From Pre-Genesis to MSS-N](/atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
+The active mathematical account is [From Pre-Genesis to MSS-N](/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
 
 This note replaces the former claims that particular alphabet keys force
 relations, counting, homology or transfinite reflection. The useful construction
@@ -177,4 +177,4 @@ retraction. They do not mechanize every proposition in this note.
 The [Lean inventory](../lean4/README.md) distinguishes syntax sketches, supplied
 fixture checks and actual algebraic theorems. The executable construction from
 the canonical primitive history is described in the
-[WDP Genesis construction supplement](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/genesis_construction.md).
+[WDP Genesis construction supplement](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/genesis_construction.md).
