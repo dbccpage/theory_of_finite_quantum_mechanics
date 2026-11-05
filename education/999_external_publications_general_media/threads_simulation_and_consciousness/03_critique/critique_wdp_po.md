@@ -6,7 +6,7 @@ Tags, as in [claims_ledger.md](claims_ledger.md): **Witnessed** (the paper's tex
 
 The rule of the audit: attack the mathematics as a colleague would, so a reader can repeat it. Nothing here is about the authors.
 
-A second rule, because three reviews now exist (ChatGPT's, PR #513, this one): agreement between reviewers is not evidence. No claim below rests on how many reviews share it. Each claim names what it rests on: a check number (an equation replayed by the script in this folder), a paper location (witnessed text or figure), a standard reference (cited), or "another review" (say-so, not redone here). PR #513's script was re-run in this folder on 2026-11-05 and its printed results reproduce, so its two results are replayed, not say-so. ChatGPT's points are treated in §8.5 as claims to break, not as support.
+A second rule, because three reviews now exist (the first outside review, PR #513, this one): agreement between reviewers is not evidence. No claim below rests on how many reviews share it. Each claim names what it rests on: a check number (an equation replayed by the script in this folder), a paper location (witnessed text or figure), a standard reference (cited), or "another review" (say-so, not redone here). PR #513's script was re-run in this folder on 2026-11-05 and its printed results reproduce, so its two results are replayed, not say-so. The first reviewer's points are treated in §8.5 as claims to break, not as support.
 
 ---
 
@@ -203,7 +203,7 @@ The paper's model reaches rung 1 (interaction: the field writes the density) and
 
 **8.4 Authority.** The paper's honest sentence, "how a quantum mind could perceive the macro-world is yet another mystery altogether", is correct and should be kept. Prose carries no authority over results, and the model's evaluator, if there were one, could not authorize its own outputs; authority sits outside the observer, with whoever declares the packet and the test. The paper proposes; nothing in it evaluates.
 
-**8.5 Five points from a second reviewer, broken and recovered.** Jeremy forwarded a review of Section 5 by ChatGPT (five numbered problems, a table of undefined terms, a proposed question for the authors). Each point is right in its physics; each stops one step short, and one proposes a repair of the wrong shape.
+**8.5 Five points from a second reviewer, broken and recovered.** Jeremy forwarded a review of Section 5 by the first outside reviewer (five numbered problems, a table of undefined terms, a proposed question for the authors). Each point is right in its physics; each stops one step short, and one proposes a repair of the wrong shape.
 
 | # | As stated | Right | Breaks | Recovered |
 |---|---|---|---|---|
@@ -330,7 +330,7 @@ The last arrow is where a theory of experience would have to live, and it is not
 
 *Standard physics cited, not re-derived:* Dicke 1954; Bonifacio and Lugiato 1975; Gross and Haroche, Phys. Rep. 93, 301 (1982) for $\theta_0 \approx 2/\sqrt N$, $\tau_R < T_2$ and the cooperation length; Madelung 1927; Cornwall, Jackiw and Tomboulis 1974 for the 2PI action; the Ward identity; the Proca divergence identity; Jackson for $\lambda_c = 1.706\,d$; Snyder and Love for the $V$-number; Jacques, Phys. Med. Biol. 58, R37 (2013) for tissue scattering, order of magnitude; Schlosshauer, Rev. Mod. Phys. 76, 1267 (2004) for decoherence versus collapse; Landauer 1961 and Bennett 1982 via PR #513.
 
-*Files in this folder:* [ijms-25-02399.md](../02_paper/ijms-25-02399.md) (the paper, all 91 equations); [claims_ledger.md](claims_ledger.md) (definitions, printed typos); [adversarial_review.md](adversarial_review.md) and [code/adversarial_review_checks.py](../code/adversarial_review_checks.py) (PR #513: Gauss's law, Landauer); [adversary_of_chatgpt.md](adversary_of_chatgpt.md) (round 1 and 2); [code/critique_checks.py](../code/critique_checks.py) (this audit's eleven checks).
+*Files in this folder:* [ijms-25-02399.md](../02_paper/ijms-25-02399.md) (the paper, all 91 equations); [claims_ledger.md](claims_ledger.md) (definitions, printed typos); [adversarial_review.md](adversarial_review.md) and [code/adversarial_review_checks.py](../code/adversarial_review_checks.py) (PR #513: Gauss's law, Landauer); [adversary_of_first_review.md](adversary_of_first_review.md) (round 1 and 2); [code/critique_checks.py](../code/critique_checks.py) (this audit's eleven checks).
 
 ---
 

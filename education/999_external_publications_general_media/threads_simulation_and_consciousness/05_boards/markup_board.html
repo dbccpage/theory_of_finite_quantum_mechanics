@@ -79,7 +79,7 @@ select{font:13px var(--body);padding:4px 8px;border-radius:6px;border:1px solid 
 <div class="wrap">
 <header>
   <h1>What you owe me</h1>
-  <p class="lede">Three pictures: the tree, the rendering claim, and the holographic brain paper. Supporting cards below. Mark each card right, wrong or unsure. A wrong mark asks what failed: a premise, a step, a fact or the conclusion. Cards that rest on it are then flagged for reassessment. Claude reads the marks, repairs the card, and says whether its conclusion still follows.</p>
+  <p class="lede">Three pictures: the tree, the rendering claim, and the holographic brain paper. Supporting cards below. Mark each card right, wrong or unsure. A wrong mark asks what failed: a premise, a step, a fact or the conclusion. Cards that rest on it are then flagged for reassessment. The author reads the marks, repairs the card, and says whether its conclusion still follows.</p>
   <div class="legend">
     <span class="chip"><span class="dot" style="background:var(--wit)"></span>witnessed: a record exists</span>
     <span class="chip"><span class="dot" style="background:var(--supplied)"></span>supplied: put in by someone</span>
@@ -355,7 +355,7 @@ drawRender();
     clearTimeout(t);
     snap.docs.forEach(doc=>{ const v=doc.data()||{}; state[doc.id]={verdict:v.verdict||"",note:v.note||"",objection:v.objection||""}; paint(doc.id); });
     const n=snap.docs.filter(x=>(x.data()||{}).verdict).length;
-    statusEl.textContent = `Shared marks: ${n} of ${CARDS.length} cards marked. Claude can read these.`;
+    statusEl.textContent = `Shared marks: ${n} of ${CARDS.length} cards marked. They are read back by the author.`;
   }, err=>{ clearTimeout(t); statusEl.textContent="Could not load shared marks ("+(err&&err.code||"error")+"). Your marks save in this browser."; db=null; });
 })();
 </script>

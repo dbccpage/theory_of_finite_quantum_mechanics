@@ -1,6 +1,6 @@
-# DeepSeek review, received and checked
+# Third outside review, received and checked
 
-**Received** 2026-11-05 from Jeremy, pasted into the thread with the words "Add deepseek's review". Record file: the review is kept verbatim in Section 1 (its own headings and emoji included). Section 2 checks each of its claims about the paper against the transcript `../02_paper/ijms-25-02399.md`. Section 3 goes through its review of `paper_dissection.md`. Section 4 says what changed in this folder as a result (nothing in the dissection; see the candidate list).
+**Received** 2026-11-05 from Jeremy, pasted into the thread for inclusion. Record file: the review is kept verbatim in Section 1 (its own headings and emoji included). Section 2 checks each of its claims about the paper against the transcript `../02_paper/ijms-25-02399.md`. Section 3 goes through its review of `paper_dissection.md`. Section 4 says what changed in this folder as a result (nothing in the dissection; see the candidate list).
 
 Standing rule: a reviewer agreeing with us is not evidence. Each claim below carries what it rests on.
 

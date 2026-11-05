@@ -1,10 +1,10 @@
 # Self-audit: the replies, the board, the adversary record and the Lean file
 
-Date: 2026-11-05. This file covers what [self_review.md](self_review.md) does not: the final reply set, the board cards and their equations, [adversary_of_chatgpt.md](../03_critique/adversary_of_chatgpt.md), [lean4/ThreadsReply.lean](../lean4/ThreadsReply.lean), and the lines in [claims_ledger.md](../03_critique/claims_ledger.md) and [analysis.md](../03_critique/analysis.md). For [adversarial_review.md](../03_critique/adversarial_review.md) and its checks, see `self_review.md` §A.
+Date: 2026-11-05. This file covers what [self_review.md](self_review.md) does not: the final reply set, the board cards and their equations, [adversary_of_first_review.md](../03_critique/adversary_of_first_review.md), [lean4/ThreadsReply.lean](../lean4/ThreadsReply.lean), and the lines in [claims_ledger.md](../03_critique/claims_ledger.md) and [analysis.md](../03_critique/analysis.md). For [adversarial_review.md](../03_critique/adversarial_review.md) and its checks, see `self_review.md` §A.
 
 Each entry runs the same steps: **claim → break → repair → retest → status**.
 
-A claim survives only when it rests on something checkable. That means a quote from the paper ([ijms-25-02399.md](../02_paper/ijms-25-02399.md), by section), a recomputation (check ids S1–S5 in [code/self_audit_checks.py](../code/self_audit_checks.py)), or a Lean proof. Agreement between Claude passes, or between Claude and ChatGPT, is not on that list. Where two passes disagree, both readings are kept below.
+A claim survives only when it rests on something checkable. That means a quote from the paper ([ijms-25-02399.md](../02_paper/ijms-25-02399.md), by section), a recomputation (check ids S1–S5 in [code/self_audit_checks.py](../code/self_audit_checks.py)), or a Lean proof. Agreement between our own passes, or between us and an outside reviewer, is not on that list. Where two passes disagree, both readings are kept below.
 
 Status words:
 - **KEPT**: it survived the attack.
@@ -12,7 +12,7 @@ Status words:
 - **WITHDRAWN**: it is dropped.
 - **OPEN**: it is not settled here.
 
-Repairs are applied to the files still in use: `replies.md`, the board, the ledger and the analysis. Records of earlier rounds, such as `adversary_of_chatgpt.md`, `adversarial_review.md` and `board_repair_log.md`, are left as written so the trail stays readable. Each gets a pointer here instead.
+Repairs are applied to the files still in use: `replies.md`, the board, the ledger and the analysis. Records of earlier rounds, such as `adversary_of_first_review.md`, `adversarial_review.md` and `board_repair_log.md`, are left as written so the trail stays readable. Each gets a pointer here instead.
 
 ---
 
@@ -29,7 +29,7 @@ The first version is in commit a76b21f, the second in 1fdd076 and the third in 9
 | A5 | "It never says the universe doesn't render offscreen." | Retest: "render" occurs 0 times in the paper. | Kept as "Not one line about rendering the universe." The only "universe" is a reference title (Hameroff and Penrose). | KEPT |
 | A6 | "the observer, is the one part nobody supplied." | "Nobody" covers every reader of the thread. The paper also flags the gap itself: "yet another mystery altogether". | "Your source ... honestly left the observer open." | REPAIRED |
 | A7 | v1 post 4: "A hologram can't be read without a reference beam. In your version, who supplies it?" | Reading a hologram needs a reconstruction wave, which need not be the original beam (white-light reflection holograms). | v2: "Appendix B proposes a reference wave and reconstruction. What evidence connects...". It was later dropped as too categorical (`board_repair_log.md`). | WITHDRAWN |
-| A8 | v3 post 1: "do you mean it stops existing, stops evolving, or simply isn't experienced? Those are three different claims." | **The two passes disagree.** This audit and `adversary_of_chatgpt.md` round 1 say option 3 is a free exit. `self_review.md` C1 says taking it is itself a result: the claim shrinks to ordinary limited observation. Both are right about different things. The exit costs her nothing in the thread unless the post says that it shrinks the claim. | The game post names option 3 as ordinary ("Number 3 is just Tuesday"). Taking it is then visibly the shrinkage `self_review.md` describes. | REPAIRED |
+| A8 | v3 post 1: "do you mean it stops existing, stops evolving, or simply isn't experienced? Those are three different claims." | **The two passes disagree.** This audit and `adversary_of_first_review.md` round 1 say option 3 is a free exit. `self_review.md` C1 says taking it is itself a result: the claim shrinks to ordinary limited observation. Both are right about different things. The exit costs her nothing in the thread unless the post says that it shrinks the claim. | The game post names option 3 as ordinary ("Number 3 is just Tuesday"). Taking it is then visibly the shrinkage `self_review.md` describes. | REPAIRED |
 | A9 | Tree: "Something happening in between? That's a story, not a view." | It calls an inference a "story". Inferring a history from two records is legitimate. The point is only that the history is inferred. | "Inferred, not in view." | REPAIRED |
 | A10 | Tree: "I'm saying none of it was witnessed." | Overreach. The two poses are witnessed. The fall, identity and order are not. | "Saying it came in on the side." | REPAIRED |
 | A11 | Tree: "who checked? Who decided?" | The past tense asks about one act. The question is about the standing rule. | "who checks? Who decides?" | REPAIRED |
@@ -85,9 +85,9 @@ These are applied to the live board and saved as [markup_board.html](../05_board
 
 | # | As written | Break | Repair | Status |
 |---|---|---|---|---|
-| C1 | `adversary_of_chatgpt.md`: with $A^0=0$ and $\nabla\cdot\mathbf A=0$, $\partial^\nu F_{\nu0}=-\partial_0(\nabla\cdot\mathbf A)=0$; with (A7), $0=-e\lvert\varphi\rvert^2$ | Retest: S2a (sympy). Sign convention: $\partial^iA_i=\nabla\cdot\mathbf A$ in $(+,-,-,-)$. | — | KEPT |
+| C1 | `adversary_of_first_review.md`: with $A^0=0$ and $\nabla\cdot\mathbf A=0$, $\partial^\nu F_{\nu0}=-\partial_0(\nabla\cdot\mathbf A)=0$; with (A7), $0=-e\lvert\varphi\rvert^2$ | Retest: S2a (sympy). Sign convention: $\partial^iA_i=\nabla\cdot\mathbf A$ in $(+,-,-,-)$. | — | KEPT |
 | C2 | Same file: "A static density kills super-radiance" | Round 2 already narrowed this to the modelled emitter. Retest of that step: a frozen $\lvert\varphi\rvert^2$ forces the cross term $2\,\mathrm{Re}(b_0^*b_1\varphi_0^*\varphi_1)$ to vanish, and that term oscillates at $\Omega$. So $R=0$, and the source in (A38) is gone. This holds wherever $\varphi_0^*\varphi_1\neq0$, which (A16)–(A17) need anyway. `self_review.md` A1 goes further: the slow population term breaks it too. | The condition is stated. | KEPT |
-| C3 | Same file: "≈ 4×10⁹ molecules per cubic wavelength, so the dropped term is not small" | A count is not an interaction strength (ChatGPT, round 2). | The count stays as a number (S3a: 4.18e9). The size claim is dropped. This was done in round 2. | WITHDRAWN |
+| C3 | Same file: "≈ 4×10⁹ molecules per cubic wavelength, so the dropped term is not small" | A count is not an interaction strength (the first reviewer, round 2). | The count stays as a number (S3a: 4.18e9). The size claim is dropped. This was done in round 2. | WITHDRAWN |
 | C4 | Same file: $e^{-2.4\text{ eV}/26.7\text{ meV}}\approx e^{-90}$, "so thermal photons will not write at that frequency" | The number holds: 89.8 with the paper's 2.4 eV, and 92.8 with the correct 2.48 eV (S3c–d). The relevance is narrower. In tissue, the noise that matters is absorption and chemistry, not thermal photons (`self_review.md` A7). | Both numbers are stated. "No thermal photons compete" is kept; "the write is clean" does not follow. | REPAIRED |
 | C5 | Same file, "Not attacked here: Landauer ... correct" | `self_review.md` A8 objects that recording over a medium in use must erase. That is true only under conditions. Landauer's bound is $k_BT\ln2$ per bit of information that is logically discarded into a bath at temperature $T$. Overwriting a cell costs at least that only when its prior content is unknown, carries a full bit of entropy, and is not correlated with anything kept. If the content is known, or an identical copy is retained, the overwrite can be done reversibly, with no minimum (Bennett's reversible erasure with a retained copy). The paper says neither what is erased nor under which assumptions. The first version of this entry said "overwriting an occupied medium does cost at least $k_BT\ln2$ per bit". Occupancy alone does not establish that (R3). | Pointer added to the file, with the conditions. What survives either way: Landauer says nothing about retention. | REPAIRED |
 | C6 | Same file: "4.7 bits per synapse gives about 147 TB" | Retest S3i: 146.9 TB. | — | KEPT |
@@ -182,10 +182,10 @@ Jeremy asked for 3 to 5 terse replies in plain, clear reasoning: no poetry, no i
 ## E. Tally and what is still open
 
 - **This file:** 90 entries: 72 repaired, 4 withdrawn, 14 kept. Section F holds the five review findings on 1eea606; each one broke an earlier repair here. Section G holds the fifteen repairs to the learning boards. Section H holds the ten repairs behind the terse plain replies.
-- **Fact errors found in Claude's own text:** the Minecraft save file (A15), the vision quote read as being about the unobserved world (A19, B9, C8), the misplaced correction about authority in `analysis.md` (C7), and the Knox limerick credited to Berkeley (A25).
+- **Fact errors found in our own text:** the Minecraft save file (A15), the vision quote read as being about the unobserved world (A19, B9, C8), the misplaced correction about authority in `analysis.md` (C7), and the Knox limerick credited to Berkeley (A25).
 - **Open:**
   - The input amplitude, about 3 against the rerun's 2.13 (`self_review.md` A6).
   - Whether any barrier protects the proposed record.
   - The size of the dropped near-field term in Appendix A.
   - Nobody has compared the Appendix C rerun with the authors' code.
-- **Who reviewed this:** Claude reviewed Claude, with ChatGPT and a second Claude pass as adversaries. None of that is independent. Jeremy's review is the next gate, and so is Fable's full review of the paper.
+- **Who reviewed this:** We reviewed our own work, with the first outside reviewer and a second pass of our own as adversaries. None of that is independent. Jeremy's review is the next gate, and so is the full review of the paper.

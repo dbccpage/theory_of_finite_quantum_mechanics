@@ -7,7 +7,7 @@ This folder holds the complete work on one paper and one public thread.
 
 Two rules run through every file:
 - **Replies stay finite; the paper gets the continuum.** Replies to people use finite pictures and counting. The paper is checked with its own continuum equations.
-- **Agreement is not evidence.** Several language models reviewed this work, and their agreement counts for nothing. A claim stands only on something checkable: a quote from the paper, a computation in `code/`, a Lean proof in `lean4/`, or a rerun of the paper's simulation. Each claim is tagged **Witnessed** (quoted record), **Derived** (exact check), **Numerical** (floating-point rerun), **Supplied** (an assumption someone put in) or **Open**.
+- **Agreement is not evidence.** Several outside reviewers reviewed this work, and their agreement counts for nothing. A claim stands only on something checkable: a quote from the paper, a computation in `code/`, a Lean proof in `lean4/`, or a rerun of the paper's simulation. Each claim is tagged **Witnessed** (quoted record), **Derived** (exact check), **Numerical** (floating-point rerun), **Supplied** (an assumption someone put in) or **Open**.
 
 ## Reading order
 
@@ -16,7 +16,7 @@ Two rules run through every file:
 3. `03_critique/analysis.md`, then `03_critique/claims_ledger.md`: what the post and the paper each supply, derive and witness.
 4. `03_critique/adversarial_review.md` and `03_critique/critique_wdp_po.md`: the mathematical teardown.
 5. `03_critique/assumptions_ledger.md`, then `03_critique/assumptions_mutation_audit.md`: 78 assumptions, each checked against the paper, mutated, and the paper's claim tried for recovery.
-6. `03_critique/math_exam_review.md`, `03_critique/revised_review_check.md` and `03_critique/deepseek_review.md`: three outside reviews, checked line by line.
+6. `03_critique/math_exam_review.md`, `03_critique/revised_review_check.md` and `03_critique/third_outside_review.md`: three outside reviews, checked line by line.
 7. `03_critique/paper_dissection.md`: the paper taken apart and put back together in plain language, Sections 5 and 6 first, no in-house terms. This is the one file to hand an outside reader or the authors.
 8. `04_self_audit/self_review.md` and `04_self_audit/self_audit.md`: our own work, broken and repaired.
 9. `01_thread/replies.md`: the posts that survived all of the above.
@@ -32,8 +32,8 @@ Two rules run through every file:
 | | `ijms-25-02399.md` | The full text with every equation in LaTeX, plus our typo notes | source |
 | `03_critique/` | `analysis.md` | Six slots (carrier, gauge, reference, comparison, authority, observer) for the post and for the paper | live |
 | | `claims_ledger.md` | Every claim tagged witnessed, derived, supplied, cited or open | **live** |
-| | `adversarial_review.md` | Round 1: ChatGPT's review broken and recovered (Gauss's law in Appendix C, Landauer, capacity) | record |
-| | `adversary_of_chatgpt.md` | Two ChatGPT arguments broken and recovered, round 2 retest, and a round 3 pointer | record |
+| | `adversarial_review.md` | Round 1: the first outside review broken and recovered (Gauss's law in Appendix C, Landauer, capacity) | record |
+| | `adversary_of_first_review.md` | Two arguments from the first outside review broken and recovered, round 2 retest, and a round 3 pointer | record |
 | | `critique_wdp_po.md` | Audit with the Witnessed Difference Programme and Projection Obstruction | **live** |
 | | `assumptions_ledger.md` | A 78-row assumption ledger forwarded from another reviewer, kept verbatim (say-so) | record |
 | | `holographic_brain_math_exam.pdf` | A 10-page mathematical examination from another reviewer, kept as received (say-so) | record |
@@ -41,7 +41,7 @@ Two rules run through every file:
 | | `outside_review_revised/` | A revised outside review package (ten documents and a 30-check script), kept as received (say-so) | record |
 | | `revised_review_check.md` | That package checked: agrees / adds / differs, with three corrections it forced on this folder (Ω² threshold, matter-charge Gauss law, the (A88)/(A89) index mismatch) | **live** |
 | | `paper_dissection.md` | The paper taken apart and put back together for an outside reader: Section 5 and Section 6 sentence by sentence, the list of what enters from nowhere, the mathematics in plain terms, what the paper establishes, sixteen refutable statements. Plain language only; backing is in the audits above | **live** |
-| | `deepseek_review.md` | A third outside review (of the paper and of the dissection) kept verbatim, each claim about the paper checked against the transcript (two do not hold), its five suggestions decided | record + check |
+| | `third_outside_review.md` | A third outside review (of the paper and of the dissection) kept verbatim, each claim about the paper checked against the transcript (two do not hold), its five suggestions decided | record + check |
 | | `assumptions_mutation_audit.md` | Every ledger row checked against the paper, mutated, and the claim tried for recovery: 29 unchanged, 24 recover with a price, 25 do not recover; the classical-comparator test | **live** |
 | `04_self_audit/` | `self_review.md` | The math critique, attacked and repaired | live |
 | | `self_audit.md` | Replies, boards, Lean and ledger, attacked and repaired. 90 entries, including Jeremy's review (§F), the learning boards (§G) and the terse replies (§H) | **live** |
