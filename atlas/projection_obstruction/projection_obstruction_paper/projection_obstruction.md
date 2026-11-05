@@ -6,9 +6,9 @@
 
 **Author:** Jeremy H. Carroll
 
-**Date:** 2026-10-14
+**Date:** 2026-10-23
 
-**Version:** 6.9.18
+**Version:** 6.9.20
 
 **License:** Creative Commons Attribution 4.0 International (CC-BY-4.0)
 
@@ -2197,6 +2197,46 @@ $$
 with trace norm $\lVert\kappa_6(\rho(\epsilon)) - \kappa_6(\rho_{\mathrm{cl}})\rVert_1 = |\epsilon|$ and $\lVert\kappa_6(\rho_+) - \kappa_6(\rho_-)\rVert_1 = 2$ (witnessed by the 6-body Pauli observable $X^{\otimes 6}$, for which $\langle X^{\otimes 6}\rangle_{\rho_+} - \langle X^{\otimes 6}\rangle_{\rho_-} = 2$).
 These results complement multipartite Lieb--Robinson bounds (Tran et al. [25]): whereas power-law Lieb--Robinson bounds constrain spatial propagation velocity in long-range architectures, the algebraic cancellation strata and parity constructions above identify exact structural blind spots where few-body marginals carry zero signal despite order-unity $k$-body connected correlations.
 
+
+### 5.18 Residual uncertainty and the time available for correction (NUM1)
+
+A numerical residual and an error enclosure have different roles. Suppose the hypotheses of a short-time bound in this paper give
+$$
+D(t)\ge \nu t-Kt^2\qquad(0\le t\le T),
+$$
+where $\nu,K\ge0$, and suppose an independently validated computation gives
+$|\widehat\nu-\nu|\le\eta$ with $\widehat\nu,\eta\ge0$.
+Set $\nu_-:=\max(0,\widehat\nu-\eta)$. Then
+$$
+D(t)\ge\max\{0,\nu_-t-Kt^2\}.
+$$
+**Proof.** The enclosure implies $\nu\ge\nu_-$; substitution and $D(t)\ge0$ give the claim. If $K>0$ and $\nu_->0$, then $D(t)\ge\nu_-t/2$ on
+$0\le t\le\min\{T,\nu_-/(2K)\}$. If $K=0$, the linear bound holds throughout the declared interval. If $\widehat\nu\le\eta$, this observation supplies no positive onset certificate. $\square$
+
+This is a boundary on what the recorded residual establishes, not a claim that the true residual vanishes when its uncertainty interval includes zero. For example, $\widehat\nu=\eta=1/50$ yields zero guaranteed margin. The selected rational arithmetic is replayed by `code/residual_error_budget.py`; that calculator does not establish the input enclosure or the physical remainder bound.
+
+For upper error control, the actual-defect estimate of §5.10 extends across finitely many correction jumps. If $e$ bounds the current trace-norm error, $r\ge0$ bounds the actual defect rate on a horizon $H$, and $j\ge0$ reserves the integration and correction-jump allowances, then
+$$
+E(h)\le e+rh+j\qquad(0\le h\le H).
+$$
+For a trace-norm target $\varepsilon$, with $e+j\le\varepsilon$, the largest interval licensed by this scalar bound is
+$$
+h_{\rm safe}=\begin{cases}
+\min\{H,(\varepsilon-e-j)/r\},&r>0,\\
+H,&r=0.
+\end{cases}
+$$
+If $e+j>\varepsilon$, the bound licenses no interval, including duration zero. Exhausting this sufficient budget does not prove that the actual error has crossed the target: cancellations may make the bound loose. PO-034 §4.3 propagates state uncertainty through the product retraction and its declared observation map.
+
+**Correction-jump derivation.** On each interval between finitely many correction times $t_\ell$, let the approximate density path $\widetilde\rho$ be absolutely continuous and define its actual defect $R=\dot{\widetilde\rho}-\mathcal L_t\widetilde\rho$. Assume the exact linear propagator $U(t,s)$ is trace-norm contractive on the Hermitian differences concerned, and that the defect has an integrable norm. A jump $J_\ell=\widetilde\rho(t_\ell^+)-\widetilde\rho(t_\ell^-)$ changes $\Delta=\rho-\widetilde\rho$ by $-J_\ell$. Applying variation of constants on each interval and composing the propagators gives
+$$
+\Delta(t)=U(t,0)\Delta(0)-\int_0^t U(t,s)R(s)\,ds
+-\sum_{0<t_\ell\le t}U(t,t_\ell)J_\ell.
+$$
+Here the final value is the post-correction value if $t$ is a jump time. Taking norms yields $\|\Delta(t)\|_1\le\|\Delta(0)\|_1+\int_0^t\|R(s)\|_1\,ds+\sum_\ell\|J_\ell\|_1$. Thus the scalar budget above follows from $\|\Delta(0)\|_1\le e$, a validated bound $\int_0^h\|R(s)\|_1\,ds\le rh+j_{\rm integration}$, and $\sum_\ell\|J_\ell\|_1\le j_{\rm jump}$ with $j=j_{\rm integration}+j_{\rm jump}$. These are assumptions on the actual numerical path, not on a sampled ideal tangent field. An initial-time correction is included in $e$ or as an explicitly counted jump. $\square$
+
+These distinctions also apply to channel diagnostics. A computed tiny negative Choi eigenvalue can be an eigensolver artifact, whereas a genuinely negative binary-rational Choi direction must still be refused. Likewise, an approximate Hamiltonian propagator may be useful as a numerical diagnostic while failing exact unitary admission. An accepted diagnostic, a state enclosure and a bound on the actual trajectory defect remain separate inputs. The extension uses the established a posteriori perspective of [Zoufal, Sutter and Woerner](https://arxiv.org/abs/2108.00022v2); the present jump and scalar-budget consequences are derived above.
+
 ## 6. Worked Examples
 
 ### 6.1 Example 1: Two Qubits with Exact Trace-Norm Defect
@@ -3397,11 +3437,42 @@ No external funding. No conflicts of interest.
 16. J. C. Cresswell, "Universal entanglement timescale for Rényi entropies," *Phys. Rev. A* **97** (2018), 022317. [arXiv:1709.10064](https://arxiv.org/abs/1709.10064); [doi:10.1103/PhysRevA.97.022317](https://doi.org/10.1103/PhysRevA.97.022317).
 17. B. Aaronson, R. Lo Franco, G. Compagno, and G. Adesso, "Hierarchy and dynamics of trace distance correlations," *New J. Phys.* **15** (2013), 093022. [arXiv:1307.3953](https://arxiv.org/abs/1307.3953); [doi:10.1088/1367-2630/15/9/093022](https://doi.org/10.1088/1367-2630/15/9/093022).
 18. J. H. Carroll, "Conditional Hilbert Lifts of $\ell^1$ Sector Weights and Born Normalization Redundancy," companion note, 2026 (restated in §5.12).
-19. J. H. Carroll, *Finite Quantum Mechanics*, 2026, §§13.5–13.8. Manuscript. The finite linear-observer arguments used here are proved self-containedly in §7.6.
+19. J. H. Carroll, *Finite Quantum Mechanics*, 2026, §§13.5–13.8. [Manuscript](https://github.com/dbccpage/theory_of_finite_quantum_mechanics). The finite linear-observer arguments used here are proved self-containedly in §7.6.
 20. M. Hein, J. Eisert, and H. J. Briegel, "Multiparty entanglement in graph states," *Phys. Rev. A* **69** (2004), 062311. [doi:10.1103/PhysRevA.69.062311](https://doi.org/10.1103/PhysRevA.69.062311).
 21. S. L. Brunton, B. W. Brunton, J. L. Proctor, and J. N. Kutz, "Koopman Invariant Subspaces and Finite Linear Representations of Nonlinear Dynamical Systems for Control," *PLOS ONE* **11**(2) (2016), e0150171. [doi:10.1371/journal.pone.0150171](https://doi.org/10.1371/journal.pone.0150171).
 22. T. Carleman, "Application de la théorie des équations intégrales linéaires aux systèmes d'équations différentielles non linéaires," *Acta Math.* **59** (1932), 63--87.
 23. A. Sedoglavic, "A probabilistic algorithm to test local algebraic observability in polynomial time," *J. Symb. Comput.* **33** (2002), 735--755. [doi:10.1006/jsco.2002.0532](https://doi.org/10.1006/jsco.2002.0532).
 24. A. F. Villaverde, A. Barreiro, and A. Papachristodoulou, "Structural Identifiability of Dynamic Systems Biology Models," *PLOS Comput. Biol.* **12**(10) (2016), e1005153. [doi:10.1371/journal.pcbi.1005153](https://doi.org/10.1371/journal.pcbi.1005153).
 25. M. C. Tran, C.-F. Chen, A. Ehrenberg, A. Y. Guo, A. Deshpande, Y. Hong, Z.-X. Gong, A. V. Gorshkov, and A. Lucas, "Hierarchy of Linear Light Cones with Long-Range Interactions," *Phys. Rev. X* **11** (2021), 011016. [doi:10.1103/PhysRevX.11.011016](https://doi.org/10.1103/PhysRevX.11.011016).
-26. *Native joint operations and a Genesis-to-Bell experiment*, The Symbol Game repository, revision `4bdf074a1b18cdeb710d991336e35f8f62979542`, 2026. Joint experiment; stable history carrier. External source descriptions; their proof and execution scopes are stated separately.
+26. *Native joint operations and a Genesis-to-Bell experiment*, private working repository, revision `4bdf074a1b18cdeb710d991336e35f8f62979542`, 2026. External source descriptions; their proof and execution scopes are stated separately.
+
+
+## Supplemental formalization: uncertainty and correction (23 October 2026)
+
+The standalone supplemental build `python tools/replay_projection_bounds.py --mathlib PATH_TO_PREPARED_MATHLIB`
+compiles `lean4/ProjectionBounds.lean` with Lean 4.35.0 and replays every named
+theorem in `lean4/ProjectionCensus.lean`. The 20-theorem result and exact source
+hashes are recorded in `lean4/projection_axiom_census.json`; the text axiom
+output is `lean4/projection_axiom_report.txt`. This supplements the existing
+census without replacing its historical scope. Dependencies are external and pinned in `lean4/projection_dependencies.json`.
+Prepare the compiler and Mathlib cache as described in
+`docs/projection_formalization.md`; the replay itself does not download dependencies. Only `propext`, `Quot.sound` and `Classical.choice` are allowed.
+
+| Bound | Lean result | Explicit premise retained |
+|---|---|---|
+| Robust rate and onset | `lowerRate_le`, `uncertain_onset`, `half_slope_window` | A two-sided rate enclosure and the actual Taylor lower estimate on its horizon |
+| Correction deadline | `correction_window_iff`, `zero_rate_window`, `safe_horizon`, `exhausted_budget` | Positive rate for division; a separate zero-rate branch; independently valid budgets and horizon |
+| Actual corrected update | `corrected_step`, `accumulated_budget` | A nonexpansive evolution, residual enclosure and correction displacement bound |
+| Finite transported jumps | `transported_jump_bound` | The variation-of-constants identity, an integral bound, and contractive transports |
+| Product and observed residual uncertainty | `factor_replacement_bound`, `product_residual_uncertainty`, `product_defect_uncertainty`, `observed_residual_bound`, `observed_defect_interval` | A factor-replacement path with each step bounded by the state distance; a declared Lipschitz observation |
+
+The scalar results are over the real numbers. The jump and residual theorems
+are over arbitrary normed additive groups, so they apply to a trace-norm
+carrier once its physical obligations are proved. In particular, the constant
+$k+1$ is derived by telescoping $k$ factor replacements and adding the original
+state discrepancy. The finite sum of jump norms is derived from the supplied
+transported-jump identity. Lean does not construct the continuous propagator,
+prove the density-matrix tensor/partial-trace estimates, or certify numerical
+integration in this supplement. Those statements remain written analytic
+premises. The new bounds do not turn a supplied error radius into an observed
+or statistically justified radius.

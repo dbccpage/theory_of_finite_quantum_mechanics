@@ -253,6 +253,8 @@ def test_preamble_pins_a_font_that_ships_with_tex():
     text = PREAMBLE.read_text(encoding="utf-8")
     mono = re.search(r"\\setmonofont\{([^}]+)\}", text)
     assert mono, "no monospace font declared"
-    assert "Latin Modern" in mono.group(1), (
+    # Fontconfig's family name and TeX's bundled font filename identify the
+    # same portable face. The filename also works without a system font cache.
+    assert mono.group(1) in {"Latin Modern Mono", "lmmono10-regular.otf"}, (
         f"monospace font is {mono.group(1)!r}; use a face that ships with "
         "every TeX distribution so the archive builds elsewhere")

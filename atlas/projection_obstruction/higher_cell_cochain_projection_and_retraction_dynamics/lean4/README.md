@@ -1,6 +1,6 @@
 # Formal evidence scope
 
-Lean is pinned to 4.34.1. The seven declarations in the stored axiom report
+Lean is pinned to 4.35.0. The seven declarations in the stored axiom report
 are conditional abstract additive projector identities. The structure
 `SimplexOperatorSpace` supplies additivity, normalization, and same-site /
 different-site trace-embedding laws as explicit hypotheses.
@@ -15,7 +15,7 @@ Hodge complex, or DDC model is instantiated in Lean.
 The stored report says these declarations use no global logical axioms.
 That does not mean there are no mathematical assumptions. Comments were
 corrected during review; proof terms and the report were preserved.
-No fresh pinned build was available in the review environment.
+The earlier review lacked a pinned build. On 2026-10-23, a fresh isolated Lean 4.35.0 build and all seven census entries passed. The new perturbation bounds remain written proofs.
 
 From this directory, on a machine with the pinned toolchain:
 

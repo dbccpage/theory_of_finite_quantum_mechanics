@@ -1,7 +1,7 @@
 paper_identity:
   paper_id: "PO-000"
   title: "Projection Obstruction for Factorized States: Nonlinear Dynamics, Conditional ℓ¹ Diagnostics, and Exact Short-Time Defect Bounds"
-  canonical_version: "v6.9.18"
+  canonical_version: "v6.9.20"
   paper_file: "projection_obstruction.md"
   authority_effect: "None"
   lean_sources_directory: "lean4/"
@@ -3045,4 +3045,41 @@ claims:
     open_obligations: []
     limitations:
       - "Exact finite attainment fixture; no general Lean theorem."
-
+  - claim_id: NUM1
+    slug: residual_uncertainty_and_correction_window
+    record_kind: mathematical_claim
+    claim_kind: proposition
+    title: Residual uncertainty and correction budgets
+    statement: An enclosed onset rate gives a lower defect margin; supplied actual-defect and jump bounds
+      give a sufficient waiting window with a separate zero-rate case.
+    claim_status: CONDITIONAL
+    proof_status: PROSE_PROOF_AND_SCOPED_LEAN
+    mechanization_status: SCOPED_LEAN_PROOF
+    applicability: PER_MODEL
+    release_criticality:
+      level: SUPPORTING
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.18
+      heading: 5.18 Residual uncertainty and the time available for correction
+    hypotheses:
+    - id: H_ENCLOSURES
+      text: Validated rate, remainder and trajectory-error enclosures on the declared horizon
+    evidence:
+    - kind: prose_proof
+      relation: proves
+      scope: conditional_claim
+      pointer: §5.18
+    - kind: python
+      relation: tests
+      scope: supplied_bound_arithmetic
+      python_file_type: test
+      module_path: code.tests.test_residual_error_budget
+      file_location: code/tests/test_residual_error_budget.py
+    - kind: lean_proof
+      relation: proves
+      scope: real_and_normed_conditional_bounds
+      pointer: lean4/ProjectionBounds.lean; lean4/projection_axiom_census.json
+    limitations:
+    - Continuous propagator, physical tensor estimates and numerical enclosures remain explicit premises.

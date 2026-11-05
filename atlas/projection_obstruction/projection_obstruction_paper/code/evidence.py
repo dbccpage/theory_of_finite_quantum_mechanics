@@ -59,6 +59,7 @@ REQUIRED_CLAIM_IDS = (
     *load_required_claim_ids(),
     "V68-CANCELLATION", "V68-LOCAL-ZERO", "V68-PHYSICAL",
     "V69-JORDAN", "V69-SELECTOR",
+    "NUM1",  # Supplemental analytic claim; not a Python theorem certificate.
 )
 
 

@@ -2,8 +2,8 @@
 
 **Jeremy H. Carroll**  
 **Series:** 002_PROJECTION_OBSTRUCTION (PO-034)  
-**Date:** 2026-10-10\
-**Version:** v0.1 (0.1.0), technical preprint candidate  
+**Date:** 2026-10-23\
+**Version:** v0.3 (0.3.0), technical preprint candidate  
 **Status:** Unpublished technical preprint; first publication review candidate; deposition not verified  
 **License:** CC-BY-4.0 for the manuscript; PolyForm Noncommercial 1.0.0 for code and Lean sources  
 **Authority effect:** None
@@ -1286,6 +1286,40 @@ If exact propagation is unitary, variation of constants gives
 The software multiplies a **supplied** residual integral by \(\|O\|_\infty\);
 it does not calculate or certify that integral from an initial speed.
 
+
+### 4.3 Robust product defects and observed cochains (PO034-C8)
+
+**Proposition 4.5.** Let $\rho,\sigma$ be density operators on the same finite tensor product of $k\ge1$ factors. Write $\Pi(\rho)=\bigotimes_{j=1}^k\rho_j$ and $D(\rho)=\|\rho-\Pi(\rho)\|_1$. Then
+$$
+\|\Pi(\rho)-\Pi(\sigma)\|_1\le k\|\rho-\sigma\|_1,
+\qquad
+|D(\rho)-D(\sigma)|\le(k+1)\|\rho-\sigma\|_1.
+$$
+**Proof.** Telescope the product difference by replacing one marginal at a time. Every unchanged density factor has trace norm one, so the tensor-product norm identity bounds the result by $\sum_j\|\rho_j-\sigma_j\|_1$. Contractivity of partial trace on Hermitian inputs bounds each summand by $\|\rho-\sigma\|_1$. The reverse triangle inequality applied to the two residuals proves the second bound. No optimality of the factor $k+1$ is claimed. $\square$
+
+Suppose a validated density reference $\sigma$ obeys
+$\|\rho-\sigma\|_1\le\epsilon$, and a computed estimate obeys
+$|\widehat D-D(\sigma)|\le\eta_D$. Then
+$$
+\max\{0,\widehat D-(k+1)\epsilon-\eta_D\}
+\le D(\rho)\le
+\widehat D+(k+1)\epsilon+\eta_D.
+$$
+At $k=2$, $\widehat D=1/50$, $\epsilon=1/150$ and $\eta_D=0$, the guaranteed lower margin is zero. Reducing the state radius to $1/300$ raises that margin to $1/100$. A nonphysical floating-point matrix cannot serve as the density reference without a separately bounded repair to a density operator.
+
+For a declared bounded linear observation $A$ with
+$\|AX\|\le L\|X\|_1$, the same proof gives
+$$
+\|A(\rho-\Pi\rho)-A(\sigma-\Pi\sigma)\|
+\le L(k+1)\epsilon.
+$$
+The observation codomain and norm must be fixed. If it is a finite normed cochain space and $M$ is the declared linear subspace of repairable cochains, the quotient-distance function
+$q(c)=\inf_{m\in M}\|c-m\|$ is 1-Lipschitz: the triangle inequality gives $q(c)\le\|c-d\|+q(d)$ and the reversed bound. Consequently the same uncertainty radius controls the observed quotient mass. This does not identify the quantum residual with a coboundary; §5's observation map remains a required input. Nor does a positive product defect alone establish entanglement.
+
+The preceding estimate complements the correction-jump budget derived in PO-000 §5.18. A replacement of the approximate state by distance at most $j_\ell$ consumes that amount in its trace-norm error ledger; the resulting product-defect uncertainty is at most $(k+1)j_\ell$, where $k$ still denotes the number of tensor factors. Exact admission of a rational Choi matrix and a numerical unitarity diagnostic have different meanings. Neither supplies a bound on an entire numerical trajectory without additional analysis.
+
+The analytic inequalities are written proofs, not new Lean declarations. `code/residual_error_budget.py` and its tests evaluate the resulting scalar intervals with exact fractions. The valid and near-miss records in `docs/residual_error_budget/` check supplied bounds only. The trace-norm facts used in the proof are standard; see [Watrous, Chapters 1–2](https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf).
+
 ## 5. From a residual to a cochain
 
 Let \(K\) be a declared finite simplicial complex, with every face included
@@ -1600,7 +1634,38 @@ These are stated as unfinished work.
    [Primary manuscript](https://arxiv.org/abs/1307.3953).
    Distinguishes the closest product state from the product of marginals.
 5. Carroll, J. H. *Projection Obstruction repository series*.
-   Repository collection.
+   [Repository collection](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/tree/main/atlas/projection_obstruction).
    Related working papers motivate residual/cochain separation and
    projection-memory diagnostics. Their versions and deposition identities
    are not inferred from this package.
+
+
+## Supplemental formalization: uncertainty and correction (23 October 2026)
+
+The standalone supplemental build `python tools/replay_projection_bounds.py --mathlib PATH_TO_PREPARED_MATHLIB`
+compiles `lean4/ProjectionBounds.lean` with Lean 4.35.0 and replays every named
+theorem in `lean4/ProjectionCensus.lean`. The 20-theorem result and exact source
+hashes are recorded in `lean4/projection_axiom_census.json`; the text axiom
+output is `lean4/projection_axiom_report.txt`. This supplements the existing
+census without replacing its historical scope. Dependencies are external and pinned in `lean4/projection_dependencies.json`.
+Prepare the compiler and Mathlib cache as described in
+`docs/projection_formalization.md`; the replay itself does not download dependencies. Only `propext`, `Quot.sound` and `Classical.choice` are allowed.
+
+| Bound | Lean result | Explicit premise retained |
+|---|---|---|
+| Robust rate and onset | `lowerRate_le`, `uncertain_onset`, `half_slope_window` | A two-sided rate enclosure and the actual Taylor lower estimate on its horizon |
+| Correction deadline | `correction_window_iff`, `zero_rate_window`, `safe_horizon`, `exhausted_budget` | Positive rate for division; a separate zero-rate branch; independently valid budgets and horizon |
+| Actual corrected update | `corrected_step`, `accumulated_budget` | A nonexpansive evolution, residual enclosure and correction displacement bound |
+| Finite transported jumps | `transported_jump_bound` | The variation-of-constants identity, an integral bound, and contractive transports |
+| Product and observed residual uncertainty | `factor_replacement_bound`, `product_residual_uncertainty`, `product_defect_uncertainty`, `observed_residual_bound`, `observed_defect_interval` | A factor-replacement path with each step bounded by the state distance; a declared Lipschitz observation |
+
+The scalar results are over the real numbers. The jump and residual theorems
+are over arbitrary normed additive groups, so they apply to a trace-norm
+carrier once its physical obligations are proved. In particular, the constant
+$k+1$ is derived by telescoping $k$ factor replacements and adding the original
+state discrepancy. The finite sum of jump norms is derived from the supplied
+transported-jump identity. Lean does not construct the continuous propagator,
+prove the density-matrix tensor/partial-trace estimates, or certify numerical
+integration in this supplement. Those statements remain written analytic
+premises. The new bounds do not turn a supplied error radius into an observed
+or statistically justified radius.

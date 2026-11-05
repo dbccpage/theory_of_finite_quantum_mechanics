@@ -39,7 +39,7 @@ def envelope(tmp_path):
 
 def test_independent_version_identities():
     release = identity(ROOT)
-    assert release["manuscript_version"] == release["release_version"] == "6.9.18"
+    assert release["manuscript_version"] == release["release_version"] == "6.9.20"
     assert release["code_version"] == "6.9.6"
     assert release["code_version"] != release["release_version"]
 
@@ -87,6 +87,22 @@ def test_lexical_scan_does_not_claim_elaboration(tmp_path):
     (tmp_path / "lean4").mkdir()
     (tmp_path / "lean4" / "invalid.lean").write_text("def broken := unresolved_identifier\n", encoding="utf-8")
     assert verifier.scan_lean_sources(tmp_path) == ([], 1)
+
+
+@pytest.mark.parametrize("source, rejected", [
+    ("/- cannot admit /- nested sorry -/ this premise -/\nexample : True := by trivial", False),
+    ("-- sorry is prose\nexample : True := by trivial", False),
+    ('def text := "admit /- is text"\nexample : True := by sorry', True),
+    ("/- prose -/ example : True := by admit", True),
+    ("example : True := by sorry -- trailing prose", True),
+    ("/- unterminated comment", True),
+])
+def test_lexical_scan_distinguishes_comments_from_proof_holes(tmp_path, source, rejected):
+    (tmp_path / "lean4").mkdir()
+    (tmp_path / "lean4" / "probe.lean").write_text(source, encoding="utf-8")
+    problems, count = verifier.scan_lean_sources(tmp_path)
+    assert count == 1
+    assert bool(problems) is rejected
 
 
 @pytest.mark.parametrize("mutation", ["prefix", "suffix", "duplicate", "case", "metadata"])
@@ -283,6 +299,7 @@ def test_err01_absent_archive_does_not_claim_archive_verified(monkeypatch, capsy
     monkeypatch.setattr(verifier, "check_required", lambda *a, **kw: [])
     monkeypatch.setattr(verifier, "check_manifest_pair", lambda *a, **kw: [])
     monkeypatch.setattr(verifier, "run_tests", lambda *a, **kw: (0, "1 passed", []))
+    monkeypatch.setattr(verifier, "run_projection_census", lambda: None)
     monkeypatch.setattr(verifier, "run_replay_and_certificate", lambda *a, **kw: [])
     monkeypatch.setattr(verifier, "check_archive_reproducibility", lambda *a, **kw: [])
     monkeypatch.setattr(verifier, "snapshot", lambda *a, **kw: {})
@@ -335,6 +352,7 @@ def test_err01_valid_archive_claims_archive_verified(envelope, monkeypatch, caps
     monkeypatch.setattr(verifier, "check_required", lambda *a, **kw: [])
     monkeypatch.setattr(verifier, "check_manifest_pair", lambda *a, **kw: [])
     monkeypatch.setattr(verifier, "run_tests", lambda *a, **kw: (0, "1 passed", []))
+    monkeypatch.setattr(verifier, "run_projection_census", lambda: None)
     monkeypatch.setattr(verifier, "run_replay_and_certificate", lambda *a, **kw: [])
     monkeypatch.setattr(verifier, "check_archive_reproducibility", lambda *a, **kw: [])
     monkeypatch.setattr(verifier, "snapshot", lambda *a, **kw: {})
@@ -392,3 +410,16 @@ def test_err02_strict_test_profile_rejects_xfail_and_requires_passes(tmp_path):
     assert ret == 0
     assert problems == []
     assert "1 passed" in summary
+@pytest.mark.parametrize("script", ["regen_sha256sums.py", "build_release_zip.py"])
+def test_release_entrypoints_import_in_isolated_python(tmp_path, script):
+    import subprocess
+    import sys
+
+    result = subprocess.run(
+        [sys.executable, "-I", "-B", "-c",
+         "import runpy, sys; runpy.run_path(sys.argv[1], run_name='isolated_probe')",
+         str(ROOT / "scripts" / script)],
+        cwd=tmp_path, capture_output=True, text=True, timeout=20,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+

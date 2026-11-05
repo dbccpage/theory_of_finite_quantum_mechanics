@@ -236,7 +236,7 @@ def _canonical_archive_bytes(
     return output.getvalue()
 
 
-def validate(package: Path, selected_archive: Path | None = None) -> list[str]:
+def validate(package: Path, selected_archive: Path | None = None, *, extracted: bool = False) -> list[str]:
     errors: list[str] = []
     manifest = package / "MANIFEST.sha256"
     sums = package / "SHA256SUMS"
@@ -264,6 +264,11 @@ def validate(package: Path, selected_archive: Path | None = None) -> list[str]:
             errors.append(f"missing release file: {relative}")
         elif sha256_file(path) != digest:
             errors.append(f"local hash mismatch: {relative}")
+
+    if extracted:
+        if selected_archive is not None:
+            errors.append("extracted mode cannot claim an archive check")
+        return errors
 
     try:
         archive_path_ = selected_archive if selected_archive is not None else archive_path(package)

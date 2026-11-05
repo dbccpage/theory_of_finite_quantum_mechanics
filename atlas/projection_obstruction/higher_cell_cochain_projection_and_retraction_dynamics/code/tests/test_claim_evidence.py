@@ -28,7 +28,7 @@ def check(ledger):
 
 def test_expanded_ledger_keeps_evidence_counts_separate(ledger):
     assert check(ledger) == {
-        "claims": 13, "written_only": 6, "numerical_examples": 7,
+        "claims": 14, "written_only": 7, "numerical_examples": 7,
         "conditional_lean_targets": 7,
     }
 
@@ -41,7 +41,7 @@ def test_written_only_records_do_not_import_modules(ledger, monkeypatch):
         return original(name)
 
     monkeypatch.setattr(verifier.importlib, "import_module", import_numerical)
-    assert check(ledger)["written_only"] == 6
+    assert check(ledger)["written_only"] == 7
 
 
 @pytest.mark.parametrize("change", ["assumptions", "proof_heading", "proof_path", "execution", "tests"])

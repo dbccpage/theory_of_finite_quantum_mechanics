@@ -47,7 +47,7 @@ def build(tex_only: bool = False) -> None:
                 "--metadata",
                 "author=Jeremy H. Carroll",
                 "--metadata",
-                "date=Technical preprint v0.1, " + day.isoformat(),
+                "date=Technical preprint v0.3, " + day.isoformat(),
                 "-V",
                 "fontsize=11pt",
                 "-V",

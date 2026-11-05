@@ -7,3 +7,4 @@ package "coda_higher_cell_lean" where
 @[default_target]
 lean_lib «HigherCell» where
   srcDir := "."
+  roots := #[`HigherCell]

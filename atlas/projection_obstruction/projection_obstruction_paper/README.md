@@ -1,13 +1,13 @@
 # Projection Obstruction Anchor (PO-000)
 
 [The mechanism inventory](projection_obstruction.md#mechanism-inventory) defines the
-core structural mechanisms within this single unified 69-page publication. The current adversarial pass
+core structural mechanisms within this single unified monograph. The current adversarial pass
 corrects confirmed claim and implementation defects; it does not certify every
 statement or replace the explicitly scoped reproduction records below.
 
 **Title:** Projection Obstruction for Factorized States: Nonlinear Dynamics, Conditional $\ell^1$ Diagnostics, and Exact Short-Time Defect Bounds
 **Author:** Jeremy H. Carroll
-**Status:** Author-review revision (v6.9.18); not a new external deposit
+**Status:** Author-review revision (v6.9.20); not a new external deposit
 
 *(Rewritten 2026-08-31 for the v6.3 Zenodo republication: the previous README
 said v6.1 and described a `src/po000/` production package, a root `tests/`
@@ -23,7 +23,7 @@ place. Everything below is stated against the actual package contents.)*
 ## Release identity and verification profiles
 
 [`release_identity.json`](release_identity.json) declares manuscript/release
-**6.9.18**, Python code **6.9.6**, and release date **2026-10-14**. These are
+**6.9.20**, Python code **6.9.6**, and release date **2026-10-23**. These are
 separate version identities. The archive and PDF title use the release version;
 `pyproject.toml` declares the code version.
 
@@ -31,9 +31,9 @@ separate version identities. The archive and PDF title use the release version;
 pip install .[jets]
 python scripts/regen_sha256sums.py
 python scripts/build_release_zip.py --output dist/ --check
-python verify_deposit.py --profile standalone --archive dist/projection_obstruction_v6.9.18.zip
+python verify_deposit.py --profile standalone --archive dist/projection_obstruction_v6.9.20.zip
 # Optional partial custody check, explicitly without tests or replay:
-python verify_deposit.py --integrity-only --lean-source-scan --archive dist/projection_obstruction_v6.9.18.zip
+python verify_deposit.py --integrity-only --lean-source-scan --archive dist/projection_obstruction_v6.9.20.zip
 ```
 
 Standalone verification disables ambient native imports and deliberately
@@ -96,7 +96,7 @@ Python code 6.9.5 rejects inexact inputs to these exact fixtures.
 
 ## New in v6.9.5 through v6.9.13
 
-Lemmas 3.4 through 3.14 are omitted from the 69-page edition; their proofs
+Lemmas 3.4 through 3.14 are omitted from the earlier condensed edition; their proofs
 are preserved in archived monograph revision 90e6231546 and verified by
 symbolic tests in code/retraction_geometry.py. The Python runner refuses
 claims C4d through C4l and does not certify those proofs. The executable chart
@@ -302,7 +302,7 @@ Paper claim (ledger row, typed status)
 | **Python source** | [`code/`](code/) | Flat modules; the only Python layout in this deposit; notebooks and tests use `sys.path`/`pythonpath` = `code` |
 | **Tests** | [`code/tests/`](code/tests/) | `python -m pytest code/tests` from the package root |
 | **Replay evidence** | [`evidence/`](evidence/) | Retained historical certificate; generate a fresh v4 receipt as below. Verified finite supplements require the native host/adapter and SymPy for independent replay. |
-| **Monograph** | [`projection_obstruction.md`](projection_obstruction.md) | v6.9.18 |
+| **Monograph** | [`projection_obstruction.md`](projection_obstruction.md) | v6.9.20 |
 | **Reader formats** | [`projection_obstruction.tex`](projection_obstruction.tex), [`projection_obstruction.pdf`](projection_obstruction.pdf) | Generated with the toolchain reported by `scripts/build_paper_artifacts.py`; tracked so the release archive rebuilds from a clean checkout |
 | **Legacy claim index** | [`projection_obstruction_claim_ledger.md`](projection_obstruction_claim_ledger.md) | Retained earlier rows (+ `.yaml`); not the new v6.9 theorem inventory |
 | **Change log** | [`projection_obstruction_change_log.md`](projection_obstruction_change_log.md) | Newest first |
@@ -355,7 +355,7 @@ have different scopes:
 | --- | --- | --- |
 | archive member `MANIFEST.sha256` | admitted payload files, excluding both checksum controls | shipped *inside* the archive; checked independently |
 | archive member `SHA256SUMS` | payload plus `MANIFEST.sha256`, as stored in the archive (LF-normalised) | shipped *inside* the archive; verifies an extraction |
-| `dist/projection_obstruction_v6.9.18.zip.sha256` | the archive itself | the external sidecar for the `.zip` |
+| `dist/projection_obstruction_v6.9.20.zip.sha256` | the archive itself | the external sidecar for the `.zip` |
 
 The root `SHA256SUMS` describes the working-tree bytes and does not hash the
 archive. The builder derives the archive member with hashes of the
@@ -494,3 +494,13 @@ before a release claim; earlier totals apply only to their earlier revisions.
 
 - **Text and Figures:** [Creative Commons Attribution 4.0 International (CC-BY-4.0)](LICENSE)
 - **Code and Notebooks:** [Apache License 2.0](LICENSE)
+
+## 6.9.20 — 2026-10-23
+
+Added residual uncertainty, explicit correction allowances and exact scalar budget witnesses. The new analytic statements retain their stated physical and enclosure assumptions. See `docs/residual_error_budget/claim.md` for the claim-to-evidence boundary.
+
+The October 23 test receipt in `docs/residual_error_budget/verification.json` describes that historical source state. Current review evidence is recorded in `docs/review_2026_11_05.md`. New continuous analysis is proved in the manuscript; exact scalar tests check the supplied budget assumptions.
+
+## New formal bounds
+
+Run `python tools/replay_projection_bounds.py --mathlib PATH_TO_PREPARED_MATHLIB` for the fresh 20-theorem supplemental census. See `docs/projection_formalization.md` for premises and `lean4/AXIOM_CENSUS_INDEX.md` for the complete census index. The normal verification command includes this replay.

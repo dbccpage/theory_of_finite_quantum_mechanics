@@ -38,10 +38,8 @@ and [the Lean guide](../lean4/README.md).
 ## Finite certificate replay (v6.9.1)
 
 Install the `jets` extra for the local-zero checker. In an explicitly opted-in repository integration (`PO000_NATIVE_INTEGRATION=1`),
-build `omega_symbol_game` and set `OMEGA_SYMBOL_GAME_HOST` to the resulting
-binary (from the repository root,
-`cargo build --locked -j1 --manifest-path omega_engine/crates_rs/tests/Cargo.toml -p omega_symbol_game --bin omega_symbol_game`).
-The canonical Python host adapter must also be importable from the repository.
+set `OMEGA_SYMBOL_GAME_HOST` to a native host binary and make its Python host adapter importable.
+The native host is not part of this package.
 Run from the paper package:
 
 ```bash
