@@ -214,6 +214,9 @@ SIX_PARTNERS: dict[str, GVec] = {
 
 WITNESS_111 = GVec.real(1, 1, 1)
 WITNESS_NEG211 = GVec.real(-2, 1, 1)
+PROBE_120 = GVec.real(1, 2, 0)
+PROBE_2M15 = GVec.real(2, -1, 5)
+WITNESS_123 = GVec.real(1, 2, 3)
 WITNESS_P7 = GVec(G_ONE, GaussRat.of(2, 0), GaussRat.of(1, 1))
 WITNESS_P11 = GVec.real(1, 3, 1)
 
@@ -366,6 +369,21 @@ def kelvin_eq(y: GVec) -> GVec:
     return y.smul(GaussRat.of(-Fraction(1) / y.norm_sq()))
 
 
+def anchor_meridian_step(a: GVec, y: GVec) -> GVec:
+    """General-anchor meridian step `a + y` for `y` orthogonal to `a`."""
+    return a.add(y)
+
+
+def anchor_meridian_ortho(a: GVec, y: GVec) -> GVec:
+    """General-anchor meridian orthogonal partner `-N(y) a + N(a) y` of `a + y` in `span(a, y)`."""
+    return a.smul(GaussRat.of(-y.norm_sq())).add(y.smul(GaussRat.of(a.norm_sq())))
+
+
+def anchor_kelvin_eq(a: GVec, y: GVec) -> GVec:
+    """General-anchor Kelvin equatorial partner `-(N(a) / N(y)) * y` in `a^perp`."""
+    return y.smul(GaussRat.of(-(a.norm_sq() / y.norm_sq())))
+
+
 def eq_tangent_step(y: GVec, t: Fraction) -> GVec:
     """Equatorial tangent step `y + t * eq_ortho(y)` in `e1^perp`."""
     return y.add(eq_ortho(y).smul(GaussRat.of(t)))
@@ -434,6 +452,7 @@ def build_test_frames() -> list[tuple[str, GVec, GVec, GVec]]:
         ("anchor_bisector_23", TOMO_E1, TOMO_E23, PARTNER_E23_MINUS),
         ("anchor_bisector_23i", TOMO_E1, TOMO_E23I, PARTNER_E23I_MINUS),
         ("witness_111_meridian", WITNESS_111, WITNESS_NEG211, PARTNER_E23_MINUS),
+        ("witness_neg211_fifth_ball", WITNESS_NEG211, PROBE_120, PROBE_2M15),
         (
             "p7_frame",
             WITNESS_P7,
@@ -553,6 +572,9 @@ def verify_all_certificates() -> dict[str, object]:
         TOMO_E23I,
         WITNESS_111,
         WITNESS_NEG211,
+        PROBE_120,
+        PROBE_2M15,
+        WITNESS_123,
         WITNESS_P7,
         WITNESS_P11,
         perturb_pos_ray(1),
@@ -800,6 +822,233 @@ def verify_all_certificates() -> dict[str, object]:
                     )
                 ortho_bessel_pairs_checked += 1
 
+    # 8. Target 1 (TFQ-1057): General-anchor meridian coupling, spherical frame Pythagoras,
+    #    two-frame cross-anchor proximity bound, witness_111 9-anchor isolation,
+    #    exact 2-frame B_{1/5}(T_9) determination, witness_neg211 < 1/8 isolation,
+    #    perturbed 2-frame bisector bounce-back, witness_123 15-ray isolation, and
+    #    meridian-step modulus orthogonal decomposition
+    anchor_ortho_probes: list[tuple[str, GVec, GVec]] = [
+        ("tomo_e1", TOMO_E1, GVec.real(0, 1, 2)),
+        ("tomo_e2", TOMO_E2, GVec.real(2, 0, -1)),
+        ("tomo_e3", TOMO_E3, GVec.real(1, -2, 0)),
+        ("tomo_e12", TOMO_E12, PARTNER_E12_MINUS),
+        ("tomo_e13", TOMO_E13, PARTNER_E13_MINUS),
+        ("tomo_e23", TOMO_E23, PARTNER_E23_MINUS),
+        ("tomo_e12i", TOMO_E12I, PARTNER_E12I_MINUS),
+        ("tomo_e13i", TOMO_E13I, PARTNER_E13I_MINUS),
+        ("tomo_e23i", TOMO_E23I, PARTNER_E23I_MINUS),
+    ]
+    target1_meridian_checks = 0
+    for a_name, a_vec, y_base in anchor_ortho_probes:
+        for scale_num, scale_den in ((1, 1), (1, 3), (2, 5)):
+            y_vec = y_base.smul(GaussRat.of(Fraction(scale_num, scale_den)))
+            if a_vec.inner(y_vec) != G_ZERO:
+                raise AssertionError(f"Expected y orthogonal to {a_name}")
+            step_vec = anchor_meridian_step(a_vec, y_vec)
+            ortho_vec = anchor_meridian_ortho(a_vec, y_vec)
+            kelvin_vec = anchor_kelvin_eq(a_vec, y_vec)
+            cross_vec = herm_cross(a_vec, y_vec)
+            if not (
+                is_frame(a_vec, y_vec, cross_vec)
+                and is_frame(step_vec, ortho_vec, cross_vec)
+            ):
+                raise AssertionError(f"General-anchor meridian frame check failed for {a_name}")
+            if ortho_vec.smul(GaussRat.of(-Fraction(1) / y_vec.norm_sq())) != a_vec.add(kelvin_vec):
+                raise AssertionError(f"General-anchor Kelvin scaling failed for {a_name}")
+            expected_sin = y_vec.norm_sq() / (a_vec.norm_sq() + y_vec.norm_sq())
+            if (
+                ray_sin_sq(step_vec, a_vec) != expected_sin
+                or ray_sin_sq(ortho_vec, y_vec) != expected_sin
+            ):
+                raise AssertionError(f"anchorMeridianOrtho_raySinSq_eq failed for {a_name}")
+            for fn_name, f in nonneg_frame_fns.items():
+                if f(step_vec) - f(a_vec) != f(y_vec) - f(ortho_vec):
+                    raise AssertionError(
+                        f"anchor_meridian_kelvin_bridge failed for {fn_name} on {a_name}"
+                    )
+                if f(step_vec) + f(a_vec.add(kelvin_vec)) != f(a_vec) + f(y_vec):
+                    raise AssertionError(
+                        f"anchor_meridian_kelvin_bridge Kelvin sum failed for {fn_name} on {a_name}"
+                    )
+            for r_name, r_fn in residual_funcs.items():
+                if r_fn(step_vec) - r_fn(a_vec) != r_fn(y_vec) - r_fn(ortho_vec):
+                    raise AssertionError(
+                        f"anchor_meridian_zeroWeight_bridge failed for {r_name} on {a_name}"
+                    )
+            target1_meridian_checks += 1
+
+    spherical_pythagoras_checks = 0
+    for f_name, u, v, w in frames:
+        for anchor in bessel_anchors:
+            if ray_sin_sq(u, anchor) + ray_sin_sq(v, anchor) + ray_sin_sq(w, anchor) != Fraction(2):
+                raise AssertionError(
+                    f"frame_raySinSq_sum_eq_two failed on {f_name} for anchor={anchor}"
+                )
+            spherical_pythagoras_checks += 1
+
+    anchor_frames: list[tuple[str, GVec, GVec, GVec]] = [
+        ("std_basis", TOMO_E1, TOMO_E2, TOMO_E3),
+        ("anchor_bisector_12", TOMO_E3, TOMO_E12, PARTNER_E12_MINUS),
+        ("anchor_bisector_12i", TOMO_E3, TOMO_E12I, PARTNER_E12I_MINUS),
+        ("anchor_bisector_23", TOMO_E1, TOMO_E23, PARTNER_E23_MINUS),
+    ]
+    two_frame_cross_anchor_checks = 0
+    for f_name, u, v, w in frames:
+        for af_name, a1, a2, a3 in anchor_frames:
+            if ray_sin_sq(w, a3) > ray_sin_sq(u, a1) + ray_sin_sq(v, a2):
+                raise AssertionError(
+                    f"frame_third_raySinSq_le_add_of_ortho_anchors failed on {f_name} vs {af_name}"
+                )
+            eta = ray_sin_sq(w, a3)
+            if ray_sin_sq(u, a1) < eta / Fraction(2) and ray_sin_sq(v, a2) < eta / Fraction(2):
+                raise AssertionError(
+                    f"fixed_anchor_frame_isolation_obstruction failed on {f_name} vs {af_name}"
+                )
+            two_frame_cross_anchor_checks += 1
+
+    for a_name, a_vec in NINE_ANCHORS.items():
+        if ray_sin_sq(WITNESS_111, a_vec) > Fraction(2, 3):
+            raise AssertionError(
+                f"Expected ray_sin_sq(witness_111, {a_name}) <= 2/3, got {ray_sin_sq(WITNESS_111, a_vec)}"
+            )
+    witness_111_ortho_probes = [
+        WITNESS_NEG211,
+        PARTNER_E12_MINUS,
+        PARTNER_E13_MINUS,
+        PARTNER_E23_MINUS,
+        GVec.real(1, 2, -3),
+        GVec(GaussRat.of(1, 1), GaussRat.of(-1, 0), GaussRat.of(0, -1)),
+    ]
+    for u_ortho in witness_111_ortho_probes:
+        if u_ortho.inner(WITNESS_111) != G_ZERO:
+            raise AssertionError(f"Expected {u_ortho} orthogonal to witness_111")
+        for a_name, a_vec in NINE_ANCHORS.items():
+            if ray_sin_sq(u_ortho, a_vec) < Fraction(1, 3):
+                raise AssertionError(
+                    f"ortho_witness111_raySinSq_nineAnchors_ge_one_third failed for {u_ortho} vs {a_name}"
+                )
+
+    # (a) Exact 2-frame B_{1/5}(T_9) determination of witness_111 & < 1/8 isolation at witness_neg211
+    if not is_frame(WITNESS_NEG211, PROBE_120, PROBE_2M15):
+        raise AssertionError("isFrame_witness_neg211_probe120_probe2m15 failed")
+    if ray_sin_sq(PROBE_120, TOMO_E12) != Fraction(1, 10):
+        raise AssertionError("Expected ray_sin_sq(probe_120, tomo_e12) == 1/10")
+    if ray_sin_sq(PROBE_2M15, TOMO_E3) != Fraction(1, 6):
+        raise AssertionError("Expected ray_sin_sq(probe_2m15, tomo_e3) == 1/6")
+    for r_name, r_fn in residual_funcs.items():
+        if r_fn(WITNESS_111) != r_fn(PROBE_120) + r_fn(PROBE_2M15):
+            raise AssertionError(
+                f"residual_witness111_eq_sum_in_fifth_ball failed for {r_name}"
+            )
+        eps_bound = max(abs(r_fn(PROBE_120)), abs(r_fn(PROBE_2M15)))
+        if (
+            abs(r_fn(WITNESS_111)) > 2 * eps_bound
+            or abs(r_fn(WITNESS_NEG211)) > 2 * eps_bound
+        ):
+            raise AssertionError(
+                f"residual_witness111_abs_le_two_eps_of_fifth_ball failed for {r_name}"
+            )
+    if ray_sin_sq(WITNESS_NEG211, PARTNER_E12_MINUS) != Fraction(1, 4):
+        raise AssertionError("Expected ray_sin_sq(witness_neg211, bisector_12_neg) == 1/4")
+    u_neg_real = GVec.real(1, 3, -1)
+    u_neg_cplx = GVec(GaussRat.of(1, 1), GaussRat.of(1, 2), GaussRat.of(1, 0))
+    for u_neg, v_neg in (
+        (PROBE_120, PROBE_2M15),
+        (PROBE_2M15, PROBE_120),
+        (WITNESS_111, PARTNER_E23_MINUS),
+        (PARTNER_E23_MINUS, WITNESS_111),
+        (u_neg_real, herm_cross(WITNESS_NEG211, u_neg_real)),
+        (u_neg_cplx, herm_cross(WITNESS_NEG211, u_neg_cplx)),
+    ):
+        if not is_frame(u_neg, v_neg, WITNESS_NEG211):
+            raise AssertionError("Expected frame containing witness_neg211")
+        sum_e12_e3 = ray_sin_sq(u_neg, TOMO_E12) + ray_sin_sq(v_neg, TOMO_E3)
+        if sum_e12_e3 < Fraction(1, 4) or (
+            ray_sin_sq(u_neg, TOMO_E12) < Fraction(1, 8)
+            and ray_sin_sq(v_neg, TOMO_E3) < Fraction(1, 8)
+        ):
+            raise AssertionError("witness_neg211_isolation_one_eighth failed")
+
+    # (b) Perturbed two-frame bisector bounce-back (including non-collinear second-step perturbations with LHS > 0)
+    u_pert = GVec.real(1, 5, -6)  # orthogonal to witness_111 = (1, 1, 1), close to (0, 1, -1)
+    v_pert = herm_cross(WITNESS_111, u_pert)  # (-11, 7, 4)
+    u_prime_rev = herm_cross(v_pert, WITNESS_111)
+    v_prime_rev = herm_cross(v_pert, u_prime_rev)
+    u_prime_ind1 = GVec.real(1, 9, -13)  # orthogonal to v_pert = (-11, 7, 4), LHS = 3/251 > 0
+    v_prime_ind1 = herm_cross(v_pert, u_prime_ind1)
+    u_prime_ind2 = GVec.real(-1, 3, -8)  # orthogonal to v_pert = (-11, 7, 4), LHS = 6/37 > 0
+    v_prime_ind2 = herm_cross(v_pert, u_prime_ind2)
+    bounce_back_pairs = [
+        (PARTNER_E23_MINUS, WITNESS_NEG211, PARTNER_E23_MINUS, WITNESS_111, False),
+        (u_pert, v_pert, u_prime_rev, v_prime_rev, False),
+        (u_pert, v_pert, u_prime_ind1, v_prime_ind1, True),
+        (u_pert, v_pert, u_prime_ind2, v_prime_ind2, True),
+    ]
+    for u_b, v_b, u_p, v_p, expect_positive_lhs in bounce_back_pairs:
+        if not (is_frame(WITNESS_111, u_b, v_b) and is_frame(v_b, u_p, v_p)):
+            raise AssertionError("Bounce-back test frames invalid")
+        if ray_sin_sq(v_b, WITNESS_NEG211) > ray_sin_sq(u_b, PARTNER_E23_MINUS):
+            raise AssertionError("First-step bounce-back bound failed")
+        lhs_bounce = ray_sin_sq(v_p, WITNESS_111)
+        rhs_bounce = ray_sin_sq(u_b, PARTNER_E23_MINUS) + ray_sin_sq(
+            u_p, PARTNER_E23_MINUS
+        )
+        if expect_positive_lhs and lhs_bounce <= Fraction(0):
+            raise AssertionError("Expected non-trivial positive LHS in perturbed bounce-back")
+        if lhs_bounce > rhs_bounce:
+            raise AssertionError("Second-step bounce-back bound failed")
+
+    # (c) Generic ray witness_123 = (1, 2, 3) 9-anchor + 6-bisector isolation
+    for a_name, a_vec in NINE_ANCHORS.items():
+        if ray_sin_sq(WITNESS_123, a_vec) > Fraction(13, 14):
+            raise AssertionError(f"witness123_raySinSq_nineAnchors_le failed on {a_name}")
+    for b_name, b_vec in SIX_PARTNERS.items():
+        if ray_sin_sq(WITNESS_123, b_vec) > Fraction(27, 28):
+            raise AssertionError(f"witness123_raySinSq_sixBisectors_le failed on {b_name}")
+    witness_123_ortho_probes = [
+        GVec.real(2, -1, 0),
+        GVec.real(3, 0, -1),
+        GVec.real(0, 3, -2),
+        GVec.real(1, 1, -1),
+        GVec.real(5, -1, -1),
+        GVec(GaussRat.of(1, 1), GaussRat.of(1, -2), GaussRat.of(-1, 1)),
+    ]
+    for u_123 in witness_123_ortho_probes:
+        v_123 = herm_cross(WITNESS_123, u_123)
+        if not is_frame(WITNESS_123, u_123, v_123):
+            raise AssertionError(f"Expected frame (witness_123, {u_123}, {v_123})")
+        for partner_vec in (u_123, v_123):
+            for a_name, a_vec in NINE_ANCHORS.items():
+                if ray_sin_sq(partner_vec, a_vec) < Fraction(1, 14):
+                    raise AssertionError(
+                        f"frame_witness123_partners_isolated_from_nine_and_six failed on anchor {a_name}"
+                    )
+            for b_name, b_vec in SIX_PARTNERS.items():
+                if ray_sin_sq(partner_vec, b_vec) < Fraction(1, 28):
+                    raise AssertionError(
+                        f"frame_witness123_partners_isolated_from_nine_and_six failed on bisector {b_name}"
+                    )
+
+    # (d) Meridian-step modulus orthogonal projection decomposition (isUniformlyRayContinuous_iff_hasUniformMeridianStepModulus)
+    meridian_decomp_checks = 0
+    for u in test_vectors:
+        c_self = GaussRat.of(Fraction(2), Fraction(-1))
+        v_col = u.smul(c_self)
+        if ray_sin_sq(u, v_col) != 0 or u.smul(proj_scalar(u, v_col)) != v_col:
+            raise AssertionError("eq_of_raySinSq_eq_zero collinear check failed")
+        for v in test_vectors:
+            sin_uv = ray_sin_sq(u, v)
+            if Fraction(0) < sin_uv < Fraction(1):
+                a_proj = u.smul(proj_scalar(u, v))
+                y_orth = v.sub(a_proj)
+                if (
+                    a_proj.inner(y_orth) != G_ZERO
+                    or a_proj.add(y_orth) != v
+                    or y_orth.norm_sq() / (a_proj.norm_sq() + y_orth.norm_sq()) != sin_uv
+                ):
+                    raise AssertionError("Meridian-step orthogonal decomposition failed")
+                meridian_decomp_checks += 1
+
     return {
         "schema_version": 1,
         "phase": "Phase 2 — Finite and Exact-Arithmetic Gleason Model",
@@ -811,6 +1060,15 @@ def verify_all_certificates() -> dict[str, object]:
         "track_a_piron_soler_chain_checks": track_a_checks,
         "track_b_irrational_locus_stress_tests_verified": True,
         "ortho_bessel_pairs_verified": ortho_bessel_pairs_checked,
+        "target1_general_anchor_meridian_checks": target1_meridian_checks,
+        "spherical_frame_pythagoras_checks": spherical_pythagoras_checks,
+        "two_frame_cross_anchor_checks": two_frame_cross_anchor_checks,
+        "witness_111_nine_anchor_isolation_verified": True,
+        "witness_111_two_frame_fifth_ball_verified": True,
+        "witness_neg211_one_eighth_isolation_verified": True,
+        "perturbed_two_frame_bounce_back_verified": True,
+        "witness_123_fifteen_ray_isolation_verified": True,
+        "meridian_step_modulus_decomp_pairs_verified": meridian_decomp_checks,
         "status": "PASS",
     }
 
