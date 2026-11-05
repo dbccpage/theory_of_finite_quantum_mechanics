@@ -118,12 +118,19 @@ def make_root(tmp_path: Path, sources: dict[str, str] | None = None) -> Path:
     return root
 
 
-def good_output(declarations: dict[str, list[str]] | None = None) -> str:
+def good_output(
+    declarations: dict[str, list[str]] | None = None,
+    *,
+    include_compiler_decls: bool = True,
+) -> str:
     decls = EXPECTED_DECLARATIONS if declarations is None else declarations
     lines = []
-    for names in decls.values():
+    for mod, names in decls.items():
         for n in names:
             lines.append(f"'{n}' depends on axioms: [propext, Classical.choice,\n Quot.sound]")
+        if include_compiler_decls:
+            for n in names:
+                lines.append(f"COMPILER_DECL:{mod}:{n}")
     return "\n".join(lines) + "\n"
 
 
@@ -378,16 +385,48 @@ def test_incomplete_expectation_declarations_fail(tmp_path: Path) -> None:
 def test_compiler_declaration_mismatch_in_output_fails(tmp_path: Path) -> None:
     root = make_root(tmp_path)
     exp = expectation(root)
-    compiler_lines = []
-    for mod, names in EXPECTED_DECLARATIONS.items():
-        for name in names:
-            compiler_lines.append(f"COMPILER_DECL:{mod}:{name}")
     # Simulate the Lean compiler discovering an additional declaration in GleasonRealSphere
     # that was not in the expectation.
-    compiler_lines.append("COMPILER_DECL:GleasonRealSphere:GleasonReal.indented_extra")
-    out = good_output() + "\n".join(compiler_lines) + "\n"
+    out = good_output() + "COMPILER_DECL:GleasonRealSphere:GleasonReal.indented_extra\n"
     errors = audit.verify(root, out, exp)
     assert "compiler declaration inventory differs for GleasonRealSphere" in errors
+
+
+def test_missing_or_duplicate_compiler_declarations_fail(tmp_path: Path) -> None:
+    root = make_root(tmp_path)
+    exp = expectation(root)
+    out_missing = good_output(include_compiler_decls=False)
+    errors_missing = audit.verify(root, out_missing, exp)
+    for mod in audit.MODULES:
+        assert f"compiler declaration inventory differs for {mod}" in errors_missing
+
+    out_dupe = (
+        good_output()
+        + "COMPILER_DECL:GleasonRealSphere:GleasonReal.real_one\n"
+        + "COMPILER_DECL:UnexpectedMod:Foo.bar\n"
+    )
+    errors_dupe = audit.verify(root, out_dupe, exp)
+    assert "duplicate compiler declaration in GleasonRealSphere" in errors_dupe
+    assert "unexpected compiler declaration module: UnexpectedMod" in errors_dupe
+
+
+def test_dangling_attribute_before_section_or_mutual_and_nonstandard_imports_fail(tmp_path: Path) -> None:
+    for kw in ("section S\nend S\n", "noncomputable section\nend\n", "mutual\nend\n"):
+        with pytest.raises(SystemExit, match="dangling attribute"):
+            audit.inventory_of(f"@[simp]\n{kw}")
+
+    root = make_root(tmp_path)
+    (root / audit.module_path("BornGaussRat")).write_text(
+        "import all UnpinnedModule\n-- sorryAx check\n",
+        encoding="utf-8",
+    )
+    (root / audit.module_path("GleasonRealSphere")).write_text(
+        MODULE_SOURCE["GleasonRealSphere"] + "\n-- reference to sorryAx outside comment:\n-- wait\n",
+        encoding="utf-8",
+    )
+    exp = expectation(root)
+    errors = audit.verify(root, good_output(), exp)
+    assert "unpinned import: BornGaussRat: import all UnpinnedModule" in errors
 
 
 def test_emit_includes_compiler_environment_check(tmp_path: Path) -> None:

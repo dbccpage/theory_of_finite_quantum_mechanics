@@ -80,7 +80,18 @@ EXTERNAL_PACKAGES = (
 )
 PINS = ("lean4/lean-toolchain", "lean4/lake-manifest.json", "lean4/lakefile.lean")
 ALLOWED_AXIOMS = ("propext", "Classical.choice", "Quot.sound")
-FORBIDDEN_TOKENS = ("sorry", "admit", "native_decide", "unsafe", "partial", "implemented_by", "opaque", "axiom")
+FORBIDDEN_TOKENS = (
+    "sorry",
+    "sorryAx",
+    "admit",
+    "native_decide",
+    "unsafe",
+    "partial",
+    "implemented_by",
+    "extern",
+    "opaque",
+    "axiom",
+)
 
 MODIFIER_RE = re.compile(r"^(?P<mod>private|protected|public|noncomputable|nonrec|scoped|local|unsafe|partial)\b\s*")
 SCOPE = re.compile(
@@ -222,7 +233,8 @@ def inventory_of(source: str) -> list[str]:
                 for part in name.split("."):
                     stack.append(("namespace", part))
             elif kw == "section":
-                pending_attr = False
+                if pending_attr:
+                    raise SystemExit(f"line {lineno}: dangling attribute before section")
                 if name is None:
                     stack.append(("section", None))
                 else:
@@ -231,7 +243,8 @@ def inventory_of(source: str) -> list[str]:
                     for part in name.split("."):
                         stack.append(("section", part))
             elif kw == "mutual":
-                pending_attr = False
+                if pending_attr:
+                    raise SystemExit(f"line {lineno}: dangling attribute before mutual")
                 if name is not None:
                     raise SystemExit(f"line {lineno}: unexpected name on mutual: {stripped!r}")
                 stack.append(("mutual", None))
@@ -270,11 +283,14 @@ def inventory_of(source: str) -> list[str]:
             continue
 
         mods = pending_mods | line_mods
-        had_prefix = pending_attr or saw_attr or bool(mods)
+        had_attr = pending_attr or saw_attr
+        had_prefix = had_attr or bool(mods)
         pending_attr = False
         pending_mods = set()
 
         if rest in ("section", "mutual") or rest.startswith("section "):
+            if had_attr:
+                raise SystemExit(f"line {lineno}: dangling attribute before {rest.split()[0]}")
             scope_after = SCOPE.match(rest)
             if scope_after and mods <= {"noncomputable", "public"}:
                 name = scope_after.group("name")
@@ -361,6 +377,8 @@ def unpinned_imports(root: Path) -> list[str]:
         for raw in text.splitlines():
             m = IMPORT_RE.match(raw)
             if not m:
+                if re.search(r"(?<![\w.'«])import(?![\w'»])", raw):
+                    hits.append(f"{module}: {raw.strip()}")
                 continue
             imp = m.group("mod")
             top = imp.split(".", 1)[0]
@@ -484,11 +502,15 @@ def verify(root: Path, lean_output: str, expectation: dict) -> list[str]:
         errors.append("declaration inventory differs from the expectation file (run `update` after review)")
 
     compiler_decls = parse_compiler_declarations(lean_output)
-    if compiler_decls and isinstance(exp_decls, dict):
+    for mod in sorted(set(compiler_decls) - set(MODULES)):
+        errors.append(f"unexpected compiler declaration module: {mod}")
+    if isinstance(exp_decls, dict):
         for module in MODULES:
-            want_set = set(exp_decls.get(module) or [])
-            got_set = set(compiler_decls.get(module) or [])
-            if got_set != want_set:
+            want_list = exp_decls.get(module) or []
+            got_list = compiler_decls.get(module) or []
+            if len(set(got_list)) != len(got_list):
+                errors.append(f"duplicate compiler declaration in {module}")
+            if set(got_list) != set(want_list):
                 errors.append(f"compiler declaration inventory differs for {module}")
 
     try:
