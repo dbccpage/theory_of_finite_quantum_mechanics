@@ -125,8 +125,8 @@ infinite-dimensional trace-class states.
 
 ## Phase 2 finite and exact-arithmetic Gleason model (`lean4/BornGaussianFiniteModel.lean`)
 
-`lean4/BornGaussianFiniteModel.lean` (checked by the six-module Gleason audit in
-`dag/research/gleason_lean_audit.json` across 478 declarations using only `propext`,
+`lean4/BornGaussianFiniteModel.lean` (checked by the nine-module Gleason audit in
+`dag/research/gleason_lean_audit.json` across 724 declarations using only `propext`,
 `Classical.choice`, and `Quot.sound`, with companion exact rational certificate checks in
 `scripts/verify_gleason_finite_certificates.py` and
 `dag/research/gleason_finite_model_receipt.json`) formalizes the finite and exact-arithmetic
@@ -223,4 +223,78 @@ Gleason model over $\mathbb{Q}(i)^3$:
      $\mathbb{Q}(i)^3 \setminus \{0\}$ across the irrational cone $3|u_y|^4 = \|u\|^4$
      (`dedekindRayCut_isScaleInvariantOnRays`, `dedekindRayCut_gap_ne_zero`,
      `dedekindRayCut_jump_on_pell_pair`).
+
+7. **Track A (General-Value Rational Piron–Soler Chain & Polar–Equatorial Transfer) and Track B
+   (Irrational-Locus / Dedekind-Cut Frame Stress Tests) on $\mathbb{Q}(i)^3$ (`TFQ-1057`):**
+   - **Track A (Rational Piron–Soler Chain & Polar–Equatorial Transfer):**
+     - General rational Piron orthogonal subadditivity (`rational_piron_subadditivity`,
+       `nonneg_frameFunction_ortho_le_one_sub`) and equatorial pole-deficiency decomposition
+       `f(y) + f(\text{eqOrtho}(y)) = 1 - f(e_1)` (`isFrame_tomo_e1_eqOrtho`,
+       `equatorial_pair_sum_eq_one_sub_pole`).
+     - General two-frame meridian–Kelvin polar–equatorial bridge (`meridian_kelvin_universal_bridge`,
+       `meridian_kelvin_zeroWeight_bridge`, `meridianOrtho_raySinSq_eq`): for any frame function $f$
+       (without assuming $f(e_1) = 1$ or nonnegativity) and any $y \in e_1^\perp \setminus \{0\}$,
+       subtracting the equatorial frame $(e_1, y, \text{eqOrtho}(y))$ from the meridian frame
+       $(e_1 + y, \text{eqOrtho}(y), \text{meridianOrtho}(y))$ yields
+       $f(e_1 + y) - f(e_1) = f(y) - f(\text{meridianOrtho}(y))$ with identical projective ray distances
+       $\text{raySinSq}(e_1 + y, e_1) = \text{raySinSq}(\text{meridianOrtho}(y), y) = \|y\|^2 / (1 + \|y\|^2)$.
+       Consequently, pointwise ray continuity at the single pole `tomo_e1` implies uniform meridian
+       ray continuity across all equatorial directions $y \in e_1^\perp \setminus \{0\}$ with the
+       same modulus $\delta(\varepsilon)$ (`meridian_uniform_equatorial_continuity_of_pole_continuous`).
+     - Exact zero-slack Piron step–partner bridge and projective ray-distance duality
+       (`piron_zero_slack_step_partner_bridge`, `piron_symmetric_step_partner_balance`,
+       `pironStep_pironPartner_raySinSq_eq`, `piron_step_continuous_of_eqOrtho_continuous`,
+       `piron_three_step_zero_slack_chain_abs_le`): for every frame function $f$, nonzero $y \in e_1^\perp$,
+       and $\lambda \ne 0$, $f(\text{pironStep}(y, \lambda)) - f(e_1 + y) = f(\text{eqOrtho}(y)) - f(\text{pironPartner}(y, \lambda))$
+       with $\text{raySinSq}(\text{pironStep}(y, \lambda), e_1 + y) = \text{raySinSq}(\text{pironPartner}(y, \lambda), \text{eqOrtho}(y)) = |\lambda|^2 \|y\|^2 / (1 + \|y\|^2 + |\lambda|^2 \|y\|^2)$,
+       so pointwise ray continuity at $\text{eqOrtho}(y)$ propagates to Piron tangent steps at $e_1 + y$
+       with zero pole-deficiency slack, and opposite tangent steps $\pm \lambda$ satisfy the symmetric
+       balance $f(\text{pironStep}(y, \lambda)) + f(\text{pironPartner}(y, \lambda)) = f(\text{pironStep}(y, -\lambda)) + f(\text{pironPartner}(y, -\lambda))$.
+     - General 1-step, 2-step, 3-step Piron tangent chains and Pythagorean equatorial sandwich bounds
+       with explicit pole-deficiency slack $1 - f(e_1)$ (`piron_general_one_step_le`,
+       `piron_general_two_step_radial_le`, `piron_general_three_step_chain_le`,
+       `pythagEqRot_general_sandwich`).
+   - **Track B (Irrational-Locus / Dedekind-Cut Frame Stress Tests):**
+     - Local constancy and pointwise ray continuity of `dedekindRayCut` on explicit rational
+       neighborhoods of `tomo_e1` ($\text{raySinSq} < 1/2$) and `tomo_e2` ($\text{raySinSq} < 1/3$)
+       and at **every** nonzero vector $v_0 \in \mathbb{Q}(i)^3 \setminus \{0\}$
+       (`dedekindRayCut_eq_zero_of_raySinSq_tomo_e1_lt`,
+       `dedekindRayCut_isPointwiseRayContinuousAt_tomo_e1`,
+       `dedekindRayCut_eq_one_of_raySinSq_tomo_e2_lt`,
+       `dedekindRayCut_isPointwiseRayContinuousAt_tomo_e2`,
+       `dedekindRayCut_eventually_const`,
+       `dedekindRayCut_isArchimedeanContinuousEverywhere`,
+       `dedekindRayCut_isPointwiseRayContinuous`), establishing an explicit scale-invariant ray
+       function on $\mathbb{Q}(i)^3 \setminus \{0\}$ that is pointwise ray-continuous everywhere
+       yet fails both uniform ray continuity (`dedekindRayCut_jump_on_pell_pair`) and 3-frame
+       additivity (`dedekindRayCut_not_isFrameFunction`).
+     - General and `tomo_e1`-anchored orthogonal ray-distance Bessel bounds, `< 45°` polar-cap
+       disjointness, and global vanishing of polar-cap-supported zero-weight residuals
+       (`quadRay_rayProj_eq_one_sub_raySinSq`, `quadRay_rayProj_isNonnegFrameFunction`,
+       `ortho_raySinSq_add_ge_one`, `not_both_raySinSq_lt_half_of_ortho`,
+       `zero_of_zeroWeight_supported_in_polar_cap`, `quadRay_rayProj_tomo_e1_eq_one_sub_raySinSq`,
+       `ortho_raySinSq_tomo_e1_add_ge_one`, `not_both_raySinSq_tomo_e1_lt_half_of_ortho`): for any
+       nonzero anchor $w \in \mathbb{Q}(i)^3 \setminus \{0\}$ and any two nonzero orthogonal vectors
+       $u \perp v$ in $\mathbb{Q}(i)^3$, applying `rational_piron_subadditivity` to the rank-1
+       projector Rayleigh quotient $\text{quadRay}(\text{rayProj}(w)) = 1 - \text{raySinSq}(\cdot, w)$
+       gives $\text{raySinSq}(u, w) + \text{raySinSq}(v, w) \ge 1$, so no two orthogonal vectors can
+       both lie in the polar cap $\text{raySinSq}(\cdot, w) < 1/2$, and any zero-weight frame
+       residual supported inside $\text{raySinSq}(\cdot, w) < 1/2$ vanishes on all of
+       $\mathbb{Q}(i)^3 \setminus \{0\}$.
+     - Refutation of 3-frame additivity for `dedekindRayCut` on the rational bisector frame
+       `(tomo_e3, tomo_e12, bisector_12_neg)` (`dedekindRayCut_not_isFrameFunction`) and for any
+       $\{0, 1\}$-valued 1D latitude profile at `{0, 1/2, 1}`
+       (`yLatitudeFunction_std_and_bisector_constraints`, `no_zero_one_latitude_frameFunction`).
+     - Two-frame Gaussian-norm latitude-halving identity
+       $2 f(a, b, a + bi) = f(a, b, 0) + f(0, 0, 1)$ for coordinate-sign symmetric frame functions
+       and zero-weight residuals (`isFrame_gaussianHalving_base`, `isFrame_gaussianHalving_rot`,
+       `coordSignSymmetric_gaussian_halving_identity`,
+       `zeroWeight_coordSignSymmetric_gaussian_halving_identity`), exit of
+       `gaussianHalvingPos a b = (a, b, a + bi)` from the irrational cone $3|u_y|^4 > \|u\|^4$ for
+       every $(a, b) \in \mathbb{Q}^2 \setminus \{(0, 0)\}$ (`gaussianHalvingPos_exits_irrational_cone`,
+       `dedekindRayCut_gaussianHalvingPos_eq_zero`), global vanishing on $(a, b, 0)$ of any
+       coordinate-sign symmetric zero-weight residual supported inside the irrational cone
+       (`zero_on_xy_plane_of_subcone_zero_and_coordSignSymmetric`), and explicit obstruction for
+       `dedekindRayCut` at $(a, b) = (1, 2)$ (`dedekindRayCut_isCoordSignSymmetric`,
+       `dedekindRayCut_fails_gaussian_halving_at_1_2`).
 

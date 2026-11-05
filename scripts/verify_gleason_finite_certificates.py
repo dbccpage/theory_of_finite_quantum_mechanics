@@ -338,6 +338,91 @@ def dedekind_ray_cut(u: GVec) -> Fraction:
     return Fraction(1) if 3 * (uy_ns * uy_ns) > (u_ns * u_ns) else Fraction(0)
 
 
+def eq_ortho(y: GVec) -> GVec:
+    """Canonical equatorial orthogonal partner `(0, -conj(y.z), conj(y.y))` in `e1^perp`."""
+    return GVec(G_ZERO, -y.z.conj(), y.y.conj())
+
+
+def piron_step(y: GVec, lam: GaussRat) -> GVec:
+    """Piron equatorial tangent step `e1 + y + lam * eq_ortho(y)`."""
+    return TOMO_E1.add(y).add(eq_ortho(y).smul(lam))
+
+
+def piron_partner(y: GVec, lam: GaussRat) -> GVec:
+    """Orthogonal planar partner of `piron_step(y, lam)` in `span(e1 + y, eq_ortho(y))`."""
+    ny = y.norm_sq()
+    c1 = -(lam.conj() * lam * GaussRat.of(ny))
+    c2 = GaussRat.of(Fraction(1) + ny) * lam
+    return TOMO_E1.add(y).smul(c1).add(eq_ortho(y).smul(c2))
+
+
+def meridian_ortho(y: GVec) -> GVec:
+    """Meridian orthogonal partner `-N(y) e1 + y` of `e1 + y` in `span(e1, y)`."""
+    return TOMO_E1.smul(GaussRat.of(-y.norm_sq())).add(y)
+
+
+def kelvin_eq(y: GVec) -> GVec:
+    """Kelvin-inverted equatorial vector `-(1 / N(y)) * y` in `e1^perp`."""
+    return y.smul(GaussRat.of(-Fraction(1) / y.norm_sq()))
+
+
+def eq_tangent_step(y: GVec, t: Fraction) -> GVec:
+    """Equatorial tangent step `y + t * eq_ortho(y)` in `e1^perp`."""
+    return y.add(eq_ortho(y).smul(GaussRat.of(t)))
+
+
+def pythag_eq_rot(y: GVec, k: int) -> GVec:
+    """Pythagorean equatorial rotation `((k^2 - 1)/(k^2 + 1)) y + (2k/(k^2 + 1)) eq_ortho(y)`."""
+    k2 = k * k
+    a = Fraction(k2 - 1, k2 + 1)
+    b = Fraction(2 * k, k2 + 1)
+    return y.smul(GaussRat.of(a)).add(eq_ortho(y).smul(GaussRat.of(b)))
+
+
+def exotic_qi3(u: GVec) -> Fraction:
+    """Nonnegative {0, 1/3, 2/3}-valued nonquadratic frame function `(1 + s3(u)) / 3`."""
+    if not u.is_non_zero():
+        return Fraction(0)
+    return (Fraction(1) + s3(u)) / Fraction(3)
+
+
+def gaussian_halving_base(a: int | Fraction, b: int | Fraction) -> GVec:
+    return GVec.real(a, b, 0)
+
+
+def gaussian_halving_ortho(a: int | Fraction, b: int | Fraction) -> GVec:
+    return GVec.real(-Fraction(b), Fraction(a), 0)
+
+
+def gaussian_halving_pos(a: int | Fraction, b: int | Fraction) -> GVec:
+    return GVec(GaussRat.of(a), GaussRat.of(b), GaussRat.of(a, b))
+
+
+def gaussian_halving_neg(a: int | Fraction, b: int | Fraction) -> GVec:
+    return GVec(GaussRat.of(a), GaussRat.of(b), -GaussRat.of(a, b))
+
+
+def dedekind_local_constancy_theta(v0: GVec) -> Fraction:
+    """Explicit rational step bound theta > 0 from `dedekindRayCut_eventually_const`
+    such that `delta = theta^2` is a local-constancy radius for `dedekind_ray_cut` at `v0`."""
+    if not v0.is_non_zero():
+        raise ValueError("v0 must be nonzero")
+    gap = abs(3 * (v0.y.norm_sq() ** 2) - (v0.norm_sq() ** 2))
+    if gap <= 0:
+        raise AssertionError(f"Expected positive irrational-cone gap at v0={v0}")
+    c_bound = Fraction(4) * (Fraction(2) * v0.norm_sq() + Fraction(1)) + Fraction(1)
+    eta = min(Fraction(1), gap / c_bound)
+    m_bound = Fraction(2) * v0.norm_sq() + Fraction(6)
+    return eta / m_bound
+
+
+def dedekind_local_constancy_radius(v0: GVec) -> Fraction:
+    """Explicit rational radius delta > 0 from `dedekindRayCut_eventually_const`
+    on which `dist_sq_vec(v, v0) < delta` implies `dedekind_ray_cut(v) == dedekind_ray_cut(v0)`."""
+    theta = dedekind_local_constancy_theta(v0)
+    return theta * theta
+
+
 def build_test_frames() -> list[tuple[str, GVec, GVec, GVec]]:
     """Representative corpus of exact orthogonal frames across Q(i)^3."""
     frames: list[tuple[str, GVec, GVec, GVec]] = [
@@ -489,21 +574,7 @@ def verify_all_certificates() -> dict[str, object]:
                 )
             projection_pairs_checked += 1
 
-    # 5. Verify Pell approximations to 1/sqrt(5) for the Dedekind ray-cut witness
-    # For (b, a, 0), norm_sq = b^2 + a^2, so 5 * a^4 > (b^2 + a^2)^2 <=> (sqrt(5) - 1) a^2 > b^2.
-    # Instead, compare 5 * |u.y|^2 > |u.x|^2 + |u.y|^2 + |u.z|^2, i.e., 4 * |u.y|^2 > |u.x|^2 + |u.z|^2,
-    # Wait: 4 is a square, whereas 5 * |u.y|^2 > 2 * ||u||^2 <=> 3 * |u.y|^2 > 2 * (|u.x|^2 + |u.z|^2)!
-    # For u = (b, a, 0), 5 * |u.y|^4 > ||u||^4 is 5 * a^4 > (b^2 + a^2)^2.
-    # Even simpler: 2 * |u.y|^2 > |u.x|^2 + |u.y|^2 + |u.z|^2 <=> |u.y|^2 > |u.x|^2 + |u.z|^2 (cut at 1, rational!).
-    # Whereas 3 * |u.y|^2 > ||u||^2 <=> 2 * |u.y|^2 > |u.x|^2 + |u.z|^2!
-    # Wait: Can |u.x|^2 + |u.z|^2 = 2 * |u.y|^2 for nonzero u in Q(i)^3?
-    # Yes, e.g. u = (1, 1, 1) has |u.x|^2 + |u.z|^2 = 2 = 2 * |u.y|^2!
-    # Why? Because 2 IS a norm (and sum of two norms) in Q(i)!
-    # Whereas 3 is NOT a norm in Q(i) and NOT a sum of two norms in Q(i), because v_3(a^2 + b^2) is ALWAYS EVEN!
-    # Wait: By `v3Rat_normSq_even`, for ANY u in Q(i)^3 \ {0}:
-    # Can `3 * u.y.normSq == u.x.normSq` (or `3 * (u.y.normSq)^2 == (normSqVec u)^2`)?
-    # NEVER! Because `v3Rat (u.y.normSq) % 2 == 0` and `v3Rat ((normSqVec u)^2) = 2 * v3Rat (normSqVec u)` is EVEN,
-    # whereas `v3Rat (3 * (u.y.normSq)^2) = 1 + 2 * v3Rat (u.y.normSq)` is ODD!
+    # 5. Verify Pell approximations to 1/sqrt(3) for the Dedekind ray-cut witness
     pell_pairs = [
         (GVec.real(0, 1, 0), GVec.real(1, 1, 0)),
         (GVec.real(4, 5, 0), GVec.real(9, 10, 0)),
@@ -513,6 +584,222 @@ def verify_all_certificates() -> dict[str, object]:
         if not (dedekind_ray_cut(u_hi) == 1 and dedekind_ray_cut(u_lo) == 0):
             raise AssertionError("Dedekind ray cut test pair failed")
 
+    # 6. Track A: Verify rational Piron-Soler chain (1/2/3-step bounds), general
+    # meridian-Kelvin polar-equatorial transfer, exact ray_sin_sq duality, and
+    # general Piron-Pythagorean sandwich across quadratic and nonquadratic frame functions.
+    nonneg_frame_fns: dict[str, Callable[[GVec], Fraction]] = {
+        "pure_pole_e1": lambda v: v.x.norm_sq() / v.norm_sq(),
+        "mixed_diag": lambda v: (
+            Fraction(3, 5) * v.x.norm_sq()
+            + Fraction(1, 5) * v.y.norm_sq()
+            + Fraction(1, 5) * v.z.norm_sq()
+        )
+        / v.norm_sq(),
+        "exotic_qi3": exotic_qi3,
+    }
+    equatorial_probes = [
+        TOMO_E2,
+        TOMO_E23,
+        TOMO_E23I,
+        GVec.real(0, Fraction(1, 3), Fraction(1, 3)),
+        GVec(G_ZERO, GaussRat.of(Fraction(1, 2), Fraction(1, 3)), GaussRat.of(Fraction(1, 5), 0)),
+    ]
+    track_a_checks = 0
+    for y in equatorial_probes:
+        if not is_frame(TOMO_E1, y, eq_ortho(y)):
+            raise AssertionError(f"Equatorial frame check failed for y={y}")
+        if not is_frame(TOMO_E1.add(y), eq_ortho(y), meridian_ortho(y)):
+            raise AssertionError(f"Meridian base frame check failed for y={y}")
+        if not is_frame(
+            piron_step(y, G_ONE), piron_partner(y, G_ONE), meridian_ortho(y)
+        ):
+            raise AssertionError(f"Piron rotated frame check failed for y={y}")
+        expected_sin_sq = y.norm_sq() / (Fraction(1) + y.norm_sq())
+        if ray_sin_sq(TOMO_E1.add(y), TOMO_E1) != expected_sin_sq:
+            raise AssertionError("Polar ray_sin_sq formula mismatch")
+        if ray_sin_sq(meridian_ortho(y), y) != expected_sin_sq:
+            raise AssertionError("Equatorial meridian_ortho ray_sin_sq duality mismatch")
+        lam_probe = GaussRat.of(Fraction(1, 2), Fraction(1, 3))
+        lam_neg = GaussRat.of(-Fraction(1, 2), -Fraction(1, 3))
+        expected_piron_sin_sq = (lam_probe.norm_sq() * y.norm_sq()) / (
+            Fraction(1) + y.norm_sq() + lam_probe.norm_sq() * y.norm_sq()
+        )
+        if ray_sin_sq(piron_step(y, lam_probe), TOMO_E1.add(y)) != expected_piron_sin_sq:
+            raise AssertionError("Piron step ray_sin_sq formula mismatch")
+        if ray_sin_sq(piron_partner(y, lam_probe), eq_ortho(y)) != expected_piron_sin_sq:
+            raise AssertionError("Piron partner ray_sin_sq duality mismatch")
+        for fn_name, f in nonneg_frame_fns.items():
+            slack = Fraction(1) - f(TOMO_E1)
+            if f(y) + f(eq_ortho(y)) != slack:
+                raise AssertionError(f"Equatorial pair sum failed for {fn_name}")
+            # General meridian-Kelvin bridge
+            if f(TOMO_E1.add(y)) + f(meridian_ortho(y)) != f(TOMO_E1) + f(y):
+                raise AssertionError(f"General meridian bridge failed for {fn_name}")
+            if f(TOMO_E1.add(y)) + f(TOMO_E1.add(kelvin_eq(y))) != f(TOMO_E1) + f(y):
+                raise AssertionError(f"General Kelvin bridge failed for {fn_name}")
+            if f(TOMO_E1.add(y)) - f(TOMO_E1) != f(y) - f(meridian_ortho(y)):
+                raise AssertionError(f"Polar-equatorial variation identity failed for {fn_name}")
+            # Exact zero-slack Piron step-partner bridge & symmetric opposite-step balance
+            if f(piron_step(y, lam_probe)) - f(TOMO_E1.add(y)) != f(eq_ortho(y)) - f(
+                piron_partner(y, lam_probe)
+            ):
+                raise AssertionError(f"Zero-slack Piron step-partner bridge failed for {fn_name}")
+            if abs(f(piron_step(y, lam_probe)) - f(TOMO_E1.add(y))) != abs(
+                f(piron_partner(y, lam_probe)) - f(eq_ortho(y))
+            ):
+                raise AssertionError(f"Zero-slack Piron abs variation equality failed for {fn_name}")
+            if f(piron_step(y, lam_probe)) + f(piron_partner(y, lam_probe)) != f(
+                piron_step(y, lam_neg)
+            ) + f(piron_partner(y, lam_neg)):
+                raise AssertionError(f"Symmetric opposite-step Piron balance failed for {fn_name}")
+            # 1-step, 2-step, 3-step Piron bounds & zero-slack 3-step chain identity
+            t1, t2, t3 = Fraction(1, 2), Fraction(1, 3), Fraction(1, 5)
+            y1 = eq_tangent_step(y, t1)
+            y2 = eq_tangent_step(y1, t2)
+            y3 = eq_tangent_step(y2, t3)
+            if not (
+                f(piron_step(y, GaussRat.of(t1)))
+                <= f(TOMO_E1.add(y)) + f(eq_ortho(y))
+                <= f(TOMO_E1.add(y)) + slack
+            ):
+                raise AssertionError(f"1-step Piron bound failed for {fn_name}")
+            y_rad = y.smul(GaussRat.of(Fraction(1) + t1 * t1))
+            if not (f(TOMO_E1.add(y_rad)) <= f(TOMO_E1.add(y)) + 2 * slack):
+                raise AssertionError(f"2-step Piron radial bound failed for {fn_name}")
+            if not (
+                f(TOMO_E1.add(y3)) - f(TOMO_E1.add(y))
+                <= f(eq_ortho(y)) + f(eq_ortho(y1)) + f(eq_ortho(y2))
+                <= 3 * slack
+            ):
+                raise AssertionError(f"3-step Piron chain bound failed for {fn_name}")
+            zero_slack_chain_rhs = (
+                (f(eq_ortho(y)) - f(piron_partner(y, GaussRat.of(t1))))
+                + (f(eq_ortho(y1)) - f(piron_partner(y1, GaussRat.of(t2))))
+                + (f(eq_ortho(y2)) - f(piron_partner(y2, GaussRat.of(t3))))
+            )
+            if f(TOMO_E1.add(y3)) - f(TOMO_E1.add(y)) != zero_slack_chain_rhs:
+                raise AssertionError(f"Zero-slack 3-step Piron chain identity failed for {fn_name}")
+            zero_slack_abs_rhs = (
+                abs(f(piron_partner(y, GaussRat.of(t1))) - f(eq_ortho(y)))
+                + abs(f(piron_partner(y1, GaussRat.of(t2))) - f(eq_ortho(y1)))
+                + abs(f(piron_partner(y2, GaussRat.of(t3))) - f(eq_ortho(y2)))
+            )
+            if not (abs(f(TOMO_E1.add(y3)) - f(TOMO_E1.add(y))) <= zero_slack_abs_rhs):
+                raise AssertionError(f"Zero-slack 3-step Piron abs bound failed for {fn_name}")
+            # General Piron-Pythagorean sandwich for k = 2, 3
+            for k in (2, 3):
+                k2 = k * k
+                y_hi = y.smul(GaussRat.of(Fraction(k2 + 1, k2 - 1)))
+                y_lo = y.smul(GaussRat.of(Fraction(k2 - 1, k2 + 1)))
+                val_rot = f(TOMO_E1.add(pythag_eq_rot(y, k)))
+                if not (
+                    f(TOMO_E1.add(y_hi)) - slack <= val_rot <= f(TOMO_E1.add(y_lo)) + slack
+                ):
+                    raise AssertionError(f"General Pythagorean sandwich failed for {fn_name}, k={k}")
+            track_a_checks += 1
+
+    # 7. Track B: Irrational-locus / Dedekind-cut frame-function stress tests on Q(i)^3
+    # (a) Local constancy of dedekind_ray_cut near tomo_e1 (ray_sin_sq < 1/2) and tomo_e2 (ray_sin_sq < 1/3)
+    for m in range(5):
+        u_e1 = crt_approach_e1(m)
+        if not (ray_sin_sq(u_e1, TOMO_E1) < Fraction(1, 2) and dedekind_ray_cut(u_e1) == 0):
+            raise AssertionError("dedekind_ray_cut local constancy near tomo_e1 failed")
+    u_near_e2 = GVec.real(Fraction(1, 4), 1, Fraction(1, 4))
+    if not (ray_sin_sq(u_near_e2, TOMO_E2) < Fraction(1, 3) and dedekind_ray_cut(u_near_e2) == 1):
+        raise AssertionError("dedekind_ray_cut local constancy near tomo_e2 failed")
+    # (b) Bisector frame (tomo_e3, tomo_e12, partner_e12_minus) refutes 3-frame additivity for dedekind_ray_cut
+    bisector_sum = (
+        dedekind_ray_cut(TOMO_E3)
+        + dedekind_ray_cut(TOMO_E12)
+        + dedekind_ray_cut(PARTNER_E12_MINUS)
+    )
+    if bisector_sum != 0:
+        raise AssertionError("Expected dedekind_ray_cut sum 0 on (tomo_e3, tomo_e12, partner_e12_minus)")
+    # (c) Two-frame Gaussian-norm latitude-halving identity & cone-exit across super-cone rays
+    for a_val, b_val in ((0, 1), (1, 2), (1, 3), (85, 100)):
+        u_base = gaussian_halving_base(a_val, b_val)
+        w_ortho = gaussian_halving_ortho(a_val, b_val)
+        u_pos = gaussian_halving_pos(a_val, b_val)
+        v_neg = gaussian_halving_neg(a_val, b_val)
+        if not (
+            is_frame(u_base, TOMO_E3, w_ortho) and is_frame(u_pos, v_neg, w_ortho)
+        ):
+            raise AssertionError(f"Gaussian-halving frame check failed at ({a_val}, {b_val})")
+        for fn_name, f in nonneg_frame_fns.items():
+            if 2 * f(u_pos) != f(u_base) + f(TOMO_E3):
+                raise AssertionError(f"Gaussian-halving identity failed for {fn_name}")
+        if not (
+            3 * (u_pos.y.norm_sq() ** 2) < (u_pos.norm_sq() ** 2)
+            and dedekind_ray_cut(u_base) == 1
+            and dedekind_ray_cut(TOMO_E3) == 0
+            and dedekind_ray_cut(u_pos) == 0
+            and 2 * dedekind_ray_cut(u_pos) != dedekind_ray_cut(u_base) + dedekind_ray_cut(TOMO_E3)
+        ):
+            raise AssertionError(
+                f"dedekind_ray_cut Gaussian-halving cone-exit check failed at ({a_val}, {b_val})"
+            )
+    # (d) Global pointwise ray continuity / local constancy radius certificate on Q(i)^3 \ {0}
+    local_constancy_probes = [
+        TOMO_E1,
+        TOMO_E2,
+        TOMO_E3,
+        TOMO_E12,
+        TOMO_E23I,
+        WITNESS_111,
+        WITNESS_NEG211,
+        GVec.real(85, 100, 0),
+        GVec.real(86, 100, 0),
+        gaussian_halving_base(1, 2),
+        gaussian_halving_pos(1, 2),
+    ]
+    for v0 in local_constancy_probes:
+        theta = dedekind_local_constancy_theta(v0)
+        delta = dedekind_local_constancy_radius(v0)
+        if delta <= 0 or delta != theta * theta:
+            raise AssertionError(f"Expected positive local constancy radius for v0={v0}")
+        step = theta / Fraction(4)
+        for sx, sy, sz in ((1, -1, 1), (-1, 1, -1), (1, 1, 0), (0, 1, 1)):
+            v_perturbed = GVec(
+                v0.x + GaussRat.of(sx * step),
+                v0.y + GaussRat.of(sy * step),
+                v0.z + GaussRat.of(0, sz * step),
+            )
+            if not (
+                dist_sq_vec(v_perturbed, v0) < delta
+                and dedekind_ray_cut(v_perturbed) == dedekind_ray_cut(v0)
+            ):
+                raise AssertionError(f"dedekind_ray_cut local constancy failed at v0={v0}")
+    # (e) General-anchor orthogonal ray-distance Bessel bound & polar-cap disjointness
+    bessel_anchors = [*NINE_ANCHORS.values(), WITNESS_111, WITNESS_P7]
+    ortho_bessel_pairs_checked = 0
+    for f_name, u, v, w in frames:
+        for anchor in bessel_anchors:
+            in_cap_count = sum(
+                1 for vec in (u, v, w) if ray_sin_sq(vec, anchor) < Fraction(1, 2)
+            )
+            if in_cap_count > 1:
+                raise AssertionError(
+                    f"More than one frame vector in < 1/2 polar cap on {f_name} for anchor={anchor}"
+                )
+            for p, q in ((u, v), (u, w), (v, w)):
+                expected_quad = p.inner(anchor).norm_sq() / (
+                    p.norm_sq() * anchor.norm_sq()
+                )
+                if Fraction(1) - ray_sin_sq(p, anchor) != expected_quad:
+                    raise AssertionError(f"Projector quadRay identity failed on {f_name}")
+                if ray_sin_sq(p, anchor) + ray_sin_sq(q, anchor) < Fraction(1):
+                    raise AssertionError(
+                        f"Orthogonal Bessel bound failed on frame {f_name}: p={p}, q={q}, anchor={anchor}"
+                    )
+                if (
+                    ray_sin_sq(p, anchor) < Fraction(1, 2)
+                    and ray_sin_sq(q, anchor) < Fraction(1, 2)
+                ):
+                    raise AssertionError(
+                        f"Orthogonal polar-cap disjointness failed on frame {f_name}"
+                    )
+                ortho_bessel_pairs_checked += 1
+
     return {
         "schema_version": 1,
         "phase": "Phase 2 — Finite and Exact-Arithmetic Gleason Model",
@@ -521,6 +808,9 @@ def verify_all_certificates() -> dict[str, object]:
         "crt_archimedean_padic_collision_checks": crt_checks,
         "projection_identity_pairs_verified": projection_pairs_checked,
         "two_frame_meridian_antisymmetry_verified": True,
+        "track_a_piron_soler_chain_checks": track_a_checks,
+        "track_b_irrational_locus_stress_tests_verified": True,
+        "ortho_bessel_pairs_verified": ortho_bessel_pairs_checked,
         "status": "PASS",
     }
 
