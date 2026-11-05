@@ -70,7 +70,7 @@
   {
    "id": "G4",
    "want": "A plain dissection for a general reader, Sections 5 and 6 first.",
-   "output": "5_dissection.md",
+   "output": "5_dissection.md, 5_dissection.pdf",
    "needs": [
     "P1",
     "P2",
@@ -83,7 +83,8 @@
    ],
    "done_when": [
     "no in-house terms",
-    "every quote matches the paper letter for letter"
+    "every quote matches the paper letter for letter",
+    "5_dissection.pdf is built from the current 5_dissection.md with no overfull line or missing character"
    ]
   },
   {
@@ -154,7 +155,25 @@
    "kind": "rerun",
    "check": "rerun_gauss",
    "slow": true,
-   "says": "At the paper's parameters the Gauss residual is 1.1 to 2.3 times the charge change the run produces, while the density dips match the paper's to within about 10 %."
+   "says": "At the paper's parameters the Gauss residual is 1.1 to 2.3 times the charge change the run produces, while the density dips match the paper's to within about 10 %.",
+   "rerun_record": {
+    "input": 3.0,
+    "t": [
+     5,
+     20,
+     40
+    ],
+    "dip_percent": [
+     1.44,
+     4.98,
+     9.07
+    ],
+    "gauss_over_charge": [
+     2.3,
+     1.14,
+     1.12
+    ]
+   }
   },
   {
    "id": "P3",
@@ -279,6 +298,18 @@
    "said": "A public reply quoted the vision sentence without the paper's 'perhaps'.",
    "why": "A misquote, however small, hands the reader a reason to doubt the rest. Every quote is now matched letter for letter by the checks.",
    "caught_by": "our own audit"
+  },
+  {
+   "id": "W7",
+   "said": "The 2 mm slab over 2500 cm^2 holds 2.6 x 10^16 distinguishable cells (5_dissection.md, Section 1.6).",
+   "why": "4 n_r d / lambda^3 x 2500 cm^2 = 8.32 x 10^16 per m^2 x 0.25 m^2 = 2.1 x 10^16 cells. 2.6 is the petabyte figure (2.1 x 10^16 bits / 8 / 10^15), not the cell count (P6).",
+   "caught_by": "proofing the typeset dissection against capacity_numbers"
+  },
+  {
+   "id": "W8",
+   "said": "5200 is the number of half-wavelengths across the 2 mm slab (5_dissection.md, Section 1.6).",
+   "why": "n_r d / lambda = 1.3 x 2 mm / 500 nm = 5200 counts whole wavelengths measured inside the medium (lambda / n_r), not half-wavelengths in vacuum (P6).",
+   "caught_by": "proofing the typeset dissection against capacity_numbers"
   }
  ],
  "files": [

@@ -4,11 +4,13 @@
     python 8_checks.py --rerun      also the Appendix C simulation, about 30 minutes
     python 8_checks.py --selftest   breaks a quote, a length and a term in a copy of the posts,
                                     and confirms each break is caught
+    python 8_checks.py --pdf        rebuilds 5_dissection.pdf from 5_dissection.md (needs pandoc and xelatex)
+                                    and fails on any overfull line or missing character
 
 Exit status 0 only if every claim holds and every goal's tests pass.
 Equation numbers refer to the paper, 3_paper.md.
 """
-import argparse, json, math, pathlib, re, struct, sys
+import argparse, hashlib, json, math, pathlib, re, shutil, struct, subprocess, sys, tempfile, zlib
 
 import numpy as np
 import sympy as sp
@@ -304,7 +306,13 @@ def energy_budget():
 
 @check
 def rerun_gauss():
-    return [(True, "recorded: rms Gauss residual / rms charge change = 2.3, 1.14, 1.12 at t = 5, 20, 40; run --rerun to repeat")]
+    rec = next(c for c in DAG["claims"] if c["id"] == "P2r")["rerun_record"]
+    paper = {5: 1.3, 20: 4.5, 40: 9.1}
+    rows = [(1.0 <= g <= 2.4, f"recorded rerun, t = {t:g}: rms Gauss residual / rms charge change = {g:.2f}")
+            for t, g in zip(rec["t"], rec["gauss_over_charge"])]
+    rows += [(abs(d / paper[t] - 1) < 0.12, f"recorded rerun, t = {t:g}: dip {d:.2f} % against the paper's {paper[t]:g} % (input {rec['input']:g})")
+             for t, d in zip(rec["t"], rec["dip_percent"])]
+    return rows + [(True, "repeat with --rerun")]
 
 
 # ---------------------------------------------------------------- the simulation (--rerun)
@@ -392,7 +400,7 @@ def png_size(p):
 
 def bare(s):
     """Lower case, no quote marks, one space: for matching a quotation against its source."""
-    for tex, uni in (("$\\theta_0$", "\u03b8\u2080"), ("$L_3$", "L\u2083")):
+    for tex, uni in (("$\\theta_0$", "\u03b8\u2080"), ("$L_3$", "L\u2083"), ("$10^{-13}$", "10\u207b\u00b9\u00b3")):
         s = s.replace(tex, uni)
     return re.sub(r"\s+", " ", re.sub(r"[\"'\u2018\u2019\u201c\u201d]", "", s)).strip(" .,").lower()
 
@@ -440,6 +448,66 @@ REVIEW_NUMBERS = ["2.13", "3.9", "18.5 meV", "2.48 eV", "67 µm", "1.20 eV", "0.
                   "5200", "310 µm", "11 MB", "0.045", "0.11", "4000", "1.1 to 2.3", "0.25"]
 
 
+def source_hash(name):
+    """First 16 hex digits of the SHA-256 of a text file, line endings normalized to LF."""
+    text = (HERE / name).read_text(encoding="utf-8").replace("\r\n", "\n")
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+
+
+def pdf_keyword_hash(path):
+    """The source hash the build wrote into the PDF keywords (stored as UTF-16 hex inside a compressed stream)."""
+    raw = path.read_bytes()
+    blobs = [raw]
+    for m in re.finditer(rb"stream\r?\n(.*?)\r?\nendstream", raw, re.S):
+        try:
+            blobs.append(zlib.decompress(m.group(1)))
+        except zlib.error:
+            pass
+    tag = "source-sha256-"
+    for blob in blobs:
+        low = blob.lower()
+        i = low.find(tag.encode("utf-16-be").hex().encode())
+        if i >= 0:
+            j = i + len(tag) * 4
+            return bytes.fromhex(low[j:j + 64].decode()).decode("utf-16-be")
+        i = blob.find(tag.encode())
+        if i >= 0:
+            return blob[i + len(tag):i + len(tag) + 16].decode()
+    return None
+
+
+def pdf_tests():
+    pdf = HERE / "5_dissection.pdf"
+    if not pdf.is_file():
+        return [(False, "5_dissection.pdf exists")]
+    got, want = pdf_keyword_hash(pdf), source_hash("5_dissection.md")
+    return [(got == want, f"5_dissection.pdf was built from the current 5_dissection.md (source hash {want}, PDF says {got})")]
+
+
+def build_pdf():
+    """pandoc to LaTeX, then xelatex twice; the source hash goes into the PDF keywords."""
+    if not (shutil.which("pandoc") and shutil.which("xelatex")):
+        return [(False, "pandoc and xelatex are on the PATH")]
+    tables = r"\usepackage{etoolbox}\AtBeginEnvironment{longtable}{\renewcommand{\arraystretch}{1.3}}"
+    with tempfile.TemporaryDirectory() as tmp:
+        tex = pathlib.Path(tmp) / "5_dissection.tex"
+        subprocess.run(["pandoc", str(HERE / "5_dissection.md"), "-s", "-o", str(tex), "--shift-heading-level-by=-1",
+                        "-V", "documentclass=article", "-V", "fontsize=11pt", "-V", "geometry:margin=1in",
+                        "-V", "linestretch=1.08", "-V", "colorlinks=true", "-V", "linkcolor=teal", "-V", "urlcolor=teal",
+                        "-V", "header-includes=" + tables, "-M", "date=November 2026",
+                        "-M", "keywords=source-sha256-" + source_hash("5_dissection.md")], check=True)
+        for _ in range(2):
+            subprocess.run(["xelatex", "-interaction=nonstopmode", tex.name], cwd=tmp, stdout=subprocess.DEVNULL, check=False)
+        log = (pathlib.Path(tmp) / "5_dissection.log").read_text(encoding="utf-8", errors="replace")
+        out = pathlib.Path(tmp) / "5_dissection.pdf"
+        if out.is_file():
+            shutil.copy(out, HERE / "5_dissection.pdf")
+        pages = re.search(r"Output written on .*?\((\d+) pages", log)
+        return [(out.is_file(), f"xelatex wrote 5_dissection.pdf ({pages.group(1) if pages else '?'} pages)"),
+                (not re.search(r"Overfull \\hbox", log), "no overfull lines"),
+                (not re.search(r"Missing character", log), "no missing characters")]
+
+
 def goal_tests(goal):
     gid = goal["id"]
     if gid in ("G1", "G2"):
@@ -449,7 +517,7 @@ def goal_tests(goal):
         plain = s.replace("$", "")
         return doc_tests("6_review_for_the_authors.md", False) + [(n in plain, f"review quotes the recomputed value {n}") for n in REVIEW_NUMBERS]
     if gid == "G4":
-        return doc_tests("5_dissection.md", True)
+        return doc_tests("5_dissection.md", True) + pdf_tests()
     if gid == "G5":
         return [(set(c["check"] for c in DAG["claims"]) <= set(CHECKS), "every claim names a check that exists")]
     return [(False, f"no tests for {gid}")]
@@ -473,6 +541,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--rerun", action="store_true")
     ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--pdf", action="store_true")
     a = ap.parse_args()
     failed = []
 
@@ -482,6 +551,8 @@ def main():
             if not ok:
                 failed.append(label + " " + msg)
 
+    if a.pdf:
+        show("pdf", build_pdf())
     held = {}
     for c in DAG["claims"]:
         rows = CHECKS[c["check"]]() if c["check"] in CHECKS else [(False, "no such check: " + c["check"])]
