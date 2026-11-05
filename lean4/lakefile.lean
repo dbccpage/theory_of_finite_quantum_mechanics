@@ -1589,4 +1589,3 @@ lean_lib GleasonBornCompletion where
 lean_lib BornGaussianFiniteModel where
   roots := #[`BornGaussianFiniteModel]
 
-
