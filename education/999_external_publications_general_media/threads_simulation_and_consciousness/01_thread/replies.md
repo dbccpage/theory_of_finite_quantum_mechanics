@@ -18,7 +18,7 @@ Post 2, the observer
 
 Post 3, the paper
 
-> I read the paper you linked, appendices included. It models coherent light in brain water writing holograms, estimates a storage capacity, and shows one simulation at chosen parameters. The word "render" does not appear. It takes the outside world as given: vision is "the most important link between the outside world of the observable phenomena and the inner life of our mind". How a quantum mind perceives that world is "yet another mystery altogether". It is about memory inside a brain, not what exists outside one.
+> I read the paper you linked, appendices included. It models coherent light in brain water writing holograms, estimates a storage capacity, and shows one simulation at chosen parameters. The word "render" does not appear. It takes the outside world as given: vision is "the most important link between the outside world of the observable phenomena and the inner life of our mind". How a quantum mind perceives that world is "yet another mystery altogether". It is about memory inside a brain.
 
 ---
 
