@@ -36,14 +36,16 @@ cap_MB = 2.6e15 * (500 / lam_nm) ** 3 / 1e6
 expect(abs(lam_nm / 1e3 - 310) < 1, f"4 meV gives lambda = {lam_nm/1e3:.0f} um")
 expect(abs(cap_MB - 11) < 0.5, f"and the capacity formula gives {cap_MB:.1f} MB")
 
-# 4. Corner second differences of the target (10) on the paper's grid.
+# 4. Corner second differences of the target (10) along x1 on the paper's grid.
+#    These enter only the printed (A88), which carries d1^2 u1; the inverse of (A82) carries d2^2 u1,
+#    which is identically zero for u1(x1).  See code/revised_review_checks.py.
 n = np.arange(-64, 65)
 f = np.interp(n, [-64, -30, 30, 64], [0, 0.1, -0.1, 0])
 d2 = f[2:] - 2 * f[1:-1] + f[:-2]
 idx = np.nonzero(np.abs(d2) > 1e-12)[0]
 expect(sorted(n[1:-1][idx].tolist()) == [-30, 30], "second differences are nonzero exactly at n = +-30")
 expect(abs(abs(d2[idx][0]) - 0.1 * (1 / 30 + 1 / 34)) < 1e-9, f"with magnitude 0.1(1/30+1/34) = {abs(d2[idx][0]):.6f}")
-expect(abs(abs(d2[idx][0]) / 0.2 - 0.031) < 0.002, "which is 3.1 % of the M^2 u1 term at those cells")
+expect(abs(abs(d2[idx][0]) / 0.2 - 0.031) < 0.002, "which is 3.1 % of the M^2 u1 term at those cells (printed (A88) only)")
 
 if FAIL:
     print("\nFAILED:", *FAIL, sep="\n  ")
