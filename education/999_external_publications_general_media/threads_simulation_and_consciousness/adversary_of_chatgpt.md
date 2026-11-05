@@ -113,3 +113,13 @@ The procedure: claim → counterexample → repair → **retest** → residual o
 > When nobody is looking, which do you mean: (1) nothing is there, (2) nothing changes, or (3) nobody has a record of it? Number 3 is ordinary. For 1 or 2: what measurement, once looking resumes, would come out different from ordinary physics? If you can name one, we can test it. If not, what has been explained?
 
 Retest: no screen; no claim that a test is impossible; option 3 is named as ordinary with no universal claim attached; the obligation is placed on the claimant.
+
+---
+
+## Round 3: self-audit pointer (2026-11-05)
+
+This file is left as written. The repairs to it are recorded in [self_audit.md](self_audit.md) §C:
+- the 1.2 eV figure holds only for a record held by one barrier (C5, and `self_review.md` A9);
+- $e^{-90}$ holds as a number, but thermal photons are not the noise that matters in tissue (C4);
+- the Landauer line needs the overwrite case: overwriting an occupied medium does cost $k_BT\ln2$ per bit (C5, `self_review.md` A8).
+The recovered public question in round 2 has been replaced by the game post in [replies.md](replies.md).
