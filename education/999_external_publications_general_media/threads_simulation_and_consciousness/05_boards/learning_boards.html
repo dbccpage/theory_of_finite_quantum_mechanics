@@ -1,0 +1,345 @@
+<title>Holographic Brain, Taken Apart</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: six boards behind a wrapping tab row; each board = question, picture, numbered logic, what would change it, a plain reply. Tokens follow markup_board.html. */
+:root{
+  --paper:#F5F8F7; --card:#FFFFFF; --ink:#18262E; --mute:#5B6B72; --rule:#D5DFDD;
+  --teal:#0F7C78; --teal-soft:#DCEFEC; --supplied:#B5651D; --supplied-soft:#F6E7D8;
+  --wit:#2F6FB0; --wit-soft:#DCE8F5; --no:#B23A3A; --no-soft:#F5DEDE; --num:#6A4FA0; --num-soft:#ECE6F6;
+  --display:"Literata",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0F1719; --card:#162125; --ink:#E4ECEA; --mute:#93A5A9; --rule:#2A3A3F;
+  --teal:#4FC2BB; --teal-soft:#173B3A; --supplied:#E39B5B; --supplied-soft:#3A2A1C;
+  --wit:#7FB2E8; --wit-soft:#1C2E42; --no:#E67C7C; --no-soft:#3E2223; --num:#B9A2EA; --num-soft:#2A2340; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1719; --card:#162125; --ink:#E4ECEA; --mute:#93A5A9; --rule:#2A3A3F;
+  --teal:#4FC2BB; --teal-soft:#173B3A; --supplied:#E39B5B; --supplied-soft:#3A2A1C;
+  --wit:#7FB2E8; --wit-soft:#1C2E42; --no:#E67C7C; --no-soft:#3E2223; --num:#B9A2EA; --num-soft:#2A2340; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:18px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.6vw,44px);line-height:1.1;margin:0;text-wrap:balance}
+.lede{color:var(--mute);margin:0;max-width:66ch}
+.tags{display:flex;flex-wrap:wrap;gap:6px;font-family:var(--mono);font-size:12px}
+.t{display:inline-block;padding:1px 8px;border-radius:999px;font-family:var(--mono);font-size:12px;white-space:nowrap}
+.t.w{background:var(--wit-soft);color:var(--wit)} .t.d{background:var(--teal-soft);color:var(--teal)} .t.n{background:var(--num-soft);color:var(--num)}
+.t.s{background:var(--supplied-soft);color:var(--supplied)} .t.o{background:var(--no-soft);color:var(--no)}
+nav{display:flex;flex-wrap:wrap;gap:6px}
+nav a{font:500 14px var(--body);text-decoration:none;color:var(--ink);padding:7px 12px;border:1px solid var(--rule);border-radius:6px;background:var(--card)}
+nav a[aria-current="page"]{border-color:var(--teal);background:var(--teal-soft);color:var(--teal)}
+nav a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.board{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px 18px 20px;display:grid;gap:14px;min-width:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0}
+.board h2{font-family:var(--display);font-weight:500;font-size:clamp(22px,3vw,28px);line-height:1.2;margin:0;text-wrap:balance}
+.board h3{font-size:15px;font-weight:600;margin:0}
+.pic{overflow-x:auto} .pic svg{display:block;width:100%;height:auto;max-width:100%} svg text{font-family:var(--mono)}
+ol.logic{margin:0;padding-left:22px;display:grid;gap:8px;max-width:72ch}
+ol.logic li{padding-left:4px}
+.box{border-left:3px solid var(--rule);padding:4px 0 4px 12px;max-width:72ch}
+.box.change{border-color:var(--supplied)} .box.reply{border-color:var(--teal)}
+.reply blockquote{margin:6px 0 0;font-size:15px}
+.reply .n{font-family:var(--mono);font-size:11px;color:var(--mute)}
+.ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.ctl .lab{font-family:var(--mono);font-size:12px;color:var(--mute)}
+button{font:500 14px var(--body);padding:6px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer}
+button[aria-pressed="true"]{background:var(--teal-soft);border-color:var(--teal);color:var(--teal)}
+button:disabled{opacity:.45;cursor:default}
+input[type=range]{width:min(100%,320px);accent-color:var(--teal)}
+.out{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:15px}
+.verdict{margin:0;font-weight:600}
+.tbl{overflow-x:auto} table{border-collapse:collapse;font-size:14px;min-width:100%} th,td{border-bottom:1px solid var(--rule);padding:6px 8px;text-align:left;vertical-align:top}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.steps li{display:flex;gap:10px;align-items:baseline;padding:5px 9px;border-radius:6px;background:var(--paper);font-size:15px;min-width:0}
+.steps li[data-on="false"]{opacity:.35}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px}
+.stage{border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--paper);display:grid;gap:6px;align-content:start;font-size:14.5px;min-width:0}
+.stage.open{border-style:dashed;border-color:var(--no)}
+.stage ul{margin:0;padding-left:18px;display:grid;gap:4px}
+code,.m{font-family:var(--mono);font-size:.92em}
+footer{color:var(--mute);font-size:13px;max-width:72ch}
+</style>
+
+<div class="wrap">
+<header style="display:grid;gap:10px">
+  <h1>Holographic Brain, Taken Apart</h1>
+  <p class="lede">Six boards on one post and one paper. The post said the universe "does not render what is offscreen" and cited Nishiyama et al., <i>Holographic Brain Theory</i>, IJMS 25:2399 (2024). Boards 1 to 3 use finite pictures: records, reports and counting. Boards 4 and 5 check the paper with its own continuum equations. Board 6 shows the method.</p>
+  <div class="tags"><span class="t w">witnessed: quoted record</span><span class="t d">derived: exact check</span><span class="t n">numerical: rerun</span><span class="t s">supplied: an assumption</span><span class="t o">open</span></div>
+</header>
+
+<nav aria-label="Boards">
+  <a href="#witnessed">1 · What was witnessed</a>
+  <a href="#offscreen">2 · What "offscreen" claims</a>
+  <a href="#likelihood">3 · Same report, same theory?</a>
+  <a href="#paper">4 · What the paper shows</a>
+  <a href="#breaks">5 · Where its math fails</a>
+  <a href="#method">6 · How to take a paper apart</a>
+</nav>
+
+<main>
+<!-- Board 1 -->
+<section class="board" id="b-witnessed" data-view="witnessed">
+  <p class="eyebrow">Board 1 · finite</p>
+  <h2>What did we actually witness?</h2>
+  <div class="pic" id="tree-svg"></div>
+  <div class="ctl"><button type="button" id="tree-back">Remove last</button><button type="button" id="tree-next">Add next assumption</button><span class="lab" id="tree-count"></span></div>
+  <ol class="steps" id="tree-steps"></ol>
+  <p class="verdict" id="tree-verdict"></p>
+  <h3>The logic</h3>
+  <ol class="logic">
+    <li>Two records exist. Under a declared way of reading them (lines, lengths, directions), they differ. <span class="t w">witnessed</span></li>
+    <li>"The same tree fell between them" adds identity across the records, an order in time, and a transition. None of these is in either record. <span class="t s">supplied</span></li>
+    <li>"It made a sound" adds a model of air, and "someone heard it" adds a receiver and a record of hearing. <span class="t s">supplied</span> <span class="t o">open</span></li>
+    <li>Many different histories end in the second record. So a witnessed difference does not fix one history. <span class="t d">derived</span></li>
+  </ol>
+  <div class="box change"><h3>What would change this</h3>A third record, or a record that carries order (a timestamp, tree rings), adds witnessed structure. Every claim should say which record carries it.</div>
+  <div class="box reply"><h3>Reply</h3><blockquote id="r1"></blockquote><span class="n" id="r1n"></span></div>
+</section>
+
+<!-- Board 2 -->
+<section class="board" id="b-offscreen" data-view="offscreen">
+  <p class="eyebrow">Board 2 · finite</p>
+  <h2>What does "the universe does not render what is offscreen" claim?</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Reading</th><th>What it says</th><th>Testable?</th></tr></thead>
+    <tbody>
+      <tr><td>(i) stops existing</td><td>Unobserved things are not there.</td><td>Only if it predicts something different when observation resumes.</td></tr>
+      <tr><td>(ii) stops evolving</td><td>Unobserved things are frozen.</td><td>Yes, in principle: a frozen system would lag behind one that kept running. It depends on the dynamics claimed.</td></tr>
+      <tr><td>(iii) is not experienced</td><td>Nobody perceives what nobody perceives.</td><td>True of everything, and needs no simulation.</td></tr>
+    </tbody></table></div>
+  <ol class="logic">
+    <li>(i) implies (iii): what does not exist is not experienced. <span class="t d">derived</span></li>
+    <li>(ii) implies neither of the others. A paused, saved game chunk stops evolving and keeps its state. A frozen frame stops evolving and can still be seen. <span class="t d">derived</span></li>
+    <li>So these are three different claims, not three strengths of one claim. The post has to say which it means.</li>
+  </ol>
+  <h3>Same screen, different worlds</h3>
+  <div class="pic" id="render-svg"></div>
+  <div class="ctl" role="group" aria-label="Viewport"><span class="lab">viewport</span><button type="button" data-vp="0">left</button><button type="button" data-vp="1">middle</button><button type="button" data-vp="2">right</button></div>
+  <div class="ctl" role="group" aria-label="Channel"><span class="lab">channel</span><button type="button" data-ch="screen">screen only</button><button type="button" data-ch="count">screen + object count</button></div>
+  <p class="verdict" id="render-verdict"></p>
+  <ol class="logic" start="4">
+    <li><b>A.</b> This observer cannot tell the two worlds apart with this channel.</li>
+    <li><b>B.</b> No possible observation can tell them apart.</li>
+    <li><b>C.</b> The two worlds are physically the same.</li>
+    <li>A does not give B: widen the channel and the difference can show. B does not give C. And failing to show C does not show that they differ. <span class="t d">derived</span></li>
+  </ol>
+  <div class="box change"><h3>What would change this</h3>A named channel on which "rendered" and "not rendered" give different records. Then the claim becomes a physics claim and can be tested.</div>
+  <div class="box reply"><h3>Reply</h3><blockquote id="r2"></blockquote><span class="n" id="r2n"></span></div>
+</section>
+
+<!-- Board 3 -->
+<section class="board" id="b-likelihood" data-view="likelihood">
+  <p class="eyebrow">Board 3 · finite</p>
+  <h2>If two worlds give the same report, are the theories equally good?</h2>
+  <ol class="logic">
+    <li>If states <i>a</i> and <i>b</i> give the same report, any judge that sees only the report gives them the same verdict. (Lean: <code>presentation_blind_spot</code>.) <span class="t d">derived</span></li>
+    <li>A theory is not one state. It assigns odds to states, and so to reports. Theories are compared by the odds they give the data that was recorded: the Bayes factor.</li>
+    <li>Equal reports for two states do not make two theories' odds equal. Try it below. <span class="t d">derived</span></li>
+  </ol>
+  <div class="pic" id="bf-svg"></div>
+  <div class="ctl"><label class="lab" for="bf-r">theory H2's weight on state a</label><input id="bf-r" type="range" min="5" max="100" step="5" value="50"><span class="out" id="bf-out"></span></div>
+  <ol class="logic" start="4">
+    <li>The Bayes factor is 1 only when both theories give the <i>same distribution</i> of reports, and only when that distribution is nonzero for what was seen. <span class="t d">derived</span></li>
+    <li>For a run of reports, multiplying single-report odds needs independence. One fair coin flipped twice and one flip copied twice agree on each report, yet give "TT" odds of ¼ and ½: a Bayes factor of 2. <span class="t d">derived</span></li>
+  </ol>
+  <div class="box change"><h3>What would change this</h3>A rendering theory that states its odds for some record, where ordinary physics gives different odds. Without that, its Bayes factor is undefined, not 1.</div>
+  <div class="box reply"><h3>Reply</h3><blockquote id="r3"></blockquote><span class="n" id="r3n"></span></div>
+</section>
+
+<!-- Board 4 -->
+<section class="board" id="b-paper" data-view="paper">
+  <p class="eyebrow">Board 4 · the paper</p>
+  <h2>What does the paper show, and how far does it reach?</h2>
+  <div class="stages">
+    <div class="stage" style="border-color:var(--teal)"><h3>1 · A mathematical model</h3><ul>
+      <li>Water conformational states as charged bosons in QED <span class="t s">supplied</span></li>
+      <li>A Dicke super-radiant pulse from those inputs <span class="t d">derived</span></li>
+      <li>The hologram, $|\varphi|^2\propto|r+o|^2$ in (A51), and the object wave <i>o</i> has no equation <span class="t s">supplied</span></li>
+      <li>Capacity $4n_rd/\lambda^3$: 2.5 PB vs 30 TB at 1 bit per synapse <span class="t d">derived</span></li>
+      <li>One simulation shown, with density dips of 1.3% to 21% <span class="t w">witnessed</span></li>
+    </ul></div>
+    <div class="stage open"><h3>2 · In living brains?</h3><ul>
+      <li>No measurement in this paper that brain water has these states. It cites one 2022 MRI study.</li>
+      <li>No hologram measured in tissue.</li>
+      <li>Manipulating memory is left to "a future experimental study". <span class="t w">witnessed</span></li>
+    </ul></div>
+    <div class="stage open"><h3>3 · About the unobserved?</h3><ul>
+      <li>The word "render" appears 0 times in the paper. <span class="t w">witnessed</span></li>
+      <li>It assumes an outside world ("the outside world of the observable phenomena"). It does not test one.</li>
+      <li>It calls how a quantum mind could perceive the world "yet another mystery altogether". <span class="t w">witnessed</span></li>
+    </ul></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Capacity, recomputed</th><th class="r">paper</th><th class="r">unrounded</th></tr></thead>
+    <tbody>
+      <tr><td>$4n_rd/\lambda^3$ with $n_r$=1.3, d=2 mm, λ=500 nm</td><td class="r">8e10 bit/mm²</td><td class="r">8.32e10 bit/mm²</td></tr>
+      <tr><td>× neocortex area 2500 cm²</td><td class="r">2.5 PB</td><td class="r">2.6 PB</td></tr>
+      <tr><td>250×10¹² synapses × 1 bit</td><td class="r">30 TB</td><td class="r">31.25 TB</td></tr>
+    </tbody></table></div>
+  <ol class="logic">
+    <li>Every input to the capacity figure is chosen: wavelength, thickness, refractive index, area, and bits per synapse. The output compares one assumption with another. <span class="t s">supplied</span></li>
+    <li>Even if stage 2 were shown, it would describe how a brain stores information. It would not reach stage 3. <span class="t d">derived</span></li>
+  </ol>
+  <div class="box change"><h3>What would change this</h3>For stage 2: a measurement of the proposed coherent states or holograms in tissue. For stage 3: an argument from brain storage to the unobserved, which nobody has given.</div>
+  <div class="box reply"><h3>Reply</h3><blockquote id="r4"></blockquote><span class="n" id="r4n"></span></div>
+</section>
+
+<!-- Board 5 -->
+<section class="board" id="b-breaks" data-view="breaks">
+  <p class="eyebrow">Board 5 · the paper, continuum</p>
+  <h2>Where does the paper's own mathematics fail?</h2>
+  <h3>Appendix A: the gauge freezes the charge it needs to move</h3>
+  <ol class="logic">
+    <li>The paper sets $A^0=0$ and $\nabla\cdot\mathbf A=0$. Then $\partial^\nu F_{\nu0}=\partial^i(\partial_iA_0-\partial_0A_i)=0$. <span class="t d">derived</span></li>
+    <li>Its own (A7), $\partial^\nu F_{\nu 0}=J_0+c(\mathbf x)$, then forces $J_0=-e|\varphi|^2$ to stay fixed in time. <span class="t d">derived</span></li>
+    <li>The super-radiant transition current has $\nabla\cdot(\phi_0\nabla\phi_1-\phi_1\nabla\phi_0)=-2m(E_1-E_0)\,\phi_0\phi_1\neq0$, so by continuity the density must oscillate. The populations also move during the pulse. <span class="t d">derived</span></li>
+    <li>So, as written, Appendix A is consistent only for stationary states, and its radiating solution violates its own constraint. <span class="t d">derived</span></li>
+  </ol>
+  <h3>Appendix C: the simulation does not keep Gauss's law</h3>
+  <ol class="logic" start="5">
+    <li>From the paper's (A82)–(A86): $\partial_t(\nabla\cdot\mathbf E-J^0)=-M^2\nabla\cdot\mathbf A-\gamma\,\partial_t\nabla\cdot\mathbf A+v\,\nabla\cdot\mathbf A^{(n\pm1)}$. The Maxwell part cancels exactly; the added terms do not. <span class="t d">derived</span></li>
+    <li>The targets (10)–(11) are curl-free, so $\nabla\cdot\mathbf A\neq0$. The hologram is written in exactly the part that breaks. <span class="t d">derived</span></li>
+    <li>A rerun of the paper's simulation at its parameters reproduces its density dips. Along that run, the Gauss residual is as large as the charge change itself. <span class="t n">numerical</span></li>
+  </ol>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">m·x⁰</th><th class="r">dip, rerun</th><th class="r">dip, paper</th><th class="r">Gauss residual ÷ charge change (rms)</th></tr></thead>
+    <tbody><tr><td class="r">5</td><td class="r">1.44%</td><td class="r">1.3%</td><td class="r">2.3</td></tr>
+    <tr><td class="r">20</td><td class="r">4.98%</td><td class="r">4.5%</td><td class="r">1.14</td></tr>
+    <tr><td class="r">40</td><td class="r">9.07%</td><td class="r">9.1%</td><td class="r">1.12</td></tr></tbody></table></div>
+  <p class="lede" style="font-size:14px">The stencil's own error, measured term by term, is about 10⁻⁷ against about 10⁻² from the added terms. The rerun has not been compared with the authors' code. <span class="t o">open</span></p>
+  <h3>Retention: how long would a record last?</h3>
+  <ol class="logic" start="8">
+    <li>For a record held by one energy barrier, keeping it for a time <i>t</i> at temperature <i>T</i> needs $\Delta E\approx k_BT\ln(t/\tau_0)$, where $\tau_0$ is an attempt time someone must supply. <span class="t s">supplied</span></li>
+    <li>The paper gives no barrier and no $\tau_0$. A collective record could have a much larger barrier. <span class="t o">open</span></li>
+  </ol>
+  <div class="ctl"><label class="lab" for="tau">attempt time τ₀</label><input id="tau" type="range" min="-13" max="0" step="1" value="-12"><span class="out" id="tau-out"></span></div>
+  <ol class="logic" start="10">
+    <li>Landauer's $k_BT\ln2$ (18.5 meV at 310 K) bounds the cost of irreversibly discarding a bit. It says nothing about how long a record lasts. <span class="t d">derived</span></li>
+  </ol>
+  <div class="box change"><h3>What would change this</h3>A transverse-only version of Appendix C that keeps Gauss's law and still forms the hologram, plus a stated barrier and attempt time.</div>
+  <div class="box reply"><h3>Two questions for the authors</h3><blockquote>Does $\nabla\cdot\mathbf E=J^0+e$ hold along your Figure 6 run? What energy barrier holds a record, with what attempt time?</blockquote></div>
+</section>
+
+<!-- Board 6 -->
+<section class="board" id="b-method" data-view="method">
+  <p class="eyebrow">Board 6 · method</p>
+  <h2>How to take a paper apart</h2>
+  <div class="pic" id="method-svg"></div>
+  <ol class="logic">
+    <li><b>Claim.</b> Quote it exactly, with its equation or page.</li>
+    <li><b>Break.</b> Find the weakest step. Try a counterexample, a recomputation, or a rerun of the paper's own equations.</li>
+    <li><b>Repair.</b> Keep what survives and restate it narrowly enough to check.</li>
+    <li><b>Retest.</b> Run the repaired claim against the counterexample that broke it. A repair that only survives one exchange is not done.</li>
+    <li><b>Residual obligation.</b> List every assumption the repair added, as something still owed.</li>
+  </ol>
+  <div class="tbl"><table>
+    <thead><tr><th>Our own errors, found this way</th><th>Repair</th></tr></thead>
+    <tbody>
+      <tr><td>"Equal reports give a Bayes factor of 1"</td><td>Only with equal report distributions, nonzero odds and, for sequences, independence (Board 3)</td></tr>
+      <tr><td>"Every finite observer has unreported differences"</td><td>Only when states outnumber reports</td></tr>
+      <tr><td>"Games keep simulating offscreen"</td><td>Drawing, simulating and keeping state are three different jobs</td></tr>
+      <tr><td>"The three readings are a chain"</td><td>A paused, saved chunk stops evolving and keeps its state (Board 2)</td></tr>
+      <tr><td>"One year needs 1.2 eV"</td><td>Only for one barrier with τ₀ = 1 ps; 0.46 eV for τ₀ = 1 s (Board 5)</td></tr>
+      <tr><td>"The Ward identity forbids longitudinal self-energy"</td><td>Wrong: media screen charge. The condition is four-dimensional transversality</td></tr>
+    </tbody></table></div>
+  <div class="box change"><h3>The rule that matters most</h3>Agreement is not evidence. Several language models reviewed this work, and their agreement counts for nothing. A claim stands only on a quoted record, an exact check, a proof, or a rerun.</div>
+</section>
+</main>
+
+<footer>Files: <code>education/999_external_publications_general_media/threads_simulation_and_consciousness/</code> in the theory_of_finite_quantum_mechanics repository. The checks are in <code>code/</code> and the finite proofs in <code>lean4/ThreadsReply.lean</code>. No expert human review yet.</footer>
+</div>
+
+<script>
+const S=(b,vb="0 0 520 220")=>`<svg viewBox="${vb}" role="img" xmlns="http://www.w3.org/2000/svg">${b}</svg>`;
+const W="var(--wit)",SU="var(--supplied)",T="var(--teal)",N="var(--no)",I="var(--ink)",M="var(--mute)",R="var(--rule)";
+
+/* Replies: plain logic, each at most 500 characters (checked below) */
+const REPLIES={
+ r1:"Two records differ: that is what was observed. \"A tree fell and made a sound\" adds five things neither record shows: that it is the same tree, which record came first, a fall between them, air carrying a wave, and someone hearing it. Each is a reasonable assumption, but each is an assumption. Which of them do you count as observed, and how?",
+ r2:"\"Doesn't render offscreen\" can mean three things: it stops existing, it stops evolving, or nobody experiences it. The third is true of everything we don't look at and needs no simulation. The first two are physics claims. A frozen world would lag behind a running one once we look again. Which do you mean, and what record would show the difference?",
+ r3:"Two worlds can give the same screen and still not be equally likely. Theories are judged by the odds they give to what we record. Ordinary physics gives odds for every detector click. What odds does your rendering theory give that ordinary physics doesn't? If it gives the same odds for everything, the data can't favour it. If it gives none, it can't be scored at all.",
+ r4:"I read the paper. It models holographic memory in brain water, estimates a storage capacity from chosen inputs, and shows one simulation. The word \"render\" never appears, and it assumes an outside world rather than testing one. Even if the brain mechanism were confirmed, it would describe how a brain stores information. It would not tell us what happens to things nobody is watching."
+};
+for(const k in REPLIES){ const t=REPLIES[k]; document.getElementById(k).textContent=t; document.getElementById(k+"n").textContent=`${t.length} characters`+(t.length>500?" (over 500)":""); }
+
+/* Board 1: the tree */
+const TREE=[["w","witnessed","R1 and R2 differ, read as lines."],["s","supplied","L1′ is L1, and L2′ is L2: the same objects in both."],["s","supplied","R1 came before R2. These two records carry no clock."],["s","supplied","Something happened between them: a fall."],["s","supplied","The fall sent pressure waves through air."],["o","open","Someone heard it. That needs a receiver and a record."]];
+let treeN=1;
+function drawTree(){
+  const c=(i,col)=>i<treeN?col:"var(--rule)";
+  document.getElementById("tree-svg").innerHTML=S(`
+   <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${c(2,SU)}"/></marker></defs>
+   <text x="20" y="22" fill="${M}" font-size="12">R1</text>
+   <line x1="60" y1="190" x2="60" y2="70" stroke="${W}" stroke-width="7" stroke-linecap="round"/><line x1="120" y1="190" x2="120" y2="70" stroke="${W}" stroke-width="7" stroke-linecap="round"/>
+   <text x="360" y="22" fill="${M}" font-size="12">R2</text>
+   <line x1="390" y1="190" x2="390" y2="70" stroke="${W}" stroke-width="7" stroke-linecap="round"/><line x1="430" y1="186" x2="510" y2="186" stroke="${W}" stroke-width="7" stroke-linecap="round"/>
+   <text x="175" y="40" fill="${c(0,W)}" font-size="12">differ (read as lines)</text>
+   <path d="M120 60 Q 255 10 470 170" fill="none" stroke="${c(1,SU)}" stroke-width="2" stroke-dasharray="5 5"/><text x="200" y="66" fill="${c(1,SU)}" font-size="12">same tree?</text>
+   <line x1="160" y1="110" x2="340" y2="110" stroke="${c(2,SU)}" stroke-width="2" marker-end="url(#ar)"/><text x="200" y="102" fill="${c(2,SU)}" font-size="12">before → after</text>
+   <text x="200" y="134" fill="${c(3,SU)}" font-size="12">a fall in between</text>
+   ${[0,1,2].map(k=>`<path d="M${200+k*22} 175 q 8 -12 0 -24" fill="none" stroke="${c(4,SU)}" stroke-width="2"/>`).join("")}<text x="270" y="168" fill="${c(4,SU)}" font-size="12">waves in air</text>
+   <text x="200" y="206" fill="${c(5,N)}" font-size="12">heard by whom?</text>`);
+  document.getElementById("tree-steps").innerHTML=TREE.map((t,i)=>`<li data-on="${i<treeN}"><span class="t ${t[0]}">${t[1]}</span><span>${t[2]}</span></li>`).join("");
+  document.getElementById("tree-count").textContent=`${treeN} of ${TREE.length} admitted`;
+  document.getElementById("tree-back").disabled=treeN<=1; document.getElementById("tree-next").disabled=treeN>=TREE.length;
+  document.getElementById("tree-verdict").textContent= treeN===1?"Only a difference is witnessed so far.":`${treeN-1} assumption${treeN>2?"s":""} on top of one witnessed difference.`;
+}
+document.getElementById("tree-next").onclick=()=>{ if(treeN<TREE.length){treeN++;drawTree();} };
+document.getElementById("tree-back").onclick=()=>{ if(treeN>1){treeN--;drawTree();} };
+drawTree();
+
+/* Board 2: same screen, different worlds (world A has one extra object, column 7) */
+let vp=1, ch="screen"; const COLS=9, VIEW=3, base=[[1,1],[4,2],[5,0]], extra=[7,1];
+const inView=x=>x>=vp*3&&x<vp*3+VIEW;
+const report=w=>{const o=w==="A"?[...base,extra]:base; const s=o.filter(p=>inView(p[0])).map(p=>p.join(",")).sort().join(";"); return ch==="count"?s+"|n="+o.length:s;};
+function drawRender(){
+  const row=(y0,w)=>{const o=w==="A"?[...base,extra]:base; return `<text x="4" y="${y0+16}" fill="${M}" font-size="12">${w}</text>`+
+    Array.from({length:COLS},(_,x)=>Array.from({length:3},(_,y)=>`<rect x="${40+x*52}" y="${y0+y*26}" width="50" height="24" rx="3" fill="${inView(x)?"var(--wit-soft)":"none"}" stroke="${R}"/>`).join("")).join("")+
+    o.map(p=>`<circle cx="${40+p[0]*52+25}" cy="${y0+p[1]*26+12}" r="7" fill="${p===extra?SU:W}"/>`).join("")+
+    `<rect x="${40+vp*3*52-2}" y="${y0-2}" width="${VIEW*52+2}" height="80" fill="none" stroke="${W}" stroke-width="2.5"/>`;};
+  document.getElementById("render-svg").innerHTML=S(row(6,"A")+row(100,"B"),"0 0 520 182");
+  document.querySelectorAll("[data-vp]").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.vp===vp)));
+  document.querySelectorAll("[data-ch]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.ch===ch)));
+  const same=report("A")===report("B");
+  document.getElementById("render-verdict").textContent= same?"Same report from A and B on this channel. That is claim A only. Move the viewport right, or add a count.":(ch==="count"&&!inView(extra[0])?"Different reports. The count separates A from B though the extra object is never on screen.":"Different reports. This view shows the extra object.");
+}
+document.querySelectorAll("[data-vp]").forEach(b=>b.onclick=()=>{vp=+b.dataset.vp;drawRender();});
+document.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>{ch=b.dataset.ch;drawRender();});
+drawRender();
+
+/* Board 3: Bayes factor. States a,b report 0; state c reports 1. H1 = {a: 1/2, b: 1/2}. H2 = {a: r, c: 1-r}. Data: report 0. */
+function drawBF(){
+  const r=+document.getElementById("bf-r").value/100, p1=1, p2=r, bf=p1/p2;
+  const bar=(x,h,col,lab,val)=>`<rect x="${x}" y="${170-h*130}" width="70" height="${h*130}" rx="3" fill="${col}"/><text x="${x}" y="190" fill="${M}" font-size="12">${lab}</text><text x="${x}" y="${162-h*130}" fill="${I}" font-size="12">${val}</text>`;
+  document.getElementById("bf-svg").innerHTML=S(`
+   <text x="10" y="20" fill="${M}" font-size="12">states a and b both report 0; state c reports 1. Recorded: 0.</text>
+   <line x1="40" y1="170" x2="300" y2="170" stroke="${R}"/>
+   ${bar(70,p1,W,"P(0 | H1)","1")}${bar(190,p2,SU,"P(0 | H2)",p2.toFixed(2))}
+   <text x="330" y="80" fill="${M}" font-size="12">H1 = ½ a + ½ b</text><text x="330" y="100" fill="${M}" font-size="12">H2 = ${r.toFixed(2)} a + ${(1-r).toFixed(2)} c</text>
+   <text x="330" y="140" fill="${T}" font-size="16">Bayes factor = ${bf.toFixed(2)}</text>`);
+  document.getElementById("bf-out").textContent=`${r.toFixed(2)} → factor ${bf.toFixed(2)}`;
+}
+document.getElementById("bf-r").addEventListener("input",drawBF); drawBF();
+
+/* Board 5: retention barrier for one year at 310 K */
+const kB=8.617333262e-5, Tk=310, YEAR=31557600;
+function drawTau(){
+  const e=+document.getElementById("tau").value, tau=Math.pow(10,e), dE=kB*Tk*Math.log(YEAR/tau);
+  const lab=e===-12?"1 ps":e===0?"1 s":e===-9?"1 ns":e===-6?"1 µs":e===-3?"1 ms":`10^${e} s`;
+  document.getElementById("tau-out").textContent=`τ₀ = ${lab}  →  ΔE for one year ≈ ${dE.toFixed(3)} eV`;
+}
+document.getElementById("tau").addEventListener("input",drawTau); drawTau();
+
+/* Board 6: the cycle */
+document.getElementById("method-svg").innerHTML=S(["claim","break","repair","retest","obligation"].map((s,i)=>{const x=10+i*102;return `<rect x="${x}" y="30" width="92" height="44" rx="8" fill="${i===1?"var(--no-soft)":i===3?"var(--teal-soft)":"var(--paper)"}" stroke="${i===1?N:i===3?T:R}"/><text x="${x+10}" y="57" fill="${I}" font-size="13">${s}</text>`+(i<4?`<path d="M${x+92} 52 h10" stroke="${I}" stroke-width="1.5"/>`:"");}).join("")+`<path d="M470 76 C 470 110 330 110 330 78" fill="none" stroke="${T}" stroke-width="1.5" stroke-dasharray="4 4"/><text x="300" y="118" fill="${T}" font-size="11">a new obligation reopens the cycle</text>`,"0 0 520 130");
+
+/* Routing: one board per view, chosen by #name */
+const VIEWS=["witnessed","offscreen","likelihood","paper","breaks","method"];
+function route(){
+  const h=location.hash.slice(1), v=VIEWS.includes(h)?h:"witnessed";
+  document.querySelectorAll(".board").forEach(b=>b.hidden=b.dataset.view!==v);
+  document.querySelectorAll("nav a").forEach(a=>a.setAttribute("aria-current",a.getAttribute("href")==="#"+v?"page":"false"));
+}
+addEventListener("hashchange",route); route();
+</script>
