@@ -1,6 +1,6 @@
 """Checks behind self_audit.md: every number and equation Claude wrote in this folder.
 
-Run from the folder above:  python code/self_audit_checks.py [--replies PATH]   (needs sympy)
+Run from the folder above:  python code/self_audit_checks.py [--replies PATH] [--learning PATH]   (needs sympy)
 Each check prints PASS or FAIL with the value it recomputed. The exit status is 0 only
 if every check passes. A missing replies file, or a file with the wrong number of reply
 blocks, is a failure, not a skip. Regression tests: code/test_self_audit_checks.py.
@@ -12,7 +12,8 @@ ap = argparse.ArgumentParser()
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ap.add_argument("--replies", default=str(ROOT / "01_thread" / "replies.md"))
 ap.add_argument("--board", default=str(ROOT / "05_boards" / "markup_board.html"))
-ap.add_argument("--expect-blocks", type=int, default=5)
+ap.add_argument("--learning", default=str(ROOT / "05_boards" / "learning_boards.html"))
+ap.add_argument("--expect-blocks", type=int, default=6)
 args = ap.parse_args()
 
 ok = True
@@ -103,6 +104,22 @@ btxt = board.read_text(encoding="utf-8") if board.is_file() else ""
 sent = [s for s in re.split(r"(?<=[.])\s", btxt) if "1.2 eV" in s]
 check("S6 every board sentence with 1.2 eV also states the attempt time 1 ps",
       bool(sent) and all("1 ps" in s for s in sent), f"{len(sent)} sentence(s)")
+
+# --- S7. The learning boards: the same attempt-time guard, plus the numbers they quote ---
+lb = pathlib.Path(args.learning)
+if not lb.is_file():
+    check("S7 learning boards file present", False, str(lb))
+ltxt = re.sub(r"<[^>]+>", " ", lb.read_text(encoding="utf-8")) if lb.is_file() else ""
+lsent = [s for s in re.split(r"(?<=[.])\s", ltxt) if "1.2 eV" in s]
+check("S7a every learning-board sentence with 1.2 eV also states the attempt time",
+      bool(lsent) and all(("picosecond" in s or "1 ps" in s) and ("0.46 eV" in s) for s in lsent), f"{len(lsent)} sentence(s)")
+surface_TB = 4/(500e-9)**2 * 2500e-4 / 8 / 1e12                 # surface-only hologram, no thickness
+check("S7b learning boards quote 2.6 PB, 31 TB, 0.5 TB on the surface, 1.1 to 2.3, 0.9 against 0.5, 1/4 against 1/2",
+      all(x in ltxt for x in ["2.6 petabytes", "31 terabytes", "0.5 terabytes", "1.1 to 2.3", "0.9 against 0.5", "1/4 against 1/2"])
+      and abs(surface_TB - 0.5) < 1e-9 and abs(1.3*2e-3/500e-9 - 5200) < 1e-6, f"surface {surface_TB:.2f} TB, factor {1.3*2e-3/500e-9:.0f}")
+check("S7c learning boards: 9/10 over 5/10 is 1.8, and 18.5 meV rounds to the paper's 20",
+      abs(0.9/0.5 - 1.8) < 1e-12 and abs(kT*math.log(2) - 0.0185) < 1e-4, f"kT ln2 = {kT*math.log(2)*1e3:.2f} meV")
+check("S7d learning boards name no files, proofs by name, or retired words", all(w.lower() not in ltxt.lower() for w in ["metaphys", "ontolog", "philosoph", "apparatus", "lean", ".py", ".md"]))
 
 print("ALL PASS" if ok else "SOME CHECKS FAILED")
 sys.exit(0 if ok else 1)
