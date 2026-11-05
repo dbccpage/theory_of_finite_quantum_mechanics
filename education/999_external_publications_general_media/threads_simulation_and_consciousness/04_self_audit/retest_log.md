@@ -1,22 +1,22 @@
 # Retest log: claim → counterexample → repair → retest → residual obligation
 
-Date: 2026-11-05. This answers ChatGPT's second-round review. That review confirmed parts of [adversarial_review.md](../03_critique/adversarial_review.md) and named new overclaims in the recovered arguments. Each item below runs the full cycle, ending with what is still owed. Checks are in [code/retest_checks.py](../code/retest_checks.py). R1 is a floating-point numerical rerun. R2 to R4 are exact.
+Date: 2026-11-05. This answers the first reviewer's second-round review. That review confirmed parts of [adversarial_review.md](../03_critique/adversarial_review.md) and named new overclaims in the recovered arguments. Each item below runs the full cycle, ending with what is still owed. Checks are in [code/retest_checks.py](../code/retest_checks.py). R1 is a floating-point numerical rerun. R2 to R4 are exact.
 
-**Standing caution.** Agreement between ChatGPT and Claude is not evidence that something is true. Two language models agreeing after an exchange is a fact about the exchange, not about the physics. In this log only three things count as evidence: an exact computation, the rerun of the paper's own equations, and quoted text from the paper. Every result carries its tag: **Witnessed** (a record exists), **Derived** (an exact check here), **Numerical** (a floating-point rerun), **Supplied** (an assumption), or **Open**. Nothing here has had human review. The unchecked list is at the end.
+**Standing caution.** Agreement between the first reviewer and us is not evidence that something is true. Two reviewers agreeing after an exchange is a fact about the exchange, not about the physics. In this log only three things count as evidence: an exact computation, the rerun of the paper's own equations, and quoted text from the paper. Every result carries its tag: **Witnessed** (a record exists), **Derived** (an exact check here), **Numerical** (a floating-point rerun), **Supplied** (an assumption), or **Open**. Nothing here has had human review. The unchecked list is at the end.
 
-Two of the claims ChatGPT audits were not in `adversarial_review.md`. The roughly $4\times10^9$ molecular count and the "public opener" critique came from a different adversary pass. They are still audited below, because the board relied on that material.
+Two of the claims the first reviewer audits were not in `adversarial_review.md`. The roughly $4\times10^9$ molecular count and the "public opener" critique came from a different adversary pass. They are still audited below, because the board relied on that material.
 
 ## R1. Gauge: does the repair satisfy Gauss's law with charged matter?
 
-**Claim (ChatGPT, round 2).** Appendix A is inconsistent as written: $A^0 = 0$ and $\nabla\cdot\mathbf A = 0$ force $e|\varphi|^2 = 0$, against $\int|\varphi|^2 = N$. The objection does not reach Appendix C.
+**Claim (first review, round 2).** Appendix A is inconsistent as written: $A^0 = 0$ and $\nabla\cdot\mathbf A = 0$ force $e|\varphi|^2 = 0$, against $\int|\varphi|^2 = N$. The objection does not reach Appendix C.
 
-**Counterexample to the claim as worded.** (A7) is an integral in time. The paper drops the time-independent constant "that might represent boundary conditions". Keep that constant as a static background, and the static part of the charge no longer contradicts anything. So the precise statement is this: Appendix A is inconsistent **as printed, with the constant set to zero**. With the constant kept, the remaining problem is the time-dependent charge. That includes the slow change of the diagonal density as the populations move ($\theta \to \pi$ in (A44)), not only the oscillation at $\Omega$. So Appendix A is consistent only for stationary states ([self_review.md](self_review.md) A1). ChatGPT's round-2 text agrees that a fixed background cannot absorb a charge that changes in time.
+**Counterexample to the claim as worded.** (A7) is an integral in time. The paper drops the time-independent constant "that might represent boundary conditions". Keep that constant as a static background, and the static part of the charge no longer contradicts anything. So the precise statement is this: Appendix A is inconsistent **as printed, with the constant set to zero**. With the constant kept, the remaining problem is the time-dependent charge. That includes the slow change of the diagonal density as the populations move ($\theta \to \pi$ in (A44)), not only the oscillation at $\Omega$. So Appendix A is consistent only for stationary states ([self_review.md](self_review.md) A1). The first reviewer's round-2 text agrees that a fixed background cannot absorb a charge that changes in time.
 
-**Retest A: does the modeled emission need a changing charge?** ChatGPT notes that a static density does not forbid every radiating transverse current, and that is true. The question is whether *this* current is one of those. For real eigenstates of $-\nabla^2/2m + U$, the transition current $j = \phi_0\partial_3\phi_1 - \phi_1\partial_3\phi_0$ has
+**Retest A: does the modeled emission need a changing charge?** The first reviewer notes that a static density does not forbid every radiating transverse current, and that is true. The question is whether *this* current is one of those. For real eigenstates of $-\nabla^2/2m + U$, the transition current $j = \phi_0\partial_3\phi_1 - \phi_1\partial_3\phi_0$ has
 
 $$\partial_3 j = \phi_0\phi_1'' - \phi_1\phi_0'' = -2m(E_1 - E_0)\,\phi_0\phi_1 \neq 0 .$$
 
-Checked symbolically for oscillator states ([R2](../code/retest_checks.py)): $\partial_x j = -2m\omega\,\psi_0\psi_1$. So the Appendix A source current is not divergence-free. By continuity it needs a density oscillating at $\Omega$, which is exactly the part that $A^0 = 0$ drops. *Derived.* ChatGPT's general caveat is correct but does not apply to this mechanism.
+Checked symbolically for oscillator states ([R2](../code/retest_checks.py)): $\partial_x j = -2m\omega\,\psi_0\psi_1$. So the Appendix A source current is not divergence-free. By continuity it needs a density oscillating at $\Omega$, which is exactly the part that $A^0 = 0$ drops. *Derived.* The first reviewer's general caveat is correct but does not apply to this mechanism.
 
 **Retest B: Appendix C, by rerunning the simulation.** In round 1, `adversarial_review.md` showed symbolically that the $M^2$, $\gamma$ and $v$ terms break Gauss's law, and left the size of the violation **Open**. I reran Section 4 at the paper's parameters: $N = 4$ layers, a $128^2$ periodic lattice, $e = 0.3$, $v = 0.8$, $\gamma = 0.2$, $M^2 = 2$, $\gamma_2 = 0.01$, $dt = 0.001$, RK4. I then measured $G = \nabla\cdot\mathbf E - J^0 - e$ on the output layer, with $\mathbf E$ taken from the paper's own (A83).
 
@@ -81,18 +81,18 @@ The stencil contributes about five orders of magnitude less than the paper's add
 
 **Retest.** On the board, worlds A and B give the same report with the viewport in the middle. They give different reports with the viewport on the right, or with an object count added, even when the extra object is never on screen. *Passes, by construction.*
 
-**Residual obligation, ChatGPT's point accepted.** The absence of a proposed test is not proof that no test exists. One reading of the rendering claim is "unobserved systems stop evolving". That reading could predict a different state when measurement resumes, and so be testable. The ledger now says B4 is not evaluable *with the presentations in use*, and becomes evaluable once she names a channel.
+**Residual obligation, the first reviewer's point accepted.** The absence of a proposed test is not proof that no test exists. One reading of the rendering claim is "unobserved systems stop evolving". That reading could predict a different state when measurement resumes, and so be testable. The ledger now says B4 is not evaluable *with the presentations in use*, and becomes evaluable once she names a channel.
 
 ## Also audited
 
 | Claim | Status after retest |
 |---|---|
-| About $4\times10^9$ molecules in a (500 nm)³ cube | Arithmetic holds: 33.4 molecules/nm³ × $1.25\times10^8$ nm³ ≈ $4.2\times10^9$. ChatGPT is right that this is not the number of coherent emitters and does not size the dropped near-field term. That needs charge density, geometry and screening. Open. |
-| "Unexperienced" is an easy answer to the public opener | ChatGPT is right. If she picks that reading, her claim has been clarified into ordinary limited observation, and that is a result. |
-| 2.6 PB vs 2.5 PB | ChatGPT has withdrawn its objection. Recorded in [board_repair_log.md](board_repair_log.md). |
+| About $4\times10^9$ molecules in a (500 nm)³ cube | Arithmetic holds: 33.4 molecules/nm³ × $1.25\times10^8$ nm³ ≈ $4.2\times10^9$. The first reviewer is right that this is not the number of coherent emitters and does not size the dropped near-field term. That needs charge density, geometry and screening. Open. |
+| "Unexperienced" is an easy answer to the public opener | The first reviewer is right. If she picks that reading, her claim has been clarified into ordinary limited observation, and that is a result. |
+| 2.6 PB vs 2.5 PB | The first reviewer has withdrawn its objection. Recorded in [board_repair_log.md](board_repair_log.md). |
 | Landauer recovery (one year needs a barrier of about 1.2 eV) | Narrowed by the self-review ([self_review.md](self_review.md) A8–A10). If an overwrite irreversibly discards one bit of information that is not kept elsewhere, it costs at least $k_BT\ln2$, with the medium in contact with a bath at $T$. Occupancy alone does not show that. Known or correlated contents, or a retained copy (Bennett), allow reversible erasure. The threshold is $\Delta E = k_BT\ln(\text{1 year}/\tau_0)$. It needs a supplied attempt time $\tau_0$ as well as a single barrier: 1.2 eV for $\tau_0 = 1$ ps, but 0.46 eV for $\tau_0 = 1$ s. A collective order parameter can have an extensive barrier. The 33 ps illustration is withdrawn. What remains is an obligation, not a refutation: the barrier has to be computed. |
 
-## Not yet checked by anyone outside the LLM loop
+## Not yet checked by anyone outside the review loop
 
 - The rerun in R1 is my own implementation of (A82)–(A90). Nobody has compared it with the authors' code. Its match to the paper's density dips is the only evidence that it is the same simulation.
 - The physics citations: super-radiance near-field dephasing, the Ward identity, Bennett on reversible copying, and the hydrogen-bond energy.

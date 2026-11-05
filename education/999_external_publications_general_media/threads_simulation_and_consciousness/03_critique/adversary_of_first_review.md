@@ -1,15 +1,15 @@
-# Adversary of ChatGPT's review: two arguments broken, then recovered
+# Adversary of the first outside review: two arguments broken, then recovered
 
-Date: 2026-11-05. Source: ChatGPT's review as pasted by Jeremy. Paper text is from `ijms-25-02399.md` in this folder.
+Date: 2026-11-05. Source: the first outside review as pasted by Jeremy. Paper text is from `ijms-25-02399.md` in this folder.
 
 Each argument goes through the same steps: the claim, a check against the text, the break, a recovery attempt, and the final status.
 
 ---
 
-## Argument 1: "A⁰ = 0 and ∇·A = 0 are incompatible with the charge density" (ChatGPT §2E)
+## Argument 1: "A⁰ = 0 and ∇·A = 0 are incompatible with the charge density" (first review, §2E)
 
 ### Step 1. The claim
-The paper imposes A⁰ = 0 and ∇·A = 0. Gauss's law then gives ∇·E = 0, but (A6) has J₀ = −e|φ|² ≠ 0. ChatGPT says this is inconsistent "unless an unmentioned neutralizing background" resolves it, and asks for clarification "before accepting the derivation".
+The paper imposes A⁰ = 0 and ∇·A = 0. Gauss's law then gives ∇·E = 0, but (A6) has J₀ = −e|φ|² ≠ 0. The first reviewer says this is inconsistent "unless an unmentioned neutralizing background" resolves it, and asks for clarification "before accepting the derivation".
 
 ### Step 2. Check the text
 Appendix A says: "We shall adopt the Coulomb gauge, namely A⁰ = 0 and ∇ᵢAᵢ = 0." Confirmed.
@@ -21,19 +21,19 @@ F_i0 = ∂_i A_0 − ∂_0 A_i = −∂_0 A_i                (A⁰ = 0)
 paper (A7):  ∂^ν F_ν0 = J_0 = −e|φ|²
 ⇒ 0 = −e|φ|²  ⇒ φ = 0,  contradicting ∫|φ|² = N     (normalization after A9)
 ```
-The claim survives the attack, and it is stronger than ChatGPT stated. The paper does not need an outside Gauss law to contradict itself: its own (A7), combined with its own gauge, forces φ = 0.
+The claim survives the attack, and it is stronger than the first reviewer stated. The paper does not need an outside Gauss law to contradict itself: its own (A7), combined with its own gauge, forces φ = 0.
 
 The paper "sets to zero" the time-independent terms in (A7). Keeping them does not help: J₀ is then static. Taking the divergence of (A3) under the same gauge gives ∂ⁱJᵢ = 0, so by (A5) ∂₀|φ|² = 0. Either way the density is frozen in time.
 
-### Step 4. Break ChatGPT's version (two points)
+### Step 4. Break the first reviewer's version (two points)
 **4a. The neutralizing background does not rescue it.** A static background ρ_b(x) turns Gauss's law into e|φ|² = ρ_b, so the density is still frozen. In the two-level model, φ = b₀φ₀ + b₁φ₁, and
 ```
 |φ|² = |b₀|²|φ₀|² + |b₁|²|φ₁|² + 2 Re( b₀* b₁ φ₀* φ₁ )
                                    └── oscillates at Ω: this is the dipole that radiates
 ```
-Freezing the density kills the very source of super-radiance. ChatGPT's suggested exit closes.
+Freezing the density kills the very source of super-radiance. The first reviewer's suggested exit closes.
 
-**4b. The scope is too wide.** ChatGPT says "the derivation". Appendix C (the control theory and the Figure 5/6 simulations) uses background field gauge (A53). There only the fluctuation has a⁰ = 0, and the background A⁰ is kept: it appears in (A87) as A⁰ − ∂₀β/e. So the objection hits Appendix A (super-radiance) and the hologram rewrite at the start of Appendix B, which says "in the Coulomb gauge in Appendix A". It does not hit the simulations.
+**4b. The scope is too wide.** The first reviewer says "the derivation". Appendix C (the control theory and the Figure 5/6 simulations) uses background field gauge (A53). There only the fluctuation has a⁰ = 0, and the background A⁰ is kept: it appears in (A87) as A⁰ − ∂₀β/e. So the objection hits Appendix A (super-radiance) and the hologram rewrite at the start of Appendix B, which says "in the Coulomb gauge in Appendix A". It does not hit the simulations.
 
 ### Step 5. Recovery attempt (the most charitable reading of the paper)
 Read A⁰ = 0 as an unstated approximation: drop the longitudinal (instantaneous Coulomb) field and keep only transverse photons. Many Dicke-type super-radiance models are written this way. On this reading the equations are an approximation, not a contradiction.
@@ -51,7 +51,7 @@ What the approximation costs:
 
 ---
 
-## Argument 2: the public opener "Does offscreen mean reality stops existing, stops evolving, or simply isn't experienced?" (ChatGPT's Message 1, "your strongest opening")
+## Argument 2: the public opener "Does offscreen mean reality stops existing, stops evolving, or simply isn't experienced?" (the first review's Message 1, "your strongest opening")
 
 ### Step 1. The claim
 Splitting "offscreen" into three readings forces a useful distinction without accusing her of anything.
@@ -91,11 +91,11 @@ Keep the three-way split, drop the word, and attach the test, so that option 3 s
 
 ---
 
-## Round 2: retest after ChatGPT's reply (2026-11-05 05:00Z)
+## Round 2: retest after the first reviewer's reply (2026-11-05 05:00Z)
 
 The procedure: claim → counterexample → repair → **retest** → residual obligation.
 
-| Our round-1 claim | ChatGPT's objection | Retest | Status now |
+| Our round-1 claim | The reviewer's objection | Retest | Status now |
 |---|---|---|---|
 | (A7) plus the gauge gives 0 = −e\|φ\|² | agrees | Re-derived: ∂^νF_ν0 = −∂₀(∇·A) = 0 | **Confirmed** |
 | Objection does not reach Appendix C | agrees | A87 keeps A⁰ − ∂₀β/e | **Confirmed** |
@@ -103,9 +103,9 @@ The procedure: claim → counterexample → repair → **retest** → residual o
 | ~4×10⁹ molecules per λ³ means the dropped term is not small | A count is not an interaction strength | Correct. The size needs the effective charge, geometry and screening, which the paper does not give. | **Withdrawn as a size claim.** Kept: the regime is dense, and the paper gives no estimate. |
 | Options 1 and 2 "cannot be evaluated" | Stopping evolution could show when looking resumes | Correct. Our text jumped from "no test proposed" to "no test exists". The blind-spot result holds only when the predicted report odds are equal, and that is a condition, not a given. | **Withdrawn.** The residual obligation is hers: name the measurement. |
 | "Number 3 is true of every observer" | Pigeonhole needs \|P\| < \|X\| | Same as the board's repaired pigeonhole card | **Withdrawn**; now "Number 3 is ordinary". |
-| ChatGPT round 1: "2.6 PB is an error" | ChatGPT withdrew it | — | **Closed** |
+| First review, round 1: "2.6 PB is an error" | The first reviewer withdrew it | — | **Closed** |
 
-### Where ChatGPT's round 2 is itself weak
+### Where the first review's round 2 is itself weak
 - "A more elaborate neutralized model could produce consistent dynamics": possible, but it is not in the paper, so it is the paper's debt, not a rescue.
 - Its new reply asks "what counts as observing?" and "what fails to happen?" but drops the split between "nothing there" and "nothing changes". Those two make different predictions when looking resumes, so the split is worth keeping.
 

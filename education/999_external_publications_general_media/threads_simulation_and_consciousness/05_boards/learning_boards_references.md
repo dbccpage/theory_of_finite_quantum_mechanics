@@ -65,7 +65,7 @@ All quotes are from `02_paper/ijms-25-02399.md` (the full text; the PDF is besid
 | The printed e/m in (A76) and (A78) | Derived: check 1b in `code/adversarial_review_checks.py`; `03_critique/claims_ledger.md` §4 item 4. |
 | Error 1.1 to 2.3 times the charge change; dips within about 10% | Numerical: `code/retest_checks.py`; table and result in `04_self_audit/retest_log.md`. |
 | Retention 1.20 eV (τ₀ = 1 ps) and 0.461 eV (τ₀ = 1 s) | Derived: checks S3e and S3e2. τ₀ is supplied. |
-| Erasure bound 18.5 meV, photon 2.48 eV, and the bound's conditions | Derived: checks S3b and S3d. Conditions and the kept-copy case: review finding R3 in self-audit §F and entry C5; `03_critique/adversary_of_chatgpt.md`. |
+| Erasure bound 18.5 meV, photon 2.48 eV, and the bound's conditions | Derived: checks S3b and S3d. Conditions and the kept-copy case: review finding R3 in self-audit §F and entry C5; `03_critique/adversary_of_first_review.md`. |
 | The hologram is assumed; the object wave has no equation | Witnessed: (A51) in Appendix B ("We shall then consider the case ..."). `03_critique/claims_ledger.md` §3. |
 | Open items | `README.md` ("Still open"); `04_self_audit/self_review.md` A6 (input amplitude 2.13 against about 3); self-audit §E. |
 | "approaches the target ... due to damping term", no error measure | Witnessed: Section 4, the paragraph on Figure 5. |

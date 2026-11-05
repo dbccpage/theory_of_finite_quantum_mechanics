@@ -1,6 +1,6 @@
 """Retest checks for 04_self_audit/retest_log.md (threads_simulation_and_consciousness).
 
-Provenance: written 2026-11-05 for the retest round after ChatGPT's reply to
+Provenance: written 2026-11-05 for the retest round after the first reviewer's reply to
 adversarial_review.md. Equation numbers refer to 02_paper/ijms-25-02399.md.
 
 Run: python code/retest_checks.py [t_end]     (needs numpy and sympy; default t_end=40)
