@@ -21,7 +21,7 @@ states it. They are working practice from three runs, not tested rules.
    ([v1 388 to 404](sources/analysis_derivation_v1.md#L388)).
 7. **Audit at two levels.** Separate the licensed metalanguage (LEVEL M) from
    the internal regime (LEVEL S), or the auditor will flag ordinary words
-   ([T2 571 to 598](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt#L571)).
+   ([T2 571 to 598](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt#L571)).
 8. **Give auditors sufficient state evidence.** Supply the adopted history or
    a summary that preserves the question being checked. A view that loses the
    relevant state cannot support correct reconstruction on every history
@@ -29,10 +29,10 @@ states it. They are working practice from three runs, not tested rules.
 9. **A proposal is not a state change.** Mark adoption explicitly; the replay
    wrapper's rule is "Do not treat an assistant proposal as adopted unless a
    later user turn explicitly adopts or designates the resulting state"
-   ([FR 10](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_transcript.txt#L10)).
+   ([FR 10](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/full_replay_transcript.txt#L10)).
 10. **Keep mention, supply, designation, admission, retention and operation
     apart.** The trials failed exactly where these were merged
-    ([T2 1248 to 1262](/atlas/papers/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt#L1248)).
+    ([T2 1248 to 1262](/atlas/finite_obstruction_calculus/genesis/docs/sources/pre_genesis/sources/trial_2_transcript.txt#L1248)).
 11. **Record the model.** The design asked for the model identifier, settings
     and date ([v0 414](sources/design_derivation_v0.md#L414)); the record lacks
     them, which limits what the trials can support.

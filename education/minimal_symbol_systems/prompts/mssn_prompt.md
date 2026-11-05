@@ -47,8 +47,8 @@ Start with:
 - `omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/grammar/mssn_conformance_cases.json`
 - `omega_engine_education/documentation/030_the_symbol_game_proposal_fidelity_protocol_pfp/modes/mode_01_hieroglyphics_and_glyph_alphabets/contract.yaml`
 - The same mode directory's `wire_representations.md` and `examples.md`
-- `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
-- The MSS-N README and [From Pre-Genesis to MSS-N](/atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md), especially the distinction between an atlas
+- `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+- The MSS-N README and [From Pre-Genesis to MSS-N](/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md), especially the distinction between an atlas
   row, a presentation and a licensed Genesis lift.
 - `omega_engine_education/documentation/030_the_symbol_game_proposal_fidelity_protocol_pfp/grammar/pfp.ebnf` and the other registered
   grammar profiles; inspect their checkers before changing compatibility.

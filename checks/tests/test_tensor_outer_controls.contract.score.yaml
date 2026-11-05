@@ -1,0 +1,409 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "checks/tests/test_tensor_outer_controls.py",
+  "assurance": "The current source-bound assessment is completed L4B; historical records retain their original scope and grades.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Python",
+      "path": "checks/tests/test_tensor_outer_controls.py",
+      "sha256": "62e5d9d53414354aab5f1d7621f87f3fce489d80cae0de22c7f6a6509ea74119"
+    },
+    "audited_consumers": [
+      ".github/workflows/reviewed-checkers.yml"
+    ],
+    "boundaries": [
+      "The executable checks integer matrix identities over its admitted finite domains. The universal integer identity is separately stated in the cited Lean module. Tensor selection and quantum composition require their own hypotheses."
+    ],
+    "bounded_context": "Finite integer 2x2 matrix controls and their owned census policy.",
+    "contract_urn": "urn:tfqm:checker-review:2026-11-05:test_tensor_outer_controls",
+    "evidence": [
+      {
+        "path": "reviews/repository_file_review/2026-11-05-tensor-domain-closure-quality.json",
+        "sha256": "41b7e28e9df921a7b7049a369a181f1d0bcb5db8457f32e7ac1ee6dbfc15c556"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-tensor-initial-quality.json",
+        "sha256": "17ff2633179d8be80860c8cb80a0e38dc8b5effbdf848374611de783323d889b"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-tensor-initial-tests.py.txt",
+        "sha256": "4fbce0b65db8dcc8f448c0f9091cfb77850537440bd357345c003453f43dce18"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.contract.score.yaml.txt",
+        "sha256": "98a3b75c1ddbfd88a4aefe2d21a126ac4aafc2a1002cacd32070945e6211a763"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.py.txt",
+        "sha256": "594234df43a5586a86eb7032972338e3111d6f7bb0d628668a905bf0aa6786b4"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-tensor-quality.json",
+        "sha256": "8e6a35fc5e6d344a963ea82af5c7a0d26e5808456d0e31aa6627dcb1e745f8a9"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-tensor-requirements.json",
+        "sha256": "e23ee00ba2a79d00d835cacf7fe13c573bfe5a9fbf2b9e30330bcd9c266e8ea7"
+      },
+      {
+        "path": "checks/tests/tensor_outer_mutations.json",
+        "sha256": "8ebd1bd9c3248175554d4cc4317bcfee812efe9e2b2e8c7656d6e50ca06fe4dd"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+      },
+      {
+        "path": "lean4/TensorUniquenessOuterProducts.lean",
+        "sha256": "704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c"
+      }
+    ],
+    "failure_policy": "Violation carries input/resource/check refusal through Outcome and CLI. Counter state is per verification call. Mocks, module registration and captures are scoped. Unexpected exceptions and cancellation propagate.",
+    "operational_cost": "Fixed-size matrix queries use bounded integer arithmetic. Census time and retained inputs grow as (2r+1)^4 with r<=5. Tests use80deterministic examples per generated property and time-limited subprocesses.",
+    "origins": [
+      {
+        "path": "lean4/TensorUniquenessOuterProducts.lean",
+        "sha256": "704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c"
+      }
+    ],
+    "owned_invariants": [
+      "Only native integer inputs enter integer matrix and outer-product paths. Stored rational components and arithmetic intermediates are bounded at4096bits.",
+      "Radius0..5 is owned and immutable. Original special large/zero samples and three negative controls remain.",
+      "Legacy det and rank return int and raise Violation on refusal. New public queries and verify return Outcome."
+    ],
+    "requirements": {
+      "census": {
+        "description": "Preserve original 2403 inputs and 7212 actual successful checks at radius3, and cap variable radius at5.",
+        "tests": [
+          "test_policy_and_counter"
+        ]
+      },
+      "integer_boundary": {
+        "description": "Own exactly two rows and columns of bounded native integers. Refuse bool, float, Fraction, shape errors and out-of-budget values.",
+        "tests": [
+          "test_exact_shapes_and_scalar_domains",
+          "test_resource_terms_before_cancellation"
+        ]
+      },
+      "lifecycle": {
+        "description": "Fresh per-run counters, quiet import, owned immutable radius, typed failures and nonzero CLI refusal. Propagate unexpected exceptions and cancellation.",
+        "tests": [
+          "test_policy_and_counter",
+          "test_failures_cli_and_cancellation",
+          "test_import_and_default_cli"
+        ]
+      },
+      "minor_rank": {
+        "description": "Compute the signed 2x2 minor and rank by independent row elimination, checking rational intermediates.",
+        "tests": [
+          "test_independent_minor_and_rank",
+          "test_pivots_and_singular_cases",
+          "test_resource_terms_before_cancellation"
+        ]
+      },
+      "outer": {
+        "description": "Own the oriented outer product of two integer pairs. Preflight all coordinates before multiplication.",
+        "tests": [
+          "test_outer_orientation_and_ownership",
+          "test_exact_shapes_and_scalar_domains",
+          "test_resource_terms_before_cancellation"
+        ]
+      }
+    },
+    "role": "Independent symbolic and generated challenge suite for integer matrix controls.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": {
+      "TensorOuterTests": [
+        "lifecycle"
+      ],
+      "TensorOuterTests.test_exact_shapes_and_scalar_domains": [
+        "integer_boundary",
+        "outer"
+      ],
+      "TensorOuterTests.test_failures_cli_and_cancellation": [
+        "lifecycle"
+      ],
+      "TensorOuterTests.test_import_and_default_cli": [
+        "lifecycle"
+      ],
+      "TensorOuterTests.test_independent_minor_and_rank": [
+        "minor_rank"
+      ],
+      "TensorOuterTests.test_outer_orientation_and_ownership": [
+        "outer"
+      ],
+      "TensorOuterTests.test_pivots_and_singular_cases": [
+        "minor_rank"
+      ],
+      "TensorOuterTests.test_policy_and_counter": [
+        "census",
+        "lifecycle"
+      ],
+      "TensorOuterTests.test_policy_and_counter.record": [
+        "census",
+        "lifecycle"
+      ],
+      "TensorOuterTests.test_resource_terms_before_cancellation": [
+        "integer_boundary",
+        "minor_rank",
+        "outer"
+      ],
+      "load": [
+        "lifecycle"
+      ]
+    }
+  },
+  "contract_history": [
+    {
+      "bytes": 6188,
+      "original_paths": [
+        "tensor-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/tests/test_tensor_outer_controls.py\",\n    \"sha256\": \"62e5d9d53414354aab5f1d7621f87f3fce489d80cae0de22c7f6a6509ea74119\"\n  },\n  \"audited_consumers\": [\n    \".github/workflows/reviewed-checkers.yml\"\n  ],\n  \"boundaries\": [\n    \"The executable checks integer matrix identities over its admitted finite domains. The universal integer identity is separately stated in the cited Lean module. Tensor selection and quantum composition require their own hypotheses.\"\n  ],\n  \"bounded_context\": \"Finite integer 2x2 matrix controls and their owned census policy.\",\n  \"contract_urn\": \"urn:tfqm:checker-review:2026-11-05:test_tensor_outer_controls\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-domain-closure-quality.json\",\n      \"sha256\": \"41b7e28e9df921a7b7049a369a181f1d0bcb5db8457f32e7ac1ee6dbfc15c556\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-initial-quality.json\",\n      \"sha256\": \"17ff2633179d8be80860c8cb80a0e38dc8b5effbdf848374611de783323d889b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-initial-tests.py.txt\",\n      \"sha256\": \"4fbce0b65db8dcc8f448c0f9091cfb77850537440bd357345c003453f43dce18\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.contract.score.yaml.txt\",\n      \"sha256\": \"98a3b75c1ddbfd88a4aefe2d21a126ac4aafc2a1002cacd32070945e6211a763\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.py.txt\",\n      \"sha256\": \"594234df43a5586a86eb7032972338e3111d6f7bb0d628668a905bf0aa6786b4\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-quality.json\",\n      \"sha256\": \"8e6a35fc5e6d344a963ea82af5c7a0d26e5808456d0e31aa6627dcb1e745f8a9\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-requirements.json\",\n      \"sha256\": \"e23ee00ba2a79d00d835cacf7fe13c573bfe5a9fbf2b9e30330bcd9c266e8ea7\"\n    },\n    {\n      \"path\": \"checks/tests/tensor_outer_mutations.json\",\n      \"sha256\": \"8ebd1bd9c3248175554d4cc4317bcfee812efe9e2b2e8c7656d6e50ca06fe4dd\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"lean4/TensorUniquenessOuterProducts.lean\",\n      \"sha256\": \"704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c\"\n    }\n  ],\n  \"failure_policy\": \"Violation carries input/resource/check refusal through Outcome and CLI. Counter state is per verification call. Mocks, module registration and captures are scoped. Unexpected exceptions and cancellation propagate.\",\n  \"operational_cost\": \"Fixed-size matrix queries use bounded integer arithmetic. Census time and retained inputs grow as (2r+1)^4 with r<=5. Tests use80deterministic examples per generated property and time-limited subprocesses.\",\n  \"origins\": [\n    {\n      \"path\": \"lean4/TensorUniquenessOuterProducts.lean\",\n      \"sha256\": \"704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Only native integer inputs enter integer matrix and outer-product paths. Stored rational components and arithmetic intermediates are bounded at4096bits.\",\n    \"Radius0..5 is owned and immutable. Original special large/zero samples and three negative controls remain.\",\n    \"Legacy det and rank return int and raise Violation on refusal. New public queries and verify return Outcome.\"\n  ],\n  \"requirements\": {\n    \"census\": {\n      \"description\": \"Preserve original 2403 inputs and 7212 actual successful checks at radius3, and cap variable radius at5.\",\n      \"tests\": [\n        \"test_policy_and_counter\"\n      ]\n    },\n    \"integer_boundary\": {\n      \"description\": \"Own exactly two rows and columns of bounded native integers. Refuse bool, float, Fraction, shape errors and out-of-budget values.\",\n      \"tests\": [\n        \"test_exact_shapes_and_scalar_domains\",\n        \"test_resource_terms_before_cancellation\"\n      ]\n    },\n    \"lifecycle\": {\n      \"description\": \"Fresh per-run counters, quiet import, owned immutable radius, typed failures and nonzero CLI refusal. Propagate unexpected exceptions and cancellation.\",\n      \"tests\": [\n        \"test_policy_and_counter\",\n        \"test_failures_cli_and_cancellation\",\n        \"test_import_and_default_cli\"\n      ]\n    },\n    \"minor_rank\": {\n      \"description\": \"Compute the signed 2x2 minor and rank by independent row elimination, checking rational intermediates.\",\n      \"tests\": [\n        \"test_independent_minor_and_rank\",\n        \"test_pivots_and_singular_cases\",\n        \"test_resource_terms_before_cancellation\"\n      ]\n    },\n    \"outer\": {\n      \"description\": \"Own the oriented outer product of two integer pairs. Preflight all coordinates before multiplication.\",\n      \"tests\": [\n        \"test_outer_orientation_and_ownership\",\n        \"test_exact_shapes_and_scalar_domains\",\n        \"test_resource_terms_before_cancellation\"\n      ]\n    }\n  },\n  \"role\": \"Independent symbolic and generated challenge suite for integer matrix controls.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": {\n    \"TensorOuterTests\": [\n      \"lifecycle\"\n    ],\n    \"TensorOuterTests.test_exact_shapes_and_scalar_domains\": [\n      \"integer_boundary\",\n      \"outer\"\n    ],\n    \"TensorOuterTests.test_failures_cli_and_cancellation\": [\n      \"lifecycle\"\n    ],\n    \"TensorOuterTests.test_import_and_default_cli\": [\n      \"lifecycle\"\n    ],\n    \"TensorOuterTests.test_independent_minor_and_rank\": [\n      \"minor_rank\"\n    ],\n    \"TensorOuterTests.test_outer_orientation_and_ownership\": [\n      \"outer\"\n    ],\n    \"TensorOuterTests.test_pivots_and_singular_cases\": [\n      \"minor_rank\"\n    ],\n    \"TensorOuterTests.test_policy_and_counter\": [\n      \"census\",\n      \"lifecycle\"\n    ],\n    \"TensorOuterTests.test_policy_and_counter.record\": [\n      \"census\",\n      \"lifecycle\"\n    ],\n    \"TensorOuterTests.test_resource_terms_before_cancellation\": [\n      \"integer_boundary\",\n      \"minor_rank\",\n      \"outer\"\n    ],\n    \"load\": [\n      \"lifecycle\"\n    ]\n  }\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/tests/test_tensor_outer_controls.py",
+          "sha256": "62e5d9d53414354aab5f1d7621f87f3fce489d80cae0de22c7f6a6509ea74119"
+        },
+        "audited_consumers": [
+          ".github/workflows/reviewed-checkers.yml"
+        ],
+        "boundaries": [
+          "The executable checks integer matrix identities over its admitted finite domains. The universal integer identity is separately stated in the cited Lean module. Tensor selection and quantum composition require their own hypotheses."
+        ],
+        "bounded_context": "Finite integer 2x2 matrix controls and their owned census policy.",
+        "contract_urn": "urn:tfqm:checker-review:2026-11-05:test_tensor_outer_controls",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-domain-closure-quality.json",
+            "sha256": "41b7e28e9df921a7b7049a369a181f1d0bcb5db8457f32e7ac1ee6dbfc15c556"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-initial-quality.json",
+            "sha256": "17ff2633179d8be80860c8cb80a0e38dc8b5effbdf848374611de783323d889b"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-initial-tests.py.txt",
+            "sha256": "4fbce0b65db8dcc8f448c0f9091cfb77850537440bd357345c003453f43dce18"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.contract.score.yaml.txt",
+            "sha256": "98a3b75c1ddbfd88a4aefe2d21a126ac4aafc2a1002cacd32070945e6211a763"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.py.txt",
+            "sha256": "594234df43a5586a86eb7032972338e3111d6f7bb0d628668a905bf0aa6786b4"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-quality.json",
+            "sha256": "8e6a35fc5e6d344a963ea82af5c7a0d26e5808456d0e31aa6627dcb1e745f8a9"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-requirements.json",
+            "sha256": "e23ee00ba2a79d00d835cacf7fe13c573bfe5a9fbf2b9e30330bcd9c266e8ea7"
+          },
+          {
+            "path": "checks/tests/tensor_outer_mutations.json",
+            "sha256": "8ebd1bd9c3248175554d4cc4317bcfee812efe9e2b2e8c7656d6e50ca06fe4dd"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "lean4/TensorUniquenessOuterProducts.lean",
+            "sha256": "704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c"
+          }
+        ],
+        "failure_policy": "Violation carries input/resource/check refusal through Outcome and CLI. Counter state is per verification call. Mocks, module registration and captures are scoped. Unexpected exceptions and cancellation propagate.",
+        "operational_cost": "Fixed-size matrix queries use bounded integer arithmetic. Census time and retained inputs grow as (2r+1)^4 with r<=5. Tests use80deterministic examples per generated property and time-limited subprocesses.",
+        "origins": [
+          {
+            "path": "lean4/TensorUniquenessOuterProducts.lean",
+            "sha256": "704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c"
+          }
+        ],
+        "owned_invariants": [
+          "Only native integer inputs enter integer matrix and outer-product paths. Stored rational components and arithmetic intermediates are bounded at4096bits.",
+          "Radius0..5 is owned and immutable. Original special large/zero samples and three negative controls remain.",
+          "Legacy det and rank return int and raise Violation on refusal. New public queries and verify return Outcome."
+        ],
+        "requirements": {
+          "census": {
+            "description": "Preserve original 2403 inputs and 7212 actual successful checks at radius3, and cap variable radius at5.",
+            "tests": [
+              "test_policy_and_counter"
+            ]
+          },
+          "integer_boundary": {
+            "description": "Own exactly two rows and columns of bounded native integers. Refuse bool, float, Fraction, shape errors and out-of-budget values.",
+            "tests": [
+              "test_exact_shapes_and_scalar_domains",
+              "test_resource_terms_before_cancellation"
+            ]
+          },
+          "lifecycle": {
+            "description": "Fresh per-run counters, quiet import, owned immutable radius, typed failures and nonzero CLI refusal. Propagate unexpected exceptions and cancellation.",
+            "tests": [
+              "test_policy_and_counter",
+              "test_failures_cli_and_cancellation",
+              "test_import_and_default_cli"
+            ]
+          },
+          "minor_rank": {
+            "description": "Compute the signed 2x2 minor and rank by independent row elimination, checking rational intermediates.",
+            "tests": [
+              "test_independent_minor_and_rank",
+              "test_pivots_and_singular_cases",
+              "test_resource_terms_before_cancellation"
+            ]
+          },
+          "outer": {
+            "description": "Own the oriented outer product of two integer pairs. Preflight all coordinates before multiplication.",
+            "tests": [
+              "test_outer_orientation_and_ownership",
+              "test_exact_shapes_and_scalar_domains",
+              "test_resource_terms_before_cancellation"
+            ]
+          }
+        },
+        "role": "Independent symbolic and generated challenge suite for integer matrix controls.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": {
+          "TensorOuterTests": [
+            "lifecycle"
+          ],
+          "TensorOuterTests.test_exact_shapes_and_scalar_domains": [
+            "integer_boundary",
+            "outer"
+          ],
+          "TensorOuterTests.test_failures_cli_and_cancellation": [
+            "lifecycle"
+          ],
+          "TensorOuterTests.test_import_and_default_cli": [
+            "lifecycle"
+          ],
+          "TensorOuterTests.test_independent_minor_and_rank": [
+            "minor_rank"
+          ],
+          "TensorOuterTests.test_outer_orientation_and_ownership": [
+            "outer"
+          ],
+          "TensorOuterTests.test_pivots_and_singular_cases": [
+            "minor_rank"
+          ],
+          "TensorOuterTests.test_policy_and_counter": [
+            "census",
+            "lifecycle"
+          ],
+          "TensorOuterTests.test_policy_and_counter.record": [
+            "census",
+            "lifecycle"
+          ],
+          "TensorOuterTests.test_resource_terms_before_cancellation": [
+            "integer_boundary",
+            "minor_rank",
+            "outer"
+          ],
+          "load": [
+            "lifecycle"
+          ]
+        }
+      },
+      "sha256": "36af3dc8c8956dca73eaf71e66d74aa2b93c0e8255ab8a3b89c5a92b72ee6abf"
+    }
+  ],
+  "current_contract": "36af3dc8c8956dca73eaf71e66d74aa2b93c0e8255ab8a3b89c5a92b72ee6abf",
+  "current_scoring": "c4a351c36bcb45cb0465a4798b4713048196506a0b9450eec4d008b8a9ca250e",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 3566,
+      "original_paths": [
+        "tensor-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/tests/test_tensor_outer_controls.py\",\n    \"sha256\": \"62e5d9d53414354aab5f1d7621f87f3fce489d80cae0de22c7f6a6509ea74119\"\n  },\n  \"assessment_id\": \"tensor-outer-controls-2026-11-05\",\n  \"basis\": {\n    \"G1\": \"Origin theorem statements, original script and consumer search reviewed. Every declaration maps to requirements and independent tests. Prior source and contract histories retained.\",\n    \"G2\": \"Independent SymPy determinant/rank and oriented outer products, singular/pivot witnesses, generated exact matrices and vectors, explicit domain/budget refusals.\",\n    \"G3\": \"Whole input admission precedes arithmetic. Product and elimination budgets enforced. Fresh counters, immutable policy, typed result paths, CLI failures and cancellation propagation exercised.\",\n    \"G4\": \"Strict typing and8test groups pass normally and optimized. Initial19faults included one survivor caused by a missing Fraction-vector refusal test. The additive case closes it and all19faults are killed on replay. Baseline failures/timeouts are excluded from kills.\",\n    \"G5\": \"CCN 4, cognitive 4, one class. Fixed dimensions and capped fourth-power census. Test subprocess timeout30seconds.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-11-05T03:32:45.477406+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-domain-closure-quality.json\",\n      \"sha256\": \"41b7e28e9df921a7b7049a369a181f1d0bcb5db8457f32e7ac1ee6dbfc15c556\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-initial-quality.json\",\n      \"sha256\": \"17ff2633179d8be80860c8cb80a0e38dc8b5effbdf848374611de783323d889b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-initial-tests.py.txt\",\n      \"sha256\": \"4fbce0b65db8dcc8f448c0f9091cfb77850537440bd357345c003453f43dce18\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.contract.score.yaml.txt\",\n      \"sha256\": \"98a3b75c1ddbfd88a4aefe2d21a126ac4aafc2a1002cacd32070945e6211a763\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.py.txt\",\n      \"sha256\": \"594234df43a5586a86eb7032972338e3111d6f7bb0d628668a905bf0aa6786b4\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-quality.json\",\n      \"sha256\": \"8e6a35fc5e6d344a963ea82af5c7a0d26e5808456d0e31aa6627dcb1e745f8a9\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-tensor-requirements.json\",\n      \"sha256\": \"e23ee00ba2a79d00d835cacf7fe13c573bfe5a9fbf2b9e30330bcd9c266e8ea7\"\n    },\n    {\n      \"path\": \"checks/tests/tensor_outer_mutations.json\",\n      \"sha256\": \"8ebd1bd9c3248175554d4cc4317bcfee812efe9e2b2e8c7656d6e50ca06fe4dd\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"lean4/TensorUniquenessOuterProducts.lean\",\n      \"sha256\": \"704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Owns an explicit bounded verification application or independent test boundary, with reusable typed queries, resource limits and reentrant lifecycle.\",\n  \"open_findings\": [],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/tests/test_tensor_outer_controls.py",
+          "sha256": "62e5d9d53414354aab5f1d7621f87f3fce489d80cae0de22c7f6a6509ea74119"
+        },
+        "assessment_id": "tensor-outer-controls-2026-11-05",
+        "basis": {
+          "G1": "Origin theorem statements, original script and consumer search reviewed. Every declaration maps to requirements and independent tests. Prior source and contract histories retained.",
+          "G2": "Independent SymPy determinant/rank and oriented outer products, singular/pivot witnesses, generated exact matrices and vectors, explicit domain/budget refusals.",
+          "G3": "Whole input admission precedes arithmetic. Product and elimination budgets enforced. Fresh counters, immutable policy, typed result paths, CLI failures and cancellation propagation exercised.",
+          "G4": "Strict typing and8test groups pass normally and optimized. Initial19faults included one survivor caused by a missing Fraction-vector refusal test. The additive case closes it and all19faults are killed on replay. Baseline failures/timeouts are excluded from kills.",
+          "G5": "CCN 4, cognitive 4, one class. Fixed dimensions and capped fourth-power census. Test subprocess timeout30seconds."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-11-05T03:32:45.477406+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-domain-closure-quality.json",
+            "sha256": "41b7e28e9df921a7b7049a369a181f1d0bcb5db8457f32e7ac1ee6dbfc15c556"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-initial-quality.json",
+            "sha256": "17ff2633179d8be80860c8cb80a0e38dc8b5effbdf848374611de783323d889b"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-initial-tests.py.txt",
+            "sha256": "4fbce0b65db8dcc8f448c0f9091cfb77850537440bd357345c003453f43dce18"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.contract.score.yaml.txt",
+            "sha256": "98a3b75c1ddbfd88a4aefe2d21a126ac4aafc2a1002cacd32070945e6211a763"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-original-fq-gap-tensor-uniqueness.py.txt",
+            "sha256": "594234df43a5586a86eb7032972338e3111d6f7bb0d628668a905bf0aa6786b4"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-quality.json",
+            "sha256": "8e6a35fc5e6d344a963ea82af5c7a0d26e5808456d0e31aa6627dcb1e745f8a9"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-tensor-requirements.json",
+            "sha256": "e23ee00ba2a79d00d835cacf7fe13c573bfe5a9fbf2b9e30330bcd9c266e8ea7"
+          },
+          {
+            "path": "checks/tests/tensor_outer_mutations.json",
+            "sha256": "8ebd1bd9c3248175554d4cc4317bcfee812efe9e2b2e8c7656d6e50ca06fe4dd"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "lean4/TensorUniquenessOuterProducts.lean",
+            "sha256": "704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Owns an explicit bounded verification application or independent test boundary, with reusable typed queries, resource limits and reentrant lifecycle.",
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "c4a351c36bcb45cb0465a4798b4713048196506a0b9450eec4d008b8a9ca250e"
+    }
+  ]
+}

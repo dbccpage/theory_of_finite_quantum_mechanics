@@ -1,0 +1,290 @@
+"""Independent Hubbard transfer and determinant challenges. AuthorityEffect: None."""
+from __future__ import annotations
+
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import importlib.util
+import io
+from itertools import combinations
+import json
+from pathlib import Path
+import subprocess
+import sys
+from types import ModuleType
+from typing import Any, TypeVar, cast
+import unittest
+from unittest.mock import Mock, patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+CHECKS=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(CHECKS))
+from checker_support.bond_graph import BondGraph
+from checker_support.boundary import Violation, evaluate
+from checker_support.cases import Cases
+from checker_support.hubbard_determinants import HubbardDeterminants
+from checker_support.hubbard_transfer import HubbardTransfer, _power
+from checker_support.outcome import Outcome
+from checker_support.rational_determinant import determinant
+from checker_support.rational_matrix import RationalMatrix
+
+APP=CHECKS/'independent/fsp-hubbard-protected-representations.py'
+PROPERTY=settings(max_examples=60,derandomize=True,deadline=None,database=None)
+POSITIVE=st.builds(Q,st.integers(1,4),st.integers(1,4))
+T=TypeVar('T')
+
+
+def load() -> ModuleType:
+    spec=importlib.util.spec_from_file_location('reviewed_hubbard_controls',APP)
+    if spec is None or spec.loader is None:
+        raise RuntimeError('Cannot load Hubbard controls')
+    module=importlib.util.module_from_spec(spec)
+    with patch.dict(sys.modules,{spec.name:module}):
+        spec.loader.exec_module(module)
+    return module
+
+
+def exact(value: object) -> Q:
+    numerator,denominator=sp.fraction(value)
+    return Q(int(numerator),int(denominator))
+
+
+def kinetic_oracle(graph: BondGraph,r: Q) -> sp.Matrix:
+    result=sp.eye(graph.sites)
+    parameter=sp.Rational(r.numerator,r.denominator)
+    for u,v in list(graph.bonds)+list(graph.bonds)[::-1]:
+        bond=sp.eye(graph.sites)
+        bond[u,u]=bond[v,v]=(parameter+1/parameter)/2
+        bond[u,v]=bond[v,u]=(parameter-1/parameter)/2
+        result=bond*result
+    return result
+
+
+def oracle(model: HubbardTransfer,mask: int,kinetic: sp.Matrix) -> tuple[Q,Q,Q,int]:
+    up=down=sp.eye(model.graph.sites)
+    field_sum=0
+    for time in range(model.slices):
+        signs=[1 if (mask//(2**(time*model.graph.sites+i)))%2 else -1 for i in range(model.graph.sites)]
+        field_sum+=sum(signs)
+        up_values=[model.fugacity*model.hs**s for s in signs]
+        down_values=[model.fugacity*model.hs**(s if model.attractive else -s) for s in signs]
+        up=kinetic*sp.diag(*up_values)*up
+        down=kinetic*sp.diag(*down_values)*down
+    d_up=exact((sp.eye(model.graph.sites)+up).det(method='bareiss'))
+    d_down=exact((sp.eye(model.graph.sites)+down).det(method='bareiss'))
+    prefactor=model.hs**(-field_sum) if model.attractive else Q(1)
+    return d_up,d_down,prefactor*d_up*d_down,field_sum
+
+
+class HubbardTransferTests(unittest.TestCase):
+    def accepted(self,result: Outcome[T]) -> T:
+        self.assertIsNone(result.error)
+        return cast(T,result.value)
+
+    def refused(self,result: Outcome[Any],kind: str='input') -> None:
+        self.assertIsNotNone(result.error)
+        if result.error is None:
+            self.fail('Expected a typed refusal')
+        self.assertEqual(result.error.kind,kind)
+
+    def check_field(self,model: HubbardTransfer,mask: int,kinetic: sp.Matrix) -> None:
+        value=self.accepted(model.determinants(mask))
+        self.assertEqual((value.d_up,value.d_down,value.weight,value.total_s),oracle(model,mask,kinetic))
+        self.assertEqual(value.prefactor,model.hs**(-value.total_s) if model.attractive else Q(1))
+
+    @PROPERTY
+    @given(st.integers(1,4),st.integers(0,63),st.integers(1,4),POSITIVE,POSITIVE,POSITIVE,
+           st.booleans(),st.integers(0,65535))
+    def test_generated_fields_against_independent_symbolic_model(self,sites: int,edge_mask: int,
+            slices: int,r: Q,hs: Q,z: Q,attractive: bool,field: int) -> None:
+        edges=[edge for i,edge in enumerate(combinations(range(sites),2)) if edge_mask & (1<<i)]
+        model=HubbardTransfer(BondGraph(sites,edges),slices,r,hs,z,attractive)
+        kinetic=kinetic_oracle(model.graph,r)
+        self.assertEqual(sp.Matrix(model.kinetic.rows),kinetic)
+        self.assertEqual(kinetic.T,kinetic)
+        self.assertEqual(kinetic.det(),1)
+        self.check_field(model,field%model.field_count,kinetic)
+
+    def test_all_original_protected_fields_and_witnesses(self) -> None:
+        controls=load().HubbardControls()
+        for model in (controls.attractive,controls.half_filled):
+            kinetic=kinetic_oracle(model.graph,model.r)
+            for mask in range(model.field_count):
+                self.check_field(model,mask,kinetic)
+        for model,mask in ((controls.doped,15721),(controls.triangle,1281)):
+            self.check_field(model,mask,kinetic_oracle(model.graph,model.r))
+            self.assertLess(self.accepted(model.determinants(mask)).weight,0)
+
+    @PROPERTY
+    @given(st.integers(1,5),st.lists(st.builds(Q,st.integers(-5,5),st.integers(1,5)),min_size=25,max_size=25))
+    def test_determinant_against_bareiss(self,size: int,values: list[Q]) -> None:
+        rows=tuple(tuple(values[i*size+j] for j in range(size)) for i in range(size))
+        matrix=RationalMatrix(rows)
+        expected=exact(sp.Matrix(rows).det(method='bareiss'))
+        self.assertEqual(self.accepted(determinant(matrix)),expected)
+        self.assertEqual(matrix.rows,rows)
+
+    def test_determinant_pivots_shape_and_resource_paths(self) -> None:
+        for rows in (((0,1),(1,0)),((0,0),(1,0)),((0,0,2),(3,0,1),(1,4,0))):
+            matrix=RationalMatrix(rows)
+            self.assertEqual(self.accepted(determinant(matrix)),exact(sp.Matrix(rows).det()))
+        self.assertEqual(self.accepted(determinant(RationalMatrix.eye(64))),Q(1))
+        for invalid in (None,[[1]],RationalMatrix(((1,2),))):
+            self.refused(determinant(invalid))
+        maximum=(1<<4096)-1
+        self.assertEqual(self.accepted(determinant(RationalMatrix(((maximum,),)))),Q(maximum))
+        for rows in (((maximum,0),(0,2)),((1,maximum),(2,maximum)),
+                     ((Q(1,maximum),0),(maximum,1)),
+                     ((1,-maximum,0),(1,maximum,1),(0,1,0)),
+                     ((maximum,0,0),(0,2,0),(0,0,Q(1,2)))):
+            self.refused(determinant(RationalMatrix(rows)),'resource')
+
+    def test_graph_domains_normalization_and_ownership(self) -> None:
+        edges=[[2,1],[0,1],[3,0]]
+        graph=BondGraph(4,edges)
+        edges[0][0]=0
+        self.assertEqual(graph.bonds,((0,1),(0,3),(1,2)))
+        self.assertEqual(graph.sites,4)
+        for sites in (True,1.0,Q(3),None,0,-1):
+            self.refused(evaluate(BondGraph,sites,[]))
+        self.refused(evaluate(BondGraph,5,[]),'resource')
+        for invalid in (None,[(0,)],[(0,0)],[(True,1)],[(0,1.0)],[(-1,1)]):
+            self.refused(evaluate(BondGraph,3,invalid))
+        self.refused(evaluate(BondGraph,3,[(0,3)]),'resource')
+        self.refused(evaluate(BondGraph,3,[(0,1),(1,0)]),'duplicate')
+        self.refused(evaluate(BondGraph,4,[(0,1)]*7),'resource')
+        with self.assertRaises(FrozenInstanceError):
+            graph.sites=2  # type: ignore[misc]
+
+    def test_model_domains_and_field_mask_preflight(self) -> None:
+        graph=BondGraph(2,[(0,1)])
+        model=HubbardTransfer(graph,2,Q(3,2),Q(2),Q(1))
+        for invalid in (None,True,1.0,Q(1),-1):
+            self.refused(model.determinants(invalid))
+        self.refused(model.determinants(16),'resource')
+        with patch.object(RationalMatrix,'eye',side_effect=RuntimeError('must not allocate')):
+            self.refused(model.determinants(-1))
+            self.refused(model.determinants(16),'resource')
+        self.refused(evaluate(HubbardTransfer,[],1,1,1,1))
+        for slices in (True,0,1.0,None,Q(1)):
+            self.refused(evaluate(HubbardTransfer,graph,slices,1,1,1))
+        self.refused(evaluate(HubbardTransfer,graph,5,1,1,1),'resource')
+        for bad in (True,1.0,complex(1),'1',Q(0),-1):
+            for index in range(3):
+                parameters: list[object]=[Q(1),Q(1),Q(1)]
+                parameters[index]=bad
+                self.refused(evaluate(HubbardTransfer,graph,1,*parameters))
+        for channel in (0,1,None,'attractive'):
+            self.refused(evaluate(HubbardTransfer,graph,1,1,1,1,channel))
+        self.refused(evaluate(HubbardTransfer,graph,1,1<<4096,1,1),'resource')
+        maximum=HubbardTransfer(BondGraph(4,[]),4,1,1,1)
+        self.assertEqual(maximum.field_count,65536)
+        self.assertEqual(self.accepted(maximum.determinants(65535)).total_s,16)
+
+    def test_model_preflight_and_refusal_helper_strength(self) -> None:
+        model=HubbardTransfer(BondGraph(1,[]),1,1,1,1)
+        with self.assertRaises(AssertionError):
+            self.refused(model.determinants(0))
+        with patch.dict(BondGraph.__init__.__globals__,_edge=Mock(side_effect=RuntimeError)):
+            self.refused(evaluate(BondGraph,4,[(0,1)]*7),'resource')
+        with patch.dict(HubbardTransfer.__init__.__globals__,_kinetic=Mock(side_effect=RuntimeError)):
+            self.refused(evaluate(HubbardTransfer,model.graph,1,1,1,1,'bad'))
+
+    def test_result_invariants_and_power_budgets(self) -> None:
+        value=HubbardDeterminants(Q(2),Q(-3),Q(1,2),-1)
+        self.assertEqual((value.d_up,value.d_down,value.prefactor,value.weight,value.total_s),(Q(2),Q(-3),Q(1,2),Q(-3),-1))
+        with self.assertRaises(FrozenInstanceError):
+            value.weight=Q(9)  # type: ignore[misc]
+        for args in ((True,1,1,0),(1,1,0,0),(1,1,-1,0),(1,1,1,True),(1,1,1,-17)):
+            self.refused(evaluate(HubbardDeterminants,*args))
+        maximum=(1<<4096)-1
+        self.refused(evaluate(HubbardDeterminants,2,Q(1,2),maximum,0),'resource')
+        self.refused(evaluate(HubbardDeterminants,1,1,1,17),'resource')
+        self.assertEqual(_power(Q(2),-3),Q(1,8))
+        self.assertEqual(_power(Q(2),3),Q(8))
+        self.assertEqual(_power(Q(2),0),Q(1))
+        self.refused(evaluate(_power,Q(1<<2048),2),'resource')
+
+    def test_empty_bonds_order_reversal_and_detached_queries(self) -> None:
+        module=load()
+        model=HubbardTransfer(BondGraph(1,[]),1,Q(1),Q(2),Q(3,2),True)
+        self.assertEqual(self.accepted(model.determinants(0)).weight,Q(49,8))
+        self.assertEqual(self.accepted(model.determinants(1)).weight,Q(8))
+        self.assertEqual(model.kinetic,RationalMatrix.eye(1))
+        self.assertEqual(self.accepted(model.determinants(0)),self.accepted(model.determinants(0)))
+        with self.assertRaises(FrozenInstanceError):
+            model.hs=Q(9)  # type: ignore[misc]
+        bonds=[(1,2),(0,2),(0,1)]
+        graph=BondGraph(3,bonds)
+        matrix=module.kinetic_matrix(3,bonds,sp.Rational(3,2))
+        self.assertEqual(matrix,kinetic_oracle(graph,Q(3,2)))
+        matrix[0,0]=0
+        self.assertNotEqual(matrix,module.kinetic_matrix(3,bonds,sp.Rational(3,2)))
+
+    def test_legacy_exact_adapters(self) -> None:
+        module=load()
+        edges=[(1,0)]
+        self.assertEqual(module.validate_bonds(2,edges),[(0,1)])
+        args=(2,edges,2,sp.Rational(3,2),sp.Integer(2),sp.Integer(1),9)
+        actual=module.compute_hubbard_determinants(*args)
+        model=HubbardTransfer(BondGraph(2,edges),2,Q(3,2),Q(2),Q(1))
+        self.assertEqual(actual,oracle(model,9,kinetic_oracle(model.graph,model.r)))
+        self.assertTrue(all(isinstance(value,sp.Rational) for value in actual[:3]))
+        for invalid in (1.0,True,'3/2',sp.Float(1),sp.sqrt(2)):
+            self.refused(evaluate(module.kinetic_matrix,2,edges,invalid))
+        self.refused(evaluate(module.compute_hubbard_determinants,*args[:-1],16),'resource')
+
+    def test_original_guards_actual_counters_and_repeatability(self) -> None:
+        controls=load().HubbardControls()
+        observed: list[str]=[]
+        implementation=Cases.require
+        def record(cases: Cases,condition: bool,label: str) -> None:
+            observed.append(label)
+            implementation(cases,condition,label)
+        with patch.object(Cases,'require',record):
+            report=self.accepted(controls.verify())
+        self.assertEqual(report,{'attractive_fields':64,'half_filled_fields':256,'negative_witnesses':2,'checks':659,'failures':0})
+        self.assertEqual(report['checks'],len(observed))
+        self.assertEqual(sum(label.startswith('Attractive spin pairing') for label in observed),64)
+        self.assertEqual(sum(label.startswith('Half-filled pairing relation') for label in observed),256)
+        self.assertEqual(self.accepted(controls.verify()),report)
+        with self.assertRaises(FrozenInstanceError):
+            controls.doped=controls.triangle
+
+    def test_check_failures_typed_resources_and_cancellation(self) -> None:
+        module=load()
+        controls=module.HubbardControls()
+        with patch.object(HubbardTransfer,'_determinants',return_value=HubbardDeterminants(1,-1,1,0)):
+            self.refused(controls.verify(),'check')
+        with patch.object(HubbardTransfer,'_determinants',side_effect=Violation('resource','injected')):
+            self.refused(controls.verify(),'resource')
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()) as output:
+                self.assertEqual(module.main(),1)
+            self.assertEqual(json.loads(output.getvalue())['kind'],'resource')
+        for error in (RuntimeError,KeyboardInterrupt,SystemExit):
+            with patch.object(RationalMatrix,'mul',side_effect=error):
+                with self.assertRaises(error):
+                    controls.attractive.determinants(0)
+            with patch.object(HubbardTransfer,'_determinants',side_effect=error):
+                with self.assertRaises(error):
+                    controls.verify()
+
+    def test_quiet_import_and_original_cli(self) -> None:
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            module=load()
+        self.assertEqual(output.getvalue(),'')
+        baseline=CHECKS.parent/'reviews/repository_file_review/2026-11-05-hubbard-initial-review.json'
+        expected=json.loads(baseline.read_bytes())['runs'][0]['stdout']
+        for _ in range(2):
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                self.assertEqual(module.main(),0)
+            self.assertEqual(output.getvalue(),expected)
+        result=subprocess.run([sys.executable,'-I','-B','-X','utf8',str(APP)],capture_output=True,text=True,encoding='utf-8',timeout=30)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(result.stdout,expected)
+
+
+if __name__=='__main__':
+    unittest.main()

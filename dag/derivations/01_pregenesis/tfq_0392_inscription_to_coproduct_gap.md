@@ -41,7 +41,7 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation`](../../code/lean4/)
 - [`missing declaration obligation: no arrow in 000_pre_genesis_to_mssn/lean4/Paper.lean from a literal inscription to a coproduct root`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean::literalRoot`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean::literalRoot`](../../code/lean4/)
 - [`external:sha256:1758a99dfa72fba91d01d0dfa5fc4fa5aced126b77ab906cd01118b497793533::Real0`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

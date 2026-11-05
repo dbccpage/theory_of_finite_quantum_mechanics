@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - `external:sha256:67f95afb329218e2db037b98e7b7d632e0ee073156f58a6c3b03ff9a386b4702::DualWitnessCertificate` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py)
 
 ---
 
@@ -53,5 +53,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:416-423`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1756-1782`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1848-1853`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1756-1782`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1848-1853`

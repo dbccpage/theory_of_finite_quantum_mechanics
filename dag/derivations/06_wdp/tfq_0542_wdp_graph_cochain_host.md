@@ -39,8 +39,8 @@ In accordance with strict constructive principles:
 - `external:sha256:83da0237063adab6d54c81f7a608e1c44131ab10ba23aebfeb5378c19f25e4cd::FiniteComplex` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py::FiniteComplex`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py::d0`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py::FiniteComplex`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py::d0`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)
 
 ---
 
@@ -55,5 +55,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:894-919`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:894-919`
   - `external:sha256:f444bcaa3ae162d185a3a8a21cf0b59606958107ac5510e84015090750d5c3cc:68-121`

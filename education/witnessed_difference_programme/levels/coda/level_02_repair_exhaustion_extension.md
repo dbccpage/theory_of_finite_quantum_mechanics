@@ -8,7 +8,7 @@ maturity: production
 claim_status: verified
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
 ---
 
 # CODA Level 02: Repair Families, Exhaustion & Extension

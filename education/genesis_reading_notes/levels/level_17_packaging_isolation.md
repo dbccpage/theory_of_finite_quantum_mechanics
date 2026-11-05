@@ -12,9 +12,9 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/eighteenth/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/pyproject.toml
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/eighteenth/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/pyproject.toml
+  - atlas/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md
 last_verified: 2026-10-08
 ---
 
@@ -24,7 +24,7 @@ last_verified: 2026-10-08
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 17: one directory per derivation](../_images/genesis_ongoing_17_packaging_isolation.svg)
 
@@ -38,6 +38,6 @@ Derivation 18, `paper/eighteenth/paper.md`, is the manuscript that takes a diffe
 
 ## Files
 
-- [`paper/eighteenth/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/eighteenth/paper.md)
-- [`pyproject.toml`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/pyproject.toml)
-- [`meta/review/derivation_review.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md)
+- [`paper/eighteenth/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/eighteenth/paper.md)
+- [`pyproject.toml`](/atlas/finite_obstruction_calculus/genesis_ongoing/pyproject.toml)
+- [`meta/review/derivation_review.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/meta/review/derivation_review.md)

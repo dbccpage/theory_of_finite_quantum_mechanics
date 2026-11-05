@@ -57,9 +57,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)
 - sha256 (`bytes`): `56d2c214f55aa7fa2844792d5114656936295171cd38f4acf908df83cc9e2326`
 - cited in: record TFQ-0542
 
@@ -70,9 +70,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md`
 
 - file: [dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md](../../../dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md)
-- sha256 (`lf-normalised`): `35e1217b22b1f935fa2387254d494e139f0015adaf674c8f84e27005ed6440a1`
+- sha256 (`lf-normalised`): `61ec38455535bcbe1f49f06f4feba69cdc1ba79195370d51b0ef6e4851ab04f0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0542
 - counts toward the grade: no

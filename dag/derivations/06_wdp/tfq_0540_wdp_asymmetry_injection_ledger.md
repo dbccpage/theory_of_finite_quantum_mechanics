@@ -42,7 +42,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust implementation of the injection ledger or the asymmetry-price frontier`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py::exhaustive_relation_audit`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py::exhaustive_relation_audit`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/symmetry.py)
 
 ---
 
@@ -55,6 +55,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:669-692`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:736-763`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:669-692`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:736-763`
   - `external:sha256:104a94a77bc234397e3283849847ec59c5fad87938acfeaa1b58144e3d9ee03d:98-113`

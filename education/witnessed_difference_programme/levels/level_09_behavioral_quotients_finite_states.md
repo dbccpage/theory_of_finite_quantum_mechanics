@@ -10,8 +10,8 @@ maturity: production
 claim_status: source-grounded
 authority_effect: None
 source_paths:
-- atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
-- atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
+- atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
+- atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
 ledger_rows:
 - WDP-CH10-D01
 - WDP-CH10-D02
@@ -207,13 +207,13 @@ them unchanged. G/T remain separate report-interface data, and no `R→G`
 encoder is supplied by the original tuple. Input-independent updates may also
 retain history-length parity, so they do not by themselves imply O0.
 
-See the [completion theorem and source bindings](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/observer_adapter_completion.md),
-[universal adapter proof](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/swarm_observer_adapter_completeness.md),
-[original history proof](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/swarm_original_genesis_observer.md),
-[world fact criterion](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_observer_world_adapter.md),
-[policy hypotheses](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/swarm_policy_observer_adapter.md),
-[operator proof](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_operator_observer_adapters.md),
-and [source recovery report](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_recovery_report.md).
+See the [completion theorem and source bindings](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/observer_adapter_completion.md),
+[universal adapter proof](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/swarm_observer_adapter_completeness.md),
+[original history proof](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/swarm_original_genesis_observer.md),
+[world fact criterion](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_observer_world_adapter.md),
+[policy hypotheses](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/swarm_policy_observer_adapter.md),
+[operator proof](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_operator_observer_adapters.md),
+and [source recovery report](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_recovery_report.md).
 
 ### 2.4 The quotient observer as an adapter (§10.5)
 
@@ -338,7 +338,7 @@ $(f_1-f_0)+(f_2-f_1)-(f_2-f_0)=0$. Take $\delta=(1,0,1,0,0)$ with unit weights.
 ## 4. Evidence bindings
 
 Paths are relative to the monograph package
-[`witnessed_difference_programme/`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/).
+[`witnessed_difference_programme/`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/).
 
 | Row | Status | Ledger evidence | Lean | Executable binding | Notebook |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -492,7 +492,7 @@ source texts are recovered, all 529 absorbed occurrences are verified, and
 source-specific partial adapters retain the distinct six-, ten-, five-, nine-
 and other source families. The original 154 identifiers and historical Lean
 census are preserved. New standalone proofs and source-specific evidence are
-linked in the [completion guide](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/observer_adapter_completion.md)
+linked in the [completion guide](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/observer_adapter_completion.md)
 and [derivation guide](../derivation_review.md). Physical interpretation and
 authority remain separate assumptions.
 

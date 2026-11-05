@@ -5,7 +5,7 @@ repository main `a73f0965893412996a3f26c508ae5e7d1be24cf5` (2026-10-03).
 It connects existing material to the central paper; it does not reclassify every
 educational definition as a primitive forced by the Genesis seed.
 
-The [WDP manuscript](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+The [WDP manuscript](/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 already incorporates the opaque seed, declared relational cuts, admission,
 ordered replay, observation preservation and the actual source raising/marked
 results in Chapters 1–4 and Appendices L–M. Chapters 10–16 and Appendix K
@@ -65,7 +65,7 @@ path-kernel implementation to LGGR (`omega_epk`), diagnostic/proposal replay to
 CODA, and finite lift/closure/terminal policies to Prime Algos. Existing WDP
 imports and its matrix error/serialization surface remain available.
 
-The [owner map and validation scope](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/native_owner_decomposition.md)
+The [owner map and validation scope](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/native_owner_decomposition.md)
 names the real files and profiles. These finite mathematical profiles do not
 replace the owners' full operational continuation, permission or authority
 protocols. DDC is used by Prime's existing engine; this extraction does not

@@ -3,12 +3,12 @@ name: everett-checks
 on:
   pull_request:
     paths:
-      - 'atlas/papers/everett_mw/**'
+      - 'atlas/everett_mw/**'
       - '.github/workflows/everett-checks.yml'
   push:
     branches: [main]
     paths:
-      - 'atlas/papers/everett_mw/**'
+      - 'atlas/everett_mw/**'
       - '.github/workflows/everett-checks.yml'
   workflow_dispatch:
 
@@ -27,7 +27,7 @@ jobs:
       - name: Install numerical check dependencies
         run: python -m pip install --disable-pip-version-check numpy scipy
       - name: Check measurement boundaries, post counters, and examples
-        working-directory: atlas/papers/everett_mw
+        working-directory: atlas/everett_mw
         run: |
           python -I -X utf8 test_measurement_boundaries.py
           python -I -X utf8 test_post_counters.py

@@ -131,9 +131,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: no
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
 - sha256 (`lf-normalised`): `1596c27b09af32aec26710dacafcbe1dcb5081bc06d35d094b4c0b0353932e64`
 - cited in: node.source
 - counts toward the grade: yes
@@ -141,7 +141,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md`
 
 - file: [dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md](../../../dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md)
-- sha256 (`lf-normalised`): `d42abe6dda763f08a747bf1dc9bf835c2f28adecbe61cdf9e37dbad8e8255b1a`
+- sha256 (`lf-normalised`): `6f885b880661a5fbb070a0dd9215e7638e31cc61f5745c3de33bbf1253fdc18d`
 - generated view: listed, not counted
 - cited in: record TFQ-0347
 - counts toward the grade: no

@@ -10,8 +10,8 @@ maturity: production
 claim_status: proposed-extension
 authority_effect: None
 source_paths:
-- atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md
-- atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md
+- atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md
+- atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md
 ledger_rows:
 - GEN-WDP-01
 - GEN-WDP-02
@@ -40,7 +40,7 @@ last_verified: '2026-10-01'
 
 **AuthorityEffect:** None.\
 **Level:** Level 22 (Educational Extension: Genesis to WDP Foundational Bridges)\
-**Evidence Posture:** Proposed extension bridges with formal register in [`docs/genesis_bridge_register.md`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)\
+**Evidence Posture:** Proposed extension bridges with formal register in [`docs/genesis_bridge_register.md`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)\
 **Bridge Register Rows:** `GEN-WDP-01` through `GEN-WDP-10`, and obligations `GEN-WDP-O01` through `GEN-WDP-O05` (separate extension register; not part of the live 154-row monograph ledger)\
 **Implementation Status:** The current paper contains Python and standalone Rust `foundational_bridges` modules, their tests, and a core Lean proof supplement. Each is evidence for its actual declared domain. Production source adapters live separately in `omega_wdp`; the presence of either implementation does not close the five enlarged programme obligations.\
 
@@ -57,9 +57,9 @@ Genesis + Genesis Ongoing
   -> CODA, the three Prime algorithms, DDC and lawful execution
 ```
 
-Each arrow is an explicit mathematical proof obligation. The [programme and proofs](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
+Each arrow is an explicit mathematical proof obligation. The [programme and proofs](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
 record what is derived, what needs admission, and what remains open. The
-[bridge ledger](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+[bridge ledger](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
 records the exact scope of each result.
 
 ---

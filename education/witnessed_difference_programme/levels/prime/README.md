@@ -7,7 +7,7 @@ maturity: production
 claim_status: verified
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0.rs
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0_admission.rs
   - omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0_conformance.rs
@@ -90,8 +90,8 @@ $$\boxed{\text{DiagnosticClass} \neq \text{RoutingTerminal} \neq \text{Extension
 
 ## 4. Key References & Source Documents
 
-- [**`oe_prime_algorithms.md`**](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md): Master monograph defining claims `OE001-01` through `OE004-08`.
-- [**`oe_prime_algorithms.py`**](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/code/oe_prime_algorithms.py): Python reference implementation featuring exact rational simplex L1 solver and cochain engines.
+- [**`oe_prime_algorithms.md`**](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/oe_prime_algorithms.md): Master monograph defining claims `OE001-01` through `OE004-08`.
+- [**`oe_prime_algorithms.py`**](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/prime_algorithm_package/code/oe_prime_algorithms.py): Python reference implementation featuring exact rational simplex L1 solver and cochain engines.
 - [**`prime_algorithm_0.rs`**](../../../../../omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0.rs): 12-step obstruction packet fill order, `PrimeAlgorithm0Receipt`, and domain adapters.
 - [**`prime_algorithm_1.rs`**](../../../../../omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_1.rs): Intake and inter-carrier transport soundness, `LossLedger`, and `TransportedPacket`.
 - [**`prime_algorithm_2.rs`**](../../../../../omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_2.rs): $\mathsf{CanContinue}_n$ 9-conjunct master predicate, single-use `StepPermit`, and six anti-cheat halting laws.

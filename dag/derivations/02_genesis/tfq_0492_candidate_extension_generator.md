@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean::two_rule`](../../../lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/outside.rs::Proposal`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/outside.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/outside.rs::Proposal`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/outside.rs)
 
 ### Python Oracles & Numerical Evaluators
 - [`github:dbccpage/19L57G1@85a83ae7c/research/alpha_engine/driver_a.py::apply_licensed`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/driver_a.py)
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:119-128`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:119-128`
   - `github:dbccpage/19L57G1@85a83ae7c/docs/ALPHA_HANDOFF.md:101-116`
   - `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:1103`

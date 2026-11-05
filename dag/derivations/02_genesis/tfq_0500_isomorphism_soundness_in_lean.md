@@ -39,10 +39,10 @@ In accordance with strict constructive principles:
 - [`lean4/PregenesisIsomorphismSoundness.lean::pgwIsoSwapInvolutive`](../../../lean4/PregenesisIsomorphismSoundness.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::canonical_bruteforce`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::canonical_bruteforce`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py::canonical_bruteforce`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py::canonical_bruteforce`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/iso.py)
 - [`checks/independent/pgw-isomorphism-soundness-in-lean.py::main`](../../../checks/independent/pgw-isomorphism-soundness-in-lean.py)
 
 ---
@@ -56,8 +56,8 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:60`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:379`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1045-1059`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:60`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:379`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1045-1059`
   - `dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md:5`
   - `dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json:6`

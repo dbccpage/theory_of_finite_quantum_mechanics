@@ -10,7 +10,7 @@ maturity: production
 claim_status: source-grounded
 authority_effect: None
 source_paths:
-- atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md
+- atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md
 ledger_rows:
 - WDP-CH00-N01
 - GEN-WDP-01

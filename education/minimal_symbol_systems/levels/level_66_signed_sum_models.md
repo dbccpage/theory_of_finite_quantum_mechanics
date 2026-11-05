@@ -23,7 +23,7 @@ lift_license_status: unlicensed
 source_provenance: external_mss_atlas
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+  - atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
 ---
 
 # MSS-N Level 66: Signed sum models

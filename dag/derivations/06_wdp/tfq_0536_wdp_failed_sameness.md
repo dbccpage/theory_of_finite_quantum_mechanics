@@ -39,8 +39,8 @@ In accordance with strict constructive principles:
 - `external:sha256:39e988784c38613df38c5f88b06efee27f73f0a7a02b8069458d6e2168e498b8::primitive_difference` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py::primitive_difference`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py::primitive_difference`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py)
 
 ---
 
@@ -54,5 +54,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:420-432`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:420-432`
   - `external:sha256:b3182646c084a1d31b4c382572524489dcfa76f74bf74ee0863573424d048c65:111-123`

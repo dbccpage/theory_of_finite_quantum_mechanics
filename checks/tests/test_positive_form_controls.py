@@ -270,7 +270,7 @@ class PositiveFormTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stderr, "")
         receipt = json.loads(result.stdout)
-        self.assertEqual((receipt["status"], receipt["checks"], receipt["positivity"], receipt["decoherence"], receipt["born_boundary"]), ("passed", 6550, 619, 3398, 2533))
+        self.assertEqual((receipt["status"], receipt["checks"], receipt["positivity"], receipt["decoherence"], receipt["born_boundary"]), ("passed", 6561, 619, 3398, 2544))
         with patch.object(Cases, "require", side_effect=Violation("check", "injected")), contextlib.redirect_stderr(io.StringIO()) as output:
             with self.assertRaises(SystemExit) as failure:
                 runpy.run_path(str(APP), run_name="__main__")
@@ -373,7 +373,7 @@ class PositiveFormTests(unittest.TestCase):
         for _ in range(2):
             cases = Cases()
             module.verify_born_boundary(cases)
-            self.assertEqual(cases.checks, 2533)
+            self.assertEqual(cases.checks, 2544)
         self.refused(module.verify_born_boundary, None)
         with patch.dict(module.verify_born_boundary.__globals__, {"_rotation": lambda *_: (0, 0)}):
             self.refused(module.verify_born_boundary, Cases(), kind="check")
@@ -383,6 +383,32 @@ class PositiveFormTests(unittest.TestCase):
         with patch.dict(module._rotation.__globals__, {"_dot": MagicMock(side_effect=KeyboardInterrupt)}):
             with self.assertRaises(KeyboardInterrupt):
                 module.rotation((1, 2), (3, 4))
+
+
+    def test_original_selection_witness_and_actual_guard_correspondence(self) -> None:
+        module = load()
+        calls: list[str] = []
+        implementation = Cases.require
+        def record(cases: Cases, condition: bool, label: str) -> None:
+            calls.append(label)
+            implementation(cases, condition, label)
+        with patch.object(Cases, "require", record):
+            cases = Cases()
+            module.verify_selection_witness(cases)
+        self.assertEqual(cases.checks, 11)
+        self.assertEqual(len(calls), 11)
+        self.assertEqual(len(set(calls)), 11)
+        self.assertTrue(all(label.startswith("selection ") for label in calls))
+        for amplitudes in ((1, 2), (1, 1)):
+            for degree in (2, 4):
+                symbolic = sp.ImmutableMatrix(amplitudes).applyfunc(lambda value: value**degree)
+                self.assertEqual(module.power_shares(amplitudes, degree).value, tuple(symbolic/sum(symbolic)))
+        self.refused(module.verify_selection_witness, None)
+        with patch.dict(module.verify_selection_witness.__globals__, _power_shares=lambda *_: (Q(1, 2), Q(1, 2))):
+            self.refused(module.verify_selection_witness, Cases(), kind="check")
+        with patch.dict(module.verify_selection_witness.__globals__, _masses=MagicMock(side_effect=KeyboardInterrupt)):
+            with self.assertRaises(KeyboardInterrupt):
+                module.verify_selection_witness(Cases())
 
 
 if __name__ == "__main__":

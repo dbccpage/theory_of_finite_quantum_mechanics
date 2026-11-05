@@ -32,14 +32,14 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation`](../../code/lean4/)
 - [`missing declaration obligation: a literal inscription type in 000_pre_genesis_to_mssn/lean4/Paper.lean, which was opened and does not declare that token`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean::literalRoot`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean::literalRoot`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: a host token in wire_primitives that rejects equating <> with an admitted ground`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
 - [`external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::GenesisConstruction`](../../code/rust/src/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/token.rs`](../../code/rust/src/)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/token.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: a typed token constructor in 000_pre_genesis_to_mssn/code/preservation.py that stores literal <> without turning it into an empty word or a carrier`](../../code/python/)

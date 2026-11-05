@@ -12,8 +12,8 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/ci/OEWAS_GATES.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/tests/test_oewas_gates.py
+  - atlas/finite_obstruction_calculus/genesis_ongoing/ci/OEWAS_GATES.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/tests/test_oewas_gates.py
 last_verified: 2026-10-08
 ---
 
@@ -23,7 +23,7 @@ last_verified: 2026-10-08
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 12: the OEWAS gates in `ci/`](../_images/genesis_ongoing_12_meta_layer_apparatus.svg)
 
@@ -37,5 +37,5 @@ The file says each gate is shown by a bite: it fails on the defect, names it, an
 
 ## Files
 
-- [`ci/OEWAS_GATES.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/ci/OEWAS_GATES.md)
-- [`tests/test_oewas_gates.py`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/tests/test_oewas_gates.py)
+- [`ci/OEWAS_GATES.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/ci/OEWAS_GATES.md)
+- [`tests/test_oewas_gates.py`](/atlas/finite_obstruction_calculus/genesis_ongoing/tests/test_oewas_gates.py)

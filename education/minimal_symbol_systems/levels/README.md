@@ -10,14 +10,14 @@ lift_status: unlicensed
 source_provenance: external_mss_atlas
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+  - atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
 ---
 
 # Minimal Symbol System Levels Catalog: Level 00 to Level 100
 
 **AuthorityEffect:** None.\
 **Framework:** Minimal Symbol System (MSS-N) Normative Architecture\
-**Active combined manuscript:** [From Pre-Genesis to MSS-N](/atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)\
+**Active combined manuscript:** [From Pre-Genesis to MSS-N](/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)\
 **Total Stages:** 101 Stages ($N=0 \dots 100$)
 
 ---

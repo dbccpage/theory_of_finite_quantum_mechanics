@@ -12,9 +12,9 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/paper.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/paper.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean
 last_verified: 2026-10-08
 ---
 
@@ -24,7 +24,7 @@ last_verified: 2026-10-08
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 07: D9 and N5](../_images/genesis_ongoing_07_graph_reachability_closure.svg)
 
@@ -38,6 +38,6 @@ Both rows are in `paper/claim_ledger.md`. The exploration inside the declared bo
 
 ## Files
 
-- [`paper/claim_ledger.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
-- [`paper/paper.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/paper.md)
-- [`lean4/H3V7N5QF/Paths.lean`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean)
+- [`paper/claim_ledger.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
+- [`paper/paper.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/paper.md)
+- [`lean4/H3V7N5QF/Paths.lean`](/atlas/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Paths.lean)

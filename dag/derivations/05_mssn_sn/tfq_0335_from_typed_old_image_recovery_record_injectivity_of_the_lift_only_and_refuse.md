@@ -34,10 +34,10 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::old_image_injective`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::off_image_not_implied`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::old_image_injective`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::old_image_injective`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::off_image_not_implied`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::old_image_injective`](../../code/lean4/)
 - [`education/symmetric_group_presentations/lean4/SnOffImage.lean::SnOffImage.accepted_only_from_section`](../../code/lean4/)
 - [`education/symmetric_group_presentations/lean4/SnOffImage.lean::SnOffImage.nonDescent_iff_off_image`](../../code/lean4/)
 - [`education/symmetric_group_presentations/lean4/SnOffImage.lean::SnOffImage.old_image_base'`](../../code/lean4/)
@@ -49,7 +49,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py`](../../code/python/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py`](../../code/python/)
 
 ---
 

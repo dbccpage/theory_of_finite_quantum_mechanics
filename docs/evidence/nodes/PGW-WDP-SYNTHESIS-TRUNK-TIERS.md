@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md`
 
 - file: [dag/derivations/06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md](../../../dag/derivations/06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md)
-- sha256 (`lf-normalised`): `0ac13fe71e4094b9b66efe42273f34f4bdf6f1b46cab80ad92016adad769145a`
+- sha256 (`lf-normalised`): `d662aec7ac267c67a2e52e81ef731307430397300eb1eb4ebb985b719d905c7b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0557
 - counts toward the grade: no

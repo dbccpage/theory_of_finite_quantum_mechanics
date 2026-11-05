@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust two-flag admission model; Genesis admission events are step in genesis/code/rust/src/admission.rs`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py::single_admission_report`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py::single_admission_report`](../../../atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py)
 
 ---
 

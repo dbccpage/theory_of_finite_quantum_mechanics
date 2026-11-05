@@ -41,11 +41,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/PreGenesisToMssn/Observation.lean::collapsed_quotient_barrier`](../../../lean4/Imported/PreGenesisToMssn/Observation.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs::factor`](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs::factor`](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py::quotient_factor`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py::quotient_factor`](../../../atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`](../../../atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
 
 ---
 
@@ -58,6 +58,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:118-133`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:118-133`
   - `education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:283-305`
   - `external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:81-88`

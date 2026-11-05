@@ -1,0 +1,252 @@
+"""Independent exact matrix checks for diagonal constraints. AuthorityEffect: None."""
+from __future__ import annotations
+
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import importlib.util
+import io
+from itertools import product
+import json
+from pathlib import Path
+import subprocess
+import sys
+from types import ModuleType
+from typing import TypeVar, cast
+import unittest
+from unittest.mock import Mock, patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+CHECKS=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(CHECKS))
+from checker_support.boundary import Violation, evaluate
+from checker_support.cases import Cases
+from checker_support.diagonal_constraint import DiagonalConstraint
+from checker_support.outcome import Outcome
+from checker_support.rational_matrix import RationalMatrix
+
+APP=CHECKS/"independent/fsp-discrete-wdw-constraint.py"
+PROPERTY=settings(max_examples=80,derandomize=True,deadline=None,database=None)
+SCALAR=st.builds(Q,st.integers(-9,9),st.integers(1,9))
+VECTOR=st.tuples(SCALAR,SCALAR,SCALAR)
+T=TypeVar("T")
+
+
+def load() -> ModuleType:
+    spec=importlib.util.spec_from_file_location("reviewed_constraint_kernel",APP)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("Cannot load constraint controls")
+    module=importlib.util.module_from_spec(spec)
+    with patch.dict(sys.modules,{spec.name:module}):
+        spec.loader.exec_module(module)
+    return module
+
+
+def exact(value: object) -> Q:
+    numerator,denominator=sp.fraction(value)
+    return Q(int(numerator),int(denominator))
+
+
+class DiagonalConstraintTests(unittest.TestCase):
+    def accepted(self,result: Outcome[T]) -> T:
+        self.assertIsNone(result.error)
+        return cast(T,result.value)
+
+    def refused(self,result: Outcome[T],kind: str="input") -> None:
+        self.assertIsNotNone(result.error)
+        if result.error is None:
+            self.fail("Expected a typed refusal")
+        self.assertEqual(result.error.kind,kind)
+
+    @PROPERTY
+    @given(VECTOR,VECTOR)
+    def test_operator_and_quadratic_against_symbolic_matrices(self,diagonal: tuple[Q,Q,Q],
+                                                            vector: tuple[Q,Q,Q]) -> None:
+        model=DiagonalConstraint(diagonal)
+        matrix=sp.diag(*diagonal)
+        column=sp.ImmutableMatrix(vector)
+        expected=matrix*column
+        self.assertEqual(sp.ImmutableMatrix(model.matrix.rows),matrix)
+        self.assertEqual(self.accepted(model.apply(vector)),tuple(exact(v) for v in expected))
+        self.assertEqual(self.accepted(model.quadratic(vector)),exact((column.T*matrix*column)[0]))
+        self.assertEqual(self.accepted(model.contains(vector)),expected==sp.zeros(3,1))
+        self.assertEqual(model.rank,matrix.rank())
+        eigenvalues={exact(value):multiplicity for value,multiplicity in matrix.eigenvals().items()}
+        self.assertEqual(dict(model.spectrum),eigenvalues)
+        self.assertEqual(model.is_projector,matrix*matrix==matrix)
+        self.assertEqual(model.is_positive_semidefinite,all(value>=0 for value in eigenvalues))
+        self.assertEqual(model.is_indefinite,any(value>0 for value in eigenvalues) and any(value<0 for value in eigenvalues))
+
+    @PROPERTY
+    @given(VECTOR,VECTOR)
+    def test_kernel_projector_from_independent_nullspace(self,diagonal: tuple[Q,Q,Q],
+                                                        vector: tuple[Q,Q,Q]) -> None:
+        model=DiagonalConstraint(diagonal)
+        matrix=sp.diag(*diagonal)
+        basis=matrix.nullspace()
+        projector=sp.zeros(3)
+        if basis:
+            columns=sp.Matrix.hstack(*basis)
+            projector=columns*(columns.T*columns).inv()*columns.T
+        self.assertEqual(sp.ImmutableMatrix(model.kernel_projector.rows),projector)
+        self.assertEqual(model.kernel_basis,tuple(tuple(exact(x) for x in v) for v in basis))
+        self.assertEqual(model.kernel_dimension,len(basis))
+        column=sp.Matrix(vector)
+        projected=projector*column
+        actual=self.accepted(model.project(vector))
+        self.assertEqual(actual,tuple(exact(value) for value in projected))
+        self.assertEqual(self.accepted(model.project(actual)),actual)
+        self.assertTrue(self.accepted(model.contains(actual)))
+        self.assertEqual(actual==vector,self.accepted(model.contains(vector)))
+        for kernel_vector in basis:
+            self.assertEqual(((column-projected).T*kernel_vector)[0],0)
+
+    def test_all_zero_patterns_and_spectral_multiplicities(self) -> None:
+        for diagonal in product((-1,0,1),repeat=3):
+            model=DiagonalConstraint(diagonal)
+            matrix=sp.diag(*diagonal)
+            self.assertEqual(model.rank,matrix.rank())
+            self.assertEqual(model.kernel_dimension,3-matrix.rank())
+            self.assertEqual(sum(multiplicity for _,multiplicity in model.spectrum),3)
+            self.assertEqual(dict(model.spectrum),{exact(value):n for value,n in matrix.eigenvals().items()})
+            self.assertEqual(model.is_projector,matrix*matrix==matrix)
+            self.assertEqual(model.is_positive_semidefinite,all(value>=0 for value in diagonal))
+            self.assertEqual(model.is_indefinite,min(diagonal)<0<max(diagonal))
+            projector=sp.ImmutableMatrix(model.kernel_projector.rows)
+            self.assertEqual(projector*projector,projector)
+            self.assertEqual(matrix*projector,sp.zeros(3))
+        self.assertEqual(DiagonalConstraint((0,0,0)).kernel_projector,RationalMatrix.eye(3))
+        self.assertEqual(DiagonalConstraint((1,1,1)).kernel_basis,())
+        self.assertEqual(DiagonalConstraint((1,1,1)).spectrum,((Q(1),3),))
+
+    def test_owned_inputs_and_reentrant_queries(self) -> None:
+        coefficients=[0,2,-1]
+        model=DiagonalConstraint(coefficients)
+        coefficients[1]=9
+        self.assertEqual(model.diagonal,(Q(0),Q(2),Q(-1)))
+        vector=[3,4,5]
+        result=self.accepted(model.apply(vector))
+        vector[1]=9
+        self.assertEqual(result,(Q(0),Q(8),Q(-5)))
+        self.assertEqual(self.accepted(model.apply((3,4,5))),result)
+        self.assertEqual(model.kernel_dimension,1)
+        with self.assertRaises(FrozenInstanceError):
+            model.diagonal=(Q(1),Q(1),Q(1))  # type: ignore[misc]
+
+    def test_exact_domains_shapes_and_input_budgets(self) -> None:
+        model=DiagonalConstraint((0,2,-1))
+        for invalid in (None,(),(1,2),(True,0,0),(1.0,0,0),(complex(1),0,0),("1",0,0)):
+            self.refused(evaluate(DiagonalConstraint,invalid))
+            for operation in (model.apply,model.project,model.contains,model.quadratic):
+                self.refused(operation(invalid))
+        for invalid_budget in ((1,2,3,4),(1<<4096,0,0),(Q(1,1<<4096),0,0)):
+            self.refused(evaluate(DiagonalConstraint,invalid_budget),"resource")
+            for operation in (model.apply,model.project,model.contains,model.quadratic):
+                self.refused(operation(invalid_budget),"resource")
+        maximum=(1<<4096)-1
+        tiny=DiagonalConstraint((Q(1,maximum),0,0))
+        self.assertEqual(self.accepted(tiny.apply((maximum,0,0))),(Q(1),Q(0),Q(0)))
+        self.assertEqual(self.accepted(model.project((maximum,0,0))),(Q(maximum),Q(0),Q(0)))
+
+    def test_arithmetic_terms_and_prefixes_before_cancellation(self) -> None:
+        maximum=(1<<4096)-1
+        model=DiagonalConstraint((maximum,0,0))
+        self.assertEqual(self.accepted(model.apply((1,0,0))),(Q(maximum),Q(0),Q(0)))
+        self.refused(model.apply((2,0,0)),"resource")
+        self.assertFalse(self.accepted(model.contains((2,0,0))))
+        square=DiagonalConstraint((1,0,0))
+        self.assertEqual(self.accepted(square.quadratic((1<<2047,0,0))),Q(1<<4094))
+        self.refused(square.quadratic((1<<2048,0,0)),"resource")
+        large=1<<2048
+        self.refused(DiagonalConstraint((-1,1,0)).quadratic((large,large,0)),"resource")
+        self.refused(DiagonalConstraint((-maximum,1,0)).quadratic((1,large,0)),"resource")
+        bounded=(1<<2048)-1
+        self.refused(DiagonalConstraint((1,1,-1)).quadratic((bounded,bounded,bounded)),"resource")
+        self.assertEqual(self.accepted(DiagonalConstraint((0,0,0)).quadratic((maximum,maximum,maximum))),Q(0))
+
+    def test_preflight_and_refusal_helper_strength(self) -> None:
+        model=DiagonalConstraint((0,2,-1))
+        with self.assertRaises(AssertionError):
+            self.refused(model.contains((1,0,0)))
+        with patch.dict(DiagonalConstraint.__init__.__globals__,rational=Mock(side_effect=RuntimeError("must not map"))):
+            self.refused(evaluate(DiagonalConstraint,(1,2)))
+            for operation in (model.apply,model.project,model.contains,model.quadratic):
+                self.refused(operation((1,2)))
+        with patch.object(RationalMatrix,"mul",side_effect=RuntimeError("must not multiply")):
+            self.refused(model.apply((True,0,0)))
+
+    def test_candidate_scope_and_radius_policy(self) -> None:
+        module=load()
+        accepted=[]
+        for coefficients in product((-1,0,1,2),repeat=3):
+            candidate=DiagonalConstraint(coefficients)
+            result=module.ConstraintKernelControls(candidate,radius=0).verify()
+            if result.ok:
+                accepted.append(coefficients)
+            else:
+                self.refused(result,"check")
+        self.assertEqual(accepted,[(0,2,-1)])
+        for radius in (True,1.0,Q(1),None,-1):
+            self.refused(evaluate(module.ConstraintKernelControls,radius=radius))
+        self.refused(evaluate(module.ConstraintKernelControls,radius=5),"resource")
+        for invalid_candidate in (True,[],object()):
+            self.refused(evaluate(module.ConstraintKernelControls,invalid_candidate))
+        self.assertEqual(self.accepted(module.ConstraintKernelControls(radius=0).verify())["checks"],18)
+        maximum=self.accepted(module.ConstraintKernelControls(radius=4).verify())
+        self.assertEqual((maximum["vectors"],maximum["checks"]),(729,3658))
+
+    def test_original_census_and_actual_case_counter(self) -> None:
+        controls=load().ConstraintKernelControls()
+        observed: list[str]=[]
+        implementation=Cases.require
+        def record(cases: Cases,condition: bool,label: str) -> None:
+            observed.append(label)
+            implementation(cases,condition,label)
+        with patch.object(Cases,"require",record):
+            report=self.accepted(controls.verify())
+        self.assertEqual((report["vectors"],report["rank"],report["kernel_dimension"]),(125,2,1))
+        self.assertEqual((report["positive"],report["negative"],report["nonprojector"]),(Q(2),Q(-1),True))
+        self.assertEqual(report["checks"],638)
+        self.assertEqual(report["checks"],len(observed))
+        self.assertEqual(observed.count("kernel coordinates"),125)
+        self.assertEqual(observed.count("API projection"),125)
+        self.assertEqual(report,self.accepted(controls.verify()))
+        with self.assertRaises(FrozenInstanceError):
+            controls.radius=0
+
+    def test_failure_translation_and_cancellation(self) -> None:
+        module=load()
+        with patch.object(DiagonalConstraint,"_apply",return_value=(Q(0),Q(0),Q(0))):
+            self.refused(module.ConstraintKernelControls().verify(),"check")
+        with patch.object(DiagonalConstraint,"_quadratic",side_effect=Violation("resource","injected")):
+            self.refused(module.ConstraintKernelControls().verify(),"resource")
+            with contextlib.redirect_stderr(io.StringIO()) as output:
+                self.assertEqual(module.main(),1)
+            self.assertEqual(json.loads(output.getvalue())["kind"],"resource")
+        model=DiagonalConstraint((0,2,-1))
+        for exception in (RuntimeError,KeyboardInterrupt,SystemExit):
+            with patch.object(RationalMatrix,"mul",side_effect=exception):
+                for operation in (model.apply,model.project,model.quadratic):
+                    with self.assertRaises(exception):
+                        operation((1,2,3))
+            with patch.object(DiagonalConstraint,"_apply",side_effect=exception):
+                with self.assertRaises(exception):
+                    module.ConstraintKernelControls().verify()
+
+    def test_quiet_import_and_original_cli(self) -> None:
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            module=load()
+        self.assertEqual(output.getvalue(),"")
+        for _ in range(2):
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                self.assertEqual(module.main(),0)
+            self.assertEqual(output.getvalue(),"vectors=125 rank=2 kernel_dimension=1 quadratic_values=(2,-1) nonprojector=True failures=0\n")
+        result=subprocess.run([sys.executable,"-I","-B",str(APP)],capture_output=True,text=True,timeout=30)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(result.stdout,output.getvalue())
+
+
+if __name__=="__main__":
+    unittest.main()

@@ -1,0 +1,56 @@
+{
+  "AuthorityEffect": "None",
+  "originals": [
+    {
+      "path": "checks/independent/fsp-imaginary-mu-real-det.py",
+      "sha256": "ac19770608212101081358398a29af59f440a541d91f29fe233e5eaf62c2d81d",
+      "archive": "reviews/repository_file_review/2026-11-05-temporal-cycle-original-fsp-imaginary-mu-real-det.py.txt"
+    },
+    {
+      "path": "checks/independent/fsp-imaginary-mu-real-det.contract.score.yaml",
+      "sha256": "865ab63f7dabff1c9c02efe3c1d45aa84111514ca15c9b3487336a2357cb2670",
+      "archive": "reviews/repository_file_review/2026-11-05-temporal-cycle-original-fsp-imaginary-mu-real-det.contract.score.yaml.txt"
+    }
+  ],
+  "origins": [
+    {
+      "path": "lean4/FermionSignImaginaryMuRealDet.lean",
+      "sha256": "fa5f4b2f76560be37d6fccff11842fa7edf1504c4488dd8b1bb2b7d09267504c"
+    }
+  ],
+  "initial_retention": 4,
+  "runs": [
+    {
+      "optimized": false,
+      "returncode": 0,
+      "stdout": "{\n  \"schema_version\": \"campaign_independent.v1\",\n  \"AuthorityEffect\": \"None\",\n  \"node\": \"FSP-IMAGINARY-MU-REAL-DET\",\n  \"field\": \"Q(i); Q(zeta_12) for center orbit\",\n  \"lattice_cases\": 27,\n  \"determinant_examples\": [\n    {\n      \"sites\": 2,\n      \"mass\": \"1\",\n      \"z\": \"1\",\n      \"det\": \"209/100\"\n    },\n    {\n      \"sites\": 2,\n      \"mass\": \"1\",\n      \"z\": \"I\",\n      \"det\": \"209/50\"\n    },\n    {\n      \"sites\": 2,\n      \"mass\": \"1\",\n      \"z\": \"3/5 + 4*I/5\",\n      \"det\": \"149281/62500\"\n    }\n  ],\n  \"gamma_only_determinant\": \"-1\",\n  \"zero_mass_determinant\": \"0\",\n  \"real_fugacity_determinant\": \"2457/4096 + 315*I/256\",\n  \"boundary_polynomial\": \"t**3/64 - 3*t**2/32 - 3*I*t**2/16 - 37*t/64 + 9*I*t/8 + 57/16 - 37/(64*t) - 9*I/(8*t) - 3/(32*t**2) + 3*I/(16*t**2) + 1/(64*t**3)\",\n  \"center_sum_at_one\": \"345/32\",\n  \"rejected_inputs\": [\n    \"odd cycle\",\n    \"oversize cycle\",\n    \"mutable links\",\n    \"nonunitary link\",\n    \"wrong determinant\",\n    \"zero fugacity\",\n    \"nonreal mass\",\n    \"float entry\",\n    \"boolean entry\"\n  ],\n  \"result\": \"PASS\",\n  \"scope\": \"Finite 1D cycles; finite center-orbit sum, not a QCD measure or continuation.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "optimized": true,
+      "returncode": 0,
+      "stdout": "{\n  \"schema_version\": \"campaign_independent.v1\",\n  \"AuthorityEffect\": \"None\",\n  \"node\": \"FSP-IMAGINARY-MU-REAL-DET\",\n  \"field\": \"Q(i); Q(zeta_12) for center orbit\",\n  \"lattice_cases\": 27,\n  \"determinant_examples\": [\n    {\n      \"sites\": 2,\n      \"mass\": \"1\",\n      \"z\": \"1\",\n      \"det\": \"209/100\"\n    },\n    {\n      \"sites\": 2,\n      \"mass\": \"1\",\n      \"z\": \"I\",\n      \"det\": \"209/50\"\n    },\n    {\n      \"sites\": 2,\n      \"mass\": \"1\",\n      \"z\": \"3/5 + 4*I/5\",\n      \"det\": \"149281/62500\"\n    }\n  ],\n  \"gamma_only_determinant\": \"-1\",\n  \"zero_mass_determinant\": \"0\",\n  \"real_fugacity_determinant\": \"2457/4096 + 315*I/256\",\n  \"boundary_polynomial\": \"t**3/64 - 3*t**2/32 - 3*I*t**2/16 - 37*t/64 + 9*I*t/8 + 57/16 - 37/(64*t) - 9*I/(8*t) - 3/(32*t**2) + 3*I/(16*t**2) + 1/(64*t**3)\",\n  \"center_sum_at_one\": \"345/32\",\n  \"rejected_inputs\": [\n    \"odd cycle\",\n    \"oversize cycle\",\n    \"mutable links\",\n    \"nonunitary link\",\n    \"wrong determinant\",\n    \"zero fugacity\",\n    \"nonreal mass\",\n    \"float entry\",\n    \"boolean entry\"\n  ],\n  \"result\": \"PASS\",\n  \"scope\": \"Finite 1D cycles; finite center-orbit sum, not a QCD measure or continuation.\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "probes": [
+    {
+      "name": "text scalar invokes host callable",
+      "input": "__import__('builtins')._tfq_scalar_probe()",
+      "result": "3",
+      "host_call_count": 1,
+      "meaning": "The Q(i) scalar boundary evaluates supplied text as Python code. The probe is harmless and its temporary builtins entry is restored."
+    },
+    {
+      "name": "unbounded rational component",
+      "accepted": true,
+      "component_bits": 4097
+    }
+  ],
+  "findings": [
+    "Public gaussian scalar admission calls sympify on untrusted text, and the harmless probe establishes host code execution. Reject textual inputs before expression parsing.",
+    "Rational component and symbolic-expression resource bounds are absent. Add exact type/shape preflight and a declared computational budget.",
+    "The 27 lattice cases are correctly labeled lattice_cases rather than guard counts. Keep that population distinct from the number of runtime guards.",
+    "The cited Lean module scopes its determinant and center-orbit theorems explicitly; preserve that distinction from continuum/QCD claims."
+  ]
+}

@@ -91,9 +91,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md)
 - sha256 (`lf-normalised`): `70fa234b9178029397a5419f36517a4f54cbcd823659ba1f69ff38d14a6e5ff5`
 - cited in: node.source
 - counts toward the grade: yes
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md](../../../dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md)
-- sha256 (`lf-normalised`): `d74ec9954ceef6fefdd913e89f33317617460f9caaa54a30af64f48fb5190fe1`
+- sha256 (`lf-normalised`): `a40dfbd9c165b7ced3f89b2ed30644fabe5889b16d7e870b15f6921f7f406774`
 - generated view: listed, not counted
 - cited in: record TFQ-1002
 - counts toward the grade: no

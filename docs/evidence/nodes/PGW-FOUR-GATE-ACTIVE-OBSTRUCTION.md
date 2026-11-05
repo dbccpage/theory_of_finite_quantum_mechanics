@@ -74,9 +74,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py)
 - sha256 (`bytes`): `ce263503fd67c4c3740db26796f42e3e011b67cf4a9d6383aa7093a2a1435531`
 - cited in: record TFQ-0493
 
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md`
 
 - file: [dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md](../../../dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md)
-- sha256 (`lf-normalised`): `ffd51617382c812095439d19d52e4e8be9cb3a232edbbb105a95992bf2a3a72c`
+- sha256 (`lf-normalised`): `10ae9779d6eebe05353a2a170d8ca579876392f14961775e8563bfa48e6123df`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0493
 - counts toward the grade: no

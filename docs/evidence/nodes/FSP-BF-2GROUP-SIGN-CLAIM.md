@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/fsp-bf-2group-sign-claim.py`
 
 - file: [checks/independent/fsp-bf-2group-sign-claim.py](../../../checks/independent/fsp-bf-2group-sign-claim.py)
-- sha256 (`bytes`): `9b1b7c5b3a3ba2735ff1e5bfa6bcd9e918f84c2281b0fa8d1c214e1fc1cf84dc`
+- sha256 (`bytes`): `b0f8c454ba96ddbd7ef6fc65a758c125c397b5ab86cd50ce7d34b7f87a2bdfd1`
 - cited in: record TFQ-1210
 - counts toward the grade: yes
 

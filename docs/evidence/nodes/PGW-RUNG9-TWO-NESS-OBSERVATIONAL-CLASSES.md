@@ -44,16 +44,16 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt)
 - sha256 (`lf-normalised`): `c613e357809438876d1fcec34ea896548f17f4e9d4ea7f21048fafe9451651ac`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
 - sha256 (`lf-normalised`): `7e774b9a5cd0b326f884716c49a18055df522968e659438910dceeaa332b73ad`
 - cited in: node.source
 - counts toward the grade: yes
@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0472_rung9_two_ness_observational_classes.md`
 
 - file: [dag/derivations/02_genesis/tfq_0472_rung9_two_ness_observational_classes.md](../../../dag/derivations/02_genesis/tfq_0472_rung9_two_ness_observational_classes.md)
-- sha256 (`lf-normalised`): `c7ce23b447222084598fa44d936366e43bb8fc6cd3f7edbd396c617af23aafee`
+- sha256 (`lf-normalised`): `6a76b568e2c36d1ceabb440d76271f4c0ccba2b25a3e07980df055c7bf06616b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0472
 - counts toward the grade: no

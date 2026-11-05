@@ -19,7 +19,7 @@ successor:
 source_provenance: external_mss_atlas
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+  - atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
   - omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/_images/mss_20_autopoietic_reflection.svg
 ---
 

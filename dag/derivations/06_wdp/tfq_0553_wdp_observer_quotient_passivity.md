@@ -44,9 +44,9 @@ In accordance with strict constructive principles:
 - `external:sha256:3a7641ede95a9b216375ab6fae723147f5ceb889a8dc0b5d5219fa6367e8b560::descend` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::check_passivity`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::make_linear_quotient_observer`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::check_passivity`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::make_linear_quotient_observer`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py)
 
 ---
 
@@ -59,6 +59,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3841-3905`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3841-3905`
   - `external:sha256:05ceb39d5b1945f0fbc1435f61344d788832e42ffc9969fcfbea4e7e6ab756c0:67-128`
   - `external:sha256:05ceb39d5b1945f0fbc1435f61344d788832e42ffc9969fcfbea4e7e6ab756c0:185-193`

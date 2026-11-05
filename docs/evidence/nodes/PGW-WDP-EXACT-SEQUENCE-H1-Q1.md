@@ -59,9 +59,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md`
 
 - file: [dag/derivations/06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md](../../../dag/derivations/06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md)
-- sha256 (`lf-normalised`): `95d98a4021078bb514fba23c88b4b3e35c7368b1a91f369838ed2ecb3660b767`
+- sha256 (`lf-normalised`): `600cdaa3f4534d04a99f864423c048b8eb47b319890e794ab698e30fa5b71743`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0546
 - counts toward the grade: no

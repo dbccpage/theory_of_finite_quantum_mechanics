@@ -40,10 +40,10 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::historyL_replays`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/reading.rs::challenge2_admission_need_not_increase_expressive_power`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/reading.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/reading.rs::challenge2_admission_need_not_increase_expressive_power`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/reading.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py::challenge2_report`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py::challenge2_report`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py)
 
 ---
 
@@ -56,6 +56,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:246-248`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:249-252`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:256-259`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:246-248`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:249-252`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:256-259`

@@ -39,12 +39,12 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of the exported trees; they are finite computations`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/role.rs::role`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/role.rs)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::depth_fifteen_reading_f_mu2_is_1847_nodes_with_the_sealed_roles`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::depth_fifteen_reading_l_mu2_is_963_nodes_and_merges_carry_witnesses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/role.rs::role`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/role.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::depth_fifteen_reading_f_mu2_is_1847_nodes_with_the_sealed_roles`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::depth_fifteen_reading_l_mu2_is_963_nodes_and_merges_carry_witnesses`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py::build_tree`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py::build_tree`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py)
 
 ---
 
@@ -57,6 +57,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:449-458`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:466-473`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:480-487`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:449-458`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:466-473`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:480-487`

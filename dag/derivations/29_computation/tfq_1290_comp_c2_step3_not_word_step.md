@@ -47,7 +47,7 @@ ComputationC2Step3NotWordStep records three concrete one-hole list moves and the
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Cost.lean::Step3 (not staged in this checkout)`
+- `external:atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Cost.lean::Step3 (not staged in this checkout)`
 
 ---
 

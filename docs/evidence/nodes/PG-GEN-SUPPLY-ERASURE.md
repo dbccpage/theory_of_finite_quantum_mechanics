@@ -114,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md`
 
 - file: [dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md](../../../dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md)
-- sha256 (`lf-normalised`): `ae2f9546f3f2eb12d5b8695a54bde695866b7291e0964230afe67dbf13ec4b54`
+- sha256 (`lf-normalised`): `75ab631b55d8c9c761a446a96ecd06eea7423c12fc08083de47b66a170bbf8a2`
 - generated view: listed, not counted
 - cited in: record TFQ-0386
 - counts toward the grade: no
@@ -122,7 +122,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pg-gen-supply-erasure.md`
 
 - file: [dag/derivations/independent/pg-gen-supply-erasure.md](../../../dag/derivations/independent/pg-gen-supply-erasure.md)
-- sha256 (`lf-normalised`): `add9d5680c4e88f25cd10db8bb36c3c02f858cab3e166a4aa6317b6611f878f2`
+- sha256 (`lf-normalised`): `42dcb7fa7080074cc809349c58a1970bd1ca671654a36637e705cd19e785dcc2`
 - cited in: node.source
 - counts toward the grade: yes
 

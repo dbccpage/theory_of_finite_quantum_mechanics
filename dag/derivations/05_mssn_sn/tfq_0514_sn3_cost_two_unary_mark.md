@@ -38,11 +38,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean::mu2_unique_F`](../../../lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::min_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::min_responses`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::iter_cost2_deltas`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::mu2`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::iter_cost2_deltas`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::mu2`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
 
 ---
 
@@ -56,6 +56,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:332-339`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:305-313`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:332-339`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:305-313`
   - `external:sha256:217d5f5c9cdc03ec3787cd9e1c38bfca51fa068ca55f96b61ce4c1c61d34b3fb:28-36`

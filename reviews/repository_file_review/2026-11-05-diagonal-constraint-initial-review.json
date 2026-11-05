@@ -1,0 +1,40 @@
+{
+  "AuthorityEffect": "None",
+  "originals": [
+    {
+      "path": "checks/independent/fsp-discrete-wdw-constraint.py",
+      "sha256": "02ffa1ea9c9499c659e38294266fd328ef7227cce9975b28b837ceac8ecf2790",
+      "archive": "reviews/repository_file_review/2026-11-05-diagonal-constraint-original-fsp-discrete-wdw-constraint.py.txt"
+    },
+    {
+      "path": "checks/independent/fsp-discrete-wdw-constraint.contract.score.yaml",
+      "sha256": "0e68f2165c107ffb491f53b8b1f2232b19ef7aefe3f956335b9dcb498c7d650c",
+      "archive": "reviews/repository_file_review/2026-11-05-diagonal-constraint-original-fsp-discrete-wdw-constraint.contract.score.yaml.txt"
+    }
+  ],
+  "runs": [
+    {
+      "optimized": false,
+      "returncode": 0,
+      "stdout": "vectors=125 rank=2 kernel_dimension=1 quadratic_values=(2,-1) nonprojector=True failures=0\n",
+      "stderr": ""
+    },
+    {
+      "optimized": true,
+      "returncode": 0,
+      "stdout": "vectors=125 rank=2 kernel_dimension=1 quadratic_values=(2,-1) nonprojector=True failures=0\n",
+      "stderr": ""
+    }
+  ],
+  "origins": [
+    {
+      "path": "lean4/ConstraintKernelProjector.lean",
+      "sha256": "daaa910962480e0e1fd97c617f31826c9994bda13618c6e195abee5b7ad3c31f"
+    }
+  ],
+  "initial_retention": 4,
+  "findings": [
+    "The fixed diagonal matrix and kernel-projector calculation agree with the stated integer Lean model.",
+    "The literal script has no admitted reusable operator boundary, typed failure composition or independent challenge suite."
+  ]
+}

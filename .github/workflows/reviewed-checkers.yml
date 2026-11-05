@@ -367,3 +367,36 @@ jobs:
           python -I -B -m mypy --config-file checks/mypy.ini checks/checker_support/integer_quadratic_equation.py checks/independent/fq-gap-continuum-hilbert-lift.py checks/tests/test_integer_obstructions.py
           python -I -B -X utf8 checks/tests/test_integer_obstructions.py
           python -I -B -O -X utf8 checks/tests/test_integer_obstructions.py
+      - name: Integer tensor outer-product controls
+        run: |
+          python -I -B -m mypy --config-file checks/mypy.ini checks/independent/fq-gap-tensor-uniqueness.py checks/tests/test_tensor_outer_controls.py
+          python -I -B -X utf8 checks/tests/test_tensor_outer_controls.py
+          python -I -B -O -X utf8 checks/tests/test_tensor_outer_controls.py
+      - name: Binary sign cocycle controls
+        run: |
+          python -I -B -m mypy --config-file checks/mypy.ini checks/checker_support/binary_sign_cochain.py checks/independent/fsp-bf-2group-sign-claim.py checks/tests/test_binary_sign_cochains.py
+          python -I -B -X utf8 checks/tests/test_binary_sign_cochains.py
+          python -I -B -O -X utf8 checks/tests/test_binary_sign_cochains.py
+      - name: Signed triangle switching controls
+        run: |
+          python -I -B -m mypy --config-file checks/mypy.ini checks/checker_support/signed_triangle.py checks/independent/fsp-cobordism-intrinsic-sign.py checks/tests/test_signed_triangle_switching.py
+          python -I -B -X utf8 checks/tests/test_signed_triangle_switching.py
+          python -I -B -O -X utf8 checks/tests/test_signed_triangle_switching.py
+
+      - name: Diagonal constraint controls
+        run: |
+          python -I -B -m mypy --config-file checks/mypy.ini checks/checker_support/diagonal_constraint.py checks/independent/fsp-discrete-wdw-constraint.py checks/tests/test_diagonal_constraints.py
+          python -I -B -X utf8 checks/tests/test_diagonal_constraints.py
+          python -I -B -O -X utf8 checks/tests/test_diagonal_constraints.py
+
+      - name: Hubbard transfer controls
+        run: |
+          python -I -B -m mypy --config-file checks/mypy.ini checks/checker_support/bond_graph.py checks/checker_support/hubbard_determinants.py checks/checker_support/rational_determinant.py checks/checker_support/hubbard_transfer.py checks/independent/fsp-hubbard-protected-representations.py checks/tests/test_hubbard_transfer.py
+          python -I -B -X utf8 checks/tests/test_hubbard_transfer.py
+          python -I -B -O -X utf8 checks/tests/test_hubbard_transfer.py
+
+      - name: Temporal cycle and center controls
+        run: |
+          python -I -B -m mypy --config-file checks/mypy.ini checks/checker_support/gaussian_expression.py checks/checker_support/gaussian_matrix.py checks/checker_support/temporal_cycle.py checks/checker_support/center_orbit.py checks/independent/fsp-imaginary-mu-real-det.py checks/tests/test_temporal_cycles.py
+          python -I -B -X utf8 checks/tests/test_temporal_cycles.py
+          python -I -B -O -X utf8 checks/tests/test_temporal_cycles.py

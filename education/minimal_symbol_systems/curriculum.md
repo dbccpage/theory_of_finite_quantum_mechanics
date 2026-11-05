@@ -9,7 +9,7 @@ core is one grammar file, a codec, and a short paper whose proofs you can do by
 hand. The 101-level atlas around it is a list of targets, not of results.
 
 **Prerequisite:** [`002_s_n`](../002_s_n/curriculum.md).
-**Main reading:** [From Pre-Genesis to MSS-N](/atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md),
+**Main reading:** [From Pre-Genesis to MSS-N](/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md),
 [`grammar/mssn.ebnf`](grammar/mssn.ebnf), [`reading_guide.md`](reading_guide.md),
 and the [publication review](publication_review.md).
 

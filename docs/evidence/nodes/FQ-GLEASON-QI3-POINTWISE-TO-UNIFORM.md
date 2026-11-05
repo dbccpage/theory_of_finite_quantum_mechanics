@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- distinct cited Lean declarations covered by a current replay receipt: 2
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -63,12 +63,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/GleasonGaussianBridge.lean](../../../lean4/GleasonGaussianBridge.lean)
 - sha256 (`bytes`): `14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f`
 - cited in: node.lean, node.source, record TFQ-1057
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonGaussianBridge`): recorded sha256 `14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonGaussianBridge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFinite.GleasonBridge.IsUniformlyRayContinuous` | yes | yes | yes | - | `#print axioms BornFinite.GleasonBridge.IsUniformlyRayContinuous` |
+| `BornFinite.GleasonBridge.IsUniformlyRayContinuous` | yes | yes | yes | module-level | `#print axioms BornFinite.GleasonBridge.IsUniformlyRayContinuous` |
 
 - counts toward the grade: yes
 
@@ -83,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/pointwise_vs_uniform_note.md`
 
 - file: [dag/research/pointwise_vs_uniform_note.md](../../../dag/research/pointwise_vs_uniform_note.md)
-- sha256 (`lf-normalised`): `9794356d43b714c238d1a49b55e3e10b153e1baccfae11683b1c1891de99980f`
+- sha256 (`lf-normalised`): `478e84b6e5e737cc7b68f52eb837886e6e0f20681e7a43f447478f146ec0bc71`
 - cited in: node.source
 - counts toward the grade: yes
 
