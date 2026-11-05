@@ -7,7 +7,7 @@
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/BornGaussianFiniteModel.lean",
-      "sha256": "680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e"
+      "sha256": "d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa"
     },
     "boundaries": [
       "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
@@ -20,17 +20,17 @@
       {
         "path": "lean4/BornGaussianFiniteModel.lean",
         "role": "source",
-        "sha256": "680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e"
+        "sha256": "d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa"
       },
       {
         "path": "dag/research/gleason_lean_audit.json",
         "role": "axiom_and_build_audit",
-        "sha256": "37db40eb2ae0d2aea6b320db1997ca4bcb9cdd60bda03986a99fc44a619f1b7a"
+        "sha256": "c654015b13178c96242c2422c80cbe4bb12faf2f941928e722939c19ad18f959"
       },
       {
         "path": "dag/research/gleason_finite_model_receipt.json",
         "role": "phase2_certificate_and_counterexample_receipt",
-        "sha256": "81364ee6802d304c80868a75ecb19d497309553f41cc940535d525228acbcdce"
+        "sha256": "838ccb1d789b63e38c325ef8180279d719829f7d1446ecaf36ce90baa5539e24"
       },
       {
         "path": "SCORING.md",
@@ -44,7 +44,7 @@
     ],
     "purpose": "Formalize the Phase 2 finite and exact-arithmetic Gleason model over Q(i)^3, connecting the 5 finiteness regimes, effect-additivity vs frame-additivity separation, boundedness of nonnegative frame functions, residual oscillations, and the fixed-anchor certificate inequality.",
     "schema_id": "tfqm.source-contract.v1",
-    "source_sha256": "680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e",
+    "source_sha256": "d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa",
     "subject": "lean4/BornGaussianFiniteModel.lean",
     "symbols": [
       "BornFinite.GaussianFiniteModel.FiniteFrameScenario",
@@ -186,6 +186,45 @@
       "BornFinite.GaussianFiniteModel.pellHiRay",
       "BornFinite.GaussianFiniteModel.pellLoRay",
       "BornFinite.GaussianFiniteModel.dedekindRayCut_jump_on_pell_pair",
+      "BornFinite.GaussianFiniteModel.rational_piron_subadditivity",
+      "BornFinite.GaussianFiniteModel.nonneg_frameFunction_ortho_le_one_sub",
+      "BornFinite.GaussianFiniteModel.isFrame_tomo_e1_eqOrtho",
+      "BornFinite.GaussianFiniteModel.equatorial_pair_sum_eq_one_sub_pole",
+      "BornFinite.GaussianFiniteModel.meridian_kelvin_universal_bridge",
+      "BornFinite.GaussianFiniteModel.meridian_kelvin_zeroWeight_bridge",
+      "BornFinite.GaussianFiniteModel.meridianOrtho_raySinSq_eq",
+      "BornFinite.GaussianFiniteModel.meridian_uniform_equatorial_continuity_of_pole_continuous",
+      "BornFinite.GaussianFiniteModel.piron_zero_slack_step_partner_bridge",
+      "BornFinite.GaussianFiniteModel.piron_symmetric_step_partner_balance",
+      "BornFinite.GaussianFiniteModel.pironStep_pironPartner_raySinSq_eq",
+      "BornFinite.GaussianFiniteModel.piron_step_continuous_of_eqOrtho_continuous",
+      "BornFinite.GaussianFiniteModel.piron_three_step_zero_slack_chain_abs_le",
+      "BornFinite.GaussianFiniteModel.piron_general_one_step_le",
+      "BornFinite.GaussianFiniteModel.piron_general_two_step_radial_le",
+      "BornFinite.GaussianFiniteModel.piron_general_three_step_chain_le",
+      "BornFinite.GaussianFiniteModel.pythagEqRot_general_sandwich",
+      "BornFinite.GaussianFiniteModel.dedekindRayCut_eq_zero_of_raySinSq_tomo_e1_lt",
+      "BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuousAt_tomo_e1",
+      "BornFinite.GaussianFiniteModel.dedekindRayCut_eq_one_of_raySinSq_tomo_e2_lt",
+      "BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuousAt_tomo_e2",
+      "BornFinite.GaussianFiniteModel.dedekindRayCut_not_isFrameFunction",
+      "BornFinite.GaussianFiniteModel.yLatitudeFunction",
+      "BornFinite.GaussianFiniteModel.yLatitudeFunction_std_and_bisector_constraints",
+      "BornFinite.GaussianFiniteModel.no_zero_one_latitude_frameFunction",
+      "BornFinite.GaussianFiniteModel.gaussianHalvingBase",
+      "BornFinite.GaussianFiniteModel.gaussianHalvingOrtho",
+      "BornFinite.GaussianFiniteModel.gaussianHalvingPos",
+      "BornFinite.GaussianFiniteModel.gaussianHalvingNeg",
+      "BornFinite.GaussianFiniteModel.isFrame_gaussianHalving_base",
+      "BornFinite.GaussianFiniteModel.isFrame_gaussianHalving_rot",
+      "BornFinite.GaussianFiniteModel.coordSignSymmetric_gaussian_halving_identity",
+      "BornFinite.GaussianFiniteModel.zeroWeight_coordSignSymmetric_gaussian_halving_identity",
+      "BornFinite.GaussianFiniteModel.gaussianHalvingPos_exits_irrational_cone",
+      "BornFinite.GaussianFiniteModel.dedekindRayCut_gaussianHalvingPos_eq_zero",
+      "BornFinite.GaussianFiniteModel.zero_on_xy_plane_of_subcone_zero_and_coordSignSymmetric",
+      "BornFinite.GaussianFiniteModel.dedekindRayCut_eq_of_normSq_eq",
+      "BornFinite.GaussianFiniteModel.dedekindRayCut_isCoordSignSymmetric",
+      "BornFinite.GaussianFiniteModel.dedekindRayCut_fails_gaussian_halving_at_1_2",
       "BornFinite.GaussianFiniteModel.abs_normSq_sub_le_of_normSq_sub_le",
       "BornFinite.GaussianFiniteModel.abs_normSqVec_and_y_sub_le_of_distSqVec_lt",
       "BornFinite.GaussianFiniteModel.abs_sq_sub_sq_le_of_abs_sub_le",
@@ -592,17 +631,17 @@
       "sha256": "1afe8fb593f0b00ac8d10ace7c9957082b175287a4c7e97387b81a89444040b7"
     },
     {
-      "bytes": 15949,
+      "bytes": 18839,
       "original_paths": [
         "lean4/BornGaussianFiniteModel.contract.score.yaml#phase2-finite-gleason-model-l4d-v1"
       ],
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n    \"sha256\": \"c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717\"\n  },\n  \"boundaries\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"claim\": \"Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.\",\n  \"contract_id\": \"phase2-finite-gleason-model-l4d-v1\",\n  \"contract_urn\": \"urn:tfqm:fq-born-qi3:gleasonborncompletion\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n      \"role\": \"source\",\n      \"sha256\": \"c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"role\": \"axiom_and_build_audit\",\n      \"sha256\": \"37db40eb2ae0d2aea6b320db1997ca4bcb9cdd60bda03986a99fc44a619f1b7a\"\n    },\n    {\n      \"path\": \"dag/research/gleason_finite_model_receipt.json\",\n      \"role\": \"phase2_certificate_and_counterexample_receipt\",\n      \"sha256\": \"81364ee6802d304c80868a75ecb19d497309553f41cc940535d525228acbcdce\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"role\": \"rubric\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL.\"\n  ],\n  \"purpose\": \"Formalize the Phase 2 finite and exact-arithmetic Gleason model over Q(i)^3, connecting the 5 finiteness regimes, effect-additivity vs frame-additivity separation, boundedness of nonnegative frame functions, residual oscillations, and the fixed-anchor certificate inequality.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717\",\n  \"subject\": \"lean4/BornGaussianFiniteModel.lean\",\n  \"symbols\": [\n    \"BornFinite.GaussianFiniteModel.FiniteFrameScenario\",\n    \"BornFinite.GaussianFiniteModel.IsScenarioValuation\",\n    \"BornFinite.GaussianFiniteModel.IsNonnegScenarioValuation\",\n    \"BornFinite.GaussianFiniteModel.IsZeroOneScenarioValuation\",\n    \"BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario\",\n    \"BornFinite.GaussianFiniteModel.global_nonneg_frameFunction_restricts_to_scenario\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorsList\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorsList_nonZero\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorSingleFrameScenario\",\n    \"BornFinite.GaussianFiniteModel.indicatorXAxisVal\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorSingleFrameScenario_admits_zero_one\",\n    \"BornFinite.GaussianFiniteModel.finite_scenario_vs_global_frame_dichotomy\",\n    \"BornFinite.GaussianFiniteModel.rayFamily\",\n    \"BornFinite.GaussianFiniteModel.rayFamilyOrtho\",\n    \"BornFinite.GaussianFiniteModel.rayFamily_nonZero\",\n    \"BornFinite.GaussianFiniteModel.rayFamilyOrtho_nonZero\",\n    \"BornFinite.GaussianFiniteModel.frameFamily_isFrame\",\n    \"BornFinite.GaussianFiniteModel.lagrange_normSqVec_cross\",\n    \"BornFinite.GaussianFiniteModel.raySinSq_eq_normSqVec_cross_div\",\n    \"BornFinite.GaussianFiniteModel.rayFamily_raySinSq_pos\",\n    \"BornFinite.GaussianFiniteModel.bisector_12_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_12i_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_13_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_13i_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_23_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_23i_neg\",\n    \"BornFinite.GaussianFiniteModel.sixBisectorPartnersList\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e3_e12_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e3_e12i_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e2_e13_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e2_e13i_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e1_e23_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e1_e23i_bisector\",\n    \"BornFinite.GaussianFiniteModel.vanishes_on_six_bisector_partners\",\n    \"BornFinite.GaussianFiniteModel.IsBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.isBoundedOnRays_of_isBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_zero\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_of_nonZero\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.abs_residual_le_one_add_coeffNorm_of_nonneg\",\n    \"BornFinite.GaussianFiniteModel.abs_residual_le_one_of_nonneg_and_quadRay_bounds\",\n    \"BornFinite.GaussianFiniteModel.vecOfGVec\",\n    \"BornFinite.GaussianFiniteModel.gvecOfVec\",\n    \"BornFinite.GaussianFiniteModel.gvecOfVec_vecOfGVec\",\n    \"BornFinite.GaussianFiniteModel.vecOfGVec_gvecOfVec\",\n    \"BornFinite.GaussianFiniteModel.vnorm_vecOfGVec\",\n    \"BornFinite.GaussianFiniteModel.vecOfGVec_ne_zero_iff\",\n    \"BornFinite.GaussianFiniteModel.hermForm3OfGaussMatrix\",\n    \"BornFinite.GaussianFiniteModel.gaussMatrixOfHermForm3\",\n    \"BornFinite.GaussianFiniteModel.hf_eq_quadNum_hermForm3OfGaussMatrix\",\n    \"BornFinite.GaussianFiniteModel.hermForm3OfDensity\",\n    \"BornFinite.GaussianFiniteModel.hermForm3OfDensity_tr\",\n    \"BornFinite.GaussianFiniteModel.effectValuation_rankOne_eq_quadRay\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_eq_on_nonZero\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_nonneg\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_factorsThroughRayProjLinear\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_residual_eq_zero\",\n    \"BornFinite.GaussianFiniteModel.no_effectValuation_induces_exoticQi3\",\n    \"BornFinite.GaussianFiniteModel.no_effectValuation_induces_sp\",\n    \"BornFinite.GaussianFiniteModel.IsPointwiseRayContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.IsPointwiseRayContinuous\",\n    \"BornFinite.GaussianFiniteModel.IsScaleInvariantOnRays\",\n    \"BornFinite.GaussianFiniteModel.isScaleInvariantOnRays_of_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.isScaleInvariantOnRays_of_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.normSqVec_mul_distSqVec_sub_lagrange\",\n    \"BornFinite.GaussianFiniteModel.raySinSq_le_distSqVec_div\",\n    \"BornFinite.GaussianFiniteModel.projScalar\",\n    \"BornFinite.GaussianFiniteModel.projScalar_normSq\",\n    \"BornFinite.GaussianFiniteModel.projScalar_ne_zero_of_raySinSq_lt_one\",\n    \"BornFinite.GaussianFiniteModel.distSqVec_eq_normSqVec_sub_two_re_inner\",\n    \"BornFinite.GaussianFiniteModel.inner_projScalar_smul_re\",\n    \"BornFinite.GaussianFiniteModel.distSqVec_projScalar_smul\",\n    \"BornFinite.GaussianFiniteModel.isArchimedeanContinuousAt_of_isPointwiseRayContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_of_isArchimedeanContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_iff_isArchimedeanContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuous_iff_isArchimedeanContinuousEverywhere\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuous_of_isUniformlyRayContinuous\",\n    \"BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_s3_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_s7_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_exoticQi3_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList_nonneg\",\n    \"BornFinite.GaussianFiniteModel.abs_le_maxAbsOnList\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList_le_of_forall\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList_eq_zero_of_forall_zero\",\n    \"BornFinite.GaussianFiniteModel.FixedAnchorBound\",\n    \"BornFinite.GaussianFiniteModel.vanishesOnNineRays_iff_forall_nineAnchorsList\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_sufficiency_of_pointwiseRayContinuous_at_anchors\",\n    \"BornFinite.GaussianFiniteModel.witness_neg211\",\n    \"BornFinite.GaussianFiniteModel.witness_neg211_nonZero\",\n    \"BornFinite.GaussianFiniteModel.isFrame_witness111_neg211_bisector\",\n    \"BornFinite.GaussianFiniteModel.residual_witness111_add_neg211_eq_zero\",\n    \"BornFinite.GaussianFiniteModel.meridianApproachE1\",\n    \"BornFinite.GaussianFiniteModel.meridianApproachE23\",\n    \"BornFinite.GaussianFiniteModel.isFrame_meridianApproach\",\n    \"BornFinite.GaussianFiniteModel.meridian_pair_sum_eq_approaching_anchors\",\n    \"BornFinite.GaussianFiniteModel.sp_isBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_prime_valuation_obstruction\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_remainder_ge_one_of_even_vpRat\",\n    \"BornFinite.GaussianFiniteModel.isLead3All\",\n    \"BornFinite.GaussianFiniteModel.instDecidableIsLead3All\",\n    \"BornFinite.GaussianFiniteModel.s3_leadX\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll\",\n    \"BornFinite.GaussianFiniteModel.lead3Coord_z_ortho_iff\",\n    \"BornFinite.GaussianFiniteModel.isLead3All_ortho_iff\",\n    \"BornFinite.GaussianFiniteModel.s3_leadX_pair_cancel\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_pair_cancel\",\n    \"BornFinite.GaussianFiniteModel.s3_leadX_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_eq_zero_of_not_isLead3All\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_eq_zero_of_coord_zero\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_vanishes_on_nine_rays\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_values\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_isBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_isBoundedOnRays\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_eq_s3_of_isLead3All\",\n    \"BornFinite.GaussianFiniteModel.isLead3All_witness_111\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_witness_111\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_obstruction_of_not_isLead3All\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1_nonZero\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1_s3_leadAll_eq_one\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1_raySinSq_tomo_e1_le\",\n    \"BornFinite.GaussianFiniteModel.irrationalSupObjective\",\n    \"BornFinite.GaussianFiniteModel.three_mul_sq_ne_sq\",\n    \"BornFinite.GaussianFiniteModel.moving_rational_near_maximizer_no_rational_maximizer\",\n    \"BornFinite.GaussianFiniteModel.chain_step_error_accumulates\",\n    \"BornFinite.GaussianFiniteModel.linearDriftChain\",\n    \"BornFinite.GaussianFiniteModel.linearDriftChain_attains_bound\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isScaleInvariantOnRays\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_gap_ne_zero\",\n    \"BornFinite.GaussianFiniteModel.pellHiRay\",\n    \"BornFinite.GaussianFiniteModel.pellLoRay\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_jump_on_pell_pair\",\n    \"BornFinite.GaussianFiniteModel.abs_normSq_sub_le_of_normSq_sub_le\",\n    \"BornFinite.GaussianFiniteModel.abs_normSqVec_and_y_sub_le_of_distSqVec_lt\",\n    \"BornFinite.GaussianFiniteModel.abs_sq_sub_sq_le_of_abs_sub_le\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_eventually_const\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isArchimedeanContinuousEverywhere\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuous\",\n    \"BornFinite.GaussianFiniteModel.quadRay_rayProj_eq_one_sub_raySinSq\",\n    \"BornFinite.GaussianFiniteModel.quadRay_rayProj_isNonnegFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.ortho_raySinSq_add_ge_one\",\n    \"BornFinite.GaussianFiniteModel.not_both_raySinSq_lt_half_of_ortho\",\n    \"BornFinite.GaussianFiniteModel.zero_of_zeroWeight_supported_in_polar_cap\",\n    \"BornFinite.GaussianFiniteModel.quadRay_rayProj_tomo_e1_eq_one_sub_raySinSq\",\n    \"BornFinite.GaussianFiniteModel.ortho_raySinSq_tomo_e1_add_ge_one\",\n    \"BornFinite.GaussianFiniteModel.not_both_raySinSq_tomo_e1_lt_half_of_ortho\"\n  ]\n}\n",
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n    \"sha256\": \"d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa\"\n  },\n  \"boundaries\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"claim\": \"Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.\",\n  \"contract_id\": \"phase2-finite-gleason-model-l4d-v1\",\n  \"contract_urn\": \"urn:tfqm:fq-born-qi3:gleasonborncompletion\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n      \"role\": \"source\",\n      \"sha256\": \"d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"role\": \"axiom_and_build_audit\",\n      \"sha256\": \"c654015b13178c96242c2422c80cbe4bb12faf2f941928e722939c19ad18f959\"\n    },\n    {\n      \"path\": \"dag/research/gleason_finite_model_receipt.json\",\n      \"role\": \"phase2_certificate_and_counterexample_receipt\",\n      \"sha256\": \"838ccb1d789b63e38c325ef8180279d719829f7d1446ecaf36ce90baa5539e24\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"role\": \"rubric\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL.\"\n  ],\n  \"purpose\": \"Formalize the Phase 2 finite and exact-arithmetic Gleason model over Q(i)^3, connecting the 5 finiteness regimes, effect-additivity vs frame-additivity separation, boundedness of nonnegative frame functions, residual oscillations, and the fixed-anchor certificate inequality.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa\",\n  \"subject\": \"lean4/BornGaussianFiniteModel.lean\",\n  \"symbols\": [\n    \"BornFinite.GaussianFiniteModel.FiniteFrameScenario\",\n    \"BornFinite.GaussianFiniteModel.IsScenarioValuation\",\n    \"BornFinite.GaussianFiniteModel.IsNonnegScenarioValuation\",\n    \"BornFinite.GaussianFiniteModel.IsZeroOneScenarioValuation\",\n    \"BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario\",\n    \"BornFinite.GaussianFiniteModel.global_nonneg_frameFunction_restricts_to_scenario\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorsList\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorsList_nonZero\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorSingleFrameScenario\",\n    \"BornFinite.GaussianFiniteModel.indicatorXAxisVal\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorSingleFrameScenario_admits_zero_one\",\n    \"BornFinite.GaussianFiniteModel.finite_scenario_vs_global_frame_dichotomy\",\n    \"BornFinite.GaussianFiniteModel.rayFamily\",\n    \"BornFinite.GaussianFiniteModel.rayFamilyOrtho\",\n    \"BornFinite.GaussianFiniteModel.rayFamily_nonZero\",\n    \"BornFinite.GaussianFiniteModel.rayFamilyOrtho_nonZero\",\n    \"BornFinite.GaussianFiniteModel.frameFamily_isFrame\",\n    \"BornFinite.GaussianFiniteModel.lagrange_normSqVec_cross\",\n    \"BornFinite.GaussianFiniteModel.raySinSq_eq_normSqVec_cross_div\",\n    \"BornFinite.GaussianFiniteModel.rayFamily_raySinSq_pos\",\n    \"BornFinite.GaussianFiniteModel.bisector_12_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_12i_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_13_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_13i_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_23_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_23i_neg\",\n    \"BornFinite.GaussianFiniteModel.sixBisectorPartnersList\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e3_e12_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e3_e12i_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e2_e13_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e2_e13i_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e1_e23_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e1_e23i_bisector\",\n    \"BornFinite.GaussianFiniteModel.vanishes_on_six_bisector_partners\",\n    \"BornFinite.GaussianFiniteModel.IsBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.isBoundedOnRays_of_isBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_zero\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_of_nonZero\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.abs_residual_le_one_add_coeffNorm_of_nonneg\",\n    \"BornFinite.GaussianFiniteModel.abs_residual_le_one_of_nonneg_and_quadRay_bounds\",\n    \"BornFinite.GaussianFiniteModel.vecOfGVec\",\n    \"BornFinite.GaussianFiniteModel.gvecOfVec\",\n    \"BornFinite.GaussianFiniteModel.gvecOfVec_vecOfGVec\",\n    \"BornFinite.GaussianFiniteModel.vecOfGVec_gvecOfVec\",\n    \"BornFinite.GaussianFiniteModel.vnorm_vecOfGVec\",\n    \"BornFinite.GaussianFiniteModel.vecOfGVec_ne_zero_iff\",\n    \"BornFinite.GaussianFiniteModel.hermForm3OfGaussMatrix\",\n    \"BornFinite.GaussianFiniteModel.gaussMatrixOfHermForm3\",\n    \"BornFinite.GaussianFiniteModel.hf_eq_quadNum_hermForm3OfGaussMatrix\",\n    \"BornFinite.GaussianFiniteModel.hermForm3OfDensity\",\n    \"BornFinite.GaussianFiniteModel.hermForm3OfDensity_tr\",\n    \"BornFinite.GaussianFiniteModel.effectValuation_rankOne_eq_quadRay\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_eq_on_nonZero\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_nonneg\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_factorsThroughRayProjLinear\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_residual_eq_zero\",\n    \"BornFinite.GaussianFiniteModel.no_effectValuation_induces_exoticQi3\",\n    \"BornFinite.GaussianFiniteModel.no_effectValuation_induces_sp\",\n    \"BornFinite.GaussianFiniteModel.IsPointwiseRayContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.IsPointwiseRayContinuous\",\n    \"BornFinite.GaussianFiniteModel.IsScaleInvariantOnRays\",\n    \"BornFinite.GaussianFiniteModel.isScaleInvariantOnRays_of_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.isScaleInvariantOnRays_of_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.normSqVec_mul_distSqVec_sub_lagrange\",\n    \"BornFinite.GaussianFiniteModel.raySinSq_le_distSqVec_div\",\n    \"BornFinite.GaussianFiniteModel.projScalar\",\n    \"BornFinite.GaussianFiniteModel.projScalar_normSq\",\n    \"BornFinite.GaussianFiniteModel.projScalar_ne_zero_of_raySinSq_lt_one\",\n    \"BornFinite.GaussianFiniteModel.distSqVec_eq_normSqVec_sub_two_re_inner\",\n    \"BornFinite.GaussianFiniteModel.inner_projScalar_smul_re\",\n    \"BornFinite.GaussianFiniteModel.distSqVec_projScalar_smul\",\n    \"BornFinite.GaussianFiniteModel.isArchimedeanContinuousAt_of_isPointwiseRayContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_of_isArchimedeanContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_iff_isArchimedeanContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuous_iff_isArchimedeanContinuousEverywhere\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuous_of_isUniformlyRayContinuous\",\n    \"BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_s3_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_s7_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_exoticQi3_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList_nonneg\",\n    \"BornFinite.GaussianFiniteModel.abs_le_maxAbsOnList\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList_le_of_forall\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList_eq_zero_of_forall_zero\",\n    \"BornFinite.GaussianFiniteModel.FixedAnchorBound\",\n    \"BornFinite.GaussianFiniteModel.vanishesOnNineRays_iff_forall_nineAnchorsList\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_sufficiency_of_pointwiseRayContinuous_at_anchors\",\n    \"BornFinite.GaussianFiniteModel.witness_neg211\",\n    \"BornFinite.GaussianFiniteModel.witness_neg211_nonZero\",\n    \"BornFinite.GaussianFiniteModel.isFrame_witness111_neg211_bisector\",\n    \"BornFinite.GaussianFiniteModel.residual_witness111_add_neg211_eq_zero\",\n    \"BornFinite.GaussianFiniteModel.meridianApproachE1\",\n    \"BornFinite.GaussianFiniteModel.meridianApproachE23\",\n    \"BornFinite.GaussianFiniteModel.isFrame_meridianApproach\",\n    \"BornFinite.GaussianFiniteModel.meridian_pair_sum_eq_approaching_anchors\",\n    \"BornFinite.GaussianFiniteModel.sp_isBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_prime_valuation_obstruction\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_remainder_ge_one_of_even_vpRat\",\n    \"BornFinite.GaussianFiniteModel.isLead3All\",\n    \"BornFinite.GaussianFiniteModel.instDecidableIsLead3All\",\n    \"BornFinite.GaussianFiniteModel.s3_leadX\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll\",\n    \"BornFinite.GaussianFiniteModel.lead3Coord_z_ortho_iff\",\n    \"BornFinite.GaussianFiniteModel.isLead3All_ortho_iff\",\n    \"BornFinite.GaussianFiniteModel.s3_leadX_pair_cancel\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_pair_cancel\",\n    \"BornFinite.GaussianFiniteModel.s3_leadX_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_eq_zero_of_not_isLead3All\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_eq_zero_of_coord_zero\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_vanishes_on_nine_rays\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_values\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_isBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_isBoundedOnRays\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_eq_s3_of_isLead3All\",\n    \"BornFinite.GaussianFiniteModel.isLead3All_witness_111\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_witness_111\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_obstruction_of_not_isLead3All\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1_nonZero\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1_s3_leadAll_eq_one\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1_raySinSq_tomo_e1_le\",\n    \"BornFinite.GaussianFiniteModel.irrationalSupObjective\",\n    \"BornFinite.GaussianFiniteModel.three_mul_sq_ne_sq\",\n    \"BornFinite.GaussianFiniteModel.moving_rational_near_maximizer_no_rational_maximizer\",\n    \"BornFinite.GaussianFiniteModel.chain_step_error_accumulates\",\n    \"BornFinite.GaussianFiniteModel.linearDriftChain\",\n    \"BornFinite.GaussianFiniteModel.linearDriftChain_attains_bound\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isScaleInvariantOnRays\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_gap_ne_zero\",\n    \"BornFinite.GaussianFiniteModel.pellHiRay\",\n    \"BornFinite.GaussianFiniteModel.pellLoRay\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_jump_on_pell_pair\",\n    \"BornFinite.GaussianFiniteModel.rational_piron_subadditivity\",\n    \"BornFinite.GaussianFiniteModel.nonneg_frameFunction_ortho_le_one_sub\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e1_eqOrtho\",\n    \"BornFinite.GaussianFiniteModel.equatorial_pair_sum_eq_one_sub_pole\",\n    \"BornFinite.GaussianFiniteModel.meridian_kelvin_universal_bridge\",\n    \"BornFinite.GaussianFiniteModel.meridian_kelvin_zeroWeight_bridge\",\n    \"BornFinite.GaussianFiniteModel.meridianOrtho_raySinSq_eq\",\n    \"BornFinite.GaussianFiniteModel.meridian_uniform_equatorial_continuity_of_pole_continuous\",\n    \"BornFinite.GaussianFiniteModel.piron_zero_slack_step_partner_bridge\",\n    \"BornFinite.GaussianFiniteModel.piron_symmetric_step_partner_balance\",\n    \"BornFinite.GaussianFiniteModel.pironStep_pironPartner_raySinSq_eq\",\n    \"BornFinite.GaussianFiniteModel.piron_step_continuous_of_eqOrtho_continuous\",\n    \"BornFinite.GaussianFiniteModel.piron_three_step_zero_slack_chain_abs_le\",\n    \"BornFinite.GaussianFiniteModel.piron_general_one_step_le\",\n    \"BornFinite.GaussianFiniteModel.piron_general_two_step_radial_le\",\n    \"BornFinite.GaussianFiniteModel.piron_general_three_step_chain_le\",\n    \"BornFinite.GaussianFiniteModel.pythagEqRot_general_sandwich\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_eq_zero_of_raySinSq_tomo_e1_lt\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuousAt_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_eq_one_of_raySinSq_tomo_e2_lt\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuousAt_tomo_e2\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_not_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.yLatitudeFunction\",\n    \"BornFinite.GaussianFiniteModel.yLatitudeFunction_std_and_bisector_constraints\",\n    \"BornFinite.GaussianFiniteModel.no_zero_one_latitude_frameFunction\",\n    \"BornFinite.GaussianFiniteModel.gaussianHalvingBase\",\n    \"BornFinite.GaussianFiniteModel.gaussianHalvingOrtho\",\n    \"BornFinite.GaussianFiniteModel.gaussianHalvingPos\",\n    \"BornFinite.GaussianFiniteModel.gaussianHalvingNeg\",\n    \"BornFinite.GaussianFiniteModel.isFrame_gaussianHalving_base\",\n    \"BornFinite.GaussianFiniteModel.isFrame_gaussianHalving_rot\",\n    \"BornFinite.GaussianFiniteModel.coordSignSymmetric_gaussian_halving_identity\",\n    \"BornFinite.GaussianFiniteModel.zeroWeight_coordSignSymmetric_gaussian_halving_identity\",\n    \"BornFinite.GaussianFiniteModel.gaussianHalvingPos_exits_irrational_cone\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_gaussianHalvingPos_eq_zero\",\n    \"BornFinite.GaussianFiniteModel.zero_on_xy_plane_of_subcone_zero_and_coordSignSymmetric\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_eq_of_normSq_eq\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isCoordSignSymmetric\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_fails_gaussian_halving_at_1_2\",\n    \"BornFinite.GaussianFiniteModel.abs_normSq_sub_le_of_normSq_sub_le\",\n    \"BornFinite.GaussianFiniteModel.abs_normSqVec_and_y_sub_le_of_distSqVec_lt\",\n    \"BornFinite.GaussianFiniteModel.abs_sq_sub_sq_le_of_abs_sub_le\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_eventually_const\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isArchimedeanContinuousEverywhere\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuous\",\n    \"BornFinite.GaussianFiniteModel.quadRay_rayProj_eq_one_sub_raySinSq\",\n    \"BornFinite.GaussianFiniteModel.quadRay_rayProj_isNonnegFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.ortho_raySinSq_add_ge_one\",\n    \"BornFinite.GaussianFiniteModel.not_both_raySinSq_lt_half_of_ortho\",\n    \"BornFinite.GaussianFiniteModel.zero_of_zeroWeight_supported_in_polar_cap\",\n    \"BornFinite.GaussianFiniteModel.quadRay_rayProj_tomo_e1_eq_one_sub_raySinSq\",\n    \"BornFinite.GaussianFiniteModel.ortho_raySinSq_tomo_e1_add_ge_one\",\n    \"BornFinite.GaussianFiniteModel.not_both_raySinSq_tomo_e1_lt_half_of_ortho\"\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "language": "Lean 4",
           "path": "lean4/BornGaussianFiniteModel.lean",
-          "sha256": "c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717"
+          "sha256": "d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa"
         },
         "boundaries": [
           "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
@@ -615,17 +654,17 @@
           {
             "path": "lean4/BornGaussianFiniteModel.lean",
             "role": "source",
-            "sha256": "c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717"
+            "sha256": "d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa"
           },
           {
             "path": "dag/research/gleason_lean_audit.json",
             "role": "axiom_and_build_audit",
-            "sha256": "37db40eb2ae0d2aea6b320db1997ca4bcb9cdd60bda03986a99fc44a619f1b7a"
+            "sha256": "c654015b13178c96242c2422c80cbe4bb12faf2f941928e722939c19ad18f959"
           },
           {
             "path": "dag/research/gleason_finite_model_receipt.json",
             "role": "phase2_certificate_and_counterexample_receipt",
-            "sha256": "81364ee6802d304c80868a75ecb19d497309553f41cc940535d525228acbcdce"
+            "sha256": "838ccb1d789b63e38c325ef8180279d719829f7d1446ecaf36ce90baa5539e24"
           },
           {
             "path": "SCORING.md",
@@ -639,7 +678,7 @@
         ],
         "purpose": "Formalize the Phase 2 finite and exact-arithmetic Gleason model over Q(i)^3, connecting the 5 finiteness regimes, effect-additivity vs frame-additivity separation, boundedness of nonnegative frame functions, residual oscillations, and the fixed-anchor certificate inequality.",
         "schema_id": "tfqm.source-contract.v1",
-        "source_sha256": "c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717",
+        "source_sha256": "d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa",
         "subject": "lean4/BornGaussianFiniteModel.lean",
         "symbols": [
           "BornFinite.GaussianFiniteModel.FiniteFrameScenario",
@@ -781,6 +820,45 @@
           "BornFinite.GaussianFiniteModel.pellHiRay",
           "BornFinite.GaussianFiniteModel.pellLoRay",
           "BornFinite.GaussianFiniteModel.dedekindRayCut_jump_on_pell_pair",
+          "BornFinite.GaussianFiniteModel.rational_piron_subadditivity",
+          "BornFinite.GaussianFiniteModel.nonneg_frameFunction_ortho_le_one_sub",
+          "BornFinite.GaussianFiniteModel.isFrame_tomo_e1_eqOrtho",
+          "BornFinite.GaussianFiniteModel.equatorial_pair_sum_eq_one_sub_pole",
+          "BornFinite.GaussianFiniteModel.meridian_kelvin_universal_bridge",
+          "BornFinite.GaussianFiniteModel.meridian_kelvin_zeroWeight_bridge",
+          "BornFinite.GaussianFiniteModel.meridianOrtho_raySinSq_eq",
+          "BornFinite.GaussianFiniteModel.meridian_uniform_equatorial_continuity_of_pole_continuous",
+          "BornFinite.GaussianFiniteModel.piron_zero_slack_step_partner_bridge",
+          "BornFinite.GaussianFiniteModel.piron_symmetric_step_partner_balance",
+          "BornFinite.GaussianFiniteModel.pironStep_pironPartner_raySinSq_eq",
+          "BornFinite.GaussianFiniteModel.piron_step_continuous_of_eqOrtho_continuous",
+          "BornFinite.GaussianFiniteModel.piron_three_step_zero_slack_chain_abs_le",
+          "BornFinite.GaussianFiniteModel.piron_general_one_step_le",
+          "BornFinite.GaussianFiniteModel.piron_general_two_step_radial_le",
+          "BornFinite.GaussianFiniteModel.piron_general_three_step_chain_le",
+          "BornFinite.GaussianFiniteModel.pythagEqRot_general_sandwich",
+          "BornFinite.GaussianFiniteModel.dedekindRayCut_eq_zero_of_raySinSq_tomo_e1_lt",
+          "BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuousAt_tomo_e1",
+          "BornFinite.GaussianFiniteModel.dedekindRayCut_eq_one_of_raySinSq_tomo_e2_lt",
+          "BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuousAt_tomo_e2",
+          "BornFinite.GaussianFiniteModel.dedekindRayCut_not_isFrameFunction",
+          "BornFinite.GaussianFiniteModel.yLatitudeFunction",
+          "BornFinite.GaussianFiniteModel.yLatitudeFunction_std_and_bisector_constraints",
+          "BornFinite.GaussianFiniteModel.no_zero_one_latitude_frameFunction",
+          "BornFinite.GaussianFiniteModel.gaussianHalvingBase",
+          "BornFinite.GaussianFiniteModel.gaussianHalvingOrtho",
+          "BornFinite.GaussianFiniteModel.gaussianHalvingPos",
+          "BornFinite.GaussianFiniteModel.gaussianHalvingNeg",
+          "BornFinite.GaussianFiniteModel.isFrame_gaussianHalving_base",
+          "BornFinite.GaussianFiniteModel.isFrame_gaussianHalving_rot",
+          "BornFinite.GaussianFiniteModel.coordSignSymmetric_gaussian_halving_identity",
+          "BornFinite.GaussianFiniteModel.zeroWeight_coordSignSymmetric_gaussian_halving_identity",
+          "BornFinite.GaussianFiniteModel.gaussianHalvingPos_exits_irrational_cone",
+          "BornFinite.GaussianFiniteModel.dedekindRayCut_gaussianHalvingPos_eq_zero",
+          "BornFinite.GaussianFiniteModel.zero_on_xy_plane_of_subcone_zero_and_coordSignSymmetric",
+          "BornFinite.GaussianFiniteModel.dedekindRayCut_eq_of_normSq_eq",
+          "BornFinite.GaussianFiniteModel.dedekindRayCut_isCoordSignSymmetric",
+          "BornFinite.GaussianFiniteModel.dedekindRayCut_fails_gaussian_halving_at_1_2",
           "BornFinite.GaussianFiniteModel.abs_normSq_sub_le_of_normSq_sub_le",
           "BornFinite.GaussianFiniteModel.abs_normSqVec_and_y_sub_le_of_distSqVec_lt",
           "BornFinite.GaussianFiniteModel.abs_sq_sub_sq_le_of_abs_sub_le",
@@ -797,219 +875,11 @@
           "BornFinite.GaussianFiniteModel.not_both_raySinSq_tomo_e1_lt_half_of_ortho"
         ]
       },
-      "sha256": "4547d300956d83eecd0ccd80453e15df49db65b68b72f044423cd0e12eb12eff"
-    },
-    {
-      "bytes": 15949,
-      "original_paths": [
-        "lean4/BornGaussianFiniteModel.contract.score.yaml#phase2-finite-gleason-model-l4d-v1"
-      ],
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n    \"sha256\": \"680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e\"\n  },\n  \"boundaries\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"claim\": \"Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.\",\n  \"contract_id\": \"phase2-finite-gleason-model-l4d-v1\",\n  \"contract_urn\": \"urn:tfqm:fq-born-qi3:gleasonborncompletion\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n      \"role\": \"source\",\n      \"sha256\": \"680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"role\": \"axiom_and_build_audit\",\n      \"sha256\": \"37db40eb2ae0d2aea6b320db1997ca4bcb9cdd60bda03986a99fc44a619f1b7a\"\n    },\n    {\n      \"path\": \"dag/research/gleason_finite_model_receipt.json\",\n      \"role\": \"phase2_certificate_and_counterexample_receipt\",\n      \"sha256\": \"81364ee6802d304c80868a75ecb19d497309553f41cc940535d525228acbcdce\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"role\": \"rubric\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL.\"\n  ],\n  \"purpose\": \"Formalize the Phase 2 finite and exact-arithmetic Gleason model over Q(i)^3, connecting the 5 finiteness regimes, effect-additivity vs frame-additivity separation, boundedness of nonnegative frame functions, residual oscillations, and the fixed-anchor certificate inequality.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e\",\n  \"subject\": \"lean4/BornGaussianFiniteModel.lean\",\n  \"symbols\": [\n    \"BornFinite.GaussianFiniteModel.FiniteFrameScenario\",\n    \"BornFinite.GaussianFiniteModel.IsScenarioValuation\",\n    \"BornFinite.GaussianFiniteModel.IsNonnegScenarioValuation\",\n    \"BornFinite.GaussianFiniteModel.IsZeroOneScenarioValuation\",\n    \"BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario\",\n    \"BornFinite.GaussianFiniteModel.global_nonneg_frameFunction_restricts_to_scenario\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorsList\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorsList_nonZero\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorSingleFrameScenario\",\n    \"BornFinite.GaussianFiniteModel.indicatorXAxisVal\",\n    \"BornFinite.GaussianFiniteModel.nineAnchorSingleFrameScenario_admits_zero_one\",\n    \"BornFinite.GaussianFiniteModel.finite_scenario_vs_global_frame_dichotomy\",\n    \"BornFinite.GaussianFiniteModel.rayFamily\",\n    \"BornFinite.GaussianFiniteModel.rayFamilyOrtho\",\n    \"BornFinite.GaussianFiniteModel.rayFamily_nonZero\",\n    \"BornFinite.GaussianFiniteModel.rayFamilyOrtho_nonZero\",\n    \"BornFinite.GaussianFiniteModel.frameFamily_isFrame\",\n    \"BornFinite.GaussianFiniteModel.lagrange_normSqVec_cross\",\n    \"BornFinite.GaussianFiniteModel.raySinSq_eq_normSqVec_cross_div\",\n    \"BornFinite.GaussianFiniteModel.rayFamily_raySinSq_pos\",\n    \"BornFinite.GaussianFiniteModel.bisector_12_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_12i_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_13_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_13i_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_23_neg\",\n    \"BornFinite.GaussianFiniteModel.bisector_23i_neg\",\n    \"BornFinite.GaussianFiniteModel.sixBisectorPartnersList\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e3_e12_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e3_e12i_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e2_e13_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e2_e13i_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e1_e23_bisector\",\n    \"BornFinite.GaussianFiniteModel.isFrame_tomo_e1_e23i_bisector\",\n    \"BornFinite.GaussianFiniteModel.vanishes_on_six_bisector_partners\",\n    \"BornFinite.GaussianFiniteModel.IsBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.isBoundedOnRays_of_isBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_zero\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_of_nonZero\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.normalizeAtZero_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.abs_residual_le_one_add_coeffNorm_of_nonneg\",\n    \"BornFinite.GaussianFiniteModel.abs_residual_le_one_of_nonneg_and_quadRay_bounds\",\n    \"BornFinite.GaussianFiniteModel.vecOfGVec\",\n    \"BornFinite.GaussianFiniteModel.gvecOfVec\",\n    \"BornFinite.GaussianFiniteModel.gvecOfVec_vecOfGVec\",\n    \"BornFinite.GaussianFiniteModel.vecOfGVec_gvecOfVec\",\n    \"BornFinite.GaussianFiniteModel.vnorm_vecOfGVec\",\n    \"BornFinite.GaussianFiniteModel.vecOfGVec_ne_zero_iff\",\n    \"BornFinite.GaussianFiniteModel.hermForm3OfGaussMatrix\",\n    \"BornFinite.GaussianFiniteModel.gaussMatrixOfHermForm3\",\n    \"BornFinite.GaussianFiniteModel.hf_eq_quadNum_hermForm3OfGaussMatrix\",\n    \"BornFinite.GaussianFiniteModel.hermForm3OfDensity\",\n    \"BornFinite.GaussianFiniteModel.hermForm3OfDensity_tr\",\n    \"BornFinite.GaussianFiniteModel.effectValuation_rankOne_eq_quadRay\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_eq_on_nonZero\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_nonneg\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_factorsThroughRayProjLinear\",\n    \"BornFinite.GaussianFiniteModel.rayValuationOfEffect_residual_eq_zero\",\n    \"BornFinite.GaussianFiniteModel.no_effectValuation_induces_exoticQi3\",\n    \"BornFinite.GaussianFiniteModel.no_effectValuation_induces_sp\",\n    \"BornFinite.GaussianFiniteModel.IsPointwiseRayContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.IsPointwiseRayContinuous\",\n    \"BornFinite.GaussianFiniteModel.IsScaleInvariantOnRays\",\n    \"BornFinite.GaussianFiniteModel.isScaleInvariantOnRays_of_isFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.isScaleInvariantOnRays_of_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.normSqVec_mul_distSqVec_sub_lagrange\",\n    \"BornFinite.GaussianFiniteModel.raySinSq_le_distSqVec_div\",\n    \"BornFinite.GaussianFiniteModel.projScalar\",\n    \"BornFinite.GaussianFiniteModel.projScalar_normSq\",\n    \"BornFinite.GaussianFiniteModel.projScalar_ne_zero_of_raySinSq_lt_one\",\n    \"BornFinite.GaussianFiniteModel.distSqVec_eq_normSqVec_sub_two_re_inner\",\n    \"BornFinite.GaussianFiniteModel.inner_projScalar_smul_re\",\n    \"BornFinite.GaussianFiniteModel.distSqVec_projScalar_smul\",\n    \"BornFinite.GaussianFiniteModel.isArchimedeanContinuousAt_of_isPointwiseRayContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_of_isArchimedeanContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_iff_isArchimedeanContinuousAt\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuous_iff_isArchimedeanContinuousEverywhere\",\n    \"BornFinite.GaussianFiniteModel.isPointwiseRayContinuous_of_isUniformlyRayContinuous\",\n    \"BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_s3_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_s7_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_exoticQi3_tomo_e1\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList_nonneg\",\n    \"BornFinite.GaussianFiniteModel.abs_le_maxAbsOnList\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList_le_of_forall\",\n    \"BornFinite.GaussianFiniteModel.maxAbsOnList_eq_zero_of_forall_zero\",\n    \"BornFinite.GaussianFiniteModel.FixedAnchorBound\",\n    \"BornFinite.GaussianFiniteModel.vanishesOnNineRays_iff_forall_nineAnchorsList\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_sufficiency_of_pointwiseRayContinuous_at_anchors\",\n    \"BornFinite.GaussianFiniteModel.witness_neg211\",\n    \"BornFinite.GaussianFiniteModel.witness_neg211_nonZero\",\n    \"BornFinite.GaussianFiniteModel.isFrame_witness111_neg211_bisector\",\n    \"BornFinite.GaussianFiniteModel.residual_witness111_add_neg211_eq_zero\",\n    \"BornFinite.GaussianFiniteModel.meridianApproachE1\",\n    \"BornFinite.GaussianFiniteModel.meridianApproachE23\",\n    \"BornFinite.GaussianFiniteModel.isFrame_meridianApproach\",\n    \"BornFinite.GaussianFiniteModel.meridian_pair_sum_eq_approaching_anchors\",\n    \"BornFinite.GaussianFiniteModel.sp_isBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_prime_valuation_obstruction\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_remainder_ge_one_of_even_vpRat\",\n    \"BornFinite.GaussianFiniteModel.isLead3All\",\n    \"BornFinite.GaussianFiniteModel.instDecidableIsLead3All\",\n    \"BornFinite.GaussianFiniteModel.s3_leadX\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll\",\n    \"BornFinite.GaussianFiniteModel.lead3Coord_z_ortho_iff\",\n    \"BornFinite.GaussianFiniteModel.isLead3All_ortho_iff\",\n    \"BornFinite.GaussianFiniteModel.s3_leadX_pair_cancel\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_pair_cancel\",\n    \"BornFinite.GaussianFiniteModel.s3_leadX_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_eq_zero_of_not_isLead3All\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_eq_zero_of_coord_zero\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_vanishes_on_nine_rays\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_values\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_isBoundedOnRaysBy\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_isBoundedOnRays\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_eq_s3_of_isLead3All\",\n    \"BornFinite.GaussianFiniteModel.isLead3All_witness_111\",\n    \"BornFinite.GaussianFiniteModel.s3_leadAll_witness_111\",\n    \"BornFinite.GaussianFiniteModel.fixedAnchor_obstruction_of_not_isLead3All\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1_nonZero\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1_s3_leadAll_eq_one\",\n    \"BornFinite.GaussianFiniteModel.crtApproachE1_raySinSq_tomo_e1_le\",\n    \"BornFinite.GaussianFiniteModel.irrationalSupObjective\",\n    \"BornFinite.GaussianFiniteModel.three_mul_sq_ne_sq\",\n    \"BornFinite.GaussianFiniteModel.moving_rational_near_maximizer_no_rational_maximizer\",\n    \"BornFinite.GaussianFiniteModel.chain_step_error_accumulates\",\n    \"BornFinite.GaussianFiniteModel.linearDriftChain\",\n    \"BornFinite.GaussianFiniteModel.linearDriftChain_attains_bound\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isScaleInvariantOnRays\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_gap_ne_zero\",\n    \"BornFinite.GaussianFiniteModel.pellHiRay\",\n    \"BornFinite.GaussianFiniteModel.pellLoRay\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_jump_on_pell_pair\",\n    \"BornFinite.GaussianFiniteModel.abs_normSq_sub_le_of_normSq_sub_le\",\n    \"BornFinite.GaussianFiniteModel.abs_normSqVec_and_y_sub_le_of_distSqVec_lt\",\n    \"BornFinite.GaussianFiniteModel.abs_sq_sub_sq_le_of_abs_sub_le\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_eventually_const\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isArchimedeanContinuousEverywhere\",\n    \"BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuous\",\n    \"BornFinite.GaussianFiniteModel.quadRay_rayProj_eq_one_sub_raySinSq\",\n    \"BornFinite.GaussianFiniteModel.quadRay_rayProj_isNonnegFrameFunction\",\n    \"BornFinite.GaussianFiniteModel.ortho_raySinSq_add_ge_one\",\n    \"BornFinite.GaussianFiniteModel.not_both_raySinSq_lt_half_of_ortho\",\n    \"BornFinite.GaussianFiniteModel.zero_of_zeroWeight_supported_in_polar_cap\",\n    \"BornFinite.GaussianFiniteModel.quadRay_rayProj_tomo_e1_eq_one_sub_raySinSq\",\n    \"BornFinite.GaussianFiniteModel.ortho_raySinSq_tomo_e1_add_ge_one\",\n    \"BornFinite.GaussianFiniteModel.not_both_raySinSq_tomo_e1_lt_half_of_ortho\"\n  ]\n}\n",
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "language": "Lean 4",
-          "path": "lean4/BornGaussianFiniteModel.lean",
-          "sha256": "680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e"
-        },
-        "boundaries": [
-          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
-          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
-        ],
-        "claim": "Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.",
-        "contract_id": "phase2-finite-gleason-model-l4d-v1",
-        "contract_urn": "urn:tfqm:fq-born-qi3:gleasonborncompletion",
-        "evidence": [
-          {
-            "path": "lean4/BornGaussianFiniteModel.lean",
-            "role": "source",
-            "sha256": "680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e"
-          },
-          {
-            "path": "dag/research/gleason_lean_audit.json",
-            "role": "axiom_and_build_audit",
-            "sha256": "37db40eb2ae0d2aea6b320db1997ca4bcb9cdd60bda03986a99fc44a619f1b7a"
-          },
-          {
-            "path": "dag/research/gleason_finite_model_receipt.json",
-            "role": "phase2_certificate_and_counterexample_receipt",
-            "sha256": "81364ee6802d304c80868a75ecb19d497309553f41cc940535d525228acbcdce"
-          },
-          {
-            "path": "SCORING.md",
-            "role": "rubric",
-            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
-          }
-        ],
-        "owned_invariants": [
-          "Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.",
-          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
-        ],
-        "purpose": "Formalize the Phase 2 finite and exact-arithmetic Gleason model over Q(i)^3, connecting the 5 finiteness regimes, effect-additivity vs frame-additivity separation, boundedness of nonnegative frame functions, residual oscillations, and the fixed-anchor certificate inequality.",
-        "schema_id": "tfqm.source-contract.v1",
-        "source_sha256": "680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e",
-        "subject": "lean4/BornGaussianFiniteModel.lean",
-        "symbols": [
-          "BornFinite.GaussianFiniteModel.FiniteFrameScenario",
-          "BornFinite.GaussianFiniteModel.IsScenarioValuation",
-          "BornFinite.GaussianFiniteModel.IsNonnegScenarioValuation",
-          "BornFinite.GaussianFiniteModel.IsZeroOneScenarioValuation",
-          "BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario",
-          "BornFinite.GaussianFiniteModel.global_nonneg_frameFunction_restricts_to_scenario",
-          "BornFinite.GaussianFiniteModel.nineAnchorsList",
-          "BornFinite.GaussianFiniteModel.nineAnchorsList_nonZero",
-          "BornFinite.GaussianFiniteModel.nineAnchorSingleFrameScenario",
-          "BornFinite.GaussianFiniteModel.indicatorXAxisVal",
-          "BornFinite.GaussianFiniteModel.nineAnchorSingleFrameScenario_admits_zero_one",
-          "BornFinite.GaussianFiniteModel.finite_scenario_vs_global_frame_dichotomy",
-          "BornFinite.GaussianFiniteModel.rayFamily",
-          "BornFinite.GaussianFiniteModel.rayFamilyOrtho",
-          "BornFinite.GaussianFiniteModel.rayFamily_nonZero",
-          "BornFinite.GaussianFiniteModel.rayFamilyOrtho_nonZero",
-          "BornFinite.GaussianFiniteModel.frameFamily_isFrame",
-          "BornFinite.GaussianFiniteModel.lagrange_normSqVec_cross",
-          "BornFinite.GaussianFiniteModel.raySinSq_eq_normSqVec_cross_div",
-          "BornFinite.GaussianFiniteModel.rayFamily_raySinSq_pos",
-          "BornFinite.GaussianFiniteModel.bisector_12_neg",
-          "BornFinite.GaussianFiniteModel.bisector_12i_neg",
-          "BornFinite.GaussianFiniteModel.bisector_13_neg",
-          "BornFinite.GaussianFiniteModel.bisector_13i_neg",
-          "BornFinite.GaussianFiniteModel.bisector_23_neg",
-          "BornFinite.GaussianFiniteModel.bisector_23i_neg",
-          "BornFinite.GaussianFiniteModel.sixBisectorPartnersList",
-          "BornFinite.GaussianFiniteModel.isFrame_tomo_e3_e12_bisector",
-          "BornFinite.GaussianFiniteModel.isFrame_tomo_e3_e12i_bisector",
-          "BornFinite.GaussianFiniteModel.isFrame_tomo_e2_e13_bisector",
-          "BornFinite.GaussianFiniteModel.isFrame_tomo_e2_e13i_bisector",
-          "BornFinite.GaussianFiniteModel.isFrame_tomo_e1_e23_bisector",
-          "BornFinite.GaussianFiniteModel.isFrame_tomo_e1_e23i_bisector",
-          "BornFinite.GaussianFiniteModel.vanishes_on_six_bisector_partners",
-          "BornFinite.GaussianFiniteModel.IsBoundedOnRaysBy",
-          "BornFinite.GaussianFiniteModel.isBoundedOnRays_of_isBoundedOnRaysBy",
-          "BornFinite.GaussianFiniteModel.normalizeAtZero",
-          "BornFinite.GaussianFiniteModel.normalizeAtZero_zero",
-          "BornFinite.GaussianFiniteModel.normalizeAtZero_of_nonZero",
-          "BornFinite.GaussianFiniteModel.normalizeAtZero_isFrameFunction",
-          "BornFinite.GaussianFiniteModel.normalizeAtZero_isZeroWeightFrameFunction",
-          "BornFinite.GaussianFiniteModel.abs_residual_le_one_add_coeffNorm_of_nonneg",
-          "BornFinite.GaussianFiniteModel.abs_residual_le_one_of_nonneg_and_quadRay_bounds",
-          "BornFinite.GaussianFiniteModel.vecOfGVec",
-          "BornFinite.GaussianFiniteModel.gvecOfVec",
-          "BornFinite.GaussianFiniteModel.gvecOfVec_vecOfGVec",
-          "BornFinite.GaussianFiniteModel.vecOfGVec_gvecOfVec",
-          "BornFinite.GaussianFiniteModel.vnorm_vecOfGVec",
-          "BornFinite.GaussianFiniteModel.vecOfGVec_ne_zero_iff",
-          "BornFinite.GaussianFiniteModel.hermForm3OfGaussMatrix",
-          "BornFinite.GaussianFiniteModel.gaussMatrixOfHermForm3",
-          "BornFinite.GaussianFiniteModel.hf_eq_quadNum_hermForm3OfGaussMatrix",
-          "BornFinite.GaussianFiniteModel.hermForm3OfDensity",
-          "BornFinite.GaussianFiniteModel.hermForm3OfDensity_tr",
-          "BornFinite.GaussianFiniteModel.effectValuation_rankOne_eq_quadRay",
-          "BornFinite.GaussianFiniteModel.rayValuationOfEffect",
-          "BornFinite.GaussianFiniteModel.rayValuationOfEffect_eq_on_nonZero",
-          "BornFinite.GaussianFiniteModel.rayValuationOfEffect_isFrameFunction",
-          "BornFinite.GaussianFiniteModel.rayValuationOfEffect_nonneg",
-          "BornFinite.GaussianFiniteModel.rayValuationOfEffect_factorsThroughRayProjLinear",
-          "BornFinite.GaussianFiniteModel.rayValuationOfEffect_residual_eq_zero",
-          "BornFinite.GaussianFiniteModel.no_effectValuation_induces_exoticQi3",
-          "BornFinite.GaussianFiniteModel.no_effectValuation_induces_sp",
-          "BornFinite.GaussianFiniteModel.IsPointwiseRayContinuousAt",
-          "BornFinite.GaussianFiniteModel.IsPointwiseRayContinuous",
-          "BornFinite.GaussianFiniteModel.IsScaleInvariantOnRays",
-          "BornFinite.GaussianFiniteModel.isScaleInvariantOnRays_of_isFrameFunction",
-          "BornFinite.GaussianFiniteModel.isScaleInvariantOnRays_of_isZeroWeightFrameFunction",
-          "BornFinite.GaussianFiniteModel.normSqVec_mul_distSqVec_sub_lagrange",
-          "BornFinite.GaussianFiniteModel.raySinSq_le_distSqVec_div",
-          "BornFinite.GaussianFiniteModel.projScalar",
-          "BornFinite.GaussianFiniteModel.projScalar_normSq",
-          "BornFinite.GaussianFiniteModel.projScalar_ne_zero_of_raySinSq_lt_one",
-          "BornFinite.GaussianFiniteModel.distSqVec_eq_normSqVec_sub_two_re_inner",
-          "BornFinite.GaussianFiniteModel.inner_projScalar_smul_re",
-          "BornFinite.GaussianFiniteModel.distSqVec_projScalar_smul",
-          "BornFinite.GaussianFiniteModel.isArchimedeanContinuousAt_of_isPointwiseRayContinuousAt",
-          "BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_of_isArchimedeanContinuousAt",
-          "BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_iff_isArchimedeanContinuousAt",
-          "BornFinite.GaussianFiniteModel.isPointwiseRayContinuous_iff_isArchimedeanContinuousEverywhere",
-          "BornFinite.GaussianFiniteModel.isPointwiseRayContinuous_of_isUniformlyRayContinuous",
-          "BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_s3_tomo_e1",
-          "BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_s7_tomo_e1",
-          "BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_exoticQi3_tomo_e1",
-          "BornFinite.GaussianFiniteModel.maxAbsOnList",
-          "BornFinite.GaussianFiniteModel.maxAbsOnList_nonneg",
-          "BornFinite.GaussianFiniteModel.abs_le_maxAbsOnList",
-          "BornFinite.GaussianFiniteModel.maxAbsOnList_le_of_forall",
-          "BornFinite.GaussianFiniteModel.maxAbsOnList_eq_zero_of_forall_zero",
-          "BornFinite.GaussianFiniteModel.FixedAnchorBound",
-          "BornFinite.GaussianFiniteModel.vanishesOnNineRays_iff_forall_nineAnchorsList",
-          "BornFinite.GaussianFiniteModel.fixedAnchor_sufficiency_of_pointwiseRayContinuous_at_anchors",
-          "BornFinite.GaussianFiniteModel.witness_neg211",
-          "BornFinite.GaussianFiniteModel.witness_neg211_nonZero",
-          "BornFinite.GaussianFiniteModel.isFrame_witness111_neg211_bisector",
-          "BornFinite.GaussianFiniteModel.residual_witness111_add_neg211_eq_zero",
-          "BornFinite.GaussianFiniteModel.meridianApproachE1",
-          "BornFinite.GaussianFiniteModel.meridianApproachE23",
-          "BornFinite.GaussianFiniteModel.isFrame_meridianApproach",
-          "BornFinite.GaussianFiniteModel.meridian_pair_sum_eq_approaching_anchors",
-          "BornFinite.GaussianFiniteModel.sp_isBoundedOnRaysBy",
-          "BornFinite.GaussianFiniteModel.fixedAnchor_prime_valuation_obstruction",
-          "BornFinite.GaussianFiniteModel.fixedAnchor_remainder_ge_one_of_even_vpRat",
-          "BornFinite.GaussianFiniteModel.isLead3All",
-          "BornFinite.GaussianFiniteModel.instDecidableIsLead3All",
-          "BornFinite.GaussianFiniteModel.s3_leadX",
-          "BornFinite.GaussianFiniteModel.s3_leadAll",
-          "BornFinite.GaussianFiniteModel.lead3Coord_z_ortho_iff",
-          "BornFinite.GaussianFiniteModel.isLead3All_ortho_iff",
-          "BornFinite.GaussianFiniteModel.s3_leadX_pair_cancel",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_pair_cancel",
-          "BornFinite.GaussianFiniteModel.s3_leadX_isZeroWeightFrameFunction",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_isZeroWeightFrameFunction",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_eq_zero_of_not_isLead3All",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_eq_zero_of_coord_zero",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_vanishes_on_nine_rays",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_values",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_isBoundedOnRaysBy",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_isBoundedOnRays",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_eq_s3_of_isLead3All",
-          "BornFinite.GaussianFiniteModel.isLead3All_witness_111",
-          "BornFinite.GaussianFiniteModel.s3_leadAll_witness_111",
-          "BornFinite.GaussianFiniteModel.fixedAnchor_obstruction_of_not_isLead3All",
-          "BornFinite.GaussianFiniteModel.crtApproachE1",
-          "BornFinite.GaussianFiniteModel.crtApproachE1_nonZero",
-          "BornFinite.GaussianFiniteModel.crtApproachE1_s3_leadAll_eq_one",
-          "BornFinite.GaussianFiniteModel.crtApproachE1_raySinSq_tomo_e1_le",
-          "BornFinite.GaussianFiniteModel.irrationalSupObjective",
-          "BornFinite.GaussianFiniteModel.three_mul_sq_ne_sq",
-          "BornFinite.GaussianFiniteModel.moving_rational_near_maximizer_no_rational_maximizer",
-          "BornFinite.GaussianFiniteModel.chain_step_error_accumulates",
-          "BornFinite.GaussianFiniteModel.linearDriftChain",
-          "BornFinite.GaussianFiniteModel.linearDriftChain_attains_bound",
-          "BornFinite.GaussianFiniteModel.dedekindRayCut",
-          "BornFinite.GaussianFiniteModel.dedekindRayCut_isScaleInvariantOnRays",
-          "BornFinite.GaussianFiniteModel.dedekindRayCut_gap_ne_zero",
-          "BornFinite.GaussianFiniteModel.pellHiRay",
-          "BornFinite.GaussianFiniteModel.pellLoRay",
-          "BornFinite.GaussianFiniteModel.dedekindRayCut_jump_on_pell_pair",
-          "BornFinite.GaussianFiniteModel.abs_normSq_sub_le_of_normSq_sub_le",
-          "BornFinite.GaussianFiniteModel.abs_normSqVec_and_y_sub_le_of_distSqVec_lt",
-          "BornFinite.GaussianFiniteModel.abs_sq_sub_sq_le_of_abs_sub_le",
-          "BornFinite.GaussianFiniteModel.dedekindRayCut_eventually_const",
-          "BornFinite.GaussianFiniteModel.dedekindRayCut_isArchimedeanContinuousEverywhere",
-          "BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuous",
-          "BornFinite.GaussianFiniteModel.quadRay_rayProj_eq_one_sub_raySinSq",
-          "BornFinite.GaussianFiniteModel.quadRay_rayProj_isNonnegFrameFunction",
-          "BornFinite.GaussianFiniteModel.ortho_raySinSq_add_ge_one",
-          "BornFinite.GaussianFiniteModel.not_both_raySinSq_lt_half_of_ortho",
-          "BornFinite.GaussianFiniteModel.zero_of_zeroWeight_supported_in_polar_cap",
-          "BornFinite.GaussianFiniteModel.quadRay_rayProj_tomo_e1_eq_one_sub_raySinSq",
-          "BornFinite.GaussianFiniteModel.ortho_raySinSq_tomo_e1_add_ge_one",
-          "BornFinite.GaussianFiniteModel.not_both_raySinSq_tomo_e1_lt_half_of_ortho"
-        ]
-      },
-      "sha256": "e9b0fba0e634c58ce8a5087acf6e1fe9f845f272cc717fd419971ecf5cecb1b1"
+      "sha256": "21a4ba6edb1488ceef4a312ead959f25aab7c1a5a5e24ed158266019fa6460ad"
     }
   ],
-  "current_contract": "e9b0fba0e634c58ce8a5087acf6e1fe9f845f272cc717fd419971ecf5cecb1b1",
-  "current_scoring": "a5d2a9c7c6a8dbdfef341a7ea1555f9188bd6b54476257b66e24b4a4577dc8c2",
+  "current_contract": "21a4ba6edb1488ceef4a312ead959f25aab7c1a5a5e24ed158266019fa6460ad",
+  "current_scoring": "0efdf80b5331360220abf4a714cbe595abae616591861daa09a17beb9c39e318",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -1151,13 +1021,13 @@
       "original_paths": [
         "lean4/BornGaussianFiniteModel.contract.score.yaml#phase2-finite-gleason-model-l4d-v1"
       ],
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n    \"sha256\": \"c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717\"\n  },\n  \"assessment_id\": \"phase2-finite-gleason-model-l4d-v1\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-04-20T00:00:00Z\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n      \"sha256\": \"c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"sha256\": \"37db40eb2ae0d2aea6b320db1997ca4bcb9cdd60bda03986a99fc44a619f1b7a\"\n    },\n    {\n      \"path\": \"dag/research/gleason_finite_model_receipt.json\",\n      \"sha256\": \"81364ee6802d304c80868a75ecb19d497309553f41cc940535d525228acbcdce\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.\",\n  \"limitations\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n    \"sha256\": \"d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa\"\n  },\n  \"assessment_id\": \"phase2-finite-gleason-model-l4d-v1\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-04-20T00:00:00Z\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n      \"sha256\": \"d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"sha256\": \"c654015b13178c96242c2422c80cbe4bb12faf2f941928e722939c19ad18f959\"\n    },\n    {\n      \"path\": \"dag/research/gleason_finite_model_receipt.json\",\n      \"sha256\": \"838ccb1d789b63e38c325ef8180279d719829f7d1446ecaf36ce90baa5539e24\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.\",\n  \"limitations\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "language": "Lean 4",
           "path": "lean4/BornGaussianFiniteModel.lean",
-          "sha256": "c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717"
+          "sha256": "d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa"
         },
         "assessment_id": "phase2-finite-gleason-model-l4d-v1",
         "basis": {
@@ -1172,15 +1042,15 @@
         "evidence": [
           {
             "path": "lean4/BornGaussianFiniteModel.lean",
-            "sha256": "c9966e756d0811ac7bc610983ba3f91f61a004c01014e6411fc6f8e17c44a717"
+            "sha256": "d00d7134e98773ffe628c74e17224f5b2767a3e09bc697cad893e63d753d54aa"
           },
           {
             "path": "dag/research/gleason_lean_audit.json",
-            "sha256": "37db40eb2ae0d2aea6b320db1997ca4bcb9cdd60bda03986a99fc44a619f1b7a"
+            "sha256": "c654015b13178c96242c2422c80cbe4bb12faf2f941928e722939c19ad18f959"
           },
           {
             "path": "dag/research/gleason_finite_model_receipt.json",
-            "sha256": "81364ee6802d304c80868a75ecb19d497309553f41cc940535d525228acbcdce"
+            "sha256": "838ccb1d789b63e38c325ef8180279d719829f7d1446ecaf36ce90baa5539e24"
           },
           {
             "path": "SCORING.md",
@@ -1210,73 +1080,7 @@
         "schema_version": "2.0.0",
         "score_token": "L4D"
       },
-      "sha256": "72a36818c65f1a9aa76805cf3afeac1b4eed9468ebc3d9814a6779e338cd0c8f"
-    },
-    {
-      "bytes": 3940,
-      "original_paths": [
-        "lean4/BornGaussianFiniteModel.contract.score.yaml#phase2-finite-gleason-model-l4d-v1"
-      ],
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n    \"sha256\": \"680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e\"\n  },\n  \"assessment_id\": \"phase2-finite-gleason-model-l4d-v1\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-04-20T00:00:00Z\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/BornGaussianFiniteModel.lean\",\n      \"sha256\": \"680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"sha256\": \"0cc4a96950d3a30f4cb8ff0620ab01f7dc9b74841704377601c04803409e1824\"\n    },\n    {\n      \"path\": \"dag/research/gleason_finite_model_receipt.json\",\n      \"sha256\": \"81364ee6802d304c80868a75ecb19d497309553f41cc940535d525228acbcdce\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.\",\n  \"limitations\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "language": "Lean 4",
-          "path": "lean4/BornGaussianFiniteModel.lean",
-          "sha256": "680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e"
-        },
-        "assessment_id": "phase2-finite-gleason-model-l4d-v1",
-        "basis": {
-          "G1": "Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.",
-          "G2": "Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.",
-          "G3": "Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.",
-          "G4": "Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.",
-          "G5": "Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow."
-        },
-        "composite_grade": "D",
-        "evaluation_timestamp": "2026-04-20T00:00:00Z",
-        "evidence": [
-          {
-            "path": "lean4/BornGaussianFiniteModel.lean",
-            "sha256": "680cf81a3d2fe5cfb5eab4803cc49a252e682a4d9b20046ce05be3bdebc7bc3e"
-          },
-          {
-            "path": "dag/research/gleason_lean_audit.json",
-            "sha256": "0cc4a96950d3a30f4cb8ff0620ab01f7dc9b74841704377601c04803409e1824"
-          },
-          {
-            "path": "dag/research/gleason_finite_model_receipt.json",
-            "sha256": "81364ee6802d304c80868a75ecb19d497309553f41cc940535d525228acbcdce"
-          },
-          {
-            "path": "SCORING.md",
-            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
-          }
-        ],
-        "gates": {
-          "G1": "D",
-          "G2": "D",
-          "G3": "D",
-          "G4": "D",
-          "G5": "D"
-        },
-        "grade_ceiling": "D",
-        "is_complete": true,
-        "level": "L4",
-        "level_basis": "Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.",
-        "limitations": [
-          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
-          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
-        ],
-        "profile": "Symbolic/Formal",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
-        },
-        "schema_version": "2.0.0",
-        "score_token": "L4D"
-      },
-      "sha256": "a5d2a9c7c6a8dbdfef341a7ea1555f9188bd6b54476257b66e24b4a4577dc8c2"
+      "sha256": "0efdf80b5331360220abf4a714cbe595abae616591861daa09a17beb9c39e318"
     }
   ]
 }
