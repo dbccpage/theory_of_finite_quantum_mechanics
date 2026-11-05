@@ -121,5 +121,13 @@ check("S7c learning boards: 9/10 over 5/10 is 1.8, and 18.5 meV rounds to the pa
       abs(0.9/0.5 - 1.8) < 1e-12 and abs(kT*math.log(2) - 0.0185) < 1e-4, f"kT ln2 = {kT*math.log(2)*1e3:.2f} meV")
 check("S7d learning boards name no files, proofs by name, or retired words", all(w.lower() not in ltxt.lower() for w in ["metaphys", "ontolog", "philosoph", "apparatus", "lean", ".py", ".md"]))
 
+# --- S8. Reply wording: no in-house terms, and the vision quote keeps "perhaps" (self-audit H1, H10) ---
+rtxt = " ".join(blocks) if rep.is_file() else ""
+banned = r"\b(WDP|witnessed|supplied|derived|channels?|packets?|evaluators?|ledgers?|omega|anomalon|lean|metaphysics|ontology|philosophy|philosophical)\b"
+hits = sorted(set(m.lower() for m in re.findall(banned, rtxt, flags=re.I)))
+check("S8a replies use no in-house or retired terms", rep.is_file() and not hits, ", ".join(hits))
+quotes = [q for q in re.findall(r'"([^"]*link between the outside world[^"]*)"', rtxt)]
+check("S8b every quote of the vision sentence keeps the paper's 'perhaps'", all(q.startswith("perhaps") or "perhaps" in q for q in quotes), f"{len(quotes)} quote(s)")
+
 print("ALL PASS" if ok else "SOME CHECKS FAILED")
 sys.exit(0 if ok else 1)

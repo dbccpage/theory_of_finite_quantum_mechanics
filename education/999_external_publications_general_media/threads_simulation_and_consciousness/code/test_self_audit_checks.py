@@ -5,6 +5,7 @@ Run:  python code/test_self_audit_checks.py
 2. A missing replies file must make it exit nonzero (it used to print ALL PASS).
 3. The submitted replies.md must pass with exit status 0.
 4. A learning board that drops the second attempt time must fail S7a.
+5. A reply that quotes the vision sentence without "perhaps", or uses an in-house term, must fail S8.
 """
 import pathlib, subprocess, sys, tempfile, unittest
 
@@ -54,6 +55,20 @@ class CheckerExitStatus(unittest.TestCase):
                                capture_output=True, text=True)
         self.assertNotEqual(r.returncode, 0, r.stdout)
         self.assertIn("FAIL S7a", r.stdout)
+
+
+    def test_reply_misquote_and_inhouse_term_fail(self):
+        text = REPLIES.read_text(encoding="utf-8")
+        self.assertIn('"perhaps the most important link', text)
+        bad = text.replace('"perhaps the most important link', '"the most important link', 1)
+        bad = bad.replace("The effect follows the record", "The effect follows the witnessed record", 1)
+        with tempfile.TemporaryDirectory() as d:
+            p = pathlib.Path(d) / "replies.md"
+            p.write_text(bad, encoding="utf-8")
+            r = run(p)
+        self.assertNotEqual(r.returncode, 0, r.stdout)
+        self.assertIn("FAIL S8a", r.stdout)
+        self.assertIn("FAIL S8b", r.stdout)
 
 
 if __name__ == "__main__":

@@ -74,6 +74,6 @@ All quotes are from `02_paper/ijms-25-02399.md` (the full text; the PDF is besid
 
 The six steps are the procedure used in `04_self_audit/self_audit.md`, `04_self_audit/retest_log.md` and `04_self_audit/board_repair_log.md`. The two mistakes named are self-audit A15 (Minecraft) and A19 (the vision quote). The rule that reviewer agreement is not evidence is the second rule in `README.md`.
 
-## Plain reply that carries the link
+## The replies
 
-Post 5 in `01_thread/replies.md` is the plain-logic reply meant to go out with the link to these boards.
+The replies in `01_thread/replies.md` are five terse posts in one sequence. Post 5 links to the full reconstruction of the paper, and the reconstruction can link to these boards.

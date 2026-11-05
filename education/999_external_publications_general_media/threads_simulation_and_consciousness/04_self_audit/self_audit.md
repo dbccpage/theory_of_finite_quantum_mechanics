@@ -162,9 +162,26 @@ Jeremy asked for about five boards in plain logic, with no poetry, that answer t
 | G14 | Spelling: "favour", "favours", "favoured". | The folder uses American spelling, for example "favoring" in the thread and "color" throughout. | Changed to "favor", "favors" and "favored". | REPAIRED |
 | G15 | Board 6, written before the assumptions audit merged (#523). Capacity: "the inputs are supplied". Appendix A: "A version that keeps the scalar potential might avoid this. The paper does not give one." | Both lines undersell what is now derived. The audit's row Y1 shows that the 2.6 PB rests on the thickness: a surface hologram over the same area holds 0.5 TB. Rows D1 and E1 show the repair: the Coulomb gauge fixes only $\nabla\cdot\mathbf A = 0$, and with $A^0$ from Poisson's equation the pulse returns, at the price of a Coulomb term. | Board 6 and its back page now state both. The arithmetic is rechecked by S7b. | REPAIRED |
 
+## H. Terse plain replies (2026-11-05, second plain pass)
+
+Jeremy asked for 3 to 5 terse replies in plain, clear reasoning: no poetry, no in-house terms, firm on the math and kind to her. The plain set merged in #526 was the starting point. Its posts were attacked first (H1 to H5), then the new drafts (H6 to H10).
+
+| # | Line | Break | Repair | Status |
+|---|---|---|---|---|
+| H1 | #526 post 3: vision is "the most important link between the outside world ..." | **Misquote.** The paper says "perhaps the most important link". This is the same error A20 repaired; it came back in the rewrite. | Post 3 quotes the sentence with "perhaps". Check S8b now fails any reply that quotes it without the word. | REPAIRED |
+| H2 | #526 used three different splits of "render": post 1 exists/changes/record, post 5 draw/update/store, and the boards draw/run/keep. | A reader comparing them sees three answers to one question. | One split everywhere: shown, changes, stored (post 2). This is the boards' draw, run and keep. | REPAIRED |
+| H3 | #526 post 1: "(3) is already how physics works: most events leave no record that anyone reads." | It merges "the state is not stored" with "nobody reads a record". These are different claims. | Post 2 handles "not stored" by its only untestable form, a perfect rebuild. | REPAIRED |
+| H4 | #526 post 5 repeated posts 1 and 3 as a standalone reply. | In a five-post sequence the repeat reads as padding. | The sequence ends with the standard and the link. Nothing is repeated. | REPAIRED |
+| H5 | #526 post 2: "the likelihood ratio is 1". | Correct, but jargon in a short public post. | Post 5: "the data cannot choose". The ratio stays in the fact notes and on board 4. | REPAIRED |
+| H6 | Draft post 4: "Its math also fails on its own terms." | Overclaim. The capacity arithmetic holds (S3f to S3h). | "Two of its derivations fail on its own terms." The capacity and retention points are stated as assumptions and gaps, not failures. | REPAIRED |
+| H7 | Draft post 4: "Gauss's law fails by as much as the density changes it reports." | The measured ratio is 1.1 to 2.3, so "as much as" understates it. It also comes from our rerun, not from the authors' run. | "In a rerun of its simulation, Gauss's law is violated by more than the charge changes it reports." The fact notes give the ratio and the rerun's limits. | REPAIRED |
+| H8 | Draft post 2: "If it is rebuilt whenever we look, no measurement can tell." | An imperfect rebuild leaves missing history, which is testable. | "rebuilt perfectly". | REPAIRED |
+| H9 | Draft post 2: "a clock left in an empty room would stop." | A stopped clock is only noticed by comparison. The claim needs to say what you would see. | "would still show the time you left. It does not." | REPAIRED |
+| H10 | Her "it's our consciousness" was not answered directly in #526. | The core of her post went without a test. | Post 1 asks what changes when a person reads the record versus when nobody does. That question names the one difference her claim could predict. | REPAIRED |
+
 ## E. Tally and what is still open
 
-- **This file:** 80 entries: 62 repaired, 4 withdrawn, 14 kept. Section F holds the five review findings on 1eea606; each one broke an earlier repair here. Section G holds the fifteen repairs to the learning boards.
+- **This file:** 90 entries: 72 repaired, 4 withdrawn, 14 kept. Section F holds the five review findings on 1eea606; each one broke an earlier repair here. Section G holds the fifteen repairs to the learning boards. Section H holds the ten repairs behind the terse plain replies.
 - **Fact errors found in Claude's own text:** the Minecraft save file (A15), the vision quote read as being about the unobserved world (A19, B9, C8), the misplaced correction about authority in `analysis.md` (C7), and the Knox limerick credited to Berkeley (A25).
 - **Open:**
   - The input amplitude, about 3 against the rerun's 2.13 (`self_review.md` A6).
