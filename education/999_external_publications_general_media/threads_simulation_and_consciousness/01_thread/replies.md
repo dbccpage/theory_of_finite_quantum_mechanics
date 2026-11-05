@@ -1,6 +1,6 @@
 # Threads replies to wisdomandlogos
 
-Revised 2026-11-05 after the self-audit ([self_audit.md](self_audit.md), section A). Each post is under 500 characters; `code/self_audit_checks.py` (S5) counts them. Rhymed alternates are in [replies_alternates.md](replies_alternates.md). The earlier versions, and why each was changed, are in [self_audit.md](self_audit.md) and [board_repair_log.md](board_repair_log.md).
+Revised 2026-11-05 after the self-audit ([self_audit.md](../04_self_audit/self_audit.md), section A). Each post is under 500 characters; `code/self_audit_checks.py` (S5) counts them. Rhymed alternates are in [replies_alternates.md](replies_alternates.md). The earlier versions, and why each was changed, are in [self_audit.md](../04_self_audit/self_audit.md) and [board_repair_log.md](../04_self_audit/board_repair_log.md).
 
 Order: the tree, the game, the paper, the closer. The Thales line is held for later.
 

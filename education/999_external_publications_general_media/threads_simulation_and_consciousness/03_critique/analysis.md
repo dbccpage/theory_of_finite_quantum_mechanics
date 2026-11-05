@@ -2,7 +2,7 @@
 
 Her post (the reply in the screenshot): "The simulation isn't a giant computer and holographic projectors, it's our consciousness. People getting hung up on whether a human observer or just a measurement device is required, but they're missing the point. It's just like a video game, the universe does not render what is offscreen."
 
-Paper: Nishiyama, Tanaka, Tuszynski, Tsenkova, "Holographic Brain Theory: Super-Radiance, Memory Capacity and Control Theory", Int. J. Mol. Sci. 25(4):2399, 2024, doi:10.3390/ijms25042399. Read in full, including Appendices A–C (converted text: [ijms-25-02399.md](ijms-25-02399.md)). This analysis was first written from the abstract through part of the Discussion plus Appendix B, equations (A48)–(A52); the appendix checks are in [adversarial_review.md](adversarial_review.md), [self_review.md](self_review.md) and [self_audit.md](self_audit.md). [Appendix B, PDF page 19](https://da.lib.kobe-u.ac.jp/da/kernel/0100487330/0100487330.pdf#page=19).
+Paper: Nishiyama, Tanaka, Tuszynski, Tsenkova, "Holographic Brain Theory: Super-Radiance, Memory Capacity and Control Theory", Int. J. Mol. Sci. 25(4):2399, 2024, doi:10.3390/ijms25042399. Read in full, including Appendices A–C (converted text: [ijms-25-02399.md](../02_paper/ijms-25-02399.md)). This analysis was first written from the abstract through part of the Discussion plus Appendix B, equations (A48)–(A52); the appendix checks are in [adversarial_review.md](adversarial_review.md), [self_review.md](../04_self_audit/self_review.md) and [self_audit.md](../04_self_audit/self_audit.md). [Appendix B, PDF page 19](https://da.lib.kobe-u.ac.jp/da/kernel/0100487330/0100487330.pdf#page=19).
 
 ## The six slots
 

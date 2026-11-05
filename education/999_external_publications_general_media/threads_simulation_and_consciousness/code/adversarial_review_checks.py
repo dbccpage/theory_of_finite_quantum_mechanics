@@ -1,8 +1,8 @@
-"""Checks for adversarial_review.md (threads_simulation_and_consciousness).
+"""Checks for 03_critique/adversarial_review.md (threads_simulation_and_consciousness).
 
 Provenance: written 2026-11-05 for the adversarial review of two ChatGPT
 arguments about Nishiyama et al., IJMS 25(4):2399 (2024). Equation numbers
-refer to ijms-25-02399.md in this folder.
+refer to 02_paper/ijms-25-02399.md in this folder.
 
 Run: python adversarial_review_checks.py   (needs sympy)
 

@@ -6,7 +6,7 @@
 lean ThreadsReply.lean
 ```
 
-A silent exit means every proof checks. The file uses no `sorry`. Axioms: `pigeonhole` uses `propext`, `Classical.choice` and `Quot.sound`; `records_do_not_fix_identity` uses `propext`; `iidLikelihood_pos` uses `propext`; `same_weights_same_likelihood` uses `propext` and `Quot.sound`; the rest use none. The statements were tightened in the self-audit ([../self_audit.md](../self_audit.md) §D).
+A silent exit means every proof checks. The file uses no `sorry`. Axioms: `pigeonhole` uses `propext`, `Classical.choice` and `Quot.sound`; `records_do_not_fix_identity` uses `propext`; `iidLikelihood_pos` uses `propext`; `same_weights_same_likelihood` uses `propext` and `Quot.sound`; the rest use none. The statements were tightened in the self-audit ([../self_audit.md](../04_self_audit/self_audit.md) §D).
 
 | Theorem | Board card | What it says |
 |---|---|---|

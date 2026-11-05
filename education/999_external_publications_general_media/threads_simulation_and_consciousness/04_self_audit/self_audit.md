@@ -1,10 +1,10 @@
 # Self-audit: the replies, the board, the adversary record and the Lean file
 
-Date: 2026-11-05. This file covers what [self_review.md](self_review.md) does not: the final reply set, the board cards and their equations, [adversary_of_chatgpt.md](adversary_of_chatgpt.md), [lean4/ThreadsReply.lean](lean4/ThreadsReply.lean), and the lines in [claims_ledger.md](claims_ledger.md) and [analysis.md](analysis.md). For [adversarial_review.md](adversarial_review.md) and its checks, see `self_review.md` §A.
+Date: 2026-11-05. This file covers what [self_review.md](self_review.md) does not: the final reply set, the board cards and their equations, [adversary_of_chatgpt.md](../03_critique/adversary_of_chatgpt.md), [lean4/ThreadsReply.lean](../lean4/ThreadsReply.lean), and the lines in [claims_ledger.md](../03_critique/claims_ledger.md) and [analysis.md](../03_critique/analysis.md). For [adversarial_review.md](../03_critique/adversarial_review.md) and its checks, see `self_review.md` §A.
 
 Each entry runs the same steps: **claim → break → repair → retest → status**.
 
-A claim survives only when it rests on something checkable. That means a quote from the paper ([ijms-25-02399.md](ijms-25-02399.md), by section), a recomputation (check ids S1–S5 in [code/self_audit_checks.py](code/self_audit_checks.py)), or a Lean proof. Agreement between Claude passes, or between Claude and ChatGPT, is not on that list. Where two passes disagree, both readings are kept below.
+A claim survives only when it rests on something checkable. That means a quote from the paper ([ijms-25-02399.md](../02_paper/ijms-25-02399.md), by section), a recomputation (check ids S1–S5 in [code/self_audit_checks.py](../code/self_audit_checks.py)), or a Lean proof. Agreement between Claude passes, or between Claude and ChatGPT, is not on that list. Where two passes disagree, both readings are kept below.
 
 Status words:
 - **KEPT**: it survived the attack.
@@ -57,7 +57,7 @@ Retest: S5 checks the lengths in `replies.md` (434, 429, 489, 438 and 168 charac
 
 ## B. Board cards and equations
 
-These are applied to the live board and saved as [markup_board.html](markup_board.html).
+These are applied to the live board and saved as [markup_board.html](../05_boards/markup_board.html).
 
 | # | Card: as written | Break | Repair | Status |
 |---|---|---|---|---|

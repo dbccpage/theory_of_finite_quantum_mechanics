@@ -1,6 +1,6 @@
 # Repair log: ChatGPT's review of the markup board
 
-Date: 2026-11-05. Board: [markup_board.html](markup_board.html) (published as "What You Owe Me"). ChatGPT marked the original 11 cards **2 Right, 6 Wrong, 3 Unsure**. For each mark, the table records what failed, whether the objection holds, the repair, and whether the card's conclusion still follows. Where ChatGPT overreached, that is recorded too.
+Date: 2026-11-05. Board: [markup_board.html](../05_boards/markup_board.html) (published as "What You Owe Me"). ChatGPT marked the original 11 cards **2 Right, 6 Wrong, 3 Unsure**. For each mark, the table records what failed, whether the objection holds, the repair, and whether the card's conclusion still follows. Where ChatGPT overreached, that is recorded too.
 
 Objection types: **premise** (a premise is false), **inference** (a step does not follow), **fact** (a fact is wrong), **conclusion** (the conclusion goes further than the steps).
 
@@ -34,7 +34,7 @@ Objection types: **premise** (a premise is false), **inference** (a step does no
 
 ## Knock-on repairs in the ledger
 
-[claims_ledger.md](claims_ledger.md) made the same jumps, and those are repaired too:
+[claims_ledger.md](../03_critique/claims_ledger.md) made the same jumps, and those are repaired too:
 
 - §1b had "no observer, conscious or not, can tell the two worlds apart". That is (a) → (b).
 - §1b had "every finite observer has an offscreen". The condition was missing.

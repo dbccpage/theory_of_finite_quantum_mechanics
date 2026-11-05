@@ -2,13 +2,13 @@
 
 Date: 2026-11-05. Scope: everything Claude wrote in this thread.
 
-- [adversarial_review.md](adversarial_review.md) (round 1)
-- [code/adversarial_review_checks.py](code/adversarial_review_checks.py)
-- [retest_log.md](retest_log.md) and [code/retest_checks.py](code/retest_checks.py)
+- [adversarial_review.md](../03_critique/adversarial_review.md) (round 1)
+- [code/adversarial_review_checks.py](../code/adversarial_review_checks.py)
+- [retest_log.md](retest_log.md) and [code/retest_checks.py](../code/retest_checks.py)
 - [board_repair_log.md](board_repair_log.md)
-- the ledger edits in [claims_ledger.md](claims_ledger.md)
-- the board additions in [markup_board.html](markup_board.html)
-- every reply Claude drafted: the two plain posts in [replies.md](replies.md), and the rhymed and alternative posts, now in [replies_alternates.md](replies_alternates.md) with the §C repairs applied
+- the ledger edits in [claims_ledger.md](../03_critique/claims_ledger.md)
+- the board additions in [markup_board.html](../05_boards/markup_board.html)
+- every reply Claude drafted: the two plain posts in [replies.md](../01_thread/replies.md), and the rhymed and alternative posts, now in [replies_alternates.md](../01_thread/replies_alternates.md) with the §C repairs applied
 
 For each item: the claim, the attack, a verdict (**holds**, **narrowed**, **broken**), and what was done to repair it. Earlier files are left as written, so the trail stays readable. Repairs are applied to the files still in use: the reply alternates and the retest log. The board repairs are handed to the cloud session that is rewriting the board.
 

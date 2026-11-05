@@ -1,7 +1,7 @@
-"""Retest checks for retest_log.md (threads_simulation_and_consciousness).
+"""Retest checks for 04_self_audit/retest_log.md (threads_simulation_and_consciousness).
 
 Provenance: written 2026-11-05 for the retest round after ChatGPT's reply to
-adversarial_review.md. Equation numbers refer to ijms-25-02399.md.
+adversarial_review.md. Equation numbers refer to 02_paper/ijms-25-02399.md.
 
 Run: python code/retest_checks.py [t_end]     (needs numpy and sympy; default t_end=40)
 

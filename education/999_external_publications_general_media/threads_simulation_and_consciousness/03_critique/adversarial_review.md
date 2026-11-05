@@ -1,6 +1,6 @@
 # Adversarial review of two ChatGPT arguments
 
-Date: 2026-11-05. Target: ChatGPT's technical review of Nishiyama, Tanaka, Tuszynski, Tsenkova, *Holographic Brain Theory*, IJMS 25(4):2399 (2024). Equation numbers refer to [ijms-25-02399.md](ijms-25-02399.md). The checks are in [adversarial_review_checks.py](code/adversarial_review_checks.py). Run it with `python code/adversarial_review_checks.py`. It needs sympy.
+Date: 2026-11-05. Target: ChatGPT's technical review of Nishiyama, Tanaka, Tuszynski, Tsenkova, *Holographic Brain Theory*, IJMS 25(4):2399 (2024). Equation numbers refer to [ijms-25-02399.md](../02_paper/ijms-25-02399.md). The checks are in [adversarial_review_checks.py](../code/adversarial_review_checks.py). Run it with `python code/adversarial_review_checks.py`. It needs sympy.
 
 ## Method
 
@@ -39,7 +39,7 @@ The question to ask is not "is $A^0 = 0$ allowed?" but "does Gauss's law hold wh
 
 The dropped term is the dipole–dipole near-field coupling. In dense samples it is known to compete with Dicke super-radiance (dephasing and collective frequency shifts). *Cited (standard super-radiance literature, not checked here).* The paper gives no estimate of it.
 
-**Step 5. Appendix C (the simulations).** In Maxwell's theory, Gauss's law is preserved in time if it holds at the start and the current is conserved. I computed $\partial_t(\nabla\cdot\mathbf E - J^0)$ symbolically from the paper's own (A82), (A84) and (A86), with $J^0 = -e|\bar\varphi|^2$ from (A66) ([check 1a](code/adversarial_review_checks.py)):
+**Step 5. Appendix C (the simulations).** In Maxwell's theory, Gauss's law is preserved in time if it holds at the start and the current is conserved. I computed $\partial_t(\nabla\cdot\mathbf E - J^0)$ symbolically from the paper's own (A82), (A84) and (A86), with $J^0 = -e|\bar\varphi|^2$ from (A66) ([check 1a](../code/adversarial_review_checks.py)):
 
 $$
 \partial_t(\nabla\cdot\mathbf E - J^0) = -M^2\,\nabla\cdot\mathbf A \;-\; \gamma\,\nabla\cdot(\mathbf E + \nabla A_0) \;+\; v\,\nabla\cdot(\mathbf A^{(n-1)} + \mathbf A^{(n+1)}).
@@ -47,13 +47,13 @@ $$
 
 Everything else cancels exactly: the curl–curl terms and the $e^2|\bar\varphi|^2\mathbf A/m$ current against $\partial_t J^0$. So the paper's sign conventions are consistent, and the Maxwell part does conserve Gauss's law. The violation comes **only** from the three added terms. Since $\mathbf E + \nabla A_0 = \partial_t\mathbf A$ by (A83), the middle term is $-\gamma\,\partial_t\nabla\cdot\mathbf A$. *Derived (symbolic check).*
 
-**Step 6. Those three terms are the ones that do the work.** The target fields (10) and (11) depend on $n^1$ alone and on $n^2$ alone, so they are curl-free and purely longitudinal ([check 1d](code/adversarial_review_checks.py)). The paper says this itself: $\partial_2^2u_1$ and $\partial_1\partial_2u_2$ vanish. So $\nabla\cdot\mathbf A \neq 0$ on every layer, and the drive $v$ couples layers through exactly that divergence. The hologram is written entirely in the longitudinal sector, which is the sector where Gauss's law fails. *Derived.*
+**Step 6. Those three terms are the ones that do the work.** The target fields (10) and (11) depend on $n^1$ alone and on $n^2$ alone, so they are curl-free and purely longitudinal ([check 1d](../code/adversarial_review_checks.py)). The paper says this itself: $\partial_2^2u_1$ and $\partial_1\partial_2u_2$ vanish. So $\nabla\cdot\mathbf A \neq 0$ on every layer, and the drive $v$ couples layers through exactly that divergence. The hologram is written entirely in the longitudinal sector, which is the sector where Gauss's law fails. *Derived.*
 
-**Step 7. The initial data, read literally, also fails.** At $t = 0$: $\mathbf E = 0$, $\mathbf A = 0$, $|\bar\varphi| = 1$. So $\nabla\cdot\mathbf E = 0$ while $J^0 = -e$. (A68) "sets the time-independent constant to zero", which demands $\nabla\cdot\mathbf E = J^0$. That fails at $t = 0$. Keeping the constant as a uniform background $+e$ fixes it ([check 1c](code/adversarial_review_checks.py)). *Derived.* This is the one place where ChatGPT's "neutralizing background" remark applies. It is needed in Appendix C, not Appendix A.
+**Step 7. The initial data, read literally, also fails.** At $t = 0$: $\mathbf E = 0$, $\mathbf A = 0$, $|\bar\varphi| = 1$. So $\nabla\cdot\mathbf E = 0$ while $J^0 = -e$. (A68) "sets the time-independent constant to zero", which demands $\nabla\cdot\mathbf E = J^0$. That fails at $t = 0$. Keeping the constant as a uniform background $+e$ fixes it ([check 1c](../code/adversarial_review_checks.py)). *Derived.* This is the one place where ChatGPT's "neutralizing background" remark applies. It is needed in Appendix C, not Appendix A.
 
 **Step 8. What the extra terms mean physically.** $M^2$ (Meissner) and $\gamma$ (damping) come from the self-energy in (A75). In QED a conserved current gives a transverse self-energy: the Ward identity means it does not act on longitudinal $\mathbf A$ that way. *Cited (standard QED).* Physically, a damping current $\gamma\mathbf E$ in a "bioplasma" is carried by ions. Their charge must show up in some density, but no second continuity equation tracks it. So one of two things is true. Either a charged species is moving whose density is not modeled, or charge is not conserved in the simulated system. *Derived from Step 5. The physical reading is Supplied.*
 
-**Step 9. A printing error that matters.** (A76) and (A78) print $e|\bar\varphi|^2/m$ where (A71) and (A82) have $e^2|\bar\varphi|^2/m$. With the printed $e/m$, even the Maxwell part stops conserving Gauss's law ([check 1b](code/adversarial_review_checks.py)). The simulation states that it uses (A82)–(A86), so this is probably a typo, but it is worth asking about. *Witnessed (the text). The consequence is Derived.*
+**Step 9. A printing error that matters.** (A76) and (A78) print $e|\bar\varphi|^2/m$ where (A71) and (A82) have $e^2|\bar\varphi|^2/m$. With the printed $e/m$, even the Maxwell part stops conserving Gauss's law ([check 1b](../code/adversarial_review_checks.py)). The simulation states that it uses (A82)–(A86), so this is probably a typo, but it is worth asking about. *Witnessed (the text). The consequence is Derived.*
 
 ### 1.4 Recovered argument
 
@@ -73,7 +73,7 @@ The authors compare the photon energy (2.4 eV) with $k_BT\ln 2$ (20 meV) and con
 
 ### 2.2 Attack
 
-**Step 1. The numbers are right (up to rounding).** $k_BT = 26.71$ meV at 310 K. $k_BT\ln2 = 18.52$ meV (paper: 20). The photon at 500 nm is 2.480 eV (paper: 2.4). $hc/(k_BT\ln 2) = 67.0$ µm (paper: 60) ([check 2](code/adversarial_review_checks.py)). *Derived.*
+**Step 1. The numbers are right (up to rounding).** $k_BT = 26.71$ meV at 310 K. $k_BT\ln2 = 18.52$ meV (paper: 20). The photon at 500 nm is 2.480 eV (paper: 2.4). $hc/(k_BT\ln 2) = 67.0$ µm (paper: 60) ([check 2](../code/adversarial_review_checks.py)). *Derived.*
 
 **Step 2. Part of the authors' claim is actually true, and ChatGPT's reply misses it.** "Recorded with no risk of thermal degradation" has a defensible reading: the write signal is not drowned by thermal photons. At 500 nm and 310 K the thermal photon occupation is $1/(e^{E/k_BT}-1) \approx 4.9\times10^{-41}$. That is true physics, and it follows from $E_\text{photon} \gg k_BT$, with no need for Landauer. ChatGPT's rebuttal is about **storage** ("will remain stored"), but the sentence says **recorded**. *Derived.*
 
@@ -87,7 +87,7 @@ The authors compare the photon energy (2.4 eV) with $k_BT\ln 2$ (20 meV) and con
 
 **Step 5. Name the quantity that does decide retention.** A record survives if the energy barrier $\Delta E$ between distinguishable record states is large compared with $k_BT$. The Arrhenius–Kramers estimate is $\tau \approx \tau_0\,e^{\Delta E/k_BT}$. *Cited (standard rate theory).* The photon energy sets how hard the system is hit during writing. It does not set $\Delta E$ of the medium.
 
-**Step 6. Put a number on what is needed.** For one year of retention with a molecular attempt time $\tau_0 = 1$ ps (*Supplied*): $\ln(1\,\text{yr}/1\,\text{ps}) = 44.9$, so $\Delta E \gtrsim 44.9\,k_BT = 1.20$ eV ([check 2](code/adversarial_review_checks.py)). *Derived.*
+**Step 6. Put a number on what is needed.** For one year of retention with a molecular attempt time $\tau_0 = 1$ ps (*Supplied*): $\ln(1\,\text{yr}/1\,\text{ps}) = 44.9$, so $\Delta E \gtrsim 44.9\,k_BT = 1.20$ eV ([check 2](../code/adversarial_review_checks.py)). *Derived.*
 
 **Step 7. Compare with the paper's own energy scales.** The paper gives no barrier for its record. The record is the density $|\bar\varphi|^2$ of "ionized water" conformational states. The only water energy scale in the paper is about 4 meV ("inverse of the moment of inertia"), used against Tegmark. With $\Delta E = 4$ meV: $\tau \approx 1.2$ ps. With a typical hydrogen-bond energy, 0.2 eV (*Cited*, not from the paper): $\tau \approx 1.8$ ns. Both are about 16 to 19 orders of magnitude below one year. *Derived, conditional on the record living in those degrees of freedom.*
 
@@ -110,7 +110,7 @@ This is **stronger** than ChatGPT's version. It grants the part of the authors' 
 | E, gauge | $A^0 = 0$ and $\nabla\cdot\mathbf A = 0$ contradict $J_0 \neq 0$ | The paper's dropped integration constant is a static background and repairs Appendix A for static charge. The simulations use Appendix C, where $A_0 \neq 0$. | In Appendix C, $\partial_t(\nabla\cdot\mathbf E - J^0) = -M^2\nabla\cdot\mathbf A - \gamma\,\partial_t\nabla\cdot\mathbf A + v\nabla\cdot\mathbf A^{(n\pm1)}$, and it is nonzero because the targets are longitudinal. Appendix A drops the oscillating near-field Coulomb term. | **Derived** (symbolic check on the paper's equations). The physical consequence for Figure 6 is **Open** until someone reruns the simulation. |
 | D, Landauer | Landauer is about erasure, not lifetime | It answers a storage claim the sentence does not make. It misses that "recording" has no Landauer minimum. It gives no number. | Retention needs a barrier of about 1.2 eV (about 45 $k_BT$) for one year. The paper gives none. Its own scale, 4 meV, gives about 1 ps, and its simulation already distorts by $mx^0 = 200$. The write signal is thermally clean (occupation about $10^{-40}$). | The threshold is **Derived**. The barrier values are **Cited**/**Supplied**. The medium's real barrier is **Open**. |
 
-Side results from the checks: the capacity arithmetic in (3) to (5) holds up to rounding: $8.3\times10^{10}$ bit/mm², 2.6 PB, 31 TB ([check 3](code/adversarial_review_checks.py)). ChatGPT was right to call it consistent.
+Side results from the checks: the capacity arithmetic in (3) to (5) holds up to rounding: $8.3\times10^{10}$ bit/mm², 2.6 PB, 31 TB ([check 3](../code/adversarial_review_checks.py)). ChatGPT was right to call it consistent.
 
 ## What this changes in the public replies
 
