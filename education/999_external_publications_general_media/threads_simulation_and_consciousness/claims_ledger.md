@@ -41,7 +41,7 @@ A validated observation passes all five. Any failure is only an *attempt*, and t
 - *Acceptance is not authority.* An evaluator can accept a report that no authority grants.
 - *Resolution limit.* An observer with a smaller report grammar than its state set is not finest: two distinct states share a report (pigeonhole).
 
-Correction to `analysis.md`: its six slots put authority inside the observer. In the canonical definition, authority is outside it. The informal slots map onto the canonical ones as follows: carrier → $X, P$; gauge and reference → contexts $\mathcal C$ and the allowed redescriptions; comparison → defect, repair and cost; judgment → terminalizer; authority → a separate regime.
+`analysis.md` keeps Authority as its own row, separate from the observer, which matches the canonical definition: authority is outside the observer. (An earlier version of this line said the opposite; that "correction" was wrong. See [self_audit.md](self_audit.md) C7.) The informal slots map onto the canonical ones as follows: carrier → $X, P$; gauge and reference → contexts $\mathcal C$ and the allowed redescriptions; comparison → defect, repair and cost; judgment → terminalizer; authority → a separate regime.
 
 ## 0b. The public definition (LinkedIn, "What the Hell Is an Observer?", 2026-05-23) against Chapter 10
 
@@ -138,7 +138,7 @@ A second proved fact sharpens this. An observer whose report grammar has fewer v
 | Landauer remark (Sec. 5) | — | 2.48 eV photon, $k_BT\ln2$ = 18.5 meV, $\lambda_{max}$ ≈ 67 µm (paper: 60 µm). | — The step from "photon energy ≫ $k_BT\ln 2$" to "no risk of thermal degradation" does not follow. Landauer bounds erasure cost; it says nothing about how long a stored pattern lasts. |
 | Control (Sec. 4, App. C) | Every layer (scalp, skull, dura, CSF, cortex) is the same boson field with the same $e, m, M^2, \gamma$, coupled by $v$. Targets, damping and input decay are chosen. | The inputs come from inverting the static equations with time derivatives and the $e^2\lvert\bar\varphi\rvert^2/m$ term dropped (A88)–(A89). | One numerical run. The output "approaches the target ... due to damping term" (their words). No error measure. Density dips of 1.3% to 21%. |
 | Observer | A "quantum mind" (Discussion), and a one-to-one link between holograms and experience, stated conditionally ("Once our subjective experiences ... are manipulated"). | — | Nothing. The paper says perception by a quantum mind is "yet another mystery altogether". |
-| Outside world | Concluding remarks: "the outside world of the observable phenomena" and "the image of the outside world formed inside the brain". | — | — This assumes a world that exists offscreen. It does not establish one, so it neither supports B4 nor refutes it. |
+| Outside world | Concluding remarks: "the outside world of the observable phenomena" and "the image of the outside world formed inside the brain". | — | — This assumes a world outside the brain that vision links to the mind. It says nothing about the unobserved part of that world, so it neither supports B4 nor refutes it. |
 
 ## 4. Printed equations that look wrong (kept as printed in paper.md)
 
@@ -146,7 +146,7 @@ A second proved fact sharpens this. An observer whose report grammar has fewer v
 2. (A23) and (A26) carry "+ +".
 3. (A52) has $\tilde A_i$ (the input) on the left; from (A49) it is the response $A_i$.
 4. (A76) and (A78) carry $e|\bar\varphi|^2/m$; (A71) and (A82) carry $e^2|\bar\varphi|^2/m$.
-5. Section 4 says the input maximum is "approximately 3", then computes the factor as 3.9.
+5. Section 4 says the input maximum is "approximately 3 due to the factor" $0.1\times2^4/0.8^4 = 3.9$. That factor is a prefactor, not the computed maximum, and the realized maximum is not printed. The rerun's recursion gives 2.13 ([self_review.md](self_review.md) A6, open).
 
 All five are typesetting slips. None changes a result. They belong in the ledger because a careful reader should find them.
 

@@ -1,13 +1,43 @@
 # Threads replies to wisdomandlogos
 
-Two replies, revised 2026-11-05 after review (see [board_repair_log.md](board_repair_log.md)). The earlier four-post draft opened with the tree, which started too early. Its post 3 said the paper measures what it only estimates or simulates, and its post 4 was too categorical.
+Revised 2026-11-05 after the self-audit ([self_audit.md](self_audit.md), section A). Each post is under 500 characters; `code/self_audit_checks.py` (S5) counts them. Rhymed alternates are in [replies_alternates.md](replies_alternates.md). The earlier versions, and why each was changed, are in [self_audit.md](self_audit.md) and [board_repair_log.md](board_repair_log.md).
 
-Post 1 (pin down the claim)
+Order: the tree, the game, the paper, the closer. The Thales line is held for later.
 
-When you say the universe doesn't render what's offscreen, do you mean it stops existing, stops evolving, or simply isn't experienced? Those are three different claims. And what decides where observed ends and unobserved begins?
+Post 1, the tree
+
+> Two snapshots: two trees standing, then one lying flat.
+> The fall, the air, the crash, the sound: you added all of that.
+> Same tree in both pictures? Supplied. Upright versus down? Supplied too.
+> Something happening in between? Inferred, not in view.
+> Not saying it didn't happen. Saying it came in on the side.
+> So when the universe "doesn't render," who checks? Who decides?
+> And what record would show it, and what test would it provide?
 
 ---
 
-Post 2 (after reading her link)
+Post 2, the game
 
-I read your paper. It models possible holographic memory with quantum fields, estimates storage capacity, and simulates field control. It doesn't claim that consciousness renders the universe. Even if its brain mechanism were shown to work, how would that tell us anything about unobserved reality?
+> Pro gamer tip: a game can skip three chores. Drawing the pixels. Running the physics. Keeping what's behind the doors. Minecraft stops ticking far chunks; the rest get generated from the seed when you arrive, same diamonds every time. So which does the universe skip? (1) nothing's there, (2) nothing moves, (3) nobody kept a receipt. Number 3 is just Tuesday. For 1 or 2: what comes out different when you peek? And who decides?
+
+---
+
+Post 3, after reading her link
+
+> Read your paper, cover to appendix. Lovely water, lovely light, 2.5 petabytes of hypothetical hologram, one simulation shown. Not one line about rendering the universe. It calls vision perhaps the most important link between "the outside world of the observable phenomena" and the mind: world first, brain images it. How a quantum mind perceives the macro-world? "Yet another mystery altogether." Your source brought the world and honestly left the observer open. Who decides it backs you?
+
+---
+
+Post 4, the closer
+
+> Dr. Johnson kicked a stone to refute Berkeley. Bold move, sore toe. I'll go gentler: name one thing that happens differently when nobody's looking, and how we'd know. Einstein asked Pais whether the moon is there only when someone looks. Fair question, still. But define the look, or the moon gets the final say. And who decides it counts: a detector, a record, or a feeling in the chest? Until then it's a gorgeous story, not yet a test.
+
+---
+
+Held for later, Thales
+
+> Even Thales reaches us second-hand: nothing he wrote survives, only what Herodotus, Aristotle and later writers kept. The past is a record someone kept. Who kept yours?
+
+---
+
+Fact notes: "render" occurs 0 times in the paper. The vision quote is from §6 (Concluding Remarks); "yet another mystery altogether" is from the Discussion. The paper shows one configuration (N = 4, Figs. 4–6). Johnson's stone: Boswell, *Life of Johnson*, 6 August 1763. Einstein and the moon: Pais, *Rev. Mod. Phys.* 51 (1979) 863. Minecraft: unvisited chunks are generated from the world seed on arrival, deterministically for a given seed and game version. Herodotus mentions Thales (*Histories* 1.74–75, 1.170).

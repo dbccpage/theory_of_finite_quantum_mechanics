@@ -43,7 +43,7 @@ h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,44px);l
 .bul{margin:4px 0;padding-left:20px;display:grid;gap:6px}
 .fix{margin:0;font-size:13px;color:var(--mute);border-left:3px solid var(--supplied);padding:2px 0 2px 10px}
 .posts{display:grid;gap:10px}
-.post{border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-size:14px;background:var(--paper)}
+.post{border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-size:14px;background:var(--paper);white-space:pre-line}
 .post .n{font-family:var(--mono);font-size:11px;color:var(--mute);display:flex;justify-content:space-between}
 .bar{border-top:1px solid var(--rule);padding:10px 16px 12px;display:grid;gap:8px;background:var(--paper)}
 .btns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
@@ -111,7 +111,7 @@ const CARDS = [
    <text x="175" y="140" fill="${SU}" font-size="12">L2′ is L2? L1′ is L1?</text>
    <text x="175" y="160" fill="${SU}" font-size="12">upright vs flat: gauge?</text>
    <text x="175" y="196" fill="${M}" font-size="11">air, sound: not yet</text>`),
-  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mtable rowspacing=\"0.25em\" columnalign=\"center\" columnspacing=\"0em\"><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"true\"><mrow><msub><mi>R</mi><mn>1</mn></msub><mo>=</mo><mo stretchy=\"false\">{</mo><msub><mi>L</mi><mn>1</mn></msub><mo separator=\"true\">,</mo><msub><mi>L</mi><mn>2</mn></msub><mo stretchy=\"false\">}</mo><mtext> </mtext><mo mathvariant=\"normal\">≠</mo><mtext> </mtext><msub><mi>R</mi><mn>2</mn></msub><mo>=</mo><mo stretchy=\"false\">{</mo><msubsup><mi>L</mi><mn>1</mn><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msubsup><mo separator=\"true\">,</mo><msubsup><mi>L</mi><mn>2</mn><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msubsup><mo stretchy=\"false\">}</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"true\"><mrow><mtext>supplied: </mtext><msubsup><mi>L</mi><mn>2</mn><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msubsup><mo>≡</mo><msub><mi>L</mi><mn>2</mn></msub><mo separator=\"true\">,</mo><mtext> a between</mtext><mo separator=\"true\">,</mo><mtext> a gauge</mtext></mrow></mstyle></mtd></mtr></mtable><annotation encoding=\"application/x-tex\">\\begin{gathered}R_1=\\{L_1,L_2\\}\\ \\neq\\ R_2=\\{L_1^{\\prime},L_2^{\\prime}\\}\\\\ \\text{supplied: } L_2^{\\prime}\\equiv L_2,\\ \\text{a between},\\ \\text{a gauge}\\end{gathered}</annotation></semantics></math></span>",
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mtable rowspacing=\"0.25em\" columnalign=\"center\" columnspacing=\"0em\"><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"true\"><mrow><msub><mi>R</mi><mn>1</mn></msub><mo>=</mo><mo stretchy=\"false\">(</mo><mtext>up</mtext><mo separator=\"true\">,</mo><mtext>up</mtext><mo stretchy=\"false\">)</mo><mtext> </mtext><mo mathvariant=\"normal\">≠</mo><mtext> </mtext><msub><mi>R</mi><mn>2</mn></msub><mo>=</mo><mo stretchy=\"false\">(</mo><mtext>up</mtext><mo separator=\"true\">,</mo><mtext>flat</mtext><mo stretchy=\"false\">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"true\"><mrow><mtext>supplied: </mtext><msubsup><mi>L</mi><mn>2</mn><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msubsup><mo>≡</mo><msub><mi>L</mi><mn>2</mn></msub><mo separator=\"true\">,</mo><mtext> a between</mtext><mo separator=\"true\">,</mo><mtext> the up/flat reading</mtext></mrow></mstyle></mtd></mtr></mtable><annotation encoding=\"application/x-tex\">\\begin{gathered}R_1=(\\text{up},\\text{up})\\ \\neq\\ R_2=(\\text{up},\\text{flat})\\\\ \\text{supplied: } L_2^{\\prime}\\equiv L_2,\\ \\text{a between},\\ \\text{the up/flat reading}\\end{gathered}</annotation></semantics></math></span>",
   line:"<b>R1 differs from R2. That is all that is witnessed.</b> Record every smuggled part for R1, R2, L1 and L2 first. Only then can sound be discussed." },
 { id:"blindspot", group:"main", live:"render", tag:"picture 2 · the rendering claim", title:"Same report on one channel. Maybe not on another.",
   pic:S(`
@@ -136,17 +136,17 @@ const CARDS = [
   fix:"Was “no observer can tell A from B”. That jumped from (a) to (b), and from equal reports to equal likelihoods." },
 { id:"paper-chain", group:"main", tag:"picture 3 · the paper", title:"Where the evidence ends and the story begins.",
   pic:S(`
-   ${[["1 Model","equations and inputs,","one simulation run","derived, from supplied","var(--teal-soft)",T,""],["2 In living brains?","does this happen in","a real brain?","not tested","var(--no-soft)",N,"5 4"],["3 The unobserved?","does it say anything","about the unobserved?","not addressed","var(--no-soft)",N,"5 4"]].map((b,i)=>{
+   ${[["1 Model","equations and inputs,","one simulation run","derived, from supplied","var(--teal-soft)",T,""],["2 In living brains?","does this happen in","a real brain?","not tested here","var(--no-soft)",N,"5 4"],["3 The unobserved?","does it say anything","about the unobserved?","not addressed","var(--no-soft)",N,"5 4"]].map((b,i)=>{
      const x=10+i*172; return `<rect x="${x}" y="40" width="152" height="110" rx="8" fill="${b[4]}" stroke="${b[5]}" stroke-dasharray="${b[6]}"/>
      <text x="${x+10}" y="62" fill="${b[5]}" font-size="12" font-weight="600">${b[0]}</text>
      <text x="${x+10}" y="88" fill="${I}" font-size="10.5">${b[1]}</text><text x="${x+10}" y="103" fill="${I}" font-size="10.5">${b[2]}</text>
      <text x="${x+10}" y="138" fill="${b[5]}" font-size="11">${b[3]}</text>
      ${i<2?`<line x1="${x+154}" y1="95" x2="${x+170}" y2="95" stroke="${I}" stroke-width="1.5"/><path d="M${x+164} 90 L${x+170} 95 L${x+164} 100" fill="none" stroke="${I}" stroke-width="1.5"/>`:""}`}).join("")}
-   <text x="10" y="180" fill="${M}" font-size="11">paper, on 3: “the outside world of the observable phenomena”</text>
+   <text x="10" y="180" fill="${M}" font-size="11">paper, on the world: “the outside world of the observable phenomena”</text>
    <text x="10" y="198" fill="${M}" font-size="11">paper, on its observer: “yet another mystery altogether”</text>`),
   tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mtext>model  </mtext><mo>⇏</mo><mtext>  brain  </mtext><mo>⇏</mo><mtext>  universe</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{model}\\ \\ \\not\\Rightarrow\\ \\ \\text{brain}\\ \\ \\not\\Rightarrow\\ \\ \\text{universe}</annotation></semantics></math></span>",
   line:"<b>The paper works in stage 1.</b> It does not test stage 2, and it never takes up stage 3; it assumes an outside world. Her post starts at stage 3 and cites stage 1.",
-  fix:"Inside stage 1, two of our own checks: the Appendix C equations break Gauss\u2019s law exactly through the added M\u00b2, \u03b3 and v terms, and the paper gives no energy barrier for keeping a record (one year at 310 K needs about 1.2 eV). Its memory manipulation is left to \u201ca future experimental study\u201d. See adversarial_review.md." },
+  fix:"Inside stage 1, two of our own checks. In Appendix C the added M\u00b2, \u03b3 and v terms are exactly what breaks Gauss\u2019s law (algebra); along the paper\u2019s own run the violation is 1.1\u20132.3 times the charge change (numerical rerun). The paper gives no energy barrier for keeping a record. For a record held by one barrier, ΔE = k_B T ln(1 yr/τ₀) with the attempt time τ₀ supplied: τ₀ = 1 ps gives about 1.2 eV at 310 K, τ₀ = 1 s gives 0.46 eV. Its memory manipulation is left to \u201ca future experimental study\u201d. See adversarial_review.md, self_review.md and self_audit.md." },
 { id:"ladder", group:"support", tag:"observation", title:"In WDP, an observation is certified in five steps.",
   pic:S(`
    ${["interaction","registration","typed witness","re-comparison","evaluator accepts"].map((s,i)=>{
@@ -157,7 +157,7 @@ const CARDS = [
    ${[0,1,2,3,4].map(i=>{const y=186-i*36;
      const a = i===0?`<text x="290" y="${y}" fill="${SU}" font-size="13">supplied</text>`:`<text x="300" y="${y}" fill="${N}" font-size="15">✗</text>`;
      const b = `<text x="430" y="${y}" fill="${N}" font-size="15">✗</text>`; return a+b}).join("")}`),
-  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mtext>owed first: </mtext><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">(</mo><mtext>carrier</mtext><mo separator=\"true\">,</mo><mtext> gauge</mtext><mo separator=\"true\">,</mo><mtext> evaluator</mtext><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">)</mo><mtext>  then  </mtext><mrow><mi mathvariant=\"sans-serif\">O</mi><mi mathvariant=\"sans-serif\">b</mi><mi mathvariant=\"sans-serif\">s</mi></mrow><mo>=</mo><mo stretchy=\"false\">(</mo><mi>i</mi><mo separator=\"true\">,</mo><mi>g</mi><mo separator=\"true\">,</mo><mi>w</mi><mo separator=\"true\">,</mo><mi>m</mi><mo separator=\"true\">,</mo><mi>e</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\text{owed first: }\\big(\\text{carrier},\\ \\text{gauge},\\ \\text{evaluator}\\big)\\ \\text{ then }\\ \\mathsf{Obs}=(i,g,w,m,e)</annotation></semantics></math></span>",
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mtext>declared first: </mtext><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">(</mo><mtext>carrier</mtext><mo separator=\"true\">,</mo><mtext> gauge</mtext><mo separator=\"true\">,</mo><mtext> evaluator</mtext><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">)</mo><mtext>  then  </mtext><mrow><mi mathvariant=\"sans-serif\">O</mi><mi mathvariant=\"sans-serif\">b</mi><mi mathvariant=\"sans-serif\">s</mi></mrow><mo>=</mo><mo stretchy=\"false\">(</mo><mi>i</mi><mo separator=\"true\">,</mo><mi>g</mi><mo separator=\"true\">,</mo><mi>w</mi><mo separator=\"true\">,</mo><mi>m</mi><mo separator=\"true\">,</mo><mi>e</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\text{declared first: }\\big(\\text{carrier},\\ \\text{gauge},\\ \\text{evaluator}\\big)\\ \\text{ then }\\ \\mathsf{Obs}=(i,g,w,m,e)</annotation></semantics></math></span>",
   line:"<b>Before step 1 you owe three things:</b> the carrier (what holds the difference), the gauge (how standing is told from felled), and who evaluates. “Not heard” means step 2 fails, which says nothing about step 1.",
   fix:"Labelled as the WDP certification ladder, not a law of physics. Step 2 (a record) can happen with nobody hearing." },
 
@@ -174,7 +174,7 @@ const CARDS = [
    <text x="14" y="26" fill="${M}" font-size="12">a person or a device may run it; neither is it</text>`),
   tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi mathvariant=\"script\">O</mi><mo>=</mo><mo stretchy=\"false\">(</mo><mrow><mi mathvariant=\"sans-serif\">P</mi><mi mathvariant=\"sans-serif\">r</mi><mi mathvariant=\"sans-serif\">e</mi><mi mathvariant=\"sans-serif\">s</mi></mrow><mo separator=\"true\">,</mo><mtext> </mtext><mrow><mi mathvariant=\"sans-serif\">M</mi><mi mathvariant=\"sans-serif\">e</mi><mi mathvariant=\"sans-serif\">m</mi></mrow><mo separator=\"true\">,</mo><mtext> </mtext><mrow><mi mathvariant=\"sans-serif\">E</mi><mi mathvariant=\"sans-serif\">v</mi><mi mathvariant=\"sans-serif\">a</mi><mi mathvariant=\"sans-serif\">l</mi></mrow><mo separator=\"true\">,</mo><mtext> </mtext><mrow><mi mathvariant=\"sans-serif\">P</mi><mi mathvariant=\"sans-serif\">o</mi><mi mathvariant=\"sans-serif\">l</mi><mi mathvariant=\"sans-serif\">i</mi><mi mathvariant=\"sans-serif\">c</mi><mi mathvariant=\"sans-serif\">y</mi></mrow><mo stretchy=\"false\">)</mo><mspace width=\"2em\"/><mrow><mi mathvariant=\"sans-serif\">A</mi><mi mathvariant=\"sans-serif\">c</mi><mi mathvariant=\"sans-serif\">c</mi><mi mathvariant=\"sans-serif\">e</mi><mi mathvariant=\"sans-serif\">p</mi><mi mathvariant=\"sans-serif\">t</mi></mrow><mtext> </mtext><mo>⇏</mo><mtext> </mtext><mrow><mi mathvariant=\"sans-serif\">A</mi><mi mathvariant=\"sans-serif\">u</mi><mi mathvariant=\"sans-serif\">t</mi><mi mathvariant=\"sans-serif\">h</mi><mi mathvariant=\"sans-serif\">o</mi><mi mathvariant=\"sans-serif\">r</mi><mi mathvariant=\"sans-serif\">i</mi><mi mathvariant=\"sans-serif\">z</mi><mi mathvariant=\"sans-serif\">e</mi><mi mathvariant=\"sans-serif\">d</mi></mrow></mrow><annotation encoding=\"application/x-tex\">\\mathcal O=(\\mathsf{Pres},\\ \\mathsf{Mem},\\ \\mathsf{Eval},\\ \\mathsf{Policy})\\qquad \\mathsf{Accept}\\ \\not\\Rightarrow\\ \\mathsf{Authorized}</annotation></semantics></math></span>",
   line:"<b>Her word “consciousness” declares none of the four layers.</b> The model proposes, the evaluator evaluates, a separate regime may authorize.",
-  fix:"Labelled as the WDP model, not a definition all of physics must use." },
+  fix:"Labelled as the WDP model, not a definition all of physics must use. The four layers are the WDP text; the Lean ObserverPacket so far has three (presentation, memory, evaluator), with no policy layer." },
 
 { id:"game", group:"support", tag:"her analogy", title:"The video game, in four lines.", bullets:[
    "Drawing, simulating and keeping state are three different jobs.",
@@ -186,7 +186,7 @@ const CARDS = [
 { id:"paper-inputs", group:"support", tag:"the paper", title:"What the paper supplies, derives and witnesses.",
   pic:S(`
    <text x="20" y="22" fill="${SU}" font-size="12">supplied</text>
-   ${["two-level water states, N, Ω","real 𝒜 (assumed)","loss term 𝒜/L₃ (added by hand)","M² term (“we have added”)","the hologram |r+o|² (“consider the case”)","object wave o: no source","every tissue layer = same field","damping γ, input decay γ₂"].map((s,i)=>`<rect x="20" y="${32+i*22}" width="${Math.min(300,10+s.length*6.4)}" height="18" rx="3" fill="var(--supplied-soft)"/><text x="26" y="${45+i*22}" fill="${I}" font-size="11">${s}</text>`).join("")}
+   ${["two-level water states, N, Ω","real 𝒜 (assumed)","loss term 𝒜/L₃ (added for release of radiation)","M² term (“we have added”)","the hologram |r+o|² (“consider the case”)","object wave o: given, no equation","same equations, same parameters, every layer","damping γ, input decay γ₂"].map((s,i)=>`<rect x="20" y="${32+i*22}" width="${Math.min(300,10+s.length*6.4)}" height="18" rx="3" fill="var(--supplied-soft)"/><text x="26" y="${45+i*22}" fill="${I}" font-size="11">${s}</text>`).join("")}
    <text x="350" y="22" fill="${T}" font-size="12">derived</text>
    ${["sech light pulse","paper: 2.5 PB, 30 TB","inputs: static inverse"].map((s,i)=>`<rect x="350" y="${32+i*22}" width="160" height="18" rx="3" fill="var(--teal-soft)"/><text x="356" y="${45+i*22}" fill="${I}" font-size="11">${s}</text>`).join("")}
    <text x="350" y="122" fill="${W}" font-size="12">witnessed by the paper</text>
@@ -195,13 +195,15 @@ const CARDS = [
   line:"<b>The math holds given its inputs. The questions are about the inputs.</b>",
   fix:"The capacity box now shows the paper\u2019s own 2.5 PB and 30 TB. Our 2.6 PB and 31 TB came from not rounding 8.3\u00d710\u00b9\u2070 to 8\u00d710\u00b9\u2070. Simulation output is not a biological measurement." },
 
-{ id:"replies", group:"support", tag:"draft replies", title:"Two replies, each under 500 characters.", posts:true,
-  tex:"", line:"", fix:"Was four posts. Post 1 (the tree) started too early, post 4 was too categorical, and post 3 said the paper measures what it only estimates or simulates." }
+{ id:"replies", group:"support", tag:"draft replies", title:"Four replies, each under 500 characters.", posts:true,
+  tex:"", line:"", fix:"Self-audit: the vision quote is about the observed world, not the unobserved one; Minecraft never saves chunks nobody visited, the seed fixes them; option 3 is named as ordinary; \u201cwho decides\u201d is asked in the present tense. Every version and every repair is in self_audit.md." }
 ];
 
 const POSTS=[
- ["1","When you say the universe doesn't render what's offscreen, do you mean it stops existing, stops evolving, or simply isn't experienced? Those are three different claims. And what decides where observed ends and unobserved begins?"],
- ["2","I read your paper. It models possible holographic memory with quantum fields, estimates storage capacity, and simulates field control. It doesn't claim that consciousness renders the universe. Even if its brain mechanism were shown to work, how would that tell us anything about unobserved reality?"]
+ ["1 · the tree", "Two snapshots: two trees standing, then one lying flat.\nThe fall, the air, the crash, the sound: you added all of that.\nSame tree in both pictures? Supplied. Upright versus down? Supplied too.\nSomething happening in between? Inferred, not in view.\nNot saying it didn't happen. Saying it came in on the side.\nSo when the universe \"doesn't render,\" who checks? Who decides?\nAnd what record would show it, and what test would it provide?"],
+ ["2 · the game", "Pro gamer tip: a game can skip three chores. Drawing the pixels. Running the physics. Keeping what's behind the doors. Minecraft stops ticking far chunks; the rest get generated from the seed when you arrive, same diamonds every time. So which does the universe skip? (1) nothing's there, (2) nothing moves, (3) nobody kept a receipt. Number 3 is just Tuesday. For 1 or 2: what comes out different when you peek? And who decides?"],
+ ["3 · the paper", "Read your paper, cover to appendix. Lovely water, lovely light, 2.5 petabytes of hypothetical hologram, one simulation shown. Not one line about rendering the universe. It calls vision perhaps the most important link between \"the outside world of the observable phenomena\" and the mind: world first, brain images it. How a quantum mind perceives the macro-world? \"Yet another mystery altogether.\" Your source brought the world and honestly left the observer open. Who decides it backs you?"],
+ ["4 · the closer", "Dr. Johnson kicked a stone to refute Berkeley. Bold move, sore toe. I'll go gentler: name one thing that happens differently when nobody's looking, and how we'd know. Einstein asked Pais whether the moon is there only when someone looks. Fair question, still. But define the look, or the moon gets the final say. And who decides it counts: a detector, a record, or a feeling in the chest? Until then it's a gorgeous story, not yet a test."]
 ];
 
 function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
@@ -209,7 +211,7 @@ function tex(t){ return t||"" }
 
 /* Which cards rest on which. A wrong or unsure mark upstream flags every card downstream. */
 const DEPS={ladder:["tree"],observer:["ladder"],blindspot:["observer"],game:["blindspot"],
-  "paper-chain":["paper-inputs"],replies:["blindspot","paper-chain","game"]};
+  "paper-chain":["paper-inputs"],replies:["tree","blindspot","paper-chain","game"]};
 const OBJ=[["","what failed?"],["premise","a premise is false"],["inference","a step does not follow"],["fact","a fact is wrong"],["conclusion","the conclusion overreaches"]];
 const LIVE={
  tree:`<div class="live"><div class="ctl"><button type="button" id="tree-back">Remove last</button><button type="button" id="tree-next">Add next assumption</button><span class="lab" id="tree-count"></span></div><ol class="steps" id="tree-steps"></ol><p class="verdict" id="tree-verdict"></p></div>`,
@@ -298,7 +300,7 @@ localLoad(); CARDS.forEach(c=>paint(c.id));
 const TREE=[
  ["wit","R1 and R2 differ.","Witnessed, but only under a declared way of reading the records (lines, lengths, directions). That reading is itself supplied."],
  ["sup","L1′ is L1, and L2′ is L2.","Identity across records. Nothing in either record says so."],
- ["sup","R1 came before R2.","Temporal order. The records carry no clock."],
+ ["sup","R1 came before R2.","Temporal order. These two records carry no clock."],
  ["sup","Something happened between them: a fall.","A physical transition. Many histories end in R2."],
  ["sup","The fall sent pressure waves through air.","A model of air, admitted, not observed."],
  ["open","Someone heard it.","An auditory experience needs a receiver and a record. None is given."]
