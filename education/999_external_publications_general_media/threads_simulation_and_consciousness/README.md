@@ -25,8 +25,7 @@ Two rules run through every file:
 | Folder | File | What it is | Kind |
 |---|---|---|---|
 | `01_thread/` | `exchange.md` | The three-party exchange, with roles A, B and C | record |
-| | `replies.md` | Five final posts (the fifth carries the link to the learning boards) and one held post, each at most 500 characters (checked by S5) | **live** |
-| | `replies_alternates.md` | Rhymed and alternative versions, with repairs applied | live |
+| | `replies.md` | Five plain posts, each at most 500 characters (checked by S5); the fifth carries the link to the learning boards | **live** |
 | `02_paper/` | `ijms-25-02399.pdf` | The published paper | source |
 | | `ijms-25-02399.md` | The full text with every equation in LaTeX, plus our typo notes | source |
 | `03_critique/` | `analysis.md` | Six slots (carrier, gauge, reference, comparison, authority, observer) for the post and for the paper | live |
