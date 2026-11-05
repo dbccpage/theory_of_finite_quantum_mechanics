@@ -8,6 +8,7 @@ Working notes, 2026-11-02. Every **[D]** claim is checked numerically by the scr
 | [double_slit_research_receipt.md](double_slit_research_receipt.md) | Sources, audited proof status, citations verified for that note |
 | [everett_from_weights_math_only.md](everett_from_weights_math_only.md) | Weights → amplitudes → records → relative states; verdict "worlds: not needed, not excluded" (checks: `check_everett.py`) |
 | [everett_draft_audit.md](everett_draft_audit.md) | Line-by-line audit of an external draft of the same derivation |
+| [Three tweets and two printable sheets](../../../education/l1_to_many_worlds/codex_primitive_to_hamilton_noether/everett/README.md) | A two-route experiment with a reversible record and Everett’s reading of it |
 | [marbles_to_everett.md](marbles_to_everett.md) | Classroom version |
 | [where_to_contest_multiverse_realism.md](where_to_contest_multiverse_realism.md) | Where Deutsch's multiverse realism can be contested |
 | [refuting_everett_assessment.md](refuting_everett_assessment.md) | What a decisive result against Everett would have to be; Deutsch–Wallace core classified by scalar field (checks: `check_conjugate_measure.py`) |
