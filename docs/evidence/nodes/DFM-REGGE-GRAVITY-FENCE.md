@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-regge-gravity-fence.py`
 
 - file: [checks/independent/dfm-regge-gravity-fence.py](../../../checks/independent/dfm-regge-gravity-fence.py)
-- sha256 (`bytes`): `5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7`
+- sha256 (`bytes`): `5d14869f19d5aa96dbd3a1cfc5a8e4b98839b1427663b33f880bde80ab83ca6b`
 - cited in: node.source, record TFQ-1137
 - counts toward the grade: yes
 

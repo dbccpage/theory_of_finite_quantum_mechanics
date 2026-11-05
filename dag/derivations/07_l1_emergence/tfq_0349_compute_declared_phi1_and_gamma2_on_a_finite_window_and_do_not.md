@@ -41,8 +41,8 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::Repair`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::Repair`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:075755bfa5d217bf1c7ea42e9169ee078e6a15e40018e318b77d5ba829dda5d8::Phi1Functional`](../../code/rust/src/)

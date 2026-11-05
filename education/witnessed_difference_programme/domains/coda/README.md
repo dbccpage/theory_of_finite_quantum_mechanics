@@ -7,9 +7,9 @@ maturity: production
 claim_status: verified
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/fda/coda_fda.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda_gtla/coda_gtla_monograph.md.txt
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/fda/coda_fda.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda_gtla/coda_gtla_monograph.md.txt
 prerequisites:
   - ../0_s_n/README.md
   - ../1_minimal_symbol_system_n_mssn/README.md
@@ -24,7 +24,7 @@ last_verified: 2026-09-29
 
 **AuthorityEffect:** None.  
 **Author:** Jeremy H. Carroll  
-**Primary Source:** [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages)
+**Primary Source:** [`atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages)
 
 ---
 
@@ -100,7 +100,7 @@ All levels possess architectural diagrams in [`_images`](_images/):
 
 ## Source Atlas Packages
 
-The CODA research estate is organized into separate packages under [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages):
+The CODA research estate is organized into separate packages under [`atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages):
 
 | Package | Directory | Primary Monograph |
 |---|---|---|

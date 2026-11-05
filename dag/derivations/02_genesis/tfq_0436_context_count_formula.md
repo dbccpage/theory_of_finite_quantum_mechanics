@@ -35,12 +35,12 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/Paper.lean::contextWords_nodup`](../../../lean4/Imported/GenesisDerivation/Paper.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::a_binary_form_over_two_data_has_five_contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/context.rs::a_binary_form_over_two_data_has_five_contexts`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py::contexts`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/finite_obstruction_calculus/genesis/code/reproduce.py)
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:258-261`
-  - `atlas/papers/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md:26`
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:603-604`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:258-261`
+  - `atlas/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md:26`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:603-604`

@@ -88,16 +88,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- file: [atlas/finite_obstruction_calculus/genesis/paper.md](../../../atlas/finite_obstruction_calculus/genesis/paper.md)
 - sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
 - sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md](../../../dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md)
-- sha256 (`lf-normalised`): `de59bc174946dfd3fb570f677a4f02c821e4b89625827360c195ab01281ef845`
+- sha256 (`lf-normalised`): `56402d1883a02f2e6d56d6415be762a69f0443cad3043dc37810cbaf2ad3bf22`
 - generated view: listed, not counted
 - cited in: record TFQ-0363
 - counts toward the grade: no

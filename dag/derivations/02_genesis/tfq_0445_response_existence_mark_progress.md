@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of fresh-mark progress; the standalone replay checks it against the frozen Python model`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/finite_obstruction_calculus/genesis/code/reproduce.py)
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:404-412`
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:361-365`
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:603-605`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:404-412`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:361-365`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:603-605`

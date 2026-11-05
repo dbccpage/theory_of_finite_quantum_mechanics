@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/reproduce.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/reproduce.py](../../../atlas/finite_obstruction_calculus/genesis/code/reproduce.py)
 - sha256 (`bytes`): `60d4be592f4528fa5f40f3fa03179c84225daf914c79660f62cbd016fb649c71`
 - cited in: record TFQ-0445
 
@@ -70,16 +70,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
 - sha256 (`lf-normalised`): `8e0a3f2333e9ae5740b26c59f88fd41cd1ee9c9b92ca4f0a19dad53747ddf3cd`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- file: [atlas/finite_obstruction_calculus/genesis/paper.md](../../../atlas/finite_obstruction_calculus/genesis/paper.md)
 - sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
 - cited in: node.source
 - counts toward the grade: yes
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md`
 
 - file: [dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md](../../../dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md)
-- sha256 (`lf-normalised`): `834e5d2b8e004617479f350706f49eb9bbd6cb18e0c0b3802852380d78297028`
+- sha256 (`lf-normalised`): `b2f3508cc38a19abc085fe1f68d757f91f9c4ab6b3dc1e6827023f66c8809153`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0445
 - counts toward the grade: no

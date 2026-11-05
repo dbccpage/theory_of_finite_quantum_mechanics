@@ -105,16 +105,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- file: [atlas/finite_obstruction_calculus/genesis/paper.md](../../../atlas/finite_obstruction_calculus/genesis/paper.md)
 - sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
 - sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -130,7 +130,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0361_inert_literal_inscription.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0361_inert_literal_inscription.md](../../../dag/derivations/01_pregenesis/tfq_0361_inert_literal_inscription.md)
-- sha256 (`lf-normalised`): `1f516e99da5a355ada7ab5481415544db4ed657d74103d710961a3aad098b9f6`
+- sha256 (`lf-normalised`): `f2f692862da8561d599aea49578c6bb59d8f2346df318ed0e701bb70627bad6d`
 - generated view: listed, not counted
 - cited in: record TFQ-0361
 - counts toward the grade: no
@@ -138,7 +138,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0362_four_host_conditions.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0362_four_host_conditions.md](../../../dag/derivations/01_pregenesis/tfq_0362_four_host_conditions.md)
-- sha256 (`lf-normalised`): `be643f61279161a586a5fb2412ad789c97f82b944c6baae259d07f8961812710`
+- sha256 (`lf-normalised`): `0e9626d2b206b74c7a9ed5ce6f5f3522f84bbbdfc234fe3c892b49afd6ae9213`
 - generated view: listed, not counted
 - cited in: record TFQ-0362
 - counts toward the grade: no
@@ -146,7 +146,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md](../../../dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md)
-- sha256 (`lf-normalised`): `8b2271e6cc33b434323d97a58135ec4edcc0066aa3cb4fc1c339397da5adcd28`
+- sha256 (`lf-normalised`): `7a701f942dceffb3874381dab72f998a7b761e4f43a7a9b16f414b77511d5337`
 - generated view: listed, not counted
 - cited in: record TFQ-0392 (shared)
 - counts toward the grade: no

@@ -32,12 +32,12 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`declaration obligation: compare fewest_changes_every_writing_A and obstruction_persists_reach with ledger rows O3 and O6`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::Reach.rename`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::Step.rename`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::fewest_changes_every_writing_A`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::fewest_changes_every_writing_B`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::obstruction_persists_reach`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::Reach.rename`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::Step.rename`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::fewest_changes_every_writing_A`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::fewest_changes_every_writing_B`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::obstruction_persists_reach`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: no Rust renaming module was listed for the ongoing package; do not invent one to close O3`](../../code/rust/src/)

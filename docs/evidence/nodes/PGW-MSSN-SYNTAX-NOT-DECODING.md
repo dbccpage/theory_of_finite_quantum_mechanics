@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
 - sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md](../../../dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md)
-- sha256 (`lf-normalised`): `95b44ac923e946b524170031d3b03c9722155a657e3c502da691965463945d48`
+- sha256 (`lf-normalised`): `e081b9de9c277bdcf392ba9d13ea006df7dc1ebcdecf752191899d9df3328021`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0532
 - counts toward the grade: no

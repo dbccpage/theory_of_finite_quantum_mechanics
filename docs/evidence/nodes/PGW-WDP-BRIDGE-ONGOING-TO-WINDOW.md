@@ -94,16 +94,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md)
 - sha256 (`lf-normalised`): `491de41d4978bbcdcd06c9857515113700be95b53e2a3700fe0ce540588036f7`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
 - sha256 (`lf-normalised`): `616280b727abb20440caea09709a0e8f5512fbc8de20da8a3db124de2dc262ff`
 - cited in: node.source
 - counts toward the grade: yes
@@ -111,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md`
 
 - file: [dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md](../../../dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md)
-- sha256 (`lf-normalised`): `88162dd3b70af4751f5b980f7bac5dea896284ea820f1ef5a60356a07675041e`
+- sha256 (`lf-normalised`): `04d7e1fc932567f492e9fa59beb8ba55af5da4e7aed9c7f0c047ad874b0a7685`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0555
 - counts toward the grade: no

@@ -33,14 +33,14 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate`](../../code/lean4/)
 - [`missing declaration obligation: six operation names beside supply_no_op in Derivation/Inertia.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: six named operations in wire_primitives rather than one event enum that merges them`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/event.rs`](../../code/rust/src/)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/supply.rs`](../../code/rust/src/)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/event.rs`](../../code/rust/src/)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/supply.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: six operation constructors in 000_genesis_19l57g1/code/derivation/model.py, listed but not opened, kept distinct from one another`](../../code/python/)
@@ -83,6 +83,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-SUPPLY-NO-OP): 4*idx(52) + 3*stage_rank(2) + route_degree(4) == 218` ($\text{value} = 218$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-SUPPLY-NO-OP): R_raw(114) - G_cob(56) - S_decoy(2) == 56 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 56$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean::collapsed_of_no_insts`
+- **Lean 4 Theorem Anchor**: `atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean::collapsed_of_no_insts`
 - **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = cf82bee9927d85f6ff0f891f4c3a6e49695997befe22c52c4a9c07949462bd0b`

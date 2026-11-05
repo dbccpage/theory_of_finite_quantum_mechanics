@@ -1,0 +1,117 @@
+[
+  {
+    "identity": "integer-admission",
+    "before": "RationalMatrix(integer_matrix(value, rows=2, cols=2))",
+    "after": "RationalMatrix(value)",
+    "test": "test_exact_shapes_and_scalar_domains"
+  },
+  {
+    "identity": "minor-sign",
+    "before": "return _matrix(value).det2().numerator",
+    "after": "return -_matrix(value).det2().numerator",
+    "test": "test_independent_minor_and_rank"
+  },
+  {
+    "identity": "rank-constant",
+    "before": "return pivot_row",
+    "after": "return 0",
+    "test": "test_pivots_and_singular_cases"
+  },
+  {
+    "identity": "rank-increment",
+    "before": "pivot_row += 1",
+    "after": "pivot_row += 0",
+    "test": "test_pivots_and_singular_cases"
+  },
+  {
+    "identity": "pivot-exchange",
+    "before": "rows[candidate], rows[pivot_row] = rows[pivot_row], rows[candidate]",
+    "after": "rows[candidate], rows[pivot_row] = rows[candidate], rows[pivot_row]",
+    "test": "test_pivots_and_singular_cases"
+  },
+  {
+    "identity": "pivot-normalization",
+    "before": "rational(x/pivot, \"elimination quotient\")",
+    "after": "rational(x*pivot, \"elimination quotient\")",
+    "test": "test_independent_minor_and_rank"
+  },
+  {
+    "identity": "elimination-sign",
+    "before": "rational(x-rational(factor*y, \"elimination product\"), \"elimination difference\")",
+    "after": "rational(x+rational(factor*y, \"elimination product\"), \"elimination difference\")",
+    "test": "test_pivots_and_singular_cases"
+  },
+  {
+    "identity": "policy-type",
+    "before": "integer(radius, \"census radius\", 0, 5)",
+    "after": "int(radius)",
+    "test": "test_policy_and_counter"
+  },
+  {
+    "identity": "policy-budget",
+    "before": "integer(radius, \"census radius\", 0, 5)",
+    "after": "integer(radius, \"census radius\", 0, 6)",
+    "test": "test_policy_and_counter"
+  },
+  {
+    "identity": "outer-orientation",
+    "before": "((rational(a*c), rational(a*d)), (rational(b*c), rational(b*d)))",
+    "after": "((rational(a*c), rational(b*c)), (rational(a*d), rational(b*d)))",
+    "test": "test_outer_orientation_and_ownership"
+  },
+  {
+    "identity": "outer-last-factor",
+    "before": "rational(b*d)",
+    "after": "rational(b*c)",
+    "test": "test_outer_orientation_and_ownership"
+  },
+  {
+    "identity": "outer-domain",
+    "before": "rational(integer(x), \"vector coordinate\")",
+    "after": "rational(x, \"vector coordinate\")",
+    "test": "test_exact_shapes_and_scalar_domains"
+  },
+  {
+    "identity": "outer-preflight",
+    "before": "rational(integer(x), \"vector coordinate\")",
+    "after": "Q(integer(x))",
+    "test": "test_resource_terms_before_cancellation",
+    "additional_import": "from fractions import Fraction as Q"
+  },
+  {
+    "identity": "census-radius",
+    "before": "range(-self.radius, self.radius+1)",
+    "after": "range(-self.radius, self.radius)",
+    "test": "test_policy_and_counter"
+  },
+  {
+    "identity": "original-large-case",
+    "before": "inputs.extend([(10**50, -17, 10**40, 23), (0, 0, 0, 0)])",
+    "after": "inputs.extend([(0, 0, 0, 0)])",
+    "test": "test_policy_and_counter"
+  },
+  {
+    "identity": "guard-removal",
+    "before": "cases.require(det(matrix) == 0, \"outer determinant\")",
+    "after": "pass",
+    "test": "test_policy_and_counter"
+  },
+  {
+    "identity": "reported-count",
+    "before": "\"checks\": cases.checks",
+    "after": "\"checks\": cases.checks+1",
+    "test": "test_policy_and_counter"
+  },
+  {
+    "identity": "refusal-exit",
+    "before": "return cli(_main)",
+    "after": "return 0",
+    "test": "test_failures_cli_and_cancellation"
+  },
+  {
+    "identity": "verify-refusal",
+    "before": "return evaluate(self._verify)",
+    "after": "return evaluate(lambda: {})",
+    "test": "test_policy_and_counter"
+  }
+]

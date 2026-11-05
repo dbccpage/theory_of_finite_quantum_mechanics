@@ -77,9 +77,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
 - sha256 (`bytes`): `2c39d5d66e90bfe5675526a4018e66a8290aa1daef019fdaceb85c4326a356d1`
 - cited in: record TFQ-0558
 
@@ -101,9 +101,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -111,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md`
 
 - file: [dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md](../../../dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md)
-- sha256 (`lf-normalised`): `84f7738e57148603e9d0dda710e5a97438b9db209523ccfdabbb3e13e289f805`
+- sha256 (`lf-normalised`): `8acd10e8ae6ac9a79f8bda80df05d4f9372bce3d6785ba5dc62c9e971af54bd7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0558
 - counts toward the grade: no

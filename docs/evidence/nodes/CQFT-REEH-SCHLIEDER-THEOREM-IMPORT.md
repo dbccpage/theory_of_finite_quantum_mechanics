@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/cqft-reeh-schlieder-theorem-import.py`
 
 - file: [checks/independent/cqft-reeh-schlieder-theorem-import.py](../../../checks/independent/cqft-reeh-schlieder-theorem-import.py)
-- sha256 (`bytes`): `817557dd378e4df7b3e2c47be62d16b2e6380b04bef27ce317c3d2800b494088`
+- sha256 (`bytes`): `2a639082e9bfe78086ae46a4be4ea5d5cfb79e9f009a55522b1210614bbe4cd8`
 - cited in: node.source, record TFQ-2106
 - counts toward the grade: yes
 

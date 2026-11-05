@@ -1,9 +1,9 @@
 # WDP derivation guide
 
-The expert swarm completed all nineteen registered open targets at explicit finite or conditional scopes. All154 canonical IDs remain. The final source-bound observer result recovers all 44 original texts, verifies529 absorbed occurrences and supplies distinct typed adapters for every identified family. [The completion proof](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/observer_adapter_completion.md) gives the exact criterion, countermodels and domains. External Genesis access is unnecessary.
+The expert swarm completed all nineteen registered open targets at explicit finite or conditional scopes. All154 canonical IDs remain. The final source-bound observer result recovers all 44 original texts, verifies529 absorbed occurrences and supplies distinct typed adapters for every identified family. [The completion proof](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/observer_adapter_completion.md) gives the exact criterion, countermodels and domains. External Genesis access is unnecessary.
 
 
-Read the [paper derivation review](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/derivation_review.md) and its expert proof notes for exact statements, constructive witnesses and scope. Appendix J contains the new derivations; the canonical claim ledger controls status.
+Read the [paper derivation review](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/derivation_review.md) and its expert proof notes for exact statements, constructive witnesses and scope. Appendix J contains the new derivations; the canonical claim ledger controls status.
 
 | Topic | What is now established |
 | --- | --- |

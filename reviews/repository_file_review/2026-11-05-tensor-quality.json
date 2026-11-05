@@ -1,0 +1,267 @@
+{
+  "AuthorityEffect": "None",
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "sources": {
+    "checks/independent/fq-gap-tensor-uniqueness.py": {
+      "sha256": "fded76824431e769c3f0cca69fadee778b946347ff5dfa0e1155f446c70a8fb5",
+      "max_ccn": 8,
+      "max_cognitive": 3,
+      "classes": 1
+    },
+    "checks/tests/test_tensor_outer_controls.py": {
+      "sha256": "62e5d9d53414354aab5f1d7621f87f3fce489d80cae0de22c7f6a6509ea74119",
+      "max_ccn": 4,
+      "max_cognitive": 4,
+      "classes": 1
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-m",
+        "mypy",
+        "--config-file",
+        "checks/mypy.ini",
+        "--no-incremental",
+        "checks\\independent\\fq-gap-tensor-uniqueness.py",
+        "checks\\tests\\test_tensor_outer_controls.py"
+      ],
+      "returncode": 0,
+      "stdout": "Success: no issues found in 2 source files\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "checks\\tests\\test_tensor_outer_controls.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 2.423s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-O",
+        "-X",
+        "utf8",
+        "checks\\tests\\test_tensor_outer_controls.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 3.072s\n\nOK\n"
+    }
+  ],
+  "mutants": [
+    {
+      "identity": "integer-admission",
+      "before": "RationalMatrix(integer_matrix(value, rows=2, cols=2))",
+      "after": "RationalMatrix(value)",
+      "test": "test_exact_shapes_and_scalar_domains",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "E\n======================================================================\nERROR: test_exact_shapes_and_scalar_domains (__main__.TensorOuterTests.test_exact_shapes_and_scalar_domains) (value=[[1]], operation=<function TensorOuterProductControls.matrix_rank at 0x0000021347955430>)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 75, in test_exact_shapes_and_scalar_domains\n    self.assertEqual(operation(invalid).error.kind, \"input\")\n                     ~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\independent\\fq-gap-tensor-uniqueness.py\", line 63, in matrix_rank\n    return evaluate(rank, value)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\independent\\fq-gap-tensor-uniqueness.py\", line 42, in rank\n    factor = rows[other][col]\n             ~~~~^^^^^^^\nIndexError: list index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n"
+    },
+    {
+      "identity": "minor-sign",
+      "before": "return _matrix(value).det2().numerator",
+      "after": "return -_matrix(value).det2().numerator",
+      "test": "test_independent_minor_and_rank",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_independent_minor_and_rank (__main__.TensorOuterTests.test_independent_minor_and_rank)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 44, in test_independent_minor_and_rank\n    @given(MATRIX)\n               ^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 48, in test_independent_minor_and_rank\n    self.assertEqual(module.det(rows), int(reference.det()))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != -1\nFailing test case: test_independent_minor_and_rank(\n    self=<__main__.TensorOuterTests testMethod=test_independent_minor_and_rank>,\n    rows=[[0, 1], [1, 0]],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.279s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "rank-constant",
+      "before": "return pivot_row",
+      "after": "return 0",
+      "test": "test_pivots_and_singular_cases",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_pivots_and_singular_cases (__main__.TensorOuterTests.test_pivots_and_singular_cases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 85, in test_pivots_and_singular_cases\n    self.assertEqual(module.rank(rows), rank)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "rank-increment",
+      "before": "pivot_row += 1",
+      "after": "pivot_row += 0",
+      "test": "test_pivots_and_singular_cases",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_pivots_and_singular_cases (__main__.TensorOuterTests.test_pivots_and_singular_cases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 85, in test_pivots_and_singular_cases\n    self.assertEqual(module.rank(rows), rank)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "pivot-exchange",
+      "before": "rows[candidate], rows[pivot_row] = rows[pivot_row], rows[candidate]",
+      "after": "rows[candidate], rows[pivot_row] = rows[candidate], rows[pivot_row]",
+      "test": "test_pivots_and_singular_cases",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "E\n======================================================================\nERROR: test_pivots_and_singular_cases (__main__.TensorOuterTests.test_pivots_and_singular_cases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 85, in test_pivots_and_singular_cases\n    self.assertEqual(module.rank(rows), rank)\n                     ~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\independent\\fq-gap-tensor-uniqueness.py\", line 40, in rank\n    rows[pivot_row] = [rational(x/pivot, \"elimination quotient\") for x in rows[pivot_row]]\n                                ~^~~~~~\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\fractions.py\", line 699, in forward\n    return monomorphic_operator(a, b)\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\fractions.py\", line 847, in _div\n    raise ZeroDivisionError('Fraction(%s, 0)' % db)\nZeroDivisionError: Fraction(1, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n"
+    },
+    {
+      "identity": "pivot-normalization",
+      "before": "rational(x/pivot, \"elimination quotient\")",
+      "after": "rational(x*pivot, \"elimination quotient\")",
+      "test": "test_independent_minor_and_rank",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_independent_minor_and_rank (__main__.TensorOuterTests.test_independent_minor_and_rank)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 44, in test_independent_minor_and_rank\n    @given(MATRIX)\n               ^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 49, in test_independent_minor_and_rank\n    self.assertEqual(module.rank(rows), int(reference.rank()))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 2\nFailing test case: test_independent_minor_and_rank(\n    self=<__main__.TensorOuterTests testMethod=test_independent_minor_and_rank>,\n    rows=[[2, 1], [1, 2]],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.723s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "elimination-sign",
+      "before": "rational(x-rational(factor*y, \"elimination product\"), \"elimination difference\")",
+      "after": "rational(x+rational(factor*y, \"elimination product\"), \"elimination difference\")",
+      "test": "test_pivots_and_singular_cases",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_pivots_and_singular_cases (__main__.TensorOuterTests.test_pivots_and_singular_cases)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 85, in test_pivots_and_singular_cases\n    self.assertEqual(module.rank(rows), rank)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "policy-type",
+      "before": "integer(radius, \"census radius\", 0, 5)",
+      "after": "int(radius)",
+      "test": "test_policy_and_counter",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_policy_and_counter (__main__.TensorOuterTests.test_policy_and_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 106, in test_policy_and_counter\n    self.assertIsNotNone(evaluate(module.TensorOuterProductControls, value).error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "policy-budget",
+      "before": "integer(radius, \"census radius\", 0, 5)",
+      "after": "integer(radius, \"census radius\", 0, 6)",
+      "test": "test_policy_and_counter",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_policy_and_counter (__main__.TensorOuterTests.test_policy_and_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 106, in test_policy_and_counter\n    self.assertIsNotNone(evaluate(module.TensorOuterProductControls, value).error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "outer-orientation",
+      "before": "((rational(a*c), rational(a*d)), (rational(b*c), rational(b*d)))",
+      "after": "((rational(a*c), rational(b*c)), (rational(a*d), rational(b*d)))",
+      "test": "test_outer_orientation_and_ownership",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_outer_orientation_and_ownership (__main__.TensorOuterTests.test_outer_orientation_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 55, in test_outer_orientation_and_ownership\n    @given(st.tuples(*(st.integers(-100, 100) for _ in range(4))))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 63, in test_outer_orientation_and_ownership\n    self.assertEqual(sp.Matrix(matrix.rows), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 1],\n[0, 0]]) != Matrix([\n[0, 0],\n[1, 0]])\nFailing test case: test_outer_orientation_and_ownership(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.TensorOuterTests testMethod=test_outer_orientation_and_ownership>,\n    values=(\n        0,  # or any other generated value\n        1,\n        1,\n        0,  # or any other generated value\n    ),\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\str.py:678\n\n----------------------------------------------------------------------\nRan 1 test in 3.603s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "outer-last-factor",
+      "before": "rational(b*d)",
+      "after": "rational(b*c)",
+      "test": "test_outer_orientation_and_ownership",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_outer_orientation_and_ownership (__main__.TensorOuterTests.test_outer_orientation_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 55, in test_outer_orientation_and_ownership\n    @given(st.tuples(*(st.integers(-100, 100) for _ in range(4))))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 63, in test_outer_orientation_and_ownership\n    self.assertEqual(sp.Matrix(matrix.rows), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0],\n[0, 0]]) != Matrix([\n[0, 0],\n[0, 1]])\nFailing test case: test_outer_orientation_and_ownership(\n    self=<__main__.TensorOuterTests testMethod=test_outer_orientation_and_ownership>,\n    values=(\n        0,  # or any other generated value\n        1,\n        0,\n        1,\n    ),\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\str.py:678\n\n----------------------------------------------------------------------\nRan 1 test in 1.269s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "outer-domain",
+      "before": "rational(integer(x), \"vector coordinate\")",
+      "after": "rational(x, \"vector coordinate\")",
+      "test": "test_exact_shapes_and_scalar_domains",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "E\n======================================================================\nERROR: test_exact_shapes_and_scalar_domains (__main__.TensorOuterTests.test_exact_shapes_and_scalar_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 78, in test_exact_shapes_and_scalar_domains\n    self.assertEqual(controls.outer_product(invalid_vector).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (errors=1)\n"
+    },
+    {
+      "identity": "outer-preflight",
+      "before": "rational(integer(x), \"vector coordinate\")",
+      "after": "Q(integer(x))",
+      "test": "test_resource_terms_before_cancellation",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "E\n======================================================================\nERROR: test_resource_terms_before_cancellation (__main__.TensorOuterTests.test_resource_terms_before_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 100, in test_resource_terms_before_cancellation\n    self.assertEqual(controls.outer_product((oversized, 0, 0, 0)).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (errors=1)\n"
+    },
+    {
+      "identity": "census-radius",
+      "before": "range(-self.radius, self.radius+1)",
+      "after": "range(-self.radius, self.radius)",
+      "test": "test_policy_and_counter",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_policy_and_counter (__main__.TensorOuterTests.test_policy_and_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 117, in test_policy_and_counter\n    self.assertEqual(report[\"checks\"], 7212)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 3897 != 7212\n\n----------------------------------------------------------------------\nRan 1 test in 0.067s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "original-large-case",
+      "before": "inputs.extend([(10**50, -17, 10**40, 23), (0, 0, 0, 0)])",
+      "after": "inputs.extend([(0, 0, 0, 0)])",
+      "test": "test_policy_and_counter",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_policy_and_counter (__main__.TensorOuterTests.test_policy_and_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 117, in test_policy_and_counter\n    self.assertEqual(report[\"checks\"], 7212)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 7209 != 7212\n\n----------------------------------------------------------------------\nRan 1 test in 0.111s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "guard-removal",
+      "before": "cases.require(det(matrix) == 0, \"outer determinant\")",
+      "after": "pass",
+      "test": "test_policy_and_counter",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_policy_and_counter (__main__.TensorOuterTests.test_policy_and_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 117, in test_policy_and_counter\n    self.assertEqual(report[\"checks\"], 7212)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4809 != 7212\n\n----------------------------------------------------------------------\nRan 1 test in 0.077s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "reported-count",
+      "before": "\"checks\": cases.checks",
+      "after": "\"checks\": cases.checks+1",
+      "test": "test_policy_and_counter",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_policy_and_counter (__main__.TensorOuterTests.test_policy_and_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 117, in test_policy_and_counter\n    self.assertEqual(report[\"checks\"], 7212)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 7213 != 7212\n\n----------------------------------------------------------------------\nRan 1 test in 0.096s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "refusal-exit",
+      "before": "return cli(_main)",
+      "after": "return 0",
+      "test": "test_failures_cli_and_cancellation",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "F\n======================================================================\nFAIL: test_failures_cli_and_cancellation (__main__.TensorOuterTests.test_failures_cli_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 129, in test_failures_cli_and_cancellation\n    self.assertEqual(module.main(), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "identity": "verify-refusal",
+      "before": "return evaluate(self._verify)",
+      "after": "return evaluate(lambda: {})",
+      "test": "test_policy_and_counter",
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "E\n======================================================================\nERROR: test_policy_and_counter (__main__.TensorOuterTests.test_policy_and_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\tensor-mutations-lmc2dqb4\\checks\\tests\\test_tensor_outer_controls.py\", line 117, in test_policy_and_counter\n    self.assertEqual(report[\"checks\"], 7212)\n                     ~~~~~~^^^^^^^^^^\nKeyError: 'checks'\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (errors=1)\n"
+    }
+  ],
+  "dependencies_sha256": {
+    "checks/checker_support/binary_frame_system.py": "843503239990f18ad076a7c5078fd084d73be12cd8314a5e9ae8f20bd6a77eb8",
+    "checks/checker_support/boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks/checker_support/cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks/checker_support/cech_complex.py": "6f973fc65d6fa66ebb9078c6cc1af60683a5150b97b5510ca853517b650227dd",
+    "checks/checker_support/domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks/checker_support/empirical_model.py": "612562ec192efe40b5b9a0bb151486d4e77caf399bd853d2da712f5ca465172c",
+    "checks/checker_support/equatorial_ray_geometry.py": "ae4f3583fc892bcbfa5ed5acacdc41b88c09f2f4fe0a4811a12ec48d5c503622",
+    "checks/checker_support/exact_json_document.py": "e162590c25fab02fe87d73bc50f1e52e8083580b9faafae14ba4c50b8efb9f8c",
+    "checks/checker_support/exact_linear_program.py": "c771280ccd6473deaa011e37ca22c3e1856ccb9fbd2025580c81b87a0513f65f",
+    "checks/checker_support/gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks/checker_support/gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks/checker_support/gaussian_vector3.py": "7499bff94cb4a71a8dc8e4fa7ed3e08a00ac3a0e5096f925eb3e10b290f8a23e",
+    "checks/checker_support/happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks/checker_support/hermitian_tomography.py": "df1760dcfb384e13a48fc572613d6d25fe051361d6ab77954dec083f498e2c69",
+    "checks/checker_support/inert_prime_residual.py": "55f11b7d004c29e7feb7b44461117c003821ee7781fd940e973eb8a02f3b57aa",
+    "checks/checker_support/integer_quadratic_equation.py": "7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4",
+    "checks/checker_support/linear_program_certificate.py": "cfe2167737de71125118fb749a6e9ba5a2501cbee49ebc7828d2d55cc81636dc",
+    "checks/checker_support/measurement_scenario.py": "c441ba2036eca8083869d4b0fb4a49fdbc84638ca29b3cd2e90f8a07b5d71a3c",
+    "checks/checker_support/mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks/checker_support/orthogonal_gaussian_pair.py": "e5402c6601acc653d2958eb28e46bf0cc99e7616b2a9bcbc5f82611eba5f78d3",
+    "checks/checker_support/outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks/checker_support/rational_inverse.py": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+    "checks/checker_support/rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks/checker_support/simplex_tableau.py": "c5254540e60b3bd68f8bd7776162878d6a919724f88b2098f9874bb980d2c145",
+    "checks/checker_support/wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks/mypy.ini": "5165f5293fae5f397d99c840184e5a118ce2a0559c178865285082fa91c05bb0",
+    "checks/tests/requirements.txt": "848c6eb21f30cb102a66ce71d54cf36772929aaef549aeb51e07fe879061bbf4",
+    "lean4/TensorUniquenessOuterProducts.lean": "704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c"
+  }
+}

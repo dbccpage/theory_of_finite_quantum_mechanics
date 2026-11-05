@@ -75,16 +75,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean`
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md)
 - sha256 (`lf-normalised`): `d8c3f8489c516b84e95d515cf5eff9f58d5dc30596b716d3f5ac0500e4e0abde`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
 - sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
 - cited in: node.source
 - counts toward the grade: yes
@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md`
 
 - file: [dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md](../../../dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md)
-- sha256 (`lf-normalised`): `9b5cd08da3fdf37e3d53274f87973ce66fe29a195e61bd2941ed59ca32844fb2`
+- sha256 (`lf-normalised`): `8a0f72ad1f42f1df9a76ebf42fcf098e7512ff3c0cc6d658a6ae8f767424df2c`
 - generated view: listed, not counted
 - cited in: record TFQ-0391
 - counts toward the grade: no

@@ -35,9 +35,9 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`declaration obligation: refine_separates, one supplied tag, one collapsed pair`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::refine_separates`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::supplied_tag_separates`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::refine_separates`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::supplied_tag_separates`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: a supplied-tag splitter in crate pre_mssn_preservation with the tag passed in, not chosen inside the function`](../../code/rust/src/)
@@ -47,7 +47,7 @@ In accordance with strict constructive principles:
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: preservation.refine must take the tag as an argument and must not search for a tag`](../../code/python/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
 
 ---
 

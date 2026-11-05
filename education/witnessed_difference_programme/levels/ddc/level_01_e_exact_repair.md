@@ -15,10 +15,10 @@ source_paths:
   - omega_engine/crates_rs/omega_wdp/src/ddc/dda_alphabet.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/transition_effects.rs
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/01_e_exact_repair.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/exact_repair.py
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ExactRepair.lean
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/01_e_exact_repair.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/exact_repair.py
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ExactRepair.lean
   - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/exact_repair_operator.contract.yaml
 last_verified: 2026-10-01
 ---
@@ -64,7 +64,7 @@ For every oriented edge $e = (u \to v) \in E$:
 $$(d_0(\varphi_1 - \varphi_2))(u \to v) = (\varphi_1 - \varphi_2)(v) - (\varphi_1 - \varphi_2)(u) = 0 \implies (\varphi_1 - \varphi_2)(v) = (\varphi_1 - \varphi_2)(u)$$
 Hence $\varphi_1 - \varphi_2$ is constant along every edge and therefore constant across every connected component of $K$. $\square$
 
-The solver [`ExactRepairSolver`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/exact_repair.py) deterministically recovers $\varphi$ by breadth-first integration outward from designated gauge roots $\varphi(v_0) = 0$ across spanning forest edges $T \subset K$. The repair transformation:
+The solver [`ExactRepairSolver`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/exact_repair.py) deterministically recovers $\varphi$ by breadth-first integration outward from designated gauge roots $\varphi(v_0) = 0$ across spanning forest edges $T \subset K$. The repair transformation:
 
 $$x \mapsto x - d_0 \varphi = 0$$
 
@@ -154,7 +154,7 @@ Every successful Level 01 execution produces a machine-verifiable `ExactRepairRe
 | **DDC-E-05** | Exact repair is idempotent: repairing zero leaves zero. | `Ddc.E_repair_idempotent` | [`op_verification.rs::exact_repair_may_not_restructure_the_carrier`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs#L647) | `test_exact_repair.py::test_exact_repair_idempotent` |
 
 ### Lean 4 Proof Kernel
-[`lean4/Ddc/ExactRepair.lean`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ExactRepair.lean):
+[`lean4/Ddc/ExactRepair.lean`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/ExactRepair.lean):
 ```lean
 theorem Ddc.E_gauge_repair_discharges :
   ∀ (x : C¹), is_exact x → (x - d₀ (solve_potential x)) = 0
@@ -169,7 +169,7 @@ theorem Ddc.E_gauge_repair_discharges :
   - `exact_repair_may_not_restructure_the_carrier()`: Asserts `OpViolation::FixedCarrierOpChangedCarrier` on unpermitted carrier mutation.
 
 ### Python Reference Test Bindings
-- [`code/tests/test_exact_repair.py`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/tests/test_exact_repair.py):
+- [`code/tests/test_exact_repair.py`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/tests/test_exact_repair.py):
   - `test_tree_potential_integration_discharges_defect()`: Validates exact vanishing on tree.
   - `test_curl_defect_refused_as_non_exact()`: Validates fail-closed refusal on non-zero curl.
   - `test_exact_repair_idempotent()`: Validates idempotence.

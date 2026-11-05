@@ -60,16 +60,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/incidence_construction.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/incidence_construction.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/incidence_construction.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/incidence_construction.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/incidence_construction.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/incidence_construction.txt)
 - sha256 (`lf-normalised`): `3e8636fbccc23635b30a2ad8509af64938818689a22654b3d263736a2d51b2e1`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- file: [atlas/finite_obstruction_calculus/genesis/paper.md](../../../atlas/finite_obstruction_calculus/genesis/paper.md)
 - sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
 - cited in: node.source
 - counts toward the grade: yes
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md`
 
 - file: [dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md](../../../dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md)
-- sha256 (`lf-normalised`): `65d9f9b449a0434ceff5647c715761186aea03f22271971fe94cecf759fc7b94`
+- sha256 (`lf-normalised`): `8620731371ca6cad95574ede791b57991a4c149667269a82ebfc7767e16f5339`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0460
 - counts toward the grade: no

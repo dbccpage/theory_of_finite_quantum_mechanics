@@ -1,0 +1,560 @@
+[
+  {
+    "identity": "site-domain-coercion",
+    "source": "checker_support/bond_graph.py",
+    "before": "integer(sites, \"Hubbard sites\", 1, 4)",
+    "after": "int(sites)",
+    "tests": [
+      "test_graph_domains_normalization_and_ownership"
+    ]
+  },
+  {
+    "identity": "site-budget",
+    "source": "checker_support/bond_graph.py",
+    "before": "integer(sites, \"Hubbard sites\", 1, 4)",
+    "after": "integer(sites, \"Hubbard sites\", 1, 5)",
+    "tests": [
+      "test_graph_domains_normalization_and_ownership"
+    ]
+  },
+  {
+    "identity": "bond-shape",
+    "source": "checker_support/bond_graph.py",
+    "before": "sequence(value, \"bond\", 2, 2)",
+    "after": "sequence(value, \"bond\", maximum=2)",
+    "tests": [
+      "test_graph_domains_normalization_and_ownership"
+    ]
+  },
+  {
+    "identity": "bond-endpoint-coercion",
+    "source": "checker_support/bond_graph.py",
+    "before": "integer(left, \"bond endpoint\", 0, sites-1)",
+    "after": "int(left)",
+    "tests": [
+      "test_graph_domains_normalization_and_ownership"
+    ]
+  },
+  {
+    "identity": "self-bond-admitted",
+    "source": "checker_support/bond_graph.py",
+    "before": "if u == v:",
+    "after": "if False:",
+    "tests": [
+      "test_graph_domains_normalization_and_ownership"
+    ]
+  },
+  {
+    "identity": "bond-order",
+    "source": "checker_support/bond_graph.py",
+    "before": "tuple(sorted(_edge(edge, size) for edge in entries))",
+    "after": "tuple(_edge(edge, size) for edge in entries)",
+    "tests": [
+      "test_graph_domains_normalization_and_ownership"
+    ]
+  },
+  {
+    "identity": "undirected-normalization",
+    "source": "checker_support/bond_graph.py",
+    "before": "return min(u, v), max(u, v)",
+    "after": "return u, v",
+    "tests": [
+      "test_graph_domains_normalization_and_ownership"
+    ]
+  },
+  {
+    "identity": "duplicate-bonds",
+    "source": "checker_support/bond_graph.py",
+    "before": "if len(set(normalized)) != len(normalized):",
+    "after": "if False:",
+    "tests": [
+      "test_graph_domains_normalization_and_ownership"
+    ]
+  },
+  {
+    "identity": "bond-shape-budget",
+    "source": "checker_support/bond_graph.py",
+    "before": "sequence(bonds, \"bonds\", maximum=6)",
+    "after": "sequence(bonds, \"bonds\", maximum=7)",
+    "tests": [
+      "test_model_preflight_and_refusal_helper_strength"
+    ]
+  },
+  {
+    "identity": "kinetic-diagonal",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "rational(r+inverse, \"hopping sum\")",
+    "after": "rational(r-inverse, \"hopping sum\")",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "kinetic-off-diagonal",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "rational(r-inverse, \"hopping difference\")",
+    "after": "rational(r+inverse, \"hopping difference\")",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "kinetic-half-factor",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "/2, \"bond diagonal\"",
+    "after": "/3, \"bond diagonal\"",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "kinetic-forward-only",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "graph.bonds+tuple(reversed(graph.bonds))",
+    "after": "graph.bonds",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "potential-field-index",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "offset+i",
+    "after": "i",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "potential-bit-sign",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "2*((mask >> (offset+i)) & 1)-1",
+    "after": "2*((mask >> (offset+i)) & 1)+1",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "potential-channel",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "-s if reverse else s",
+    "after": "s",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "potential-fugacity",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "fugacity*_power(h, -s if reverse else s)",
+    "after": "_power(h, -s if reverse else s)",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "model-graph-admission",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "if type(graph) is not BondGraph:",
+    "after": "if False:",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "slice-coercion",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "integer(slices, \"Hubbard slices\", 1, 4)",
+    "after": "int(slices)",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "slice-budget",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "integer(slices, \"Hubbard slices\", 1, 4)",
+    "after": "integer(slices, \"Hubbard slices\", 1, 5)",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "hopping-positive",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "rational(r, \"hopping parameter\", strictly_positive=True)",
+    "after": "rational(r, \"hopping parameter\")",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "coupling-positive",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "rational(hs, \"field coupling\", strictly_positive=True)",
+    "after": "rational(hs, \"field coupling\")",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "fugacity-positive",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "rational(fugacity, \"fugacity\", strictly_positive=True)",
+    "after": "rational(fugacity, \"fugacity\")",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "channel-admission",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "if type(attractive) is not bool:",
+    "after": "if False:",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "field-count",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "1 << (self.graph.sites*self.slices)",
+    "after": "1 << self.graph.sites",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "field-mask-coercion",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "integer(mask, \"field mask\", 0, self.field_count-1)",
+    "after": "int(mask) % self.field_count",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "field-mask-upper-bound",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "integer(mask, \"field mask\", 0, self.field_count-1)",
+    "after": "integer(mask, \"field mask\", 0, self.field_count)",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "transfer-slices",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "for time in range(self.slices):",
+    "after": "for time in range(self.slices-1):",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "spin-down-channel",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "not self.attractive",
+    "after": "self.attractive",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "field-sum-offset",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "2*field.bit_count()-sites*self.slices",
+    "after": "2*field.bit_count()",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "attractive-prefactor",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "_power(self.hs, -total_s) if self.attractive else Q(1)",
+    "after": "Q(1)",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "determinant-identity-shift",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "_determinant(identity.add(up))",
+    "after": "_determinant(up)",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "public-refusal-translation",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "return evaluate(self._determinants, mask)",
+    "after": "return Outcome(value=self._determinants(mask))",
+    "tests": [
+      "test_model_domains_and_field_mask_preflight"
+    ]
+  },
+  {
+    "identity": "negative-power-sign",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "rational(1/base) if exponent < 0 else base",
+    "after": "base",
+    "tests": [
+      "test_result_invariants_and_power_budgets"
+    ]
+  },
+  {
+    "identity": "power-budget",
+    "source": "checker_support/hubbard_transfer.py",
+    "before": "rational(result*factor, \"field prefactor power\")",
+    "after": "result*factor",
+    "tests": [
+      "test_result_invariants_and_power_budgets"
+    ]
+  },
+  {
+    "identity": "result-up-domain",
+    "source": "checker_support/hubbard_determinants.py",
+    "before": "rational(d_up, \"up determinant\")",
+    "after": "Q(d_up)",
+    "tests": [
+      "test_result_invariants_and_power_budgets"
+    ]
+  },
+  {
+    "identity": "result-prefactor-sign",
+    "source": "checker_support/hubbard_determinants.py",
+    "before": "rational(prefactor, \"field prefactor\", strictly_positive=True)",
+    "after": "rational(prefactor, \"field prefactor\")",
+    "tests": [
+      "test_result_invariants_and_power_budgets"
+    ]
+  },
+  {
+    "identity": "result-prefactored-product-budget",
+    "source": "checker_support/hubbard_determinants.py",
+    "before": "rational(coefficient*up, \"prefactored up determinant\")",
+    "after": "coefficient*up",
+    "tests": [
+      "test_result_invariants_and_power_budgets"
+    ]
+  },
+  {
+    "identity": "result-weight",
+    "source": "checker_support/hubbard_determinants.py",
+    "before": "*down, \"field weight\")",
+    "after": "*up, \"field weight\")",
+    "tests": [
+      "test_result_invariants_and_power_budgets"
+    ]
+  },
+  {
+    "identity": "result-field-sum-domain",
+    "source": "checker_support/hubbard_determinants.py",
+    "before": "integer(total_s, \"field sum\", -16, 16)",
+    "after": "int(total_s)",
+    "tests": [
+      "test_result_invariants_and_power_budgets"
+    ]
+  },
+  {
+    "identity": "determinant-input-type",
+    "source": "checker_support/rational_determinant.py",
+    "before": "if type(matrix) is not RationalMatrix:",
+    "after": "if False:",
+    "tests": [
+      "test_determinant_pivots_shape_and_resource_paths"
+    ]
+  },
+  {
+    "identity": "determinant-square",
+    "source": "checker_support/rational_determinant.py",
+    "before": "matrix.require_shape(matrix.shape[0], matrix.shape[0])",
+    "after": "pass",
+    "tests": [
+      "test_determinant_pivots_shape_and_resource_paths"
+    ]
+  },
+  {
+    "identity": "determinant-factor-budget",
+    "source": "checker_support/rational_determinant.py",
+    "before": "rational(row[column] / pivot[column], \"determinant elimination factor\")",
+    "after": "row[column] / pivot[column]",
+    "tests": [
+      "test_determinant_pivots_shape_and_resource_paths"
+    ]
+  },
+  {
+    "identity": "determinant-product-budget",
+    "source": "checker_support/rational_determinant.py",
+    "before": "rational(factor*entry, \"determinant product\")",
+    "after": "factor*entry",
+    "tests": [
+      "test_determinant_pivots_shape_and_resource_paths"
+    ]
+  },
+  {
+    "identity": "determinant-difference-budget",
+    "source": "checker_support/rational_determinant.py",
+    "before": "rational(value-rational(factor*entry, \"determinant product\"),\n                                  \"determinant difference\")",
+    "after": "value-rational(factor*entry, \"determinant product\")",
+    "tests": [
+      "test_determinant_pivots_shape_and_resource_paths"
+    ]
+  },
+  {
+    "identity": "determinant-pivot-prefix-budget",
+    "source": "checker_support/rational_determinant.py",
+    "before": "rational(determinant*rows[column][column], \"determinant pivot product\")",
+    "after": "determinant*rows[column][column]",
+    "tests": [
+      "test_determinant_pivots_shape_and_resource_paths"
+    ]
+  },
+  {
+    "identity": "determinant-singular",
+    "source": "checker_support/rational_determinant.py",
+    "before": "return Q(0)",
+    "after": "return Q(1)",
+    "tests": [
+      "test_determinant_pivots_shape_and_resource_paths"
+    ]
+  },
+  {
+    "identity": "determinant-swap-sign",
+    "source": "checker_support/rational_determinant.py",
+    "before": "determinant = -determinant",
+    "after": "determinant = determinant",
+    "tests": [
+      "test_determinant_pivots_shape_and_resource_paths"
+    ]
+  },
+  {
+    "identity": "determinant-ignores-later-pivot",
+    "source": "checker_support/rational_determinant.py",
+    "before": "rows[i][column] != 0",
+    "after": "rows[i][column] == 0",
+    "tests": [
+      "test_determinant_pivots_shape_and_resource_paths"
+    ]
+  },
+  {
+    "identity": "census-attractive-range",
+    "source": "independent/fsp-hubbard-protected-representations.py",
+    "before": "range(64)",
+    "after": "range(63)",
+    "tests": [
+      "test_original_guards_actual_counters_and_repeatability"
+    ]
+  },
+  {
+    "identity": "census-half-filled-range",
+    "source": "independent/fsp-hubbard-protected-representations.py",
+    "before": "range(256)",
+    "after": "range(255)",
+    "tests": [
+      "test_original_guards_actual_counters_and_repeatability"
+    ]
+  },
+  {
+    "identity": "census-skips-ring-witness",
+    "source": "independent/fsp-hubbard-protected-representations.py",
+    "before": "self._doped(cases,emit)",
+    "after": "pass",
+    "tests": [
+      "test_original_guards_actual_counters_and_repeatability"
+    ]
+  },
+  {
+    "identity": "census-skips-triangle-witness",
+    "source": "independent/fsp-hubbard-protected-representations.py",
+    "before": "self._triangle(cases,emit)",
+    "after": "pass",
+    "tests": [
+      "test_original_guards_actual_counters_and_repeatability"
+    ]
+  },
+  {
+    "identity": "census-reported-counter",
+    "source": "independent/fsp-hubbard-protected-representations.py",
+    "before": "\"checks\":cases.checks",
+    "after": "\"checks\":659",
+    "tests": [
+      "test_original_guards_actual_counters_and_repeatability"
+    ]
+  },
+  {
+    "identity": "pairing-guard-removed",
+    "source": "independent/fsp-hubbard-protected-representations.py",
+    "before": "cases.require(bool(d_up == d_down), f'Attractive spin pairing failed at mask {mask}: {d_up} != {d_down}')",
+    "after": "pass",
+    "tests": [
+      "test_original_guards_actual_counters_and_repeatability"
+    ]
+  },
+  {
+    "identity": "negative-sign-guard-removed",
+    "source": "independent/fsp-hubbard-protected-representations.py",
+    "before": "cases.require(bool(d_down1 < 0), 'd_down must be strictly negative')",
+    "after": "pass",
+    "tests": [
+      "test_original_guards_actual_counters_and_repeatability"
+    ]
+  },
+  {
+    "identity": "legacy-float-admission",
+    "source": "independent/fsp-hubbard-protected-representations.py",
+    "before": "return rational(value)",
+    "after": "return Q(value)",
+    "tests": [
+      "test_legacy_exact_adapters"
+    ]
+  },
+  {
+    "identity": "cli-refusal-status",
+    "source": "independent/fsp-hubbard-protected-representations.py",
+    "before": "return cli(_main)",
+    "after": "return 0",
+    "tests": [
+      "test_check_failures_typed_resources_and_cancellation"
+    ]
+  },
+  {
+    "identity": "refusal-helper-disabled",
+    "source": "tests/test_hubbard_transfer.py",
+    "before": "def refused(self,result: Outcome[Any],kind: str='input') -> None:\n        self.assertIsNotNone(result.error)\n        if result.error is None:\n            self.fail('Expected a typed refusal')\n        self.assertEqual(result.error.kind,kind)",
+    "after": "def refused(self,result: Outcome[Any],kind: str='input') -> None:\n        return None",
+    "tests": [
+      "test_model_preflight_and_refusal_helper_strength"
+    ]
+  },
+  {
+    "identity": "rational-oracle-denominator",
+    "source": "tests/test_hubbard_transfer.py",
+    "before": "return Q(int(numerator),int(denominator))",
+    "after": "return Q(int(numerator))",
+    "tests": [
+      "test_generated_fields_against_independent_symbolic_model"
+    ]
+  },
+  {
+    "identity": "symbolic-oracle-field-order",
+    "source": "tests/test_hubbard_transfer.py",
+    "before": "time*model.graph.sites+i",
+    "after": "time+i",
+    "tests": [
+      "test_all_original_protected_fields_and_witnesses"
+    ]
+  },
+  {
+    "identity": "symbolic-oracle-spin-channel",
+    "source": "tests/test_hubbard_transfer.py",
+    "before": "s if model.attractive else -s",
+    "after": "s",
+    "tests": [
+      "test_all_original_protected_fields_and_witnesses"
+    ]
+  }
+]

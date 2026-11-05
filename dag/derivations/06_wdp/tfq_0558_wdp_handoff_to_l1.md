@@ -47,7 +47,7 @@ In accordance with strict constructive principles:
 - `external:sha256:e03d0f52eff29ce6729df9bb0833599249bd14163df72024abaf7a6289424cc0::register_stabilized_family` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
 - [`checks/independent/pgw-wdp-handoff-to-l1.py::main`](../../../checks/independent/pgw-wdp-handoff-to-l1.py)
 
 ---
@@ -61,7 +61,7 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1487-1498`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1487-1498`
   - `external:sha256:9a1730f57c42c3111eb85d7b6cadcb15df23977da40a21fd46da4aee5383c594:147-161`
   - `external:sha256:35f78837687555be2e5cc5c69fc60f0f4e25937d2fad1d38bd0efb491e573a31:116-120`
   - `dag/derivations/independent/pgw-wdp-handoff-to-l1.md:5`

@@ -1,0 +1,326 @@
+[
+  {
+    "identity": "sign-coercion",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "sign = integer(value, \"cochain sign\")",
+    "after": "sign = int(value)",
+    "tests": [
+      "test_exact_degrees_signs_and_shapes"
+    ]
+  },
+  {
+    "identity": "sign-zero-admission",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "if sign not in (-1, 1):",
+    "after": "if sign not in (-1, 0, 1):",
+    "tests": [
+      "test_exact_degrees_signs_and_shapes"
+    ]
+  },
+  {
+    "identity": "degree-coercion",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "integer(degree, \"cochain degree\", 2, 3)",
+    "after": "int(degree)",
+    "tests": [
+      "test_exact_degrees_signs_and_shapes"
+    ]
+  },
+  {
+    "identity": "degree-budget-preflight",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "integer(degree, \"cochain degree\", 2, 3)",
+    "after": "integer(degree, \"cochain degree\", 2)",
+    "tests": [
+      "test_admission_precedes_dependent_operations"
+    ]
+  },
+  {
+    "identity": "phase-table-arity",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "sequence(phases, \"cochain phases\", 2**admitted_degree, 8)",
+    "after": "sequence(phases, \"cochain phases\", maximum=8)",
+    "tests": [
+      "test_exact_degrees_signs_and_shapes"
+    ]
+  },
+  {
+    "identity": "phase-table-order",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "object.__setattr__(self, \"phases\", admitted_phases)",
+    "after": "object.__setattr__(self, \"phases\", tuple(reversed(admitted_phases)))",
+    "tests": [
+      "test_generated_point_order_products_and_owned_snapshots"
+    ]
+  },
+  {
+    "identity": "phase-snapshot-ownership",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "object.__setattr__(self, \"phases\", admitted_phases)",
+    "after": "object.__setattr__(self, \"phases\", phases)",
+    "tests": [
+      "test_generated_point_order_products_and_owned_snapshots"
+    ]
+  },
+  {
+    "identity": "point-coordinate-coercion",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "integer(value, \"group coordinate\", 0, 1)",
+    "after": "int(value)",
+    "tests": [
+      "test_exact_degrees_signs_and_shapes"
+    ]
+  },
+  {
+    "identity": "point-arity",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "sequence(point, \"cochain point\", self.degree, 3)",
+    "after": "sequence(point, \"cochain point\", maximum=3)",
+    "tests": [
+      "test_exact_degrees_signs_and_shapes"
+    ]
+  },
+  {
+    "identity": "point-index-order",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "index = 2*index+bit",
+    "after": "index = index+2*bit",
+    "tests": [
+      "test_generated_point_order_products_and_owned_snapshots"
+    ]
+  },
+  {
+    "identity": "normalization-origin",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "if 0 in point",
+    "after": "if 1 in point",
+    "tests": [
+      "test_all_degree_two_boundaries_against_boolean_oracle"
+    ]
+  },
+  {
+    "identity": "normalization-sign",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "self._at(point) == 1",
+    "after": "self._at(point) == -1",
+    "tests": [
+      "test_all_degree_three_cochains_and_pentagon_points"
+    ]
+  },
+  {
+    "identity": "boundary-degree",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "if self.degree != 2:",
+    "after": "if self.degree != 3:",
+    "tests": [
+      "test_all_degree_two_boundaries_against_boolean_oracle"
+    ]
+  },
+  {
+    "identity": "boundary-leading-point",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "self._at((b, c))*",
+    "after": "self._at((a, c))*",
+    "tests": [
+      "test_all_degree_two_boundaries_against_boolean_oracle"
+    ]
+  },
+  {
+    "identity": "boundary-group-addition",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "self._at((a ^ b, c))",
+    "after": "self._at((a | b, c))",
+    "tests": [
+      "test_all_degree_two_boundaries_against_boolean_oracle"
+    ]
+  },
+  {
+    "identity": "boundary-last-factor",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "*self._at((a, b))",
+    "after": "*1",
+    "tests": [
+      "test_all_degree_two_boundaries_against_boolean_oracle"
+    ]
+  },
+  {
+    "identity": "pentagon-degree",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "if self.degree != 3:",
+    "after": "if self.degree != 2:",
+    "tests": [
+      "test_all_degree_three_cochains_and_pentagon_points"
+    ]
+  },
+  {
+    "identity": "pentagon-group-addition",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "self._at((a, b ^ c, d))",
+    "after": "self._at((a, b | c, d))",
+    "tests": [
+      "test_all_degree_three_cochains_and_pentagon_points"
+    ]
+  },
+  {
+    "identity": "pentagon-last-factor",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "*self._at((a, b, c)))",
+    "after": "*1)",
+    "tests": [
+      "test_all_degree_three_cochains_and_pentagon_points"
+    ]
+  },
+  {
+    "identity": "product-omits-operand",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "tuple(a*b for a, b in zip(self.phases, other.phases))",
+    "after": "tuple(a for a, b in zip(self.phases, other.phases))",
+    "tests": [
+      "test_generated_point_order_products_and_owned_snapshots"
+    ]
+  },
+  {
+    "identity": "product-reverses-operand",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "zip(self.phases, other.phases)",
+    "after": "zip(self.phases, reversed(other.phases))",
+    "tests": [
+      "test_generated_point_order_products_and_owned_snapshots"
+    ]
+  },
+  {
+    "identity": "generator-formula",
+    "source": "checker_support/binary_sign_cochain.py",
+    "before": "(-1)**(a*b*c)",
+    "after": "(-1)**(a*b)",
+    "tests": [
+      "test_rephasing_and_generator_sign_for_all_two_cochains"
+    ]
+  },
+  {
+    "identity": "candidate-ignored",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "BinarySignCochain.generator() if cocycle is None else cocycle",
+    "after": "BinarySignCochain.generator()",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "candidate-degree",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "type(value) is not BinarySignCochain or value.degree != 3",
+    "after": "type(value) is not BinarySignCochain",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "pentagon-audit-removed",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "cases.require(self.cocycle._pentagon(point) == 1, \"cocycle identity\")",
+    "after": "pass",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "normalization-audit-removed",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "cases.require(self.cocycle.is_normalized(), \"cocycle normalization\")",
+    "after": "pass",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "normalized-filter-reversed",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "if not beta.is_normalized():",
+    "after": "if beta.is_normalized():",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "generator-obstruction-removed",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "cases.require(boundary._at((1, 1, 1)) == 1, \"normalized generator coboundary\")",
+    "after": "pass",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "negative-generator-sign",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "transformed._at((1, 1, 1)) == -1",
+    "after": "transformed._at((1, 1, 1)) == 1",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "normalized-population",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "normalized == 2",
+    "after": "normalized == 1",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "reported-counter",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "\"checks\": cases.checks",
+    "after": "\"checks\": cases.checks+1",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "cochain-population",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "for phases in product((-1, 1), repeat=4):",
+    "after": "for phases in product((-1, 1), repeat=3):",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "counter-retained-between-runs",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "cases = Cases()",
+    "after": "cases = getattr(type(self), \"_cached_cases\", Cases())\n        setattr(type(self), \"_cached_cases\", cases)",
+    "tests": [
+      "test_all_candidates_and_actual_case_count"
+    ]
+  },
+  {
+    "identity": "cli-refusal-exit",
+    "source": "independent/fsp-bf-2group-sign-claim.py",
+    "before": "return cli(_main)",
+    "after": "return 0",
+    "tests": [
+      "test_failure_translation_and_unexpected_exceptions"
+    ]
+  },
+  {
+    "identity": "refusal-test-helper",
+    "source": "tests/test_binary_sign_cochains.py",
+    "before": "def refused(self, result: Outcome[T], kind: str = \"input\") -> None:\n        self.assertIsNotNone(result.error)\n        if result.error is None:\n            self.fail(\"Expected a typed refusal\")\n        self.assertEqual(result.error.kind, kind)",
+    "after": "def refused(self, result: Outcome[T], kind: str = \"input\") -> None:\n        return None",
+    "tests": [
+      "test_admission_precedes_dependent_operations"
+    ]
+  },
+  {
+    "identity": "boolean-oracle-sign",
+    "source": "tests/test_binary_sign_cochains.py",
+    "before": "int(value == -1)",
+    "after": "int(value == 1)",
+    "tests": [
+      "test_all_degree_three_cochains_and_pentagon_points"
+    ]
+  }
+]

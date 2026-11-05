@@ -27,7 +27,7 @@ Two rules run through every file:
 | Folder | File | What it is | Kind |
 |---|---|---|---|
 | `01_thread/` | `exchange.md` | The three-party exchange, with roles A, B and C | record |
-| | `replies.md` | Five plain posts, each at most 500 characters (checked by S5); the fifth carries the link to the learning boards | **live** |
+| | `replies.md` | Five terse plain posts in one sequence, each at most 500 characters (S5), with no in-house terms (S8); the fifth carries the link to the reconstruction | **live** |
 | `02_paper/` | `ijms-25-02399.pdf` | The published paper | source |
 | | `ijms-25-02399.md` | The full text with every equation in LaTeX, plus our typo notes | source |
 | `03_critique/` | `analysis.md` | Six slots (carrier, gauge, reference, comparison, authority, observer) for the post and for the paper | live |
@@ -43,7 +43,7 @@ Two rules run through every file:
 | | `paper_dissection.md` | The paper taken apart and put back together for an outside reader: Section 5 and Section 6 sentence by sentence, the list of what enters from nowhere, the mathematics in plain terms, what the paper establishes, sixteen refutable statements. Plain language only; backing is in the audits above | **live** |
 | | `assumptions_mutation_audit.md` | Every ledger row checked against the paper, mutated, and the claim tried for recovery: 29 unchanged, 24 recover with a price, 25 do not recover; the classical-comparator test | **live** |
 | `04_self_audit/` | `self_review.md` | The math critique, attacked and repaired | live |
-| | `self_audit.md` | Replies, boards, Lean and ledger, attacked and repaired. 80 entries, including Jeremy's review (§F) and the learning boards (§G) | **live** |
+| | `self_audit.md` | Replies, boards, Lean and ledger, attacked and repaired. 90 entries, including Jeremy's review (§F), the learning boards (§G) and the terse replies (§H) | **live** |
 | | `retest_log.md` | Four regression cases: claim, counterexample, repair, retest, residual obligation | record |
 | | `board_repair_log.md` | The board repairs after the card-by-card review | record |
 | `05_boards/` | `markup_board.html` | The reply board: three pictures (tree, rendering claim, paper chain), supporting cards, final posts | live |
@@ -52,7 +52,7 @@ Two rules run through every file:
 | | `learning_boards_references.md` | What each board line rests on: quotes, checks and proofs (the boards themselves name none) | **live** |
 | `06_reference/` | `sources.md` | Where the observer definitions live in this repository | reference |
 | | `observer_article_2026-05-23.md` | Excerpts from "What the Hell Is an Observer?" (2026-05-23) | reference |
-| `code/` | `self_audit_checks.py` | S1–S7: Appendix A algebra, the gauge identity, every number, Bayes cases, reply lengths, the boards' attempt time and quoted numbers. Exits 1 on any failure | check |
+| `code/` | `self_audit_checks.py` | S1–S8: Appendix A algebra, the gauge identity, every number, Bayes cases, reply lengths and wording, the boards' attempt time and quoted numbers. Exits 1 on any failure | check |
 | | `test_self_audit_checks.py` | Regression tests for that checker | check |
 | | `adversarial_review_checks.py` | Gauss's law in Appendix C, the e/m misprint, Landauer numbers, capacity | check |
 | | `critique_checks.py` | Eleven checks behind `critique_wdp_po.md`; the last full run is in `critique_checks_output.txt` | check |
@@ -87,7 +87,7 @@ Still open:
 Run these from this folder:
 
 ```
-python code/self_audit_checks.py            # S1–S7; exit 0 only if all pass (needs sympy)
+python code/self_audit_checks.py            # S1–S8; exit 0 only if all pass (needs sympy)
 python code/test_self_audit_checks.py       # regression tests for the checker
 python -I code/adversarial_review_checks.py # needs sympy
 python -I code/critique_checks.py           # needs sympy and numpy; exit 0 only if all pass

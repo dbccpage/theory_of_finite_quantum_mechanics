@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-symanzik-qed-ae-fence.py`
 
 - file: [checks/independent/dfm-symanzik-qed-ae-fence.py](../../../checks/independent/dfm-symanzik-qed-ae-fence.py)
-- sha256 (`bytes`): `ebca2357cd211ca946f3b9f04eaca64e955407d5270576af34242cd1c4803d15`
+- sha256 (`bytes`): `123ae907089cdb0a0e99a11eb030111c1af710ace604af13b1d879a604f6a088`
 - cited in: node.source, record TFQ-1104
 - counts toward the grade: yes
 

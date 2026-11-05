@@ -58,7 +58,7 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:623-633`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:626-629`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:623-633`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:626-629`
   - `lean4/Imported/GenesisDerivation/Derivation/Initiality.lean:49-52`
   - `dag/derivations/independent/pgw-minimal-or-initial-refused.md:1`

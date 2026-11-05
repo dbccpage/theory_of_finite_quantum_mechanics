@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/FoundationalBridges.lean::triangle_parity_pairwise_distinct`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/FoundationalBridges.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs::apartness_witness`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs::apartness_witness`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/rust/src/foundational_bridges.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py::apartness_witness`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py::apartness_witness`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md:1-21`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:189`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md:1-21`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:189`
   - `external:sha256:a11697dcdf5788b476d5c2e541b635a81c03e665684f69bd260bc463a03ee458:130-155`

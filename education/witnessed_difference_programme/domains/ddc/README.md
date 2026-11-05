@@ -11,9 +11,9 @@ maturity: production
 claim_status: source-grounded
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/docs/
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/docs/
 aliases:
   - ddc
   - 140_discrete_deformation_calculus_ddc
@@ -127,7 +127,7 @@ The DDC test suite validates the runtime engine against five minimal finite benc
    - DDC provides a deterministic, typed finite state machine for logging and validating obstruction transformations under `AuthorityEffect: None`.
 4. **Next test needed:**
    - Execute the targeted test suite:
-     `py -3.12 -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/tests/test_automaton.py --basetemp=scratch/pytest_tmp`
+     `py -3.12 -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/tests/test_automaton.py --basetemp=scratch/pytest_tmp`
 
 
 ## Curriculum Tracks & Interactive Laboratories

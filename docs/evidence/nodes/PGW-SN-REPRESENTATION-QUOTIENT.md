@@ -59,9 +59,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md)
 - sha256 (`lf-normalised`): `9a158b9d0ff649003d49451c72430178a3dad4bef457930e25e18113c2b2b0d9`
 - cited in: node.source
 - counts toward the grade: yes
@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md](../../../dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md)
-- sha256 (`lf-normalised`): `aafda825efb3ec8949a64ec24843868e55e8b371b9d1ac86a4765987d636e9eb`
+- sha256 (`lf-normalised`): `5802cb1b44fd1263f0d3984a1a03ede1f5e556a24fe402d9d2f81d83349ec261`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0521
 - counts toward the grade: no

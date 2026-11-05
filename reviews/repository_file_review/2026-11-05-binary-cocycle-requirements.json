@@ -1,0 +1,200 @@
+{
+  "AuthorityEffect": "None",
+  "groups": {
+    "admit": {
+      "requirement": "Own a degree2or3 lexicographic table of exactly4or8 native integer signs. Native group coordinates are0or1. Invalid types/lower bounds are input refusals; upper degree/coordinate/sequence budgets are resource refusals.",
+      "tests": [
+        "test_exact_degrees_signs_and_shapes",
+        "test_operation_degree_and_operand_refusals",
+        "test_admission_precedes_dependent_operations"
+      ]
+    },
+    "evaluate": {
+      "requirement": "Snapshot the table and preserve lexicographic point indexing. Multiply equal-degree tables pointwise with exact signs. Normalization means +1 whenever any coordinate is zero.",
+      "tests": [
+        "test_generated_point_order_products_and_owned_snapshots",
+        "test_all_degree_two_boundaries_against_boolean_oracle",
+        "test_all_degree_three_cochains_and_pentagon_points"
+      ]
+    },
+    "boundary": {
+      "requirement": "Compute the degree2coboundary and degree3pentagon with trivial action and Z2coordinate addition. Sign inverses equal themselves.",
+      "tests": [
+        "test_all_degree_two_boundaries_against_boolean_oracle",
+        "test_all_degree_three_cochains_and_pentagon_points",
+        "test_rephasing_and_generator_sign_for_all_two_cochains"
+      ]
+    },
+    "audit": {
+      "requirement": "Preserve the original sixteen pentagons and sixteen candidate2cochains, including two normalized cochains and the surviving negative generator. A supplied candidate is accepted exactly when its finite certificate passes. Record26actual successful calls per default run.",
+      "tests": [
+        "test_all_candidates_and_actual_case_count",
+        "test_rephasing_and_generator_sign_for_all_two_cochains",
+        "test_quiet_import_and_original_cli"
+      ]
+    },
+    "lifecycle": {
+      "requirement": "Keep owned values immutable, imports quiet and case counters fresh. Public fallible queries return Outcome; constructors/internal workers raise typed Violation. CLI refusals are nonzero; unexpected exceptions and cancellation propagate.",
+      "tests": [
+        "test_generated_point_order_products_and_owned_snapshots",
+        "test_failure_translation_and_unexpected_exceptions",
+        "test_quiet_import_and_original_cli",
+        "test_all_candidates_and_actual_case_count",
+        "test_admission_precedes_dependent_operations"
+      ]
+    }
+  },
+  "declarations": {
+    "checks/checker_support/binary_sign_cochain.py": {
+      "_sign": [
+        "admit",
+        "lifecycle"
+      ],
+      "BinarySignCochain": [
+        "admit",
+        "lifecycle"
+      ],
+      "BinarySignCochain.__init__": [
+        "admit",
+        "lifecycle"
+      ],
+      "BinarySignCochain._at": [
+        "admit",
+        "evaluate"
+      ],
+      "BinarySignCochain.at": [
+        "admit",
+        "evaluate"
+      ],
+      "BinarySignCochain.is_normalized": [
+        "admit",
+        "evaluate"
+      ],
+      "BinarySignCochain._coboundary": [
+        "admit",
+        "boundary"
+      ],
+      "BinarySignCochain.coboundary": [
+        "admit",
+        "boundary"
+      ],
+      "BinarySignCochain._pentagon": [
+        "admit",
+        "boundary"
+      ],
+      "BinarySignCochain.pentagon": [
+        "admit",
+        "boundary"
+      ],
+      "BinarySignCochain._multiply": [
+        "admit",
+        "evaluate"
+      ],
+      "BinarySignCochain.multiply": [
+        "admit",
+        "evaluate"
+      ],
+      "BinarySignCochain.generator": [
+        "admit",
+        "evaluate"
+      ]
+    },
+    "checks/independent/fsp-bf-2group-sign-claim.py": {
+      "SignCocycleControls": [
+        "admit",
+        "lifecycle"
+      ],
+      "SignCocycleControls.__init__": [
+        "admit",
+        "lifecycle"
+      ],
+      "SignCocycleControls._verify": [
+        "audit",
+        "lifecycle"
+      ],
+      "SignCocycleControls.verify": [
+        "audit",
+        "lifecycle"
+      ],
+      "_main": [
+        "audit",
+        "lifecycle"
+      ],
+      "main": [
+        "audit",
+        "lifecycle"
+      ]
+    },
+    "checks/tests/test_binary_sign_cochains.py": {
+      "load": [
+        "lifecycle"
+      ],
+      "exponent_table": [
+        "boundary",
+        "evaluate"
+      ],
+      "boundary_bits": [
+        "boundary",
+        "evaluate"
+      ],
+      "pentagon_bits": [
+        "boundary",
+        "evaluate"
+      ],
+      "BinaryCochainTests": [
+        "lifecycle"
+      ],
+      "BinaryCochainTests.refused": [
+        "admit",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_all_degree_two_boundaries_against_boolean_oracle": [
+        "evaluate",
+        "boundary"
+      ],
+      "BinaryCochainTests.test_all_degree_three_cochains_and_pentagon_points": [
+        "evaluate",
+        "boundary"
+      ],
+      "BinaryCochainTests.test_generated_point_order_products_and_owned_snapshots": [
+        "evaluate",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_exact_degrees_signs_and_shapes": [
+        "admit"
+      ],
+      "BinaryCochainTests.test_operation_degree_and_operand_refusals": [
+        "admit"
+      ],
+      "BinaryCochainTests.test_rephasing_and_generator_sign_for_all_two_cochains": [
+        "boundary",
+        "audit"
+      ],
+      "BinaryCochainTests.test_all_candidates_and_actual_case_count": [
+        "audit",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_all_candidates_and_actual_case_count.record": [
+        "audit",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_admission_precedes_dependent_operations": [
+        "admit",
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_failure_translation_and_unexpected_exceptions": [
+        "lifecycle"
+      ],
+      "BinaryCochainTests.test_quiet_import_and_original_cli": [
+        "audit",
+        "lifecycle"
+      ]
+    }
+  },
+  "origins": [
+    {
+      "path": "lean4/BfCocycleObstruction.lean",
+      "sha256": "0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0"
+    }
+  ]
+}

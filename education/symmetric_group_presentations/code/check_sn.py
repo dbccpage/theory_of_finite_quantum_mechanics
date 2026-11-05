@@ -20,7 +20,7 @@ GRAMMAR_DIR = next(
     (
         p
         for p in (
-            REPO / "atlas" / "papers" / "finite_obstruction_calculus" / "pregenesis_to_minimal_symbol_systems" / "code" / "grammar",
+            REPO / "atlas" / "finite_obstruction_calculus" / "pregenesis_to_minimal_symbol_systems" / "code" / "grammar",
             REPO / "omega_engine_education" / "documentation" / "004_oepfp" / "grammar",
             REPO / "omega_engine_education" / "documentation" / "030_the_symbol_game_proposal_fidelity_protocol_pfp" / "grammar",
             REPO / "ow" / "omega_engine_pfp_v0.2" / "grammar",

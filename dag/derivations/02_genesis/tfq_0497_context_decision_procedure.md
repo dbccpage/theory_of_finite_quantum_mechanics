@@ -41,10 +41,10 @@ In accordance with strict constructive principles:
 - [`lean4/GenesisContextDecision.lean::GenesisContextDecision.witness_sound`](../../../lean4/GenesisContextDecision.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py::separable`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py::separable`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py)
 - [`checks/independent/pgw-context-decision-procedure.py::main`](../../../checks/independent/pgw-context-decision-procedure.py)
 
 ---
@@ -58,7 +58,7 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1073-1076`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:484`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:171-175`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1073-1076`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:484`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:171-175`
   - `dag/derivations/independent/pgw-context-decision-procedure.md:5-8`

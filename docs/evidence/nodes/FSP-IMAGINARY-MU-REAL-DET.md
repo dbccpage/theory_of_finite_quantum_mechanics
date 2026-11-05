@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/fsp-imaginary-mu-real-det.py`
 
 - file: [checks/independent/fsp-imaginary-mu-real-det.py](../../../checks/independent/fsp-imaginary-mu-real-det.py)
-- sha256 (`bytes`): `ac19770608212101081358398a29af59f440a541d91f29fe233e5eaf62c2d81d`
+- sha256 (`bytes`): `ab094f550383685c6198ab4a2ffc96e707c9ef75d18d704dada8872b4ead374a`
 - cited in: record TFQ-1203
 - counts toward the grade: yes
 

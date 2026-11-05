@@ -42,22 +42,22 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py)
 - sha256 (`bytes`): `9ca5d16f10b21ab8f112233a29f3239b7cf38fa7eae04a23b000d2cd56c0611e`
 - cited in: record TFQ-0536
-- check: `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity`
+- check: `python -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_primitive_difference_and_triangle_identity` (python_test) | yes | yes | yes | - | `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity` |
+| `test_primitive_difference_and_triangle_identity` (python_test) | yes | yes | yes | - | `python -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity` |
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py)
 - sha256 (`bytes`): `9e0f14edbfb258210fbb6e7e77ca1aca2464b8aaa38e3949c9a92d91952f961d`
 - cited in: record TFQ-0536
 
@@ -67,9 +67,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md`
 
 - file: [dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md](../../../dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md)
-- sha256 (`lf-normalised`): `41cc2d041bf8a53a53d36f615ce2ca304d8beb9fb185bce4dba315a25d635484`
+- sha256 (`lf-normalised`): `12bd43e00fe5dacef1b5b453978d6a0c06fdc621899313b32019d7190676e314`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0536
 - counts toward the grade: no

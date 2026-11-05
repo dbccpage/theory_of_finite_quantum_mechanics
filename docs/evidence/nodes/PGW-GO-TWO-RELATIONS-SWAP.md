@@ -74,9 +74,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py`
+### Python: `atlas/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py)
 - sha256 (`bytes`): `9d9d54ab7b8a81bcb2e47472bccce13c61e6d7dd09268053cbaecc0ea821e3fc`
 - cited in: record TFQ-0480
 
@@ -87,9 +87,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md)
 - sha256 (`lf-normalised`): `24295ce3672d36f7ef252a5424d183eda4a8b13949bb3df5f5ee4ad1fc6d789c`
 - cited in: node.source
 - counts toward the grade: yes
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md`
 
 - file: [dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md](../../../dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md)
-- sha256 (`lf-normalised`): `e63fca8bd326324ccc0fa3c75f9e4ca188ab51d63910d7f1f028ce5ca3b98e11`
+- sha256 (`lf-normalised`): `1358165aa6d410cd6969512201c6988a51333b6fd8735b5846fcc5f689395618`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0480
 - counts toward the grade: no

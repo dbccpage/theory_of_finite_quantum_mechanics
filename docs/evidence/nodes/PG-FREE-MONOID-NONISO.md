@@ -104,16 +104,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
 - sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md](../../../atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md)
 - sha256 (`lf-normalised`): `ca7ad135453d393688ceadf73eb214ccc6976589928f1dc43597e287bbfc6209`
 - cited in: node.source
 - counts toward the grade: yes
@@ -121,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md](../../../dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md)
-- sha256 (`lf-normalised`): `89e2ee58b2504a28f1dfbe9d3e60943fb2367956a2370360b81f50f8a2ee7917`
+- sha256 (`lf-normalised`): `5a95352a8ec575a38fd3983b091a8ab9d6210f602fbdf85e7f16836c942782de`
 - generated view: listed, not counted
 - cited in: record TFQ-0373
 - counts toward the grade: no
@@ -129,7 +129,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md](../../../dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md)
-- sha256 (`lf-normalised`): `5f9a8eab1065dff2f9c4d1298d762458159b36a55ce88e985cb4f931e8ee9ffc`
+- sha256 (`lf-normalised`): `ad3513289084f2032661d880122b7699b26b4e220e307b5f25e2169b106ff47e`
 - generated view: listed, not counted
 - cited in: record TFQ-0336
 - counts toward the grade: no

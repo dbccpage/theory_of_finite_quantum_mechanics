@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/GenesisDerivation/PaperWire.lean::portableBytes_injective`](../../../lean4/Imported/GenesisDerivation/PaperWire.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::portable_key_v1`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::portable_key_v1`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/portable_key.py::portable_key_v1`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/portable_key.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/portable_key.py::portable_key_v1`](../../../atlas/finite_obstruction_calculus/genesis/code/portable_key.py)
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:484-492`
-  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:508-521`
-  - `atlas/papers/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md:33`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:484-492`
+  - `atlas/finite_obstruction_calculus/genesis/paper.md:508-521`
+  - `atlas/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md:33`

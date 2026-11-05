@@ -13,8 +13,8 @@ authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
   - education/genesis_reading_notes/README.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/research
+  - atlas/finite_obstruction_calculus/genesis_ongoing
+  - atlas/finite_obstruction_calculus/genesis_ongoing/research
 aliases:
   - 005_genesis_ongoing
 last_verified: 2026-10-11
@@ -24,7 +24,7 @@ last_verified: 2026-10-11
 
 **AuthorityEffect:** None.
 
-This directory is the education reading of [`dbccpage/H3V7N5QF`](https://github.com/dbccpage/H3V7N5QF) at `5d9488324ce976817987bd83a28d901371cfc073`. The byte copy is [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+This directory is the education reading of [`dbccpage/H3V7N5QF`](https://github.com/dbccpage/H3V7N5QF) at `5d9488324ce976817987bd83a28d901371cfc073`. The byte copy is [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 - [`genesis_ongoing.md`](genesis_ongoing.md) — the 25 manuscripts, the base ledger rows, the H1–H3 climbing map, and comprehensive synthesis of the research working notes (`research/notes.md`, `research/reading_the_seed.md`, `research/*/reading_the_seed.md`, `research/identification_only.py`).
 - [`levels/`](levels/) — 22 sourced level pages enriched with direct research crosswalks and algebraic rationale.

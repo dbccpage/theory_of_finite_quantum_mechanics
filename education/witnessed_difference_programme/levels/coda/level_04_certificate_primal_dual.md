@@ -8,7 +8,7 @@ maturity: production
 claim_status: verified
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
 ---
 
 # CODA Level 04: Certificate Verification & Primal-Dual Bounds

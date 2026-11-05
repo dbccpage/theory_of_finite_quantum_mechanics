@@ -87,9 +87,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs`
+### Rust: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
 - sha256 (`bytes`): `127c739edb34bb27c861a04090204049628934a3966c81bdbf1df33ab4a062dd`
 - cited in: node.rust, record TFQ-0425
 
@@ -99,9 +99,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py](../../../atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py)
 - sha256 (`bytes`): `570c898692c070d22f655f96d74e0e468e1f4905ea52f917d28237056b7589c1`
 - cited in: record TFQ-0425
 
@@ -111,22 +111,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py](../../../atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
 - sha256 (`bytes`): `5bed3c5a8de7055ecba70dc88846ef73b3aed42cd7e713e08f6a3fd2e494d17e`
 - cited in: record TFQ-0425
-- check: `python -m pytest atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`
+- check: `python -m pytest atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_quotient_and_history_refuse_collapsed_answers` (python_test) | yes | yes | yes | - | `python -m pytest atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers` |
+| `test_quotient_and_history_refuse_collapsed_answers` (python_test) | yes | yes | yes | - | `python -m pytest atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers` |
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/paper.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- file: [atlas/finite_obstruction_calculus/genesis/paper.md](../../../atlas/finite_obstruction_calculus/genesis/paper.md)
 - sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
 - cited in: node.source
 - counts toward the grade: yes
@@ -134,7 +134,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md](../../../dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md)
-- sha256 (`lf-normalised`): `581a2de37fea613e7eb20cce5dfe2d25918b372bbdd6da0926a937883c033728`
+- sha256 (`lf-normalised`): `2a48c670808eae57da2918ad1075ed0cc406c25923bfe44bf4385c679dd6683c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0425
 - counts toward the grade: no

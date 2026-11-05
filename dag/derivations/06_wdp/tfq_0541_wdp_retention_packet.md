@@ -39,8 +39,8 @@ In accordance with strict constructive principles:
 - `external:sha256:771ef5c5655d71a9f40d00600090d1ee957e7209d7134a3e294c9d8e24dabe93::compute_exact_behavioral_quotient` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py::RetentionPacket`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py::greatest_forward_relation`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py::RetentionPacket`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py::greatest_forward_relation`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:765-786`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:809-813`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md:61`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:765-786`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:809-813`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md:61`

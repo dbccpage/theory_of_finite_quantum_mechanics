@@ -12,8 +12,8 @@ claim_status: verified
 authority_effect: "None"
 source_pin: "dbccpage/H3V7N5QF@5d9488324ce976817987bd83a28d901371cfc073"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md
-  - atlas/papers/finite_obstruction_calculus/genesis_ongoing/evidence/summary.json
+  - atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md
+  - atlas/finite_obstruction_calculus/genesis_ongoing/evidence/summary.json
 last_verified: 2026-10-08
 ---
 
@@ -23,7 +23,7 @@ last_verified: 2026-10-08
 
 **Pin:** `dbccpage/H3V7N5QF` at `5d9488324ce976817987bd83a28d901371cfc073`.
 
-**Package:** [`genesis_ongoing`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing).
+**Package:** [`genesis_ongoing`](/atlas/finite_obstruction_calculus/genesis_ongoing).
 
 ![Level 14: the declared bound and D12](../_images/genesis_ongoing_14_bounded_search_horizon.svg)
 
@@ -37,5 +37,5 @@ Open row O4 leaves results beyond the declared bound as listed only by the expor
 
 ## Files
 
-- [`paper/claim_ledger.md`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
-- [`evidence/summary.json`](/atlas/papers/finite_obstruction_calculus/genesis_ongoing/evidence/summary.json)
+- [`paper/claim_ledger.md`](/atlas/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
+- [`evidence/summary.json`](/atlas/finite_obstruction_calculus/genesis_ongoing/evidence/summary.json)

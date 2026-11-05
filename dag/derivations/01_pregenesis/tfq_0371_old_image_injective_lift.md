@@ -32,10 +32,10 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`declaration obligation: old_image_injective, scoped to typed recovery on the old image`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::old_image_injective`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::off_image_not_implied`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::old_image_injective`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::old_image_injective`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::off_image_not_implied`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::old_image_injective`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: old-image injectivity in crate pre_mssn_preservation, with the three negative boundaries as separate tests`](../../code/rust/src/)
@@ -45,7 +45,7 @@ In accordance with strict constructive principles:
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: an injectivity check for recover_word on the old alphabet that does not also claim off-image refusal`](../../code/python/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
 
 ---
 

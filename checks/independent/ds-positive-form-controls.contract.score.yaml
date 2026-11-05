@@ -7,7 +7,7 @@
     "artifact": {
       "language": "Python",
       "path": "checks/independent/ds-positive-form-controls.py",
-      "sha256": "4dcfb6f1fa67d11c33284657e4cdc333848ff80df7b557390a93f5c19099830a"
+      "sha256": "4887f130b326d74c00edcf81508feaab3d4c7faf92256d779ac6a60170dd5ef6"
     },
     "audited_consumers": [
       {
@@ -134,11 +134,71 @@
       {
         "path": "checks/tests/born_controls_mutations.json",
         "sha256": "69dfa5a2f755a6667aafd6b8487c12db82caa83b258da24f644d952ca324433c"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-initial-review.json",
+        "sha256": "359de97c45371463ebf681137ba116d2bf90fe25c33299bad8944dbc7635238b"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-mutations-adjudicated.json",
+        "sha256": "638e57cb40a08c568dc43cdca74a8e01bcb933e8a3fbf77033c2dfc2e852184b"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-mutations.json",
+        "sha256": "20382f0cfcfce595e00a6ec18ee994e61d471beb99fb3f25f8d19da03e842e5e"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.contract.score.yaml.txt",
+        "sha256": "25586732d9767048b9671edc0eedd36892b401b777781fce4880d23a445f890e"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.py.txt",
+        "sha256": "4dcfb6f1fa67d11c33284657e4cdc333848ff80df7b557390a93f5c19099830a"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.contract.score.yaml.txt",
+        "sha256": "ad914f183f6a3249ff07ff8494606527d211b73508424088936811bebe7b17a1"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.py.txt",
+        "sha256": "c34d80dd31d3b6b62f4773165707bfd5c67a3de6834a1941bfc5e7dadbf45760"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-original-obligations.json",
+        "sha256": "249a23a9fd2b3bcb12e95e431035ece145052d40e7fb74baf21acfd0144a6cb9"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.contract.score.yaml.txt",
+        "sha256": "4fcf3c824c1dc3b87d2731fce2d66892fd977eec9defc8aa68b575af7af218ec"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.py.txt",
+        "sha256": "e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-preservation.json",
+        "sha256": "60c2887ff73fceb629dde25c6f03c34ca10358860e57f4e8e636d793f73876f0"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-05-selection-quality.json",
+        "sha256": "fdcc55db58619d1a8a513078aa4603f4948fd3a3918d0c4d8a975010f9cad716"
+      },
+      {
+        "path": "checks/tests/selection_controls_mutations.json",
+        "sha256": "8a0686a30a6159cd99613213fd2e18e9e69146e4c9907d5a7c2090e4fffeb157"
+      },
+      {
+        "path": "lean4/PrimToQmSelection.lean",
+        "sha256": "d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
       }
     ],
     "failure_policy": "Owned finite inputs are admitted before dependent lookups and arithmetic. Expected input/resource/check/duplicate refusals use typed Violation, evaluate/Outcome and cli; aggregate operations return Outcome directly. Resource refusal differs from mathematical falsehood. Cancellation and unexpected programming errors propagate. Scoped test resources restore captures, mocks and module registration.",
     "nested_declaration_ownership": {},
-    "operational_cost": "M,N1..16, at most256 owned integer feature entries; nonnegative integer scale. Every integer input, dot product term/prefix, Gram/scale result, diagonal prefix and denominator square has at most4096 bits; temporary multiplication/addition at most8192/4097 bits before admission. Bilinear/quadratic O(MN+M), Gram O(MN^2), diagonal O(MN), event O(NlogN+MN); valid coarse graining O(MN). Partition admission may inspect16 groups of16 indices before rejecting overlaps/missing coverage; valid partition has exactlyN indices and at mostN groups. Default4017 obligations =619 scalar positivity+3398 Gram/normalization controls; original648+3459=4107 loses49 duplicate nonnegative-product and61 duplicate square checks, while shared square range adds20. Added mass normalization owns1..16 amplitudes; exponents exactly1,2,4. At most16 exponentiations, each raw power at most16384 bits before4096-bit admission, and16 bounded sum prefixes. Each output Fraction has numerator/denominator at most4096 bits. Rotation owns two pairs and performs four bounded products/two bounded sums; temporary products at most8192 bits and additions4097 bits. Default6550 obligations retain4017 prior checks and add2533=121 pair+2401 rotation+11 fixed separation/normalization controls.",
+    "operational_cost": "M,N1..16, at most256 owned integer feature entries; nonnegative integer scale. Every integer input, dot product term/prefix, Gram/scale result, diagonal prefix and denominator square has at most4096 bits; temporary multiplication/addition at most8192/4097 bits before admission. Bilinear/quadratic O(MN+M), Gram O(MN^2), diagonal O(MN), event O(NlogN+MN); valid coarse graining O(MN). Partition admission may inspect16 groups of16 indices before rejecting overlaps/missing coverage; valid partition has exactlyN indices and at mostN groups. Default4017 obligations =619 scalar positivity+3398 Gram/normalization controls; original648+3459=4107 loses49 duplicate nonnegative-product and61 duplicate square checks, while shared square range adds20. Added mass normalization owns1..16 amplitudes; exponents exactly1,2,4. At most16 exponentiations, each raw power at most16384 bits before4096-bit admission, and16 bounded sum prefixes. Each output Fraction has numerator/denominator at most4096 bits. Rotation owns two pairs and performs four bounded products/two bounded sums; temporary products at most8192 bits and additions4097 bits. Default6550 obligations retain4017 prior checks and add2533=121 pair+2401 rotation+11 fixed separation/normalization controls. The added fixed two-amplitude witness uses eleven guard calls and constant additional work.",
     "origins": [
       {
         "path": "lean4/CptpCompletePositivity.lean",
@@ -151,6 +211,10 @@
       {
         "path": "lean4/BornUniquenessIntegerSlice.lean",
         "sha256": "b864a81a1b53f2fbd8c94d77ee31217f7b487fec0470f158d1c79c9388422b14"
+      },
+      {
+        "path": "lean4/PrimToQmSelection.lean",
+        "sha256": "d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371"
       }
     ],
     "owned_invariants": [
@@ -160,7 +224,8 @@
       "Scaled rotation owns two exact integer pairs, admits both before arithmetic and computes the actual matrix [[r,-s],[s,r]] without a unit-norm assumption.",
       "Every powered mass and accumulated sum, rotation product/prefix and input is at most4096 bits; cancellation or a later zero cannot excuse a prior budget failure.",
       "All4017 prior positivity/decoherence checks remain separately counted;2533 Born-boundary checks add the121 pair and2401 rotation cases plus11 explicit separation/normalization witnesses, for6550 total.",
-      "Prior source/test/contract histories and mutation manifest are preserved; the original Born source is byte-archived and its two historical references remain mapped."
+      "Prior source/test/contract histories and mutation manifest are preserved; the original Born source is byte-archived and its two historical references remain mapped.",
+      "Eleven original selection guards retain the1/5vs1/17 and symmetric1/2 witnesses through the existing mass/share service. The default receipt has6561 actual checks, with2544 in its Born-boundary section."
     ],
     "requirements": [
       {
@@ -311,6 +376,17 @@
           "PositiveFormTests.test_executable_receipt_and_failure_exit",
           "PositiveFormTests.test_fixed_shares_and_rotation_orientation"
         ]
+      },
+      {
+        "requirement": "Retain the original eleven integer obligations, route all mass/share computation through the bounded service, verify actual calls, expected refusals and cancellation, and preserve all previous source/test declarations.",
+        "requirement_id": "TFQM-SELECTION-COMPOSITION-2026-11-05",
+        "symbols": [
+          "verify_selection_witness"
+        ],
+        "tests": [
+          "PositiveFormTests.test_original_selection_witness_and_actual_guard_correspondence",
+          "PositiveFormTests.test_executable_receipt_and_failure_exit"
+        ]
       }
     ],
     "retired_inputs": [
@@ -358,7 +434,8 @@
       "rotation",
       "verify_born_boundary",
       "verify_decoherence",
-      "verify_positivity"
+      "verify_positivity",
+      "verify_selection_witness"
     ]
   },
   "contract_history": [
@@ -1009,10 +1086,454 @@
         ]
       },
       "sha256": "43aa058f55a41b8f642e3c158c734aa40880989f841d0bb4385104f38733adc5"
+    },
+    {
+      "bytes": 24568,
+      "original_paths": [
+        "selection-composition"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/ds-positive-form-controls.py\",\n    \"sha256\": \"4887f130b326d74c00edcf81508feaab3d4c7faf92256d779ac6a60170dd5ef6\"\n  },\n  \"audited_consumers\": [\n    {\n      \"path\": \"checks/tests/test_positive_form_controls.py\",\n      \"sha256\": \"1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a\",\n      \"state\": \"pre-change consumer audit\"\n    },\n    {\n      \"path\": \"checks/tests/positive_form_mutations.json\",\n      \"sha256\": \"a0853d61bebce1256561452c25b6698ff37a75f1cc0cde555e52ee51e82882d1\",\n      \"state\": \"pre-change consumer audit\"\n    },\n    {\n      \"path\": \"checks/tests/test_positive_form_controls.py\",\n      \"sha256\": \"e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd\",\n      \"state\": \"current local consumer\"\n    },\n    {\n      \"path\": \".github/workflows/reviewed-checkers.yml\",\n      \"sha256\": \"df43fb4d1f7b407d4186900a33564894cad687079e1f1d9de00f3d2069f86b8a\",\n      \"state\": \"current local consumer\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-26_campaign-ds-qm204-born-uniqueness-import-boundary-precommit.md\",\n      \"sha256\": \"90ad0cb57f06f36c8b956cb29bdef5d37aefdaff204324c141c5e9a18a767679\",\n      \"state\": \"historical Born-source reference preserved through archive mapping\"\n    },\n    {\n      \"path\": \"dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json\",\n      \"sha256\": \"4f3b85eb37109bc0910adfdd2af7a1b5d344d4adbaaad0ad16438892cef05250\",\n      \"state\": \"historical Born-source reference preserved through archive mapping\"\n    }\n  ],\n  \"boundaries\": [\n    \"Runtime inputs and arithmetic are bounded; Lean all-integer rotation identities remain distinct from finite executable coverage.\",\n    \"Normalized linear/quadratic/quartic shares remain distinct. No frame-function, effect, continuity, dimension, Gleason uniqueness or measure-theoretic Lp theorem follows.\",\n    \"All previous channel, Kraus/Choi/Stinespring, density/class-operator and physical-normalization exclusions remain.\",\n    \"No new Lean build, hosted CI or scientific DAG promotion; retention label5 is not perfection.\"\n  ],\n  \"bounded_context\": \"Bounded integer Gram forms, explicit algebraic mass normalizations and scaled rotations; no channel, physical history model or Born uniqueness.\",\n  \"consumer_boundary\": \"Original Born checker has only two historical references:2026-10-26 precommit note and dated Lean replay independent_check command. Preserve both unchanged and map to archived exact source. Existing positive-form executable/API and14 prior test groups remain, with CLI expanded4017->6550 and six added groups. Full BornUniquenessIntegerSlice and derivation note read, alongside prior two Gram origins. Universal Lean rotation identity and bounded executable cases remain distinct; no new Lean build or DAG status promotion. Explicit chosen exponents supply algebraic shares, not Born uniqueness or measure pairings. Prior sources/contracts/mutation manifest preserved.\",\n  \"contract_urn\": \"urn:tfqm:checker-review:2026-11-03:ds-positive-form-controls\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-checker.md\",\n      \"sha256\": \"c40da13a42b251a45515e371b96110cc19779b288fd308488a3b164b2001d522\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-initial-tests.py.txt\",\n      \"sha256\": \"40b72f1ba96cde7da99172e223c39ae98e675b1fe16eb040d15865415f1bdf25\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-migration-initial.json\",\n      \"sha256\": \"d31691b92c86927c5cb902101922533a74e23ca1832e31711b69698046cccf5a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-migration.json\",\n      \"sha256\": \"f5ad318aba3717bede5178614716a40c4adc82542afdb6ac85877d967853788d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-mutations-adjudicated.json\",\n      \"sha256\": \"0abd635c8be5d9eb3547da71f56275ecf6f2d817b81d95b38faafbb4a53ed8cc\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-mutations-initial.json\",\n      \"sha256\": \"3c596c3582728420b01ecdb403e06c855f1f5b7e836a26997a531c7c4224fafb\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-mutations.json\",\n      \"sha256\": \"bf101e071807ff255811c066c73d2ce43fdf102910d698913461cf57aee87f56\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-prior-ds-positive-form-controls.py.txt\",\n      \"sha256\": \"47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-prior-test_positive_form_controls.py.txt\",\n      \"sha256\": \"1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-quality-initial.json\",\n      \"sha256\": \"b128e1e9fe72097c0d0ecde9669f2760d3a08be4d461ce7cdcf2ca226ab66b9e\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-quality.json\",\n      \"sha256\": \"5fce25d48007193fb9288c5a9c4cf252d69e3edbb60fec0a07367cec56838a95\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-requirements.json\",\n      \"sha256\": \"5d17bd4b1eb26b6c2f6fb4ea49d20135cd33a2b8f207f3d11728a356debe96bb\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-retirement.json\",\n      \"sha256\": \"22cc5c711e537458256ca49568c6cde39b0d0191d6aa0aebe359fa421ca28140\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-typing-repair.json\",\n      \"sha256\": \"ca792b1a154c964649ef9950fe9aa23a5cd9b54f7c8e5e01f80b3012edf8326b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/retired_born_controls_sources/ds-qm204-born-uniqueness-import-boundary.py.txt\",\n      \"sha256\": \"34daa44cda49e02392bfc765d4acd67c930f3cf02e689fcb2e70824b36f2abb5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-quality.json\",\n      \"sha256\": \"f531f9e11189a053da9fa1abe238e169a50008eee8681df7bd2935b746da7a37\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations-adjudicated.json\",\n      \"sha256\": \"0112582c49fb176de79174d6a19af63fea21ff5c7e0eff55d25a34b04d879d95\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/born_controls_mutations.json\",\n      \"sha256\": \"69dfa5a2f755a6667aafd6b8487c12db82caa83b258da24f644d952ca324433c\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-initial-review.json\",\n      \"sha256\": \"359de97c45371463ebf681137ba116d2bf90fe25c33299bad8944dbc7635238b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-mutations-adjudicated.json\",\n      \"sha256\": \"638e57cb40a08c568dc43cdca74a8e01bcb933e8a3fbf77033c2dfc2e852184b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-mutations.json\",\n      \"sha256\": \"20382f0cfcfce595e00a6ec18ee994e61d471beb99fb3f25f8d19da03e842e5e\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.contract.score.yaml.txt\",\n      \"sha256\": \"25586732d9767048b9671edc0eedd36892b401b777781fce4880d23a445f890e\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.py.txt\",\n      \"sha256\": \"4dcfb6f1fa67d11c33284657e4cdc333848ff80df7b557390a93f5c19099830a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.contract.score.yaml.txt\",\n      \"sha256\": \"ad914f183f6a3249ff07ff8494606527d211b73508424088936811bebe7b17a1\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.py.txt\",\n      \"sha256\": \"c34d80dd31d3b6b62f4773165707bfd5c67a3de6834a1941bfc5e7dadbf45760\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-obligations.json\",\n      \"sha256\": \"249a23a9fd2b3bcb12e95e431035ece145052d40e7fb74baf21acfd0144a6cb9\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.contract.score.yaml.txt\",\n      \"sha256\": \"4fcf3c824c1dc3b87d2731fce2d66892fd977eec9defc8aa68b575af7af218ec\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.py.txt\",\n      \"sha256\": \"e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-preservation.json\",\n      \"sha256\": \"60c2887ff73fceb629dde25c6f03c34ca10358860e57f4e8e636d793f73876f0\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-quality.json\",\n      \"sha256\": \"fdcc55db58619d1a8a513078aa4603f4948fd3a3918d0c4d8a975010f9cad716\"\n    },\n    {\n      \"path\": \"checks/tests/selection_controls_mutations.json\",\n      \"sha256\": \"8a0686a30a6159cd99613213fd2e18e9e69146e4c9907d5a7c2090e4fffeb157\"\n    },\n    {\n      \"path\": \"lean4/PrimToQmSelection.lean\",\n      \"sha256\": \"d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"failure_policy\": \"Owned finite inputs are admitted before dependent lookups and arithmetic. Expected input/resource/check/duplicate refusals use typed Violation, evaluate/Outcome and cli; aggregate operations return Outcome directly. Resource refusal differs from mathematical falsehood. Cancellation and unexpected programming errors propagate. Scoped test resources restore captures, mocks and module registration.\",\n  \"nested_declaration_ownership\": {},\n  \"operational_cost\": \"M,N1..16, at most256 owned integer feature entries; nonnegative integer scale. Every integer input, dot product term/prefix, Gram/scale result, diagonal prefix and denominator square has at most4096 bits; temporary multiplication/addition at most8192/4097 bits before admission. Bilinear/quadratic O(MN+M), Gram O(MN^2), diagonal O(MN), event O(NlogN+MN); valid coarse graining O(MN). Partition admission may inspect16 groups of16 indices before rejecting overlaps/missing coverage; valid partition has exactlyN indices and at mostN groups. Default4017 obligations =619 scalar positivity+3398 Gram/normalization controls; original648+3459=4107 loses49 duplicate nonnegative-product and61 duplicate square checks, while shared square range adds20. Added mass normalization owns1..16 amplitudes; exponents exactly1,2,4. At most16 exponentiations, each raw power at most16384 bits before4096-bit admission, and16 bounded sum prefixes. Each output Fraction has numerator/denominator at most4096 bits. Rotation owns two pairs and performs four bounded products/two bounded sums; temporary products at most8192 bits and additions4097 bits. Default6550 obligations retain4017 prior checks and add2533=121 pair+2401 rotation+11 fixed separation/normalization controls. The added fixed two-amplitude witness uses eleven guard calls and constant additional work.\",\n  \"origins\": [\n    {\n      \"path\": \"lean4/CptpCompletePositivity.lean\",\n      \"sha256\": \"29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0\"\n    },\n    {\n      \"path\": \"lean4/DecoherenceFunctionalGram.lean\",\n      \"sha256\": \"456535c1ea379be8081e785984de7183d3890d78c3e000ce5843f9144c6e2a86\"\n    },\n    {\n      \"path\": \"lean4/BornUniquenessIntegerSlice.lean\",\n      \"sha256\": \"b864a81a1b53f2fbd8c94d77ee31217f7b487fec0470f158d1c79c9388422b14\"\n    },\n    {\n      \"path\": \"lean4/PrimToQmSelection.lean\",\n      \"sha256\": \"d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All prior owned Gram-form, bilinear/quadratic/event/partition and normalization invariants remain unchanged.\",\n    \"Mass normalization accepts1..16 exact bounded integer amplitudes and an explicit exact exponent from1,2,4; empty carrier, bool/float/Fraction aliases, unsupported exponent and zero total refuse.\",\n    \"Linear shares are algebraic and may be signed or have negative total; exact Fraction values sum1 without selecting an exponent or a probability interpretation.\",\n    \"Scaled rotation owns two exact integer pairs, admits both before arithmetic and computes the actual matrix [[r,-s],[s,r]] without a unit-norm assumption.\",\n    \"Every powered mass and accumulated sum, rotation product/prefix and input is at most4096 bits; cancellation or a later zero cannot excuse a prior budget failure.\",\n    \"All4017 prior positivity/decoherence checks remain separately counted;2533 Born-boundary checks add the121 pair and2401 rotation cases plus11 explicit separation/normalization witnesses, for6550 total.\",\n    \"Prior source/test/contract histories and mutation manifest are preserved; the original Born source is byte-archived and its two historical references remain mapped.\",\n    \"Eleven original selection guards retain the1/5vs1/17 and symmetric1/2 witnesses through the existing mass/share service. The default receipt has6561 actual checks, with2544 in its Born-boundary section.\"\n  ],\n  \"requirements\": [\n    {\n      \"requirement\": \"Own a nonempty rectangular1..16 by1..16 integer feature array and bounded nonnegative scale. Exact integer inputs exclude bool/float/Fraction/text. Admit all vector shapes/entries before projection. Bound every product/prefix and scale result, including when later cancellation or a zero scale would fit.\",\n      \"requirement_id\": \"TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-1\",\n      \"symbols\": [\n        \"_bounded\",\n        \"_nonnegative\",\n        \"_dot\",\n        \"IntegerGramForm\",\n        \"IntegerGramForm.__init__\",\n        \"IntegerGramForm.dimension\",\n        \"IntegerGramForm._vector\",\n        \"IntegerGramForm._coordinates\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_input_shapes_scalars_and_full_budgets\",\n        \"PositiveFormTests.test_vectors_events_and_denominator_refusals\",\n        \"PositiveFormTests.test_snapshot_ownership\",\n        \"PositiveFormTests.test_resource_boundaries_and_later_cancellation\",\n        \"PositiveFormTests.test_admission_precedes_dependent_arithmetic\"\n      ]\n    },\n    {\n      \"requirement\": \"Compute scale*A^T*A from admitted feature columns. Bilinear values can be negative and remain successful values; quadratic values are nonnegative when computation completes. Return matrix/bilinear/quadratic queries through Outcome. All arithmetic paths retain declared intermediate budgets.\",\n      \"requirement_id\": \"TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-2\",\n      \"symbols\": [\n        \"IntegerGramForm._bilinear\",\n        \"IntegerGramForm.bilinear\",\n        \"IntegerGramForm._quadratic\",\n        \"IntegerGramForm.quadratic\",\n        \"IntegerGramForm._gram\",\n        \"IntegerGramForm.gram\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights\",\n        \"PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples\",\n        \"PositiveFormTests.test_resource_boundaries_and_later_cancellation\",\n        \"PositiveFormTests.test_admission_precedes_dependent_arithmetic\",\n        \"PositiveFormTests.test_counts_faults_and_programming_error_lifecycle\"\n      ]\n    },\n    {\n      \"requirement\": \"Events are owned distinct in-range indices, canonicalized increasingly; empty event has weight0. Normalize event quadratic and diagonal trace independently by the admitted positive integer denominator squared. Do not infer physical normalization or equality of global/coarse and diagonal weights. Admit denominator before dependent arithmetic even for empty events.\",\n      \"requirement_id\": \"TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-3\",\n      \"symbols\": [\n        \"_denominator\",\n        \"IntegerGramForm._event\",\n        \"IntegerGramForm._event_weight\",\n        \"IntegerGramForm.event_weight\",\n        \"IntegerGramForm._diagonal_weight\",\n        \"IntegerGramForm.diagonal_weight\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights\",\n        \"PositiveFormTests.test_distinct_normalization_witnesses\",\n        \"PositiveFormTests.test_vectors_events_and_denominator_refusals\",\n        \"PositiveFormTests.test_partition_refusals_and_canonical_group_order\",\n        \"PositiveFormTests.test_resource_boundaries_and_later_cancellation\",\n        \"PositiveFormTests.test_admission_precedes_dependent_arithmetic\"\n      ]\n    },\n    {\n      \"requirement\": \"A partition is a nonempty ordered list of nonempty, disjoint canonical events covering every coordinate exactly once. Preserve group order and scale; group features are checked sums in canonical index order. Return a new owned Gram form. Changing within-group order cannot change resource acceptance or values.\",\n      \"requirement_id\": \"TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-4\",\n      \"symbols\": [\n        \"IntegerGramForm._partition\",\n        \"IntegerGramForm._coarse_grained\",\n        \"IntegerGramForm.coarse_grained\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_coarse_graining_against_incidence_matrix\",\n        \"PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples\",\n        \"PositiveFormTests.test_partition_refusals_and_canonical_group_order\",\n        \"PositiveFormTests.test_snapshot_ownership\",\n        \"PositiveFormTests.test_resource_boundaries_and_later_cancellation\",\n        \"PositiveFormTests.test_admission_precedes_dependent_arithmetic\"\n      ]\n    },\n    {\n      \"requirement\": \"Keep the signed off-diagonal pairing as an actual2x2 form acting on(1,-1), yielding-2t; it is separate from the positive Gram form. Nonnegative products validate both operands before multiplication, including zero/oversized combinations.\",\n      \"requirement_id\": \"TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-5\",\n      \"symbols\": [\n        \"off_diagonal_pairing\",\n        \"nonnegative_product\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_negative_pairing_and_nonnegative_products\",\n        \"PositiveFormTests.test_counts_faults_and_programming_error_lifecycle\"\n      ]\n    },\n    {\n      \"requirement\": \"Compose both original scalar applications without importing on-load checks/global counters. Require Cases, separately count619 positivity and3398 decoherence obligations, preserve two distinct normalized witnesses(1,1)/2 and(3,4)/5, actual rank-one matrix/determinant/Gram controls and coarse global weights. Emit6550 JSON checks with619/3398/2533 sections and nonzero expected-failure exit; propagate cancellation/programming errors.\",\n      \"requirement_id\": \"TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-6\",\n      \"symbols\": [\n        \"_recorder\",\n        \"verify_positivity\",\n        \"_normalization_controls\",\n        \"verify_decoherence\",\n        \"main\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_counts_faults_and_programming_error_lifecycle\",\n        \"PositiveFormTests.test_executable_receipt_and_failure_exit\",\n        \"PositiveFormTests.test_distinct_normalization_witnesses\",\n        \"PositiveFormTests.test_oracles_and_import_lifecycle\"\n      ]\n    },\n    {\n      \"requirement\": \"Own1..16 exact bounded integer amplitudes and admit an explicit exact degree1,2,4 before powering. Bound each powered mass and running total; zero total is input refusal. Return exact ordered Fraction shares through Outcome. Linear shares may be signed and negative total is legal. Normalization never selects an exponent or probability interpretation.\",\n      \"requirement_id\": \"TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-7\",\n      \"symbols\": [\n        \"_masses\",\n        \"_power_shares\",\n        \"power_shares\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_power_shares_against_symbolic_normalization\",\n        \"PositiveFormTests.test_fixed_shares_and_rotation_orientation\",\n        \"PositiveFormTests.test_born_exact_domains_and_zero_totals\",\n        \"PositiveFormTests.test_born_full_arithmetic_budgets\",\n        \"PositiveFormTests.test_born_preflight_lifecycle_and_section_counts\"\n      ]\n    },\n    {\n      \"requirement\": \"Own two exact bounded integer pairs and admit both before dependent arithmetic. Apply scaled rotation matrix[[r,-s],[s,r]], bound each product/prefix and return exact immutable integer pair through Outcome. No unit-norm requirement; zero coefficients are legal.\",\n      \"requirement_id\": \"TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-8\",\n      \"symbols\": [\n        \"_rotation\",\n        \"rotation\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_rotations_against_symbolic_matrix_and_complex_product\",\n        \"PositiveFormTests.test_fixed_shares_and_rotation_orientation\",\n        \"PositiveFormTests.test_born_exact_domains_and_zero_totals\",\n        \"PositiveFormTests.test_born_full_arithmetic_budgets\",\n        \"PositiveFormTests.test_born_preflight_lifecycle_and_section_counts\"\n      ]\n    },\n    {\n      \"requirement\": \"Preserve121 pair-sum and2401 rotation cases; replace aggregate group count by2533 individual obligations including all original7,25,337,3033/2025,75/63,-7/24,49/576,625 witnesses and actual distinct normalized shares. Require Cases; imports remain silent, counters reentrant and expected failures nonzero. No Born uniqueness, continuity, dimension, frame/effect or Lp result follows.\",\n      \"requirement_id\": \"TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-9\",\n      \"symbols\": [\n        \"verify_born_boundary\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_born_preflight_lifecycle_and_section_counts\",\n        \"PositiveFormTests.test_executable_receipt_and_failure_exit\",\n        \"PositiveFormTests.test_fixed_shares_and_rotation_orientation\"\n      ]\n    },\n    {\n      \"requirement\": \"Retain the original eleven integer obligations, route all mass/share computation through the bounded service, verify actual calls, expected refusals and cancellation, and preserve all previous source/test declarations.\",\n      \"requirement_id\": \"TFQM-SELECTION-COMPOSITION-2026-11-05\",\n      \"symbols\": [\n        \"verify_selection_witness\"\n      ],\n      \"tests\": [\n        \"PositiveFormTests.test_original_selection_witness_and_actual_guard_correspondence\",\n        \"PositiveFormTests.test_executable_receipt_and_failure_exit\"\n      ]\n    }\n  ],\n  \"retired_inputs\": [\n    {\n      \"archive\": \"reviews/repository_file_review/retired_born_controls_sources/ds-qm204-born-uniqueness-import-boundary.py.txt\",\n      \"path\": \"checks/independent/ds-qm204-born-uniqueness-import-boundary.py\",\n      \"sha256\": \"34daa44cda49e02392bfc765d4acd67c930f3cf02e689fcb2e70824b36f2abb5\"\n    }\n  ],\n  \"role\": \"Composed scalar/Gram verification application with owned bounded Gram forms, exact event/partition operations, explicit linear/quadratic/quartic shares and scaled rotations\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"IntegerGramForm\",\n    \"IntegerGramForm.__init__\",\n    \"IntegerGramForm._bilinear\",\n    \"IntegerGramForm._coarse_grained\",\n    \"IntegerGramForm._coordinates\",\n    \"IntegerGramForm._diagonal_weight\",\n    \"IntegerGramForm._event\",\n    \"IntegerGramForm._event_weight\",\n    \"IntegerGramForm._gram\",\n    \"IntegerGramForm._partition\",\n    \"IntegerGramForm._quadratic\",\n    \"IntegerGramForm._vector\",\n    \"IntegerGramForm.bilinear\",\n    \"IntegerGramForm.coarse_grained\",\n    \"IntegerGramForm.diagonal_weight\",\n    \"IntegerGramForm.dimension\",\n    \"IntegerGramForm.event_weight\",\n    \"IntegerGramForm.gram\",\n    \"IntegerGramForm.quadratic\",\n    \"_bounded\",\n    \"_denominator\",\n    \"_dot\",\n    \"_masses\",\n    \"_nonnegative\",\n    \"_normalization_controls\",\n    \"_power_shares\",\n    \"_recorder\",\n    \"_rotation\",\n    \"main\",\n    \"nonnegative_product\",\n    \"off_diagonal_pairing\",\n    \"power_shares\",\n    \"rotation\",\n    \"verify_born_boundary\",\n    \"verify_decoherence\",\n    \"verify_positivity\",\n    \"verify_selection_witness\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/ds-positive-form-controls.py",
+          "sha256": "4887f130b326d74c00edcf81508feaab3d4c7faf92256d779ac6a60170dd5ef6"
+        },
+        "audited_consumers": [
+          {
+            "path": "checks/tests/test_positive_form_controls.py",
+            "sha256": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a",
+            "state": "pre-change consumer audit"
+          },
+          {
+            "path": "checks/tests/positive_form_mutations.json",
+            "sha256": "a0853d61bebce1256561452c25b6698ff37a75f1cc0cde555e52ee51e82882d1",
+            "state": "pre-change consumer audit"
+          },
+          {
+            "path": "checks/tests/test_positive_form_controls.py",
+            "sha256": "e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd",
+            "state": "current local consumer"
+          },
+          {
+            "path": ".github/workflows/reviewed-checkers.yml",
+            "sha256": "df43fb4d1f7b407d4186900a33564894cad687079e1f1d9de00f3d2069f86b8a",
+            "state": "current local consumer"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-qm204-born-uniqueness-import-boundary-precommit.md",
+            "sha256": "90ad0cb57f06f36c8b956cb29bdef5d37aefdaff204324c141c5e9a18a767679",
+            "state": "historical Born-source reference preserved through archive mapping"
+          },
+          {
+            "path": "dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json",
+            "sha256": "4f3b85eb37109bc0910adfdd2af7a1b5d344d4adbaaad0ad16438892cef05250",
+            "state": "historical Born-source reference preserved through archive mapping"
+          }
+        ],
+        "boundaries": [
+          "Runtime inputs and arithmetic are bounded; Lean all-integer rotation identities remain distinct from finite executable coverage.",
+          "Normalized linear/quadratic/quartic shares remain distinct. No frame-function, effect, continuity, dimension, Gleason uniqueness or measure-theoretic Lp theorem follows.",
+          "All previous channel, Kraus/Choi/Stinespring, density/class-operator and physical-normalization exclusions remain.",
+          "No new Lean build, hosted CI or scientific DAG promotion; retention label5 is not perfection."
+        ],
+        "bounded_context": "Bounded integer Gram forms, explicit algebraic mass normalizations and scaled rotations; no channel, physical history model or Born uniqueness.",
+        "consumer_boundary": "Original Born checker has only two historical references:2026-10-26 precommit note and dated Lean replay independent_check command. Preserve both unchanged and map to archived exact source. Existing positive-form executable/API and14 prior test groups remain, with CLI expanded4017->6550 and six added groups. Full BornUniquenessIntegerSlice and derivation note read, alongside prior two Gram origins. Universal Lean rotation identity and bounded executable cases remain distinct; no new Lean build or DAG status promotion. Explicit chosen exponents supply algebraic shares, not Born uniqueness or measure pairings. Prior sources/contracts/mutation manifest preserved.",
+        "contract_urn": "urn:tfqm:checker-review:2026-11-03:ds-positive-form-controls",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-checker.md",
+            "sha256": "c40da13a42b251a45515e371b96110cc19779b288fd308488a3b164b2001d522"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-initial-tests.py.txt",
+            "sha256": "40b72f1ba96cde7da99172e223c39ae98e675b1fe16eb040d15865415f1bdf25"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-migration-initial.json",
+            "sha256": "d31691b92c86927c5cb902101922533a74e23ca1832e31711b69698046cccf5a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-migration.json",
+            "sha256": "f5ad318aba3717bede5178614716a40c4adc82542afdb6ac85877d967853788d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-mutations-adjudicated.json",
+            "sha256": "0abd635c8be5d9eb3547da71f56275ecf6f2d817b81d95b38faafbb4a53ed8cc"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-mutations-initial.json",
+            "sha256": "3c596c3582728420b01ecdb403e06c855f1f5b7e836a26997a531c7c4224fafb"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-mutations.json",
+            "sha256": "bf101e071807ff255811c066c73d2ce43fdf102910d698913461cf57aee87f56"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-prior-ds-positive-form-controls.py.txt",
+            "sha256": "47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-prior-test_positive_form_controls.py.txt",
+            "sha256": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-quality-initial.json",
+            "sha256": "b128e1e9fe72097c0d0ecde9669f2760d3a08be4d461ce7cdcf2ca226ab66b9e"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-quality.json",
+            "sha256": "5fce25d48007193fb9288c5a9c4cf252d69e3edbb60fec0a07367cec56838a95"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-requirements.json",
+            "sha256": "5d17bd4b1eb26b6c2f6fb4ea49d20135cd33a2b8f207f3d11728a356debe96bb"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-retirement.json",
+            "sha256": "22cc5c711e537458256ca49568c6cde39b0d0191d6aa0aebe359fa421ca28140"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-typing-repair.json",
+            "sha256": "ca792b1a154c964649ef9950fe9aa23a5cd9b54f7c8e5e01f80b3012edf8326b"
+          },
+          {
+            "path": "reviews/repository_file_review/retired_born_controls_sources/ds-qm204-born-uniqueness-import-boundary.py.txt",
+            "sha256": "34daa44cda49e02392bfc765d4acd67c930f3cf02e689fcb2e70824b36f2abb5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-quality.json",
+            "sha256": "f531f9e11189a053da9fa1abe238e169a50008eee8681df7bd2935b746da7a37"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-adjudicated.json",
+            "sha256": "0112582c49fb176de79174d6a19af63fea21ff5c7e0eff55d25a34b04d879d95"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/born_controls_mutations.json",
+            "sha256": "69dfa5a2f755a6667aafd6b8487c12db82caa83b258da24f644d952ca324433c"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-initial-review.json",
+            "sha256": "359de97c45371463ebf681137ba116d2bf90fe25c33299bad8944dbc7635238b"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-mutations-adjudicated.json",
+            "sha256": "638e57cb40a08c568dc43cdca74a8e01bcb933e8a3fbf77033c2dfc2e852184b"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-mutations.json",
+            "sha256": "20382f0cfcfce595e00a6ec18ee994e61d471beb99fb3f25f8d19da03e842e5e"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.contract.score.yaml.txt",
+            "sha256": "25586732d9767048b9671edc0eedd36892b401b777781fce4880d23a445f890e"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.py.txt",
+            "sha256": "4dcfb6f1fa67d11c33284657e4cdc333848ff80df7b557390a93f5c19099830a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.contract.score.yaml.txt",
+            "sha256": "ad914f183f6a3249ff07ff8494606527d211b73508424088936811bebe7b17a1"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.py.txt",
+            "sha256": "c34d80dd31d3b6b62f4773165707bfd5c67a3de6834a1941bfc5e7dadbf45760"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-obligations.json",
+            "sha256": "249a23a9fd2b3bcb12e95e431035ece145052d40e7fb74baf21acfd0144a6cb9"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.contract.score.yaml.txt",
+            "sha256": "4fcf3c824c1dc3b87d2731fce2d66892fd977eec9defc8aa68b575af7af218ec"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.py.txt",
+            "sha256": "e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-preservation.json",
+            "sha256": "60c2887ff73fceb629dde25c6f03c34ca10358860e57f4e8e636d793f73876f0"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-quality.json",
+            "sha256": "fdcc55db58619d1a8a513078aa4603f4948fd3a3918d0c4d8a975010f9cad716"
+          },
+          {
+            "path": "checks/tests/selection_controls_mutations.json",
+            "sha256": "8a0686a30a6159cd99613213fd2e18e9e69146e4c9907d5a7c2090e4fffeb157"
+          },
+          {
+            "path": "lean4/PrimToQmSelection.lean",
+            "sha256": "d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "failure_policy": "Owned finite inputs are admitted before dependent lookups and arithmetic. Expected input/resource/check/duplicate refusals use typed Violation, evaluate/Outcome and cli; aggregate operations return Outcome directly. Resource refusal differs from mathematical falsehood. Cancellation and unexpected programming errors propagate. Scoped test resources restore captures, mocks and module registration.",
+        "nested_declaration_ownership": {},
+        "operational_cost": "M,N1..16, at most256 owned integer feature entries; nonnegative integer scale. Every integer input, dot product term/prefix, Gram/scale result, diagonal prefix and denominator square has at most4096 bits; temporary multiplication/addition at most8192/4097 bits before admission. Bilinear/quadratic O(MN+M), Gram O(MN^2), diagonal O(MN), event O(NlogN+MN); valid coarse graining O(MN). Partition admission may inspect16 groups of16 indices before rejecting overlaps/missing coverage; valid partition has exactlyN indices and at mostN groups. Default4017 obligations =619 scalar positivity+3398 Gram/normalization controls; original648+3459=4107 loses49 duplicate nonnegative-product and61 duplicate square checks, while shared square range adds20. Added mass normalization owns1..16 amplitudes; exponents exactly1,2,4. At most16 exponentiations, each raw power at most16384 bits before4096-bit admission, and16 bounded sum prefixes. Each output Fraction has numerator/denominator at most4096 bits. Rotation owns two pairs and performs four bounded products/two bounded sums; temporary products at most8192 bits and additions4097 bits. Default6550 obligations retain4017 prior checks and add2533=121 pair+2401 rotation+11 fixed separation/normalization controls. The added fixed two-amplitude witness uses eleven guard calls and constant additional work.",
+        "origins": [
+          {
+            "path": "lean4/CptpCompletePositivity.lean",
+            "sha256": "29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0"
+          },
+          {
+            "path": "lean4/DecoherenceFunctionalGram.lean",
+            "sha256": "456535c1ea379be8081e785984de7183d3890d78c3e000ce5843f9144c6e2a86"
+          },
+          {
+            "path": "lean4/BornUniquenessIntegerSlice.lean",
+            "sha256": "b864a81a1b53f2fbd8c94d77ee31217f7b487fec0470f158d1c79c9388422b14"
+          },
+          {
+            "path": "lean4/PrimToQmSelection.lean",
+            "sha256": "d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371"
+          }
+        ],
+        "owned_invariants": [
+          "All prior owned Gram-form, bilinear/quadratic/event/partition and normalization invariants remain unchanged.",
+          "Mass normalization accepts1..16 exact bounded integer amplitudes and an explicit exact exponent from1,2,4; empty carrier, bool/float/Fraction aliases, unsupported exponent and zero total refuse.",
+          "Linear shares are algebraic and may be signed or have negative total; exact Fraction values sum1 without selecting an exponent or a probability interpretation.",
+          "Scaled rotation owns two exact integer pairs, admits both before arithmetic and computes the actual matrix [[r,-s],[s,r]] without a unit-norm assumption.",
+          "Every powered mass and accumulated sum, rotation product/prefix and input is at most4096 bits; cancellation or a later zero cannot excuse a prior budget failure.",
+          "All4017 prior positivity/decoherence checks remain separately counted;2533 Born-boundary checks add the121 pair and2401 rotation cases plus11 explicit separation/normalization witnesses, for6550 total.",
+          "Prior source/test/contract histories and mutation manifest are preserved; the original Born source is byte-archived and its two historical references remain mapped.",
+          "Eleven original selection guards retain the1/5vs1/17 and symmetric1/2 witnesses through the existing mass/share service. The default receipt has6561 actual checks, with2544 in its Born-boundary section."
+        ],
+        "requirements": [
+          {
+            "requirement": "Own a nonempty rectangular1..16 by1..16 integer feature array and bounded nonnegative scale. Exact integer inputs exclude bool/float/Fraction/text. Admit all vector shapes/entries before projection. Bound every product/prefix and scale result, including when later cancellation or a zero scale would fit.",
+            "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-1",
+            "symbols": [
+              "_bounded",
+              "_nonnegative",
+              "_dot",
+              "IntegerGramForm",
+              "IntegerGramForm.__init__",
+              "IntegerGramForm.dimension",
+              "IntegerGramForm._vector",
+              "IntegerGramForm._coordinates"
+            ],
+            "tests": [
+              "PositiveFormTests.test_input_shapes_scalars_and_full_budgets",
+              "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+              "PositiveFormTests.test_snapshot_ownership",
+              "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+              "PositiveFormTests.test_admission_precedes_dependent_arithmetic"
+            ]
+          },
+          {
+            "requirement": "Compute scale*A^T*A from admitted feature columns. Bilinear values can be negative and remain successful values; quadratic values are nonnegative when computation completes. Return matrix/bilinear/quadratic queries through Outcome. All arithmetic paths retain declared intermediate budgets.",
+            "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-2",
+            "symbols": [
+              "IntegerGramForm._bilinear",
+              "IntegerGramForm.bilinear",
+              "IntegerGramForm._quadratic",
+              "IntegerGramForm.quadratic",
+              "IntegerGramForm._gram",
+              "IntegerGramForm.gram"
+            ],
+            "tests": [
+              "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+              "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+              "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+              "PositiveFormTests.test_admission_precedes_dependent_arithmetic",
+              "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle"
+            ]
+          },
+          {
+            "requirement": "Events are owned distinct in-range indices, canonicalized increasingly; empty event has weight0. Normalize event quadratic and diagonal trace independently by the admitted positive integer denominator squared. Do not infer physical normalization or equality of global/coarse and diagonal weights. Admit denominator before dependent arithmetic even for empty events.",
+            "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-3",
+            "symbols": [
+              "_denominator",
+              "IntegerGramForm._event",
+              "IntegerGramForm._event_weight",
+              "IntegerGramForm.event_weight",
+              "IntegerGramForm._diagonal_weight",
+              "IntegerGramForm.diagonal_weight"
+            ],
+            "tests": [
+              "PositiveFormTests.test_gram_bilinear_quadratic_and_normalized_weights",
+              "PositiveFormTests.test_distinct_normalization_witnesses",
+              "PositiveFormTests.test_vectors_events_and_denominator_refusals",
+              "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+              "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+              "PositiveFormTests.test_admission_precedes_dependent_arithmetic"
+            ]
+          },
+          {
+            "requirement": "A partition is a nonempty ordered list of nonempty, disjoint canonical events covering every coordinate exactly once. Preserve group order and scale; group features are checked sums in canonical index order. Return a new owned Gram form. Changing within-group order cannot change resource acceptance or values.",
+            "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-4",
+            "symbols": [
+              "IntegerGramForm._partition",
+              "IntegerGramForm._coarse_grained",
+              "IntegerGramForm.coarse_grained"
+            ],
+            "tests": [
+              "PositiveFormTests.test_coarse_graining_against_incidence_matrix",
+              "PositiveFormTests.test_fixed_nondiagonal_and_multifeature_examples",
+              "PositiveFormTests.test_partition_refusals_and_canonical_group_order",
+              "PositiveFormTests.test_snapshot_ownership",
+              "PositiveFormTests.test_resource_boundaries_and_later_cancellation",
+              "PositiveFormTests.test_admission_precedes_dependent_arithmetic"
+            ]
+          },
+          {
+            "requirement": "Keep the signed off-diagonal pairing as an actual2x2 form acting on(1,-1), yielding-2t; it is separate from the positive Gram form. Nonnegative products validate both operands before multiplication, including zero/oversized combinations.",
+            "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-5",
+            "symbols": [
+              "off_diagonal_pairing",
+              "nonnegative_product"
+            ],
+            "tests": [
+              "PositiveFormTests.test_negative_pairing_and_nonnegative_products",
+              "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle"
+            ]
+          },
+          {
+            "requirement": "Compose both original scalar applications without importing on-load checks/global counters. Require Cases, separately count619 positivity and3398 decoherence obligations, preserve two distinct normalized witnesses(1,1)/2 and(3,4)/5, actual rank-one matrix/determinant/Gram controls and coarse global weights. Emit6550 JSON checks with619/3398/2533 sections and nonzero expected-failure exit; propagate cancellation/programming errors.",
+            "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-6",
+            "symbols": [
+              "_recorder",
+              "verify_positivity",
+              "_normalization_controls",
+              "verify_decoherence",
+              "main"
+            ],
+            "tests": [
+              "PositiveFormTests.test_counts_faults_and_programming_error_lifecycle",
+              "PositiveFormTests.test_executable_receipt_and_failure_exit",
+              "PositiveFormTests.test_distinct_normalization_witnesses",
+              "PositiveFormTests.test_oracles_and_import_lifecycle"
+            ]
+          },
+          {
+            "requirement": "Own1..16 exact bounded integer amplitudes and admit an explicit exact degree1,2,4 before powering. Bound each powered mass and running total; zero total is input refusal. Return exact ordered Fraction shares through Outcome. Linear shares may be signed and negative total is legal. Normalization never selects an exponent or probability interpretation.",
+            "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-7",
+            "symbols": [
+              "_masses",
+              "_power_shares",
+              "power_shares"
+            ],
+            "tests": [
+              "PositiveFormTests.test_power_shares_against_symbolic_normalization",
+              "PositiveFormTests.test_fixed_shares_and_rotation_orientation",
+              "PositiveFormTests.test_born_exact_domains_and_zero_totals",
+              "PositiveFormTests.test_born_full_arithmetic_budgets",
+              "PositiveFormTests.test_born_preflight_lifecycle_and_section_counts"
+            ]
+          },
+          {
+            "requirement": "Own two exact bounded integer pairs and admit both before dependent arithmetic. Apply scaled rotation matrix[[r,-s],[s,r]], bound each product/prefix and return exact immutable integer pair through Outcome. No unit-norm requirement; zero coefficients are legal.",
+            "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-8",
+            "symbols": [
+              "_rotation",
+              "rotation"
+            ],
+            "tests": [
+              "PositiveFormTests.test_rotations_against_symbolic_matrix_and_complex_product",
+              "PositiveFormTests.test_fixed_shares_and_rotation_orientation",
+              "PositiveFormTests.test_born_exact_domains_and_zero_totals",
+              "PositiveFormTests.test_born_full_arithmetic_budgets",
+              "PositiveFormTests.test_born_preflight_lifecycle_and_section_counts"
+            ]
+          },
+          {
+            "requirement": "Preserve121 pair-sum and2401 rotation cases; replace aggregate group count by2533 individual obligations including all original7,25,337,3033/2025,75/63,-7/24,49/576,625 witnesses and actual distinct normalized shares. Require Cases; imports remain silent, counters reentrant and expected failures nonzero. No Born uniqueness, continuity, dimension, frame/effect or Lp result follows.",
+            "requirement_id": "TFQM-BORN-CONTROLS-REVIEW-DS-POSITIVE-FORM-CONTROLS-9",
+            "symbols": [
+              "verify_born_boundary"
+            ],
+            "tests": [
+              "PositiveFormTests.test_born_preflight_lifecycle_and_section_counts",
+              "PositiveFormTests.test_executable_receipt_and_failure_exit",
+              "PositiveFormTests.test_fixed_shares_and_rotation_orientation"
+            ]
+          },
+          {
+            "requirement": "Retain the original eleven integer obligations, route all mass/share computation through the bounded service, verify actual calls, expected refusals and cancellation, and preserve all previous source/test declarations.",
+            "requirement_id": "TFQM-SELECTION-COMPOSITION-2026-11-05",
+            "symbols": [
+              "verify_selection_witness"
+            ],
+            "tests": [
+              "PositiveFormTests.test_original_selection_witness_and_actual_guard_correspondence",
+              "PositiveFormTests.test_executable_receipt_and_failure_exit"
+            ]
+          }
+        ],
+        "retired_inputs": [
+          {
+            "archive": "reviews/repository_file_review/retired_born_controls_sources/ds-qm204-born-uniqueness-import-boundary.py.txt",
+            "path": "checks/independent/ds-qm204-born-uniqueness-import-boundary.py",
+            "sha256": "34daa44cda49e02392bfc765d4acd67c930f3cf02e689fcb2e70824b36f2abb5"
+          }
+        ],
+        "role": "Composed scalar/Gram verification application with owned bounded Gram forms, exact event/partition operations, explicit linear/quadratic/quartic shares and scaled rotations",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "IntegerGramForm",
+          "IntegerGramForm.__init__",
+          "IntegerGramForm._bilinear",
+          "IntegerGramForm._coarse_grained",
+          "IntegerGramForm._coordinates",
+          "IntegerGramForm._diagonal_weight",
+          "IntegerGramForm._event",
+          "IntegerGramForm._event_weight",
+          "IntegerGramForm._gram",
+          "IntegerGramForm._partition",
+          "IntegerGramForm._quadratic",
+          "IntegerGramForm._vector",
+          "IntegerGramForm.bilinear",
+          "IntegerGramForm.coarse_grained",
+          "IntegerGramForm.diagonal_weight",
+          "IntegerGramForm.dimension",
+          "IntegerGramForm.event_weight",
+          "IntegerGramForm.gram",
+          "IntegerGramForm.quadratic",
+          "_bounded",
+          "_denominator",
+          "_dot",
+          "_masses",
+          "_nonnegative",
+          "_normalization_controls",
+          "_power_shares",
+          "_recorder",
+          "_rotation",
+          "main",
+          "nonnegative_product",
+          "off_diagonal_pairing",
+          "power_shares",
+          "rotation",
+          "verify_born_boundary",
+          "verify_decoherence",
+          "verify_positivity",
+          "verify_selection_witness"
+        ]
+      },
+      "sha256": "da52582cf9c3bf7fa317356491146b2fe8a09e1dd9213141cd4b5ece05753814"
     }
   ],
-  "current_contract": "43aa058f55a41b8f642e3c158c734aa40880989f841d0bb4385104f38733adc5",
-  "current_scoring": "219bc1f2bf81796573355c0a2c37867985dee2e222be2a0b66f1ea06779f9d58",
+  "current_contract": "da52582cf9c3bf7fa317356491146b2fe8a09e1dd9213141cd4b5ece05753814",
+  "current_scoring": "329add587d05a99226f5a191677cc2675c248fbbfde3946a38d3d46cc0431b0e",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -1238,6 +1759,193 @@
         "score_token": "L4B"
       },
       "sha256": "219bc1f2bf81796573355c0a2c37867985dee2e222be2a0b66f1ea06779f9d58"
+    },
+    {
+      "bytes": 10811,
+      "original_paths": [
+        "selection-composition"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/ds-positive-form-controls.py\",\n    \"sha256\": \"4887f130b326d74c00edcf81508feaab3d4c7faf92256d779ac6a60170dd5ef6\"\n  },\n  \"assessment_id\": \"selection-composition-2026-11-05\",\n  \"basis\": {\n    \"G1\": \"Full Lean origin and current consumers audited; every declaration and nested ownership maps bidirectionally to tested requirements, with finite claim ceiling. All11old guard conditions map to named composed controls. The old selection script and companion are archived, and its live references are retargeted.\",\n    \"G2\": \"All prior symbolic Gram/incidence and normalization oracles retained. Added exact symbolic mass normalization, symbolic scaled rotations and independent complex multiplication; fixed signed linear shares, distinct quadratic/quartic shares and asymmetric rotation orientations. Zero totals, all exact domains and full budgets exercised. The1,2 and1,1 amplitudes are independently checked using symbolic power normalization. All prior declarations and mathematical domains remain intact.\",\n    \"G3\": \"Owned finite snapshots, explicit selected exponents and eager preflight before arithmetic; powered masses, total prefixes and rotation term/prefix limits refuse even when cancellation or normalization would fit. Public new queries return Outcome. Existing typed failures, per-run counters, nonzero exits and cancellation/programming-error propagation remain. The new verifier checks Cases admission and propagates cancellation. Per-run counters now record the11added controls.\",\n    \"G4\": \"Strict typing and21composed test groups plus24prior integration groups pass normally and optimized. The77fault campaign kills75and retains two previously proven equivalents. All12new composition/guard-removal faults are killed. Original raw outcomes, equivalence arguments and AST preservation evidence are retained.\",\n    \"G5\": \"CCN 15, cognitive 9, nesting 2; one class. M,N1..16, at most256 owned integer feature entries; nonnegative integer scale. Every integer input, dot product term/prefix, Gram/scale result, diagonal prefix and denominator square has at most4096 bits; temporary multiplication/addition at most8192/4097 bits before admission. Bilinear/quadratic O(MN+M), Gram O(MN^2), diagonal O(MN), event O(NlogN+MN); valid coarse graining O(MN). Partition admission may inspect16 groups of16 indices before rejecting overlaps/missing coverage; valid partition has exactlyN indices and at mostN groups. Default4017 obligations =619 scalar positivity+3398 Gram/normalization controls; original648+3459=4107 loses49 duplicate nonnegative-product and61 duplicate square checks, while shared square range adds20. Added mass normalization owns1..16 amplitudes; exponents exactly1,2,4. At most16 exponentiations, each raw power at most16384 bits before4096-bit admission, and16 bounded sum prefixes. Each output Fraction has numerator/denominator at most4096 bits. Rotation owns two pairs and performs four bounded products/two bounded sums; temporary products at most8192 bits and additions4097 bits. Default6550 obligations retain4017 prior checks and add2533=121 pair+2401 rotation+11 fixed separation/normalization controls. The added fixed two-amplitude witness uses eleven guard calls and constant additional work.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-11-05T03:43:31.773066+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-checker.md\",\n      \"sha256\": \"c40da13a42b251a45515e371b96110cc19779b288fd308488a3b164b2001d522\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-initial-tests.py.txt\",\n      \"sha256\": \"40b72f1ba96cde7da99172e223c39ae98e675b1fe16eb040d15865415f1bdf25\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-migration-initial.json\",\n      \"sha256\": \"d31691b92c86927c5cb902101922533a74e23ca1832e31711b69698046cccf5a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-migration.json\",\n      \"sha256\": \"f5ad318aba3717bede5178614716a40c4adc82542afdb6ac85877d967853788d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-mutations-adjudicated.json\",\n      \"sha256\": \"0abd635c8be5d9eb3547da71f56275ecf6f2d817b81d95b38faafbb4a53ed8cc\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-mutations-initial.json\",\n      \"sha256\": \"3c596c3582728420b01ecdb403e06c855f1f5b7e836a26997a531c7c4224fafb\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-mutations.json\",\n      \"sha256\": \"bf101e071807ff255811c066c73d2ce43fdf102910d698913461cf57aee87f56\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-prior-ds-positive-form-controls.py.txt\",\n      \"sha256\": \"47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-prior-test_positive_form_controls.py.txt\",\n      \"sha256\": \"1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-quality-initial.json\",\n      \"sha256\": \"b128e1e9fe72097c0d0ecde9669f2760d3a08be4d461ce7cdcf2ca226ab66b9e\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-quality.json\",\n      \"sha256\": \"5fce25d48007193fb9288c5a9c4cf252d69e3edbb60fec0a07367cec56838a95\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-requirements.json\",\n      \"sha256\": \"5d17bd4b1eb26b6c2f6fb4ea49d20135cd33a2b8f207f3d11728a356debe96bb\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-retirement.json\",\n      \"sha256\": \"22cc5c711e537458256ca49568c6cde39b0d0191d6aa0aebe359fa421ca28140\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-born-controls-typing-repair.json\",\n      \"sha256\": \"ca792b1a154c964649ef9950fe9aa23a5cd9b54f7c8e5e01f80b3012edf8326b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/retired_born_controls_sources/ds-qm204-born-uniqueness-import-boundary.py.txt\",\n      \"sha256\": \"34daa44cda49e02392bfc765d4acd67c930f3cf02e689fcb2e70824b36f2abb5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-quality.json\",\n      \"sha256\": \"f531f9e11189a053da9fa1abe238e169a50008eee8681df7bd2935b746da7a37\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations-adjudicated.json\",\n      \"sha256\": \"0112582c49fb176de79174d6a19af63fea21ff5c7e0eff55d25a34b04d879d95\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/born_controls_mutations.json\",\n      \"sha256\": \"69dfa5a2f755a6667aafd6b8487c12db82caa83b258da24f644d952ca324433c\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-initial-review.json\",\n      \"sha256\": \"359de97c45371463ebf681137ba116d2bf90fe25c33299bad8944dbc7635238b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-mutations-adjudicated.json\",\n      \"sha256\": \"638e57cb40a08c568dc43cdca74a8e01bcb933e8a3fbf77033c2dfc2e852184b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-mutations.json\",\n      \"sha256\": \"20382f0cfcfce595e00a6ec18ee994e61d471beb99fb3f25f8d19da03e842e5e\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.contract.score.yaml.txt\",\n      \"sha256\": \"25586732d9767048b9671edc0eedd36892b401b777781fce4880d23a445f890e\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.py.txt\",\n      \"sha256\": \"4dcfb6f1fa67d11c33284657e4cdc333848ff80df7b557390a93f5c19099830a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.contract.score.yaml.txt\",\n      \"sha256\": \"ad914f183f6a3249ff07ff8494606527d211b73508424088936811bebe7b17a1\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.py.txt\",\n      \"sha256\": \"c34d80dd31d3b6b62f4773165707bfd5c67a3de6834a1941bfc5e7dadbf45760\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-obligations.json\",\n      \"sha256\": \"249a23a9fd2b3bcb12e95e431035ece145052d40e7fb74baf21acfd0144a6cb9\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.contract.score.yaml.txt\",\n      \"sha256\": \"4fcf3c824c1dc3b87d2731fce2d66892fd977eec9defc8aa68b575af7af218ec\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.py.txt\",\n      \"sha256\": \"e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-preservation.json\",\n      \"sha256\": \"60c2887ff73fceb629dde25c6f03c34ca10358860e57f4e8e636d793f73876f0\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-05-selection-quality.json\",\n      \"sha256\": \"fdcc55db58619d1a8a513078aa4603f4948fd3a3918d0c4d8a975010f9cad716\"\n    },\n    {\n      \"path\": \"checks/tests/selection_controls_mutations.json\",\n      \"sha256\": \"8a0686a30a6159cd99613213fd2e18e9e69146e4c9907d5a7c2090e4fffeb157\"\n    },\n    {\n      \"path\": \"lean4/PrimToQmSelection.lean\",\n      \"sha256\": \"d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Composed scalar/Gram verification application with owned bounded Gram forms, exact event/partition operations, explicit linear/quadratic/quartic shares and scaled rotations. Explicit bounded API grain, invariant ownership, typed failure paths and independently tested composition supply production craft beyond fixed literal demonstrations.\",\n  \"open_findings\": [],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/ds-positive-form-controls.py",
+          "sha256": "4887f130b326d74c00edcf81508feaab3d4c7faf92256d779ac6a60170dd5ef6"
+        },
+        "assessment_id": "selection-composition-2026-11-05",
+        "basis": {
+          "G1": "Full Lean origin and current consumers audited; every declaration and nested ownership maps bidirectionally to tested requirements, with finite claim ceiling. All11old guard conditions map to named composed controls. The old selection script and companion are archived, and its live references are retargeted.",
+          "G2": "All prior symbolic Gram/incidence and normalization oracles retained. Added exact symbolic mass normalization, symbolic scaled rotations and independent complex multiplication; fixed signed linear shares, distinct quadratic/quartic shares and asymmetric rotation orientations. Zero totals, all exact domains and full budgets exercised. The1,2 and1,1 amplitudes are independently checked using symbolic power normalization. All prior declarations and mathematical domains remain intact.",
+          "G3": "Owned finite snapshots, explicit selected exponents and eager preflight before arithmetic; powered masses, total prefixes and rotation term/prefix limits refuse even when cancellation or normalization would fit. Public new queries return Outcome. Existing typed failures, per-run counters, nonzero exits and cancellation/programming-error propagation remain. The new verifier checks Cases admission and propagates cancellation. Per-run counters now record the11added controls.",
+          "G4": "Strict typing and21composed test groups plus24prior integration groups pass normally and optimized. The77fault campaign kills75and retains two previously proven equivalents. All12new composition/guard-removal faults are killed. Original raw outcomes, equivalence arguments and AST preservation evidence are retained.",
+          "G5": "CCN 15, cognitive 9, nesting 2; one class. M,N1..16, at most256 owned integer feature entries; nonnegative integer scale. Every integer input, dot product term/prefix, Gram/scale result, diagonal prefix and denominator square has at most4096 bits; temporary multiplication/addition at most8192/4097 bits before admission. Bilinear/quadratic O(MN+M), Gram O(MN^2), diagonal O(MN), event O(NlogN+MN); valid coarse graining O(MN). Partition admission may inspect16 groups of16 indices before rejecting overlaps/missing coverage; valid partition has exactlyN indices and at mostN groups. Default4017 obligations =619 scalar positivity+3398 Gram/normalization controls; original648+3459=4107 loses49 duplicate nonnegative-product and61 duplicate square checks, while shared square range adds20. Added mass normalization owns1..16 amplitudes; exponents exactly1,2,4. At most16 exponentiations, each raw power at most16384 bits before4096-bit admission, and16 bounded sum prefixes. Each output Fraction has numerator/denominator at most4096 bits. Rotation owns two pairs and performs four bounded products/two bounded sums; temporary products at most8192 bits and additions4097 bits. Default6550 obligations retain4017 prior checks and add2533=121 pair+2401 rotation+11 fixed separation/normalization controls. The added fixed two-amplitude witness uses eleven guard calls and constant additional work."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-11-05T03:43:31.773066+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-checker.md",
+            "sha256": "c40da13a42b251a45515e371b96110cc19779b288fd308488a3b164b2001d522"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-initial-tests.py.txt",
+            "sha256": "40b72f1ba96cde7da99172e223c39ae98e675b1fe16eb040d15865415f1bdf25"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-migration-initial.json",
+            "sha256": "d31691b92c86927c5cb902101922533a74e23ca1832e31711b69698046cccf5a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-migration.json",
+            "sha256": "f5ad318aba3717bede5178614716a40c4adc82542afdb6ac85877d967853788d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-mutations-adjudicated.json",
+            "sha256": "0abd635c8be5d9eb3547da71f56275ecf6f2d817b81d95b38faafbb4a53ed8cc"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-mutations-initial.json",
+            "sha256": "3c596c3582728420b01ecdb403e06c855f1f5b7e836a26997a531c7c4224fafb"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-mutations.json",
+            "sha256": "bf101e071807ff255811c066c73d2ce43fdf102910d698913461cf57aee87f56"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-prior-ds-positive-form-controls.py.txt",
+            "sha256": "47fc23d557698f71dd0a2c798f39698ba08bf08e36236be503b6b15c3fd8a959"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-prior-test_positive_form_controls.py.txt",
+            "sha256": "1fc2a026defa4b287965f9da9b25da9b4d4e4ad83219496a01d093c1b32f306a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-quality-initial.json",
+            "sha256": "b128e1e9fe72097c0d0ecde9669f2760d3a08be4d461ce7cdcf2ca226ab66b9e"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-quality.json",
+            "sha256": "5fce25d48007193fb9288c5a9c4cf252d69e3edbb60fec0a07367cec56838a95"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-requirements.json",
+            "sha256": "5d17bd4b1eb26b6c2f6fb4ea49d20135cd33a2b8f207f3d11728a356debe96bb"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-retirement.json",
+            "sha256": "22cc5c711e537458256ca49568c6cde39b0d0191d6aa0aebe359fa421ca28140"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-born-controls-typing-repair.json",
+            "sha256": "ca792b1a154c964649ef9950fe9aa23a5cd9b54f7c8e5e01f80b3012edf8326b"
+          },
+          {
+            "path": "reviews/repository_file_review/retired_born_controls_sources/ds-qm204-born-uniqueness-import-boundary.py.txt",
+            "sha256": "34daa44cda49e02392bfc765d4acd67c930f3cf02e689fcb2e70824b36f2abb5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-quality.json",
+            "sha256": "f531f9e11189a053da9fa1abe238e169a50008eee8681df7bd2935b746da7a37"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-adjudicated.json",
+            "sha256": "0112582c49fb176de79174d6a19af63fea21ff5c7e0eff55d25a34b04d879d95"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/born_controls_mutations.json",
+            "sha256": "69dfa5a2f755a6667aafd6b8487c12db82caa83b258da24f644d952ca324433c"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-initial-review.json",
+            "sha256": "359de97c45371463ebf681137ba116d2bf90fe25c33299bad8944dbc7635238b"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-mutations-adjudicated.json",
+            "sha256": "638e57cb40a08c568dc43cdca74a8e01bcb933e8a3fbf77033c2dfc2e852184b"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-mutations.json",
+            "sha256": "20382f0cfcfce595e00a6ec18ee994e61d471beb99fb3f25f8d19da03e842e5e"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.contract.score.yaml.txt",
+            "sha256": "25586732d9767048b9671edc0eedd36892b401b777781fce4880d23a445f890e"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-ds-positive-form-controls.py.txt",
+            "sha256": "4dcfb6f1fa67d11c33284657e4cdc333848ff80df7b557390a93f5c19099830a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.contract.score.yaml.txt",
+            "sha256": "ad914f183f6a3249ff07ff8494606527d211b73508424088936811bebe7b17a1"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-fq-prim-to-qm-selection-open.py.txt",
+            "sha256": "c34d80dd31d3b6b62f4773165707bfd5c67a3de6834a1941bfc5e7dadbf45760"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-obligations.json",
+            "sha256": "249a23a9fd2b3bcb12e95e431035ece145052d40e7fb74baf21acfd0144a6cb9"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.contract.score.yaml.txt",
+            "sha256": "4fcf3c824c1dc3b87d2731fce2d66892fd977eec9defc8aa68b575af7af218ec"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-original-test_positive_form_controls.py.txt",
+            "sha256": "e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-preservation.json",
+            "sha256": "60c2887ff73fceb629dde25c6f03c34ca10358860e57f4e8e636d793f73876f0"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-05-selection-quality.json",
+            "sha256": "fdcc55db58619d1a8a513078aa4603f4948fd3a3918d0c4d8a975010f9cad716"
+          },
+          {
+            "path": "checks/tests/selection_controls_mutations.json",
+            "sha256": "8a0686a30a6159cd99613213fd2e18e9e69146e4c9907d5a7c2090e4fffeb157"
+          },
+          {
+            "path": "lean4/PrimToQmSelection.lean",
+            "sha256": "d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Composed scalar/Gram verification application with owned bounded Gram forms, exact event/partition operations, explicit linear/quadratic/quartic shares and scaled rotations. Explicit bounded API grain, invariant ownership, typed failure paths and independently tested composition supply production craft beyond fixed literal demonstrations.",
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "329add587d05a99226f5a191677cc2675c248fbbfde3946a38d3d46cc0431b0e"
     }
   ]
 }

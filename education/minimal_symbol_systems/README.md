@@ -20,10 +20,10 @@ grammars, proposed interfaces, finite examples and verification obligations for
 constructing mathematical representations. Its row number does not identify a
 stage in the frozen Genesis derivation.
 
-The active combined manuscript is [From Pre-Genesis to MSS-N](/atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
+The active combined manuscript is [From Pre-Genesis to MSS-N](/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
 The former paper packages have been consolidated and removed. The retained
 [papers directory](papers/README.md) points to the replacement manuscript.
-The first-publication [Genesis paper](/atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+The first-publication [Genesis paper](/atlas/finite_obstruction_calculus/genesis/paper.md)
 addresses the source derivation itself.
 
 ## Where to start
@@ -52,7 +52,7 @@ observational collapse. Matching the number 2 does not identify these objects.
 There is no demonstrated sequence of licensed lifts from MSS-0 to MSS-100.
 
 Supplying the literal `<>` in the canonical primitive regime does not admit a
-carrier datum. The [WDP construction supplement](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/genesis_construction.md)
+carrier datum. The [WDP construction supplement](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/genesis_construction.md)
 records an executable continuation with separate admissions and an explicit
 simplicial interpretation. That construction does not reopen the frozen source
 experiment or turn atlas headings into source discoveries.

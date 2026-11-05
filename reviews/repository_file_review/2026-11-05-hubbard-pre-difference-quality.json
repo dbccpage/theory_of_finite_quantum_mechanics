@@ -1,0 +1,176 @@
+{
+  "AuthorityEffect": "None",
+  "timestamp": "2026-11-05T05:23:12.058868+00:00",
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "tools": {
+    "mypy": "1.18.2",
+    "hypothesis": "6.170.8",
+    "radon": "6.0.1",
+    "cognitive-complexity": "1.3.0"
+  },
+  "sources": {
+    "checks/checker_support/rational_determinant.py": {
+      "sha256": "ae67cb13fcbb9afc6a7e0ec1ffaa3109ea8fde1d8911cd64b0fa108294257d97",
+      "max_ccn": 9,
+      "max_cognitive": 6,
+      "max_control_nesting": 2,
+      "class_count": 0,
+      "assert_count": 0
+    },
+    "checks/checker_support/bond_graph.py": {
+      "sha256": "156c9d929b5cfcfaeb846067c06ed87fd4adcf9df5575f83fbab79d147c86fa4",
+      "max_ccn": 4,
+      "max_cognitive": 1,
+      "max_control_nesting": 1,
+      "class_count": 1,
+      "assert_count": 0
+    },
+    "checks/checker_support/hubbard_determinants.py": {
+      "sha256": "9acddc054fa0de08d42e5651a6d444fa0b92a5ff0cbc04d748c70661fa51b5c2",
+      "max_ccn": 3,
+      "max_cognitive": 1,
+      "max_control_nesting": 1,
+      "class_count": 1,
+      "assert_count": 0
+    },
+    "checks/checker_support/hubbard_transfer.py": {
+      "sha256": "71d83a109b587932f961b5e3f82650056ffbe0a2ed30b19e37b5a7cdaa963b39",
+      "max_ccn": 7,
+      "max_cognitive": 3,
+      "max_control_nesting": 1,
+      "class_count": 1,
+      "assert_count": 0
+    },
+    "checks/independent/fsp-hubbard-protected-representations.py": {
+      "sha256": "12f1a513992fdaf18eecd9bd54e7750853d6cd460a29b6a6e2725916f2afce75",
+      "max_ccn": 7,
+      "max_cognitive": 6,
+      "max_control_nesting": 1,
+      "class_count": 1,
+      "assert_count": 0
+    },
+    "checks/tests/test_hubbard_transfer.py": {
+      "sha256": "3e05fb625c36ea177452d5b114b0dace20d1ffa34a3147bd04a5e68df2824d6c",
+      "max_ccn": 8,
+      "max_cognitive": 6,
+      "max_control_nesting": 3,
+      "class_count": 1,
+      "assert_count": 0
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-m",
+        "mypy",
+        "--config-file",
+        "checks/mypy.ini",
+        "--no-incremental",
+        "checks/checker_support/rational_determinant.py",
+        "checks/checker_support/bond_graph.py",
+        "checks/checker_support/hubbard_determinants.py",
+        "checks/checker_support/hubbard_transfer.py",
+        "checks/independent/fsp-hubbard-protected-representations.py",
+        "checks/tests/test_hubbard_transfer.py"
+      ],
+      "returncode": 0,
+      "stdout": "Success: no issues found in 6 source files\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "checks/tests/test_hubbard_transfer.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 13.009s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "checks/tests/test_review_repairs.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_assertion_stripping_mutants_are_killed (__main__.ReviewedCheckerRegressionTests.test_assertion_stripping_mutants_are_killed) ... ok\ntest_bphz_joint_kernel_converse_1925_cases (__main__.ReviewedCheckerRegressionTests.test_bphz_joint_kernel_converse_1925_cases) ... ok\ntest_bphz_shape_and_forest_boundaries (__main__.ReviewedCheckerRegressionTests.test_bphz_shape_and_forest_boundaries) ... ok\ntest_causal_matrix_inverse_boundary (__main__.ReviewedCheckerRegressionTests.test_causal_matrix_inverse_boundary) ... ok\ntest_checker_structure_stays_within_reviewed_bounds (__main__.ReviewedCheckerRegressionTests.test_checker_structure_stays_within_reviewed_bounds) ... ok\ntest_chirality_mutant_is_killed (__main__.ReviewedCheckerRegressionTests.test_chirality_mutant_is_killed) ... ok\ntest_ckm_immutable_exact_labels_and_budget (__main__.ReviewedCheckerRegressionTests.test_ckm_immutable_exact_labels_and_budget) ... ok\ntest_continuum_matrix_bypass_is_refused (__main__.ReviewedCheckerRegressionTests.test_continuum_matrix_bypass_is_refused) ... ok\ntest_duplicate_case_ids_are_refused (__main__.ReviewedCheckerRegressionTests.test_duplicate_case_ids_are_refused) ... ok\ntest_every_checker_cli (__main__.ReviewedCheckerRegressionTests.test_every_checker_cli) ... ok\ntest_happy_mincut_independent_graph_enumeration (__main__.ReviewedCheckerRegressionTests.test_happy_mincut_independent_graph_enumeration) ... ok\ntest_happy_regions_and_independent_rank (__main__.ReviewedCheckerRegressionTests.test_happy_regions_and_independent_rank) ... ok\ntest_imports_do_not_execute_checks (__main__.ReviewedCheckerRegressionTests.test_imports_do_not_execute_checks) ... ok\ntest_lineon_8200_paths_against_collision_oracle (__main__.ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle) ... ok\ntest_lineon_invalid_domains_and_exact_curvature (__main__.ReviewedCheckerRegressionTests.test_lineon_invalid_domains_and_exact_curvature) ... ok\ntest_local_net_boundaries (__main__.ReviewedCheckerRegressionTests.test_local_net_boundaries) ... ok\ntest_normalized_concurrence_off_unit_circle (__main__.ReviewedCheckerRegressionTests.test_normalized_concurrence_off_unit_circle) ... ok\ntest_railway_result_short_circuits (__main__.ReviewedCheckerRegressionTests.test_railway_result_short_circuits) ... ok\ntest_reeh_matrix_and_site_boundaries (__main__.ReviewedCheckerRegressionTests.test_reeh_matrix_and_site_boundaries) ... ok\ntest_refinement_bounds_group_and_repeatability (__main__.ReviewedCheckerRegressionTests.test_refinement_bounds_group_and_repeatability) ... ok\ntest_rice_and_rewrite_invalid_inputs (__main__.ReviewedCheckerRegressionTests.test_rice_and_rewrite_invalid_inputs) ... ok\ntest_rt_exact_certificates_and_subdivision (__main__.ReviewedCheckerRegressionTests.test_rt_exact_certificates_and_subdivision) ... ok\ntest_strong_coupling_phase_and_domains (__main__.ReviewedCheckerRegressionTests.test_strong_coupling_phase_and_domains) ... ok\ntest_wilson_determinant_against_bareiss (__main__.ReviewedCheckerRegressionTests.test_wilson_determinant_against_bareiss) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 28.210s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/tests/test_hubbard_transfer.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 11.273s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/tests/test_review_repairs.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_assertion_stripping_mutants_are_killed (__main__.ReviewedCheckerRegressionTests.test_assertion_stripping_mutants_are_killed) ... ok\ntest_bphz_joint_kernel_converse_1925_cases (__main__.ReviewedCheckerRegressionTests.test_bphz_joint_kernel_converse_1925_cases) ... ok\ntest_bphz_shape_and_forest_boundaries (__main__.ReviewedCheckerRegressionTests.test_bphz_shape_and_forest_boundaries) ... ok\ntest_causal_matrix_inverse_boundary (__main__.ReviewedCheckerRegressionTests.test_causal_matrix_inverse_boundary) ... ok\ntest_checker_structure_stays_within_reviewed_bounds (__main__.ReviewedCheckerRegressionTests.test_checker_structure_stays_within_reviewed_bounds) ... ok\ntest_chirality_mutant_is_killed (__main__.ReviewedCheckerRegressionTests.test_chirality_mutant_is_killed) ... ok\ntest_ckm_immutable_exact_labels_and_budget (__main__.ReviewedCheckerRegressionTests.test_ckm_immutable_exact_labels_and_budget) ... ok\ntest_continuum_matrix_bypass_is_refused (__main__.ReviewedCheckerRegressionTests.test_continuum_matrix_bypass_is_refused) ... ok\ntest_duplicate_case_ids_are_refused (__main__.ReviewedCheckerRegressionTests.test_duplicate_case_ids_are_refused) ... ok\ntest_every_checker_cli (__main__.ReviewedCheckerRegressionTests.test_every_checker_cli) ... ok\ntest_happy_mincut_independent_graph_enumeration (__main__.ReviewedCheckerRegressionTests.test_happy_mincut_independent_graph_enumeration) ... ok\ntest_happy_regions_and_independent_rank (__main__.ReviewedCheckerRegressionTests.test_happy_regions_and_independent_rank) ... ok\ntest_imports_do_not_execute_checks (__main__.ReviewedCheckerRegressionTests.test_imports_do_not_execute_checks) ... ok\ntest_lineon_8200_paths_against_collision_oracle (__main__.ReviewedCheckerRegressionTests.test_lineon_8200_paths_against_collision_oracle) ... ok\ntest_lineon_invalid_domains_and_exact_curvature (__main__.ReviewedCheckerRegressionTests.test_lineon_invalid_domains_and_exact_curvature) ... ok\ntest_local_net_boundaries (__main__.ReviewedCheckerRegressionTests.test_local_net_boundaries) ... ok\ntest_normalized_concurrence_off_unit_circle (__main__.ReviewedCheckerRegressionTests.test_normalized_concurrence_off_unit_circle) ... ok\ntest_railway_result_short_circuits (__main__.ReviewedCheckerRegressionTests.test_railway_result_short_circuits) ... ok\ntest_reeh_matrix_and_site_boundaries (__main__.ReviewedCheckerRegressionTests.test_reeh_matrix_and_site_boundaries) ... ok\ntest_refinement_bounds_group_and_repeatability (__main__.ReviewedCheckerRegressionTests.test_refinement_bounds_group_and_repeatability) ... ok\ntest_rice_and_rewrite_invalid_inputs (__main__.ReviewedCheckerRegressionTests.test_rice_and_rewrite_invalid_inputs) ... ok\ntest_rt_exact_certificates_and_subdivision (__main__.ReviewedCheckerRegressionTests.test_rt_exact_certificates_and_subdivision) ... ok\ntest_strong_coupling_phase_and_domains (__main__.ReviewedCheckerRegressionTests.test_strong_coupling_phase_and_domains) ... ok\ntest_wilson_determinant_against_bareiss (__main__.ReviewedCheckerRegressionTests.test_wilson_determinant_against_bareiss) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 66.432s\n\nOK\n"
+    }
+  ],
+  "dependencies_sha256": {
+    "checks/checker_support/binary_frame_system.py": "843503239990f18ad076a7c5078fd084d73be12cd8314a5e9ae8f20bd6a77eb8",
+    "checks/checker_support/binary_sign_cochain.py": "b1540901c370f9464ba425922b3093507bb335c1e2ba3f08029a7b3065fa3e77",
+    "checks/checker_support/bond_graph.py": "156c9d929b5cfcfaeb846067c06ed87fd4adcf9df5575f83fbab79d147c86fa4",
+    "checks/checker_support/boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks/checker_support/cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks/checker_support/cech_complex.py": "6f973fc65d6fa66ebb9078c6cc1af60683a5150b97b5510ca853517b650227dd",
+    "checks/checker_support/diagonal_constraint.py": "0a6fe16223f178f266b9331f05dce342cd72a591a00181b5adb8e600ef6fedeb",
+    "checks/checker_support/domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks/checker_support/empirical_model.py": "612562ec192efe40b5b9a0bb151486d4e77caf399bd853d2da712f5ca465172c",
+    "checks/checker_support/equatorial_ray_geometry.py": "ae4f3583fc892bcbfa5ed5acacdc41b88c09f2f4fe0a4811a12ec48d5c503622",
+    "checks/checker_support/exact_json_document.py": "e162590c25fab02fe87d73bc50f1e52e8083580b9faafae14ba4c50b8efb9f8c",
+    "checks/checker_support/exact_linear_program.py": "c771280ccd6473deaa011e37ca22c3e1856ccb9fbd2025580c81b87a0513f65f",
+    "checks/checker_support/gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks/checker_support/gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks/checker_support/gaussian_vector3.py": "7499bff94cb4a71a8dc8e4fa7ed3e08a00ac3a0e5096f925eb3e10b290f8a23e",
+    "checks/checker_support/happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks/checker_support/hermitian_tomography.py": "df1760dcfb384e13a48fc572613d6d25fe051361d6ab77954dec083f498e2c69",
+    "checks/checker_support/hubbard_determinants.py": "9acddc054fa0de08d42e5651a6d444fa0b92a5ff0cbc04d748c70661fa51b5c2",
+    "checks/checker_support/hubbard_transfer.py": "71d83a109b587932f961b5e3f82650056ffbe0a2ed30b19e37b5a7cdaa963b39",
+    "checks/checker_support/inert_prime_residual.py": "55f11b7d004c29e7feb7b44461117c003821ee7781fd940e973eb8a02f3b57aa",
+    "checks/checker_support/integer_quadratic_equation.py": "7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4",
+    "checks/checker_support/linear_program_certificate.py": "cfe2167737de71125118fb749a6e9ba5a2501cbee49ebc7828d2d55cc81636dc",
+    "checks/checker_support/measurement_scenario.py": "c441ba2036eca8083869d4b0fb4a49fdbc84638ca29b3cd2e90f8a07b5d71a3c",
+    "checks/checker_support/mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks/checker_support/orthogonal_gaussian_pair.py": "e5402c6601acc653d2958eb28e46bf0cc99e7616b2a9bcbc5f82611eba5f78d3",
+    "checks/checker_support/outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks/checker_support/rational_determinant.py": "ae67cb13fcbb9afc6a7e0ec1ffaa3109ea8fde1d8911cd64b0fa108294257d97",
+    "checks/checker_support/rational_inverse.py": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+    "checks/checker_support/rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks/checker_support/signed_triangle.py": "f5432fcdc944d75bf124bcc8362466a31ac6d647786073d3c03549454304d49f",
+    "checks/checker_support/simplex_tableau.py": "c5254540e60b3bd68f8bd7776162878d6a919724f88b2098f9874bb980d2c145",
+    "checks/checker_support/wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks/mypy.ini": "5165f5293fae5f397d99c840184e5a118ce2a0559c178865285082fa91c05bb0",
+    "checks/tests/requirements.txt": "848c6eb21f30cb102a66ce71d54cf36772929aaef549aeb51e07fe879061bbf4",
+    "SCORING.md": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+    "lean4/FermionSignHubbardProtected.lean": "365483617d0e2261ff3450ab9e5a891e0c51a8bc2ee69bfecbb702d00544f2e9"
+  }
+}

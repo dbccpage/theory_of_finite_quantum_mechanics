@@ -57,9 +57,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
 - sha256 (`bytes`): `8ca3528b4e8b891abc63a178d4a773b8b8b06da7665f418a7298f24baa261271`
 - cited in: record TFQ-0541
 
@@ -69,9 +69,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py)
 - sha256 (`bytes`): `391a7f3549fa1fbdfa050f7ad71b5f53cb902cafb73d1fbd39a7f4962d3c43a0`
 - cited in: record TFQ-0541
 
@@ -81,16 +81,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
 - sha256 (`lf-normalised`): `1596c27b09af32aec26710dacafcbe1dcb5081bc06d35d094b4c0b0353932e64`
 - cited in: node.source
 - counts toward the grade: yes
@@ -98,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md`
 
 - file: [dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md](../../../dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md)
-- sha256 (`lf-normalised`): `cc1e4e6e074c0c4d65502d626a8d1bc923063bcbf6b6dbb17d2155d85d94d094`
+- sha256 (`lf-normalised`): `dc309874eb426596e52bac15bcc2e0a973e2d0bc8393ebc40eb5d0fadb74e277`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0541
 - counts toward the grade: no

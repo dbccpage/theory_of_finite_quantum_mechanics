@@ -79,9 +79,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py)
 - sha256 (`bytes`): `fc57a8f34d30455f85dd5f87ec439c6b89b532f45a0e214f0293812632a166f2`
 - cited in: record TFQ-0556
 
@@ -98,16 +98,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0556
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
 - sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
 - sha256 (`lf-normalised`): `616280b727abb20440caea09709a0e8f5512fbc8de20da8a3db124de2dc262ff`
 - cited in: node.source
 - counts toward the grade: yes
@@ -115,7 +115,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md`
 
 - file: [dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md](../../../dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md)
-- sha256 (`lf-normalised`): `cca5ce65fd6ab5c23254dd303ecb21b3b24169b9c25cce8697b9ee5f614a735c`
+- sha256 (`lf-normalised`): `a328022c7be8709093affc298a9febc3f4be886a201846a78c0330e21eadafba`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0556
 - counts toward the grade: no

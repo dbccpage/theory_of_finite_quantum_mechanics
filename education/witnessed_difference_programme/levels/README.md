@@ -8,16 +8,16 @@ claim_status: source-grounded
 authority_effect: "None"
 source_version: "2.4.1"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md
 ---
 
 # Witnessed Difference Programme Levels Index: Level 00 to Level 100
 
 **AuthorityEffect:** None.  
 **Framework:** Witnessed Difference Programme (WDP) Finite Obstruction Calculus  
-**Monograph Source:** *The Witnessed Difference Programme: From Finite Distinction to Witnessed Measurement*, edition 2.4.1, [`witnessed_difference_programme.md`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)  
-**Claim Authority:** [`witnessed_difference_programme_claim_ledger.md`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md) (154 live rows)
+**Monograph Source:** *The Witnessed Difference Programme: From Finite Distinction to Witnessed Measurement*, edition 2.4.1, [`witnessed_difference_programme.md`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)  
+**Claim Authority:** [`witnessed_difference_programme_claim_ledger.md`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md) (154 live rows)
 
 ---
 

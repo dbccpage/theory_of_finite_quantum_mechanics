@@ -44,16 +44,16 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt)
 - sha256 (`lf-normalised`): `c613e357809438876d1fcec34ea896548f17f4e9d4ea7f21048fafe9451651ac`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
+- file: [atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
 - sha256 (`lf-normalised`): `7e774b9a5cd0b326f884716c49a18055df522968e659438910dceeaa332b73ad`
 - cited in: node.source
 - counts toward the grade: yes
@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0473_rung10_responder_adjacency_reach.md`
 
 - file: [dag/derivations/02_genesis/tfq_0473_rung10_responder_adjacency_reach.md](../../../dag/derivations/02_genesis/tfq_0473_rung10_responder_adjacency_reach.md)
-- sha256 (`lf-normalised`): `fb599f342c2032c2d9fe34b28e4cb39276cff37e21f068340880aed309cb504e`
+- sha256 (`lf-normalised`): `c84264b3b81f21f56cfa54f75814aa1306f5d3524ec0778c041ca5dceca35b64`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0473
 - counts toward the grade: no

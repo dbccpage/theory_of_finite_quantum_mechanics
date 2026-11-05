@@ -32,9 +32,9 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`declaration obligation: demand_accounting, hypotheses kept in the statement rather than dropped`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::demand_accounting`](../../code/lean4/)
-- [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::demand_accounting`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean::demand_accounting`](../../code/lean4/)
+- [`atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean::demand_accounting`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: the same cardinality step in crate pre_mssn_preservation, with the two hypotheses as fields`](../../code/rust/src/)
@@ -44,7 +44,7 @@ In accordance with strict constructive principles:
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: a count wrapper around demand_step that states s_next = s - d + b only when discharged is a subset and births are disjoint`](../../code/python/)
-- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
+- [`atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
 
 ---
 

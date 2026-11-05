@@ -15,10 +15,10 @@ source_paths:
   - omega_engine/crates_rs/omega_wdp/src/ddc/dda_alphabet.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/degree_tower.rs
   - omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/06_d_descent.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/descent.py
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Descent.lean
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/chapters/06_d_descent.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/discrete_deformation_calculus.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/descent.py
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Descent.lean
   - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/transport_loss_ledger.contract.yaml
 last_verified: 2026-10-01
 ---
@@ -61,7 +61,7 @@ For every $x \in \mathbb{Q}^{n+k}$:
 2. $\pi$ is idempotent: $\pi(\pi(x)) = \pi(x)$ on $\mathbb{Q}^n$.
 3. $L(\pi(x)) = 0$.
 
-[`ScaleDescent`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/descent.py) and [`degree_tower.rs`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/degree_tower.rs) compute this projection and ledger deterministically over $\mathbb{Q}$.
+[`ScaleDescent`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/code/ddc/descent.py) and [`degree_tower.rs`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/degree_tower.rs) compute this projection and ledger deterministically over $\mathbb{Q}$.
 
 ---
 
@@ -120,7 +120,7 @@ Every successful Level 06 scale descent emits a machine-verifiable `DescentRecei
 | **DDC-D-03** | Scale descent without an explicit loss ledger halts as `MissingLossLedger` (Law 6). | Loss ledger requirement | [`op_verification.rs::tests`](../../../../../omega_engine/crates_rs/omega_wdp/src/ddc/op_verification.rs) | `test_automaton.py::test_missing_loss_ledger` |
 
 ### Lean 4 Proof Kernel
-[`lean4/Ddc/Descent.lean`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Descent.lean):
+[`lean4/Ddc/Descent.lean`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/discrete_deformation_calculus_package/lean4/Ddc/Descent.lean):
 ```lean
 theorem Ddc.Descent_idempotent : ∀ (v : Vector ℚ (n + k)), project_vector (project_vector v) = project_vector v
 ```

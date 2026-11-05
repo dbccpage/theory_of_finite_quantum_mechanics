@@ -1,0 +1,133 @@
+{
+  "AuthorityEffect": "None",
+  "requirements": {
+    "integer_boundary": {
+      "description": "Own exactly two rows and columns of bounded native integers. Refuse bool, float, Fraction, shape errors and out-of-budget values.",
+      "tests": [
+        "test_exact_shapes_and_scalar_domains",
+        "test_resource_terms_before_cancellation"
+      ]
+    },
+    "minor_rank": {
+      "description": "Compute the signed 2x2 minor and rank by independent row elimination, checking rational intermediates.",
+      "tests": [
+        "test_independent_minor_and_rank",
+        "test_pivots_and_singular_cases",
+        "test_resource_terms_before_cancellation"
+      ]
+    },
+    "outer": {
+      "description": "Own the oriented outer product of two integer pairs. Preflight all coordinates before multiplication.",
+      "tests": [
+        "test_outer_orientation_and_ownership",
+        "test_exact_shapes_and_scalar_domains",
+        "test_resource_terms_before_cancellation"
+      ]
+    },
+    "census": {
+      "description": "Preserve original 2403 inputs and 7212 actual successful checks at radius3, and cap variable radius at5.",
+      "tests": [
+        "test_policy_and_counter"
+      ]
+    },
+    "lifecycle": {
+      "description": "Fresh per-run counters, quiet import, owned immutable radius, typed failures and nonzero CLI refusal. Propagate unexpected exceptions and cancellation.",
+      "tests": [
+        "test_policy_and_counter",
+        "test_failures_cli_and_cancellation",
+        "test_import_and_default_cli"
+      ]
+    }
+  },
+  "declarations": {
+    "checks/independent/fq-gap-tensor-uniqueness.py": {
+      "_matrix": [
+        "integer_boundary"
+      ],
+      "det": [
+        "integer_boundary",
+        "minor_rank"
+      ],
+      "rank": [
+        "integer_boundary",
+        "minor_rank"
+      ],
+      "TensorOuterProductControls": [
+        "lifecycle"
+      ],
+      "TensorOuterProductControls.__init__": [
+        "lifecycle"
+      ],
+      "TensorOuterProductControls.determinant": [
+        "integer_boundary",
+        "minor_rank"
+      ],
+      "TensorOuterProductControls.matrix_rank": [
+        "integer_boundary",
+        "minor_rank"
+      ],
+      "TensorOuterProductControls._outer": [
+        "integer_boundary",
+        "outer"
+      ],
+      "TensorOuterProductControls.outer_product": [
+        "integer_boundary",
+        "outer"
+      ],
+      "TensorOuterProductControls._verify": [
+        "census",
+        "lifecycle"
+      ],
+      "TensorOuterProductControls.verify": [
+        "census",
+        "lifecycle"
+      ],
+      "_main": [
+        "lifecycle"
+      ],
+      "main": [
+        "lifecycle"
+      ]
+    },
+    "checks/tests/test_tensor_outer_controls.py": {
+      "load": [
+        "lifecycle"
+      ],
+      "TensorOuterTests": [
+        "lifecycle"
+      ],
+      "TensorOuterTests.test_independent_minor_and_rank": [
+        "minor_rank"
+      ],
+      "TensorOuterTests.test_outer_orientation_and_ownership": [
+        "outer"
+      ],
+      "TensorOuterTests.test_exact_shapes_and_scalar_domains": [
+        "integer_boundary",
+        "outer"
+      ],
+      "TensorOuterTests.test_pivots_and_singular_cases": [
+        "minor_rank"
+      ],
+      "TensorOuterTests.test_resource_terms_before_cancellation": [
+        "integer_boundary",
+        "minor_rank",
+        "outer"
+      ],
+      "TensorOuterTests.test_policy_and_counter": [
+        "census",
+        "lifecycle"
+      ],
+      "TensorOuterTests.test_policy_and_counter.record": [
+        "census",
+        "lifecycle"
+      ],
+      "TensorOuterTests.test_failures_cli_and_cancellation": [
+        "lifecycle"
+      ],
+      "TensorOuterTests.test_import_and_default_cli": [
+        "lifecycle"
+      ]
+    }
+  }
+}

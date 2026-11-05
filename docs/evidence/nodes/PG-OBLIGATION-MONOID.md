@@ -111,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md](../../../dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md)
-- sha256 (`lf-normalised`): `94fa68799954cbb2621d5632f6f42a7c44c8c824ad0f51a7d74326cd21a8975c`
+- sha256 (`lf-normalised`): `d2aa58398ed7af60afe0f89c74092f4e56baa6a0b3a7080808b9a0888b7d613f`
 - generated view: listed, not counted
 - cited in: record TFQ-0342 (shared)
 - counts toward the grade: no

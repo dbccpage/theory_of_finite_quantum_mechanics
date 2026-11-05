@@ -40,10 +40,10 @@ In accordance with strict constructive principles:
 - [`lean4/PregenesisPythonLeanCarrierBridge.lean::pgwReqs`](../../../lean4/PregenesisPythonLeanCarrierBridge.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/replay.rs::replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/replay.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/replay.rs::replay`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/replay.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py::replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py)
+- [`atlas/finite_obstruction_calculus/genesis/code/derivation/model.py::replay`](../../../atlas/finite_obstruction_calculus/genesis/code/derivation/model.py)
 - [`checks/independent/pgw-python-lean-carrier-bridge.py::main`](../../../checks/independent/pgw-python-lean-carrier-bridge.py)
 
 ---
@@ -57,8 +57,8 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:37-43`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:380`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1077-1080`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:37-43`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:380`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1077-1080`
   - `dag/derivations/independent/pgw-python-lean-carrier-bridge.md:5`
   - `dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json:6`

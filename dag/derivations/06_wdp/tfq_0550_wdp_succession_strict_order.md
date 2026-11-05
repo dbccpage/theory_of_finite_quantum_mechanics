@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - `external:sha256:db10cc7ea0ed8a47ab985151883f1e3ad0f30be4fc21f5bc88fd661c4a19f789::RelationalRetentionPacket` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py::succession_classification`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py::succession_classification`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py)
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:2772-2785`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:2809-2810`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:2772-2785`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:2809-2810`
   - `external:sha256:dd53cffa90b882e2551799359eb57f464bcbb2369600f4542d5410b9acce0d63:128-158`

@@ -79,17 +79,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `checks/independent/fq-prim-to-qm-selection-open.py`
+### Python: `checks/independent/ds-positive-form-controls.py`
 
-- file: [checks/independent/fq-prim-to-qm-selection-open.py](../../../checks/independent/fq-prim-to-qm-selection-open.py)
-- sha256 (`bytes`): `c34d80dd31d3b6b62f4773165707bfd5c67a3de6834a1941bfc5e7dadbf45760`
+- file: [checks/independent/ds-positive-form-controls.py](../../../checks/independent/ds-positive-form-controls.py)
+- sha256 (`bytes`): `4887f130b326d74c00edcf81508feaab3d4c7faf92256d779ac6a60170dd5ef6`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md](../../../dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md)
-- sha256 (`lf-normalised`): `6700bc4daeedb4a14847462d4b0f829d9fd7aca3050af211174651e7aea9e366`
+- sha256 (`lf-normalised`): `0e48524d7e06eafe2738ee8b7509c07ac875fb2d8cc371498d2f6a0a86b93ad3`
 - generated view: listed, not counted
 - cited in: record TFQ-1010
 - counts toward the grade: no

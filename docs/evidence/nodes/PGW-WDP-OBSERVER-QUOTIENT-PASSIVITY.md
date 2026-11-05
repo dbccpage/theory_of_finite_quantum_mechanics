@@ -73,22 +73,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py)
 - sha256 (`bytes`): `49232555ff35e0baf85bf8e7f00e55a2b60ba574d6d1c29a9317ac12b7cae0ac`
 - cited in: record TFQ-0553
-- check: `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive`
+- check: `python -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_passivity_can_be_strict_and_core_identifications_survive` (python_test) | yes | yes | yes | - | `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive` |
+| `test_passivity_can_be_strict_and_core_identifications_survive` (python_test) | yes | yes | yes | - | `python -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive` |
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py`
+### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py)
 - sha256 (`bytes`): `037619f360a6fa6dce659c386938e6acddff57536f2d6fe363ee479c4f08adfc`
 - cited in: record TFQ-0553
 
@@ -99,9 +99,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
 - sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -109,7 +109,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md`
 
 - file: [dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md](../../../dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md)
-- sha256 (`lf-normalised`): `dd6ea7ddee411ff10c33988156d8b2f430a040442d5b4e6d2698a93765dbdb48`
+- sha256 (`lf-normalised`): `b976ed9f4abe35ceef936643496be41d486769ac105463f6f7054393ed65741a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0553
 - counts toward the grade: no

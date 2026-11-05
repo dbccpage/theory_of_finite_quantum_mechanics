@@ -116,7 +116,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py`
 
 - file: [checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py](../../../checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py)
-- sha256 (`bytes`): `7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606`
+- sha256 (`bytes`): `b5aeeb696fb4f8901e0da3ca4f220fa385ab9c52023dfb9eee2d24d567028c52`
 - cited in: node.source, record TFQ-1050
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

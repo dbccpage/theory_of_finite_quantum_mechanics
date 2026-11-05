@@ -90,9 +90,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py`
+### Python: `atlas/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py](../../../atlas/finite_obstruction_calculus/genesis_ongoing/code/twentythird/state.py)
 - sha256 (`bytes`): `850002c10b4dd91b409c7a5e30d55aeda5592b37dfba8fb07e1970814401fa3e`
 - cited in: record TFQ-0484
 
@@ -103,9 +103,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/paper/twentythird/claim_ledger.md)
 - sha256 (`lf-normalised`): `7f781ea0a18acf24bdf0151d32fc814e79ba4b47fac337d1cfc853b9f741360b`
 - cited in: node.source
 - counts toward the grade: yes
@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md`
 
 - file: [dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md](../../../dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md)
-- sha256 (`lf-normalised`): `433c071b29bf372e19d710dfbcc2aa8a7d82f453b9ae37c89a7b1830df75e6ac`
+- sha256 (`lf-normalised`): `38cdc1b9e0089b33c7c1c227a7a8bf16ac974ad5420b46f01a5849bc89159ba8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0484
 - counts toward the grade: no

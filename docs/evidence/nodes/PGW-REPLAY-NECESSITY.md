@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs`
+### Rust: `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs`
 
-- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
+- file: [atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs](../../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
 - sha256 (`bytes`): `127c739edb34bb27c861a04090204049628934a3966c81bdbf1df33ab4a062dd`
 - cited in: node.rust, record TFQ-0426
 
@@ -70,9 +70,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py](../../../atlas/finite_obstruction_calculus/genesis/code/genesis_checks.py)
 - sha256 (`bytes`): `570c898692c070d22f655f96d74e0e468e1f4905ea52f917d28237056b7589c1`
 - cited in: record TFQ-0426
 
@@ -82,23 +82,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py`
+### Python: `atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py`
 
-- file: [atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
+- file: [atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py](../../../atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
 - sha256 (`bytes`): `5bed3c5a8de7055ecba70dc88846ef73b3aed42cd7e713e08f6a3fd2e494d17e`
 - cited in: record TFQ-0426
-- check: `python -m pytest atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`
+- check: `python -m pytest atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_quotient_and_history_refuse_collapsed_answers` (python_test) | yes | yes | yes | - | `python -m pytest atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers` |
+| `test_quotient_and_history_refuse_collapsed_answers` (python_test) | yes | yes | yes | - | `python -m pytest atlas/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md](../../../dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md)
-- sha256 (`lf-normalised`): `268f0893d65f09edc5ee8d18b9210d2b7731572d09c1ed5b121e0ab4e39112b7`
+- sha256 (`lf-normalised`): `5b7a313b28ca6f135def53fd372ecae17dd42035bab7d0e7cef7d6b6e68d3b65`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0426
 - counts toward the grade: no

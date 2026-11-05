@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no tfqm_wdp Rust check of the window-level composition defect K = d1 d0; the Python degree_one_window carries it`
 
 ### Python Oracles & Numerical Evaluators
-- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::degree_one_window`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::degree_one_window`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
 
 ---
 
@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1361-1380`
-  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1467-1476`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1361-1380`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1467-1476`
   - `external:sha256:f444bcaa3ae162d185a3a8a21cf0b59606958107ac5510e84015090750d5c3cc:330-337`

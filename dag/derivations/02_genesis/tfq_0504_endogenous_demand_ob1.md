@@ -46,7 +46,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/outside.rs::Outside`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/outside.rs)
+- [`atlas/finite_obstruction_calculus/genesis/code/rust/src/outside.rs::Outside`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/outside.rs)
 
 ### Python Oracles & Numerical Evaluators
 - [`checks/independent/pgw-endogenous-demand-ob1.py`](../../../checks/independent/pgw-endogenous-demand-ob1.py)
@@ -63,7 +63,7 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:531-537`
-  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:70-71`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:531-537`
+  - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:70-71`
   - `github:dbccpage/19L57G1@85a83ae7c/docs/ALPHA_HANDOFF.md:78-88`
   - `dag/derivations/independent/pgw-endogenous-demand-ob1.md:1`

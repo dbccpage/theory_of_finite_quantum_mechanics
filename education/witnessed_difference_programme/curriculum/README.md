@@ -27,11 +27,11 @@ From finite distinction to witnessed measurement without unproved continuous or 
 
 ## Architectural Reference
 
-- Canonical monograph (edition 2.4.1): [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
-- Claim ledger: [`witnessed_difference_programme_claim_ledger.md`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- Canonical monograph (edition 2.4.1): [`atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- Claim ledger: [`witnessed_difference_programme_claim_ledger.md`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
 - Derivation levels: [`../levels/`](../levels/)
-- Python implementations: [`witnessed_difference/`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/)
-- Rust crate: [`code/rust/`](/atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/rust/)
+- Python implementations: [`witnessed_difference/`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/)
+- Rust crate: [`code/rust/`](/atlas/finite_obstruction_calculus/witnessed_difference_programme/code/rust/)
 - Production native crate: [`omega_wdp`](../../../../omega_engine/crates_rs/omega_wdp/). A test passing in one Rust surface is not parity evidence for the other.
 
 ---

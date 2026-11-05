@@ -4,6 +4,8 @@ AuthorityEffect: None.
 
 ## Active systematic pass
 
+The [publication snapshot](2026-11-05-publication-scope.md) records 121 completed L4B sources and the current-main atlas cleanup. The systematic review is paused; publication validation is recorded separately from repository-wide completion.
+
 The current pass follows the user's required order: finish `checks`, then
 continue through `code`. The [current file ledger](current_file_scores.json)
 distinguishes completed labels from files still awaiting their current review.
@@ -79,7 +81,7 @@ brings the total to 98 assessed L4B sources. The Hilbert, Stone and U1 checks
 share one exact polynomial model and one census application. The original
 sources and companion histories are archived. The final suite detected all
 53 [injected faults](2026-11-03-integer-obstructions-mutations-final.json).
-The next file is `fq-gap-tensor-uniqueness.py`.
+The tensor outer-product application and its independent suite have completed L4B assessments. Their [source-checkout replay](2026-11-05-source-tensor-retest.json) records both interpreter modes. The selection witness is composed into the existing scalar/Gram application with its original eleven obligations preserved. The [binary sign cocycle review](2026-11-05-binary-cocycle-review.md) adds three completed L4B sources. The [signed triangle review](2026-11-05-signed-triangle-review.md) adds three completed L4B sources. The [diagonal constraint review](2026-11-05-diagonal-constraint-review.md) adds three completed L4B sources. The [Hubbard transfer review](2026-11-05-hubbard-review.md) adds six completed L4B sources. The [temporal cycle review](2026-11-05-temporal-cycle-review.md) adds six completed L4B sources. The review is paused for publication; the next file is `fsp-lattice-anomaly-inflow.py` when resumed.
 
 The review starts at `checks/independent` in the requested source checkout and
 continues in path order, considering a source and its existing companion
@@ -120,5 +122,6 @@ The errors identified in batches 1-12 were repaired and retested in
 [source-bound receipt](2026-11-02-checks-repair-retest.json) records 24 passing
 regression groups in both normal and optimized Python, including all 25
 checker CLIs per mode. Contracts were appended without rewriting historical
-records. The requested L4B floor remains unestablished; see the report's
-explicit scoring limits. The review cursor above has not advanced.
+records. At that November 2 checkpoint the requested L4B floor was not yet
+established. Subsequent completed assessments and the current review cursor
+are recorded in the active pass above and the current file ledger.

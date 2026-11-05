@@ -8,7 +8,7 @@ maturity: production
 claim_status: verified
 authority_effect: "None"
 source_paths:
-  - atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
+  - atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/coda/coda.md
 ---
 
 # CODA Level 09: Typed Residuals (A) & Eight-Component Architecture
@@ -97,4 +97,4 @@ The eight-component architecture organizes CODA's mathematical and operational s
 
 ## 9. Next Test Needed
 
-Individual component packages (FOC, FDA, MUR, OR, CS, CS_Q, Q, A, CODA-GTLA) provide deeper formalization — consult `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/` for each.
+Individual component packages (FOC, FDA, MUR, OR, CS, CS_Q, Q, A, CODA-GTLA) provide deeper formalization — consult `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/source_archive/coda_component_packages/` for each.
