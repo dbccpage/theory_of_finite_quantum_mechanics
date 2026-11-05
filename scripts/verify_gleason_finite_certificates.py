@@ -26,7 +26,8 @@ floating-point operations to construct and independently verify:
    - Obstruction to fixed-anchor certificates `|g(x)| <= A max_j |g(y_j)| + B r`
      with `r < 1` whenever the probe family `Y` has even p-adic norm valuation
      or lies in the union of the three coordinate planes.
-5. Chinese Remainder Archimedean/3-adic collision sequence `crt_approach_e1(m) = (1 + 9m, 1, 1)`,
+5. Chinese Remainder Archimedean/3-adic collision sequence
+   `crt_approach_e1(m) = (1 + 9*(m+1), 1, 1)`,
    which converges in `raySinSq` to `tomo_e1 = (1, 0, 0)` while maintaining
    `s3 = s3_lead_all = 1`.
 6. Exact rational equivalence identity between projective `ray_sin_sq(u, v0)` and

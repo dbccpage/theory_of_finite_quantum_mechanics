@@ -36,7 +36,8 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
    * Zero-vector normalization (`normalizeAtZero`) preserves `IsFrameFunction`,
      `IsZeroWeightFrameFunction`, and `VanishesOnNineRays`.
    * Every nonnegative frame function satisfies `0 ≤ f v ≤ 1` (`nonneg_frameFunction_bounds`) and
-     has residual bounded by `4` (`abs_residual_le_four_of_nonneg`), sharpening to `|residual f v| ≤ 1`
+     has residual bounded by `1 + (tomographyForm f).coeffNorm`
+     (`abs_residual_le_one_add_coeffNorm_of_nonneg`), sharpening to `|residual f v| ≤ 1`
      whenever `0 ≤ quadRay (tomographyForm f) v ≤ 1`
      (`abs_residual_le_one_of_nonneg_and_quadRay_bounds`).
 
