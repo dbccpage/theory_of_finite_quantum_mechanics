@@ -140,9 +140,30 @@ The review compiled nothing in Lean. Here, `lean lean4/ThreadsReply.lean` exits 
 
 ---
 
+## G. Learning boards (`05_boards/learning_boards.html`, 2026-11-05)
+
+Jeremy asked for about five boards in plain logic, with no poetry, that answer the post and the paper and teach a reusable move. Six boards and a method page were drafted, then attacked line by line before the first publish. Each board's backing is listed in `05_boards/learning_boards_references.md`.
+
+| # | Draft line | Break | Repair | Status |
+|---|---|---|---|---|
+| G1 | Board 1 result: "No part of the sentence points to a record yet." | The post linked a paper, and a paper is a record. | "No part of the sentence points to a record of rendering yet ... The paper it linked is checked on board 5." | REPAIRED |
+| G2 | Board 2 step 4: "Each reading either predicts something you could see, or is built so that it predicts nothing." | Not a true either/or: a reading can predict a difference nobody can see in practice. | "...either predicts some record that would come out differently, or predicts the same records as a world that does every job." Now exhaustive. | REPAIRED |
+| G3 | Board 2 step 5: "Not run predicts that things stop changing while nobody looks. They do not." | A universal negative tagged Witnessed. Records are finite. | "The records say otherwise", followed by the clock, the ice and the rock layers. | REPAIRED |
+| G4 | Board 3 step 2: "Every channel in use reports A and B the same way. That is what 'nobody looks there' means." Tagged Derived. | This is our reading of her word, not a derivation. | Tagged Supplied: "Read 'nobody looks there' as ... This is our reading of the post's word." | REPAIRED |
+| G5 | Board 3 step 5: "anything that reports with a limited set of reports has blind spots." | "Limited" is not "fewer than the states". A small domain can be fully reported (A17; Lean `small_domain_all_reported`). | "anything with fewer possible reports than the states it looks at has blind spots." | REPAIRED |
+| G6 | Board 3 step 6: "the fringes go away, whether or not a person ever reads the record." | Fine on the reader, loose on the device: "a device" could read as one special device. | "When any device records which slit ... Whether a person ever reads the record makes no difference." | REPAIRED |
+| G7 | Board 4 step 1: "Evidence is a ratio." | Stated as a definition. The Bayes factor is one measure of evidence. | "Measure evidence by a ratio". | REPAIRED |
+| G8 | Board 4 result: "A story built to match every record can never be favoured by a record." | Favoured over what? A story can match every record and still be favoured over a story that fails one. | "A story built to match the ordinary account on every record can never be favored over it by a record". | REPAIRED |
+| G9 | Board 6 capacity: "2.6 petabytes before rounding". | The paper's 2.5 comes from rounding 8.32e10 to 8e10 in the middle. "Before rounding" hides where. | "without its intermediate rounding". | REPAIRED |
+| G10 | Board 6 retention: "20 meV, the least energy needed to erase one bit". | Too categorical, the same fault as review finding 3: the bound is on heat released, under conditions. And a reader can take the 2.4 eV photon as the barrier, since 2.4 eV is larger than 1.2 eV. | "the least heat released in erasing one bit ..., under conditions given on the back page ... and the photon's energy is not a barrier." The back page states the three conditions, Bennett's kept-copy case, and why the photon's energy does not enter. | REPAIRED |
+| G11 | Board 6 back page: "Everything else cancels exactly." | True only for the $e^2\lvert\varphi\rvert^2/m$ form. The printed $e\lvert\varphi\rvert^2/m$ in (A76) and (A78) breaks Gauss's law by itself. | The back page now says which form, and calls the printed one a probable typo. | REPAIRED |
+| G12 | All boards: sections marked `hidden` but styled `display:grid`. | First screenshot: all six boards and every back page showed at once, so the "one board at a time" and "back page" design did nothing. | `[hidden]{display:none!important}` added to the page's own CSS. | REPAIRED |
+| G13 | Phone layout. | First screenshot at 390 px: the page scrolled sideways to 638 px. Grid children kept the pictures' 480 px minimum width. | `min-width:0` on the board's children. The pictures scroll inside their own frame. | REPAIRED |
+| G14 | Spelling: "favour", "favours", "favoured". | The folder uses American spelling, for example "favoring" in the thread and "color" throughout. | Changed to "favor", "favors" and "favored". | REPAIRED |
+
 ## E. Tally and what is still open
 
-- **This file:** 65 entries: 47 repaired, 4 withdrawn, 14 kept. Section F holds the five review findings on 1eea606; each one broke an earlier repair here.
+- **This file:** 79 entries: 61 repaired, 4 withdrawn, 14 kept. Section F holds the five review findings on 1eea606; each one broke an earlier repair here. Section G holds the fourteen repairs to the learning boards.
 - **Fact errors found in Claude's own text:** the Minecraft save file (A15), the vision quote read as being about the unobserved world (A19, B9, C8), the misplaced correction about authority in `analysis.md` (C7), and the Knox limerick credited to Berkeley (A25).
 - **Open:**
   - The input amplitude, about 3 against the rerun's 2.13 (`self_review.md` A6).

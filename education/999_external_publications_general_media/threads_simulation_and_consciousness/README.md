@@ -17,13 +17,14 @@ Two rules run through every file:
 4. `03_critique/adversarial_review.md` and `03_critique/critique_wdp_po.md`: the mathematical teardown.
 5. `04_self_audit/self_review.md` and `04_self_audit/self_audit.md`: our own work, broken and repaired.
 6. `01_thread/replies.md`: the posts that survived all of the above.
+7. `05_boards/learning_boards.html`: six plain-logic boards for any reader, one reasoning move each. `05_boards/learning_boards_references.md` lists the check behind every line.
 
 ## Layout
 
 | Folder | File | What it is | Kind |
 |---|---|---|---|
 | `01_thread/` | `exchange.md` | The three-party exchange, with roles A, B and C | record |
-| | `replies.md` | The four final posts and one held post, each at most 500 characters (checked by S5) | **live** |
+| | `replies.md` | Five final posts (the fifth carries the link to the learning boards) and one held post, each at most 500 characters (checked by S5) | **live** |
 | | `replies_alternates.md` | Rhymed and alternative versions, with repairs applied | live |
 | `02_paper/` | `ijms-25-02399.pdf` | The published paper | source |
 | | `ijms-25-02399.md` | The full text with every equation in LaTeX, plus our typo notes | source |
@@ -33,14 +34,16 @@ Two rules run through every file:
 | | `adversary_of_chatgpt.md` | Two ChatGPT arguments broken and recovered, round 2 retest, and a round 3 pointer | record |
 | | `critique_wdp_po.md` | Audit with the Witnessed Difference Programme and Projection Obstruction | **live** |
 | `04_self_audit/` | `self_review.md` | The math critique, attacked and repaired | live |
-| | `self_audit.md` | Replies, board, Lean and ledger, attacked and repaired. 65 entries, including Jeremy's review (§F) | **live** |
+| | `self_audit.md` | Replies, boards, Lean and ledger, attacked and repaired. 79 entries, including Jeremy's review (§F) and the learning boards (§G) | **live** |
 | | `retest_log.md` | Four regression cases: claim, counterexample, repair, retest, residual obligation | record |
 | | `board_repair_log.md` | The board repairs after the card-by-card review | record |
 | `05_boards/` | `markup_board.html` | The reply board: three pictures (tree, rendering claim, paper chain), supporting cards, final posts | live |
 | | `audit_board.html` | The paper-audit board: 16 cards | live |
+| | `learning_boards.html` | Six boards for readers, in plain logic: sort, split, channels, chances, source, math, plus the method. Artifact https://claude.ai/artifact/JaQXLc9z5s13ipw6P7GDzb | **live** |
+| | `learning_boards_references.md` | What each board line rests on: quotes, checks and proofs (the boards themselves name none) | **live** |
 | `06_reference/` | `sources.md` | Where the observer definitions live in this repository | reference |
 | | `observer_article_2026-05-23.md` | Excerpts from "What the Hell Is an Observer?" (2026-05-23) | reference |
-| `code/` | `self_audit_checks.py` | S1–S6: Appendix A algebra, the gauge identity, every number, Bayes cases, reply lengths, the board's attempt time. Exits 1 on any failure | check |
+| `code/` | `self_audit_checks.py` | S1–S7: Appendix A algebra, the gauge identity, every number, Bayes cases, reply lengths, the boards' attempt time and quoted numbers. Exits 1 on any failure | check |
 | | `test_self_audit_checks.py` | Regression tests for that checker | check |
 | | `adversarial_review_checks.py` | Gauss's law in Appendix C, the e/m misprint, Landauer numbers, capacity | check |
 | | `critique_checks.py` | Eleven checks behind `critique_wdp_po.md`; the last full run is in `critique_checks_output.txt` | check |
@@ -71,7 +74,7 @@ Still open:
 Run these from this folder:
 
 ```
-python code/self_audit_checks.py            # S1–S6; exit 0 only if all pass (needs sympy)
+python code/self_audit_checks.py            # S1–S7; exit 0 only if all pass (needs sympy)
 python code/test_self_audit_checks.py       # regression tests for the checker
 python -I code/adversarial_review_checks.py # needs sympy
 python -I code/critique_checks.py           # needs sympy and numpy; exit 0 only if all pass

@@ -2,7 +2,7 @@
 
 Revised 2026-11-05 after the self-audit ([self_audit.md](../04_self_audit/self_audit.md), section A). Each post is under 500 characters; `code/self_audit_checks.py` (S5) counts them. Rhymed alternates are in [replies_alternates.md](replies_alternates.md). The earlier versions, and why each was changed, are in [self_audit.md](../04_self_audit/self_audit.md) and [board_repair_log.md](../04_self_audit/board_repair_log.md).
 
-Order: the tree, the game, the paper, the closer. The Thales line is held for later.
+Order: the tree, the game, the paper, the closer, then the plain reply that carries the link to the learning boards (`05_boards/learning_boards.html`). The Thales line is held for later.
 
 Post 1, the tree
 
@@ -31,6 +31,14 @@ Post 3, after reading her link
 Post 4, the closer
 
 > Dr. Johnson kicked a stone to refute Berkeley. Bold move, sore toe. I'll go gentler: name one thing that happens differently when nobody's looking, and how we'd know. Einstein asked Pais whether the moon is there only when someone looks. Fair question, still. But define the look, or the moon gets the final say. And who decides it counts: a detector, a record, or a feeling in the chest? Until then it's a gorgeous story, not yet a test.
+
+---
+
+Post 5, plain, with the link to the boards
+
+> I read the paper you linked. It models coherent light in brain water writing holograms. "Render" never appears, and it treats the outside world as given. In a game, "render" can mean draw, update or store. Which one does the universe skip where nobody looks, and what would we see that we would not see otherwise? If nothing, no data can favor it. And who decides what counts as looking? Six short boards, every step checkable: [link]
+
+Before posting, replace `[link]` with the boards' public address. The post is 434 characters with the placeholder, so the address may be up to 72 characters.
 
 ---
 
