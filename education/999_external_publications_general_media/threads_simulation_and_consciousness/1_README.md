@@ -16,6 +16,7 @@ This folder covers one paper and one public post.
 | `4_1_record.png` to `4_7_frozen.png` | One picture per post, 1080 × 1080, to upload with that post. |
 | `5_dissection.md`, `5_dissection.pdf` | The paper taken apart and put back together in plain language, Sections 5 and 6 first. For a general reader. The `.pdf` is the same text typeset, built from the `.md` by `8_checks.py --pdf`. |
 | `6_review_for_the_authors.md` | The technical review, written to the authors. Every point gives an equation, a finding, and a repair or a request. |
+| `7_paper_rewritten.md`, `7_paper_rewritten.pdf`, `7_paper_rewritten_checks.py` | The paper rewritten as hypotheses, theorems and proofs, with every misprint corrected and every number recomputed by `7_paper_rewritten_checks.py` (20 checks). The `.pdf` is the same text typeset. |
 | `8_checks.py` | One command that replays every claim and tests every goal. |
 | `8_proofs.lean` | Finite proofs behind the reasoning in the posts: equal records give equal odds, and equal reports alone do not. |
 | `9_pictures.cjs` | Draws the seven pictures. |
