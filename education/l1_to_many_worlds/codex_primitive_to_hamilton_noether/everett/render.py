@@ -1,4 +1,4 @@
-"""Render the picture and mathematics pages for the three-post Everett lesson."""
+"""Render the picture and mathematics pages for the Everett lesson."""
 from pathlib import Path
 from textwrap import fill
 
