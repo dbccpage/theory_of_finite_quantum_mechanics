@@ -1,6 +1,6 @@
-# Self-review: every claim Claude wrote in this folder, broken and repaired
+# Self-review: every claim we wrote in this folder, broken and repaired
 
-Date: 2026-11-05. Scope: everything Claude wrote in this thread.
+Date: 2026-11-05. Scope: everything we wrote in this thread.
 
 - [adversarial_review.md](../03_critique/adversarial_review.md) (round 1)
 - [code/adversarial_review_checks.py](../code/adversarial_review_checks.py)
@@ -8,11 +8,11 @@ Date: 2026-11-05. Scope: everything Claude wrote in this thread.
 - [board_repair_log.md](board_repair_log.md)
 - the ledger edits in [claims_ledger.md](../03_critique/claims_ledger.md)
 - the board additions in [markup_board.html](../05_boards/markup_board.html)
-- every reply Claude drafted: the two plain posts in [replies.md](../01_thread/replies.md), and the rhymed and alternative posts, now in [replies_alternates.md](../01_thread/replies_alternates.md) with the §C repairs applied
+- every reply we drafted: the two plain posts in [replies.md](../01_thread/replies.md), and the rhymed and alternative posts, now in [replies_alternates.md](../01_thread/replies_alternates.md) with the §C repairs applied
 
 For each item: the claim, the attack, a verdict (**holds**, **narrowed**, **broken**), and what was done to repair it. Earlier files are left as written, so the trail stays readable. Repairs are applied to the files still in use: the reply alternates and the retest log. The board repairs are handed to the cloud session that is rewriting the board.
 
-**Caution, kept from the retest log.** This review is one more LLM pass, so it does not make anything true. Only three kinds of evidence count here: an exact computation, a rerun of the paper's equations, and quoted text from the paper. Tags: **Witnessed** (quoted record), **Derived** (exact check), **Numerical** (floating-point rerun), **Supplied** (assumption), **Open**.
+**Caution, kept from the retest log.** This review is one more review pass, so it does not make anything true. Only three kinds of evidence count here: an exact computation, a rerun of the paper's equations, and quoted text from the paper. Tags: **Witnessed** (quoted record), **Derived** (exact check), **Numerical** (floating-point rerun), **Supplied** (assumption), **Open**.
 
 ## A. The mathematics
 
@@ -31,7 +31,7 @@ For each item: the claim, the attack, a verdict (**holds**, **narrowed**, **brok
 | A11 | "The deterministic dynamics already begin to erase the record" (round 1, D Step 8). | The paper says the density "stops evolving over time" once the input damps. It calls the Laplacian distortion small, though it "can gradually become comparable to damping". | **Narrowed** | The paper's own words: the pattern freezes, with a distortion the authors expect may grow. Beyond $mx^0 = 200$ nothing is shown. "Erase" is replaced by "distort, with growth not ruled out". *Witnessed.* |
 | A12 | Capacity: 8.32e10 bit/mm², 2.6 PB, 31.25 TB. | Recomputed. | **Holds** | 4(1.3)(2 mm)/(500 nm)³ = 8.32e10 bit/mm². Times 2.5e5 mm² that is 2.08e16 bits = 2.6 PB. 250e12 bits = 31.25 TB. The paper's 2.5 PB comes from the rounded 8e10. *Derived (check 3).* |
 | A13 | Bayes factor 2 counterexample (retest R2). | Recomputed. | **Holds** | Exact. *Derived.* |
-| A14 | About 4.2e9 water molecules in (500 nm)³. | Recomputed: 33.4 nm⁻³ × 1.25e8 nm³. | **Holds**, but irrelevant to the interaction size (ChatGPT is right on this). | — |
+| A14 | About 4.2e9 water molecules in (500 nm)³. | Recomputed: 33.4 nm⁻³ × 1.25e8 nm³. | **Holds**, but irrelevant to the interaction size (the first reviewer is right on this). | — |
 
 ## B. The board
 
@@ -48,7 +48,7 @@ The cloud session is rewriting the board right now, so these repairs are **hande
 
 | # | Reply | Attack | Verdict | Repair |
 |---|---|---|---|---|
-| C1 | Plain 1: "stops existing, stops evolving, or simply isn't experienced? Those are three different claims." | Holds. ChatGPT notes that "isn't experienced" gives her an easy answer, but taking it is itself a result: the claim shrinks to ordinary limited observation. | **Holds** | — |
+| C1 | Plain 1: "stops existing, stops evolving, or simply isn't experienced? Those are three different claims." | Holds. The first reviewer notes that "isn't experienced" gives her an easy answer, but taking it is itself a result: the claim shrinks to ordinary limited observation. | **Holds** | — |
 | C2 | Plain 2: "It doesn't claim that consciousness renders the universe." | Checked: the word "render" appears 0 times in the paper. | **Holds** | — |
 | C3 | Rhymed 1: "Three different cheat codes. They can't all be true." | **False.** The three readings are not exclusive: a thing that stops existing is also unseen. But they are not a chain either. A paused, saved Minecraft chunk, or a frozen frame, stops evolving and keeps its state, and a frozen frame can still be seen. So "stops evolving" implies neither of the others. | **Broken, repaired** | "Three different cheat codes, each with its own proof due." |
 | C4 | Rhymed 1: "Berkeley had God watching the quad." | The quad comes from Ronald Knox's limerick about Berkeley, not from Berkeley. The view is Berkeley's; the image is Knox's. | **Narrowed** | Kept as an allusion. Noted here as Knox's image. |
@@ -56,13 +56,13 @@ The cloud session is rewriting the board right now, so these repairs are **hande
 | C6 | Rhymed 2: "one simulation run". | The paper shows one configuration (Figs. 4–6). It may have run others unreported. | **Narrowed** | "one simulation shown". |
 | C7 | Rhymed 3: "Minecraft stops ticking far-off chunks, but the save file still knows where the diamonds are." | **Wrong for unvisited chunks.** Chunks never visited are not generated at all, so no save file holds them. That nearly supports her. But the world **seed** already fixes where the diamonds will be. | **Broken, repaired (and stronger)** | "Minecraft never builds the chunks you skip, yet the seed already fixes where every diamond lies." Not drawing, and not even building, still leaves the state fixed. |
 | C8 | Rhymed 4: "Einstein asked Pais if the moon is there when no one looks." | Pais's account: Einstein asked whether *Pais* really believed the moon exists only when he looks at it. Close paraphrase. | **Holds** | — |
-| C9 | Alternative opener (ChatGPT's): "If it doesn't, what have we explained?" | It implies that only a physics difference explains anything. Interpretations can have explanatory value without new predictions (ChatGPT's own earlier point). | **Narrowed** | Kept, since it is a question, not a claim. Noted. |
+| C9 | Alternative opener (the first reviewer's): "If it doesn't, what have we explained?" | It implies that only a physics difference explains anything. Interpretations can have explanatory value without new predictions (the first reviewer's own earlier point). | **Narrowed** | Kept, since it is a question, not a claim. Noted. |
 
 ## D. Process claims
 
 | # | Claim | Attack | Verdict | Repair |
 |---|---|---|---|---|
-| D1 | "Recovered argument is stronger than ChatGPT's" (round 1, twice). | That is a self-assessment. | **Supplied** | Read it as "more specific and checkable", which the checks support. It does not mean more likely true. |
+| D1 | "Recovered argument is stronger than the first reviewer's" (round 1, twice). | That is a self-assessment. | **Supplied** | Read it as "more specific and checkable", which the checks support. It does not mean more likely true. |
 | D2 | "Every number in prose is recomputed" (PR #513 checklist). | The cited 0.2 eV hydrogen bond, the 1 ps attempt time and the Debye/Ward statements are not recomputed. | **Narrowed** | Listed as Cited/Supplied in the retest log's unchecked list. |
 
 ## Net result

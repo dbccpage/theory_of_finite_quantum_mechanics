@@ -1,5 +1,4 @@
 <title>Holographic Brain Audit</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
 <style>
 /* Layout: one plain column of cards on white, thin rules, one sans face; each card = picture, one equation, one line, what it rests on, verdict bar */
@@ -61,7 +60,7 @@ svg text{font-family:var(--sans)}
 <div class="wrap">
 <header>
   <h1>Holographic brain audit</h1>
-  <p class="lede">Nishiyama, Tanaka, Tuszynski, Tsenkova, IJMS 25:2399 (2024), one card per attack: a picture, the one equation, what it rests on. Mark each card right, wrong or unsure and add a note. Claude reads the marks back. Agreement between reviews is not evidence; the “rests on” line is.</p>
+  <p class="lede">Nishiyama, Tanaka, Tuszynski, Tsenkova, IJMS 25:2399 (2024), one card per attack: a picture, the one equation, what it rests on. Mark each card right, wrong or unsure and add a note. The marks are read back by the author. Agreement between reviews is not evidence; the “rests on” line is.</p>
   <div class="legend">
     <span class="chip"><span class="dot" style="background:var(--wit)"></span>witnessed: the paper's text</span>
     <span class="chip"><span class="dot" style="background:var(--supplied)"></span>supplied: put in by someone</span>
@@ -269,8 +268,8 @@ const CARDS = [
    ${[["Presentation","q : X → P"],["Memory","(M,u,r,≈)"],["Evaluator","J, tolerance"],["Policy","status → act"]].map((l,i)=>{const x=270+(i%2)*120,y=40+Math.floor(i/2)*60;return `<rect x="${x}" y="${y}" width="110" height="48" rx="8" fill="var(--teal-soft)" stroke="${T}"/><text x="${x+8}" y="${y+20}" fill="${T}" font-size="12" font-weight="600">${l[0]}</text><text x="${x+8}" y="${y+38}" fill="${I}" font-size="10">${l[1]}</text>`}).join("")}
    <rect x="270" y="166" width="230" height="30" rx="8" fill="none" stroke="${SU}" stroke-dasharray="5 4"/><text x="282" y="186" fill="${SU}" font-size="12">Authority: outside the observer</text>`),
   tex:String.raw`H_{\rm brain}+H_{\rm mind}+H_{\rm int}\ \not\ni\ \mathcal O=(\mathsf{Pres},\mathsf{Mem},\mathsf{Eval},\mathsf{Policy}),\quad \text{authority outside}`,
-  line:"<b>ChatGPT's five points are right in their physics and each stops a step short.</b> Its proposed H_mind would reproduce the blind spot. Its question “which result requires a mind” has a sharp form: the delete-the-word test.",
-  rests:"critique §8.5 · ChatGPT review (claims to break, not support)" },
+  line:"<b>The first reviewer's five points are right in their physics and each stops a step short.</b> Its proposed H_mind would reproduce the blind spot. Its question “which result requires a mind” has a sharp form: the delete-the-word test.",
+  rests:"critique §8.5 · first outside review (claims to break, not support)" },
 
 { id:"survives", tag:"credit", title:"What survives.",
   list:["The sech pulse (A45)–(A47), given its five inputs and A⁰ ≠ 0.","The Madelung reduction (A69)–(A70), with the sign of (A81)/(A87).","The Gabor term |r|²o in (A52), given a supplied |r+o|².","The arithmetic of (3)–(5) and the integrator's number check.","“How a quantum mind could perceive the macro-world is yet another mystery altogether.”","The headset experiment, read as a test of input fields against reports with a declared q."],
@@ -347,18 +346,5 @@ grid.addEventListener("input",e=>{
 });
 localLoad(); CARDS.forEach(c=>paint(c.id));
 
-(async()=>{
-  let d=null; try{ d = window.claude && window.claude.use ? await window.claude.use("db") : null; }catch(e){ d=null; }
-  if(!d){ statusEl.textContent="Marks are saved in this browser only (shared marks unavailable here)."; return; }
-  db=d; statusEl.textContent="Loading shared marks…";
-  const t=setTimeout(()=>{statusEl.textContent="Shared marks are slow to load; your marks still save.";},10000);
-  db.collection("marks").onSnapshot(snap=>{
-    clearTimeout(t);
-    snap.docs.forEach(doc=>{
-      if(dirty[doc.id]) return;                          // a local edit is pending: keep it, it will be saved
-      const v=doc.data()||{}; state[doc.id]={verdict:v.verdict||"",note:v.note||""}; paint(doc.id); });
-    const n=snap.docs.filter(x=>(x.data()||{}).verdict).length;
-    statusEl.textContent = `Shared marks: ${n} of ${CARDS.length} cards marked. Claude can read these.`;
-  }, err=>{ clearTimeout(t); statusEl.textContent="Could not load shared marks ("+(err&&err.code||"error")+"). Your marks save in this browser."; db=null; });
-})();
+statusEl.textContent="Marks are saved in this browser only.";
 </script>

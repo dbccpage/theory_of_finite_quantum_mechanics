@@ -1,5 +1,4 @@
 <title>What You Owe Me</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: a markup board of picture cards, two columns on wide screens, one on phones; each card = picture, math, one line, verdict bar */
@@ -79,7 +78,7 @@ select{font:13px var(--body);padding:4px 8px;border-radius:6px;border:1px solid 
 <div class="wrap">
 <header>
   <h1>What you owe me</h1>
-  <p class="lede">Three pictures: the tree, the rendering claim, and the holographic brain paper. Supporting cards below. Mark each card right, wrong or unsure. A wrong mark asks what failed: a premise, a step, a fact or the conclusion. Cards that rest on it are then flagged for reassessment. Claude reads the marks, repairs the card, and says whether its conclusion still follows.</p>
+  <p class="lede">Three pictures: the tree, the rendering claim, and the holographic brain paper. Supporting cards below. Mark each card right, wrong or unsure. A wrong mark asks what failed: a premise, a step, a fact or the conclusion. Cards that rest on it are then flagged for reassessment. The author reads the marks, repairs the card, and says whether its conclusion still follows.</p>
   <div class="legend">
     <span class="chip"><span class="dot" style="background:var(--wit)"></span>witnessed: a record exists</span>
     <span class="chip"><span class="dot" style="background:var(--supplied)"></span>supplied: put in by someone</span>
@@ -346,16 +345,5 @@ document.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>{ch=b.dataset.ch
 drawRender();
 
 
-(async()=>{
-  let d=null; try{ d = window.claude && window.claude.use ? await window.claude.use("db") : null; }catch(e){ d=null; }
-  if(!d){ statusEl.textContent="Marks are saved in this browser only (shared marks unavailable here)."; return; }
-  db=d; statusEl.textContent="Loading shared marks…";
-  const t=setTimeout(()=>{statusEl.textContent="Shared marks are slow to load; your marks still save.";},10000);
-  db.collection("marks").onSnapshot(snap=>{
-    clearTimeout(t);
-    snap.docs.forEach(doc=>{ const v=doc.data()||{}; state[doc.id]={verdict:v.verdict||"",note:v.note||"",objection:v.objection||""}; paint(doc.id); });
-    const n=snap.docs.filter(x=>(x.data()||{}).verdict).length;
-    statusEl.textContent = `Shared marks: ${n} of ${CARDS.length} cards marked. Claude can read these.`;
-  }, err=>{ clearTimeout(t); statusEl.textContent="Could not load shared marks ("+(err&&err.code||"error")+"). Your marks save in this browser."; db=null; });
-})();
+statusEl.textContent="Marks are saved in this browser only.";
 </script>

@@ -1,4 +1,4 @@
-"""Checks behind self_audit.md: every number and equation Claude wrote in this folder.
+"""Checks behind self_audit.md: every number and equation we wrote in this folder.
 
 Run from the folder above:  python code/self_audit_checks.py [--replies PATH] [--learning PATH]   (needs sympy)
 Each check prints PASS or FAIL with the value it recomputed. The exit status is 0 only
