@@ -1586,3 +1586,6 @@ lean_lib GleasonGaussianBridge where
 lean_lib GleasonBornCompletion where
   roots := #[`GleasonBornCompletion]
 
+lean_lib BornGaussianFiniteModel where
+  roots := #[`BornGaussianFiniteModel]
+

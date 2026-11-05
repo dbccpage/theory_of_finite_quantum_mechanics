@@ -3,12 +3,12 @@
 
 AuthorityEffect: None. This tool checks a build; it establishes no mathematical claim.
 
-The five Gleason modules are non-default Lake targets, so a green default build says nothing
+The six Gleason modules are non-default Lake targets, so a green default build says nothing
 about them. This tool makes their kernel check explicit and reproducible:
 
     python -I -X utf8 scripts/gleason_lean_audit.py inventory            # declarations, full Unicode names
     python -I -X utf8 scripts/gleason_lean_audit.py emit lean4/.audit/GleasonAudit.lean
-    cd lean4 && lake build <the five targets> && lake env lean .audit/GleasonAudit.lean > ../audit.txt 2>&1
+    cd lean4 && lake build <the six targets> && lake env lean .audit/GleasonAudit.lean > ../audit.txt 2>&1
     python -I -X utf8 scripts/gleason_lean_audit.py verify --lean-output audit.txt
     python -I -X utf8 scripts/gleason_lean_audit.py update --lean-output audit.txt   # maintainer: re-pin
 
@@ -22,7 +22,7 @@ fail visibly.
 
 ``verify`` fails (exit 1) when any of these holds:
 
-* a pinned source (the five modules, their four project dependencies, the toolchain, the Lake
+* a pinned source (the six modules, their project dependencies, the toolchain, the Lake
   manifest or the lakefile) has a different sha256 than the expectation file records;
 * any module or dependency imports an unpinned local module;
 * the expectation file or current source inventory is missing a module, is empty, has duplicate
@@ -56,12 +56,19 @@ MODULES = (
     "GleasonComplexSphere",
     "GleasonGaussianBridge",
     "GleasonBornCompletion",
+    "BornGaussianFiniteModel",
 )
 DEPENDENCIES = (
     "BornGaussRat",
     "BornGaussianRationalFrameObstruction",
+    "BornGaussianRationalNoColouring",
     "BornGaussianFrameRays",
     "BornGaussianTomographyReduction",
+    "BornEffectValuation",
+    "BornLinearExtension",
+    "BornHermitianCarrier",
+    "BornHermitianPsdDecomposition",
+    "BornHermitianTraceRepresentation",
 )
 EXTERNAL_PACKAGES = (
     "Mathlib",
@@ -452,6 +459,7 @@ def emit(root: Path, target: Path) -> int:
         "      | _ => pure ()",
         "      if env.isProjectionFn name then continue",
         "      if let .str p s := name then",
+        "        if let some (.ctorInfo _) := env.find? p then continue",
         "        if indAux.contains s then",
         "          if let some (.inductInfo _) := env.find? p then continue",
         "      let rendered := name.toString (escape := false)",
@@ -580,7 +588,7 @@ def main(argv: list[str] | None = None) -> int:
             "schema_version": SCHEMA,
             "authority_effect": "None",
             "note": "Expectation for scripts/gleason_lean_audit.py: pinned sources, the full-identifier "
-                    "declaration inventory of the five Gleason modules and the axiom allowlist. "
+                    "declaration inventory of the six Gleason modules and the axiom allowlist. "
                     "Rewritten only by `update` after a passing local audit; CI only verifies.",
             "modules": list(MODULES),
             "dependencies": list(DEPENDENCIES),
