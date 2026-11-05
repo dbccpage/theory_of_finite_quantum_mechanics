@@ -1,0 +1,289 @@
+<title>What You Owe Me</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a markup board of picture cards, two columns on wide screens, one on phones; each card = picture, math, one line, verdict bar */
+:root{
+  --paper:#F5F8F7; --card:#FFFFFF; --ink:#18262E; --mute:#5B6B72; --rule:#D5DFDD;
+  --teal:#0F7C78; --teal-soft:#DCEFEC; --supplied:#B5651D; --supplied-soft:#F6E7D8;
+  --wit:#2F6FB0; --wit-soft:#DCE8F5; --no:#B23A3A; --no-soft:#F5DEDE; --ok:#2E7D4F; --ok-soft:#DDEFE3;
+  --display:"Literata",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0F1719; --card:#162125; --ink:#E4ECEA; --mute:#93A5A9; --rule:#2A3A3F;
+  --teal:#4FC2BB; --teal-soft:#173B3A; --supplied:#E39B5B; --supplied-soft:#3A2A1C;
+  --wit:#7FB2E8; --wit-soft:#1C2E42; --no:#E67C7C; --no-soft:#3E2223; --ok:#6CC594; --ok-soft:#1C3527; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1719; --card:#162125; --ink:#E4ECEA; --mute:#93A5A9; --rule:#2A3A3F;
+  --teal:#4FC2BB; --teal-soft:#173B3A; --supplied:#E39B5B; --supplied-soft:#3A2A1C;
+  --wit:#7FB2E8; --wit-soft:#1C2E42; --no:#E67C7C; --no-soft:#3E2223; --ok:#6CC594; --ok-soft:#1C3527; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:grid;gap:10px;margin-bottom:22px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,44px);line-height:1.1;margin:0;text-wrap:balance}
+.lede{color:var(--mute);max-width:62ch;margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px;font-family:var(--mono);font-size:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;border:1px solid var(--rule);background:var(--card)}
+.dot{width:9px;height:9px;border-radius:50%}
+.status{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;display:grid;grid-template-rows:auto auto 1fr auto;min-width:0;overflow:hidden}
+.card.v-right{box-shadow:inset 4px 0 0 var(--ok)} .card.v-wrong{box-shadow:inset 4px 0 0 var(--no)} .card.v-unsure{box-shadow:inset 4px 0 0 var(--supplied)}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:14px 16px 4px}
+.head h2{font-family:var(--display);font-weight:500;font-size:20px;margin:0;text-wrap:balance}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.pic{padding:6px 12px 0;overflow-x:auto}
+.pic svg{display:block;width:100%;height:auto;max-width:100%}
+.body{padding:4px 16px 12px;display:grid;gap:8px;min-width:0}
+.math{font-size:17px;overflow-x:auto;padding:6px 0;text-align:center}
+.math math{font-size:1.05em}
+.line{margin:0;color:var(--ink)}
+.line b{font-weight:600}
+.posts{display:grid;gap:10px}
+.post{border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-size:14px;background:var(--paper)}
+.post .n{font-family:var(--mono);font-size:11px;color:var(--mute);display:flex;justify-content:space-between}
+.bar{border-top:1px solid var(--rule);padding:10px 16px 12px;display:grid;gap:8px;background:var(--paper)}
+.btns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.btns button{font:500 13px var(--body);padding:6px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer}
+.btns button:focus-visible,textarea:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.btns button[data-v="right"][aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.btns button[data-v="wrong"][aria-pressed="true"]{background:var(--no-soft);border-color:var(--no);color:var(--no)}
+.btns button[data-v="unsure"][aria-pressed="true"]{background:var(--supplied-soft);border-color:var(--supplied);color:var(--supplied)}
+.saved{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--mute)}
+textarea{width:100%;box-sizing:border-box;min-height:54px;resize:vertical;font:14px var(--body);padding:8px 10px;border-radius:6px;border:1px solid var(--rule);background:var(--card);color:var(--ink)}
+svg text{font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.card{transition:box-shadow .2s}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>What you owe me</h1>
+  <p class="lede">The tree, the rendering claim and the holographic brain paper, one picture each. Mark each card right, wrong or unsure, and add a note. Claude reads the marks back.</p>
+  <div class="legend">
+    <span class="chip"><span class="dot" style="background:var(--wit)"></span>witnessed: a record exists</span>
+    <span class="chip"><span class="dot" style="background:var(--supplied)"></span>supplied: put in by someone</span>
+    <span class="chip"><span class="dot" style="background:var(--teal)"></span>derived: follows by stated steps</span>
+    <span class="chip"><span class="dot" style="background:var(--no)"></span>missing</span>
+  </div>
+  <div class="status" id="status">Connecting to the shared marks…</div>
+</header>
+<main class="grid" id="grid"></main>
+</div>
+
+<script>
+const S = (body, vb="0 0 520 220") => `<svg viewBox="${vb}" role="img" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+const W="var(--wit)",SU="var(--supplied)",T="var(--teal)",N="var(--no)",I="var(--ink)",M="var(--mute)",R="var(--rule)";
+const CARDS = [
+{ id:"tree", tag:"the tree", title:"Two records. Count what is smuggled in.",
+  pic:S(`
+   <text x="20" y="22" fill="${M}" font-size="12">R1</text>
+   <line x1="60" y1="190" x2="60" y2="70" stroke="${W}" stroke-width="7" stroke-linecap="round"/>
+   <line x1="120" y1="190" x2="120" y2="70" stroke="${W}" stroke-width="7" stroke-linecap="round"/>
+   <text x="52" y="210" fill="${W}" font-size="12">L1</text><text x="112" y="210" fill="${W}" font-size="12">L2</text>
+   <text x="20" y="50" fill="${SU}" font-size="11">equal? same way up?</text>
+   <text x="360" y="22" fill="${M}" font-size="12">R2</text>
+   <line x1="390" y1="190" x2="390" y2="70" stroke="${W}" stroke-width="7" stroke-linecap="round"/>
+   <line x1="430" y1="186" x2="510" y2="186" stroke="${W}" stroke-width="7" stroke-linecap="round"/>
+   <text x="380" y="210" fill="${W}" font-size="12">L1′</text><text x="462" y="210" fill="${W}" font-size="12">L2′</text>
+   <path d="M175 120 Q 262 60 345 120" fill="none" stroke="${SU}" stroke-width="2" stroke-dasharray="6 6"/>
+   <text x="222" y="80" fill="${SU}" font-size="12">a between?</text>
+   <text x="175" y="140" fill="${SU}" font-size="12">L2′ is L2? L1′ is L1?</text>
+   <text x="175" y="160" fill="${SU}" font-size="12">upright vs flat: gauge?</text>
+   <text x="175" y="196" fill="${M}" font-size="11">air, sound: not yet</text>`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mtable rowspacing=\"0.25em\" columnalign=\"center\" columnspacing=\"0em\"><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"true\"><mrow><msub><mi>R</mi><mn>1</mn></msub><mo>=</mo><mo stretchy=\"false\">{</mo><msub><mi>L</mi><mn>1</mn></msub><mo separator=\"true\">,</mo><msub><mi>L</mi><mn>2</mn></msub><mo stretchy=\"false\">}</mo><mtext> </mtext><mo mathvariant=\"normal\">≠</mo><mtext> </mtext><msub><mi>R</mi><mn>2</mn></msub><mo>=</mo><mo stretchy=\"false\">{</mo><msubsup><mi>L</mi><mn>1</mn><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msubsup><mo separator=\"true\">,</mo><msubsup><mi>L</mi><mn>2</mn><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msubsup><mo stretchy=\"false\">}</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"true\"><mrow><mtext>supplied: </mtext><msubsup><mi>L</mi><mn>2</mn><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msubsup><mo>≡</mo><msub><mi>L</mi><mn>2</mn></msub><mo separator=\"true\">,</mo><mtext> a between</mtext><mo separator=\"true\">,</mo><mtext> a gauge</mtext></mrow></mstyle></mtd></mtr></mtable><annotation encoding=\"application/x-tex\">\\begin{gathered}R_1=\\{L_1,L_2\\}\\ \\neq\\ R_2=\\{L_1^{\\prime},L_2^{\\prime}\\}\\\\ \\text{supplied: } L_2^{\\prime}\\equiv L_2,\\ \\text{a between},\\ \\text{a gauge}\\end{gathered}</annotation></semantics></math></span>",
+  line:"<b>R1 differs from R2. That is all that is witnessed.</b> Record every smuggled part for R1, R2, L1 and L2 first. Only then can sound be discussed." },
+{ id:"breakfast", tag:"yesterday", title:"Yesterday is a row you can read now.",
+  pic:S(`
+   <text x="20" y="28" fill="${M}" font-size="12">nothing written</text>
+   <rect x="30" y="45" width="60" height="22" rx="4" fill="none" stroke="${I}"/><text x="38" y="61" fill="${I}" font-size="12">event</text>
+   <line x1="95" y1="56" x2="160" y2="56" stroke="${I}"/>
+   <rect x="165" y="40" width="150" height="32" rx="5" fill="none" stroke="${R}"/><text x="178" y="61" fill="${M}" font-size="12">table: no row</text>
+   <text x="330" y="61" fill="${N}" font-size="12">nothing to read</text>
+   <text x="20" y="128" fill="${M}" font-size="12">row written</text>
+   <rect x="30" y="145" width="60" height="22" rx="4" fill="none" stroke="${I}"/><text x="38" y="161" fill="${I}" font-size="12">event</text>
+   <line x1="95" y1="156" x2="160" y2="156" stroke="${SU}" stroke-width="2"/><text x="108" y="150" fill="${SU}" font-size="11">write</text>
+   <rect x="165" y="140" width="150" height="32" rx="5" fill="var(--wit-soft)" stroke="${W}"/><text x="176" y="161" fill="${W}" font-size="12">row: ate, 08:00</text>
+   <text x="330" y="161" fill="${W}" font-size="12">read it now</text>`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi mathvariant=\"script\">R</mi><mo>=</mo><mo stretchy=\"false\">(</mo><munder><munder><mi>M</mi><mo stretchy=\"true\">⏟</mo></munder><mtext>table</mtext></munder><mo separator=\"true\">,</mo><mtext> </mtext><munder><munder><mi>u</mi><mo stretchy=\"true\">⏟</mo></munder><mtext>write</mtext></munder><mo separator=\"true\">,</mo><mtext> </mtext><munder><munder><mi>r</mi><mo stretchy=\"true\">⏟</mo></munder><mtext>read</mtext></munder><mo separator=\"true\">,</mo><mtext> </mtext><munder><munder><mo lspace=\"0em\" rspace=\"0em\">≈</mo><mo stretchy=\"true\">⏟</mo></munder><mtext>match</mtext></munder><mo stretchy=\"false\">)</mo><mspace width=\"2em\"/><mtext>“yesterday I ate”</mtext><mo>=</mo><mi>r</mi><mo stretchy=\"false\">(</mo><msub><mtext>row</mtext><mtext>now</mtext></msub><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\mathcal R=(\\underbrace{M}_{\\text{table}},\\ \\underbrace{u}_{\\text{write}},\\ \\underbrace{r}_{\\text{read}},\\ \\underbrace{\\approx}_{\\text{match}})\\qquad \\text{“yesterday I ate”}=r(\\text{row}_{\\text{now}})</annotation></semantics></math></span>",
+  line:"<b>“Yesterday” is a row you read now.</b> Without a table, a write and a way to match the row to you, nothing of yesterday is available." },
+{ id:"ladder", tag:"observation", title:"“Observe” is five steps, not one.",
+  pic:S(`
+   ${["interaction","registration","typed witness","re-comparison","evaluator accepts"].map((s,i)=>{
+     const y=190-i*36; return `<line x1="60" y1="${y}" x2="230" y2="${y}" stroke="${I}" stroke-width="2"/>
+     <text x="70" y="${y-8}" fill="${I}" font-size="12">${i+1} ${s}</text>`}).join("")}
+   <line x1="60" y1="200" x2="60" y2="30" stroke="${I}" stroke-width="2"/><line x1="230" y1="200" x2="230" y2="30" stroke="${I}" stroke-width="2"/>
+   <text x="270" y="22" fill="${M}" font-size="12">tree: wave</text><text x="400" y="22" fill="${M}" font-size="12">tree: heard</text>
+   ${[0,1,2,3,4].map(i=>{const y=186-i*36;
+     const a = i===0?`<text x="290" y="${y}" fill="${SU}" font-size="13">supplied</text>`:`<text x="300" y="${y}" fill="${N}" font-size="15">✗</text>`;
+     const b = `<text x="430" y="${y}" fill="${N}" font-size="15">✗</text>`; return a+b}).join("")}`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mtext>owed first: </mtext><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">(</mo><mtext>carrier</mtext><mo separator=\"true\">,</mo><mtext> gauge</mtext><mo separator=\"true\">,</mo><mtext> evaluator</mtext><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">)</mo><mtext>  then  </mtext><mrow><mi mathvariant=\"sans-serif\">O</mi><mi mathvariant=\"sans-serif\">b</mi><mi mathvariant=\"sans-serif\">s</mi></mrow><mo>=</mo><mo stretchy=\"false\">(</mo><mi>i</mi><mo separator=\"true\">,</mo><mi>g</mi><mo separator=\"true\">,</mo><mi>w</mi><mo separator=\"true\">,</mo><mi>m</mi><mo separator=\"true\">,</mo><mi>e</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\text{owed first: }\\big(\\text{carrier},\\ \\text{gauge},\\ \\text{evaluator}\\big)\\ \\text{ then }\\ \\mathsf{Obs}=(i,g,w,m,e)</annotation></semantics></math></span>",
+  line:"<b>Before step 1 you owe three things:</b> the carrier (what holds the difference), the gauge (how standing is told from felled), and who evaluates. “Not heard” means step 2 fails, which says nothing about step 1." },
+
+{ id:"observer", tag:"observer", title:"An observer is a declared packet, not a person.",
+  pic:S(`
+   ${[["Presentation","what goes in, what is reported","q : X → P"],["Memory","store, get back","store, retrieve"],["Evaluator","defect, repair, cost, status","accept, reject, …"],["Policy","what to do with the status","act, ask, refuse"]].map((l,i)=>{
+     const x=14+i*126; return `<rect x="${x}" y="40" width="116" height="110" rx="8" fill="var(--teal-soft)" stroke="${T}"/>
+     <text x="${x+10}" y="64" fill="${T}" font-size="13" font-weight="600">${l[0]}</text>
+     <text x="${x+10}" y="90" fill="${I}" font-size="10">${l[1].length>18?l[1].slice(0,l[1].lastIndexOf(" ",18)):l[1]}</text>
+     ${l[1].length>18?`<text x="${x+10}" y="104" fill="${I}" font-size="10">${l[1].slice(l[1].lastIndexOf(" ",18)+1)}</text>`:""}
+     <text x="${x+10}" y="135" fill="${M}" font-size="10">${l[2]}</text>`}).join("")}
+   <rect x="140" y="172" width="240" height="36" rx="8" fill="none" stroke="${SU}" stroke-dasharray="5 4"/>
+   <text x="152" y="195" fill="${SU}" font-size="12">Authority: outside the observer</text>
+   <text x="14" y="26" fill="${M}" font-size="12">a person or a device may run it; neither is it</text>`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi mathvariant=\"script\">O</mi><mo>=</mo><mo stretchy=\"false\">(</mo><mrow><mi mathvariant=\"sans-serif\">P</mi><mi mathvariant=\"sans-serif\">r</mi><mi mathvariant=\"sans-serif\">e</mi><mi mathvariant=\"sans-serif\">s</mi></mrow><mo separator=\"true\">,</mo><mtext> </mtext><mrow><mi mathvariant=\"sans-serif\">M</mi><mi mathvariant=\"sans-serif\">e</mi><mi mathvariant=\"sans-serif\">m</mi></mrow><mo separator=\"true\">,</mo><mtext> </mtext><mrow><mi mathvariant=\"sans-serif\">E</mi><mi mathvariant=\"sans-serif\">v</mi><mi mathvariant=\"sans-serif\">a</mi><mi mathvariant=\"sans-serif\">l</mi></mrow><mo separator=\"true\">,</mo><mtext> </mtext><mrow><mi mathvariant=\"sans-serif\">P</mi><mi mathvariant=\"sans-serif\">o</mi><mi mathvariant=\"sans-serif\">l</mi><mi mathvariant=\"sans-serif\">i</mi><mi mathvariant=\"sans-serif\">c</mi><mi mathvariant=\"sans-serif\">y</mi></mrow><mo stretchy=\"false\">)</mo><mspace width=\"2em\"/><mrow><mi mathvariant=\"sans-serif\">A</mi><mi mathvariant=\"sans-serif\">c</mi><mi mathvariant=\"sans-serif\">c</mi><mi mathvariant=\"sans-serif\">e</mi><mi mathvariant=\"sans-serif\">p</mi><mi mathvariant=\"sans-serif\">t</mi></mrow><mtext> </mtext><mo>⇏</mo><mtext> </mtext><mrow><mi mathvariant=\"sans-serif\">A</mi><mi mathvariant=\"sans-serif\">u</mi><mi mathvariant=\"sans-serif\">t</mi><mi mathvariant=\"sans-serif\">h</mi><mi mathvariant=\"sans-serif\">o</mi><mi mathvariant=\"sans-serif\">r</mi><mi mathvariant=\"sans-serif\">i</mi><mi mathvariant=\"sans-serif\">z</mi><mi mathvariant=\"sans-serif\">e</mi><mi mathvariant=\"sans-serif\">d</mi></mrow></mrow><annotation encoding=\"application/x-tex\">\\mathcal O=(\\mathsf{Pres},\\ \\mathsf{Mem},\\ \\mathsf{Eval},\\ \\mathsf{Policy})\\qquad \\mathsf{Accept}\\ \\not\\Rightarrow\\ \\mathsf{Authorized}</annotation></semantics></math></span>",
+  line:"<b>Her word “consciousness” declares none of the four layers.</b> The model proposes, the evaluator evaluates, a separate regime may authorize." },
+
+{ id:"blindspot", tag:"unreported", title:"Differences that never reach the report change nothing.",
+  pic:S(`
+   <text x="20" y="22" fill="${M}" font-size="12">world A: extra, unreported</text>
+   <text x="20" y="128" fill="${M}" font-size="12">world B: without it</text>
+   <rect x="20" y="32" width="200" height="70" rx="6" fill="none" stroke="${R}"/><rect x="70" y="42" width="100" height="50" rx="4" fill="var(--wit-soft)" stroke="${W}"/>
+   <circle cx="40" cy="60" r="6" fill="${SU}"/><circle cx="200" cy="85" r="6" fill="${SU}"/><circle cx="120" cy="67" r="7" fill="${W}"/>
+   <rect x="20" y="138" width="200" height="70" rx="6" fill="none" stroke="${R}" stroke-dasharray="3 4"/><rect x="70" y="148" width="100" height="50" rx="4" fill="var(--wit-soft)" stroke="${W}"/>
+   <circle cx="120" cy="173" r="7" fill="${W}"/>
+   <path d="M175 67 C 270 67 270 120 330 120" fill="none" stroke="${I}" stroke-width="1.5"/>
+   <path d="M175 173 C 270 173 270 120 330 120" fill="none" stroke="${I}" stroke-width="1.5"/>
+   <rect x="330" y="98" width="70" height="44" rx="6" fill="var(--wit-soft)" stroke="${W}"/><text x="342" y="125" fill="${W}" font-size="13">report</text>
+   <line x1="400" y1="120" x2="430" y2="120" stroke="${I}" stroke-width="1.5"/>
+   <rect x="430" y="98" width="80" height="44" rx="6" fill="var(--teal-soft)" stroke="${T}"/><text x="440" y="125" fill="${T}" font-size="11">same verdict</text>`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>q</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>q</mi><mo stretchy=\"false\">(</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mtext> </mtext><mo>⟹</mo><mtext> </mtext><mi>E</mi><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">(</mo><mi>q</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo stretchy=\"false\">)</mo><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">)</mo><mo>=</mo><mi>E</mi><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">(</mo><mi>q</mi><mo stretchy=\"false\">(</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo fence=\"false\" stretchy=\"true\" minsize=\"1.2em\" maxsize=\"1.2em\">)</mo><mspace width=\"2em\"/><mfrac><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>D</mi><mo>∣</mo><mi>A</mi><mo stretchy=\"false\">)</mo></mrow><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>D</mi><mo>∣</mo><mi>B</mi><mo stretchy=\"false\">)</mo></mrow></mfrac><mo>=</mo><mn>1</mn></mrow><annotation encoding=\"application/x-tex\">q(A)=q(B)\\ \\Longrightarrow\\ E\\big(q(A)\\big)=E\\big(q(B)\\big)\\qquad \\frac{P(D\\mid A)}{P(D\\mid B)}=1</annotation></semantics></math></span>",
+  line:"<b>“Offscreen” already smuggles in a screen and a world behind it.</b> Drop it: no observer can tell A from B. The claim is not false. It cannot be evaluated, by construction. (Proved in Lean: <code>presentation_blind_spot</code>.)" },
+
+{ id:"pigeon", tag:"every observer", title:"Every finite observer has differences it cannot report.",
+  pic:S(`
+   ${[0,1,2,3,4].map(i=>`<circle cx="80" cy="${40+i*36}" r="9" fill="${W}"/>`).join("")}
+   ${[0,1,2].map(i=>`<rect x="380" y="${58+i*48}" width="26" height="26" rx="5" fill="var(--teal-soft)" stroke="${T}"/>`).join("")}
+   ${[[0,0],[1,0],[2,1],[3,2],[4,2]].map(([a,b])=>`<line x1="92" y1="${40+a*36}" x2="378" y2="${71+b*48}" stroke="${a===1||a===4?SU:I}" stroke-width="${a===1||a===4?2.5:1.2}"/>`).join("")}
+   <text x="40" y="22" fill="${M}" font-size="12">5 states</text><text x="350" y="40" fill="${M}" font-size="12">3 reports</text>
+   <text x="420" y="75" fill="${SU}" font-size="12">two states,</text><text x="420" y="91" fill="${SU}" font-size="12">one report</text>`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi mathvariant=\"normal\">∣</mi><mi>P</mi><mi mathvariant=\"normal\">∣</mi><mo>&lt;</mo><mi mathvariant=\"normal\">∣</mi><mi>X</mi><mi mathvariant=\"normal\">∣</mi><mtext> </mtext><mo>⟹</mo><mtext> </mtext><mi mathvariant=\"normal\">∃</mi><mtext> </mtext><mi>x</mi><mo mathvariant=\"normal\">≠</mo><mi>y</mi><mo>:</mo><mtext> </mtext><mi>q</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>q</mi><mo stretchy=\"false\">(</mo><mi>y</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">|P|&lt;|X|\\ \\Longrightarrow\\ \\exists\\,x\\neq y:\\ q(x)=q(y)</annotation></semantics></math></span>",
+  line:"<b>Unreported differences are the normal condition of any finite observer, not evidence of a simulation.</b> (Lean: <code>pigeonhole_resolution_limit</code>.)" },
+
+{ id:"game", tag:"her analogy", title:"In a video game the offscreen world still runs.",
+  pic:S(`
+   ${Array.from({length:8},(_,c)=>Array.from({length:4},(_,r)=>`<rect x="${20+c*60}" y="${30+r*42}" width="56" height="38" rx="3" fill="none" stroke="${R}"/>`).join("")).join("")}
+   <rect x="196" y="68" width="174" height="84" rx="4" fill="var(--wit-soft)" stroke="${W}" stroke-width="2"/>
+   <text x="205" y="88" fill="${W}" font-size="12">drawn (screen)</text>
+   <circle cx="270" cy="120" r="8" fill="${W}"/>
+   <circle cx="50" cy="50" r="7" fill="${SU}"/><circle cx="470" cy="180" r="7" fill="${SU}"/><circle cx="110" cy="175" r="7" fill="${SU}"/>
+   <text x="30" y="214" fill="${SU}" font-size="12">not drawn, still computed: positions, physics, timers</text>`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mtext>game state </mtext><mi>X</mi><mtext> (all of it) </mtext><mover><mo stretchy=\"true\" minsize=\"3.0em\">→</mo><mpadded width=\"+0.6em\" lspace=\"0.3em\"><mtext> draw </mtext></mpadded></mover><mtext> pixels on screen</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{game state } X \\ \\text{(all of it)}\\ \\xrightarrow{\\ \\text{draw}\\ }\\ \\text{pixels on screen}</annotation></semantics></math></span>",
+  line:"<b>A game skips the drawing, not the world.</b> The analogy supplies an offscreen world, which is the opposite of her claim." },
+
+{ id:"debts", tag:"what she owes", title:"Four things she has not supplied.",
+  pic:S(`
+   ${[["1","Define the observer","in, kept, judged"],["2","Which step is “observe”?","contact, record, or experience"],["3","A test","rendered vs not: what differs?"],["4","The quote","where the paper says it"]].map((d,i)=>{
+     const x=14+(i%2)*254, y=18+Math.floor(i/2)*100; return `<rect x="${x}" y="${y}" width="240" height="86" rx="8" fill="var(--no-soft)" stroke="${N}"/>
+     <text x="${x+14}" y="${y+30}" fill="${N}" font-size="22" font-family="var(--display)">${d[0]}</text>
+     <text x="${x+40}" y="${y+30}" fill="${I}" font-size="13" font-weight="600">${d[1]}</text>
+     <text x="${x+40}" y="${y+56}" fill="${M}" font-size="11">${d[2]}</text>`}).join("")}`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mtext>claim</mtext><mtext>  </mtext><mo>−</mo><mtext>  </mtext><mo stretchy=\"false\">{</mo><mi mathvariant=\"script\">O</mi><mo separator=\"true\">,</mo><mtext> step</mtext><mo separator=\"true\">,</mo><mtext> test</mtext><mo separator=\"true\">,</mo><mtext> quote</mtext><mo stretchy=\"false\">}</mo><mtext>  </mtext><mo>=</mo><mtext>  </mtext><mtext>a story</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{claim} \\;-\\; \\{\\mathcal O,\\ \\text{step},\\ \\text{test},\\ \\text{quote}\\} \\;=\\; \\text{a story}</annotation></semantics></math></span>",
+  line:"<b>Each one is owed before the claim can be evaluated.</b> None of it needs new physics, only definitions." },
+
+{ id:"paper-inputs", tag:"the paper", title:"What the paper supplies, derives and witnesses.",
+  pic:S(`
+   <text x="20" y="22" fill="${SU}" font-size="12">supplied</text>
+   ${["two-level water states, N, Ω","real 𝒜 (assumed)","loss term 𝒜/L₃ (added by hand)","M² term (“we have added”)","the hologram |r+o|² (“consider the case”)","object wave o: no source","every tissue layer = same field","damping γ, input decay γ₂"].map((s,i)=>`<rect x="20" y="${32+i*22}" width="${Math.min(300,10+s.length*6.4)}" height="18" rx="3" fill="var(--supplied-soft)"/><text x="26" y="${45+i*22}" fill="${I}" font-size="11">${s}</text>`).join("")}
+   <text x="350" y="22" fill="${T}" font-size="12">derived</text>
+   ${["sech light pulse","2.6 PB, 31 TB (sums)","inputs: static inverse"].map((s,i)=>`<rect x="350" y="${32+i*22}" width="160" height="18" rx="3" fill="var(--teal-soft)"/><text x="356" y="${45+i*22}" fill="${I}" font-size="11">${s}</text>`).join("")}
+   <text x="350" y="122" fill="${W}" font-size="12">witnessed by the paper</text>
+   <rect x="350" y="132" width="160" height="18" rx="3" fill="none" stroke="${N}" stroke-dasharray="4 3"/><text x="356" y="145" fill="${N}" font-size="11">none: one simulation</text>`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>E</mi><mn>3</mn></msub><mo>=</mo><mfrac><mrow><mi>g</mi><msup><mi mathvariant=\"normal\">Ω</mi><mn>2</mn></msup><mi>N</mi></mrow><mrow><mn>4</mn><mi>π</mi></mrow></mfrac><mtext> </mtext><mrow><mi mathvariant=\"normal\">s</mi><mi mathvariant=\"normal\">e</mi><mi mathvariant=\"normal\">c</mi><mi mathvariant=\"normal\">h</mi></mrow><mtext> ⁣</mtext><mo fence=\"false\" stretchy=\"true\" minsize=\"1.8em\" maxsize=\"1.8em\">(</mo><mfrac><mrow><msup><mi>x</mi><mn>0</mn></msup><mo>−</mo><msub><mi>τ</mi><mn>0</mn></msub></mrow><msub><mi>τ</mi><mi>R</mi></msub></mfrac><mo fence=\"false\" stretchy=\"true\" minsize=\"1.8em\" maxsize=\"1.8em\">)</mo><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>τ</mi><mi>R</mi></msub><mo>=</mo><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><mrow><msup><mi>g</mi><mn>2</mn></msup><mi mathvariant=\"normal\">Ω</mi><mi>N</mi></mrow></mfrac><mspace width=\"1em\"/><mtext>no values for </mtext><mi>g</mi><mo separator=\"true\">,</mo><mi mathvariant=\"normal\">Ω</mi><mo separator=\"true\">,</mo><mi>N</mi></mrow><annotation encoding=\"application/x-tex\">E_3=\\frac{g\\Omega^2N}{4\\pi}\\,\\mathrm{sech}\\!\\Big(\\frac{x^0-\\tau_0}{\\tau_R}\\Big),\\quad \\tau_R=\\frac{2\\pi}{g^2\\Omega N}\\quad\\text{no values for } g,\\Omega,N</annotation></semantics></math></span>",
+  line:"<b>The math holds given its inputs. The questions are about the inputs.</b>" },
+
+{ id:"paper-words", tag:"the paper", title:"The paper puts a world outside, and leaves the observer empty.",
+  pic:S(`
+   <rect x="20" y="30" width="230" height="160" rx="8" fill="var(--wit-soft)" stroke="${W}"/>
+   <text x="34" y="58" fill="${W}" font-size="12">it supplies an outside world:</text>
+   <text x="34" y="86" fill="${I}" font-size="12">“the outside world of the</text>
+   <text x="34" y="104" fill="${I}" font-size="12">observable phenomena”</text>
+   <text x="34" y="138" fill="${I}" font-size="12">“where is the image of the</text>
+   <text x="34" y="156" fill="${I}" font-size="12">outside world formed”</text>
+   <rect x="270" y="30" width="230" height="160" rx="8" fill="var(--no-soft)" stroke="${N}" stroke-dasharray="5 4"/>
+   <text x="284" y="58" fill="${N}" font-size="12">its observer: not modelled</text>
+   <text x="284" y="86" fill="${I}" font-size="12">“how a quantum mind could</text>
+   <text x="284" y="104" fill="${I}" font-size="12">perceive the macro-world is</text>
+   <text x="284" y="122" fill="${I}" font-size="12">yet another mystery”</text>
+   <text x="284" y="160" fill="${M}" font-size="11">no word on rendering</text>`),
+  tex:"<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mtext>paper</mtext><mtext>  </mtext><mo>⊬</mo><mtext>  </mtext><mtext>“the universe does not render offscreen”</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{paper} \\;\\not\\vdash\\; \\text{“the universe does not render offscreen”}</annotation></semantics></math></span>",
+  line:"<b>Her link argues the reverse of her post.</b>" },
+
+{ id:"replies", tag:"draft replies", title:"The replies, each under 500 characters.", posts:true,
+  tex:"", line:"" }
+];
+
+const POSTS=[
+ ["1","Start with what you actually have: two records. In the first, two upright lines. In the second, one upright and one lying flat. That is all. To say \"a tree fell\" you must supply that the flat line is the same tree, that something happened between the records, and how upright was told from flat. Air, waves and sound are further things you would have to supply. Before we talk about sound: what did you supply, and why?"],
+ ["2","And quantum measurement doesn't require consciousness. A detector can record which-path information without anyone looking. So what experiment tells your \"offscreen rendering\" apart from ordinary quantum mechanics? Without one, it's a metaphor, not an explanation."],
+ ["3","I read the paper. It never says the universe doesn't render offscreen. Its carriers are water and light, and it estimates capacity and simulates field density. Its own Discussion calls how a quantum mind could perceive the world \"yet another mystery altogether.\" So the one part your claim needs, the observer, is the one part nobody supplied. In your version, what is the observer, and what does it measure?"],
+ ["4","Appendix B proposes a reference wave and reconstruction. What evidence connects that optical model to the claim that consciousness renders the universe?"]
+];
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function tex(t){ return t||"" }
+
+const grid=document.getElementById("grid");
+grid.innerHTML = CARDS.map(c=>`
+ <article class="card" id="c-${c.id}" data-id="${c.id}">
+  <div class="head"><h2>${c.title}</h2><span class="tag">${c.tag}</span></div>
+  ${c.posts?"":`<div class="pic">${c.pic}</div>`}
+  <div class="body">
+   ${c.posts?`<div class="posts">${POSTS.map(p=>`<div class="post"><div class="n"><span>post ${p[0]}</span><span>${p[1].length} chars</span></div>${esc(p[1])}</div>`).join("")}</div>`:`<div class="math">${tex(c.tex)}</div><p class="line">${c.line}</p>`}
+  </div>
+  <div class="bar">
+   <div class="btns">
+    <button type="button" data-v="right" aria-pressed="false">✓ Right</button>
+    <button type="button" data-v="wrong" aria-pressed="false">✗ Wrong</button>
+    <button type="button" data-v="unsure" aria-pressed="false">? Unsure</button>
+    <span class="saved" id="saved-${c.id}"></span>
+   </div>
+   <label class="sr" for="note-${c.id}" hidden>Note</label>
+   <textarea id="note-${c.id}" placeholder="What's right, what's wrong, what to change…"></textarea>
+  </div>
+ </article>`).join("");
+
+const statusEl=document.getElementById("status");
+const state={}; let db=null;
+function paint(id){
+  const card=document.getElementById("c-"+id); if(!card) return;
+  const s=state[id]||{};
+  card.classList.remove("v-right","v-wrong","v-unsure"); if(s.verdict) card.classList.add("v-"+s.verdict);
+  card.querySelectorAll(".btns button").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.v===s.verdict)));
+  const ta=document.getElementById("note-"+id); if(ta && document.activeElement!==ta) ta.value=s.note||"";
+}
+function localLoad(){ try{ const raw=localStorage.getItem("owe-marks"); if(raw) Object.assign(state,JSON.parse(raw)); }catch(e){} }
+function localSave(){ try{ localStorage.setItem("owe-marks",JSON.stringify(state)); }catch(e){} }
+async function save(id){
+  const s=state[id]||{}; const el=document.getElementById("saved-"+id);
+  if(db){ try{ await db.collection("marks").doc(id).set({verdict:s.verdict||"",note:s.note||"",updatedAt:new Date().toISOString()}); el.textContent="saved"; }
+          catch(e){ el.textContent="not saved: "+(e&&e.code||"error"); } }
+  else { localSave(); el.textContent="saved in this browser only"; }
+}
+const timers={};
+grid.addEventListener("click",e=>{
+  const b=e.target.closest(".btns button"); if(!b) return;
+  const id=b.closest(".card").dataset.id; state[id]=state[id]||{};
+  state[id].verdict = state[id].verdict===b.dataset.v ? "" : b.dataset.v;
+  paint(id); save(id);
+});
+grid.addEventListener("input",e=>{
+  if(e.target.tagName!=="TEXTAREA") return;
+  const id=e.target.closest(".card").dataset.id; state[id]=state[id]||{}; state[id].note=e.target.value;
+  document.getElementById("saved-"+id).textContent="typing…";
+  clearTimeout(timers[id]); timers[id]=setTimeout(()=>save(id),900);
+});
+localLoad(); CARDS.forEach(c=>paint(c.id));
+
+(async()=>{
+  let d=null; try{ d = window.claude && window.claude.use ? await window.claude.use("db") : null; }catch(e){ d=null; }
+  if(!d){ statusEl.textContent="Marks are saved in this browser only (shared marks unavailable here)."; return; }
+  db=d; statusEl.textContent="Loading shared marks…";
+  const t=setTimeout(()=>{statusEl.textContent="Shared marks are slow to load; your marks still save.";},10000);
+  db.collection("marks").onSnapshot(snap=>{
+    clearTimeout(t);
+    snap.docs.forEach(doc=>{ const v=doc.data()||{}; state[doc.id]={verdict:v.verdict||"",note:v.note||""}; paint(doc.id); });
+    const n=snap.docs.filter(x=>(x.data()||{}).verdict).length;
+    statusEl.textContent = `Shared marks: ${n} of ${CARDS.length} cards marked. Claude can read these.`;
+  }, err=>{ clearTimeout(t); statusEl.textContent="Could not load shared marks ("+(err&&err.code||"error")+"). Your marks save in this browser."; db=null; });
+})();
+</script>
