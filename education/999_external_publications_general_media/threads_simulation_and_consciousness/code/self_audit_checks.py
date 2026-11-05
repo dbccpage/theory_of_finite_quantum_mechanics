@@ -13,7 +13,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 ap.add_argument("--replies", default=str(ROOT / "01_thread" / "replies.md"))
 ap.add_argument("--board", default=str(ROOT / "05_boards" / "markup_board.html"))
 ap.add_argument("--learning", default=str(ROOT / "05_boards" / "learning_boards.html"))
-ap.add_argument("--expect-blocks", type=int, default=6)
+ap.add_argument("--expect-blocks", type=int, default=5)
 args = ap.parse_args()
 
 ok = True

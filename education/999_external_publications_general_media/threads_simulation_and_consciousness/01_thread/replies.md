@@ -1,51 +1,39 @@
 # Threads replies to wisdomandlogos
 
-Revised 2026-11-05 after the self-audit ([self_audit.md](../04_self_audit/self_audit.md), section A). Each post is under 500 characters; `code/self_audit_checks.py` (S5) counts them. Rhymed alternates are in [replies_alternates.md](replies_alternates.md). The earlier versions, and why each was changed, are in [self_audit.md](../04_self_audit/self_audit.md) and [board_repair_log.md](../04_self_audit/board_repair_log.md).
+Revised 2026-11-05 (plain prose). Each post is under 500 characters; `code/self_audit_checks.py` (S5) counts them. Earlier versions, including the rhymed ones, and why each was changed, are in [self_audit.md](../04_self_audit/self_audit.md) and [board_repair_log.md](../04_self_audit/board_repair_log.md); the rhymed alternates file was removed on 2026-11-05.
 
-Order: the tree, the game, the paper, the closer, then the plain reply that carries the link to the learning boards (`05_boards/learning_boards.html`). The Thales line is held for later.
+Posts 1 to 4 are a sequence. Post 5 stands alone and carries the link to the learning boards (`05_boards/learning_boards.html`).
 
-Post 1, the tree
+Post 1, the claim
 
-> Two snapshots: two trees standing, then one lying flat.
-> The fall, the air, the crash, the sound: you added all of that.
-> Same tree in both pictures? Supplied. Upright versus down? Supplied too.
-> Something happening in between? Inferred, not in view.
-> Not saying it didn't happen. Saying it came in on the side.
-> So when the universe "doesn't render," who checks? Who decides?
-> And what record would show it, and what test would it provide?
+> "The universe does not render what is offscreen" can mean three different things. (1) Nothing exists where nobody looks. (2) Nothing changes there. (3) No record is kept there. Only (1) and (2) would change the physics. (3) is already how physics works: most events leave no record that anyone reads. Which of the three do you mean? For (1) or (2), what measurement would come out differently? If none does, the claim adds a story to the physics, not a prediction.
 
 ---
 
-Post 2, the game
+Post 2, the observer
 
-> Pro gamer tip: a game can skip three chores. Drawing the pixels. Running the physics. Keeping what's behind the doors. Minecraft stops ticking far chunks; the rest get generated from the seed when you arrive, same diamonds every time. So which does the universe skip? (1) nothing's there, (2) nothing moves, (3) nobody kept a receipt. Number 3 is just Tuesday. For 1 or 2: what comes out different when you peek? And who decides?
-
----
-
-Post 3, after reading her link
-
-> Read your paper, cover to appendix. Lovely water, lovely light, 2.5 petabytes of hypothetical hologram, one simulation shown. Not one line about rendering the universe. It calls vision perhaps the most important link between "the outside world of the observable phenomena" and the mind: world first, brain images it. How a quantum mind perceives the macro-world? "Yet another mystery altogether." Your source brought the world and honestly left the observer open. Who decides it backs you?
+> On observers: in the double-slit experiment, interference disappears whenever path information is recorded in any physical system, with or without a person. The data do not single out consciousness. If your version predicts exactly what quantum mechanics predicts, the experiment cannot favor it; the likelihood ratio is 1. So the question is not whether a human or a device is required. It is what, in your account, counts as looking, and what happens differently when it does not occur.
 
 ---
 
-Post 4, the closer
+Post 3, the paper
 
-> Dr. Johnson kicked a stone to refute Berkeley. Bold move, sore toe. I'll go gentler: name one thing that happens differently when nobody's looking, and how we'd know. Einstein asked Pais whether the moon is there only when someone looks. Fair question, still. But define the look, or the moon gets the final say. And who decides it counts: a detector, a record, or a feeling in the chest? Until then it's a gorgeous story, not yet a test.
-
----
-
-Post 5, plain, with the link to the boards
-
-> I read the paper you linked. It models coherent light in brain water writing holograms. "Render" never appears, and it treats the outside world as given. In a game, "render" can mean draw, update or store. Which one does the universe skip where nobody looks, and what would we see that we would not see otherwise? If nothing, no data can favor it. And who decides what counts as looking? Six short boards, every step checkable: [link]
-
-Before posting, replace `[link]` with the boards' public address. The post is 434 characters with the placeholder, so the address may be up to 72 characters.
+> I read the paper you linked, appendices included. It models coherent light in brain water writing holograms, estimates a storage capacity, and shows one simulation at chosen parameters. The word "render" does not appear. It takes the outside world as given: vision is "the most important link between the outside world of the observable phenomena and the inner life of our mind". How a quantum mind perceives that world is "yet another mystery altogether". It is about memory inside a brain.
 
 ---
 
-Held for later, Thales
+Post 4, the test
 
-> Even Thales reaches us second-hand: nothing he wrote survives, only what Herodotus, Aristotle and later writers kept. The past is a record someone kept. Who kept yours?
+> Here is what would settle it. Name one observable that comes out differently if unobserved regions are not "rendered", and say what does the observing in your account: a detector, a record, or an experience. With that, the claim can be tested. Without it, the two accounts predict the same data, and the data cannot choose between them. That is not a point against you. It is the standard every account has to meet, including mine.
 
 ---
 
-Fact notes: "render" occurs 0 times in the paper. The vision quote is from §6 (Concluding Remarks); "yet another mystery altogether" is from the Discussion. The paper shows one configuration (N = 4, Figs. 4–6). Johnson's stone: Boswell, *Life of Johnson*, 6 August 1763. Einstein and the moon: Pais, *Rev. Mod. Phys.* 51 (1979) 863. Minecraft: unvisited chunks are generated from the world seed on arrival, deterministically for a given seed and game version. Herodotus mentions Thales (*Histories* 1.74–75, 1.170).
+Post 5, the standalone reply with the link to the boards
+
+> I read the paper you linked. It models coherent light in brain water writing holograms. "Render" never appears, and it treats the outside world as given. In a game, "render" can mean draw, update or store. Which one does the universe skip where nobody looks, and what would we see that we would not see otherwise? If nothing, no data can favor it. And what counts as looking: a detector, a record, or an experience? Six short boards, every step checkable: [link]
+
+---
+
+Before posting, replace `[link]` with the boards' public address. Post 5 is 462 characters with the placeholder, so the address may be up to 44 characters.
+
+Fact notes: "render" occurs 0 times in the paper. The vision sentence is from §6 (Concluding Remarks): "Vision is perhaps the most important link between the outside world of the observable phenomena and the inner life of our mind." "Yet another mystery altogether" is from §5 (Discussion). The paper shows one configuration (N = 4, Figures 4 to 6). The hologram is assumed at (A51). Double slit: interference is lost when path information is recorded in any physical system; no person is needed. The likelihood ratio is 1 when two accounts predict identical data.
