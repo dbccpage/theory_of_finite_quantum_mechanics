@@ -4,7 +4,7 @@ Start with the [two-page v5 PDF](two_sheets_v5.pdf): nine picture strips on one 
 
 - [Picture sheet](picture_sheet_v5.png) and [scalable SVG](picture_sheet_v5.svg)
 - [Math sheet](math_sheet_v5.pdf) and [searchable text](math_sheet_v5.md)
-- [Three tweets and two sheets on Everett](everett/README.md)
+- [Two sheets on Everett](everett/README.md)
 - [Panel captions](panel_captions_v5.md)
 - [Complete contents and review history](START_HERE.md)
 
