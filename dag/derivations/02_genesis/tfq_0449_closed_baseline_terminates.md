@@ -1,6 +1,6 @@
 # [TFQ-0449] closed-baseline-terminates
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `7e838afc-09e9-550d-92f3-040a0cea91c5`  
 > **Parent Derivation**: [TFQ-0383](tfq_0383_closure_round_inequality.md)
 
@@ -33,6 +33,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.all_branches_terminate_iff_zero_cut_or_open`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.closed_baseline_reading_l_and_f_tree_census`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean)
 - [`lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty`](../../../lean4/Imported/GenesisDerivation/Derivation/Rounds.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

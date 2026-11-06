@@ -2424,7 +2424,7 @@
       "name": "closed-baseline-terminates",
       "stage": "GENESIS",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0383",
       "pinned_parent": false,
       "prerequisites": [],
@@ -2440,6 +2440,16 @@
             "root": "local",
             "path": "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean",
             "symbol": "closedRun_round_bound_from_empty"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean",
+            "symbol": "WitnessedDifference.WdpBatch8.closed_baseline_reading_l_and_f_tree_census"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean",
+            "symbol": "WitnessedDifference.WdpBatch8.all_branches_terminate_iff_zero_cut_or_open"
           }
         ],
         "rust": [
@@ -2485,8 +2495,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "COMPUTATIONALLY_CHECKED",
-        "source_status": "genesis_source.txt section 8.5 [bounded theorem] (CL-CLOSURE-TERMINATION); Rounds.lean round bound"
+        "status": "PROVED_LEAN",
+        "source_status": "Closed-system baseline Reading L and Reading F tree census and termination criterion mechanized in Rounds.lean and WdpBatch8.lean"
       },
       "terminal": false
     },
@@ -8248,7 +8258,7 @@
       "name": "sn-postnikov-refusal",
       "stage": "MSSN_SN",
       "group": "S(n)",
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0518",
       "pinned_parent": false,
       "prerequisites": [],
@@ -8261,7 +8271,14 @@
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement about Postnikov truncations in the S(n) or MSS-N packages"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean",
+            "symbol": "WitnessedDifference.WdpBatch8.postnikov_preserves_pi0_refutes_sn_tower"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean",
+            "symbol": "WitnessedDifference.WdpBatch8.sn_stage_and_postnikov_depth_independent"
           }
         ],
         "rust": [
@@ -8298,8 +8315,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "002_oesn sn.md section 4 (written pi0 argument); pregenesis_to_minimal_symbol_systems paper.md section 16; ledger WDP-P001-017 withdrawn"
+        "status": "PROVED_LEAN",
+        "source_status": "Postnikov pi0 preservation vs S(0)->S(1) component change and (n,j) independence mechanized in WdpBatch8.lean"
       },
       "terminal": false
     },
