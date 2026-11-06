@@ -42,7 +42,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of the S(0) ground in the S(n) strand`
 
 ### Python Oracles & Numerical Evaluators
-- `education/symmetric_group_presentations/code/sn_core.py::S0Ground` (private upstream source, not in this repository)
+- `education/2_symmetric_group_presentations/code/sn_core.py::S0Ground` (private upstream source, not in this repository)
 
 ---
 

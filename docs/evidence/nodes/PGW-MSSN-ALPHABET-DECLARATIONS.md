@@ -45,14 +45,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md](../../../dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md)
-- sha256 (`lf-normalised`): `eccdde6bf1ba5ebb6c1e76905ef37f78f0b8a82a94e7c4bb2d066a6b0219659a`
+- sha256 (`lf-normalised`): `4b6b320b665274a88897cbf675d418071cdf2bcd3ecebfd0551e3cb87b2f3c11`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0530
 - counts toward the grade: no
 
-### Documents and data: `education/minimal_symbol_systems/grammar/mssn.ebnf`
+### Documents and data: `education/3_minimal_symbol_systems/grammar/mssn.ebnf`
 
-- file: [education/minimal_symbol_systems/grammar/mssn.ebnf](../../../education/minimal_symbol_systems/grammar/mssn.ebnf)
+- file: [education/3_minimal_symbol_systems/grammar/mssn.ebnf](../../../education/3_minimal_symbol_systems/grammar/mssn.ebnf)
 - sha256 (`lf-normalised`): `2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac`
 - cited in: node.source
 - counts toward the grade: yes
@@ -63,7 +63,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:42-43`
 - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:44-48`
-- `external:upstream/education/minimal_symbol_systems/code/mssn_codec.py::RawGlyphs`
+- `external:upstream/education/3_minimal_symbol_systems/code/mssn_codec.py::RawGlyphs`
 
 ## Absences recorded by the TFQ records
 

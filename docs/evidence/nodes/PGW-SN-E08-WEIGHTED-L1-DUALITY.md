@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md](../../../dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md)
-- sha256 (`lf-normalised`): `4471a458f38dbd7b80b533f3069a3486a0e2b82a054388fbc95467ca465c74c6`
+- sha256 (`lf-normalised`): `34b9d15c234d1687846604d1554862e90ddd8392db94e6a512cbae7abbd2a568`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0522
 - counts toward the grade: no
@@ -107,9 +107,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `education/symmetric_group_presentations/levels/README.md`
+### Documents and data: `education/2_symmetric_group_presentations/levels/README.md`
 
-- file: [education/symmetric_group_presentations/levels/README.md](../../../education/symmetric_group_presentations/levels/README.md)
+- file: [education/2_symmetric_group_presentations/levels/README.md](../../../education/2_symmetric_group_presentations/levels/README.md)
 - sha256 (`lf-normalised`): `58f41876692a51be940c4e0f44bd2e1ef72cd873c70b4726ef3d5f0639137165`
 - cited in: node.source
 - counts toward the grade: yes

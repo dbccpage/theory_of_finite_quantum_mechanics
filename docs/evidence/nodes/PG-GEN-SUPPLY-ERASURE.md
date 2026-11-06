@@ -114,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md`
 
 - file: [dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md](../../../dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md)
-- sha256 (`lf-normalised`): `75ab631b55d8c9c761a446a96ecd06eea7423c12fc08083de47b66a170bbf8a2`
+- sha256 (`lf-normalised`): `d60fb81832fe41f12241bfa0b0147bcb5b49358702a1b99532ec036bc17e98aa`
 - generated view: listed, not counted
 - cited in: record TFQ-0386
 - counts toward the grade: no

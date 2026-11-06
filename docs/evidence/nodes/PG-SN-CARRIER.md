@@ -124,7 +124,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md](../../../dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md)
-- sha256 (`lf-normalised`): `3786d0dc261301ba41a67cff873dcc3397c4a204b81f52315b5c31faebf54e06`
+- sha256 (`lf-normalised`): `566a91b3601730748925454e8b9b5e8f0b44aa946558924321ca5e6e3caaa2c0`
 - generated view: listed, not counted
 - cited in: record TFQ-0341
 - counts toward the grade: no
@@ -132,7 +132,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md](../../../dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md)
-- sha256 (`lf-normalised`): `d2aa58398ed7af60afe0f89c74092f4e56baa6a0b3a7080808b9a0888b7d613f`
+- sha256 (`lf-normalised`): `f69620b365382a698fb647b7669990b9cbbe7388cd7931e23321bac33431bad8`
 - generated view: listed, not counted
 - cited in: record TFQ-0342 (shared)
 - counts toward the grade: no

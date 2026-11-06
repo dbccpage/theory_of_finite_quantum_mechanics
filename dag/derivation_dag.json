@@ -15849,8 +15849,8 @@
       "statement": "The Pre-Genesis host grammar declares the inscription alphabet {<, >, a, b} and three public starts: ground_token (exactly <>), inscription (one balanced, non-nested bracketed inscription) and pre_genesis_regime (zero or more inscriptions between braces, where {} is host list notation and not the empty word). It keeps four states apart: absent input, the empty word, the literal token <> and the ground carrier that S(0) adopts. It has no event productions: the first event, supply(<>), is the Genesis boundary, and parsing a word admits no carrier, transition or observational operation.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md",
-        "education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:14-19",
-        "education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:26-28"
+        "education/1_pregenesis_empty_mark/grammar/pre_genesis.ebnf:14-19",
+        "education/1_pregenesis_empty_mark/grammar/pre_genesis.ebnf:26-28"
       ],
       "lean": [],
       "rust": [],
@@ -15893,7 +15893,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md",
         "atlas/finite_obstruction_calculus/genesis/paper.md:107-116",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:177-215",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:177-215",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:64-70"
       ],
       "lean": [
@@ -15919,8 +15919,8 @@
       "statement": "Write P for the presented inscriptions and O for the internal observations. Supplying <a> after <> changes P from {<>} to {<a>} and leaves O_1 = O_0 = ∅, so no new internal distinction is available. With q : P → N sending an inscription to the distinctions the regime has, x ≠ y in P can hold while q(x) = q(y) in N, so a new presentation does not imply a new internal class, and in the other direction q(x) = q(y) does not imply x = y. Under the opaque convention <a> is a new presentation state in the same internal class as <>; the statement holds under that convention only.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:110-135",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:925-975",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:110-135",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:925-975",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:29-43"
       ],
       "lean": [
@@ -15946,7 +15946,7 @@
       "statement": "Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:731-737",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:731-737",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:36-43",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:43-53",
         "dag/derivations/independent/pgw-identity-convention-undecidable.md:5",
@@ -15983,7 +15983,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md",
         "atlas/finite_obstruction_calculus/genesis/paper.md:62-68",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:147-175",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:147-175",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:55-60"
       ],
       "lean": [],
@@ -16005,7 +16005,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md",
         "atlas/finite_obstruction_calculus/genesis/paper.md:118-133",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:283-305",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:283-305",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:81-88"
       ],
       "lean": [
@@ -16034,7 +16034,7 @@
       "statement": "Let H be the possible histories, σ(h) the state that history h produces and π(h) the part of h an auditor sees, for example only the last turn. If π(h₁) = π(h₂) but σ(h₁) ≠ σ(h₂), no auditor A that sees only π reports σ(h) for every h, because A(π(h₁)) = A(π(h₂)) would give σ(h₁) = σ(h₂). The trial failures motivate the theorem: the blind auditor flagged the licensed words 'We' (Trial 1) and 'rule' (Trial 2) as imports, so an audit needs two levels; in Trial 2, Prompt 14's false attribution was answered without objection, so claim provenance is a check separate from claim correctness, Result 15 lost the state, saying the regime contains only <> after <a> had been supplied; and the two-level auditor, shown only that turn, answered None. State certification therefore needs replay information that separates the relevant histories, and on a declared finite population a summary on which σ is constant per fiber of the view can stand in for the raw history.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:1009-1047",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:1009-1047",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:100-106",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:101-111"
       ],
@@ -16061,7 +16061,7 @@
       "statement": "A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:1065-1087",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:1065-1087",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:127-134",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:120-130"
       ],
@@ -16089,7 +16089,7 @@
       "statement": "Given the corrected state, the full replay answered that the task of making <a> and <ab> internally distinguishable cannot be evaluated until <ab> is brought into the regime. The first addition can supply <ab> as data or write it into a rule pattern; the two are equally minimal and neither is uniquely forced. After Prompt 19 admitted <ab> beside <a> with no comparison, counting or matching, nothing in the regime reacts to them differently, so admission alone distinguishes nothing and no unique continuation is dictated. The requirement recorded is an order: the regime must admit inscriptions, retain them across turns and replay the current state before a separation task on them can be posed.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:605-609",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:605-609",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:132-149",
         "external:sha256:e15c1002c287921ce12959d4de7d7a313402443ec53dcb1d8159a017eb8c0b0d:179-194"
       ],
@@ -18379,7 +18379,7 @@
       ],
       "lean": [],
       "rust": [
-        "education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate"
+        "education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate"
       ],
       "imported_structure": [
         "The S(n) stage labels and the two boxed laws, declared by the 002_oesn strand and not by 19L57G1 (assumption)"
@@ -18715,7 +18715,7 @@
         "dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md",
         "external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:19-29",
         "external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:40-44",
-        "education/symmetric_group_presentations/levels/README.md:20",
+        "education/2_symmetric_group_presentations/levels/README.md:20",
         "dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md:1-3"
       ],
       "lean": [
@@ -18803,7 +18803,7 @@
       ],
       "lean": [],
       "rust": [
-        "education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs::compute_integral_homology"
+        "education/3_minimal_symbol_systems/code/rust/src/smith_normal_form.rs::compute_integral_homology"
       ],
       "imported_structure": [],
       "bottleneck": "Erasing a class by changing coefficients supplies no integral repair, and a rational fraction 1/m offered as an integral repair receipt is refused; the page is a written finite example that grammar cases do not verify, and compute_integral_homology computes torsion factors for supplied integer matrices without a recorded run of this complex.",
@@ -18895,7 +18895,7 @@
       ],
       "lean": [],
       "rust": [
-        "education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::CandidateLift"
+        "education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::CandidateLift"
       ],
       "imported_structure": [],
       "bottleneck": "The levels catalogue sets lift_status unlicensed; a PASS LiftReceipt from evaluate_two_boxed_laws_gate consumes supplied flags and is a candidate check, not a licensed lift, and the CandidateLift record shape is metadata only.",
@@ -18913,7 +18913,7 @@
       "statement": "The MSS-N alphabet Γ38 is 26 lowercase letters, 10 digits and the two marks < and >; the grammar's word production uses Σ36, the letters and digits, and raw_glyphs treats < and > as ordinary marks, so balanced pairing is not an axiom there. A model must declare eight things separately: terminal spellings, tokenization, grammar, public start, layout, identity policy, annotation decoding and manipulation rules. Three relations that share notation stay apart: an encoded relation E ⊆ V × V, a rewrite relation, and an observation map q: V → O.",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md",
-        "education/minimal_symbol_systems/grammar/mssn.ebnf:10-11",
+        "education/3_minimal_symbol_systems/grammar/mssn.ebnf:10-11",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:42-43",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:44-48"
       ],
@@ -18935,7 +18935,7 @@
       "statement": "mssn.ebnf declares 22 public starts, and every conformance case names its start; there is no guessed union or default start. The string a>b>c>a is accepted by raw_glyphs, label_path and glyph_path and refused by suffix_path, whose vertices need a digit annotation; a0>b2>c1>a0 is accepted by raw_glyphs, label_path and suffix_path and refused by glyph_path, which reads a0 as two adjacent vertices with no direction. check_mssn.py runs 39 cases over the 22 starts.",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md",
-        "education/minimal_symbol_systems/grammar/mssn.ebnf:3-4",
+        "education/3_minimal_symbol_systems/grammar/mssn.ebnf:3-4",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:58-67",
         "atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:679-680"
       ],
@@ -19015,8 +19015,8 @@
         "lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux"
       ],
       "rust": [
-        "education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization",
-        "education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux"
+        "education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization",
+        "education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux"
       ],
       "imported_structure": [
         "Supplied observation columns in PState, not a checked partition or the full Genesis passage state (assumption)"
@@ -36651,8 +36651,8 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md",
-        "education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:14-19",
-        "education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:26-28"
+        "education/1_pregenesis_empty_mark/grammar/pre_genesis.ebnf:14-19",
+        "education/1_pregenesis_empty_mark/grammar/pre_genesis.ebnf:26-28"
       ]
     },
     {
@@ -36677,7 +36677,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md",
         "atlas/finite_obstruction_calculus/genesis/paper.md:107-116",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:177-215"
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:177-215"
       ]
     },
     {
@@ -36689,8 +36689,8 @@
       "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:110-135",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:925-975"
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:110-135",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:925-975"
       ]
     },
     {
@@ -36702,7 +36702,7 @@
       "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:731-737",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:731-737",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:36-43"
       ]
     },
@@ -36716,7 +36716,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md",
         "atlas/finite_obstruction_calculus/genesis/paper.md:62-68",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:147-175"
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:147-175"
       ]
     },
     {
@@ -36730,7 +36730,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md",
         "atlas/finite_obstruction_calculus/genesis/paper.md:118-133",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:283-305"
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:283-305"
       ]
     },
     {
@@ -36744,7 +36744,7 @@
       "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:1009-1047",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:1009-1047",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:100-106"
       ]
     },
@@ -36757,7 +36757,7 @@
       "status": "GAP_NO_DERIVATION",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:1065-1087",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:1065-1087",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:127-134"
       ]
     },
@@ -36771,7 +36771,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md",
-        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:605-609",
+        "education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md:605-609",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:132-149"
       ]
     },
@@ -38087,7 +38087,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md",
-        "education/minimal_symbol_systems/grammar/mssn.ebnf:10-11",
+        "education/3_minimal_symbol_systems/grammar/mssn.ebnf:10-11",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:42-43"
       ]
     },
@@ -38100,7 +38100,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md",
-        "education/minimal_symbol_systems/grammar/mssn.ebnf:3-4",
+        "education/3_minimal_symbol_systems/grammar/mssn.ebnf:3-4",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:58-67"
       ]
     },
@@ -61512,8 +61512,8 @@
       "obligation": "Parse Pre-Genesis words with the declared grammar only, refuse the empty word at every public start, and admit nothing by parsing; supply(<>) belongs to Genesis.",
       "parent_id": "TFQ-0362",
       "python": [
-        "external:upstream/education/pregenesis_empty_mark/code/check_pre_genesis.py::validate_cases",
-        "external:upstream/education/pregenesis_empty_mark/code/tests/test_pre_genesis_grammar.py::test_four_state_separation"
+        "external:upstream/education/1_pregenesis_empty_mark/code/check_pre_genesis.py::validate_cases",
+        "external:upstream/education/1_pregenesis_empty_mark/code/tests/test_pre_genesis_grammar.py::test_four_state_separation"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -64400,7 +64400,7 @@
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate"
+        "external:upstream/education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -64427,7 +64427,7 @@
       "obligation": "Keep the two-byte, one-token presentation <> apart from the admitted carrier: at S(0) nothing is derivable, supply changes no admitted state, and the declared index-0 carrier has no element.",
       "parent_id": "TFQ-0510",
       "python": [
-        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S0Ground"
+        "external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S0Ground"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -64456,7 +64456,7 @@
       "obligation": "Model supply and admission as different events, so that a supply of <a> admits nothing, and keep s₁ = 1 as a declared ledger entry tied to an issued demand.",
       "parent_id": "TFQ-0511",
       "python": [
-        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S1Supply"
+        "external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S1Supply"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -64485,7 +64485,7 @@
       "obligation": "Keep <a> and <ab> as opaque admitted data with equal observation profiles, and record a collapse as an obstruction only after a separation demand is supplied.",
       "parent_id": "TFQ-0512",
       "python": [
-        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S2Collapse"
+        "external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S2Collapse"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -64547,7 +64547,7 @@
       "obligation": "From irreflexivity and R(a,b) derive a ≠ b, report endpoint count 2 separately from witness multiplicity, and give the unique point-preserving map from D₂ to each asserted pair.",
       "parent_id": "TFQ-0514",
       "python": [
-        "external:upstream/education/symmetric_group_presentations/code/sn_audit.py::verify_wir"
+        "external:upstream/education/2_symmetric_group_presentations/code/sn_audit.py::verify_wir"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -64576,7 +64576,7 @@
       "obligation": "Under the declared closure policy, reach W₄ = ∅ with H₄ retained, bound a closed run by n(n−1)/2 rounds, and compute the cycle-space dimension m(m−1)/2 − m + 1 of K_m as a graph count, not a demand count.",
       "parent_id": "TFQ-0514",
       "python": [
-        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S4Orbit"
+        "external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S4Orbit"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -64604,7 +64604,7 @@
       "obligation": "Record each continuation request as an external input before selecting its response, and state OB-1 as an unresolved question, not a no-go theorem about endogenous continuation.",
       "parent_id": "TFQ-0516",
       "python": [
-        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S5Continuation"
+        "external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S5Continuation"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -64636,7 +64636,7 @@
       "obligation": "Show that retractionDownMap n accepts exactly the images of sectionLift n, with a unique witness, an exact stage test and a decidable image test, inside the five base shapes of the pinned carrier.",
       "parent_id": "TFQ-0517",
       "python": [
-        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S6Descent"
+        "external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S6Descent"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -64862,7 +64862,7 @@
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:upstream/education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs::compute_integral_homology"
+        "external:upstream/education/3_minimal_symbol_systems/code/rust/src/smith_normal_form.rs::compute_integral_homology"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -64974,7 +64974,7 @@
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::CandidateLift"
+        "external:upstream/education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::CandidateLift"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -64998,7 +64998,7 @@
       "obligation": "Declare all eight dimensions for each MSS-N model, accept raw glyphs only from Γ38, and keep encoded, rewrite and observation relations distinct.",
       "parent_id": "TFQ-0529",
       "python": [
-        "external:upstream/education/minimal_symbol_systems/code/mssn_codec.py::RawGlyphs"
+        "external:upstream/education/3_minimal_symbol_systems/code/mssn_codec.py::RawGlyphs"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -65119,8 +65119,8 @@
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization",
-        "external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux"
+        "external:upstream/education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization",
+        "external:upstream/education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",

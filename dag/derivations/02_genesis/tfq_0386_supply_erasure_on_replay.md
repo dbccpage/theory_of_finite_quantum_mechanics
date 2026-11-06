@@ -32,8 +32,8 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`declaration obligation: erase_replay against ledger row WDP-P000-013, education filter file left unread`](../../code/lean4/)
 - [`atlas/finite_obstruction_calculus/genesis/lean4/Derivation/Erasure.lean`](../../code/lean4/)
-- [`education/genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply`](../../code/lean4/)
-- [`education/genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only`](../../code/lean4/)
+- [`education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply`](../../code/lean4/)
+- [`education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: replay.rs must show supply-deletion leaves the core regime unchanged, file listed and not opened`](../../code/rust/src/)
@@ -69,6 +69,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-SUPPLY-ERASURE): 4*idx(53) + 3*stage_rank(2) + route_degree(2) == 220` ($\text{value} = 220$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-SUPPLY-ERASURE): R_raw(116) - G_cob(57) - S_decoy(2) == 57 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 57$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `education/genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only`
+- **Lean 4 Theorem Anchor**: `education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only`
 - **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = aae4d4f3c122ba58bc95f351a8bbe5081f6ca7f21de80f0d28b31b3f2e25ad23`

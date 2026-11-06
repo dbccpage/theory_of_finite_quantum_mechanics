@@ -12,7 +12,7 @@ target:
   source_refs:
   - external:prompts/fable_theorems_2026-10-17/03_genesis_supply_erasure.md
   - atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Erasure.lean:79-138
-  - education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  - education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   - external:sha256:2bfb4441352c4206cbd84f3e500e4c3ba817364aff49623a001087ecf12df5a6
   paper_refs:
   - dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
@@ -38,7 +38,7 @@ operation_candidates:
   name: Regime
   line: 30
   signature_excerpt: structure Regime
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
@@ -46,7 +46,7 @@ operation_candidates:
   name: Inst
   line: 25
   signature_excerpt: abbrev Inst
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
@@ -54,7 +54,7 @@ operation_candidates:
   name: replayE
   line: 67
   signature_excerpt: 'def replayE (h : List Event) (base : Regime) : Option Regime'
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
@@ -62,7 +62,7 @@ operation_candidates:
   name: Event
   line: 38
   signature_excerpt: inductive Event
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
@@ -70,7 +70,7 @@ operation_candidates:
   name: stepE
   line: 47
   signature_excerpt: 'def stepE (r : Regime) : Event → Option Regime'
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
@@ -78,7 +78,7 @@ operation_candidates:
   name: insertNew
   line: 27
   signature_excerpt: 'def insertNew {α : Type} [DecidableEq α] (l : List α) (a : α) : List α'
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
@@ -86,7 +86,7 @@ operation_candidates:
   name: notSupply
   line: 84
   signature_excerpt: 'def notSupply (e : Event) : Bool'
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
@@ -94,7 +94,7 @@ operation_candidates:
   name: isSupply
   line: 79
   signature_excerpt: 'def isSupply : Event → Bool'
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
@@ -104,7 +104,7 @@ relation_candidates:
   line: 115
   signature_excerpt: "theorem replayE_filter_supply (h : List Event) (base : Regime) :\n    replayE (h.filter\
     \ notSupply) base = replayE h base"
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
@@ -115,26 +115,26 @@ relation_candidates:
   line: 133
   signature_excerpt: "theorem replayE_supply_only (ts : List Nat) (base : Regime) :\n    replayE (ts.map\
     \ Event.supply) base = some base"
-  source: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  source: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: education/genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply
+- original_ref: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply
   availability: external
   symbol: GenesisPrimitives.SupplyErasure.replayE_filter_supply
-  path: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  path: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   declaration_status: declaration_found_not_proof_checked
   line: 115
   role: source_lead_only
-- original_ref: education/genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only
+- original_ref: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only
   availability: external
   symbol: GenesisPrimitives.SupplyErasure.replayE_supply_only
-  path: education/genesis_primitives/primitives/lean4/SupplyErasure.lean
+  path: education/4_genesis_primitives/primitives/lean4/SupplyErasure.lean
   repository: external
   sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
   declaration_status: declaration_found_not_proof_checked
