@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `evidence/lean_receipts/tensor_measurement_validation.json`
 
 - file: [evidence/lean_receipts/tensor_measurement_validation.json](../../../evidence/lean_receipts/tensor_measurement_validation.json)
-- sha256 (`lf-normalised`): `b527b722e90d69dd18aa762d109425189ff7636e0b6510c1481e8579cff0f597`
+- sha256 (`lf-normalised`): `742d2bee15a9e179c8f432a8bb2a90415cc64d4e542f201c7568ae83edb74ae8`
 - cited in: node.source
 - counts toward the grade: yes
 

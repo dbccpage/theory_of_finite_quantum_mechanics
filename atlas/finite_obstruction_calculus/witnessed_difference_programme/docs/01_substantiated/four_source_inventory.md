@@ -86,7 +86,7 @@ These files are a model-response archive plus one exact Gate E checker. Appendix
 | Gate F / Lemma A | dossier §3 | Spacetime Ursell bound. | not re-proved here | model text | Scorecard status is not a proof. | source proposal | open |
 | Gate G | dossier §3 | Mode extinction. | explicitly not in the Gate E receipt | model text | Do not rename the missing estimate. | open | open |
 | Static Gaussian and bounded time-labelled cumulants | Appendix O and the dossier's citations of those arguments | Only under the hypotheses those sections already state | already in MS as written results | W in Appendix O; E not a new field limit; M none | Euclidean covariance positivity is not a physical quantum reconstruction theorem. | left in Appendix O | conditional |
-| Provider responses | `responses/*.md`, Fugu receipt JSON | Historical model output | not proofs | custody only | Must stay labeled as model responses. | retained in place | open |
+| Provider responses | `responses/*.md`, Run U receipt JSON | Historical model output | not proofs | custody only | Must stay labeled as model responses. | retained in place | open |
 
 Active code dependency: `docs/meron_field_limit_derivations/code/gate_e_exact_counterexample.py` is hashed by `locality_smearing` replay.
 

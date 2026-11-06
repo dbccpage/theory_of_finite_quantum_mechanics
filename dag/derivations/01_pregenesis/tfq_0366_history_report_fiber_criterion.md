@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Constructive version for explicitly listed histories is the Fable 04 target (PG-PREGEN-CONSTRUCTIVE-SUMMARY).
+> Constructive version for explicitly listed histories is the Run F 04 target (PG-PREGEN-CONSTRUCTIVE-SUMMARY).
 
 ---
 

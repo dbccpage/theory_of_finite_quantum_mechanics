@@ -191,7 +191,7 @@ $env:CLAUDE_CODE_DISABLE_AUTO_MEMORY = "1"
 $cfg = Get-Content "$C/.claude/settings.json" -Raw | ConvertFrom-Json
 $allow = ($cfg.permissions.allow -join ",")
 $deny = ($cfg.permissions.deny -join ",")
-& "C:\Users\a343o\AppData\Roaming\Claude\claude-code\2.1.281\claude.exe" -p "Begin from prompt/$n/prompt.md." --model claude-opus-5-5 --setting-sources project --strict-mcp-config --disable-slash-commands --no-chrome --output-format stream-json --verbose --allowedTools $allow --disallowedTools $deny *> "C:/wt/h3-$n.transcript.jsonl"
+& "C:\Users\a343o\AppData\Roaming\Claude\claude-code\2.1.281\claude.exe" -p "Begin from prompt/$n/prompt.md." --model run-o --setting-sources project --strict-mcp-config --disable-slash-commands --no-chrome --output-format stream-json --verbose --allowedTools $allow --disallowedTools $deny *> "C:/wt/h3-$n.transcript.jsonl"
 "exit: $LASTEXITCODE"
 ```
 

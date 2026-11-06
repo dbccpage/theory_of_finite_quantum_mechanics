@@ -380,9 +380,9 @@ def rerun():
 
 # ---------------------------------------------------------------- goals: the posts and documents
 BANNED_POSTS = (r"\b(WDP|witness(?:ed)?|supplied|derived|channels?|packets?|evaluators?|ledgers?|omega|anomalon|lean4?|"
-                r"metaphysics?|metaphysical|ontolog\w*|philosoph\w*|chatgpt|deepseek|claude|fable|llm|language model|apparatus)\b")
+                r"metaphysics?|metaphysical|ontolog\w*|philosoph\w*|chatgpt|deepseek|claude|run_f|llm|language model|apparatus)\b")
 BANNED_DOCS = (r"\b(WDP|Witnessed Difference|Projection Obstruction|omega engine|anomalon|metaphysic\w*|ontolog\w*|philosoph\w*|"
-               r"chatgpt|deepseek|claude|fable|llm|language model|apparatus)\b|claude\.ai")
+               r"chatgpt|deepseek|claude|run_f|llm|language model|apparatus)\b|claude\.ai")
 
 
 def posts(text):

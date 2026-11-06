@@ -137,7 +137,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:prompts/fable_theorems_2026-10-17/03_genesis_supply_erasure.md`
+- `external:prompts/run_f_theorems_2026-10-17/03_genesis_supply_erasure.md`
 - `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_genesis_supply_erasure_witness`
 - `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 

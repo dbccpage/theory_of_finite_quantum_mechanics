@@ -24,7 +24,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
-- Classical.choice in old_image_base (assumption: found in axiom report, against the Fable 05 expectation)
+- Classical.choice in old_image_base (assumption: found in axiom report, against the Run F 05 expectation)
 
 ## Bottleneck
 
@@ -124,7 +124,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md](../../../dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md)
-- sha256 (`lf-normalised`): `566a91b3601730748925454e8b9b5e8f0b44aa946558924321ca5e6e3caaa2c0`
+- sha256 (`lf-normalised`): `57d504ab994e649f04fa1a9a5378215ff62ce0c7895ef43198f3846a9952fed9`
 - generated view: listed, not counted
 - cited in: record TFQ-0341
 - counts toward the grade: no
@@ -132,7 +132,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md](../../../dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md)
-- sha256 (`lf-normalised`): `f69620b365382a698fb647b7669990b9cbbe7388cd7931e23321bac33431bad8`
+- sha256 (`lf-normalised`): `838dd9a516e624366a6405432a756e1417847901d3e9a48010a3a522c325d390`
 - generated view: listed, not counted
 - cited in: record TFQ-0342 (shared)
 - counts toward the grade: no

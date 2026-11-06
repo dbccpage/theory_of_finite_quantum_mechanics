@@ -30,8 +30,8 @@ This note records the finite-to-continuum derivation and computational closure (
 2. **Certified Rational Interval Bridge (`RationalInterval` / `BigInterval`):**
    - Certifies $\sqrt{3}$ via exact rational endpoint squaring $\mathrm{lo}^2 \le 3 \le \mathrm{hi}^2$ and encloses $\sqrt{3} = 1.732050807568\ldots$, the fundamental unit $v_+ = 2 + \sqrt{3} = 3.732050807568\ldots$, and its inverse $v_- = 2 - \sqrt{3} = 0.267949192431\ldots$ to $12$ certified decimal places (interval width $< 10^{-14}$).
 
-3. **Live Anthropic `claude-fable-5-1` + Fable MCTS Campaign Telemetry:**
-   - Executed a 3-round live derivation and verification campaign against `https://api.anthropic.com/v1/messages` using `claude-fable-5-1` (`campaign_id: FABLE_5_1_ANTHROPIC_QM_219_DERIVATION`, key SHA-256 prefix `1f698894fe7a`):
+3. **Live Anthropic `run-f` + Run F MCTS Campaign Telemetry:**
+   - Executed a 3-round live derivation and verification campaign against `https://api.anthropic.com/v1/messages` using `run-f` (`campaign_id: RUN_F_5_1_ANTHROPIC_QM_219_DERIVATION`, key SHA-256 prefix `1f698894fe7a`):
      - Round 1 (`generation_id: msg_011Cg5AahaMftEUZwPY1p2wh`, `input_tokens: 781`, `output_tokens: 8192`): bipartite composition triad & $5 \times 5$ countermodel independence matrix (`diff_sha256: sha256:10fdb8aff8c3bce788f533bb22f85990b460d5183472e8b4b640f8d1feeadf9c`).
      - Round 2 (`generation_id: msg_011Cg5Aisok23unqMbK2Nkn7`, `input_tokens: 753`, `output_tokens: 8192`): $\mathbb{Z}[\zeta_{12}]$ Sorkin $I_3 = 0$ classification (`diff_sha256: sha256:e2e565b6b4bd3e8b08ccf8755764602fb605c4d0d2121edf5a53f0bb16506600`).
      - Round 3 (`generation_id: msg_011Cg5BAjtxuXMsDUKZSmDfu`, `input_tokens: 666`, `output_tokens: 1965`): full production control AST & dense-diff tie-out (`diff_sha256: sha256:dbc7055e528eeb3c65b92e188fc52363844a23fb06f160f8b6aa84548d24e9fa`, `token_amortization_score: 276.7009`, zero syntax or illegal-node faults across all 4 MCTS checkpoints).

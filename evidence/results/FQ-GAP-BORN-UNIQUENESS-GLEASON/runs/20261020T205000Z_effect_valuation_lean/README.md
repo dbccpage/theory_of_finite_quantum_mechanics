@@ -2,7 +2,7 @@
 
 Status: **constructed, compiled, sealed, stopped for review**. AuthorityEffect: None.
 
-Starting point: the frozen interface of [runs/20261020T004525Z_fable51_born](../20261020T004525Z_fable51_born/README.md)
+Starting point: the frozen interface of [runs/20261020T004525Z_run_f51_born](../20261020T004525Z_run_f51_born/README.md)
 (`contract.lean`, `target_types.txt`), whose P1 returned no proof, and the user's reviewed written
 Steps 01–10 ([born_lemmas](../../user_submissions/20261020T012825Z_born_lemmas/README.md)). The whole
 chain is now kernel-checked (Lean 4.33.1, pinned Mathlib cache) and replayed exactly in Python and Rust.

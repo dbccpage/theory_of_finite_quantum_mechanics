@@ -1,4 +1,4 @@
-# Fugu Prompt 4: Time-Resolved Spacetime Covariance Limit for Periodic U=t Meron Chain
+# Run U Prompt 4: Time-Resolved Spacetime Covariance Limit for Periodic U=t Meron Chain
 
 Derive or rigorously obstruct a time-resolved spacetime covariance limit for the actual periodic U=t Meron chain. I need an infinite-family argument, not a finite numerical demonstration.
 

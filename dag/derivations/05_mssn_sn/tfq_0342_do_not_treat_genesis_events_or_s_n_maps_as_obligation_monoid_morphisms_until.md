@@ -22,7 +22,7 @@ In accordance with strict constructive principles:
 - **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
 
 ### Admitted Structural Imports
-- **Admitted**: `Classical.choice in old_image_base (assumption: found in axiom report, against the Fable 05 expectation)`
+- **Admitted**: `Classical.choice in old_image_base (assumption: found in axiom report, against the Run F 05 expectation)`
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]

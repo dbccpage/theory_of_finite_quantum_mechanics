@@ -62,14 +62,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean)
-- sha256 (`bytes`): `fb93c9f5733e92d52e89df3da4ab8183ded4cf103514b6ba0d3141cfadc26165`
+- sha256 (`bytes`): `ac498cbf80957f4317c0c21b9c18bea2c59aae4d9ccea8989acc14547767f1ea`
 - cited in: node.lean, record TFQ-0472
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds` | yes | yes | no | - | `#print axioms WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds` |
+| `WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds` |
 
 - counts toward the grade: yes
 

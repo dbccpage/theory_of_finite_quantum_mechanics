@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
-- sha256 (`bytes`): `206d2df25744c1084e2464bc013a9927f628937075c89b541d854257f5590410`
+- sha256 (`bytes`): `979e9edd791cdf8a6915e6dba2d07174693f66dd5b6006fa81f355f7d016864d`
 - cited in: node.lean, record TFQ-0343
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean`
@@ -64,14 +64,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean)
-- sha256 (`bytes`): `7722672b1b23be2106e7bec91f41eb2eb25b2671622b4975a848cd7be6562fa2`
+- sha256 (`bytes`): `55e6b24863699434b12724fe74d3738c98943ab98b03683f7cc12dd87d2a45d7`
 - cited in: node.lean, record TFQ-0343
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WitnessedDifference.WdpBatch12Rep.pg_wdp_genesis_bridge_scoped_finite_slice` | yes | yes | no | - | `#print axioms WitnessedDifference.WdpBatch12Rep.pg_wdp_genesis_bridge_scoped_finite_slice` |
+| `WitnessedDifference.WdpBatch12Rep.pg_wdp_genesis_bridge_scoped_finite_slice` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch12Rep.pg_wdp_genesis_bridge_scoped_finite_slice` |
 
 - counts toward the grade: yes
 

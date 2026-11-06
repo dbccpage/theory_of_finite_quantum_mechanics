@@ -12,7 +12,7 @@ Corrections to the PR's own text:
 ## Per-node table
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
-| L1-IMP-ORTHOGONAL-ADDITIVITY | `InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero`, `qf_eq_sum_diag_sq_of_sectorAdditive`, `offdiag_eq_zero`; `CampaignL1OrthogonalAdditivity.pairSum`, `entriesNotZero`, `readout`, `axisSum` | NARROWED | The sector-form sentences match the existing finite-n theorems. The 2 by 2 sentences match the new module. Arbitrary orthogonal frames stay supplied, so the status stays CONDITIONAL. |
+| L1-IMP-ORTHOGONAL-ADDITIVITY | `InnerProductRunF.SectorForm.offdiag_pair_sum_eq_zero`, `qf_eq_sum_diag_sq_of_sectorAdditive`, `offdiag_eq_zero`; `CampaignL1OrthogonalAdditivity.pairSum`, `entriesNotZero`, `readout`, `axisSum` | NARROWED | The sector-form sentences match the existing finite-n theorems. The 2 by 2 sentences match the new module. Arbitrary orthogonal frames stay supplied, so the status stays CONDITIONAL. |
 
 Atomic claims:
 - Pair sum of off-diagonal entries is zero for a sector-additive rational Gram matrix: `offdiag_pair_sum_eq_zero` (`lean4/SectorFormUniqueness.lean:112`).
