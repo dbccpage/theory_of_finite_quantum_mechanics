@@ -348,7 +348,7 @@ def prs_block(with_prs: bool, run=None) -> str:
 def campaign_section(root: Path) -> list:
     lines = ["## Derivation campaign", ""]
     if not (root / CAMPAIGN_README).is_file():
-        lines += ["The derivation campaign protocol is not on `main` in this build.", ""]
+        lines += ["The agent derivation campaign was retired on 2026-11-06; its log stays in the git history.", ""]
         return lines
     log = root / LOG_PATH
     entries = log_lines_of(log.read_text(encoding="utf-8")) if log.is_file() else []
@@ -415,9 +415,8 @@ def build_readme(doc: dict, src, prs_text: str, root: Path = ROOT) -> str:
     out += ["## Open pull requests", "", PRS_BEGIN, prs_text, PRS_END, "",
             "## Links", "",
             "- [Project landing page](../index.md)",
-            "- [Example prompts](../contribute/example_prompts.md) that anyone can run",
             "- [Reviewer credit list](../reviewers.md)",
-            "- %s: three ways to help" % blob_link("CONTRIBUTING.md"),
+            "- %s: how to help" % blob_link("CONTRIBUTING.md"),
             "- %s: how a review works and how credit is given" % blob_link("REVIEWING.md"),
             "- %s: how the DAG is built" % blob_link("dag/derivation_dag_reading_note.md"),
             "- " + evidence_line(root)[0].upper() + evidence_line(root)[1:]]

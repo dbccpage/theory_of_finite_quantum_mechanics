@@ -21,7 +21,7 @@ Each remaining folder holds a paper (Markdown, TeX, PDF), its Lean 4 sources, an
 The former `foundations/` and `core/` contents now live under the corresponding
 numbered stages in [`dag/derivations`](../dag/derivations/). Start with the
 [combined reading path](../dag/derivations/FIRST_MARK_TO_QUANTUM_GRAVITY.md)
-and [file crosswalk](../dag/derivations/SOURCE_CROSSWALK.md).
+and [file crosswalk](../docs/maintenance/source_consolidation/source_crosswalk.md).
 The computation and complexity sources share
 [`computation_complexity_pvnp/`](computation_complexity_pvnp/README.md).
 The import counts and prior byte audit below describe their historical
