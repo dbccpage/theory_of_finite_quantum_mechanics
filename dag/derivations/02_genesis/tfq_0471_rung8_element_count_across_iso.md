@@ -1,6 +1,6 @@
 # [TFQ-0471] rung8-element-count-across-iso
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `c83ddeaf-d108-58a3-9059-4ac2549cd6c5`  
 > **Parent Derivation**: [TFQ-0470](tfq_0470_rung7_duration_under_changing.md)
 
@@ -35,6 +35,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.no_return_class_and_recurrence_is_stutter`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung8_element_count_across_iso_and_clean_stutter`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung8_element_count_across_iso_and_clean_stutter`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_class/lean/SecondClass/Count.lean::size_iso`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/lean/SecondClass/Count.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_class/lean/SecondClass/Counter.lean::counts_not_of_class`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/lean/SecondClass/Counter.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_class/lean/SecondClass/Recur.lean::no_return_class`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/lean/SecondClass/Recur.lean)

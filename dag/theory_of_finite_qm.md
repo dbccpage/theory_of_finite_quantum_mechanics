@@ -584,11 +584,11 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0466` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG3-FIRST-DEMAND-INDEX` (PROVED_LEAN) | - |
 | `TFQ-0467` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM` (PROVED_LEAN) | - |
 | `TFQ-0468` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG5-SYMMETRY-ALONG-HISTORY` (PROVED_LEAN) | - |
-| `TFQ-0469` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG6-SUCCESSION-ELEMENT-COUNT` (CONDITIONAL) | - |
-| `TFQ-0470` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG7-DURATION-UNDER-CHANGING` (CONDITIONAL) | - |
-| `TFQ-0471` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO` (CONDITIONAL) | - |
-| `TFQ-0472` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES` (CONDITIONAL) | - |
-| `TFQ-0473` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG10-RESPONDER-ADJACENCY-REACH` (CONDITIONAL) | - |
+| `TFQ-0469` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG6-SUCCESSION-ELEMENT-COUNT` (PROVED_LEAN) | - |
+| `TFQ-0470` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG7-DURATION-UNDER-CHANGING` (PROVED_LEAN) | - |
+| `TFQ-0471` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO` (PROVED_LEAN) | - |
+| `TFQ-0472` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES` (PROVED_LEAN) | - |
+| `TFQ-0473` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG10-RESPONDER-ADJACENCY-REACH` (PROVED_LEAN) | - |
 | `TFQ-0474` | `GENESIS` | `SOURCE_RECORD` | `PGW-C1-ENGINE-CLASS-144` (CONDITIONAL) | - |
 | `TFQ-0475` | `GENESIS` | `PROVED_LEAN` | `PGW-C2-RUN-FORWARD-EVERY-HISTORY` (PROVED_LEAN) | - |
 | `TFQ-0476` | `GENESIS` | `PROVED_LEAN` | `PGW-FORCED-CENSUS-COLUMN` (PROVED_LEAN) | - |
@@ -2264,7 +2264,7 @@ Obligation: Characterise per event kind which automorphisms survive, exhibit los
 
 - UUID: `b6fa2aa4-84d2-5399-829d-1d10543adeb3`
 - Parent: `TFQ-0468`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung six (pull request 259) takes Z-4, succession of accepted rounds through the element count, under three readings of a round: EVERY event, every ADMITTING event (not a supply) and every CHANGING event (the regime differs after it). In Lean, under CHANGING the count of any replayed history is the element count of the regime reached less the base's, so it is a function of base and regime, and counted from the empty regime a function of the regime alone; for every history CHANGING is at most ADMITTING, which is at most EVERY. Countermodels: EVERY and ADMITTING are not functions of base and regime, and CHANGING is not a function of the regime alone across bases (the Lean reading regime R2L is reached from the empty regime with count three and from itself with count zero).
 
@@ -2274,7 +2274,7 @@ Obligation: Carry the CHANGING count as element count less the base's over every
 
 - UUID: `9220d16d-e497-5b67-a318-8fa7076f757c`
 - Parent: `TFQ-0469`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung seven (pull request 260) takes W-1, duration under CHANGING: a growth is a changing round that adds a datum, a rest round a changing round that does not, and the duration vector counts rest rounds between successive growths. In Lean the growths and rest rounds of any replayed history are functions of base and regime, so the number of segments and their sum are definable, and the data that instances and requirements name bound later segments from below. Countermodels: no segment is a function of position, base and regime, and no duration between the first two growths is a function of the regime, even over histories from the empty regime. On the rectangle the vectors reached at every regime are exactly the envelope, and the envelope is not a class invariant.
 
@@ -2284,7 +2284,7 @@ Obligation: Carry the growth and rest counts as functions of base and regime and
 
 - UUID: `c83ddeaf-d108-58a3-9059-4ac2549cd6c5`
 - Parent: `TFQ-0470`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung eight (pull request 262) takes Z-1, the element count across the sealed isomorphism. In Lean every inhabitant of the isomorphism keeps the numbers of data and forms with no hypothesis, and two clean regimes (well-formed, no list holding an entry twice) that it relates have all five component counts equal; six exhibited pairs show neither hypothesis can be dropped for instances, rules or requirements. Every event keeps cleanness and the empty and both Lean reading regimes are clean; from a clean base no class left is reached again, a class revisited is the very regime reached by unchanging events, so recurrence is only a stutter, and the counts of a history are functions of the class it reaches. Across two bases the class does not carry the count.
 
@@ -2294,7 +2294,7 @@ Obligation: Carry the component counts across the isomorphism between clean regi
 
 - UUID: `16f0755d-8406-5bed-94b4-6c7817b531d4`
 - Parent: `TFQ-0471`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung nine (pull request 264) takes X-6 for two-ness and observational classes: a regime holds two when some two admitted data are separable, and a representative list holds pairwise separable admitted data with every admitted datum collapsed with an entry. In Lean separability, collapse, holding two and representative lists are carried by the isomorphism with no hypothesis, collapse is reflexive, symmetric and transitive, and holding two needs two data, a form and an instance, so its first stage is four events from the empty regime and two from each Lean reading regime, both attained. Supply, datum, form and requirement admissions keep separable pairs, while an instance or a rule admission can end holding two. That two representative lists of one regime have one length, the class count as a number, is OPEN in Lean (T-1).
 
@@ -2304,7 +2304,7 @@ Obligation: Carry holding two and representative lists across the isomorphism, t
 
 - UUID: `9a1f1b2d-2654-5522-840d-6b9514b2ec5b`
 - Parent: `TFQ-0472`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung ten (pull request 265) takes X-6 for adjacency, reach, branching and exhaustion through the sealed responder: the demand is a collapsed pair, a response is a minimum of the sealed candidate space of at most two items and arity two under mu1 or mu2, and the responder refuses a regime holding a uniform rule. Adjacency, reach and branching are useful realizations at two declared capabilities, and exhaustion is definable: in Lean a form is exhausted exactly when it does not distinguish, exhaustion is carried by the isomorphism, and for a well-formed base a pair a history moves is mentioned by an instance admission of the history or the history holds a rule admission. On the rectangle 3110 demands are answered with none refused within two items, reach is at most three and finite adjacency distance at most two, and the measure changes the adjacency graph and the tie counts.
 

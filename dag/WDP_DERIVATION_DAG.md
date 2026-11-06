@@ -26,14 +26,14 @@ The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction ca
 
 | DAG Status | Count (151 Nodes) | Notes |
 |---|---:|---|
-| `PROVED_LEAN` | 99 | Includes 46 core WDP/WD2/L1/Impl nodes + 53 upstream Pre-Genesis/Genesis/Authorization/`S(n)`/`MSS-N` nodes (including Batches 7–10). |
+| `PROVED_LEAN` | 104 | Includes 46 core WDP/WD2/L1/Impl nodes + 58 upstream Pre-Genesis/Genesis/Authorization/`S(n)`/`MSS-N` nodes (including Batches 7–11). |
 | `DEFINITION` | 33 | 18 core WDP/WD2 definitions + 15 upstream structural definitions. |
 | `ADMITTED_PRIMITIVE` / `SOURCE_RECORD` | 4 | 2 `ADMITTED_PRIMITIVE` + 2 `SOURCE_RECORD` upstream anchors. |
 | `PROVED_PROSE` | 0 | **All 16 Discharged in Lean 4** (10 core WDP + 6 upstream Genesis/`S(n)`). |
 | `COMPUTATIONALLY_CHECKED` | 0 | **All 10 Discharged in Lean 4** (2 core WDP + 8 upstream Genesis/L1/Impl across Batches 4, 8, and 9). |
-| `CONDITIONAL` | 6 | Remaining upstream Rung / C1 conditional nodes (scheduled for Batches 11–12). |
+| `CONDITIONAL` | 1 | 1 remaining upstream C1 conditional node (`PGW-C1-ENGINE-CLASS-144`, scheduled for Batch 12). |
 | `OPEN` | 9 | Remaining bridge / Meron scoped finite-slice targets (scheduled for Batches 12–13). |
-| **Total `wdp_derivation_dag.json` Nodes** | **151** | **136 Discharged/Definitions/Primitives, 15 Remaining across Batches 11–13** |
+| **Total `wdp_derivation_dag.json` Nodes** | **151** | **141 Discharged/Definitions/Primitives, 10 Remaining across Batches 12–13** |
 
 ---
 
@@ -140,6 +140,11 @@ All 14 finite obligations (combinatorial, linear-algebraic over $\mathbb{Q}$, or
 | Batch 10 | `PGW-RUNG3-FIRST-DEMAND-INDEX` | `TFQ-0466` | `PROVED_LEAN` | `WdpBatch10.lean::rung3_first_demand_index_uniqueness_and_countermodels`, `first_demand_unique`, `index_is_not_a_function_of_the_reached_regime`, `demand_can_cease` |
 | Batch 10 | `PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM` | `TFQ-0467` | `PROVED_LEAN` | `WdpBatch10.lean::rung4_uniform_transport_and_nonuniform_escape`, `uniform_stake_transports_demand_pair` |
 | Batch 10 | `PGW-RUNG5-SYMMETRY-ALONG-HISTORY` | `TFQ-0468` | `PROVED_LEAN` | `WdpBatch10.lean::rung5_symmetry_step_law_and_both_ways_witness`, `stepRung_eq_or_elems_succ` |
+| Batch 11 | `PGW-RUNG6-SUCCESSION-ELEMENT-COUNT` | `TFQ-0469` | `PROVED_LEAN` | `WdpBatch11.lean::rung6_succession_element_count_and_countermodels`, `stepRung_change_eq_elems_diff` |
+| Batch 11 | `PGW-RUNG7-DURATION-UNDER-CHANGING` | `TFQ-0470` | `PROVED_LEAN` | `WdpBatch11.lean::rung7_duration_under_changing_and_gap_countermodels` |
+| Batch 11 | `PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO` | `TFQ-0471` | `PROVED_LEAN` | `WdpBatch11.lean::rung8_element_count_across_iso_and_clean_stutter`, `no_return_class_and_recurrence_is_stutter` |
+| Batch 11 | `PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES` | `TFQ-0472` | `PROVED_LEAN` | `WdpBatch11.lean::rung9_twoness_observational_classes_and_stage_bounds`, `collapsedRung_equivalence` |
+| Batch 11 | `PGW-RUNG10-RESPONDER-ADJACENCY-REACH` | `TFQ-0473` | `PROVED_LEAN` | `WdpBatch11.lean::rung10_exhaustion_and_responder_move_witness`, `uniform_rule_exhausts_form` |
 
 ---
 

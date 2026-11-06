@@ -115,11 +115,11 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) | rung3-first-demand-index | `PROVED_LEAN` | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) |
 | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) | rung4-index-up-to-isomorphism | `PROVED_LEAN` | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) |
 | [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) | rung5-symmetry-along-history | `PROVED_LEAN` | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) |
-| [`TFQ-0469`](./02_genesis/tfq_0469_rung6_succession_element_count.md) | rung6-succession-element-count | `SOURCE_RECORD` | [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) |
-| [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) | rung7-duration-under-changing | `SOURCE_RECORD` | [`TFQ-0469`](./02_genesis/tfq_0469_rung6_succession_element_count.md) |
-| [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) | rung8-element-count-across-iso | `SOURCE_RECORD` | [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) |
-| [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) | rung9-two-ness-observational-classes | `SOURCE_RECORD` | [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) |
-| [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) | rung10-responder-adjacency-reach | `SOURCE_RECORD` | [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) |
+| [`TFQ-0469`](./02_genesis/tfq_0469_rung6_succession_element_count.md) | rung6-succession-element-count | `PROVED_LEAN` | [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) |
+| [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) | rung7-duration-under-changing | `PROVED_LEAN` | [`TFQ-0469`](./02_genesis/tfq_0469_rung6_succession_element_count.md) |
+| [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) | rung8-element-count-across-iso | `PROVED_LEAN` | [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) |
+| [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) | rung9-two-ness-observational-classes | `PROVED_LEAN` | [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) |
+| [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) | rung10-responder-adjacency-reach | `PROVED_LEAN` | [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) |
 | [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) | c1-engine-class-144 | `SOURCE_RECORD` | [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) |
 | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) | c2-run-forward-every-history | `PROVED_LEAN` | [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) |
 | [`TFQ-0476`](./02_genesis/tfq_0476_forced_census_column.md) | forced-census-column | `PROVED_LEAN` | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) |
