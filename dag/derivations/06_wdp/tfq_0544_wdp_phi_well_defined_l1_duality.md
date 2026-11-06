@@ -1,6 +1,6 @@
 # [TFQ-0544] wdp-phi-well-defined-l1-duality
 
-> **Stage**: `WDP` | **Status**: `CONDITIONAL`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `e9c07c57-ad2e-591b-9c5f-34c327144059`  
 > **Parent Derivation**: [TFQ-0542](tfq_0542_wdp_graph_cochain_host.md)
 
@@ -38,6 +38,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.certified_primal_dual_optimality`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.weighted_l1_weak_duality_triangle`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.weighted_residual_shift_invariant`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
 - [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::absSum_attained`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
 - [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::absSum_ge_two`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)

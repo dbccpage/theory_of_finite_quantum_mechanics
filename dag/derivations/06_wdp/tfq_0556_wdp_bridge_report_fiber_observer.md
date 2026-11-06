@@ -1,6 +1,6 @@
 # [TFQ-0556] wdp-bridge-report-fiber-observer
 
-> **Stage**: `WDP` | **Status**: `CONDITIONAL`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `5bab811b-025d-5577-bf50-db44169260a1`  
 > **Parent Derivation**: [TFQ-0554](tfq_0554_wdp_genesis_bridges_ledger.md)
 
@@ -36,6 +36,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.event_multiset_loses_final_state`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.final_state_loses_occurrence_count`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.report_fiber_decoder_iff`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean::factorization_iff_fiber_constancy`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean)
 - [`lean4/ReportFiberDescent.lean::ReportFiberDescent.joint_report_sufficient`](../../../lean4/ReportFiberDescent.lean)
 - [`lean4/ReportFiberDescent.lean::ReportFiberDescent.lost_bit_obstruction`](../../../lean4/ReportFiberDescent.lean)

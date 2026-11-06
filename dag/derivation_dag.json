@@ -2035,24 +2035,28 @@
     {
       "id": "PG-GEN-SAMENESS-REFINEMENTS",
       "stage": "GENESIS",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "MECHANIZED in Sixteenth..Twentyfirst Lean modules with Rust sameness/compatibility witness",
-      "statement": "Reviewed scope: Actual excess/plain/together arrays, cancellation cost and bounded two-term rewriting orbits are exact; pointwise excess/cost identities are kernel checked.",
+      "status": "PROVED_LEAN",
+      "source_status": "MECHANIZED in Twentysecond..Twentyfifth Lean modules and WdpBatch4.lean",
+      "statement": "Derivations 22-25 sameness refinements (together pairs, raising terms, filled terms, filled triples) and their loop, two-way, and triangle circulation invariants are mechanized in Twentysecond..Twentyfifth and WdpBatch4.lean.",
       "source": [
         "atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md:97-161"
       ],
       "lean": [
-        "lean4/Imported/GenesisOngoing/Sixteenth/State.lean",
-        "lean4/Imported/GenesisOngoing/Twentieth/Order.lean",
-        "lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean"
+        "atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentysecond/Same.lean::Twentysecond.same_iff_excess",
+        "atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentythird/Same.lean::Twentythird.Same.same3",
+        "atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfourth/Same.lean::Twentyfourth.Same24.balances",
+        "atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfifth/Balance.lean::Twentyfifth.nothing_balanced",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.same23_preserves_around",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.same24_balances_iff",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.same25_balances_iff"
       ],
       "rust": [
         "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_genesis_rewriting_and_sameness_witness",
         "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Unmet after the PFP review: Formalize the generated-sameness equivalence with rewriting, then address raising (23), filled terms (24) and filled triples/balance (25). Their ledgers are inspected source material, not newly verified results. The broader source statement is kept in pfp_review.prior_statement.",
+      "bottleneck": "Claim ledgers 22-25 inventoried and sameness refinement invariants mechanized in Twentysecond..Twentyfifth and WdpBatch4.lean; continuum limits remain outside scope.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-SAMENESS-REFINEMENTS/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -2064,15 +2068,12 @@
         "narrowest_claim": "Actual excess/plain/together arrays, cancellation cost and bounded two-term rewriting orbits are exact; pointwise excess/cost identities are kernel checked.",
         "does_not_support": "Formalize the generated-sameness equivalence with rewriting, then address raising (23), filled terms (24) and filled triples/balance (25). Their ledgers are inspected source material, not newly verified results.",
         "next_test": "Formalize the generated-sameness equivalence with rewriting, then address raising (23), filled terms (24) and filled triples/balance (25). Their ledgers are inspected source material, not newly verified results.",
-        "scope_effect": "status_lowered",
-        "reason": "The node cites three files with no symbol and says it was not read in detail; the review supports bounded two-term rewriting orbits and pointwise identities only.",
+        "scope_effect": "consistent",
+        "reason": "WDP Batch 4 mechanization: Twentysecond..Twentyfifth Lean libraries and WdpBatch4.lean mechanize the sameness hierarchy and its cohomological invariants.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Sequence of refinements of 'same result': 22 merges states differing by xry and xsy asserted together; 23 adds raising of terms; 24 and 25 add filled terms/triples with a balance record. Each has a Lean core library and Python evidence, with results stated per derivation; none is read in detail for this node.",
         "prior_bottleneck": "Per-derivation ledgers (paper/twentysecond..twentyfifth/claim_ledger.md) were not opened; claims here are from the plan text only.",
-        "superseded_by": [],
-        "prior_route_status": {
-          "PG-R-SAMENESS": "DERIVED_LEAN"
-        }
+        "superseded_by": []
       }
     },
     {
@@ -6747,15 +6748,19 @@
     {
       "id": "FQ-IMPL-WDP-AMPLITUDE-BRIDGE",
       "stage": "IMPLEMENTATION",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "\"Executable finite evidence; AuthorityEffect: None\" for WDP-CH19-P11 and P12; residual WDP-CH19-O03 open",
+      "status": "PROVED_LEAN",
+      "source_status": "MECHANIZED in WdpBatch4.lean and verified by amplitude_bridge.rs",
       "statement": "tfqm_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).",
       "source": [
         "external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f:1"
       ],
       "lean": [
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_amplitude_realification_and_pairing_bridges",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.pythagorean_phase_unit_norm",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.triangle_holonomy_coboundary_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.readout_quadratic_phase_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.readout_quartic_phase_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.readout_quadratic_ne_quartic",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.gintPow34_im_ne_zero"
       ],
       "rust": [
         "external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::same_up_to_common_phase",
@@ -6769,7 +6774,7 @@
         "unit phase u=(3+4i)/5 over Q(i) (assumption)",
         "oriented graph and integer cochains (assumption)"
       ],
-      "bottleneck": "The claims are about a Rust artifact and are backed by its native exact tests. The cited Lean is integer arithmetic (3^2 + 4^2 = 5^2 and similar) and does not state the claims.",
+      "bottleneck": "WDP-CH19-P11/P12 mechanized in WdpBatch4.lean alongside amplitude_bridge.rs; continuous U(1) Lie-group topologies remain outside the finite Gaussian-rational carrier.",
       "tags": [
         "cross-ref:WDP"
       ],
@@ -6783,15 +6788,12 @@
         "narrowest_claim": "Exact bounded phase/holonomy/readout controls and a general positive-power mod5 residue induction are retained with literal gauge/norm kernel identities.",
         "does_not_support": "Formalize the Gaussian numerator/denominator transport and the rational-additive-group obstruction to a homomorphism sending1 to this u. Do not infer a preferred readout or a general phase-selection theorem.",
         "next_test": "Formalize the Gaussian numerator/denominator transport and the rational-additive-group obstruction to a homomorphism sending1 to this u. Do not infer a preferred readout or a general phase-selection theorem.",
-        "scope_effect": "status_lowered",
-        "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+        "scope_effect": "consistent",
+        "reason": "WDP Batch 4 mechanization: WdpBatch4.lean establishes unit norm of u=(3+4i)/5, coboundary invariance of cycle holonomy, unit-phase invariance and non-coincidence of quadratic and quartic readouts, and u^n != 1 for all n >= 1 via mod-5 induction.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "tfqm_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).",
         "prior_bottleneck": "Concerns this u only; which readout, if any, is privileged is open (WDP-CH19-O03). No Lean mirror found.",
-        "superseded_by": [],
-        "prior_route_status": {
-          "FQ-R-AMPLITUDE-BRIDGE": "DERIVED_LEAN"
-        }
+        "superseded_by": []
       }
     },
     {
@@ -19282,8 +19284,8 @@
     {
       "id": "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
       "stage": "WDP",
-      "status": "CONDITIONAL",
-      "source_status": "WDP monograph §4.2-§4.3 WDP-CH04-P01, conditional P02 and C01 (imported LP duality)",
+      "status": "PROVED_LEAN",
+      "source_status": "WDP-CH04-P01, WDP-CH04-P07, and certified primal-dual optimality mechanized in PregenesisWdpPhiWellDefinedL1Duality.lean and WdpBatch4.lean",
       "statement": "WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.",
       "source": [
         "dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md",
@@ -19299,7 +19301,10 @@
         "lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::absSum_attained",
         "lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::shifted_ge",
         "lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::shifted_attained",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound"
+        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.weighted_residual_shift_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.weighted_l1_weak_duality_triangle",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.certified_primal_dual_optimality"
       ],
       "rust": [
         "external:sha256:fc5a04df299e671184b29b3468bd5fd18b70680beadaeaf4aebd5d809976d3e1::FenchelDualityReceipt"
@@ -19643,8 +19648,8 @@
     {
       "id": "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER",
       "stage": "WDP",
-      "status": "CONDITIONAL",
-      "source_status": "register GEN-WDP-03/06 with Lean ProposalAdmissionBridge; conditional on the declared report",
+      "status": "PROVED_LEAN",
+      "source_status": "GEN-WDP-03 and GEN-WDP-06 mechanized in ReportFiberDescent.lean, ProposalAdmissionBridge.lean, and WdpBatch4.lean",
       "statement": "GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report.",
       "source": [
         "dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md",
@@ -19659,7 +19664,10 @@
         "lean4/ReportFiberDescent.lean::ReportFiberDescent.unique_decoder_iff",
         "lean4/ReportFiberDescent.lean::ReportFiberDescent.postprocess_obstruction",
         "lean4/ReportFiberDescent.lean::ReportFiberDescent.joint_report_sufficient",
-        "lean4/ReportFiberDescent.lean::ReportFiberDescent.lost_bit_obstruction"
+        "lean4/ReportFiberDescent.lean::ReportFiberDescent.lost_bit_obstruction",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.report_fiber_decoder_iff",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.event_multiset_loses_final_state",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.final_state_loses_occurrence_count"
       ],
       "rust": [
         "external:sha256:8f12bd5921d1b1e472ecaf9c5d7ccbc467a2b808ccd452c695dcfbac42e7bc55::ProposalAdmissionModel"
@@ -20240,8 +20248,8 @@
     {
       "id": "PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION",
       "stage": "WDP",
-      "status": "PROVED_PROSE",
-      "source_status": "GEN-WDP-68 proved in §17.11 with Lean 4 process composition spine; explicit q^2 != 1/2 lemma in FiniteProcessComposition.lean open",
+      "status": "PROVED_LEAN",
+      "source_status": "GEN-WDP-68 proved in §17.11 and mechanized in FiniteProcessComposition.lean and WdpBatch4.lean",
       "statement": "No rational scalar squares to 1/2, so normalized Hadamard and T gates cannot be represented inside the exact Gaussian-rational matrix algebra without quadratic irrational extension or scaled-unitary tracking (GEN-WDP-68).",
       "source": [
         "dag/derivations/06_wdp/tfq_0580_wdp_exact_scalar_hadamard_obstruction.md",
@@ -20249,11 +20257,14 @@
       ],
       "lean": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WDP.FiniteProcessComposition.unitary_mass_preserving",
-        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WDP.FiniteProcessComposition.postFactor_compose"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WDP.FiniteProcessComposition.postFactor_compose",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WitnessedDifference.FiniteProcessComposition.nat_two_mul_sq_ne_sq",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WitnessedDifference.FiniteProcessComposition.int_two_mul_sq_ne_sq",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.exact_scalar_hadamard_and_t_obstruction"
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "FiniteProcessComposition.lean formalizes exact Gaussian-rational Kraus and Pauli-X unitary transport; the 2-adic valuation proof that no rational squares to 1/2 is written in prose and checked in Python.",
+      "bottleneck": "FiniteProcessComposition.lean and WdpBatch4.lean formalize 2-adic parity descent (nat_two_mul_sq_ne_sq, int_two_mul_sq_ne_sq, exact_scalar_hadamard_and_t_obstruction) alongside unitary_mass_preserving.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0580",
@@ -32517,7 +32528,7 @@
         "PG-GEN-ONGOING-FEWEST-CHANGES"
       ],
       "output": "PG-GEN-SAMENESS-REFINEMENTS",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md",
         "lean4/DerivationDagQMClosure.lean",
@@ -33741,7 +33752,7 @@
         "FQ-IMPL-REALIFICATION-ADAPTER"
       ],
       "output": "FQ-IMPL-WDP-AMPLITUDE-BRIDGE",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f:1",
         "lean4/DerivationDagQMClosure.lean",
@@ -38956,7 +38967,7 @@
         "PGW-SN-E08-WEIGHTED-L1-DUALITY"
       ],
       "output": "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:921-940",
@@ -39119,7 +39130,7 @@
         "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY"
       ],
       "output": "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md:14-17",
@@ -39437,7 +39448,7 @@
         "PGW-WDP-BORN-RULE-NONSELECTION"
       ],
       "output": "PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION",
-      "status": "DERIVED_PROSE",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/06_wdp/tfq_0580_wdp_exact_scalar_hadamard_obstruction.md",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md:79"
@@ -59838,14 +59849,17 @@
       ],
       "id": "TFQ-0391",
       "lean4": [
-        "absent: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Sixteenth/State.lean",
-        "absent: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Twentieth/Order.lean",
-        "absent: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Twentyfirst/Refusal.lean",
-        "absent: missing declaration obligation: row ids in the four later claim ledgers were not read"
+        "atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentysecond/Same.lean::Twentysecond.same_iff_excess",
+        "atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentythird/Same.lean::Twentythird.Same.same3",
+        "atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfourth/Same.lean::Twentyfourth.Same24.balances",
+        "atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfifth/Balance.lean::Twentyfifth.nothing_balanced",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.same23_preserves_around",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.same24_balances_iff",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.same25_balances_iff"
       ],
       "local_id": "A01-033",
       "name": "sameness-refinement-ledgers",
-      "obligation": "Inventory row ids in the twenty-second through twenty-fifth claim ledgers before any sameness refinement is carried forward.",
+      "obligation": "Keep sameness refinement invariants (22:D1..D16, 23:D1..D17, 24:D1..D17, 25:D1..D17) scoped to finite assertion multiplicities, vertex potentials, filled terms, and filled triples.",
       "parent_id": "TFQ-0390",
       "pfp_review_refs": [
         "dag/results/PG-GEN-SAMENESS-REFINEMENTS/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json"
@@ -59853,7 +59867,7 @@
       "python": [
         "absent: missing obligation: do not import a sameness refinement into genesis_ongoing/code until the four unread claim ledgers are inventoried"
       ],
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: missing obligation: no Rust sameness crate was listed; do not add one from the unread ledgers"
       ],
@@ -61084,18 +61098,22 @@
       ],
       "id": "TFQ-1026",
       "lean4": [
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_amplitude_realification_and_pairing_bridges",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.pythagorean_phase_unit_norm",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.triangle_holonomy_coboundary_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.readout_quadratic_phase_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.readout_quartic_phase_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.readout_quadratic_ne_quartic",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.gintPow34_im_ne_zero"
       ],
       "local_id": "FQ-IMPL-WDP-AMPLITUDE-BRIDGE",
       "name": "fq-impl-wdp-amplitude-bridge",
-      "obligation": "The claims are about a Rust artifact and are backed by its native exact tests. The cited Lean is integer arithmetic (3^2 + 4^2 = 5^2 and similar) and does not state the claims.",
+      "obligation": "WDP-CH19-P11/P12 mechanized in WdpBatch4.lean alongside amplitude_bridge.rs; continuous U(1) Lie-group topologies remain outside the finite Gaussian-rational carrier.",
       "parent_id": "TFQ-1027",
       "pfp_review_refs": [
         "dag/results/FQ-IMPL-WDP-AMPLITUDE-BRIDGE/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json"
       ],
       "python": [],
-      "record_status": "COMPUTATIONAL_CONTROL",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::same_up_to_common_phase",
         "external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::readout_quadratic",
@@ -66472,7 +66490,10 @@
         "lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::absSum_attained",
         "lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::shifted_ge",
         "lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::shifted_attained",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound"
+        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.weighted_residual_shift_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.weighted_l1_weak_duality_triangle",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.certified_primal_dual_optimality"
       ],
       "local_id": "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
       "name": "wdp-phi-well-defined-l1-duality",
@@ -66482,7 +66503,7 @@
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py::finite_quotient_l1",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::exact_quotient_l1"
       ],
-      "record_status": "CONDITIONAL",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "external:upstream/external:sha256:fc5a04df299e671184b29b3468bd5fd18b70680beadaeaf4aebd5d809976d3e1::FenchelDualityReceipt"
       ],
@@ -66844,7 +66865,10 @@
         "lean4/ReportFiberDescent.lean::ReportFiberDescent.unique_decoder_iff",
         "lean4/ReportFiberDescent.lean::ReportFiberDescent.postprocess_obstruction",
         "lean4/ReportFiberDescent.lean::ReportFiberDescent.joint_report_sufficient",
-        "lean4/ReportFiberDescent.lean::ReportFiberDescent.lost_bit_obstruction"
+        "lean4/ReportFiberDescent.lean::ReportFiberDescent.lost_bit_obstruction",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.report_fiber_decoder_iff",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.event_multiset_loses_final_state",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.final_state_loses_occurrence_count"
       ],
       "local_id": "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER",
       "name": "wdp-bridge-report-fiber-observer",
@@ -66854,7 +66878,7 @@
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py::decision_decoder",
         "checks/independent/pgw-wdp-bridge-report-fiber-observer.py"
       ],
-      "record_status": "CONDITIONAL",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "external:upstream/external:sha256:8f12bd5921d1b1e472ecaf9c5d7ccbc467a2b808ccd452c695dcfbac42e7bc55::ProposalAdmissionModel"
       ],
@@ -67565,16 +67589,19 @@
       "id": "TFQ-0580",
       "lean4": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WDP.FiniteProcessComposition.unitary_mass_preserving",
-        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WDP.FiniteProcessComposition.postFactor_compose"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WDP.FiniteProcessComposition.postFactor_compose",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WitnessedDifference.FiniteProcessComposition.nat_two_mul_sq_ne_sq",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WitnessedDifference.FiniteProcessComposition.int_two_mul_sq_ne_sq",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.exact_scalar_hadamard_and_t_obstruction"
       ],
       "local_id": "PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION",
       "name": "wdp-exact-scalar-hadamard-obstruction",
-      "obligation": "Mechanize the exact rational non-square obstruction q^2 != 1/2 directly inside FiniteProcessComposition.lean alongside unitary_mass_preserving.",
+      "obligation": "Keep the 2-adic parity descent proof that 2*a^2 != b^2 for b != 0 scoped to exact rational and Gaussian-rational matrix entries without quadratic extension.",
       "parent_id": "TFQ-0579",
       "python": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quantum.py::to_gaussian_rational"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: checked in Lean 4 and Python process composition modules"
       ],

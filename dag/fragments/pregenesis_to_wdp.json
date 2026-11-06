@@ -9894,7 +9894,7 @@
       "name": "wdp-phi-well-defined-l1-duality",
       "stage": "WDP",
       "group": null,
-      "record_status": "CONDITIONAL",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0542",
       "pinned_parent": false,
       "prerequisites": [
@@ -9949,6 +9949,21 @@
             "root": "local",
             "path": "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean",
             "symbol": "dual_certificate_lower_bound"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean",
+            "symbol": "WitnessedDifference.WdpBatch4.weighted_residual_shift_invariant"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean",
+            "symbol": "WitnessedDifference.WdpBatch4.weighted_l1_weak_duality_triangle"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean",
+            "symbol": "WitnessedDifference.WdpBatch4.certified_primal_dual_optimality"
           }
         ],
         "rust": [
@@ -9994,8 +10009,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "CONDITIONAL",
-        "source_status": "WDP monograph §4.2-§4.3 WDP-CH04-P01, conditional P02 and C01 (imported LP duality)"
+        "status": "PROVED_LEAN",
+        "source_status": "WDP-CH04-P01, WDP-CH04-P07, and certified primal-dual optimality mechanized in PregenesisWdpPhiWellDefinedL1Duality.lean and WdpBatch4.lean"
       },
       "terminal": false
     },
@@ -10897,7 +10912,7 @@
       "name": "wdp-bridge-report-fiber-observer",
       "stage": "WDP",
       "group": null,
-      "record_status": "CONDITIONAL",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0554",
       "pinned_parent": false,
       "prerequisites": [
@@ -10935,6 +10950,21 @@
             "root": "local",
             "path": "lean4/ReportFiberDescent.lean",
             "symbol": "ReportFiberDescent.lost_bit_obstruction"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean",
+            "symbol": "WitnessedDifference.WdpBatch4.report_fiber_decoder_iff"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean",
+            "symbol": "WitnessedDifference.WdpBatch4.event_multiset_loses_final_state"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean",
+            "symbol": "WitnessedDifference.WdpBatch4.final_state_loses_occurrence_count"
           }
         ],
         "rust": [
@@ -10991,8 +11021,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "CONDITIONAL",
-        "source_status": "register GEN-WDP-03/06 with Lean ProposalAdmissionBridge; conditional on the declared report"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-03 and GEN-WDP-06 mechanized in ReportFiberDescent.lean, ProposalAdmissionBridge.lean, and WdpBatch4.lean"
       },
       "terminal": false
     },
@@ -12495,14 +12525,14 @@
       "name": "wdp-exact-scalar-hadamard-obstruction",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0579",
       "pinned_parent": false,
       "prerequisites": [],
       "summary": "No rational scalar squares to 1/2, so normalized Hadamard and T gates cannot be represented inside the exact Gaussian-rational matrix algebra without quadratic irrational extension or scaled-unitary tracking (GEN-WDP-68).",
-      "obligation": "Mechanize the exact rational non-square obstruction q^2 != 1/2 directly inside FiniteProcessComposition.lean alongside unitary_mass_preserving.",
+      "obligation": "Keep the 2-adic parity descent proof that 2*a^2 != b^2 for b != 0 scoped to exact rational and Gaussian-rational matrix entries without quadratic extension.",
       "imports": [],
-      "fence": "FiniteProcessComposition.lean formalizes exact Gaussian-rational Kraus and Pauli-X unitary transport; the 2-adic valuation proof that no rational squares to 1/2 is written in prose and checked in Python.",
+      "fence": "FiniteProcessComposition.lean and WdpBatch4.lean formalize 2-adic parity descent (nat_two_mul_sq_ne_sq, int_two_mul_sq_ne_sq, exact_scalar_hadamard_and_t_obstruction) alongside unitary_mass_preserving.",
       "witnesses": {
         "lean": [
           {
@@ -12514,6 +12544,21 @@
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean",
             "symbol": "WDP.FiniteProcessComposition.postFactor_compose"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean",
+            "symbol": "WitnessedDifference.FiniteProcessComposition.nat_two_mul_sq_ne_sq"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean",
+            "symbol": "WitnessedDifference.FiniteProcessComposition.int_two_mul_sq_ne_sq"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean",
+            "symbol": "WitnessedDifference.WdpBatch4.exact_scalar_hadamard_and_t_obstruction"
           }
         ],
         "rust": [
@@ -12540,8 +12585,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "GEN-WDP-68 proved in §17.11 with Lean 4 process composition spine; explicit q^2 != 1/2 lemma in FiniteProcessComposition.lean open"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-68 proved in §17.11 and mechanized in FiniteProcessComposition.lean and WdpBatch4.lean"
       },
       "terminal": false
     },

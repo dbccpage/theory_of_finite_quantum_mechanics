@@ -1,6 +1,6 @@
 # [TFQ-0580] wdp-exact-scalar-hadamard-obstruction
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `3379e576-3ef6-5ee0-b0ad-029e97a12855`  
 > **Parent Derivation**: [TFQ-0579](tfq_0579_wdp_born_rule_nonselection.md)
 
@@ -11,7 +11,7 @@
 No rational scalar squares to 1/2, so normalized Hadamard and T gates cannot be represented inside the exact Gaussian-rational matrix algebra without quadratic irrational extension or scaled-unitary tracking (GEN-WDP-68).
 
 ### Governing Obligation
-Mechanize the exact rational non-square obstruction q^2 != 1/2 directly inside FiniteProcessComposition.lean alongside unitary_mass_preserving.
+Keep the 2-adic parity descent proof that 2*a^2 != b^2 for b != 0 scoped to exact rational and Gaussian-rational matrix entries without quadratic extension.
 
 ---
 
@@ -23,7 +23,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> FiniteProcessComposition.lean formalizes exact Gaussian-rational Kraus and Pauli-X unitary transport; the 2-adic valuation proof that no rational squares to 1/2 is written in prose and checked in Python.
+> FiniteProcessComposition.lean and WdpBatch4.lean formalize 2-adic parity descent (nat_two_mul_sq_ne_sq, int_two_mul_sq_ne_sq, exact_scalar_hadamard_and_t_obstruction) alongside unitary_mass_preserving.
 
 ---
 
@@ -32,6 +32,9 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WDP.FiniteProcessComposition.postFactor_compose`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean)
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WDP.FiniteProcessComposition.unitary_mass_preserving`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WitnessedDifference.FiniteProcessComposition.int_two_mul_sq_ne_sq`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean::WitnessedDifference.FiniteProcessComposition.nat_two_mul_sq_ne_sq`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteProcessComposition.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.exact_scalar_hadamard_and_t_obstruction`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: checked in Lean 4 and Python process composition modules`

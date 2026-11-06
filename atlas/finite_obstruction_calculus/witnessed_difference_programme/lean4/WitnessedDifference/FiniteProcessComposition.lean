@@ -143,6 +143,61 @@ theorem x_gate_round_trip :
     postFactor (postFactor basisStateFactor xGate) (mdagger xGate) =
       basisStateFactor := unitary_reversible basisStateFactor xUnitary
 
+/-! ## Exact scalar Hadamard obstruction (`GEN-WDP-68`) -/
+
+theorem two_mul_sq (k : Nat) : (2 * k) * (2 * k) = 4 * (k * k) := by
+  calc (2 * k) * (2 * k)
+    _ = 2 * (k * (2 * k)) := Nat.mul_assoc 2 k (2 * k)
+    _ = 2 * (2 * k * k) := by rw [Nat.mul_comm k (2 * k)]
+    _ = 2 * (2 * (k * k)) := by rw [Nat.mul_assoc 2 k k]
+    _ = (2 * 2) * (k * k) := (Nat.mul_assoc 2 2 (k * k)).symm
+    _ = 4 * (k * k) := rfl
+
+theorem two_mul_add_one_sq (k : Nat) :
+    (2 * k + 1) * (2 * k + 1) = 4 * (k * k) + 4 * k + 1 := by
+  rw [Nat.add_mul, Nat.mul_add, Nat.mul_add, two_mul_sq]
+  omega
+
+theorem nat_sq_parity_decomp (n : Nat) :
+    (n = 2 * (n / 2) ∧ n * n = 4 * ((n / 2) * (n / 2))) ∨
+    (n = 2 * (n / 2) + 1 ∧ n * n = 4 * ((n / 2) * (n / 2)) + 4 * (n / 2) + 1) := by
+  have hdiv : n = 2 * (n / 2) + (n % 2) := by omega
+  have hmod : n % 2 = 0 ∨ n % 2 = 1 := by omega
+  rcases hmod with h0 | h1
+  · left
+    have hn : n = 2 * (n / 2) := by omega
+    refine ⟨hn, ?_⟩
+    conv => lhs; rw [hn]
+    exact two_mul_sq (n / 2)
+  · right
+    have hn : n = 2 * (n / 2) + 1 := by omega
+    refine ⟨hn, ?_⟩
+    conv => lhs; rw [hn]
+    exact two_mul_add_one_sq (n / 2)
+
+/-- 2-adic parity descent (`GEN-WDP-68`): for all `a b : Nat` with `b > 0`, `2 * a^2 ≠ b^2`. -/
+theorem nat_two_mul_sq_ne_sq : ∀ (b a : Nat), b > 0 → 2 * (a * a) ≠ b * b
+  | b, a, hb, heq => by
+    rcases nat_sq_parity_decomp b with ⟨hb_even, hbsq⟩ | ⟨hb_odd, hbsq⟩
+    · rcases nat_sq_parity_decomp a with ⟨ha_even, hasq⟩ | ⟨ha_odd, hasq⟩
+      · have hdesc : 2 * ((a / 2) * (a / 2)) = (b / 2) * (b / 2) := by omega
+        have hb2_pos : b / 2 > 0 := by omega
+        have hb2_lt : b / 2 < b := by omega
+        exact nat_two_mul_sq_ne_sq (b / 2) (a / 2) hb2_pos hdesc
+      · omega
+    · omega
+termination_by b => b
+
+/-- Integer form of `GEN-WDP-68`: no rational fraction `a / b` (`b ≠ 0`) satisfies `2 * a^2 = b^2`. -/
+theorem int_two_mul_sq_ne_sq (a b : Int) (hb : b ≠ 0) : 2 * (a * a) ≠ b * b := by
+  intro heq
+  have hnat : 2 * (a.natAbs * a.natAbs) = b.natAbs * b.natAbs := by
+    have h1 : (2 * (a * a)).natAbs = (b * b).natAbs := congrArg Int.natAbs heq
+    rw [Int.natAbs_mul 2 (a * a), Int.natAbs_mul a a, Int.natAbs_mul b b] at h1
+    exact h1
+  have hb_pos : b.natAbs > 0 := Int.natAbs_pos.mpr hb
+  exact nat_two_mul_sq_ne_sq b.natAbs a.natAbs hb_pos hnat
+
 end WitnessedDifference.FiniteProcessComposition
 
 #print axioms WitnessedDifference.FiniteProcessComposition.mdagger_involutive
@@ -157,3 +212,5 @@ end WitnessedDifference.FiniteProcessComposition
 #print axioms WitnessedDifference.FiniteProcessComposition.x_gate_unitary
 #print axioms WitnessedDifference.FiniteProcessComposition.x_gate_transports_basis_factor
 #print axioms WitnessedDifference.FiniteProcessComposition.x_gate_round_trip
+#print axioms WitnessedDifference.FiniteProcessComposition.nat_two_mul_sq_ne_sq
+#print axioms WitnessedDifference.FiniteProcessComposition.int_two_mul_sq_ne_sq
