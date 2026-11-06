@@ -76,3 +76,14 @@ have a separate [relocation receipt](../reviews/repository_file_review/2026-11-0
 The [publication relocation audit](../reviews/repository_file_review/2026-11-05-publication-atlas.json) checks this PR tree. Earlier November 5 cleanup receipts record observations in the maintainer's older source checkout; their mismatches and missing files do not describe this publication checkout. The later `everett_mw` notes are outside the original 5,613-file import manifest.
 
 The publication audit matches 5,606 of the original 5,613 import records. Seven requirements/lock files already differed from those recorded import bytes on the PR base; the move preserves those files and the original manifest digests. All 5,613 manifest destinations are present.
+
+## Quantum foundations backup, 2026-11-06
+
+[`quantum_foundations/`](quantum_foundations/README.md) is the author's local
+quantum foundations folder (41 manuscripts `qm_002`..`qm_212`, its derivation
+DAG snapshot, code, evidence receipts and support notes), copied as a research
+backup. Filenames were lowercased and private names were replaced; nothing else
+was edited, so recorded hashes inside the evidence manifests describe the
+original bytes. [`derivation_map.md`](quantum_foundations/derivation_map.md)
+lists the `dag/derivations` stage each manuscript belongs to; merging them
+into those derivations is later work.
