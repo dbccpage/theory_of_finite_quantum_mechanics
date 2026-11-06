@@ -9,7 +9,7 @@ import sys
 import pytest
 
 ROOT=Path(__file__).resolve().parents[3]
-RUN=ROOT/'dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography'
+RUN=ROOT/'evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography'
 SPEC=importlib.util.spec_from_file_location('operational_tomography',ROOT/'code/python/src/qm/operational_tomography.py')
 ot=importlib.util.module_from_spec(SPEC); SPEC.loader.exec_module(ot)
 RAW=(RUN/'p1/candidate.json').read_bytes()

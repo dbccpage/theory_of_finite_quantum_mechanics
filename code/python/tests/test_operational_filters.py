@@ -9,7 +9,7 @@ import sys
 import pytest
 
 ROOT=Path(__file__).resolve().parents[3]
-RUN=ROOT/'dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family'
+RUN=ROOT/'evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family'
 SPEC=importlib.util.spec_from_file_location('operational_filters',ROOT/'code/python/src/qm/operational_filters.py')
 f=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(f)
 a=f.a

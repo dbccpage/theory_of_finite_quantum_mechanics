@@ -255,5 +255,5 @@ The unrestricted quadratic-rigidity assertion in this original decision question
   - `checks/independent/fq-gleason-qi3-tomography.py`
   - `lean4/BornGaussianTomographyReduction.lean`
   - `code/python/tests/test_fq_gleason_qi3_frame_functions.py`
-  - `dag/research/pr500_review/review.md`
-  - `dag/research/pr500_review/manifest.json`
+  - `evidence/reviews/pr500/review.md`
+  - `evidence/reviews/pr500/manifest.json`

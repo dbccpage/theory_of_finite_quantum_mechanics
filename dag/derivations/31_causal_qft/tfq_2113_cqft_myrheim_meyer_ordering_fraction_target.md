@@ -19,7 +19,7 @@ Not proved in Lean: that the n x n grid poset (a FiniteStrictPoset on n^2 points
 
 ## Source status
 
-Source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr-qc/0207103 Section III eqs. (4)-(5) pp. 4-5, and exact rational values f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and r(grid_n)=(n+3)/(2(n+1)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr-qc/0207103 Section III eqs. (4)-(5) pp. 4-5, and exact rational values f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and r(grid_n)=(n+3)/(2(n+1)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr
 
 r(C1)=2/3, r(C2)=5/6; given the posited grid count R(n) = (n(n+1)/2)^2 - n^2: r(grid_n) = (n+3)/(2(n+1)) for all n>=2 (r(grid_2)=5/6=r(C2)); table f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and a nearest-dimension selector checked on six inputs; Hasse links of C1 = 2 and C2 = 4; the Hasse relation lies in every generating subrelation; the Mobius tables of C1 and C2 satisfy the recursion with mu(d0,d3)=1 on C2.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -53,7 +53,7 @@ See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 - Repository: `lean4/CausalOrder.lean`
 - Repository: `code/python/src/general_relativity/causal_set.py`
 - Repository: `lean4/FrontierMyrheimMeyer.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.gridStrictPairs_factorization`

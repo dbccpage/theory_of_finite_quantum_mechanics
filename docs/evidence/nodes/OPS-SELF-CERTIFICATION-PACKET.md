@@ -57,6 +57,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `python -m pytest code/python/tests/test_three_role_gate.py`
 - counts toward the grade: yes
 
+### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
+
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
+- sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
+
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `code/python/src/wdp/three_role_provenance_fixtures.json`
 
 - file: [code/python/src/wdp/three_role_provenance_fixtures.json](../../../code/python/src/wdp/three_role_provenance_fixtures.json)
@@ -67,24 +81,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md)
-- sha256 (`lf-normalised`): `1d4f1853da8b96aa0b6d9ce150c8dea53ffd20914e9cc709f515636eea77fd6a`
+- sha256 (`lf-normalised`): `d65d5a6cf6ed5750a215f8bd37f568f88ecf8b083168faaa4c75236ea32755ae`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2522
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
-
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
-- sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
-
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
-- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

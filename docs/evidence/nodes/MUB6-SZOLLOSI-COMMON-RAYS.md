@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `830f5016cbab23811de1d03fb02c7eef5846e5af3ae91ada2830ea2fdbf1298c`
 - cited in: node.lean, record TFQ-1274
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiCommonRays`): recorded sha256 `830f5016cbab23811de1d03fb02c7eef5846e5af3ae91ada2830ea2fdbf1298c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiCommonRays`): recorded sha256 `830f5016cbab23811de1d03fb02c7eef5846e5af3ae91ada2830ea2fdbf1298c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiCommonRays`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -36,7 +36,7 @@ GAP-C500-B01..B10 RESOLVED_WITH_SCOPED_EVIDENCE: "original target contract remai
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_block_numeral_slice_reviewed`; scope effect `caveat_added`; prior status `OPEN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json](../../../evidence/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_block_numeral_slice_reviewed`; scope effect `caveat_added`; prior status `OPEN`; qualifies for E4: yes.
   - narrowest claim: For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.
   - does not support: A fresh reading of each original target contract, the evidence files named beside the ten blocks, or a claim that a scoped receipt discharges a block.
   - next test: Read each original target contract and the evidence files named beside the ten blocks before treating any block as discharged.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/OriginalTargetNumerals.lean](../../../lean4/OriginalTargetNumerals.lean)
 - sha256 (`bytes`): `c7b1a08231d1dc7417cf9b12e6f76b13f24c5dfb0e6e0aa0126e3f27d2bf8be6`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-c500-original-targets_lean_replay.json (OriginalTargetNumerals), record TFQ-1025
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fq-gap-c500-original-targets_lean_replay.json (OriginalTargetNumerals), record TFQ-1025
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-c500-original-targets_lean_replay.json](../../../dag/research/campaign_fq-gap-c500-original-targets_lean_replay.json) (module `OriginalTargetNumerals`): recorded sha256 `c7b1a08231d1dc7417cf9b12e6f76b13f24c5dfb0e6e0aa0126e3f27d2bf8be6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gap-c500-original-targets_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gap-c500-original-targets_lean_replay.json) (module `OriginalTargetNumerals`): recorded sha256 `c7b1a08231d1dc7417cf9b12e6f76b13f24c5dfb0e6e0aa0126e3f27d2bf8be6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build OriginalTargetNumerals`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -77,20 +77,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md](../../../dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md)
-- sha256 (`lf-normalised`): `fd834ac1ba6b251bcdfdf47f8db240208339c66d9c402cc81d56fb56db0713e4`
-- generated view: listed, not counted
-- cited in: record TFQ-1025
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md](../../../dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md)
+- sha256 (`lf-normalised`): `fd40cee0cd3a54d78e0acb12c693acde85d1b816567f6f752e0394e89fe2346c`
+- generated view: listed, not counted
+- cited in: record TFQ-1025
+- counts toward the grade: no
 
 ### External sources
 

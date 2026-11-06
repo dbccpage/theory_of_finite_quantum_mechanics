@@ -2,7 +2,7 @@
 
 Authority effect: None. Everything here restates facts that already sit in
 `dag/derivation_dag.json`, `dag/evidence/evidence_map.json`,
-`dag/research/*lean_replay*.json` and the imported contracts under
+`evidence/lean_receipts/*lean_replay*.json` and the imported contracts under
 `normal_forms/contracts/`. Loading a row does not change what any claim is
 entitled to.
 
@@ -215,7 +215,7 @@ between two independent derivations, not a result about the mathematics.
   `receipts_not_indexed` and the derived `summary` are not. `toolchain` is
   not stored because it is the numeric part of `lean_version`.
 * **Replay files.** `receipt_declaration` and `receipt_axiom` come from every
-  `dag/research/*lean_replay*.json` module result. Most files nest that list
+  `evidence/lean_receipts/*lean_replay*.json` module result. Most files nest that list
   at `lean_replay.results`. The PGW campaign receipt puts the same list at
   the top level, and the loader reads that list. Evidence-map receipts whose
   file is not one of those replay files stay in `receipt_module` without
@@ -225,7 +225,7 @@ between two independent derivations, not a result about the mathematics.
   and `lean_declaration` is a (path, symbol) pair. They are not linked by a
   foreign key because the name forms differ (module-qualified versus
   namespace-qualified).
-* **Other repository facts.** `dag/results/**`, `dag/fragments`, the TFQ JSONL,
+* **Other repository facts.** `evidence/results/**`, `dag/fragments`, the TFQ JSONL,
   `dag/prompts`, Lean, Rust and Python source, `papers/`, `problem_sets/`,
   `rules/`, `docs/`, `evidence/` and the git history have no tables.
 * **Contracts.** Only identity, status, citation, `non_claims` and provenance

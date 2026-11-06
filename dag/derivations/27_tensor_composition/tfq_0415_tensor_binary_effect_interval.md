@@ -39,7 +39,7 @@ reconstruction or from equality of the generated effect cone with PSD.
 - [TensorMeasurements](../../../lean4/TensorMeasurements.lean): `effectRepresentation`,
   `effectRepresentation_unit`, `effectRepresentation_product`, `validEffect_iff_binary`,
   `available_effects_eq_interval`.
-- [Validation receipt](../../research/tensor_measurement_validation.json).
+- [Validation receipt](../../../evidence/lean_receipts/tensor_measurement_validation.json).
 
 The proof accepts exactly the image-cone conclusion of `quantum_state_cone`.
 The end-to-end `quantum_measurements` theorem calls that state-cone theorem with

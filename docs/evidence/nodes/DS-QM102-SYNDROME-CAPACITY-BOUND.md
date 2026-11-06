@@ -36,7 +36,7 @@ Quantum Hamming / syndrome capacity bounds for \[\[5,1,3\]\] (1+3*5=16=2^4) and 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM102-SYNDROME-CAPACITY-BOUND/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM102-SYNDROME-CAPACITY-BOUND/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM102-SYNDROME-CAPACITY-BOUND/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/DS-QM102-SYNDROME-CAPACITY-BOUND/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Complete retained repetition-code error tables and zero-syndrome logical controls are exact; the distance arithmetic and three-bit correction statement are kernel checked.
   - does not support: Prove the arbitrary code/homology distance and decoder transport under the actual error model. A guaranteed-correctable lower bound is not a general upper-bound theorem.
   - next test: Prove the arbitrary code/homology distance and decoder transport under the actual error model. A guaranteed-correctable lower bound is not a general upper-bound theorem.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0270
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0270_syndrome_distance_and_repair_capacity.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0270_syndrome_distance_and_repair_capacity.md](../../../dag/derivations/13_finite_qm_information/tfq_0270_syndrome_distance_and_repair_capacity.md)
-- sha256 (`lf-normalised`): `3b2c7203fc4f403c44d1e8c9a06b690510d03d5c9db4a11078e0311e62496fff`
+- sha256 (`lf-normalised`): `ee2fed4aa95d073d78aced2076726e1de2ad191a52383a41f10be90297b40369`
 - generated view: listed, not counted
 - cited in: record TFQ-0270
 - counts toward the grade: no

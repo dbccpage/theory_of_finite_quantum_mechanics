@@ -36,7 +36,7 @@ genesis_qm_realification_bridge: 'declarations of complex structure, not a theor
 
 ## Review
 
-- PFP review: [dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: Complex matrices here are the declared pair model (P, Q) with the hand-written product. R(A) = \[\[P,-Q\],\[Q,P\]\] is an injective ring-linear multiplicative embedding of these into real matrices with J_m R(A) = R(A) J_n and Tr R(A) = 2 Re Tr A, and its image is exactly the real matrices that intertwine the DECLARED J (block coordinate order); the same J^2 = -1 identity holds for other matrices (kernel instance, bounded census), so the choice of J remains an input.
   - does not support: Any selection of J or of the complex field (J is a declaration; a second square root of -I exists in the kernel instance and the census exhibits many more); the identification of the pair model CMat with Mathlib complex matrices (no anchor shows CMat is an associative ring or equals Matrix m n Complex); the block-ordering convention (all real coordinates before all imaginary ones) is part of the definition: the interleaved ordering gives a different J and a different matrix; states sigma = R(rho)/2, positivity as a theorem (native instances only), effects, instruments / Kraus intertwining (Theorem 3), the balanced tensor lift, or any operational or physical reading; infinite dimensions; the claim that every real channel is a realified complex one (it is not).
   - next test: Prove in the kernel that R preserves and reflects positivity for Hermitian A, i.e. A is positive semidefinite iff the real quadratic form of R(A) is nonnegative, and that sigma = R(rho)/2 has real trace 1 exactly when Tr rho = 1; the native psd rows are the instances to match.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-1002
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -65,9 +65,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/RealificationJ.lean](../../../lean4/RealificationJ.lean)
 - sha256 (`bytes`): `9c4af34f323541434cab7cb2134f4c4c311f6e8e9653bf31603611cd0c52c336`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (RealificationJ)
+- cited in: receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (RealificationJ)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `RealificationJ`): recorded sha256 `9c4af34f323541434cab7cb2134f4c4c311f6e8e9653bf31603611cd0c52c336` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `RealificationJ`): recorded sha256 `9c4af34f323541434cab7cb2134f4c4c311f6e8e9653bf31603611cd0c52c336` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build RealificationJ`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -91,9 +91,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_qm_realification_bridge.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_qm_realification_bridge.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_qm_realification_bridge.md)
 - sha256 (`lf-normalised`): `70fa234b9178029397a5419f36517a4f54cbcd823659ba1f69ff38d14a6e5ff5`
 - cited in: node.source
 - counts toward the grade: yes
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md](../../../dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md)
-- sha256 (`lf-normalised`): `a40dfbd9c165b7ced3f89b2ed30644fabe5889b16d7e870b15f6921f7f406774`
+- sha256 (`lf-normalised`): `2c756c0d0478b8bfe2027c88e2f0d419aae84bc65ded962c6906c43f7265ead5`
 - generated view: listed, not counted
 - cited in: record TFQ-1002
 - counts toward the grade: no

@@ -133,7 +133,7 @@ def derivation_papers() -> tuple[int, int]:
 # ---------------------------------------------------------------- PFP facts
 
 def pfp_facts() -> dict:
-    review_dirs = sorted(p for p in (ROOT / "dag/results").glob("*/reviews/*") if p.is_dir())
+    review_dirs = sorted(p for p in (ROOT / "evidence/results").glob("*/reviews/*") if p.is_dir())
     nodes_with_reviews = {p.parent.parent.name for p in review_dirs}
     boundaries = sum(1 for d in review_dirs if has_boundary(d))
     p4 = 0
@@ -261,7 +261,7 @@ NO_AXIOM_LINE = re.compile(r"does not depend on any axioms")
 
 def axiom_receipts(files: list[str]) -> dict:
     receipts = [f for f in files if (
-        re.fullmatch(r"dag/research/[^/]*axioms[^/]*\.txt", f)
+        re.fullmatch(r"evidence/lean_receipts/[^/]*axioms[^/]*\.txt", f)
         or re.fullmatch(r"papers/.*/axiom_report[^/]*\.txt", f)
         or re.fullmatch(r"(?:.*/)?evidence/axiom_reports/[^/]*\.txt", f))]
     per_file, seen, print_lines = {}, collections.Counter(), 0
@@ -289,7 +289,7 @@ def axiom_receipts(files: list[str]) -> dict:
 def test_functions(files: list[str]) -> dict:
     counts = collections.Counter()
     for rel in files:
-        scope = "results" if rel.startswith("dag/results/") else "main"
+        scope = "results" if rel.startswith("evidence/results/") else "main"
         if rel.endswith(".py"):
             text = (ROOT / rel).read_text(encoding="utf-8", errors="replace")
             counts[("py", scope)] += len(re.findall(r"^\s*(?:async\s+)?def test_\w*", text, re.M))
@@ -356,11 +356,11 @@ def render(skip_contracts: bool = False) -> str:
          f"{refs[('rust', 'present')]} resolve to a file in this checkout, {refs[('rust', 'absent')]} do not, "
          f"{refs[('rust', 'external')]} marked `external:`", link("dag/derivation_dag.json")),
         ("Nodes with executed review results", f"{pfp['nodes_with_reviews']} nodes, {pfp['review_dirs']} review directories",
-         "`dag/results/*/reviews/`"),
+         "`evidence/results/*/reviews/`"),
         ("Review directories with a supports / does_not_support / narrowest_claim boundary",
-         str(pfp["boundaries"]), "`dag/results/*/reviews/*/*.json`"),
+         str(pfp["boundaries"]), "`evidence/results/*/reviews/*/*.json`"),
         ("P4 mutations rejected, as recorded in review records (`rejected_P4_mutations`, one value per directory)", str(pfp["p4_rejected"]),
-         "`dag/results/*/reviews/*/*.json`"),
+         "`evidence/results/*/reviews/*/*.json`"),
         ("PFP review outcomes on DAG nodes", review, link("dag/derivation_dag.json")),
         ("Outside-corpus records audited", f"{audit['records']} records from {audit['corpora']} corpora",
          link("dag/fragments/unified_dag.json")),
@@ -376,7 +376,7 @@ def render(skip_contracts: bool = False) -> str:
         ("Axiom receipts / declaration lines audited",
          f"{len(axioms['files'])} files / {sum(axioms['files'].values())} lines "
          f"(literal `#print axioms` lines: {axioms['print_lines']})",
-         "`dag/research/*axioms*.txt`, `papers/**/axiom_report*.txt`, `**/evidence/axiom_reports/*.txt`"),
+         "`evidence/lean_receipts/*axioms*.txt`, `papers/**/axiom_report*.txt`, `**/evidence/axiom_reports/*.txt`"),
         ("Axioms named in those receipts", fmt_counter(axioms["seen"]) + "; outside {propext, Classical.choice, Quot.sound}: "
          + (", ".join(axioms["outside"]) or "none"), "same receipts"),
         ("`sorry` tokens outside comments and strings",
@@ -385,9 +385,9 @@ def render(skip_contracts: bool = False) -> str:
          f"lean4 {ph[('lean4', 'admit')]}, papers {ph[('papers', 'admit')]}, code {ph[('code', 'admit')]} "
          f"(identifiers named `admit`: {ph[('lean4', 'admit_ident')] + ph[('papers', 'admit_ident')] + ph[('code', 'admit_ident')]})",
          "`git ls-files '*.lean'`"),
-        ("Python test functions (`def test_`)", f"{tests[('py', 'main')]} (plus {tests[('py', 'results')]} in `dag/results` snapshots)",
+        ("Python test functions (`def test_`)", f"{tests[('py', 'main')]} (plus {tests[('py', 'results')]} in `evidence/results` snapshots)",
          "`git ls-files '*.py'`"),
-        ("Rust test functions (`#[test]`)", f"{tests[('rs', 'main')]} (plus {tests[('rs', 'results')]} in `dag/results` snapshots)",
+        ("Rust test functions (`#[test]`)", f"{tests[('rs', 'main')]} (plus {tests[('rs', 'results')]} in `evidence/results` snapshots)",
          "`git ls-files '*.rs'`"),
     ]
     out = [BEGIN,

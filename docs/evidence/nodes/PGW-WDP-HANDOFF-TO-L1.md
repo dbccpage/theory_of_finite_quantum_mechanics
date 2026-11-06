@@ -1,6 +1,6 @@
 # PGW-WDP-HANDOFF-TO-L1
 
-Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidenc
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 22
+- counted in-repo evidence files: 7
+- cited Lean, Rust or Python symbols found in their in-repo files: 24
 - distinct cited Lean declarations covered by a current replay receipt: 20
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
@@ -32,7 +32,7 @@ Terminal for the WDP stage on the original window. This triangle case does not i
 
 ## Source status
 
-WDP monograph §4.8 WDP-CH04-D02 vs 007 LGGR series §4 and lesson 1000_01 §3; adapter owed
+WDP-to-L1 quotient handoff and LGGR adapter separation from boundary leakage mechanized in PregenesisWdpHandoffToL1.lean and WdpBatch5.lean
 
 ## Review
 
@@ -42,14 +42,29 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- sha256 (`bytes`): `dcfbb2733e10b50e5582e2c8f7b3d9ce8220a199280cd4a2db35b573940f0b99`
+- cited in: node.lean, record TFQ-0558
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch5.boundary_leakage_ne_quotient_on_harmonic_cycle` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch5.boundary_leakage_ne_quotient_on_harmonic_cycle` |
+| `WitnessedDifference.WdpBatch5.lggrQuotientVerdict` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch5.lggrQuotientVerdict` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/PregenesisWdpHandoffToL1.lean`
 
 - file: [lean4/PregenesisWdpHandoffToL1.lean](../../../lean4/PregenesisWdpHandoffToL1.lean)
 - sha256 (`bytes`): `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json (PregenesisWdpHandoffToL1), receipt dag/research/pr_358_review_replay.json (PregenesisWdpHandoffToL1), record TFQ-0558
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-wdp-handoff-to-l1_lean_replay.json (PregenesisWdpHandoffToL1), receipt evidence/lean_receipts/pr_358_review_replay.json (PregenesisWdpHandoffToL1), record TFQ-0558
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json) (module `PregenesisWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_358_review_replay.json](../../../dag/research/pr_358_review_replay.json) (module `PregenesisWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-wdp-handoff-to-l1_lean_replay.json) (module `PregenesisWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_358_review_replay.json](../../../evidence/lean_receipts/pr_358_review_replay.json) (module `PregenesisWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PregenesisWdpHandoffToL1`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -111,7 +126,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md`
 
 - file: [dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md](../../../dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md)
-- sha256 (`lf-normalised`): `8acd10e8ae6ac9a79f8bda80df05d4f9372bce3d6785ba5dc62c9e971af54bd7`
+- sha256 (`lf-normalised`): `3a789e0d9bce25e769238aa73b752713bd413a5ef3a95f45e3179f931696b173`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0558
 - counts toward the grade: no
@@ -123,9 +138,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_pgw-wdp-handoff-to-l1_lean_replay.json`
 
-- file: [dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-wdp-handoff-to-l1_lean_replay.json)
 - sha256 (`lf-normalised`): `915672e215c1ad2ae717bc76bebf43702805c3bc0f0deb886bc03f02f3e0d5c0`
 - cited in: node.source
 - counts toward the grade: yes
@@ -143,7 +158,8 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PGW-R-WDP-HANDOFF-TO-L1` `GAP_NO_DERIVATION`: [PGW-WDP-SYNTHESIS-TRUNK-TIERS](PGW-WDP-SYNTHESIS-TRUNK-TIERS.md) (DEFINITION)
+- `PGW-R-WDP-HANDOFF-TO-L1` `DERIVED_LEAN`: [PGW-WDP-SYNTHESIS-TRUNK-TIERS](PGW-WDP-SYNTHESIS-TRUNK-TIERS.md) (DEFINITION)
 
-Outgoing (0):
+Outgoing (1):
 
+- `PGW-R-WD2-WORD-KERNEL-AGREEMENT` `DERIVED_LEAN`: [PGW-WD2-WORD-KERNEL-AGREEMENT](PGW-WD2-WORD-KERNEL-AGREEMENT.md) (PROVED_LEAN)

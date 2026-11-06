@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/Mub6WeylHeisenbergD6.lean](../../../lean4/Mub6WeylHeisenbergD6.lean)
 - sha256 (`bytes`): `564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279`
-- cited in: node.lean, receipt dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json (Mub6WeylHeisenbergD6), record TFQ-1223
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_mub6-weyl-heisenberg-d6_lean_replay.json (Mub6WeylHeisenbergD6), record TFQ-1223
 - replay: `verified`
-  - receipt [dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json](../../../dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json) (module `Mub6WeylHeisenbergD6`): recorded sha256 `564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_mub6-weyl-heisenberg-d6_lean_replay.json](../../../evidence/lean_receipts/campaign_mub6-weyl-heisenberg-d6_lean_replay.json) (module `Mub6WeylHeisenbergD6`): recorded sha256 `564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build Mub6WeylHeisenbergD6`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

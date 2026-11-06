@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ProtectedAnswerTransport.lean](../../../lean4/ProtectedAnswerTransport.lean)
 - sha256 (`bytes`): `8dffedb7cf1be35160e7ff6b9b230efdd40a9da12b2df55d6aac997abfb84338`
-- cited in: node.lean, receipt dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json (ProtectedAnswerTransport), record TFQ-0519
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-sn-protected-answer-transport_lean_replay.json (ProtectedAnswerTransport), record TFQ-0519
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json](../../../dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json) (module `ProtectedAnswerTransport`): recorded sha256 `8dffedb7cf1be35160e7ff6b9b230efdd40a9da12b2df55d6aac997abfb84338` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-sn-protected-answer-transport_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-sn-protected-answer-transport_lean_replay.json) (module `ProtectedAnswerTransport`): recorded sha256 `8dffedb7cf1be35160e7ff6b9b230efdd40a9da12b2df55d6aac997abfb84338` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ProtectedAnswerTransport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-sn-protected-answer-transport.md`
 
 - file: [dag/derivations/independent/pgw-sn-protected-answer-transport.md](../../../dag/derivations/independent/pgw-sn-protected-answer-transport.md)
-- sha256 (`lf-normalised`): `3fd918dc5551a1954c56977f9adff4b4c5c46885c5b42c996a7e7c67dcdc9de0`
+- sha256 (`lf-normalised`): `12bf306085118f2854d5b4f966abd20d2b2f5b40d483dc27ce6e122517fe2c07`
 - cited in: node.source
 - counts toward the grade: yes
 

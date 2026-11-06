@@ -18,7 +18,7 @@ ALLOWED_AXIOMS = {'propext', 'Classical.choice', 'Quot.sound'}
 
 
 def receipt():
-    return json.loads((ROOT / 'dag/research/tensor_countermodel_validation.json').read_text(encoding='utf-8'))
+    return json.loads((ROOT / 'evidence/lean_receipts/tensor_countermodel_validation.json').read_text(encoding='utf-8'))
 
 
 def test_countermodel_dependency_replay_is_complete_and_admission_free():

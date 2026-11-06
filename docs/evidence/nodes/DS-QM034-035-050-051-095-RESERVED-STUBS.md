@@ -38,7 +38,7 @@ Finite rational Cayley unitary shadow U=(I-tJ)(I+tJ)^{-1}, exact quadratic norm 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM034-035-050-051-095-RESERVED-STUBS/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM034-035-050-051-095-RESERVED-STUBS/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [evidence/results/DS-QM034-035-050-051-095-RESERVED-STUBS/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/DS-QM034-035-050-051-095-RESERVED-STUBS/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: Declared Cayley matrices are orthogonal while Euler expands norm at nonzero t; concrete two-generator Clifford identities are recomputed.
   - does not support: Supply spinor/Dirac carrier, Hamiltonian, dynamics and formal matrix bridges before closing the reserved paper stubs.
   - next test: Supply spinor/Dirac carrier, Hamiltonian, dynamics and formal matrix bridges before closing the reserved paper stubs.
@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0245 (shared), record TFQ-0246 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md)
-- sha256 (`lf-normalised`): `e2513e40c2ecce086e21e2854c8fe5265bcc64d468c32f322951cdebceca3fa9`
+- sha256 (`lf-normalised`): `2a5640730ebfe4a7d683ffbcc6e7f9e6f93c54a3e826c545a83fe2ff2853bce2`
 - generated view: listed, not counted
 - cited in: record TFQ-0245 (shared)
 - counts toward the grade: no
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md)
-- sha256 (`lf-normalised`): `567c2a7e1ebeb376b74aff83982ba897398a10f6f26803414b3ba391f4776d75`
+- sha256 (`lf-normalised`): `b32edcc4589325b58c23cbbf065ffa48945cb4e59170c40689868668f01cf741`
 - generated view: listed, not counted
 - cited in: record TFQ-0246 (shared)
 - counts toward the grade: no

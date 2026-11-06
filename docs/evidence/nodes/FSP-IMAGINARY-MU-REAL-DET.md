@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FermionSignImaginaryMuRealDet.lean](../../../lean4/FermionSignImaginaryMuRealDet.lean)
 - sha256 (`bytes`): `fa5f4b2f76560be37d6fccff11842fa7edf1504c4488dd8b1bb2b7d09267504c`
-- cited in: node.lean, receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (FermionSignImaginaryMuRealDet), record TFQ-1203
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-imaginary-mu-real-det_lean_replay.json (FermionSignImaginaryMuRealDet), record TFQ-1203
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json](../../../dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json) (module `FermionSignImaginaryMuRealDet`): recorded sha256 `fa5f4b2f76560be37d6fccff11842fa7edf1504c4488dd8b1bb2b7d09267504c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-imaginary-mu-real-det_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-imaginary-mu-real-det_lean_replay.json) (module `FermionSignImaginaryMuRealDet`): recorded sha256 `fa5f4b2f76560be37d6fccff11842fa7edf1504c4488dd8b1bb2b7d09267504c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FermionSignImaginaryMuRealDet`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -88,7 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 

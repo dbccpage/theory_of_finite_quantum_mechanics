@@ -36,7 +36,7 @@ Thm 6 Part 1 PROVEN / SCOPE FENCE; finite_qm audit: cited Lean declaration 'was 
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-THM6-P1-SCOPE-FENCE/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM6-P1-SCOPE-FENCE/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/L1-QM020-THM6-P1-SCOPE-FENCE/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../evidence/results/L1-QM020-THM6-P1-SCOPE-FENCE/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Two exact positive normalized atom maps and additive cell controls, with a concrete disagreement and normalization identity in Lean.
   - does not support: Specify and prove additional frame/affinity/phase hypotheses for uniqueness. Finite cell additivity alone is insufficient.
   - next test: Specify and prove additional frame/affinity/phase hypotheses for uniqueness. Finite cell additivity alone is insufficient.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornPairingBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b`
 - cited in: record TFQ-0305
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornRedundancy`
 - counts toward the grade: yes
 
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -85,20 +85,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md`
-
-- file: [dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md](../../../dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md)
-- sha256 (`lf-normalised`): `3dd615c58064bfcdc3dbc6a88c77882eb26ceee498868618eb12dfd557e14215`
-- generated view: listed, not counted
-- cited in: record TFQ-0305
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/claims/claim_ledger.yaml`
 
-- file: [atlas/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../atlas/finite_quantum_mechanics/claims/claim_ledger.yaml)
 - sha256 (`lf-normalised`): `0d891e04d6b8ff46e95360a919f7c2a64074a2d4f9732a2e481f868e41c385a7`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md`
+
+- file: [dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md](../../../dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md)
+- sha256 (`lf-normalised`): `62c1803aade6a6d6bce4634c6e2b52121efa979a14b39d34bd25298686f9cd90`
+- generated view: listed, not counted
+- cited in: record TFQ-0305
+- counts toward the grade: no
 
 ### External sources
 

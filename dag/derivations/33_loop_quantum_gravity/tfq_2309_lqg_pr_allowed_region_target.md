@@ -19,7 +19,7 @@ Not proved in Lean: the exact squared 6j value for every tuple (three witnesses 
 
 ## Source status
 
-Cayley-Menger determinant 288 V^2 regimes (4 > 0 for regular j=1/2, 0 for flat, -6075/16 < 0 for admissible a=(4,4,4,4,4,8)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPrAllowedRegion (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Cayley-Menger determinant 288 V^2 regimes (4 > 0 for regular j=1/2, 0 for flat, -6075/16 < 0 for admissible a=(4,4,4,4,4,8)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPrAllowedRegion (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Cayley-Menger determinant 288 V^2 regimes (4 > 0 for regular j=1/2, 0 for flat, 
 
 For twice-spins <= 8, with l_e = j_e + 1/2: the 13,691 admissible 6-tuples split by the sign of the Cayley-Menger determinant 288 V^2 (the 3x3 Gram form) into 10,884 allowed, 2,807 forbidden, 0 flat; exact 288 V^2 and 6j^2 values on three witnesses.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -50,7 +50,7 @@ See also: `TFQ-0084`.
 - `external:arXiv:math-ph/9812013`: J. Roberts, "Classical 6j-symbols and the tetrahedron", arXiv:math-ph/9812013 (1998); Geom. Topol. 3 (1999) 21-66, doi:10.2140/gt.1999.3.21.
 - Repository: `lean4/ReggePachnerWdw.lean`
 - Repository: `lean4/FrontierPrAllowedRegion.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierPrAllowedRegion.lean::FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8`

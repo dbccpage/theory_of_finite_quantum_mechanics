@@ -36,7 +36,7 @@ The catalog alone: `--catalog-only`. Machine output: `--json`. Exit status: 0 ok
 | AP_PY_001 | LOW | `# type: ignore` with no error code | `.agents/patterns/anti/python/AP_PY_001_blanket_mypy_ignore.md` |
 | CATALOG_*, CARD_*, DUAL_* | MEDIUM | catalog layout: slots, card names, `pattern_id`, reciprocal `dual_pattern` | `.agents/patterns/README.md` |
 
-Sealed run snapshots (`dag/results/`, `sealed_runs/`), `atlas/` and build directories are not scanned. Whole-checkout
+Sealed run snapshots (`evidence/results/`, `sealed_runs/`), `atlas/` and build directories are not scanned. Whole-checkout
 mode reads the git index; `--changed-since` also reads untracked files.
 
 ## Triage

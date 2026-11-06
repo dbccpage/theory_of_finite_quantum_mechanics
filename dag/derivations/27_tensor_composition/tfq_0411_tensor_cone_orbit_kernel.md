@@ -50,7 +50,7 @@ its seed preparation, transport and reachability fields using the proved
 to the constructed tomographic equivalence. Operational preservation of the
 calibrated local and shift conjugations is still explicit; full global-unitary
 availability is not assumed. The
-[formalization receipt](../../research/tensor_formalization_validation.json)
+[formalization receipt](../../../evidence/lean_receipts/tensor_formalization_validation.json)
 records the scoped replay. A full-project `lake build` is a separate check.
 
 The operational instantiation follows in

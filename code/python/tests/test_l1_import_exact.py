@@ -2,14 +2,14 @@
 import importlib.util, json, sys, unittest
 from pathlib import Path
 
-ROOT = next(p for p in Path(__file__).resolve().parents if (p / 'dag/pfp/prepare_stage.py').exists())
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / 'checks/exact_checkers/exact_json.py').exists())
 spec = importlib.util.spec_from_file_location('producer', ROOT / 'code/python/src/qm/l1_import_exact.py')
 m = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)
-sys.path.insert(0, str(ROOT / 'dag/pfp'))
+sys.path.insert(0, str(ROOT / 'checks/exact_checkers'))
 from l1_import_checker import verify
 
-B = ROOT / 'dag/results/batches/20261019T232430Z_prompts_112_131'
+B = ROOT / 'evidence/results/batches/20261019T232430Z_prompts_112_131'
 rows = json.loads((B / 'tools/witness_cases.json').read_bytes())
 
 

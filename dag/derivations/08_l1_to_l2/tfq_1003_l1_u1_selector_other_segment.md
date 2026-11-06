@@ -76,4 +76,4 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
   - `lean4/L1U1SelectorOtherSegment.lean`
   - `checks/independent/l1-u1-selector-other-segment.py`
   - `dag/derivations/independent/l1-u1-selector-other-segment.md`
-  - `dag/research/pr435_review_lean_replay.json`
+  - `evidence/lean_receipts/pr435_review_lean_replay.json`

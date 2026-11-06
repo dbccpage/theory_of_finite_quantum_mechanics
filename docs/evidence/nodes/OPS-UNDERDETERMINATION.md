@@ -49,27 +49,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md`
-
-- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md)
-- sha256 (`lf-normalised`): `695a604306e0c75854eda45928600322ccaa18934442cd3278d757c3b8e04702`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-2517
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
 - sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
 - sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md`
+
+- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md)
+- sha256 (`lf-normalised`): `03121b5ee00451f178d16bf94c55d01457c719af45cb4d1bf99b8c52c2076d97`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-2517
+- counts toward the grade: no
 
 ## Routes
 

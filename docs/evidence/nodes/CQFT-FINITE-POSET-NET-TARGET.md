@@ -32,11 +32,11 @@ Not proved in Lean: the statements for the full local matrix algebras A(O) (line
 
 ## Source status
 
-Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `isotony`, `disjoint_of_all_spacelike`, `locality_commute_of_spacelike`, `spacelike_not_transitive_on_posetN`, with `CausalOrder.spacelike_symm` and `spacelike_irrefl`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0`
 - cited in: node.lean, node.source, record TFQ-2104
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_causal_qft.json](../../../dag/research/lean_replay_campaign_causal_qft.json) (module `CausalOrder`): recorded sha256 `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_causal_qft.json](../../../evidence/lean_receipts/lean_replay_campaign_causal_qft.json) (module `CausalOrder`): recorded sha256 `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CausalOrder`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,9 +64,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierPosetNet.lean](../../../lean4/FrontierPosetNet.lean)
 - sha256 (`bytes`): `85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierPosetNet)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierPosetNet)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierPosetNet`): recorded sha256 `85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierPosetNet`): recorded sha256 `85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierPosetNet`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -84,14 +84,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md](../../../dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md)
-- sha256 (`lf-normalised`): `dff53ba6787a3957f04ab42f0c2c2079eb814b1851f20bda64a65db14d8d8324`
+- sha256 (`lf-normalised`): `3aa76207fa02dac526cbd41d107f922bfba42d2b44fd42088c47203243e4b895`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2104
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

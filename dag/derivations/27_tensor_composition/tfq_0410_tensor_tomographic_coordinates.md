@@ -104,4 +104,4 @@ The operational passage from physical positive tests to
 their bilinear extension is a premise, not a derived physical law.
 [TensorComposition](../../../lean4/TensorComposition.lean) chooses finite bases,
 connects this representation to the cone theorem, and checks `unit_test_is_trace`.
-See the [formalization receipt](../../research/tensor_formalization_validation.json).
+See the [formalization receipt](../../../evidence/lean_receipts/tensor_formalization_validation.json).

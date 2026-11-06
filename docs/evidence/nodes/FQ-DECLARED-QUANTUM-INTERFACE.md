@@ -41,7 +41,7 @@ paper s7 / s13.1: complex structure, Hilbert space, tensor factorization, Born r
 
 ## Review
 
-- PFP review: [dag/results/FQ-DECLARED-QUANTUM-INTERFACE/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-DECLARED-QUANTUM-INTERFACE/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-DECLARED-QUANTUM-INTERFACE/reviews/20261019_next_ten_audit/review_result.json](../../../evidence/results/FQ-DECLARED-QUANTUM-INTERFACE/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Three exact rational-real examples on an admitted finite quantum carrier with explicit source and import boundaries.
   - does not support: Derivation, necessity or independence of the quantum interface from primitive difference, or a derived time/dynamics.
   - next test: Audit declarations and actual matrices; do not promote API refusal or component counts to theorems.
@@ -56,7 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-1009
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,27 +66,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md](../../../dag/derivations/10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md)
-- sha256 (`lf-normalised`): `0cf23f20374235c10cde49efa13dd28eeb0d1f150e317df48d4be6ffff33e704`
-- generated view: listed, not counted
-- cited in: record TFQ-1009
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md](../../../dag/derivations/10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md)
+- sha256 (`lf-normalised`): `142426c13d58a43a3b37190688d66940811ff707220dd576caa2189fab76c45c`
+- generated view: listed, not counted
+- cited in: record TFQ-1009
+- counts toward the grade: no
 
 ### External sources
 

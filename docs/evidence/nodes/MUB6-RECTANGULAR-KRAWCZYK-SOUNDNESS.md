@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e7723f9114caacc35e8ada60c9b8295edf87c094b86ec83612c4916d4a98fccf`
 - cited in: node.lean, record TFQ-1271
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `RectangularQuadraticExclusion`): recorded sha256 `e7723f9114caacc35e8ada60c9b8295edf87c094b86ec83612c4916d4a98fccf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `RectangularQuadraticExclusion`): recorded sha256 `e7723f9114caacc35e8ada60c9b8295edf87c094b86ec83612c4916d4a98fccf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build RectangularQuadraticExclusion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `0709a45031ecb050772d9e52a57a7d6068b7f4aeea6fa712ad9374390c924173`
 - cited in: node.lean, record TFQ-1271
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiRectangularExclusion`): recorded sha256 `0709a45031ecb050772d9e52a57a7d6068b7f4aeea6fa712ad9374390c924173` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiRectangularExclusion`): recorded sha256 `0709a45031ecb050772d9e52a57a7d6068b7f4aeea6fa712ad9374390c924173` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiRectangularExclusion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

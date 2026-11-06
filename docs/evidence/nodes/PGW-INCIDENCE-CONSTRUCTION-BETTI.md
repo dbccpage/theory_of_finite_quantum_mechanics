@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `20095dfcd17780068df8483ca930df9e39504a4d5b6dbc11293abf514b921f35`
 - cited in: node.lean, record TFQ-0460
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.WitnessedDifferenceProgramme.GenesisIncidence`): recorded sha256 `20095dfcd17780068df8483ca930df9e39504a4d5b6dbc11293abf514b921f35` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.WitnessedDifferenceProgramme.GenesisIncidence`): recorded sha256 `20095dfcd17780068df8483ca930df9e39504a4d5b6dbc11293abf514b921f35` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -103,4 +103,4 @@ Incoming (1):
 
 Outgoing (1):
 
-- `PGW-R-WDP-INCIDENCE-ORIENTATION-TRANSPORT` `GAP_NO_DERIVATION`: [PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT](PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT.md) (OPEN)
+- `PGW-R-WDP-INCIDENCE-ORIENTATION-TRANSPORT` `DERIVED_LEAN`: [PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT](PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT.md) (PROVED_LEAN)

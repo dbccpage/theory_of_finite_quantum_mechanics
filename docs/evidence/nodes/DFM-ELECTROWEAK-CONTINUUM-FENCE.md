@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DressingFieldElectroweakContinuumFence.lean](../../../lean4/DressingFieldElectroweakContinuumFence.lean)
 - sha256 (`bytes`): `e41bab58fa9c70e42c75c4a1536a733ec301adbccfa7673e33b6282c13a19a89`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json (DressingFieldElectroweakContinuumFence), record TFQ-1122
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_dfm-electroweak-continuum-fence_lean_replay.json (DressingFieldElectroweakContinuumFence), record TFQ-1122
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json) (module `DressingFieldElectroweakContinuumFence`): recorded sha256 `e41bab58fa9c70e42c75c4a1536a733ec301adbccfa7673e33b6282c13a19a89` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_dfm-electroweak-continuum-fence_lean_replay.json](../../../evidence/lean_receipts/campaign_dfm-electroweak-continuum-fence_lean_replay.json) (module `DressingFieldElectroweakContinuumFence`): recorded sha256 `e41bab58fa9c70e42c75c4a1536a733ec301adbccfa7673e33b6282c13a19a89` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DressingFieldElectroweakContinuumFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
 
 - file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- sha256 (`lf-normalised`): `a41d66a41925e1236c1c506bfb4e3fa7222de96f7211faa6981d14b677cbe36b`
 - cited in: node.source
 - counts toward the grade: yes
 

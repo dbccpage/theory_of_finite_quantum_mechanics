@@ -37,7 +37,7 @@ WDP-CH04-D01/D02: degree-1 window (C0,C1,C2,d0,d1), Q1, kappa1, Phi1, Gamma2, R_
 
 ## Review
 
-- PFP review: [dag/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../evidence/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: For modules over a field (the graph windows tensored with Q), kappa1 exists on Q1 = C1/im d0 exactly when d1 d0 = 0 (kernel); for graph windows with positive weights the weighted-L1 cost is the IsPhi defect of a nonnegative definite J, so Phi1 = 0 iff the class is zero (kernel); on the 17 tabulated integer windows Phi1 is the weighted-L1 minimum over rational potentials with a verified primal potential and dual vector; each (Phi1, Gamma2) pair has exactly one class: ExactClass iff Phi1 = 0, ClosedResidual iff Phi1 \> 0 and Gamma2 = 0, ActiveClosureFailure iff both are positive (the Lean diag theorems state phi != 0, equivalent for Phi1 \>= 0).
   - does not support: Any derivation of the window from Genesis admission or Real_0 (it stays a declared datum); norms other than weighted L1; non-graph d0 beyond the module-level lemmas; existence of the attained minimum for the weighted-L1 cost as a Lean theorem (attainment is part of IsPhi and is witnessed natively by x and y, but LP strong duality / minimiser existence is not formalised); complex coefficients; any meaning of Gamma2 for a non-window (representative dependent); that R_cl = Gamma2/Phi1 mixes the weighted Phi1 with the unweighted Gamma2 and so depends on the weight scale; any physical reading of the three classes.
   - next test: Prove in Lean that the weighted-L1 quotient defect of every graph window is attained (existence of a minimising potential, or strong duality for the pair of linear programs), so that the attainment clause of IsPhi becomes a theorem for the windows instead of resting on the verified primal and dual witnesses tabulated here.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `b5adb85d12297d203151348422a0400482d6cac0397e8fcc5381c9c8a54c9885`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Obstruction`): recorded sha256 `b5adb85d12297d203151348422a0400482d6cac0397e8fcc5381c9c8a54c9885` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_wdp.json](../../../evidence/lean_receipts/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Obstruction`): recorded sha256 `b5adb85d12297d203151348422a0400482d6cac0397e8fcc5381c9c8a54c9885` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,9 +66,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/WdpDegree1Window.lean](../../../lean4/WdpDegree1Window.lean)
 - sha256 (`bytes`): `9da1d559e69e39b4235df28e9739536481b06944e90981b4b975683ddef5db42`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (WdpDegree1Window)
+- cited in: receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (WdpDegree1Window)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `WdpDegree1Window`): recorded sha256 `9da1d559e69e39b4235df28e9739536481b06944e90981b4b975683ddef5db42` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `WdpDegree1Window`): recorded sha256 `9da1d559e69e39b4235df28e9739536481b06944e90981b4b975683ddef5db42` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build WdpDegree1Window`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -144,7 +144,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md](../../../dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md)
-- sha256 (`lf-normalised`): `adee8da4c8fb532f934d1e32586c4f7ee0828e4feea3e8d72b0f86b48dc66fe2`
+- sha256 (`lf-normalised`): `f7b96ecaa69e6c5c79b61966cf890d7c9c3dcd5f426ed5372422305174d84aa2`
 - generated view: listed, not counted
 - cited in: record TFQ-0349 (shared)
 - counts toward the grade: no
@@ -167,7 +167,7 @@ Outgoing (6):
 
 - `OPS-R-CECH-COBOUNDARY-2` `GAP_NO_DERIVATION`: [OPS-CECH-COBOUNDARY](OPS-CECH-COBOUNDARY.md) (PROVED_PROSE)
 - `PG-R-WINDOW-SEQUENCE` `DERIVED_LEAN`: [PG-WDP-QUOTIENT-EXACT-SEQUENCE](PG-WDP-QUOTIENT-EXACT-SEQUENCE.md) (PROVED_LEAN)
-- `PGW-R-WDP-DEGREE-K-TORSION-BALANCE` `DERIVED_PROSE`: [PGW-WDP-DEGREE-K-TORSION-BALANCE](PGW-WDP-DEGREE-K-TORSION-BALANCE.md) (PROVED_PROSE)
+- `PGW-R-WDP-DEGREE-K-TORSION-BALANCE` `DERIVED_LEAN`: [PGW-WDP-DEGREE-K-TORSION-BALANCE](PGW-WDP-DEGREE-K-TORSION-BALANCE.md) (PROVED_LEAN)
 - `PGW-R-WDP-DURATION-EXACTNESS-PERIOD-WITNESS` `DERIVED_PROSE`: [PGW-WDP-DURATION-EXACTNESS-PERIOD-WITNESS](PGW-WDP-DURATION-EXACTNESS-PERIOD-WITNESS.md) (DEFINITION)
 - `PGW-R-WDP-EXACT-SEQUENCE-H1-Q1` `DERIVED_LEAN`: [PGW-WDP-EXACT-SEQUENCE-H1-Q1](PGW-WDP-EXACT-SEQUENCE-H1-Q1.md) (PROVED_LEAN)
 - `X-R-WDP-WINDOW-TO-L1-WINDOW` `DERIVED_LEAN`: [L1-WDP-WINDOW-PHI1-GAMMA2](L1-WDP-WINDOW-PHI1-GAMMA2.md) (DEFINITION)

@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `bde7f9bade1d62d06e66a2671dfefdbac25c1f32011d32732169bc575e168c9d`
 - cited in: node.lean, record TFQ-0407
 - replay: `verified`
-  - receipt [dag/research/tensor_measurement_validation.json](../../../dag/research/tensor_measurement_validation.json) (module `MeronCharacter`): recorded sha256 `bde7f9bade1d62d06e66a2671dfefdbac25c1f32011d32732169bc575e168c9d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_measurement_validation.json](../../../evidence/lean_receipts/tensor_measurement_validation.json) (module `MeronCharacter`): recorded sha256 `bde7f9bade1d62d06e66a2671dfefdbac25c1f32011d32732169bc575e168c9d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MeronCharacter`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

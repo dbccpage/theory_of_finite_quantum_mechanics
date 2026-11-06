@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f9b1fba535c2105546c6abb89577903e1e0e59cb065c8681c6da0905d4e2a72c`
 - cited in: node.lean, record TFQ-0480
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Ninth.Reach`): recorded sha256 `f9b1fba535c2105546c6abb89577903e1e0e59cb065c8681c6da0905d4e2a72c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Ninth.Reach`): recorded sha256 `f9b1fba535c2105546c6abb89577903e1e0e59cb065c8681c6da0905d4e2a72c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Ninth/Reach.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `4ec0bf99da08f7babb46c74cd94421591ae577b648d5bcb40fe6201acb793f55`
 - cited in: node.lean, record TFQ-0480
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Ninth.State`): recorded sha256 `4ec0bf99da08f7babb46c74cd94421591ae577b648d5bcb40fe6201acb793f55` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Ninth.State`): recorded sha256 `4ec0bf99da08f7babb46c74cd94421591ae577b648d5bcb40fe6201acb793f55` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Ninth/State.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

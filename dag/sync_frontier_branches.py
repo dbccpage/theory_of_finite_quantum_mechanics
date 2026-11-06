@@ -189,7 +189,7 @@ def render_paper(node: dict, record: dict, fragment: dict, paths: dict[str, str]
     if notes['target']:
         target_note = (
             'Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and '
-            '`dag/research/frontier_targets_lean_replay.json`.'
+            '`evidence/lean_receipts/frontier_targets_lean_replay.json`.'
             if node['status'] == 'PROVED_LEAN'
             else 'No check of this target is recorded in the repository. A run that mines or checks it must keep the '
                  'statement as written or narrow it.'

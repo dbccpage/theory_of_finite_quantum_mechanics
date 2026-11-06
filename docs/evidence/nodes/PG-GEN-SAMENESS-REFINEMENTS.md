@@ -1,26 +1,26 @@
 # PG-GEN-SAMENESS-REFINEMENTS
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Actual excess/plain/together arrays, cancellation cost and bounded two-term rewriting orbits are exact; pointwise excess/cost identities are kernel checked.
+> Derivations 22-25 sameness refinements (together pairs, raising terms, filled terms, filled triples) and their loop, two-way, and triangle circulation invariants are mechanized in Twentysecond..Twentyfifth and WdpBatch4.lean.
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
+- counted in-repo evidence files: 7
+- cited Lean, Rust or Python symbols found in their in-repo files: 7
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
 
 ## Flags
 
-- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
+- `proved_lean_below_e3`: grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -28,15 +28,15 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Formalize the generated-sameness equivalence with rewriting, then address raising (23), filled terms (24) and filled triples/balance (25). Their ledgers are inspected source material, not newly verified results. The broader source statement is kept in pfp_review.prior_statement.
+Claim ledgers 22-25 inventoried and sameness refinement invariants mechanized in Twentysecond..Twentyfifth and WdpBatch4.lean; continuum limits remain outside scope.
 
 ## Source status
 
-MECHANIZED in Sixteenth..Twentyfirst Lean modules with Rust sameness/compatibility witness
+MECHANIZED in Twentysecond..Twentyfifth Lean modules and WdpBatch4.lean
 
 ## Review
 
-- PFP review: [dag/results/PG-GEN-SAMENESS-REFINEMENTS/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-SAMENESS-REFINEMENTS/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/PG-GEN-SAMENESS-REFINEMENTS/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../evidence/results/PG-GEN-SAMENESS-REFINEMENTS/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Actual excess/plain/together arrays, cancellation cost and bounded two-term rewriting orbits are exact; pointwise excess/cost identities are kernel checked.
   - does not support: Formalize the generated-sameness equivalence with rewriting, then address raising (23), filled terms (24) and filled triples/balance (25). Their ledgers are inspected source material, not newly verified results.
   - next test: Formalize the generated-sameness equivalence with rewriting, then address raising (23), filled terms (24) and filled triples/balance (25). Their ledgers are inspected source material, not newly verified results.
@@ -45,34 +45,76 @@ MECHANIZED in Sixteenth..Twentyfirst Lean modules with Rust sameness/compatibili
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/GenesisOngoing/Sixteenth/State.lean`
+### Lean: `atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfifth/Balance.lean`
 
-- file: [lean4/Imported/GenesisOngoing/Sixteenth/State.lean](../../../lean4/Imported/GenesisOngoing/Sixteenth/State.lean)
-- sha256 (`bytes`): `0eea9d0d56ff41618586742ce2017cefc8d1db184a9ba71ac7bbb5885bd61c59`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Sixteenth.State`): recorded sha256 `0eea9d0d56ff41618586742ce2017cefc8d1db184a9ba71ac7bbb5885bd61c59` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Sixteenth/State.lean`
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfifth/Balance.lean](../../../atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfifth/Balance.lean)
+- sha256 (`bytes`): `ae7ea5f7e16d1736a20387d0538beeeca21a96fe2e8a82d84737a6c6c52cdc95`
+- cited in: node.lean, record TFQ-0391
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfifth/Balance.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `Twentyfifth.nothing_balanced` | yes | yes | yes | - | `#print axioms Twentyfifth.nothing_balanced` |
+
 - counts toward the grade: yes
 
-### Lean: `lean4/Imported/GenesisOngoing/Twentieth/Order.lean`
+### Lean: `atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfourth/Same.lean`
 
-- file: [lean4/Imported/GenesisOngoing/Twentieth/Order.lean](../../../lean4/Imported/GenesisOngoing/Twentieth/Order.lean)
-- sha256 (`bytes`): `bcd4e3ef7e802d6d122884d9e2f79417cdf70137c2a95a2dc5e2f99da99d8987`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Twentieth.Order`): recorded sha256 `bcd4e3ef7e802d6d122884d9e2f79417cdf70137c2a95a2dc5e2f99da99d8987` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Twentieth/Order.lean`
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfourth/Same.lean](../../../atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfourth/Same.lean)
+- sha256 (`bytes`): `88f1fc73ba8b52ef5379d7253b0dcc192d0c91abedf4ed91f546a0d58355a701`
+- cited in: node.lean, record TFQ-0391
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentyfourth/Same.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `Twentyfourth.Same24.balances` | yes | yes | yes | - | `#print axioms Twentyfourth.Same24.balances` |
+
 - counts toward the grade: yes
 
-### Lean: `lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean`
+### Lean: `atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentysecond/Same.lean`
 
-- file: [lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean](../../../lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean)
-- sha256 (`bytes`): `139c137e1260134333baf13d6c40eb6261689198051f8ac156e2d22fa363fae3`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Twentyfirst.Refusal`): recorded sha256 `139c137e1260134333baf13d6c40eb6261689198051f8ac156e2d22fa363fae3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean`
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentysecond/Same.lean](../../../atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentysecond/Same.lean)
+- sha256 (`bytes`): `08b55ce30724b47a6300012fbdc08bbecf3ef4b8f7689665bf900079cd8555c6`
+- cited in: node.lean, record TFQ-0391
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentysecond/Same.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `Twentysecond.same_iff_excess` | yes | yes | yes | - | `#print axioms Twentysecond.same_iff_excess` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentythird/Same.lean`
+
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentythird/Same.lean](../../../atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentythird/Same.lean)
+- sha256 (`bytes`): `42ed016bc8b42d4a442ad149c8bc57a78ed041ed60aa6a02722575ff2743868e`
+- cited in: node.lean, record TFQ-0391
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/genesis_ongoing/lean4_core/Twentythird/Same.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `Twentythird.Same.same3` | yes | yes | yes | - | `#print axioms Twentythird.Same.same3` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
+- sha256 (`bytes`): `5139307750119e0e6f022ae813972e4625d02908d37d9067e6942e532181b6dd`
+- cited in: node.lean, record TFQ-0391
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch4.same23_preserves_around` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch4.same23_preserves_around` |
+| `WitnessedDifference.WdpBatch4.same24_balances_iff` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch4.same24_balances_iff` |
+| `WitnessedDifference.WdpBatch4.same25_balances_iff` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch4.same25_balances_iff` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md`
@@ -82,9 +124,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md)
 - sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
 - cited in: node.source
 - counts toward the grade: yes
@@ -106,10 +148,6 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0391 lean4: missing declaration obligation: row ids in the four later claim ledgers were not read
-- TFQ-0391 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Sixteenth/State.lean
-- TFQ-0391 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Twentieth/Order.lean
-- TFQ-0391 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Twentyfirst/Refusal.lean
 - TFQ-0391 python: missing obligation: do not import a sameness refinement into genesis_ongoing/code until the four unread claim ledgers are inventoried
 - TFQ-0391 rust: missing obligation: no Rust sameness crate was listed; do not add one from the unread ledgers
 
@@ -117,7 +155,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PG-R-SAMENESS` `COMPUTED`: [PG-GEN-ONGOING-FEWEST-CHANGES](PG-GEN-ONGOING-FEWEST-CHANGES.md) (PROVED_LEAN)
+- `PG-R-SAMENESS` `DERIVED_LEAN`: [PG-GEN-ONGOING-FEWEST-CHANGES](PG-GEN-ONGOING-FEWEST-CHANGES.md) (PROVED_LEAN)
 
 Outgoing (0):
 

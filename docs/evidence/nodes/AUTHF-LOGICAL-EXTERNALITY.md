@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f`
 - cited in: node.lean, node.source, record TFQ-1358
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `AuthIncompleteness.Externality`): recorded sha256 `dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_computation.json](../../../evidence/lean_receipts/lean_replay_campaign_computation.json) (module `AuthIncompleteness.Externality`): recorded sha256 `dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/AuthIncompleteness/Externality.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `APP-R-AUTHF-LOGICAL-EXTERNALITY` `DERIVED_LEAN`: [PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER](PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER.md) (CONDITIONAL)
+- `APP-R-AUTHF-LOGICAL-EXTERNALITY` `DERIVED_LEAN`: [PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER](PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER.md) (PROVED_LEAN)
 
 Outgoing (0):
 

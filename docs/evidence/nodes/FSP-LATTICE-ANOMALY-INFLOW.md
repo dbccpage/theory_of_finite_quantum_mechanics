@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FermionSignLatticeAnomalyInflow.lean](../../../lean4/FermionSignLatticeAnomalyInflow.lean)
 - sha256 (`bytes`): `cc2e2d8e2b63de8c4fe5f349ba20e6a3bf75a48be27f1f81957668c4f48da1a1`
-- cited in: node.lean, receipt dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json (FermionSignLatticeAnomalyInflow), record TFQ-1199
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-lattice-anomaly-inflow_lean_replay.json (FermionSignLatticeAnomalyInflow), record TFQ-1199
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json](../../../dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json) (module `FermionSignLatticeAnomalyInflow`): recorded sha256 `cc2e2d8e2b63de8c4fe5f349ba20e6a3bf75a48be27f1f81957668c4f48da1a1` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-lattice-anomaly-inflow_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-lattice-anomaly-inflow_lean_replay.json) (module `FermionSignLatticeAnomalyInflow`): recorded sha256 `cc2e2d8e2b63de8c4fe5f349ba20e6a3bf75a48be27f1f81957668c4f48da1a1` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FermionSignLatticeAnomalyInflow`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 

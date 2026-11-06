@@ -49,7 +49,7 @@ gleason_complex and its real three-dimensional backend were independently rebuil
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `dag/research/pr500_review/review.md`
+  - `evidence/reviews/pr500/review.md`
   - `lean4/GleasonComplexSphere.lean`
   - `lean4/GleasonRealSphere.lean`
-  - `dag/research/pr500_review/manifest.json`
+  - `evidence/reviews/pr500/manifest.json`

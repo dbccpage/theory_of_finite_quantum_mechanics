@@ -36,7 +36,7 @@ Pre-Genesis §10 / SnCarrier base presentation, section lift, retraction outcome
 
 ## Review
 
-- PFP review: [dag/results/PG-SN-CARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-SN-CARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-SN-CARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/PG-SN-CARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: For a Lean restatement of the pinned restricted S(n) model (SnCarrier.lean sha 357376de..., glyph alphabet abstracted, wrappers flattened), the base-presentation lift is injective with a left-inverse retraction at every stage and its image has 1+g+3g^2 points; the unrestricted lift has no recovery; the declared carrier table differs from the stage-independent base total 1+g+3g^2 at stages 0, 2 and 3 for every g (and at stage 1 unless g = 0), and no alphabet matches the per-shape counts g and g^2 at stages 1 and 2 together; the table is a declaration, not derived from the model.
   - does not support: A corrected cardinality theorem for the S(n) carriers: the table carrierCard remains a declared definition with no theorem relating Carrier n to the base presentations or the lift; off-image refusal completeness (node PG-SN-OFF-IMAGE-REFUSAL); nested lift, retraction or refusal terms as members of the base type; any theorem identifying the restatement with the pinned types at G = Glyph (36 letters and digits), and per-stage shape-count or cumulative-count statements in Lean (native-only); the real 36-glyph syntax beyond the instance baseCard 36 = 3925 and alphabets above six glyphs in the native certificate; wire parsing and the Python/Lean correspondence of the source; the locally defined UnrepairedCarrier of SnCarrierDischarge (a different type from Carrier); any physical, categorical or adjunction reading, including the string metadata of the custody-successor file mssn_functor_bridge.rs.
   - next test: State and prove a corrected cardinality theorem: define Carrier n from the lift image or the stage-n shape set over the 36-glyph alphabet, prove its cardinality for n = 0..3 including the ground token, and decide whether carrierCard equals that derived function or must be replaced by it.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `260e999d08f1be537c217e8eb257699dd559b2ed3d6f742fe7fb6c6c99529d3e`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnCarrier`): recorded sha256 `260e999d08f1be537c217e8eb257699dd559b2ed3d6f742fe7fb6c6c99529d3e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mssn_sn.json](../../../evidence/lean_receipts/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnCarrier`): recorded sha256 `260e999d08f1be537c217e8eb257699dd559b2ed3d6f742fe7fb6c6c99529d3e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/SnCarrier.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `6663ad7c6dbfb2bc041774fb9a259f3f487c511c901e8e85a9c5dc043710dcaf`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnTheorems`): recorded sha256 `6663ad7c6dbfb2bc041774fb9a259f3f487c511c901e8e85a9c5dc043710dcaf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mssn_sn.json](../../../evidence/lean_receipts/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnTheorems`): recorded sha256 `6663ad7c6dbfb2bc041774fb9a259f3f487c511c901e8e85a9c5dc043710dcaf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/SnTheorems.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -83,9 +83,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/SnCarrierPfp.lean](../../../lean4/SnCarrierPfp.lean)
 - sha256 (`bytes`): `f55efb45cdedf884efc81d7dd16fd0f2f8bf04fc5e44b2d41f0b2fc36762ec2f`
-- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (SnCarrierPfp)
+- cited in: node.lean, receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (SnCarrierPfp)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `SnCarrierPfp`): recorded sha256 `f55efb45cdedf884efc81d7dd16fd0f2f8bf04fc5e44b2d41f0b2fc36762ec2f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `SnCarrierPfp`): recorded sha256 `f55efb45cdedf884efc81d7dd16fd0f2f8bf04fc5e44b2d41f0b2fc36762ec2f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SnCarrierPfp`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

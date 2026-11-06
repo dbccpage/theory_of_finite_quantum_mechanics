@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Statement
 
-> A Hilbert inner product on the linearized carrier is admitted up to two laws of its quadratic readout: sector additivity on disjoint supports and transitive sector symmetry. Under these laws the form is unique up to a unit scale and equals the standard form of the Born carriers (dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form). H005 exhibits more than one admissible Gram form on the same carrier; its form diag(1,2) is a sector-additive form that violates the symmetry law, so the non-uniqueness is exactly the absence of that law.
+> A Hilbert inner product on the linearized carrier is admitted up to two laws of its quadratic readout: sector additivity on disjoint supports and transitive sector symmetry. Under these laws the form is unique up to a unit scale and equals the standard form of the Born carriers (evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form). H005 exhibits more than one admissible Gram form on the same carrier; its form diag(1,2) is a sector-additive form that violates the symmetry law, so the non-uniqueness is exactly the absence of that law.
 
 ## Grade
 
@@ -35,11 +35,11 @@ Sector additivity of the quadratic readout (transcribed from edgewise l1 additiv
 
 ## Source status
 
-Sector-form selection kernel-checked in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form: a symmetric (Hermitian) Gram form whose readout is additive on disjoint sector supports and invariant under a set of sector permutations generating a transitive group equals G i0 i0 * 1 (SectorFormUniqueness.eq_smul_one, eq_smul_one_generated; SectorFormHermitian.eq_smul_one over Q(i)); the scale is positive for a positive-definite readout (scale_pos), two such forms are proportional (unique_up_to_scale), and the unit-normalised form is the standard form qf 1 / hf 1 of the Born carriers (eq_one_of_normalized). Countermodels diag(1,2) (the H005 form; sector additive, not swap invariant) and 1+(all ones) (swap invariant, not sector additive) show each law is used. Exact replays: code/python/src/qm/inner_product_uniqueness.py, code/rust/src/qm/inner_product_uniqueness.rs. Earlier: QM_122 H004 free linearization needs an imported coefficient pack; H005 inner-product admission, gram not unique
+Sector-form selection kernel-checked in evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form: a symmetric (Hermitian) Gram form whose readout is additive on disjoint sector supports and invariant under a set of sector permutations generating a transitive group equals G i0 i0 * 1 (SectorFormUniqueness.eq_smul_one, eq_smul_one_generated; SectorFormHermitian.eq_smul_one over Q(i)); the scale is positive for a positive-definite readout (scale_pos), two such forms are proportional (unique_up_to_scale), and the unit-normalised form is the standard form qf 1 / hf 1 of the Born carriers (eq_one_of_normalized). Countermodels diag(1,2) (the H005 form; sector additive, not swap invariant) and 1+(all ones) (swap invariant, not sector additive) show each law is used. Exact replays: code/python/src/qm/inner_product_uniqueness.py, code/rust/src/qm/inner_product_uniqueness.rs. Earlier: QM_122 H004 free linearization needs an imported coefficient pack; H005 inner-product admission, gram not unique
 
 ## Review
 
-- PFP review: [dag/results/L1-IMP-HILBERT-INNER-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-IMP-HILBERT-INNER-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: Exact three Gram pairings/norms and anisotropy controls, with general weighted difference and concrete nonuniqueness in Lean.
   - does not support: Prove positive-definite inner-product instances and source-carrier refinement, then justify any physical selection. The inner product remains admitted structure.
   - next test: Prove positive-definite inner-product instances and source-carrier refinement, then justify any physical selection. The inner product remains admitted structure.
@@ -54,7 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `8c8cf8f0e0067b4933719447884b819996c739cca782fca7dce5db2ea880930e`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `InnerProductAdmission`): recorded sha256 `8c8cf8f0e0067b4933719447884b819996c739cca782fca7dce5db2ea880930e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `InnerProductAdmission`): recorded sha256 `8c8cf8f0e0067b4933719447884b819996c739cca782fca7dce5db2ea880930e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build InnerProductAdmission`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormHermitian`): recorded sha256 `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `SectorFormHermitian`): recorded sha256 `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormHermitian`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormUniqueness`): recorded sha256 `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `SectorFormUniqueness`): recorded sha256 `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormUniqueness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

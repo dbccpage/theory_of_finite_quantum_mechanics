@@ -32,7 +32,7 @@ No finite-theory primitive forces readout invariance under sector relabelling; H
 
 ## Source status
 
-Supplied law of the quadratic readout in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form: the readout is invariant under a set of sector permutations whose generated group acts transitively on sectors (SectorFormUniqueness.Invariant, TransitiveOn, Generated; invariance is closed under products and inverses, invariant_of_generated). The finite theory supplies the permutation isometry envelope (PermutationUnitary.permutation_isometry), not the statement that the readout must be invariant under it.
+Supplied law of the quadratic readout in evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form: the readout is invariant under a set of sector permutations whose generated group acts transitively on sectors (SectorFormUniqueness.Invariant, TransitiveOn, Generated; invariance is closed under products and inverses, invariant_of_generated). The finite theory supplies the permutation isometry envelope (PermutationUnitary.permutation_isometry), not the statement that the readout must be invariant under it.
 
 ## Review
 
@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/L1SectorSymmetry.lean](../../../lean4/L1SectorSymmetry.lean)
 - sha256 (`bytes`): `0eba8b1f81633ea3ad657668291f3e7a35d281f6c8876ce95331f6905e849488`
-- cited in: node.lean, receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (L1SectorSymmetry), record TFQ-1001
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_l1-imp-sector-symmetry-law_lean_replay.json (L1SectorSymmetry), record TFQ-1001
 - replay: `verified`
-  - receipt [dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json](../../../dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json) (module `L1SectorSymmetry`): recorded sha256 `0eba8b1f81633ea3ad657668291f3e7a35d281f6c8876ce95331f6905e849488` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_l1-imp-sector-symmetry-law_lean_replay.json](../../../evidence/lean_receipts/campaign_l1-imp-sector-symmetry-law_lean_replay.json) (module `L1SectorSymmetry`): recorded sha256 `0eba8b1f81633ea3ad657668291f3e7a35d281f6c8876ce95331f6905e849488` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build L1SectorSymmetry`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -143,7 +143,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `7c4292b84dd988a7f220c8910579a0d6e4f8bf47fd2baf5ed66a49edf632c263`
 - cited in: node.lean, node.source, record TFQ-1001
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `PermutationUnitary`): recorded sha256 `7c4292b84dd988a7f220c8910579a0d6e4f8bf47fd2baf5ed66a49edf632c263` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `PermutationUnitary`): recorded sha256 `7c4292b84dd988a7f220c8910579a0d6e4f8bf47fd2baf5ed66a49edf632c263` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PermutationUnitary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -158,7 +158,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1`
 - cited in: node.lean, record TFQ-1001
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormHermitian`): recorded sha256 `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `SectorFormHermitian`): recorded sha256 `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormHermitian`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -174,7 +174,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde`
 - cited in: node.lean, record TFQ-1001
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormUniqueness`): recorded sha256 `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `SectorFormUniqueness`): recorded sha256 `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormUniqueness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -210,7 +210,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md](../../../dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md)
-- sha256 (`lf-normalised`): `e17d8573bad802ccb222b5b6fdd590da12da1ba435c61bb19dfb4456699b975d`
+- sha256 (`lf-normalised`): `a0f3fecf1f065754d45bf2b16e16cd5c2cf934f9933ab1c3b40b34fb18d899d3`
 - generated view: listed, not counted
 - cited in: record TFQ-1001
 - counts toward the grade: no
@@ -222,23 +222,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_l1-imp-sector-symmetry-law_lean_replay.json`
 
-- file: [dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json](../../../dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_l1-imp-sector-symmetry-law_lean_replay.json](../../../evidence/lean_receipts/campaign_l1-imp-sector-symmetry-law_lean_replay.json)
 - sha256 (`lf-normalised`): `6994726a6febd3fed04780bf9bab35742aee0a95b9689956c95da321fc55111b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md`
+### Documents and data: `evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md`
 
-- file: [dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md](../../../dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md)
+- file: [evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md](../../../evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md)
 - sha256 (`lf-normalised`): `f01c5d2da545bc6ad4951e385352cf309587c3540bbfd691fecf7192550beba4`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md`
+### Documents and data: `evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md`
 
-- file: [dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md](../../../dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md)
+- file: [evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md](../../../evidence/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md)
 - sha256 (`lf-normalised`): `cc48bb4ba0e11dcfb32347c3e852fc453509ebda36518d3f8976b5bf808804bc`
 - cited in: node.source
 - counts toward the grade: yes

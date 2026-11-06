@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/MajoranaOpenLindbladTransferEnvelope.lean](../../../lean4/MajoranaOpenLindbladTransferEnvelope.lean)
 - sha256 (`bytes`): `155e98450ce628f679f85c171e9bc0f323c8199e695b94085d32a4ba9c8af079`
-- cited in: node.lean, receipt dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json (MajoranaOpenLindbladTransferEnvelope), receipt dag/research/pr_360_review_replay.json (MajoranaOpenLindbladTransferEnvelope), record TFQ-1177
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json (MajoranaOpenLindbladTransferEnvelope), receipt evidence/lean_receipts/pr_360_review_replay.json (MajoranaOpenLindbladTransferEnvelope), record TFQ-1177
 - replay: `verified`
-  - receipt [dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json](../../../dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json) (module `MajoranaOpenLindbladTransferEnvelope`): recorded sha256 `155e98450ce628f679f85c171e9bc0f323c8199e695b94085d32a4ba9c8af079` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_360_review_replay.json](../../../dag/research/pr_360_review_replay.json) (module `MajoranaOpenLindbladTransferEnvelope`): recorded sha256 `155e98450ce628f679f85c171e9bc0f323c8199e695b94085d32a4ba9c8af079` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json](../../../evidence/lean_receipts/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json) (module `MajoranaOpenLindbladTransferEnvelope`): recorded sha256 `155e98450ce628f679f85c171e9bc0f323c8199e695b94085d32a4ba9c8af079` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_360_review_replay.json](../../../evidence/lean_receipts/pr_360_review_replay.json) (module `MajoranaOpenLindbladTransferEnvelope`): recorded sha256 `155e98450ce628f679f85c171e9bc0f323c8199e695b94085d32a4ba9c8af079` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build MajoranaOpenLindbladTransferEnvelope`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md`
 
 - file: [dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md](../../../dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md)
-- sha256 (`lf-normalised`): `7613d8f3c479bc6bbb64dbe91dd2a8c39a34e7d344eafd3ce1e02fac4f2c3df4`
+- sha256 (`lf-normalised`): `83f1f234f9d435fc0038f327a58600e3651519254ba962944a837e8846fb868c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1177
 - counts toward the grade: no
@@ -98,9 +98,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json`
 
-- file: [dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json](../../../dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json](../../../evidence/lean_receipts/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json)
 - sha256 (`lf-normalised`): `81862bd19af6b166d221adc65dcaa408176237798809de1857f7239e995dca92`
 - cited in: node.source
 - counts toward the grade: yes

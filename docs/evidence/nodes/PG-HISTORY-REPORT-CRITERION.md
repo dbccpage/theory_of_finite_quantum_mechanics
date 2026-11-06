@@ -36,7 +36,7 @@ Theorem 2 - history report criterion (Lean: history_report_criterion, history_fa
 
 ## Review
 
-- PFP review: [dag/results/PG-HISTORY-REPORT-CRITERION/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-HISTORY-REPORT-CRITERION/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-HISTORY-REPORT-CRITERION/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/PG-HISTORY-REPORT-CRITERION/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: For arbitrary types, an answer factors through the report image iff it is constant on report fibers, uniquely on the image; the direction constancy =\> factoring is proved from a selector of fiber representatives (a hypothesis, axiom-free) and, for an arbitrary report, with Classical.choice; necessity of a selector or of choice is not shown; verified exhaustively on 16 small function-space triples.
   - does not support: Necessity of a selector or of Classical.choice for the direction constancy =\> factoring (this node establishes no independence or unprovability result; the selector is a hypothesis, not a construction); the constructive listed-history reconstruction (node PG-PREGEN-CONSTRUCTIVE-SUMMARY); any structure on H, V or S, probability, measurement or physical interpretation of reports.
   - next test: Decide whether constancy on fibers =\> factoring through the image is provable without Classical.choice for an arbitrary history type (prove it, or give a choice-free model in which a fiber-constant question fails to factor), beyond the selector hypothesis proved here and the listed-history version of node 166.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/HistoryReport.lean](../../../lean4/HistoryReport.lean)
 - sha256 (`bytes`): `420e89ea7590479d90d1a16e9cea9b70f634e5dfc18d283397143f8c06773c0f`
-- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (HistoryReport)
+- cited in: node.lean, receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (HistoryReport)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `HistoryReport`): recorded sha256 `420e89ea7590479d90d1a16e9cea9b70f634e5dfc18d283397143f8c06773c0f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `HistoryReport`): recorded sha256 `420e89ea7590479d90d1a16e9cea9b70f634e5dfc18d283397143f8c06773c0f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HistoryReport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/SnMssn/Paper001.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -106,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `2e0971ee2a47dac5047bfc00ae2ee90f3241ad6142a7ea1b8b90cb03b4c3b5e1`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.Descent`): recorded sha256 `2e0971ee2a47dac5047bfc00ae2ee90f3241ad6142a7ea1b8b90cb03b4c3b5e1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.Descent`): recorded sha256 `2e0971ee2a47dac5047bfc00ae2ee90f3241ad6142a7ea1b8b90cb03b4c3b5e1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Descent.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -121,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `96cc6757237ae9cfcc72783b985ad3f8b77e0452928dc43cf0a2f653475248a2`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge`): recorded sha256 `96cc6757237ae9cfcc72783b985ad3f8b77e0452928dc43cf0a2f653475248a2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge`): recorded sha256 `96cc6757237ae9cfcc72783b985ad3f8b77e0452928dc43cf0a2f653475248a2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

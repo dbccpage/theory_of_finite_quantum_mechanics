@@ -16,7 +16,7 @@ Package a unique continuous extension of a uniformly ray-continuous nonnegative 
 The modulus in isUniformlyRayContinuous_quadRay is existential (Heine-Cantor on the compact unit sphere), not a quantitative delta in the coefficient norm; the paper estimate |q(u) - q(v)| <= 2 ||rho|| sqrt(2 raySinSq u v) is not formalized. Rational-valued data reconstruct only Gaussian-rational coefficients: covering arbitrary complex density matrices needs real-valued data or a separate approximation theorem. Higher dimensions require compatible three-dimensional gluing; infinite dimensions additionally need suitable normality/countable additivity and control of trace in limits. Pointwise-to-uniform remains FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN).
 
 ### Source Status
-Kernel-checked in lean4/GleasonBornCompletion.lean. born_density_matrix_of_uniformlyRayContinuous packages the extension F f of a nonnegative frame function that is uniformly continuous on rays as Re <v, rhoC v>/<v, v> on every nonzero v in C^3 (and f g = Re <g, rhoC g>/<g, g> on every nonzero g in Q(i)^3) for the positive semidefinite trace-one complex matrix rhoC = toMatrix (tomographyForm f), unique among Hermitian matrices with that property (eq_of_re_dotC_mulVec_self, polarization). F_eq_QcRay is the signed version without positivity. isUniformlyRayContinuous_quadRay is the general converse instance for every rational Hermitian form by compactness of the unit sphere of C^3 after phase alignment of unit representatives; uniformlyRayContinuous_frameFunction_iff then characterizes the uniformly ray-continuous frame functions on Q(i)^3 as exactly the trace-one rational Hermitian Rayleigh quotients. All 339 named declarations of the five Gleason modules carry #print axioms reports with only propext, Classical.choice and Quot.sound (dag/research/gleason_lean_audit.json, verified fail-closed by scripts/gleason_lean_audit.py and the hosted workflow lean-gleason). The declared uniform premise is retained, so the node is CONDITIONAL.
+Kernel-checked in lean4/GleasonBornCompletion.lean. born_density_matrix_of_uniformlyRayContinuous packages the extension F f of a nonnegative frame function that is uniformly continuous on rays as Re <v, rhoC v>/<v, v> on every nonzero v in C^3 (and f g = Re <g, rhoC g>/<g, g> on every nonzero g in Q(i)^3) for the positive semidefinite trace-one complex matrix rhoC = toMatrix (tomographyForm f), unique among Hermitian matrices with that property (eq_of_re_dotC_mulVec_self, polarization). F_eq_QcRay is the signed version without positivity. isUniformlyRayContinuous_quadRay is the general converse instance for every rational Hermitian form by compactness of the unit sphere of C^3 after phase alignment of unit representatives; uniformlyRayContinuous_frameFunction_iff then characterizes the uniformly ray-continuous frame functions on Q(i)^3 as exactly the trace-one rational Hermitian Rayleigh quotients. All 339 named declarations of the five Gleason modules carry #print axioms reports with only propext, Classical.choice and Quot.sound (evidence/lean_receipts/gleason_lean_audit.json, verified fail-closed by scripts/gleason_lean_audit.py and the hosted workflow lean-gleason). The declared uniform premise is retained, so the node is CONDITIONAL.
 
 ---
 
@@ -68,11 +68,11 @@ Kernel-checked in lean4/GleasonBornCompletion.lean. born_density_matrix_of_unifo
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `dag/research/pr500_review/review.md`
+  - `evidence/reviews/pr500/review.md`
   - `lean4/GleasonGaussianBridge.lean`
   - `lean4/BornGaussianTomographyReduction.lean`
-  - `dag/research/pr500_review/manifest.json`
+  - `evidence/reviews/pr500/manifest.json`
   - `lean4/GleasonBornCompletion.lean`
-  - `dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json`
-  - `dag/research/gleason_lean_audit.json`
-  - `dag/research/pointwise_vs_uniform_note.md`
+  - `evidence/lean_receipts/campaign_fq-born-qi3-continuum-completion_lean_replay.json`
+  - `evidence/lean_receipts/gleason_lean_audit.json`
+  - `dag/derivations/10_finite_qm_core/pointwise_vs_uniform_note.md`

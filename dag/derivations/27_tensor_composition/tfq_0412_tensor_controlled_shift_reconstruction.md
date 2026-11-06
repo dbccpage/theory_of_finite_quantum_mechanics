@@ -167,8 +167,8 @@ TFQ-0414--TFQ-0416, preserving both explicit saturation assumptions. The
 no-signalling paragraph remains a prose corollary. The explicit positive
 projector calibration table is not claimed as a separately verified Lean basis
 construction. See the
-[state formalization receipt](../../research/tensor_formalization_validation.json)
-and [measurement receipt](../../research/tensor_measurement_validation.json).
+[state formalization receipt](../../../evidence/lean_receipts/tensor_formalization_validation.json)
+and [measurement receipt](../../../evidence/lean_receipts/tensor_measurement_validation.json).
 
 The [exact Python witnesses](../../../code/python/src/qm/tensor_composition.py) and
 [tests](../../../code/python/tests/test_tensor_composition.py) verify finite

@@ -23,7 +23,7 @@ List the changed files (`git diff --name-only origin/main...HEAD`), then read th
 | `lean4/**/*.lean` | `AP_LN_001`, `AP_LN_002`, `AP_LN_004`; and `AP_MD_022` if a replay receipt changed |
 | `checks/independent/*.py` | `AP_MATH_011`, `AP_MATH_006` |
 | `dag/derivation_dag.json`, `dag/derivations/**`, README, docs, papers | `AP_MATH_006`, `AP_MATH_022`, `AP_MD_006` |
-| `dag/research/*lean_replay*.json`, `*.contract.score.yaml` | `AP_PY_009`, `AP_MD_022` |
+| `evidence/lean_receipts/*lean_replay*.json`, `*.contract.score.yaml` | `AP_PY_009`, `AP_MD_022` |
 | any test file | `AP_PY_019` |
 | `code/rust/**` | `AP_RS_001` |
 | any Python | `AP_PY_001`, `AP_PY_006` |

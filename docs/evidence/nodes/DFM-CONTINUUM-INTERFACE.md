@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DressingFieldContinuumInterface.lean](../../../lean4/DressingFieldContinuumInterface.lean)
 - sha256 (`bytes`): `3f1ecf2586d69c69db693eba7867a68daafea77f6834dfb26b6369f9125d3f9b`
-- cited in: node.lean, receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (DressingFieldContinuumInterface), record TFQ-0401
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_dfm-continuum-interface_lean_replay.json (DressingFieldContinuumInterface), record TFQ-0401
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-continuum-interface_lean_replay.json](../../../dag/research/campaign_dfm-continuum-interface_lean_replay.json) (module `DressingFieldContinuumInterface`): recorded sha256 `3f1ecf2586d69c69db693eba7867a68daafea77f6834dfb26b6369f9125d3f9b` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_dfm-continuum-interface_lean_replay.json](../../../evidence/lean_receipts/campaign_dfm-continuum-interface_lean_replay.json) (module `DressingFieldContinuumInterface`): recorded sha256 `3f1ecf2586d69c69db693eba7867a68daafea77f6834dfb26b6369f9125d3f9b` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DressingFieldContinuumInterface`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -81,9 +81,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DressingFieldRefinementLimit.lean](../../../lean4/DressingFieldRefinementLimit.lean)
 - sha256 (`bytes`): `19ff11d132d403af3df0b05d760411a9394d25fc0b36b4e8b7fdb1f06309f1af`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json (DressingFieldRefinementLimit), record TFQ-0401
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_dfm-continuum-refinement-limit_lean_replay.json (DressingFieldRefinementLimit), record TFQ-0401
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json](../../../dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json) (module `DressingFieldRefinementLimit`): recorded sha256 `19ff11d132d403af3df0b05d760411a9394d25fc0b36b4e8b7fdb1f06309f1af` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_dfm-continuum-refinement-limit_lean_replay.json](../../../evidence/lean_receipts/campaign_dfm-continuum-refinement-limit_lean_replay.json) (module `DressingFieldRefinementLimit`): recorded sha256 `19ff11d132d403af3df0b05d760411a9394d25fc0b36b4e8b7fdb1f06309f1af` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DressingFieldRefinementLimit`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -126,17 +126,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source, record TFQ-0401
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/electroweak_dfm_weinberg_finite_map.md`
+
+- file: [dag/derivations/24_dressing_field/electroweak_dfm_weinberg_finite_map.md](../../../dag/derivations/24_dressing_field/electroweak_dfm_weinberg_finite_map.md)
+- sha256 (`lf-normalised`): `455adaf17dfdca6638d17a8882f0ef419bbd3f08adfaacf30de3c1516c42611e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
 
 - file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- sha256 (`lf-normalised`): `a41d66a41925e1236c1c506bfb4e3fa7222de96f7211faa6981d14b677cbe36b`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md](../../../dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md)
-- sha256 (`lf-normalised`): `7302aa66951a2b9026d719a251242ed94e0275713cbb9775df07d9eb1185cf9d`
+- sha256 (`lf-normalised`): `5ec17ddb619e803b1347f300a98d686836bd5583f0054dda2761b65350284464`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0401
 - counts toward the grade: no
@@ -148,17 +155,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_dfm-continuum-refinement-limit_lean_replay.json`
 
-- file: [dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json](../../../dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_dfm-continuum-refinement-limit_lean_replay.json](../../../evidence/lean_receipts/campaign_dfm-continuum-refinement-limit_lean_replay.json)
 - sha256 (`lf-normalised`): `900745fe5193694ae7595e86b5c563b88c48ba31a6cac90225e458937a4435ee`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `dag/research/electroweak_dfm_weinberg_finite_map.md`
-
-- file: [dag/research/electroweak_dfm_weinberg_finite_map.md](../../../dag/research/electroweak_dfm_weinberg_finite_map.md)
-- sha256 (`lf-normalised`): `455adaf17dfdca6638d17a8882f0ef419bbd3f08adfaacf30de3c1516c42611e`
 - cited in: node.source
 - counts toward the grade: yes
 

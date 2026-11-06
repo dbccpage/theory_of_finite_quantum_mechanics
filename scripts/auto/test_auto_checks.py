@@ -214,7 +214,7 @@ def test_ast_rules_in_tests_and_independent_checks() -> None:
 
 
 def test_in_scope_and_test_file() -> None:
-    assert not common.in_scope("dag/results/X/run.py") and not common.in_scope("lean4/.lake/x.lean")
+    assert not common.in_scope("evidence/results/X/run.py") and not common.in_scope("lean4/.lake/x.lean")
     assert common.in_scope("lean4/A.lean")
     assert apl.is_test_file("code/python/tests/helper.py") and apl.is_test_file("a/test_b.py") and not apl.is_test_file("a/b.py")
 
@@ -252,14 +252,14 @@ def test_catalog_missing_and_slot(tmp_path: Path) -> None:
 
 
 def test_lint_cli_gates_only_added_lean_lines(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
-    root = make_repo(tmp_path, {"lean4/A.lean": "theorem a : True := by\n  sorry\n", "dag/results/x/B.lean": "x\n"})
+    root = make_repo(tmp_path, {"lean4/A.lean": "theorem a : True := by\n  sorry\n", "evidence/results/x/B.lean": "x\n"})
     catalog(root)
     assert apl.main(["--repo-root", str(root), "--changed-since", "base"]) == 0
     write(root, {"lean4/A.lean": "theorem a : True := by\n  sorry\ntheorem b : True := by admit\n",
-                 "dag/results/x/B.lean": "sorry\n", "lean4/New.lean": "axiom n : False\n"})
+                 "evidence/results/x/B.lean": "sorry\n", "lean4/New.lean": "axiom n : False\n"})
     assert apl.main(["--repo-root", str(root), "--changed-since", "base"]) == 1
     out = capsys.readouterr().out
-    assert "lean4/A.lean:3" in out and "lean4/A.lean:2" not in out and "lean4/New.lean:1" in out and "dag/results" not in out
+    assert "lean4/A.lean:3" in out and "lean4/A.lean:2" not in out and "lean4/New.lean:1" in out and "evidence/results" not in out
     assert apl.main(["--repo-root", str(root), "--fail-on", "none", "--json"]) == 0
     doc = json.loads(capsys.readouterr().out)
     # whole-checkout mode reads the git index: both A.lean lines, not the untracked New.lean
@@ -537,7 +537,7 @@ def test_added_lines_for_a_file_dropped_from_the_index(tmp_path: Path) -> None:
 
 
 def test_in_scope() -> None:
-    assert not common.in_scope("dag/results/X/run.py") and not common.in_scope("lean4/.lake/x.lean")
+    assert not common.in_scope("evidence/results/X/run.py") and not common.in_scope("lean4/.lake/x.lean")
     assert not common.in_scope("atlas/x.md") and common.in_scope("lean4/A.lean")
 
 

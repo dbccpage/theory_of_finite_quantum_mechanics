@@ -32,11 +32,11 @@ forests. Those tests check finite instances; the algebraic identity is general.
 
 ## Evidence and next obligation
 
-- [dag/research/finite_graph_dressing.py](../../../dag/research/finite_graph_dressing.py)
-- [dag/research/finite_graph_dressing.rs](../../../dag/research/finite_graph_dressing.rs)
+- [checks/finite_graph_dressing/finite_graph_dressing.py](../../../checks/finite_graph_dressing/finite_graph_dressing.py)
+- [checks/finite_graph_dressing/finite_graph_dressing.rs](../../../checks/finite_graph_dressing/finite_graph_dressing.rs)
 - [lean4/FiniteGraphDressing.lean::change_dressing](../../../lean4/FiniteGraphDressing.lean)
-- [dag/research/finite_graph_dressing.rs::forest_dressing](../../../dag/research/finite_graph_dressing.rs)
+- [checks/finite_graph_dressing/finite_graph_dressing.rs::forest_dressing](../../../checks/finite_graph_dressing/finite_graph_dressing.rs)
 - [lean4/FiniteGraphDressing.lean](../../../lean4/FiniteGraphDressing.lean)
-- [dag/research/test_finite_graph_dressing.py](../../../dag/research/test_finite_graph_dressing.py)
+- [checks/finite_graph_dressing/test_finite_graph_dressing.py](../../../checks/finite_graph_dressing/test_finite_graph_dressing.py)
 
 Use the same multiplication convention in all three languages; distinguish edge residuals from conjugacy-invariant closed-loop observables.

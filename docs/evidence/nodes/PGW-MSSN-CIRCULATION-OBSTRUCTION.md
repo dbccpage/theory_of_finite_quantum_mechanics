@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `4c4d0d2348ce89a0caa80aa4860c8fbcd3a038c8a4a2bbcc55a4e58bb609894a`
 - cited in: node.lean, node.source, record TFQ-0534
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.MinimalSymbolSystems.MssnObstructionDetector`): recorded sha256 `4c4d0d2348ce89a0caa80aa4860c8fbcd3a038c8a4a2bbcc55a4e58bb609894a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.MinimalSymbolSystems.MssnObstructionDetector`): recorded sha256 `4c4d0d2348ce89a0caa80aa4860c8fbcd3a038c8a4a2bbcc55a4e58bb609894a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

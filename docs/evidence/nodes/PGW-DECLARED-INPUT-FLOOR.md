@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenesisDeclaredInputFloor.lean](../../../lean4/PregenesisDeclaredInputFloor.lean)
 - sha256 (`bytes`): `4e428b16284676eac88e4ee93ce4efee42a0f5603d8743296815ee8b3e758051`
-- cited in: node.lean, receipt dag/research/campaign_pgw-declared-input-floor_lean_replay.json (PregenesisDeclaredInputFloor), receipt dag/research/pr_351_review_replay.json (PregenesisDeclaredInputFloor), record TFQ-0498
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-declared-input-floor_lean_replay.json (PregenesisDeclaredInputFloor), receipt evidence/lean_receipts/pr_351_review_replay.json (PregenesisDeclaredInputFloor), record TFQ-0498
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-declared-input-floor_lean_replay.json](../../../dag/research/campaign_pgw-declared-input-floor_lean_replay.json) (module `PregenesisDeclaredInputFloor`): recorded sha256 `4e428b16284676eac88e4ee93ce4efee42a0f5603d8743296815ee8b3e758051` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_351_review_replay.json](../../../dag/research/pr_351_review_replay.json) (module `PregenesisDeclaredInputFloor`): recorded sha256 `4e428b16284676eac88e4ee93ce4efee42a0f5603d8743296815ee8b3e758051` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-declared-input-floor_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-declared-input-floor_lean_replay.json) (module `PregenesisDeclaredInputFloor`): recorded sha256 `4e428b16284676eac88e4ee93ce4efee42a0f5603d8743296815ee8b3e758051` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_351_review_replay.json](../../../evidence/lean_receipts/pr_351_review_replay.json) (module `PregenesisDeclaredInputFloor`): recorded sha256 `4e428b16284676eac88e4ee93ce4efee42a0f5603d8743296815ee8b3e758051` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build PregenesisDeclaredInputFloor`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

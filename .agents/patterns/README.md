@@ -32,7 +32,7 @@ name matches its `pattern_id`, and every dual exists and names the card back.
 | `AP_RS_001` | rust | Cargo target duplicated per worktree | none; read by hand. |
 
 A card with no mechanical check is read by hand in the `auto-code-anti-pattern-hunter` pass. The repository-wide rules
-these cards serve are CONTRIBUTING.md's honesty rules, the honesty gate of `dag/pfp/campaign/README.md`, the overclaim
+these cards serve are CONTRIBUTING.md's honesty rules, the honesty gate of `checks/exact_checkers/campaign/README.md`, the overclaim
 rubric (`.claude/skills/overclaim-hunter/rubric.md`) and SCORING.md.
 
 ## Adding a card

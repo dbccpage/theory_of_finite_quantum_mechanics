@@ -19,7 +19,7 @@ Not proved in Lean: complete positivity of cloneZ, cloneX and cloneY, and trace 
 
 ## Source status
 
-Numeric and algebraic claims verified with exact Python fractions.Fraction arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Numeric and algebraic claims verified with exact Python fractions.Fraction arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -34,7 +34,7 @@ Numeric and algebraic claims verified with exact Python fractions.Fraction arith
 
 Over Q(i), six Pauli eigenstate rays: explicit copy-in-basis maps clone each of Z, X, Y (trace preservation proved for Z only); no additive map clones {|0>,|1>,|+>,|->} because |0><0|+|1><1| = |+><+|+|-><-| while the clone images differ by a matrix with entry -1/2 on |00><11| and |11><00|; x <= x^2 forces overlap 0 or 1; exactly 10 of the 64 subsets are pairwise equal-or-orthogonal and the maximal ones are the three antipodal pairs.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -51,7 +51,7 @@ See also: `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED`, `DS-QM060-SUPERPOSITION-QUO
 
 - Repository: `lean4/Entanglement.lean`
 - Repository: `lean4/FrontierNoCloning.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneZ_trace_preserving`

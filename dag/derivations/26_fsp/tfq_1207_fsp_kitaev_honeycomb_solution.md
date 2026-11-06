@@ -69,4 +69,4 @@ Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does no
 - **Cited Sources**:
   - `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md:600-612`
   - `dag/derivations/independent/fsp-kitaev-honeycomb-solution.md`
-  - `dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json`
+  - `evidence/lean_receipts/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json`

@@ -19,7 +19,7 @@ Checked in Lean 4 by exhaustive GF(2) symplectic enumeration over the 64-element
 
 ## Source status
 
-Source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) pp. 24-25, and weight enumerator 1 + 45 z^4 + 18 z^6, all twenty 3|3 bipartition entropies (3 bits) and minimum logical weight 3 recomputed in Python on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) pp. 24-25, and weight enumerator 1 + 45 z^4 + 18 z^6, all twenty 3|3 bipartition entropies (3 bits) and minimum logical weight 3 recomputed in Python on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) p
 
 Stabilizer group of the Choi state: weight enumerator 1 + 45 z^4 + 18 z^6; every 3|3 bipartition has trivial supported stabilizer subgroup giving entropy 3 bits (twenty bipartitions); normalizer minus stabilizer (48 elements modulo phase) has minimum weight 3.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -54,7 +54,7 @@ See also: `TFQ-0048`, `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 - Repository: `lean4/ShorNineQubitCode.lean`
 - Repository: `lean4/SurfaceCodeToricTopology.lean`
 - Repository: `lean4/FrontierFiveQubitPerfectTensor.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64`

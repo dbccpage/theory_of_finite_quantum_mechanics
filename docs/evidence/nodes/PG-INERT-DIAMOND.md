@@ -36,7 +36,7 @@ inert, opaque inscription; no object-language meaning (Pre-Genesis paper §1 tab
 
 ## Review
 
-- PFP review: [dag/results/PG-INERT-DIAMOND/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-INERT-DIAMOND/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-INERT-DIAMOND/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/PG-INERT-DIAMOND/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: In a three-event admission model where supply is the identity by stipulation: in the unrooted replay a mention of \<\> (or any token) is invisible to every function of the admitted state; in the rooted replay the first supply of \<\> is an admission precondition and only later supplies are inert; the model predicate HasCoproduct is independent of inscribing \<\> (the identification Real_0 = Difference join Structure is not modelled), and coproduct without inscription occurs only in the unrooted model; inertness is the model rule rather than a consequence of the spelling; verified exhaustively for all traces of length \<= 5.
   - does not support: The identification Real_0 = Difference joined with Structure (it is not modelled; only a stand-in predicate is shown independent of the inscription); the remaining three events of the six-operation alphabet (instance, rule, imposition) and their refusal rules; the Rust partial admission rules beyond the three-event fragment; any claim that supply is inert independently of the stipulated step rule; inertness of the FIRST supply in the rooted replay; any physical or interpretive reading of \<\>.
   - next test: Extend the finite model to the remaining three events of the six-operation alphabet (admit instance, admit rule, impose) with the refusal rules of admission.rs, and prove that supply stays inert and that no supply history forces a coproduct structure on the admitted state.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `4db17f03c72c92b46e8b7df4b72ed47e8b9088c7e8c09b3e2ae23ac4e27aa6d3`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.GenesisConstruction`): recorded sha256 `4db17f03c72c92b46e8b7df4b72ed47e8b9088c7e8c09b3e2ae23ac4e27aa6d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.GenesisConstruction`): recorded sha256 `4db17f03c72c92b46e8b7df4b72ed47e8b9088c7e8c09b3e2ae23ac4e27aa6d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/GenesisConstruction.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -79,9 +79,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/InertDiamond.lean](../../../lean4/InertDiamond.lean)
 - sha256 (`bytes`): `3981d4df4b464251865c5b3553c96467f64024927f11710f0769f1bef4880dd7`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (InertDiamond)
+- cited in: receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (InertDiamond)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `InertDiamond`): recorded sha256 `3981d4df4b464251865c5b3553c96467f64024927f11710f0769f1bef4880dd7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `InertDiamond`): recorded sha256 `3981d4df4b464251865c5b3553c96467f64024927f11710f0769f1bef4880dd7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build InertDiamond`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

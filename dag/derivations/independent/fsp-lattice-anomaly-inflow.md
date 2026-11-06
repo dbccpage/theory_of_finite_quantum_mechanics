@@ -171,7 +171,7 @@ choice of lift. It must not be advertised as a well-defined compact action.
 ## Exact determinant witnesses and replay
 
 The full output is in
-`dag/research/campaign_fsp-lattice-anomaly-inflow_independent.json`.
+`evidence/lean_receipts/campaign_fsp-lattice-anomaly-inflow_independent.json`.
 For the width-two boxes the determinants before and after gauge change are:
 
 | height | det D | det C | det S | det K |

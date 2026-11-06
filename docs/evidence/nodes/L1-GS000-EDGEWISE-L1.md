@@ -36,7 +36,7 @@ Thm 1 coordinatewise weighted L1 decomposition, Thm 2 symmetry orbit-constancy, 
 
 ## Review
 
-- PFP review: [dag/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Weighted two-edge l1 decomposition, exact transposition defect and l-infinity disjoint-additivity countercontrols; general transposition algebra under positive coordinates.
   - does not support: Prove the full H1-H5 classification and graph-orbit theorem on its stated carrier, separately from finite examples. Nonnegative zero weights give a seminorm, not faithfulness.
   - next test: Prove the full H1-H5 classification and graph-orbit theorem on its stated carrier, separately from finite examples. Nonnegative zero weights give a seminorm, not faithfulness.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,8 +68,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `07ccbbad40edfdf33388fed09c701273fb3ef1e3ce3ae4ab7557d038dd17a42a`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_emergence.json](../../../dag/research/lean_replay_campaign_l1_emergence.json) (module `Imported.CoordinateWiseAdditivity.gs003_coordinate_l1`): recorded sha256 `07ccbbad40edfdf33388fed09c701273fb3ef1e3ce3ae4ab7557d038dd17a42a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_emergence.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_emergence.json) (module `Imported.CoordinateWiseAdditivity.gs003_coordinate_l1`): recorded sha256 `07ccbbad40edfdf33388fed09c701273fb3ef1e3ce3ae4ab7557d038dd17a42a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/CoordinateWiseAdditivity/gs003_coordinate_l1.lean`
+- counts toward the grade: yes
+
+### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
+
+- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
+- sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
+- cited in: node.rust
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/gauge_classification.rs`
@@ -88,18 +100,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
 
-### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
-
-- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
-- sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
-- cited in: node.rust
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness` (rust_symbol) | yes | yes | yes | - | - |
-
-- counts toward the grade: yes
-
 ### Documents and data: `atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md`
 
 - file: [atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md](../../../atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md)
@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0353_under_admitted_h1_h5_record_an_edgewise_weighted_l1_aggregate_orbit_constant_weights_and.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0353_under_admitted_h1_h5_record_an_edgewise_weighted_l1_aggregate_orbit_constant_weights_and.md](../../../dag/derivations/07_l1_emergence/tfq_0353_under_admitted_h1_h5_record_an_edgewise_weighted_l1_aggregate_orbit_constant_weights_and.md)
-- sha256 (`lf-normalised`): `50e79d3778e964374a776a2588c86b6498ff2b32ed5cdd5bd59ac1865ab85833`
+- sha256 (`lf-normalised`): `c166e2930dd974ffa0a9e71b119514429178914d4543431e2c71477004ad32ae`
 - generated view: listed, not counted
 - cited in: record TFQ-0353
 - counts toward the grade: no
@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md](../../../dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md)
-- sha256 (`lf-normalised`): `d4531de0213a9426dd4e3025c034634a7373aed0a94d9b8eb21bcf4f662e1e65`
+- sha256 (`lf-normalised`): `ca76d22c1953455e01843741ac5db44310b69bdb660b8624a6d9c5a730b8195e`
 - generated view: listed, not counted
 - cited in: record TFQ-0354 (shared)
 - counts toward the grade: no

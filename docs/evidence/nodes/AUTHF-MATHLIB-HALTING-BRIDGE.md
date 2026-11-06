@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49`
 - cited in: node.lean, node.source, record TFQ-1348
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `AuthIncompleteness.MathlibBridge`): recorded sha256 `ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_computation.json](../../../evidence/lean_receipts/lean_replay_campaign_computation.json) (module `AuthIncompleteness.MathlibBridge`): recorded sha256 `ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/AuthIncompleteness/MathlibBridge.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md`
 
 - file: [dag/derivations/04_authorization/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md](../../../dag/derivations/04_authorization/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md)
-- sha256 (`lf-normalised`): `39aecc461bf3d3eff9648ed7b2b403aa2176f51eeed229af309e70c09ad58e31`
+- sha256 (`lf-normalised`): `b4f7baee0dd634505d7da70a920b9bbb3548666ec77244eb9d1c7fc3d0191a6c`
 - cited in: node.source
 - counts toward the grade: yes
 

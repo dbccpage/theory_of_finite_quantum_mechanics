@@ -62,4 +62,4 @@ Decided integer comparisons at T = 1, 2 and 3 of f(T) = 4 + T^3 against 3 T^2 in
   - `dag/derivations/28_majorana/majorana/the_majorana_problem.md:369-383`
   - `dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md:34-34`
   - `dag/derivations/independent/maj-open-lindblad-transfer-envelope.md`
-  - `dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json`
+  - `evidence/lean_receipts/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json`

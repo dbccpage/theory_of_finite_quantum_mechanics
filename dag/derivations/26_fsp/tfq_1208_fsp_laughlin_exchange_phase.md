@@ -62,4 +62,4 @@ Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exis
   - `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md:613-625`
   - `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md:621-653`
   - `dag/derivations/independent/fsp-laughlin-exchange-phase.md`
-  - `dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json`
+  - `evidence/lean_receipts/campaign_fsp-laughlin-exchange-phase_lean_replay.json`

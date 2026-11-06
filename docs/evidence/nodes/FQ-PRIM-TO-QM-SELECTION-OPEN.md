@@ -36,7 +36,7 @@ Selection of a declared quantum model or readout from primitive difference stays
 
 ## Review
 
-- PFP review: [dag/results/FQ-PRIM-TO-QM-SELECTION-OPEN/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-PRIM-TO-QM-SELECTION-OPEN/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-PRIM-TO-QM-SELECTION-OPEN/reviews/20261019_structure_audit/review_result.json](../../../evidence/results/FQ-PRIM-TO-QM-SELECTION-OPEN/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: Identical two-label input carrier and amplitudes admit distinct positive normalized quadratic and quartic rules, with a symmetric agreement control; the 1:2 example is checked in Lean.
   - does not support: Derive a quantum carrier/readout selection principle and its hypotheses. Full continuum matrix/Hilbert/Gleason imports are not discharged by executing a declared packet walk.
   - next test: Derive a quantum carrier/readout selection principle and its hypotheses. Full continuum matrix/Hilbert/Gleason imports are not discharged by executing a declared packet walk.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-1010
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,10 +64,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PrimToQmSelection.lean](../../../lean4/PrimToQmSelection.lean)
 - sha256 (`bytes`): `d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371`
-- cited in: node.lean, receipt dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json (PrimToQmSelection), receipt dag/research/pr_365_review_replay.json (PrimToQmSelection), record TFQ-1010
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fq-prim-to-qm-selection-open_lean_replay.json (PrimToQmSelection), receipt evidence/lean_receipts/pr_365_review_replay.json (PrimToQmSelection), record TFQ-1010
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json](../../../dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json) (module `PrimToQmSelection`): recorded sha256 `d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_365_review_replay.json](../../../dag/research/pr_365_review_replay.json) (module `PrimToQmSelection`): recorded sha256 `d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-prim-to-qm-selection-open_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-prim-to-qm-selection-open_lean_replay.json) (module `PrimToQmSelection`): recorded sha256 `d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_365_review_replay.json](../../../evidence/lean_receipts/pr_365_review_replay.json) (module `PrimToQmSelection`): recorded sha256 `d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build PrimToQmSelection`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -86,27 +86,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md](../../../dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md)
-- sha256 (`lf-normalised`): `0e48524d7e06eafe2738ee8b7509c07ac875fb2d8cc371498d2f6a0a86b93ad3`
-- generated view: listed, not counted
-- cited in: record TFQ-1010
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md](../../../dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md)
+- sha256 (`lf-normalised`): `56c2cfef543bae0dcd4e989e77fcd1c525be3e19cb96c266b142ce42a79c4156`
+- generated view: listed, not counted
+- cited in: record TFQ-1010
+- counts toward the grade: no
 
 ### External sources
 

@@ -33,7 +33,7 @@ Both hypotheses are supplied; their selection from finite-theory primitives is t
 
 ## Source status
 
-Kernel-checked (Lean 4.33.1, pinned Mathlib cache) in dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion (four modules, 112 receipts) and dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps (three further modules; 168 receipts including the re-replayed dependencies); exact replays in code/python/src/qm/hilbert_lift_completion.py (20 tests, certificate row in test_isolated_certificates.py) and code/rust/src/qm/hilbert_lift_completion.rs (18 inline tests); replayed with Lean 4.35.0 on 2026-10-21.
+Kernel-checked (Lean 4.33.1, pinned Mathlib cache) in evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion (four modules, 112 receipts) and evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps (three further modules; 168 receipts including the re-replayed dependencies); exact replays in code/python/src/qm/hilbert_lift_completion.py (20 tests, certificate row in test_isolated_certificates.py) and code/rust/src/qm/hilbert_lift_completion.rs (18 inline tests); replayed with Lean 4.35.0 on 2026-10-21.
 
 ## Review
 
@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106`
 - cited in: node.lean, record TFQ-1021
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftCompletion`): recorded sha256 `2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftCompletion`): recorded sha256 `2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftCompletion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `4151b5f8a74cdf10988dcf93ca24c2fbcc7562b6e53454cb4b3062d9dcac7309`
 - cited in: node.lean, record TFQ-1021
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftComplexCarrier`): recorded sha256 `4151b5f8a74cdf10988dcf93ca24c2fbcc7562b6e53454cb4b3062d9dcac7309` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftComplexCarrier`): recorded sha256 `4151b5f8a74cdf10988dcf93ca24c2fbcc7562b6e53454cb4b3062d9dcac7309` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftComplexCarrier`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341`
 - cited in: node.lean, record TFQ-1021
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftFiniteTower`): recorded sha256 `3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftFiniteTower`): recorded sha256 `3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftFiniteTower`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed`
 - cited in: node.lean, record TFQ-1021
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftIntrinsicUniformity`): recorded sha256 `25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftIntrinsicUniformity`): recorded sha256 `25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftIntrinsicUniformity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad`
 - cited in: node.lean, record TFQ-1021
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftL2Model`): recorded sha256 `3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftL2Model`): recorded sha256 `3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftL2Model`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -125,7 +125,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `d7ffd585fc01353bb69bf7534de6c788ca43525084bdb3654bc3161639b72573`
 - cited in: node.lean, record TFQ-1021
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftOperators`): recorded sha256 `d7ffd585fc01353bb69bf7534de6c788ca43525084bdb3654bc3161639b72573` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftOperators`): recorded sha256 `d7ffd585fc01353bb69bf7534de6c788ca43525084bdb3654bc3161639b72573` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftOperators`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -141,7 +141,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d`
 - cited in: node.lean, record TFQ-1021
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftRationalUniformity`): recorded sha256 `554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftRationalUniformity`): recorded sha256 `554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftRationalUniformity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -168,35 +168,35 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md](../../../dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md)
-- sha256 (`lf-normalised`): `39108fcea7189f7ded4c721ec39479cf44d54bc5276329eb526d0b930ea2eb4f`
+- sha256 (`lf-normalised`): `41f3c74d40fe8a66bd060191b9a57e6254680e9d0c630e65154ac6885e2b9581`
 - generated view: listed, not counted
 - cited in: record TFQ-1021
 - counts toward the grade: no
 
-### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md`
+### Documents and data: `evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md`
 
-- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md)
+- file: [evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md](../../../evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md)
 - sha256 (`lf-normalised`): `390ac197881587f3b39d397e87249de26383e82baae3cbf87beeb993b062c6f2`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md`
+### Documents and data: `evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md`
 
-- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md)
+- file: [evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md](../../../evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md)
 - sha256 (`lf-normalised`): `ffcc6ba2caff7e2cb72d94a279ed2341f33c0f8e736e15ddc77e34d60d745817`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md`
+### Documents and data: `evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md`
 
-- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md)
+- file: [evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md](../../../evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md)
 - sha256 (`lf-normalised`): `1876e42480bee8ab05e517f2ddd069134ac4f05b76ba898cc112cf52e990bdaa`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md`
+### Documents and data: `evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md`
 
-- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md)
+- file: [evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md](../../../evidence/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md)
 - sha256 (`lf-normalised`): `68b445d35bae477cb9a9429171d3ad2c9c56ecffd7279ddddba70f02500c72c9`
 - cited in: node.source
 - counts toward the grade: yes

@@ -36,7 +36,7 @@ Unmet after the PFP review: Formalize every Gaussian matrix entry and projector 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: All cyclic identities \[Li,Lj\]=2ir Lk hold entrywise at retained scales, and declared coordinate projectors are idempotent.
   - does not support: Formalize every Gaussian matrix entry and projector relation in Lean, then transport to the proposed Lambda mechanism. No dynamics is selected by these witnesses.
   - next test: Formalize every Gaussian matrix entry and projector relation in Lean, then transport to the proposed Lambda mechanism. No dynamics is selected by these witnesses.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0249
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md](../../../dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md)
-- sha256 (`lf-normalised`): `25ae4ced09d1d23907ccc77935d1115729f9608301d15c4cd35daf0cbf290761`
+- sha256 (`lf-normalised`): `e8dbef5624ed39cf290b190f3834912afd2ed850aa2ce75e06350d6c3facdb2c`
 - generated view: listed, not counted
 - cited in: record TFQ-0249
 - counts toward the grade: no

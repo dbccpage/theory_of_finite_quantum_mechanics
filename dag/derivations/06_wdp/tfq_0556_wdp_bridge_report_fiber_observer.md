@@ -67,4 +67,4 @@ In accordance with strict constructive principles:
   - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md:64-92`
   - `external:sha256:a11697dcdf5788b476d5c2e541b635a81c03e665684f69bd260bc463a03ee458:81-92`
   - `dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md:5`
-  - `dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json:7`
+  - `evidence/lean_receipts/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json:7`

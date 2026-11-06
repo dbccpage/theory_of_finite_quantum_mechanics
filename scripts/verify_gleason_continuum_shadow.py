@@ -32,7 +32,7 @@ from typing import Any, Dict, List, Sequence, Tuple
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_RECEIPT = ROOT / "dag" / "research" / "gleason_continuum_shadow_receipt.json"
+DEFAULT_RECEIPT = ROOT / "evidence" / "lean_receipts" / "gleason_continuum_shadow_receipt.json"
 LEAN_MODULE = ROOT / "lean4" / "GleasonContinuumShadow.lean"
 
 

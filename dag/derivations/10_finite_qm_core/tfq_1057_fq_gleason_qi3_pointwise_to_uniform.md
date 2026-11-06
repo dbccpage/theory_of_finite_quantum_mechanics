@@ -50,8 +50,8 @@ Open regularity question in this repository. The bounded/nonnegative near-suprem
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `dag/research/pointwise_vs_uniform_note.md`
+  - `dag/derivations/10_finite_qm_core/pointwise_vs_uniform_note.md`
   - `lean4/GleasonGaussianBridge.lean`
   - `lean4/BornGaussianTomographyReduction.lean`
-  - `dag/research/pr500_review/review.md`
-  - `dag/research/pr500_review/manifest.json`
+  - `evidence/reviews/pr500/review.md`
+  - `evidence/reviews/pr500/manifest.json`

@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FermionSignLatticeWessZuminoSusy.lean](../../../lean4/FermionSignLatticeWessZuminoSusy.lean)
 - sha256 (`bytes`): `b17aae3a3fe8abed680b6308d08b54ae9715045220c27438fd4c10c53ff18ac4`
-- cited in: node.lean, receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (FermionSignLatticeWessZuminoSusy), record TFQ-1204
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (FermionSignLatticeWessZuminoSusy), record TFQ-1204
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json](../../../dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json) (module `FermionSignLatticeWessZuminoSusy`): recorded sha256 `b17aae3a3fe8abed680b6308d08b54ae9715045220c27438fd4c10c53ff18ac4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json) (module `FermionSignLatticeWessZuminoSusy`): recorded sha256 `b17aae3a3fe8abed680b6308d08b54ae9715045220c27438fd4c10c53ff18ac4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FermionSignLatticeWessZuminoSusy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 

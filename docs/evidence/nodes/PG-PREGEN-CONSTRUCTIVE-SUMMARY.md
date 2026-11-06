@@ -36,7 +36,7 @@ MECHANIZED in ListedHistorySummary.lean (choice-free listed-history report crite
 
 ## Review
 
-- PFP review: [dag/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../evidence/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Over an explicit listing with decidable report equality, first-match reconstruction returns every listed answer iff the answer is constant on the listed report fibers, with no axiom in the kernel for the seven general theorems (relative to the supplied DecidableEq instance on reports); off the listing it refuses unreported values and can be wrong on unlisted histories; verified exhaustively on 11 non-degenerate small tuples.
   - does not support: Report types without decidable equality (only the classical instance is covered, its proof term uses Classical.choice, and necessity of choice there is not shown); infinite or unlisted populations beyond the explicit complete-listing hypothesis; the unconditional factorization for an arbitrary history type (node PG-HISTORY-REPORT-CRITERION); the external ListedHistorySummary.lean (not in this repository); any probability, measurement or physical reading of reports.
   - next test: Decide whether the listed criterion survives a report type without decidable equality by a choice-free substitute for the first-match search, or show that the Classical.propDecidable instance is unavoidable there (a choice-free model or an independence argument).
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9c77c9962b40a4c4a61d291d0980d4a86b98c72b21e6ba07d747d604e5f0696a`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PregenesisEmptyMark.ListedHistorySummary`): recorded sha256 `9c77c9962b40a4c4a61d291d0980d4a86b98c72b21e6ba07d747d604e5f0696a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.PregenesisEmptyMark.ListedHistorySummary`): recorded sha256 `9c77c9962b40a4c4a61d291d0980d4a86b98c72b21e6ba07d747d604e5f0696a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,9 +66,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenConstructive.lean](../../../lean4/PregenConstructive.lean)
 - sha256 (`bytes`): `6b600af885a14319d1f3cca3afa4631bb388eb8b88aa9b4993d31643538d28d9`
-- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (PregenConstructive)
+- cited in: node.lean, receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (PregenConstructive)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `PregenConstructive`): recorded sha256 `6b600af885a14319d1f3cca3afa4631bb388eb8b88aa9b4993d31643538d28d9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `PregenConstructive`): recorded sha256 `6b600af885a14319d1f3cca3afa4631bb388eb8b88aa9b4993d31643538d28d9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PregenConstructive`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -86,6 +86,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+
+- file: [atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
+- sha256 (`lf-normalised`): `bb38e1e763dba36d1194fde3c597b73c19f651ec9b4137eeb694fd92fed6f8fb`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md](../../../dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md)
@@ -93,13 +100,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0367
 - counts toward the grade: no
-
-### Documents and data: `atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
-
-- file: [atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
-- sha256 (`lf-normalised`): `bb38e1e763dba36d1194fde3c597b73c19f651ec9b4137eeb694fd92fed6f8fb`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 

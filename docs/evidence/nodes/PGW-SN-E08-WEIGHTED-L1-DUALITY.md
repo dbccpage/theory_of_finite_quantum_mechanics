@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/WeightedL1Duality.lean](../../../lean4/WeightedL1Duality.lean)
 - sha256 (`bytes`): `d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd`
-- cited in: node.lean, receipt dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json (WeightedL1Duality), record TFQ-0522
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json (WeightedL1Duality), record TFQ-0522
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json](../../../dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json) (module `WeightedL1Duality`): recorded sha256 `d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json) (module `WeightedL1Duality`): recorded sha256 `d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build WeightedL1Duality`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -135,4 +135,4 @@ Outgoing (3):
 
 - `PGW-R-SN-E12-CIRCULATION-FUNCTIONAL` `DERIVED_LEAN`: [PGW-SN-E12-CIRCULATION-FUNCTIONAL](PGW-SN-E12-CIRCULATION-FUNCTIONAL.md) (PROVED_LEAN)
 - `PGW-R-SN-E18-L1-TIES-L2-CENTER` `DERIVED_PROSE`: [PGW-SN-E18-L1-TIES-L2-CENTER](PGW-SN-E18-L1-TIES-L2-CENTER.md) (PROVED_PROSE)
-- `PGW-R-WDP-PHI-WELL-DEFINED-L1-DUALITY` `CONDITIONAL_ON_IMPORT`: [PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY](PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY.md) (CONDITIONAL)
+- `PGW-R-WDP-PHI-WELL-DEFINED-L1-DUALITY` `DERIVED_LEAN`: [PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY](PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY.md) (PROVED_LEAN)

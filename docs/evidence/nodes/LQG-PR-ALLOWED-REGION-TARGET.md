@@ -32,11 +32,11 @@ Not proved in Lean: the exact squared 6j value for every tuple (three witnesses 
 
 ## Source status
 
-Cayley-Menger determinant 288 V^2 regimes (4 \> 0 for regular j=1/2, 0 for flat, -6075/16 \< 0 for admissible a=(4,4,4,4,4,8)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPrAllowedRegion (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Cayley-Menger determinant 288 V^2 regimes (4 \> 0 for regular j=1/2, 0 for flat, -6075/16 \< 0 for admissible a=(4,4,4,4,4,8)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPrAllowedRegion (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `ponzano_regge_allowed_forbidden_classification_le8`, `allowed_and_forbidden_witnesses_with_6j_squares`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierPrAllowedRegion.lean](../../../lean4/FrontierPrAllowedRegion.lean)
 - sha256 (`bytes`): `9005ac46571d0b3b728b37a7edc5ff2e45b201979e92861021251da371910446`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierPrAllowedRegion)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierPrAllowedRegion)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierPrAllowedRegion`): recorded sha256 `9005ac46571d0b3b728b37a7edc5ff2e45b201979e92861021251da371910446` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierPrAllowedRegion`): recorded sha256 `9005ac46571d0b3b728b37a7edc5ff2e45b201979e92861021251da371910446` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierPrAllowedRegion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,21 +66,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `b641629a6da8c48d0a0f0018b087cd5fef52f9f8e5ad8f7a24e734134a5fb798`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_loop_quantum_gravity.json](../../../dag/research/lean_replay_campaign_loop_quantum_gravity.json) (module `ReggePachnerWdw`): recorded sha256 `b641629a6da8c48d0a0f0018b087cd5fef52f9f8e5ad8f7a24e734134a5fb798` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_loop_quantum_gravity.json](../../../evidence/lean_receipts/lean_replay_campaign_loop_quantum_gravity.json) (module `ReggePachnerWdw`): recorded sha256 `b641629a6da8c48d0a0f0018b087cd5fef52f9f8e5ad8f7a24e734134a5fb798` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ReggePachnerWdw`
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2309_lqg_pr_allowed_region_target.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2309_lqg_pr_allowed_region_target.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2309_lqg_pr_allowed_region_target.md)
-- sha256 (`lf-normalised`): `f2602c81af7a79f744f9fd78eee7e85771ea68bdeed0458b792790b5a3558b3b`
+- sha256 (`lf-normalised`): `2f0ff0c3f268f3a992b437a9c71aa0a9045cf5140770e217db91bf167ff54229`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2309
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

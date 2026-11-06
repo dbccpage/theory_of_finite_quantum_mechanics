@@ -37,7 +37,7 @@ Unmet after the PFP review: Supply action weights, refinement, measure and conve
 
 ## Review
 
-- PFP review: [dag/results/DS-QM032-FINITE-FEYNMAN-SHADOW/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM032-FINITE-FEYNMAN-SHADOW/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM032-FINITE-FEYNMAN-SHADOW/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/DS-QM032-FINITE-FEYNMAN-SHADOW/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Two-path interference has residual 2pq, including cancellation and rational controls.
   - does not support: Supply action weights, refinement, measure and convergence before invoking a Feynman continuum formula.
   - next test: Supply action weights, refinement, measure and convergence before invoking a Feynman continuum formula.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0243 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0243_finite_feynman_history_shadow.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0243_finite_feynman_history_shadow.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0243_finite_feynman_history_shadow.md)
-- sha256 (`lf-normalised`): `fc6206f2656909284f4da934c84e1fe3948118378c3060bdd42df7884fed28e8`
+- sha256 (`lf-normalised`): `73c4a6cf5ee1390d1340acee53cac45e606c20809236cddd9887ad5016051476`
 - generated view: listed, not counted
 - cited in: record TFQ-0243 (shared)
 - counts toward the grade: no
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0061_each_language_must_carry_2_forest_f0_equals_the_schur_complement_on_the.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0061_each_language_must_carry_2_forest_f0_equals_the_schur_complement_on_the.md](../../../dag/derivations/15_finite_qed/tfq_0061_each_language_must_carry_2_forest_f0_equals_the_schur_complement_on_the.md)
-- sha256 (`lf-normalised`): `ba4ac1f7ed211c27bbf5a76fb60538ce5001d2f0922cb5caf9e40a4cc32ba046`
+- sha256 (`lf-normalised`): `9d95f8753643972408fc82d0f17178501b434abbee6a1dd16cd79416af72d54d`
 - generated view: listed, not counted
 - cited in: record TFQ-0061 (shared)
 - counts toward the grade: no

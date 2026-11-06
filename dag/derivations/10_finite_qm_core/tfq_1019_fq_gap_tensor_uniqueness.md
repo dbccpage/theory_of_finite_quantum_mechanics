@@ -74,16 +74,16 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
   - `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:1332`
   - `dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md`
   - `dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md`
-  - `dag/research/tensor_composition_validation.json`
-  - `dag/research/tensor_formalization_validation.json`
-  - `dag/research/tensor_measurement_validation.json`
+  - `evidence/lean_receipts/tensor_composition_validation.json`
+  - `evidence/lean_receipts/tensor_formalization_validation.json`
+  - `evidence/lean_receipts/tensor_measurement_validation.json`
   - `dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md`
   - `dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md`
   - `dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md`
-  - `dag/research/tensor_countermodel_validation.json`
+  - `evidence/lean_receipts/tensor_countermodel_validation.json`
   - `lean4/TensorUniquenessOuterProducts.lean`
   - `dag/derivations/independent/fq-gap-tensor-uniqueness.md`
-  - `dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json`
+  - `evidence/lean_receipts/campaign_fq-gap-tensor-uniqueness_lean_replay.json`
   - `checks/independent/fq-gap-tensor-uniqueness.py`
-  - `dag/research/pr442_statement_review_20261026.json`
-  - `dag/research/pr442_review_lean_replay.json`
+  - `evidence/reviews/pr442_statement_review_20261026.json`
+  - `evidence/lean_receipts/pr442_review_lean_replay.json`

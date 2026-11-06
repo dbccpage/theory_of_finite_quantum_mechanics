@@ -61,4 +61,4 @@ Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist
   - `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md:681-693`
   - `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md:170-173`
   - `dag/derivations/independent/fsp-discrete-wdw-constraint.md`
-  - `dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json`
+  - `evidence/lean_receipts/campaign_fsp-discrete-wdw-constraint_lean_replay.json`

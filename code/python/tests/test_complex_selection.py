@@ -12,7 +12,7 @@ sys.modules[_spec.name] = cs
 _spec.loader.exec_module(cs)
 
 ROOT = Path(__file__).resolve().parents[3]
-RUN = ROOT/'dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection'
+RUN = ROOT/'evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection'
 
 
 def test_actual_candidate_bytes():

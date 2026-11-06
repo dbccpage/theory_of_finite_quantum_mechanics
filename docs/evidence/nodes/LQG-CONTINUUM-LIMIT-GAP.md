@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/LqgContinuumLimitGap.lean](../../../lean4/LqgContinuumLimitGap.lean)
 - sha256 (`bytes`): `4a79e5e6ae40dcc26affad9b69b7a7b061a105e3b3cbdbc44395fecb504e4a39`
-- cited in: node.lean, node.source, receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (LqgContinuumLimitGap)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_lqg-continuum-limit-gap_lean_replay.json (LqgContinuumLimitGap)
 - replay: `verified`
-  - receipt [dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json](../../../dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json) (module `LqgContinuumLimitGap`): recorded sha256 `4a79e5e6ae40dcc26affad9b69b7a7b061a105e3b3cbdbc44395fecb504e4a39` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_lqg-continuum-limit-gap_lean_replay.json](../../../evidence/lean_receipts/campaign_lqg-continuum-limit-gap_lean_replay.json) (module `LqgContinuumLimitGap`): recorded sha256 `4a79e5e6ae40dcc26affad9b69b7a7b061a105e3b3cbdbc44395fecb504e4a39` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build LqgContinuumLimitGap`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,9 +67,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/LqgProjectiveLimit.lean](../../../lean4/LqgProjectiveLimit.lean)
 - sha256 (`bytes`): `da2eeaf7235a9235d37adfabb167008dbd920d935f71a1d8bb862c142052b3ef`
-- cited in: node.lean, node.source, receipt dag/research/campaign_lqg-projective-limit_lean_replay.json (LqgProjectiveLimit), record TFQ-2315
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_lqg-projective-limit_lean_replay.json (LqgProjectiveLimit), record TFQ-2315
 - replay: `verified`
-  - receipt [dag/research/campaign_lqg-projective-limit_lean_replay.json](../../../dag/research/campaign_lqg-projective-limit_lean_replay.json) (module `LqgProjectiveLimit`): recorded sha256 `da2eeaf7235a9235d37adfabb167008dbd920d935f71a1d8bb862c142052b3ef` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_lqg-projective-limit_lean_replay.json](../../../evidence/lean_receipts/campaign_lqg-projective-limit_lean_replay.json) (module `LqgProjectiveLimit`): recorded sha256 `da2eeaf7235a9235d37adfabb167008dbd920d935f71a1d8bb862c142052b3ef` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build LqgProjectiveLimit`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md)
-- sha256 (`lf-normalised`): `9631012f80af4bf39f3145e7140638158effcc07c2da13120181de24a53540cd`
+- sha256 (`lf-normalised`): `dad38f9da5df6b4541c7c70ba1453bf09af00cb6b9106cbccaedf3c5ca0b076b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2315
 - counts toward the grade: no
@@ -137,16 +137,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_lqg-continuum-limit-gap_lean_replay.json`
 
-- file: [dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json](../../../dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_lqg-continuum-limit-gap_lean_replay.json](../../../evidence/lean_receipts/campaign_lqg-continuum-limit-gap_lean_replay.json)
 - sha256 (`lf-normalised`): `c14daa2b570129566d5e8bb15a74bb93a8a1baf38430e4bc639b974f8b7e947b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_lqg-projective-limit_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_lqg-projective-limit_lean_replay.json`
 
-- file: [dag/research/campaign_lqg-projective-limit_lean_replay.json](../../../dag/research/campaign_lqg-projective-limit_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_lqg-projective-limit_lean_replay.json](../../../evidence/lean_receipts/campaign_lqg-projective-limit_lean_replay.json)
 - sha256 (`lf-normalised`): `62932e8533a0c36d4d5b4de59c83fa3b9dba456c6e886243986d2a1467ccef34`
 - cited in: node.source
 - counts toward the grade: yes

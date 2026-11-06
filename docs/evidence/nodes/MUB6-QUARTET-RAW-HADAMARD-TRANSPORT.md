@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63`
 - cited in: node.lean, record TFQ-1225
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubMonomialTransport`): recorded sha256 `1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubMonomialTransport`): recorded sha256 `1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubMonomialTransport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5`
 - cited in: node.lean, record TFQ-1225
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuartetTransportBridge`): recorded sha256 `9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuartetTransportBridge`): recorded sha256 `9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubQuartetTransportBridge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

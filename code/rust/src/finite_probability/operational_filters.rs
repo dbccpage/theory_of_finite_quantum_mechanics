@@ -89,7 +89,7 @@ fn eye(n: usize) -> Mat {
 }
 fn candidate() -> Value {
     let path=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(
-      "../../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/candidate.json");
+      "../../../../evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/candidate.json");
     decode(&std::fs::read(path).unwrap())
 }
 fn decode(raw: &[u8]) -> Value {

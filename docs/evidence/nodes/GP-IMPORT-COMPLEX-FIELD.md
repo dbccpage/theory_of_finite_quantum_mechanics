@@ -36,7 +36,7 @@ imported / lost on this host (GaussInt is not a field); conditional selection of
 
 ## Review
 
-- PFP review: [dag/research/pr_390_current_scope_review.json](../../../dag/research/pr_390_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_gaussian_integer_result_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/reviews/pr_390_current_scope_review.json](../../../evidence/reviews/pr_390_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_gaussian_integer_result_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.
   - does not support: The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z\[zeta_n\] remains a recorded discrete substitute.
   - next test: Keep the complete-field import explicit while reusing the exact Gaussian-integer obstruction.
@@ -49,10 +49,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ComplexFieldImport.lean](../../../lean4/ComplexFieldImport.lean)
 - sha256 (`bytes`): `52a15ed0308e195b78b3d7659c1cea35fc148dfef6c5557c99be30d545d29559`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-complex-field_lean_replay.json (ComplexFieldImport), receipt dag/research/pr_390_round2_replay.json (ComplexFieldImport), record TFQ-1029
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_gp-import-complex-field_lean_replay.json (ComplexFieldImport), receipt evidence/lean_receipts/pr_390_round2_replay.json (ComplexFieldImport), record TFQ-1029
 - replay: `verified`
-  - receipt [dag/research/campaign_gp-import-complex-field_lean_replay.json](../../../dag/research/campaign_gp-import-complex-field_lean_replay.json) (module `ComplexFieldImport`): recorded sha256 `52a15ed0308e195b78b3d7659c1cea35fc148dfef6c5557c99be30d545d29559` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_390_round2_replay.json](../../../dag/research/pr_390_round2_replay.json) (module `ComplexFieldImport`): recorded sha256 `52a15ed0308e195b78b3d7659c1cea35fc148dfef6c5557c99be30d545d29559` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_gp-import-complex-field_lean_replay.json](../../../evidence/lean_receipts/campaign_gp-import-complex-field_lean_replay.json) (module `ComplexFieldImport`): recorded sha256 `52a15ed0308e195b78b3d7659c1cea35fc148dfef6c5557c99be30d545d29559` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_390_round2_replay.json](../../../evidence/lean_receipts/pr_390_round2_replay.json) (module `ComplexFieldImport`): recorded sha256 `52a15ed0308e195b78b3d7659c1cea35fc148dfef6c5557c99be30d545d29559` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ComplexFieldImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

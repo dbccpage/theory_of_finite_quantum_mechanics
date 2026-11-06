@@ -32,11 +32,11 @@ Not proved in Lean: complete positivity of cloneZ, cloneX and cloneY, and trace 
 
 ## Source status
 
-Numeric and algebraic claims verified with exact Python fractions.Fraction arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Numeric and algebraic claims verified with exact Python fractions.Fraction arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `cloneZ_trace_preserving`, `cloneX/Y/Z_clones_*_attribute`, `pauli_Z_X_completeness_identity`, `cloning_defect_ZX_off_diagonal_half`, `no_additive_cloner_for_Z_union_X`, `fidelity_monotonicity_forces_zero_or_one`, `pauli_overlap_idempotent_iff_equal_or_antipodal`, `exhaustive_64_subsets_clonability_classification`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_constructor_theory.json](../../../dag/research/lean_replay_campaign_constructor_theory.json) (module `Entanglement`): recorded sha256 `bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_constructor_theory.json](../../../evidence/lean_receipts/lean_replay_campaign_constructor_theory.json) (module `Entanglement`): recorded sha256 `bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build Entanglement`
 - counts toward the grade: yes
 
@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierNoCloning.lean](../../../lean4/FrontierNoCloning.lean)
 - sha256 (`bytes`): `90b5c936198509b785c55fd1483f2e329bc1bee48185b8a3176fba383cff80d1`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierNoCloning)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierNoCloning)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierNoCloning`): recorded sha256 `90b5c936198509b785c55fd1483f2e329bc1bee48185b8a3176fba383cff80d1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierNoCloning`): recorded sha256 `90b5c936198509b785c55fd1483f2e329bc1bee48185b8a3176fba383cff80d1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierNoCloning`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -81,14 +81,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md](../../../dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md)
-- sha256 (`lf-normalised`): `569c53b76a34ad1da5f7b7a034404132f89bd23df34dc91bc88ef4994895dd08`
+- sha256 (`lf-normalised`): `3038895c7abcbfc16701989740ab5a3bf220513bc4f66c206a54cef3b672a4a7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2009
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

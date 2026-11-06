@@ -32,7 +32,7 @@ A named packet (code family, noise hypothesis, repair capacity, residual quotien
 
 ## Source status
 
-dag/research/quantum_computation_self_obstruction.md record QCV-Q5C claims OPEN; audited status OPEN
+dag/derivations/29_computation/quantum_computation_self_obstruction.md record QCV-Q5C claims OPEN; audited status OPEN
 
 ## Review
 
@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Documents and data: `dag/derivations/29_computation/quantum_computation_self_obstruction.md`
+
+- file: [dag/derivations/29_computation/quantum_computation_self_obstruction.md](../../../dag/derivations/29_computation/quantum_computation_self_obstruction.md)
+- sha256 (`lf-normalised`): `303d0562ed0666748c50b6b844ae4c57a8e4bd4bef15f817d7f4622a68783ccd`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1326_qcv_physical_satisfiability_open.md`
 
 - file: [dag/derivations/29_computation/tfq_1326_qcv_physical_satisfiability_open.md](../../../dag/derivations/29_computation/tfq_1326_qcv_physical_satisfiability_open.md)
-- sha256 (`lf-normalised`): `8794ed69e8fcb70837974ee551b090147d17ff812ed446c645b3386390a25899`
+- sha256 (`lf-normalised`): `56ecae66d5aeeb63e5a524595a1aedf67168ac4df9f41977cfe507c2726267c7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1326
 - counts toward the grade: no
-
-### Documents and data: `dag/research/quantum_computation_self_obstruction.md`
-
-- file: [dag/research/quantum_computation_self_obstruction.md](../../../dag/research/quantum_computation_self_obstruction.md)
-- sha256 (`lf-normalised`): `8ae1b2ae291ee74f773da07740ebd0c1f98842bc01d7ec6a4d3c267e0077d178`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

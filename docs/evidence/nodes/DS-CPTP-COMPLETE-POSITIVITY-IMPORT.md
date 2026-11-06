@@ -38,7 +38,7 @@ Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, an
 
 ## Review
 
-- PFP review: [dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: A genuine Bell-input partial-transpose negative witness is computed entrywise and its positive-input and negative-output scalar forms are kernel checked.
   - does not support: Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring theorem. This counterexample does not derive the physical tensor product or channel law.
   - next test: Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring theorem. This counterexample does not derive the physical tensor product or channel law.
@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `CptpChannelsStinespring`): recorded sha256 `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `CptpChannelsStinespring`): recorded sha256 `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CptpChannelsStinespring`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,9 +66,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CptpCompletePositivity.lean](../../../lean4/CptpCompletePositivity.lean)
 - sha256 (`bytes`): `29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0`
-- cited in: node.lean, receipt dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json (CptpCompletePositivity)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_ds-cptp-complete-positivity-import_lean_replay.json (CptpCompletePositivity)
 - replay: `verified`
-  - receipt [dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json](../../../dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json) (module `CptpCompletePositivity`): recorded sha256 `29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ds-cptp-complete-positivity-import_lean_replay.json](../../../evidence/lean_receipts/campaign_ds-cptp-complete-positivity-import_lean_replay.json) (module `CptpCompletePositivity`): recorded sha256 `29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CptpCompletePositivity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0266
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md](../../../dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md)
-- sha256 (`lf-normalised`): `96f889e071ca597164ad6f84f9de46575ee76c5e7c72fa0edf25e4c892aac986`
+- sha256 (`lf-normalised`): `5aa29445f5a6302429ba9051b5408b86521506d54760e1861c8aaece51210574`
 - generated view: listed, not counted
 - cited in: record TFQ-0266
 - counts toward the grade: no

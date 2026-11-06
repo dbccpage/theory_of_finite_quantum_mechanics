@@ -65,4 +65,4 @@ In accordance with strict constructive principles:
   - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:176`
   - `github:dbccpage/19L57G1@85a83ae7c/docs/ALPHA_HANDOFF.md:179-192`
   - `dag/derivations/independent/pgw-driver-b-seventh-event.md:5`
-  - `dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json:6`
+  - `evidence/lean_receipts/campaign_pgw-driver-b-seventh-event_lean_replay.json:6`

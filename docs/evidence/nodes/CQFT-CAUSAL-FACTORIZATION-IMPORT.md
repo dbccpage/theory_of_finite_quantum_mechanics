@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CausalFactorizationImport.lean](../../../lean4/CausalFactorizationImport.lean)
 - sha256 (`bytes`): `2fed601873ae5ac48008d255f5e1e4c3d0273b5c4cfa82e4aed6bc059b994efc`
-- cited in: node.lean, node.source, receipt dag/research/campaign_cqft-causal-factorization-import_lean_replay.json (CausalFactorizationImport), record TFQ-2109
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_replay.json (CausalFactorizationImport), record TFQ-2109
 - replay: `verified`
-  - receipt [dag/research/campaign_cqft-causal-factorization-import_lean_replay.json](../../../dag/research/campaign_cqft-causal-factorization-import_lean_replay.json) (module `CausalFactorizationImport`): recorded sha256 `2fed601873ae5ac48008d255f5e1e4c3d0273b5c4cfa82e4aed6bc059b994efc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_replay.json](../../../evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_replay.json) (module `CausalFactorizationImport`): recorded sha256 `2fed601873ae5ac48008d255f5e1e4c3d0273b5c4cfa82e4aed6bc059b994efc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CausalFactorizationImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md](../../../dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md)
-- sha256 (`lf-normalised`): `a9715b1e35eff39d89f7ac0ebd74486d4216ed57ab23c307fe80547eb73cb858`
+- sha256 (`lf-normalised`): `28f3f6d21b1eabd9037254153bc30dd5dc74bf69b52924493954241b5587b1ac`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2109
 - counts toward the grade: no
@@ -91,23 +91,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_cqft-causal-factorization-import_independent.json`
+### Documents and data: `evidence/lean_receipts/campaign_cqft-causal-factorization-import_independent.json`
 
-- file: [dag/research/campaign_cqft-causal-factorization-import_independent.json](../../../dag/research/campaign_cqft-causal-factorization-import_independent.json)
+- file: [evidence/lean_receipts/campaign_cqft-causal-factorization-import_independent.json](../../../evidence/lean_receipts/campaign_cqft-causal-factorization-import_independent.json)
 - sha256 (`lf-normalised`): `19c321367f561844ae66fa948beabf696dde1c3c9ab13d87d38e325d30054f64`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json`
+### Documents and data: `evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_mutation.json`
 
-- file: [dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json](../../../dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json)
+- file: [evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_mutation.json](../../../evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_mutation.json)
 - sha256 (`lf-normalised`): `4c1c1c650edbfdeef43192ad27bc790f6f2e74dbc4ba7ba8beaaa04b91ea106d`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_cqft-causal-factorization-import_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_replay.json`
 
-- file: [dag/research/campaign_cqft-causal-factorization-import_lean_replay.json](../../../dag/research/campaign_cqft-causal-factorization-import_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_replay.json](../../../evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_replay.json)
 - sha256 (`lf-normalised`): `a55585b8e48413f82354c4b16fe3ba3a8d593ec713cd61a136fad45db2d4f0ff`
 - cited in: node.source
 - counts toward the grade: yes

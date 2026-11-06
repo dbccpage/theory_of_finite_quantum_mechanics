@@ -52,9 +52,9 @@ See also: `FQ-GAP-STONE-CONTINUOUS-TIME`, `FQ-GAP-CONTINUUM-HILBERT-LIFT`.
 - Repository: `dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md`
 - Repository: `checks/independent/cqft-reeh-schlieder-theorem-import.py`
 - Repository: `lean4/ReehSchliederImport.lean`
-- Repository: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json`
-- Repository: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json`
-- Repository: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json`
+- Repository: `evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json`
+- Repository: `evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_independent.json`
 
 ## Lean 4 declarations read
 - `lean4/ReehSchliederImport.lean::ReehSchliederImport.cyclic_implies_separating`

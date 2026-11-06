@@ -1,6 +1,6 @@
 # PGW-WDP-DEGREE-K-TORSION-BALANCE
 
-Stage: [WDP](../stages/WDP.md). Status: `PROVED_PROSE`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `PROVED_PROSE`. Evidence grade: **E2**. 
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 7
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -20,7 +20,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -28,11 +28,11 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Written proofs with Python checks and no Lean declaration; the coefficient field is part of the window, the degree-k extension says nothing about cup products or continuum forms, and the balance identities are not physical conservation laws.
+Mechanized in Lean 4 (tetrahedron_d2_d1_zero, degree_k_window_exact_and_bounded, finite_graph_divergence_sum_zero, gauss_law_necessary_zero_sum, cycle_pairing_gauge_invariant, rp2_delta1_delta0_zero, rp2_delta1_double_right_inverse, and rp2_no_integral_repair_for_single_triangle in WdpBatch2.lean) and checked in Python simplicial.py.
 
 ## Source status
 
-WDP monograph §5.10-§5.12 WDP-CH05-P03/P06/P04 written proofs; Python simplicial.py
+WDP monograph §5.10-§5.12 WDP-CH05-P03/P06/P04 mechanized in Lean 4 (WdpBatch2.lean) and checked in Python simplicial.py
 
 ## Review
 
@@ -41,6 +41,23 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- sha256 (`bytes`): `b40aa3e8417cf931d7fe83e997f927c00648d0bcdced7873735a60f8212c0413`
+- cited in: node.lean, record TFQ-0549
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch2.degree_k_window_exact_and_bounded` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch2.degree_k_window_exact_and_bounded` |
+| `WitnessedDifference.WdpBatch2.finite_graph_divergence_sum_zero` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch2.finite_graph_divergence_sum_zero` |
+| `WitnessedDifference.WdpBatch2.rp2_no_integral_repair_for_single_triangle` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch2.rp2_no_integral_repair_for_single_triangle` |
+| `WitnessedDifference.WdpBatch2.tetrahedron_d2_d1_zero` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch2.tetrahedron_d2_d1_zero` |
+
+- counts toward the grade: yes
 
 ### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py`
 
@@ -66,21 +83,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md`
 
 - file: [dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md](../../../dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md)
-- sha256 (`lf-normalised`): `d5172a79490932bad89f31f0551862e6750b4902dc9ddf1bc2ec6fd4c7274f9d`
+- sha256 (`lf-normalised`): `dc4933bb65523e1d96f103eaf4eb55b2ce6da2ec434dd8154f7f303282e93e70`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0549
 - counts toward the grade: no
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0549 lean4: the claim map records WDP-CH05-P03, P04 and P06 as prose-only
 - TFQ-0549 rust: no Rust binding for the degree-k window, the RP2 torsion witness or the balance identities
 
 ## Routes
 
 Incoming (1):
 
-- `PGW-R-WDP-DEGREE-K-TORSION-BALANCE` `DERIVED_PROSE`: [PG-WDP-DEGREE1-WINDOW](PG-WDP-DEGREE1-WINDOW.md) (DEFINITION)
+- `PGW-R-WDP-DEGREE-K-TORSION-BALANCE` `DERIVED_LEAN`: [PG-WDP-DEGREE1-WINDOW](PG-WDP-DEGREE1-WINDOW.md) (DEFINITION)
 
 Outgoing (1):
 

@@ -1,6 +1,6 @@
 """Incorporate the reviewed PFP result folders into derivation_dag.json (its nodes and its records).
 
-Every folder dag/results/<NODE-ID>/reviews/*/ holds the review of one DAG node. The curated
+Every folder evidence/results/<NODE-ID>/reviews/*/ holds the review of one DAG node. The curated
 decisions in dag/fragments/pfp_review_decisions.json say, for each reviewed node, which review file
 is the latest, what the review does to the node (scope_effect) and any status, statement or
 bottleneck override. This script owns three things:

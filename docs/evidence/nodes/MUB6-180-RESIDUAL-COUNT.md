@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955`
 - cited in: node.lean, record TFQ-1234
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `ConcreteMubPolynomials`): recorded sha256 `bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `ConcreteMubPolynomials`): recorded sha256 `bbb3720eb5391c9fdd3ac7f2781cff250dde03931f564befc2472e7c92080955` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ConcreteMubPolynomials`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

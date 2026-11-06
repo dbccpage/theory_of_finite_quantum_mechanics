@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FermionSignWilsonDiracGamma5.lean](../../../lean4/FermionSignWilsonDiracGamma5.lean)
 - sha256 (`bytes`): `ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e`
-- cited in: receipt dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json (FermionSignWilsonDiracGamma5)
+- cited in: receipt evidence/lean_receipts/campaign_fsp-wilson-dirac-gamma5_lean_replay.json (FermionSignWilsonDiracGamma5)
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json](../../../dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json) (module `FermionSignWilsonDiracGamma5`): recorded sha256 `ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-wilson-dirac-gamma5_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-wilson-dirac-gamma5_lean_replay.json) (module `FermionSignWilsonDiracGamma5`): recorded sha256 `ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FermionSignWilsonDiracGamma5`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 

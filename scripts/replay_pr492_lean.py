@@ -12,9 +12,11 @@ SPEC = importlib.util.spec_from_file_location("fqcd_replay", Path(__file__).with
 fqcd = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(fqcd)
 FSP_SOURCE = "lean4/FoliatedFracton2Gauge.lean"
-FSP_RECEIPT = "dag/research/campaign_tfq-1219_lean_replay.json"
-FSP_LOG = "dag/research/campaign_tfq-1219_lean_replay.log"
-RELATED = "dag/research/campaign_tfq-1050_lean_replay.json"
+FSP_RECEIPT = "evidence/lean_receipts/campaign_tfq-1219_lean_replay.json"
+FSP_LOG = "evidence/lean_receipts/campaign_tfq-1219_lean_replay.log"
+# The receipt keeps the log path it was recorded with, before the receipts moved out of dag/ on 2026-11-06.
+FSP_RECORDED_LOGS = {FSP_LOG, "dag/research/campaign_tfq-1219_lean_replay.log"}
+RELATED = "evidence/lean_receipts/campaign_tfq-1050_lean_replay.json"
 
 
 def verify() -> None:
@@ -36,7 +38,7 @@ def verify() -> None:
     raw = (ROOT / FSP_LOG).read_bytes()
     if r["output_sha256"] != fqcd.sha(raw) or r["axioms"] != fqcd.parse_reports(raw.decode(), anchors):
         raise ValueError("FSP kernel output differs")
-    if (r["module"] != "FoliatedFracton2Gauge" or r["source"] != FSP_SOURCE or r["output"] != FSP_LOG
+    if (r["module"] != "FoliatedFracton2Gauge" or r["source"] != FSP_SOURCE or r["output"] not in FSP_RECORDED_LOGS
             or r["sha256"] != d["source_pins"][FSP_SOURCE] or r["sha256_after_build"] != r["sha256"]
             or r["exit_code"] != 0 or not all(r[k] for k in ("admission_scan_passed", "axiom_audit_passed", "anchors_reported", "source_unchanged_during_build"))
             or not d["lean_replay"]["all_passed"]):

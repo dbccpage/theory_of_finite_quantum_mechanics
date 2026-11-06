@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ReggeFiniteAction.lean](../../../lean4/ReggeFiniteAction.lean)
 - sha256 (`bytes`): `86b051674e156ec6e9e1fb03030dde563663d336259e385aabe485661d9442fc`
-- cited in: node.lean, receipt dag/research/campaign_fsp-regge-deficit-action_lean_replay.json (ReggeFiniteAction), record TFQ-1212
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-regge-deficit-action_lean_replay.json (ReggeFiniteAction), record TFQ-1212
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-regge-deficit-action_lean_replay.json](../../../dag/research/campaign_fsp-regge-deficit-action_lean_replay.json) (module `ReggeFiniteAction`): recorded sha256 `86b051674e156ec6e9e1fb03030dde563663d336259e385aabe485661d9442fc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-regge-deficit-action_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-regge-deficit-action_lean_replay.json) (module `ReggeFiniteAction`): recorded sha256 `86b051674e156ec6e9e1fb03030dde563663d336259e385aabe485661d9442fc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ReggeFiniteAction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -80,14 +80,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md`
 
 - file: [dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md](../../../dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md)
-- sha256 (`lf-normalised`): `2fac580369433dc75c4f4524580922de290be0913bc88a9813d7851d5cb8c84f`
+- sha256 (`lf-normalised`): `043556e3831c4addd4d6b83b23c1c04c01f96782a4ab323848024c948d0deef4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1212
 - counts toward the grade: no
@@ -99,9 +99,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_fsp-regge-deficit-action_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_fsp-regge-deficit-action_lean_replay.json`
 
-- file: [dag/research/campaign_fsp-regge-deficit-action_lean_replay.json](../../../dag/research/campaign_fsp-regge-deficit-action_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_fsp-regge-deficit-action_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-regge-deficit-action_lean_replay.json)
 - sha256 (`lf-normalised`): `fdfc1d5bea996047431b34b41d5185ca6ed250b3d6758a2b75778ebbbe96ac71`
 - cited in: node.source
 - counts toward the grade: yes
@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `APP-R-FSP-REGGE-DEFICIT-ACTION` `CONDITIONAL_ON_IMPORT`: [PGW-WDP-DEGREE-K-TORSION-BALANCE](PGW-WDP-DEGREE-K-TORSION-BALANCE.md) (PROVED_PROSE), [FSP-COBORDISM-INTRINSIC-SIGN](FSP-COBORDISM-INTRINSIC-SIGN.md) (OPEN)
+- `APP-R-FSP-REGGE-DEFICIT-ACTION` `CONDITIONAL_ON_IMPORT`: [PGW-WDP-DEGREE-K-TORSION-BALANCE](PGW-WDP-DEGREE-K-TORSION-BALANCE.md) (PROVED_LEAN), [FSP-COBORDISM-INTRINSIC-SIGN](FSP-COBORDISM-INTRINSIC-SIGN.md) (OPEN)
 
 Outgoing (1):
 

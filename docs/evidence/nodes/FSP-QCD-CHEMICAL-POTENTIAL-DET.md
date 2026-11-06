@@ -48,8 +48,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b`
 - cited in: node.lean, record TFQ-1201
 - replay: `verified`
-  - receipt [dag/research/campaign_tfq-1050_lean_replay.json](../../../dag/research/campaign_tfq-1050_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/campaign_tfq-1052_lean_replay.json](../../../dag/research/campaign_tfq-1052_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_tfq-1050_lean_replay.json](../../../evidence/lean_receipts/campaign_tfq-1050_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_tfq-1052_lean_replay.json](../../../evidence/lean_receipts/campaign_tfq-1052_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/FQCD/StrongCouplingAreaLaw.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,9 +64,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FermionSignQcdChemicalPotentialDet.lean](../../../lean4/FermionSignQcdChemicalPotentialDet.lean)
 - sha256 (`bytes`): `019d4ab1b47d30170969daf29ec72bba44cdf575c30b2ffe1e8c83d6776a5255`
-- cited in: node.lean, receipt dag/research/campaign_fsp-qcd-chemical-potential-det_lean_replay.json (FermionSignQcdChemicalPotentialDet), record TFQ-1201
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-qcd-chemical-potential-det_lean_replay.json (FermionSignQcdChemicalPotentialDet), record TFQ-1201
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-qcd-chemical-potential-det_lean_replay.json](../../../dag/research/campaign_fsp-qcd-chemical-potential-det_lean_replay.json) (module `FermionSignQcdChemicalPotentialDet`): recorded sha256 `019d4ab1b47d30170969daf29ec72bba44cdf575c30b2ffe1e8c83d6776a5255` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-qcd-chemical-potential-det_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-qcd-chemical-potential-det_lean_replay.json) (module `FermionSignQcdChemicalPotentialDet`): recorded sha256 `019d4ab1b47d30170969daf29ec72bba44cdf575c30b2ffe1e8c83d6776a5255` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FermionSignQcdChemicalPotentialDet`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -106,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 

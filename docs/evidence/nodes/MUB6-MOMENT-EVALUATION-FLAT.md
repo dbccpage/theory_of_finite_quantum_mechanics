@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `a093bd73ebaa1453cd2c08d014f9f5dbeca97f0b254c1e0a8f130deaa79677ea`
 - cited in: node.lean, record TFQ-1251
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `CommutativeFlatMoments`): recorded sha256 `a093bd73ebaa1453cd2c08d014f9f5dbeca97f0b254c1e0a8f130deaa79677ea` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `CommutativeFlatMoments`): recorded sha256 `a093bd73ebaa1453cd2c08d014f9f5dbeca97f0b254c1e0a8f130deaa79677ea` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CommutativeFlatMoments`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

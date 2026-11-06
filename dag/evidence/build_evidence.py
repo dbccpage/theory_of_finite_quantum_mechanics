@@ -1,7 +1,7 @@
 """Build the evidence map of the derivation DAG from the DAG and the files on disk.
 
 AuthorityEffect: None. This script reads dag/derivation_dag.json, the Lean replay
-receipts in dag/research/ and the files the DAG cites. It writes a machine-readable
+receipts in evidence/lean_receipts/ and the files the DAG cites. It writes a machine-readable
 map (dag/evidence/evidence_map.json) and human-facing pages (docs/evidence/). It
 changes no node status, runs no Lean, Rust or Python test, and calls no provider.
 
@@ -55,8 +55,8 @@ from validate_derivation_dag import line_ref_path, split_ref, symbol_leaf  # noq
 
 DAG_REL = "dag/derivation_dag.json"
 MAP_REL = "dag/evidence/evidence_map.json"
-RESEARCH_REL = "dag/research"
-FRONTIER_REVIEW_REL = "dag/research/frontier_targets_lean_review.md"
+RESEARCH_REL = "evidence/lean_receipts"
+FRONTIER_REVIEW_REL = "evidence/reviews/frontier_targets/frontier_targets_lean_review.md"
 SCHEMA = "evidence_map.v1"
 
 ALLOWED_AXIOMS = ("propext", "Classical.choice", "Quot.sound")
@@ -244,7 +244,7 @@ def receipt_results(data: dict) -> tuple[dict, list | None, str | None]:
 
 
 def load_receipts(files: Files) -> tuple[list[dict], list[dict]]:
-    """Index every dag/research/*.json that records Lean module results with a sha256."""
+    """Index every evidence/lean_receipts/*.json that records Lean module results with a sha256."""
     receipts: list[dict] = []
     skipped: list[dict] = []
     for path in sorted((ROOT / RESEARCH_REL).glob("*.json")):

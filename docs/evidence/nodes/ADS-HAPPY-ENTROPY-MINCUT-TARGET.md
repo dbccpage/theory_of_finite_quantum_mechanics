@@ -32,11 +32,11 @@ Not proved in Lean: that the 20 explicit generators are the boundary stabilizer 
 
 ## Source status
 
-Recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20 boundary legs (340 equalities S(A) = mincut(A) and 40 intervals with S(A) = 4 \< 5 = mincut(A)). Lean: checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20 boundary legs (340 equalities S(A) = mincut(A) and 40 intervals with S(A) = 4 \< 5 = mincut(A)). Lean: checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `boundary_stabilizer_commutes_and_full_rank_20`, `happy_patch_380_intervals_entropy_vs_mincut`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierHappyMincut.lean](../../../lean4/FrontierHappyMincut.lean)
 - sha256 (`bytes`): `6f58261a079f7be32a18dcc1e0b2a7bceb0c823270e474b89ebbdc33d292a5be`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierHappyMincut)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierHappyMincut)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierHappyMincut`): recorded sha256 `6f58261a079f7be32a18dcc1e0b2a7bceb0c823270e474b89ebbdc33d292a5be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierHappyMincut`): recorded sha256 `6f58261a079f7be32a18dcc1e0b2a7bceb0c823270e474b89ebbdc33d292a5be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierHappyMincut`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -63,14 +63,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md](../../../dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md)
-- sha256 (`lf-normalised`): `dbba6930bf5794144d7e3021228db7df63b19b073c22b37f1e97c8b86e7e8207`
+- sha256 (`lf-normalised`): `82193c62781e34223874f67c5abaa012c99c41ed135ce360db43608447e20152`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2209
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

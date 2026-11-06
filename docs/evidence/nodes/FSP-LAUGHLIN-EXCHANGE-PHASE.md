@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/LaughlinRootAmbiguity.lean](../../../lean4/LaughlinRootAmbiguity.lean)
 - sha256 (`bytes`): `aa33ac45abf225b5178f5b7e3be26f25f8bafeaf937acef4f06d88e493552fe9`
-- cited in: node.lean, receipt dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json (LaughlinRootAmbiguity), receipt dag/research/pr_379_round2_replay.json (LaughlinRootAmbiguity), record TFQ-1208
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-laughlin-exchange-phase_lean_replay.json (LaughlinRootAmbiguity), receipt evidence/lean_receipts/pr_379_round2_replay.json (LaughlinRootAmbiguity), record TFQ-1208
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json) (module `LaughlinRootAmbiguity`): recorded sha256 `aa33ac45abf225b5178f5b7e3be26f25f8bafeaf937acef4f06d88e493552fe9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_379_round2_replay.json](../../../dag/research/pr_379_round2_replay.json) (module `LaughlinRootAmbiguity`): recorded sha256 `aa33ac45abf225b5178f5b7e3be26f25f8bafeaf937acef4f06d88e493552fe9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-laughlin-exchange-phase_lean_replay.json) (module `LaughlinRootAmbiguity`): recorded sha256 `aa33ac45abf225b5178f5b7e3be26f25f8bafeaf937acef4f06d88e493552fe9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_379_round2_replay.json](../../../evidence/lean_receipts/pr_379_round2_replay.json) (module `LaughlinRootAmbiguity`): recorded sha256 `aa33ac45abf225b5178f5b7e3be26f25f8bafeaf937acef4f06d88e493552fe9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build LaughlinRootAmbiguity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -78,14 +78,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md`
 
 - file: [dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md](../../../dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md)
-- sha256 (`lf-normalised`): `849dd13221c9db324267d9508e29702d4b5dd133183f4733d8d14d381627ad40`
+- sha256 (`lf-normalised`): `2369fbb9d35d77b556d66a0aafe4d4b19d15eb5540aafe212287323b09c1fd01`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1208
 - counts toward the grade: no
@@ -97,9 +97,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_fsp-laughlin-exchange-phase_lean_replay.json`
 
-- file: [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-laughlin-exchange-phase_lean_replay.json)
 - sha256 (`lf-normalised`): `8a35b9c722ae1321bf954b346d9c55b07b75e3a0688d038c25968976594bace4`
 - cited in: node.source
 - counts toward the grade: yes

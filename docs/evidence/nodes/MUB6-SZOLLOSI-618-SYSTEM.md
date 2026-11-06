@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25`
 - cited in: node.lean, record TFQ-1268
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiQuadraticSystem`): recorded sha256 `1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiQuadraticSystem`): recorded sha256 `1d985ffd763ed3de6618da8b90b591cbc48e18277729541056153dc0412eed25` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiQuadraticSystem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `6fa7c1b58f88056161fc9ea83fc5ed61a6421f17b0bd3e34c94662d65aa6ad3b`
 - cited in: node.lean, record TFQ-1268
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiQuartetSystem`): recorded sha256 `6fa7c1b58f88056161fc9ea83fc5ed61a6421f17b0bd3e34c94662d65aa6ad3b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiQuartetSystem`): recorded sha256 `6fa7c1b58f88056161fc9ea83fc5ed61a6421f17b0bd3e34c94662d65aa6ad3b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiQuartetSystem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

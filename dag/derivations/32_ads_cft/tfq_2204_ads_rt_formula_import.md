@@ -48,9 +48,9 @@ See also: `FQ-ENTROPY-DICHOTOMY-BAKER`, `TFQ-0100`.
 - `external:arXiv:hep-th/0603001`: S. Ryu and T. Takayanagi, "Holographic Derivation of Entanglement Entropy from AdS/CFT", arXiv:hep-th/0603001 (2006); Phys. Rev. Lett. 96 (2006) 181602.
 - Repository: `dag/derivations/independent/ads-rt-formula-import.md`
 - Repository: `checks/independent/ads-rt-formula-import.py`
-- Repository: `dag/research/campaign_ads-rt-formula-import_lean_replay.json`
-- Repository: `dag/research/campaign_ads-rt-formula-import_lean_mutation.json`
-- Repository: `dag/research/campaign_ads-rt-formula-import_independent.json`
+- Repository: `evidence/lean_receipts/campaign_ads-rt-formula-import_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_ads-rt-formula-import_lean_mutation.json`
+- Repository: `evidence/lean_receipts/campaign_ads-rt-formula-import_independent.json`
 
 ## Lean 4 declarations read
 - `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy`

@@ -37,7 +37,7 @@ Lean-checked finite sign, pair and cycle examples; U(1), continuity and the circ
 
 ## Review
 
-- PFP review: [dag/research/pr_391_current_scope_review.json](../../../dag/research/pr_391_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_sign_pair_cycle_result_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/reviews/pr_391_current_scope_review.json](../../../evidence/reviews/pr_391_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_sign_pair_cycle_result_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.
   - does not support: The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.
   - next test: Keep the circle and continuity imports explicit; any broader construction needs a separate statement-level review.
@@ -50,10 +50,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CircleU1Import.lean](../../../lean4/CircleU1Import.lean)
 - sha256 (`bytes`): `aa70a67a514c00e935ad1faa56f34039b1a0c558d3751afbca0507e9fcd64c92`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CircleU1Import), receipt dag/research/pr_391_round2_replay.json (CircleU1Import), record TFQ-1030
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_gp-import-circle-u1_lean_replay.json (CircleU1Import), receipt evidence/lean_receipts/pr_391_round2_replay.json (CircleU1Import), record TFQ-1030
 - replay: `verified`
-  - receipt [dag/research/campaign_gp-import-circle-u1_lean_replay.json](../../../dag/research/campaign_gp-import-circle-u1_lean_replay.json) (module `CircleU1Import`): recorded sha256 `aa70a67a514c00e935ad1faa56f34039b1a0c558d3751afbca0507e9fcd64c92` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_391_round2_replay.json](../../../dag/research/pr_391_round2_replay.json) (module `CircleU1Import`): recorded sha256 `aa70a67a514c00e935ad1faa56f34039b1a0c558d3751afbca0507e9fcd64c92` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_gp-import-circle-u1_lean_replay.json](../../../evidence/lean_receipts/campaign_gp-import-circle-u1_lean_replay.json) (module `CircleU1Import`): recorded sha256 `aa70a67a514c00e935ad1faa56f34039b1a0c558d3751afbca0507e9fcd64c92` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_391_round2_replay.json](../../../evidence/lean_receipts/pr_391_round2_replay.json) (module `CircleU1Import`): recorded sha256 `aa70a67a514c00e935ad1faa56f34039b1a0c558d3751afbca0507e9fcd64c92` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CircleU1Import`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

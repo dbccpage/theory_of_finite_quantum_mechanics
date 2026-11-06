@@ -1,7 +1,7 @@
 import importlib.util,sys,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
-sys.path.insert(0,str(ROOT/'dag/pfp'))
+sys.path.insert(0,str(ROOT/'checks/exact_checkers'))
 sp=importlib.util.spec_from_file_location('structure_exact',Path(__file__).resolve().parents[1]/'src/qm/structure_exact.py');m=importlib.util.module_from_spec(sp);sp.loader.exec_module(m)
 from structure_checker import verify
 from fractions import Fraction as Q

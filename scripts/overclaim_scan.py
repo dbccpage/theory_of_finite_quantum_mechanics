@@ -5,7 +5,7 @@ Scope Fence: this file does not decide whether a node statement is the theorem i
 Level: L5
 
 No network, no model call, no Lean build. Reads derivation_dag.json, the Lean/Rust/Python files it cites,
-dag/research/*lean_replay*.json, dag/derivations/**.md, README.md, docs/**, papers/**.
+evidence/lean_receipts/*lean_replay*.json, dag/derivations/**.md, README.md, docs/**, papers/**.
 
 Usage (from the repository root):
     python -I -X utf8 scripts/overclaim_scan.py                      # print the summary
@@ -285,7 +285,7 @@ class Receipt:
 
 def load_receipts(repo: Repo) -> list[Receipt]:
     out: list[Receipt] = []
-    base = repo.root / "dag" / "research"
+    base = repo.root / "evidence" / "lean_receipts"
     if not base.is_dir():
         return out
     for path in sorted(base.glob("*lean_replay*.json")):
@@ -561,7 +561,7 @@ def node_id_regex(repo: Repo):
     ids = sorted(repo.nodes, key=lambda s: (-len(s), s))
     if not ids:
         return None
-    # Not inside a path or link target (dag/results/<ID>/runs, ../nodes/<ID>.md): that names a folder, not a claim about the node.
+    # Not inside a path or link target (evidence/results/<ID>/runs, ../nodes/<ID>.md): that names a folder, not a claim about the node.
     return re.compile(r"(?<![A-Za-z0-9_/.-])(" + "|".join(re.escape(i) for i in ids) + r")(?![A-Za-z0-9_/-]|\.md\b)")
 
 

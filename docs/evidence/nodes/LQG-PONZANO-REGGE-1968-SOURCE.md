@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2305_lqg_ponzano_regge_1968_source.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2305_lqg_ponzano_regge_1968_source.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2305_lqg_ponzano_regge_1968_source.md)
-- sha256 (`lf-normalised`): `f621cefc391b571db0aa41b418fd45f3f53e73e06fb51209d64021d2432cfd58`
+- sha256 (`lf-normalised`): `4bdc0c1149b01e8316d63033f43b756da6cefb5dc1715aabc1ed2b7cf5ccdcd2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2305
 - counts toward the grade: no

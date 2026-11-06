@@ -37,7 +37,7 @@ LEAN PROVED (RECEIPTED) per ledger; Lean header for the H000..H018 family says C
 
 ## Review
 
-- PFP review: [dag/results/FQ-PRIMDIFF-QUOTIENT-KERNEL/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-PRIMDIFF-QUOTIENT-KERNEL/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-PRIMDIFF-QUOTIENT-KERNEL/reviews/20261019_structure_audit/review_result.json](../../../evidence/results/FQ-PRIMDIFF-QUOTIENT-KERNEL/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: The supplied ZeroRel is an equivalence and class equality iff ZeroRel is rechecked generally; finite report partitions and their full equality kernels are recomputed on the retained inputs.
   - does not support: Zero, difference laws and report map remain inputs. A quotient construction alone supplies no coefficient field, norm, Hilbert structure or preferred physical readout.
   - next test: Zero, difference laws and report map remain inputs. A quotient construction alone supplies no coefficient field, norm, Hilbert structure or preferred physical readout.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `46dfe8222b1ac7917a4176730bfbf73908bf4a26a99e7c19b613a48f78ced9c6`
 - cited in: node.lean, record TFQ-1007
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `FinitePresentedCarrier`): recorded sha256 `46dfe8222b1ac7917a4176730bfbf73908bf4a26a99e7c19b613a48f78ced9c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `FinitePresentedCarrier`): recorded sha256 `46dfe8222b1ac7917a4176730bfbf73908bf4a26a99e7c19b613a48f78ced9c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build FinitePresentedCarrier`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f59243d870e042b6c44b46de65f54cca9f78edad19cb527e333a76b32cdc6dc4`
 - cited in: node.lean, record TFQ-1007
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `PrimitiveDifference`): recorded sha256 `f59243d870e042b6c44b46de65f54cca9f78edad19cb527e333a76b32cdc6dc4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `PrimitiveDifference`): recorded sha256 `f59243d870e042b6c44b46de65f54cca9f78edad19cb527e333a76b32cdc6dc4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build PrimitiveDifference`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -77,27 +77,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md](../../../dag/derivations/10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md)
-- sha256 (`lf-normalised`): `ea792594eed9f46deb2ea1c887e471cd3e22b74221aa9c27f74f0cc7772ff70c`
-- generated view: listed, not counted
-- cited in: record TFQ-1007
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
-- sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
+- sha256 (`lf-normalised`): `0ec068458cb98411a43fd5ca8f50797bfcf3563185b7a1fbe8348b1a9616fa44`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md](../../../dag/derivations/10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md)
+- sha256 (`lf-normalised`): `b2a27ee6b7a5c4d729dbfa8b6ba3c5fdcab661b12e2a08a46477b99f190d8d00`
+- generated view: listed, not counted
+- cited in: record TFQ-1007
+- counts toward the grade: no
 
 ### External sources
 

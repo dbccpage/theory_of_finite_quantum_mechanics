@@ -36,7 +36,7 @@ gap_register GAP-FQM-002/003/004/006..010/012/014/017/019/020/022 (statuses abse
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_numeral_slice_reviewed`; scope effect `caveat_added`; prior status `OPEN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json](../../../evidence/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_numeral_slice_reviewed`; scope effect `caveat_added`; prior status `OPEN`; qualifies for E4: yes.
   - narrowest claim: The named untyped-row numerals satisfy 48 - 24 = 24. The named coverage numerals satisfy 53 - 22 = 31 and 22 \< 53.
   - does not support: A recount of ledger rows, missing libraries, Mathlib promotion, the named Classical.choice dependency, provenance pointers, Zenodo publication status, or the README code-companion check.
   - next test: Recount the ledger rows, the named libraries, the Mathlib claims, the Classical.choice dependency, the provenance pointers, the Zenodo records, and the README check on a clean tree.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CustodyReceiptNumerals.lean](../../../lean4/CustodyReceiptNumerals.lean)
 - sha256 (`bytes`): `c339d7f806140b1b2e9a957e4b7b03067ce6371df0bb9a34603bb5df43562502`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json (CustodyReceiptNumerals), record TFQ-1023
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fq-gap-custody-and-receipts_lean_replay.json (CustodyReceiptNumerals), record TFQ-1023
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json](../../../dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json) (module `CustodyReceiptNumerals`): recorded sha256 `c339d7f806140b1b2e9a957e4b7b03067ce6371df0bb9a34603bb5df43562502` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gap-custody-and-receipts_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gap-custody-and-receipts_lean_replay.json) (module `CustodyReceiptNumerals`): recorded sha256 `c339d7f806140b1b2e9a957e4b7b03067ce6371df0bb9a34603bb5df43562502` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CustodyReceiptNumerals`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -65,20 +65,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md](../../../dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md)
-- sha256 (`lf-normalised`): `6571547b7e550b367e89d080c9b14997f79972ef5cc0b87635c4b50d8508a771`
-- generated view: listed, not counted
-- cited in: record TFQ-1023
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md](../../../dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md)
+- sha256 (`lf-normalised`): `ba2d73b666dc66f05aa295621cd1b83d5bb03897fb468f35b97e07d6d2675b72`
+- generated view: listed, not counted
+- cited in: record TFQ-1023
+- counts toward the grade: no
 
 ### External sources
 

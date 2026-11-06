@@ -29,10 +29,10 @@ that admission, not a derivation of G from the existing finite quantum interface
 
 ## Evidence and next obligation
 
-- [dag/research/hierarchical_nonabelian_dfm_finite_map.md](../../../dag/research/hierarchical_nonabelian_dfm_finite_map.md)
-- [dag/research/finite_graph_dressing.py](../../../dag/research/finite_graph_dressing.py)
-- [dag/research/finite_graph_dressing.rs](../../../dag/research/finite_graph_dressing.rs)
+- [dag/derivations/24_dressing_field/hierarchical_nonabelian_dfm_finite_map.md](../../../dag/derivations/24_dressing_field/hierarchical_nonabelian_dfm_finite_map.md)
+- [checks/finite_graph_dressing/finite_graph_dressing.py](../../../checks/finite_graph_dressing/finite_graph_dressing.py)
+- [checks/finite_graph_dressing/finite_graph_dressing.rs](../../../checks/finite_graph_dressing/finite_graph_dressing.rs)
 - [lean4/FiniteGraphDressing.lean](../../../lean4/FiniteGraphDressing.lean)
-- [dag/research/test_finite_graph_dressing.py](../../../dag/research/test_finite_graph_dressing.py)
+- [checks/finite_graph_dressing/test_finite_graph_dressing.py](../../../checks/finite_graph_dressing/test_finite_graph_dressing.py)
 
 Keep the graph, group axioms, inverse-edge convention and multiplication order explicit.

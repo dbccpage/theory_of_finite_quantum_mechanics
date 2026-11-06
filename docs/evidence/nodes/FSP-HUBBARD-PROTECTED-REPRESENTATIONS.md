@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FermionSignHubbardProtected.lean](../../../lean4/FermionSignHubbardProtected.lean)
 - sha256 (`bytes`): `365483617d0e2261ff3450ab9e5a891e0c51a8bc2ee69bfecbb702d00544f2e9`
-- cited in: node.lean, receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (FermionSignHubbardProtected)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-hubbard-protected-representations_lean_replay.json (FermionSignHubbardProtected)
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json](../../../dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json) (module `FermionSignHubbardProtected`): recorded sha256 `365483617d0e2261ff3450ab9e5a891e0c51a8bc2ee69bfecbb702d00544f2e9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-hubbard-protected-representations_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-hubbard-protected-representations_lean_replay.json) (module `FermionSignHubbardProtected`): recorded sha256 `365483617d0e2261ff3450ab9e5a891e0c51a8bc2ee69bfecbb702d00544f2e9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FermionSignHubbardProtected`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

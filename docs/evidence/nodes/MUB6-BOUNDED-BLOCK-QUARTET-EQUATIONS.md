@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917`
 - cited in: node.lean, record TFQ-1260
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBoundedBlockChart`): recorded sha256 `2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBoundedBlockChart`): recorded sha256 `2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubBoundedBlockChart`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `732189950dec5044fedb0f3b2f541e0eac714e3419099cdc5198a256c01c3dd6`
 - cited in: node.lean, record TFQ-1260
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBoundedMUFactor`): recorded sha256 `732189950dec5044fedb0f3b2f541e0eac714e3419099cdc5198a256c01c3dd6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBoundedMUFactor`): recorded sha256 `732189950dec5044fedb0f3b2f541e0eac714e3419099cdc5198a256c01c3dd6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubBoundedMUFactor`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b`
 - cited in: node.lean, record TFQ-1260
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBoundedQuartetEquations`): recorded sha256 `7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBoundedQuartetEquations`): recorded sha256 `7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubBoundedQuartetEquations`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -44,9 +44,9 @@ See also: `TFQ-0084`, `TFQ-0100`.
 - Repository: `dag/derivations/independent/ads-regge-area-rt-gap.md`
 - Repository: `checks/independent/ads-regge-area-rt-gap.py`
 - Repository: `lean4/AdsReggeAreaRtGap.lean`
-- Repository: `dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json`
-- Repository: `dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json`
-- Repository: `dag/research/campaign_ads-regge-area-rt-gap_independent.json`
+- Repository: `evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_mutation.json`
+- Repository: `evidence/lean_receipts/campaign_ads-regge-area-rt-gap_independent.json`
 
 ## Lean 4 declarations read
 - `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts`

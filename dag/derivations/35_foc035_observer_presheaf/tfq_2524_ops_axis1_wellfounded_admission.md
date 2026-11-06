@@ -47,4 +47,4 @@ See also: `PGW-GO-ADMISSION-GATE`, `PG-GEN-REGIME-EVENTS`.
 - Repository: `lean4/ObserverPresheafAxis1WellfoundedAdmission.lean`
 - Repository: `checks/independent/ops-axis1-wellfounded-admission.py`
 - Repository: `dag/derivations/independent/ops-axis1-wellfounded-admission.md`
-- Repository: `dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_ops-axis1-wellfounded-admission_lean_replay.json`

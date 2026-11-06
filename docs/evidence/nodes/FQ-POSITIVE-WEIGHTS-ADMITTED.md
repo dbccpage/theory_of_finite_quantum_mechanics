@@ -36,7 +36,7 @@ paper s13.8.2 table: "positivity and normalized preparation weights are admitted
 
 ## Review
 
-- PFP review: [dag/results/FQ-POSITIVE-WEIGHTS-ADMITTED/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-POSITIVE-WEIGHTS-ADMITTED/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-POSITIVE-WEIGHTS-ADMITTED/reviews/20261019_scope_audit/review_result.json](../../../evidence/results/FQ-POSITIVE-WEIGHTS-ADMITTED/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: The general two-weight rational convex bound is proved with explicit nonnegativity and score bounds; distinct positive normalized preparations, a signed violation and an unnormalized scaled control are checked.
   - does not support: Derive a preparation measure from native histories with a stated selection principle. Same-carrier examples only show insufficiency of that bare carrier; no stronger impossibility theorem is claimed.
   - next test: Derive a preparation measure from native histories with a stated selection principle. Same-carrier examples only show insufficiency of that bare carrier; no stronger impossibility theorem is claimed.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-1008
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -61,20 +61,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md](../../../dag/derivations/10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md)
-- sha256 (`lf-normalised`): `c7271e8a30a4b2ef5fa40c46f1d9fea295aca125484ddd8c53a7c831a04b2f3e`
-- generated view: listed, not counted
-- cited in: record TFQ-1008
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md](../../../dag/derivations/10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md)
+- sha256 (`lf-normalised`): `8f24c2f53d77b5c9cfedc4f0502a97e7be8d5b0d4b45c91e8affad3840766cf4`
+- generated view: listed, not counted
+- cited in: record TFQ-1008
+- counts toward the grade: no
 
 ### External sources
 

@@ -57,4 +57,4 @@ Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. 
   - `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md:584-597`
   - `dag/derivations/26_fsp/fsp/lean4/regge_wdw_core.lean:796-800`
   - `dag/derivations/independent/fsp-witten-index-invariance.md`
-  - `dag/research/campaign_fsp-witten-index-invariance_lean_replay.json`
+  - `evidence/lean_receipts/campaign_fsp-witten-index-invariance_lean_replay.json`

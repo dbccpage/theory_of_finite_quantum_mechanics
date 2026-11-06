@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CarrierAdmissionGate.lean](../../../lean4/CarrierAdmissionGate.lean)
 - sha256 (`bytes`): `b46343a865ba097ebb45a6bbfe291846b510a69259bd4d98a5c5e64e39cc59be`
-- cited in: node.lean, receipt dag/research/campaign_authf-carrier-admission-gate_lean_replay.json (CarrierAdmissionGate), receipt dag/research/pr_372_review_replay.json (CarrierAdmissionGate), record TFQ-1362
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_authf-carrier-admission-gate_lean_replay.json (CarrierAdmissionGate), receipt evidence/lean_receipts/pr_372_review_replay.json (CarrierAdmissionGate), record TFQ-1362
 - replay: `verified`
-  - receipt [dag/research/campaign_authf-carrier-admission-gate_lean_replay.json](../../../dag/research/campaign_authf-carrier-admission-gate_lean_replay.json) (module `CarrierAdmissionGate`): recorded sha256 `b46343a865ba097ebb45a6bbfe291846b510a69259bd4d98a5c5e64e39cc59be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_372_review_replay.json](../../../dag/research/pr_372_review_replay.json) (module `CarrierAdmissionGate`): recorded sha256 `b46343a865ba097ebb45a6bbfe291846b510a69259bd4d98a5c5e64e39cc59be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_authf-carrier-admission-gate_lean_replay.json](../../../evidence/lean_receipts/campaign_authf-carrier-admission-gate_lean_replay.json) (module `CarrierAdmissionGate`): recorded sha256 `b46343a865ba097ebb45a6bbfe291846b510a69259bd4d98a5c5e64e39cc59be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_372_review_replay.json](../../../evidence/lean_receipts/pr_372_review_replay.json) (module `CarrierAdmissionGate`): recorded sha256 `b46343a865ba097ebb45a6bbfe291846b510a69259bd4d98a5c5e64e39cc59be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CarrierAdmissionGate`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

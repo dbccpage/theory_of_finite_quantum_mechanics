@@ -67,4 +67,4 @@ In accordance with strict constructive principles:
   - `external:sha256:9a1730f57c42c3111eb85d7b6cadcb15df23977da40a21fd46da4aee5383c594:147-161`
   - `external:sha256:35f78837687555be2e5cc5c69fc60f0f4e25937d2fad1d38bd0efb491e573a31:116-120`
   - `dag/derivations/independent/pgw-wdp-handoff-to-l1.md:5`
-  - `dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json:6`
+  - `evidence/lean_receipts/campaign_pgw-wdp-handoff-to-l1_lean_replay.json:6`

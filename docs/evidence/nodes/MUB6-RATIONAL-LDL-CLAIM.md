@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/mub6/completion_supplement.md`
 
 - file: [dag/derivations/25_mub/mub6/completion_supplement.md](../../../dag/derivations/25_mub/mub6/completion_supplement.md)
-- sha256 (`lf-normalised`): `2436eaf1ff552dee22fa7539ba2e9b76d8999bcf3ee4f183db06a8d2563109e0`
+- sha256 (`lf-normalised`): `6991957c4eb15b9550b00904333eef6560530f4f26e769722b54b5c4ca6ff03e`
 - cited in: node.source
 - counts toward the grade: yes
 

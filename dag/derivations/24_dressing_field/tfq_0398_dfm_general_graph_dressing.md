@@ -53,13 +53,13 @@ derive a quantum gauge group.
 
 ## Evidence and next obligation
 
-- [dag/research/finite_graph_dressing.py](../../../dag/research/finite_graph_dressing.py)
-- [dag/research/finite_graph_dressing.rs](../../../dag/research/finite_graph_dressing.rs)
+- [checks/finite_graph_dressing/finite_graph_dressing.py](../../../checks/finite_graph_dressing/finite_graph_dressing.py)
+- [checks/finite_graph_dressing/finite_graph_dressing.rs](../../../checks/finite_graph_dressing/finite_graph_dressing.rs)
 - [lean4/FiniteGraphDressing.lean::neutralizable_iff_closed_walks_forest](../../../lean4/FiniteGraphDressing.lean)
 - [lean4/FiniteGraphDressing.lean::tree_dressing_iff](../../../lean4/FiniteGraphDressing.lean)
 - [lean4/FiniteGraphDressing.lean::neutralizers_constant](../../../lean4/FiniteGraphDressing.lean)
-- [dag/research/finite_graph_dressing.rs::forest_dressing](../../../dag/research/finite_graph_dressing.rs)
+- [checks/finite_graph_dressing/finite_graph_dressing.rs::forest_dressing](../../../checks/finite_graph_dressing/finite_graph_dressing.rs)
 - [lean4/FiniteGraphDressing.lean](../../../lean4/FiniteGraphDressing.lean)
-- [dag/research/test_finite_graph_dressing.py](../../../dag/research/test_finite_graph_dressing.py)
+- [checks/finite_graph_dressing/test_finite_graph_dressing.py](../../../checks/finite_graph_dressing/test_finite_graph_dressing.py)
 
 Preserve the supplied-group and supplied-forest hypotheses; the Python and Rust enumerations are bounded witnesses for the general Lean theorem.

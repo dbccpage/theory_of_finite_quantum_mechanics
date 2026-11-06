@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FiniteGroupPachner.lean](../../../lean4/FiniteGroupPachner.lean)
 - sha256 (`bytes`): `2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e`
-- cited in: node.lean, receipt dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json (FiniteGroupPachner), record TFQ-1214
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json (FiniteGroupPachner), record TFQ-1214
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json) (module `FiniteGroupPachner`): recorded sha256 `2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json) (module `FiniteGroupPachner`): recorded sha256 `2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteGroupPachner`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -167,14 +167,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md](../../../dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md)
-- sha256 (`lf-normalised`): `1c31bf4980eb465e0ca8679f140ef5c11e071da3bce48244bd3dd96862f44436`
+- sha256 (`lf-normalised`): `c617ad946ff52c245284205a75484fdb624536af692378985ac6e143c30e507e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1214
 - counts toward the grade: no
@@ -182,13 +182,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-pachner-invariance-claim.md`
 
 - file: [dag/derivations/independent/fsp-pachner-invariance-claim.md](../../../dag/derivations/independent/fsp-pachner-invariance-claim.md)
-- sha256 (`lf-normalised`): `ab24522dc1d8226870cf4b2800274ad6ac1bb7c352583ab8bff8c408126c9154`
+- sha256 (`lf-normalised`): `d009a236a79fee12399f44b13e1d8fe4be421eb4de3ce7feb24015c4ad1b3893`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json`
 
-- file: [dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json)
 - sha256 (`lf-normalised`): `14f5f9aefd737f4f8c4b771d115c3c6692d1db00e25fa2dfb9d6c136103af597`
 - cited in: node.source
 - counts toward the grade: yes

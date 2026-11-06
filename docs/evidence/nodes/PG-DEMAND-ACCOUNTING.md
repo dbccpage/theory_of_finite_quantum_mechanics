@@ -36,7 +36,7 @@ Proposition 3 - finite demand accounting (WDP-P001-002 proved)
 
 ## Review
 
-- PFP review: [dag/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: For finite sets, \|(W minus D) union B\| = \|W\| - \|D\| + \|B\| holds when D is inside W and the births avoid W minus D (births may coincide with discharged elements), it fails whenever exactly one of the two hypotheses is violated; when both are violated it holds if and only if \|D minus W\| = \|(W minus D) cap B\| (exact cancellation); and it imposes no constraint on a sequence of counts.
   - does not support: Which demands an engine actually carries; any claim that the displayed survivor sequence (0,1,1,1,0,1,1) is a native or general law (the source itself calls it a chosen ledger example); the preservation.py demand_step frozenset reading and any Python or Rust wrapper over it; multiset or ordered-log registers as a state beyond the filter-based list register of Paper.lean (the erase-based removeAll register of Paper001.lean is not re-proved, and the Nodup conjunct of that List Nat statement is only matched by the filter-based list_register_nodup_iff and the native census); the identification of the active count s_n with the cumulative history \|H_n\|; universes of more than five elements; any physical or thermodynamic interpretation.
   - next test: Supply the missing count wrapper over preservation.demand_step of the opened preservation.py: show that the frozenset next-active set it returns equals the Finset (W minus D) union B of this model, carry the two hypotheses as typed fields of the wrapper, and replay the identity on the wrapper actual outputs.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DemandAccounting.lean](../../../lean4/DemandAccounting.lean)
 - sha256 (`bytes`): `caa7cae003a1790f98cbc16d56af7ee2d50116c8d2b56b3c5d734da5185ec14c`
-- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (DemandAccounting)
+- cited in: node.lean, receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (DemandAccounting)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `DemandAccounting`): recorded sha256 `caa7cae003a1790f98cbc16d56af7ee2d50116c8d2b56b3c5d734da5185ec14c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `DemandAccounting`): recorded sha256 `caa7cae003a1790f98cbc16d56af7ee2d50116c8d2b56b3c5d734da5185ec14c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DemandAccounting`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/SnMssn/Paper001.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

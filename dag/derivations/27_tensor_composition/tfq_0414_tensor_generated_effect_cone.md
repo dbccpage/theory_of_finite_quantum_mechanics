@@ -48,7 +48,7 @@ so the smaller subsystem controls the gate.
 - [TensorEffectCone](../../../lean4/TensorEffectCone.lean): `effect_cone_eq_positive`.
 - [TensorMeasurements](../../../lean4/TensorMeasurements.lean): the dual representation,
   product-test identification and `operational_effect_cone`.
-- [Validation receipt](../../research/tensor_measurement_validation.json).
+- [Validation receipt](../../../evidence/lean_receipts/tensor_measurement_validation.json).
 
 Equality of conic hulls does not assert that every matrix in [0,I] is itself
 available. That separate claim is [TFQ-0415](tfq_0415_tensor_binary_effect_interval.md).

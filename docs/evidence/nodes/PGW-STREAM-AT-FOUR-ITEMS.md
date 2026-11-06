@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenesisStreamAtFourItems.lean](../../../lean4/PregenesisStreamAtFourItems.lean)
 - sha256 (`bytes`): `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5`
-- cited in: node.lean, receipt dag/research/campaign_pgw-stream-at-four-items_lean_replay.json (PregenesisStreamAtFourItems), receipt dag/research/pr_354_review_replay.json (PregenesisStreamAtFourItems), record TFQ-0502
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-stream-at-four-items_lean_replay.json (PregenesisStreamAtFourItems), receipt evidence/lean_receipts/pr_354_review_replay.json (PregenesisStreamAtFourItems), record TFQ-0502
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-stream-at-four-items_lean_replay.json](../../../dag/research/campaign_pgw-stream-at-four-items_lean_replay.json) (module `PregenesisStreamAtFourItems`): recorded sha256 `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_354_review_replay.json](../../../dag/research/pr_354_review_replay.json) (module `PregenesisStreamAtFourItems`): recorded sha256 `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-stream-at-four-items_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-stream-at-four-items_lean_replay.json) (module `PregenesisStreamAtFourItems`): recorded sha256 `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_354_review_replay.json](../../../evidence/lean_receipts/pr_354_review_replay.json) (module `PregenesisStreamAtFourItems`): recorded sha256 `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build PregenesisStreamAtFourItems`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md`
 
 - file: [dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md](../../../dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md)
-- sha256 (`lf-normalised`): `09edb91721bf64930bd2e06a810d74451f64a0b616be13b540409c4258e07448`
+- sha256 (`lf-normalised`): `7bfecc70acb4de78fa05acb7c0b917a55a510bf92dee3eec71815d50dd61a46f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0502
 - counts toward the grade: no
@@ -98,9 +98,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_pgw-stream-at-four-items_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_pgw-stream-at-four-items_lean_replay.json`
 
-- file: [dag/research/campaign_pgw-stream-at-four-items_lean_replay.json](../../../dag/research/campaign_pgw-stream-at-four-items_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_pgw-stream-at-four-items_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-stream-at-four-items_lean_replay.json)
 - sha256 (`lf-normalised`): `ce14cf80d98a2bfb565fd0cce2b8d27759f1259d7dba28a636ad51544619ac30`
 - cited in: node.source
 - counts toward the grade: yes

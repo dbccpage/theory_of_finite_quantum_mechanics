@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/MajoranaCosetWeightImport.lean](../../../lean4/MajoranaCosetWeightImport.lean)
 - sha256 (`bytes`): `4e3261fbe2ccdee609984f50074beb6d596465041a272c528ae4c7d3640918b8`
-- cited in: node.lean, receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (MajoranaCosetWeightImport), record TFQ-1157
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_maj-import-coset-weight-np-hard_lean_replay.json (MajoranaCosetWeightImport), record TFQ-1157
 - replay: `verified`
-  - receipt [dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json](../../../dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json) (module `MajoranaCosetWeightImport`): recorded sha256 `4e3261fbe2ccdee609984f50074beb6d596465041a272c528ae4c7d3640918b8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_maj-import-coset-weight-np-hard_lean_replay.json](../../../evidence/lean_receipts/campaign_maj-import-coset-weight-np-hard_lean_replay.json) (module `MajoranaCosetWeightImport`): recorded sha256 `4e3261fbe2ccdee609984f50074beb6d596465041a272c528ae4c7d3640918b8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build MajoranaCosetWeightImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

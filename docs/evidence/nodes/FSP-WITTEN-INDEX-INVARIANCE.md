@@ -55,10 +55,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/WittenPairing.lean](../../../lean4/WittenPairing.lean)
 - sha256 (`bytes`): `8aecc85288c5e6f0822b0d7c6afbf2c4f796b380868005dc362a2ef8ee7e9d7d`
-- cited in: node.lean, receipt dag/research/campaign_fsp-witten-index-invariance_lean_replay.json (WittenPairing), receipt dag/research/pr_376_round2_replay.json (WittenPairing), record TFQ-1206
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-witten-index-invariance_lean_replay.json (WittenPairing), receipt evidence/lean_receipts/pr_376_round2_replay.json (WittenPairing), record TFQ-1206
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-witten-index-invariance_lean_replay.json](../../../dag/research/campaign_fsp-witten-index-invariance_lean_replay.json) (module `WittenPairing`): recorded sha256 `8aecc85288c5e6f0822b0d7c6afbf2c4f796b380868005dc362a2ef8ee7e9d7d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_376_round2_replay.json](../../../dag/research/pr_376_round2_replay.json) (module `WittenPairing`): recorded sha256 `8aecc85288c5e6f0822b0d7c6afbf2c4f796b380868005dc362a2ef8ee7e9d7d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-witten-index-invariance_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-witten-index-invariance_lean_replay.json) (module `WittenPairing`): recorded sha256 `8aecc85288c5e6f0822b0d7c6afbf2c4f796b380868005dc362a2ef8ee7e9d7d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_376_round2_replay.json](../../../evidence/lean_receipts/pr_376_round2_replay.json) (module `WittenPairing`): recorded sha256 `8aecc85288c5e6f0822b0d7c6afbf2c4f796b380868005dc362a2ef8ee7e9d7d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build WittenPairing`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -82,14 +82,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md`
 
 - file: [dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md](../../../dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md)
-- sha256 (`lf-normalised`): `8661527280143a8a1dba6deea8847bc4f504c7f5f7b9934f61a9cedc446d5cf1`
+- sha256 (`lf-normalised`): `9831f86ff961e1d644dfbc42a041838a7eec6b31cbb59b5771f124ec7befd890`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1206
 - counts toward the grade: no
@@ -101,9 +101,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_fsp-witten-index-invariance_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_fsp-witten-index-invariance_lean_replay.json`
 
-- file: [dag/research/campaign_fsp-witten-index-invariance_lean_replay.json](../../../dag/research/campaign_fsp-witten-index-invariance_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_fsp-witten-index-invariance_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-witten-index-invariance_lean_replay.json)
 - sha256 (`lf-normalised`): `a18f4e7c32191e37dff194780fdf991cb7c94a92c7c91eaee8bea38964854fec`
 - cited in: node.source
 - counts toward the grade: yes

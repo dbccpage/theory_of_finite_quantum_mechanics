@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/MajoranaOpenEvidenceAdequacy.lean](../../../lean4/MajoranaOpenEvidenceAdequacy.lean)
 - sha256 (`bytes`): `e45c6ff6876596edb3c629299079c5a0c9007299e2972eddc183447f7e2bfc64`
-- cited in: node.lean, receipt dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json (MajoranaOpenEvidenceAdequacy), receipt dag/research/pr_361_review_replay.json (MajoranaOpenEvidenceAdequacy), record TFQ-1182
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_maj-open-evidence-adequacy_lean_replay.json (MajoranaOpenEvidenceAdequacy), receipt evidence/lean_receipts/pr_361_review_replay.json (MajoranaOpenEvidenceAdequacy), record TFQ-1182
 - replay: `verified`
-  - receipt [dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json](../../../dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json) (module `MajoranaOpenEvidenceAdequacy`): recorded sha256 `e45c6ff6876596edb3c629299079c5a0c9007299e2972eddc183447f7e2bfc64` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_361_review_replay.json](../../../dag/research/pr_361_review_replay.json) (module `MajoranaOpenEvidenceAdequacy`): recorded sha256 `e45c6ff6876596edb3c629299079c5a0c9007299e2972eddc183447f7e2bfc64` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_maj-open-evidence-adequacy_lean_replay.json](../../../evidence/lean_receipts/campaign_maj-open-evidence-adequacy_lean_replay.json) (module `MajoranaOpenEvidenceAdequacy`): recorded sha256 `e45c6ff6876596edb3c629299079c5a0c9007299e2972eddc183447f7e2bfc64` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_361_review_replay.json](../../../evidence/lean_receipts/pr_361_review_replay.json) (module `MajoranaOpenEvidenceAdequacy`): recorded sha256 `e45c6ff6876596edb3c629299079c5a0c9007299e2972eddc183447f7e2bfc64` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build MajoranaOpenEvidenceAdequacy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md`
 
 - file: [dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md](../../../dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md)
-- sha256 (`lf-normalised`): `8fb47f61005d1dee901c060005fed941836e5d82e7506877d94cff0ac17b699d`
+- sha256 (`lf-normalised`): `5300a1aee6618551e769ef879766319e38f6fad31364f9ab37fc8f4c022f6d3d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1182
 - counts toward the grade: no
@@ -89,9 +89,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_maj-open-evidence-adequacy_lean_replay.json`
 
-- file: [dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json](../../../dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_maj-open-evidence-adequacy_lean_replay.json](../../../evidence/lean_receipts/campaign_maj-open-evidence-adequacy_lean_replay.json)
 - sha256 (`lf-normalised`): `ac9a8bc4a2a09f521c43e6afa331c699120cd9fe5b4ee5bb7c032036136a375b`
 - cited in: node.source
 - counts toward the grade: yes

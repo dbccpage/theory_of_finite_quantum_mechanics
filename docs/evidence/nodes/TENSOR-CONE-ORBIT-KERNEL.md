@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8`
 - cited in: node.lean, record TFQ-0411
 - replay: `verified`
-  - receipt [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json) (module `TensorConeReconstruction`): recorded sha256 `b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/tensor_formalization_validation.json](../../../dag/research/tensor_formalization_validation.json) (module `TensorConeReconstruction`): recorded sha256 `b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/tensor_measurement_validation.json](../../../dag/research/tensor_measurement_validation.json) (module `TensorConeReconstruction`): recorded sha256 `b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_countermodel_validation.json](../../../evidence/lean_receipts/tensor_countermodel_validation.json) (module `TensorConeReconstruction`): recorded sha256 `b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_formalization_validation.json](../../../evidence/lean_receipts/tensor_formalization_validation.json) (module `TensorConeReconstruction`): recorded sha256 `b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_measurement_validation.json](../../../evidence/lean_receipts/tensor_measurement_validation.json) (module `TensorConeReconstruction`): recorded sha256 `b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build TensorConeReconstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -79,14 +79,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md`
 
 - file: [dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md](../../../dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md)
-- sha256 (`lf-normalised`): `63120a31cac72a80dc162baf4ac1782299c290aec39401e0bc428da88c399bb5`
+- sha256 (`lf-normalised`): `10900b9578fab96b181c3805f1b7b776eb41d606d9ec2d1cedee2f393bfb1f46`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0411
 - counts toward the grade: no
 
-### Documents and data: `dag/research/tensor_formalization_validation.json`
+### Documents and data: `evidence/lean_receipts/tensor_formalization_validation.json`
 
-- file: [dag/research/tensor_formalization_validation.json](../../../dag/research/tensor_formalization_validation.json)
+- file: [evidence/lean_receipts/tensor_formalization_validation.json](../../../evidence/lean_receipts/tensor_formalization_validation.json)
 - sha256 (`lf-normalised`): `ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120`
 - cited in: node.source
 - counts toward the grade: yes

@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json) (module `FiniteGroupPachner`): recorded sha256 `2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json) (module `FiniteGroupPachner`): recorded sha256 `2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteGroupPachner`
 - counts toward the grade: yes
 

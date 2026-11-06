@@ -45,7 +45,7 @@ See also: `OPS-NOISY-PR-NCF`, `OPS-CECH-COBOUNDARY`.
 - Repository: `checks/independent/ops-rust-receipts-and-limits.py`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md`
 - Repository: `dag/derivations/independent/ops-rust-receipts-and-limits.md`
-- Repository: `dag/research/foc035_observer_presheaf_lean_replay.json`
-- Repository: `dag/research/campaign_ops-rust-receipts-and-limits_lean_replay.json`
-- Repository: `dag/research/pr_392_scope_review.json`
-- Repository: `dag/research/pr_392_round2_replay.json`
+- Repository: `evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_ops-rust-receipts-and-limits_lean_replay.json`
+- Repository: `evidence/reviews/pr_392_scope_review.json`
+- Repository: `evidence/lean_receipts/pr_392_round2_replay.json`

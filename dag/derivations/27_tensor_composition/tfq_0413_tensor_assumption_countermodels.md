@@ -133,8 +133,8 @@ in this Lean verification. `FQ-GAP-TENSOR-UNIQUENESS` remains `CONDITIONAL`.
 - [Exact calibration and preservation witnesses](../../../lean4/TensorCountermodelWitnesses.lean)
 - [Embeddings into all larger local dimensions](../../../lean4/TensorCountermodelEmbeddings.lean)
 - [Hidden-coordinate countermodel](../../../lean4/TensorHiddenCoordinates.lean)
-- [Fresh replay and source hashes](../../research/tensor_countermodel_validation.json)
-- [Replay script](../../research/replay_tensor_countermodels.py)
+- [Fresh replay and source hashes](../../../evidence/lean_receipts/tensor_countermodel_validation.json)
+- [Replay script](../../../scripts/replay_tensor_countermodels.py)
 
 The receipt records the precise Lean/Mathlib versions, source hashes, compiler
 outputs and axiom audits. Only standard Lean logical axioms are accepted;

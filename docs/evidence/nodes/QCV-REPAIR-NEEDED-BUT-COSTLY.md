@@ -32,7 +32,7 @@ The location counts are declared; nothing here says how many repair locations a 
 
 ## Source status
 
-dag/research/quantum_computation_self_obstruction.md record QCV-Q1C claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/29_computation/quantum_computation_self_obstruction.md record QCV-Q1C claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63`
 - cited in: node.lean, record TFQ-1317
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `QcConcatenation`): recorded sha256 `5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_computation.json](../../../evidence/lean_receipts/lean_replay_campaign_computation.json) (module `QcConcatenation`): recorded sha256 `5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build QcConcatenation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -86,24 +86,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/29_computation/quantum_computation_self_obstruction.md`
+
+- file: [dag/derivations/29_computation/quantum_computation_self_obstruction.md](../../../dag/derivations/29_computation/quantum_computation_self_obstruction.md)
+- sha256 (`lf-normalised`): `303d0562ed0666748c50b6b844ae4c57a8e4bd4bef15f817d7f4622a68783ccd`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1317_qcv_repair_needed_but_costly.md`
 
 - file: [dag/derivations/29_computation/tfq_1317_qcv_repair_needed_but_costly.md](../../../dag/derivations/29_computation/tfq_1317_qcv_repair_needed_but_costly.md)
-- sha256 (`lf-normalised`): `85ca6f259f21f925c0efd38ea3702027b3c5cd08ab24173784e32bdd918d9d82`
+- sha256 (`lf-normalised`): `3422c9a5a0cb8e6cbb84793636ba32ae73a58aa75e66125a6dfef25c48ccc70a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1317
 - counts toward the grade: no
 
-### Documents and data: `dag/research/quantum_computation_self_obstruction.md`
+### Documents and data: `evidence/axiom_reports/quantum_computation_self_obstruction_axioms.txt`
 
-- file: [dag/research/quantum_computation_self_obstruction.md](../../../dag/research/quantum_computation_self_obstruction.md)
-- sha256 (`lf-normalised`): `8ae1b2ae291ee74f773da07740ebd0c1f98842bc01d7ec6a4d3c267e0077d178`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `dag/research/quantum_computation_self_obstruction_axioms.txt`
-
-- file: [dag/research/quantum_computation_self_obstruction_axioms.txt](../../../dag/research/quantum_computation_self_obstruction_axioms.txt)
+- file: [evidence/axiom_reports/quantum_computation_self_obstruction_axioms.txt](../../../evidence/axiom_reports/quantum_computation_self_obstruction_axioms.txt)
 - sha256 (`lf-normalised`): `b4c803ee2b1a4fe8af1d9d92a351fb11c61d2791bea01a5b7cd3dd7c1623af81`
 - cited in: node.source
 - counts toward the grade: yes

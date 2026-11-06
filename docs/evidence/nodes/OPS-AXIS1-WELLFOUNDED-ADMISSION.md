@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ObserverPresheafAxis1WellfoundedAdmission.lean](../../../lean4/ObserverPresheafAxis1WellfoundedAdmission.lean)
 - sha256 (`bytes`): `8fb9fa4432cc9e8b8255d3b6d5c7fb67ef18630b4fa9dc5c6626526a621e6056`
-- cited in: node.source, receipt dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json (ObserverPresheafAxis1WellfoundedAdmission), record TFQ-2524
+- cited in: node.source, receipt evidence/lean_receipts/campaign_ops-axis1-wellfounded-admission_lean_replay.json (ObserverPresheafAxis1WellfoundedAdmission), record TFQ-2524
 - replay: `verified`
-  - receipt [dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json](../../../dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json) (module `ObserverPresheafAxis1WellfoundedAdmission`): recorded sha256 `8fb9fa4432cc9e8b8255d3b6d5c7fb67ef18630b4fa9dc5c6626526a621e6056` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ops-axis1-wellfounded-admission_lean_replay.json](../../../evidence/lean_receipts/campaign_ops-axis1-wellfounded-admission_lean_replay.json) (module `ObserverPresheafAxis1WellfoundedAdmission`): recorded sha256 `8fb9fa4432cc9e8b8255d3b6d5c7fb67ef18630b4fa9dc5c6626526a621e6056` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build ObserverPresheafAxis1WellfoundedAdmission`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -78,10 +78,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
+
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
+- sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
+
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md)
-- sha256 (`lf-normalised`): `804ec8a0415a21ba89b81fb7801c1148e1d7d5ba497ecf157bf8412050c5982b`
+- sha256 (`lf-normalised`): `51e39ae5a93408b6da309b84f2bec0a1623c8d5c7f7d2efab1ef43a0112e4408`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2524
 - counts toward the grade: no
@@ -93,24 +107,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_ops-axis1-wellfounded-admission_lean_replay.json`
 
-- file: [dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json](../../../dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_ops-axis1-wellfounded-admission_lean_replay.json](../../../evidence/lean_receipts/campaign_ops-axis1-wellfounded-admission_lean_replay.json)
 - sha256 (`lf-normalised`): `2a655c87b7b3d79eaa943fc852f403e217bb343fb28dac7c3fdcdf7c7be71618`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
-
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
-- sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
-
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
-- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
 - cited in: node.source
 - counts toward the grade: yes
 

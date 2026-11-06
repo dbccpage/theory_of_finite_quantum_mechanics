@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/AdsHappyToyNotDualityGap.lean](../../../lean4/AdsHappyToyNotDualityGap.lean)
 - sha256 (`bytes`): `8ae260255f3f65384458080171a83122187b121c24058ea128a30e5d6e9ef5c0`
-- cited in: node.lean, receipt dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json (AdsHappyToyNotDualityGap), record TFQ-2212
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_replay.json (AdsHappyToyNotDualityGap), record TFQ-2212
 - replay: `verified`
-  - receipt [dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json](../../../dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json) (module `AdsHappyToyNotDualityGap`): recorded sha256 `8ae260255f3f65384458080171a83122187b121c24058ea128a30e5d6e9ef5c0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_replay.json](../../../evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_replay.json) (module `AdsHappyToyNotDualityGap`): recorded sha256 `8ae260255f3f65384458080171a83122187b121c24058ea128a30e5d6e9ef5c0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build AdsHappyToyNotDualityGap`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md](../../../dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md)
-- sha256 (`lf-normalised`): `8d54e170116d2a0fe10feee741c11feaacd6537c6881b47dd7aa9a9a1e6e7ed4`
+- sha256 (`lf-normalised`): `82c0e37774a0199a2417f51d54b044e7b3b4fe906dbb0fd023efc838534f15fa`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2212
 - counts toward the grade: no
@@ -89,27 +89,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ads-happy-toy-not-duality-gap.md`
 
 - file: [dag/derivations/independent/ads-happy-toy-not-duality-gap.md](../../../dag/derivations/independent/ads-happy-toy-not-duality-gap.md)
-- sha256 (`lf-normalised`): `19a0c52cc4b59b8741ff423950d447437e4d0164d4b25cfd4bac20472e60cafb`
+- sha256 (`lf-normalised`): `8ebba4127f6bf7177ab6a567abf218d8fa54c17d39e4fbd328c3f72c64f98d35`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_independent.json`
 
-- file: [dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json](../../../dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json)
+- file: [evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_independent.json](../../../evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_independent.json)
 - sha256 (`lf-normalised`): `c075e2c39474b21c6ce3b90a14d98a09f34f853e5e9f55306a838c45b98c4e7d`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json`
 
-- file: [dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json](../../../dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json)
+- file: [evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json](../../../evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json)
 - sha256 (`lf-normalised`): `074bb64c52037a51cb624c6f4d2beb3bfec219ecd2f0ad248d3d0e76821e4a46`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_replay.json`
 
-- file: [dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json](../../../dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_replay.json](../../../evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_replay.json)
 - sha256 (`lf-normalised`): `0f099654cc9e5fef3c5bc33085926ec0348391d2860bcfce409d2ac63a880faf`
 - cited in: node.source
 - counts toward the grade: yes

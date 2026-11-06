@@ -36,7 +36,7 @@ H054 header carries "PR #205 scope correction" demotion; ledger typed LEAN PROVE
 
 ## Review
 
-- PFP review: [dag/results/FQ-CABELLO-NO-INTEGER-FRAME/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-CABELLO-NO-INTEGER-FRAME/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-CABELLO-NO-INTEGER-FRAME/reviews/20261019_next_ten_audit/review_result.json](../../../evidence/results/FQ-CABELLO-NO-INTEGER-FRAME/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Literal general integer parity, full measured-ray/source scaled checks, and the independently verified normalized M_bad/2 countermodel with a negative quadratic direction.
   - does not support: Arbitrary complex-Hermitian frame systems, general even-parity sufficiency, or a fully instantiated refined-carrier operad.
   - next test: Batch review must compare the source scaled integer checks with actual rational readouts and preserve the even-control limitation.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1dc256ecbad36c8d1a3cb128ba67fab5efc37880d9a58d58698dfc4765646b0e`
 - cited in: node.lean, record TFQ-1015
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `EverettForkingTree`): recorded sha256 `1dc256ecbad36c8d1a3cb128ba67fab5efc37880d9a58d58698dfc4765646b0e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `EverettForkingTree`): recorded sha256 `1dc256ecbad36c8d1a3cb128ba67fab5efc37880d9a58d58698dfc4765646b0e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build EverettForkingTree`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1d1e388e88865166cb0d2aa45032dfe400d193d5517abae81060743bc6626c88`
 - cited in: node.lean, record TFQ-1015
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `GleasonCyclotomicObstruction`): recorded sha256 `1d1e388e88865166cb0d2aa45032dfe400d193d5517abae81060743bc6626c88` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `GleasonCyclotomicObstruction`): recorded sha256 `1d1e388e88865166cb0d2aa45032dfe400d193d5517abae81060743bc6626c88` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonCyclotomicObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -76,27 +76,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md](../../../dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md)
-- sha256 (`lf-normalised`): `9dd0c96a6ddd06ee8b39bb6e98d54f27a55f29191a290f5ccb8e94f05c078ab3`
-- generated view: listed, not counted
-- cited in: record TFQ-1015
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
-- sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
+- sha256 (`lf-normalised`): `0ec068458cb98411a43fd5ca8f50797bfcf3563185b7a1fbe8348b1a9616fa44`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md](../../../dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md)
+- sha256 (`lf-normalised`): `079e6a9d557fa239510b06b323c9d6c4682aa089ad1de9194a9a2307dba234de`
+- generated view: listed, not counted
+- cited in: record TFQ-1015
+- counts toward the grade: no
 
 ### External sources
 

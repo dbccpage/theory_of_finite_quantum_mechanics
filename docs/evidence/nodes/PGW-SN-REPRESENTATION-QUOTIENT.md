@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `fb81fdb117503c720c1f6c9c9a99b26b8ea0c3c9465407456a58a594059bf5be`
 - cited in: node.lean, record TFQ-0521
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.WitnessedDifference.WitnessedDifference.ComplexTensorBalancing`): recorded sha256 `fb81fdb117503c720c1f6c9c9a99b26b8ea0c3c9465407456a58a594059bf5be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mssn_sn.json](../../../evidence/lean_receipts/lean_replay_campaign_mssn_sn.json) (module `Imported.WitnessedDifference.WitnessedDifference.ComplexTensorBalancing`): recorded sha256 `fb81fdb117503c720c1f6c9c9a99b26b8ea0c3c9465407456a58a594059bf5be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -59,9 +59,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/01_substantiated/complex_tensor_balancing.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/01_substantiated/complex_tensor_balancing.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/01_substantiated/complex_tensor_balancing.md)
 - sha256 (`lf-normalised`): `9a158b9d0ff649003d49451c72430178a3dad4bef457930e25e18113c2b2b0d9`
 - cited in: node.source
 - counts toward the grade: yes
@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md](../../../dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md)
-- sha256 (`lf-normalised`): `5802cb1b44fd1263f0d3984a1a03ede1f5e556a24fe402d9d2f81d83349ec261`
+- sha256 (`lf-normalised`): `e7768882cf162b9c8c5fd48a7911f3917abbcdbd6d14ae94e2d3f6b6d660b85d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0521
 - counts toward the grade: no

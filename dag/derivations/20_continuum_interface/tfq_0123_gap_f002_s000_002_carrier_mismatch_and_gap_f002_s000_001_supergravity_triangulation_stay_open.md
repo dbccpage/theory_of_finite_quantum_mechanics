@@ -31,11 +31,11 @@
 ## 3. Independent Verification & Mutation Receipts
 
 - **Independent Checker (`checks/independent/tfq-0123.py`)**: `checks=820 nat_cell=512 carrier_fence=215 sugra_fence=93 failures=0`.
-- **Lean Mutation Gate (`dag/research/campaign_tfq-0123_lean_mutation.json`)**: 6/6 semantic mutations killed (`all_killed=true`).
+- **Lean Mutation Gate (`evidence/lean_receipts/campaign_tfq-0123_lean_mutation.json`)**: 6/6 semantic mutations killed (`all_killed=true`).
 
 ## 4. Claim Hygiene Summary
 
 1. **What it supports**: Supports exact verification of `NatTransportCell` monoid laws and the explicit `GAP-F002-S000-002` and `GAP-F002-S000-001` non-equivalence fences.
 2. **What it does not support**: Does not support carrier equivalence between $\mathbb{N}$ and floats, an 11D supergravity triangulation, smooth-frame bundle transport, a continuum limit, or the Einstein field equations.
 3. **Narrowest defensible claim**: Natural-number loss addition forms an associative monoid, while floating-point absorption and $\mathbb{N}$ are distinct carriers (`GAP-F002-S000-002`) and a scalar loss ledger does not build an 11D supergravity triangulation or smooth Einstein dynamics (`GAP-F002-S000-001`).
-4. **Next test needed**: Return to the highest-ranked unclaimed finite nodes in `dag/pfp/campaign/derivation_queue.json`.
+4. **Next test needed**: Return to the highest-ranked unclaimed finite nodes in `checks/exact_checkers/campaign/derivation_queue.json`.

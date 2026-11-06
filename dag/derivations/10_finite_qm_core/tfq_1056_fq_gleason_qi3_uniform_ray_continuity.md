@@ -67,8 +67,8 @@ Kernel-checked signed implication born_of_uniformlyRayContinuous, with uniform r
   - `lean4/GleasonComplexSphere.lean`
   - `lean4/GleasonRealSphere.lean`
   - `lean4/BornGaussianParallelogramRigidity.lean`
-  - `dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json`
-  - `dag/research/pointwise_vs_uniform_note.md`
-  - `dag/research/pr500_review/review.md`
-  - `dag/research/pr500_review/manifest.json`
+  - `evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json`
+  - `dag/derivations/10_finite_qm_core/pointwise_vs_uniform_note.md`
+  - `evidence/reviews/pr500/review.md`
+  - `evidence/reviews/pr500/manifest.json`
   - `lean4/GleasonBornCompletion.lean`

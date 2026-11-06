@@ -60,4 +60,4 @@ Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exi
   - `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md:733-828`
   - `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:29-31`
   - `dag/derivations/independent/fsp-bf-2group-sign-claim.md`
-  - `dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json`
+  - `evidence/lean_receipts/campaign_fsp-bf-2group-sign-claim_lean_replay.json`

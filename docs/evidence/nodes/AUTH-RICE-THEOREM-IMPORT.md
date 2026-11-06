@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ComputabilityRiceTheoremImport.lean](../../../lean4/ComputabilityRiceTheoremImport.lean)
 - sha256 (`bytes`): `1a62e79193d0b262983cb9daaa13817efd88b55827f6d174da820f42c06ad117`
-- cited in: node.lean, receipt dag/research/campaign_auth-rice-theorem-import_lean_replay.json (ComputabilityRiceTheoremImport), record TFQ-1337
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_auth-rice-theorem-import_lean_replay.json (ComputabilityRiceTheoremImport), record TFQ-1337
 - replay: `verified`
-  - receipt [dag/research/campaign_auth-rice-theorem-import_lean_replay.json](../../../dag/research/campaign_auth-rice-theorem-import_lean_replay.json) (module `ComputabilityRiceTheoremImport`): recorded sha256 `1a62e79193d0b262983cb9daaa13817efd88b55827f6d174da820f42c06ad117` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_auth-rice-theorem-import_lean_replay.json](../../../evidence/lean_receipts/campaign_auth-rice-theorem-import_lean_replay.json) (module `ComputabilityRiceTheoremImport`): recorded sha256 `1a62e79193d0b262983cb9daaa13817efd88b55827f6d174da820f42c06ad117` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ComputabilityRiceTheoremImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

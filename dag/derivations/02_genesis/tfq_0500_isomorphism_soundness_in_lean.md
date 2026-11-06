@@ -60,4 +60,4 @@ In accordance with strict constructive principles:
   - `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:379`
   - `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1045-1059`
   - `dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md:5`
-  - `dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json:6`
+  - `evidence/lean_receipts/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json:6`

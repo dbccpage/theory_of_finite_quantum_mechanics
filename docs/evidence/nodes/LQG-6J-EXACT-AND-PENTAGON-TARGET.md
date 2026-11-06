@@ -32,11 +32,11 @@ Not proved in Lean: the Biedenharn-Elliott identity exhaustively for twice-spins
 
 ## Source status
 
-Racah single-sum rational squares and values for 2j \<= 2 recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Racah single-sum rational squares and values for 2j \<= 2 recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `tetrahedral_symmetry_all_3418_admissible_le6`, `classical_6j_orthogonality_all_1928_le6`, `classical_6j_biedenharn_elliott_pentagon`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `b91f33b05cf90bd65fc8e51d6929ad5e1a5da57a6a6c908ad83bdf81e45db866`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_loop_quantum_gravity.json](../../../dag/research/lean_replay_campaign_loop_quantum_gravity.json) (module `DiscreteSpinfoamAmplitudes`): recorded sha256 `b91f33b05cf90bd65fc8e51d6929ad5e1a5da57a6a6c908ad83bdf81e45db866` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_loop_quantum_gravity.json](../../../evidence/lean_receipts/lean_replay_campaign_loop_quantum_gravity.json) (module `DiscreteSpinfoamAmplitudes`): recorded sha256 `b91f33b05cf90bd65fc8e51d6929ad5e1a5da57a6a6c908ad83bdf81e45db866` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build DiscreteSpinfoamAmplitudes`
 - counts toward the grade: yes
 
@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierClassical6j.lean](../../../lean4/FrontierClassical6j.lean)
 - sha256 (`bytes`): `46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierClassical6j)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierClassical6j)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierClassical6j`): recorded sha256 `46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierClassical6j`): recorded sha256 `46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierClassical6j`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -82,14 +82,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md)
-- sha256 (`lf-normalised`): `2b746909f20e94937d8aa77145c12b2ac116ae69c47c4be1e3c4883b366b0221`
+- sha256 (`lf-normalised`): `c4a16541e377896b62bf30813e1393f8fe5017d55aa21d43132cdd00757100ec`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2308
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b`
 - cited in: node.lean, record TFQ-1265
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubGaugeSyzygy`): recorded sha256 `f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubGaugeSyzygy`): recorded sha256 `f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubGaugeSyzygy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

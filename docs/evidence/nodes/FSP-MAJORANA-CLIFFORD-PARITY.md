@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/MajoranaCliffordParity.lean](../../../lean4/MajoranaCliffordParity.lean)
 - sha256 (`bytes`): `fc18f654b974824154b0f93102d48073b0c6a2b2e2141b94280a4b05b0a69f04`
-- cited in: node.lean, receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (MajoranaCliffordParity), record TFQ-1186
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-majorana-clifford-parity_lean_replay.json (MajoranaCliffordParity), record TFQ-1186
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json](../../../dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json) (module `MajoranaCliffordParity`): recorded sha256 `fc18f654b974824154b0f93102d48073b0c6a2b2e2141b94280a4b05b0a69f04` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-majorana-clifford-parity_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-majorana-clifford-parity_lean_replay.json) (module `MajoranaCliffordParity`): recorded sha256 `fc18f654b974824154b0f93102d48073b0c6a2b2e2141b94280a4b05b0a69f04` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MajoranaCliffordParity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -99,14 +99,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md`
 
 - file: [dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md](../../../dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md)
-- sha256 (`lf-normalised`): `7575a9c457d1fefe8aa623422287665e87db601b1bc383880d8f7e33ad20c0ad`
+- sha256 (`lf-normalised`): `5c3a54ec9b734a5e29d6629eedebeb70ad42ae580c28f0a9b501984fafd2158d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1186
 - counts toward the grade: no

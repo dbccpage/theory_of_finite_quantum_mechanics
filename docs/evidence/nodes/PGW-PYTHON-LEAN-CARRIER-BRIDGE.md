@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenesisPythonLeanCarrierBridge.lean](../../../lean4/PregenesisPythonLeanCarrierBridge.lean)
 - sha256 (`bytes`): `e992180ffde9fe7bf921f6396ac6dc5f20ecaec1f2adf9577707dfa1267380ce`
-- cited in: node.lean, receipt dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json (PregenesisPythonLeanCarrierBridge), receipt dag/research/pr_320_current_lean_replay.json (PregenesisPythonLeanCarrierBridge), record TFQ-0499
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-python-lean-carrier-bridge_lean_replay.json (PregenesisPythonLeanCarrierBridge), receipt evidence/lean_receipts/pr_320_current_lean_replay.json (PregenesisPythonLeanCarrierBridge), record TFQ-0499
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json](../../../dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json) (module `PregenesisPythonLeanCarrierBridge`): recorded sha256 `e992180ffde9fe7bf921f6396ac6dc5f20ecaec1f2adf9577707dfa1267380ce` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr_320_current_lean_replay.json](../../../dag/research/pr_320_current_lean_replay.json) (module `PregenesisPythonLeanCarrierBridge`): recorded sha256 `e992180ffde9fe7bf921f6396ac6dc5f20ecaec1f2adf9577707dfa1267380ce` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-python-lean-carrier-bridge_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-python-lean-carrier-bridge_lean_replay.json) (module `PregenesisPythonLeanCarrierBridge`): recorded sha256 `e992180ffde9fe7bf921f6396ac6dc5f20ecaec1f2adf9577707dfa1267380ce` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_320_current_lean_replay.json](../../../evidence/lean_receipts/pr_320_current_lean_replay.json) (module `PregenesisPythonLeanCarrierBridge`): recorded sha256 `e992180ffde9fe7bf921f6396ac6dc5f20ecaec1f2adf9577707dfa1267380ce` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build PregenesisPythonLeanCarrierBridge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0499_python_lean_carrier_bridge.md`
 
 - file: [dag/derivations/02_genesis/tfq_0499_python_lean_carrier_bridge.md](../../../dag/derivations/02_genesis/tfq_0499_python_lean_carrier_bridge.md)
-- sha256 (`lf-normalised`): `65b833353fc7d864c66e279ebdd14c833f0ef243c9d050d9208da51fe9c256cd`
+- sha256 (`lf-normalised`): `516aafdcbe3195868c4c0746d6a98364ebd5eb23b54fff70480331228664e4db`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0499
 - counts toward the grade: no
@@ -130,9 +130,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_pgw-python-lean-carrier-bridge_lean_replay.json`
 
-- file: [dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json](../../../dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_pgw-python-lean-carrier-bridge_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-python-lean-carrier-bridge_lean_replay.json)
 - sha256 (`lf-normalised`): `32edb68a509cfe0b31a69cda1f31c10b0d8242249e3881ddce4421d2061f8de6`
 - cited in: node.source
 - counts toward the grade: yes

@@ -37,7 +37,7 @@ QM-208 table row: exact finite invariant; residual "add-then-square composition 
 
 ## Review
 
-- PFP review: [dag/results/FQ-SORKIN-READOUT-CLASS-QM208/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-SORKIN-READOUT-CLASS-QM208/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/FQ-SORKIN-READOUT-CLASS-QM208/reviews/20261019_structure_audit/review_result.json](../../../evidence/results/FQ-SORKIN-READOUT-CLASS-QM208/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: general I3(alpha*t²+beta*t⁴)=12*beta*abc(a+b+c), hence general vanishing iff beta=0. Exact Q(zeta12) control norms (7,±4) give R_AB invariance iff B=0; no full positivity-cone classification is inferred.
   - does not support: Formalize the embedding-weight/basis-coordinate conversion and full rational readout positivity cone. Polynomial restriction and amplitude addition are admitted, and this is not a classification of all readouts.
   - next test: Formalize the embedding-weight/basis-coordinate conversion and full rational readout positivity cone. Polynomial restriction and amplitude addition are admitted, and this is not a classification of all readouts.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
 - cited in: node.lean, record TFQ-1011
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qcd.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQM`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -62,27 +62,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md](../../../dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md)
-- sha256 (`lf-normalised`): `503165fa2354b59c853b50e356c40e6d8a26511f0adc99b3b33f3b01f884ac2d`
-- generated view: listed, not counted
-- cited in: record TFQ-1011
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
-- sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
+- sha256 (`lf-normalised`): `0ec068458cb98411a43fd5ca8f50797bfcf3563185b7a1fbe8348b1a9616fa44`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md](../../../dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md)
+- sha256 (`lf-normalised`): `21b29247d9bd43d2bf659f4856267ba185b648f5bb7e09fda7f847b841dcaa9b`
+- generated view: listed, not counted
+- cited in: record TFQ-1011
+- counts toward the grade: no
 
 ### External sources
 

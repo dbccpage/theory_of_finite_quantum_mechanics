@@ -19,7 +19,7 @@ Checked in Lean 4 on Finset for all finite carriers and by the exhaustive check 
 
 ## Source status
 
-Source definition of distinguishability audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Source definition of distinguishability audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Source definition of distinguishability audited against arXiv:1405.5563 Section 
 
 For all finite X, R, q: X to R and A, B subsets of X: (exists f: R to {0,1}, f(q(a))=0 on A and f(q(b))=1 on B) iff q(A) cap q(B) = empty. Exhaustive check for |X|<=4, |R|<=3 over all (q, A, B) with A, B nonempty.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -49,7 +49,7 @@ See also: `PG-COLLAPSE-BARRIER`, `PG-PREGEN-CONSTRUCTIVE-SUMMARY`.
 ## Sources
 
 - Repository: `lean4/FrontierDistinguishability.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierDistinguishability.lean::FrontierDistinguishability.separatedByTask_imp_disjoint_image`

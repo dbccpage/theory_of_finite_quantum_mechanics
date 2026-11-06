@@ -32,7 +32,7 @@ The statement is about the family startWord; that the input-to-start-word map is
 
 ## Source status
 
-dag/research/genesis_to_universal_computation.md record COMP-C7b claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/29_computation/genesis_to_universal_computation.md record COMP-C7b claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3`
 - cited in: node.lean, node.source, record TFQ-1309
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisCompUniv`): recorded sha256 `966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_computation.json](../../../evidence/lean_receipts/lean_replay_campaign_computation.json) (module `GenesisCompUniv`): recorded sha256 `966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisCompUniv`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -61,20 +61,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/29_computation/genesis_to_universal_computation.md`
+
+- file: [dag/derivations/29_computation/genesis_to_universal_computation.md](../../../dag/derivations/29_computation/genesis_to_universal_computation.md)
+- sha256 (`lf-normalised`): `d57c3593a55277cafb808fb1b2241dcf2ad97701205dca6b7874af70b5119068`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1309_comp_c7_nf_reach_undecidable.md`
 
 - file: [dag/derivations/29_computation/tfq_1309_comp_c7_nf_reach_undecidable.md](../../../dag/derivations/29_computation/tfq_1309_comp_c7_nf_reach_undecidable.md)
-- sha256 (`lf-normalised`): `23d47205164dea84203754bfa3013b7d27ed65624881541d98bedb7c8dcb340f`
+- sha256 (`lf-normalised`): `a18eccd4206337539a834c29d1dfb9daa4a9286c0ef8404c14ef42526026b235`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1309
 - counts toward the grade: no
-
-### Documents and data: `dag/research/genesis_to_universal_computation.md`
-
-- file: [dag/research/genesis_to_universal_computation.md](../../../dag/research/genesis_to_universal_computation.md)
-- sha256 (`lf-normalised`): `004aada51ca3ccf378160e4e84208bba2b409805f041a4ef7bbd8898576cd5c7`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

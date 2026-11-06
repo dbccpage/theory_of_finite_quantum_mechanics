@@ -10,7 +10,7 @@ Stage: [GENESIS_TO_HIGHER](../stages/GENESIS_TO_HIGHER.md). Status: `OPEN`. Evid
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
+- counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
 - distinct cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/GenesisToHigherShadow.lean](../../../lean4/GenesisToHigherShadow.lean)
 - sha256 (`bytes`): `cbad9678093f3a25d85cd823e16b4aa521350e1a61c798ada1aa3628f8c884a7`
-- cited in: node.source, receipt dag/research/campaign_gth-shadow_lean_replay.json (GenesisToHigherShadow), receipt dag/research/pr_362_review_replay.json (GenesisToHigherShadow)
+- cited in: node.source, receipt evidence/lean_receipts/campaign_gth-shadow_lean_replay.json (GenesisToHigherShadow), receipt evidence/lean_receipts/pr_362_review_replay.json (GenesisToHigherShadow)
 - replay: `verified`
-  - receipt [dag/research/campaign_gth-shadow_lean_replay.json](../../../dag/research/campaign_gth-shadow_lean_replay.json) (module `GenesisToHigherShadow`): recorded sha256 `cbad9678093f3a25d85cd823e16b4aa521350e1a61c798ada1aa3628f8c884a7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_362_review_replay.json](../../../dag/research/pr_362_review_replay.json) (module `GenesisToHigherShadow`): recorded sha256 `cbad9678093f3a25d85cd823e16b4aa521350e1a61c798ada1aa3628f8c884a7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_gth-shadow_lean_replay.json](../../../evidence/lean_receipts/campaign_gth-shadow_lean_replay.json) (module `GenesisToHigherShadow`): recorded sha256 `cbad9678093f3a25d85cd823e16b4aa521350e1a61c798ada1aa3628f8c884a7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_362_review_replay.json](../../../evidence/lean_receipts/pr_362_review_replay.json) (module `GenesisToHigherShadow`): recorded sha256 `cbad9678093f3a25d85cd823e16b4aa521350e1a61c798ada1aa3628f8c884a7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisToHigherShadow`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -73,17 +73,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md`
 
 - file: [dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md](../../../dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md)
-- sha256 (`lf-normalised`): `2e53daa908c8c8441472e14ce9d22ff5b212ab177ec8f72be73730d8975c8597`
+- sha256 (`lf-normalised`): `06814856119eb562c61d1c20bfb24a42cf7f9ed80bec852df6357d92d2c8713d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2400
 - counts toward the grade: no
-
-### Documents and data: `dag/derivations/independent/gth-shadow.md`
-
-- file: [dag/derivations/independent/gth-shadow.md](../../../dag/derivations/independent/gth-shadow.md)
-- sha256 (`lf-normalised`): `ac1b8ece8aa1b54e55b006c2aef4cd51534f873573bf76dabe429f788f162165`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/independent/gth_shadow.md`
 
@@ -92,9 +85,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_gth-shadow_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_gth-shadow_lean_replay.json`
 
-- file: [dag/research/campaign_gth-shadow_lean_replay.json](../../../dag/research/campaign_gth-shadow_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_gth-shadow_lean_replay.json](../../../evidence/lean_receipts/campaign_gth-shadow_lean_replay.json)
 - sha256 (`lf-normalised`): `1c0bb185dbd079697ab4e89c49409fde1b3d3f5bc3cb6cbed0deacdadbf36c78`
 - cited in: node.source
 - counts toward the grade: yes

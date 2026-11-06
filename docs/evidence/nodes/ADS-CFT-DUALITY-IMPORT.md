@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/AdsCftDualityImport.lean](../../../lean4/AdsCftDualityImport.lean)
 - sha256 (`bytes`): `19365b284177fa7eb6fbe532f016248ea5143a1a8ead08e77d772539ac89f61b`
-- cited in: node.lean, receipt dag/research/campaign_ads-cft-duality-import_lean_replay.json (AdsCftDualityImport), record TFQ-2202
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_ads-cft-duality-import_lean_replay.json (AdsCftDualityImport), record TFQ-2202
 - replay: `verified`
-  - receipt [dag/research/campaign_ads-cft-duality-import_lean_replay.json](../../../dag/research/campaign_ads-cft-duality-import_lean_replay.json) (module `AdsCftDualityImport`): recorded sha256 `19365b284177fa7eb6fbe532f016248ea5143a1a8ead08e77d772539ac89f61b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ads-cft-duality-import_lean_replay.json](../../../evidence/lean_receipts/campaign_ads-cft-duality-import_lean_replay.json) (module `AdsCftDualityImport`): recorded sha256 `19365b284177fa7eb6fbe532f016248ea5143a1a8ead08e77d772539ac89f61b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build AdsCftDualityImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -88,7 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md](../../../dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md)
-- sha256 (`lf-normalised`): `ba4dcbaa0e64e9b209f3cf641d762c5f9555a47446767191bbf9f4eaee39f116`
+- sha256 (`lf-normalised`): `6ac79e999569621a82714f07286a3dffeded8d8cb9383b3a2c6dd63a31067779`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2202
 - counts toward the grade: no
@@ -96,27 +96,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ads-cft-duality-import.md`
 
 - file: [dag/derivations/independent/ads-cft-duality-import.md](../../../dag/derivations/independent/ads-cft-duality-import.md)
-- sha256 (`lf-normalised`): `7dbe906b2a7a9af1426d5d3fa916e0b34428f086a30f66c1a4b7bafe2a256406`
+- sha256 (`lf-normalised`): `2856f844cf7c11b0b0b5348271a92f8dc5f50670e6926a32083b0a1c58a36afb`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-cft-duality-import_independent.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-cft-duality-import_independent.json`
 
-- file: [dag/research/campaign_ads-cft-duality-import_independent.json](../../../dag/research/campaign_ads-cft-duality-import_independent.json)
+- file: [evidence/lean_receipts/campaign_ads-cft-duality-import_independent.json](../../../evidence/lean_receipts/campaign_ads-cft-duality-import_independent.json)
 - sha256 (`lf-normalised`): `084644db1aea5b0bd0dabc81e653f451cceb20c9ed8ad0a34a99f1a6f5cb152b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-cft-duality-import_lean_mutation.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-cft-duality-import_lean_mutation.json`
 
-- file: [dag/research/campaign_ads-cft-duality-import_lean_mutation.json](../../../dag/research/campaign_ads-cft-duality-import_lean_mutation.json)
+- file: [evidence/lean_receipts/campaign_ads-cft-duality-import_lean_mutation.json](../../../evidence/lean_receipts/campaign_ads-cft-duality-import_lean_mutation.json)
 - sha256 (`lf-normalised`): `53c66627619609fb2558eb4383856ad4fd82e7238d33b2b9a2028b034a17b3be`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-cft-duality-import_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-cft-duality-import_lean_replay.json`
 
-- file: [dag/research/campaign_ads-cft-duality-import_lean_replay.json](../../../dag/research/campaign_ads-cft-duality-import_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_ads-cft-duality-import_lean_replay.json](../../../evidence/lean_receipts/campaign_ads-cft-duality-import_lean_replay.json)
 - sha256 (`lf-normalised`): `9b3bc6f924420c2ca467bd0d423a3693770d9ab376a5cb4c97aed67cc03255df`
 - cited in: node.source
 - counts toward the grade: yes

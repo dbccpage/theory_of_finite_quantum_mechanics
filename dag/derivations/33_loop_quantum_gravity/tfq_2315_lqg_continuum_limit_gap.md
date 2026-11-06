@@ -52,14 +52,14 @@ See also: `TFQ-0104`, `TFQ-0105`, `TFQ-0085`.
 ## Sources
 
 - Repository: `lean4/LqgContinuumLimitGap.lean`
-- Repository: `dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_lqg-continuum-limit-gap_lean_replay.json`
 - Repository: `dag/derivations/independent/lqg-continuum-limit-gap.md`
 - Repository: `checks/independent/lqg-continuum-limit-gap.py`
 - Repository: `code/rust/src/general_relativity/spin_foam.rs`
 - Repository: `lean4/LqgProjectiveLimit.lean`
 - Repository: `checks/independent/lqg-projective-limit.py`
 - Repository: `dag/derivations/independent/lqg-projective-limit.md`
-- Repository: `dag/research/campaign_lqg-projective-limit_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_lqg-projective-limit_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/LqgContinuumLimitGap.lean::LqgContinuumLimitGap.level2_admissible_count`

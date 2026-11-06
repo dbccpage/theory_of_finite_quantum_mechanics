@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ConstructorTheoryMediatorEntanglement.lean](../../../lean4/ConstructorTheoryMediatorEntanglement.lean)
 - sha256 (`bytes`): `370825e363db8a2687c082c86b7038f8acb8a672ba9f367528f5d2eb5768d468`
-- cited in: node.lean, receipt dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json (ConstructorTheoryMediatorEntanglement)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_ct-local-mediator-entanglement-import_lean_replay.json (ConstructorTheoryMediatorEntanglement)
 - replay: `verified`
-  - receipt [dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json](../../../dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json) (module `ConstructorTheoryMediatorEntanglement`): recorded sha256 `370825e363db8a2687c082c86b7038f8acb8a672ba9f367528f5d2eb5768d468` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ct-local-mediator-entanglement-import_lean_replay.json](../../../evidence/lean_receipts/campaign_ct-local-mediator-entanglement-import_lean_replay.json) (module `ConstructorTheoryMediatorEntanglement`): recorded sha256 `370825e363db8a2687c082c86b7038f8acb8a672ba9f367528f5d2eb5768d468` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ConstructorTheoryMediatorEntanglement`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ct-local-mediator-entanglement-import.md`
 
 - file: [dag/derivations/independent/ct-local-mediator-entanglement-import.md](../../../dag/derivations/independent/ct-local-mediator-entanglement-import.md)
-- sha256 (`lf-normalised`): `5ed6b88d65928fa8dc2aa8febc81936fd5925ed6b5e9c9010096ca80e32920a3`
+- sha256 (`lf-normalised`): `86750d274e012ffab92f6d9d68a0b0616298e5c16428940db60ce0a3642b9002`
 - cited in: node.source
 - counts toward the grade: yes
 

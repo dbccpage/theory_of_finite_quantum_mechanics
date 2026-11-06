@@ -70,4 +70,4 @@ In accordance with strict constructive principles:
   - `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:291-293`
   - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1478-1483`
   - `dag/derivations/independent/pgw-wdp-incidence-orientation-transport.md:5`
-  - `dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json:6`
+  - `evidence/lean_receipts/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json:6`

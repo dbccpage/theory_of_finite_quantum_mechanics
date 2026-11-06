@@ -34,7 +34,7 @@ fail visibly.
 * any report lists an axiom outside the allowlist (``propext``, ``Classical.choice``,
   ``Quot.sound``); ``sorryAx`` is therefore rejected.
 
-The expectation file is ``dag/research/gleason_lean_audit.json``. ``update`` rewrites it from the
+The expectation file is ``evidence/lean_receipts/gleason_lean_audit.json``. ``update`` rewrites it from the
 current sources and a passing Lean output; it is a maintainer action recorded in version control,
 not something CI does.
 """
@@ -48,7 +48,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTATION = "dag/research/gleason_lean_audit.json"
+EXPECTATION = "evidence/lean_receipts/gleason_lean_audit.json"
 SCHEMA = "gleason_lean_audit.v1"
 MODULES = (
     "BornGaussianParallelogramRigidity",

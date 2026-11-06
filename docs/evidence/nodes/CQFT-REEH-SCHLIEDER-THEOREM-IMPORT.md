@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ReehSchliederImport.lean](../../../lean4/ReehSchliederImport.lean)
 - sha256 (`bytes`): `34c147dbf411a7fdd93b93047c5cd71071211a6b60abc2420fe3c530225dd88f`
-- cited in: node.lean, node.source, receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (ReehSchliederImport), record TFQ-2106
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (ReehSchliederImport), record TFQ-2106
 - replay: `verified`
-  - receipt [dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json](../../../dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json) (module `ReehSchliederImport`): recorded sha256 `34c147dbf411a7fdd93b93047c5cd71071211a6b60abc2420fe3c530225dd88f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json](../../../evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json) (module `ReehSchliederImport`): recorded sha256 `34c147dbf411a7fdd93b93047c5cd71071211a6b60abc2420fe3c530225dd88f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ReehSchliederImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md](../../../dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md)
-- sha256 (`lf-normalised`): `df7638df283e1eaa5547c41981e19599a2d58c1d4b4291dc5cd4b2eeb666f1b6`
+- sha256 (`lf-normalised`): `cebc5683a22c1fbdc2025393015a4757b7c5e44a2e97b945d8f55d6b0016b65b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2106
 - counts toward the grade: no
@@ -91,23 +91,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json`
+### Documents and data: `evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_independent.json`
 
-- file: [dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json](../../../dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json)
+- file: [evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_independent.json](../../../evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_independent.json)
 - sha256 (`lf-normalised`): `afab229e73d3892bb2c875a852ebed18bda42ab4cd48108ad8ba88ef166e9c86`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json`
+### Documents and data: `evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json`
 
-- file: [dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json](../../../dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json)
+- file: [evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json](../../../evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json)
 - sha256 (`lf-normalised`): `fc9d28ae684cdb451a94d82aaccfb298f1befe01fb6f1ecdd169bdf692376b82`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json`
 
-- file: [dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json](../../../dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json](../../../evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json)
 - sha256 (`lf-normalised`): `430c102bde184d5dc036c96df5b61bf7a7b02ad832aff51e17d9784a7f7c29fa`
 - cited in: node.source
 - counts toward the grade: yes

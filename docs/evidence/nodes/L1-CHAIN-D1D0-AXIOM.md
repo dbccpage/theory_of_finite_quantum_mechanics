@@ -36,7 +36,7 @@ C18 d1 o d0 = 0: \[DECLARED AXIOM\] assumed via presheaf functoriality; not prov
 
 ## Review
 
-- PFP review: [dag/results/L1-CHAIN-D1D0-AXIOM/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-CHAIN-D1D0-AXIOM/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-CHAIN-D1D0-AXIOM/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-CHAIN-D1D0-AXIOM/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: yes.
   - narrowest claim: Actual triangle d1*d0 arrays, potential images and flat/nonflat controls, with general telescoping and a defective-row witness in Lean.
   - does not support: Derive functorial restrictions from admitted presheaf data and transport arbitrary finite cochain windows; zero on one potential is insufficient.
   - next test: Derive functorial restrictions from admitted presheaf data and transport arbitrary finite cochain windows; zero on one potential is insufficient.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

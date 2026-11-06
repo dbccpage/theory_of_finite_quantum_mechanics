@@ -16,15 +16,18 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = "lean4/FQCD/StrongCouplingAreaLaw.lean"
-RECEIPT = "dag/research/campaign_tfq-1052_lean_replay.json"
-LOG = "dag/research/campaign_tfq-1052_lean_replay.log"
+RECEIPT = "evidence/lean_receipts/campaign_tfq-1052_lean_replay.json"
+LOG = "evidence/lean_receipts/campaign_tfq-1052_lean_replay.log"
+# Where the recorded replay wrote its log, before the receipts moved out of dag/ on 2026-11-06.
+# The receipt keeps that recorded path; its bytes are pinned by the module's companion.
+RECORDED_LOGS = {LOG, "dag/research/campaign_tfq-1052_lean_replay.log"}
 REPORT = re.compile(r"'([^']+)' (?:depends on axioms:\s*\[([^\]]*)\]|does not depend on any axioms)")
 STANDARD_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 PIN_PATHS = (SOURCE, "lean4/FermionSignWilsonDiracGamma5.lean", "lean4/lakefile.lean", "lean4/lake-manifest.json", "lean4/lean-toolchain")
 # Recorded edits to pinned build configuration made after a replay ran. A migration is not a replay:
 # it lets a receipt keep its original pins and log while the verifier proves, from the current bytes,
 # that the only change is the recorded addition of whole lean_lib stanzas for other modules.
-PIN_MIGRATIONS = "dag/research/lean_replay_pin_migrations.json"
+PIN_MIGRATIONS = "evidence/lean_receipts/lean_replay_pin_migrations.json"
 MIGRATABLE_PATHS = {"lean4/lakefile.lean"}
 LEAN_LIB_STANZAS = re.compile(r"(?:lean_lib (\w+) where\n  roots := #\[`\w+(?:\.\w+)*\]\n\n)+")
 LEAN_LIB_ROOTS = re.compile(r"lean_lib (\w+) where\n  roots := #\[`(\w+(?:\.\w+)*)\]\n\n")
@@ -119,7 +122,7 @@ def verify_receipt() -> None:
     receipt = json.loads((ROOT / RECEIPT).read_text(encoding="utf-8"))
     result, = receipt["lean_replay"]["results"]
     if (set(receipt["source_pins"]) != set(PIN_PATHS) or result["source"] != SOURCE
-            or result["module"] != "FQCD.StrongCouplingAreaLaw" or result["output"] != LOG):
+            or result["module"] != "FQCD.StrongCouplingAreaLaw" or result["output"] not in RECORDED_LOGS):
         raise ValueError("Replay identity or required input pins differ")
     anchors = expected_anchors((ROOT / SOURCE).read_text(encoding="utf-8"))
     if result["anchors"] != anchors:

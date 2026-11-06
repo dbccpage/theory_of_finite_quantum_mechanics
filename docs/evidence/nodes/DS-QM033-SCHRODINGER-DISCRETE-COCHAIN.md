@@ -36,7 +36,7 @@ QM_033-C1..C3 discrete 2-vertex Hermitian graph Schrodinger L1/L2 probability ma
 
 ## Review
 
-- PFP review: [dag/results/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Full Gaussian Hψ and derivative coordinates reproduce zero instantaneous mass rate and the nonzero exact Euler drift formula.
   - does not support: Derive H and its units/interface; construct an exact propagator and prove the formal matrix-to-rate transport. No differential equation solution or continuum limit is provided.
   - next test: Derive H and its units/interface; construct an exact propagator and prove the formal matrix-to-rate transport. No differential equation solution or continuum limit is provided.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0244
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
+- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0244_discrete_schrodinger_cochain_on_a_finite_graph.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0244_discrete_schrodinger_cochain_on_a_finite_graph.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0244_discrete_schrodinger_cochain_on_a_finite_graph.md)
-- sha256 (`lf-normalised`): `1d644bd57f4dc76d31e1ada2f6fbf8c99582817c4ab8cd602c13ed771509c670`
+- sha256 (`lf-normalised`): `8478e43cab6a6cb21a512e3f7ad8f6a20ebac363c823ff8447fda4d21291488f`
 - generated view: listed, not counted
 - cited in: record TFQ-0244
 - counts toward the grade: no

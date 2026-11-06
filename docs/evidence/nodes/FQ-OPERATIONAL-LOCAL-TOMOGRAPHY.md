@@ -35,7 +35,7 @@ Under calibration, a nonzero observation and descent of an admitted operation fa
 
 ## Source status
 
-Local tomography is imported. dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography (Lean 4.35.0, OperationalTomography and OperationalFieldSelection; independent review in dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144) establishes a field-neutral conditional theorem, and dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family (OperationalFilterFamily) establishes that its operational premise is equivalent to local tomography, so the pair re-expresses local tomography and does not derive it. Replays: Python Fraction and Rust BigRational; fixture-integrity mutations rejected (277 for the tomography fixtures, 623 for the filter fixtures). Authority effect: none.
+Local tomography is imported. evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography (Lean 4.35.0, OperationalTomography and OperationalFieldSelection; independent review in evidence/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144) establishes a field-neutral conditional theorem, and evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family (OperationalFilterFamily) establishes that its operational premise is equivalent to local tomography, so the pair re-expresses local tomography and does not derive it. Replays: Python Fraction and Rust BigRational; fixture-integrity mutations rejected (277 for the tomography fixtures, 623 for the filter fixtures). Authority effect: none.
 
 ## Review
 
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631`
 - cited in: node.lean, record TFQ-1048
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `OperationalFieldSelection`): recorded sha256 `c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `OperationalFieldSelection`): recorded sha256 `c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build OperationalFieldSelection`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/finite_probability/operational_filters.rs`
 
 - file: [code/rust/src/finite_probability/operational_filters.rs](../../../code/rust/src/finite_probability/operational_filters.rs)
-- sha256 (`bytes`): `3c1d70ce8391f43e228666b7a59c119e27190111adb2a853a35229efac81d47f`
+- sha256 (`bytes`): `fcc7cff18b2d041dd9d9091830cb1b5cf60dcc308d910d175d868e2cfc11f6a4`
 - cited in: node.rust, record TFQ-1048
 - note: no test is cited for this symbol; its crate is tfqm_finite_probability
 - counts toward the grade: yes
@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/finite_probability/operational_tomography.rs`
 
 - file: [code/rust/src/finite_probability/operational_tomography.rs](../../../code/rust/src/finite_probability/operational_tomography.rs)
-- sha256 (`bytes`): `dc92ab3fbdd8501ccb89d970a053e780e7c036c5ab3892c127f26cfccf48fbfb`
+- sha256 (`bytes`): `cdc821c1c1df2bfb4b4a3b8894840872e4633a965ce20df6be059a7f3dccf962`
 - cited in: node.rust, record TFQ-1048
 - note: no test is cited for this symbol; its crate is tfqm_finite_probability
 - counts toward the grade: yes
@@ -111,42 +111,42 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md](../../../dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md)
-- sha256 (`lf-normalised`): `020322fa4d2e632a9c1212a2b918b9e06c13663b040bad2a0a03ce39f710ba13`
+- sha256 (`lf-normalised`): `d5913cd8fa40fb3ab4c13cd9d0480a21b20bde8513730a0b99b775ab51390347`
 - generated view: listed, not counted
 - cited in: record TFQ-1048
 - counts toward the grade: no
 
-### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md`
+### Documents and data: `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md)
+- file: [evidence/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md](../../../evidence/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md)
 - sha256 (`lf-normalised`): `8169e62c96e8661ea92e3c0b8252867e82499a28c3daf478576b6932dcaf3d33`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
+### Documents and data: `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md)
+- file: [evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md](../../../evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md)
 - sha256 (`lf-normalised`): `9854dc36f40af42797cbdae8a8a115b3ebdc93cf85fd3e0b04dd99bb9f203632`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json`
+### Documents and data: `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json)
+- file: [evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json](../../../evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json)
 - sha256 (`lf-normalised`): `b6710d3c563d633cd6b634ed85ca691cf9a61ad7d5f675b8755bf497bd234291`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md`
+### Documents and data: `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md)
+- file: [evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md](../../../evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md)
 - sha256 (`lf-normalised`): `d30cabed719b04a2673c7038fef9a5d54c138ae7b23940245e7a8c85a883d440`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json`
+### Documents and data: `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json)
+- file: [evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json](../../../evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json)
 - sha256 (`lf-normalised`): `bdd193bfe7eda1ba885e46a8c367090a9d7d1b2c6c673cbadaaaf87ed9342141`
 - cited in: node.source
 - counts toward the grade: yes

@@ -74,4 +74,4 @@ In accordance with strict constructive principles:
   - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_ongoing_fixed_carrier_bridge.md:26-36`
   - `external:sha256:a11697dcdf5788b476d5c2e541b635a81c03e665684f69bd260bc463a03ee458:116-137`
   - `dag/derivations/independent/pgw-wdp-bridge-ongoing-to-window.md:5`
-  - `dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json:6`
+  - `evidence/lean_receipts/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json:6`

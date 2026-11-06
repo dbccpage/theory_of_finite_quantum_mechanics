@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DressingFieldSymanzikQedAeFence.lean](../../../lean4/DressingFieldSymanzikQedAeFence.lean)
 - sha256 (`bytes`): `dc8005487bfbfa82b21ba0f01478fdff811ee8b8ccf418763fc6b57ec9c2d516`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json (DressingFieldSymanzikQedAeFence), record TFQ-1104
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json (DressingFieldSymanzikQedAeFence), record TFQ-1104
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json](../../../dag/research/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json) (module `DressingFieldSymanzikQedAeFence`): recorded sha256 `dc8005487bfbfa82b21ba0f01478fdff811ee8b8ccf418763fc6b57ec9c2d516` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json](../../../evidence/lean_receipts/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json) (module `DressingFieldSymanzikQedAeFence`): recorded sha256 `dc8005487bfbfa82b21ba0f01478fdff811ee8b8ccf418763fc6b57ec9c2d516` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build DressingFieldSymanzikQedAeFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
 
 - file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- sha256 (`lf-normalised`): `a41d66a41925e1236c1c506bfb4e3fa7222de96f7211faa6981d14b677cbe36b`
 - cited in: node.source
 - counts toward the grade: yes
 

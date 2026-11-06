@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/InformationProductBoundary.lean](../../../lean4/InformationProductBoundary.lean)
 - sha256 (`bytes`): `b9fb0fc2e132c89a49c4068013d2e5e36de23d25b366bf9c6ea9e8f400780687`
-- cited in: node.lean, receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (InformationProductBoundary), receipt dag/research/pr_381_round2_replay.json (InformationProductBoundary), record TFQ-2006
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json (InformationProductBoundary), receipt evidence/lean_receipts/pr_381_round2_replay.json (InformationProductBoundary), record TFQ-2006
 - replay: `verified`
-  - receipt [dag/research/campaign_ct-information-media-interoperability_lean_replay.json](../../../dag/research/campaign_ct-information-media-interoperability_lean_replay.json) (module `InformationProductBoundary`): recorded sha256 `b9fb0fc2e132c89a49c4068013d2e5e36de23d25b366bf9c6ea9e8f400780687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr_381_round2_replay.json](../../../dag/research/pr_381_round2_replay.json) (module `InformationProductBoundary`): recorded sha256 `b9fb0fc2e132c89a49c4068013d2e5e36de23d25b366bf9c6ea9e8f400780687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json](../../../evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json) (module `InformationProductBoundary`): recorded sha256 `b9fb0fc2e132c89a49c4068013d2e5e36de23d25b366bf9c6ea9e8f400780687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_381_round2_replay.json](../../../evidence/lean_receipts/pr_381_round2_replay.json) (module `InformationProductBoundary`): recorded sha256 `b9fb0fc2e132c89a49c4068013d2e5e36de23d25b366bf9c6ea9e8f400780687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build InformationProductBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md](../../../dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md)
-- sha256 (`lf-normalised`): `81f9d87587f4294c426d59421df0173e09fdb9255e7d338791dad2ddf30c117f`
+- sha256 (`lf-normalised`): `1958f3c0c31157d503be5d5aaf71d217f2b985602ad7a6d22a49d51bb0ccd386`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2006
 - counts toward the grade: no
@@ -85,9 +85,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ct-information-media-interoperability_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json`
 
-- file: [dag/research/campaign_ct-information-media-interoperability_lean_replay.json](../../../dag/research/campaign_ct-information-media-interoperability_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json](../../../evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json)
 - sha256 (`lf-normalised`): `f06441262630cd2f64087940c11d19dd79698ea74d508356bc0999856385c336`
 - cited in: node.source
 - counts toward the grade: yes

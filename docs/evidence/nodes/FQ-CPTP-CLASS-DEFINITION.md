@@ -36,7 +36,7 @@ GAP-F001-S000-007 status DEFINED
 
 ## Review
 
-- PFP review: [dag/results/FQ-CPTP-CLASS-DEFINITION/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-CPTP-CLASS-DEFINITION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-CPTP-CLASS-DEFINITION/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/FQ-CPTP-CLASS-DEFINITION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: Full depolarizing Choi arrays, eigenvector actions, rank controls and TP partial trace are exact; eigenvalue nonnegativity iff -1/3\<=p\<=1 and trace2 are kernel checked.
   - does not support: Prove the full Choi-PSD/Kraus/Stinespring bridge, environment metric and any actual field/conductor necessity. A class definition and data flags do not derive the channel class.
   - next test: Prove the full Choi-PSD/Kraus/Stinespring bridge, environment metric and any actual field/conductor necessity. A class definition and data flags do not derive the channel class.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `CptpChannelsStinespring`): recorded sha256 `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `CptpChannelsStinespring`): recorded sha256 `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CptpChannelsStinespring`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,24 +67,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: record TFQ-0262
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
+
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
+- cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0262_cptp_class_recorded_as_a_definition.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0262_cptp_class_recorded_as_a_definition.md](../../../dag/derivations/12_finite_qm_structure/tfq_0262_cptp_class_recorded_as_a_definition.md)
-- sha256 (`lf-normalised`): `096803e8b1c9e76cac81198e55765f3ff8b1c278d5b221214b1f4ab031ba410e`
+- sha256 (`lf-normalised`): `256038b56ca46a795d44755125a347183eb53aeaeffe6d2248bb764d6e7833e0`
 - generated view: listed, not counted
 - cited in: record TFQ-0262
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
-
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 

@@ -139,7 +139,7 @@ EXPECTED_DECLARATIONS: dict[str, list[str]] = {
 def make_root(tmp_path: Path, sources: dict[str, str] | None = None) -> Path:
     root = tmp_path / "repo"
     (root / "lean4").mkdir(parents=True)
-    (root / "dag" / "research").mkdir(parents=True)
+    (root / "evidence" / "lean_receipts").mkdir(parents=True)
     for name, text in (sources or MODULE_SOURCE).items():
         (root / audit.module_path(name)).write_text(text, encoding="utf-8")
     for dep in audit.DEPENDENCIES:

@@ -42,7 +42,7 @@ effect saturation. The separate `test_povm_of_sound` theorem requires soundness 
 - [TensorMeasurements](../../../lean4/TensorMeasurements.lean): `povm_binary`,
   `test_povm_of_sound`, `test_iff_povm`, `quantum_measurements`.
 - [State-cone theorem](../../../lean4/TensorComposition.lean): `quantum_state_cone`.
-- [Validation receipt](../../research/tensor_measurement_validation.json).
+- [Validation receipt](../../../evidence/lean_receipts/tensor_measurement_validation.json).
 
 All finite outcome types are covered; infinite outcome spaces are outside the
 statement. No instrument, post-measurement state, channel classification, or

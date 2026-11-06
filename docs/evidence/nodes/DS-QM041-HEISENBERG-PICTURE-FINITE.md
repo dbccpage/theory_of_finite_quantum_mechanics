@@ -37,7 +37,7 @@ Schrodinger-Heisenberg trace cyclicity Tr(A B) = Tr(B A) and 1-step unitary conj
 
 ## Review
 
-- PFP review: [dag/results/DS-QM041-HEISENBERG-PICTURE-FINITE/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM041-HEISENBERG-PICTURE-FINITE/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM041-HEISENBERG-PICTURE-FINITE/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/DS-QM041-HEISENBERG-PICTURE-FINITE/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: The two exact expectation pairings agree on the declared two-state carrier.
   - does not support: Transport the expanded quadratic identity to full Gaussian matrices, and supply any selected time law, Hamiltonian and physical readout.
   - next test: Transport the expanded quadratic identity to full Gaussian matrices, and supply any selected time law, Hamiltonian and physical readout.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0247
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md)
-- sha256 (`lf-normalised`): `b8a5ddf508ca2fdeb6240ebfd2b358f2c87bc08d2c378d1e932c9c32e748e471`
+- sha256 (`lf-normalised`): `642dda801509d8a47d5e20286724e4c199b252b4ec1a79f018ab75c61729ea32`
 - generated view: listed, not counted
 - cited in: record TFQ-0247
 - counts toward the grade: no

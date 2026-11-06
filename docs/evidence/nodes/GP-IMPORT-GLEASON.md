@@ -37,7 +37,7 @@ imported (OracleNeeded firewall, GTOC-8)
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_two_label_pairing_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_two_label_pairing_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: On the two-label host, 2 \< 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.
   - does not support: Uniqueness of the Born quadratic form for dimension at least 3 under noncontextuality, sigma-additivity and continuity, or a refutation of that uniqueness.
   - next test: Admit the Gleason hypotheses and a host with at least three labels before treating Born uniqueness as derived.
@@ -50,9 +50,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/GleasonImport.lean](../../../lean4/GleasonImport.lean)
 - sha256 (`bytes`): `1780f3c3039fcf145a0e05c4521be94eca2db8f76c4f0f588507efd776a9655a`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-gleason_lean_replay.json (GleasonImport), record TFQ-1031
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_gp-import-gleason_lean_replay.json (GleasonImport), record TFQ-1031
 - replay: `verified`
-  - receipt [dag/research/campaign_gp-import-gleason_lean_replay.json](../../../dag/research/campaign_gp-import-gleason_lean_replay.json) (module `GleasonImport`): recorded sha256 `1780f3c3039fcf145a0e05c4521be94eca2db8f76c4f0f588507efd776a9655a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_gp-import-gleason_lean_replay.json](../../../evidence/lean_receipts/campaign_gp-import-gleason_lean_replay.json) (module `GleasonImport`): recorded sha256 `1780f3c3039fcf145a0e05c4521be94eca2db8f76c4f0f588507efd776a9655a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

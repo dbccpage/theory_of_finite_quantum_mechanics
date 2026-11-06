@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/AdsReggeAreaRtGap.lean](../../../lean4/AdsReggeAreaRtGap.lean)
 - sha256 (`bytes`): `378777ffedad3a7fa58ad034b1ee51c55cb0551bb1b3bdde5de9b684328dd4d3`
-- cited in: node.lean, node.source, receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (AdsReggeAreaRtGap), record TFQ-2211
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_replay.json (AdsReggeAreaRtGap), record TFQ-2211
 - replay: `verified`
-  - receipt [dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json](../../../dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json) (module `AdsReggeAreaRtGap`): recorded sha256 `378777ffedad3a7fa58ad034b1ee51c55cb0551bb1b3bdde5de9b684328dd4d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_replay.json](../../../evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_replay.json) (module `AdsReggeAreaRtGap`): recorded sha256 `378777ffedad3a7fa58ad034b1ee51c55cb0551bb1b3bdde5de9b684328dd4d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build AdsReggeAreaRtGap`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md](../../../dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md)
-- sha256 (`lf-normalised`): `f108042097aa9a33821b75d8ca5030c4521db07b25360483d50b8774497fe0d7`
+- sha256 (`lf-normalised`): `fac4679e9b02a18d9e9d02a2d2beb8ce68fd54cad41c083db40cdde0e4eed28b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2211
 - counts toward the grade: no
@@ -90,23 +90,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-regge-area-rt-gap_independent.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-regge-area-rt-gap_independent.json`
 
-- file: [dag/research/campaign_ads-regge-area-rt-gap_independent.json](../../../dag/research/campaign_ads-regge-area-rt-gap_independent.json)
+- file: [evidence/lean_receipts/campaign_ads-regge-area-rt-gap_independent.json](../../../evidence/lean_receipts/campaign_ads-regge-area-rt-gap_independent.json)
 - sha256 (`lf-normalised`): `2ffced2b6c8e425d0ec37f9e8a7a349b76dcc6363ba1d191e308e90946c05d32`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_mutation.json`
 
-- file: [dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json](../../../dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json)
+- file: [evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_mutation.json](../../../evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_mutation.json)
 - sha256 (`lf-normalised`): `8b998339effbc691c15d89a8dfde9555afc133b1a542f7313d6c16f822e15cd9`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_replay.json`
 
-- file: [dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json](../../../dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_replay.json](../../../evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_replay.json)
 - sha256 (`lf-normalised`): `d74751c4a97a5902295650d700eaa072a4209695db1284955fceace6d41af3ab`
 - cited in: node.source
 - counts toward the grade: yes

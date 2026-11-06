@@ -39,7 +39,7 @@ Declared imported structure:
 - Route `FRO-R-CT-INFORMATION-MEDIA-INTEROPERABILITY` (`CONDITIONAL_ON_IMPORT`) from `CT-DEUTSCH-MARLETTO-2015-SOURCE`: The postulates are the import; the link to the source record is reading order.
 - Route `FRO-R-BACK-CT-INTEROP-TO-TENSOR` (`GAP_NO_DERIVATION`) from this node into `FQ-GAP-TENSOR-UNIQUENESS`: No source derives the quantum tensor composition, local tomography or the PSD cone from the interoperability principle. Recorded as a gap; the constructor-theoretic route is not compared with the operational route of TENSOR-TOMOGRAPHIC-COORDINATES.
 - The trunk node FQ-GAP-TENSOR-UNIQUENESS asks which operational assumptions single out quantum composition. No source read for this change derives that from the interoperability principle (gap route recorded).
-- The scoped functional task model has a current replay in dag/research/campaign_ct-information-media-interoperability_lean_replay.json; the imported physical principle remains separate.
+- The scoped functional task model has a current replay in evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json; the imported physical principle remains separate.
 
 See also: `FQ-GAP-TENSOR-UNIQUENESS`, `GP-IMPORT-TENSOR-PRODUCT`.
 
@@ -52,7 +52,7 @@ See also: `FQ-GAP-TENSOR-UNIQUENESS`, `GP-IMPORT-TENSOR-PRODUCT`.
 
 - `external:arXiv:1405.5563`: D. Deutsch and C. Marletto, "Constructor Theory of Information", arXiv:1405.5563 (2014); Proc. R. Soc. A (2015), doi:10.1098/rspa.2014.0540.
 - Repository: `dag/derivations/independent/ct-information-media-interoperability.md`
-- Repository: `dag/research/campaign_ct-information-media-interoperability_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/InformationProductBoundary.lean::InformationProductBoundary.clones_product`

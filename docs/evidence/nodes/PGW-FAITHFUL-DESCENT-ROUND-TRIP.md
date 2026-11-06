@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `a06a45393920e6ef85542c552d2fa393f35a03712018e7e7886c62ebd8662df6`
 - cited in: node.lean, node.source, record TFQ-0458
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.PresentationDescent`): recorded sha256 `a06a45393920e6ef85542c552d2fa393f35a03712018e7e7886c62ebd8662df6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.PresentationDescent`): recorded sha256 `a06a45393920e6ef85542c552d2fa393f35a03712018e7e7886c62ebd8662df6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

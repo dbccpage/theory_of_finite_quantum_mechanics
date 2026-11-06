@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ConstraintKernelProjector.lean](../../../lean4/ConstraintKernelProjector.lean)
 - sha256 (`bytes`): `daaa910962480e0e1fd97c617f31826c9994bda13618c6e195abee5b7ad3c31f`
-- cited in: node.lean, receipt dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json (ConstraintKernelProjector), record TFQ-1213
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-discrete-wdw-constraint_lean_replay.json (ConstraintKernelProjector), record TFQ-1213
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json) (module `ConstraintKernelProjector`): recorded sha256 `daaa910962480e0e1fd97c617f31826c9994bda13618c6e195abee5b7ad3c31f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-discrete-wdw-constraint_lean_replay.json) (module `ConstraintKernelProjector`): recorded sha256 `daaa910962480e0e1fd97c617f31826c9994bda13618c6e195abee5b7ad3c31f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ConstraintKernelProjector`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -88,14 +88,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md`
 
 - file: [dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md](../../../dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md)
-- sha256 (`lf-normalised`): `319cf197437eb502da5dc8dffead8fe5b314ab212cb7f1521f86fe8068b69215`
+- sha256 (`lf-normalised`): `047b810e961fc6ab5f9e545487dab0565d35e466af4aa7b08099da5fa6cb0e2e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1213
 - counts toward the grade: no
@@ -107,9 +107,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_fsp-discrete-wdw-constraint_lean_replay.json`
 
-- file: [dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-discrete-wdw-constraint_lean_replay.json)
 - sha256 (`lf-normalised`): `43e65d97929a195375db01b327681beafd07b6e466261ac2d8fb59233be7ea4b`
 - cited in: node.source
 - counts toward the grade: yes

@@ -172,7 +172,7 @@ fn event(t: &Mat, fi: &[usize], fo: &[usize], channel: bool) {
 }
 fn raw() -> Vec<u8> {
     std::fs::read(std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(
-        "../../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T202420Z_operational_independence/candidate.json")).unwrap()
+        "../../../../evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T202420Z_operational_independence/candidate.json")).unwrap()
 }
 fn verify(raw: &[u8]) -> Certificate {
     assert!(raw.len() < 1_000_000);
