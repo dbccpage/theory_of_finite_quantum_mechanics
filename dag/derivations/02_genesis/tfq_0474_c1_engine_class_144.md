@@ -1,6 +1,6 @@
 # [TFQ-0474] c1-engine-class-144
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `9f9ccb57-f88a-5bbe-b2c3-6230ca5cd3fb`  
 > **Parent Derivation**: [TFQ-0473](tfq_0473_rung10_responder_adjacency_reach.md)
 
@@ -36,6 +36,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.c1_engine_class_144_and_no_initial`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.engineCapCount1_bounds`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.engine_not_subset_opposite_measure`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.c1_engine_class_144_and_no_initial`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_engine/lean/SecondEngine/Census.lean::class_size`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/lean/SecondEngine/Census.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_engine/lean/SecondEngine/Census.lean::literal_size`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/lean/SecondEngine/Census.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_engine/lean/SecondEngine/Census.lean::no_initial`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/lean/SecondEngine/Census.lean)

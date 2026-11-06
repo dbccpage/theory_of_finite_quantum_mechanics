@@ -1,6 +1,6 @@
 # [TFQ-0567] wdp-bridge-o02-observer-repair
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `4db80468-4b04-5913-b71c-30fb9a9abf45`  
 > **Parent Derivation**: [TFQ-0566](tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md)
 
@@ -35,6 +35,10 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/OriginalGenesisObserver.lean::history_extension_unique`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/OriginalGenesisObserver.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.o02_collision_refutes_preservation_reflection`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.o02_preservation_reflection_comp`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.wdp_bridge_o02_scoped_preservation_reflection_characterization`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.wdp_bridge_o02_scoped_preservation_reflection_characterization`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean)
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.orientation_sensitive_pair_defect_nonreflection`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
