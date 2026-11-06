@@ -128,6 +128,38 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
      (`isFrame_gaussianHalving_base`, `isFrame_gaussianHalving_rot`,
      `coordSignSymmetric_gaussian_halving_identity`, `dedekindRayCut_isCoordSignSymmetric`,
      `dedekindRayCut_fails_gaussian_halving_at_1_2`).
+   * Target 1 (`TFQ-1057` General-Anchor Meridian Coupling, Fixed-Anchor Isolation Obstruction, and
+     Conditional Closures): general-anchor meridian partner `anchorMeridianOrtho a y` and zero-slack
+     polar–equatorial transfer for any nonzero anchor `a ∈ ℚ(i)³` and orthogonal `y ∈ a⊥ \ {0}`
+     (`inner_anchorMeridianStep_anchorMeridianOrtho`, `addVec_a_y_ne_zero_of_ortho`,
+     `anchorMeridianOrtho_ne_zero_of_ortho`, `isFrame_anchor_meridian_base`,
+     `isFrame_anchor_meridian_rot`, `anchor_meridian_kelvin_bridge`,
+     `anchor_meridian_zeroWeight_bridge`, `anchorMeridianOrtho_raySinSq_eq`,
+     `anchor_uniform_equatorial_continuity_of_anchor_continuous`,
+     `multi_axis_uniform_equatorial_continuity_of_axes_continuous`,
+     `nine_anchor_uniform_equatorial_continuity_of_anchors_continuous`), spherical 3-frame
+     Pythagoras identity `raySinSq u a + raySinSq v a + raySinSq w a = 2`
+     (`frame_raySinSq_sum_eq_two`, `anchor_frame_raySinSq_sum_eq_two`), two-frame cross-anchor
+     proximity bound `raySinSq w a₃ ≤ raySinSq u a₁ + raySinSq v a₂` and fixed-anchor frame
+     isolation obstruction (`frame_third_raySinSq_le_add_of_ortho_anchors`,
+     `fixed_anchor_frame_isolation_obstruction`, `witness111_raySinSq_nineAnchors_le_two_thirds`,
+     `ortho_witness111_raySinSq_nineAnchors_ge_one_third`,
+     `frame_witness111_partners_isolated_from_nineAnchors`,
+     `isFrame_witness_neg211_probe120_probe2m15`, `residual_witness111_eq_sum_in_fifth_ball`,
+     `witness_neg211_isolation_one_eighth`, `perturbed_witness111_neg211_bounce_back`,
+     `ortho_witness123_raySinSq_nine_and_six_ge`), genuine equivalence of uniform ray continuity and
+     uniform meridian-step modulus (`HasUniformMeridianStepModulus`, `eq_of_raySinSq_eq_zero`,
+     `isUniformlyRayContinuous_iff_hasUniformMeridianStepModulus`), and conditional `TFQ-1057`
+     closures, witness inhabitation, and necessary-and-sufficient characterizations from pointwise ray
+     continuity and bounded anchor amplification (`HasBoundedAnchorAmplification`,
+     `zero_of_pointwise_and_bounded_anchor_amplification`,
+     `born_from_pointwise_and_bounded_anchor_amplification`,
+     `born_density_matrix_of_pointwise_and_bounded_anchor_amplification`,
+     `hasBoundedAnchorAmplificationOn_zero`,
+     `hasBoundedAnchorAmplificationOn_residual_of_uniformlyRayContinuous`,
+     `uniformlyRayContinuous_iff_pointwise_and_bounded_anchor_amplification`,
+     `hasDenseUniformModulusFromPointwise_quadRay`,
+     `uniformlyRayContinuous_iff_pointwise_and_dense_uniform_modulus`).
 -/
 
 namespace BornFinite.GaussianFiniteModel
@@ -2506,6 +2538,1090 @@ theorem not_both_raySinSq_tomo_e1_lt_half_of_ortho {u v : GVec}
     ¬ (raySinSq u tomo_e1 < 1 / 2 ∧ raySinSq v tomo_e1 < 1 / 2) :=
   not_both_raySinSq_lt_half_of_ortho hu hv tomo_e1_nonZero huv
 
+/-! #### 7C. Target 1 (`TFQ-1057`): General-Anchor Meridian Coupling, Fixed-Anchor Isolation Obstruction, and Conditional Closures -/
+
+/-- **General-Anchor Meridian Step (`anchorMeridianStep`)**:
+for any anchor `a ∈ ℚ(i)³` and orthogonal tangent vector `y ∈ a⊥`, the meridian step is `a + y`. -/
+def anchorMeridianStep (a y : GVec) : GVec :=
+  GVec.add a y
+
+/-- **General-Anchor Meridian Orthogonal Partner (`anchorMeridianOrtho`)**:
+for any anchor `a ∈ ℚ(i)³` and orthogonal vector `y ∈ a⊥`, the planar orthogonal partner of `a + y`
+in `span(a, y)` is `-‖y‖² a + ‖a‖² y`. -/
+def anchorMeridianOrtho (a y : GVec) : GVec :=
+  GVec.add (GVec.smul ⟨-normSqVec y, 0⟩ a) (GVec.smul ⟨normSqVec a, 0⟩ y)
+
+/-- **General-Anchor Kelvin Equatorial Partner (`anchorKelvinEq`)**:
+for any anchor `a ∈ ℚ(i)³` and nonzero `y ∈ a⊥`, `anchorKelvinEq a y = -(‖a‖² / ‖y‖²) y` satisfies
+`-(1 / ‖y‖²) • anchorMeridianOrtho a y = a + anchorKelvinEq a y`. -/
+def anchorKelvinEq (a y : GVec) : GVec :=
+  GVec.smul ⟨-(normSqVec a / normSqVec y), 0⟩ y
+
+theorem add_eq_rotPairU (a y : GVec) :
+    GVec.add a y = rotPairU a y 1 1 := by
+  ext <;> simp [rotPairU, GVec.add, GVec.smul]
+
+theorem anchorMeridianStep_eq_rotPairU (a y : GVec) :
+    anchorMeridianStep a y = rotPairU a y 1 1 :=
+  add_eq_rotPairU a y
+
+theorem anchorMeridianOrtho_eq_rotPairV (a y : GVec) :
+    anchorMeridianOrtho a y = rotPairV a y 1 1 := by
+  ext <;> simp [anchorMeridianOrtho, rotPairV, GVec.add, GVec.smul]
+
+theorem anchorMeridianOrtho_tomo_e1 (y : GVec) :
+    anchorMeridianOrtho tomo_e1 y = meridianOrtho y := by
+  have he1 : normSqVec tomo_e1 = 1 := by
+    simp [normSqVec, GaussRat.normSq, tomo_e1, gv]
+  ext <;> simp [anchorMeridianOrtho, meridianOrtho, he1, GVec.add, GVec.smul]
+
+theorem smul_anchorMeridianOrtho_eq_add_anchorKelvinEq {a y : GVec} (hy : y.NonZero) :
+    GVec.smul ⟨-(1 / normSqVec y), 0⟩ (anchorMeridianOrtho a y) =
+      GVec.add a (anchorKelvinEq a y) := by
+  have hy_ne : normSqVec y ≠ 0 := normSqVec_ne_zero_of_nonZero hy
+  ext <;>
+    simp only [anchorMeridianOrtho, anchorKelvinEq, GVec.add, GVec.smul,
+      GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul] <;>
+    field_simp [hy_ne] <;>
+    ring
+
+/-- For any anchor `a` and any `y` orthogonal to `a` (`GVec.inner a y = 0`), the meridian step
+`a + y` and the meridian partner `anchorMeridianOrtho a y` are orthogonal. -/
+theorem inner_anchorMeridianStep_anchorMeridianOrtho (a y : GVec) (hay : GVec.inner a y = 0) :
+    GVec.inner (GVec.add a y) (anchorMeridianOrtho a y) = 0 := by
+  rw [add_eq_rotPairU a y, anchorMeridianOrtho_eq_rotPairV a y]
+  exact inner_rotPairU_rotPairV_eq_zero hay 1 1
+
+/-- If `a` is nonzero and `GVec.inner a y = 0`, then `a + y` is nonzero. -/
+theorem addVec_a_y_ne_zero_of_ortho (a y : GVec) (ha : a.NonZero) (hay : GVec.inner a y = 0) :
+    (GVec.add a y).NonZero := by
+  have ha_pos := normSqVec_pos_of_nonZero ha
+  have hy_nn := normSqVec_nonneg y
+  have hnorm : normSqVec (GVec.add a y) = normSqVec a + normSqVec y :=
+    (normSqVec_add_eq_normSqVec_sub_of_ortho hay).1
+  apply nonZero_of_normSqVec_pos
+  linarith
+
+/-- If `a` and `y` are nonzero and `GVec.inner a y = 0`, then `anchorMeridianOrtho a y` is nonzero. -/
+theorem anchorMeridianOrtho_ne_zero_of_ortho (a y : GVec)
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0) :
+    (anchorMeridianOrtho a y).NonZero := by
+  rw [anchorMeridianOrtho_eq_rotPairV a y]
+  exact (isFrame_rotPair (isFrame_hermCross ha hy hay) (Or.inl one_ne_zero)).2.1
+
+/-- For any nonzero orthogonal pair `(a, y)` in `ℚ(i)³`, `(a, y, hermCross a y)` is an orthogonal
+3-frame. -/
+theorem isFrame_anchor_meridian_base (a y : GVec)
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0) :
+    IsFrame a y (hermCross a y) :=
+  isFrame_hermCross ha hy hay
+
+/-- For any nonzero orthogonal pair `(a, y)` in `ℚ(i)³`, rotating `(a, y)` inside `span(a, y)` yields
+the meridian orthogonal 3-frame `(a + y, anchorMeridianOrtho a y, hermCross a y)` sharing the third
+axis `hermCross a y`. -/
+theorem isFrame_anchor_meridian_rot (a y : GVec)
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0) :
+    IsFrame (GVec.add a y) (anchorMeridianOrtho a y) (hermCross a y) := by
+  rw [add_eq_rotPairU a y, anchorMeridianOrtho_eq_rotPairV a y]
+  exact isFrame_rotPair (isFrame_hermCross ha hy hay) (Or.inl one_ne_zero)
+
+/-- **General-Anchor Two-Frame Meridian–Kelvin Bridge (`anchor_meridian_kelvin_bridge`)**:
+for every frame function `f` on `ℚ(i)³`, every nonzero anchor `a`, and every nonzero `y ∈ a⊥`,
+comparing `(a, y, hermCross a y)` and `(a + y, anchorMeridianOrtho a y, hermCross a y)` cancels
+`f (hermCross a y)` and yields:
+1. `f (a + y) + f (anchorMeridianOrtho a y) = f a + f y`,
+2. `f (a + y) + f (a + anchorKelvinEq a y) = f a + f y`,
+3. `f (a + y) - f a = f y - f (anchorMeridianOrtho a y)`,
+4. `|f y - f (anchorMeridianOrtho a y)| = |f (a + y) - f a|`. -/
+theorem anchor_meridian_kelvin_bridge {f : GVec → ℚ} (hf : IsFrameFunction f)
+    {a y : GVec} (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0) :
+    f (GVec.add a y) + f (anchorMeridianOrtho a y) = f a + f y ∧
+    f (GVec.add a y) + f (GVec.add a (anchorKelvinEq a y)) = f a + f y ∧
+    f (GVec.add a y) - f a = f y - f (anchorMeridianOrtho a y) ∧
+    |f y - f (anchorMeridianOrtho a y)| = |f (GVec.add a y) - f a| := by
+  have hsum : f (GVec.add a y) + f (anchorMeridianOrtho a y) = f a + f y := by
+    rw [add_eq_rotPairU a y, anchorMeridianOrtho_eq_rotPairV a y]
+    exact frameFunction_rotPair_sum hf (isFrame_hermCross ha hy hay) (Or.inl one_ne_zero)
+  have hm_nz : (anchorMeridianOrtho a y).NonZero :=
+    anchorMeridianOrtho_ne_zero_of_ortho a y ha hy hay
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have hl_ne : (⟨-(1 / normSqVec y), 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    have hre := congrArg GaussRat.re h
+    dsimp at hre
+    have hpos : 0 < 1 / normSqVec y := div_pos one_pos hy_pos
+    linarith
+  have hsmul_kelvin := GaussianTomography.frameFunction_smul hf hm_nz hl_ne
+  rw [smul_anchorMeridianOrtho_eq_add_anchorKelvinEq hy] at hsmul_kelvin
+  have hdiff : f (GVec.add a y) - f a = f y - f (anchorMeridianOrtho a y) := by linarith
+  exact ⟨hsum, by linarith, hdiff, by rw [hdiff]⟩
+
+/-- **General-Anchor Zero-Weight Meridian Bridge (`anchor_meridian_zeroWeight_bridge`)**:
+for every zero-weight frame residual `g` on `ℚ(i)³`, every nonzero anchor `a`, and every nonzero
+`y ∈ a⊥`,
+1. `g (a + y) + g (anchorMeridianOrtho a y) = g a + g y`,
+2. `g (a + y) - g a = g y - g (anchorMeridianOrtho a y)`,
+3. `|g y - g (anchorMeridianOrtho a y)| = |g (a + y) - g a|`. -/
+theorem anchor_meridian_zeroWeight_bridge {g : GVec → ℚ} (hg : IsZeroWeightFrameFunction g)
+    {a y : GVec} (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0) :
+    g (GVec.add a y) + g (anchorMeridianOrtho a y) = g a + g y ∧
+    g (GVec.add a y) - g a = g y - g (anchorMeridianOrtho a y) ∧
+    |g y - g (anchorMeridianOrtho a y)| = |g (GVec.add a y) - g a| := by
+  have hsum : g (GVec.add a y) + g (anchorMeridianOrtho a y) = g a + g y := by
+    rw [add_eq_rotPairU a y, anchorMeridianOrtho_eq_rotPairV a y]
+    exact zeroWeight_rotPair_sum hg (isFrame_hermCross ha hy hay) (Or.inl one_ne_zero)
+  have hdiff : g (GVec.add a y) - g a = g y - g (anchorMeridianOrtho a y) := by linarith
+  exact ⟨hsum, hdiff, by rw [hdiff]⟩
+
+/-- **General-Anchor Polar–Equatorial Projective Ray-Distance Duality
+(`anchorMeridianOrtho_raySinSq_eq`)**:
+for every nonzero anchor `a ∈ ℚ(i)³` and every nonzero `y ∈ a⊥`, both `raySinSq (a + y) a` and
+`raySinSq (anchorMeridianOrtho a y) y` equal `normSqVec y / (normSqVec a + normSqVec y)`. -/
+theorem anchorMeridianOrtho_raySinSq_eq {a y : GVec}
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0) :
+    raySinSq (GVec.add a y) a = normSqVec y / (normSqVec a + normSqVec y) ∧
+    raySinSq (anchorMeridianOrtho a y) y = normSqVec y / (normSqVec a + normSqVec y) := by
+  have ha_pos := normSqVec_pos_of_nonZero ha
+  have ha_ne : normSqVec a ≠ 0 := ne_of_gt ha_pos
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have hy_ne : normSqVec y ≠ 0 := ne_of_gt hy_pos
+  have hsum_pos : 0 < normSqVec a + normSqVec y := add_pos ha_pos hy_pos
+  have hsum_ne : normSqVec a + normSqVec y ≠ 0 := ne_of_gt hsum_pos
+  have hya : GVec.inner y a = 0 := inner_eq_zero_symm hay
+  have hay_norm : normSqVec (GVec.add a y) = normSqVec a + normSqVec y :=
+    (normSqVec_add_eq_normSqVec_sub_of_ortho hay).1
+  have hay_inner : (GVec.inner (GVec.add a y) a).normSq = (normSqVec a) ^ 2 := by
+    rw [inner_add_left, hya, add_zero, inner_self_eq_normSqVec a]
+    simp only [GaussRat.normSq]
+    ring
+  have hmer_norm :
+      normSqVec (anchorMeridianOrtho a y) =
+        normSqVec a * normSqVec y * (normSqVec a + normSqVec y) := by
+    rw [anchorMeridianOrtho_eq_rotPairV a y,
+        normSqVec_rotPairV hay 1 1,
+        ← add_eq_rotPairU a y,
+        hay_norm]
+  have h_ortho_mer : GVec.inner (GVec.smul ⟨-normSqVec y, 0⟩ a) y = 0 := by
+    rw [inner_smul_left, hay, mul_zero]
+  have hmer_inner :
+      (GVec.inner (anchorMeridianOrtho a y) y).normSq =
+        (normSqVec a) ^ 2 * (normSqVec y) ^ 2 := by
+    rw [anchorMeridianOrtho, inner_add_left, h_ortho_mer, zero_add,
+        inner_smul_left, inner_self_eq_normSqVec y]
+    simp only [GaussRat.normSq, GaussRat.re_mul, GaussRat.im_mul,
+      GaussRat.re_star, GaussRat.im_star]
+    ring
+  refine ⟨?_, ?_⟩
+  · unfold raySinSq
+    rw [hay_inner, hay_norm]
+    field_simp
+    ring
+  · unfold raySinSq
+    rw [hmer_inner, hmer_norm]
+    field_simp
+    ring
+
+/-- **Uniform Equatorial Meridian Continuity from Single-Anchor Pointwise Continuity
+(`anchor_uniform_equatorial_continuity_of_anchor_continuous`)**:
+if `f` is a frame function on `ℚ(i)³` that is pointwise ray-continuous at a nonzero anchor `a`,
+then for every `ε > 0` there exists `δ > 0` (the pointwise modulus at `a`) such that for all
+nonzero `y ∈ a⊥` with `normSqVec y / (normSqVec a + normSqVec y) < δ`, both
+`|f y - f (anchorMeridianOrtho a y)| < ε` and `|f (a + y) - f a| < ε`. -/
+theorem anchor_uniform_equatorial_continuity_of_anchor_continuous {f : GVec → ℚ}
+    (hf : IsFrameFunction f) {a : GVec} (ha : a.NonZero)
+    (hcont : IsPointwiseRayContinuousAt f a) :
+    ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+      ∀ y : GVec, y.NonZero → GVec.inner a y = 0 →
+        normSqVec y / (normSqVec a + normSqVec y) < δ →
+          |f y - f (anchorMeridianOrtho a y)| < ε ∧
+          |f (GVec.add a y) - f a| < ε := by
+  intro ε hε
+  obtain ⟨δ, hδ, hb⟩ := hcont ε hε
+  refine ⟨δ, hδ, ?_⟩
+  intro y hy hay hquo
+  have hay_nz : (GVec.add a y).NonZero := addVec_a_y_ne_zero_of_ortho a y ha hay
+  have hsin_eq := anchorMeridianOrtho_raySinSq_eq ha hy hay
+  have hsin_a : raySinSq (GVec.add a y) a < δ := by
+    rw [hsin_eq.1]
+    exact hquo
+  have h_lt := hb (GVec.add a y) hay_nz hsin_a
+  have hbridge := (anchor_meridian_kelvin_bridge hf ha hy hay).2.2.2
+  exact ⟨by rw [hbridge]; exact h_lt, h_lt⟩
+
+/-- **Shared Pointwise Modulus Across Any Finite Anchor List
+(`finite_anchors_pointwiseRayContinuous_common_delta`)**:
+if `g : GVec → ℚ` is pointwise ray-continuous at every anchor `a` in a finite list `anchors`, then
+for every `ε > 0` there exists a single shared modulus `δ > 0` working simultaneously across all
+`a ∈ anchors`. -/
+theorem finite_anchors_pointwiseRayContinuous_common_delta {g : GVec → ℚ}
+    (anchors : List GVec) (hcont : ∀ a ∈ anchors, IsPointwiseRayContinuousAt g a) :
+    ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+      ∀ a ∈ anchors, ∀ v : GVec, v.NonZero → raySinSq v a < δ → |g v - g a| < ε := by
+  intro ε hε
+  induction anchors with
+  | nil =>
+    exact ⟨1, one_pos, fun a ha => False.elim (List.not_mem_nil ha)⟩
+  | cons a as ih =>
+    obtain ⟨δ₁, hδ₁, hb₁⟩ := hcont a (List.mem_cons.mpr (Or.inl rfl)) ε hε
+    obtain ⟨δ₂, hδ₂, hb₂⟩ := ih (fun b hb => hcont b (List.mem_cons.mpr (Or.inr hb)))
+    refine ⟨min δ₁ δ₂, lt_min hδ₁ hδ₂, ?_⟩
+    intro b hb v hv hsin
+    simp only [List.mem_cons] at hb
+    rcases hb with rfl | hmem
+    · exact hb₁ v hv (lt_of_lt_of_le hsin (min_le_left δ₁ δ₂))
+    · exact hb₂ b hmem v hv (lt_of_lt_of_le hsin (min_le_right δ₁ δ₂))
+
+/-- **Multi-Anchor Uniform Equatorial Meridian Continuity Across Any Finite Anchor List
+(`finite_anchors_uniform_equatorial_continuity_of_anchors_continuous`)**:
+if `f` is a frame function on `ℚ(i)³` and `anchors : List GVec` is any finite list of nonzero
+anchors at each of which `f` is pointwise ray-continuous, then for every `ε > 0` there exists a
+single shared modulus `δ > 0` governing meridian steps on every equator `a⊥` (`a ∈ anchors`). -/
+theorem finite_anchors_uniform_equatorial_continuity_of_anchors_continuous {f : GVec → ℚ}
+    (hf : IsFrameFunction f) (anchors : List GVec)
+    (hanz : ∀ a ∈ anchors, a.NonZero)
+    (hcont : ∀ a ∈ anchors, IsPointwiseRayContinuousAt f a) :
+    ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+      ∀ a ∈ anchors, ∀ y : GVec, y.NonZero → GVec.inner a y = 0 →
+        normSqVec y / (normSqVec a + normSqVec y) < δ →
+          |f y - f (anchorMeridianOrtho a y)| < ε ∧
+          |f (GVec.add a y) - f a| < ε := by
+  intro ε hε
+  obtain ⟨δ, hδ, hb⟩ := finite_anchors_pointwiseRayContinuous_common_delta anchors hcont ε hε
+  refine ⟨δ, hδ, ?_⟩
+  intro a ha_mem y hy hay hquo
+  have ha : a.NonZero := hanz a ha_mem
+  have hay_nz : (GVec.add a y).NonZero := addVec_a_y_ne_zero_of_ortho a y ha hay
+  have hsin_eq := anchorMeridianOrtho_raySinSq_eq ha hy hay
+  have hsin_a : raySinSq (GVec.add a y) a < δ := by
+    rw [hsin_eq.1]
+    exact hquo
+  have h_lt := hb a ha_mem (GVec.add a y) hay_nz hsin_a
+  have hbridge := (anchor_meridian_kelvin_bridge hf ha hy hay).2.2.2
+  exact ⟨by rw [hbridge]; exact h_lt, h_lt⟩
+
+/-- **Multi-Axis Uniform Equatorial Meridian Continuity Across `{tomo_e1, tomo_e2, tomo_e3}`
+(`multi_axis_uniform_equatorial_continuity_of_axes_continuous`)**:
+pointwise ray continuity of a frame function `f` at the three coordinate axes `tomo_e1`, `tomo_e2`,
+`tomo_e3` yields a single shared modulus `δ > 0` simultaneously governing meridian steps on all
+three coordinate equators `e₁⊥`, `e₂⊥`, `e₃⊥`. -/
+theorem multi_axis_uniform_equatorial_continuity_of_axes_continuous {f : GVec → ℚ}
+    (hf : IsFrameFunction f)
+    (h1 : IsPointwiseRayContinuousAt f tomo_e1)
+    (h2 : IsPointwiseRayContinuousAt f tomo_e2)
+    (h3 : IsPointwiseRayContinuousAt f tomo_e3) :
+    ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+      ∀ a ∈ [tomo_e1, tomo_e2, tomo_e3], ∀ y : GVec, y.NonZero → GVec.inner a y = 0 →
+        normSqVec y / (normSqVec a + normSqVec y) < δ →
+          |f y - f (anchorMeridianOrtho a y)| < ε ∧
+          |f (GVec.add a y) - f a| < ε := by
+  apply finite_anchors_uniform_equatorial_continuity_of_anchors_continuous hf [tomo_e1, tomo_e2, tomo_e3]
+  · intro a ha
+    simp only [List.mem_cons, List.not_mem_nil, or_false] at ha
+    rcases ha with rfl | rfl | rfl
+    · exact tomo_e1_nonZero
+    · exact tomo_e2_nonZero
+    · exact tomo_e3_nonZero
+  · intro a ha
+    simp only [List.mem_cons, List.not_mem_nil, or_false] at ha
+    rcases ha with rfl | rfl | rfl
+    · exact h1
+    · exact h2
+    · exact h3
+
+/-- **Nine-Anchor Uniform Equatorial Meridian Continuity Across `nineAnchorsList`
+(`nine_anchor_uniform_equatorial_continuity_of_anchors_continuous`)**:
+pointwise ray continuity of a frame function `f` at the 9 tomography anchors yields a single shared
+modulus `δ > 0` simultaneously governing meridian steps on all 9 anchor equators `a⊥`
+(`a ∈ nineAnchorsList`). -/
+theorem nine_anchor_uniform_equatorial_continuity_of_anchors_continuous {f : GVec → ℚ}
+    (hf : IsFrameFunction f)
+    (hcont : ∀ a ∈ nineAnchorsList, IsPointwiseRayContinuousAt f a) :
+    ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+      ∀ a ∈ nineAnchorsList, ∀ y : GVec, y.NonZero → GVec.inner a y = 0 →
+        normSqVec y / (normSqVec a + normSqVec y) < δ →
+          |f y - f (anchorMeridianOrtho a y)| < ε ∧
+          |f (GVec.add a y) - f a| < ε :=
+  finite_anchors_uniform_equatorial_continuity_of_anchors_continuous
+    hf nineAnchorsList nineAnchorsList_nonZero hcont
+
+/-- Symmetry of projective ray distance `raySinSq u v = raySinSq v u`. -/
+theorem raySinSq_comm (u v : GVec) :
+    raySinSq u v = raySinSq v u := by
+  have h_inner : (GVec.inner u v).normSq = (GVec.inner v u).normSq := by
+    simp only [GVec.inner, GaussRat.normSq, re_add, im_add, re_mul, im_mul, re_star, im_star]
+    ring
+  have h_mul : normSqVec u * normSqVec v = normSqVec v * normSqVec u :=
+    mul_comm (normSqVec u) (normSqVec v)
+  unfold raySinSq
+  rw [h_inner, h_mul]
+
+/-- Upper bound `raySinSq u w ≤ 1` for all `u, w : GVec`. -/
+theorem raySinSq_le_one (u w : GVec) :
+    raySinSq u w ≤ 1 := by
+  unfold raySinSq
+  have hnn : 0 ≤ (GVec.inner u w).normSq / (normSqVec u * normSqVec w) :=
+    div_nonneg (GaussRat.normSq_nonneg _)
+      (mul_nonneg (normSqVec_nonneg u) (normSqVec_nonneg w))
+  linarith
+
+/-- Nonnegativity `0 ≤ raySinSq u w` for nonzero `u, w : GVec`. -/
+theorem raySinSq_nonneg {u w : GVec} (hu : u.NonZero) (hw : w.NonZero) :
+    0 ≤ raySinSq u w := by
+  rw [raySinSq_eq_normSqVec_cross_div hu hw]
+  exact div_nonneg (normSqVec_nonneg (cross u w))
+    (mul_nonneg (normSqVec_nonneg u) (normSqVec_nonneg w))
+
+/-- **Exact Spherical 3-Frame Pythagoras Identity (`frame_raySinSq_sum_eq_two`)**:
+for any orthogonal 3-frame `IsFrame u v w` and any nonzero ray `a ∈ ℚ(i)³ \ {0}`, evaluating the
+Born rank-1 projector frame function `quadRay (rayProj a) = 1 - raySinSq · a` on `(u, v, w)` yields
+`raySinSq u a + raySinSq v a + raySinSq w a = 2`. -/
+theorem frame_raySinSq_sum_eq_two {u v w a : GVec}
+    (hfr : IsFrame u v w) (ha : a.NonZero) :
+    raySinSq u a + raySinSq v a + raySinSq w a = 2 := by
+  have hsum := (quadRay_rayProj_isNonnegFrameFunction ha).1 u v w hfr
+  rw [quadRay_rayProj_eq_one_sub_raySinSq u a,
+      quadRay_rayProj_eq_one_sub_raySinSq v a,
+      quadRay_rayProj_eq_one_sub_raySinSq w a] at hsum
+  linarith
+
+/-- **Symmetric Spherical Anchor-Frame Pythagoras Identity (`anchor_frame_raySinSq_sum_eq_two`)**:
+for any orthogonal anchor 3-frame `IsFrame a₁ a₂ a₃` and any nonzero ray `x ∈ ℚ(i)³ \ {0}`,
+`raySinSq x a₁ + raySinSq x a₂ + raySinSq x a₃ = 2`. -/
+theorem anchor_frame_raySinSq_sum_eq_two {a₁ a₂ a₃ x : GVec}
+    (ha : IsFrame a₁ a₂ a₃) (hx : x.NonZero) :
+    raySinSq x a₁ + raySinSq x a₂ + raySinSq x a₃ = 2 := by
+  rw [raySinSq_comm x a₁, raySinSq_comm x a₂, raySinSq_comm x a₃]
+  exact frame_raySinSq_sum_eq_two ha hx
+
+/-- **Two-Frame Cross-Anchor Proximity Bound (`frame_third_raySinSq_le_add_of_ortho_anchors`)**:
+for any two orthogonal 3-frames `IsFrame u v w` and `IsFrame a₁ a₂ a₃` in `ℚ(i)³`, the projective
+ray distance from `w` to `a₃` is bounded above by the sum of the projective ray distances from `u`
+to `a₁` and from `v` to `a₂`:
+`raySinSq w a₃ ≤ raySinSq u a₁ + raySinSq v a₂`. -/
+theorem frame_third_raySinSq_le_add_of_ortho_anchors {u v w a₁ a₂ a₃ : GVec}
+    (hfr : IsFrame u v w) (ha : IsFrame a₁ a₂ a₃) :
+    raySinSq w a₃ ≤ raySinSq u a₁ + raySinSq v a₂ := by
+  have hu : u.NonZero := hfr.1
+  have hv : v.NonZero := hfr.2.1
+  have hw : w.NonZero := hfr.2.2.1
+  have huw : GVec.inner u w = 0 := hfr.2.2.2.2.1
+  have hvw : GVec.inner v w = 0 := hfr.2.2.2.2.2
+  have ha₁ : a₁.NonZero := ha.1
+  have ha₂ : a₂.NonZero := ha.2.1
+  have h1 := ortho_raySinSq_add_ge_one hu hw ha₁ huw
+  have h2 := ortho_raySinSq_add_ge_one hv hw ha₂ hvw
+  have hsum := anchor_frame_raySinSq_sum_eq_two ha hw
+  linarith
+
+/-- **Fixed-Anchor Frame Isolation Obstruction (`fixed_anchor_frame_isolation_obstruction`)**:
+if `IsFrame u v w` is an orthogonal 3-frame, `IsFrame a₁ a₂ a₃` is an orthogonal anchor 3-frame,
+and `w` lies at projective distance `η ≤ raySinSq w a₃` from `a₃`, then:
+1. `η ≤ raySinSq u a₁ + raySinSq v a₂`, and
+2. `u` and `v` cannot simultaneously lie within `< η / 2` of `a₁` and `a₂`. -/
+theorem fixed_anchor_frame_isolation_obstruction {u v w a₁ a₂ a₃ : GVec} {η : ℚ}
+    (hfr : IsFrame u v w) (ha : IsFrame a₁ a₂ a₃) (hη : η ≤ raySinSq w a₃) :
+    η ≤ raySinSq u a₁ + raySinSq v a₂ ∧
+    ¬ (raySinSq u a₁ < η / 2 ∧ raySinSq v a₂ < η / 2) := by
+  have hle := le_trans hη (frame_third_raySinSq_le_add_of_ortho_anchors hfr ha)
+  refine ⟨hle, ?_⟩
+  rintro ⟨hu_lt, hv_lt⟩
+  linarith
+
+/-- Every anchor `a ∈ nineAnchorsList` lies at projective distance `raySinSq witness_111 a ≤ 2 / 3`
+from `witness_111 = (1, 1, 1)` (specifically `2 / 3` for the 3 axes and 3 complex bisectors, and
+`1 / 3` for the 3 real bisectors). -/
+theorem witness111_raySinSq_nineAnchors_le_two_thirds :
+    ∀ a ∈ nineAnchorsList, raySinSq witness_111 a ≤ 2 / 3 := by
+  intro a ha
+  simp only [nineAnchorsList, List.mem_cons, List.not_mem_nil, or_false] at ha
+  rcases ha with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+    norm_num [witness_111, tomo_e1, tomo_e2, tomo_e3, tomo_e12, tomo_e13, tomo_e23,
+      tomo_e12i, tomo_e13i, tomo_e23i, gv, GaussRat.I, raySinSq, normSqVec,
+      GVec.inner, GaussRat.normSq]
+
+/-- **Nine-Anchor Isolation of `witness_111⊥` (`ortho_witness111_raySinSq_nineAnchors_ge_one_third`)**:
+every nonzero vector `u ∈ ℚ(i)³` orthogonal to `witness_111 = (1, 1, 1)` stays at projective ray
+distance `1 / 3 ≤ raySinSq u a` from all 9 tomography anchors `a ∈ nineAnchorsList`. -/
+theorem ortho_witness111_raySinSq_nineAnchors_ge_one_third {u : GVec}
+    (hu : u.NonZero) (huw : GVec.inner u witness_111 = 0) :
+    ∀ a ∈ nineAnchorsList, 1 / 3 ≤ raySinSq u a := by
+  intro a ha_mem
+  have ha_nz : a.NonZero := nineAnchorsList_nonZero a ha_mem
+  have hge := ortho_raySinSq_add_ge_one hu witness_111_nonZero ha_nz huw
+  have hle := witness111_raySinSq_nineAnchors_le_two_thirds a ha_mem
+  linarith
+
+/-- **Single-Frame Nine-Anchor Isolation for `witness_111`
+(`frame_witness111_partners_isolated_from_nineAnchors`)**:
+in any orthogonal 3-frame `IsFrame witness_111 u v` containing `witness_111 = (1, 1, 1)`, both
+orthogonal partners `u` and `v` are bounded away from all 9 tomography anchors by
+`1 / 3 ≤ raySinSq u a` and `1 / 3 ≤ raySinSq v a`. -/
+theorem frame_witness111_partners_isolated_from_nineAnchors {u v : GVec}
+    (hfr : IsFrame witness_111 u v) :
+    (∀ a ∈ nineAnchorsList, 1 / 3 ≤ raySinSq u a) ∧
+    (∀ a ∈ nineAnchorsList, 1 / 3 ≤ raySinSq v a) := by
+  have hu : u.NonZero := hfr.2.1
+  have hv : v.NonZero := hfr.2.2.1
+  have huw : GVec.inner u witness_111 = 0 := inner_eq_zero_symm hfr.2.2.2.1
+  have hvw : GVec.inner v witness_111 = 0 := inner_eq_zero_symm hfr.2.2.2.2.1
+  exact ⟨ortho_witness111_raySinSq_nineAnchors_ge_one_third hu huw,
+         ortho_witness111_raySinSq_nineAnchors_ge_one_third hv hvw⟩
+
+/-- **First `B_{1/5}(T₉)` Probe Partner of `witness_neg211` (`probe_120`)**:
+`probe_120 = (1, 2, 0)` lies at projective ray distance `raySinSq probe_120 tomo_e12 = 1 / 10 < 1 / 5`
+from `tomo_e12 = (1, 1, 0)`. -/
+def probe_120 : GVec := ⟨1, 2, 0⟩
+
+/-- **Second `B_{1/5}(T₉)` Probe Partner of `witness_neg211` (`probe_2m15`)**:
+`probe_2m15 = (2, -1, 5)` lies at projective ray distance `raySinSq probe_2m15 tomo_e3 = 1 / 6 < 1 / 5`
+from `tomo_e3 = (0, 0, 1)`. -/
+def probe_2m15 : GVec := ⟨2, -1, 5⟩
+
+theorem probe_120_nonZero : probe_120.NonZero :=
+  nonZero_of_x (by simp [probe_120])
+
+theorem probe_2m15_nonZero : probe_2m15.NonZero :=
+  nonZero_of_x (by simp [probe_2m15])
+
+/-- **Orthogonal 3-Frame `(witness_neg211, probe_120, probe_2m15)`
+(`isFrame_witness_neg211_probe120_probe2m15`)**:
+`witness_neg211 = (-2, 1, 1)`, `probe_120 = (1, 2, 0)`, and `probe_2m15 = (2, -1, 5)` form an
+exact orthogonal 3-frame in `ℚ(i)³`. -/
+theorem isFrame_witness_neg211_probe120_probe2m15 :
+    IsFrame witness_neg211 probe_120 probe_2m15 := by
+  refine ⟨witness_neg211_nonZero, probe_120_nonZero, probe_2m15_nonZero, ?_, ?_, ?_⟩
+  · apply GaussRat.ext <;> simp [GVec.inner, witness_neg211, probe_120]
+  · (apply GaussRat.ext <;> simp [GVec.inner, witness_neg211, probe_2m15]); norm_num
+  · apply GaussRat.ext <;> simp [GVec.inner, probe_120, probe_2m15]
+
+/-- **Exact 2-Frame `B_{1/5}(T₉)` Determination of `witness_111`
+(`residual_witness111_eq_sum_in_fifth_ball`)**:
+although any single orthogonal frame containing `witness_111 = (1, 1, 1)` has both partners at
+distance `≥ 1 / 3` from `T₉`, chaining the 2-frame meridian antisymmetry
+`g witness_111 = -g witness_neg211` with `isFrame_witness_neg211_probe120_probe2m15` expresses
+`g witness_111 = g probe_120 + g probe_2m15` where `raySinSq probe_120 tomo_e12 = 1 / 10 < 1 / 5`
+and `raySinSq probe_2m15 tomo_e3 = 1 / 6 < 1 / 5`. -/
+theorem residual_witness111_eq_sum_in_fifth_ball {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) (h9 : VanishesOnNineRays g) :
+    g witness_111 = g probe_120 + g probe_2m15 ∧
+    raySinSq probe_120 tomo_e12 = 1 / 10 ∧
+    raySinSq probe_2m15 tomo_e3 = 1 / 6 := by
+  have hanti := residual_witness111_add_neg211_eq_zero hg h9
+  have hfr := hg _ _ _ isFrame_witness_neg211_probe120_probe2m15
+  refine ⟨by linarith, ?_, ?_⟩
+  · norm_num [probe_120, tomo_e12, gv, raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
+  · norm_num [probe_2m15, tomo_e3, gv, raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
+
+/-- **Quantitative 2-Step `B_{1/5}(T₉)` Amplification Bound at `witness_111` and `witness_neg211`
+(`residual_witness111_abs_le_two_eps_of_fifth_ball`)**:
+if a zero-weight frame residual `g` vanishing on `T₉` satisfies `|g z| ≤ ε` on the `1 / 5`-ball
+`B_{1/5}(T₉)`, then `|g witness_111| ≤ 2 * ε` and `|g witness_neg211| ≤ 2 * ε`. -/
+theorem residual_witness111_abs_le_two_eps_of_fifth_ball {g : GVec → ℚ} {ε : ℚ}
+    (hg : IsZeroWeightFrameFunction g) (h9 : VanishesOnNineRays g)
+    (hb : ∀ z : GVec, z.NonZero → (∃ a ∈ nineAnchorsList, raySinSq z a < 1 / 5) → |g z| ≤ ε) :
+    |g witness_111| ≤ 2 * ε ∧ |g witness_neg211| ≤ 2 * ε := by
+  obtain ⟨hsum, hsin120, hsin2m15⟩ := residual_witness111_eq_sum_in_fifth_ball hg h9
+  have hanti := residual_witness111_add_neg211_eq_zero hg h9
+  have he12_mem : tomo_e12 ∈ nineAnchorsList := by simp [nineAnchorsList]
+  have he3_mem : tomo_e3 ∈ nineAnchorsList := by simp [nineAnchorsList]
+  have h120_le : |g probe_120| ≤ ε :=
+    hb probe_120 probe_120_nonZero ⟨tomo_e12, he12_mem, by rw [hsin120]; norm_num⟩
+  have h2m15_le : |g probe_2m15| ≤ ε :=
+    hb probe_2m15 probe_2m15_nonZero ⟨tomo_e3, he3_mem, by rw [hsin2m15]; norm_num⟩
+  have htri := abs_add_le (g probe_120) (g probe_2m15)
+  have hw1 : |g witness_111| ≤ 2 * ε := by rw [hsum]; linarith
+  have hneg_eq : g witness_neg211 = -g witness_111 := by linarith
+  have hw2 : |g witness_neg211| ≤ 2 * ε := by rw [hneg_eq, abs_neg]; exact hw1
+  exact ⟨hw1, hw2⟩
+
+/-- **Unique 2-Step `B_{1/5}(T₉)` Vanishing of `witness_111` and `witness_neg211`
+(`residual_witness111_eq_zero_of_fifth_ball`)**:
+any zero-weight frame residual `g` vanishing on `T₉` that vanishes on `B_{1/5}(T₉)` is forced in
+2 frame steps to satisfy `g witness_111 = 0` and `g witness_neg211 = 0`. -/
+theorem residual_witness111_eq_zero_of_fifth_ball {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) (h9 : VanishesOnNineRays g)
+    (hz : ∀ z : GVec, z.NonZero → (∃ a ∈ nineAnchorsList, raySinSq z a < 1 / 5) → g z = 0) :
+    g witness_111 = 0 ∧ g witness_neg211 = 0 := by
+  have hb : ∀ z : GVec, z.NonZero → (∃ a ∈ nineAnchorsList, raySinSq z a < 1 / 5) → |g z| ≤ 0 := by
+    intro z hznz hmem
+    rw [hz z hznz hmem, abs_zero]
+  obtain ⟨hw1, hw2⟩ := residual_witness111_abs_le_two_eps_of_fifth_ball hg h9 hb
+  rw [mul_zero] at hw1 hw2
+  exact ⟨abs_nonpos_iff.mp hw1, abs_nonpos_iff.mp hw2⟩
+
+theorem isFrame_tomo_e12_e3_bisector : IsFrame tomo_e12 tomo_e3 bisector_12_neg := by
+  obtain ⟨he3, he12, hbis, h3_12, h3_bis, h12_bis⟩ := isFrame_tomo_e3_e12_bisector
+  exact ⟨he12, he3, hbis, inner_eq_zero_symm h3_12, h12_bis, h3_bis⟩
+
+theorem witness_neg211_raySinSq_bisector_12_neg :
+    raySinSq witness_neg211 bisector_12_neg = 1 / 4 := by
+  norm_num [witness_neg211, bisector_12_neg, raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
+
+/-- **Sharp `< 1 / 8` Isolation Obstruction at `witness_neg211` Relative to `(tomo_e12, tomo_e3)`
+(`witness_neg211_isolation_one_eighth`)**:
+because `raySinSq witness_neg211 bisector_12_neg = 1 / 4` and
+`IsFrame tomo_e12 tomo_e3 bisector_12_neg`, every orthogonal 3-frame `IsFrame u v witness_neg211`
+satisfies `1 / 4 ≤ raySinSq u tomo_e12 + raySinSq v tomo_e3` and cannot have both
+`raySinSq u tomo_e12 < 1 / 8` and `raySinSq v tomo_e3 < 1 / 8` (showing that the 2-step probes
+`probe_120` and `probe_2m15` with `1 / 10 + 1 / 6 = 4 / 15` nearly saturate the `1 / 4` lower bound). -/
+theorem witness_neg211_isolation_one_eighth {u v : GVec}
+    (hfr : IsFrame u v witness_neg211) :
+    1 / 4 ≤ raySinSq u tomo_e12 + raySinSq v tomo_e3 ∧
+    ¬ (raySinSq u tomo_e12 < 1 / 8 ∧ raySinSq v tomo_e3 < 1 / 8) := by
+  have hge : (1 : ℚ) / 4 ≤ raySinSq witness_neg211 bisector_12_neg := by
+    rw [witness_neg211_raySinSq_bisector_12_neg]
+  have hiso := fixed_anchor_frame_isolation_obstruction hfr isFrame_tomo_e12_e3_bisector hge
+  refine ⟨hiso.1, ?_⟩
+  rintro ⟨hu_lt, hv_lt⟩
+  linarith [hiso.1]
+
+/-- Projective ray distance from any nonzero vector `u` to itself is `0`. -/
+theorem raySinSq_self {u : GVec} (hu : u.NonZero) : raySinSq u u = 0 := by
+  have hnu : normSqVec u ≠ 0 := normSqVec_ne_zero_of_nonZero hu
+  have hip : (GVec.inner u u).normSq = (normSqVec u) ^ 2 := by
+    rw [inner_self_eq_normSqVec]
+    simp [GaussRat.normSq]
+  unfold raySinSq
+  rw [hip]
+  field_simp
+  ring
+
+theorem isFrame_witness111_bisector_neg211 :
+    IsFrame witness_111 bisector_23_neg witness_neg211 := by
+  obtain ⟨hw1, hw2, hbis, h12, h1b, h2b⟩ := isFrame_witness111_neg211_bisector
+  exact ⟨hw1, hbis, hw2, h1b, h12, inner_eq_zero_symm h2b⟩
+
+theorem isFrame_neg211_bisector_witness111 :
+    IsFrame witness_neg211 bisector_23_neg witness_111 := by
+  obtain ⟨hw1, hw2, hbis, h12, h1b, h2b⟩ := isFrame_witness111_neg211_bisector
+  exact ⟨hw2, hbis, hw1, h2b, inner_eq_zero_symm h12, inner_eq_zero_symm h1b⟩
+
+/-- **Perturbed Two-Frame Bisector Bounce-Back (`perturbed_witness111_neg211_bounce_back`)**:
+for any perturbed frame `IsFrame witness_111 u v` and second-step frame `IsFrame v u' v'`, keeping
+`u` and `u'` close to `bisector_23_neg = (0, 1, -1)` forces `v` close to `witness_neg211` and
+forces `v'` to bounce back toward `witness_111`:
+`raySinSq v witness_neg211 ≤ raySinSq u bisector_23_neg` and
+`raySinSq v' witness_111 ≤ raySinSq u bisector_23_neg + raySinSq u' bisector_23_neg`. -/
+theorem perturbed_witness111_neg211_bounce_back {u v u' v' : GVec}
+    (hfr1 : IsFrame witness_111 u v) (hfr2 : IsFrame v u' v') :
+    raySinSq v witness_neg211 ≤ raySinSq u bisector_23_neg ∧
+    raySinSq v' witness_111 ≤ raySinSq u bisector_23_neg + raySinSq u' bisector_23_neg := by
+  have hstep1 :=
+    frame_third_raySinSq_le_add_of_ortho_anchors hfr1 isFrame_witness111_bisector_neg211
+  rw [raySinSq_self witness_111_nonZero, zero_add] at hstep1
+  have hstep2 :=
+    frame_third_raySinSq_le_add_of_ortho_anchors hfr2 isFrame_neg211_bisector_witness111
+  exact ⟨hstep1, by linarith⟩
+
+/-- **Generic Non-Symmetric Ray `witness_123 = (1, 2, 3)` (`witness_123`)**:
+a generic ray in `ℚ(i)³` outside all coordinate and bisector symmetry planes (`‖witness_123‖² = 14`). -/
+def witness_123 : GVec := ⟨1, 2, 3⟩
+
+theorem witness_123_nonZero : witness_123.NonZero :=
+  nonZero_of_x (by simp [witness_123])
+
+theorem sixBisectorPartnersList_nonZero : ∀ b ∈ sixBisectorPartnersList, b.NonZero := by
+  intro b hb
+  simp only [sixBisectorPartnersList, List.mem_cons, List.not_mem_nil, or_false] at hb
+  rcases hb with rfl | rfl | rfl | rfl | rfl | rfl
+  · exact nonZero_of_x (by simp [bisector_12_neg])
+  · exact nonZero_of_x (by simp [bisector_12i_neg])
+  · exact nonZero_of_x (by simp [bisector_13_neg])
+  · exact nonZero_of_x (by simp [bisector_13i_neg])
+  · exact nonZero_of_y (by simp [bisector_23_neg])
+  · exact nonZero_of_y (by simp [bisector_23i_neg])
+
+theorem witness123_raySinSq_nineAnchors_le :
+    ∀ a ∈ nineAnchorsList, raySinSq witness_123 a ≤ 13 / 14 := by
+  intro a ha
+  simp only [nineAnchorsList, List.mem_cons, List.not_mem_nil, or_false] at ha
+  rcases ha with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+    norm_num [witness_123, tomo_e1, tomo_e2, tomo_e3, tomo_e12, tomo_e13, tomo_e23,
+      tomo_e12i, tomo_e13i, tomo_e23i, gv, GaussRat.I, raySinSq, normSqVec,
+      GVec.inner, GaussRat.normSq]
+
+theorem witness123_raySinSq_sixBisectors_le :
+    ∀ b ∈ sixBisectorPartnersList, raySinSq witness_123 b ≤ 27 / 28 := by
+  intro b hb
+  simp only [sixBisectorPartnersList, List.mem_cons, List.not_mem_nil, or_false] at hb
+  rcases hb with rfl | rfl | rfl | rfl | rfl | rfl <;>
+    norm_num [witness_123, bisector_12_neg, bisector_12i_neg, bisector_13_neg,
+      bisector_13i_neg, bisector_23_neg, bisector_23i_neg, GaussRat.I,
+      raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
+
+/-- **Simultaneous 9-Anchor and 6-Bisector Isolation of `witness_123⊥`
+(`ortho_witness123_raySinSq_nine_and_six_ge`)**:
+because `witness_123 = (1, 2, 3)` is non-orthogonal to all 15 rays in `T₉ ∪ B₆`, every nonzero
+vector `u ∈ witness_123⊥` stays bounded away from all 9 tomography anchors by
+`1 / 14 ≤ raySinSq u a` and from all 6 completing bisectors by `1 / 28 ≤ raySinSq u b`. -/
+theorem ortho_witness123_raySinSq_nine_and_six_ge {u : GVec}
+    (hu : u.NonZero) (huw : GVec.inner u witness_123 = 0) :
+    (∀ a ∈ nineAnchorsList, 1 / 14 ≤ raySinSq u a) ∧
+    (∀ b ∈ sixBisectorPartnersList, 1 / 28 ≤ raySinSq u b) := by
+  refine ⟨?_, ?_⟩
+  · intro a ha_mem
+    have ha_nz : a.NonZero := nineAnchorsList_nonZero a ha_mem
+    have hge := ortho_raySinSq_add_ge_one hu witness_123_nonZero ha_nz huw
+    have hle := witness123_raySinSq_nineAnchors_le a ha_mem
+    linarith
+  · intro b hb_mem
+    have hb_nz : b.NonZero := sixBisectorPartnersList_nonZero b hb_mem
+    have hge := ortho_raySinSq_add_ge_one hu witness_123_nonZero hb_nz huw
+    have hle := witness123_raySinSq_sixBisectors_le b hb_mem
+    linarith
+
+/-- **Single-Frame 15-Ray Partner Isolation for `witness_123`
+(`frame_witness123_partners_isolated_from_nine_and_six`)**:
+in any orthogonal 3-frame `IsFrame witness_123 u v` containing `witness_123 = (1, 2, 3)`, both
+orthogonal partners `u` and `v` are bounded away from all 9 tomography anchors by `≥ 1 / 14` and
+from all 6 completing bisectors by `≥ 1 / 28`. -/
+theorem frame_witness123_partners_isolated_from_nine_and_six {u v : GVec}
+    (hfr : IsFrame witness_123 u v) :
+    ((∀ a ∈ nineAnchorsList, 1 / 14 ≤ raySinSq u a) ∧
+     (∀ b ∈ sixBisectorPartnersList, 1 / 28 ≤ raySinSq u b)) ∧
+    ((∀ a ∈ nineAnchorsList, 1 / 14 ≤ raySinSq v a) ∧
+     (∀ b ∈ sixBisectorPartnersList, 1 / 28 ≤ raySinSq v b)) := by
+  have hu : u.NonZero := hfr.2.1
+  have hv : v.NonZero := hfr.2.2.1
+  have huw : GVec.inner u witness_123 = 0 := inner_eq_zero_symm hfr.2.2.2.1
+  have hvw : GVec.inner v witness_123 = 0 := inner_eq_zero_symm hfr.2.2.2.2.1
+  exact ⟨ortho_witness123_raySinSq_nine_and_six_ge hu huw,
+         ortho_witness123_raySinSq_nine_and_six_ge hv hvw⟩
+
+/-- **Explicit-Anchor Bounded Amplification Hypothesis (`HasBoundedAnchorAmplificationOn`)**:
+`g : GVec → ℚ` has bounded anchor amplification relative to a finite anchor list `anchors` with
+amplification factor `A ≥ 0` if every `a ∈ anchors` is nonzero with `g a = 0`, and for every
+`ε > 0` and `δ > 0`, bounding `|g z| < ε` on the `δ`-neighborhood of `anchors` forces
+`|g x| ≤ A * ε` for all nonzero `x ∈ ℚ(i)³`. -/
+def HasBoundedAnchorAmplificationOn (anchors : List GVec) (A : ℚ) (g : GVec → ℚ) : Prop :=
+  0 ≤ A ∧
+  (∀ a ∈ anchors, a.NonZero) ∧
+  (∀ a ∈ anchors, g a = 0) ∧
+  ∀ (ε δ : ℚ), 0 < ε → 0 < δ →
+    (∀ z : GVec, z.NonZero → (∃ a ∈ anchors, raySinSq z a < δ) → |g z| < ε) →
+    ∀ x : GVec, x.NonZero → |g x| ≤ A * ε
+
+/-- **Existential Bounded Anchor Amplification (`HasBoundedAnchorAmplification`)**:
+there exist a finite list `anchors : List GVec` and `A : ℚ` such that
+`HasBoundedAnchorAmplificationOn anchors A g` holds. -/
+def HasBoundedAnchorAmplification (g : GVec → ℚ) : Prop :=
+  ∃ (anchors : List GVec) (A : ℚ), HasBoundedAnchorAmplificationOn anchors A g
+
+/-- **Uniform Meridian-Step Modulus (`HasUniformMeridianStepModulus`)**:
+for every rational `ε > 0`, there exists a single rational `δ > 0` working uniformly across all
+nonzero anchors `a ∈ ℚ(i)³ \ {0}` and all nonzero orthogonal tangent steps `y ∈ a⊥ \ {0}` such that
+`normSqVec y / (normSqVec a + normSqVec y) < δ` implies `|f (GVec.add a y) - f a| < ε`. -/
+def HasUniformMeridianStepModulus (f : GVec → ℚ) : Prop :=
+  ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+    ∀ a y : GVec, a.NonZero → y.NonZero → GVec.inner a y = 0 →
+      normSqVec y / (normSqVec a + normSqVec y) < δ →
+        |f (GVec.add a y) - f a| < ε
+
+/-- **Dense Uniform Meridian-Step Modulus Upgrade (`HasDenseUniformModulusFromPointwise`)**:
+states that pointwise ray continuity on `ℚ(i)³ \ {0}` upgrades to a uniform meridian-step modulus
+(`HasUniformMeridianStepModulus f`) across all nonzero anchors `a ∈ ℚ(i)³ \ {0}` and orthogonal
+tangent steps `y ∈ a⊥ \ {0}`. -/
+def HasDenseUniformModulusFromPointwise (f : GVec → ℚ) : Prop :=
+  IsPointwiseRayContinuous f → HasUniformMeridianStepModulus f
+
+/-- Two vectors in `ℚ(i)³` with zero squared Euclidean distance are equal. -/
+theorem eq_of_distSqVec_eq_zero {u v : GVec} (h : distSqVec u v = 0) : u = v := by
+  unfold distSqVec normSqVec at h
+  have hx0 : (u.x - v.x).normSq = 0 := by
+    linarith [GaussRat.normSq_nonneg (u.x - v.x), GaussRat.normSq_nonneg (u.y - v.y),
+      GaussRat.normSq_nonneg (u.z - v.z)]
+  have hy0 : (u.y - v.y).normSq = 0 := by
+    linarith [GaussRat.normSq_nonneg (u.x - v.x), GaussRat.normSq_nonneg (u.y - v.y),
+      GaussRat.normSq_nonneg (u.z - v.z)]
+  have hz0 : (u.z - v.z).normSq = 0 := by
+    linarith [GaussRat.normSq_nonneg (u.x - v.x), GaussRat.normSq_nonneg (u.y - v.y),
+      GaussRat.normSq_nonneg (u.z - v.z)]
+  have hx := sub_eq_zero.mp ((GaussRat.normSq_eq_zero_iff (u.x - v.x)).mp hx0)
+  have hy := sub_eq_zero.mp ((GaussRat.normSq_eq_zero_iff (u.y - v.y)).mp hy0)
+  have hz := sub_eq_zero.mp ((GaussRat.normSq_eq_zero_iff (u.z - v.z)).mp hz0)
+  cases u; cases v; simp_all
+
+/-- **Collinear Ray Projection Identity (`eq_of_raySinSq_eq_zero`)**:
+if `u` is nonzero and `raySinSq u v = 0`, then `GVec.smul (projScalar u v) u = v`. -/
+theorem eq_of_raySinSq_eq_zero {u v : GVec} (hu : u.NonZero) (hsin : raySinSq u v = 0) :
+    GVec.smul (projScalar u v) u = v := by
+  apply eq_of_distSqVec_eq_zero
+  rw [distSqVec_projScalar_smul hu v, hsin, mul_zero]
+
+theorem distSqVec_symm (u v : GVec) : distSqVec u v = distSqVec v u := by
+  simp only [distSqVec, normSqVec, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+theorem addVec_sub_cancel (a v : GVec) : GVec.add a (GVec.sub v a) = v := by
+  ext <;> simp [GVec.add, GVec.sub]
+
+theorem inner_projScalar_smul_right {u : GVec} (hu : u.NonZero) (v : GVec) :
+    GVec.inner u (GVec.smul (projScalar u v) u) = GVec.inner u v := by
+  have hnu : normSqVec u ≠ 0 := normSqVec_ne_zero_of_nonZero hu
+  rw [GaussianTomography.inner_smul_right, inner_self_eq_normSqVec]
+  ext
+  · simp only [projScalar, GaussRat.re_mul]
+    field_simp [hnu]
+    ring
+  · simp only [projScalar, GaussRat.im_mul]
+    field_simp [hnu]
+    ring
+
+/-- Orthogonal projection residual orthogonality: `a = (projScalar u v) • u` is orthogonal to
+`y = v - a`. -/
+theorem inner_projScalar_smul_sub_eq_zero {u : GVec} (hu : u.NonZero) (v : GVec) :
+    GVec.inner (GVec.smul (projScalar u v) u) (GVec.sub v (GVec.smul (projScalar u v) u)) = 0 := by
+  rw [inner_smul_left, GaussianTomography.inner_sub_right,
+      inner_projScalar_smul_right hu v, sub_self, mul_zero]
+
+/-- Uniform ray continuity implies a uniform meridian-step modulus across all nonzero anchors and
+orthogonal tangent steps. -/
+theorem hasUniformMeridianStepModulus_of_isUniformlyRayContinuous {f : GVec → ℚ}
+    (hu : IsUniformlyRayContinuous f) : HasUniformMeridianStepModulus f := by
+  intro ε hε
+  obtain ⟨δ, hδ, hb⟩ := hu ε hε
+  refine ⟨δ, hδ, ?_⟩
+  intro a y ha hy hay hquo
+  have hay_nz : (GVec.add a y).NonZero := addVec_a_y_ne_zero_of_ortho a y ha hay
+  have hsin : raySinSq (GVec.add a y) a < δ := by
+    rw [(anchorMeridianOrtho_raySinSq_eq ha hy hay).1]
+    exact hquo
+  exact hb (GVec.add a y) a hay_nz ha hsin
+
+/-- For any scale-invariant function `f` on `ℚ(i)³ \ {0}`, a uniform meridian-step modulus
+implies uniform projective ray continuity `IsUniformlyRayContinuous f` (handling collinear rays
+`raySinSq u v = 0` via `eq_of_raySinSq_eq_zero` and non-collinear rays via the orthogonal
+projection decomposition `v = a + y` with `a = (projScalar u v) • u` and `y = v - a ⊥ a`). -/
+theorem isUniformlyRayContinuous_of_hasUniformMeridianStepModulus {f : GVec → ℚ}
+    (hscale : IsScaleInvariantOnRays f) (hmer : HasUniformMeridianStepModulus f) :
+    IsUniformlyRayContinuous f := by
+  intro ε hε
+  obtain ⟨δ, hδ, hb⟩ := hmer ε hε
+  refine ⟨min 1 δ, lt_min one_pos hδ, ?_⟩
+  intro u v hu hv hsin
+  have hsin1 : raySinSq u v < 1 := lt_of_lt_of_le hsin (min_le_left 1 δ)
+  have hsin_δ : raySinSq u v < δ := lt_of_lt_of_le hsin (min_le_right 1 δ)
+  let c := projScalar u v
+  have hc : c ≠ 0 := projScalar_ne_zero_of_raySinSq_lt_one hu hv hsin1
+  let a := GVec.smul c u
+  have ha : a.NonZero := nonZero_smul hc hu
+  have hfa : f a = f u := hscale u hu c hc
+  by_cases h0 : raySinSq u v = 0
+  · have hav : a = v := eq_of_raySinSq_eq_zero hu h0
+    have hfuv : f u = f v := by rw [← hfa, hav]
+    rw [hfuv, sub_self, abs_zero]
+    exact hε
+  · have hsin_pos : 0 < raySinSq u v :=
+      lt_of_le_of_ne (raySinSq_nonneg hu hv) (Ne.symm h0)
+    let y := GVec.sub v a
+    have hay : GVec.inner a y = 0 := inner_projScalar_smul_sub_eq_zero hu v
+    have hadd : GVec.add a y = v := addVec_sub_cancel a v
+    have hnv_pos : 0 < normSqVec v := normSqVec_pos_of_nonZero hv
+    have hny_eq : normSqVec y = normSqVec v * raySinSq u v := by
+      change distSqVec v a = normSqVec v * raySinSq u v
+      rw [distSqVec_symm v a, distSqVec_projScalar_smul hu v]
+    have hy : y.NonZero := by
+      apply nonZero_of_normSqVec_pos
+      rw [hny_eq]
+      exact mul_pos hnv_pos hsin_pos
+    have hsum_eq : normSqVec a + normSqVec y = normSqVec v := by
+      rw [← (normSqVec_add_eq_normSqVec_sub_of_ortho hay).1, hadd]
+    have hquo : normSqVec y / (normSqVec a + normSqVec y) < δ := by
+      rw [hsum_eq, hny_eq, mul_div_cancel_left₀ (raySinSq u v) (ne_of_gt hnv_pos)]
+      exact hsin_δ
+    have hlt := hb a y ha hy hay hquo
+    rw [hadd, hfa, abs_sub_comm] at hlt
+    exact hlt
+
+/-- **Genuine Meridian-Step Characterization of Uniform Ray Continuity
+(`isUniformlyRayContinuous_iff_hasUniformMeridianStepModulus`)**:
+for any scale-invariant ray function `f` on `ℚ(i)³ \ {0}` (including every frame function and
+every zero-weight frame residual), uniform projective ray continuity `IsUniformlyRayContinuous f`
+is equivalent to having a uniform meridian-step modulus `HasUniformMeridianStepModulus f`. -/
+theorem isUniformlyRayContinuous_iff_hasUniformMeridianStepModulus {f : GVec → ℚ}
+    (hscale : IsScaleInvariantOnRays f) :
+    IsUniformlyRayContinuous f ↔ HasUniformMeridianStepModulus f :=
+  ⟨hasUniformMeridianStepModulus_of_isUniformlyRayContinuous,
+   isUniformlyRayContinuous_of_hasUniformMeridianStepModulus hscale⟩
+
+/-- **Equatorial Kelvin-Partner Characterization of `HasUniformMeridianStepModulus`
+(`hasUniformMeridianStepModulus_iff_equatorial_kelvin_modulus`)**:
+for any frame function `f` on `ℚ(i)³`, having a uniform meridian-step modulus
+`HasUniformMeridianStepModulus f` (`|f (a + y) - f a| < ε`) is equivalent to having a uniform
+equatorial Kelvin-partner modulus `|f y - f (anchorMeridianOrtho a y)| < ε` across all nonzero
+anchors `a ∈ ℚ(i)³ \ {0}` and orthogonal tangent steps `y ∈ a⊥ \ {0}`. -/
+theorem hasUniformMeridianStepModulus_iff_equatorial_kelvin_modulus {f : GVec → ℚ}
+    (hf : IsFrameFunction f) :
+    HasUniformMeridianStepModulus f ↔
+      (∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+        ∀ a y : GVec, a.NonZero → y.NonZero → GVec.inner a y = 0 →
+          normSqVec y / (normSqVec a + normSqVec y) < δ →
+            |f y - f (anchorMeridianOrtho a y)| < ε) := by
+  constructor
+  · intro hmer ε hε
+    obtain ⟨δ, hδ, hb⟩ := hmer ε hε
+    refine ⟨δ, hδ, ?_⟩
+    intro a y ha hy hay hquo
+    have hlt := hb a y ha hy hay hquo
+    have hbridge := (anchor_meridian_kelvin_bridge hf ha hy hay).2.2.2
+    rw [hbridge]
+    exact hlt
+  · intro hkel ε hε
+    obtain ⟨δ, hδ, hb⟩ := hkel ε hε
+    refine ⟨δ, hδ, ?_⟩
+    intro a y ha hy hay hquo
+    have hlt := hb a y ha hy hay hquo
+    have hbridge := (anchor_meridian_kelvin_bridge hf ha hy hay).2.2.2
+    rw [← hbridge]
+    exact hlt
+
+/-- Pointwise ray continuity of `g` at a finite list of anchors where `g` vanishes implies that for
+every `ε > 0` there exists `δ > 0` such that `|g z| < ε` for every nonzero `z` within `raySinSq z a < δ`
+of some `a ∈ anchors`. -/
+theorem exists_anchor_neighborhood_bound_of_pointwiseRayContinuous {g : GVec → ℚ}
+    (anchors : List GVec)
+    (hzero : ∀ a ∈ anchors, g a = 0)
+    (hcont : ∀ a ∈ anchors, IsPointwiseRayContinuousAt g a) :
+    ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+      ∀ z : GVec, z.NonZero → (∃ a ∈ anchors, raySinSq z a < δ) → |g z| < ε := by
+  intro ε hε
+  obtain ⟨δ, hδ, hb⟩ := finite_anchors_pointwiseRayContinuous_common_delta anchors hcont ε hε
+  refine ⟨δ, hδ, ?_⟩
+  intro z hz ⟨a, ha_mem, hsin⟩
+  have hlt := hb a ha_mem z hz hsin
+  rw [hzero a ha_mem, sub_zero] at hlt
+  exact hlt
+
+/-- **Global Vanishing from Finite-Anchor Pointwise Continuity and Bounded Amplification
+(`zero_of_pointwise_and_bounded_anchor_amplification_on`)**:
+if `g : GVec → ℚ` satisfies `HasBoundedAnchorAmplificationOn anchors A g` and is pointwise
+ray-continuous at each `a ∈ anchors`, then `g x = 0` for every nonzero `x ∈ ℚ(i)³ \ {0}`. -/
+theorem zero_of_pointwise_and_bounded_anchor_amplification_on {g : GVec → ℚ}
+    {anchors : List GVec} {A : ℚ}
+    (hamp : HasBoundedAnchorAmplificationOn anchors A g)
+    (hcont : ∀ a ∈ anchors, IsPointwiseRayContinuousAt g a) :
+    ∀ x : GVec, x.NonZero → g x = 0 := by
+  obtain ⟨hA, _hanz, hzero, hbound⟩ := hamp
+  intro x hx
+  by_contra hne
+  have hpos : 0 < |g x| := abs_pos.mpr hne
+  have hA1 : 0 < A + 1 := by linarith
+  let ε : ℚ := |g x| / (2 * (A + 1))
+  have hε : 0 < ε := div_pos hpos (by positivity)
+  obtain ⟨δ, hδ, hnbhd⟩ :=
+    exists_anchor_neighborhood_bound_of_pointwiseRayContinuous anchors hzero hcont ε hε
+  have hgx_le : |g x| ≤ A * ε := hbound ε δ hε hδ hnbhd x hx
+  have hA_eps : A * ε ≤ |g x| / 2 := by
+    calc A * ε ≤ (A + 1) * ε := by nlinarith
+      _ = |g x| / 2 := by
+        simp only [ε]
+        field_simp
+  linarith
+
+/-- **Global Vanishing from Pointwise Ray Continuity and Bounded Anchor Amplification
+(`zero_of_pointwise_and_bounded_anchor_amplification`)**:
+if `g : GVec → ℚ` satisfies `HasBoundedAnchorAmplification g` and `IsPointwiseRayContinuous g`,
+then `g x = 0` for every nonzero `x ∈ ℚ(i)³ \ {0}`. -/
+theorem zero_of_pointwise_and_bounded_anchor_amplification {g : GVec → ℚ}
+    (hamp : HasBoundedAnchorAmplification g)
+    (hcont : IsPointwiseRayContinuous g) :
+    ∀ x : GVec, x.NonZero → g x = 0 := by
+  obtain ⟨anchors, A, hamp_on⟩ := hamp
+  exact zero_of_pointwise_and_bounded_anchor_amplification_on hamp_on
+    (fun a ha => hcont a (hamp_on.2.1 a ha))
+
+/-- Every rational Hermitian Rayleigh quotient `quadRay ρ` is pointwise ray-continuous at every
+nonzero vector `v₀ ∈ ℚ(i)³ \ {0}`. -/
+theorem isPointwiseRayContinuousAt_quadRay (ρ : HermForm3) {v₀ : GVec} (hv₀ : v₀.NonZero) :
+    IsPointwiseRayContinuousAt (quadRay ρ) v₀ :=
+  isPointwiseRayContinuous_of_isUniformlyRayContinuous (isUniformlyRayContinuous_quadRay ρ) v₀ hv₀
+
+/-- Pointwise ray continuity at `v₀` is preserved under subtraction of functions. -/
+theorem isPointwiseRayContinuousAt_sub {f₁ f₂ : GVec → ℚ} {v₀ : GVec}
+    (h₁ : IsPointwiseRayContinuousAt f₁ v₀) (h₂ : IsPointwiseRayContinuousAt f₂ v₀) :
+    IsPointwiseRayContinuousAt (fun v => f₁ v - f₂ v) v₀ := by
+  intro ε hε
+  have hε2 : 0 < ε / 2 := half_pos hε
+  obtain ⟨δ₁, hδ₁, hb₁⟩ := h₁ (ε / 2) hε2
+  obtain ⟨δ₂, hδ₂, hb₂⟩ := h₂ (ε / 2) hε2
+  refine ⟨min δ₁ δ₂, lt_min hδ₁ hδ₂, ?_⟩
+  intro v hv hsin
+  have hlt₁ := hb₁ v hv (lt_of_lt_of_le hsin (min_le_left δ₁ δ₂))
+  have hlt₂ := hb₂ v hv (lt_of_lt_of_le hsin (min_le_right δ₁ δ₂))
+  have hsplit :
+      (f₁ v - f₂ v) - (f₁ v₀ - f₂ v₀) = (f₁ v - f₁ v₀) + (-(f₂ v - f₂ v₀)) := by ring
+  have htri := abs_add_le (f₁ v - f₁ v₀) (-(f₂ v - f₂ v₀))
+  rw [abs_neg] at htri
+  rw [hsplit]
+  linarith
+
+/-- If `f` is pointwise ray-continuous at a nonzero vector `v₀`, then its tomography residual
+`GaussianTomography.residual f` is also pointwise ray-continuous at `v₀`. -/
+theorem isPointwiseRayContinuousAt_residual {f : GVec → ℚ} {v₀ : GVec}
+    (hv₀ : v₀.NonZero) (hf : IsPointwiseRayContinuousAt f v₀) :
+    IsPointwiseRayContinuousAt (GaussianTomography.residual f) v₀ :=
+  isPointwiseRayContinuousAt_sub hf (isPointwiseRayContinuousAt_quadRay (tomographyForm f) hv₀)
+
+/-- If `f` is globally pointwise ray-continuous on `ℚ(i)³ \ {0}`, then its tomography residual
+`GaussianTomography.residual f` is also globally pointwise ray-continuous on `ℚ(i)³ \ {0}`. -/
+theorem isPointwiseRayContinuous_residual {f : GVec → ℚ}
+    (hf : IsPointwiseRayContinuous f) :
+    IsPointwiseRayContinuous (GaussianTomography.residual f) :=
+  fun v₀ hv₀ => isPointwiseRayContinuousAt_residual hv₀ (hf v₀ hv₀)
+
+/-- **Conditional `TFQ-1057` Quadratic Rigidity on an Explicit Anchor List
+(`born_from_pointwise_and_bounded_anchor_amplification_on`)**:
+if `f` is a frame function on `ℚ(i)³` that is pointwise ray-continuous at each anchor in `anchors`
+and whose tomography residual `GaussianTomography.residual f` satisfies
+`HasBoundedAnchorAmplificationOn anchors A (GaussianTomography.residual f)`, then `f` coincides with
+`quadRay (tomographyForm f)` on all nonzero rays and is uniformly ray-continuous. -/
+theorem born_from_pointwise_and_bounded_anchor_amplification_on {f : GVec → ℚ}
+    {anchors : List GVec} {A : ℚ}
+    (hf : IsFrameFunction f)
+    (hcont : ∀ a ∈ anchors, IsPointwiseRayContinuousAt f a)
+    (hamp : HasBoundedAnchorAmplificationOn anchors A (GaussianTomography.residual f)) :
+    (∀ v : GVec, v.NonZero → f v = quadRay (tomographyForm f) v) ∧
+    IsUniformlyRayContinuous f := by
+  have hcont_res : ∀ a ∈ anchors, IsPointwiseRayContinuousAt (GaussianTomography.residual f) a :=
+    fun a ha => isPointwiseRayContinuousAt_residual (hamp.2.1 a ha) (hcont a ha)
+  have hzero := zero_of_pointwise_and_bounded_anchor_amplification_on hamp hcont_res
+  have heq : ∀ v : GVec, v.NonZero → f v = quadRay (tomographyForm f) v := by
+    intro v hv
+    have hr := hzero v hv
+    unfold GaussianTomography.residual at hr
+    linarith
+  have hu : IsUniformlyRayContinuous f :=
+    ((uniformlyRayContinuous_frameFunction_iff f).mpr
+      ⟨tomographyForm f, tomography_trace_one hf, heq⟩).2
+  exact ⟨heq, hu⟩
+
+/-- **Sharp Conditional `TFQ-1057` Closure Theorem
+(`born_from_pointwise_and_bounded_anchor_amplification`)**:
+if `f` is a frame function on `ℚ(i)³` that is pointwise ray-continuous (`IsPointwiseRayContinuous f`)
+and whose tomography residual satisfies `HasBoundedAnchorAmplification (GaussianTomography.residual f)`,
+then `f` equals the Born Rayleigh quotient `quadRay (tomographyForm f)` on all nonzero vectors and is
+uniformly ray-continuous on `ℚ(i)³ \ {0}`. -/
+theorem born_from_pointwise_and_bounded_anchor_amplification {f : GVec → ℚ}
+    (hf : IsFrameFunction f)
+    (hcont : IsPointwiseRayContinuous f)
+    (hamp : HasBoundedAnchorAmplification (GaussianTomography.residual f)) :
+    (∀ v : GVec, v.NonZero → f v = quadRay (tomographyForm f) v) ∧
+    IsUniformlyRayContinuous f := by
+  obtain ⟨anchors, A, hamp_on⟩ := hamp
+  exact born_from_pointwise_and_bounded_anchor_amplification_on hf
+    (fun a ha => hcont a (hamp_on.2.1 a ha)) hamp_on
+
+open GleasonComplex in
+open scoped ComplexOrder in
+/-- **Conditional `TFQ-1057` Density-Matrix Completion
+(`born_density_matrix_of_pointwise_and_bounded_anchor_amplification`)**:
+if `f` is a nonnegative frame function on `ℚ(i)³` that is pointwise ray-continuous and whose
+tomography residual satisfies `HasBoundedAnchorAmplification (GaussianTomography.residual f)`, then
+`f` is the Born rule of a unique positive semidefinite trace-one density matrix on `ℂ³`. -/
+theorem born_density_matrix_of_pointwise_and_bounded_anchor_amplification {f : GVec → ℚ}
+    (hf : IsNonnegFrameFunction f)
+    (hcont : IsPointwiseRayContinuous f)
+    (hamp : HasBoundedAnchorAmplification (GaussianTomography.residual f)) :
+    ∃ ρC : Matrix (Fin 3) (Fin 3) ℂ, ρC.PosSemidef ∧ ρC.trace = 1 ∧
+      (∀ v : Fin 3 → ℂ, v ≠ 0 → F f v = (star v ⬝ᵥ (ρC *ᵥ v)).re / nsq v) ∧
+      (∀ g : GVec, g.NonZero → (f g : ℝ) = (star (ι g) ⬝ᵥ (ρC *ᵥ ι g)).re / nsq (ι g)) ∧
+      (∀ σC : Matrix (Fin 3) (Fin 3) ℂ, σC.IsHermitian →
+        (∀ v : Fin 3 → ℂ, v ≠ 0 → F f v = (star v ⬝ᵥ (σC *ᵥ v)).re / nsq v) → σC = ρC) := by
+  have hu := (born_from_pointwise_and_bounded_anchor_amplification hf.1 hcont hamp).2
+  exact born_density_matrix_of_uniformlyRayContinuous hf hu
+
+/-- **Conditional `TFQ-1057` Closure from Dense Uniform Meridian-Step Modulus Upgrade
+(`born_from_pointwise_and_dense_uniform_modulus`)**:
+if `f` is a frame function on `ℚ(i)³` satisfying `IsPointwiseRayContinuous f` and
+`HasDenseUniformModulusFromPointwise f`, then `f` equals `quadRay (tomographyForm f)` on all
+nonzero rays and is uniformly ray-continuous. -/
+theorem born_from_pointwise_and_dense_uniform_modulus {f : GVec → ℚ}
+    (hf : IsFrameFunction f)
+    (hcont : IsPointwiseRayContinuous f)
+    (hdense : HasDenseUniformModulusFromPointwise f) :
+    (∀ v : GVec, v.NonZero → f v = quadRay (tomographyForm f) v) ∧
+    IsUniformlyRayContinuous f := by
+  have hmer : HasUniformMeridianStepModulus f := hdense hcont
+  have hu : IsUniformlyRayContinuous f :=
+    (isUniformlyRayContinuous_iff_hasUniformMeridianStepModulus
+      (isScaleInvariantOnRays_of_isFrameFunction hf)).mpr hmer
+  exact ⟨born_of_uniformlyRayContinuous hf hu, hu⟩
+
+/-- **Inhabitation of `HasBoundedAnchorAmplificationOn` by the Zero Function
+(`hasBoundedAnchorAmplificationOn_zero`)**:
+for any finite list `anchors : List GVec` of nonzero rays, the identically zero function
+`fun _ => 0` satisfies `HasBoundedAnchorAmplificationOn anchors 0 (fun _ => 0)`. -/
+theorem hasBoundedAnchorAmplificationOn_zero (anchors : List GVec)
+    (hanz : ∀ a ∈ anchors, a.NonZero) :
+    HasBoundedAnchorAmplificationOn anchors 0 (fun _ => 0) := by
+  refine ⟨le_rfl, hanz, fun _ _ => rfl, ?_⟩
+  intro ε _δ _hε _hδ _hnbhd x _hx
+  simp
+
+/-- **Inhabitation of `HasBoundedAnchorAmplificationOn` by Uniformly Ray-Continuous Frame Functions
+(`hasBoundedAnchorAmplificationOn_residual_of_uniformlyRayContinuous`)**:
+if `f` is a uniformly ray-continuous frame function on `ℚ(i)³`, then its tomography residual
+`GaussianTomography.residual f` vanishes on all nonzero vectors and satisfies
+`HasBoundedAnchorAmplificationOn nineAnchorsList 0 (GaussianTomography.residual f)` (and hence
+`HasBoundedAnchorAmplification (GaussianTomography.residual f)`). -/
+theorem hasBoundedAnchorAmplificationOn_residual_of_uniformlyRayContinuous {f : GVec → ℚ}
+    (hf : IsFrameFunction f) (hu : IsUniformlyRayContinuous f) :
+    HasBoundedAnchorAmplificationOn nineAnchorsList 0 (GaussianTomography.residual f) ∧
+    HasBoundedAnchorAmplification (GaussianTomography.residual f) := by
+  have hborn := born_of_uniformlyRayContinuous hf hu
+  have h9 := (vanishesOnNineRays_iff_forall_nineAnchorsList (GaussianTomography.residual f)).mp
+    (residual_vanishes_on_nine_rays f)
+  have hamp_on : HasBoundedAnchorAmplificationOn nineAnchorsList 0 (GaussianTomography.residual f) := by
+    refine ⟨le_rfl, nineAnchorsList_nonZero, h9, ?_⟩
+    intro ε _δ _hε _hδ _hnbhd x hx
+    have hfx := hborn x hx
+    have hres : GaussianTomography.residual f x = 0 := by
+      unfold GaussianTomography.residual
+      linarith
+    rw [hres, abs_zero, zero_mul]
+  exact ⟨hamp_on, ⟨nineAnchorsList, 0, hamp_on⟩⟩
+
+/-- **Necessary and Sufficient Characterization of Uniform Ray Continuity via Bounded Anchor
+Amplification (`uniformlyRayContinuous_iff_pointwise_and_bounded_anchor_amplification`)**:
+for any frame function `f` on `ℚ(i)³`, `IsUniformlyRayContinuous f` is equivalent to the
+conjunction of `IsPointwiseRayContinuous f` and
+`HasBoundedAnchorAmplification (GaussianTomography.residual f)`. -/
+theorem uniformlyRayContinuous_iff_pointwise_and_bounded_anchor_amplification {f : GVec → ℚ}
+    (hf : IsFrameFunction f) :
+    IsUniformlyRayContinuous f ↔
+      (IsPointwiseRayContinuous f ∧
+       HasBoundedAnchorAmplification (GaussianTomography.residual f)) := by
+  constructor
+  · intro hu
+    exact ⟨isPointwiseRayContinuous_of_isUniformlyRayContinuous hu,
+           (hasBoundedAnchorAmplificationOn_residual_of_uniformlyRayContinuous hf hu).2⟩
+  · rintro ⟨hcont, hamp⟩
+    exact (born_from_pointwise_and_bounded_anchor_amplification hf hcont hamp).2
+
+/-- **Inhabitation of `HasDenseUniformModulusFromPointwise` by Rational Hermitian Rayleigh Quotients
+(`hasDenseUniformModulusFromPointwise_quadRay`)**:
+every rational Hermitian Rayleigh quotient `quadRay ρ` satisfies
+`HasDenseUniformModulusFromPointwise (quadRay ρ)`. -/
+theorem hasDenseUniformModulusFromPointwise_quadRay (ρ : HermForm3) :
+    HasDenseUniformModulusFromPointwise (quadRay ρ) :=
+  fun _ => hasUniformMeridianStepModulus_of_isUniformlyRayContinuous
+    (isUniformlyRayContinuous_quadRay ρ)
+
+/-- **Necessary and Sufficient Characterization of Uniform Ray Continuity via Dense Uniform
+Meridian-Step Modulus Upgrade (`uniformlyRayContinuous_iff_pointwise_and_dense_uniform_modulus`)**:
+for any frame function `f` on `ℚ(i)³`, `IsUniformlyRayContinuous f` is equivalent to the
+conjunction of `IsPointwiseRayContinuous f` and `HasDenseUniformModulusFromPointwise f`. -/
+theorem uniformlyRayContinuous_iff_pointwise_and_dense_uniform_modulus {f : GVec → ℚ}
+    (hf : IsFrameFunction f) :
+    IsUniformlyRayContinuous f ↔
+      (IsPointwiseRayContinuous f ∧ HasDenseUniformModulusFromPointwise f) := by
+  constructor
+  · intro hu
+    exact ⟨isPointwiseRayContinuous_of_isUniformlyRayContinuous hu,
+           fun _ => hasUniformMeridianStepModulus_of_isUniformlyRayContinuous hu⟩
+  · rintro ⟨hcont, hdense⟩
+    exact (born_from_pointwise_and_dense_uniform_modulus hf hcont hdense).2
+
 end BornFinite.GaussianFiniteModel
 
 #print axioms BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario
@@ -2604,4 +3720,73 @@ end BornFinite.GaussianFiniteModel
 #print axioms BornFinite.GaussianFiniteModel.quadRay_rayProj_tomo_e1_eq_one_sub_raySinSq
 #print axioms BornFinite.GaussianFiniteModel.ortho_raySinSq_tomo_e1_add_ge_one
 #print axioms BornFinite.GaussianFiniteModel.not_both_raySinSq_tomo_e1_lt_half_of_ortho
+#print axioms BornFinite.GaussianFiniteModel.inner_anchorMeridianStep_anchorMeridianOrtho
+#print axioms BornFinite.GaussianFiniteModel.addVec_a_y_ne_zero_of_ortho
+#print axioms BornFinite.GaussianFiniteModel.anchorMeridianOrtho_ne_zero_of_ortho
+#print axioms BornFinite.GaussianFiniteModel.isFrame_anchor_meridian_base
+#print axioms BornFinite.GaussianFiniteModel.isFrame_anchor_meridian_rot
+#print axioms BornFinite.GaussianFiniteModel.anchor_meridian_kelvin_bridge
+#print axioms BornFinite.GaussianFiniteModel.anchor_meridian_zeroWeight_bridge
+#print axioms BornFinite.GaussianFiniteModel.anchorMeridianOrtho_raySinSq_eq
+#print axioms BornFinite.GaussianFiniteModel.anchor_uniform_equatorial_continuity_of_anchor_continuous
+#print axioms BornFinite.GaussianFiniteModel.finite_anchors_pointwiseRayContinuous_common_delta
+#print axioms BornFinite.GaussianFiniteModel.finite_anchors_uniform_equatorial_continuity_of_anchors_continuous
+#print axioms BornFinite.GaussianFiniteModel.multi_axis_uniform_equatorial_continuity_of_axes_continuous
+#print axioms BornFinite.GaussianFiniteModel.nine_anchor_uniform_equatorial_continuity_of_anchors_continuous
+#print axioms BornFinite.GaussianFiniteModel.raySinSq_comm
+#print axioms BornFinite.GaussianFiniteModel.raySinSq_le_one
+#print axioms BornFinite.GaussianFiniteModel.raySinSq_nonneg
+#print axioms BornFinite.GaussianFiniteModel.frame_raySinSq_sum_eq_two
+#print axioms BornFinite.GaussianFiniteModel.anchor_frame_raySinSq_sum_eq_two
+#print axioms BornFinite.GaussianFiniteModel.frame_third_raySinSq_le_add_of_ortho_anchors
+#print axioms BornFinite.GaussianFiniteModel.fixed_anchor_frame_isolation_obstruction
+#print axioms BornFinite.GaussianFiniteModel.witness111_raySinSq_nineAnchors_le_two_thirds
+#print axioms BornFinite.GaussianFiniteModel.ortho_witness111_raySinSq_nineAnchors_ge_one_third
+#print axioms BornFinite.GaussianFiniteModel.frame_witness111_partners_isolated_from_nineAnchors
+#print axioms BornFinite.GaussianFiniteModel.probe_120_nonZero
+#print axioms BornFinite.GaussianFiniteModel.probe_2m15_nonZero
+#print axioms BornFinite.GaussianFiniteModel.isFrame_witness_neg211_probe120_probe2m15
+#print axioms BornFinite.GaussianFiniteModel.residual_witness111_eq_sum_in_fifth_ball
+#print axioms BornFinite.GaussianFiniteModel.residual_witness111_abs_le_two_eps_of_fifth_ball
+#print axioms BornFinite.GaussianFiniteModel.residual_witness111_eq_zero_of_fifth_ball
+#print axioms BornFinite.GaussianFiniteModel.isFrame_tomo_e12_e3_bisector
+#print axioms BornFinite.GaussianFiniteModel.witness_neg211_raySinSq_bisector_12_neg
+#print axioms BornFinite.GaussianFiniteModel.witness_neg211_isolation_one_eighth
+#print axioms BornFinite.GaussianFiniteModel.raySinSq_self
+#print axioms BornFinite.GaussianFiniteModel.isFrame_witness111_bisector_neg211
+#print axioms BornFinite.GaussianFiniteModel.isFrame_neg211_bisector_witness111
+#print axioms BornFinite.GaussianFiniteModel.perturbed_witness111_neg211_bounce_back
+#print axioms BornFinite.GaussianFiniteModel.witness_123_nonZero
+#print axioms BornFinite.GaussianFiniteModel.sixBisectorPartnersList_nonZero
+#print axioms BornFinite.GaussianFiniteModel.witness123_raySinSq_nineAnchors_le
+#print axioms BornFinite.GaussianFiniteModel.witness123_raySinSq_sixBisectors_le
+#print axioms BornFinite.GaussianFiniteModel.ortho_witness123_raySinSq_nine_and_six_ge
+#print axioms BornFinite.GaussianFiniteModel.frame_witness123_partners_isolated_from_nine_and_six
+#print axioms BornFinite.GaussianFiniteModel.eq_of_distSqVec_eq_zero
+#print axioms BornFinite.GaussianFiniteModel.eq_of_raySinSq_eq_zero
+#print axioms BornFinite.GaussianFiniteModel.distSqVec_symm
+#print axioms BornFinite.GaussianFiniteModel.addVec_sub_cancel
+#print axioms BornFinite.GaussianFiniteModel.inner_projScalar_smul_right
+#print axioms BornFinite.GaussianFiniteModel.inner_projScalar_smul_sub_eq_zero
+#print axioms BornFinite.GaussianFiniteModel.hasUniformMeridianStepModulus_of_isUniformlyRayContinuous
+#print axioms BornFinite.GaussianFiniteModel.isUniformlyRayContinuous_of_hasUniformMeridianStepModulus
+#print axioms BornFinite.GaussianFiniteModel.isUniformlyRayContinuous_iff_hasUniformMeridianStepModulus
+#print axioms BornFinite.GaussianFiniteModel.hasUniformMeridianStepModulus_iff_equatorial_kelvin_modulus
+#print axioms BornFinite.GaussianFiniteModel.exists_anchor_neighborhood_bound_of_pointwiseRayContinuous
+#print axioms BornFinite.GaussianFiniteModel.zero_of_pointwise_and_bounded_anchor_amplification_on
+#print axioms BornFinite.GaussianFiniteModel.zero_of_pointwise_and_bounded_anchor_amplification
+#print axioms BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_quadRay
+#print axioms BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_sub
+#print axioms BornFinite.GaussianFiniteModel.isPointwiseRayContinuousAt_residual
+#print axioms BornFinite.GaussianFiniteModel.isPointwiseRayContinuous_residual
+#print axioms BornFinite.GaussianFiniteModel.born_from_pointwise_and_bounded_anchor_amplification_on
+#print axioms BornFinite.GaussianFiniteModel.born_from_pointwise_and_bounded_anchor_amplification
+#print axioms BornFinite.GaussianFiniteModel.born_density_matrix_of_pointwise_and_bounded_anchor_amplification
+#print axioms BornFinite.GaussianFiniteModel.born_from_pointwise_and_dense_uniform_modulus
+#print axioms BornFinite.GaussianFiniteModel.hasBoundedAnchorAmplificationOn_zero
+#print axioms BornFinite.GaussianFiniteModel.hasBoundedAnchorAmplificationOn_residual_of_uniformlyRayContinuous
+#print axioms BornFinite.GaussianFiniteModel.uniformlyRayContinuous_iff_pointwise_and_bounded_anchor_amplification
+#print axioms BornFinite.GaussianFiniteModel.hasDenseUniformModulusFromPointwise_quadRay
+#print axioms BornFinite.GaussianFiniteModel.uniformlyRayContinuous_iff_pointwise_and_dense_uniform_modulus
+
 
