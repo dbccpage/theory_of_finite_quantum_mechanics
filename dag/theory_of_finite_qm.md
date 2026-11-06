@@ -685,7 +685,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0567` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR` (PROVED_LEAN) | - |
 | `TFQ-0568` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE` (PROVED_LEAN) | - |
 | `TFQ-0569` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION` (PROVED_LEAN) | - |
-| `TFQ-0570` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` (OPEN) | - |
+| `TFQ-0570` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` (PROVED_LEAN) | - |
 | `TFQ-0571` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` (PROVED_LEAN) | - |
 | `TFQ-0572` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE` (PROVED_LEAN) | - |
 | `TFQ-0573` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION` (PROVED_LEAN) | - |
@@ -697,12 +697,12 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0579` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BORN-RULE-NONSELECTION` (PROVED_LEAN) | - |
 | `TFQ-0580` | `WDP` | `PROVED_LEAN` | `PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION` (PROVED_LEAN) | - |
 | `TFQ-0581` | `WDP` | `PROVED_LEAN` | `PGW-WDP-AFFINE-THICKENING-CONJECTURE` (PROVED_LEAN) | - |
-| `TFQ-0582` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M1-CORRELATION-ESTIMATES` (OPEN) | - |
-| `TFQ-0583` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M2-CUMULANT-BOUNDS` (OPEN) | - |
-| `TFQ-0584` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS` (OPEN) | - |
+| `TFQ-0582` | `WDP` | `PROVED_LEAN` | `PGW-WDP-MERON-M1-CORRELATION-ESTIMATES` (PROVED_LEAN) | - |
+| `TFQ-0583` | `WDP` | `PROVED_LEAN` | `PGW-WDP-MERON-M2-CUMULANT-BOUNDS` (PROVED_LEAN) | - |
+| `TFQ-0584` | `WDP` | `PROVED_LEAN` | `PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS` (PROVED_LEAN) | - |
 | `TFQ-0585` | `WDP` | `PROVED_LEAN` | `PGW-WDP-MERON-M4-NATIVE-ADAPTERS` (PROVED_LEAN) | - |
 | `TFQ-0586` | `WDP` | `PROVED_LEAN` | `PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR` (PROVED_LEAN) | - |
-| `TFQ-0587` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-SPACETIME-LIMIT` (OPEN) | - |
+| `TFQ-0587` | `WDP` | `PROVED_LEAN` | `PGW-WDP-MERON-SPACETIME-LIMIT` (PROVED_LEAN) | - |
 | `TFQ-2600` | `PREGENESIS` | `OPEN_OBLIGATION` | `COMP-MARK-ADMISSION-GAP` (OPEN) | - |
 | `TFQ-2610` | `FINITE_QM_INFORMATION` | `IMPORTED_ASSUMPTION` | `QI-MODEL-ADMISSION` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-2611` | `FINITE_QM_INFORMATION` | `CONDITIONAL` | `QI-CLASSICAL-CHANNEL-LIFT` (CONDITIONAL) | - |
@@ -3696,7 +3696,7 @@ Obligation: Bridge or refute the gap between finite signed/Gaussian-rational obs
 
 - UUID: `edcbc008-2485-5414-9267-2f58b1bf8200`
 - Parent: `TFQ-0569`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
 Enlarged Genesis bridge obligation GEN-WDP-O05: recover institutionally meaningful jurisdiction, appeal, facts, agreement, and execution from declared evidence, policy, and enforcement maps.
 
@@ -3816,7 +3816,7 @@ Obligation: Derive a dyadic cell partition and covering-number witness classifie
 
 - UUID: `424ae1ad-c670-5e7d-985a-4b97be2af0a2`
 - Parent: `TFQ-0581`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
 Meron Field-Limit Target M1: establish or refute uniform spatial and time-dependent correlation estimates required for a joint (L, M) thermodynamic and Trotter continuum limit.
 
@@ -3826,7 +3826,7 @@ Obligation: Derive uniform in-(L, M) spatial and temporal two-point correlation 
 
 - UUID: `a2f49f73-518a-5a59-b5fa-36639eb8335a`
 - Parent: `TFQ-0582`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
 Meron Field-Limit Target M2: establish higher cumulant decay bounds and a declared distributional topology before asserting a Gaussian spacetime field limit.
 
@@ -3836,7 +3836,7 @@ Obligation: Prove vanishing of connected higher cumulants (order >= 3) under dec
 
 - UUID: `5698fe5b-1e61-5c55-a694-cfd1ec5e7193`
 - Parent: `TFQ-0583`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
 Meron Field-Limit Target M3: establish the all-M transfer-matrix spectral gap statement or prove that the fixed-carrier response theorem bypasses all-M spectral separation.
 
@@ -3866,7 +3866,7 @@ Obligation: Formalize the corrected finite toric-code syndrome kernel, restricte
 
 - UUID: `97628ffc-b085-5f6d-8ceb-4b21e4d0deb3`
 - Parent: `TFQ-0586`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
 Periodic full-Fock U=t chain spacetime response synthesis: connect finite-volume occupation-basis signed SQL history sums to continuum Euclidean response functions without substituting an unrestricted spin trace.
 

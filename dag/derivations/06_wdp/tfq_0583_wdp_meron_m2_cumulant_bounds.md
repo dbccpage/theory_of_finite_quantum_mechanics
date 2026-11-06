@@ -1,6 +1,6 @@
 # [TFQ-0583] wdp-meron-m2-cumulant-bounds
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `a2f49f73-518a-5a59-b5fa-36639eb8335a`  
 > **Parent Derivation**: [TFQ-0582](tfq_0582_wdp_meron_m1_correlation_estimates.md)
 
@@ -30,6 +30,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean::WitnessedDifference.WdpBatch13.binary_spin_fourth_cumulant_neg_two`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean::WitnessedDifference.WdpBatch13.wdp_meron_m2_scoped_fourth_cumulant_nonselection`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean::WitnessedDifference.WdpBatch13Rep.wdp_meron_m2_scoped_fourth_cumulant_nonselection`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean)
 - `missing obligation: continuum Gaussian cumulant decay is open`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
