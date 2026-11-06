@@ -34,9 +34,8 @@ The register tracks five mandatory bridge obligations linking the discrete Genes
 
 ## Derivation DAG Synchronization & `omega_codex` Pre-Merge Ledger
 - **Standalone WDP DAG:** [`dag/wdp_derivation_dag.json`](../../../../../dag/wdp_derivation_dag.json) and [`WDP_DERIVATION_DAG.md`](./WDP_DERIVATION_DAG.md) (also placed at [`dag/WDP_DERIVATION_DAG.md`](../../../../../dag/WDP_DERIVATION_DAG.md)).
-- **Pre-Merge Debt Accounting:** Among the 68 core WDP/WD2 nodes, **30** are discharged/definitions (`12 PROVED_LEAN`, `18 DEFINITION`), **30** are finite and tractable in-repo before the `omega_codex` merge (`6 WD2` Lean 4 proofs, `10 PROVED_PROSE` WDP theorems awaiting Lean 4 mechanization, `5` computational/conditional bridges, and `9` finite algebraic/cochain derivations), and **8** are deferred continuum/hardware/institutional obligations.
-- **Master Gate:** `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` (Status: `OPEN` in `dag/derivation_dag.json` and `dag/wdp_derivation_dag.json`).
-- **Next Required Test:** Choose an orientation-sensitive source transition system on `FiniteGenesisWindow` and prove or refute whether `wdpPairDefect` is a preservation-and-reflection morphism for it.
+- **Pre-Merge Debt Accounting:** Among the 68 core WDP/WD2 nodes, **60** are discharged/definitions (`42 PROVED_LEAN` including all 30 finite & tractable obligations across Batches 1–6, plus `18 DEFINITION`), **0** finite & tractable obligations remain open, and **8** are deferred continuum/hardware/institutional obligations (`Tier C`).
+- **Master Gate:** `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` (Status: `OPEN` in `dag/derivation_dag.json` and `dag/wdp_derivation_dag.json` for Tier C continuum, physical hardware, and institutional obligations; finite sub-obligations `O01`/`O03` and finite projections of `O02`/`O05` are discharged in `WdpBatch6.lean`).
 - **DAG Node Coverage:** Corresponds to records `TFQ-0559` through `TFQ-0587` in `dag/derivation_dag.json` and `dag/wdp_derivation_dag.json`.
 
 ---

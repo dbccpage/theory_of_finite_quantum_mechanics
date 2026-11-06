@@ -50,3 +50,9 @@ import WitnessedDifference.DistinctImageCompletion
 import WitnessedDifference.ToricSyndromeCorrespondence
 import WitnessedDifference.GuardedHistoryCoherence
 import WitnessedDifference.NativeFutureCompression
+import WitnessedDifference.FiniteDistinction
+import WitnessedDifference.WdpBatch2
+import WitnessedDifference.WdpBatch3
+import WitnessedDifference.WdpBatch4
+import WitnessedDifference.WdpBatch5
+import WitnessedDifference.WdpBatch6

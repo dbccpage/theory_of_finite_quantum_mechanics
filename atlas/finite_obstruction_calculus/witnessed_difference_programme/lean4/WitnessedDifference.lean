@@ -28,6 +28,11 @@ import WitnessedDifference.ComponentRepair
 import WitnessedDifference.ComponentCompletion
 import WitnessedDifference.ComponentQuantum
 import WitnessedDifference.FiniteDistinction
+import WitnessedDifference.WdpBatch2
+import WitnessedDifference.WdpBatch3
+import WitnessedDifference.WdpBatch4
+import WitnessedDifference.WdpBatch5
+import WitnessedDifference.WdpBatch6
 
 /-!
 # Witnessed Difference
