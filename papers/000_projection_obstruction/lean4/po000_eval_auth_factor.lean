@@ -1,7 +1,7 @@
 /-
   EvalAuthFactor.
 
-  Fable's NC1 audit (2026-08-18) left this as Grok's assignment:
+  Run F's NC1 audit (2026-08-18) left this as Grok's assignment:
   the joint evaluation × authorization factorization. Not Lawvere.
   Not TOP-EXT. Not sealed 19L57G1.
 

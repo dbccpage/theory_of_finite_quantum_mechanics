@@ -5,7 +5,7 @@ AuthorityEffect: None.
 Reviewed incoming head: `516e14b61f9c292d52f66ce1d9d07e4bd7ab033b`.
 Integration base: `3f5d93597b195ab4b04c1ac4f9a187574b309d66`, after PRs #204 and #206.
 The main integration preserved both sides of the three historical agent-note conflicts.
-The foreign shared checkout and Gemini worktree were not altered or cleaned.
+The foreign shared checkout and Run G worktree were not altered or cleaned.
 
 ## Repairs
 

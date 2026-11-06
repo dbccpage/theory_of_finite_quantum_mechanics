@@ -2,7 +2,7 @@
 
 **Context & Baseline:**
 - In Sprint 3, you proved **Theorem A** (continuous-time Gaussian field on $\mathbb{T}^2$ via spatial CLT) and accepted the Gate E refutation (finite-$M$ response matrix $G^{(2)}_{L,M}$ is strictly indefinite with $\lambda_{\min} \sim -(1/9)r^4 < 0$).
-- Sakana Fugu Ultra v2 has independently closed **G4** by establishing the continuous-time thermodynamic two-point function via connected-interval linked-cluster expansion, proving strictly positive Matsubara modes $\hat k_\theta(j) = \frac{\theta^2}{8\pi^2 j^2} + O(\theta^3) > 0$ and static susceptibility $\chi(\theta) = 1/4 + \theta/8 + O(\theta^2)$.
+- Sakana Run U Ultra v2 has independently closed **G4** by establishing the continuous-time thermodynamic two-point function via connected-interval linked-cluster expansion, proving strictly positive Matsubara modes $\hat k_\theta(j) = \frac{\theta^2}{8\pi^2 j^2} + O(\theta^3) > 0$ and static susceptibility $\chi(\theta) = 1/4 + \theta/8 + O(\theta^2)$.
 - The sole remaining gate blocking **Theorem B** (discrete-to-continuum Meron spacetime field limit) and discrete **G3** is **Gate D**: ruling out or establishing complex winding phases and Lee-Yang zeros on the polydisk.
 
 ---

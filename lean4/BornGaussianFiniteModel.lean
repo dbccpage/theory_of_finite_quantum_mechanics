@@ -182,6 +182,34 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
      `EffectValuation (HermitianCarrier.space 3)` algebraic Born representation and unconditional
      exclusion of `exoticQi3`), and Tier 4 (analytic `TFQ-1056`/`TFQ-1057` uniform ray-continuity
      equivalence and density-matrix completion).
+
+9. **Multi-Frame Rational Incidence Chains, Bounded Anchor Amplification Anatomy &
+   Scale-Invariant Meridian Transport (`TFQ-1057`)**:
+   * **9A. Logical & Vacuity Anatomy of `HasBoundedAnchorAmplificationOn`**:
+     proves that in the presence of pointwise ray continuity at `anchors`,
+     `HasBoundedAnchorAmplificationOn anchors A g` is logically equivalent to global vanishing
+     `∀ x, x.NonZero → g x = 0` (`hasBoundedAnchorAmplificationOn_iff_zero_of_pointwise`);
+     conversely, any bounded anchor-vanishing function with an anchor discontinuity gap `ε₀ > 0`
+     satisfies `HasBoundedAnchorAmplificationOn anchors (B / ε₀) g`
+     (`hasBoundedAnchorAmplificationOn_of_bounded_and_discontinuous_at_anchor`), so in particular
+     the discontinuous 3-adic residual `s3_leadAll` satisfies
+     `HasBoundedAnchorAmplificationOn nineAnchorsList 1 s3_leadAll` and
+     `HasBoundedAnchorAmplification s3_leadAll` while `s3_leadAll witness_111 = 1`
+     (`s3_leadAll_hasBoundedAnchorAmplificationOn_nineAnchors`).
+   * **9B. Multi-Frame Rational Incidence Chains, 15-Plane Orthogonal Antisymmetry & Collar Confinement**:
+     proves 15-ray vanishing (`fifteenAnchorBisector_zero_of_zeroWeight_and_nine`),
+     15-plane orthogonal antisymmetry `g u + g v = 0` for any orthogonal pair `u, v ∈ b⊥`
+     (`fifteen_plane_ortho_antisymmetry`), 1-step `< 2 * δ` collar confinement across any anchor
+     frame (`one_step_collar_confinement_of_anchor_frame`), and the explicit positive threshold
+     `minPosRaySinSqList rays anchors > 0` below which any fixed finite ray list `rays` cannot
+     distinguish `B_δ(anchors)` from rays collinear with `anchors` (`finite_ray_list_collar_blindness`).
+   * **9C. Scale-Invariant Radial Transport & Multi-Step Meridian Amplification Scaling**:
+     proves that scaling any equatorial ray `y ∈ a⊥ \ {0}` by any nonzero rational `c : ℚ`
+     transports polar neighborhood bounds at `a + c • y` (`raySinSq = c² ‖y‖² / (‖a‖² + c² ‖y‖²)`)
+     with zero loss to equatorial Kelvin steps `|g y - g (anchorMeridianOrtho a (c • y))|`
+     at the identical projective step size (`anchor_meridian_radial_scale_transport`,
+     `radialScale_meridian_step_raySinSq_lt`), and proves `k * ε` linear amplification along any
+     `k`-step ray chain (`meridian_chain_linear_amplification_bound`).
 -/
 
 namespace BornFinite.GaussianFiniteModel
@@ -4657,6 +4685,478 @@ theorem tfq0307_operational_noncontextuality_four_tier_bridge :
     fun _ hf hcont hamp =>
       born_density_matrix_of_pointwise_and_bounded_anchor_amplification hf hcont hamp⟩⟩
 
+/-!
+## 9. Multi-Frame Rational Incidence Chains, Bounded Anchor Amplification & Pointwise-Continuous Counterexample Analysis (`TFQ-1057`)
+
+This section resolves the logical and geometric status of `HasBoundedAnchorAmplification` on
+`ℚ(i)³ \ {0}` and analyzes what multi-frame rational incidence chains can and cannot derive
+from nonnegativity, zero-weight frame additivity, and pointwise ray continuity:
+
+* **Subsection 9A (`HasBoundedAnchorAmplificationOn` Logical & Vacuity Anatomy)**:
+  1. `hasBoundedAnchorAmplificationOn_iff_zero_of_pointwise`: when `g` vanishes on `anchors` and is
+     pointwise ray-continuous at `anchors`, `HasBoundedAnchorAmplificationOn anchors A g` (`0 ≤ A`)
+     is logically equivalent to `∀ x : GVec, x.NonZero → g x = 0`.
+  2. `hasBoundedAnchorAmplificationOn_of_bounded_and_discontinuous_at_anchor`: conversely, if `g`
+     vanishes on `anchors`, is bounded on rays (`|g x| ≤ B`), and has a discontinuity gap `ε₀ > 0`
+     at some anchor `a₀ ∈ anchors`, then `HasBoundedAnchorAmplificationOn anchors (B / ε₀) g` holds
+     vacuously on `0 < ε ≤ ε₀` and by boundedness on `ε > ε₀`.
+  3. `s3_leadAll_hasBoundedAnchorAmplificationOn_nineAnchors` and
+     `s3_leadAll_hasBoundedAnchorAmplification`: the nonzero bounded 3-adic zero-weight frame
+     residual `s3_leadAll` satisfies `HasBoundedAnchorAmplificationOn nineAnchorsList 1 s3_leadAll`
+     and `HasBoundedAnchorAmplification s3_leadAll` while `s3_leadAll witness_111 = 1 ≠ 0`.
+     Thus `HasBoundedAnchorAmplification` alone does not force `g = 0` without pointwise continuity.
+* **Subsection 9B (Multi-Frame Rational Incidence Chains, 15-Plane Antisymmetry & Collar Confinement)**:
+  1. `fifteenAnchorBisector_zero_of_zeroWeight_and_nine`: any zero-weight frame function vanishing
+     on `nineAnchorsList` vanishes on all 15 rays in `fifteenAnchorBisectorList`.
+  2. `fifteen_plane_ortho_antisymmetry`: in each of the 15 planes `b⊥` (`b ∈ fifteenAnchorBisectorList`),
+     any orthogonal pair `u, v ∈ b⊥ \ {0}` satisfies `IsFrame u v b` and `g u + g v = 0` (`g v = -g u`).
+  3. `one_step_collar_confinement_of_anchor_frame`: for any orthogonal anchor 3-frame `(a₁, a₂, a₃)`
+     and any orthogonal 3-frame `(u, v, w)`, `raySinSq u a₁ < δ` and `raySinSq v a₂ < δ` force
+     `raySinSq w a₃ < 2 * δ` (1-step collar confinement).
+  4. `finite_ray_list_collar_blindness`: for any finite ray list `rays` and finite anchor list
+     `anchors`, there exists a computable threshold `δ₀ = minPosRaySinSqList rays anchors > 0` such
+     that for all `0 < δ ≤ δ₀` and `r ∈ rays`, `(∃ a ∈ anchors, raySinSq r a < δ)` holds if and only
+     if `∃ a ∈ anchors, raySinSq r a = 0`. Thus any fixed finite multi-frame incidence chain is
+     blind to `δ`-collars below `δ₀`.
+* **Subsection 9C (Scale-Invariant Radial Transport & Multi-Step Meridian Amplification Scaling)**:
+  1. `anchor_meridian_radial_scale_transport`: for any zero-weight frame function `g`, nonzero anchor
+     `a`, nonzero `y ∈ a⊥`, and nonzero rational scalar `c : ℚ`, scaling `y_c := GVec.smul ⟨c, 0⟩ y`
+     preserves `g y_c = g y`, satisfies `g (a + y_c) - g a = g y - g (anchorMeridianOrtho a y_c)`,
+     and equates both `raySinSq (a + y_c) a` and `raySinSq (anchorMeridianOrtho a y_c) y` to
+     `(c ^ 2 * normSqVec y) / (normSqVec a + c ^ 2 * normSqVec y)`.
+  2. `radialScale_meridian_step_raySinSq_lt`: explicit rational scaling factor
+     `c = radialScaleFactor a y δ > 0` making the meridian step size `< δ` for any `y ∈ a⊥ \ {0}`,
+     regardless of how large `normSqVec y` is.
+  3. `meridian_chain_linear_amplification_bound`: along any `k`-step ray chain `v₀, v₁, ..., v_k`
+     with adjacent differences `|g v_{i+1} - g v_i| ≤ ε`, `|g v_k - g v₀| ≤ k * ε`.
+-/
+
+/-! ### Subsection 9A: Logical & Vacuity Anatomy of `HasBoundedAnchorAmplificationOn` -/
+
+/-- **Logical Equivalence under Pointwise Continuity (`TFQ-1057` Result 9A.1).**
+For any ray function `g : GVec → ℚ`, any finite list `anchors : List GVec` of nonzero anchors on
+which `g` vanishes, and any constant `A ≥ 0`, if `g` is pointwise ray-continuous at each anchor
+`a ∈ anchors`, then `HasBoundedAnchorAmplificationOn anchors A g` is logically equivalent to
+`g` vanishing identically on all nonzero rays `x ∈ ℚ(i)³ \ {0}`. -/
+theorem hasBoundedAnchorAmplificationOn_iff_zero_of_pointwise
+    {anchors : List GVec} {A : ℚ} {g : GVec → ℚ}
+    (hA : 0 ≤ A)
+    (hanz : ∀ a ∈ anchors, a.NonZero)
+    (hzero : ∀ a ∈ anchors, g a = 0)
+    (hcont : ∀ a ∈ anchors, IsPointwiseRayContinuousAt g a) :
+    HasBoundedAnchorAmplificationOn anchors A g ↔ (∀ x : GVec, x.NonZero → g x = 0) := by
+  constructor
+  · intro hamp
+    exact zero_of_pointwise_and_bounded_anchor_amplification_on hamp hcont
+  · intro hall
+    refine ⟨hA, hanz, hzero, ?_⟩
+    intro ε _δ hε _hδ _hnbhd x hx
+    rw [hall x hx, abs_zero]
+    exact mul_nonneg hA hε.le
+
+/-- **Vacuity / Discontinuity Theorem for `HasBoundedAnchorAmplificationOn` (`TFQ-1057` Result 9A.2).**
+Conversely, if `g : GVec → ℚ` vanishes on `anchors`, is globally bounded on nonzero rays by `B ≥ 0`
+(`IsBoundedOnRaysBy g B`), and has a discontinuity gap `ε₀ > 0` at some anchor `a₀ ∈ anchors`
+(`∀ δ > 0, ∃ z ≠ 0, raySinSq z a₀ < δ ∧ ε₀ ≤ |g z|`), then `g` satisfies
+`HasBoundedAnchorAmplificationOn anchors (B / ε₀) g`!
+Indeed, the hypothesis `hnbhd` of `HasBoundedAnchorAmplificationOn` can only hold when `ε > ε₀`,
+in which case `|g x| ≤ B = (B / ε₀) * ε₀ ≤ (B / ε₀) * ε` holds for every nonzero ray `x`. -/
+theorem hasBoundedAnchorAmplificationOn_of_bounded_and_discontinuous_at_anchor
+    {anchors : List GVec} {B ε₀ : ℚ} {a₀ : GVec} {g : GVec → ℚ}
+    (hB : 0 ≤ B)
+    (hanz : ∀ a ∈ anchors, a.NonZero)
+    (hzero : ∀ a ∈ anchors, g a = 0)
+    (hb : IsBoundedOnRaysBy g B)
+    (ha₀ : a₀ ∈ anchors)
+    (hε₀ : 0 < ε₀)
+    (hgap : ∀ δ : ℚ, 0 < δ → ∃ z : GVec, z.NonZero ∧ raySinSq z a₀ < δ ∧ ε₀ ≤ |g z|) :
+    HasBoundedAnchorAmplificationOn anchors (B / ε₀) g := by
+  refine ⟨div_nonneg hB hε₀.le, hanz, hzero, ?_⟩
+  intro ε δ hε hδ hnbhd x hx
+  obtain ⟨z, hz, hsin, hge⟩ := hgap δ hδ
+  have hlt : |g z| < ε := hnbhd z hz ⟨a₀, ha₀, hsin⟩
+  have hε₀_lt : ε₀ < ε := lt_of_le_of_lt hge hlt
+  calc |g x| ≤ B := hb x hx
+    _ = (B / ε₀) * ε₀ := (div_mul_cancel₀ B hε₀.ne').symm
+    _ ≤ (B / ε₀) * ε := mul_le_mul_of_nonneg_left hε₀_lt.le (div_nonneg hB hε₀.le)
+
+/-- For every `δ > 0`, the CRT approach family `crtApproachE1 m` produces a nonzero ray `z` within
+`raySinSq z tomo_e1 < δ` on which `s3_leadAll z = 1` (hence `1 ≤ |s3_leadAll z|`). -/
+theorem crtApproachE1_discontinuity_gap_at_tomo_e1 (δ : ℚ) (hδ : 0 < δ) :
+    ∃ z : GVec, z.NonZero ∧ raySinSq z tomo_e1 < δ ∧ 1 ≤ |s3_leadAll z| := by
+  obtain ⟨m, hm⟩ := exists_nat_gt (2 / δ)
+  let N : ℕ := 1 + 9 * (m + 1)
+  have hm_pos : (0 : ℚ) < (m : ℚ) := lt_trans (div_pos two_pos hδ) hm
+  have hN_gt_m : (m : ℚ) < (N : ℚ) ^ 2 := by
+    have hN_cast : (N : ℚ) = 1 + 9 * ((m : ℚ) + 1) := by
+      dsimp [N]
+      push_cast
+      ring
+    rw [hN_cast]
+    nlinarith
+  have hN_gt : 2 / δ < (N : ℚ) ^ 2 := lt_trans hm hN_gt_m
+  have hN_pos : (0 : ℚ) < (N : ℚ) ^ 2 := lt_trans (div_pos two_pos hδ) hN_gt
+  have hmul_gt : 2 < δ * (N : ℚ) ^ 2 := by
+    linarith [(div_lt_iff₀ hδ).mp hN_gt]
+  have hdiv : 2 / (N : ℚ) ^ 2 < δ := (div_lt_iff₀ hN_pos).mpr hmul_gt
+  refine ⟨crtApproachE1 m, crtApproachE1_nonZero m, ?_, ?_⟩
+  · exact lt_of_le_of_lt (crtApproachE1_raySinSq_tomo_e1_le m) hdiv
+  · rw [crtApproachE1_s3_leadAll_eq_one m, abs_one]
+
+/-- The 3-adic leading-digit zero-weight frame residual `s3_leadAll` fails pointwise ray continuity
+at the anchor `tomo_e1 = (1, 0, 0)`. -/
+theorem not_isPointwiseRayContinuousAt_s3_leadAll_tomo_e1 :
+    ¬ IsPointwiseRayContinuousAt s3_leadAll tomo_e1 := by
+  intro hcont
+  obtain ⟨δ, hδ, h⟩ := hcont (1 / 2) (by norm_num)
+  obtain ⟨z, hz, hsin, hge⟩ := crtApproachE1_discontinuity_gap_at_tomo_e1 δ hδ
+  have hlt := h z hz hsin
+  have he1 : s3_leadAll tomo_e1 = 0 := s3_leadAll_vanishes_on_nine_rays.1
+  rw [he1, sub_zero] at hlt
+  linarith
+
+/-- **Non-Zero Discontinuous Model of `HasBoundedAnchorAmplificationOn` (`TFQ-1057` Result 9A.3).**
+The non-zero bounded zero-weight frame residual `s3_leadAll` (which vanishes on `nineAnchorsList`
+and is bounded by `1` on all rays) satisfies `HasBoundedAnchorAmplificationOn nineAnchorsList 1 s3_leadAll`,
+yet `s3_leadAll witness_111 = 1 ≠ 0`! -/
+theorem s3_leadAll_hasBoundedAnchorAmplificationOn_nineAnchors :
+    HasBoundedAnchorAmplificationOn nineAnchorsList 1 s3_leadAll ∧
+    s3_leadAll witness_111 = 1 := by
+  refine ⟨?_, s3_leadAll_witness_111⟩
+  have h1 : (1 : ℚ) / 1 = 1 := div_one 1
+  rw [← h1]
+  exact hasBoundedAnchorAmplificationOn_of_bounded_and_discontinuous_at_anchor
+    one_pos.le
+    nineAnchorsList_nonZero
+    ((vanishesOnNineRays_iff_forall_nineAnchorsList s3_leadAll).mp s3_leadAll_vanishes_on_nine_rays)
+    s3_leadAll_isBoundedOnRaysBy
+    (by simp [nineAnchorsList])
+    one_pos
+    crtApproachE1_discontinuity_gap_at_tomo_e1
+
+/-- Consequently, `s3_leadAll` satisfies `HasBoundedAnchorAmplification s3_leadAll` while being
+non-zero at `witness_111`. This shows that `HasBoundedAnchorAmplification` alone (without
+pointwise ray continuity at the anchors) does not force a bounded zero-weight frame residual
+vanishing on `nineAnchorsList` to be zero. -/
+theorem s3_leadAll_hasBoundedAnchorAmplification :
+    HasBoundedAnchorAmplification s3_leadAll ∧ s3_leadAll witness_111 = 1 :=
+  ⟨⟨nineAnchorsList, 1, s3_leadAll_hasBoundedAnchorAmplificationOn_nineAnchors.1⟩,
+   s3_leadAll_witness_111⟩
+
+/-! ### Subsection 9B: Multi-Frame Rational Incidence Chains, 15-Plane Antisymmetry & Collar Confinement -/
+
+/-- **15-Ray Vanishing Theorem (`TFQ-1057` Result 9B.1).**
+Every zero-weight frame function `g` that vanishes on the 9 tomography anchors (`VanishesOnNineRays g`)
+automatically vanishes on all 15 rays in `fifteenAnchorBisectorList = nineAnchorsList ++ sixBisectorPartnersList`. -/
+theorem fifteenAnchorBisector_zero_of_zeroWeight_and_nine {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) (h9 : VanishesOnNineRays g) :
+    ∀ b ∈ fifteenAnchorBisectorList, g b = 0 := by
+  have h9_list := (vanishesOnNineRays_iff_forall_nineAnchorsList g).mp h9
+  have h6 := vanishes_on_six_bisector_partners hg h9
+  rcases h6 with ⟨hb12, hb13, hb23, hb12i, hb13i, hb23i⟩
+  intro b hb
+  simp only [fifteenAnchorBisectorList, List.mem_append, sixBisectorPartnersList,
+    List.mem_cons, List.not_mem_nil, or_false] at hb
+  rcases hb with h9b | rfl | rfl | rfl | rfl | rfl | rfl
+  · exact h9_list b h9b
+  · exact hb12
+  · exact hb13
+  · exact hb23
+  · exact hb12i
+  · exact hb13i
+  · exact hb23i
+
+/-- **15-Plane Orthogonal Antisymmetry (`TFQ-1057` Result 9B.2).**
+For any zero-weight frame function `g` vanishing on the 9 tomography anchors, any ray
+`b ∈ fifteenAnchorBisectorList`, and any orthogonal pair of nonzero rays `u, v ∈ b⊥`,
+`(u, v, b)` is an orthogonal 3-frame (`IsFrame u v b`) and `g` is antisymmetric on `(u, v)`:
+`g u + g v = 0` and `g v = -g u`. -/
+theorem fifteen_plane_ortho_antisymmetry {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) (h9 : VanishesOnNineRays g)
+    {b u v : GVec} (hb : b ∈ fifteenAnchorBisectorList)
+    (hu : u.NonZero) (hv : v.NonZero)
+    (huv : GVec.inner u v = 0) (hub : GVec.inner u b = 0) (hvb : GVec.inner v b = 0) :
+    IsFrame u v b ∧ g u + g v = 0 ∧ g v = -g u := by
+  have hb_nz : b.NonZero := fifteenAnchorBisectorList_nonZero b hb
+  have hfr : IsFrame u v b := ⟨hu, hv, hb_nz, huv, hub, hvb⟩
+  have hgb : g b = 0 := fifteenAnchorBisector_zero_of_zeroWeight_and_nine hg h9 b hb
+  have hsum : g u + g v + g b = 0 := hg u v b hfr
+  refine ⟨hfr, by linarith, by linarith⟩
+
+/-- **One-Step Collar Confinement (`TFQ-1057` Result 9B.3).**
+For any orthogonal anchor 3-frame `IsFrame a₁ a₂ a₃` and any orthogonal 3-frame `IsFrame u v w`,
+if `u` lies in the `δ`-collar around `a₁` (`raySinSq u a₁ < δ`) and `v` lies in the `δ`-collar
+around `a₂` (`raySinSq v a₂ < δ`), then the third frame ray `w` is confined to the `2δ`-collar
+around `a₃` (`raySinSq w a₃ < 2 * δ`). -/
+theorem one_step_collar_confinement_of_anchor_frame
+    {u v w a₁ a₂ a₃ : GVec} {δ : ℚ}
+    (hfr : IsFrame u v w) (ha : IsFrame a₁ a₂ a₃)
+    (hu : raySinSq u a₁ < δ) (hv : raySinSq v a₂ < δ) :
+    raySinSq w a₃ < 2 * δ := by
+  have hle := frame_third_raySinSq_le_add_of_ortho_anchors hfr ha
+  linarith
+
+/-- Nonnegativity of `raySinSq u v` for arbitrary vectors `u, v : GVec` (including zero vectors,
+where `raySinSq` evaluates to `0` by division-by-zero convention). -/
+theorem raySinSq_nonneg_all (u v : GVec) : 0 ≤ raySinSq u v := by
+  rcases (normSqVec_nonneg u).eq_or_lt with hu0 | hu_pos
+  · unfold raySinSq
+    rw [← hu0, zero_mul, div_zero]
+    norm_num
+  · rcases (normSqVec_nonneg v).eq_or_lt with hv0 | hv_pos
+    · unfold raySinSq
+      rw [← hv0, mul_zero, div_zero]
+      norm_num
+    · have hu_nz : u.NonZero := by
+        by_contra h
+        simp only [GVec.NonZero, not_or, Decidable.not_not] at h
+        have h0 : normSqVec u = 0 := by
+          simp [normSqVec, h.1, h.2.1, h.2.2, GaussRat.normSq]
+        linarith
+      have hv_nz : v.NonZero := by
+        by_contra h
+        simp only [GVec.NonZero, not_or, Decidable.not_not] at h
+        have h0 : normSqVec v = 0 := by
+          simp [normSqVec, h.1, h.2.1, h.2.2, GaussRat.normSq]
+        linarith
+      exact raySinSq_nonneg hu_nz hv_nz
+
+/-- Minimum positive value of `raySinSq r a` for a fixed ray `r` across a finite list `anchors`
+(defaulting to `1` when all values are `≤ 0`). -/
+def minPosRaySinSqRay (r : GVec) (anchors : List GVec) : ℚ :=
+  anchors.foldr (fun a m => if 0 < raySinSq r a then min (raySinSq r a) m else m) 1
+
+/-- Minimum positive value of `raySinSq r a` across finite lists `rays` and `anchors`
+(defaulting to `1` when no pair has `raySinSq r a > 0`). -/
+def minPosRaySinSqList (rays anchors : List GVec) : ℚ :=
+  rays.foldr (fun r m => min (minPosRaySinSqRay r anchors) m) 1
+
+theorem minPosRaySinSqRay_pos (r : GVec) (anchors : List GVec) :
+    0 < minPosRaySinSqRay r anchors := by
+  induction anchors with
+  | nil => exact one_pos
+  | cons a as ih =>
+    simp only [minPosRaySinSqRay, List.foldr_cons]
+    split_ifs with h
+    · exact lt_min h ih
+    · exact ih
+
+theorem minPosRaySinSqRay_le_of_pos (r : GVec) (anchors : List GVec) {a : GVec}
+    (ha : a ∈ anchors) (hpos : 0 < raySinSq r a) :
+    minPosRaySinSqRay r anchors ≤ raySinSq r a := by
+  induction anchors with
+  | nil => contradiction
+  | cons b bs ih =>
+    simp only [List.mem_cons] at ha
+    simp only [minPosRaySinSqRay, List.foldr_cons]
+    rcases ha with rfl | hbs
+    · simp only [hpos, ↓reduceIte, min_le_iff, le_refl, true_or]
+    · split_ifs with hb_pos
+      · exact le_trans (min_le_right _ _) (ih hbs)
+      · exact ih hbs
+
+theorem minPosRaySinSqList_pos (rays anchors : List GVec) :
+    0 < minPosRaySinSqList rays anchors := by
+  induction rays with
+  | nil => exact one_pos
+  | cons r rs ih =>
+    simp only [minPosRaySinSqList, List.foldr_cons]
+    exact lt_min (minPosRaySinSqRay_pos r anchors) ih
+
+theorem minPosRaySinSqList_le_of_pos (rays anchors : List GVec) {r a : GVec}
+    (hr : r ∈ rays) (ha : a ∈ anchors) (hpos : 0 < raySinSq r a) :
+    minPosRaySinSqList rays anchors ≤ raySinSq r a := by
+  induction rays with
+  | nil => contradiction
+  | cons r₀ rs ih =>
+    simp only [List.mem_cons] at hr
+    simp only [minPosRaySinSqList, List.foldr_cons]
+    rcases hr with rfl | hrs
+    · exact le_trans (min_le_left _ _) (minPosRaySinSqRay_le_of_pos r anchors ha hpos)
+    · exact le_trans (min_le_right _ _) (ih hrs)
+
+/-- **Finite Ray List Collar Blindness (`TFQ-1057` Result 9B.4).**
+For any finite ray list `rays : List GVec` and any finite anchor list `anchors : List GVec`,
+the computable threshold `δ₀ := minPosRaySinSqList rays anchors > 0` has the property that for
+every `δ ≤ δ₀` and every ray `r ∈ rays`, `r` lies in the `δ`-collar `∃ a ∈ anchors, raySinSq r a < δ`
+if and only if `0 < δ` and `r` is already collinear with an anchor (`∃ a ∈ anchors, raySinSq r a = 0`).
+Consequently, no fixed finite multi-frame incidence chain supported on `rays` can distinguish the
+open collar `B_δ(anchors)` from the anchor rays themselves once `0 < δ ≤ δ₀`. -/
+theorem finite_ray_list_collar_blindness (rays anchors : List GVec) :
+    0 < minPosRaySinSqList rays anchors ∧
+    ∀ δ : ℚ, 0 < δ → δ ≤ minPosRaySinSqList rays anchors →
+      ∀ r ∈ rays,
+        (∃ a ∈ anchors, raySinSq r a < δ) ↔ (∃ a ∈ anchors, raySinSq r a = 0) := by
+  refine ⟨minPosRaySinSqList_pos rays anchors, ?_⟩
+  intro δ hδ hle r hr
+  constructor
+  · rintro ⟨a, ha, hlt⟩
+    refine ⟨a, ha, ?_⟩
+    rcases (raySinSq_nonneg_all r a).eq_or_lt with h0 | hpos
+    · exact h0.symm
+    · exfalso
+      have hmin := minPosRaySinSqList_le_of_pos rays anchors hr ha hpos
+      linarith
+  · rintro ⟨a, ha, h0⟩
+    refine ⟨a, ha, ?_⟩
+    linarith
+
+/-! ### Subsection 9C: Scale-Invariant Radial Transport & Multi-Step Meridian Amplification Scaling -/
+
+/-- Projective scale invariance of `raySinSq` in the first argument. -/
+theorem raySinSq_smul_left (u v : GVec) {l : GaussRat} (hl : l ≠ 0) :
+    raySinSq (GVec.smul l u) v = raySinSq u v := by
+  have h1 := quadRay_rayProj_eq_one_sub_raySinSq (GVec.smul l u) v
+  have h2 := quadRay_rayProj_eq_one_sub_raySinSq u v
+  rw [quadRay_smul (rayProj v) hl u] at h1
+  linarith
+
+/-- Projective scale invariance of `raySinSq` in the second argument. -/
+theorem raySinSq_smul_right (u v : GVec) {l : GaussRat} (hl : l ≠ 0) :
+    raySinSq u (GVec.smul l v) = raySinSq u v := by
+  rw [raySinSq_comm, raySinSq_smul_left v u hl, raySinSq_comm]
+
+/-- For any rational `c : ℚ`, `normSqVec (GVec.smul ⟨c, 0⟩ y) = c ^ 2 * normSqVec y`. -/
+theorem normSqVec_smul_rat (c : ℚ) (y : GVec) :
+    normSqVec (GVec.smul ⟨c, 0⟩ y) = c ^ 2 * normSqVec y := by
+  rw [normSqVec_smul]
+  simp only [GaussRat.normSq]
+  ring
+
+/-- **Scale-Invariant Radial Transport Along Anchor Meridians (`TFQ-1057` Result 9C.1).**
+For any zero-weight frame function `g`, any nonzero anchor `a`, any nonzero equatorial vector
+`y ∈ a⊥` (`GVec.inner a y = 0`), and any nonzero rational scalar `c ≠ 0`, let
+`y_c := GVec.smul ⟨c, 0⟩ y`. Then:
+1. `g y_c = g y` (by ray scale invariance of zero-weight frame functions),
+2. `g (GVec.add a y_c) - g a = g y - g (anchorMeridianOrtho a y_c)` and
+   `|g y - g (anchorMeridianOrtho a y_c)| = |g (GVec.add a y_c) - g a|` (Kelvin meridian bridge),
+3. Both the polar step `raySinSq (GVec.add a y_c) a` and the equatorial step
+   `raySinSq (anchorMeridianOrtho a y_c) y` equal
+   `(c ^ 2 * normSqVec y) / (normSqVec a + c ^ 2 * normSqVec y)`. -/
+theorem anchor_meridian_radial_scale_transport {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) {a y : GVec}
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0)
+    {c : ℚ} (hc : c ≠ 0) :
+    let yc := GVec.smul ⟨c, 0⟩ y
+    g yc = g y ∧
+    g (GVec.add a yc) - g a = g y - g (anchorMeridianOrtho a yc) ∧
+    |g y - g (anchorMeridianOrtho a yc)| = |g (GVec.add a yc) - g a| ∧
+    raySinSq (GVec.add a yc) a =
+      (c ^ 2 * normSqVec y) / (normSqVec a + c ^ 2 * normSqVec y) ∧
+    raySinSq (anchorMeridianOrtho a yc) y =
+      (c ^ 2 * normSqVec y) / (normSqVec a + c ^ 2 * normSqVec y) := by
+  dsimp only
+  have hc_gauss : (⟨c, 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    apply hc
+    exact congrArg GaussRat.re h
+  have hyc_nz : (GVec.smul ⟨c, 0⟩ y).NonZero := nonZero_smul hc_gauss hy
+  have hayc : GVec.inner a (GVec.smul ⟨c, 0⟩ y) = 0 := by
+    rw [GaussianTomography.inner_smul_right, hay, mul_zero]
+  have hgyc : g (GVec.smul ⟨c, 0⟩ y) = g y :=
+    zeroWeightFrameFunction_smul hg hy hc_gauss
+  have hbridge := anchor_meridian_zeroWeight_bridge hg ha hyc_nz hayc
+  rw [hgyc] at hbridge
+  have hsin := anchorMeridianOrtho_raySinSq_eq ha hyc_nz hayc
+  rw [normSqVec_smul_rat c y] at hsin
+  have hsin_ortho : raySinSq (anchorMeridianOrtho a (GVec.smul ⟨c, 0⟩ y)) y =
+      raySinSq (anchorMeridianOrtho a (GVec.smul ⟨c, 0⟩ y)) (GVec.smul ⟨c, 0⟩ y) :=
+    (raySinSq_smul_right _ y hc_gauss).symm
+  refine ⟨hgyc, hbridge.2.1, hbridge.2.2, hsin.1, ?_⟩
+  rw [hsin_ortho, hsin.2]
+
+/-- Explicit positive rational scaling factor `c = min 1 ((δ * ‖a‖²) / (2 * ‖y‖²))` that scales any
+nonzero equatorial vector `y ∈ a⊥` into the `δ`-collar of `a` while preserving the ray `[y]`. -/
+def radialScaleFactor (a y : GVec) (δ : ℚ) : ℚ :=
+  min 1 ((δ * normSqVec a) / (2 * normSqVec y))
+
+theorem radialScaleFactor_pos {a y : GVec} {δ : ℚ}
+    (ha : a.NonZero) (hy : y.NonZero) (hδ : 0 < δ) :
+    0 < radialScaleFactor a y δ := by
+  unfold radialScaleFactor
+  have hna : 0 < normSqVec a := normSqVec_pos_of_nonZero ha
+  have hny : 0 < normSqVec y := normSqVec_pos_of_nonZero hy
+  exact lt_min one_pos (div_pos (mul_pos hδ hna) (mul_pos two_pos hny))
+
+/-- **Universal Equatorial Kelvin Step via Radial Scaling (`TFQ-1057` Result 9C.2).**
+For any nonzero anchor `a`, any nonzero equatorial vector `y ∈ a⊥`, and any `δ > 0`, scaling `y`
+by `c := radialScaleFactor a y δ > 0` yields `y_c := GVec.smul ⟨c, 0⟩ y` with:
+`raySinSq (GVec.add a y_c) a < δ` and `raySinSq (anchorMeridianOrtho a y_c) y < δ`.
+Thus every equatorial ray `[y] ⊂ a⊥` (regardless of the coordinate height `normSqVec y`) admits
+an explicit rational meridian-Kelvin step of angular size `< δ` controlled by the polar cap
+`B_δ(a)`. -/
+theorem radialScale_meridian_step_raySinSq_lt {a y : GVec} {δ : ℚ}
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0) (hδ : 0 < δ) :
+    let c := radialScaleFactor a y δ
+    let yc := GVec.smul ⟨c, 0⟩ y
+    0 < c ∧
+    raySinSq (GVec.add a yc) a < δ ∧
+    raySinSq (anchorMeridianOrtho a yc) y < δ := by
+  dsimp only
+  let c := radialScaleFactor a y δ
+  have hc_pos : 0 < c := radialScaleFactor_pos ha hy hδ
+  have hc_ne : c ≠ 0 := hc_pos.ne'
+  have hc_le_one : c ≤ 1 := min_le_left 1 _
+  have hc_le_div : c ≤ (δ * normSqVec a) / (2 * normSqVec y) := min_le_right 1 _
+  have hna : 0 < normSqVec a := normSqVec_pos_of_nonZero ha
+  have hny : 0 < normSqVec y := normSqVec_pos_of_nonZero hy
+  have hc_sq_le : c ^ 2 ≤ c := by nlinarith
+  have h2ny_pos : 0 < 2 * normSqVec y := mul_pos two_pos hny
+  have hmul : c * (2 * normSqVec y) ≤ δ * normSqVec a :=
+    (le_div_iff₀ h2ny_pos).mp hc_le_div
+  have hnum_lt : c ^ 2 * normSqVec y < δ * (normSqVec a + c ^ 2 * normSqVec y) := by
+    have h1 : c ^ 2 * normSqVec y ≤ c * normSqVec y :=
+      mul_le_mul_of_nonneg_right hc_sq_le hny.le
+    have h2 : 0 < c * normSqVec y := mul_pos hc_pos hny
+    have h3 : 0 ≤ δ * (c ^ 2 * normSqVec y) :=
+      mul_nonneg hδ.le (mul_nonneg (sq_nonneg c) hny.le)
+    linarith
+  have hden_pos : 0 < normSqVec a + c ^ 2 * normSqVec y :=
+    add_pos_of_pos_of_nonneg hna (mul_nonneg (sq_nonneg c) hny.le)
+  have hquot_lt : (c ^ 2 * normSqVec y) / (normSqVec a + c ^ 2 * normSqVec y) < δ :=
+    (div_lt_iff₀ hden_pos).mpr hnum_lt
+  have hzero_wt : IsZeroWeightFrameFunction (fun _ : GVec => (0 : ℚ)) := by
+    intro _ _ _ _
+    ring
+  have htr := anchor_meridian_radial_scale_transport hzero_wt ha hy hay hc_ne
+  refine ⟨hc_pos, ?_, ?_⟩
+  · rw [htr.2.2.2.1]
+    exact hquot_lt
+  · rw [htr.2.2.2.2]
+    exact hquot_lt
+
+/-- Inductive predicate stating that along the ray chain `v₀ :: steps`, each adjacent difference of
+`g` is bounded in absolute value by `ε`. -/
+def ChainStepBounded (g : GVec → ℚ) (ε : ℚ) : GVec → List GVec → Prop
+  | _, [] => True
+  | v₀, v₁ :: rest => |g v₁ - g v₀| ≤ ε ∧ ChainStepBounded g ε v₁ rest
+
+/-- **Multi-Step Meridian Chain Linear Amplification Bound (`TFQ-1057` Result 9C.3).**
+Along any finite `k`-step ray chain `v₀, v₁, ..., v_k` (`steps = [v₁, ..., v_k]` of length `k`)
+where each adjacent step satisfies `|g v_{i+1} - g v_i| ≤ ε`, the total variation from `v₀` to
+the terminal ray `v_k = steps.getLastD v₀` satisfies `|g v_k - g v₀| ≤ k * ε`.
+Thus a fixed `k`-step meridian-incidence chain amplifies a polar neighborhood bound `ε` by at
+most the linear factor `k`, whereas reaching an arbitrary ray `x ∈ ℚ(i)³ \ {0}` with uniform
+amplification `A * ε` (`HasBoundedAnchorAmplification`) requires a uniform step bound `k ≤ A`. -/
+theorem meridian_chain_linear_amplification_bound (g : GVec → ℚ) (ε : ℚ)
+    (v₀ : GVec) (steps : List GVec)
+    (hchain : ChainStepBounded g ε v₀ steps) :
+    |g (steps.getLastD v₀) - g v₀| ≤ (steps.length : ℚ) * ε := by
+  induction steps generalizing v₀ with
+  | nil =>
+    simp [List.getLastD]
+  | cons v₁ rest ih =>
+    rcases hchain with ⟨hstep, hrest⟩
+    have hih := ih v₁ hrest
+    simp only [List.getLastD_cons, List.length_cons, Nat.cast_add, Nat.cast_one]
+    have hdecomp : g (rest.getLastD v₁) - g v₀ =
+        (g (rest.getLastD v₁) - g v₁) + (g v₁ - g v₀) := by ring
+    rw [hdecomp]
+    calc |(g (rest.getLastD v₁) - g v₁) + (g v₁ - g v₀)|
+        ≤ |g (rest.getLastD v₁) - g v₁| + |g v₁ - g v₀| := abs_add_le _ _
+      _ ≤ (rest.length : ℚ) * ε + ε := add_le_add hih hstep
+      _ = ((rest.length : ℚ) + 1) * ε := by ring
+
 end BornFinite.GaussianFiniteModel
 
 #print axioms BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario
@@ -4836,4 +5336,25 @@ end BornFinite.GaussianFiniteModel
 #print axioms BornFinite.GaussianFiniteModel.ksFiniteScenario_admits_effectValuation
 #print axioms BornFinite.GaussianFiniteModel.tomography_vs_ks_scenario_separation
 #print axioms BornFinite.GaussianFiniteModel.tfq0307_operational_noncontextuality_four_tier_bridge
-
+#print axioms BornFinite.GaussianFiniteModel.hasBoundedAnchorAmplificationOn_iff_zero_of_pointwise
+#print axioms BornFinite.GaussianFiniteModel.hasBoundedAnchorAmplificationOn_of_bounded_and_discontinuous_at_anchor
+#print axioms BornFinite.GaussianFiniteModel.crtApproachE1_discontinuity_gap_at_tomo_e1
+#print axioms BornFinite.GaussianFiniteModel.not_isPointwiseRayContinuousAt_s3_leadAll_tomo_e1
+#print axioms BornFinite.GaussianFiniteModel.s3_leadAll_hasBoundedAnchorAmplificationOn_nineAnchors
+#print axioms BornFinite.GaussianFiniteModel.s3_leadAll_hasBoundedAnchorAmplification
+#print axioms BornFinite.GaussianFiniteModel.fifteenAnchorBisector_zero_of_zeroWeight_and_nine
+#print axioms BornFinite.GaussianFiniteModel.fifteen_plane_ortho_antisymmetry
+#print axioms BornFinite.GaussianFiniteModel.one_step_collar_confinement_of_anchor_frame
+#print axioms BornFinite.GaussianFiniteModel.raySinSq_nonneg_all
+#print axioms BornFinite.GaussianFiniteModel.minPosRaySinSqRay_pos
+#print axioms BornFinite.GaussianFiniteModel.minPosRaySinSqRay_le_of_pos
+#print axioms BornFinite.GaussianFiniteModel.minPosRaySinSqList_pos
+#print axioms BornFinite.GaussianFiniteModel.minPosRaySinSqList_le_of_pos
+#print axioms BornFinite.GaussianFiniteModel.finite_ray_list_collar_blindness
+#print axioms BornFinite.GaussianFiniteModel.raySinSq_smul_left
+#print axioms BornFinite.GaussianFiniteModel.raySinSq_smul_right
+#print axioms BornFinite.GaussianFiniteModel.normSqVec_smul_rat
+#print axioms BornFinite.GaussianFiniteModel.anchor_meridian_radial_scale_transport
+#print axioms BornFinite.GaussianFiniteModel.radialScaleFactor_pos
+#print axioms BornFinite.GaussianFiniteModel.radialScale_meridian_step_raySinSq_lt
+#print axioms BornFinite.GaussianFiniteModel.meridian_chain_linear_amplification_bound

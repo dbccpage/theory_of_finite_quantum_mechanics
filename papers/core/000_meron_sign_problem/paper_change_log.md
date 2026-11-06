@@ -10,7 +10,7 @@ listed.
 
 - Added Section 6.5: 2D staggered Gross-Neveu meron cluster solver on $T^2$ ($Z = 150$, matching independent transfer trace; Claim MSP-35).
 - Added Section 6.6: 3D closed meron string loops, winding parity $\mathbf{W} \in (\mathbb{Z}_2)^3$, and Gauss linking on $T^3$ ($Z = 310$; Claim MSP-36).
-- Added Section 6.7: OpenRouter multi-turn model ladder benchmark on 2D meron clusters with pure $\Gamma_{38}$ wire format across Claude 3.5 Sonnet, GPT-4o, and Gemini 2.5 Flash (Claim MSP-37).
+- Added Section 6.7: OpenRouter multi-turn model ladder benchmark on 2D meron clusters with pure $\Gamma_{38}$ wire format across Claude 3.5 Sonnet, GPT-4o, and Run G 2.5 Flash (Claim MSP-37).
 - Updated Section 8.2 with finite 2D/3D lattice scope and explicit continuum non-claims.
 - Updated Claim MSP-28 to reflect tested finite 2D/3D models while keeping continuum scaling and doped regimes open.
 

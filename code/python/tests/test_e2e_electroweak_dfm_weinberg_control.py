@@ -93,7 +93,7 @@ def test_part_d_chiral_anomaly_cancellation_and_charge_quantization() -> None:
     assert an.charge_quantization_delta_squared == Fraction(1, 4)
 
 
-def test_part_e_lean4_part3_and_fable_receipt_parity() -> None:
+def test_part_e_lean4_part3_and_run_f_receipt_parity() -> None:
     paper_root = Path(__file__).resolve().parents[3]
     paper_lean = paper_root / "lean4/FiniteQM.lean" if (paper_root / "lean4/FiniteQM.lean").is_file() else paper_root / "lean/FiniteQM.lean"
     canonical_lean = paper_lean
@@ -116,12 +116,12 @@ def test_part_e_lean4_part3_and_fable_receipt_parity() -> None:
     ):
         assert thm_name in text, f"Missing Lean 4 theorem {thm_name}"
 
-    receipt_path = paper_root / "research/electroweak_dfm_weinberg_fable_receipt.json"
+    receipt_path = paper_root / "research/electroweak_dfm_weinberg_run_f_receipt.json"
     if receipt_path.is_file():
         receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
-        assert receipt["campaign_id"] == "FABLE_5_1_MCTS_QM_220_ELECTROWEAK_DFM_WEINBERG_ANOMALY"
+        assert receipt["campaign_id"] == "RUN_F_5_1_MCTS_QM_220_ELECTROWEAK_DFM_WEINBERG_ANOMALY"
         assert receipt["anthropic_messages_probe"]["status"] == "LIVE_OK"
-        assert receipt["anthropic_messages_probe"]["model"] == "claude-fable-5-1"
+        assert receipt["anthropic_messages_probe"]["model"] == "run-f"
         assert receipt["anthropic_messages_probe"]["generation_id"] == "msg_011Cg5KpDfWvNDsoZJKYx9XD"
         assert receipt["mcts_summary"]["checkpoint_count"] == 4
         assert receipt["mcts_summary"]["needs_backtrack"] is False

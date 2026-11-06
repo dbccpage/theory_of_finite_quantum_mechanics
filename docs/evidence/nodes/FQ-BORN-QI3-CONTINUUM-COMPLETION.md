@@ -128,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `evidence/lean_receipts/gleason_lean_audit.json`
 
 - file: [evidence/lean_receipts/gleason_lean_audit.json](../../../evidence/lean_receipts/gleason_lean_audit.json)
-- sha256 (`lf-normalised`): `95129f43379acf86e27ce7fa2e28614d05fbc4deb4fb77391da5ba2f8fea9899`
+- sha256 (`lf-normalised`): `e95321a1a90dc68dd2f71a801a4ded75a0c5ee721c916374210e1cdb42ecb20d`
 - cited in: node.source
 - counts toward the grade: yes
 

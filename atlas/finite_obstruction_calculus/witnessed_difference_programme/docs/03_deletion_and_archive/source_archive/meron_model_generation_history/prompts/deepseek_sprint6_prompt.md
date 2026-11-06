@@ -1,7 +1,7 @@
 # DeepSeek Sprint 6: Final Closure of G3 — Boundary CAR String Polymer Representation & Spacetime Correlation Length
 
 **Context & Baseline:**
-- **G4 is 100% closed** by Sakana Fugu Ultra v2 (connected-interval linked-cluster expansion, uniform spatial moment summability, positive Matsubara modes, and static susceptibility).
+- **G4 is 100% closed** by Sakana Run U Ultra v2 (connected-interval linked-cluster expansion, uniform spatial moment summability, positive Matsubara modes, and static susceptibility).
 - **Theorems A and B are established** (convergence in law to the continuous Gaussian field on $\mathbb{T}^2$ with quantitative rate $O(1/M) + O(1/L)$ for $C^1$ profiles).
 - To achieve **100% formal acceptance on Prompt G3**, two specific model-specific derivations must be explicitly displayed rather than cited:
   1. The explicit handling of the range-$L$ boundary CAR string $\prod_{x < L-1}(1 - 2n_x)$ in the polymer expansion.

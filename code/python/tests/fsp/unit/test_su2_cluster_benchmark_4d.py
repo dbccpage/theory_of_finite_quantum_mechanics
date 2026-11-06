@@ -1,7 +1,7 @@
 """test_su2_cluster_benchmark_4d.py — Unit Tests for Multi-Turn PFP Cluster Sweeps on L=8.
 
 AuthorityEffect: None.
-Reference: sealed-derivation-v1 (3100c4e), Paper 011, gemini_000.md.
+Reference: sealed-derivation-v1 (3100c4e), Paper 011, run_g_000.md.
 """
 
 from __future__ import annotations

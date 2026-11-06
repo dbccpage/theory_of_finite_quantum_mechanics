@@ -820,7 +820,7 @@ Bands A through F under the sealed-bet protocol and Claim Discipline Ladder.
 6. Band F (Steps 47–50: Verdict, Standing Bets Resolution & Terminal Scope):
    - Standing bets plaintexts revealed and verified against sealed SHA-256 digests:
      - BET-JC-001 (Jeremy H. Carroll): RESOLVED_HIT across all 5 clauses.
-     - BET-CLAUDE-001 (Claude Opus 5): RESOLVED_HIT across all 6 clauses.
+     - BET-CLAUDE-001 (Run O): RESOLVED_HIT across all 6 clauses.
    - Terminal claim established: "Algebra derived, Born declared; the wall is probability, not dynamics."
 
 7. Gate measurements:
@@ -1661,7 +1661,7 @@ no QM Lean at all**.
 
 **Deleted, 43 files.** `GenX/Boundary.lean`, the `DerivationBoundary` type left
 orphaned once its 74 mirrors went; and all 42 files of
-`_work_review_queue/fable_hilbert_walk_20260819/`. Those 42 are duplicates: QM_122
+`_work_review_queue/run_f_hilbert_walk_20260819/`. Those 42 are duplicates: QM_122
 carries every one of them, 34 byte-identical and 8 as newer revisions, and QM_122
 is itself vendored verbatim under `apps/finite_qm/sources/`. Nothing is lost.
 
@@ -1691,7 +1691,7 @@ v0.8.0 (2026-09-05) — One flat Lean directory, PascalCase throughout
 
 `apps/finite_qm/lean4/` is now a single flat directory of **37 modules**, every
 one PascalCase and named for what it holds. No `FiniteQuantum/` wrapper, no
-`GenX/` or `fable_primitive_difference_bridge_20260813/` namespace folders, no
+`GenX/` or `run_f_primitive_difference_bridge_20260813/` namespace folders, no
 snake_case. `lake build` exits 0 over 39 jobs: **9,516 lines, 511 theorems, 0
 `True`-stubs, 0 `sorry`**.
 
@@ -2414,8 +2414,8 @@ Added `research/foundational_derivation_closure_finite_map.md`,
 `tests/e2e/test_e2e_foundational_derivation_closure_control.py` (4 tests), and
 the compiled Rust parity control `evaluate_qm219_foundational_derivation_closure`
 in `omega_quantum_physics::quantum_import_finite_maps`. Checked over `Q`, `Q(i)`,
-`Q(zeta_8)`, and `Z[zeta_12]` (alongside a 3-round live Anthropic `claude-fable-5-1`
-and Fable MCTS campaign) that (a) for `d_A = d_B = 2`, direct-sum composition has
+`Q(zeta_8)`, and `Z[zeta_12]` (alongside a 3-round live Anthropic `run-f`
+and Run F MCTS campaign) that (a) for `d_A = d_B = 2`, direct-sum composition has
 `3 + 3 = 6 < 15` local parameters and `S_CHSH^2 <= 4`, tensor-product composition
 has `3 + 3 + 9 = 15` local-tomography parameters and Tsirelson ceiling `S_CHSH^2 = 8`,
 and the no-signaling Popescu–Rohrlich box achieves `S_PR^2 = 16 > 8` violating the
@@ -2436,7 +2436,7 @@ the `QM-219` row into §5.2 of `finite_quantum_mechanics.md`. No claim is promot
 A line-by-line comparison of the central paper with the package Python, the Rust crate `omega_quantum_physics` and the Lean files under `lean4/quantum_mechanics/` found the following mismatches, now repaired.
 
 - `QM-216`, `QM-217`: the Lamb-shift constant is $91/120$ (self-energy, vacuum polarization and the anomalous-moment term), not $19/30$; Python and Rust controls and their tests agree on $91/120$, and `class_i_count` is 11.
-- `QM-219`: the readout positivity criterion for $R_{A,B}=A N_0+B N_1$ on $\mathbb Z[\zeta_{12}]$ is $A>0$ and $B^2<3A^2$. The leading Gram minors on the basis $1,\zeta,\zeta^2,\zeta^3$ are $A$, $(4A^2-B^2)/4$, $A(3A^2-B^2)/4$, $(3A^2-B^2)^2/16$, so $(1,3/4,1/2,1/4)$ at $(1,1)$. Python now computes the minors from the Gram matrix and Rust checks all four. The Lean theorem `qzeta12_rational_readout_cone_and_galois_selection` in `FiniteQM.lean` still states $(1,3/4,1/3,1/36)$. Its correction is held back: two Fable receipts (`research/electroweak_dfm_weinberg_fable_receipt.json`, `research/qcd_beta0_wilson_confinement_fable_receipt.json`) pin the SHA-256 of `FiniteQM.lean`, and two e2e tests assert that pin. Repinning those receipts is the author's decision; the correction is kept as a patch outside the package.
+- `QM-219`: the readout positivity criterion for $R_{A,B}=A N_0+B N_1$ on $\mathbb Z[\zeta_{12}]$ is $A>0$ and $B^2<3A^2$. The leading Gram minors on the basis $1,\zeta,\zeta^2,\zeta^3$ are $A$, $(4A^2-B^2)/4$, $A(3A^2-B^2)/4$, $(3A^2-B^2)^2/16$, so $(1,3/4,1/2,1/4)$ at $(1,1)$. Python now computes the minors from the Gram matrix and Rust checks all four. The Lean theorem `qzeta12_rational_readout_cone_and_galois_selection` in `FiniteQM.lean` still states $(1,3/4,1/3,1/36)$. Its correction is held back: two Run F receipts (`research/electroweak_dfm_weinberg_run_f_receipt.json`, `research/qcd_beta0_wilson_confinement_run_f_receipt.json`) pin the SHA-256 of `FiniteQM.lean`, and two e2e tests assert that pin. Repinning those receipts is the author's decision; the correction is kept as a patch outside the package.
 - `QM-220` to `QM-231`: table rows narrowed to what the code checks (sampled values, pure triplet $\rho$, the two anomaly conditions that fail at $N_c=1$, the diamond-graph holonomy, the Chern parity at $m=\pm2$ only, the listed imports) and a paragraph on the mechanization scope of `QM-213` to `QM-231` added.
 - Sections 1 to 4: the Tsirelson model field is stated as entries in $\mathbb Q(\sqrt2)$ carried in $\mathbb Q(\zeta_8)$; the layer coverage of the Weyl verifier, Targets 13 and 15, the power-family uniqueness step, the storage bound and results 7, 9 and 10 is stated.
 - Removed: the unused `finite_qm` ports and native adapter, the integrated cycle-plan notes, the superseded total claim and file matrix, a duplicate Lean note and the v0.54.1 archive. The companion trace-zero monograph is replaced by the sealed paper-013 v0.57.0 copy and reference [13] updated.

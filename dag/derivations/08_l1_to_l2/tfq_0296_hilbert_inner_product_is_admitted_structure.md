@@ -74,3 +74,7 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
 - **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = f43cd2701d04b840881c03a2422b39addf88a6103350b20d80c6fb01588990c3`
+
+## Scoped correction — 2026-11-06
+
+The historical text above predates the conditional sector-form result now recorded by `L1-IMP-HILBERT-INNER-PRODUCT`. Within an already quadratic Gram readout, disjoint-sector additivity and transitive sector symmetry force the form to be scalar identity; unit normalization fixes the scale. Without those laws the rival forms remain valid. The quadratic shape, field, carrier and laws are admissions, and `L1-R-INNER-PRODUCT-GAP` remains open. The new norm comparison in TFQ-2621 makes the parallelogram premise explicit; it does not derive the geometric premises from upstream assumptions.

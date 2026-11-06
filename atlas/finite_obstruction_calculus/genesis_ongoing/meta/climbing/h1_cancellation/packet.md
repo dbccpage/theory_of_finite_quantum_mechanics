@@ -118,7 +118,7 @@ the `/meta/` pattern is rewritten into a Windows path. This was tested on
    ```powershell
    Set-Location C:/wt/h3-d22
    $env:CLAUDE_CODE_DISABLE_AUTO_MEMORY = "1"
-   & "C:\Users\a343o\AppData\Roaming\Claude\claude-code\2.1.281\claude.exe" -p "Begin from prompt/twentysecond/prompt.md." --model claude-opus-5-5 --setting-sources project --strict-mcp-config --disable-slash-commands --no-chrome --output-format stream-json --verbose --disallowedTools "WebFetch,WebSearch" *> C:/wt/h3-d22.transcript.jsonl
+   & "C:\Users\a343o\AppData\Roaming\Claude\claude-code\2.1.281\claude.exe" -p "Begin from prompt/twentysecond/prompt.md." --model run-o --setting-sources project --strict-mcp-config --disable-slash-commands --no-chrome --output-format stream-json --verbose --disallowedTools "WebFetch,WebSearch" *> C:/wt/h3-d22.transcript.jsonl
    "exit: $LASTEXITCODE"
    ```
 

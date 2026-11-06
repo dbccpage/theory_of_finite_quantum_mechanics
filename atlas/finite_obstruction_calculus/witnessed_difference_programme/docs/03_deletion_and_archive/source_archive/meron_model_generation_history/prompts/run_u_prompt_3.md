@@ -1,4 +1,4 @@
-# Fugu Prompt 3: Strongest Defensible Spacetime Field Theorem for Periodic U=t Meron Chain
+# Run U Prompt 3: Strongest Defensible Spacetime Field Theorem for Periodic U=t Meron Chain
 
 Investigate the strongest defensible spacetime field theorem for the same periodic full-Fock U=t Meron chain. Work independently of the proposed discrete covariance proof below; you may state a conditional theorem, but label every condition that remains unproved.
 

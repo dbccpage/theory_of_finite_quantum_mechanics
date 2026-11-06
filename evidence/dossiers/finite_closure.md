@@ -14,7 +14,7 @@ The campaign achieves:
 1. **Pre-Execution Custody & Launch Prequalification**:
    - The system class `class/fqmr1_class.json` is verified unchanged and pinned at canonical LF SHA-256 `1e31d811a5245a8b8120bb3d35ad4868537d1bcc4d577d2fcdf13de0de087488`.
    - All 22 pre-registered bet digests from `_private_bets/finite_qm_c1000/SEALED_DIGESTS.txt` are verified byte-identically (100% match).
-   - Precondition 5 departure (`UNMET_OWNER_AUTHORISED`) is audited: both bet sets were drafted by Claude (Opus 5) under owner authorization.
+   - Precondition 5 departure (`UNMET_OWNER_AUTHORISED`) is audited: both bet sets were drafted by Claude (Run O 5) under owner authorization.
    - All 10 blocks maintain `independence_grade: BLIND` with respect to C750.
 2. **Zero-Float Strict Execution**:
    - Every calculation across all 10 blocks executes in exact rational arithmetic or algebraic number fields $\mathbb{Q}(\zeta_n)$. No floating-point operations occur in any receipt or result field.

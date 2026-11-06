@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean)
-- sha256 (`bytes`): `42063910b1edb4aa7f509fb0310b262235a7ce77dd5d2e3a5cf03556ecb175b1`
+- sha256 (`bytes`): `89ad84fa8533034199c972967603c6f1e9c96f52162dd7abf1d74e5147aa8fa0`
 - cited in: node.lean, record TFQ-1027
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean`
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1027_fq_impl_realification_adapter.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1027_fq_impl_realification_adapter.md](../../../dag/derivations/21_implementation_core/tfq_1027_fq_impl_realification_adapter.md)
-- sha256 (`lf-normalised`): `ec0760c627ce1cbf06bfe054feb1c9e257efd8653b741c7ae02e1aec1958f7a4`
+- sha256 (`lf-normalised`): `3f30703c338af66a0d531ca6b79a0174f8b13bd963e760ba4e372ea7704b77a3`
 - generated view: listed, not counted
 - cited in: record TFQ-1027
 - counts toward the grade: no

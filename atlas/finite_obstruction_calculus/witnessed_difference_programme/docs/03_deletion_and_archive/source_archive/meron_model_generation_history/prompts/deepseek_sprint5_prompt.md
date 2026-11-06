@@ -3,7 +3,7 @@
 **Feedback & Audit of Sprint 4:**
 1. **Bulk Polymer Expansion:** Your Kotecký-Preiss activity bound $e(d+1)\zeta \le \frac{7e}{75} \approx 0.254 < 1$ on the 2D spacetime checkerboard is accepted and verified. It establishes that the bulk sector $X_{L,M,+}(z)$ has a uniformly convergent polymer expansion on the polydisk $|z_{j,x}| \le 1/64$, independent of $M$.
 2. **Parity Ratio Correction:** In Section 1, you claimed $|\xi| = |X_- / X_+| \le C e^{-cL} \ll 1$. On the CAR Fock space, both $\mathcal{F}_{\rm even}$ and $\mathcal{F}_{\rm odd}$ have dimension $2^{L-1}$, so $X_- / X_+ \to +1$ (not $0$). Exact Sympy check on $L=4, M=1$ gave $X_-/X_+ = 420/421 \approx 0.99762$. What is exponentially suppressed is the parity difference $(X_+ - X_-)/(X_+ + X_-) \le C e^{-cL}$. Zero-freeness $1 + \xi(z) \ne 0$ holds because the phase of $\xi(z)$ is rigidly pinned near $+1$ ($|\operatorname{Arg}(\xi)| \le 4.6 \times 10^{-6}$ rad across 10,000 polydisk samples). Gate D is confirmed closed.
-3. **Current State:** Theorem A (continuum Gaussian field on $\mathbb{T}^2$) is established; G4 (thermodynamic two-point function) is closed by Fugu; Gate E is closed by counterexample ($\lambda_{\min} \sim -(1/9)(r/M)^4 < 0$); and Gate D is closed.
+3. **Current State:** Theorem A (continuum Gaussian field on $\mathbb{T}^2$) is established; G4 (thermodynamic two-point function) is closed by Run U; Gate E is closed by counterexample ($\lambda_{\min} \sim -(1/9)(r/M)^4 < 0$); and Gate D is closed.
 
 ---
 

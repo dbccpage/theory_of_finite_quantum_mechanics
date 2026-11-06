@@ -1321,7 +1321,7 @@
         "reason": "The criterion is kernel-checked; constancy implies factoring is proved from a selector of fiber representatives and with Classical.choice; a choice-free listed-history version exists (PG-PREGEN-CONSTRUCTIVE-SUMMARY); necessity of choice is undecided.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "A question over histories factors through the report image iff it is constant on report fibers, and the factorization is unique on the image. The mpr direction (arbitrary report images) uses Classical.choice; a constructive listed-history version is not established.",
-        "prior_bottleneck": "Constructive version for explicitly listed histories is the Fable 04 target (PG-PREGEN-CONSTRUCTIVE-SUMMARY).",
+        "prior_bottleneck": "Constructive version for explicitly listed histories is the Run F 04 target (PG-PREGEN-CONSTRUCTIVE-SUMMARY).",
         "superseded_by": []
       }
     },
@@ -1332,7 +1332,7 @@
       "source_status": "MECHANIZED in ListedHistorySummary.lean (choice-free listed-history report criterion) with Rust witness",
       "statement": "Constructive (no Classical.choice) Pre-Genesis summary/history theorem for explicitly listed histories: choice-free first-match reconstruction recon satisfies recon_of_fiberConstant and fiberConstant_of_recon in ListedHistorySummary.lean.",
       "source": [
-        "external:prompts/fable_theorems_2026-10-17/04_pregenesis_constructive_summary.md",
+        "external:prompts/run_f_theorems_2026-10-17/04_pregenesis_constructive_summary.md",
         "lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean",
         "dag/derivation_dag_operads.binding.yaml"
       ],
@@ -1358,7 +1358,7 @@
       "imported_structure": [],
       "bottleneck": "Applies to explicitly listed histories with decidable report equality; unlisted or infinite populations and report types without decidable equality (choice-free substitute, or unavoidability of choice) remain outside.",
       "tags": [
-        "fable-in-progress"
+        "run_f-in-progress"
       ],
       "pfp_review": {
         "review": "evidence/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json",
@@ -1549,7 +1549,7 @@
       "source_status": "MECHANIZED in SnOffImage.lean (off-image non-descent and section-image characterization) with Rust witness",
       "statement": "S(n) off-image refusal closing the domain-restriction half of WDP-P001-019: off-image points fail s(r(y)) = y and are refused by SnOffImage.nonDescent_iff_off_image.",
       "source": [
-        "external:prompts/fable_theorems_2026-10-17/05_sn_off_image_refusal.md",
+        "external:prompts/run_f_theorems_2026-10-17/05_sn_off_image_refusal.md",
         "atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md:25",
         "lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean",
         "dag/derivation_dag_operads.binding.yaml"
@@ -1584,18 +1584,18 @@
       "imported_structure": [],
       "bottleneck": "Off-image points are refused because the retraction is sound (accepted only from section images); the old-image law alone does not refuse. Nested terms as base members and the WDP-P001-019 ledger closure remain open.",
       "tags": [
-        "fable-in-progress",
+        "run_f-in-progress",
         "wdp-p001-019"
       ],
       "pfp_review": {
         "review": "evidence/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/delivery_review_result.json",
-        "review_sha256": "41a0c410e1015210addfcb44268135defea204b7e19c9197998da78978c14281",
+        "review_sha256": "80ffa6d5317d893c7ccaa1d94c5cae503b87e3bd966974f2f73398f439561cc4",
         "review_refs": [
           "evidence/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/delivery_review_result.json"
         ],
         "verdict": "scoped_result_or_obstruction_reviewed",
         "narrowest_claim": "For a restatement over an arbitrary glyph alphabet of the pinned S(n) section and retraction (five base shapes at a given stage), the retraction refuses exactly the presentations that are not section images at that stage, and the restated pair is a section/retraction pair (law and soundness) in the abstract sense, where refusal is the failure of the round trip s(r(p)) = p; this rests on the soundness of the specific retraction (accepted_only_from_section), because the old-image law alone is satisfied by a retraction that refuses nothing.",
-        "does_not_support": "The claim that this closes the domain-restriction half of ledger row WDP-P001-019 (a ledger interpretation, not examined); the external prompt file fable_theorems_2026-10-17/05_sn_off_image_refusal.md named in the DAG source list, which was not read; off-image refusal for sections other than the five base shapes (nested lift, retraction or refusal terms as base members are outside the model); any cardinality claim about Carrier n or the declared table (node PG-SN-CARRIER); unrestricted old-image recovery (ledger row WDP-P001-019 stays a negative boundary for the unrestricted interface); the 36-glyph source alphabet beyond the generic statement, and alphabets above three glyphs in the native universes; wire parsing of the source grammar; decidability beyond this syntactic model (the source itself says the image condition is not a general computability theorem); the circular reading in which off-image is defined as failure of the round trip; any physical interpretation.",
+        "does_not_support": "The claim that this closes the domain-restriction half of ledger row WDP-P001-019 (a ledger interpretation, not examined); the external prompt file run_f_theorems_2026-10-17/05_sn_off_image_refusal.md named in the DAG source list, which was not read; off-image refusal for sections other than the five base shapes (nested lift, retraction or refusal terms as base members are outside the model); any cardinality claim about Carrier n or the declared table (node PG-SN-CARRIER); unrestricted old-image recovery (ledger row WDP-P001-019 stays a negative boundary for the unrestricted interface); the 36-glyph source alphabet beyond the generic statement, and alphabets above three glyphs in the native universes; wire parsing of the source grammar; decidability beyond this syntactic model (the source itself says the image condition is not a general computability theorem); the circular reading in which off-image is defined as failure of the round trip; any physical interpretation.",
         "next_test": "With the bridge sn_is_section_retraction proved, extend the refusal characterisation to a grammar that admits nested lift, retraction and refusal terms as base members: add them to Base, restate sectionLift and retr on the enlarged type, and decide whether accepted_only_from_section and sectionLift injectivity still hold or whether a new off-image class appears.",
         "scope_effect": "caveat_added",
         "reason": "Refusal exactly off the section image is kernel-checked for a restatement of the pinned S(n) section and retraction and rests on the soundness of the retraction, not on the old-image law alone; the ledger reading of closing the WDP-P001-019 half was not examined.",
@@ -2166,7 +2166,7 @@
         "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness"
       ],
       "imported_structure": [
-        "Classical.choice in old_image_base (assumption: found in axiom report, against the Fable 05 expectation)"
+        "Classical.choice in old_image_base (assumption: found in axiom report, against the Run F 05 expectation)"
       ],
       "bottleneck": "A corrected cardinality theorem deriving Carrier n from the lift image or the stage-n shape set (the stage of the directed cut must be settled by the source), off-image refusal completeness (PG-SN-OFF-IMAGE-REFUSAL), and identification of the restatement with the pinned types at G = Glyph; the source old_image_base still reports Classical.choice.",
       "tags": [],
@@ -6442,7 +6442,7 @@
       "output": "PG-PREGEN-CONSTRUCTIVE-SUMMARY",
       "status": "DERIVED_LEAN",
       "source": [
-        "external:prompts/fable_theorems_2026-10-17/04_pregenesis_constructive_summary.md",
+        "external:prompts/run_f_theorems_2026-10-17/04_pregenesis_constructive_summary.md",
         "lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean",
         "dag/derivation_dag_operads.binding.yaml",
         "lean4/DerivationDagQMClosure.lean"
@@ -6511,7 +6511,7 @@
       "output": "PG-SN-OFF-IMAGE-REFUSAL",
       "status": "DERIVED_LEAN",
       "source": [
-        "external:prompts/fable_theorems_2026-10-17/05_sn_off_image_refusal.md",
+        "external:prompts/run_f_theorems_2026-10-17/05_sn_off_image_refusal.md",
         "lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean",
         "dag/derivation_dag_operads.binding.yaml",
         "lean4/DerivationDagQMClosure.lean"

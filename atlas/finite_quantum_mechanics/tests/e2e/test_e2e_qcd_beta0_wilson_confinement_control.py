@@ -92,7 +92,7 @@ def test_part_d_12_decimal_alpha_s_and_string_tension_enclosures() -> None:
     assert summary["area_law_strictly_confining_vs_perimeter"] is True
 
 
-def test_part_e_lean4_part4_and_fable_receipt_parity() -> None:
+def test_part_e_lean4_part4_and_run_f_receipt_parity() -> None:
     paper_root = Path(__file__).resolve().parents[2]
     repo_root = paper_root.parents[3]
     canonical_lean = repo_root / "lean4/quantum_mechanics/FiniteQM.lean"
@@ -112,12 +112,12 @@ def test_part_e_lean4_part4_and_fable_receipt_parity() -> None:
     ):
         assert thm_name in text, f"Missing Lean 4 theorem {thm_name}"
 
-    receipt_path = paper_root / "research/qcd_beta0_wilson_confinement_fable_receipt.json"
+    receipt_path = paper_root / "research/qcd_beta0_wilson_confinement_run_f_receipt.json"
     assert receipt_path.is_file()
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
-    assert receipt["campaign_id"] == "FABLE_5_1_MCTS_QM_221_QCD_BETA0_WILSON_CONFINEMENT"
+    assert receipt["campaign_id"] == "RUN_F_5_1_MCTS_QM_221_QCD_BETA0_WILSON_CONFINEMENT"
     assert receipt["anthropic_messages_probe"]["status"] == "LIVE_OK"
-    assert receipt["anthropic_messages_probe"]["model"] == "claude-fable-5-1"
+    assert receipt["anthropic_messages_probe"]["model"] == "run-f"
     assert receipt["mcts_summary"]["checkpoint_count"] == 4
     assert receipt["mcts_summary"]["needs_backtrack"] is False
     expected_lean_sha = "sha256:" + hashlib.sha256(canonical_lean.read_bytes()).hexdigest()

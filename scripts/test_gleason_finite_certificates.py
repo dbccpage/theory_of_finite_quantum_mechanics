@@ -503,6 +503,54 @@ class TestGleasonFiniteCertificates(unittest.TestCase):
             tfq["tier4_topological_and_continuum_gleason_closure"]["bounded_anchor_amplification_closes_born_uniquely"]
         )
 
+    def test_tfq_1057_multi_frame_incidence_and_amplification(self) -> None:
+        tfq_1057 = cert.verify_tfq_1057_multi_frame_incidence_and_amplification()
+        sub9a = tfq_1057["subsection_9a_bounded_anchor_amplification_anatomy"]
+        self.assertTrue(sub9a["pointwise_continuous_iff_zero"])
+        self.assertTrue(sub9a["discontinuous_vacuity_theorem_verified"])
+        self.assertEqual(sub9a["s3_lead_all_amplification_constant"], "1")
+        self.assertEqual(sub9a["s3_lead_all_witness_111"], "1")
+        self.assertEqual(len(sub9a["crt_discontinuity_gap_witnesses"]), 5)
+
+        sub9b = tfq_1057["subsection_9b_multi_frame_incidence_and_collar_blindness"]
+        self.assertTrue(sub9b["fifteen_rays_vanishing_verified"])
+        self.assertGreaterEqual(sub9b["fifteen_plane_ortho_antisymmetry_checks"], 40)
+        self.assertGreaterEqual(sub9b["one_step_collar_confinement_checks"], 70)
+        self.assertEqual(sub9b["finite_ray_list_collar_blindness_threshold"], "1/10")
+        self.assertTrue(sub9b["finite_ray_list_collar_blindness_verified"])
+
+        # Direct check of min_pos_ray_sin_sq_list and radial_scale_factor
+        nine_anchors = list(cert.NINE_ANCHORS.values())
+        self.assertEqual(cert.min_pos_ray_sin_sq_list([], nine_anchors), Fraction(1))
+        self.assertEqual(
+            cert.min_pos_ray_sin_sq_list([cert.TOMO_E1], [cert.TOMO_E1]), Fraction(1)
+        )
+        self.assertEqual(
+            cert.min_pos_ray_sin_sq_list([cert.TOMO_E1, cert.PROBE_120], nine_anchors),
+            Fraction(1, 10),
+        )
+        self.assertEqual(
+            cert.radial_scale_factor(cert.TOMO_E1, cert.TOMO_E2, Fraction(2)),
+            Fraction(1),
+        )
+        c_factor = cert.radial_scale_factor(
+            cert.TOMO_E1, cert.GVec.real(0, 3, 4), Fraction(1, 10)
+        )
+        self.assertEqual(c_factor, Fraction(1, 500))
+        yc = cert.GVec.real(0, 3, 4).smul(cert.GaussRat.of(c_factor))
+        self.assertLess(cert.ray_sin_sq(cert.TOMO_E1.add(yc), cert.TOMO_E1), Fraction(1, 10))
+        self.assertLess(
+            cert.ray_sin_sq(
+                cert.anchor_meridian_ortho(cert.TOMO_E1, yc), cert.GVec.real(0, 3, 4)
+            ),
+            Fraction(1, 10),
+        )
+
+        sub9c = tfq_1057["subsection_9c_radial_scale_transport_and_chain_scaling"]
+        self.assertGreaterEqual(sub9c["radial_scale_transport_checks"], 100)
+        self.assertEqual(sub9c["meridian_chain_linear_amplification_checks"], 24)
+        self.assertEqual(sub9c["status"], "PASS")
+
 
 if __name__ == "__main__":
     unittest.main()

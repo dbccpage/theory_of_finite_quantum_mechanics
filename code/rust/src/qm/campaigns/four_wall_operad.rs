@@ -1,7 +1,7 @@
 use num_bigint::BigInt;
 use num_rational::BigRational;
 
-pub const PROVENANCE: &str = "Origin: research/four_wall_reconstruction_fable_receipt.json\nClaim: urn:tfqm:four-wall:principal-minor-three-fourths-times-minus-one-twelfth-is-minus-one-eighth\nAuthorityEffect: None";
+pub const PROVENANCE: &str = "Origin: research/four_wall_reconstruction_run_f_receipt.json\nClaim: urn:tfqm:four-wall:principal-minor-three-fourths-times-minus-one-twelfth-is-minus-one-eighth\nAuthorityEffect: None";
 
 pub const MUTATION_KILL_RECORD: &str = "killed=3";
 

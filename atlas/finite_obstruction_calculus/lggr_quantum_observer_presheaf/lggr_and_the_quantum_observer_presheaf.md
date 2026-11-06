@@ -40,7 +40,7 @@ was looked up on `main` at `ae38eaa89` before being used.
 | `collapsed_of_no_insts` | name only | a Genesis (`19L57G1`) theorem name; on `main` it appears in a pinned copy of the Genesis claim ledger under `015_pfp/021_.../g03/pinned_sources/`. Not re-run here; Genesis is out of scope for this note. |
 | `ENC-0118`, `ENC-0195` | name only | Genesis encoding identifiers cited by the monograph and by `005_mind_and_consciousness/001_awareness_mind_consciousness/what_is_awareness.md`. Their statements are not on `main`. |
 | Lemma D | no statement | named in `WDP-CH14-T01` and in the awareness note; no file on `main` states it. Section 3.1 does not rest on it. |
-| `NS-14`, `CL-13` | yes, in prose | stated in `coda_atlas/prompts/pilots/pilot_002/test_cases/ooutwire_argon_synthesis.md` (Gemini Argon's synthesis, cited, not edited). |
+| `NS-14`, `CL-13` | yes, in prose | stated in `coda_atlas/prompts/pilots/pilot_002/test_cases/ooutwire_argon_synthesis.md` (Run G Argon's synthesis, cited, not edited). |
 | `NB-9` | REFUTED | the same synthesis records `NB-9` as refuted by `budgetSim_enc_injective`; the review at `/mnt/project-files/reports/argon_notebook_review_2026-10-15/report.md` confirms it. Axis 3 is derived without it (section 3.1). |
 | Test 482 | yes, vacuous | `omega_engine_pfp/tests/normal_forms/test_tranche25_acyclic_cohomology_and_bell_contextuality.py` line 82 sets `is_gyo_acyclic = True` and asserts it. It computes nothing. Section 2.5 replaces it. |
 | `DescentOutcome::NoGlobalExtension` | yes | `omega_engine/crates_rs/omega_category_theory/src/finite_report_descent.rs`. Section 2.3 says what it does and does not witness. |
