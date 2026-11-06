@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/five_outstanding_derivations.md`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/five_outstanding_derivations.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/five_outstanding_derivations.md)
-- sha256 (`lf-normalised`): `a3d73b25967a6c6d44f0ef077d4ab708e52a42d9110e1591258c5d32e6e862d5`
+- sha256 (`lf-normalised`): `5159b5a0f8ccfd1f68042b29348fe45640ccac0a5e90852416e9cb987e867418`
 - cited in: node.source
 - counts toward the grade: yes
 

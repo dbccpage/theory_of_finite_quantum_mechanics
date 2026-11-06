@@ -50,4 +50,4 @@ MECHANIZED in LggrFiniteResults.lean (B1, B2', B11, B11', and Part 6 LP dual 2/3
 
 - **Cited Sources**:
   - `lean4/LggrFiniteResults.lean`
-  - `atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+  - `dag/derivation_dag_operads.binding.yaml`

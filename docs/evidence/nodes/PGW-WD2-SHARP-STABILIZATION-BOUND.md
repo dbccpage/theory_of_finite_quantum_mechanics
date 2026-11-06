@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/wd2_open_targets.md`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/wd2_open_targets.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/wd2_open_targets.md)
-- sha256 (`lf-normalised`): `6dcab2f4c133cdc52f4a0b6c5a714fc8bcd45b96b552fd8b7e130345d990aa3a`
+- sha256 (`lf-normalised`): `f5ddcb132fccb46c765a97473639476d70215c355eb6b6b8bb0c93fb67141f80`
 - cited in: node.source
 - counts toward the grade: yes
 

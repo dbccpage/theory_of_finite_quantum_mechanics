@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md](../../../dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md)
-- sha256 (`lf-normalised`): `a2e25aaa6b8ebe05b4c6772959290c0e792d41aa6e9ce49b4a47014e54a90fe2`
+- sha256 (`lf-normalised`): `dc889620533913324ef3f055c193ebde7d50c48bb38807810454bb0fcee4027b`
 - generated view: listed, not counted
 - cited in: record TFQ-0310
 - counts toward the grade: no
@@ -119,7 +119,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0310 python: no local python twin located for atlas/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
+- TFQ-0310 python: no local python twin located for code/python/src/qm/qm122_dual.py
 - TFQ-0310 rust: no local rust twin located for external:sha256:904a09d9ca4b18f97838457416046361842e537e895afce0374f8b6c670a1ef1
 - TFQ-0310 rust: no local rust twin located for external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6
 

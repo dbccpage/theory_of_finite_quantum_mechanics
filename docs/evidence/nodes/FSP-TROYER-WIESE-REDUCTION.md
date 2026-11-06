@@ -53,14 +53,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
+- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1192_fsp_troyer_wiese_reduction.md`
 
 - file: [dag/derivations/26_fsp/tfq_1192_fsp_troyer_wiese_reduction.md](../../../dag/derivations/26_fsp/tfq_1192_fsp_troyer_wiese_reduction.md)
-- sha256 (`lf-normalised`): `940ef26f2ed5f208f1b43c7610c24f23c293411e6c35fcb764bbe50d5d84bad1`
+- sha256 (`lf-normalised`): `dd1ef601f4790e51e43c4983f59cdf63fbb1a638df24dcc96a54cbbcc59a0f9c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1192
 - counts toward the grade: no

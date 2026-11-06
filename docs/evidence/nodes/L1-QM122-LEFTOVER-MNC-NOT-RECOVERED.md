@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0311_ordinary_matrix_algebra_over_c_is_not_recovered.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0311_ordinary_matrix_algebra_over_c_is_not_recovered.md](../../../dag/derivations/09_finite_hilbert/tfq_0311_ordinary_matrix_algebra_over_c_is_not_recovered.md)
-- sha256 (`lf-normalised`): `9a3ad571419241cf1f12f2dcfb7bf00a2ba2c0a565109f0f063b0272dd3d071f`
+- sha256 (`lf-normalised`): `3788e626c7c17a9b7747953faf180c5e0f2d3b7772373144494433ce3f01a601`
 - generated view: listed, not counted
 - cited in: record TFQ-0311
 - counts toward the grade: no
@@ -126,7 +126,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0311 python: no local python twin located for atlas/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
+- TFQ-0311 python: no local python twin located for code/python/src/qm/qm122_dual.py
 
 ## Routes
 
