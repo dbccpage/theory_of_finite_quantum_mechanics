@@ -1,6 +1,6 @@
 # [TFQ-0468] rung5-symmetry-along-history
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `1933f5e5-ad73-5418-8874-993dac785521`  
 > **Parent Derivation**: [TFQ-0467](tfq_0467_rung4_index_up_to_isomorphism.md)
 
@@ -35,6 +35,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung5_symmetry_step_law_and_both_ways_witness`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.stepRung_eq_or_elems_succ`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung5_symmetry_along_history`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_symmetry/lean/SecondSymmetry/Grow.lean::no_return`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/lean/SecondSymmetry/Grow.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_symmetry/lean/SecondSymmetry/Grow.lean::size_counts_changes`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/lean/SecondSymmetry/Grow.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_symmetry/lean/SecondSymmetry/Meet.lean::inst_meet`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/lean/SecondSymmetry/Meet.lean)

@@ -26,14 +26,14 @@ The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction ca
 
 | DAG Status | Count (151 Nodes) | Notes |
 |---|---:|---|
-| `PROVED_LEAN` | 94 | Includes 45 core WDP/WD2/L1/Impl nodes + 49 upstream Pre-Genesis/Genesis/Authorization/`S(n)`/`MSS-N` nodes (including Batches 7–9). |
+| `PROVED_LEAN` | 99 | Includes 46 core WDP/WD2/L1/Impl nodes + 53 upstream Pre-Genesis/Genesis/Authorization/`S(n)`/`MSS-N` nodes (including Batches 7–10). |
 | `DEFINITION` | 33 | 18 core WDP/WD2 definitions + 15 upstream structural definitions. |
 | `ADMITTED_PRIMITIVE` / `SOURCE_RECORD` | 4 | 2 `ADMITTED_PRIMITIVE` + 2 `SOURCE_RECORD` upstream anchors. |
 | `PROVED_PROSE` | 0 | **All 16 Discharged in Lean 4** (10 core WDP + 6 upstream Genesis/`S(n)`). |
 | `COMPUTATIONALLY_CHECKED` | 0 | **All 10 Discharged in Lean 4** (2 core WDP + 8 upstream Genesis/L1/Impl across Batches 4, 8, and 9). |
-| `CONDITIONAL` | 11 | Remaining upstream Rung / L1 conditional nodes (scheduled for Batches 10–12). |
+| `CONDITIONAL` | 6 | Remaining upstream Rung / C1 conditional nodes (scheduled for Batches 11–12). |
 | `OPEN` | 9 | Remaining bridge / Meron scoped finite-slice targets (scheduled for Batches 12–13). |
-| **Total `wdp_derivation_dag.json` Nodes** | **151** | **131 Discharged/Definitions/Primitives, 20 Remaining across Batches 10–13** |
+| **Total `wdp_derivation_dag.json` Nodes** | **151** | **136 Discharged/Definitions/Primitives, 15 Remaining across Batches 11–13** |
 
 ---
 
@@ -135,6 +135,11 @@ All 14 finite obligations (combinatorial, linear-algebraic over $\mathbb{Q}$, or
 | Batch 9 | `PGW-RUNG2B-STAKE-MENU` | `TFQ-0465` | `PROVED_LEAN` | `WdpBatch9.lean::rung2b_stake_menu_no_member_both_invariant_and_two_kinded`, `profile_equality_renaming_invariant` |
 | Batch 9 | `PGW-FORCED-CENSUS-COLUMN` | `TFQ-0476` | `PROVED_LEAN` | `WdpBatch9.lean::forced_census_column_twelve_row_verdict_and_countermodel`, `replayRung_elems_le` |
 | Batch 9 | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` | `TFQ-0005`, `TFQ-0167`, `TFQ-0354` | `PROVED_LEAN` | `WdpBatch9.lean::l1_residual_sector_weights_unweighted_and_weighted_characterization`, `unweighted_and_sumsq_do_not_determine_sector_weights`, `weighted_l1_unique_minimal_mass_concentration` |
+| Batch 10 | `L1-IMP-COMPLEX-FIELD` | `TFQ-0293` | `PROVED_LEAN` | `WdpBatch10.lean::l1_imp_complex_field_selection_and_gaussian_standin`, `composite_dimension_multiplicativity_selects_d_eq_two`, `gratNormSq_mul` |
+| Batch 10 | `PGW-RUNG2A-STAKE-DECLARED-LABEL` | `TFQ-0464` | `PROVED_LEAN` | `WdpBatch10.lean::rung2a_stake_declared_label_and_growth_cases`, `free_stake_carries_no_demand`, `growth_generates_apart_of_no_insts` |
+| Batch 10 | `PGW-RUNG3-FIRST-DEMAND-INDEX` | `TFQ-0466` | `PROVED_LEAN` | `WdpBatch10.lean::rung3_first_demand_index_uniqueness_and_countermodels`, `first_demand_unique`, `index_is_not_a_function_of_the_reached_regime`, `demand_can_cease` |
+| Batch 10 | `PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM` | `TFQ-0467` | `PROVED_LEAN` | `WdpBatch10.lean::rung4_uniform_transport_and_nonuniform_escape`, `uniform_stake_transports_demand_pair` |
+| Batch 10 | `PGW-RUNG5-SYMMETRY-ALONG-HISTORY` | `TFQ-0468` | `PROVED_LEAN` | `WdpBatch10.lean::rung5_symmetry_step_law_and_both_ways_witness`, `stepRung_eq_or_elems_succ` |
 
 ---
 

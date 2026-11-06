@@ -367,7 +367,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0290` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0291` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` (PROVED_LEAN), `L1-QM020-THM2B-MINKOWSKI` (IMPORTED_ASSUMPTION) | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-QM020-THM2B-MINKOWSKI`: scoped_natural_arithmetic_reviewed / caveat_added |
 | `TFQ-0292` | `L1_TO_L2` | `GAP` | `L1-IMP-SQRT-FIELD` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0293` | `L1_TO_L2` | `PROVED_LEAN` | `L1-IMP-COMPLEX-FIELD` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0293` | `L1_TO_L2` | `PROVED_LEAN` | `L1-IMP-COMPLEX-FIELD` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0294` | `L1_TO_L2` | `GAP` | `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0295` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0296` | `L1_TO_L2` | `GAP` | `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
@@ -579,11 +579,11 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0461` | `GENESIS` | `PROVED_LEAN` | `PGW-GENESIS-THREE-AXIS-VERDICT` (PROVED_LEAN) | - |
 | `TFQ-0462` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG0-INHERITANCE-REPLAY` (PROVED_LEAN) | - |
 | `TFQ-0463` | `GENESIS` | `OPEN_OBLIGATION` | `PGW-RUNG1-STREAM-AS-RESPONSE` (OPEN) | - |
-| `TFQ-0464` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG2A-STAKE-DECLARED-LABEL` (CONDITIONAL) | - |
+| `TFQ-0464` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG2A-STAKE-DECLARED-LABEL` (PROVED_LEAN) | - |
 | `TFQ-0465` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG2B-STAKE-MENU` (PROVED_LEAN) | - |
-| `TFQ-0466` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG3-FIRST-DEMAND-INDEX` (CONDITIONAL) | - |
-| `TFQ-0467` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM` (CONDITIONAL) | - |
-| `TFQ-0468` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG5-SYMMETRY-ALONG-HISTORY` (CONDITIONAL) | - |
+| `TFQ-0466` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG3-FIRST-DEMAND-INDEX` (PROVED_LEAN) | - |
+| `TFQ-0467` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM` (PROVED_LEAN) | - |
+| `TFQ-0468` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG5-SYMMETRY-ALONG-HISTORY` (PROVED_LEAN) | - |
 | `TFQ-0469` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG6-SUCCESSION-ELEMENT-COUNT` (CONDITIONAL) | - |
 | `TFQ-0470` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG7-DURATION-UNDER-CHANGING` (CONDITIONAL) | - |
 | `TFQ-0471` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO` (CONDITIONAL) | - |
@@ -2214,7 +2214,7 @@ Obligation: Decide whether a fresh datum is ever part of a minimum response with
 
 - UUID: `e7617de1-d55f-5505-a807-6bd87365d463`
 - Parent: `TFQ-0462`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung two track one (pull request 136) extends the reconstructed sealed grammar by a declared two-sided stake: a label apart, same or free on every ordered pair of datum indices, free on the diagonal, declared once, with a demand a held labelled pair the regime does not honour. A demand comes from a declared label only, at the level of a definition: the free stake carries no demand at any regime and a supply changes no demand. Supply, imposition and, at a well-formed regime, form admission are demand-inert, and from a well-formed base every run of inert events carries exactly the base's demands, so from a demand-free base no demand is first under such a run. Growth generates an apart demand where no instance is admitted, and a same demand only under a separability hypothesis the rung did not discharge.
 
@@ -2234,7 +2234,7 @@ Obligation: Compute each menu rule's labels under every datum and form renaming 
 
 - UUID: `d85f4154-63c3-5e3e-b49f-0fa61c1d8013`
 - Parent: `TFQ-0464`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung three (pull request 239) takes leftover L-2, the first-demand index over an arbitrary run: a first count is a prefix length at which a demand stands with no shorter prefix carrying one. In Lean the first count is unique with no decidability hypothesis, every event preserves well-formedness, a successor first count never consumes a demand-inert event last, and from the empty base no count below two is a first count. Existence is proved only given a decision for a demand at a regime (X-1, OPEN). Countermodels: the first count is not a function of the reached regime (two datum admissions, and a supply followed by the same two, give counts two and three under the all-apart stake), and a demand can cease.
 
@@ -2244,7 +2244,7 @@ Obligation: Over every base, history and stake, carry uniqueness of the first co
 
 - UUID: `a6e062a3-1ca7-5232-86a7-4f1dfacf8d25`
 - Parent: `TFQ-0466`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung four (pull request 255) takes leftover X-3, the first-demand index up to the sealed isomorphism. In Lean separability and honour transport across the isomorphism, a label-preserving isomorphism carries a demand, and under a uniform stake (one label on every distinct pair) carrying a demand is class-invariant and class-matched histories have one first count; renaming supply tokens moves no first count. Under the three index readers parity, chain and residueThree the index escapes: isomorphic regimes of three or four data differ in carrying a demand, and class-matched histories of eight and eleven events have first counts eight or eleven against none. On the rectangle (2316 regimes in 402 classes, automorphism counts one to 240) the first count is constant on every trajectory class inside four events, which the Lean witnesses show is the bound's doing.
 
@@ -2254,7 +2254,7 @@ Obligation: Carry demand transport and first-count transport under a uniform sta
 
 - UUID: `1933f5e5-ad73-5418-8874-993dac785521`
 - Parent: `TFQ-0467`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung five (pull request 258) takes Y-3, symmetry along a history. In Lean a supply keeps every automorphism, datum and form admissions at a well-formed regime lose none, and an instance, rule or requirement admission keeps exactly the automorphisms fixing the added element. Each of the three adding kinds loses automorphisms at some regime and gains them at another, so the automorphism count moves both ways; on the rectangle the largest rise is five, at datum edges, and the largest fall 24, at instance edges. Every event keeps the regime or raises the element count by exactly one, so no history returns to a regime it left after a changing event.
 

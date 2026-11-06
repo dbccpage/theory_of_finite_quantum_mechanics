@@ -1,6 +1,6 @@
 # [TFQ-0466] rung3-first-demand-index
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `d85f4154-63c3-5e3e-b49f-0fa61c1d8013`  
 > **Parent Derivation**: [TFQ-0464](tfq_0464_rung2a_stake_declared_label.md)
 
@@ -36,6 +36,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.demand_can_cease`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.first_demand_unique`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.index_is_not_a_function_of_the_reached_regime`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung3_first_demand_index_uniqueness_and_countermodels`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung3_first_demand_index`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_index/lean/SecondIndex/Countermodel.lean::demand_can_cease`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/lean/SecondIndex/Countermodel.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_index/lean/SecondIndex/Countermodel.lean::index_is_not_a_function_of_the_reached_regime`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/lean/SecondIndex/Countermodel.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_index/lean/SecondIndex/Index.lean::first_demand_exists_when_a_demand_is_decidable`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/lean/SecondIndex/Index.lean)
