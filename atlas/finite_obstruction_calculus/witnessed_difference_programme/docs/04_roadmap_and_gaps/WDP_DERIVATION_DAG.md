@@ -22,6 +22,19 @@ The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction ca
 | `OPEN` | 8 | **0 Finite & Tractable Remaining** vs **8 Deferred Continuum/External** (Meron continuum limits, physical laboratory actuation, external institutional standing). |
 | **Total Core WDP/WD2 Nodes** | **68** | **60 Discharged/Definitions (All 30 Finite & Tractable Obligations Complete), 8 Deferred Continuum/External** |
 
+### 1.2 Full 151-Node Subgraph Census (Core + Upstream Prerequisite Closure)
+
+| DAG Status | Count (151 Nodes) | Notes |
+|---|---:|---|
+| `PROVED_LEAN` | 84 | Includes 42 core WDP/WD2 nodes + 42 upstream Pre-Genesis/Genesis/Authorization/`S(n)`/`MSS-N` nodes (including Batch 7: `TFQ-0451..0454`, `TFQ-0516`). |
+| `DEFINITION` | 33 | 18 core WDP/WD2 definitions + 15 upstream structural definitions. |
+| `ADMITTED_PRIMITIVE` / `SOURCE_RECORD` | 4 | 2 `ADMITTED_PRIMITIVE` + 2 `SOURCE_RECORD` upstream anchors. |
+| `PROVED_PROSE` | 1 | Remaining upstream prose node (`PGW-SN-POSTNIKOV-REFUSAL`). |
+| `COMPUTATIONALLY_CHECKED` | 8 | Remaining upstream/implementation computational nodes (scheduled for Batches 8–9). |
+| `CONDITIONAL` | 12 | Remaining upstream Rung / L1 conditional nodes (scheduled for Batches 9–12). |
+| `OPEN` | 9 | Remaining bridge / Meron scoped finite-slice targets (scheduled for Batches 12–13). |
+| **Total `wdp_derivation_dag.json` Nodes** | **151** | **121 Discharged/Definitions/Primitives, 30 Remaining across Batches 8–13** |
+
 ---
 
 ## 2. Visual Mermaid Dependency & Tractability Map
@@ -102,6 +115,16 @@ All 14 finite obligations (combinatorial, linear-algebraic over $\mathbb{Q}$, or
 | `PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR` | `TFQ-0586` | `PROVED_LEAN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Discharged in `WdpBatch6.lean::toric_completion_criterion_iff`, `toric_star_syndrome_sum_zero`, `toric_restricted_tree_error_injective`, and `toric_adaptive_transcript_indistinguishable`. |
 | `PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` | `TFQ-0566` | `PROVED_LEAN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Discharged in `WdpBatch6.lean::carrier_cut_challenge_floor_iff`, `inert_seed_cannot_generate_irreflexive_cut`, and `seed_round1_cut_and_residual_collapse`. |
 | `PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE` | `TFQ-0568` | `PROVED_LEAN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Discharged in `WdpBatch6.lean::guarded_3cube_boundary_d2_d1_zero`, `guarded_3cube_all_six_paths_equal`, and `punctured_2face_holonomy_obstruction`. |
+
+### 3.4 Upstream & Scoped Finite Closure Batches (Batches 7–13)
+
+| Batch | Node ID | TFQ Record | Current Status | Lean 4 Mechanization |
+|---|---|---|---|---|
+| Batch 7 | `PGW-NO-ENDOGENOUS-DEMAND-GENERATOR` | `TFQ-0451` | `PROVED_LEAN` | `WdpBatch7.lean::closure_round_bound_allPairs`, `closure_fixpoint_no_unresolved_demand`, `collapsed_pair_needs_external_policy_or_supply` |
+| Batch 7 | `PGW-IDENTITY-IS-INDEX-NOT-PROFILE` | `TFQ-0452` | `PROVED_LEAN` | `WdpBatch7.lean::identity_is_index_not_profile_u0f`, `distinct_indices_can_share_profile` |
+| Batch 7 | `PGW-MINIMAL-OR-INITIAL-REFUSED` | `TFQ-0453` | `PROVED_LEAN` | `WdpBatch7.lean::no_hom_from_self_loop_to_strict_clock`, `stuttered_adequate_process_not_state_minimal` |
+| Batch 7 | `PGW-SEALED-TERMINAL-STATEMENT` | `TFQ-0454` | `PROVED_LEAN` | `WdpBatch7.lean::sealed_terminal_clauses_a_to_f_bundle` |
+| Batch 7 | `PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE` | `TFQ-0516` | `PROVED_LEAN` | `WdpBatch7.lean::sn4_terminal_demand_empty_with_retained_history`, `complete_graph_cycle_rank_identity` |
 
 ---
 

@@ -20,6 +20,7 @@ import WitnessedDifference.WdpBatch4
 #print axioms WitnessedDifference.WdpBatch4.weighted_residual_shift_invariant
 #print axioms WitnessedDifference.WdpBatch4.weighted_l1_weak_duality_triangle
 #print axioms WitnessedDifference.WdpBatch4.certified_primal_dual_optimality
+#print axioms WitnessedDifference.WdpBatch4.report_quotient_decoder_iff
 #print axioms WitnessedDifference.WdpBatch4.report_fiber_decoder_iff
 #print axioms WitnessedDifference.WdpBatch4.event_multiset_loses_final_state
 #print axioms WitnessedDifference.WdpBatch4.final_state_loses_occurrence_count

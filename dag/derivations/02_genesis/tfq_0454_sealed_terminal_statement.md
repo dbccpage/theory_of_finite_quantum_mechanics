@@ -1,6 +1,6 @@
 # [TFQ-0454] sealed-terminal-statement
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `1339dd05-26d5-5bf4-92d6-00047e85a2b6`  
 > **Parent Derivation**: [TFQ-0451](tfq_0451_no_endogenous_demand_generator.md)
 
@@ -34,7 +34,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: the terminal statement composes clauses whose Lean theorems are cited in TFQ-0432 to TFQ-0451`
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.sealed_terminal_clauses_a_to_f_bundle`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of the composed statement; its clauses carry their own checks`
