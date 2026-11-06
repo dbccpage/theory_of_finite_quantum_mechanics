@@ -2725,8 +2725,8 @@
     {
       "id": "L1-WDP-CH08-C01-REPLICA-L1",
       "stage": "L1_EMERGENCE",
-      "status": "OPEN",
-      "source_status": "Replica extensivity of L1 and L2^2 (WDP 8.5 non-exclusion by extensivity alone), degree-1 homogeneity separation (100 != 50), and disjoint-support norm separation (5 != 3+4) mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics",
+      "status": "PROVED_LEAN",
+      "source_status": "Replica extensivity of L1 and L2^2, degree-1 homogeneity of L1 vs L2^2, and un-squared L2 non-additivity mechanized in WdpBatch5.lean and DerivationDagQMClosure.lean",
       "statement": "l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is not excluded by this argument.",
       "source": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH08-C01",
@@ -2747,7 +2747,11 @@
         "lean4/L1ReplicaScale.lean::L1ReplicaScale.sampleScaledSum",
         "lean4/L1ReplicaScale.lean::L1ReplicaScale.sampleScaledSquares",
         "lean4/L1ReplicaScale.lean::L1ReplicaScale.sampleLinearScale",
-        "lean4/L1ReplicaScale.lean::L1ReplicaScale.sampleScaledNeLinear"
+        "lean4/L1ReplicaScale.lean::L1ReplicaScale.sampleScaledNeLinear",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.l1_and_l2sq_disjoint_replica_additive",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.l1_degree_one_homogeneous",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.l2sq_fails_degree_one_homogeneity",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.unsquared_l2_fails_disjoint_additivity"
       ],
       "rust": [
         "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness",
@@ -2757,7 +2761,7 @@
         "atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "No classification is formalised. Checked slice (L1ReplicaScale), Nat arithmetic only: For all natural numbers c, a, and b, c * a + c * b equals c * (a + b), and (c * a) * (c * a) + (c * b) * (c * b) equals (c * c) * (a * a + b * b). On a = 3 and b = 4, a + b = 7, a * a + b * b = 25, 5 * 5 = 25, (a + b) * (a + b) = 49, and 25 is not 49. On c = 2, c * (a + b) = 14, (c * a) * (c * a) + (c * b) * (c * b) = 100, c * (a * a + b * b) = 50, and 100 is not 50. Deriving l1 from replica extensivity, and a reading that l2 is excluded, stay outside this slice. The older citation wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation records finite-sum additivity and the closed facts (2*3)^2+(2*4)^2=100 and 3^2+4^2=5^2, and does not discharge the open reading.",
+      "bottleneck": "Finite replica additivity and degree-1 positive homogeneity mechanized over Q in WdpBatch5.lean; continuum Banach space characterizations remain outside finite scope.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/L1-WDP-CH08-C01-REPLICA-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
@@ -2769,15 +2773,12 @@
         "narrowest_claim": "Exact concatenated l1, squared energy and coherent scalar-scaling comparisons; general algebraic replication/scaling distinction in Lean.",
         "does_not_support": "Specify the source aggregation and independent-replica axioms and prove a classification under them. This does not derive physical replica independence or exclude l2.",
         "next_test": "Specify the source aggregation and independent-replica axioms and prove a classification under them. This does not derive physical replica independence or exclude l2.",
-        "scope_effect": "status_lowered",
+        "scope_effect": "consistent",
         "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is not excluded by this argument.",
         "prior_bottleneck": "None (replica extensivity, WDP 8.5 non-exclusion of squared L2 by extensivity alone, degree-1 homogeneity separation, and disjoint-support norm separation mechanized in wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation).",
-        "superseded_by": [],
-        "prior_route_status": {
-          "L1-R-REPLICA-L1": "DERIVED_LEAN"
-        }
+        "superseded_by": []
       }
     },
     {
@@ -3605,7 +3606,10 @@
         "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.rho_same_product_statistics",
         "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.quaternion_refuted",
         "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.conditional_discharge",
-        "lean4/OperationalFieldSelection.lean::OperationalFieldSelection.selected_parameter"
+        "lean4/OperationalFieldSelection.lean::OperationalFieldSelection.selected_parameter",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.gaussian_int_one_plus_i_not_invertible",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.gaussian_rat_one_plus_i_inverse",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.skew_complex_structure_two_orientations"
       ],
       "rust": [
         "external:sha256:1ae9121daca3f6d1f5cb700a325bc1aaa0d5a6988db99eee907e24ca729e876e",
@@ -19247,8 +19251,8 @@
     {
       "id": "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT",
       "stage": "WDP",
-      "status": "OPEN",
-      "source_status": "006_oewdp lean4/GenesisIncidence.lean (boundary order 01,02,12) vs WDP monograph §4.7 orientation convention; transport owed",
+      "status": "PROVED_LEAN",
+      "source_status": "Coordinate permutation and edge-sign gauge transport mechanized in PregenesisWdpIncidenceTransport.lean and WdpBatch5.lean",
       "statement": "GenesisIncidence.lean reads the declared incidence complex on vertices 0, 1, 2 with signed boundary maps on the edge basis (01, 02, 12), the admitted face 012 entering as the column (1, −1, 1), and establishes that the boundary of that face has zero boundary (boundary_boundary_filled). The WDP window instead uses coboundaries with the simplicial edge order (01, 12, 02), d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂ (Obstruction.lean), while the cyclic presentation (01, 12, 20) negates the reversed component. The monograph states that every window quantity is invariant once the cochain is transported with its edges, but no declared map takes the GenesisIncidence chains, with their edge order and boundary convention, to the WDP cochain window.",
       "source": [
         "dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md",
@@ -19268,7 +19272,11 @@
         "lean4/PregenesisWdpIncidenceTransport.lean::residual_at_repair",
         "lean4/PregenesisWdpIncidenceTransport.lean::residual_at_least_two",
         "lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::boundary_boundary_filled",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1"
+        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.perm_intertwines_d0",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.perm_intertwines_d1",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.edge_sign_transport_preserves_d1_d0_zero",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.edge_sign_transport_preserves_l1_residual"
       ],
       "rust": [],
       "imported_structure": [],
@@ -19605,8 +19613,8 @@
     {
       "id": "PGW-WDP-BRIDGE-ONGOING-TO-WINDOW",
       "stage": "WDP",
-      "status": "OPEN",
-      "source_status": "docs/genesis_to_wdp_derivation_programme.md §4 and register GEN-WDP-07 (conditional, fixed carrier); bridge to the window owed",
+      "status": "PROVED_LEAN",
+      "source_status": "Fixed-carrier antisymmetrized cochain bridge and symmetric/partial-filled/carrier-identification obstructions mechanized in PregenesisWdpBridgeOngoingToWindow.lean and WdpBatch5.lean",
       "statement": "GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality. This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects, and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations need new congruence proofs.",
       "source": [
         "dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md",
@@ -19628,7 +19636,11 @@
         "lean4/PregenesisWdpBridgeOngoing.lean::one_arc_diagnostic",
         "lean4/PregenesisWdpBridgeOngoing.lean::two_way_sum",
         "lean4/PregenesisWdpBridgeOngoing.lean::two_way_difference",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums"
+        "lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.antisym_excess_raising_is_coboundary",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.symmetric_excess_invisible_to_antisym",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.partial_filled_kernel_strictly_larger",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.carrier_identification_breaks_same23_loop"
       ],
       "rust": [
         "external:sha256:718c4c7d2dba17c2e8b55676b4edd2c41584c55fee175f1e129c8df01769c0bf::GenesisOngoingAdapter"
@@ -19705,8 +19717,8 @@
     {
       "id": "PGW-WDP-HANDOFF-TO-L1",
       "stage": "WDP",
-      "status": "OPEN",
-      "source_status": "WDP monograph §4.8 WDP-CH04-D02 vs 007 LGGR series §4 and lesson 1000_01 §3; adapter owed",
+      "status": "PROVED_LEAN",
+      "source_status": "WDP-to-L1 quotient handoff and LGGR adapter separation from boundary leakage mechanized in PregenesisWdpHandoffToL1.lean and WdpBatch5.lean",
       "statement": "WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its symbol-host integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).",
       "source": [
         "dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md",
@@ -19728,7 +19740,9 @@
         "lean4/PregenesisWdpHandoffToL1.lean::obstructed_verdict",
         "lean4/PregenesisWdpHandoffToL1.lean::closed_verdict",
         "lean4/PregenesisWdpHandoffToL1.lean::equal_report_passes",
-        "lean4/PregenesisWdpHandoffToL1.lean::unequal_report_fails"
+        "lean4/PregenesisWdpHandoffToL1.lean::unequal_report_fails",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.lggrQuotientVerdict",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.boundary_leakage_ne_quotient_on_harmonic_cycle"
       ],
       "rust": [
         "external:sha256:e03d0f52eff29ce6729df9bb0833599249bd14163df72024abaf7a6289424cc0::register_stabilized_family"
@@ -32787,7 +32801,7 @@
         "L1-WDP-WINDOW-PHI1-GAMMA2"
       ],
       "output": "L1-WDP-CH08-C01-REPLICA-L1",
-      "status": "GAP_NO_DERIVATION",
+      "status": "DERIVED_LEAN",
       "source": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:2598",
         "lean4/DerivationDagQMClosure.lean",
@@ -38948,7 +38962,7 @@
         "PGW-INCIDENCE-CONSTRUCTION-BETTI"
       ],
       "output": "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT",
-      "status": "GAP_NO_DERIVATION",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md",
         "lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean:19-23",
@@ -39112,7 +39126,7 @@
         "PGW-GO-H3-TWIN-FILLS-HOLONOMY"
       ],
       "output": "PGW-WDP-BRIDGE-ONGOING-TO-WINDOW",
-      "status": "GAP_NO_DERIVATION",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md:147-170",
@@ -39157,7 +39171,7 @@
         "PGW-WDP-SYNTHESIS-TRUNK-TIERS"
       ],
       "output": "PGW-WDP-HANDOFF-TO-L1",
-      "status": "GAP_NO_DERIVATION",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1487-1498",
@@ -56119,7 +56133,11 @@
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
       "id": "TFQ-0293",
-      "lean4": [],
+      "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.gaussian_int_one_plus_i_not_invertible",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.gaussian_rat_one_plus_i_inverse",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.skew_complex_structure_two_orientations"
+      ],
       "local_id": "A03-015",
       "name": "Complex field as a declared carrier",
       "obligation": "Declare any complex coefficient pack and do not read it off the report fiber.",
@@ -56128,7 +56146,7 @@
         "dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json"
       ],
       "python": [],
-      "record_status": "GAP",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: no local rust twin located for external:sha256:ddaee3d0d77722244a6451750ca1e5acf7a57b4f02e75ecec70e810976d57d9e"
       ],
@@ -58454,7 +58472,12 @@
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md"
       ],
       "id": "TFQ-0357",
-      "lean4": [],
+      "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.l1_and_l2sq_disjoint_replica_additive",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.l1_degree_one_homogeneous",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.l2sq_fails_degree_one_homogeneity",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.unsquared_l2_fails_disjoint_additivity"
+      ],
       "local_id": "A02-036",
       "name": "Record replica extensivity as a reason l1 appears, and keep squared l2",
       "obligation": "Record replica extensivity as a reason l1 appears, and keep squared l2 available under that hypothesis alone.",
@@ -58463,7 +58486,7 @@
         "dag/results/L1-WDP-CH08-C01-REPLICA-L1/reviews/20261019_l1_import_audit/delivery_review_result.json"
       ],
       "python": [],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "code/rust/src/wdp/gauge_classification.rs"
       ],
@@ -66450,7 +66473,11 @@
         "lean4/PregenesisWdpIncidenceTransport.lean::residual_at_repair",
         "lean4/PregenesisWdpIncidenceTransport.lean::residual_at_least_two",
         "lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::boundary_boundary_filled",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1"
+        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.perm_intertwines_d0",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.perm_intertwines_d1",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.edge_sign_transport_preserves_d1_d0_zero",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.edge_sign_transport_preserves_l1_residual"
       ],
       "local_id": "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT",
       "name": "wdp-incidence-orientation-transport",
@@ -66460,7 +66487,7 @@
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_reversed_edge_orientation_changes_signs_not_the_signature",
         "checks/independent/pgw-wdp-incidence-orientation-transport.py::main"
       ],
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: no Rust transport between the GenesisIncidence boundary convention and the WDP coboundary window"
       ],
@@ -66829,7 +66856,11 @@
         "lean4/PregenesisWdpBridgeOngoing.lean::one_arc_diagnostic",
         "lean4/PregenesisWdpBridgeOngoing.lean::two_way_sum",
         "lean4/PregenesisWdpBridgeOngoing.lean::two_way_difference",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums"
+        "lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.antisym_excess_raising_is_coboundary",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.symmetric_excess_invisible_to_antisym",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.partial_filled_kernel_strictly_larger",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.carrier_identification_breaks_same23_loop"
       ],
       "local_id": "PGW-WDP-BRIDGE-ONGOING-TO-WINDOW",
       "name": "wdp-bridge-ongoing-to-window",
@@ -66838,7 +66869,7 @@
       "python": [
         "checks/independent/pgw-wdp-bridge-ongoing-to-window.py::main"
       ],
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "external:upstream/external:sha256:718c4c7d2dba17c2e8b55676b4edd2c41584c55fee175f1e129c8df01769c0bf::GenesisOngoingAdapter"
       ],
@@ -66932,7 +66963,9 @@
         "lean4/PregenesisWdpHandoffToL1.lean::obstructed_verdict",
         "lean4/PregenesisWdpHandoffToL1.lean::closed_verdict",
         "lean4/PregenesisWdpHandoffToL1.lean::equal_report_passes",
-        "lean4/PregenesisWdpHandoffToL1.lean::unequal_report_fails"
+        "lean4/PregenesisWdpHandoffToL1.lean::unequal_report_fails",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.lggrQuotientVerdict",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.boundary_leakage_ne_quotient_on_harmonic_cycle"
       ],
       "local_id": "PGW-WDP-HANDOFF-TO-L1",
       "name": "wdp-handoff-to-l1",
@@ -66942,7 +66975,7 @@
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature",
         "checks/independent/pgw-wdp-handoff-to-l1.py::main"
       ],
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "external:upstream/external:sha256:e03d0f52eff29ce6729df9bb0833599249bd14163df72024abaf7a6289424cc0::register_stabilized_family"
       ],

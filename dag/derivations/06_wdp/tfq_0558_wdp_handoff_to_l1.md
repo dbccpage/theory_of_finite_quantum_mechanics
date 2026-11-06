@@ -1,6 +1,6 @@
 # [TFQ-0558] wdp-handoff-to-l1
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `315f5352-fe40-5e3f-89d1-0633412de97d`  
 > **Parent Derivation**: [TFQ-0557](tfq_0557_wdp_synthesis_trunk_tiers.md)
 
@@ -30,6 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.boundary_leakage_ne_quotient_on_harmonic_cycle`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.lggrQuotientVerdict`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
 - [`lean4/PregenesisWdpHandoffToL1.lean::closed_verdict`](../../../lean4/PregenesisWdpHandoffToL1.lean)
 - [`lean4/PregenesisWdpHandoffToL1.lean::distance_at_least`](../../../lean4/PregenesisWdpHandoffToL1.lean)
 - [`lean4/PregenesisWdpHandoffToL1.lean::equal_report_passes`](../../../lean4/PregenesisWdpHandoffToL1.lean)

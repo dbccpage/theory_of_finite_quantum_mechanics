@@ -1,6 +1,6 @@
 # [TFQ-0543] wdp-incidence-orientation-transport
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `f37c8c13-16b2-5692-94eb-e7cc41619357`  
 > **Parent Derivation**: [TFQ-0542](tfq_0542_wdp_graph_cochain_host.md)
 
@@ -33,6 +33,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.edge_sign_transport_preserves_d1_d0_zero`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.edge_sign_transport_preserves_l1_residual`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.perm_intertwines_d0`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.perm_intertwines_d1`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
 - [`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::boundary_boundary_filled`](../../../lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean)
 - [`lean4/PregenesisWdpIncidenceTransport.lean::defect_charge`](../../../lean4/PregenesisWdpIncidenceTransport.lean)

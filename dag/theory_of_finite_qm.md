@@ -367,7 +367,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0290` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0291` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` (PROVED_LEAN), `L1-QM020-THM2B-MINKOWSKI` (IMPORTED_ASSUMPTION) | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-QM020-THM2B-MINKOWSKI`: scoped_natural_arithmetic_reviewed / caveat_added |
 | `TFQ-0292` | `L1_TO_L2` | `GAP` | `L1-IMP-SQRT-FIELD` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0293` | `L1_TO_L2` | `GAP` | `L1-IMP-COMPLEX-FIELD` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0293` | `L1_TO_L2` | `PROVED_LEAN` | `L1-IMP-COMPLEX-FIELD` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0294` | `L1_TO_L2` | `GAP` | `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0295` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0296` | `L1_TO_L2` | `GAP` | `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
@@ -431,7 +431,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (COMPUTATIONALLY_CHECKED) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0355` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` (OPEN), `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-IMP-HILBERT-INNER-PRODUCT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0356` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS001-GAUGE-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0357` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-WDP-CH08-C01-REPLICA-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0357` | `L1_EMERGENCE` | `PROVED_LEAN` | `L1-WDP-CH08-C01-REPLICA-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0358` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-WDP-WITNESS-MASS` (DEFINITION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0359` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM002-O022A-PHI1-QUOTIENT` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0360` | `WDP` | `SOURCE_RECORD` | `PG-ADMISSION-FLOOR` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
@@ -658,7 +658,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0540` | `WDP` | `DEFINITION` | `PGW-WDP-ASYMMETRY-INJECTION-LEDGER` (DEFINITION) | - |
 | `TFQ-0541` | `WDP` | `DEFINITION` | `PGW-WDP-RETENTION-PACKET` (DEFINITION) | - |
 | `TFQ-0542` | `WDP` | `DEFINITION` | `PGW-WDP-GRAPH-COCHAIN-HOST` (DEFINITION) | - |
-| `TFQ-0543` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT` (OPEN) | - |
+| `TFQ-0543` | `WDP` | `PROVED_LEAN` | `PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT` (PROVED_LEAN) | - |
 | `TFQ-0544` | `WDP` | `PROVED_LEAN` | `PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY` (PROVED_LEAN) | - |
 | `TFQ-0545` | `WDP` | `DEFINITION` | `PGW-WDP-CLOSURE-NEEDS-DEGREE` (DEFINITION) | - |
 | `TFQ-0546` | `WDP` | `PROVED_LEAN` | `PGW-WDP-EXACT-SEQUENCE-H1-Q1` (PROVED_LEAN) | - |
@@ -670,10 +670,10 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0552` | `WDP` | `DEFINITION` | `PGW-WDP-FINITE-VALUATIONS` (DEFINITION) | - |
 | `TFQ-0553` | `WDP` | `DEFINITION` | `PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY` (DEFINITION) | - |
 | `TFQ-0554` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-GENESIS-BRIDGES-LEDGER` (DEFINITION) | - |
-| `TFQ-0555` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-ONGOING-TO-WINDOW` (OPEN) | - |
+| `TFQ-0555` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BRIDGE-ONGOING-TO-WINDOW` (PROVED_LEAN) | - |
 | `TFQ-0556` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER` (PROVED_LEAN) | - |
 | `TFQ-0557` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-SYNTHESIS-TRUNK-TIERS` (DEFINITION) | - |
-| `TFQ-0558` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-HANDOFF-TO-L1` (OPEN) | - |
+| `TFQ-0558` | `WDP` | `PROVED_LEAN` | `PGW-WDP-HANDOFF-TO-L1` (PROVED_LEAN) | - |
 | `TFQ-0559` | `WDP` | `PROVED_LEAN` | `PGW-WD2-WORD-KERNEL-AGREEMENT` (PROVED_LEAN) | - |
 | `TFQ-0560` | `WDP` | `PROVED_LEAN` | `PGW-WD2-REFINEMENT-STABILIZATION` (PROVED_LEAN) | - |
 | `TFQ-0561` | `WDP` | `PROVED_LEAN` | `PGW-WD2-SHARP-STABILIZATION-BOUND` (PROVED_LEAN) | - |
@@ -3426,7 +3426,7 @@ Obligation: Build C⁰, C¹ and d₀ from the declared oriented graph and coeffi
 
 - UUID: `f37c8c13-16b2-5692-94eb-e7cc41619357`
 - Parent: `TFQ-0542`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
 GenesisIncidence.lean reads the declared incidence complex on vertices 0, 1, 2 with signed boundary maps on the edge basis (01, 02, 12), the admitted face 012 entering as the column (1, −1, 1), and establishes that the boundary of that face has zero boundary (boundary_boundary_filled). The WDP window instead uses coboundaries with the simplicial edge order (01, 12, 02), d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂ (Obstruction.lean), while the cyclic presentation (01, 12, 20) negates the reversed component. The monograph states that every window quantity is invariant once the cochain is transported with its edges, but no declared map takes the GenesisIncidence chains, with their edge order and boundary convention, to the WDP cochain window.
 
@@ -3546,7 +3546,7 @@ Obligation: Cite each Genesis-to-WDP bridge at its register scope (P, N, C or L)
 
 - UUID: `9bbf4493-1bac-5676-886a-9bd927e505f8`
 - Parent: `TFQ-0554`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
 GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality. This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects, and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations need new congruence proofs.
 
@@ -3576,7 +3576,7 @@ Obligation: Attach a named falsifier to each WDP result family, keep the Appendi
 
 - UUID: `315f5352-fe40-5e3f-89d1-0633412de97d`
 - Parent: `TFQ-0557`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
 WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its symbol-host integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).
 
@@ -3979,7 +3979,7 @@ Obligation: Keep the M-compatible gauge route to weighted l1 on its own hypothes
 
 - UUID: `e539275b-9f8c-5840-8f4d-f4adab3eeb1b`
 - Parent: `TFQ-0349`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 - Coda atlas: `F000.S000`
 
 DAG node L1-WDP-CH08-C01-REPLICA-L1 says l1 appears when aggregation over independent replicas is required to be extensive, and that WDP 8.5 states l2 is not excluded by that argument alone. Route L1-R-REPLICA-L1 takes L1-WDP-WINDOW-PHI1-GAMMA2 as input. The node bottleneck in the DAG text also names degree-1 homogeneity separation and a disjoint-support norm separation. Those clauses were not rechecked against the monograph body in this pass. The claim ledger row WDP-CH08-C01 is the cited anchor. AuthorityEffect is None.
@@ -4220,7 +4220,7 @@ Obligation: Import a coefficient field with the needed square roots, or refuse a
 
 - UUID: `df25fd2a-a9a7-58b1-880a-f11321a15b8d`
 - Parent: `TFQ-0292`
-- Status: `GAP`
+- Status: `PROVED_LEAN`
 - Coda atlas: `F001`, `F001.S000`, `F001.S000:001_from_primitive_difference_to_quantum_mechanics`, `F002`
 - Atlas paths:
   - `external:sha256:ddbf8bad986fa5587b534c0f96f2c4ff370f95cb696c6245df0526d4bad32351`

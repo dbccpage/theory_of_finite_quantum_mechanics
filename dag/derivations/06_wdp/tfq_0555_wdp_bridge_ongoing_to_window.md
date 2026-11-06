@@ -1,6 +1,6 @@
 # [TFQ-0555] wdp-bridge-ongoing-to-window
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `9bbf4493-1bac-5676-886a-9bd927e505f8`  
 > **Parent Derivation**: [TFQ-0554](tfq_0554_wdp_genesis_bridges_ledger.md)
 
@@ -36,6 +36,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.antisym_excess_raising_is_coboundary`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.carrier_identification_breaks_same23_loop`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.partial_filled_kernel_strictly_larger`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.symmetric_excess_invisible_to_antisym`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean)
 - [`lean4/PregenesisWdpBridgeOngoing.lean::cob_slots`](../../../lean4/PregenesisWdpBridgeOngoing.lean)
 - [`lean4/PregenesisWdpBridgeOngoing.lean::compensated_loop_closed`](../../../lean4/PregenesisWdpBridgeOngoing.lean)
