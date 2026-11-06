@@ -1,6 +1,6 @@
 # [TFQ-0536] wdp-failed-sameness
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `61c77f02-bd23-5f87-afe7-7d7010ba31b3`  
 > **Parent Derivation**: [TFQ-0360](tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md)
 
@@ -26,14 +26,17 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Local to the declared comparison; it orders nothing, says nothing about other comparisons, and the ledger binds it to prose plus the Python ground.py check with no Lean declaration.
+> Local to the declared comparison; mechanized in Lean 4 (failed_sameness_not_interchangeable, failed_sameness_is_local, failed_sameness_supplies_no_order, algebraic_difference_separation in WdpBatch2.lean) and checked in Python ground.py.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: the claim map lists WDP-CH01-P01 as prose-only; no Lean declaration states it`
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.algebraic_difference_separation`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.failed_sameness_is_local`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.failed_sameness_not_interchangeable`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.failed_sameness_supplies_no_order`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `external:sha256:39e988784c38613df38c5f88b06efee27f73f0a7a02b8069458d6e2168e498b8::primitive_difference` (private upstream source, not in this repository)

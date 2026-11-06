@@ -1,0 +1,29 @@
+import WitnessedDifference.WdpBatch2
+
+open WitnessedDifference.WdpBatch2
+
+#print axioms failed_sameness_not_interchangeable
+#print axioms failed_sameness_is_local
+#print axioms failed_sameness_supplies_no_order
+#print axioms algebraic_difference_separation
+#print axioms active_closure_forces_positive_phi
+#print axioms diagnostic_trichotomy_exclusive_exhaustive
+#print axioms no_reverse_bound_when_h1_nontrivial
+#print axioms gamma2_quotient_norm_laws
+#print axioms irrational_weight_accumulation_violates_trichotomy
+#print axioms tetrahedron_d2_d1_zero
+#print axioms degree_k_window_exact_and_bounded
+#print axioms finite_graph_divergence_sum_zero
+#print axioms gauss_law_necessary_zero_sum
+#print axioms cycle_pairing_gauge_invariant
+#print axioms rp2_delta1_delta0_zero
+#print axioms rp2_delta1_double_right_inverse
+#print axioms rp2_column_sum_even
+#print axioms rp2_no_integral_repair_for_single_triangle
+#print axioms raw_completion_lower_bound
+#print axioms quotient_completion_lower_bound
+#print axioms sharp_joint_completion_lower_bound
+#print axioms sharp_joint_gap_identity
+#print axioms sharp_observer_completion_formula_gen_wdp_70
+#print axioms equal_image_regime_reduction
+#print axioms native_repair_realization_iff_preimage

@@ -18,4 +18,8 @@ open Wd2
 #print axioms factored_report_preserves_polyRelated
 #print axioms factored_report_preserves_related
 #print axioms unfactored_report_splits_r0
+#print axioms rInfinity_iff_word_kernel
+#print axioms stabilized_polyRelated_iff_rInfinity
+#print axioms rInfinity_coarsest_congruence
+#print axioms minimal_deterministic_quotient_factorization
 

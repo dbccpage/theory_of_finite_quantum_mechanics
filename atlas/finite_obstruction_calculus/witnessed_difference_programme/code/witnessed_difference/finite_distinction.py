@@ -231,6 +231,52 @@ def factored_report_profile() -> dict[str, object]:
     return {"reports_preserved": preserved, "escape_length": escape}
 
 
+def minimal_quotient_profile() -> dict[str, object]:
+    """Verify WD2-T6 minimal deterministic quotient factorization on a redundant 4-state machine."""
+    # States 0, 1 have identical observation 0 and step to 2, 3 which have observation 1 and loop.
+    # Intermediate congruence: {(0,), (1,), (2, 3)} has 3 classes; R_inf has 2 classes: {(0, 1), (2, 3)}.
+    transitions = {
+        (0, "a"): 2,
+        (0, "b"): 0,
+        (1, "a"): 3,
+        (1, "b"): 1,
+        (2, "a"): 2,
+        (2, "b"): 3,
+        (3, "a"): 3,
+        (3, "b"): 2,
+    }
+    observations = {0: 0, 1: 0, 2: 1, 3: 1}
+    machine = MooreMachine(
+        (0, 1, 2, 3),
+        ("a", "b"),
+        lambda state, symbol: transitions[(int(state), str(symbol))],
+        lambda state: observations[int(state)],
+    )
+    horizon, initial, stable = stabilized(machine)
+    r_inf_sigs = horizon_signatures(machine, horizon)[horizon]
+    # Compatible intermediate quotient q_mid: 0 -> "q0", 1 -> "q1", 2 -> "q23", 3 -> "q23"
+    q_mid = {0: "q0", 1: "q1", 2: "q23", 3: "q23"}
+    # Check that every q_mid class is contained in a single R_inf class (comparison map well-defined)
+    comparison_map: dict[str, tuple] = {}
+    well_defined = True
+    for s in machine.states:
+        cls_q = q_mid[int(s)]
+        sig = r_inf_sigs[s]
+        if cls_q in comparison_map and comparison_map[cls_q] != sig:
+            well_defined = False
+        comparison_map[cls_q] = sig
+    surjective = set(comparison_map.values()) == set(r_inf_sigs.values())
+    return {
+        "N": horizon,
+        "b0": initial,
+        "r_inf_classes": stable,
+        "intermediate_classes": len(set(q_mid.values())),
+        "comparison_well_defined": well_defined,
+        "comparison_surjective": surjective,
+        "cardinality_lower_bound": stable <= len(set(q_mid.values())),
+    }
+
+
 __all__ = [
     "MooreMachine",
     "FiniteAutomaton",
@@ -247,4 +293,6 @@ __all__ = [
     "sharp_profile",
     "no_escape_profile",
     "factored_report_profile",
+    "minimal_quotient_profile",
 ]
+

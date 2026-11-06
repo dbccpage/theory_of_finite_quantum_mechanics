@@ -1,6 +1,6 @@
 # [TFQ-0571] wdp-out-1-sharp-observer-completion
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `119be2b2-5fc1-5959-9a23-5786145b9d39`  
 > **Parent Derivation**: [TFQ-0570](tfq_0570_wdp_bridge_o05_authorization_firewall.md)
 
@@ -26,14 +26,16 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Written linear-algebra proof over Q and exact 3-dimensional Python witness exist; Lean 4 formalization of the general subspace dimension identity and physical repair realization remain open.
+> Mechanized in Lean 4 (sharp_observer_completion_formula_gen_wdp_70, equal_image_regime_reduction, and native_repair_realization_iff_preimage in WdpBatch2.lean) and checked in Python exact_linear.py.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: Lean 4 subspace-dimension proof for GEN-WDP-70 is open`
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.equal_image_regime_reduction`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.native_repair_realization_iff_preimage`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.sharp_observer_completion_formula_gen_wdp_70`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: checked in Python exact rational linear algebra`

@@ -14,13 +14,13 @@ The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction ca
 
 | DAG Status | Count | Pre-Merge Disposition for `omega_codex` |
 |---|---:|---|
-| `PROVED_LEAN` | 17 | **Discharged in Lean 4** (zero `sorry`/`admit`; ready for `omega_codex` merge; includes 5 Batch 1 WD2 proofs). |
+| `PROVED_LEAN` | 22 | **Discharged in Lean 4** (zero `sorry`/`admit`; ready for `omega_codex` merge; includes 6 WD2 proofs + 4 Batch 2 WDP proofs). |
 | `DEFINITION` | 18 | **Declared Structural Definitions** (ready for `omega_codex` merge). |
-| `PROVED_PROSE` | 10 | **Owed — Finite & Tractable Now (Tier A2)**: Written proofs exist in WDP; mechanize in Lean 4 before merge. |
+| `PROVED_PROSE` | 6 | **Owed — Finite & Tractable Now (Tier A2)**: Written proofs exist in WDP; mechanize in Lean 4 before merge. |
 | `COMPUTATIONALLY_CHECKED` | 2 | **Owed — Finite & Tractable Now (Tier A3)**: Checked in Python/Rust; mechanize general theorem in Lean 4 before merge. |
 | `CONDITIONAL` | 3 | **Owed — Finite & Tractable Now (Tier A3/B)**: Discharge finite LP duality / fiber-observer / realification bridge in Lean 4. |
-| `OPEN` | 18 | **10 Finite & Tractable Now** (1 `WD2` + 9 finite algebraic/cochain) vs **8 Deferred Continuum/External**. |
-| **Total Core WDP/WD2 Nodes** | **68** | **35 Discharged/Definitions, 25 Finite & Tractable Pre-Merge, 8 Deferred Continuum/External** |
+| `OPEN` | 17 | **9 Finite & Tractable Now** (finite algebraic/cochain) vs **8 Deferred Continuum/External**. |
+| **Total Core WDP/WD2 Nodes** | **68** | **40 Discharged/Definitions, 20 Finite & Tractable Pre-Merge, 8 Deferred Continuum/External** |
 
 ---
 
@@ -28,19 +28,15 @@ The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction ca
 
 ```mermaid
 flowchart TD
-    subgraph S_DONE["Substantiated Spine (35 Core Nodes: 17 PROVED_LEAN, 18 DEFINITION)"]
+    subgraph S_DONE["Substantiated Spine (40 Core Nodes: 22 PROVED_LEAN, 18 DEFINITION)"]
         WDP_CORE["PG-WDP-QUOTIENT-EXACT-SEQUENCE<br/>PGW-WDP-EXACT-SEQUENCE-H1-Q1<br/>PGW-WDP-FILLED-TRIANGLE (PROVED_LEAN)"]
-        WD2_T1["PGW-WD2-WORD-KERNEL / REFINEMENT /<br/>SHARP-BOUND / NO-ESCAPE / SHORTEST-WORD /<br/>FACTORED-REPORT (TFQ-0559..0564, PROVED_LEAN)"]
+        WD2_T1["PGW-WD2-WORD-KERNEL / REFINEMENT / SHARP-BOUND /<br/>NO-ESCAPE / SHORTEST-WORD / FACTORED-REPORT /<br/>MINIMAL-QUOTIENT (TFQ-0559..0565, PROVED_LEAN)"]
+        WDP_B2["PGW-WDP-FAILED-SAMENESS (TFQ-0536)<br/>PGW-WDP-TRICHOTOMY-BOUNDS (TFQ-0547)<br/>PGW-WDP-DEGREE-K-TORSION-BALANCE (TFQ-0549)<br/>PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION (TFQ-0571)"]
         QM_SPINE["PGW-WDP-ADDITIVE-TENSOR-COMPLETION<br/>PGW-WDP-DAGGER-OBSERVER-GRAM-RADICAL<br/>PGW-WDP-FINITE-HERMITIANIZATION (PROVED_LEAN)"]
     end
 
-    subgraph S_TIER_A1["Tier A1: Remaining WD2 Finite Distinction Lean 4 Mechanization (1 Node — FINITE & TRACTABLE NOW)"]
-        WD2_T6["PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT (TFQ-0565)"]
-    end
-
-    subgraph S_TIER_A2["Tier A2: 10 PROVED_PROSE Theorems Awaiting Lean 4 Mechanization (FINITE & TRACTABLE NOW)"]
-        WDP_PROSE_CORE["PGW-WDP-FAILED-SAMENESS (TFQ-0536)<br/>PGW-WDP-TRICHOTOMY-BOUNDS (TFQ-0547)<br/>PGW-WDP-DEGREE-K-TORSION-BALANCE (TFQ-0549)"]
-        WDP_OUT_1_5["PGW-WDP-OUT-1..5: Observer Completion, Star-Shaped Swap,<br/>8-State Table, Rejection Reuse, h=2 Compression (TFQ-0571..0575)"]
+    subgraph S_TIER_A2["Tier A2: 6 Remaining PROVED_PROSE Theorems Awaiting Lean 4 Mechanization (FINITE & TRACTABLE NOW)"]
+        WDP_OUT_2_5["PGW-WDP-OUT-2..5: Star-Shaped Swap,<br/>8-State Table, Rejection Reuse, h=2 Compression (TFQ-0572..0575)"]
         WDP_QM_PROSE["PGW-WDP-BORN-RULE-NONSELECTION (TFQ-0579)<br/>PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION (TFQ-0580)"]
     end
 
@@ -54,9 +50,8 @@ flowchart TD
         EXT_BRIDGES["PG-WDP-GENESIS-BRIDGE-OBLIGATIONS (TFQ-0343)<br/>PGW-WDP-BRIDGE-O02 (Physical Actuation)<br/>PGW-WDP-BRIDGE-O04 (Continuum Hilbert)<br/>PGW-WDP-BRIDGE-O05 (Institutional Jurisdiction)"]
     end
 
-    WD2_T1 --> WD2_T6
-    WDP_CORE --> WDP_PROSE_CORE --> FIN_BRIDGES
-    WDP_OUT_1_5 --> QM_SPINE --> WDP_QM_PROSE --> FIN_TARGETS
+    WDP_CORE --> WDP_B2 --> FIN_BRIDGES
+    WDP_OUT_2_5 --> QM_SPINE --> WDP_QM_PROSE --> FIN_TARGETS
     FIN_TARGETS --> CONT_MERON
     FIN_BRIDGES --> EXT_BRIDGES
 ```
@@ -65,9 +60,9 @@ flowchart TD
 
 ## 3. Pre-Merge Action Queue: The Finite & Tractable Obligations (`COMPLETE_BEFORE_OMEGA_CODEX_MERGE`)
 
-### 3.1 Tier A1: `WD2` Finite Distinction Carrier Lean 4 Proofs (5 Discharged in Batch 1, 1 Remaining)
+### 3.1 Tier A1: `WD2` Finite Distinction Carrier Lean 4 Proofs (All 6 Discharged in Batches 1–2)
 
-All 6 items have complete written prose proofs in `docs/01_substantiated/wd2_finite_distinction_carriers.md` and passing finite Python witnesses in `code/witnessed_difference/finite_distinction.py`. Five have been mechanized in Lean 4 in `lean4/WitnessedDifference/FiniteDistinction.lean` (Batch 1), leaving `TFQ-0565` (`WD2-T6`) for Batch 2:
+All 6 items have complete written prose proofs in `docs/01_substantiated/wd2_finite_distinction_carriers.md`, passing finite Python witnesses in `code/witnessed_difference/finite_distinction.py`, and mechanized Lean 4 proofs in `lean4/WitnessedDifference/FiniteDistinction.lean`:
 
 | Node ID | TFQ Record | Current Status | Concrete In-Repo Completion Action |
 |---|---|---|---|
@@ -76,18 +71,18 @@ All 6 items have complete written prose proofs in `docs/01_substantiated/wd2_fin
 | `PGW-WD2-NO-ESCAPE-UPDATE-CONGRUENCE` | `TFQ-0562` | `PROVED_LEAN` | Discharged in `FiniteDistinction.lean::Wd2.no_escape_equivalence` and `Wd2.isUpdateCongruence_iff_r1_eq_r0`. |
 | `PGW-WD2-SHORTEST-SEPARATING-WORD` | `TFQ-0563` | `PROVED_LEAN` | Discharged in `FiniteDistinction.lean::Wd2.shortest_separating_word`. |
 | `PGW-WD2-FACTORED-REPORT-PRESERVATION` | `TFQ-0564` | `PROVED_LEAN` | Discharged in `FiniteDistinction.lean::Wd2.factored_report_preserves_related`, `Wd2.factored_report_preserves_polyRelated`, and `Wd2.unfactored_report_splits_r0`. |
-| `PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT` | `TFQ-0565` | `OPEN` | Mechanize Theorem WD2-T6 (coarsest observation-preserving update congruence S / R_infinity) in FiniteDistinction.lean and bridge to BehavioralQuotient.lean. |
+| `PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT` | `TFQ-0565` | `PROVED_LEAN` | Discharged in `FiniteDistinction.lean::Wd2.rInfinity_coarsest_congruence` and `Wd2.minimal_deterministic_quotient_factorization`. |
 
-### 3.2 Tier A2: 10 `PROVED_PROSE` WDP Theorems Awaiting Lean 4 Mechanization
+### 3.2 Tier A2: 10 `PROVED_PROSE` WDP Theorems (4 Discharged in Batch 2, 6 Remaining)
 
-These 10 nodes already have written mathematical proofs in the WDP monograph or `docs/01_substantiated/derivations/` plus exact Python/Rust checks, and are finite theorems ready for Lean 4 formalization:
+These 10 nodes have written mathematical proofs in the WDP monograph or `docs/01_substantiated/derivations/` plus exact Python/Rust checks; 4 have been mechanized in `lean4/WitnessedDifference/WdpBatch2.lean` in Batch 2:
 
 | Node ID | TFQ Record | Current Status | Concrete In-Repo Completion Action |
 |---|---|---|---|
-| `PGW-WDP-FAILED-SAMENESS` | `TFQ-0536` | `PROVED_PROSE` | Mechanize the finite failed-sameness witness theorem in Lean 4 on declared finite carriers. |
-| `PGW-WDP-TRICHOTOMY-BOUNDS` | `TFQ-0547` | `PROVED_PROSE` | Mechanize the finite diagnostic trichotomy rank inequalities in Lean 4. |
-| `PGW-WDP-DEGREE-K-TORSION-BALANCE` | `TFQ-0549` | `PROVED_PROSE` | Mechanize the degree-k integer vs rational torsion-balance comparison in Lean 4. |
-| `PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` | `TFQ-0571` | `PROVED_PROSE` | Mechanize the subspace-dimension row-completion formula dim(R cap B_1) - dim(R cap B_1 cap ker O_0) over Q in Lean 4. |
+| `PGW-WDP-FAILED-SAMENESS` | `TFQ-0536` | `PROVED_LEAN` | Discharged in `WdpBatch2.lean::failed_sameness_not_interchangeable`, `failed_sameness_is_local`, `failed_sameness_supplies_no_order`, and `algebraic_difference_separation`. |
+| `PGW-WDP-TRICHOTOMY-BOUNDS` | `TFQ-0547` | `PROVED_LEAN` | Discharged in `WdpBatch2.lean::diagnostic_trichotomy_exclusive_exhaustive`, `no_reverse_bound_when_h1_nontrivial`, `gamma2_quotient_norm_laws`, and `irrational_weight_accumulation_violates_trichotomy`. |
+| `PGW-WDP-DEGREE-K-TORSION-BALANCE` | `TFQ-0549` | `PROVED_LEAN` | Discharged in `WdpBatch2.lean::tetrahedron_d2_d1_zero`, `degree_k_window_exact_and_bounded`, `finite_graph_divergence_sum_zero`, and `rp2_no_integral_repair_for_single_triangle`. |
+| `PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` | `TFQ-0571` | `PROVED_LEAN` | Discharged in `WdpBatch2.lean::sharp_observer_completion_formula_gen_wdp_70`, `equal_image_regime_reduction`, and `native_repair_realization_iff_preimage`. |
 | `PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE` | `TFQ-0572` | `PROVED_PROSE` | Mechanize the Appendix P.20 star-shaped guarded swap loop contraction theorem in Lean 4. |
 | `PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION` | `TFQ-0573` | `PROVED_PROSE` | Mechanize the 8-state realizable static vs unrestricted partition cost separation in Lean 4. |
 | `PGW-WDP-OUT-4-REJECTION-RULE-REUSE` | `TFQ-0574` | `PROVED_PROSE` | Mechanize the 9-element image-carrier rejection-rule pushforward and NO_RULE abstention theorem in Lean 4. |
@@ -135,9 +130,9 @@ These 8 obligations require infinite-volume/continuum limits ($L, M \to \infty$)
 
 ---
 
-## 5. Already Discharged Core WDP/WD2 Nodes (35 Substantiated Nodes)
+## 5. Already Discharged Core WDP/WD2 Nodes (40 Substantiated Nodes)
 
-### 5.1 Formally Verified in Lean 4 (`PROVED_LEAN` — 17 Nodes)
+### 5.1 Formally Verified in Lean 4 (`PROVED_LEAN` — 22 Nodes)
 
 | Node ID | TFQ Record | Stage | Lean 4 Witness(es) |
 |---|---|---|---|
@@ -152,6 +147,11 @@ These 8 obligations require infinite-volume/continuum limits ($L, M \to \infty$)
 | `PGW-WD2-NO-ESCAPE-UPDATE-CONGRUENCE` | `TFQ-0562` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean::Wd2.no_escape_equivalence`<br/>`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean::Wd2.isUpdateCongruence_iff_r1_eq_r0` |
 | `PGW-WD2-SHORTEST-SEPARATING-WORD` | `TFQ-0563` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean::Wd2.shortest_separating_word` |
 | `PGW-WD2-FACTORED-REPORT-PRESERVATION` | `TFQ-0564` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean::Wd2.factored_report_preserves_related`<br/>`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean::Wd2.unfactored_report_splits_r0` |
+| `PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT` | `TFQ-0565` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean::Wd2.rInfinity_coarsest_congruence`<br/>`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean::Wd2.minimal_deterministic_quotient_factorization` |
+| `PGW-WDP-FAILED-SAMENESS` | `TFQ-0536` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.failed_sameness_not_interchangeable`<br/>`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.algebraic_difference_separation` |
+| `PGW-WDP-TRICHOTOMY-BOUNDS` | `TFQ-0547` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::WitnessedDifference.closure_charge_le_opnorm_mul_phi`<br/>`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.diagnostic_trichotomy_exclusive_exhaustive` |
+| `PGW-WDP-DEGREE-K-TORSION-BALANCE` | `TFQ-0549` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.tetrahedron_d2_d1_zero`<br/>`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.rp2_no_integral_repair_for_single_triangle` |
+| `PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` | `TFQ-0571` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.sharp_observer_completion_formula_gen_wdp_70`<br/>`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.equal_image_regime_reduction` |
 | `PGW-WDP-ADDITIVE-TENSOR-COMPLETION` | `TFQ-0576` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/AdditiveTensorCompletion.lean::WDP.AdditiveTensorCompletion.grothendieck_extension`<br/>`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/AdditiveTensorCompletion.lean::WDP.AdditiveTensorCompletion.tensorFactor_unique` |
 | `PGW-WDP-DAGGER-OBSERVER-GRAM-RADICAL` | `TFQ-0577` | `WDP` | `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/DaggerObserverPairing.lean::WDP.DaggerObserverPairing.observerPairing_self_nonnegative`<br/>`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/DaggerObserverPairing.lean::WDP.DaggerObserverPairing.observerPairing_self_zero_iff_kernel` |
 | `PGW-WDP-EXACT-SEQUENCE-H1-Q1` | `TFQ-0546` | `WDP` | `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_exact_sequence`<br/>`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_well_defined` |

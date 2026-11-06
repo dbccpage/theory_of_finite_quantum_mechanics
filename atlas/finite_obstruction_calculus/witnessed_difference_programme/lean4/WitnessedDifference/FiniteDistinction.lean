@@ -558,5 +558,189 @@ theorem unfactored_report_splits_r0 :
   | succ n ih =>
       simp [related, ih]
 
+/-!
+## 6. Minimal Deterministic Quotient (WD2-T6)
+-/
+
+/-- The stabilized asymptotic equivalence relation `R_∞`, defined as agreement at every
+finite horizon `n`. -/
+def RInfinity {S A Y : Type} (observe : S → Y) (update : S → A → S) (s t : S) : Prop :=
+  ∀ n : Nat, PolyRelated observe update n s t
+
+/-- `RInfinity` is equivalent to agreement of `observe (polyRunWord update · w)` on all finite
+words `w : List A`. -/
+theorem rInfinity_iff_word_kernel {S A Y : Type}
+    (observe : S → Y) (update : S → A → S) (s t : S) :
+    RInfinity observe update s t ↔
+      ∀ w : List A, observe (polyRunWord update s w) = observe (polyRunWord update t w) := by
+  constructor
+  · intro h w
+    exact (poly_word_kernel_agreement observe update w.length s t).mp (h w.length) w (Nat.le_refl _)
+  · intro h n
+    apply (poly_word_kernel_agreement observe update n s t).mpr
+    intro w _
+    exact h w
+
+/-- Theorem WD2-T6 (part 1): `RInfinity` is an observation-preserving update congruence and
+contains every observation-preserving update congruence on `S` (it is the coarsest such relation). -/
+theorem rInfinity_coarsest_congruence {S A Y : Type}
+    (observe : S → Y) (update : S → A → S) :
+    (∀ s t, RInfinity observe update s t → observe s = observe t) ∧
+    (∀ a s t, RInfinity observe update s t →
+      RInfinity observe update (update s a) (update t a)) ∧
+    (∀ (R : S → S → Prop),
+      (∀ s t, R s t → observe s = observe t) →
+      (∀ a s t, R s t → R (update s a) (update t a)) →
+      ∀ s t, R s t → RInfinity observe update s t) := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro s t h
+    exact h 0
+  · intro a s t h n
+    exact (h (n + 1)).2 a
+  · intro R hobs hupd s t hR n
+    induction n generalizing s t with
+    | zero => exact hobs s t hR
+    | succ n ih => exact ⟨hobs s t hR, fun a => ih (update s a) (update t a) (hupd a s t hR)⟩
+
+/-- When `PolyRelated` stabilizes at horizon `N`, `PolyRelated observe update N` coincides with
+`RInfinity observe update`. -/
+theorem stabilized_polyRelated_iff_rInfinity {S A Y : Type}
+    (observe : S → Y) (update : S → A → S) (N : Nat)
+    (hstab : ∀ s t, PolyRelated observe update N s t → PolyRelated observe update (N + 1) s t)
+    (s t : S) :
+    PolyRelated observe update N s t ↔ RInfinity observe update s t := by
+  constructor
+  · intro hN
+    apply (rInfinity_coarsest_congruence observe update).2.2 (PolyRelated observe update N)
+    · intro x y hxy
+      exact polyRelated_observe hxy
+    · intro a x y hxy
+      exact (hstab x y hxy).2 a
+    · exact hN
+  · intro hInf
+    exact hInf N
+
+/-- `RInfinity` forms a `Setoid` on `S`. -/
+def rInfinitySetoid {S A Y : Type} (observe : S → Y) (update : S → A → S) : Setoid S where
+  r := RInfinity observe update
+  iseqv := {
+    refl := fun x n => by
+      rw [poly_word_kernel_agreement]
+      intro _ _
+      rfl
+    symm := fun h n => by
+      rw [poly_word_kernel_agreement]
+      intro w hw
+      exact ((poly_word_kernel_agreement observe update n _ _).mp (h n) w hw).symm
+    trans := fun h1 h2 n => by
+      rw [poly_word_kernel_agreement]
+      intro w hw
+      exact ((poly_word_kernel_agreement observe update n _ _).mp (h1 n) w hw).trans
+        ((poly_word_kernel_agreement observe update n _ _).mp (h2 n) w hw)
+  }
+
+/-- The minimal deterministic quotient carrier `S / R_∞`. -/
+abbrev MinimalQuotient {S A Y : Type} (observe : S → Y) (update : S → A → S) :=
+  Quotient (rInfinitySetoid observe update)
+
+/-- Descended observation map on `S / R_∞`. -/
+def minimalObserve {S A Y : Type} (observe : S → Y) (update : S → A → S) :
+    MinimalQuotient observe update → Y :=
+  Quotient.lift observe (fun s t h => (rInfinity_coarsest_congruence observe update).1 s t h)
+
+/-- Descended update map on `S / R_∞`. -/
+def minimalUpdate {S A Y : Type} (observe : S → Y) (update : S → A → S) :
+    MinimalQuotient observe update → A → MinimalQuotient observe update :=
+  fun q a =>
+    Quotient.lift
+      (fun s => Quotient.mk (rInfinitySetoid observe update) (update s a))
+      (fun s t h => Quotient.sound ((rInfinity_coarsest_congruence observe update).2.1 a s t h))
+      q
+
+/-- Descended observation on any compatible deterministic quotient `Quotient R`. -/
+def congruenceObserve {S Y : Type} (observe : S → Y) (R : Setoid S)
+    (hobserve : ∀ s t, R.r s t → observe s = observe t) : Quotient R → Y :=
+  Quotient.lift observe hobserve
+
+/-- Descended update on any compatible deterministic quotient `Quotient R`. -/
+def congruenceUpdate {S A : Type} (update : S → A → S) (R : Setoid S)
+    (hupdate : ∀ a s t, R.r s t → R.r (update s a) (update t a)) :
+    Quotient R → A → Quotient R :=
+  fun q a =>
+    Quotient.lift (fun s => Quotient.mk R (update s a))
+      (fun s t h => Quotient.sound (hupdate a s t h)) q
+
+/-- Canonical comparison map from any compatible deterministic quotient `Quotient R` to `S / R_∞`. -/
+def comparisonMap {S A Y : Type} (observe : S → Y) (update : S → A → S)
+    (R : Setoid S)
+    (hobserve : ∀ s t, R.r s t → observe s = observe t)
+    (hupdate : ∀ a s t, R.r s t → R.r (update s a) (update t a)) :
+    Quotient R → MinimalQuotient observe update :=
+  Quotient.lift (Quotient.mk (rInfinitySetoid observe update))
+    (fun s t h => Quotient.sound
+      ((rInfinity_coarsest_congruence observe update).2.2 R.r hobserve hupdate s t h))
+
+theorem minimal_runWord {S A Y : Type} (observe : S → Y) (update : S → A → S)
+    (s : S) (w : List A) :
+    polyRunWord (minimalUpdate observe update)
+      (Quotient.mk (rInfinitySetoid observe update) s) w =
+      Quotient.mk (rInfinitySetoid observe update) (polyRunWord update s w) := by
+  induction w generalizing s with
+  | nil => rfl
+  | cons a w' ih => exact ih (update s a)
+
+/-- Theorem WD2-T6 (part 2, minimal deterministic quotient factorization):
+For any observation-preserving update congruence `R : Setoid S`, the canonical comparison map
+`comparisonMap` from `Quotient R` to the minimal deterministic quotient `MinimalQuotient` (`S / R_∞`):
+(1) commutes with the quotient projections,
+(2) preserves the descended observation map,
+(3) intertwines all descended update actions,
+(4) is surjective onto `S / R_∞`,
+(5) is the unique map commuting with the quotient projections, and
+(6) `S / R_∞` itself has no distinct `RInfinity`-indistinguishable classes. -/
+theorem minimal_deterministic_quotient_factorization {S A Y : Type}
+    (observe : S → Y) (update : S → A → S)
+    (R : Setoid S)
+    (hobserve : ∀ s t, R.r s t → observe s = observe t)
+    (hupdate : ∀ a s t, R.r s t → R.r (update s a) (update t a)) :
+    let π := comparisonMap observe update R hobserve hupdate
+    (∀ x : S,
+      π (Quotient.mk R x) = Quotient.mk (rInfinitySetoid observe update) x) ∧
+    (∀ q : Quotient R,
+      minimalObserve observe update (π q) = congruenceObserve observe R hobserve q) ∧
+    (∀ a : A, ∀ q : Quotient R,
+      π (congruenceUpdate update R hupdate q a) =
+        minimalUpdate observe update (π q) a) ∧
+    (∀ q : MinimalQuotient observe update, ∃ p : Quotient R, π p = q) ∧
+    (∀ g : Quotient R → MinimalQuotient observe update,
+      (∀ x : S, g (Quotient.mk R x) = Quotient.mk (rInfinitySetoid observe update) x) →
+      g = π) ∧
+    (∀ p q : MinimalQuotient observe update,
+      RInfinity (minimalObserve observe update) (minimalUpdate observe update) p q →
+      p = q) := by
+  dsimp only
+  refine ⟨fun _ => rfl, ?_, ?_, ?_, ?_, ?_⟩
+  · intro q
+    refine Quotient.inductionOn q (fun _ => rfl)
+  · intro a q
+    refine Quotient.inductionOn q (fun _ => rfl)
+  · intro q
+    refine Quotient.inductionOn q (fun x => ⟨Quotient.mk R x, rfl⟩)
+  · intro g hg
+    funext q
+    refine Quotient.inductionOn q (fun x => hg x)
+  · intro p q
+    refine Quotient.inductionOn₂ p q ?_
+    intro x y hxy
+    apply Quotient.sound
+    apply (rInfinity_iff_word_kernel observe update x y).mpr
+    intro w
+    have hw := (rInfinity_iff_word_kernel
+      (minimalObserve observe update) (minimalUpdate observe update)
+      (Quotient.mk (rInfinitySetoid observe update) x)
+      (Quotient.mk (rInfinitySetoid observe update) y)).mp hxy w
+    rw [minimal_runWord, minimal_runWord] at hw
+    exact hw
+
 end Wd2
 

@@ -651,7 +651,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0533` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-MSSN-ROWS-1-TO-6-SPECIFIED` (DEFINITION) | - |
 | `TFQ-0534` | `MSSN_SN` | `PROVED_LEAN` | `PGW-MSSN-CIRCULATION-OBSTRUCTION` (PROVED_LEAN) | - |
 | `TFQ-0535` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-MSSN-L1-CUTS-HODGE-ROWS` (DEFINITION) | - |
-| `TFQ-0536` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-FAILED-SAMENESS` (PROVED_PROSE) | - |
+| `TFQ-0536` | `WDP` | `PROVED_LEAN` | `PGW-WDP-FAILED-SAMENESS` (PROVED_LEAN) | - |
 | `TFQ-0537` | `WDP` | `PROVED_LEAN` | `PGW-WDP-POINTED-APARTNESS` (PROVED_LEAN) | - |
 | `TFQ-0538` | `WDP` | `DEFINITION` | `PGW-WDP-QUOTIENT-DEFECT-ROOT-P` (DEFINITION) | - |
 | `TFQ-0539` | `WDP` | `DEFINITION` | `PGW-WDP-SEVEN-WITNESS-ROLES` (DEFINITION) | - |
@@ -662,9 +662,9 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0544` | `WDP` | `CONDITIONAL` | `PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY` (CONDITIONAL) | - |
 | `TFQ-0545` | `WDP` | `DEFINITION` | `PGW-WDP-CLOSURE-NEEDS-DEGREE` (DEFINITION) | - |
 | `TFQ-0546` | `WDP` | `PROVED_LEAN` | `PGW-WDP-EXACT-SEQUENCE-H1-Q1` (PROVED_LEAN) | - |
-| `TFQ-0547` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-TRICHOTOMY-BOUNDS` (PROVED_PROSE) | - |
+| `TFQ-0547` | `WDP` | `PROVED_LEAN` | `PGW-WDP-TRICHOTOMY-BOUNDS` (PROVED_LEAN) | - |
 | `TFQ-0548` | `WDP` | `PROVED_LEAN` | `PGW-WDP-FILLED-TRIANGLE` (PROVED_LEAN) | - |
-| `TFQ-0549` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-DEGREE-K-TORSION-BALANCE` (PROVED_PROSE) | - |
+| `TFQ-0549` | `WDP` | `PROVED_LEAN` | `PGW-WDP-DEGREE-K-TORSION-BALANCE` (PROVED_LEAN) | - |
 | `TFQ-0550` | `WDP` | `DEFINITION` | `PGW-WDP-SUCCESSION-STRICT-ORDER` (DEFINITION) | - |
 | `TFQ-0551` | `WDP` | `DEFINITION` | `PGW-WDP-DURATION-EXACTNESS-PERIOD-WITNESS` (DEFINITION) | - |
 | `TFQ-0552` | `WDP` | `DEFINITION` | `PGW-WDP-FINITE-VALUATIONS` (DEFINITION) | - |
@@ -680,13 +680,13 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0562` | `WDP` | `PROVED_LEAN` | `PGW-WD2-NO-ESCAPE-UPDATE-CONGRUENCE` (PROVED_LEAN) | - |
 | `TFQ-0563` | `WDP` | `PROVED_LEAN` | `PGW-WD2-SHORTEST-SEPARATING-WORD` (PROVED_LEAN) | - |
 | `TFQ-0564` | `WDP` | `PROVED_LEAN` | `PGW-WD2-FACTORED-REPORT-PRESERVATION` (PROVED_LEAN) | - |
-| `TFQ-0565` | `WDP` | `OPEN_OBLIGATION` | `PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT` (OPEN) | - |
+| `TFQ-0565` | `WDP` | `PROVED_LEAN` | `PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT` (PROVED_LEAN) | - |
 | `TFQ-0566` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` (OPEN) | - |
 | `TFQ-0567` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR` (OPEN) | - |
 | `TFQ-0568` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE` (OPEN) | - |
 | `TFQ-0569` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION` (OPEN) | - |
 | `TFQ-0570` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` (OPEN) | - |
-| `TFQ-0571` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` (PROVED_PROSE) | - |
+| `TFQ-0571` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` (PROVED_LEAN) | - |
 | `TFQ-0572` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE` (PROVED_PROSE) | - |
 | `TFQ-0573` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION` (PROVED_PROSE) | - |
 | `TFQ-0574` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-OUT-4-REJECTION-RULE-REUSE` (PROVED_PROSE) | - |
@@ -3356,7 +3356,7 @@ Obligation: Supply the admitted cut (X, E, tau, K) as data, and do not obtain a 
 
 - UUID: `61c77f02-bd23-5f87-afe7-7d7010ba31b3`
 - Parent: `TFQ-0360`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 WDP-CH01-P01: within a fixed comparison family K, a failed declared sameness comparison Same_K(p, q) = 0 exhibits that the two compared presentations are not interchangeable under that comparison. The statement is local: it does not say the presentations differ under every comparison, does not make the failure intrinsic to the tokens, and supplies no order. A failed comparison is a residual at the level of predicates; encoding it as p − q is a stronger step that presupposes subtraction, scalars and a zero.
 
@@ -3466,7 +3466,7 @@ Obligation: Construct κ¹ on the repair quotient from an additive d₁ with a d
 
 - UUID: `45decd49-4235-54ad-ad92-42e148b8f311`
 - Parent: `TFQ-0546`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 WDP-CH04-P04: in a window with d₁d₀ = 0 and a norm J meeting the norm hypothesis, every class [h] ∈ Q¹ has exactly one of ExactClass ([h] = 0), ClosedResidual ([h] ≠ 0 and Γ₂ = 0) or ActiveClosureFailure (Γ₂ > 0); Φ₁ = 0 exactly on ExactClass, and every active class has Φ₁ > 0. WDP-CH04-P05: Φ₁, Γ₂ ≥ 0, Γ₂ = 0 iff [h] ∈ H¹, Γ₂ ≤ ‖d₁‖_{J→1}Φ₁ (repair invariance of d₁h, then the infimum), no constant c > 0 gives Γ₂ ≥ cΦ₁ when H¹ ≠ 0, and Γ₂ is a norm on Q¹/H¹. WDP-CH04-P06: if Φ₁ > 0 then 0 ≤ R_cl ≤ ‖d₁‖_{J→1}, and the normalized ratio is undefined (0/0) when d₁ = 0. The norm hypothesis (ℝ, ℂ, or ℚ with J restricted from a norm on the real extension) is needed: J(x) = |x₀₁ + √2 x₁₂ + √3 x₀₂| is a norm on ℚ³, yet on the filled triangle with δ = (1, 1, 0) its repair values accumulate at 0, so Φ₁ = 0 while Γ₂ = 2.
 
@@ -3486,7 +3486,7 @@ Obligation: Reproduce the filled-triangle signature exactly over ℚ (d₁d₀ =
 
 - UUID: `efae4646-2dbd-5c7a-8e23-071f2c56783b`
 - Parent: `TFQ-0004`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 WDP-CH05-P03: on a finite oriented simplicial complex δ^{k+1}δ^k = 0 for every k, since each k-face of a (k+2)-simplex arises by deleting two vertices in either order with opposite signs; each triple (C^{k−1}, C^k, C^{k+1}) with a norm meeting the §4.8 hypothesis is then a window with κ^k well defined on Q^k, 0 → H^k → Q^k → im δ^k → 0 exact, and Γ_{k+1} ≤ ‖δ^k‖_{J→1}Φ_k. WDP-CH05-P06: the six-vertex, fifteen-edge, ten-triangle triangulation of RP² has rank_ℚ δ¹ = 10 and rank_{F₂} δ¹ = 9, so H²(K; ℚ) = 0 while H²(K; F₂) ≅ F₂; the single-triangle indicator is exact over ℚ (Φ₂ = 0) with only non-integral rational repairs. WDP-CH05-P04: on every finite oriented graph Σ_v (d₀*x)(v) = 0, so d₀*x = ρ needs Σ_v ρ(v) = 0 (necessary, not sufficient, and with no closedness or boundary condition); a functional invariant under A ↦ A + d₀λ descends uniquely to Q¹, so the pairing with a 1-cycle is invariant; and δ²δ¹ = 0 on complexes with 3-simplices.
 
@@ -3646,7 +3646,7 @@ Obligation: Mechanize the WD2-T5 factored-report invariance theorem and unfactor
 
 - UUID: `16efde24-657b-5745-b763-11b0343616aa`
 - Parent: `TFQ-0564`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
 The stabilized relation R_infinity is the coarsest observation-preserving update congruence, and every compatible deterministic quotient factors uniquely through S / R_infinity (WD2-T6).
 
@@ -3706,7 +3706,7 @@ Obligation: Maintain the nonselection boundary separating software receipt verif
 
 - UUID: `119be2b2-5fc1-5959-9a23-5786145b9d39`
 - Parent: `TFQ-0570`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Outstanding Derivation Target 1 (GEN-WDP-70): when realization image R and repair subspace B_1 differ, minimum observer row completion over Q requires dim(R intersect B_1) - dim(R intersect B_1 intersect ker O_0) added rows.
 
