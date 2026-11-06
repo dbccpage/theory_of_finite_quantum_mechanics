@@ -1,0 +1,85 @@
+# education/: a reading-order curriculum from the empty mark to the witnessed-difference programme, imported
+# byte-for-byte (education/IMPORT_PROVENANCE.json), plus the undergraduate problem set and the Hamilton-Noether
+# teaching pack that this epic moves here. AuthorityEffect: None; reference material, not evidence.
+schema: repo-type/1
+file_for: education
+
+classes:
+  - class: EducationFolder
+    path: education
+    summary: The curriculum in numbered modules (1 to 8, plus 999 for outside publications), the problem set, and the Hamilton-Noether teaching pack; 16 of its files are cited from dag/ and keep their paths.
+    role: document
+    counts: {now: 2, target: 2}
+    attributes:
+      - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1, note: "its per-module file-count table is stale (module 1 holds 22 files, the table says 26; module 999 is missing)"}
+      - {name: import_provenance, match: IMPORT_PROVENANCE.json, leaf: ImportProvenance, required: true, now: 1, target: 1, note: "upper-case name bound by the import; story S17"}
+      - {name: modules, class: CurriculumModule, required: true}
+      - {name: problem_sets, class: ProblemSet, required: true}
+      - {name: teaching_pack, class: TeachingPack, required: true}
+    invariants:
+      - {id: education.provenance_lists_tree, statement: "IMPORT_PROVENANCE.json lists every imported file with its sha256 and records every later edit or deletion in post_import_edits", holds_now: unknown, checked_by: unchecked}
+      - {id: education.dag_citations_resolve, statement: "the 16 education files cited from dag/ exist at the cited paths", holds_now: true, checked_by: "python -I -X utf8 dag/validate_derivation_dag.py --repo-root . (for the ones the DAG itself cites)"}
+      - {id: education.no_twins, statement: "no education file is a byte copy of a normal_forms/contracts or atlas file unless the DAG cites the education copy", holds_now: false, checked_by: "scripts/check_repo_types.py --report duplicates", note: "S11 removes the 14 twins that nothing reads or links (six of them with their whole package education/3_minimal_symbol_systems/lean4/); 30 stay: 5 that dag/ cites, SnSyntax.lean (a lakefile root that three kept modules import), and 24 that their own module reads (code and tests such as 8_witnessed_difference_programme/code/tests/test_wdp_audit.py:298-310) or links (READMEs, schema_ref fields); owner question Q8"}
+    relations:
+      - {kind: derives_from, to: NormalFormsFolder, via: "24 education normal-form contracts are byte copies of normal_forms/contracts"}
+      - {kind: derives_from, to: AtlasFolder, via: "18 Lean and grammar files are byte copies of the atlas pregenesis packages"}
+
+  - class: CurriculumModule
+    paths:
+      - education/1_pregenesis_empty_mark
+      - education/2_symmetric_group_presentations
+      - education/3_minimal_symbol_systems
+      - education/4_genesis_primitives
+      - education/5_genesis_reading_notes
+      - education/6_genesis_foundations
+      - education/7_genesis_language
+      - education/8_witnessed_difference_programme
+      - education/999_external_publications_general_media
+    summary: One curriculum module - levels, domains and curriculum notes, figures, grammar, normal forms, small code and Lean examples.
+    role: document
+    counts: {now: 1054, target: 1003}
+    collections:
+      - {name: readmes, match: "**/README.md", leaf: FolderReadme, authored: "imported:education/IMPORT_PROVENANCE.json", now: 76, target: 70}
+      - {name: lean_examples, match: "**/*.lean", leaf: LeanModule, authored: "imported:education/IMPORT_PROVENANCE.json", now: 60, target: 52, note: "not in any lakefile root; reading examples"}
+      - {name: lean_toolchain, match: "**/lean-toolchain", leaf: LeanToolchainPin, now: 5, target: 4}
+      - {name: grammars, match: "**/*.ebnf", leaf: Grammar, authored: "imported:education/IMPORT_PROVENANCE.json", now: 5, target: 5}
+      - {name: figures, match: "**/*.{svg,png}", leaf: SvgFigure, authored: "imported:education/IMPORT_PROVENANCE.json", now: 135, target: 135}
+      - {name: notebooks, match: "**/*.ipynb", leaf: Notebook, authored: "imported:education/IMPORT_PROVENANCE.json", now: 44, target: 44}
+      - {name: notes, match: "**/*.md", leaf: CurriculumNote, authored: "imported:education/IMPORT_PROVENANCE.json", now: 400, target: 398}
+      - {name: examples, match: "**/*.{py,rs,sql,cjs,toml,lock}", leaf: CurriculumCode, authored: "imported:education/IMPORT_PROVENANCE.json", now: 209, target: 209}
+      - {name: remainder, match: "**", leaf: CurriculumData, authored: "imported:education/IMPORT_PROVENANCE.json", catch_all: true, now: 120, target: 86, note: "yaml normal forms, json, pdf, lstree"}
+
+  - class: ProblemSet
+    path: education/problem_sets
+    summary: A 25-problem undergraduate quantum mechanics set with solutions, a verifier, a Rust runner and recorded results; self-contained.
+    role: document
+    counts: {now: 0, target: 46}
+    collections:
+      - {name: packaging, match: ".gitattributes", leaf: DepositPackaging, now: 0, target: 1}
+      - {name: problems, match: "problems/*.yaml", leaf: ProblemSheet, now: 0, target: 1}
+      - {name: solutions, match: "solutions/*.yaml", leaf: ProblemSolution, now: 0, target: 25}
+      - {name: verifier, match: "results/*/{verify.py,test_verify.py}", leaf: CurriculumCode, now: 0, target: 2}
+      - {name: runner, match: "results/*/rust_runner/**", leaf: CurriculumCode, now: 0, target: 3}
+      - {name: results, match: "results/**", leaf: ProblemResult, authored: "generated:python results/undergraduate_qm_25/verify.py", now: 0, target: 14}
+
+  - class: TeachingPack
+    path: education/hamilton_noether_sources
+    summary: The Hamilton-Noether picture and math sheets (versions 3 to 5), their renderers, manifests and adversarial reviews; moved from dag/derivations because it is teaching material, not a derivation paper.
+    role: document
+    counts: {now: 0, target: 43}
+    collections:
+      - {name: readmes, match: "**/README.md", leaf: FolderReadme, now: 0, target: 2}
+      - {name: renderers, match: "**/*.py", leaf: CurriculumCode, now: 0, target: 4, note: "render_sheets_v5.py imports v4 and v3; the pack moves whole"}
+      - {name: sheets, match: "**/*.{md,svg,png,pdf}", leaf: CurriculumNote, authored: "generated:python render_sheets_v5.py (sheets); hand (notes)", now: 0, target: 31}
+      - {name: records, match: "**/*.{json,txt}", leaf: CurriculumData, now: 0, target: 5}
+      - {name: packaging, match: ".gitattributes", leaf: DepositPackaging, now: 0, target: 1}
+
+leaf_types:
+  - {name: ImportProvenance, format: json, naming: imported, schema: none, companions: none, authored: hand}
+  - {name: Grammar, format: ebnf, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: CurriculumNote, format: "md, svg, png or pdf", naming: imported, schema: none, companions: none, authored: hand}
+  - {name: CurriculumCode, format: "py, rs, sql, js, toml or lock", naming: lower, schema: none, companions: none, authored: hand}
+  - {name: CurriculumData, format: "yaml, json, pdf or text", naming: imported, schema: none, companions: none, authored: hand}
+  - {name: ProblemSheet, format: yaml, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: ProblemSolution, format: yaml, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: ProblemResult, format: "json, log or yaml", naming: imported, schema: none, companions: none, authored: "generated:the problem-set verifier"}

@@ -1,0 +1,33 @@
+# vendor/: a byte-faithful copy of an engine workspace (33 crates) that code/rust depends on by path.
+# AuthorityEffect: None; it adds no result of its own. Imported tree: names and bytes follow the upstream.
+schema: repo-type/1
+file_for: vendor
+
+classes:
+  - class: VendorFolder
+    path: vendor
+    summary: The vendored engine workspace - 33 crates, their integration tests and the contract corpus read by build.rs - consumed by code/rust through path dependencies.
+    role: vendored
+    counts: {now: 2999, target: 2999}
+    attributes:
+      - {name: readme, match: engine/README.md, leaf: FolderReadme, required: true, now: 1, target: 1, note: "states the upstream provenance and hashes"}
+      - {name: manifest, match: engine/Cargo.toml, leaf: CargoManifest, required: true, now: 1, target: 1}
+      - {name: lock, match: engine/Cargo.lock, leaf: CargoLock, required: true, now: 1, target: 1}
+      - {name: licence, match: engine/LICENSE, leaf: LicenceText, required: true, now: 1, target: 1}
+    collections:
+      - {name: crate_manifests, match: "engine/*/Cargo.toml", leaf: CargoManifest, authored: "imported:vendor/engine/README.md", now: 33, target: 33}
+      - {name: contract_corpus, match: "engine/engine_contracts/corpus/**", leaf: VendoredCorpus, authored: "imported:vendor/engine/README.md", now: 594, target: 594, note: "read by engine_contracts/build.rs:31 and audit.rs:32"}
+      - {name: tests, match: "engine/tests/**", leaf: VendoredTest, authored: "imported:vendor/engine/README.md", now: 801, target: 801, note: "[[test]] targets of the crates (for example engine/constants/Cargo.toml:12)"}
+      - {name: sources, match: "engine/**/*.rs", leaf: VendoredRustSource, authored: "imported:vendor/engine/README.md", now: 1546, target: 1546}
+      - {name: remainder, match: "engine/**", leaf: VendoredFile, authored: "imported:vendor/engine/README.md", catch_all: true, now: 21, target: 21}
+    invariants:
+      - {id: vendor.all_crates_reached, statement: "every vendored crate is a path dependency of some manifest outside vendor/", holds_now: true, checked_by: unchecked, note: "all 33 are reached from 29 non-vendor manifests (reviewer 3)"}
+      - {id: vendor.upstream_faithful, statement: "vendored bytes equal the upstream revision named in engine/README.md", holds_now: unknown, checked_by: unchecked, note: "rewriting private-product wording here changes these bytes (owner question Q5)"}
+    relations:
+      - {kind: builds, to: VendorFolder, via: "vendor/engine/Cargo.toml builds the 33 crates as one workspace; code/rust consumes them (see CodeFolder)"}
+
+leaf_types:
+  - {name: VendoredCorpus, format: "yaml, json or md", naming: imported, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
+  - {name: VendoredTest, format: "rs, json, blob, text or md", naming: imported, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
+  - {name: VendoredRustSource, format: rs, naming: lower, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
+  - {name: VendoredFile, format: any, naming: imported, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
