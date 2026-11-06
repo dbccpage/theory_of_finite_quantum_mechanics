@@ -106,9 +106,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0260 (shared)
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md`
+### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
@@ -123,7 +123,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0259 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
+- TFQ-0259 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm
 - TFQ-0259 rust: no local rust twin located for external:sha256:3aa68d6116ce374efc50eed1e23d148aaae1be854b3bf16be67d8d1ab42dceb4
 - TFQ-0260 rust: no local rust twin located for external:sha256:3aa68d6116ce374efc50eed1e23d148aaae1be854b3bf16be67d8d1ab42dceb4
 

@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:c76c5bd187ff61baee99a622c5d512278ad22d2cb2f6e397642fc414a760c314`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/holonomy_bridge_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/holonomy_bridge_control.py`](../../code/python/)
 
 ---
 

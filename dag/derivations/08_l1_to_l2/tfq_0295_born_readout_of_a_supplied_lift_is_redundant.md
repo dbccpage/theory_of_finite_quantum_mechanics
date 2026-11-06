@@ -47,7 +47,7 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:d58eb2c1f4ae2ac65cc7145554cd2a5c955e096776c1f6d9daafb2065b14450e`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py`](../../code/python/)
 - [`absent: no local python twin located for external:unlocated`](../../code/python/)
 
 ---

@@ -80,9 +80,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0276 (shared)
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml`
+### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
@@ -97,7 +97,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0276 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
+- TFQ-0276 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm
 
 ## Routes
 

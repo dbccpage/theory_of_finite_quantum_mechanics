@@ -45,7 +45,7 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/symanzik_two_forest_bphz_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/symanzik_two_forest_bphz_control.py`](../../code/python/)
 
 ---
 

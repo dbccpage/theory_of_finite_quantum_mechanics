@@ -156,9 +156,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0083 (shared)
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml`
+### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes

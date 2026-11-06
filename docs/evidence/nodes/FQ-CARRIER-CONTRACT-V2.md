@@ -85,16 +85,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-1006
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml`
+### Documents and data: `atlas/finite_quantum_mechanics/claims/carrier_contract.yaml`
 
-- file: [sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/carrier_contract.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml)
 - sha256 (`lf-normalised`): `a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md`
+### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes

@@ -38,8 +38,8 @@ See also: `IMPL-LGGR-FINITE-RESULTS-LEAN`.
 
 ## Sources
 
-- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-L1`
-- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#4`
+- Repository: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-L1`
+- Repository: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#4`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md`
 - Repository: `lean4/ObserverPresheafLeanGap.lean`
 - Repository: `checks/independent/ops-lean-gap.py`

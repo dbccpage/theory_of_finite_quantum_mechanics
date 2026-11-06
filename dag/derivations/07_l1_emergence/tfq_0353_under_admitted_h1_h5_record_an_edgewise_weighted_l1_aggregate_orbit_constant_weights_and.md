@@ -35,7 +35,7 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs000_edgewise_l1_weighted_anisotropy_and_l_inf_countermodels`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs003_coordinate_l1_weighted_sum_and_orbit_collapse`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs003_coordinate_l1_weighted_sum_and_orbit_collapse`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:b4a0392795f1e742a256ae815cdc26550b49a4f6e92e1b8c6beb0d28f159c92d::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`](../../code/rust/src/)
@@ -45,7 +45,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness`](../../code/rust/src/)
 - [`external:sha256:97b89a12d973cc3fa80d33c83b782f78b54982645db2d58ab9c4ac58c98aed40`](../../code/rust/src/)
 - [`external:sha256:97b89a12d973cc3fa80d33c83b782f78b54982645db2d58ab9c4ac58c98aed40::standard_l1`](../../code/rust/src/)
-- [`sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`](../../code/rust/src/)
+- [`atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`external:sha256:63fe87b0f4001f63e4cf817c382c38036c636bef507dc306d07320cdf814f817`](../../code/python/)
@@ -74,6 +74,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(L1-GS000-EDGEWISE-L1): 4*idx(71) + 3*stage_rank(5) + route_degree(4) == 303` ($\text{value} = 303$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(L1-GS000-EDGEWISE-L1): R_raw(167) - G_cob(81) - S_decoy(5) == 81 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 81$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs003_coordinate_l1_weighted_sum_and_orbit_collapse`
-- **Sovereign Rust Witness Anchor**: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`
+- **Lean 4 Theorem Anchor**: `atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs003_coordinate_l1_weighted_sum_and_orbit_collapse`
+- **Sovereign Rust Witness Anchor**: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 73cbe6e96d284fbc154cc50213d7566add44815045de5dbe723709960b68642e`

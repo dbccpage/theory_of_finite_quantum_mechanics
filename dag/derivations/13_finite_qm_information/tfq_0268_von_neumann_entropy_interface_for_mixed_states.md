@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_entropy_renyi_purity_dichotomy_and_qm122_six_import_drop_one_census`](../../code/lean4/)
 - [`lean4/quantum_mechanics/EntropyDichotomy.lean::entropy_zero_iff_pure`](../../code/lean4/)
 - [`lean4/quantum_mechanics/EntropyDichotomy.lean::mixed_entropy_positive`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:a535b66c7800bd1d4f29228891ab5a6c23dd8ce3173c2521621c366686fe5ab5`](../../code/rust/src/)
@@ -50,7 +50,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`sources/atlas/papers/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
+- [`atlas/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
 
 ---
 
@@ -77,6 +77,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-ENTROPY-DICHOTOMY-BAKER): 4*idx(125) + 3*stage_rank(7) + route_degree(2) == 523` ($\text{value} = 523$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-ENTROPY-DICHOTOMY-BAKER): R_raw(285) - G_cob(139) - S_decoy(7) == 139 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 139$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
-- **Sovereign Rust Witness Anchor**: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
+- **Lean 4 Theorem Anchor**: `atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
+- **Sovereign Rust Witness Anchor**: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4-flash` | `status = PASS` | `receipt_sha256 = 38df70300b0b3b490a97a0d11f5f42a379fc4d640287b3a5cb3757a64b369a54`

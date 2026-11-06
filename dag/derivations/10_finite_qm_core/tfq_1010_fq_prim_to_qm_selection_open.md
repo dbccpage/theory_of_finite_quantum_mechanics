@@ -54,7 +54,7 @@ Selection of a declared quantum model or readout from primitive difference stays
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml:105`
-  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:367`
-  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:1332`
+  - `atlas/finite_quantum_mechanics/claims/gap_register.yaml:105`
+  - `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:367`
+  - `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:1332`
   - `checks/independent/ds-positive-form-controls.py`

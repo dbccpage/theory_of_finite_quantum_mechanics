@@ -73,8 +73,8 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(FQ-GAP-REAL-EMBEDDING-CHOICE): 4*idx(124) + 3*stage_rank(9) + route_degree(2) == 525` ($\text{value} = 525$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-GAP-REAL-EMBEDDING-CHOICE): R_raw(293) - G_cob(142) - S_decoy(9) == 142 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 142$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
-- **Sovereign Rust Witness Anchor**: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
+- **Lean 4 Theorem Anchor**: `atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
+- **Sovereign Rust Witness Anchor**: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 5f2bdf4ba14eb041f6bea2a2a95b148ec9fbc346700e043286ae168bf946a9ca`
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-CONTINUOUS-TIME-EXP-GENERATOR`)

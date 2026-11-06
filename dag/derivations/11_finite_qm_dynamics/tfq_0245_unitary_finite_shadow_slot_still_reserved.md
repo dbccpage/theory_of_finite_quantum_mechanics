@@ -46,7 +46,7 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_entropy_purity_and_ds_qm034_051_cayley_clifford_witness`](../../code/lean4/)
 - [`lean4/quantum_mechanics/H061DynamicsDichotomy.lean::periodic_sector_requires_declaration`](../../code/lean4/)
 - [`lean4/quantum_mechanics/H061DynamicsDichotomy.lean::pythagorean_rotation_order_infinite`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:c1723f5ad590b2aa43e5882c6479aa8af966b86b3312b09cfc4051749dd507f1::classify_unitary_orbit`](../../code/rust/src/)

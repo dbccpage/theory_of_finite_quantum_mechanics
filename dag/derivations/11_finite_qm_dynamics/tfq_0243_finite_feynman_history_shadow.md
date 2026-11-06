@@ -43,7 +43,7 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_graded_pathsum_overcount_transfer_and_feynman_shadow`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm032_finite_feynman_interference_vs_stochastic`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:f51cea05c639d8d39b42c50d466f3fdf2ef0bb52291a1196d9ff27bc5e4111a1`](../../code/rust/src/)
@@ -78,8 +78,8 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(DS-QM032-CONTINUUM-LIMIT-CONDITIONAL): 4*idx(138) + 3*stage_rank(9) + route_degree(2) == 581` ($\text{value} = 581$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(DS-QM032-CONTINUUM-LIMIT-CONDITIONAL): R_raw(321) - G_cob(156) - S_decoy(9) == 156 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 156$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm032_feynman_refinement_compatibility_terminalizer_and_two_slice_action`
-- **Sovereign Rust Witness Anchor**: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
+- **Lean 4 Theorem Anchor**: `atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm032_feynman_refinement_compatibility_terminalizer_and_two_slice_action`
+- **Sovereign Rust Witness Anchor**: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 12d65dabf8fb01fcb1aca033a1b9db0b1deed6118f3e874f25bd2784cc28c8de`
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM032-FINITE-FEYNMAN-SHADOW`)

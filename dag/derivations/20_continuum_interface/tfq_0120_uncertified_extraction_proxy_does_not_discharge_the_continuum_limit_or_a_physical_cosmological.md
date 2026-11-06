@@ -32,8 +32,8 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:4ea200be723ed74e2090d95d338a5b72e24849f9688ef439873f27949d22a0e0`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_to_continuum/code/wilsonian_extrapolator.py`](../../code/python/)
-- [`absent: no local python twin located for sources/atlas/papers/finite_to_continuum/code/meron_wilsonian_bridge.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_to_continuum/code/wilsonian_extrapolator.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_to_continuum/code/meron_wilsonian_bridge.py`](../../code/python/)
 
 ---
 

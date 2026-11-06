@@ -89,16 +89,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0252 (shared)
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md`
+### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md`
+### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md`
 
-- file: [sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
 - sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
 - cited in: node.source
 - counts toward the grade: yes
@@ -112,7 +112,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0252 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
+- TFQ-0252 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm
 
 ## Routes
 

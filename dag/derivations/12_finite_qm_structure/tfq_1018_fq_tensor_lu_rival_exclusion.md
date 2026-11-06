@@ -50,5 +50,5 @@ H062 / campaign C250 Block 05; ledger LEAN PROVED (RECEIPTED)
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml:255`
-  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:1332`
+  - `atlas/finite_quantum_mechanics/claims/gap_register.yaml:255`
+  - `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:1332`

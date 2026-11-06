@@ -32,7 +32,7 @@ In accordance with strict constructive principles:
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/validate_derivation_dag.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/quantum_foundations/dag_pregenesis_to_finite_qm/validate_derivation_dag.py`](../../code/python/)
 
 ---
 

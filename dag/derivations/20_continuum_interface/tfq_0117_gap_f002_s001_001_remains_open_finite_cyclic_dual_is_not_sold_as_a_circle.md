@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`sources/atlas/papers/finite_to_continuum/lean4/CharacterOrthogonality.lean`](../../code/lean4/)
+- [`atlas/finite_to_continuum/lean4/CharacterOrthogonality.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`sources/atlas/papers/finite_to_continuum/code/coda_2d_pontryagin.py`](../../code/python/)
+- [`atlas/finite_to_continuum/code/coda_2d_pontryagin.py`](../../code/python/)
 
 ---
 

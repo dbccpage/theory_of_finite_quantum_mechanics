@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for sources/atlas/papers/finite_to_continuum/lean4/circle_haar.lean`](../../lean4/)
+- [`absent: no local lean twin located for atlas/finite_to_continuum/lean4/circle_haar.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_to_continuum/code/pontryagin_duality.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_to_continuum/code/pontryagin_duality.py`](../../code/python/)
 
 ---
 

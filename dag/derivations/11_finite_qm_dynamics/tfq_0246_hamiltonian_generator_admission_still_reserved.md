@@ -53,7 +53,7 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/H055DiscreteDynamicsStone.lean::no_bool_half_step`](../../code/lean4/)
 - [`lean4/quantum_mechanics/H055DiscreteDynamicsStone.lean::stone_continuum_interface_priced`](../../code/lean4/)
 - [`lean4/quantum_mechanics/H055DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:1021ae73186e67c501f0b2ecf0234074c4bdbf2a08bbc2af5a5a1794604a140b::reversible_dilation_count`](../../code/rust/src/)

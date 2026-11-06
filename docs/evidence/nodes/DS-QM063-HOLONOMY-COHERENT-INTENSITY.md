@@ -78,9 +78,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
+### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
+- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -122,9 +122,9 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0091 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/holonomy_bridge_control.py
+- TFQ-0091 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/holonomy_bridge_control.py
 - TFQ-0091 rust: no local rust twin located for external:sha256:6573cc4b53a02a97b89680e4bce638a9b06c197bb1a8eea2aae104001597f30d
-- TFQ-0254 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
+- TFQ-0254 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm
 
 ## Routes
 

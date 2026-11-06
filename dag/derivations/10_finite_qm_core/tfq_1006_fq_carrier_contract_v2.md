@@ -53,6 +53,6 @@ REVIEWED_DECLARATIONS (carrier_contract.yaml); minimality_proved: false; all_tar
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml:1`
-  - `sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml:13`
-  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:149`
+  - `atlas/finite_quantum_mechanics/claims/carrier_contract.yaml:1`
+  - `atlas/finite_quantum_mechanics/claims/carrier_contract.yaml:13`
+  - `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:149`
