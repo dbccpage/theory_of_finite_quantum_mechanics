@@ -126,10 +126,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source, record TFQ-0401
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md](../../../dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md)
-- sha256 (`lf-normalised`): `9811fef616bbe4a7974c1cdb1ccf9b2574e07e74b70ed6e3ff128fec59c4e378`
+- sha256 (`lf-normalised`): `7302aa66951a2b9026d719a251242ed94e0275713cbb9775df07d9eb1185cf9d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0401
 - counts toward the grade: no
@@ -152,13 +159,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/research/electroweak_dfm_weinberg_finite_map.md](../../../dag/research/electroweak_dfm_weinberg_finite_map.md)
 - sha256 (`lf-normalised`): `455adaf17dfdca6638d17a8882f0ef419bbd3f08adfaacf30de3c1516c42611e`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
 - cited in: node.source
 - counts toward the grade: yes
 

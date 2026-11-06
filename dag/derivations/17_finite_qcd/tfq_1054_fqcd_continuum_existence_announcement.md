@@ -46,5 +46,5 @@ Added 2026-10-27 with maintainer approval as a record of published or announced 
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
+  - `dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md`
   - `external:https://openai.com/index/building-scientific-understanding-with-academic-communities/`

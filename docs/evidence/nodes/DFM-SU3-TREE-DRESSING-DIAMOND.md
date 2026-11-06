@@ -32,7 +32,7 @@ The statement for every group and graph is the specialization of TFQ-0398 and TF
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.8-SU3 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.8-SU3 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -82,20 +82,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md](../../../dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md)
-- sha256 (`lf-normalised`): `82648e2c967e6e27fc03a592cb1e95f9f8e4d97dc633cb3ef61ae5dfc0a00d83`
+- sha256 (`lf-normalised`): `546300b43a900ae8b8b0d535c9d05ecef6494f7f6664a3a468ff81b19777f41e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1131
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

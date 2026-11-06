@@ -32,7 +32,7 @@ Four-component spinors with gamma^0, the tree-change holonomy factor and arbitra
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.4-CORRELATOR claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.4-CORRELATOR claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -67,20 +67,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1112_dfm_dressed_correlator_diamond.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1112_dfm_dressed_correlator_diamond.md](../../../dag/derivations/24_dressing_field/tfq_1112_dfm_dressed_correlator_diamond.md)
-- sha256 (`lf-normalised`): `b24df26ade6c74e2a2d6763cdbe7ab2434aa0132ef774e1692ba2205d8c15fd1`
+- sha256 (`lf-normalised`): `67cd70cf6c9c63f8931cdc724791e5f2edbbccae062c25a69a611f02f02ab743`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1112
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

@@ -4,7 +4,7 @@ Stage: [FINITE_QCD](../stages/FINITE_QCD.md). Status: `OPEN`. Evidence grade: **
 
 ## Statement
 
-> For a finite group G with a unitary representation, a finite periodic spatial lattice with edge set E and finite real beta, the temporal-gauge transfer matrix of the Wilson action acting on functions on G^E has strictly positive entries, so it has a simple largest eigenvalue lambda_0, a gauge-invariant Perron eigenvector, and every other eigenvalue satisfies |lambda| \< lambda_0; the finite-volume gap log(lambda_0/|lambda_1|) is positive on the gauge-invariant subspace.
+> For a finite group G with a unitary representation, a finite periodic spatial lattice with edge set E and finite real beta, construct the temporal-gauge Wilson transfer matrix on functions on G^E and prove strict entrywise positivity and gauge equivariance. Its Perron eigenvalue lambda_0 is positive and simple, its normalized Perron vector is gauge invariant, and the non-Perron spectral-radius ratio q in the gauge-invariant sector satisfies 0 \<= q \< 1. Set q = 0 when that sector has no non-Perron eigenvalues. For q \> 0 the logarithmic gap -log(q) is positive; q = 0 represents an infinite spectral decay rate, not a finite logarithm.
 
 ## Grade
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Prove the statement in Lean from the Perron-Frobenius theorem for positive matrices. The node is the automatic finite-volume gap only: it gives no bound uniform in volume or lattice spacing and is not the Yang-Mills mass gap of the Clay problem.
+Construct the transfer matrix and its gauge action, prove the required positivity and equivariance, and apply Perron-Frobenius in Lean. Handle zero subleading eigenvalues and the one-dimensional physical sector explicitly. Correlation-decay bounds require the relevant self-adjointness or operator estimates. No bound uniform in volume or lattice spacing, or continuum Yang-Mills mass gap, follows from the finite-volume statement.
 
 ## Source status
 
@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Documents and data: `dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md`
+
+- file: [dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md)
+- sha256 (`lf-normalised`): `8a802a811b96cbe022372b44d51b43396f36bc54c8f2302bb76716383ad5e11c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md](../../../dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md)
-- sha256 (`lf-normalised`): `ee35a2cf25babed25f9f114c8f88e6e01bea110328a6398fcc0fdf2f1692a467`
+- sha256 (`lf-normalised`): `e3a86db5194b112c5ca8bcc6ab0a349c4e23632bd7f3382c2d3ba4892a8f18d7`
 - generated view: listed, not counted
 - cited in: record TFQ-1049
 - counts toward the grade: no
-
-### Documents and data: `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
-
-- file: [papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md)
-- sha256 (`lf-normalised`): `dc388eaf79ed91e73233db79e15204ea6d67ba06bc5c30867589d745af7ae5f6`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

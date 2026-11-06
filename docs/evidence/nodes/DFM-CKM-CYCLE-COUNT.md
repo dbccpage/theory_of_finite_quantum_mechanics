@@ -32,7 +32,7 @@ That a spanning tree of K_{n,n} has 2n - 1 edges and that unitarity reduces the 
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.7-COUNT claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.7-COUNT claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -69,20 +69,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1124_dfm_ckm_cycle_count.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1124_dfm_ckm_cycle_count.md](../../../dag/derivations/24_dressing_field/tfq_1124_dfm_ckm_cycle_count.md)
-- sha256 (`lf-normalised`): `d4f7b94289970747639b6c8b111e0dc4d8739351c78e816df6d85c647e664a01`
+- sha256 (`lf-normalised`): `b507bed737d45da3e1c78615064973e9284f4b9906d5a392e17517f332e88d4b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1124
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

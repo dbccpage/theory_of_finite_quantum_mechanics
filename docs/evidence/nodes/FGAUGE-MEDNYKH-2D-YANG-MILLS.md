@@ -55,15 +55,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md](../../../dag/derivations/14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md)
-- sha256 (`lf-normalised`): `c27dccdeab07dc199ea11202f7269e8524060898d7c792cb5569f59f341cdd63`
+- sha256 (`lf-normalised`): `ee10f9b40bf62c33459987a62334c71b3d0f2ff99a26ddf637f47b5107aa4b3a`
 - generated view: listed, not counted
 - cited in: record TFQ-1051
 - counts toward the grade: no
 
-### Documents and data: `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
+### Documents and data: `dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md`
 
-- file: [papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md)
-- sha256 (`lf-normalised`): `dc388eaf79ed91e73233db79e15204ea6d67ba06bc5c30867589d745af7ae5f6`
+- file: [dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md)
+- sha256 (`lf-normalised`): `8a802a811b96cbe022372b44d51b43396f36bc54c8f2302bb76716383ad5e11c`
 - cited in: node.source
 - counts toward the grade: yes
 
