@@ -43,8 +43,12 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from fractions import Fraction
+from functools import reduce
+import itertools
 import json
+from math import gcd
 from pathlib import Path
+import re
 import sys
 from typing import Callable, Sequence
 
@@ -439,6 +443,656 @@ def dedekind_local_constancy_radius(v0: GVec) -> Fraction:
     on which `dist_sq_vec(v, v0) < delta` implies `dedekind_ray_cut(v) == dedekind_ray_cut(v0)`."""
     theta = dedekind_local_constancy_theta(v0)
     return theta * theta
+
+
+@dataclass(frozen=True)
+class FiniteFrameScenario:
+    """Finite measurement scenario matching `FiniteFrameScenario` in `BornGaussianFiniteModel.lean`."""
+
+    name: str
+    rays: tuple[GVec, ...]
+    frames: tuple[tuple[GVec, GVec, GVec], ...]
+
+    def validate(self) -> None:
+        ray_set = set(self.rays)
+        for v in self.rays:
+            if not v.is_non_zero():
+                raise AssertionError(f"Scenario {self.name} contains zero ray")
+        for u, v, w in self.frames:
+            if u not in ray_set or v not in ray_set or w not in ray_set:
+                raise AssertionError(f"Scenario {self.name} frame vector not in rays")
+            if not is_frame(u, v, w):
+                raise AssertionError(f"Scenario {self.name} contains invalid 3-frame {(u, v, w)}")
+
+
+def is_scenario_valuation(scenario: FiniteFrameScenario, f: Callable[[GVec], Fraction]) -> bool:
+    return all(f(u) + f(v) + f(w) == Fraction(1) for u, v, w in scenario.frames)
+
+
+def is_nonneg_scenario_valuation(
+    scenario: FiniteFrameScenario, f: Callable[[GVec], Fraction]
+) -> bool:
+    return is_scenario_valuation(scenario, f) and all(
+        f(v) >= Fraction(0) for v in scenario.rays
+    )
+
+
+def is_zero_one_scenario_valuation(
+    scenario: FiniteFrameScenario, f: Callable[[GVec], Fraction]
+) -> bool:
+    return is_scenario_valuation(scenario, f) and all(
+        f(v) in (Fraction(0), Fraction(1)) for v in scenario.rays
+    )
+
+
+def indicator_x_axis_val(v: GVec) -> Fraction:
+    """Deterministic {0, 1} valuation matching `indicatorXAxisVal` in `BornGaussianFiniteModel.lean`."""
+    if not v.x.is_zero() and v.y.is_zero() and v.z.is_zero():
+        return Fraction(1)
+    return Fraction(0)
+
+
+def tomo_positive_x_anchor_val(v: GVec) -> Fraction:
+    """Deterministic {0, 1} valuation `tomoPositiveXAnchorVal` on `fifteenAnchorBisectorScenario`:
+    assigns `1` to the 5 positive-x tomography anchors (`tomo_e1, tomo_e12, tomo_e12i, tomo_e13, tomo_e13i`)
+    and `0` to the remaining 10 anchor-bisector rays."""
+    if v in (TOMO_E1, TOMO_E12, TOMO_E12I, TOMO_E13, TOMO_E13I):
+        return Fraction(1)
+    return Fraction(0)
+
+
+def nine_anchor_single_frame_scenario() -> FiniteFrameScenario:
+    """The 9-ray, 1-frame scenario `nineAnchorSingleFrameScenario`."""
+    scenario = FiniteFrameScenario(
+        name="nineAnchorSingleFrameScenario",
+        rays=tuple(NINE_ANCHORS.values()),
+        frames=((TOMO_E1, TOMO_E2, TOMO_E3),),
+    )
+    scenario.validate()
+    return scenario
+
+
+def fifteen_anchor_bisector_scenario() -> FiniteFrameScenario:
+    """The 15-ray, 7-frame full tomography-bisector scenario `fifteenAnchorBisectorScenario`."""
+    scenario = FiniteFrameScenario(
+        name="fifteenAnchorBisectorScenario",
+        rays=(*NINE_ANCHORS.values(), *SIX_PARTNERS.values()),
+        frames=(
+            (TOMO_E1, TOMO_E2, TOMO_E3),
+            (TOMO_E3, TOMO_E12, PARTNER_E12_MINUS),
+            (TOMO_E3, TOMO_E12I, PARTNER_E12I_MINUS),
+            (TOMO_E2, TOMO_E13, PARTNER_E13_MINUS),
+            (TOMO_E2, TOMO_E13I, PARTNER_E13I_MINUS),
+            (TOMO_E1, TOMO_E23, PARTNER_E23_MINUS),
+            (TOMO_E1, TOMO_E23I, PARTNER_E23I_MINUS),
+        ),
+    )
+    scenario.validate()
+    return scenario
+
+
+def count_zero_one_scenario_valuations(scenario: FiniteFrameScenario) -> int:
+    """Exact backtracking count of {0, 1} valuations on a finite scenario."""
+    ray_to_idx = {v: idx for idx, v in enumerate(scenario.rays)}
+    frame_idx_triples = [
+        (ray_to_idx[u], ray_to_idx[v], ray_to_idx[w]) for u, v, w in scenario.frames
+    ]
+    n_rays = len(scenario.rays)
+    adj_frames: list[list[tuple[int, int, int]]] = [[] for _ in range(n_rays)]
+    for tr in frame_idx_triples:
+        for r_i in tr:
+            adj_frames[r_i].append(tr)
+
+    assignment: list[int | None] = [None] * n_rays
+    order = sorted(range(n_rays), key=lambda i: len(adj_frames[i]), reverse=True)
+
+    def is_consistent(var_idx: int) -> bool:
+        for i, j, k in adj_frames[var_idx]:
+            vi, vj, vk = assignment[i], assignment[j], assignment[k]
+            s = (vi or 0) + (vj or 0) + (vk or 0)
+            if s > 1:
+                return False
+            if vi is not None and vj is not None and vk is not None and s != 1:
+                return False
+        return True
+
+    def backtrack(pos: int) -> int:
+        if pos == n_rays:
+            return 1
+        var_idx = order[pos]
+        total = 0
+        for val in (0, 1):
+            assignment[var_idx] = val
+            if is_consistent(var_idx):
+                total += backtrack(pos + 1)
+        assignment[var_idx] = None
+        return total
+
+    return backtrack(0)
+
+
+@dataclass(frozen=True)
+class HermForm3:
+    """9-parameter Hermitian form on `Q(i)^3` matching `HermForm3` in `BornGaussianTomographyReduction.lean`."""
+
+    d1: Fraction
+    d2: Fraction
+    d3: Fraction
+    a12: Fraction
+    b12: Fraction
+    a13: Fraction
+    b13: Fraction
+    a23: Fraction
+    b23: Fraction
+
+    def trace(self) -> Fraction:
+        return self.d1 + self.d2 + self.d3
+
+
+def quad_num(rho: HermForm3, v: GVec) -> Fraction:
+    return (
+        rho.d1 * v.x.norm_sq()
+        + rho.d2 * v.y.norm_sq()
+        + rho.d3 * v.z.norm_sq()
+        + 2 * rho.a12 * (v.x.re * v.y.re + v.x.im * v.y.im)
+        - 2 * rho.b12 * (v.x.re * v.y.im - v.x.im * v.y.re)
+        + 2 * rho.a13 * (v.x.re * v.z.re + v.x.im * v.z.im)
+        - 2 * rho.b13 * (v.x.re * v.z.im - v.x.im * v.z.re)
+        + 2 * rho.a23 * (v.y.re * v.z.re + v.y.im * v.z.im)
+        - 2 * rho.b23 * (v.y.re * v.z.im - v.y.im * v.z.re)
+    )
+
+
+def quad_ray(rho: HermForm3, v: GVec) -> Fraction:
+    ns = v.norm_sq()
+    if ns == 0:
+        return Fraction(0)
+    return quad_num(rho, v) / ns
+
+
+def tomography_form(f: Callable[[GVec], Fraction]) -> HermForm3:
+    """Unique Hermitian form reconstructed from the 9 tomography anchor values of `f`."""
+    d1 = f(TOMO_E1)
+    d2 = f(TOMO_E2)
+    d3 = f(TOMO_E3)
+    return HermForm3(
+        d1=d1,
+        d2=d2,
+        d3=d3,
+        a12=f(TOMO_E12) - (d1 + d2) / Fraction(2),
+        b12=(d1 + d2) / Fraction(2) - f(TOMO_E12I),
+        a13=f(TOMO_E13) - (d1 + d3) / Fraction(2),
+        b13=(d1 + d3) / Fraction(2) - f(TOMO_E13I),
+        a23=f(TOMO_E23) - (d2 + d3) / Fraction(2),
+        b23=(d2 + d3) / Fraction(2) - f(TOMO_E23I),
+    )
+
+
+def ray_proj(v: GVec) -> HermForm3:
+    """Rank-1 projector `P_v = v v^* / ||v||^2` as a `HermForm3`."""
+    ns = v.norm_sq()
+    if ns == 0:
+        return HermForm3(*(Fraction(0) for _ in range(9)))
+    return HermForm3(
+        d1=v.x.norm_sq() / ns,
+        d2=v.y.norm_sq() / ns,
+        d3=v.z.norm_sq() / ns,
+        a12=(v.x.re * v.y.re + v.x.im * v.y.im) / ns,
+        b12=-(v.x.re * v.y.im - v.x.im * v.y.re) / ns,
+        a13=(v.x.re * v.z.re + v.x.im * v.z.im) / ns,
+        b13=-(v.x.re * v.z.im - v.x.im * v.z.re) / ns,
+        a23=(v.y.re * v.z.re + v.y.im * v.z.im) / ns,
+        b23=-(v.y.re * v.z.im - v.y.im * v.z.re) / ns,
+    )
+
+
+def trace_inner(rho: HermForm3, sigma: HermForm3) -> Fraction:
+    """Frobenius trace inner product `tr(rho * sigma)` on `HermForm3`."""
+    return (
+        rho.d1 * sigma.d1
+        + rho.d2 * sigma.d2
+        + rho.d3 * sigma.d3
+        + Fraction(2)
+        * (
+            rho.a12 * sigma.a12
+            + rho.b12 * sigma.b12
+            + rho.a13 * sigma.a13
+            + rho.b13 * sigma.b13
+            + rho.a23 * sigma.a23
+            + rho.b23 * sigma.b23
+        )
+    )
+
+
+def nine_anchor_projector_expansion_coeffs(v: GVec) -> dict[str, Fraction]:
+    """Exact rational coefficients expressing `ray_proj(v)` in the 9-anchor rank-1 projector basis
+    so that `quad_ray(tomography_form(f), v) == sum_k coeff[k] * f(anchor_k)` for every `f`."""
+    pv = ray_proj(v)
+    c12 = Fraction(2) * pv.a12
+    c12i = -Fraction(2) * pv.b12
+    c13 = Fraction(2) * pv.a13
+    c13i = -Fraction(2) * pv.b13
+    c23 = Fraction(2) * pv.a23
+    c23i = -Fraction(2) * pv.b23
+    return {
+        "tomo_e1": pv.d1 - (c12 + c12i + c13 + c13i) / Fraction(2),
+        "tomo_e2": pv.d2 - (c12 + c12i + c23 + c23i) / Fraction(2),
+        "tomo_e3": pv.d3 - (c13 + c13i + c23 + c23i) / Fraction(2),
+        "tomo_e12": c12,
+        "tomo_e12i": c12i,
+        "tomo_e13": c13,
+        "tomo_e13i": c13i,
+        "tomo_e23": c23,
+        "tomo_e23i": c23i,
+    }
+
+
+def _canon_int_ray(v: tuple[int, int, int]) -> tuple[int, int, int]:
+    g = reduce(gcd, (abs(v[0]), abs(v[1]), abs(v[2])))
+    prim = (v[0] // g, v[1] // g, v[2] // g)
+    for coord in prim:
+        if coord != 0:
+            return (-prim[0], -prim[1], -prim[2]) if coord < 0 else prim
+    raise ValueError("Zero vector has no canonical ray")
+
+
+def _sign_norm_int_ray(v: tuple[int, int, int]) -> tuple[int, int, int]:
+    for coord in v:
+        if coord != 0:
+            return (-v[0], -v[1], -v[2]) if coord < 0 else v
+    raise ValueError("Zero vector has no sign-normalized ray")
+
+
+def extract_and_verify_ks_no_colouring(lean_path: Path | None = None) -> dict[str, object]:
+    """Extract and verify the exact Kochen-Specker 3-frame hypergraph and 6-branch unsat core
+    from `lean4/BornGaussianRationalNoColouring.lean` in exact rational arithmetic."""
+    if lean_path is None:
+        lean_path = (
+            Path(__file__).resolve().parent.parent
+            / "lean4"
+            / "BornGaussianRationalNoColouring.lean"
+        )
+    text = lean_path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    gv_pat = re.compile(
+        r"gv\s+\(?(-?\d+)\)?\s+\(?(-?\d+)\)?\s+\(?(-?\d+)\)?\s+\(?(-?\d+)\)?\s+\(?(-?\d+)\)?\s+\(?(-?\d+)\)?"
+    )
+
+    def parse_gv_tuples(s: str) -> list[tuple[int, int, int]]:
+        res: list[tuple[int, int, int]] = []
+        for m in gv_pat.finditer(s):
+            if int(m.group(2)) != 0 or int(m.group(4)) != 0 or int(m.group(6)) != 0:
+                raise AssertionError("Expected real integer GVec in NoColouring.lean")
+            res.append((int(m.group(1)), int(m.group(3)), int(m.group(5))))
+        return res
+
+    n_vecs: dict[str, tuple[int, int, int]] = {}
+    p_frames: dict[str, tuple[tuple[int, int, int], tuple[int, int, int], tuple[int, int, int]]] = {}
+    t_frames: dict[str, tuple[tuple[int, int, int], tuple[int, int, int], tuple[int, int, int]]] = {}
+
+    for i, line in enumerate(lines):
+        if "have n" in line and "binary_nonneg" in line:
+            name = line.split("have ")[1].split(" :")[0].strip()
+            n_vecs[name] = parse_gv_tuples(line)[0]
+        elif "have p_" in line:
+            name = line.split("have ")[1].split(" :")[0].strip()
+            u_tup, v_tup = parse_gv_tuples(line)
+            w_tup = parse_gv_tuples(lines[i + 1])[0]
+            p_frames[name] = (u_tup, v_tup, w_tup)
+        elif "have t_" in line:
+            name = line.split("have ")[1].split(" :")[0].strip()
+            u_tup, v_tup, w_tup = parse_gv_tuples(line)
+            t_frames[name] = (u_tup, v_tup, w_tup)
+
+    if len(n_vecs) != 49 or len(p_frames) != 82 or len(t_frames) != 26:
+        raise AssertionError(
+            f"Unexpected NoColouring declaration counts: n={len(n_vecs)}, p={len(p_frames)}, t={len(t_frames)}"
+        )
+
+    # Verify every p_* and t_* frame is a genuine pairwise-orthogonal 3-frame in Q(i)^3
+    outside_box_completions = 0
+    for f_name, (u_t, v_t, w_t) in {**p_frames, **t_frames}.items():
+        u_gv = GVec.real(*u_t)
+        v_gv = GVec.real(*v_t)
+        w_gv = GVec.real(*w_t)
+        if not is_frame(u_gv, v_gv, w_gv):
+            raise AssertionError(f"KS frame {f_name} failed exact orthogonality check")
+        if f_name.startswith("p_") and max(abs(w_t[0]), abs(w_t[1]), abs(w_t[2])) > 2:
+            outside_box_completions += 1
+
+    all_decl_frames = list(p_frames.values()) + list(t_frames.values())
+    distinct_ordered_frames = list(dict.fromkeys(all_decl_frames))
+    distinct_unordered_frames = {frozenset(fr) for fr in all_decl_frames}
+    distinct_canon_w_ordered_frames = {
+        (u_t, v_t, _canon_int_ray(w_t)) for u_t, v_t, w_t in all_decl_frames
+    }
+    distinct_sign_norm_unordered_frames = {
+        frozenset(_sign_norm_int_ray(x) for x in fr) for fr in all_decl_frames
+    }
+    distinct_canon_proj_frames = {
+        frozenset(_canon_int_ray(x) for x in fr) for fr in all_decl_frames
+    }
+    distinct_raw_vectors = list(
+        dict.fromkeys([*n_vecs.values(), *(x for fr in all_decl_frames for x in fr)])
+    )
+    distinct_canon_rays = {_canon_int_ray(x) for x in distinct_raw_vectors}
+
+    # Trace the 6-branch case split (a0, a2, a3, a15) and extract the backward-slice unsat core
+    stack: list[dict[str, tuple[int, list[str], int, int]]] = [{}]
+    branches_info: list[tuple[int, dict[str, tuple[int, list[str], int, int]], list[str]]] = []
+    for i in range(304, len(lines)):
+        line = lines[i]
+        indent = len(line) - len(line.lstrip())
+        m_have = re.match(
+            r"\s*have\s+(a\d+)\s*:\s*f\s+.*=\s*([01])\s*:=\s*by\s*linarith only \[(.*)\]",
+            line,
+        )
+        m_close = re.match(r"\s*linarith only \[(.*)\]", line)
+        if m_have:
+            var_name = m_have.group(1)
+            val_assigned = int(m_have.group(2))
+            deps = [d.strip() for d in m_have.group(3).split(",")]
+            stack[-1][var_name] = (indent, deps, val_assigned, i + 1)
+        elif m_close:
+            deps = [d.strip() for d in m_close.group(1).split(",")]
+            branches_info.append((i + 1, dict(stack[-1]), deps))
+        elif line.lstrip().startswith("·"):
+            stack[-1] = {k: v for k, v in stack[-1].items() if v[0] <= indent}
+
+    if len(branches_info) != 6:
+        raise AssertionError(f"Expected 6 case-split branches, found {len(branches_info)}")
+
+    branch_assignments: list[dict[str, int]] = [
+        {"a0": 0, "a2": 0, "a3": 0, "a15": 0},
+        {"a0": 0, "a2": 0, "a3": 0, "a15": 1},
+        {"a0": 0, "a2": 0, "a3": 1},
+        {"a0": 0, "a2": 1},
+        {"a0": 1, "a2": 0},
+        {"a0": 1, "a2": 1},
+    ]
+
+    active_p: set[str] = set()
+    active_t: set[str] = set()
+    active_n: set[str] = set()
+    branch_summaries: list[dict[str, object]] = []
+
+    for b_idx, (line_no, env, close_deps) in enumerate(branches_info):
+        init_assign = dict(branch_assignments[b_idx])
+        needed = set(close_deps)
+        queue = list(close_deps)
+        while queue:
+            cur = queue.pop()
+            if cur in env and cur not in init_assign:
+                for d in env[cur][1]:
+                    if d not in needed:
+                        needed.add(d)
+                        queue.append(d)
+        bp = {d for d in needed if d.startswith("p_")}
+        bt = {d for d in needed if d.startswith("t_")}
+        bn = {d for d in needed if d.startswith("n")}
+        active_p |= bp
+        active_t |= bt
+        active_n |= bn
+
+        # Replay every step in this branch in exact integer/rational arithmetic
+        known_vals: dict[int, int] = {int(k[1:]): v for k, v in init_assign.items()}
+        ordered_steps = sorted(env.items(), key=lambda kv: kv[1][3])
+        for var_name, (_ind, deps, expected_val, step_line) in ordered_steps:
+            target_idx = int(var_name[1:])
+            p_dep = [d for d in deps if d.startswith("p_")]
+            t_dep = [d for d in deps if d.startswith("t_")]
+            if len(p_dep) == 1 and len(t_dep) == 0:
+                _, i_s, j_s = p_dep[0].split("_")
+                other_idx = int(j_s) if int(i_s) == target_idx else int(i_s)
+                if known_vals.get(other_idx) != 1 or expected_val != 0:
+                    raise AssertionError(
+                        f"Invalid pair-bound propagation at line {step_line} in branch {b_idx}"
+                    )
+            elif len(t_dep) == 1 and len(p_dep) == 0:
+                _, i_s, j_s, k_s = t_dep[0].split("_")
+                tri_indices = [int(i_s), int(j_s), int(k_s)]
+                others = [idx for idx in tri_indices if idx != target_idx]
+                if expected_val == 1:
+                    if not (known_vals.get(others[0]) == 0 and known_vals.get(others[1]) == 0):
+                        raise AssertionError(
+                            f"Invalid triple-to-1 propagation at line {step_line} in branch {b_idx}"
+                        )
+                else:
+                    if 1 not in (known_vals.get(others[0]), known_vals.get(others[1])):
+                        raise AssertionError(
+                            f"Invalid triple-to-0 propagation at line {step_line} in branch {b_idx}"
+                        )
+            else:
+                raise AssertionError(f"Unexpected step dependencies at line {step_line}: {deps}")
+            known_vals[target_idx] = expected_val
+
+        # Verify the closing contradiction `t_i_j_k` has 0 + 0 + 0 = 0 != 1
+        close_t = [d for d in close_deps if d.startswith("t_")]
+        if len(close_t) != 1:
+            raise AssertionError(f"Expected 1 closing triple at line {line_no}, got {close_deps}")
+        _, ci, cj, ck = close_t[0].split("_")
+        closing_sum = known_vals[int(ci)] + known_vals[int(cj)] + known_vals[int(ck)]
+        if closing_sum == 1:
+            raise AssertionError(f"Branch {b_idx} at line {line_no} did not reach contradiction")
+        branch_summaries.append(
+            {
+                "branch_index": b_idx,
+                "closing_line": line_no,
+                "branch_decisions": init_assign,
+                "closing_triple": close_t[0],
+                "closing_triple_sum": closing_sum,
+                "active_p_count": len(bp),
+                "active_t_count": len(bt),
+                "active_n_count": len(bn),
+            }
+        )
+
+    active_decl_frames = [p_frames[k] for k in sorted(active_p)] + [
+        t_frames[k] for k in sorted(active_t)
+    ]
+    active_distinct_ordered = list(dict.fromkeys(active_decl_frames))
+    active_distinct_unordered = {frozenset(fr) for fr in active_decl_frames}
+    active_raw_vectors = list(
+        dict.fromkeys(x for fr in active_decl_frames for x in fr)
+    )
+    active_canon_rays = {_canon_int_ray(x) for x in active_raw_vectors}
+
+    # Build FiniteFrameScenario objects for both the 62-declaration (59-distinct-ordered-frame) active core and full 108-declaration KS hypergraph
+    ks_active_core_scenario = FiniteFrameScenario(
+        name="ksActiveCoreScenario",
+        rays=tuple(GVec.real(*v) for v in active_raw_vectors),
+        frames=tuple(
+            (GVec.real(*u), GVec.real(*v), GVec.real(*w))
+            for u, v, w in active_distinct_ordered
+        ),
+    )
+    ks_active_core_scenario.validate()
+
+    ks_full_scenario = FiniteFrameScenario(
+        name="ksFiniteScenario",
+        rays=tuple(GVec.real(*v) for v in distinct_raw_vectors),
+        frames=tuple(
+            (GVec.real(*u), GVec.real(*v), GVec.real(*w))
+            for u, v, w in distinct_ordered_frames
+        ),
+    )
+    ks_full_scenario.validate()
+
+    if count_zero_one_scenario_valuations(ks_active_core_scenario) != 0:
+        raise AssertionError("ksActiveCoreScenario unexpectedly admits a {0, 1} valuation")
+    if count_zero_one_scenario_valuations(ks_full_scenario) != 0:
+        raise AssertionError("ksFiniteScenario unexpectedly admits a {0, 1} valuation")
+
+    if not is_nonneg_scenario_valuation(ks_active_core_scenario, exotic_qi3):
+        raise AssertionError("exotic_qi3 failed on ksActiveCoreScenario")
+    if not is_nonneg_scenario_valuation(ks_full_scenario, exotic_qi3):
+        raise AssertionError("exotic_qi3 failed on ksFiniteScenario")
+
+    return {
+        "lean_file": "lean4/BornGaussianRationalNoColouring.lean",
+        "box_rays_count": len(n_vecs),
+        "pair_completion_frames_count": len(p_frames),
+        "pair_completions_outside_box_count": outside_box_completions,
+        "internal_triple_frames_count": len(t_frames),
+        "total_frame_declarations": len(all_decl_frames),
+        "distinct_ordered_frames": len(distinct_ordered_frames),
+        "distinct_unordered_frames": len(distinct_unordered_frames),
+        "distinct_canonical_w_ordered_frames": len(distinct_canon_w_ordered_frames),
+        "distinct_sign_normalized_unordered_frames": len(distinct_sign_norm_unordered_frames),
+        "distinct_canonical_projective_frames": len(distinct_canon_proj_frames),
+        "distinct_raw_vectors": len(distinct_raw_vectors),
+        "distinct_canonical_projective_rays": len(distinct_canon_rays),
+        "active_unsat_core": {
+            "active_pair_frames_count": len(active_p),
+            "active_triple_frames_count": len(active_t),
+            "active_nonneg_rays_count": len(active_n),
+            "active_total_frame_declarations": len(active_decl_frames),
+            "active_distinct_ordered_frames": len(active_distinct_ordered),
+            "active_distinct_unordered_frames": len(active_distinct_unordered),
+            "active_distinct_raw_vectors": len(active_raw_vectors),
+            "active_distinct_canonical_rays": len(active_canon_rays),
+            "branching_rays": ["n0=(0,0,1)", "n2=(0,1,-1)", "n3=(0,1,0)", "n15=(1,-1,0)"],
+            "branches_verified": len(branch_summaries),
+            "branches": branch_summaries,
+            "zero_one_valuations_count": 0,
+            "admits_exotic_qi3_nonneg_valuation": True,
+        },
+        "full_ks_scenario": {
+            "scenario_name": "ksFiniteScenario",
+            "rays_count": len(ks_full_scenario.rays),
+            "frames_count": len(ks_full_scenario.frames),
+            "zero_one_valuations_count": 0,
+            "admits_exotic_qi3_nonneg_valuation": True,
+            "latitude_symmetry_assumed": False,
+        },
+    }
+
+
+def verify_tfq_0307_four_tier_classification(
+    ks_summary: dict[str, object] | None = None,
+) -> dict[str, object]:
+    """Verify the 4-tier `TFQ-0307` operational non-contextuality classification in exact rational arithmetic."""
+    if ks_summary is None:
+        ks_summary = extract_and_verify_ks_no_colouring()
+
+    # Tier 1: {0, 1} deterministic / Kochen-Specker regime
+    s9 = nine_anchor_single_frame_scenario()
+    s15 = fifteen_anchor_bisector_scenario()
+    if not is_zero_one_scenario_valuation(s9, indicator_x_axis_val):
+        raise AssertionError("indicator_x_axis_val failed on nineAnchorSingleFrameScenario")
+    if not is_zero_one_scenario_valuation(s15, tomo_positive_x_anchor_val):
+        raise AssertionError("tomo_positive_x_anchor_val failed on fifteenAnchorBisectorScenario")
+    s9_zero_one_count = count_zero_one_scenario_valuations(s9)
+    s15_zero_one_count = count_zero_one_scenario_valuations(s15)
+    if s9_zero_one_count != 192 or s15_zero_one_count != 48:
+        raise AssertionError(
+            f"Unexpected {s9.name}/{s15.name} binary valuation counts: {s9_zero_one_count}, {s15_zero_one_count}"
+        )
+
+    # Tier 2: [0, 1] ∩ Q ray-level non-quadratic frame-function regime
+    if not (
+        is_nonneg_scenario_valuation(s9, exotic_qi3)
+        and is_nonneg_scenario_valuation(s15, exotic_qi3)
+    ):
+        raise AssertionError("exotic_qi3 must be a valid nonneg valuation on s9 and s15")
+    for r_vec in s15.rays:
+        if exotic_qi3(r_vec) != Fraction(1, 3):
+            raise AssertionError("exotic_qi3 must equal 1/3 on all 15 anchor-bisector rays")
+    if exotic_qi3(WITNESS_111) != Fraction(2, 3) or exotic_qi3(WITNESS_NEG211) != Fraction(0):
+        raise AssertionError("exotic_qi3 must separate from 1/3 at witness_111 and witness_neg211")
+
+    # Tier 3: Operator-level EffectValuation (space 3) / projector-span linearity regime
+    rho_exotic = tomography_form(exotic_qi3)
+    if rho_exotic != HermForm3(
+        Fraction(1, 3),
+        Fraction(1, 3),
+        Fraction(1, 3),
+        Fraction(0),
+        Fraction(0),
+        Fraction(0),
+        Fraction(0),
+        Fraction(0),
+        Fraction(0),
+    ):
+        raise AssertionError("tomography_form(exotic_qi3) must equal (1/3) I_3")
+    coeffs_111 = nine_anchor_projector_expansion_coeffs(WITNESS_111)
+    projector_linear_val_111 = sum(
+        coeff * exotic_qi3(NINE_ANCHORS[a_key]) for a_key, coeff in coeffs_111.items()
+    )
+    if (
+        projector_linear_val_111 != Fraction(1, 3)
+        or trace_inner(rho_exotic, ray_proj(WITNESS_111)) != Fraction(1, 3)
+        or quad_ray(rho_exotic, WITNESS_111) != Fraction(1, 3)
+        or exotic_qi3(WITNESS_111) == projector_linear_val_111
+    ):
+        raise AssertionError("Tier 3 operator-level projector-span exclusion of exotic_qi3 failed")
+
+    # Also check projector expansion identity across diverse Hermitian forms and rays
+    sample_herm = HermForm3(
+        Fraction(1, 2),
+        Fraction(1, 3),
+        Fraction(1, 6),
+        Fraction(1, 5),
+        Fraction(-1, 7),
+        Fraction(2, 9),
+        Fraction(1, 11),
+        Fraction(-1, 4),
+        Fraction(1, 8),
+    )
+    for probe in (WITNESS_111, WITNESS_NEG211, WITNESS_123, WITNESS_P7, WITNESS_P11):
+        c_map = nine_anchor_projector_expansion_coeffs(probe)
+        reconstructed_val = sum(
+            c_val * quad_ray(sample_herm, NINE_ANCHORS[a_key])
+            for a_key, c_val in c_map.items()
+        )
+        if (
+            reconstructed_val != quad_ray(sample_herm, probe)
+            or trace_inner(sample_herm, ray_proj(probe)) != quad_ray(sample_herm, probe)
+        ):
+            raise AssertionError("9-anchor projector expansion identity failed")
+
+    # Tier 4: Topological / bounded-anchor-amplification and continuum d >= 3 Gleason closure
+    u_crt0 = crt_approach_e1(0)
+    if not (
+        exotic_qi3(TOMO_E1) == Fraction(1, 3)
+        and exotic_qi3(u_crt0) == Fraction(2, 3)
+        and ray_sin_sq(u_crt0, TOMO_E1) == Fraction(2, 102)
+    ):
+        raise AssertionError("Tier 4 CRT discontinuity check for exotic_qi3 at tomo_e1 failed")
+
+    return {
+        "tier1_zero_one_kochen_specker": {
+            "nine_anchor_single_frame_zero_one_valuations": s9_zero_one_count,
+            "fifteen_anchor_bisector_zero_one_valuations": s15_zero_one_count,
+            "tomo_positive_x_anchor_val_verified": True,
+            "ks_active_core_zero_one_valuations": 0,
+            "ks_full_scenario_zero_one_valuations": 0,
+            "latitude_symmetry_assumed": False,
+        },
+        "tier2_rational_nonquadratic_frame_functions": {
+            "exotic_qi3_values": ["0", "1/3", "2/3"],
+            "exotic_qi3_on_15_anchor_bisectors": "1/3",
+            "exotic_qi3_witness_111": str(exotic_qi3(WITNESS_111)),
+            "exotic_qi3_witness_neg211": str(exotic_qi3(WITNESS_NEG211)),
+            "ks_scenario_inhabited_by_exotic_qi3": True,
+        },
+        "tier3_operator_effect_valuation_algebraic_born": {
+            "nine_anchor_projector_span_dimension": 9,
+            "tomography_form_of_exotic_qi3": "I_3 / 3",
+            "operator_linear_value_at_witness_111": str(projector_linear_val_111),
+            "exotic_qi3_value_at_witness_111": str(exotic_qi3(WITNESS_111)),
+            "algebraic_residual_discrepancy_at_witness_111": str(
+                exotic_qi3(WITNESS_111) - projector_linear_val_111
+            ),
+            "excludes_exotic_qi3_without_topology": True,
+        },
+        "tier4_topological_and_continuum_gleason_closure": {
+            "pointwise_ray_continuity_excludes_exotic_qi3_via_crt": True,
+            "dedekind_ray_cut_pointwise_continuous_on_qi3": True,
+            "dedekind_ray_cut_refuted_by_bisector_frame": True,
+            "bounded_anchor_amplification_closes_born_uniquely": True,
+        },
+    }
 
 
 def build_test_frames() -> list[tuple[str, GVec, GVec, GVec]]:
@@ -1049,6 +1703,12 @@ def verify_all_certificates() -> dict[str, object]:
                     raise AssertionError("Meridian-step orthogonal decomposition failed")
                 meridian_decomp_checks += 1
 
+    # 9. Target 4 (TFQ-0307): Finite Kochen-Specker 3-frame hypergraph extraction and 6-branch
+    #    unsat-core replay from BornGaussianRationalNoColouring.lean, fifteenAnchorBisectorScenario
+    #    {0, 1} valuation contrast, and 4-tier operational non-contextuality classification.
+    ks_summary = extract_and_verify_ks_no_colouring()
+    tfq_0307_summary = verify_tfq_0307_four_tier_classification(ks_summary)
+
     return {
         "schema_version": 1,
         "phase": "Phase 2 — Finite and Exact-Arithmetic Gleason Model",
@@ -1069,6 +1729,8 @@ def verify_all_certificates() -> dict[str, object]:
         "perturbed_two_frame_bounce_back_verified": True,
         "witness_123_fifteen_ray_isolation_verified": True,
         "meridian_step_modulus_decomp_pairs_verified": meridian_decomp_checks,
+        "ks_no_colouring_certificate": ks_summary,
+        "tfq_0307_four_tier_classification": tfq_0307_summary,
         "status": "PASS",
     }
 

@@ -42,6 +42,12 @@ quantum structures and the Gleason-Born chain (`BornGaussianFiniteModel`,
    `∑ k ∈ Finset.range N, (ψ (k + 1) - ψ k) ^ 2 ≥ 0`, vanishing on constant modes, and exact
    continuum second-derivative scaling of the discrete Laplacian `(f(x+a) - 2f(x) + f(x-a)) / a²`
    on quadratic and quartic polynomial test modes with explicit `O(a²)` Taylor remainder.
+9. **Stage 9 (`ContinuumKochenSpeckerAndOperationalBridge`)**: Embedding of `ℚ(i)³` pairwise-orthogonal
+   3-frames into `ℂ³` (`iota_ne_zero_of_nonZero`, `isOrthoFrameC_iota_of_isFrame`), continuum
+   Kochen–Specker refutation on `ℂ³ \ {0}` (`no_zero_one_continuum_frameFunctionC`), lifting to arbitrary
+   3D subspaces (`no_zero_one_continuum_subspace3D`) and all finite dimensions `d ≥ 3`
+   (`no_zero_one_continuum_frameFunctionD`), and the unified continuum `TFQ-0307` operational Born
+   synthesis (`continuum_tfq0307_operational_born_synthesis`).
 
 All theorems are proved without `sorry` or extra axioms beyond Lean's standard kernel axioms
 (`propext`, `Classical.choice`, `Quot.sound`).
@@ -455,4 +461,196 @@ theorem discrete_laplacian_quartic_taylor_remainder (c₀ c₁ c₂ c₃ c₄ x 
 
 end
 
+/-! ### Stage 9: Continuum Kochen–Specker Theorem (`d ≥ 3`) & `TFQ-0307` Operational Born Synthesis -/
+
+/-- Pairwise-orthogonal 3-frame predicate on `ℂ³ \ {0}`. -/
+def IsOrthoFrameC (u v w : Fin 3 → ℂ) : Prop :=
+  u ≠ 0 ∧ v ≠ 0 ∧ w ≠ 0 ∧ dotC u v = 0 ∧ dotC u w = 0 ∧ dotC v w = 0
+
+/-- The canonical embedding `ι : GVec → (Fin 3 → ℂ)` maps every nonzero Gaussian-rational vector
+to a nonzero complex vector in `ℂ³`. -/
+theorem iota_ne_zero_of_nonZero {v : GVec} (hv : v.NonZero) : ι v ≠ 0 :=
+  ι_ne_zero hv
+
+/-- The canonical embedding `ι : GVec → (Fin 3 → ℂ)` maps every pairwise-orthogonal Gaussian-rational
+3-frame `IsFrame u v w` to a pairwise-orthogonal complex 3-frame `IsOrthoFrameC (ι u) (ι v) (ι w)`. -/
+theorem isOrthoFrameC_iota_of_isFrame {u v w : GVec} (hfr : IsFrame u v w) :
+    IsOrthoFrameC (ι u) (ι v) (ι w) := by
+  obtain ⟨hu, hv, hw, huv, huw, hvw⟩ := hfr
+  refine ⟨ι_ne_zero hu, ι_ne_zero hv, ι_ne_zero hw, ?_, ?_, ?_⟩
+  · rw [dotC_ι, huv, toC_zero]
+  · rw [dotC_ι, huw, toC_zero]
+  · rw [dotC_ι, hvw, toC_zero]
+
+/-- **Continuum Kochen–Specker Theorem on `ℂ³ \ {0}` (`no_zero_one_continuum_frameFunctionC`)**:
+there is no `{0, 1}`-valued frame function of weight `1` on `ℂ³ \ {0}`. -/
+theorem no_zero_one_continuum_frameFunctionC :
+    ¬ ∃ F : (Fin 3 → ℂ) → ℝ,
+      IsFrameFunctionC F 1 ∧ ∀ v : Fin 3 → ℂ, v ≠ 0 → F v = 0 ∨ F v = 1 := by
+  classical
+  rintro ⟨F, hF, hB⟩
+  let f : GVec → ℚ := fun v => if F (ι v) = 1 then 1 else 0
+  have hf_eq : ∀ v : GVec, v.NonZero → (f v : ℝ) = F (ι v) := by
+    intro v hv
+    rcases hB (ι v) (ι_ne_zero hv) with h0 | h1
+    · simp [f, h0]
+    · simp [f, h1]
+  have hf_bin : ∀ v : GVec, v.NonZero → f v = 0 ∨ f v = 1 := by
+    intro v _hv
+    by_cases h1 : F (ι v) = 1
+    · right; simp [f, h1]
+    · left; simp [f, h1]
+  have hf_frame : IsFrameFunction f := by
+    intro u v w hfr
+    have hC := isOrthoFrameC_iota_of_isFrame hfr
+    have hsum : F (ι u) + F (ι v) + F (ι w) = 1 :=
+      hF.frame (ι u) (ι v) (ι w) hC.1 hC.2.1 hC.2.2.1 hC.2.2.2.1 hC.2.2.2.2.1 hC.2.2.2.2.2
+    have hR : ((f u + f v + f w : ℚ) : ℝ) = (1 : ℝ) := by
+      push_cast
+      rw [hf_eq u hfr.1, hf_eq v hfr.2.1, hf_eq w hfr.2.2.1]
+      exact hsum
+    exact_mod_cast hR
+  exact BornFinite.GaussianFrames.NoColouring.no_zero_one_frame_function f hf_frame hf_bin
+
+/-- **Continuum Kochen–Specker Theorem on 3D Subspaces of `ℂ^d` (`no_zero_one_continuum_subspace3D`)**:
+for any orthonormal triple `(e₀, e₁, e₂)` in `ℂ^d`, there is no `{0, 1}`-valued function `F` on
+`ℂ^d \ {0}` satisfying `HasSubspace3FrameAdditivityD F` with subspace weight `F e₀ + F e₁ + F e₂ = 1`. -/
+theorem no_zero_one_continuum_subspace3D {d : ℕ} {e₀ e₁ e₂ : Fin d → ℂ}
+    (htri : IsOrthonormalTripleD e₀ e₁ e₂) :
+    ¬ ∃ F : (Fin d → ℂ) → ℝ,
+      HasSubspace3FrameAdditivityD F ∧ F e₀ + F e₁ + F e₂ = 1 ∧
+      ∀ v : Fin d → ℂ, v ≠ 0 → F v = 0 ∨ F v = 1 := by
+  rintro ⟨F, hF, hW, hB⟩
+  have hsub : IsFrameFunctionC (restrict3D F e₀ e₁ e₂) 1 := by
+    simpa [hW] using isFrameFunctionC_restrict3D hF htri
+  have hbin : ∀ x : Fin 3 → ℂ, x ≠ 0 →
+      restrict3D F e₀ e₁ e₂ x = 0 ∨ restrict3D F e₀ e₁ e₂ x = 1 := by
+    intro x hx
+    exact hB (embed3D e₀ e₁ e₂ x) ((embed3D_ne_zero_iff htri x).mpr hx)
+  exact no_zero_one_continuum_frameFunctionC ⟨restrict3D F e₀ e₁ e₂, hsub, hbin⟩
+
+/-- **Continuum Kochen–Specker Theorem in Dimension `d ≥ 3` (`no_zero_one_continuum_frameFunctionD`)**:
+for every finite dimension `d ≥ 3`, there is no `{0, 1}`-valued frame function of weight `1`
+(`IsFrameFunctionD F 1`) on `ℂ^d \ {0}`. -/
+theorem no_zero_one_continuum_frameFunctionD {d : ℕ} (hd : 3 ≤ d) :
+    ¬ ∃ F : (Fin d → ℂ) → ℝ,
+      IsFrameFunctionD F 1 ∧ ∀ v : Fin d → ℂ, v ≠ 0 → F v = 0 ∨ F v = 1 := by
+  rintro ⟨F, hF, hB⟩
+  let B : Fin d → Fin d → ℂ := fun i => Pi.single i (1 : ℂ)
+  have hB_ortho : IsOrthonormalBasisD B := isOrthonormalBasisD_single
+  have hsum : (∑ i : Fin d, F (B i)) = 1 := hF.basis_sum B hB_ortho
+  have hBi_ne : ∀ i : Fin d, B i ≠ 0 :=
+    fun i => (nsqD_pos_iff_ne_zero (B i)).mp (by linarith [hB_ortho.1 i])
+  have hBi_bin : ∀ i : Fin d, F (B i) = 0 ∨ F (B i) = 1 :=
+    fun i => hB (B i) (hBi_ne i)
+  have hBi_nn : ∀ i : Fin d, 0 ≤ F (B i) := by
+    intro i
+    rcases hBi_bin i with h0 | h1 <;> linarith
+  have hex_one : ∃ i₀ : Fin d, F (B i₀) = 1 := by
+    by_contra hnone
+    have hall0 : ∀ i : Fin d, F (B i) = 0 := by
+      intro i
+      rcases hBi_bin i with h0 | h1
+      · exact h0
+      · exact False.elim (hnone ⟨i, h1⟩)
+    have h0 : (∑ i : Fin d, F (B i)) = 0 :=
+      Finset.sum_eq_zero (fun i _ => hall0 i)
+    linarith
+  obtain ⟨i₀, hi₀⟩ := hex_one
+  have h_other_zero : ∀ j : Fin d, j ≠ i₀ → F (B j) = 0 := by
+    intro j hj
+    have herase := Finset.add_sum_erase Finset.univ (fun i => F (B i)) (Finset.mem_univ i₀)
+    have hsum_erase : (∑ i ∈ Finset.univ.erase i₀, F (B i)) = 0 := by linarith
+    have hj_mem : j ∈ Finset.univ.erase i₀ :=
+      Finset.mem_erase.mpr ⟨hj, Finset.mem_univ j⟩
+    have hj_le : F (B j) ≤ ∑ i ∈ Finset.univ.erase i₀, F (B i) :=
+      Finset.single_le_sum (fun i _ => hBi_nn i) hj_mem
+    have hj_nn : 0 ≤ F (B j) := hBi_nn j
+    linarith
+  let k₀ : Fin d := Fin.castLE hd 0
+  let k₁ : Fin d := Fin.castLE hd 1
+  let k₂ : Fin d := Fin.castLE hd 2
+  have hk01 : k₀ ≠ k₁ := by intro h; have h1 := congrArg Fin.val h; simp [k₀, k₁] at h1
+  have hk02 : k₀ ≠ k₂ := by intro h; have h1 := congrArg Fin.val h; simp [k₀, k₂] at h1
+  have hk12 : k₁ ≠ k₂ := by intro h; have h1 := congrArg Fin.val h; simp [k₁, k₂] at h1
+  have hex_pair : ∃ i₁ i₂ : Fin d, i₀ ≠ i₁ ∧ i₀ ≠ i₂ ∧ i₁ ≠ i₂ := by
+    by_cases h0 : i₀ = k₀
+    · refine ⟨k₁, k₂, ?_, ?_, hk12⟩
+      · rw [h0]; exact hk01
+      · rw [h0]; exact hk02
+    · by_cases h1 : i₀ = k₁
+      · refine ⟨k₀, k₂, ?_, ?_, hk02⟩
+        · rw [h1]; exact hk01.symm
+        · rw [h1]; exact hk12
+      · exact ⟨k₀, k₁, h0, h1, hk01⟩
+  obtain ⟨i₁, i₂, h01, h02, h12⟩ := hex_pair
+  have hi₁ : F (B i₁) = 0 := h_other_zero i₁ h01.symm
+  have hi₂ : F (B i₂) = 0 := h_other_zero i₂ h02.symm
+  have hW : F (B i₀) + F (B i₁) + F (B i₂) = 1 := by linarith
+  have hsub : IsFrameFunctionC (restrict3D F (B i₀) (B i₁) (B i₂)) 1 := by
+    simpa [hW] using isFrameFunctionC_restrict3D_of_basis hF hB_ortho h01 h02 h12
+  have htri : IsOrthonormalTripleD (B i₀) (B i₁) (B i₂) :=
+    isOrthonormalTripleD_of_basis hB_ortho h01 h02 h12
+  have hbin : ∀ x : Fin 3 → ℂ, x ≠ 0 →
+      restrict3D F (B i₀) (B i₁) (B i₂) x = 0 ∨ restrict3D F (B i₀) (B i₁) (B i₂) x = 1 := by
+    intro x hx
+    exact hB (embed3D (B i₀) (B i₁) (B i₂) x) ((embed3D_ne_zero_iff htri x).mpr hx)
+  exact no_zero_one_continuum_frameFunctionC ⟨restrict3D F (B i₀) (B i₁) (B i₂), hsub, hbin⟩
+
+/-- **Continuum `TFQ-0307` Operational Born Synthesis (`continuum_tfq0307_operational_born_synthesis`)**:
+unites for all finite dimensions `d ≥ 3`:
+1. The continuum Kochen–Specker refutation of `{0, 1}` frame valuations (`no_zero_one_continuum_frameFunctionD`),
+2. The exact algebraic bijection between density matrices and `EffectValuation (HermitianCarrier.space d)`
+   (`HermitianCarrier.state_valuation_correspondence`),
+3. The continuity-free pure-state Born rule on every 3D subspace (`pure_state_nonneg_gleason_subspace3D`), and
+4. The general spectral Gleason quadratic representation on every 3D subspace under continuity
+   (`gleason_subspace3D_of_continuousD`). -/
+theorem continuum_tfq0307_operational_born_synthesis {d : ℕ} (hd : 3 ≤ d) :
+    (¬ ∃ F : (Fin d → ℂ) → ℝ,
+      IsFrameFunctionD F 1 ∧ ∀ v : Fin d → ℂ, v ≠ 0 → F v = 0 ∨ F v = 1) ∧
+    ((∀ W : EffectValuation (HermitianCarrier.space d),
+        (HermitianCarrier.density W)ᴴ = HermitianCarrier.density W ∧
+          HermitianCarrier.PsdH (HermitianCarrier.density W) ∧
+            (HermitianCarrier.density W).trace = 1 ∧
+              ∀ E : Matrix (Fin d) (Fin d) GaussRat,
+                (HermitianCarrier.space d).Effect E →
+                  W.v E = (HermitianCarrier.density W * E).trace.re) ∧
+     (∀ (ρ : Matrix (Fin d) (Fin d) GaussRat) (hρs : ρᴴ = ρ) (hρ : HermitianCarrier.PsdH ρ)
+        (htr : ρ.trace.re = 1),
+        HermitianCarrier.density (HermitianCarrier.bornValuation ρ hρs hρ htr) = ρ)) ∧
+    (∀ (F : (Fin d → ℂ) → ℝ) (e₁ e₂ e₃ : Fin d → ℂ) (p₀ : Fin 3 → ℂ),
+      HasSubspace3FrameAdditivityD F →
+      (∀ v : Fin d → ℂ, v ≠ 0 → 0 ≤ F v) →
+      IsOrthonormalTripleD e₁ e₂ e₃ →
+      GleasonComplex.nsq p₀ = 1 →
+      F (embed3D e₁ e₂ e₃ p₀) = F e₁ + F e₂ + F e₃ →
+      ∀ x : Fin 3 → ℂ, x ≠ 0 →
+        F (embed3D e₁ e₂ e₃ x) =
+          (F e₁ + F e₂ + F e₃) * Complex.normSq (GleasonComplex.dotC p₀ x) /
+            GleasonComplex.nsq x) ∧
+    (∀ (F : (Fin d → ℂ) → ℝ) (e₁ e₂ e₃ : Fin d → ℂ),
+      HasSubspace3FrameAdditivityD F →
+      ContinuousOn F {v : Fin d → ℂ | v ≠ 0} →
+      IsOrthonormalTripleD e₁ e₂ e₃ →
+      ∃ p q r : Fin 3 → ℂ, GleasonComplex.IsOrthonormalC p q r ∧ ∃ M α m : ℝ,
+        ∀ x : Fin 3 → ℂ, x ≠ 0 →
+          F (embed3D e₁ e₂ e₃ x) =
+            (M * Complex.normSq (GleasonComplex.dotC p x) +
+             α * Complex.normSq (GleasonComplex.dotC q x) +
+             m * Complex.normSq (GleasonComplex.dotC r x)) / GleasonComplex.nsq x) :=
+  ⟨no_zero_one_continuum_frameFunctionD hd,
+   HermitianCarrier.state_valuation_correspondence,
+   fun _ _ _ _ _ hF hnn htri hp₀ hpW =>
+     pure_state_nonneg_gleason_subspace3D hF hnn htri hp₀ hpW,
+   fun _ _ _ _ hF hc htri =>
+     gleason_subspace3D_of_continuousD hF hc htri⟩
+
 end BornFinite.ContinuumDerivationSpine
+
+#print axioms BornFinite.ContinuumDerivationSpine.iota_ne_zero_of_nonZero
+#print axioms BornFinite.ContinuumDerivationSpine.isOrthoFrameC_iota_of_isFrame
+#print axioms BornFinite.ContinuumDerivationSpine.no_zero_one_continuum_frameFunctionC
+#print axioms BornFinite.ContinuumDerivationSpine.no_zero_one_continuum_subspace3D
+#print axioms BornFinite.ContinuumDerivationSpine.no_zero_one_continuum_frameFunctionD
+#print axioms BornFinite.ContinuumDerivationSpine.continuum_tfq0307_operational_born_synthesis
+

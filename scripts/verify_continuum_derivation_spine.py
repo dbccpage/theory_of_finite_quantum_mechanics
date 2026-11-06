@@ -315,6 +315,43 @@ def verify_stage_8_discrete_lattice_hamiltonian() -> dict[str, Any]:
     }
 
 
+def verify_tfq_0307_operational_noncontextuality_bridge() -> dict[str, Any]:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import verify_gleason_finite_certificates as vgfc
+
+    ks_cert = vgfc.extract_and_verify_ks_no_colouring()
+    tfq_cert = vgfc.verify_tfq_0307_four_tier_classification(ks_cert)
+    assert ks_cert["box_rays_count"] == 49
+    assert ks_cert["pair_completion_frames_count"] == 82
+    assert ks_cert["internal_triple_frames_count"] == 26
+    assert ks_cert["total_frame_declarations"] == 108
+    assert ks_cert["distinct_ordered_frames"] == 103
+    assert ks_cert["distinct_canonical_w_ordered_frames"] == 96
+    assert ks_cert["distinct_sign_normalized_unordered_frames"] == 86
+    assert ks_cert["distinct_raw_vectors"] == 121
+    assert ks_cert["distinct_canonical_projective_rays"] == 99
+    assert ks_cert["full_ks_scenario"]["zero_one_valuations_count"] == 0
+    assert ks_cert["full_ks_scenario"]["admits_exotic_qi3_nonneg_valuation"] is True
+    assert ks_cert["full_ks_scenario"]["latitude_symmetry_assumed"] is False
+    assert (
+        tfq_cert["tier1_zero_one_kochen_specker"][
+            "fifteen_anchor_bisector_zero_one_valuations"
+        ]
+        == 48
+    )
+    assert (
+        tfq_cert["tier3_operator_effect_valuation_algebraic_born"][
+            "excludes_exotic_qi3_without_topology"
+        ]
+        is True
+    )
+    return {
+        "verified": True,
+        "ks_no_colouring_certificate": ks_cert,
+        "tfq_0307_four_tier_classification": tfq_cert,
+    }
+
+
 def build_receipt() -> dict[str, Any]:
     lean_path = LEAN_MODULE_PATH if LEAN_MODULE_PATH.exists() else Path(__file__).resolve().parent / "ContinuumDerivationSpine.lean"
     lean_sha256 = hashlib.sha256(lean_path.read_bytes()).hexdigest()
@@ -336,6 +373,7 @@ def build_receipt() -> dict[str, Any]:
             "stage_7_directed_continuum_limit": verify_stage_7_directed_continuum_limit(),
             "stage_8_discrete_lattice_hamiltonian_bridge": verify_stage_8_discrete_lattice_hamiltonian(),
         },
+        "tfq_0307_operational_noncontextuality_bridge": verify_tfq_0307_operational_noncontextuality_bridge(),
     }
 
 

@@ -160,6 +160,28 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
      `uniformlyRayContinuous_iff_pointwise_and_bounded_anchor_amplification`,
      `hasDenseUniformModulusFromPointwise_quadRay`,
      `uniformlyRayContinuous_iff_pointwise_and_dense_uniform_modulus`).
+
+8. **Pairwise-Orthogonal Kochen–Specker Certificate & `TFQ-0307` Operational Bridge**:
+   * **8A. The 15-Ray Full Tomography-Bisector Scenario (`fifteenAnchorBisectorScenario`)**:
+     combines all 9 tomography anchors and all 6 axis-plane bisector partners (`fifteenAnchorBisectorList`,
+     `fifteenAnchorBisectorList_nonZero`) with all 7 tomography-bisector frames (`sevenTomographyFramesList`),
+     and proves that even this 7-frame 15-ray scenario admits an explicit `{0, 1}` deterministic
+     valuation (`tomoPositiveXAnchorVal`, `fifteenAnchorBisectorScenario_admits_zero_one`).
+   * **8B. Pairwise-Orthogonal `{0, 1}` Kochen–Specker Certificate (`ksFiniteScenario`)**:
+     packages the 108 pairwise-orthogonal 3-frames (`ksFramesList`) and their rays (`ksRaysList`)
+     into a self-contained `FiniteFrameScenario` with zero latitude-symmetry assumptions and proves
+     `no_zero_one_scenarioValuation_ksFiniteScenario`, while showing that `ksFiniteScenario` still
+     admits the `[0, 1] ∩ ℚ`-valued non-quadratic valuation `exoticQi3`
+     (`ksFiniteScenario_admits_exoticQi3`) as well as every operator-induced Born valuation
+     (`ksFiniteScenario_admits_effectValuation`), establishing the 3-way scenario separation
+     `tomography_vs_ks_scenario_separation`.
+   * **8C. The 4-Tier `TFQ-0307` Operational Non-Contextuality Bridge
+     (`tfq0307_operational_noncontextuality_four_tier_bridge`)**:
+     unites in one theorem Tier 1 (finite-scenario and global `{0, 1}` Kochen–Specker refutation),
+     Tier 2 (`[0, 1] ∩ ℚ` non-quadratic `exoticQi3` inhabitation), Tier 3 (operator-level
+     `EffectValuation (HermitianCarrier.space 3)` algebraic Born representation and unconditional
+     exclusion of `exoticQi3`), and Tier 4 (analytic `TFQ-1056`/`TFQ-1057` uniform ray-continuity
+     equivalence and density-matrix completion).
 -/
 
 namespace BornFinite.GaussianFiniteModel
@@ -3622,6 +3644,1019 @@ theorem uniformlyRayContinuous_iff_pointwise_and_dense_uniform_modulus {f : GVec
   · rintro ⟨hcont, hdense⟩
     exact (born_from_pointwise_and_dense_uniform_modulus hf hcont hdense).2
 
+/-! ### Section 8: Pairwise-Orthogonal Kochen–Specker Certificate & `TFQ-0307` Operational Bridge -/
+
+/-! #### 8A. The 15-Ray Full Tomography-Bisector Scenario (`fifteenAnchorBisectorScenario`) -/
+
+/-- The combined 15-ray list consisting of all 9 tomography anchors and all 6 completing
+axis-plane bisector partners. -/
+def fifteenAnchorBisectorList : List GVec :=
+  nineAnchorsList ++ sixBisectorPartnersList
+
+theorem fifteenAnchorBisectorList_nonZero : ∀ v ∈ fifteenAnchorBisectorList, v.NonZero := by
+  intro v hv
+  rw [fifteenAnchorBisectorList, List.mem_append] at hv
+  rcases hv with h9 | h6
+  · exact nineAnchorsList_nonZero v h9
+  · exact sixBisectorPartnersList_nonZero v h6
+
+/-- The 7 pairwise-orthogonal 3-frames spanning the 15-ray tomography-bisector system:
+the standard basis frame `(tomo_e1, tomo_e2, tomo_e3)` together with the 6 axis-plane
+anchor-bisector frames. -/
+def sevenTomographyFramesList : List (GVec × GVec × GVec) :=
+  [(tomo_e1, tomo_e2, tomo_e3),
+   (tomo_e3, tomo_e12, bisector_12_neg),
+   (tomo_e3, tomo_e12i, bisector_12i_neg),
+   (tomo_e2, tomo_e13, bisector_13_neg),
+   (tomo_e2, tomo_e13i, bisector_13i_neg),
+   (tomo_e1, tomo_e23, bisector_23_neg),
+   (tomo_e1, tomo_e23i, bisector_23i_neg)]
+
+/-- The finite measurement scenario consisting of all 15 tomography-bisector rays and all 7
+tomography-bisector orthogonal frames. -/
+def fifteenAnchorBisectorScenario : FiniteFrameScenario where
+  rays := fifteenAnchorBisectorList
+  frames := sevenTomographyFramesList
+  rays_nonZero := fifteenAnchorBisectorList_nonZero
+  frames_in_rays := by
+    intro fr hfr
+    simp only [sevenTomographyFramesList, List.mem_cons, List.not_mem_nil, or_false] at hfr
+    rcases hfr with rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+      simp [fifteenAnchorBisectorList, nineAnchorsList, sixBisectorPartnersList]
+  frames_valid := by
+    intro fr hfr
+    simp only [sevenTomographyFramesList, List.mem_cons, List.not_mem_nil, or_false] at hfr
+    rcases hfr with rfl | rfl | rfl | rfl | rfl | rfl | rfl
+    · exact frame_tomo_std
+    · exact isFrame_tomo_e3_e12_bisector
+    · exact isFrame_tomo_e3_e12i_bisector
+    · exact isFrame_tomo_e2_e13_bisector
+    · exact isFrame_tomo_e2_e13i_bisector
+    · exact isFrame_tomo_e1_e23_bisector
+    · exact isFrame_tomo_e1_e23i_bisector
+
+/-- Deterministic `{0, 1}` valuation on `GVec` assigning `1` to `tomo_e1`, `tomo_e12`, `tomo_e12i`,
+`tomo_e13`, and `tomo_e13i` (and `0` to the remaining 10 rays of `fifteenAnchorBisectorList`). -/
+def tomoPositiveXAnchorVal (v : GVec) : ℚ :=
+  if v.x = 1 ∧ (v.y = 0 ∨ v.y = 1 ∨ v.y = GaussRat.I) ∧
+      (v.z = 0 ∨ v.z = 1 ∨ v.z = GaussRat.I) then 1 else 0
+
+/-- Even the full 15-ray 7-frame tomography-bisector scenario (`fifteenAnchorBisectorScenario`)
+admits an explicit `{0, 1}`-valued deterministic valuation. -/
+theorem fifteenAnchorBisectorScenario_admits_zero_one :
+    IsZeroOneScenarioValuation fifteenAnchorBisectorScenario tomoPositiveXAnchorVal := by
+  refine ⟨?_, ?_⟩
+  · intro fr hfr
+    simp only [fifteenAnchorBisectorScenario, sevenTomographyFramesList,
+      List.mem_cons, List.not_mem_nil, or_false] at hfr
+    rcases hfr with rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+      norm_num [tomoPositiveXAnchorVal, tomo_e1, tomo_e2, tomo_e3,
+        tomo_e12, tomo_e12i, tomo_e13, tomo_e13i, tomo_e23, tomo_e23i,
+        bisector_12_neg, bisector_12i_neg, bisector_13_neg, bisector_13i_neg,
+        bisector_23_neg, bisector_23i_neg, gv, GaussRat.I, GaussRat.ext_iff]
+  · intro v _hv
+    by_cases h : v.x = 1 ∧ (v.y = 0 ∨ v.y = 1 ∨ v.y = GaussRat.I) ∧
+        (v.z = 0 ∨ v.z = 1 ∨ v.z = GaussRat.I)
+    · right; simp [tomoPositiveXAnchorVal, h]
+    · left; simp [tomoPositiveXAnchorVal, h]
+
+
+/-! #### 8B. Pairwise-Orthogonal `{0, 1}` Kochen–Specker Certificate (`ksFiniteScenario`) -/
+
+/-- Collects the three component rays of every frame in a finite frame list. -/
+def frameRays (frames : List (GVec × GVec × GVec)) : List GVec :=
+  frames.foldr (fun fr acc => fr.1 :: fr.2.1 :: fr.2.2 :: acc) []
+
+theorem mem_frameRays_of_mem {frames : List (GVec × GVec × GVec)}
+    {fr : GVec × GVec × GVec} (hfr : fr ∈ frames) :
+    fr.1 ∈ frameRays frames ∧ fr.2.1 ∈ frameRays frames ∧ fr.2.2 ∈ frameRays frames := by
+  induction frames with
+  | nil => cases hfr
+  | cons hd tl ih =>
+    change fr.1 ∈ hd.1 :: hd.2.1 :: hd.2.2 :: frameRays tl ∧
+      fr.2.1 ∈ hd.1 :: hd.2.1 :: hd.2.2 :: frameRays tl ∧
+      fr.2.2 ∈ hd.1 :: hd.2.1 :: hd.2.2 :: frameRays tl
+    rcases List.mem_cons.mp hfr with rfl | htl
+    · simp
+    · obtain ⟨h1, h2, h3⟩ := ih htl
+      simp [h1, h2, h3]
+
+theorem frameRays_nonZero {frames : List (GVec × GVec × GVec)}
+    (hvalid : ∀ fr ∈ frames, IsFrame fr.1 fr.2.1 fr.2.2) :
+    ∀ v ∈ frameRays frames, v.NonZero := by
+  induction frames with
+  | nil =>
+    intro v hv
+    cases hv
+  | cons hd tl ih =>
+    have hhd : IsFrame hd.1 hd.2.1 hd.2.2 := hvalid hd (by simp)
+    have htl : ∀ fr ∈ tl, IsFrame fr.1 fr.2.1 fr.2.2 :=
+      fun fr hfr => hvalid fr (List.mem_cons_of_mem hd hfr)
+    intro v hv
+    simp only [frameRays, List.foldr_cons, List.mem_cons] at hv
+    rcases hv with rfl | rfl | rfl | hrest
+    · exact hhd.1
+    · exact hhd.2.1
+    · exact hhd.2.2.1
+    · exact ih htl v hrest
+
+private theorem cons_nonZero {u : GVec} {l : List GVec}
+    (hu : u.NonZero) (hl : ∀ v ∈ l, v.NonZero) :
+    ∀ v ∈ (u :: l), v.NonZero :=
+  List.forall_mem_cons.mpr ⟨hu, hl⟩
+
+private theorem cons_valid {fr : GVec × GVec × GVec} {l : List (GVec × GVec × GVec)}
+    (hfr : IsFrame fr.1 fr.2.1 fr.2.2) (hl : ∀ f ∈ l, IsFrame f.1 f.2.1 f.2.2) :
+    ∀ f ∈ (fr :: l), IsFrame f.1 f.2.1 f.2.2 :=
+  List.forall_mem_cons.mpr ⟨hfr, hl⟩
+
+/-- The 49 primitive integer rays in `[-2, 2]³` from `BornGaussianRationalNoColouring`. -/
+def ksBoxRaysList : List GVec :=
+  [(gv 0 0 0 0 1 0),
+   (gv 0 0 1 0 (-2) 0),
+   (gv 0 0 1 0 (-1) 0),
+   (gv 0 0 1 0 0 0),
+   (gv 0 0 1 0 1 0),
+   (gv 0 0 1 0 2 0),
+   (gv 0 0 2 0 (-1) 0),
+   (gv 0 0 2 0 1 0),
+   (gv 1 0 (-2) 0 (-2) 0),
+   (gv 1 0 (-2) 0 (-1) 0),
+   (gv 1 0 (-2) 0 0 0),
+   (gv 1 0 (-2) 0 1 0),
+   (gv 1 0 (-2) 0 2 0),
+   (gv 1 0 (-1) 0 (-2) 0),
+   (gv 1 0 (-1) 0 (-1) 0),
+   (gv 1 0 (-1) 0 0 0),
+   (gv 1 0 (-1) 0 1 0),
+   (gv 1 0 (-1) 0 2 0),
+   (gv 1 0 0 0 (-2) 0),
+   (gv 1 0 0 0 (-1) 0),
+   (gv 1 0 0 0 0 0),
+   (gv 1 0 0 0 1 0),
+   (gv 1 0 0 0 2 0),
+   (gv 1 0 1 0 (-2) 0),
+   (gv 1 0 1 0 (-1) 0),
+   (gv 1 0 1 0 0 0),
+   (gv 1 0 1 0 1 0),
+   (gv 1 0 1 0 2 0),
+   (gv 1 0 2 0 (-2) 0),
+   (gv 1 0 2 0 (-1) 0),
+   (gv 1 0 2 0 0 0),
+   (gv 1 0 2 0 1 0),
+   (gv 1 0 2 0 2 0),
+   (gv 2 0 (-2) 0 (-1) 0),
+   (gv 2 0 (-2) 0 1 0),
+   (gv 2 0 (-1) 0 (-2) 0),
+   (gv 2 0 (-1) 0 (-1) 0),
+   (gv 2 0 (-1) 0 0 0),
+   (gv 2 0 (-1) 0 1 0),
+   (gv 2 0 (-1) 0 2 0),
+   (gv 2 0 0 0 (-1) 0),
+   (gv 2 0 0 0 1 0),
+   (gv 2 0 1 0 (-2) 0),
+   (gv 2 0 1 0 (-1) 0),
+   (gv 2 0 1 0 0 0),
+   (gv 2 0 1 0 1 0),
+   (gv 2 0 1 0 2 0),
+   (gv 2 0 2 0 (-1) 0),
+   (gv 2 0 2 0 1 0)]
+
+theorem ksBoxRaysList_nonZero : ∀ v ∈ ksBoxRaysList, v.NonZero := by
+  unfold ksBoxRaysList
+  refine cons_nonZero (nonZero_of_z (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_y (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_y (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_y (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_y (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_y (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_y (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_y (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  refine cons_nonZero (nonZero_of_x (by norm_num [gv])) ?_
+  intro v hv; cases hv
+
+/-- The 108 pairwise-orthogonal 3-frames (82 cross-completed pair frames + 26 internal
+triples) of the integer Kochen–Specker certificate on `ℚ(i)³`. -/
+def ksFramesList : List (GVec × GVec × GVec) :=
+  [((gv 0 0 0 0 1 0), (gv 0 0 1 0 0 0), (gv (-1) 0 0 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 1 0 (-2) 0 0 0), (gv 2 0 1 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 1 0 (-1) 0 0 0), (gv 1 0 1 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 1 0 0 0 0 0), (gv 0 0 1 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 1 0 1 0 0 0), (gv (-1) 0 1 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 1 0 2 0 0 0), (gv (-2) 0 1 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 2 0 (-1) 0 0 0), (gv 1 0 2 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 2 0 1 0 0 0), (gv (-1) 0 2 0 0 0)),
+   ((gv 0 0 1 0 (-2) 0), (gv 1 0 (-2) 0 (-1) 0), (gv (-5) 0 (-2) 0 (-1) 0)),
+   ((gv 0 0 1 0 (-2) 0), (gv 1 0 2 0 1 0), (gv 5 0 (-2) 0 (-1) 0)),
+   ((gv 0 0 1 0 (-2) 0), (gv 2 0 (-2) 0 (-1) 0), (gv (-5) 0 (-4) 0 (-2) 0)),
+   ((gv 0 0 1 0 (-2) 0), (gv 2 0 2 0 1 0), (gv 5 0 (-4) 0 (-2) 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 0 0 1 0 1 0), (gv 2 0 0 0 0 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 1 0 (-2) 0 (-2) 0), (gv (-4) 0 (-1) 0 (-1) 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 1 0 (-1) 0 (-1) 0), (gv (-2) 0 (-1) 0 (-1) 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 1 0 0 0 0 0), (gv 0 0 (-1) 0 (-1) 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 1 0 1 0 1 0), (gv 2 0 (-1) 0 (-1) 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 1 0 2 0 2 0), (gv 4 0 (-1) 0 (-1) 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 2 0 (-1) 0 (-1) 0), (gv (-2) 0 (-2) 0 (-2) 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 2 0 1 0 1 0), (gv 2 0 (-2) 0 (-2) 0)),
+   ((gv 0 0 1 0 0 0), (gv 1 0 0 0 (-2) 0), (gv (-2) 0 0 0 (-1) 0)),
+   ((gv 0 0 1 0 0 0), (gv 1 0 0 0 (-1) 0), (gv (-1) 0 0 0 (-1) 0)),
+   ((gv 0 0 1 0 0 0), (gv 1 0 0 0 0 0), (gv 0 0 0 0 (-1) 0)),
+   ((gv 0 0 1 0 0 0), (gv 1 0 0 0 1 0), (gv 1 0 0 0 (-1) 0)),
+   ((gv 0 0 1 0 0 0), (gv 1 0 0 0 2 0), (gv 2 0 0 0 (-1) 0)),
+   ((gv 0 0 1 0 0 0), (gv 2 0 0 0 (-1) 0), (gv (-1) 0 0 0 (-2) 0)),
+   ((gv 0 0 1 0 0 0), (gv 2 0 0 0 1 0), (gv 1 0 0 0 (-2) 0)),
+   ((gv 0 0 1 0 1 0), (gv 1 0 (-2) 0 2 0), (gv 4 0 1 0 (-1) 0)),
+   ((gv 0 0 1 0 1 0), (gv 1 0 2 0 (-2) 0), (gv (-4) 0 1 0 (-1) 0)),
+   ((gv 0 0 1 0 2 0), (gv 1 0 (-2) 0 1 0), (gv 5 0 2 0 (-1) 0)),
+   ((gv 0 0 1 0 2 0), (gv 1 0 2 0 (-1) 0), (gv (-5) 0 2 0 (-1) 0)),
+   ((gv 0 0 2 0 (-1) 0), (gv 1 0 (-1) 0 (-2) 0), (gv (-5) 0 (-1) 0 (-2) 0)),
+   ((gv 0 0 2 0 (-1) 0), (gv 1 0 1 0 2 0), (gv 5 0 (-1) 0 (-2) 0)),
+   ((gv 0 0 2 0 1 0), (gv 1 0 (-1) 0 2 0), (gv 5 0 1 0 (-2) 0)),
+   ((gv 0 0 2 0 1 0), (gv 1 0 1 0 (-2) 0), (gv (-5) 0 1 0 (-2) 0)),
+   ((gv 1 0 (-2) 0 (-2) 0), (gv 2 0 0 0 1 0), (gv (-2) 0 (-5) 0 4 0)),
+   ((gv 1 0 (-2) 0 (-2) 0), (gv 2 0 1 0 0 0), (gv 2 0 (-4) 0 5 0)),
+   ((gv 1 0 (-2) 0 (-1) 0), (gv 2 0 1 0 0 0), (gv 1 0 (-2) 0 5 0)),
+   ((gv 1 0 (-2) 0 0 0), (gv 2 0 1 0 (-2) 0), (gv 4 0 2 0 5 0)),
+   ((gv 1 0 (-2) 0 0 0), (gv 2 0 1 0 (-1) 0), (gv 2 0 1 0 5 0)),
+   ((gv 1 0 (-2) 0 0 0), (gv 2 0 1 0 1 0), (gv (-2) 0 (-1) 0 5 0)),
+   ((gv 1 0 (-2) 0 0 0), (gv 2 0 1 0 2 0), (gv (-4) 0 (-2) 0 5 0)),
+   ((gv 1 0 (-2) 0 1 0), (gv 2 0 1 0 0 0), (gv (-1) 0 2 0 5 0)),
+   ((gv 1 0 (-2) 0 2 0), (gv 2 0 0 0 (-1) 0), (gv 2 0 5 0 4 0)),
+   ((gv 1 0 (-2) 0 2 0), (gv 2 0 1 0 0 0), (gv (-2) 0 4 0 5 0)),
+   ((gv 1 0 (-1) 0 (-2) 0), (gv 2 0 0 0 1 0), (gv (-1) 0 (-5) 0 2 0)),
+   ((gv 1 0 (-1) 0 (-1) 0), (gv 2 0 1 0 1 0), (gv 0 0 (-3) 0 3 0)),
+   ((gv 1 0 (-1) 0 0 0), (gv 1 0 1 0 (-2) 0), (gv 2 0 2 0 2 0)),
+   ((gv 1 0 (-1) 0 0 0), (gv 1 0 1 0 (-1) 0), (gv 1 0 1 0 2 0)),
+   ((gv 1 0 (-1) 0 0 0), (gv 1 0 1 0 0 0), (gv 0 0 0 0 2 0)),
+   ((gv 1 0 (-1) 0 0 0), (gv 1 0 1 0 1 0), (gv (-1) 0 (-1) 0 2 0)),
+   ((gv 1 0 (-1) 0 0 0), (gv 1 0 1 0 2 0), (gv (-2) 0 (-2) 0 2 0)),
+   ((gv 1 0 (-1) 0 0 0), (gv 2 0 2 0 (-1) 0), (gv 1 0 1 0 4 0)),
+   ((gv 1 0 (-1) 0 0 0), (gv 2 0 2 0 1 0), (gv (-1) 0 (-1) 0 4 0)),
+   ((gv 1 0 (-1) 0 1 0), (gv 2 0 1 0 (-1) 0), (gv 0 0 3 0 3 0)),
+   ((gv 1 0 (-1) 0 2 0), (gv 2 0 0 0 (-1) 0), (gv 1 0 5 0 2 0)),
+   ((gv 1 0 0 0 (-2) 0), (gv 2 0 (-2) 0 1 0), (gv (-4) 0 (-5) 0 (-2) 0)),
+   ((gv 1 0 0 0 (-2) 0), (gv 2 0 (-1) 0 1 0), (gv (-2) 0 (-5) 0 (-1) 0)),
+   ((gv 1 0 0 0 (-2) 0), (gv 2 0 1 0 1 0), (gv 2 0 (-5) 0 1 0)),
+   ((gv 1 0 0 0 (-2) 0), (gv 2 0 2 0 1 0), (gv 4 0 (-5) 0 2 0)),
+   ((gv 1 0 0 0 (-1) 0), (gv 1 0 1 0 1 0), (gv 1 0 (-2) 0 1 0)),
+   ((gv 1 0 0 0 1 0), (gv 1 0 1 0 (-1) 0), (gv (-1) 0 2 0 1 0)),
+   ((gv 1 0 0 0 2 0), (gv 2 0 (-2) 0 (-1) 0), (gv 4 0 5 0 (-2) 0)),
+   ((gv 1 0 0 0 2 0), (gv 2 0 (-1) 0 (-1) 0), (gv 2 0 5 0 (-1) 0)),
+   ((gv 1 0 0 0 2 0), (gv 2 0 1 0 (-1) 0), (gv (-2) 0 5 0 1 0)),
+   ((gv 1 0 0 0 2 0), (gv 2 0 2 0 (-1) 0), (gv (-4) 0 5 0 2 0)),
+   ((gv 1 0 1 0 (-2) 0), (gv 2 0 0 0 1 0), (gv 1 0 (-5) 0 (-2) 0)),
+   ((gv 1 0 1 0 (-1) 0), (gv 2 0 (-1) 0 1 0), (gv 0 0 (-3) 0 (-3) 0)),
+   ((gv 1 0 1 0 0 0), (gv 2 0 (-2) 0 (-1) 0), (gv (-1) 0 1 0 (-4) 0)),
+   ((gv 1 0 1 0 0 0), (gv 2 0 (-2) 0 1 0), (gv 1 0 (-1) 0 (-4) 0)),
+   ((gv 1 0 1 0 1 0), (gv 2 0 (-1) 0 (-1) 0), (gv 0 0 3 0 (-3) 0)),
+   ((gv 1 0 1 0 2 0), (gv 2 0 0 0 (-1) 0), (gv (-1) 0 5 0 (-2) 0)),
+   ((gv 1 0 2 0 (-2) 0), (gv 2 0 (-1) 0 0 0), (gv (-2) 0 (-4) 0 (-5) 0)),
+   ((gv 1 0 2 0 (-2) 0), (gv 2 0 0 0 1 0), (gv 2 0 (-5) 0 (-4) 0)),
+   ((gv 1 0 2 0 (-1) 0), (gv 2 0 (-1) 0 0 0), (gv (-1) 0 (-2) 0 (-5) 0)),
+   ((gv 1 0 2 0 0 0), (gv 2 0 (-1) 0 (-2) 0), (gv (-4) 0 2 0 (-5) 0)),
+   ((gv 1 0 2 0 0 0), (gv 2 0 (-1) 0 (-1) 0), (gv (-2) 0 1 0 (-5) 0)),
+   ((gv 1 0 2 0 0 0), (gv 2 0 (-1) 0 1 0), (gv 2 0 (-1) 0 (-5) 0)),
+   ((gv 1 0 2 0 0 0), (gv 2 0 (-1) 0 2 0), (gv 4 0 (-2) 0 (-5) 0)),
+   ((gv 1 0 2 0 1 0), (gv 2 0 (-1) 0 0 0), (gv 1 0 2 0 (-5) 0)),
+   ((gv 1 0 2 0 2 0), (gv 2 0 (-1) 0 0 0), (gv 2 0 4 0 (-5) 0)),
+   ((gv 1 0 2 0 2 0), (gv 2 0 0 0 (-1) 0), (gv (-2) 0 5 0 (-4) 0)),
+   ((gv 0 0 0 0 1 0), (gv 0 0 1 0 0 0), (gv 1 0 0 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 1 0 (-2) 0 0 0), (gv 2 0 1 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 1 0 (-1) 0 0 0), (gv 1 0 1 0 0 0)),
+   ((gv 0 0 0 0 1 0), (gv 1 0 2 0 0 0), (gv 2 0 (-1) 0 0 0)),
+   ((gv 0 0 1 0 (-2) 0), (gv 0 0 2 0 1 0), (gv 1 0 0 0 0 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 0 0 1 0 1 0), (gv 1 0 0 0 0 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 1 0 (-1) 0 (-1) 0), (gv 2 0 1 0 1 0)),
+   ((gv 0 0 1 0 (-1) 0), (gv 1 0 1 0 1 0), (gv 2 0 (-1) 0 (-1) 0)),
+   ((gv 0 0 1 0 0 0), (gv 1 0 0 0 (-2) 0), (gv 2 0 0 0 1 0)),
+   ((gv 0 0 1 0 0 0), (gv 1 0 0 0 (-1) 0), (gv 1 0 0 0 1 0)),
+   ((gv 0 0 1 0 0 0), (gv 1 0 0 0 2 0), (gv 2 0 0 0 (-1) 0)),
+   ((gv 0 0 1 0 1 0), (gv 1 0 (-1) 0 1 0), (gv 2 0 1 0 (-1) 0)),
+   ((gv 0 0 1 0 1 0), (gv 1 0 1 0 (-1) 0), (gv 2 0 (-1) 0 1 0)),
+   ((gv 0 0 1 0 2 0), (gv 0 0 2 0 (-1) 0), (gv 1 0 0 0 0 0)),
+   ((gv 1 0 (-2) 0 (-2) 0), (gv 2 0 (-1) 0 2 0), (gv 2 0 2 0 (-1) 0)),
+   ((gv 1 0 (-2) 0 (-1) 0), (gv 1 0 0 0 1 0), (gv 1 0 1 0 (-1) 0)),
+   ((gv 1 0 (-2) 0 1 0), (gv 1 0 0 0 (-1) 0), (gv 1 0 1 0 1 0)),
+   ((gv 1 0 (-2) 0 2 0), (gv 2 0 (-1) 0 (-2) 0), (gv 2 0 2 0 1 0)),
+   ((gv 1 0 (-1) 0 (-2) 0), (gv 1 0 (-1) 0 1 0), (gv 1 0 1 0 0 0)),
+   ((gv 1 0 (-1) 0 (-1) 0), (gv 1 0 (-1) 0 2 0), (gv 1 0 1 0 0 0)),
+   ((gv 1 0 (-1) 0 (-1) 0), (gv 1 0 0 0 1 0), (gv 1 0 2 0 (-1) 0)),
+   ((gv 1 0 (-1) 0 0 0), (gv 1 0 1 0 (-2) 0), (gv 1 0 1 0 1 0)),
+   ((gv 1 0 (-1) 0 0 0), (gv 1 0 1 0 (-1) 0), (gv 1 0 1 0 2 0)),
+   ((gv 1 0 (-1) 0 1 0), (gv 1 0 0 0 (-1) 0), (gv 1 0 2 0 1 0)),
+   ((gv 1 0 2 0 (-2) 0), (gv 2 0 (-2) 0 (-1) 0), (gv 2 0 1 0 2 0)),
+   ((gv 1 0 2 0 2 0), (gv 2 0 (-2) 0 1 0), (gv 2 0 1 0 (-2) 0))]
+
+set_option maxHeartbeats 4000000 in
+theorem ksFramesList_valid : ∀ fr ∈ ksFramesList, IsFrame fr.1 fr.2.1 fr.2.2 := by
+  unfold ksFramesList
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_z (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_z (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_z (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_y (by norm_num [gv]), nonZero_of_y (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  refine cons_valid ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩ ?_
+  intro fr hfr; cases hfr
+
+/-- The ray list of `ksFiniteScenario`, combining the 49 primitive box rays and all
+completing rays of the 108 orthogonal frames. -/
+def ksRaysList : List GVec :=
+  ksBoxRaysList ++ frameRays ksFramesList
+
+theorem ksRaysList_nonZero : ∀ v ∈ ksRaysList, v.NonZero := by
+  intro v hv
+  rw [ksRaysList, List.mem_append] at hv
+  rcases hv with hbox | hfr
+  · exact ksBoxRaysList_nonZero v hbox
+  · exact frameRays_nonZero ksFramesList_valid v hfr
+
+theorem ksFramesList_in_rays :
+    ∀ fr ∈ ksFramesList, fr.1 ∈ ksRaysList ∧ fr.2.1 ∈ ksRaysList ∧ fr.2.2 ∈ ksRaysList := by
+  intro fr hfr
+  obtain ⟨h1, h2, h3⟩ := mem_frameRays_of_mem hfr
+  exact ⟨List.mem_append_right _ h1, List.mem_append_right _ h2, List.mem_append_right _ h3⟩
+
+/-- **The Pairwise-Orthogonal Kochen–Specker Finite Scenario (`ksFiniteScenario`)**:
+a genuine finite `FiniteFrameScenario` in `ℚ(i)³` whose constraints are exclusively
+pairwise-orthogonal 3-frames (`IsFrame u v w`) with zero latitude-symmetry assumptions. -/
+def ksFiniteScenario : FiniteFrameScenario where
+  rays := ksRaysList
+  frames := ksFramesList
+  rays_nonZero := ksRaysList_nonZero
+  frames_in_rays := ksFramesList_in_rays
+  frames_valid := ksFramesList_valid
+
+private theorem scenario_binary_nonneg {S : FiniteFrameScenario} {f : GVec → ℚ}
+    (hf : IsZeroOneScenarioValuation S f) {v : GVec} (hv : v ∈ S.rays) : 0 ≤ f v := by
+  rcases hf.2 v hv with h | h <;> linarith
+
+private theorem zeroOneScenario_box_props {f : GVec → ℚ}
+    (hf : IsZeroOneScenarioValuation ksFiniteScenario f) :
+    ∀ v ∈ ksBoxRaysList, (f v = 0 ∨ f v = 1) ∧ 0 ≤ f v := by
+  intro v hv
+  have hmem : v ∈ ksFiniteScenario.rays := List.mem_append_left _ hv
+  exact ⟨hf.2 v hmem, scenario_binary_nonneg hf hmem⟩
+
+private theorem zeroOneScenario_frame_props {S : FiniteFrameScenario} {f : GVec → ℚ}
+    (hf : IsZeroOneScenarioValuation S f) :
+    ∀ fr ∈ S.frames,
+      (f fr.1 + f fr.2.1 + f fr.2.2 = 1) ∧ (f fr.1 + f fr.2.1 ≤ 1) := by
+  intro fr hfr
+  have hsum : f fr.1 + f fr.2.1 + f fr.2.2 = 1 := hf.1 fr hfr
+  have hw_mem : fr.2.2 ∈ S.rays := (S.frames_in_rays fr hfr).2.2
+  have hw_nn : 0 ≤ f fr.2.2 := scenario_binary_nonneg hf hw_mem
+  exact ⟨hsum, by linarith⟩
+
+set_option maxHeartbeats 4000000 in
+/-- **Finite-Scenario Kochen–Specker Theorem (`no_zero_one_scenarioValuation_ksFiniteScenario`)**:
+the finite pairwise-orthogonal measurement scenario `ksFiniteScenario` admits no `{0, 1}`-valued
+deterministic valuation. -/
+theorem no_zero_one_scenarioValuation_ksFiniteScenario :
+    ¬ ∃ f : GVec → ℚ, IsZeroOneScenarioValuation ksFiniteScenario f := by
+  rintro ⟨f, hf⟩
+  have hbox := zeroOneScenario_box_props hf
+  unfold ksBoxRaysList at hbox
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b0, n0⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b1, n1⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b2, n2⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b3, n3⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b4, n4⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b5, n5⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b6, n6⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b7, n7⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b8, n8⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b9, n9⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b10, n10⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b11, n11⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b12, n12⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b13, n13⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b14, n14⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b15, n15⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b16, n16⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b17, n17⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b18, n18⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b19, n19⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b20, n20⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b21, n21⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b22, n22⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b23, n23⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b24, n24⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b25, n25⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b26, n26⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b27, n27⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b28, n28⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b29, n29⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b30, n30⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b31, n31⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b32, n32⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b33, n33⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b34, n34⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b35, n35⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b36, n36⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b37, n37⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b38, n38⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b39, n39⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b40, n40⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b41, n41⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b42, n42⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b43, n43⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b44, n44⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b45, n45⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b46, n46⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b47, n47⟩, hbox⟩
+  rcases List.forall_mem_cons.mp hbox with ⟨⟨b48, n48⟩, hbox⟩
+  clear hbox
+  have hfr := zeroOneScenario_frame_props hf
+  change ∀ fr ∈ ksFramesList, (f fr.1 + f fr.2.1 + f fr.2.2 = 1) ∧ (f fr.1 + f fr.2.1 ≤ 1) at hfr
+  unfold ksFramesList at hfr
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_0_3⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_0_10⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_0_15⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_0_20⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_0_25⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_0_30⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_0_37⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_0_44⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_1_9⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_1_31⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_1_33⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_1_48⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_2_4⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_2_8⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_2_14⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_2_20⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_2_26⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_2_32⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_2_36⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_2_45⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_3_18⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_3_19⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_3_20⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_3_21⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_3_22⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_3_40⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_3_41⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_4_12⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_4_28⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_5_11⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_5_29⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_6_13⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_6_27⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_7_17⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_7_23⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_8_41⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_8_44⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_9_44⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_10_42⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_10_43⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_10_45⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_10_46⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_11_44⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_12_40⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_12_44⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_13_41⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_14_45⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_15_23⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_15_24⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_15_25⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_15_26⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_15_27⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_15_47⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_15_48⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_16_43⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_17_40⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_18_34⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_18_38⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_18_45⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_18_48⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_19_26⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_21_24⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_22_33⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_22_36⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_22_43⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_22_47⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_23_41⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_24_38⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_25_33⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_25_34⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_26_36⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_27_40⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_28_37⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_28_41⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_29_37⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_30_35⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_30_36⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_30_38⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_30_39⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_31_37⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_32_37⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨_, p_32_40⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_0_3_20, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_0_10_44, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_0_15_25, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_0_30_37, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_1_7_20, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_2_4_20, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_2_14_45, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_2_26_36, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_3_18_41, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_3_19_21, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_3_22_40, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_4_16_43, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_4_24_38, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_5_6_20, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_8_39_47, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_9_21_24, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_11_19_26, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_12_35_48, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_13_16_25, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_14_17_25, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_14_21_29, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_15_23_26, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_15_24_27, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_16_19_31, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_28_33_46, _⟩, hfr⟩
+  rcases List.forall_mem_cons.mp hfr with ⟨⟨t_32_34_42, _⟩, hfr⟩
+  clear hfr
+  rcases b0 with a0 | a0
+  ·
+    rcases b2 with a2 | a2
+    ·
+      rcases b3 with a3 | a3
+      ·
+        have a20 : f (gv 1 0 0 0 0 0) = 1 := by linarith only [t_0_3_20, a0, a3, n20]
+        have a1 : f (gv 0 0 1 0 (-2) 0) = 0 := by linarith only [t_1_7_20, n7, a20, n1]
+        have a7 : f (gv 0 0 2 0 1 0) = 0 := by linarith only [t_1_7_20, a1, a20, n7]
+        have a4 : f (gv 0 0 1 0 1 0) = 0 := by linarith only [t_2_4_20, a2, a20, n4]
+        have a5 : f (gv 0 0 1 0 2 0) = 0 := by linarith only [t_5_6_20, n6, a20, n5]
+        have a6 : f (gv 0 0 2 0 (-1) 0) = 0 := by linarith only [t_5_6_20, a5, a20, n6]
+        rcases b15 with a15 | a15
+        ·
+          have a25 : f (gv 1 0 1 0 0 0) = 1 := by linarith only [t_0_15_25, a0, a15, n25]
+          have a13 : f (gv 1 0 (-1) 0 (-2) 0) = 0 := by linarith only [t_13_16_25, n16, a25, n13]
+          have a16 : f (gv 1 0 (-1) 0 1 0) = 0 := by linarith only [t_13_16_25, a13, a25, n16]
+          have a14 : f (gv 1 0 (-1) 0 (-1) 0) = 0 := by linarith only [t_14_17_25, n17, a25, n14]
+          have a17 : f (gv 1 0 (-1) 0 2 0) = 0 := by linarith only [t_14_17_25, a14, a25, n17]
+          have a33 : f (gv 2 0 (-2) 0 (-1) 0) = 0 := by linarith only [p_25_33, a25, n33]
+          have a34 : f (gv 2 0 (-2) 0 1 0) = 0 := by linarith only [p_25_34, a25, n34]
+          have a45 : f (gv 2 0 1 0 1 0) = 1 := by linarith only [t_2_14_45, a2, a14, n45]
+          have a43 : f (gv 2 0 1 0 (-1) 0) = 1 := by linarith only [t_4_16_43, a4, a16, n43]
+          have a10 : f (gv 1 0 (-2) 0 0 0) = 0 := by linarith only [p_10_45, a45, n10]
+          have a18 : f (gv 1 0 0 0 (-2) 0) = 0 := by linarith only [p_18_45, a45, n18]
+          have a22 : f (gv 1 0 0 0 2 0) = 0 := by linarith only [p_22_43, a43, n22]
+          have a44 : f (gv 2 0 1 0 0 0) = 1 := by linarith only [t_0_10_44, a0, a10, n44]
+          have a41 : f (gv 2 0 0 0 1 0) = 1 := by linarith only [t_3_18_41, a3, a18, n41]
+          have a40 : f (gv 2 0 0 0 (-1) 0) = 1 := by linarith only [t_3_22_40, a3, a22, n40]
+          have a8 : f (gv 1 0 (-2) 0 (-2) 0) = 0 := by linarith only [p_8_44, a44, n8]
+          have a9 : f (gv 1 0 (-2) 0 (-1) 0) = 0 := by linarith only [p_9_44, a44, n9]
+          have a11 : f (gv 1 0 (-2) 0 1 0) = 0 := by linarith only [p_11_44, a44, n11]
+          have a12 : f (gv 1 0 (-2) 0 2 0) = 0 := by linarith only [p_12_44, a44, n12]
+          have a23 : f (gv 1 0 1 0 (-2) 0) = 0 := by linarith only [p_23_41, a41, n23]
+          have a28 : f (gv 1 0 2 0 (-2) 0) = 0 := by linarith only [p_28_41, a41, n28]
+          have a27 : f (gv 1 0 1 0 2 0) = 0 := by linarith only [p_27_40, a40, n27]
+          have a32 : f (gv 1 0 2 0 2 0) = 0 := by linarith only [p_32_40, a40, n32]
+          have a26 : f (gv 1 0 1 0 1 0) = 1 := by linarith only [t_15_23_26, a15, a23, n26]
+          have a24 : f (gv 1 0 1 0 (-1) 0) = 1 := by linarith only [t_15_24_27, a15, a27, n24]
+          have a46 : f (gv 2 0 1 0 2 0) = 1 := by linarith only [t_28_33_46, a28, a33, n46]
+          have a42 : f (gv 2 0 1 0 (-2) 0) = 1 := by linarith only [t_32_34_42, a32, a34, n42]
+          have a19 : f (gv 1 0 0 0 (-1) 0) = 0 := by linarith only [p_19_26, a26, n19]
+          have a36 : f (gv 2 0 (-1) 0 (-1) 0) = 0 := by linarith only [p_26_36, a26, n36]
+          have a21 : f (gv 1 0 0 0 1 0) = 0 := by linarith only [p_21_24, a24, n21]
+          have a38 : f (gv 2 0 (-1) 0 1 0) = 0 := by linarith only [p_24_38, a24, n38]
+          linarith only [t_3_19_21, a3, a19, a21]
+        ·
+          have a23 : f (gv 1 0 1 0 (-2) 0) = 0 := by linarith only [p_15_23, a15, n23]
+          have a24 : f (gv 1 0 1 0 (-1) 0) = 0 := by linarith only [p_15_24, a15, n24]
+          have a25 : f (gv 1 0 1 0 0 0) = 0 := by linarith only [p_15_25, a15, n25]
+          have a26 : f (gv 1 0 1 0 1 0) = 0 := by linarith only [p_15_26, a15, n26]
+          have a27 : f (gv 1 0 1 0 2 0) = 0 := by linarith only [p_15_27, a15, n27]
+          have a47 : f (gv 2 0 2 0 (-1) 0) = 0 := by linarith only [p_15_47, a15, n47]
+          have a48 : f (gv 2 0 2 0 1 0) = 0 := by linarith only [p_15_48, a15, n48]
+          have a36 : f (gv 2 0 (-1) 0 (-1) 0) = 1 := by linarith only [t_2_26_36, a2, a26, n36]
+          have a38 : f (gv 2 0 (-1) 0 1 0) = 1 := by linarith only [t_4_24_38, a4, a24, n38]
+          have a22 : f (gv 1 0 0 0 2 0) = 0 := by linarith only [p_22_36, a36, n22]
+          have a30 : f (gv 1 0 2 0 0 0) = 0 := by linarith only [p_30_36, a36, n30]
+          have a18 : f (gv 1 0 0 0 (-2) 0) = 0 := by linarith only [p_18_38, a38, n18]
+          have a37 : f (gv 2 0 (-1) 0 0 0) = 1 := by linarith only [t_0_30_37, a0, a30, n37]
+          have a41 : f (gv 2 0 0 0 1 0) = 1 := by linarith only [t_3_18_41, a3, a18, n41]
+          have a40 : f (gv 2 0 0 0 (-1) 0) = 1 := by linarith only [t_3_22_40, a3, a22, n40]
+          have a28 : f (gv 1 0 2 0 (-2) 0) = 0 := by linarith only [p_28_37, a37, n28]
+          have a29 : f (gv 1 0 2 0 (-1) 0) = 0 := by linarith only [p_29_37, a37, n29]
+          have a31 : f (gv 1 0 2 0 1 0) = 0 := by linarith only [p_31_37, a37, n31]
+          have a32 : f (gv 1 0 2 0 2 0) = 0 := by linarith only [p_32_37, a37, n32]
+          have a8 : f (gv 1 0 (-2) 0 (-2) 0) = 0 := by linarith only [p_8_41, a41, n8]
+          have a13 : f (gv 1 0 (-1) 0 (-2) 0) = 0 := by linarith only [p_13_41, a41, n13]
+          have a12 : f (gv 1 0 (-2) 0 2 0) = 0 := by linarith only [p_12_40, a40, n12]
+          have a17 : f (gv 1 0 (-1) 0 2 0) = 0 := by linarith only [p_17_40, a40, n17]
+          have a39 : f (gv 2 0 (-1) 0 2 0) = 1 := by linarith only [t_8_39_47, a8, a47, n39]
+          have a35 : f (gv 2 0 (-1) 0 (-2) 0) = 1 := by linarith only [t_12_35_48, a12, a48, n35]
+          have a16 : f (gv 1 0 (-1) 0 1 0) = 1 := by linarith only [t_13_16_25, a13, a25, n16]
+          have a14 : f (gv 1 0 (-1) 0 (-1) 0) = 1 := by linarith only [t_14_17_25, a17, a25, n14]
+          have a21 : f (gv 1 0 0 0 1 0) = 0 := by linarith only [t_14_21_29, a14, a29, n21]
+          have a19 : f (gv 1 0 0 0 (-1) 0) = 0 := by linarith only [t_16_19_31, a16, a31, n19]
+          have a43 : f (gv 2 0 1 0 (-1) 0) = 0 := by linarith only [p_16_43, a16, n43]
+          have a45 : f (gv 2 0 1 0 1 0) = 0 := by linarith only [p_14_45, a14, n45]
+          linarith only [t_3_19_21, a3, a19, a21]
+      ·
+        have a18 : f (gv 1 0 0 0 (-2) 0) = 0 := by linarith only [p_3_18, a3, n18]
+        have a19 : f (gv 1 0 0 0 (-1) 0) = 0 := by linarith only [p_3_19, a3, n19]
+        have a20 : f (gv 1 0 0 0 0 0) = 0 := by linarith only [p_3_20, a3, n20]
+        have a21 : f (gv 1 0 0 0 1 0) = 0 := by linarith only [p_3_21, a3, n21]
+        have a22 : f (gv 1 0 0 0 2 0) = 0 := by linarith only [p_3_22, a3, n22]
+        have a40 : f (gv 2 0 0 0 (-1) 0) = 0 := by linarith only [p_3_40, a3, n40]
+        have a41 : f (gv 2 0 0 0 1 0) = 0 := by linarith only [p_3_41, a3, n41]
+        have a4 : f (gv 0 0 1 0 1 0) = 1 := by linarith only [t_2_4_20, a2, a20, n4]
+        have a16 : f (gv 1 0 (-1) 0 1 0) = 0 := by linarith only [t_4_16_43, a4, n43, n16]
+        have a43 : f (gv 2 0 1 0 (-1) 0) = 0 := by linarith only [t_4_16_43, a4, a16, n43]
+        have a24 : f (gv 1 0 1 0 (-1) 0) = 0 := by linarith only [t_4_24_38, a4, n38, n24]
+        have a38 : f (gv 2 0 (-1) 0 1 0) = 0 := by linarith only [t_4_24_38, a4, a24, n38]
+        have a9 : f (gv 1 0 (-2) 0 (-1) 0) = 1 := by linarith only [t_9_21_24, a21, a24, n9]
+        have a31 : f (gv 1 0 2 0 1 0) = 1 := by linarith only [t_16_19_31, a16, a19, n31]
+        have a12 : f (gv 1 0 (-2) 0 2 0) = 0 := by linarith only [p_4_12, a4, n12]
+        have a28 : f (gv 1 0 2 0 (-2) 0) = 0 := by linarith only [p_4_28, a4, n28]
+        have a1 : f (gv 0 0 1 0 (-2) 0) = 0 := by linarith only [p_1_9, a9, n1]
+        have a44 : f (gv 2 0 1 0 0 0) = 0 := by linarith only [p_9_44, a9, n44]
+        have a37 : f (gv 2 0 (-1) 0 0 0) = 0 := by linarith only [p_31_37, a31, n37]
+        have a10 : f (gv 1 0 (-2) 0 0 0) = 1 := by linarith only [t_0_10_44, a0, a44, n10]
+        have a30 : f (gv 1 0 2 0 0 0) = 1 := by linarith only [t_0_30_37, a0, a37, n30]
+        have a7 : f (gv 0 0 2 0 1 0) = 1 := by linarith only [t_1_7_20, a1, a20, n7]
+        have a42 : f (gv 2 0 1 0 (-2) 0) = 0 := by linarith only [p_10_42, a10, n42]
+        have a45 : f (gv 2 0 1 0 1 0) = 0 := by linarith only [p_10_45, a10, n45]
+        have a46 : f (gv 2 0 1 0 2 0) = 0 := by linarith only [p_10_46, a10, n46]
+        have a35 : f (gv 2 0 (-1) 0 (-2) 0) = 0 := by linarith only [p_30_35, a30, n35]
+        have a36 : f (gv 2 0 (-1) 0 (-1) 0) = 0 := by linarith only [p_30_36, a30, n36]
+        have a39 : f (gv 2 0 (-1) 0 2 0) = 0 := by linarith only [p_30_39, a30, n39]
+        have a17 : f (gv 1 0 (-1) 0 2 0) = 0 := by linarith only [p_7_17, a7, n17]
+        have a23 : f (gv 1 0 1 0 (-2) 0) = 0 := by linarith only [p_7_23, a7, n23]
+        have a14 : f (gv 1 0 (-1) 0 (-1) 0) = 1 := by linarith only [t_2_14_45, a2, a45, n14]
+        have a26 : f (gv 1 0 1 0 1 0) = 1 := by linarith only [t_2_26_36, a2, a36, n26]
+        have a11 : f (gv 1 0 (-2) 0 1 0) = 0 := by linarith only [t_11_19_26, a19, a26, n11]
+        have a48 : f (gv 2 0 2 0 1 0) = 1 := by linarith only [t_12_35_48, a12, a35, n48]
+        have a25 : f (gv 1 0 1 0 0 0) = 0 := by linarith only [t_14_17_25, a14, a17, n25]
+        have a29 : f (gv 1 0 2 0 (-1) 0) = 0 := by linarith only [t_14_21_29, a14, a21, n29]
+        have a15 : f (gv 1 0 (-1) 0 0 0) = 0 := by linarith only [t_15_23_26, a23, a26, n15]
+        have a27 : f (gv 1 0 1 0 2 0) = 1 := by linarith only [t_15_24_27, a15, a24, n27]
+        have a33 : f (gv 2 0 (-2) 0 (-1) 0) = 1 := by linarith only [t_28_33_46, a28, a46, n33]
+        have a6 : f (gv 0 0 2 0 (-1) 0) = 0 := by linarith only [p_6_27, a27, n6]
+        linarith only [t_0_15_25, a0, a15, a25]
+    ·
+      have a4 : f (gv 0 0 1 0 1 0) = 0 := by linarith only [p_2_4, a2, n4]
+      have a8 : f (gv 1 0 (-2) 0 (-2) 0) = 0 := by linarith only [p_2_8, a2, n8]
+      have a14 : f (gv 1 0 (-1) 0 (-1) 0) = 0 := by linarith only [p_2_14, a2, n14]
+      have a20 : f (gv 1 0 0 0 0 0) = 0 := by linarith only [p_2_20, a2, n20]
+      have a26 : f (gv 1 0 1 0 1 0) = 0 := by linarith only [p_2_26, a2, n26]
+      have a32 : f (gv 1 0 2 0 2 0) = 0 := by linarith only [p_2_32, a2, n32]
+      have a36 : f (gv 2 0 (-1) 0 (-1) 0) = 0 := by linarith only [p_2_36, a2, n36]
+      have a45 : f (gv 2 0 1 0 1 0) = 0 := by linarith only [p_2_45, a2, n45]
+      have a3 : f (gv 0 0 1 0 0 0) = 1 := by linarith only [t_0_3_20, a0, a20, n3]
+      have a18 : f (gv 1 0 0 0 (-2) 0) = 0 := by linarith only [t_3_18_41, a3, n41, n18]
+      have a41 : f (gv 2 0 0 0 1 0) = 0 := by linarith only [t_3_18_41, a3, a18, n41]
+      have a19 : f (gv 1 0 0 0 (-1) 0) = 0 := by linarith only [t_3_19_21, a3, n21, n19]
+      have a21 : f (gv 1 0 0 0 1 0) = 0 := by linarith only [t_3_19_21, a3, a19, n21]
+      have a22 : f (gv 1 0 0 0 2 0) = 0 := by linarith only [t_3_22_40, a3, n40, n22]
+      have a40 : f (gv 2 0 0 0 (-1) 0) = 0 := by linarith only [t_3_22_40, a3, a22, n40]
+      have a11 : f (gv 1 0 (-2) 0 1 0) = 1 := by linarith only [t_11_19_26, a19, a26, n11]
+      have a29 : f (gv 1 0 2 0 (-1) 0) = 1 := by linarith only [t_14_21_29, a14, a21, n29]
+      have a5 : f (gv 0 0 1 0 2 0) = 0 := by linarith only [p_5_11, a11, n5]
+      have a44 : f (gv 2 0 1 0 0 0) = 0 := by linarith only [p_11_44, a11, n44]
+      have a37 : f (gv 2 0 (-1) 0 0 0) = 0 := by linarith only [p_29_37, a29, n37]
+      have a10 : f (gv 1 0 (-2) 0 0 0) = 1 := by linarith only [t_0_10_44, a0, a44, n10]
+      have a30 : f (gv 1 0 2 0 0 0) = 1 := by linarith only [t_0_30_37, a0, a37, n30]
+      have a6 : f (gv 0 0 2 0 (-1) 0) = 1 := by linarith only [t_5_6_20, a5, a20, n6]
+      have a42 : f (gv 2 0 1 0 (-2) 0) = 0 := by linarith only [p_10_42, a10, n42]
+      have a43 : f (gv 2 0 1 0 (-1) 0) = 0 := by linarith only [p_10_43, a10, n43]
+      have a46 : f (gv 2 0 1 0 2 0) = 0 := by linarith only [p_10_46, a10, n46]
+      have a35 : f (gv 2 0 (-1) 0 (-2) 0) = 0 := by linarith only [p_30_35, a30, n35]
+      have a38 : f (gv 2 0 (-1) 0 1 0) = 0 := by linarith only [p_30_38, a30, n38]
+      have a39 : f (gv 2 0 (-1) 0 2 0) = 0 := by linarith only [p_30_39, a30, n39]
+      have a13 : f (gv 1 0 (-1) 0 (-2) 0) = 0 := by linarith only [p_6_13, a6, n13]
+      have a27 : f (gv 1 0 1 0 2 0) = 0 := by linarith only [p_6_27, a6, n27]
+      have a16 : f (gv 1 0 (-1) 0 1 0) = 1 := by linarith only [t_4_16_43, a4, a43, n16]
+      have a24 : f (gv 1 0 1 0 (-1) 0) = 1 := by linarith only [t_4_24_38, a4, a38, n24]
+      have a47 : f (gv 2 0 2 0 (-1) 0) = 1 := by linarith only [t_8_39_47, a8, a39, n47]
+      have a9 : f (gv 1 0 (-2) 0 (-1) 0) = 0 := by linarith only [t_9_21_24, a21, a24, n9]
+      have a25 : f (gv 1 0 1 0 0 0) = 0 := by linarith only [t_13_16_25, a13, a16, n25]
+      have a17 : f (gv 1 0 (-1) 0 2 0) = 1 := by linarith only [t_14_17_25, a14, a25, n17]
+      have a15 : f (gv 1 0 (-1) 0 0 0) = 0 := by linarith only [t_15_24_27, a24, a27, n15]
+      have a31 : f (gv 1 0 2 0 1 0) = 0 := by linarith only [t_16_19_31, a16, a19, n31]
+      have a34 : f (gv 2 0 (-2) 0 1 0) = 1 := by linarith only [t_32_34_42, a32, a42, n34]
+      have a7 : f (gv 0 0 2 0 1 0) = 0 := by linarith only [p_7_17, a17, n7]
+      linarith only [t_0_15_25, a0, a15, a25]
+  ·
+    have a3 : f (gv 0 0 1 0 0 0) = 0 := by linarith only [p_0_3, a0, n3]
+    have a10 : f (gv 1 0 (-2) 0 0 0) = 0 := by linarith only [p_0_10, a0, n10]
+    have a15 : f (gv 1 0 (-1) 0 0 0) = 0 := by linarith only [p_0_15, a0, n15]
+    have a20 : f (gv 1 0 0 0 0 0) = 0 := by linarith only [p_0_20, a0, n20]
+    have a25 : f (gv 1 0 1 0 0 0) = 0 := by linarith only [p_0_25, a0, n25]
+    have a30 : f (gv 1 0 2 0 0 0) = 0 := by linarith only [p_0_30, a0, n30]
+    have a37 : f (gv 2 0 (-1) 0 0 0) = 0 := by linarith only [p_0_37, a0, n37]
+    have a44 : f (gv 2 0 1 0 0 0) = 0 := by linarith only [p_0_44, a0, n44]
+    rcases b2 with a2 | a2
+    ·
+      have a4 : f (gv 0 0 1 0 1 0) = 1 := by linarith only [t_2_4_20, a2, a20, n4]
+      have a16 : f (gv 1 0 (-1) 0 1 0) = 0 := by linarith only [t_4_16_43, a4, n43, n16]
+      have a43 : f (gv 2 0 1 0 (-1) 0) = 0 := by linarith only [t_4_16_43, a4, a16, n43]
+      have a24 : f (gv 1 0 1 0 (-1) 0) = 0 := by linarith only [t_4_24_38, a4, n38, n24]
+      have a38 : f (gv 2 0 (-1) 0 1 0) = 0 := by linarith only [t_4_24_38, a4, a24, n38]
+      have a13 : f (gv 1 0 (-1) 0 (-2) 0) = 1 := by linarith only [t_13_16_25, a16, a25, n13]
+      have a27 : f (gv 1 0 1 0 2 0) = 1 := by linarith only [t_15_24_27, a15, a24, n27]
+      have a12 : f (gv 1 0 (-2) 0 2 0) = 0 := by linarith only [p_4_12, a4, n12]
+      have a28 : f (gv 1 0 2 0 (-2) 0) = 0 := by linarith only [p_4_28, a4, n28]
+      have a6 : f (gv 0 0 2 0 (-1) 0) = 0 := by linarith only [p_6_13, a13, n6]
+      have a41 : f (gv 2 0 0 0 1 0) = 0 := by linarith only [p_13_41, a13, n41]
+      have a40 : f (gv 2 0 0 0 (-1) 0) = 0 := by linarith only [p_27_40, a27, n40]
+      have a18 : f (gv 1 0 0 0 (-2) 0) = 1 := by linarith only [t_3_18_41, a3, a41, n18]
+      have a22 : f (gv 1 0 0 0 2 0) = 1 := by linarith only [t_3_22_40, a3, a40, n22]
+      have a5 : f (gv 0 0 1 0 2 0) = 1 := by linarith only [t_5_6_20, a6, a20, n5]
+      have a34 : f (gv 2 0 (-2) 0 1 0) = 0 := by linarith only [p_18_34, a18, n34]
+      have a45 : f (gv 2 0 1 0 1 0) = 0 := by linarith only [p_18_45, a18, n45]
+      have a48 : f (gv 2 0 2 0 1 0) = 0 := by linarith only [p_18_48, a18, n48]
+      have a33 : f (gv 2 0 (-2) 0 (-1) 0) = 0 := by linarith only [p_22_33, a22, n33]
+      have a36 : f (gv 2 0 (-1) 0 (-1) 0) = 0 := by linarith only [p_22_36, a22, n36]
+      have a47 : f (gv 2 0 2 0 (-1) 0) = 0 := by linarith only [p_22_47, a22, n47]
+      have a11 : f (gv 1 0 (-2) 0 1 0) = 0 := by linarith only [p_5_11, a5, n11]
+      have a29 : f (gv 1 0 2 0 (-1) 0) = 0 := by linarith only [p_5_29, a5, n29]
+      have a14 : f (gv 1 0 (-1) 0 (-1) 0) = 1 := by linarith only [t_2_14_45, a2, a45, n14]
+      have a26 : f (gv 1 0 1 0 1 0) = 1 := by linarith only [t_2_26_36, a2, a36, n26]
+      have a19 : f (gv 1 0 0 0 (-1) 0) = 0 := by linarith only [t_11_19_26, a11, a26, n19]
+      have a35 : f (gv 2 0 (-1) 0 (-2) 0) = 1 := by linarith only [t_12_35_48, a12, a48, n35]
+      have a17 : f (gv 1 0 (-1) 0 2 0) = 0 := by linarith only [t_14_17_25, a14, a25, n17]
+      have a21 : f (gv 1 0 0 0 1 0) = 0 := by linarith only [t_14_21_29, a14, a29, n21]
+      have a23 : f (gv 1 0 1 0 (-2) 0) = 0 := by linarith only [t_15_23_26, a15, a26, n23]
+      have a31 : f (gv 1 0 2 0 1 0) = 1 := by linarith only [t_16_19_31, a16, a19, n31]
+      have a46 : f (gv 2 0 1 0 2 0) = 1 := by linarith only [t_28_33_46, a28, a33, n46]
+      have a1 : f (gv 0 0 1 0 (-2) 0) = 0 := by linarith only [p_1_31, a31, n1]
+      have a7 : f (gv 0 0 2 0 1 0) = 1 := by linarith only [t_1_7_20, a1, a20, n7]
+      linarith only [t_3_19_21, a3, a19, a21]
+    ·
+      have a4 : f (gv 0 0 1 0 1 0) = 0 := by linarith only [p_2_4, a2, n4]
+      have a8 : f (gv 1 0 (-2) 0 (-2) 0) = 0 := by linarith only [p_2_8, a2, n8]
+      have a14 : f (gv 1 0 (-1) 0 (-1) 0) = 0 := by linarith only [p_2_14, a2, n14]
+      have a26 : f (gv 1 0 1 0 1 0) = 0 := by linarith only [p_2_26, a2, n26]
+      have a32 : f (gv 1 0 2 0 2 0) = 0 := by linarith only [p_2_32, a2, n32]
+      have a36 : f (gv 2 0 (-1) 0 (-1) 0) = 0 := by linarith only [p_2_36, a2, n36]
+      have a45 : f (gv 2 0 1 0 1 0) = 0 := by linarith only [p_2_45, a2, n45]
+      have a17 : f (gv 1 0 (-1) 0 2 0) = 1 := by linarith only [t_14_17_25, a14, a25, n17]
+      have a23 : f (gv 1 0 1 0 (-2) 0) = 1 := by linarith only [t_15_23_26, a15, a26, n23]
+      have a7 : f (gv 0 0 2 0 1 0) = 0 := by linarith only [p_7_17, a17, n7]
+      have a40 : f (gv 2 0 0 0 (-1) 0) = 0 := by linarith only [p_17_40, a17, n40]
+      have a41 : f (gv 2 0 0 0 1 0) = 0 := by linarith only [p_23_41, a23, n41]
+      have a1 : f (gv 0 0 1 0 (-2) 0) = 1 := by linarith only [t_1_7_20, a7, a20, n1]
+      have a18 : f (gv 1 0 0 0 (-2) 0) = 1 := by linarith only [t_3_18_41, a3, a41, n18]
+      have a22 : f (gv 1 0 0 0 2 0) = 1 := by linarith only [t_3_22_40, a3, a40, n22]
+      have a9 : f (gv 1 0 (-2) 0 (-1) 0) = 0 := by linarith only [p_1_9, a1, n9]
+      have a31 : f (gv 1 0 2 0 1 0) = 0 := by linarith only [p_1_31, a1, n31]
+      have a33 : f (gv 2 0 (-2) 0 (-1) 0) = 0 := by linarith only [p_1_33, a1, n33]
+      have a48 : f (gv 2 0 2 0 1 0) = 0 := by linarith only [p_1_48, a1, n48]
+      have a34 : f (gv 2 0 (-2) 0 1 0) = 0 := by linarith only [p_18_34, a18, n34]
+      have a38 : f (gv 2 0 (-1) 0 1 0) = 0 := by linarith only [p_18_38, a18, n38]
+      have a43 : f (gv 2 0 1 0 (-1) 0) = 0 := by linarith only [p_22_43, a22, n43]
+      have a47 : f (gv 2 0 2 0 (-1) 0) = 0 := by linarith only [p_22_47, a22, n47]
+      have a16 : f (gv 1 0 (-1) 0 1 0) = 1 := by linarith only [t_4_16_43, a4, a43, n16]
+      have a24 : f (gv 1 0 1 0 (-1) 0) = 1 := by linarith only [t_4_24_38, a4, a38, n24]
+      have a39 : f (gv 2 0 (-1) 0 2 0) = 1 := by linarith only [t_8_39_47, a8, a47, n39]
+      have a21 : f (gv 1 0 0 0 1 0) = 0 := by linarith only [t_9_21_24, a9, a24, n21]
+      have a13 : f (gv 1 0 (-1) 0 (-2) 0) = 0 := by linarith only [t_13_16_25, a16, a25, n13]
+      have a29 : f (gv 1 0 2 0 (-1) 0) = 1 := by linarith only [t_14_21_29, a14, a21, n29]
+      have a27 : f (gv 1 0 1 0 2 0) = 0 := by linarith only [t_15_24_27, a15, a24, n27]
+      have a19 : f (gv 1 0 0 0 (-1) 0) = 0 := by linarith only [t_16_19_31, a16, a31, n19]
+      have a42 : f (gv 2 0 1 0 (-2) 0) = 1 := by linarith only [t_32_34_42, a32, a34, n42]
+      have a5 : f (gv 0 0 1 0 2 0) = 0 := by linarith only [p_5_29, a29, n5]
+      linarith only [t_3_19_21, a3, a19, a21]
+
+
+/-- The finite Kochen–Specker scenario `ksFiniteScenario` nevertheless admits the explicit
+`{0, 1/3, 2/3}`-valued non-quadratic valuation `exoticQi3`. -/
+theorem ksFiniteScenario_admits_exoticQi3 :
+    IsNonnegScenarioValuation ksFiniteScenario exoticQi3 :=
+  global_nonneg_frameFunction_restricts_to_scenario ksFiniteScenario
+    exoticQi3_isFrameFunction (fun v _ => (exoticQi3_bounds v).1)
+
+/-- Every operator-level effect valuation `W : EffectValuation (HermitianCarrier.space 3)`
+induces a valid nonnegative scenario valuation `rayValuationOfEffect W` on `ksFiniteScenario`. -/
+theorem ksFiniteScenario_admits_effectValuation
+    (W : EffectValuation (HermitianCarrier.space 3)) :
+    IsNonnegScenarioValuation ksFiniteScenario (rayValuationOfEffect W) :=
+  global_nonneg_frameFunction_restricts_to_scenario ksFiniteScenario
+    (rayValuationOfEffect_isFrameFunction W) (fun _ hv => rayValuationOfEffect_nonneg W hv)
+
+/-- **Three-Way Separation Between Tomography Scenarios, Kochen–Specker Scenarios, and
+Quadratic Born Rigidity (`tomography_vs_ks_scenario_separation`)**:
+1. The 15-ray 7-frame full tomography-bisector scenario (`fifteenAnchorBisectorScenario`)
+   admits a `{0, 1}` deterministic valuation.
+2. The finite pairwise-orthogonal Kochen–Specker scenario (`ksFiniteScenario`) admits
+   **no** `{0, 1}` deterministic valuation.
+3. Yet `ksFiniteScenario` still admits the `[0, 1] ∩ ℚ`-valued valuation `exoticQi3`,
+   which is not the Rayleigh quotient of any `HermForm3`. -/
+theorem tomography_vs_ks_scenario_separation :
+    (∃ f : GVec → ℚ, IsZeroOneScenarioValuation fifteenAnchorBisectorScenario f) ∧
+    (¬ ∃ f : GVec → ℚ, IsZeroOneScenarioValuation ksFiniteScenario f) ∧
+    (IsNonnegScenarioValuation ksFiniteScenario exoticQi3 ∧
+      ¬ ∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → exoticQi3 v = quadRay ρ v) :=
+  ⟨⟨tomoPositiveXAnchorVal, fifteenAnchorBisectorScenario_admits_zero_one⟩,
+   no_zero_one_scenarioValuation_ksFiniteScenario,
+   ⟨ksFiniteScenario_admits_exoticQi3, exoticQi3_not_quadratic⟩⟩
+
+/-! #### 8C. The 4-Tier `TFQ-0307` Operational Non-Contextuality Bridge -/
+
+open GleasonComplex in
+open scoped ComplexOrder in
+/-- **Four-Tier `TFQ-0307` Operational Non-Contextuality Bridge
+(`tfq0307_operational_noncontextuality_four_tier_bridge`)**:
+synthesizes in a single theorem:
+1. **Tier 1 (Pairwise-Orthogonal `{0, 1}` Kochen–Specker Obstruction)**:
+   neither `ksFiniteScenario` nor global `ℚ(i)³` admits a `{0, 1}`-valued valuation;
+2. **Tier 2 (`[0, 1] ∩ ℚ` Non-Quadratic Ray-Valuation Inhabitation)**:
+   `exoticQi3` is a `[0, 1] ∩ ℚ`-valued frame valuation on both `ksFiniteScenario` and
+   global `ℚ(i)³` that is not the Rayleigh quotient of any `HermForm3`;
+3. **Tier 3 (Operator-Level `EffectValuation` Algebraic Born Representation)**:
+   every operator-level `W : EffectValuation (HermitianCarrier.space 3)` restricts on rank-1
+   projectors to `quadRay (hermForm3OfDensity W)` with zero tomography residual, and
+   unconditionally excludes `exoticQi3`;
+4. **Tier 4 (Analytic `TFQ-1056`/`TFQ-1057` Continuity Bridge & Density-Matrix Completion)**:
+   for any frame function `f` on `ℚ(i)³`, `IsUniformlyRayContinuous f` is equivalent to
+   `IsPointwiseRayContinuous f ∧ HasBoundedAnchorAmplification (GaussianTomography.residual f)`,
+   and for nonnegative `f` yields a unique positive semidefinite trace-one density matrix on `ℂ³`. -/
+theorem tfq0307_operational_noncontextuality_four_tier_bridge :
+    ((¬ ∃ f : GVec → ℚ, IsZeroOneScenarioValuation ksFiniteScenario f) ∧
+     (¬ ∃ f : GVec → ℚ, IsFrameFunction f ∧ ∀ v : GVec, v.NonZero → f v = 0 ∨ f v = 1)) ∧
+    (IsNonnegScenarioValuation ksFiniteScenario exoticQi3 ∧
+     IsFrameFunction exoticQi3 ∧
+     (∀ v : GVec, v.NonZero → 0 ≤ exoticQi3 v ∧ exoticQi3 v ≤ 1) ∧
+     ¬ ∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → exoticQi3 v = quadRay ρ v) ∧
+    ((∀ W : EffectValuation (HermitianCarrier.space 3),
+        (∀ v : GVec, v.NonZero →
+          W.v (HermitianCarrier.P (vecOfGVec v)) = quadRay (hermForm3OfDensity W) v) ∧
+        (∀ v : GVec, GaussianTomography.residual (rayValuationOfEffect W) v = 0)) ∧
+     (¬ ∃ W : EffectValuation (HermitianCarrier.space 3),
+        ∀ v : GVec, v.NonZero → W.v (HermitianCarrier.P (vecOfGVec v)) = exoticQi3 v)) ∧
+    ((∀ f : GVec → ℚ, IsFrameFunction f →
+        (IsUniformlyRayContinuous f ↔
+          (IsPointwiseRayContinuous f ∧
+           HasBoundedAnchorAmplification (GaussianTomography.residual f)))) ∧
+     (∀ f : GVec → ℚ, IsNonnegFrameFunction f →
+        IsPointwiseRayContinuous f →
+        HasBoundedAnchorAmplification (GaussianTomography.residual f) →
+        ∃ ρC : Matrix (Fin 3) (Fin 3) ℂ, ρC.PosSemidef ∧ ρC.trace = 1 ∧
+          (∀ v : Fin 3 → ℂ, v ≠ 0 → F f v = (star v ⬝ᵥ (ρC *ᵥ v)).re / nsq v) ∧
+          (∀ g : GVec, g.NonZero → (f g : ℝ) = (star (ι g) ⬝ᵥ (ρC *ᵥ ι g)).re / nsq (ι g)) ∧
+          (∀ σC : Matrix (Fin 3) (Fin 3) ℂ, σC.IsHermitian →
+            (∀ v : Fin 3 → ℂ, v ≠ 0 → F f v = (star v ⬝ᵥ (σC *ᵥ v)).re / nsq v) → σC = ρC))) :=
+  ⟨⟨no_zero_one_scenarioValuation_ksFiniteScenario,
+    fun ⟨f, hF, hB⟩ => no_zero_one_frame_function f hF hB⟩,
+   ⟨ksFiniteScenario_admits_exoticQi3,
+    exoticQi3_isFrameFunction,
+    fun v _ => ⟨(exoticQi3_bounds v).1, by linarith [(exoticQi3_bounds v).2]⟩,
+    exoticQi3_not_quadratic⟩,
+   ⟨fun W => ⟨fun _ hv => effectValuation_rankOne_eq_quadRay W hv,
+              rayValuationOfEffect_residual_eq_zero W⟩,
+    no_effectValuation_induces_exoticQi3⟩,
+   ⟨fun _ hf => uniformlyRayContinuous_iff_pointwise_and_bounded_anchor_amplification hf,
+    fun _ hf hcont hamp =>
+      born_density_matrix_of_pointwise_and_bounded_anchor_amplification hf hcont hamp⟩⟩
+
 end BornFinite.GaussianFiniteModel
 
 #print axioms BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario
@@ -3788,5 +4823,17 @@ end BornFinite.GaussianFiniteModel
 #print axioms BornFinite.GaussianFiniteModel.uniformlyRayContinuous_iff_pointwise_and_bounded_anchor_amplification
 #print axioms BornFinite.GaussianFiniteModel.hasDenseUniformModulusFromPointwise_quadRay
 #print axioms BornFinite.GaussianFiniteModel.uniformlyRayContinuous_iff_pointwise_and_dense_uniform_modulus
-
+#print axioms BornFinite.GaussianFiniteModel.fifteenAnchorBisectorList_nonZero
+#print axioms BornFinite.GaussianFiniteModel.fifteenAnchorBisectorScenario_admits_zero_one
+#print axioms BornFinite.GaussianFiniteModel.mem_frameRays_of_mem
+#print axioms BornFinite.GaussianFiniteModel.frameRays_nonZero
+#print axioms BornFinite.GaussianFiniteModel.ksBoxRaysList_nonZero
+#print axioms BornFinite.GaussianFiniteModel.ksFramesList_valid
+#print axioms BornFinite.GaussianFiniteModel.ksRaysList_nonZero
+#print axioms BornFinite.GaussianFiniteModel.ksFramesList_in_rays
+#print axioms BornFinite.GaussianFiniteModel.no_zero_one_scenarioValuation_ksFiniteScenario
+#print axioms BornFinite.GaussianFiniteModel.ksFiniteScenario_admits_exoticQi3
+#print axioms BornFinite.GaussianFiniteModel.ksFiniteScenario_admits_effectValuation
+#print axioms BornFinite.GaussianFiniteModel.tomography_vs_ks_scenario_separation
+#print axioms BornFinite.GaussianFiniteModel.tfq0307_operational_noncontextuality_four_tier_bridge
 
