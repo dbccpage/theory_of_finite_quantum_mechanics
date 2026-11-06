@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md](../../../dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md)
-- sha256 (`lf-normalised`): `230994ba4c6c87849167b0e6a374f6a4d3c721bcf830a0b5d3e2882691655576`
+- sha256 (`lf-normalised`): `2f6df16f8289584ce603cf60f617d80a6e60647fa7cfb5682d9d6c1489cf84fd`
 - generated view: listed, not counted
 - cited in: record TFQ-0312 (shared)
 - counts toward the grade: no
@@ -96,7 +96,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0312 python: no local python twin located for atlas/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
+- TFQ-0312 python: no local python twin located for code/python/src/qm/qm122_dual.py
 
 ## Routes
 

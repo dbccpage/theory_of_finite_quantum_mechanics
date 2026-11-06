@@ -78,14 +78,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
+- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1184_fsp_car_exterior_fock.md`
 
 - file: [dag/derivations/26_fsp/tfq_1184_fsp_car_exterior_fock.md](../../../dag/derivations/26_fsp/tfq_1184_fsp_car_exterior_fock.md)
-- sha256 (`lf-normalised`): `283a70e91d51d0e33226b43feaf54365131a0c6699cd0e51cc5aab9a2bd43fe2`
+- sha256 (`lf-normalised`): `6533e11da49ace8eabfe24c95f01cc3f91a00dc221f75120ab83c13bff2c9508`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1184
 - counts toward the grade: no

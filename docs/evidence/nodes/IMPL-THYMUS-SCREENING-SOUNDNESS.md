@@ -61,17 +61,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+### Documents and data: `dag/derivation_dag_operads.binding.yaml`
 
-- file: [atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
-- sha256 (`lf-normalised`): `bb38e1e763dba36d1194fde3c597b73c19f651ec9b4137eeb694fd92fed6f8fb`
+- file: [dag/derivation_dag_operads.binding.yaml](../../../dag/derivation_dag_operads.binding.yaml)
+- sha256 (`lf-normalised`): `06b1f1a5d5c3ce8352176b9f24625ddca34b9366d73cf88cc359dbadab5f878c`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md](../../../dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md)
-- sha256 (`lf-normalised`): `e32f0a9d7989c6cb8169c66ec71eff6c1763e8470fa105ef48d584e6843fe652`
+- sha256 (`lf-normalised`): `6c08fbc3b41bbdad7ec864e4876e23929bba855d1190e3605dcd6d090e745ed3`
 - generated view: listed, not counted
 - cited in: record TFQ-1045
 - counts toward the grade: no

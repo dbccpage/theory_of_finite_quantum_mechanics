@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/affine_thickening_conjecture.md`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/affine_thickening_conjecture.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/affine_thickening_conjecture.md)
-- sha256 (`lf-normalised`): `92e3f6b93516c7ddf8f0a70fab5af5135d7020c117d3cbe53bf08a50096d9a29`
+- sha256 (`lf-normalised`): `9c33676c2ae8b3bd7f9022d14e37af1e325f023131e4e472ed16b4b0ac44fdee`
 - cited in: node.source
 - counts toward the grade: yes
 
