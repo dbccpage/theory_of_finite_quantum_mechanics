@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md`
 
 - file: [dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md](../../../dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md)
-- sha256 (`lf-normalised`): `dbcdf5734f606f485cb92e416c22a9e919bf22b4ac3b9f9faa40b8e90a168304`
+- sha256 (`lf-normalised`): `7da5938feba4e1e40575992cec7e9ef3bf227eca44e4d0a0fda5d6d4eb9aae88`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1182
 - counts toward the grade: no

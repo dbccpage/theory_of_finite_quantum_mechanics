@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md`
 
 - file: [dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md](../../../dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md)
-- sha256 (`lf-normalised`): `5a3baca2fd3a6560709d18f1d8bd26cc6518e846097611dfee2571c7e21e9a44`
+- sha256 (`lf-normalised`): `63dff5f92214a69e389bb651762ab2bb180d79fc7a448fe1058de706f3f38832`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1175
 - counts toward the grade: no

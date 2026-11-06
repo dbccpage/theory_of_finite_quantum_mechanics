@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2000_ct_deutsch_2013_source.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2000_ct_deutsch_2013_source.md](../../../dag/derivations/30_constructor_theory/tfq_2000_ct_deutsch_2013_source.md)
-- sha256 (`lf-normalised`): `435383926a099ce2444a0298cf36a8632845755f69c8c8ae091e14b59de09181`
+- sha256 (`lf-normalised`): `ca05b22c3c51dedbb4e3273a9453402c33fa5d8811258848ea9112fef53574a1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2000
 - counts toward the grade: no

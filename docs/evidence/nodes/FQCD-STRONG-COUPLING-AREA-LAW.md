@@ -128,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md](../../../dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md)
-- sha256 (`lf-normalised`): `59b15614363a4c6de5c9d75281879d230648657bd59ddc8c1a9f0880cfe5c938`
+- sha256 (`lf-normalised`): `993cf0dd216c8a8dfa0d0f3b2ba83d91cdd22b02a9b2c0eaf611fb1ecba033fa`
 - generated view: listed, not counted
 - cited in: record TFQ-1052
 - counts toward the grade: no

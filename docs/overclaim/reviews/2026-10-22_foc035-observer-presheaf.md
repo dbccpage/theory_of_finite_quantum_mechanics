@@ -29,7 +29,7 @@ Result: 33 nodes reviewed. PROVED_LEAN 2 nodes: 2 NARROWED to the Lean statement
 | OPS-CECH-COBOUNDARY | note Prop. B5, proof read | prose, no gap found | Rational case rests on the prose proof; Lean covers natural weights only (said in the route). |
 | OPS-ZERO-COCYCLE-BLIND | note section 2.4 | prose | Stated as a statement about the test, as in the ledger. |
 | OPS-UNDERDETERMINATION | note Lemma A2 and its table | prose | Does not claim non-existence of a function; norm and Term rows are said to be arithmetic. |
-| OPS-NOISY-PR-NCF, OPS-ARC-COVER-NGE-WITNESS, OPS-PARITY-CYCLE-DESCENT-NCF, OPS-VOROBEV-PATH-INSTANCE, OPS-TEST-482-REPAIR | `checks/independent/foc035_observer_presheaf.py`, run by `dag/test_foc035_observer_presheaf.py` | matched on the instances | Finite instances only; each node says so. Not the Rust tests named in the ledger. |
+| OPS-NOISY-PR-NCF, OPS-ARC-COVER-NGE-WITNESS, OPS-PARITY-CYCLE-DESCENT-NCF, OPS-VOROBEV-PATH-INSTANCE, OPS-TEST-482-REPAIR | `checks/independent/foc035_observer_presheaf.py`, run by `dag/tests/test_foc035_observer_presheaf.py` | matched on the instances | Finite instances only; each node says so. Not the Rust tests named in the ledger. |
 | OPS-THREE-ROLE-GATE, OPS-SELF-CERTIFICATION-PACKET | `code/python/tests/test_three_role_gate.py` (15 tests, 33 subtests) | matched | One fixture; the node says the gate is not linked to the Rust evaluator. |
 | OPS-OBSERVER-DECLARATION-REFUSAL, OPS-RUST-RECEIPTS-AND-LIMITS | Rust tests of the source repository | CONDITIONAL, not run here | `omega_solvers` is external; `cargo metadata --no-deps` lists no such package; source tests not imported. |
 | OPS-AXIS3-RELABELING, OPS-REGRESS-COROLLARY | note section 3.1 | CONDITIONAL | Conditional on (iii), and on NS-14 and CL-13 cited and not re-run. |
@@ -61,7 +61,7 @@ Result: 33 nodes reviewed. PROVED_LEAN 2 nodes: 2 NARROWED to the Lean statement
 | count-rule miss | 2 identifiers and 2 principals in both cases | fixture packets read | match |
 | gate tests | 15 tests, 33 subtests, 17 fixture cases | pytest run; fixture length | match (note says 13, ledger 14) |
 | Rust test functions in the source file | 23 | `#[test]` count by regex | note says 15; not used in a node |
-| ledger rows | 40, all mapped | regex over the ledger table; `dag/test_foc035_observer_presheaf.py` | match |
+| ledger rows | 40, all mapped | regex over the ledger table; `dag/tests/test_foc035_observer_presheaf.py` | match |
 | nodes, routes, records | 33, 37, 33; TFQ-2500 to TFQ-2532 | fragment | match |
 | mutation campaign of the gate | killed 191, survived 63, R = 191/254 = 0.752 | `evidence/quality/foc035_observer_presheaf/` | recorded, no exclusions |
 

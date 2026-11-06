@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md](../../../dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md)
-- sha256 (`lf-normalised`): `82c0e37774a0199a2417f51d54b044e7b3b4fe906dbb0fd023efc838534f15fa`
+- sha256 (`lf-normalised`): `c2de171cd728a21d254f9e8b235b258d301bd3b1543cadb4dbdbf271ae8ab19a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2212
 - counts toward the grade: no

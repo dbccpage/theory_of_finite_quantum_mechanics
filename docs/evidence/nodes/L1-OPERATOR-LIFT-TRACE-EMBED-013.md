@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md](../../../dag/derivations/08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md)
-- sha256 (`lf-normalised`): `5974bc9602f9cde120c2d1ec047113c43f576ec50869f0e07ef1ff194c9fbdeb`
+- sha256 (`lf-normalised`): `8cacb0b16d91b6826162f20cde67012042866ed7eee87399351b7695ec437371`
 - generated view: listed, not counted
 - cited in: record TFQ-1000
 - counts toward the grade: no

@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md](../../../dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md)
-- sha256 (`lf-normalised`): `bcf454547527a6377c65919fb7633c6c10095ef40c8bbe1a02f6f9bc9398cd8f`
+- sha256 (`lf-normalised`): `c8ca46e557c410e3a5d106a2f6208f01ddaac27233156e125c484ce8c37c85cf`
 - generated view: listed, not counted
 - cited in: record TFQ-1030
 - counts toward the grade: no

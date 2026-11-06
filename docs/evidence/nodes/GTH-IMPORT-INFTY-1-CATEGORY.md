@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/34_genesis_to_higher/tfq_2406_gth_import_infty_1_category.md`
 
 - file: [dag/derivations/34_genesis_to_higher/tfq_2406_gth_import_infty_1_category.md](../../../dag/derivations/34_genesis_to_higher/tfq_2406_gth_import_infty_1_category.md)
-- sha256 (`lf-normalised`): `1e197408770a6e78b2291cb52659571d5181e021fd22fcf4a7a347417dea8414`
+- sha256 (`lf-normalised`): `ec6e519eb619b9e5e66a3f464d4eccc54adc6dfd9354f5863069c049b1537120`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2406
 - counts toward the grade: no

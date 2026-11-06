@@ -35,4 +35,4 @@ Retain fixed labels and vertex-switching equivalence; this canonicalizer is not 
 
 ## Current Lean replay
 
-The [local compatibility port](../../../lean4/SwitchingNormalForm.lean) retains the sealed theorem statements and proof text except for 19 obsolete conditional-elimination lemma spellings. Its source hash and precise transformation are checked by [the branch integration test](../../test_application_branches.py). The original sealed source remains unchanged. Lean 4.33.1 checks the port, and the counting, uniqueness, membership and chord-count theorems use only `propext` and `Quot.sound`.
+The [local compatibility port](../../../lean4/SwitchingNormalForm.lean) retains the sealed theorem statements and proof text except for 19 obsolete conditional-elimination lemma spellings. Its source hash and precise transformation are checked by [the branch integration test](../../tests/test_application_branches.py). The original sealed source remains unchanged. Lean 4.33.1 checks the port, and the counting, uniqueness, membership and chord-count theorems use only `propext` and `Quot.sound`.

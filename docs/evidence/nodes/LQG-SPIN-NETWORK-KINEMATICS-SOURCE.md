@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2301_lqg_spin_network_kinematics_source.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2301_lqg_spin_network_kinematics_source.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2301_lqg_spin_network_kinematics_source.md)
-- sha256 (`lf-normalised`): `dd23c426956d79e6c314babf1ae6b5bd17a41205c9273a2d590767727717aee9`
+- sha256 (`lf-normalised`): `d4368f9249f081dd4d399ed8c8d391b1868f4a5400a667da2b3eb11a652e934a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2301
 - counts toward the grade: no

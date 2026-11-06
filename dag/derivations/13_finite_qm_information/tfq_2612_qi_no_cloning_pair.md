@@ -23,5 +23,5 @@ Inner-product preservation would give z=z squared, with z the overlap, for exact
 
 ## Evidence
 
-[Combined source and derivation](QUANTUM_INFORMATION.md).
+[Combined source and derivation](quantum_information.md).
 This proof sketch awaits independent replay or Lean formalization. No new Lean theorem or execution receipt is claimed by this paper.

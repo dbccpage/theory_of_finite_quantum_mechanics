@@ -16,12 +16,12 @@ To change a record, edit `derivation_dag.json` (or the fragment whose sync owns 
 cycle, which ends by rendering the views:
 
 ```
-python -I -X utf8 dag/sync_pfp_results.py
-python -I -X utf8 dag/sync_unified_dag.py
-python -I -X utf8 dag/sync_application_branches.py
-python -I -X utf8 dag/sync_pregenesis_to_wdp.py
-python -I -X utf8 dag/sync_frontier_branches.py
-python -I -X utf8 dag/render_dag_views.py --check
+python -I -X utf8 dag/tools/sync_pfp_results.py
+python -I -X utf8 dag/tools/sync_unified_dag.py
+python -I -X utf8 dag/tools/sync_application_branches.py
+python -I -X utf8 dag/tools/sync_pregenesis_to_wdp.py
+python -I -X utf8 dag/tools/sync_frontier_branches.py
+python -I -X utf8 dag/tools/render_dag_views.py --check
 ```
 
 This note sits beside the views because a banner inside them would change their bytes; the views are kept

@@ -210,7 +210,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md](../../../dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md)
-- sha256 (`lf-normalised`): `a0f3fecf1f065754d45bf2b16e16cd5c2cf934f9933ab1c3b40b34fb18d899d3`
+- sha256 (`lf-normalised`): `1758ded5aec2b0903bf04e44586b2a0e079135fd8ab9336219584769c4fb9b20`
 - generated view: listed, not counted
 - cited in: record TFQ-1001
 - counts toward the grade: no

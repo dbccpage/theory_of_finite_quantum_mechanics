@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2008_ct_no_cloning_complementarity_source_claim.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2008_ct_no_cloning_complementarity_source_claim.md](../../../dag/derivations/30_constructor_theory/tfq_2008_ct_no_cloning_complementarity_source_claim.md)
-- sha256 (`lf-normalised`): `1d63e5885942700e56b0baaeef4a700be40d6d789523920fef99f0784e10ded8`
+- sha256 (`lf-normalised`): `840b5e704cff00dd5bb33dd7e19f41c89021c821812c5e042a0f0172976a384e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2008
 - counts toward the grade: no

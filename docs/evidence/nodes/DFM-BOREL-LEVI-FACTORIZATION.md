@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md](../../../dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md)
-- sha256 (`lf-normalised`): `3c695a79bf473e8d6863361a0ff1f1726c01499fdc3bdd13096d435fdd4367a5`
+- sha256 (`lf-normalised`): `90f5900b1a0b404ebf9f0f2b2c38cfd85ce47c1039beaebb75985e25a8fcb2e6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1105
 - counts toward the grade: no

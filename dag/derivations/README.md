@@ -1,6 +1,6 @@
 # Theory of Finite Quantum Mechanics: Master Derivation Index
 
-Start with [the compressed first-mark-to-quantum-gravity route](FIRST_MARK_TO_QUANTUM_GRAVITY.md), [the source crosswalk](../../docs/maintenance/source_consolidation/source_crosswalk.md), and [the missing gravity obligations](19_finite_qg/QUANTUM_GRAVITY_GAPS.md).
+Start with [the compressed first-mark-to-quantum-gravity route](first_mark_to_quantum_gravity.md), [the source crosswalk](../../docs/maintenance/source_consolidation/source_crosswalk.md), and [the missing gravity obligations](19_finite_qg/quantum_gravity_gaps.md).
 
 This directory contains **one standalone Markdown paper per derivation step** tracking finite constructions, source records, explicit assumptions and open obligations from the inert inscription `<>` through the finite quantum programme and its application branches.
 
@@ -812,7 +812,7 @@ Folder: [`23_engine_custody/`](./23_engine_custody/)
 
 ### Pre-genesis to WDP route
 
-The [route index](./PREGENESIS_TO_WDP_ROUTE.md) lists every paper from `<>` through Genesis, its expansion, S(n), MSS-N and WDP in reading order.
+The [route index](./pregenesis_to_wdp_route.md) lists every paper from `<>` through Genesis, its expansion, S(n), MSS-N and WDP in reading order.
 
 ### Children recorded for custody-pinned papers
 

@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1180_maj_envelope_nat_arithmetic.md`
 
 - file: [dag/derivations/28_majorana/tfq_1180_maj_envelope_nat_arithmetic.md](../../../dag/derivations/28_majorana/tfq_1180_maj_envelope_nat_arithmetic.md)
-- sha256 (`lf-normalised`): `53e938fbbc4491cf8ede3b4974af5d40c1958e833fa0d02d2159dc1539d3a99f`
+- sha256 (`lf-normalised`): `f7950d1f44f4b83d171ef90b218df5de40d517256d35a0c3a9cc18567cfb7dc4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1180
 - counts toward the grade: no

@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1158_maj_phi1_syndrome_decoding.md`
 
 - file: [dag/derivations/28_majorana/tfq_1158_maj_phi1_syndrome_decoding.md](../../../dag/derivations/28_majorana/tfq_1158_maj_phi1_syndrome_decoding.md)
-- sha256 (`lf-normalised`): `cc2f52f8823e81d6799ae89a5746100f8a8a64946eea6457a171a87f31eb9e6b`
+- sha256 (`lf-normalised`): `662d328b8422a4b1b2e19aab7142120f2444cef5930889987c2c4b405574718a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1158
 - counts toward the grade: no

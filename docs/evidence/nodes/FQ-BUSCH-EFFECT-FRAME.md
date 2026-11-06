@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md](../../../dag/derivations/12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md)
-- sha256 (`lf-normalised`): `8ce1761c02bc208ddc6605140c0954744a7ef942d482a6fc15b6d93fa832745e`
+- sha256 (`lf-normalised`): `f78b40dd125fff4e8a7a24bfef4b748586bc5e900d1a3ba6c30ddd59f29c3942`
 - generated view: listed, not counted
 - cited in: record TFQ-1017
 - counts toward the grade: no

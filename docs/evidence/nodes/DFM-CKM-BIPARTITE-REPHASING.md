@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md](../../../dag/derivations/24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md)
-- sha256 (`lf-normalised`): `5066a3f3d3218ee76ce03c1a4cda1f788ee6979bb33c89a364d1ef09e097b1fb`
+- sha256 (`lf-normalised`): `af79c1e58b538b00c5ea65c7a9ab72f04b4b2ce47238aa04231294a45fc48ac0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1123
 - counts toward the grade: no

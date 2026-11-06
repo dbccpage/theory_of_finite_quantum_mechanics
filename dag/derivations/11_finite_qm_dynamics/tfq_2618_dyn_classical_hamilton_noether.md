@@ -23,5 +23,5 @@ Area preservation gives u_q+v_p=0, hence alpha=u dp-v dq is closed. Exactness on
 
 ## Evidence
 
-[Combined source and derivation](DYNAMICS_HAMILTON_NOETHER.md#classical-hamilton-and-noether).
+[Combined source and derivation](dynamics_hamilton_noether.md#classical-hamilton-and-noether).
 This proof sketch awaits independent replay or Lean formalization. No new Lean theorem or execution receipt is claimed by this paper.

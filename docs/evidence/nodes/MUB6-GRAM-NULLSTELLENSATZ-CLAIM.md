@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1235_mub6_gram_nullstellensatz_claim.md`
 
 - file: [dag/derivations/25_mub/tfq_1235_mub6_gram_nullstellensatz_claim.md](../../../dag/derivations/25_mub/tfq_1235_mub6_gram_nullstellensatz_claim.md)
-- sha256 (`lf-normalised`): `086005381dfe7efeeec6a8eeed100cbc4e6eed0db74feab7f6801e4d05d65ea5`
+- sha256 (`lf-normalised`): `f39dea36750cbfd9adcece743a7edc16a5a069b8e9336573dfe113ebb02470d7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1235
 - counts toward the grade: no

@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md`
 
 - file: [dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md](../../../dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md)
-- sha256 (`lf-normalised`): `64a03449e0daf576f84aa0c47cdc7cf86a7f81e357324920748c68286d88134f`
+- sha256 (`lf-normalised`): `24d70b8498c83a474996cff9fe5d28b37708888dd0a16a0255721fb93acb1d05`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1223
 - counts toward the grade: no

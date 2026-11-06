@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1173_maj_parity_observable_fence.md`
 
 - file: [dag/derivations/28_majorana/tfq_1173_maj_parity_observable_fence.md](../../../dag/derivations/28_majorana/tfq_1173_maj_parity_observable_fence.md)
-- sha256 (`lf-normalised`): `9adf8c1eafc83b860dc4c83fc0ebb3e5825ddfacef90c2b12cbbb07680975071`
+- sha256 (`lf-normalised`): `b17854611aa79b17798095f0f3b7d4a668ee0d54d47303a8bc3f012a100b7046`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1173
 - counts toward the grade: no

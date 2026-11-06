@@ -60,14 +60,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/genesis_to_universal_computation.md`
 
 - file: [dag/derivations/29_computation/genesis_to_universal_computation.md](../../../dag/derivations/29_computation/genesis_to_universal_computation.md)
-- sha256 (`lf-normalised`): `d57c3593a55277cafb808fb1b2241dcf2ad97701205dca6b7874af70b5119068`
+- sha256 (`lf-normalised`): `27c7822177fe483a605b87cb9927dd1909001331834df7ed9d0b60ec1ad3108d`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1304_comp_c6_tm2_output_form.md`
 
 - file: [dag/derivations/29_computation/tfq_1304_comp_c6_tm2_output_form.md](../../../dag/derivations/29_computation/tfq_1304_comp_c6_tm2_output_form.md)
-- sha256 (`lf-normalised`): `45232caeea88bc92045a089608a75a1817439394f4b0c0a4ba6b70013ab502f9`
+- sha256 (`lf-normalised`): `42832e7b857e3cb1ace89281cdacc95e5c0ac130758ddff6d2769049797e2110`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1304
 - counts toward the grade: no

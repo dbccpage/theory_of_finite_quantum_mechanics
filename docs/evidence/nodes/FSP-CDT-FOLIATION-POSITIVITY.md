@@ -57,7 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md`
 
 - file: [dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md](../../../dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md)
-- sha256 (`lf-normalised`): `4088bc45cc02326cfc8499f4fe14b7579c6b233e08bc505e11cceda9679075f2`
+- sha256 (`lf-normalised`): `388b2f68978661f0b90d8c1a02ac32ebae53fddb83370d6db211801a5b86d95c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1215
 - counts toward the grade: no

@@ -111,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md](../../../dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md)
-- sha256 (`lf-normalised`): `d5913cd8fa40fb3ab4c13cd9d0480a21b20bde8513730a0b99b775ab51390347`
+- sha256 (`lf-normalised`): `d2d9ceb012c92080e5a2cd6af9248b08e6d5fb48437a1731e7a8b757c4cb72d3`
 - generated view: listed, not counted
 - cited in: record TFQ-1048
 - counts toward the grade: no

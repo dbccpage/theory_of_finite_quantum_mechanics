@@ -132,7 +132,7 @@
       "PREGENESIS-TO-WDP FRAGMENT (dag/fragments/pregenesis_to_wdp.json, records TFQ-0417 upward): one paper per on-route step from the inert inscription through Genesis, its expansion past the 19L57G1 freeze, S(n), MSS-N and WDP. Lean references prefixed external:github.com/dbccpage/19L57G1 name declarations at commit 85a83ae7ce64dc2123ff218568a4ecd37e566d33 that are not in this checkout or in the private upstream; their nodes are CONDITIONAL on that import and are not recorded as PROVED_LEAN. References without a prefix are paths in a private upstream repository at commit 7351ed452e518cb8cf2bf973d4c4881289084bce, as in the existing PG nodes."
     ],
     "unified_dag": [
-      "derivation_dag.json and theory_of_finite_qm.jsonl are joined into one graph by dag/sync_unified_dag.py: a record that named no DAG node has a node with its own id (tag unified-dag) and a route from its parent record's node; a node that no record named has a record from TFQ-1000 upward. Record statuses map to DAG statuses without promotion; source fence labels map to SOURCE_RECORD and tree links without a derivation are RECORD_PARENT routes. Audited records of the FSP, MUB6, Majorana and Dressing Field Method corpora are application-branch nodes; their trunk restatements are alias: tags on trunk nodes."
+      "derivation_dag.json and theory_of_finite_qm.jsonl are joined into one graph by dag/tools/sync_unified_dag.py: a record that named no DAG node has a node with its own id (tag unified-dag) and a route from its parent record's node; a node that no record named has a record from TFQ-1000 upward. Record statuses map to DAG statuses without promotion; source fence labels map to SOURCE_RECORD and tree links without a derivation are RECORD_PARENT routes. Audited records of the FSP, MUB6, Majorana and Dressing Field Method corpora are application-branch nodes; their trunk restatements are alias: tags on trunk nodes."
     ],
     "frontier_branches": [
       "Frontier branches added 2026-10-21: constructor theory, causal quantum field theory, AdS/CFT and loop quantum gravity. Every external result is a SOURCE_RECORD, IMPORTED_ASSUMPTION or OPEN node. A GAP_NO_DERIVATION route marks a link that no source read for this change derives. Finite exact targets are OPEN nodes with a precise statement; none is checked in the repository."
@@ -146,10 +146,10 @@
   },
   "schema_notes": [
     "derivation_dag.v2 makes this file the single source of the derivation graph. Besides nodes and routes it holds records, every TFQ record of the derivation tree in reading order, and index_document, the hand-authored text of the Markdown index.",
-    "theory_of_finite_qm.jsonl and theory_of_finite_qm.md are generated, read-only views rendered from this file by dag/render_dag_views.py: one JSONL line per record (sorted keys, CRLF) and the Markdown index. Never edit them by hand; dag/validate_derivation_dag.py fails when a view on disk differs from the renderer.",
+    "theory_of_finite_qm.jsonl and theory_of_finite_qm.md are generated, read-only views rendered from this file by dag/tools/render_dag_views.py: one JSONL line per record (sorted keys, CRLF) and the Markdown index. Never edit them by hand; dag/validate_derivation_dag.py fails when a view on disk differs from the renderer.",
     "A record has the fields coda_atlas_ids, coda_atlas_paths, existing_derivation_dag_ids, f004_refs, id, lean4, local_id, name, obligation, parent_id, python, record_status, rust, source_slice, stage, summary and uuid, and optionally pfp_review_refs. parent_id is null only for the root record TFQ-0000. Every record names at least one node in existing_derivation_dag_ids and every node is named by at least one record.",
-    "Ownership: records of source_slice unified_dag, application_branches, pregenesis_to_wdp, frontier_branches and genesis_to_higher, and the pfp_review_refs of the other records, are written by dag/sync_unified_dag.py, dag/sync_application_branches.py, dag/sync_pregenesis_to_wdp.py, dag/sync_frontier_branches.py, dag/sync_genesis_to_higher.py and dag/sync_pfp_results.py from their fragments; the other records are edited here. index_document.application_stages is written by dag/sync_application_branches.py (application stages) and dag/sync_frontier_branches.py (frontier stages) and dag/sync_genesis_to_higher.py (the genesis-to-higher stage), and index_document.source_corpus_restatements by dag/sync_unified_dag.py; header_markdown, record_count_note, stage_index and coda_atlas_packages are edited here.",
-    "Run order: sync_pfp_results.py, sync_unified_dag.py, sync_application_branches.py, sync_pregenesis_to_wdp.py, sync_frontier_branches.py, sync_genesis_to_higher.py; each writes this file and then the two views. After a hand edit of this file, run dag/render_dag_views.py --write.",
+    "Ownership: records of source_slice unified_dag, application_branches, pregenesis_to_wdp, frontier_branches and genesis_to_higher, and the pfp_review_refs of the other records, are written by dag/tools/sync_unified_dag.py, dag/tools/sync_application_branches.py, dag/tools/sync_pregenesis_to_wdp.py, dag/tools/sync_frontier_branches.py, dag/tools/sync_genesis_to_higher.py and dag/tools/sync_pfp_results.py from their fragments; the other records are edited here. index_document.application_stages is written by dag/tools/sync_application_branches.py (application stages) and dag/tools/sync_frontier_branches.py (frontier stages) and dag/tools/sync_genesis_to_higher.py (the genesis-to-higher stage), and index_document.source_corpus_restatements by dag/tools/sync_unified_dag.py; header_markdown, record_count_note, stage_index and coda_atlas_packages are edited here.",
+    "Run order: sync_pfp_results.py, sync_unified_dag.py, sync_application_branches.py, sync_pregenesis_to_wdp.py, sync_frontier_branches.py, sync_genesis_to_higher.py; each writes this file and then the two views. After a hand edit of this file, run dag/tools/render_dag_views.py --write.",
     "A source outside this repository is cited by marker, not by path: external:sha256:<hex> is the SHA-256 of the cited file's bytes, external:git-tree:<oid> the git tree id of a cited directory, and external:unlocated a citation whose file could not be found. A line range, ::symbol or #anchor after the marker is the original locator within that source. Nothing behind a marker counts as in-repository evidence."
   ],
   "index_document": {
@@ -20477,7 +20477,7 @@
       "statement": "Admit finite-dimensional complex Hilbert systems, tensor composition, positive trace-one states, effects, the Born pairing, and an available class of CPTP operations. These premises define the standard operational quantum information setting.",
       "source": [
         "dag/derivations/13_finite_qm_information/tfq_2610_qi_model_admission.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "lean": [],
       "rust": [],
@@ -20502,7 +20502,7 @@
       "statement": "In the admitted complex matrix model every column-stochastic kernel K has a CPTP map with Kraus operators sqrt(K(j|i)) times |j><i|, sending diagonal probabilities p to diagonal probabilities Kp.",
       "source": [
         "dag/derivations/13_finite_qm_information/tfq_2611_qi_classical_channel_lift.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "lean": [],
       "rust": [],
@@ -20525,7 +20525,7 @@
       "statement": "In the admitted Hilbert tensor model, no single unitary with a fixed normalized blank clones two normalized vectors whose overlap has modulus strictly between zero and one.",
       "source": [
         "dag/derivations/13_finite_qm_information/tfq_2612_qi_no_cloning_pair.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "lean": [],
       "rust": [],
@@ -20549,7 +20549,7 @@
       "statement": "Connect the admitted state and channel models to source coding, channel capacity and error-correction claims with explicit code families, error metrics, asymptotic limits and achievability/converse statements.",
       "source": [
         "dag/derivations/13_finite_qm_information/tfq_2613_qi_entropy_coding_obligations.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "lean": [],
       "rust": [],
@@ -20573,7 +20573,7 @@
       "statement": "On a path-connected with every loop contractible plane domain with omega=dq wedge dp, a C1 area-preserving vector field has a Hamiltonian H with qdot=H_p and pdot=-H_q. For H=p squared/2 the q-translation charge p is conserved.",
       "source": [
         "dag/derivations/11_finite_qm_dynamics/tfq_2618_dyn_classical_hamilton_noether.md",
-        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#classical-hamilton-and-noether"
+        "dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md#classical-hamilton-and-noether"
       ],
       "lean": [],
       "rust": [],
@@ -20597,7 +20597,7 @@
       "statement": "Every Q(i)-linear adjoint-preserving derivation of the full algebra M_d(Q(i)), for positive d, has the form delta(A)=-i[H,A] for a Hermitian H, unique modulo a rational scalar identity.",
       "source": [
         "dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md",
-        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#algebraic-hamiltonian"
+        "dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md#algebraic-hamiltonian"
       ],
       "lean": [],
       "rust": [],
@@ -20621,7 +20621,7 @@
       "statement": "Construct a physical quantum-gravity theory with specified degrees of freedom, observables, consistent dynamics and constraints, controlled refinement or effective limits, semiclassical gravity and matter recovery, and testable predictions. The finite models do not yet discharge this combined target.",
       "source": [
         "dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md",
-        "dag/derivations/19_finite_qg/QUANTUM_GRAVITY_GAPS.md"
+        "dag/derivations/19_finite_qg/quantum_gravity_gaps.md"
       ],
       "lean": [],
       "rust": [],
@@ -21567,7 +21567,7 @@
       "statement": "Connect the circuit family to available gates, preparation, measurement, recovery and a specified noise model with error and resource bounds uniform in computation size.",
       "source": [
         "dag/derivations/29_computation/tfq_2616_qc_fault_tolerance_open.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "lean": [],
       "rust": [],
@@ -31634,7 +31634,7 @@
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B5",
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
         "checks/independent/foc035_observer_presheaf.py",
-        "dag/test_foc035_observer_presheaf.py",
+        "dag/tests/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2505_ops_noisy_pr_ncf.md"
       ],
       "lean": [],
@@ -31685,7 +31685,7 @@
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B7",
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
         "checks/independent/foc035_observer_presheaf.py",
-        "dag/test_foc035_observer_presheaf.py",
+        "dag/tests/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md"
       ],
       "lean": [],
@@ -31783,7 +31783,7 @@
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B11",
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
         "checks/independent/foc035_observer_presheaf.py",
-        "dag/test_foc035_observer_presheaf.py",
+        "dag/tests/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md"
       ],
       "lean": [],
@@ -31892,7 +31892,7 @@
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B13",
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
         "checks/independent/foc035_observer_presheaf.py",
-        "dag/test_foc035_observer_presheaf.py",
+        "dag/tests/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2515_ops_vorobev_path_instance.md"
       ],
       "lean": [],
@@ -31918,7 +31918,7 @@
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B14",
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
         "checks/independent/foc035_observer_presheaf.py",
-        "dag/test_foc035_observer_presheaf.py",
+        "dag/tests/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md"
       ],
       "lean": [],
@@ -39601,7 +39601,7 @@
       "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "dag/derivations/13_finite_qm_information/tfq_2610_qi_model_admission.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ]
     },
     {
@@ -39613,7 +39613,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/13_finite_qm_information/tfq_2611_qi_classical_channel_lift.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ]
     },
     {
@@ -39625,7 +39625,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/13_finite_qm_information/tfq_2612_qi_no_cloning_pair.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ]
     },
     {
@@ -39638,7 +39638,7 @@
       "status": "GAP_NO_DERIVATION",
       "source": [
         "dag/derivations/13_finite_qm_information/tfq_2613_qi_entropy_coding_obligations.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ]
     },
     {
@@ -39650,7 +39650,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/11_finite_qm_dynamics/tfq_2618_dyn_classical_hamilton_noether.md",
-        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#classical-hamilton-and-noether"
+        "dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md#classical-hamilton-and-noether"
       ]
     },
     {
@@ -39662,7 +39662,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md",
-        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#algebraic-hamiltonian"
+        "dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md#algebraic-hamiltonian"
       ]
     },
     {
@@ -39678,7 +39678,7 @@
       "status": "GAP_NO_DERIVATION",
       "source": [
         "dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md",
-        "dag/derivations/19_finite_qg/QUANTUM_GRAVITY_GAPS.md"
+        "dag/derivations/19_finite_qg/quantum_gravity_gaps.md"
       ]
     },
     {
@@ -40088,7 +40088,7 @@
       "status": "GAP_NO_DERIVATION",
       "source": [
         "dag/derivations/29_computation/tfq_2616_qc_fault_tolerance_open.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ]
     },
     {
@@ -67909,7 +67909,7 @@
       ],
       "f004_refs": [
         "dag/derivations/13_finite_qm_information/tfq_2610_qi_model_admission.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "id": "TFQ-2610",
       "lean4": [],
@@ -67933,7 +67933,7 @@
       ],
       "f004_refs": [
         "dag/derivations/13_finite_qm_information/tfq_2611_qi_classical_channel_lift.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "id": "TFQ-2611",
       "lean4": [],
@@ -67957,7 +67957,7 @@
       ],
       "f004_refs": [
         "dag/derivations/13_finite_qm_information/tfq_2612_qi_no_cloning_pair.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "id": "TFQ-2612",
       "lean4": [],
@@ -67981,7 +67981,7 @@
       ],
       "f004_refs": [
         "dag/derivations/13_finite_qm_information/tfq_2613_qi_entropy_coding_obligations.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "id": "TFQ-2613",
       "lean4": [],
@@ -68005,7 +68005,7 @@
       ],
       "f004_refs": [
         "dag/derivations/11_finite_qm_dynamics/tfq_2618_dyn_classical_hamilton_noether.md",
-        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#classical-hamilton-and-noether"
+        "dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md#classical-hamilton-and-noether"
       ],
       "id": "TFQ-2618",
       "lean4": [],
@@ -68029,7 +68029,7 @@
       ],
       "f004_refs": [
         "dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md",
-        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#algebraic-hamiltonian"
+        "dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md#algebraic-hamiltonian"
       ],
       "id": "TFQ-2619",
       "lean4": [],
@@ -68053,7 +68053,7 @@
       ],
       "f004_refs": [
         "dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md",
-        "dag/derivations/19_finite_qg/QUANTUM_GRAVITY_GAPS.md"
+        "dag/derivations/19_finite_qg/quantum_gravity_gaps.md"
       ],
       "id": "TFQ-2620",
       "lean4": [],
@@ -69003,7 +69003,7 @@
       ],
       "f004_refs": [
         "dag/derivations/29_computation/tfq_2616_qc_fault_tolerance_open.md",
-        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+        "dag/derivations/13_finite_qm_information/quantum_information.md"
       ],
       "id": "TFQ-2616",
       "lean4": [],

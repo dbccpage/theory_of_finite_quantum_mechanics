@@ -22,5 +22,5 @@ Summing A_ji adjoint times A_ji gives the identity by column normalization. The 
 
 ## Evidence
 
-[Combined source and derivation](QUANTUM_INFORMATION.md).
+[Combined source and derivation](quantum_information.md).
 This proof sketch awaits independent replay or Lean formalization. No new Lean theorem or execution receipt is claimed by this paper.

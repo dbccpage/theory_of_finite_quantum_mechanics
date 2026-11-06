@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1165_maj_hardware_narrative_quarantine.md`
 
 - file: [dag/derivations/28_majorana/tfq_1165_maj_hardware_narrative_quarantine.md](../../../dag/derivations/28_majorana/tfq_1165_maj_hardware_narrative_quarantine.md)
-- sha256 (`lf-normalised`): `528cc985d4f285dd314d4fcc33813e34018b516ce4ee3ff0b0a8774248e6816e`
+- sha256 (`lf-normalised`): `e9e836923417bba1895e49ad9fb32f06ee1818ae51bc715ba971e38da22e6099`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1165
 - counts toward the grade: no

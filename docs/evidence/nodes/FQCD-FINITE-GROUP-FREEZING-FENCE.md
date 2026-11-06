@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md](../../../dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md)
-- sha256 (`lf-normalised`): `86dc1c764782a9c1fc3f5ca9344bb6df599c1c0b5382fb8f1eecc3a36ab3d2fa`
+- sha256 (`lf-normalised`): `88170867ea3d131738f2f5b46e6a5fd184592bc1aef77697f82d608f76fefa79`
 - generated view: listed, not counted
 - cited in: record TFQ-1053
 - counts toward the grade: no

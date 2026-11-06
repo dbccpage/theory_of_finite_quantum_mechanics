@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md](../../../dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md)
-- sha256 (`lf-normalised`): `56c2cfef543bae0dcd4e989e77fcd1c525be3e19cb96c266b142ce42a79c4156`
+- sha256 (`lf-normalised`): `76f831903c3a2f40e744e036661b1c9d95e65b69f0a7dba1d55144811aebbe6c`
 - generated view: listed, not counted
 - cited in: record TFQ-1010
 - counts toward the grade: no

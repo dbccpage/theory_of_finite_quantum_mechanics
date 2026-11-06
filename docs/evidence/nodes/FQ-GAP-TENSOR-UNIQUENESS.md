@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md](../../../dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md)
-- sha256 (`lf-normalised`): `6b62b70eeed4dc6eae0b2cc702b0294e6865f7a093f315b6cb08485354ec20be`
+- sha256 (`lf-normalised`): `89b7a89f427b59415297c75a59916f21f5e34a87182d01ba333603901d71f12c`
 - generated view: listed, not counted
 - cited in: record TFQ-1019
 - counts toward the grade: no

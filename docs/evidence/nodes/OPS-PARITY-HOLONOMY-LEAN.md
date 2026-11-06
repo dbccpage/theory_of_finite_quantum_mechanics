@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md)
-- sha256 (`lf-normalised`): `987900136dfade7e06eb4f9506cdc1002f6741e5f5be224d47d038ce2e0dd5e0`
+- sha256 (`lf-normalised`): `d1b76efa952045be7aed039d95913fe3b36dd298e28c2c455d512af0714fdde4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2502
 - counts toward the grade: no

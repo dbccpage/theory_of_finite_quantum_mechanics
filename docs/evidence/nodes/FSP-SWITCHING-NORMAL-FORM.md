@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md`
 
 - file: [dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md](../../../dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md)
-- sha256 (`lf-normalised`): `b57af74ea730dbb84913b841e02420131e6ec2a6712f25d1a99095e5bbe1b81a`
+- sha256 (`lf-normalised`): `ef74473216fc74d6ae05f6148e10b3306bd3cb14bd841fa3990199417482b7db`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0406
 - counts toward the grade: no

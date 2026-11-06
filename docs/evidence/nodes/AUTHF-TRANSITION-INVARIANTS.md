@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1354_authf_transition_invariants.md`
 
 - file: [dag/derivations/29_computation/tfq_1354_authf_transition_invariants.md](../../../dag/derivations/29_computation/tfq_1354_authf_transition_invariants.md)
-- sha256 (`lf-normalised`): `a863685e4fa53aa6e8417395343092685bc7567352e132c6f3f9808d022c0a10`
+- sha256 (`lf-normalised`): `f305652cb9cb6cd7e8ca63f0c5eaa2a9e9cd15f92301d5f056040ae354654151`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1354
 - counts toward the grade: no

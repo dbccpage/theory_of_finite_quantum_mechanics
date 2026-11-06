@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md](../../../dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md)
-- sha256 (`lf-normalised`): `45824944a02c4216ea428ca9ebc8de22322859fdaf6e1ff9a8350efe9caae67b`
+- sha256 (`lf-normalised`): `4ec6d1aac35b70d894ec4e9ebedf0483975fe2359b415f03bee1fbefc1acae02`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1136
 - counts toward the grade: no

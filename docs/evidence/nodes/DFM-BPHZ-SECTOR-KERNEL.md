@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md](../../../dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md)
-- sha256 (`lf-normalised`): `3fb7828e8ee7e2a248345878e4f0ab6663ee6aa36c3a4e456890a0e1ecd77f4b`
+- sha256 (`lf-normalised`): `1361d2e04b1cd9d618e69c72114de72f701ccbef57a39f020a763fea0c446a8c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1109
 - counts toward the grade: no

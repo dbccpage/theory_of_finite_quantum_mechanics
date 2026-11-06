@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md`
 
 - file: [dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md](../../../dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md)
-- sha256 (`lf-normalised`): `b7489a2c1eebc6fb298fc6f8cfbe9c82d49901cab6e782b97b0ba68ec47b7706`
+- sha256 (`lf-normalised`): `fa3f4fcf134ed904a7e1e71c937c519d56011741f4da88bef624ae53998a2cf8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1159
 - counts toward the grade: no

@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md`
 
 - file: [dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md](../../../dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md)
-- sha256 (`lf-normalised`): `2f82fbc415b3946e0e6350e2779d610a37696f645763d1894dcc2841f94411ee`
+- sha256 (`lf-normalised`): `ae3382c9c93da39cf74fdc5ea2029d6e4eb1f98a8013ff1d27e07d8a216f2c9b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1199
 - counts toward the grade: no

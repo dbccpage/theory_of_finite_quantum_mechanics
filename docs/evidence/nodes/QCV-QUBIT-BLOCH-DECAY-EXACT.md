@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md`
 
 - file: [dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md](../../../dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md)
-- sha256 (`lf-normalised`): `d57b77802e07adbba6c9f3bb4550c288b81e238d2f6edc30ab22dfb2bb375c9b`
+- sha256 (`lf-normalised`): `3bebf0cec4637538c6e4eb438d2df469564ff50c4584ba8d72e872807a50c950`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1323
 - counts toward the grade: no

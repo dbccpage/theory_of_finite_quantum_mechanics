@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md](../../../dag/derivations/10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md)
-- sha256 (`lf-normalised`): `142426c13d58a43a3b37190688d66940811ff707220dd576caa2189fab76c45c`
+- sha256 (`lf-normalised`): `bfd8dbcce54d163df23803905bd7baafbe3f50870b756639aa99497c74780160`
 - generated view: listed, not counted
 - cited in: record TFQ-1009
 - counts toward the grade: no

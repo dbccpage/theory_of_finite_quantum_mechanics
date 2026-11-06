@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md](../../../dag/derivations/10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md)
-- sha256 (`lf-normalised`): `8f24c2f53d77b5c9cfedc4f0502a97e7be8d5b0d4b45c91e8affad3840766cf4`
+- sha256 (`lf-normalised`): `9be33e198a9635823edbfd4f0e4c8be959d1152decb490554986eb4e55a1d52e`
 - generated view: listed, not counted
 - cited in: record TFQ-1008
 - counts toward the grade: no

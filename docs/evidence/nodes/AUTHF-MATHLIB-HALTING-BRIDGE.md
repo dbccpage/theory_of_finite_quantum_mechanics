@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md`
 
 - file: [dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md](../../../dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md)
-- sha256 (`lf-normalised`): `549bdc0d6ec87752a5b13aa20794ea150615fe960755de49e04e74d06b02e4eb`
+- sha256 (`lf-normalised`): `5026de3f2a0499e79afb26096a70fb9635b4ed958efac0c9fd40e3aa75a9302c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1348
 - counts toward the grade: no

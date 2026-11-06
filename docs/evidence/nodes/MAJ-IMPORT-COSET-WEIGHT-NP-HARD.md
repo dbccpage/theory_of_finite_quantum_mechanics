@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md`
 
 - file: [dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md](../../../dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md)
-- sha256 (`lf-normalised`): `1d3837d997309cbd919cd4d870f1ed915b7307a9befed59b4d74a0f66aaac2c3`
+- sha256 (`lf-normalised`): `caadb1390f3f77433a6dcefb0b670eed0eaa535d30c957a79c7ec19bf4c54311`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1157
 - counts toward the grade: no

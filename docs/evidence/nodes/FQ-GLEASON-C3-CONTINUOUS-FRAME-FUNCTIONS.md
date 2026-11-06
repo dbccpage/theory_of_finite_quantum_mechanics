@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1059_fq_gleason_c3_continuous_frame_functions.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1059_fq_gleason_c3_continuous_frame_functions.md](../../../dag/derivations/10_finite_qm_core/tfq_1059_fq_gleason_c3_continuous_frame_functions.md)
-- sha256 (`lf-normalised`): `ddb3dc28f41b4ea57a374750eae3ae50a0877794aee3c0c8b25f1401eae2d7ea`
+- sha256 (`lf-normalised`): `2adef140c673366960fbf16280417c7c401a499a575cddbebc1b8b2ac7c5c1bd`
 - generated view: listed, not counted
 - cited in: record TFQ-1059
 - counts toward the grade: no

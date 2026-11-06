@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md](../../../dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md)
-- sha256 (`lf-normalised`): `66d35daaf9b4aee800476889db9c43d8a6187f83d95052553f2f8718d9c0928e`
+- sha256 (`lf-normalised`): `ba8e93d7f4852034bd2b2fe5bc634152dacc1593f0003cf20acbd39da052dfc2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2208
 - counts toward the grade: no

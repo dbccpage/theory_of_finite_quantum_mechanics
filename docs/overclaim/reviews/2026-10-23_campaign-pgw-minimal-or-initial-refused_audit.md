@@ -116,7 +116,7 @@ prose. All three source lines were compared with the base and are unchanged:
 
 | Path and line | Finding | Disposition |
 |---|---|---|
-| dag/derivations/MASTER_DERIVATION_LEDGER.md:1030 | ../foundations/theory_of_finite_quantum_foundations.md | Existing base link; no repair made by this audit |
+| dag/derivations/master_derivation_ledger.md:1030 | ../foundations/theory_of_finite_quantum_foundations.md | Existing base link; no repair made by this audit |
 | dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics.md:431 | v | Existing base link; no repair made by this audit |
 | dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics.md:1014 | research/quantum_to_classical_descent/README.md | Existing base link; no repair made by this audit |
 

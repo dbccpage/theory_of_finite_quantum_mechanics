@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md](../../../dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md)
-- sha256 (`lf-normalised`): `2c756c0d0478b8bfe2027c88e2f0d419aae84bc65ded962c6906c43f7265ead5`
+- sha256 (`lf-normalised`): `8ed80a3cfa414f3fac15548de39134c7269d68fb0140bc389adaeb09bdcaccdf`
 - generated view: listed, not counted
 - cited in: record TFQ-1002
 - counts toward the grade: no

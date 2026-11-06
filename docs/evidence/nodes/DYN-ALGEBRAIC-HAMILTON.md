@@ -45,17 +45,17 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md`
+### Documents and data: `dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md`
 
-- file: [dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md](../../../dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md)
-- sha256 (`lf-normalised`): `7eb3d20a172d523fc33b07123fb3b900d512cdc83e888945874354192fb3dc2e`
+- file: [dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md](../../../dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md)
+- sha256 (`lf-normalised`): `7f59f6870f54dead1f7d1bca037c0691d6fd1fd7c927551f1e7bd6fe85820866`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md)
-- sha256 (`lf-normalised`): `2a26648fba969c84f390ec78e1c2b1dc038118c49e5f9c2559b63179e0d2add2`
+- sha256 (`lf-normalised`): `ac6c0779d5e87d670b751cbba686dbfc950d36f09eff2f20329852fcbdb646ba`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2619
 - counts toward the grade: no

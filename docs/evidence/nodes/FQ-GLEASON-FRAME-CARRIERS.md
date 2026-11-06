@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1058_fq_gleason_frame_carriers.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1058_fq_gleason_frame_carriers.md](../../../dag/derivations/10_finite_qm_core/tfq_1058_fq_gleason_frame_carriers.md)
-- sha256 (`lf-normalised`): `4ea593121001a9451acdbafc22c528fa626fd59d8570f60c7ad911b712be1bce`
+- sha256 (`lf-normalised`): `14cf7180bf64a944efbe5b6214ab291260c5cad4e43bd79094d2899244d2867d`
 - generated view: listed, not counted
 - cited in: record TFQ-1058
 - counts toward the grade: no

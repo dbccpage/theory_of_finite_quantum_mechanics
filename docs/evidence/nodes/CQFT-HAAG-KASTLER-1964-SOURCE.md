@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2102_cqft_haag_kastler_1964_source.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2102_cqft_haag_kastler_1964_source.md](../../../dag/derivations/31_causal_qft/tfq_2102_cqft_haag_kastler_1964_source.md)
-- sha256 (`lf-normalised`): `5b25afcebc5336ef5b728ad0c891505b0fccc2d5c6060a457b8e0cf9ff74001d`
+- sha256 (`lf-normalised`): `af345beb19707007b433bc23d81b34defbe07079ed740fd117709958b5598f5a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2102
 - counts toward the grade: no

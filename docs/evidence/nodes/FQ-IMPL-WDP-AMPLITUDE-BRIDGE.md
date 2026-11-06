@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md](../../../dag/derivations/21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md)
-- sha256 (`lf-normalised`): `ab8847fd1cfdb01822e86735f125738c1c1d112750531b00aa26f6e805ac45f7`
+- sha256 (`lf-normalised`): `00599cbf15b9d2f7de2370e2a48b7ede34c54b953da47a169152d1d2ea22fe7c`
 - generated view: listed, not counted
 - cited in: record TFQ-1026
 - counts toward the grade: no

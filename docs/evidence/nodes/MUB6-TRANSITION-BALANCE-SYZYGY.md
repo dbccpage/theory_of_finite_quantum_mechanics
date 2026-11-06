@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md`
 
 - file: [dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md](../../../dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md)
-- sha256 (`lf-normalised`): `d8e7470cfc639794ff33f8df888b2b577a6921d9692a13ac56f4670f591e518d`
+- sha256 (`lf-normalised`): `35bb641566f569e00030dbaa0bff313f5a2917c26b809d96a3e5a5c57641ea86`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1265
 - counts toward the grade: no

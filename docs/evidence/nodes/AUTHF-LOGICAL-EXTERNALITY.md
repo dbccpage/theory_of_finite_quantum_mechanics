@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1358_authf_logical_externality.md`
 
 - file: [dag/derivations/29_computation/tfq_1358_authf_logical_externality.md](../../../dag/derivations/29_computation/tfq_1358_authf_logical_externality.md)
-- sha256 (`lf-normalised`): `ce41742c0478ff1a3fa3d8fd1c33dea0e5e47a0c2201022e98eb84c778e7d79f`
+- sha256 (`lf-normalised`): `f39323d6016cb671803502284135234b9d25eb31c4b2e668680e30285d5341cc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1358
 - counts toward the grade: no

@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md](../../../dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md)
-- sha256 (`lf-normalised`): `2cade9f3f05fc143a0ce38530cf0d33f585ae5bd14a15af7c3bfb7d57c1b15ff`
+- sha256 (`lf-normalised`): `ab381919e7ed46734a11140f141662c98a823190c56ab8e828910807afb8a7e0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2110
 - counts toward the grade: no

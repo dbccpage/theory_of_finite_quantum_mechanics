@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md`
 
 - file: [dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md](../../../dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md)
-- sha256 (`lf-normalised`): `d2a79fe2c336b509f08e3c94a1a7d06a01605070ef4208ba15595f91633a83e6`
+- sha256 (`lf-normalised`): `fe77ff704c8541c7835ef4e4570a7d4da86d6ff095f14c58937f22a1b20594fc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1365
 - counts toward the grade: no

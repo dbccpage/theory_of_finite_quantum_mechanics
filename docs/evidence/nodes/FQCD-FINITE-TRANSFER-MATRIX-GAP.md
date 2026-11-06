@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md](../../../dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md)
-- sha256 (`lf-normalised`): `e3a86db5194b112c5ca8bcc6ab0a349c4e23632bd7f3382c2d3ba4892a8f18d7`
+- sha256 (`lf-normalised`): `ac395f85d0c75518718687954724aad2ff831d3d4b78b0141a4ed10ad5bcbed7`
 - generated view: listed, not counted
 - cited in: record TFQ-1049
 - counts toward the grade: no

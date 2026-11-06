@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md](../../../dag/derivations/10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md)
-- sha256 (`lf-normalised`): `f2f148106d257ced658c4d0a6bb85e8068eeff5e6ce95189297dbf4516ea4a56`
+- sha256 (`lf-normalised`): `760c077fc7d9e7940cdcc3e280f391fe81bc549bfca91ae0ed3195f6944d5fff`
 - generated view: listed, not counted
 - cited in: record TFQ-1037
 - counts toward the grade: no

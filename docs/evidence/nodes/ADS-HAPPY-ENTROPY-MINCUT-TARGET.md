@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md](../../../dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md)
-- sha256 (`lf-normalised`): `82193c62781e34223874f67c5abaa012c99c41ed135ce360db43608447e20152`
+- sha256 (`lf-normalised`): `4c531bca6bfab6533b7f883ac9a5793100f05021782dfd9f84defd40109f4fd7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2209
 - counts toward the grade: no
