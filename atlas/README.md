@@ -10,11 +10,22 @@ The original import copied seven paper folders from a private research repositor
 - `finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems`
 - `finite_obstruction_calculus/witnessed_difference_programme`
 - `finite_obstruction_calculus/genesis_ongoing`
-- `finite_obstruction_calculus/local_green_global_red`
+- `finite_obstruction_calculus/local_green_global_red` (removed 2026-11-06; the series now lives in [local_green_global_red_lggr](https://github.com/dbccpage/local_green_global_red_lggr))
 - `finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems`
 - `projection_obstruction`
 
-Each folder holds a paper (Markdown, TeX, PDF), its Lean 4 sources, and the Python, Rust, JSON and CSV files the paper cites.
+Each remaining folder holds a paper (Markdown, TeX, PDF), its Lean 4 sources, and the Python, Rust, JSON and CSV files the paper cites.
+
+## QM and computation consolidation, 2026-11-05
+
+The former `foundations/` and `core/` contents now live under the corresponding
+numbered stages in [`dag/derivations`](../dag/derivations/). Start with the
+[combined reading path](../dag/derivations/FIRST_MARK_TO_QUANTUM_GRAVITY.md)
+and [file crosswalk](../dag/derivations/SOURCE_CROSSWALK.md).
+The computation and complexity sources share
+[`computation_complexity_pvnp/`](computation_complexity_pvnp/README.md).
+The import counts and prior byte audit below describe their historical
+snapshots, before this further consolidation; the new manifest records this move.
 
 ## What status these files have
 

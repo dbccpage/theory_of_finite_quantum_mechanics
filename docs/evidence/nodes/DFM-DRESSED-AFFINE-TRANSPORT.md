@@ -32,7 +32,7 @@ Exact 4x4 checks exist for two fixed tetrads, one boost-rotation frame change an
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.9-TRANSPORT claims PROVED_LEAN; audited status PROVED_PROSE
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.9-TRANSPORT claims PROVED_LEAN; audited status PROVED_PROSE
 
 ## Review
 
@@ -80,20 +80,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md](../../../dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md)
-- sha256 (`lf-normalised`): `5dfc7b35a8aaa9de0ce07953dff23213dee1223ad5243d626ebcd605a1cd788a`
+- sha256 (`lf-normalised`): `f4d99c869d2bde1b72509de3ee031722b1da6d7bc2266fea2bce306993cdba32`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1135
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

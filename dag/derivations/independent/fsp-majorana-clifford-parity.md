@@ -9,7 +9,7 @@ Provisional campaign outcome: **Narrowed**. The existing statement, status
 `IMPORTED_ASSUMPTION`, imported structures, and original obligation are retained.
 The source manuscript and its historical sign convention are not edited.
 
-The source is `papers/core/fsp/theory_of_finite_fsp.md:283-295`, audited in
+The source is `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md:283-295`, audited in
 `dag/fragments/unified_dag.json`. Its missing cited declaration and the physical
 superselection fence remain recorded. This contribution supplies conditional
 algebra and finite witnesses, not a derivation of CAR from primitive difference.

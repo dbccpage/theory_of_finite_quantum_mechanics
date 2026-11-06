@@ -14,8 +14,8 @@ target:
     sign-reversing involution.
   source_refs:
   - dag/derivations/26_fsp/tfq_1191_fsp_free_triangle_representation.md
-  - papers/core/fsp/the_problem_of_the_fermion_sign.md
-  - papers/core/fsp/theory_of_finite_fsp.md
+  - dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md
+  - dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md
   paper_refs:
   - dag/derivations/26_fsp/tfq_1191_fsp_free_triangle_representation.md
   source_claim_label: COMPUTATIONALLY_CHECKED
@@ -37,7 +37,7 @@ operation_candidates:
   name: TrotterPath
   line: 34
   signature_excerpt: 'structure TrotterPath (P : Type u)'
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -45,7 +45,7 @@ operation_candidates:
   name: DisjointWeightSpectra
   line: 71
   signature_excerpt: 'def DisjointWeightSpectra {P : Type u} (T : TrotterPath P) : Prop'
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -53,7 +53,7 @@ operation_candidates:
   name: BipartiteInvolution
   line: 42
   signature_excerpt: 'structure BipartiteInvolution {P : Type u} (T : TrotterPath P)'
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -72,7 +72,7 @@ operation_candidates:
 
     /-- A fermionic Trotter path with declared Boltzmann weight and Jordan-Wigner sign. -/
     structure TrotterPath (P : Type u)
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -86,7 +86,7 @@ operation_candidates:
 
     /-- A fermionic Trotter path with declared Boltzmann weight and Jordan-Wigner sign. -/
     structure TrotterPath (P : Type u)
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -99,7 +99,7 @@ relation_candidates:
         (h_disj : DisjointWeightSpectra T)
         (p_minus : P) (h_minus : T.sign p_minus = JwSign.Minus) :
         ¬ (∃ (_inv : BipartiteInvolution T), True)
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -111,26 +111,26 @@ relation_candidates:
   signature_excerpt: |-
     theorem disjoint_pair_residual_nonzero (w_pos w_neg : Nat) (h_ne : w_pos ≠ w_neg) :
         (w_pos : Int) * toInt JwSign.Plus + (w_neg : Int) * toInt JwSign.Minus ≠ 0
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean::disjoint_spectra_obstructs_involution
+- original_ref: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean::disjoint_spectra_obstructs_involution
   availability: local
   symbol: disjoint_spectra_obstructs_involution
-  path: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  path: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   declaration_status: declaration_found_not_proof_checked
   line: 83
   role: source_lead_only
-- original_ref: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean::disjoint_pair_residual_nonzero
+- original_ref: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean::disjoint_pair_residual_nonzero
   availability: local
   symbol: disjoint_pair_residual_nonzero
-  path: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  path: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   declaration_status: declaration_found_not_proof_checked

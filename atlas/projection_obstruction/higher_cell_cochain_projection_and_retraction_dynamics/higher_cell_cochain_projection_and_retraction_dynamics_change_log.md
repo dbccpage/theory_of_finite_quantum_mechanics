@@ -72,3 +72,11 @@ formal/numerical certification. Several of those claims were invalid or
 unsupported, as described above. The stored axiom report and original
 version identity are retained as historical artifacts. This change log
 does not attest to a Zenodo deposit or mint a new publication.
+
+## 0.2.0 — 2026-10-23
+
+Added residual uncertainty, explicit correction allowances and exact scalar budget witnesses. The new analytic statements retain their stated physical and enclosure assumptions. See `docs/residual_error_budget/claim.md` for the claim-to-evidence boundary.
+
+## 23 October 2026 — formal uncertainty and correction bounds
+
+Added 20 real/normed Lean theorems, a clean supplemental census replay, offline pinned Mathlib dependencies, and explicit physical-premise mappings. Updated manuscript, claim ledger and standalone verification. Existing proof roots and historical censuses remain separately identified.

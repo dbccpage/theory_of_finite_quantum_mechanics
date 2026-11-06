@@ -1,7 +1,7 @@
 # PO-000 — Projection Obstruction Anchor: Product Projections and Exact Short-Time Defect Bounds — Claim Ledger
 
 **Paper Key:** `projection_obstruction/projection_obstruction_paper`  
-**Paper Identity:** `PO-000` (`projection_obstruction.md`, canonical version: `v6.9.18`; an earlier revision of this line named the retired filename `projection_obstruction_paper.md`)
+**Paper Identity:** `PO-000` (`projection_obstruction.md`, canonical version: `v6.9.20`; an earlier revision of this line named the retired filename `projection_obstruction_paper.md`)
 **Legacy Paper Identity:** `Paper 000` / `Paper 001` / `000_projection_obstruction_v5_6.md` (v5.6 / v5.7 / v5.8 / v6.0)  
 **Authority:** None.
 
@@ -216,3 +216,8 @@ is not claimed minimal on $Z$. This adds no mechanized theorem or claim promotio
 | **R9** | Theorem 5.10.A on the Hermitian trace-zero variation space, and Theorem 5.10.B for site-factorized pure states with weighted minimum K-cut and cluster-interference counterexample | §5.10.2–5.10.3 | `code/tests/test_honeycomb_tdvp_duhamel_integration.py`, `code/tests/test_po000_e2e_extension.py` | Written proofs; the eight-site hexagon-plus-square Krylov/quadrature comparison is floating-point and non-certifying. Pure-sector identity and Bell-pair interference have exact written witnesses |
 | **R10** | Selected finite calculations: sharp $\|D\Pi\|=2$ on trace-zero Hermitian variations versus residual bound 3; commuting $J_2$ perturbation with cosine-zero exceptions; curvature versus retained $H^1$; explicit Lindblad factor 2; Strang local/global orders; K-cycle visibility | §7.9 | `code/physical_obstruction.py`, `code/tests/test_connected_cumulants.py`, `code/tests/test_po000_e2e_extension.py` (selected instances only) | Written identities and explicit counterexamples; no one-to-one PO-D1–PO-D20 executable certificate inventory |
 
+**NUM1 — Residual uncertainty and correction windows (§5.18).** Written conditional proof; exact scalar witnesses in `code/tests/test_residual_error_budget.py`. No new continuous-time Lean proof or validated integrator.
+
+## NUM1: uncertainty and correction bounds
+
+The 20-theorem supplemental census formalizes real rate uncertainty, positive/zero-rate windows, normed correction jumps, accumulated budgets and product-residual uncertainty. See `lean4/projection_axiom_census.json`. Continuous quantum evolution and physical norm/enclosure hypotheses remain explicit premises; no validated numerical trajectory is claimed.

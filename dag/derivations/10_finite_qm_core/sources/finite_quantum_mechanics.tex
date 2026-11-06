@@ -1,0 +1,2214 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\emergencystretch=3em
+% Disable common ligatures so copy/search text retains the literal fi/fl
+% sequences across PDF readers and text extractors.
+\defaultfontfeatures{Ligatures=NoCommon}
+\IfFontExistsTF{DejaVu Serif}
+  {\setmainfont{DejaVu Serif}[Ligatures=NoCommon]}
+  {\setmainfont{Cambria}[Ligatures=NoCommon]}
+\IfFontExistsTF{DejaVu Sans Mono}
+  {\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase,Ligatures=NoCommon]}
+  {\setmonofont{Cascadia Mono}[Scale=MatchLowercase,Ligatures=NoCommon]}
+\IfFontExistsTF{DejaVu Sans}
+  {\newfontfamily\symbolfont{DejaVu Sans}}
+  {\newfontfamily\symbolfont{Segoe UI Symbol}}
+\usepackage{xurl}
+\usepackage{adjustbox}
+\usepackage{fvextra}
+% Long highlighted directory trees must wrap rather than silently leave the page.
+\fvset{breaklines=true,breakanywhere=true,breaknonspaceingroup=true}
+\usepackage{newunicodechar}
+\newunicodechar{ℓ}{\ensuremath{\ell}}
+\newunicodechar{ℂ}{\ensuremath{\mathbb{C}}}
+\newunicodechar{⊬}{\ensuremath{\nvdash}}
+\newunicodechar{★}{\mbox{\symbolfont\char"2605}}
+\newunicodechar{𝔻}{\ensuremath{\mathbb{D}}}
+\newunicodechar{ℍ}{\ensuremath{\mathbb{H}}}
+\newunicodechar{⪯}{\ensuremath{\preceq}}
+\newunicodechar{⪰}{\ensuremath{\succeq}}
+\newunicodechar{⁅}{\mbox{\symbolfont\char"2045}}
+\newunicodechar{⁆}{\mbox{\symbolfont\char"2046}}
+\newunicodechar{‖}{\ensuremath{\Vert}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{⇏}{\ensuremath{\nRightarrow}}
+\newunicodechar{∇}{\ensuremath{\nabla}}
+\newunicodechar{∉}{\ensuremath{\notin}}
+\newunicodechar{∘}{\ensuremath{\circ}}
+\newunicodechar{∧}{\ensuremath{\land}}
+\newunicodechar{⊂}{\ensuremath{\subset}}
+\newunicodechar{⊆}{\ensuremath{\subseteq}}
+\newunicodechar{⊗}{\ensuremath{\otimes}}
+\newunicodechar{♯}{\ensuremath{\sharp}}
+\newunicodechar{ᵇ}{\ensuremath{^{\mathrm b}}}
+\newunicodechar{ᵏ}{\ensuremath{^{\mathrm k}}}
+\newunicodechar{ₙ}{\ensuremath{_{\mathrm n}}}
+\newunicodechar{ᵀ}{\ensuremath{^{\mathsf T}}}
+\AtBeginDocument{\Urlmuskip=0mu plus 2mu\urlstyle{tt}}
+\setlength{\tabcolsep}{4pt}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Finite Quantum Mechanics},
+  pdfauthor={Jeremy H. Carroll},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Finite Quantum Mechanics}
+\author{Jeremy H. Carroll}
+\date{2026-10-14}
+
+\begin{document}
+\makeatletter
+\begin{center}
+{\LARGE\bfseries \@title\par}
+\vspace{0.45em}
+{\large Can Quantum Mechanics Be Presented on a Finite Carrier --- and If Not,
+Exactly Where Does It Break?\par}
+\vspace{0.8em}
+{\normalsize \@author\par}
+\vspace{0.5em}
+{\small \@date\par}
+\vspace{0.2em}
+{\small Version 0.55.0\par}
+\vspace{0.3em}
+{\footnotesize Creative Commons Attribution 4.0 International (CC-BY-4.0)\par}
+\end{center}
+\makeatother
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\subsection{Abstract}\label{abstract}
+
+We study finite-dimensional quantum models over specified rational and
+algebraic scalar fields, distinguishing a finite presentation from a
+finite set of states. The principal results are exact constructions and
+obstructions under explicit assumptions on states, effects, composition,
+dynamics, and readout. A normalized clock seed gives a constructive
+finite Weyl intertwiner. Equal population reports can fail to preserve
+answers to a common future experiment. An unconditional
+measure-and-prepare transfer of an unknown qubit has average survival
+probability at most three quarters on four specified preparations, with
+an attaining strategy. Finite Bell tables distinguish support
+compatibility from the existence of a positive common joint
+distribution, while central-sector weights constrain purification in a
+specified direct-sum tensor model.
+
+Exact finite examples, written arguments, and selected formalizations
+accompany one another with separate scopes. A positive global joint law
+implies the CHSH bound \(|S|\leq 2\); a supplied rational quantum model
+reaches \(S=14/5\); and a supplied tensor-state-observable model over
+\(\mathbb Q(\sqrt 2)\) attains \(S=2\sqrt 2\) and has an exact
+sum-of-squares upper certificate. These results do not derive the
+quantum state space, Born pairing, tensor composition, or continuous
+dynamics from primitive difference. They identify which supplied
+structures each conclusion uses and which reconstruction questions
+remain open.
+
+\subsection{Guide to the paper}\label{guide-to-the-paper}
+
+The main text is organized by mathematical questions. Source provenance
+and reproduction details accompany the results without determining their
+truth.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Location
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Evidential boundary
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Which finite and algebraic structures are being assumed? & §1 & Declared
+carrier and scalar data are not derived conclusions \\
+What counts as a proof or finite certificate? & §§2--3 & Evidence is
+matched to the quantifiers of the statement \\
+Which mathematical results are established? & §§4 and 11 & Each theorem
+keeps its scalar, dimension, positivity, and composition premises \\
+Where does the proposed reconstruction remain open? & §§5, 7, and 9 & A
+missing selection argument is not an impossibility theorem \\
+How can the computations be reproduced? & §§6, 10, and 12 & Validation
+and serialization checks do not establish physical predicates that
+fields only name \\
+What do the carrier and measurement examples establish? & §13 &
+Conditional operational separations; no individual-outcome selection
+law \\
+\end{longtable}
+
+\subsection{1. Finite presentations, supplied structure, and target
+examples}\label{finite-presentations-supplied-structure-and-target-examples}
+
+A finite-dimensional quantum model need not have finitely many states.
+This paper distinguishes four notions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a finite graph or cell complex;
+\item
+  a finite presentation by exact algebraic data;
+\item
+  a finite-dimensional vector space, which normally has infinitely many
+  normalized states; and
+\item
+  a finite list of preparations, effects, or experiments.
+\end{enumerate}
+
+On a declared directed graph the primitive coboundary is
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle (d_0f)(u,v)=f(v)-f(u).\)}\]
+
+For an edge cochain \(x\), a weighted quotient such as
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \Phi_1([x])=\inf_{\alpha}\|x-d_0\alpha\|_{1,w}\)}\]
+
+measures the residual after the admitted vertex repairs. This
+construction is mathematically useful, but it does not by itself select
+complex scalars, positivity, inner products, tensor composition, the
+Born pairing, or continuous time. Those choices must be supplied or
+derived separately.
+
+\subsubsection{1.1 An eight-rung
+inventory}\label{an-eight-rung-inventory}
+
+The eight rungs below are an assumption audit, not an eight-step
+derivation of quantum mechanics.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Rung
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Established once the inputs are supplied
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Additional supplied structure
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Remaining boundary
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1. Difference & Finite differences, equality tests, and graph
+coboundaries & A carrier and equality relation & No preferred norm,
+topology, or physical geometry is selected \\
+2. Quotient repair & Exact finite quotient values and
+primal\allowbreak{}/\allowbreak{}dual certificates & Coefficient space,
+weights, and repair image & The quotient does not choose a quantum state
+space \\
+3. State--effect pairing & Positive normalized weights and conditional
+identities in stated models & Positive states, effects, and a pairing &
+The Born rule is not derived from difference \\
+4. Phase & Relative phases and phase-sensitive interference on a
+supplied complex or cyclotomic carrier & Complex conjugation and a phase
+group & Population data alone do not select the phase fiber \\
+5. Composition & Product states, entangled states, partial traces, and
+Bell tables in a supplied tensor model & Tensor composition and
+positivity & Tensor products are not forced by graph products \\
+6. Reversible dynamics & Exact finite unitaries and rational Cayley
+steps & An inner product, reversible maps, and a time step & Continuous
+time and a generator require topology and interpolation \\
+7. Measurement and channels & POVM probabilities, conditional updates,
+exact channels, and finite dilations & Effect algebra, instruments, and
+completely positive maps & Unitary dilation does not select one realized
+outcome \\
+8. Representation boundary & Finite frame constraints, contextuality
+witnesses, and finite-dimensional commutator obstructions & The
+hypotheses of Gleason\allowbreak{}/\allowbreak{}Busch-type
+representation theorems & Restricted algebraic ray sets do not
+automatically extend to complete projective geometry \\
+\end{longtable}
+
+Two elementary cautions are important. First, the difference and
+equality relation do not select the norm, topology, or physical geometry
+needed later; they do not exclude every metric construction. Second,
+projective state space is
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \mathbb P(\mathcal H)
+=(\mathcal H\setminus\{0\})/\mathbb C^\times
+\cong S(\mathcal H)/U(1),\)}\]
+
+where \(S(\mathcal H)\) is the unit sphere. The group quotient
+\(\mathbb C^\times/U(1)\) instead records positive scale and is not the
+projectivization of the state space.
+
+\subsubsection{1.2 Twenty-two finite
+targets}\label{twenty-two-finite-targets}
+
+The target list tests exact finite presentations against familiar
+structures. Each row states the object actually considered; it is not a
+claim that the corresponding general physical theory has been
+reconstructed.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Target
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Finite object and present scope
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & Primitive difference and zero self-difference on a declared
+carrier \\
+2 & A diamond-shaped 2-complex with exact cyclotomic holonomy data \\
+3 & A three-path amplitude fixture with vanishing Sorkin third-order
+term {[}7{]} under a supplied quadratic readout \\
+4 & Rational Cayley transforms in \(\mathfrak{so}(8,\mathbb Q)\) and
+exact orthogonality checks \\
+5 & Rational \(S_3\) braid relations and recoupling-shaped examples; no
+general pentagon theorem \\
+6 & Cabello's 18-ray parity system, its 146-vertex rational frame
+polytope, and exact positivity filtering \\
+7 & Signed permutation unitaries on a finite layered model \\
+8 & A rational CHSH model with \(S=14/5\) and an exact
+positive-extension obstruction \\
+9 & The three-qubit bit-flip code, whose distance is one against
+unrestricted Pauli errors \\
+10 & Four-branch teleportation identities over exact Gaussian-rational
+data \\
+11 & Superdense-coding identities on a supplied Bell pair and gate
+set \\
+12 & A four-qubit \([[4,2,2]]\) stabilizer example with exact syndrome
+and distance checks \\
+13 & Prime-\(5\) discrete Wigner phase-point operators and selected
+covariance\allowbreak{}/\allowbreak{}negativity witnesses \\
+14 & The Shor \([[9,1,3]]\) stabilizer construction and single-qubit
+error syndromes \\
+15 & Four-point phase-estimation identities over a specified cyclotomic
+carrier \\
+16 & A finite toric\allowbreak{}/\allowbreak{}surface-code incidence
+model and its declared anyon relations \\
+17 & Four-item Grover search as two exact Householder reflections \\
+18 & Finite Clifford conjugation identities and a scoped
+transversal-gate limitation {[}25{]} \\
+19 & The finite commutator trace obstruction and a constructive finite
+Weyl representation \\
+20 & Exact Richardson weights and the variance cost of finite zero-noise
+extrapolation \\
+21 & A finite quantum walk on a supplied Cayley graph with exact norm
+preservation \\
+22 & Exact mutually unbiased-basis tomography in dimensions three and
+four, with positivity checked separately from linear reconstruction \\
+\end{longtable}
+
+The detailed target definitions, implementation addresses, and
+formalization scope are in the source-notes supplement. Three results
+deserve emphasis here: the Bell separation in §11.4, the Cabello census
+in §11.5, and the following finite Weyl construction.
+
+\subsubsection{1.3 Constructive finite Weyl equivalence from an anchored
+seed}\label{constructive-finite-weyl-equivalence-from-an-anchored-seed}
+
+Let \(N \ge 1\) and let \(K \subseteq \mathbb C\) be a
+conjugation-stable subfield containing a primitive \(N\)th root of unity
+\(\omega\). Equip \(K^N\) with the standard Hermitian pairing. Supply
+unitary \(N \times N\) matrices \(X', Z'\) over \(K\) satisfying the
+finite Weyl relations {[}4{]}
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle Z'X'=\omega X'Z',\qquad (X')^N=I,\)}\]
+
+and a normalized vector \(v \in K^N\) satisfying
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle Z'v=v,\qquad v^\dagger v=1.\)}\]
+
+Define the canonical shift and clock by \(X e_j = e_{j+1 \pmod N}\) and
+\(Z e_j = \omega^j e_j\), for \(0 \le j < N\). Then
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle W = \begin{pmatrix} v & X'v & \cdots & (X')^{N-1}v \end{pmatrix}\)}\]
+
+is unitary and satisfies \(X'W=WX\) and \(Z'W=WZ\). The joint commutant
+of \(X'\) and \(Z'\) consists of scalar matrices. Any two unitary
+intertwiners between the fixed pairs differ by multiplication by a
+unit-modulus scalar in \(K\).
+
+\emph{Proof.} Induction in the Weyl relation gives
+\(Z'(X')^j v = \omega^j (X')^j v\). These \(N\) eigenvalues are
+distinct. Since \(Z'\) is unitary, their eigenvectors are orthogonal,
+and unitarity of \(X'\) makes all \(N\) orbit vectors have norm one. The
+explicitly \(N\)-dimensional carrier makes them a basis. The period of
+\(X'\) closes the shift relation, and the displayed eigenvalue equation
+gives the clock relation. A matrix commuting with the canonical clock is
+diagonal; commuting with the shift makes all its diagonal entries equal.
+Conjugating by \(W\) establishes the commutant statement, and applying
+it to the ratio of two intertwiners establishes uniqueness up to scalar.
+
+The normalized eigenvalue-one seed and scalar field are supplied inputs.
+This result does not find or normalize such a seed over every number
+field. If a supplied seed has eigenvalue \(\omega^r\) instead, replace
+it by \((X')^{-r}v\) before using this construction. On a larger carrier
+the orbit spans a cyclic invariant subspace, not necessarily the whole
+carrier; no scalar-commutant conclusion for the larger carrier follows.
+
+\subsection{2. Standards of evidence}\label{standards-of-evidence}
+
+The mathematical statement, its premises, its implementation and its
+reproduction record are separate. We use the following evidence classes
+throughout the paper:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Class
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it supports
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What it does not support
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Written proof & The quantified statement under the assumptions used in
+its argument & A claim of Lean verification or physical realization \\
+Scoped Lean proof & The actual elaborated declaration, including its
+input hypotheses and coefficient types & A broader theorem suggested by
+a filename, comment or surrounding prose \\
+Exact finite computation & An identity, enumeration or certificate
+replay on its declared input domain & An unrestricted theorem from a
+sample of instances \\
+Numerical demonstration & A reported approximation with its algorithm
+and tolerance & Exact zero, exact positivity or exact optimality without
+additional certificates \\
+Imported theorem or conditional model & A standard theorem with its
+hypotheses, or a result conditional on supplied structures & Derivation
+of those hypotheses or structures from finite history data \\
+Historical observation / unreproduced claim & What an identified earlier
+source or execution record reported & A fresh successful run or
+endorsement of every present source claim \\
+\end{longtable}
+
+A finite computation can decide a finite theorem completely, and a
+checked linear basis can establish an identity for its entire
+finite-dimensional space. Conversely, a general written proof remains a
+proof even when no Lean mechanization is supplied. Neither direction
+should be collapsed into the ledger's software status labels.
+
+The most important conclusions have these boundaries:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Conclusion
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Premises and supporting argument
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Current scope
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Finite Weyl equivalence and scalar commutant & Primitive root, unitary
+\(N \times N\) pair, period and normalized eigenvalue-one clock seed;
+explicit eigenvector-orbit proof in Target 19 & Written theorem and
+exact verifier; Lean checks the stated commutant fragment \\
+Born normalization & Supplied positive trace-one state, POVM summing to
+identity and trace pairing; linearity of trace & General algebraic
+identity; specialized two-level Lean models and exact channel checks \\
+Gleason\allowbreak{}/\allowbreak{}Busch representation {[}1,3{]} & Full
+projective domain at dimension at least three, or an all-effects
+additive positive normalized domain & Imported theorems; rational-plane
+obstruction and finite tomography do not prove a general number-field
+representation theorem \\
+Phase-blind reports can lose future answers & Two equal present reports
+separated by an admitted common future experiment & Explicit exact
+counterexample; no exclusion of every classical enlarged model \\
+Bell joint-extension obstruction & Four supplied pair tables and one
+positive joint law on all sixteen local assignments & Finite convex
+separation and CHSH proof; a physical Bell reading also assumes setting
+independence and local response factorization \\
+Classical-storage survival at most \(3/4\) & Full qubit positive
+states/effects, affine unconditional encoding/retrieval, unknown input
+and no quantum side memory & General written proof with sharp control in
+§13.7; exact native instances \\
+Central-sector purification obstruction and bounds & Full states of
+direct-sum complex matrix algebras and standard tensor composition &
+General written proof in §13.8; sharpness needs sufficient ancilla
+capacity; Lean assumes the pure-block representation \\
+Native history quotient & A declared finite reachable
+history\allowbreak{}/\allowbreak{}action system and protected future
+questions, including availability & Minimal report relative to those
+questions; no quantum scalar, positivity or composition selection \\
+\end{longtable}
+
+Repository-only checks validate status vocabulary, evidence paths and
+named Rust test functions. They enforce bookkeeping; they do not decide
+whether a file establishes a claim. The source-by-source discussion in
+the source-notes supplement (its §4, subsections 11.1--11.60) supplies
+that interpretation and retains counterexamples and open obligations.
+Its old execution counts are historical unless an explicitly dated
+current replay is named.
+
+\subsection{3. Claims and supporting
+evidence}\label{claims-and-supporting-evidence}
+
+The evidence obligation is determined by the statement's quantifiers. A
+general mathematical statement requires an adequate written proof or a
+formal proof of the same statement. A claim over a finite domain may
+instead be settled by a complete exact enumeration, provided the domain
+and enumeration are justified. An example test establishes only the
+stated example.
+
+Accordingly, each unresolved statement must receive one of the following
+treatments:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  an adequate written proof;
+\item
+  a matching formal proof;
+\item
+  a complete exact finite argument appropriate to its quantifiers;
+\item
+  a restriction to the domain actually established;
+\item
+  an explicit statement that it remains open; or
+\item
+  withdrawal after a counterexample.
+\end{enumerate}
+
+File existence, compilation, schema validation, serialization, access
+control, and a change of status label cannot decide whether this
+obligation has been discharged. The repository maintains a historical
+evidence register for reproduction, but its row counts and labels are
+not a measure of mathematical progress and are not part of this
+monograph's scientific summary.
+
+The sixty-seven source manuscripts are preserved in the paper archive.
+Six are redirect, alias or annex stubs whose mathematical content is
+treated with the destination result: the residual-density redirect
+(source-notes supplement §11.4), the finite-realization redirect
+(§11.6), the earlier phase-selector alias (§11.27), and the annex stubs
+for phase-gauge residuals (§§11.28--11.29), the no-signaling model
+(§§11.33--11.34) and the completely positive import boundary (§11.38).
+
+\subsection{4. Established results}\label{established-results}
+
+The results below are stated by mathematical content rather than by
+repository status. Their detailed hypotheses, arguments, and source
+addresses appear in §§11--13.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Finite Weyl equivalence from an anchored seed (§1.3, Target
+  19).} Given the stated conjugation-stable scalar field
+  \(K \subseteq \mathbb C\), primitive \(N\)th root \(\omega\), unitary
+  \(N \times N\) pair \(X', Z'\) with \((X')^N = I\), and normalized
+  clock eigenvector \(Z'v = v\) with \(v^\dagger v = 1\), the orbit
+  columns form an orthonormal eigenbasis and give an explicit unitary
+  intertwiner \(W\). The scalar-commutant conclusion on \(K^N\) follows
+  by the displayed basis argument. Finding or normalizing such a seed
+  over an arbitrary number field is not included; on a larger carrier
+  the orbit spans an invariant cyclic subspace.
+\item
+  \textbf{Finite cochain certificates (source-notes supplement §§11.3,
+  11.4 and 11.8).} An exact potential establishes membership in
+  \(\operatorname{im}d_0\); a separating functional vanishing on that
+  image establishes non-exactness; and a nonzero \(d_1x\) establishes
+  failure of closure. Numerical linear programming is reported
+  separately.
+\item
+  \textbf{Power-family context dependence (source-notes supplement
+  §11.58, positive-power context independence).} Two rational contexts
+  assign a shared ray the weights \(1/2\) and \(1/(1+(3/5)^p+(4/5)^p)\).
+  For positive real \(p\), equality holds exactly at \(p=2\). This
+  classifies the specified family, not all frame functions.
+\item
+  \textbf{Positive Bell extension (§13.8).} The full-support rational
+  table has CHSH value \(14/5\). Every deterministic assignment is
+  support-compatible, yet no nonnegative common joint distribution
+  reproduces the four marginals. The separating inequality is verified
+  on all sixteen deterministic vertices.
+\item
+  \textbf{Classical-storage survival bound (§13.7).} Under the stated
+  full qubit state\allowbreak{}/\allowbreak{}effect domain, affine
+  unconditional measure-and-prepare transfer, unknown input, and absence
+  of quantum side memory, the average survival on four preparations is
+  at most \(3/4\), and the bound is attained.
+\item
+  \textbf{Central-sector bounds (§13.8).} In the specified direct-sum
+  matrix-algebra state space with standard tensor composition, central
+  weights bound extension purity and the trace distance from a
+  pure-composite marginal. Attainability requires sufficient ancilla
+  capacity.
+\item
+  \textbf{Primal and dual trace-norm certificates (source-notes
+  supplement §11.35).} For \(H=P-N\), positivity of \(P,N\), the
+  inequalities \(-I\preceq W\preceq I\), and
+  \[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \operatorname{tr}(WH)=\operatorname{tr}P+\operatorname{tr}N\)}\]
+  certify the claimed value independently of the implementation's label.
+\item
+  \textbf{Phase-blind descent with a retained zero point (§11.1).} When
+  the quotient keeps the zero vector as a distinct output, the
+  population report of \(Ac\) depends only on that of \(c\) exactly when
+  every row of \(A\) has at most one nonzero entry. On projective space
+  alone the rank-one all-ones matrix is a counterexample. Written proof
+  and exact two-dimensional replay.
+\item
+  \textbf{Trace-zero repair duality (§11.2).} The dual norm of
+  \(\frac12\|\cdot\|_1\) on \(\operatorname{Herm}_0(n)\) is the spectral
+  diameter. On \(K_{2,3}\) with the stated qutrit defects the trace-zero
+  repair value is \(6\) and the all-Hermitian value is \(9/2\), each
+  certified by an exact primal potential and a dual witness {[}13{]}.
+\item
+  \textbf{CPTP monotonicity selects the trace norm (§11.3).} A family of
+  norms on trace-zero Hermitian matrices that no CPTP map increases is
+  one positive multiple of the trace norm. Written proof by exact
+  measure-and-prepare transport.
+\item
+  \textbf{The Cabello frame polytope (§11.5).} The frame polytope of the
+  eighteen Cabello rays has exactly 146 vertices, all half-integral, and
+  none of their unique trace-one real-symmetric representatives is
+  positive semidefinite. Exact enumeration with
+  characteristic-polynomial certificates.
+\end{enumerate}
+
+\subsection{5. Open problems and
+limitations}\label{open-problems-and-limitations}
+
+The unresolved scientific questions are stated here directly rather than
+by internal tracking codes. A question is closed only by a dated
+argument or replayable result; renaming or reclassifying it does not
+resolve it.
+
+The seven principal finite-to-continuum boundaries are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{The continuum Hilbert lift.} No source constructs the passage
+  from a finite presented carrier to an infinite-dimensional Hilbert
+  space. Source Notes §11.52 explicitly refuses that conclusion.
+\item
+  \textbf{Born uniqueness (Gleason {[}1{]}).} The Born rule is imported
+  as a declared input throughout, never derived.
+\item
+  \textbf{Continuous time and Stone's theorem.} The finite examples
+  distinguish finite-order integral evolutions from specified
+  infinite-order rational rotations. Rational unitaries can also have
+  finite order (the identity and rational quarter-turn suffice). A dense
+  cyclic orbit has a closure only after choosing an ambient topology;
+  that closure neither selects a time parameter nor a unique logarithm.
+  Topology, continuous interpolation and its generator therefore remain
+  additional inputs in both sectors.
+\item
+  \textbf{The Gleason dimension condition at \(n \ge 3\).} Gleason's
+  theorem {[}1{]} uses every orthonormal basis of a space of dimension
+  at least three, and Busch's version {[}3{]} uses every effect. A
+  finite ray set gives only part of that conclusion. On the Cabello set
+  in \(\mathbb Q^4\), on its three- and six-basis prefixes, and on the
+  24-ray Peres set, every function that sums to one on each declared
+  basis is the restriction of a real-symmetric trace-one form (exact
+  rank computation). The form is unique once the ray projectors span the
+  ten-dimensional space of real symmetric \(4\times4\) matrices, which
+  holds on every listed set except the three-basis prefix. Nonnegativity
+  on the declared rays does not give positive semidefiniteness: the 146
+  vertex representatives of §11.5 are nonnegative on the eighteen
+  Cabello rays, the research note
+  \texttt{r\allowbreak{}e\allowbreak{}s\allowbreak{}e\allowbreak{}a\allowbreak{}r\allowbreak{}c\allowbreak{}h\allowbreak{}/\allowbreak{}q\allowbreak{}m\allowbreak{}\_\allowbreak{}2\allowbreak{}1\allowbreak{}0\allowbreak{}\_\allowbreak{}f\allowbreak{}r\allowbreak{}a\allowbreak{}m\allowbreak{}e\allowbreak{}\_\allowbreak{}f\allowbreak{}u\allowbreak{}n\allowbreak{}c\allowbreak{}t\allowbreak{}i\allowbreak{}o\allowbreak{}n\allowbreak{}\_\allowbreak{}f\allowbreak{}i\allowbreak{}n\allowbreak{}i\allowbreak{}t\allowbreak{}e\allowbreak{}\_\allowbreak{}m\allowbreak{}a\allowbreak{}p\allowbreak{}.\allowbreak{}m\allowbreak{}d}
+  displays a rational trace-one form nonnegative on both the Cabello and
+  the Peres rays, and none of these is positive semidefinite. The finite
+  data fix the linear representative but not the positive cone, so the
+  dimension condition remains an imported premise.
+\item
+  \textbf{The rational boundary of Everett-style branch counting.}
+  Branch counting on fine-grained trees reproduces Born weights if and
+  only if all weights lie in \(\mathbb{Q}\). For weights in
+  \[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \mathbb{Q}(\zeta_n)^+ \setminus \mathbb{Q}\)}\],
+  finite integer fine-graining encounters an exact arithmetic
+  obstruction.
+\item
+  \textbf{Choice of real embedding.} The maximal totally real subfield
+  \(\mathbb{Q}(\zeta_n)^+\) has \(\phi(n)/2\) real embeddings into
+  \(\mathbb{R}\) (16 at target conductor \(n = 120\)). Gram matrices of
+  pure states stay positive semidefinite under every Galois conjugation,
+  since each conjugate is again a Gram matrix, but mixed-state witnesses
+  (starting at \(n = 5\)) exhibit embedding-relative positivity. The
+  Galois group acts transitively on embeddings; selecting an ordered
+  real embedding is an external declaration.
+\item
+  \textbf{The transcendental von Neumann entropy interface for mixed
+  states.} For a non-pure density operator with algebraic spectrum,
+  entropy in natural-log units,
+  \[\protect\adjustbox{max width=\linewidth}{\(\displaystyle S=-\sum_{\lambda_i>0}\lambda_i\ln\lambda_i\)}\],
+  is positive and is a nonzero algebraic linear combination of
+  logarithms of algebraic numbers. Baker's theorem on linear forms in
+  logarithms {[}24,27{]} makes this value transcendental. The claim is
+  unit-sensitive: in bits, \(S(I_2/2)=1\), so it does not assert that
+  every base-two entropy is transcendental. The natural-log quantity
+  lies outside \(\mathbb Q(\zeta_n)\); the declared external interface
+  uses a certified rational enclosure \([L_k,U_k]\) of width at most
+  \(2^{-k}\), with its midpoint error bounded by half that width.
+\end{enumerate}
+
+If finite quantum mechanics fails as a reconstruction programme, the
+failure is most likely to be exhibited at one of these seven boundaries.
+The useful outcome would be a precise theorem locating that boundary,
+not a change in a project status label. Historical packaging corrections
+and evidence-register statistics are retained in the source notes and
+reproduction records. They are not measures of the mathematical content
+established here.
+
+\subsubsection{5.1 Executable examples do not close the derivation
+gap}\label{executable-examples-do-not-close-the-derivation-gap}
+
+The repository contains executable interferometer, finite-cochain,
+Cayley-step, and positive-semidefinite filtering examples. They consume
+a declared graph, scalar field, state or amplitude data, readout rule,
+and experiment. Their successful execution establishes facts about those
+inputs; it does not derive the inputs or their quantum interpretation
+from primitive difference.
+
+The exact examples retained in the main text use rational or specified
+algebraic arithmetic. Older numerical linear-programming examples remain
+numerical demonstrations. Historical execution counts and migration
+details are recorded in the source-notes supplement, not used as theorem
+counts.
+
+\subsection{6. How to read the publication
+package}\label{how-to-read-the-publication-package}
+
+The main paper states current mathematical results and limitations. The
+source-notes supplement preserves the paper-by-paper corrections,
+original source addresses, and detailed implementation scope. All
+retained source manuscripts cited there are included under
+\texttt{s\allowbreak{}o\allowbreak{}u\allowbreak{}r\allowbreak{}c\allowbreak{}e\allowbreak{}s\allowbreak{}/\allowbreak{}o\allowbreak{}r\allowbreak{}i\allowbreak{}g\allowbreak{}i\allowbreak{}n\allowbreak{}a\allowbreak{}l\allowbreak{}\_\allowbreak{}p\allowbreak{}a\allowbreak{}p\allowbreak{}e\allowbreak{}r\allowbreak{}s\allowbreak{}/}
+in the paper ZIP. Companion papers used in the current exposition are
+included under
+\texttt{c\allowbreak{}o\allowbreak{}m\allowbreak{}p\allowbreak{}a\allowbreak{}n\allowbreak{}i\allowbreak{}o\allowbreak{}n\allowbreak{}\_\allowbreak{}p\allowbreak{}a\allowbreak{}p\allowbreak{}e\allowbreak{}r\allowbreak{}s\allowbreak{}/}.
+
+The separate code-companion ZIP contains the shared Rust and Lean source
+trees in the same relative layout used by their manifests. This split
+keeps the scientific paper readable while allowing a reader to inspect
+and run the actual code instead of relying on absent repository paths.
+Section 12 gives the focused commands and distinguishes mathematical
+proof, finite replay, formal checking, and archive custody.
+
+For an unresolved statement, the obligation is unchanged: provide an
+adequate written proof, a formal proof of the same statement, or a
+complete exact finite argument appropriate to its quantifiers; otherwise
+restrict it, identify it as open, or withdraw it. An example test
+remains evidence only for its stated inputs.
+
+\subsection{7. Scope limits}\label{scope-limits}
+
+\begin{itemize}
+\tightlist
+\item
+  Nothing here derives the Born rule, complex structure, unitarity,
+  tensor factorization, or continuous time. Every one of those enters
+  the source papers as a \textbf{declared import}, and importing a thing
+  is not deriving it.
+\item
+  A green test suite in this application certifies that its mechanical
+  constraints hold --- that files exist, commands exit 0, syntax parses,
+  and unit tests execute. It does not by itself certify semantic
+  mathematical validity or that prose claims are fully entailed by
+  code\allowbreak{}/\allowbreak{}proof terms; those boundaries require
+  substantive review.
+\end{itemize}
+
+\subsection{8. Sources, code, and public-record
+corrections}\label{sources-code-and-public-record-corrections}
+
+The companion publication ZIP contains the retained source manuscripts
+under
+\texttt{s\allowbreak{}o\allowbreak{}u\allowbreak{}r\allowbreak{}c\allowbreak{}e\allowbreak{}s\allowbreak{}/\allowbreak{}o\allowbreak{}r\allowbreak{}i\allowbreak{}g\allowbreak{}i\allowbreak{}n\allowbreak{}a\allowbreak{}l\allowbreak{}\_\allowbreak{}p\allowbreak{}a\allowbreak{}p\allowbreak{}e\allowbreak{}r\allowbreak{}s\allowbreak{}/},
+the source-notes supplement, and the code used by the package-local
+reproductions. A separate code-companion ZIP preserves the shared Rust
+workspace and the Lean workspace in their repository-relative locations
+so the named commands do not depend on files absent from the download.
+Section 12 states the exact commands and the limits of the latest
+replay.
+
+Two earlier Zenodo records require author-controlled correction before
+this edition is promoted. Prepared errata are included locally:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{d\allowbreak{}o\allowbreak{}c\allowbreak{}s\allowbreak{}/\allowbreak{}z\allowbreak{}e\allowbreak{}n\allowbreak{}o\allowbreak{}d\allowbreak{}o\allowbreak{}\_\allowbreak{}e\allowbreak{}r\allowbreak{}r\allowbreak{}a\allowbreak{}t\allowbreak{}a\allowbreak{}/\allowbreak{}2\allowbreak{}0\allowbreak{}6\allowbreak{}8\allowbreak{}3\allowbreak{}7\allowbreak{}7\allowbreak{}5\allowbreak{}\_\allowbreak{}e\allowbreak{}r\allowbreak{}r\allowbreak{}a\allowbreak{}t\allowbreak{}u\allowbreak{}m\allowbreak{}.\allowbreak{}m\allowbreak{}d}
+  narrows the claimed relationship between phase averaging, the Born
+  rule, and Hilbert-space emergence;
+\item
+  \texttt{d\allowbreak{}o\allowbreak{}c\allowbreak{}s\allowbreak{}/\allowbreak{}z\allowbreak{}e\allowbreak{}n\allowbreak{}o\allowbreak{}d\allowbreak{}o\allowbreak{}\_\allowbreak{}e\allowbreak{}r\allowbreak{}r\allowbreak{}a\allowbreak{}t\allowbreak{}a\allowbreak{}/\allowbreak{}2\allowbreak{}0\allowbreak{}5\allowbreak{}5\allowbreak{}0\allowbreak{}4\allowbreak{}5\allowbreak{}9\allowbreak{}\_\allowbreak{}e\allowbreak{}r\allowbreak{}r\allowbreak{}a\allowbreak{}t\allowbreak{}u\allowbreak{}m\allowbreak{}.\allowbreak{}m\allowbreak{}d}
+  replaces the incorrect centered trace-zero dual and records the exact
+  \(K_{2,3}\) counterexample.
+\end{itemize}
+
+These files are proposed public-record corrections, not evidence that
+Zenodo has already been updated. The source-notes supplement contains
+the full version and custody discussion.
+
+\subsection{9. Limits of the proposed finite
+derivation}\label{limits-of-the-proposed-finite-derivation}
+
+An earlier version of this section claimed a complete 50-step
+derivation, a minimal ambient carrier, and resolution of every proposed
+test. The proofs and computations do not establish those claims, so they
+are withdrawn. The historical wording remains available in version
+control.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Topic
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What the Lean statements cover
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What they do not cover
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Carrier labels & Natural-number divisibility, a directed label system,
+and Gaussian record identities & An actual field colimit, all-target
+embedding, or minimal carrier \\
+Probability and contextuality & Declared squared-norm weights, two
+Sorkin fixtures, and finite CHSH\allowbreak{}/\allowbreak{}parity
+arithmetic & Quotient-fiber transport, marginal no-signaling, or a
+derivation of Born weights \\
+Cabello witness & Cabello matrix checks and a norm-25 integer partition
+& Topology or non-Bornian functions on the dense cyclotomic sphere \\
+Discrete dynamics & Boolean endomaps, a scaled \(2\times2\) Gaussian
+square root, integer Cayley identities, and integer-labelled records &
+Continuous Hamiltonians, logarithms, Stone's theorem, or a necessity
+proof \\
+Commutator obstruction & A \(2\times2\) integer commutator trace
+obstruction and one Weyl example & All dimensions and rings, a
+completion functor, or an exclusive continuum classification \\
+Conductor bounds & Divisibility and least common multiples of declared
+labels & State embeddings, field minimality, or a general stabilizer or
+unextendible-product-basis theorem \\
+\end{longtable}
+
+The Python Cabello witness satisfies the
+18-ray\allowbreak{}/\allowbreak{}9-context constraints and has a checked
+negative eigenvector. The Peres computation checks 33 rays, 72 pairs and
+16 triads; its binary valuation count is zero. Its finite linear system
+has rank 16. For the constructed function
+\texttt{f\allowbreak{}=\allowbreak{}1\allowbreak{}/\allowbreak{}3\allowbreak{}+\allowbreak{}z},
+the residual \texttt{z}, not \texttt{f}, is orthogonal to the declared
+trace-free quadratic rows. Neither construction is a frame function on a
+dense sphere.
+
+Python constructs ten bounded triads. Rust's legacy higher-conductor
+report checks four rational triads only; its former six additional
+offers were not computed and are withdrawn. No cross-language
+higher-triad parity is claimed. The topology, rational-sphere
+colorability, p-adic and nonstandard-model flags that lacked
+implementations are now explicitly unknown. Modular witnesses and
+four-conductor discriminant checks retain their finite scope.
+
+Preserving an earlier prediction text does not validate its conclusion.
+The proposed refusals are not established, and both Gleason-related
+questions remain open under explicit conditions. No ``probability wall
+is absolute'' or ``completion is necessary'' conclusion survives this
+review.
+
+The strongest result here is a collection of exact finite computations
+and scoped Lean theorems under declared carriers and measures.
+Finite-dimensional does not mean finite carrier; countable does not mean
+discrete topology.
+
+\subsection{10. Higher-dimensional bounds and the Tiles
+construction}\label{higher-dimensional-bounds-and-the-tiles-construction}
+
+Conductor labels here are sufficient declarations for the named objects,
+not a search proving minimality. In particular, a generator or
+parity-check matrix is not the same object as a normalized state.
+
+\begin{itemize}
+\tightlist
+\item
+  The five-qubit stabilizer
+  generator\allowbreak{}/\allowbreak{}projector declaration uses
+  \(\mathbb Q(i)\), label 4; the Steane parity-check declaration uses
+  \(\mathbb Q\), label 1. No normalized-codeword carrier or
+  all-stabilizer classification follows.
+\item
+  The named GHZ and W normalization declarations use labels 8 and 12. A
+  seven-qubit W normalization uses the positive root \(\sqrt7\),
+  discriminant 28.
+\item
+  Prime-qudit normalized setting declarations combine roots of unity and
+  the positive root \(\sqrt p\). At \(p=7\) the bound uses 28 and
+  \(\operatorname{lcm}(120,28)=840\). (The field
+  \(\mathbb Q(\sqrt{-7})\) has discriminant \(-7\), not 28.)
+\item
+  Collins--Gisin--Linden--Massar--Popescu (CGLMP) setting bounds use
+  \[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \operatorname{lcm}(4d,\operatorname{disc}\mathbb Q(\sqrt d))\)}\];
+  they exclude an optimal entangled state's amplitudes. For
+  \(d=3,4,5,6,7,8\) the labels are respectively 12, 16, 20, 24, 28, 32,
+  giving joint least common multiples with 120 of 120, 240, 120, 120,
+  840, 480.
+\end{itemize}
+
+The Tiles \(3\times3\) example is actual matrix data, not a trace-only
+assertion. With five unnormalized product vectors \(v_i\), it constructs
+the rational matrix
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \rho=\frac14\left(I_9-\sum_i\frac{v_iv_i^{\mathsf T}}{v_i^{\mathsf T}v_i}\right).\)}\]
+
+Python and Rust verify mutual orthogonality, trace one, symmetry, the
+projector identity
+\texttt{4\allowbreak{} \allowbreak{}r\allowbreak{}h\allowbreak{}o\allowbreak{}\textasciicircum{}\allowbreak{}2\allowbreak{} \allowbreak{}=\allowbreak{} \allowbreak{}r\allowbreak{}h\allowbreak{}o},
+and equality with its partial transpose. All 32 assignments of local
+orthogonality conditions are checked by exact rank-three minors,
+excluding a nonzero product vector in the complement. The entanglement
+reading uses the declared UPB-complement criterion; this is a
+deterministic finite certificate, not a Lean UPB theorem or general
+classifier. Duplicate and zero product-vector inputs are rejected.
+
+From
+\texttt{p\allowbreak{}y\allowbreak{}t\allowbreak{}h\allowbreak{}o\allowbreak{}n\allowbreak{}/},
+\texttt{p\allowbreak{}y\allowbreak{}t\allowbreak{}h\allowbreak{}o\allowbreak{}n\allowbreak{} \allowbreak{}-\allowbreak{}m\allowbreak{} \allowbreak{}f\allowbreak{}i\allowbreak{}n\allowbreak{}i\allowbreak{}t\allowbreak{}e\allowbreak{}\_\allowbreak{}q\allowbreak{}m\allowbreak{}.\allowbreak{}e\allowbreak{}n\allowbreak{}t\allowbreak{}r\allowbreak{}y\allowbreak{}p\allowbreak{}o\allowbreak{}i\allowbreak{}n\allowbreak{}t\allowbreak{}s\allowbreak{}.\allowbreak{}r\allowbreak{}e\allowbreak{}p\allowbreak{}l\allowbreak{}a\allowbreak{}y\allowbreak{}\_\allowbreak{}r\allowbreak{}e\allowbreak{}v\allowbreak{}i\allowbreak{}e\allowbreak{}w\allowbreak{}\_\allowbreak{}r\allowbreak{}e\allowbreak{}c\allowbreak{}e\allowbreak{}i\allowbreak{}p\allowbreak{}t\allowbreak{}s\allowbreak{} \allowbreak{}-\allowbreak{}-\allowbreak{}c\allowbreak{}h\allowbreak{}e\allowbreak{}c\allowbreak{}k}
+regenerates both repaired computation receipts byte-for-byte. Receipt
+identity does not promote the declarations above.
+
+\subsection{11. Principal exact results}\label{principal-exact-results}
+
+This section collects the strongest results that emerged from the exact
+finite analysis. The long source-by-source record is in
+\texttt{f\allowbreak{}i\allowbreak{}n\allowbreak{}i\allowbreak{}t\allowbreak{}e\allowbreak{}\_\allowbreak{}q\allowbreak{}u\allowbreak{}a\allowbreak{}n\allowbreak{}t\allowbreak{}u\allowbreak{}m\allowbreak{}\_\allowbreak{}m\allowbreak{}e\allowbreak{}c\allowbreak{}h\allowbreak{}a\allowbreak{}n\allowbreak{}i\allowbreak{}c\allowbreak{}s\allowbreak{}\_\allowbreak{}s\allowbreak{}o\allowbreak{}u\allowbreak{}r\allowbreak{}c\allowbreak{}e\allowbreak{}\_\allowbreak{}n\allowbreak{}o\allowbreak{}t\allowbreak{}e\allowbreak{}s\allowbreak{}.\allowbreak{}m\allowbreak{}d}
+(\texttt{f\allowbreak{}i\allowbreak{}n\allowbreak{}i\allowbreak{}t\allowbreak{}e\allowbreak{}\_\allowbreak{}q\allowbreak{}u\allowbreak{}a\allowbreak{}n\allowbreak{}t\allowbreak{}u\allowbreak{}m\allowbreak{}\_\allowbreak{}m\allowbreak{}e\allowbreak{}c\allowbreak{}h\allowbreak{}a\allowbreak{}n\allowbreak{}i\allowbreak{}c\allowbreak{}s\allowbreak{}\_\allowbreak{}s\allowbreak{}o\allowbreak{}u\allowbreak{}r\allowbreak{}c\allowbreak{}e\allowbreak{}\_\allowbreak{}n\allowbreak{}o\allowbreak{}t\allowbreak{}e\allowbreak{}s\allowbreak{}.\allowbreak{}m\allowbreak{}d}).
+Each result below is stated by its mathematical content. Implementation
+names are supplied only as reproduction pointers.
+
+\subsubsection{11.1 Phase-blind descent requires a retained zero
+point}\label{phase-blind-descent-requires-a-retained-zero-point}
+
+Let \(A\) be a matrix acting on nonzero vectors and let
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \pi(c)_g=\frac{|c_g|^2}{\sum_h|c_h|^2}\)}\]
+
+be the phase-blind population report. A tempting claim says that
+\(\pi(Ac)\) depends only on \(\pi(c)\) exactly when every row of \(A\)
+has at most one nonzero entry. That claim is false on projective space.
+A rank-one matrix such as
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle A=\begin{pmatrix}1&1\\1&1\end{pmatrix}\)}\]
+
+sends every non-annihilated input to the same ray even though each row
+has two nonzero entries.
+
+The row-sparsity characterization becomes correct when the quotient
+retains the zero vector as a distinct output. If two nonzero entries
+occur in one row, relative phase can be chosen so that this row cancels
+for one representative but not for another representative with the same
+population report. The retained zero point detects that annihilation.
+Conversely, a row-sparse matrix cannot create such phase-sensitive cross
+terms. The exact two-dimensional counterexamples and the zero-retaining
+proof are replayed in
+\texttt{p\allowbreak{}h\allowbreak{}a\allowbreak{}s\allowbreak{}e\allowbreak{}\_\allowbreak{}b\allowbreak{}l\allowbreak{}i\allowbreak{}n\allowbreak{}d\allowbreak{}\_\allowbreak{}q\allowbreak{}u\allowbreak{}o\allowbreak{}t\allowbreak{}i\allowbreak{}e\allowbreak{}n\allowbreak{}t}
+and described in source-notes supplement §11.25.
+
+\subsubsection{11.2 Trace-zero repair quotients have a scalar-divergence
+dual}\label{trace-zero-repair-quotients-have-a-scalar-divergence-dual}
+
+For Hermitian trace-zero edge defects, compare
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \Phi_0(\delta)=\inf_{\alpha_v\in\operatorname{Herm}_0(n)}
+\sum_e\frac12\|\delta_e-(d_0\alpha)_e\|_1\)}\]
+
+with the same infimum over all Hermitian vertex potentials. The polar of
+\(\frac12\|\cdot\|_1\) on \(\operatorname{Herm}_0(n)\) is an observable
+class modulo scalar identity, with norm
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \|[M]\|^*=\lambda_{\max}(M)-\lambda_{\min}(M).\)}\]
+
+Accordingly, the trace-zero dual requires spectral diameter at most one
+and \((d_0^*M)_v\in\mathbb RI\). The all-Hermitian dual instead requires
+\(\|M_e\|_{\mathrm{op}}\leq1/2\) and \(d_0^*M=0\).
+
+On \(K_{2,3}\), orient the legs \(u\to w_k\to v\) and put
+\(D_k=3E_{kk}-I\) on \(u\to w_k\). Zero repair and the witnesses
+\(D_k/3\) on both edges of each leg certify
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \Phi_0=6.\)}\]
+
+The all-Hermitian potential \(\alpha_u=0\), \(\alpha_v=-I\),
+\(\alpha_{w_k}=D_k\), together with the witnesses \(D_k/4\), certifies
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \Phi_{\mathrm{all}}=\frac92.\)}\]
+
+The complete theorem and dependency-free exact replay are in the
+companion paper \emph{Trace-Zero Repair Quotients on a Finite Graph}
+{[}13{]}.
+
+\subsubsection{11.3 CPTP monotonicity selects the trace norm on state
+differences}\label{cptp-monotonicity-selects-the-trace-norm-on-state-differences}
+
+For each finite dimension \(n\), let \(N_n\) be a norm on the real
+vector space
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \operatorname{Herm}_0(n, \mathbb C)\)}\].
+Suppose
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle N_m(\Phi(X)) \le N_n(X)\)}\]
+
+for every CPTP map \(\Phi\) from \(M_n(\mathbb C)\) to
+\(M_m(\mathbb C)\) and every
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle X \in \operatorname{Herm}_0(n, \mathbb C)\)}\].
+Then there is a single \(c > 0\) such that \(N_n(X) = c \|X\|_1\) on
+every nonzero such space. The dimension-one space is zero and satisfies
+the identity trivially.
+
+To prove this, let \(X = X_+ - X_-\) be nonzero and set
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle t = \operatorname{tr} X_+ = \|X\|_1 / 2 > 0\)}\].
+For any target \(Y = Y_+ - Y_-\) with
+\(s = \operatorname{tr} Y_+ \le t\), choose an output density matrix
+\(\tau\) and put
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle A = \frac{Y_+}{t} + \left(1 - \frac{s}{t}\right)\tau, \qquad B = \frac{Y_-}{t} + \left(1 - \frac{s}{t}\right)\tau.\)}\]
+
+These are normalized positive states. If \(P\) is the positive spectral
+support projection of \(X\), the map
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \Phi(T) = \operatorname{tr}(PT)A + \operatorname{tr}((I-P)T)B\)}\]
+
+is CPTP and satisfies \(\Phi(X) = t(A - B) = Y\) exactly. Equal trace
+norms admit exact transports in both directions, hence the \(N\)-values
+are equal. Absolute homogeneity then gives the common constant \(c\).
+This is a theorem on the full stated channel and matrix domain, not a
+selection of that domain from primitive difference or an assertion that
+every construction stays inside an arbitrary smaller scalar field. Exact
+difference-transport examples are in source-notes supplement §11.36.
+
+\subsubsection{11.4 Full-support Bell tables require positivity, not
+support
+alone}\label{full-support-bell-tables-require-positivity-not-support-alone}
+
+Four rational pair distributions can have full support while admitting
+no positive common joint law. The supplied qubit construction uses a
+rational density matrix and \((3,4,5)\)-triangle observables and has
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle S_{\mathrm{CHSH}}=\frac{14}{5}>2.\)}\]
+
+Every deterministic assignment is compatible with the support, so a
+possibilistic classifier returns no obstruction. A positive common
+distribution would be a convex combination of the sixteen deterministic
+vertices, each of which satisfies \(|S|\leq2\); therefore no such
+distribution exists. This cleanly separates support gluing from positive
+probabilistic extension. The broader contextuality and no-signaling
+scope is in §13.8.
+
+\subsubsection{11.5 The Cabello frame polytope has 146 half-integral
+vertices}\label{the-cabello-frame-polytope-has-146-half-integral-vertices}
+
+Let \(v_1,\ldots,v_{18}\) be the eighteen integer rays
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \begin{gathered}
+(1,1,1,1),\ (1,1,1,-1),\ (1,1,0,0),\ (1,1,-1,-1),\ (1,0,1,0),\ (1,0,0,1),\\
+(1,0,0,-1),\ (1,0,-1,0),\ (1,-1,1,1),\ (1,-1,0,0),\ (1,-1,-1,1),\ (1,-1,-1,-1),\\
+(0,1,0,1),\ (0,1,0,0),\ (0,1,-1,0),\ (0,0,1,0),\ (0,0,1,-1),\ (0,0,0,1),
+\end{gathered}\)}\]
+
+and let the nine tetrads be their orthogonal four-element subsets. Every
+ray lies in exactly two tetrads, and the orthogonality graph and tetrad
+incidence are isomorphic to those of the Cabello configuration {[}2{]}.
+Put \(P_i = v_i v_i^T / (v_i^T v_i)\), and let \(A\) be its
+\(9 \times 18\) tetrad incidence matrix. The frame polytope is
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \mathcal P = \{f \in \mathbb R^{18} : f \ge 0,\ Af = \mathbf 1\}\)}\].
+Its real-symmetric operator representative \(H_f\) is defined by
+\(\operatorname{tr}(H_f P_i) = f_i\). The ten-dimensional real-symmetric
+projector span and the rank-nine tetrad constraints give the unique
+trace-one representative.
+
+Every extreme valuation is obtained by covering the nine tetrad vertices
+with disjoint isolated edges of weight one and odd cycles of weight one
+half. An exact enumeration yields 146 valuations. Their characteristic
+polynomials and multiplicities are:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Multiplicity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Characteristic polynomial of \(H_f\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Smallest eigenvalue
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+24 & \(t^2(t-3/2)(t+1/2)\) & \(-1/2\) \\
+72 & \(t^2(t^2-t-1/4)\) & \((1-\sqrt2)/2\) \\
+2 & \((t-1)^2(t+1/2)^2\) & \(-1/2\) \\
+48 & \((t^2-t/2-1/8)^2\) & \((1-\sqrt3)/4\) \\
+\end{longtable}
+
+Hence no vertex representative is positive semidefinite; 26 have
+smallest eigenvalue \(-1/2\), and the other 120 have smallest eigenvalue
+greater than \(-1/4\). The complete input, enumeration argument, vertex
+list and exact reconstruction checks accompany the result. These
+statements concern the real-symmetric representatives, not arbitrary
+complex-Hermitian matrices that agree only on the sampled real rays. The
+enumeration, rank checks, and exact characteristic-polynomial
+certificates are described in source-notes supplement §11.52.
+
+\subsubsection{\texorpdfstring{11.6 A single rational context pair
+selects \(p=2\) among power
+rules}{11.6 A single rational context pair selects p=2 among power rules}}\label{a-single-rational-context-pair-selects-p2-among-power-rules}
+
+Consider the positive-power family
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle P_p(i)=\frac{|c_i|^p}{\sum_j|c_j|^p},\qquad p>0.\)}\]
+
+For \(\psi=(1,1,0)\), compare the standard basis with the rational
+orthonormal basis obtained by a \((3,4,5)\) rotation fixing the first
+coordinate. The shared ray has weight \(1/2\) in the first context and
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \frac{1}{1+(3/5)^p+(4/5)^p}\)}\]
+
+in the second. Agreement is equivalent to \((3/5)^p+(4/5)^p=1\). The
+left side is strictly decreasing for \(p>0\) and equals one at \(p=2\),
+so \(p=2\) is the unique positive solution. This classifies the declared
+power family; it is not a general Gleason theorem. Sorkin's third-order
+sum {[}7{]} does not make this selection: for the polynomial measures
+\((a+b+c)^p\) it vanishes identically at \(p=1\), the additive case, and
+at \(p=2\), the quadratic case (source-notes supplement §11.52, check
+C46). Exact rational controls for selected powers accompany the general
+monotonicity argument in source-notes supplement §11.58.
+
+\subsection{12. Reproduction and package
+boundaries}\label{reproduction-and-package-boundaries}
+
+The publication is distributed as two archives with different purposes.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The paper archive contains this monograph, the source-notes
+  supplement, retained source manuscripts, package-local Python
+  reproductions, exact receipts, and checksum manifests.
+\item
+  The code-companion archive preserves the shared Rust workspace, the
+  finite quantum mechanics native crate and campaign crate, and the Lean
+  workspace in their repository-relative locations. Its own manifest
+  binds every member.
+\end{enumerate}
+
+The exact filename, byte count, and SHA-256 digest of the code companion
+are recorded in
+\texttt{d\allowbreak{}o\allowbreak{}c\allowbreak{}s\allowbreak{}/\allowbreak{}c\allowbreak{}o\allowbreak{}d\allowbreak{}e\allowbreak{}\_\allowbreak{}c\allowbreak{}o\allowbreak{}m\allowbreak{}p\allowbreak{}a\allowbreak{}n\allowbreak{}i\allowbreak{}o\allowbreak{}n\allowbreak{}.\allowbreak{}m\allowbreak{}d}
+and bound again by
+\texttt{C\allowbreak{}O\allowbreak{}D\allowbreak{}E\allowbreak{}\_\allowbreak{}C\allowbreak{}O\allowbreak{}M\allowbreak{}P\allowbreak{}A\allowbreak{}N\allowbreak{}I\allowbreak{}O\allowbreak{}N\allowbreak{}.\allowbreak{}s\allowbreak{}h\allowbreak{}a\allowbreak{}2\allowbreak{}5\allowbreak{}6}.
+
+From the extracted code-companion root, the focused trace-zero
+certificate is run with
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cargo test {-}{-}manifest{-}path omega\_engine/crates\_rs/Cargo.toml \textbackslash{}}
+\NormalTok{  {-}p omega\_quantum\_physics {-}{-}test channels \textbackslash{}}
+\NormalTok{  trace\_zero\_repairs\_need\_uncentred\_witnesses\_on\_two\_cycles\_of\_qutrit\_defects}
+\end{Highlighting}
+\end{Shaded}
+
+The complete Lean workspace is built with
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cd lean4/quantum\_mechanics}
+\NormalTok{lake build}
+\end{Highlighting}
+\end{Shaded}
+
+The dependency-free replay for the standalone \(K_{2,3}\) paper is also
+included at
+\texttt{c\allowbreak{}o\allowbreak{}m\allowbreak{}p\allowbreak{}a\allowbreak{}n\allowbreak{}i\allowbreak{}o\allowbreak{}n\allowbreak{}\_\allowbreak{}p\allowbreak{}a\allowbreak{}p\allowbreak{}e\allowbreak{}r\allowbreak{}s\allowbreak{}/\allowbreak{}t\allowbreak{}r\allowbreak{}a\allowbreak{}c\allowbreak{}e\allowbreak{}\_\allowbreak{}z\allowbreak{}e\allowbreak{}r\allowbreak{}o\allowbreak{}\_\allowbreak{}q\allowbreak{}u\allowbreak{}o\allowbreak{}t\allowbreak{}i\allowbreak{}e\allowbreak{}n\allowbreak{}t\allowbreak{}\_\allowbreak{}d\allowbreak{}u\allowbreak{}a\allowbreak{}l\allowbreak{}i\allowbreak{}t\allowbreak{}y\allowbreak{}\_\allowbreak{}m\allowbreak{}o\allowbreak{}n\allowbreak{}o\allowbreak{}g\allowbreak{}r\allowbreak{}a\allowbreak{}p\allowbreak{}h\allowbreak{}.\allowbreak{}m\allowbreak{}d};
+its package runs with standard-library rational arithmetic and focused
+\texttt{p\allowbreak{}y\allowbreak{}t\allowbreak{}e\allowbreak{}s\allowbreak{}t}
+tests. The paper archive is checked by
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{python scripts/regen\_sha256sums.py {-}{-}check}
+\NormalTok{python verify\_deposit.py}
+\end{Highlighting}
+\end{Shaded}
+
+These commands have separate evidence scopes. Exact certificate replay
+establishes the displayed finite identities. A Rust or Lean build checks
+the statements actually encoded in those sources. Manifest and archive
+verification establish byte custody. None of these operations derives
+the physical premises named in the manuscript, and this edition does not
+claim a fresh successful build of every Rust and Lean target. The full
+implementation history and per-module scope are retained in the
+source-notes supplement.
+
+\subsection{13. The quantum carrier, observer, and measurement
+problem}\label{the-quantum-carrier-observer-and-measurement-problem}
+
+\subsubsection{13.1 The current answer and the questions it leaves
+open}\label{the-current-answer-and-the-questions-it-leaves-open}
+
+Our best current answer is a conditional operational account. A quantum
+carrier supports the declared states, interactions and effects. An
+observer specifies which of those operations are available, how an
+apparatus registers a result, and which distinctions its reports must
+preserve. Measurement couples carriers and makes information available
+in a record. A classical description can then be sufficient for a
+specified set of questions even while the larger carrier retains quantum
+coherence.
+
+That account separates three objects: \textbf{the probability
+distribution of records, the state conditioned on an obtained record,
+and one actual event}. Neither a report label nor a reduced density
+matrix supplies the last object by itself. A decision rule evaluates a
+supplied record; it is not a physical mechanism that makes a particular
+outcome occur.
+
+This account does not imply that every observer requires a quantum
+carrier. Defining an observer model requires an adequate carrier, but
+does not determine complex scalars, a Hilbert space, a tensor product or
+the Born rule. Those are currently explicit inputs to the quantum models
+in this paper.
+
+There are several measurement problems, with different obligations
+{[}9{]}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Carrier and interaction:} why this state space, composition
+  law and measuring dynamics are physically appropriate.
+\item
+  \textbf{Preferred records:} which alternatives are distinguishable and
+  stable under the actual apparatus and environmental couplings.
+\item
+  \textbf{Probabilities:} why a specified instrument has its stated
+  outcome weights, and under which domain and assumptions those weights
+  have a Born form.
+\item
+  \textbf{Definite outcomes:} what accounts for one event rather than
+  the joint state or its distribution of possible records.
+\item
+  \textbf{Agreement:} when records from different observers can be
+  compared and composed without assigning incompatible experiments an
+  unsupported common history.
+\end{itemize}
+
+Decoherence addresses the suppression of accessible interference and the
+stability of certain records {[}8, 10{]}. It does not, under unitary
+evolution alone, select a single event. Our finite account makes this
+boundary explicit and offers tests at it; it does not announce a
+solution to every problem above.
+
+\subsubsection{13.2 The carrier and the declared
+observer}\label{the-carrier-and-the-declared-observer}
+
+A finite-dimensional quantum model may have continuously many states;
+finite dimension, a finite presentation and a finite state set are
+different claims. In our exact models, entries lie in a declared field
+such as the Gaussian rationals or a cyclotomic extension, with a
+specified conjugation and real embedding. State admission requires
+Hermiticity, positivity and trace one. Effects satisfy the operator
+inequalities between zero and the identity. Some spectral operations
+require scalar extensions or supplied witnesses; an exact implementation
+can refuse an unsupported input.
+
+One abstract observer model,
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \mathcal O=(K,\mathcal F,\mathcal R,\delta,d_0,d_1,J,\mathcal M,\tau),\)}\]
+names the carrier, local spaces, comparisons, defects, repairs, closure
+test, gauge, compatible transformations and decision rule. For a quantum
+experiment it also needs a preparation domain,
+system\allowbreak{}/\allowbreak{}apparatus\allowbreak{}/\allowbreak{}environment
+split, interaction, instrument, accessible effect menu, readout and
+calibration conditions. A physical apparatus realizes part of that
+model; a person or conscious experience is not a required mathematical
+component.
+
+One declared obstruction observer uses Hermitian edge defects and
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle J_Q(h)=\frac12\sum_e\|h_e\|_1,
+ \qquad
+ \Phi_Q([\delta])=\inf_\alpha J_Q(\delta-d_0\alpha).\)}\] For a
+finite-dimensional real space of Hermitian edge defects and a linear
+repair image, this is the quotient norm induced by \(J_Q\); finite
+dimension makes that image closed. It does not identify every formal
+repair with a realizable quantum operation. Nor is every algebraic
+projector a positive or completely positive channel. Positivity,
+physical availability and question preservation must be checked
+separately.
+
+Observer relativity therefore means that the experiment and evaluation
+are specified. It does not mean that an arbitrary decision label changes
+the physical state, or that different descriptions license contradictory
+reports about the same compatible experiment.
+
+\subsubsection{13.3 Interaction, readout and conditional
+updating}\label{interaction-readout-and-conditional-updating}
+
+On a supplied finite quantum carrier, an instrument has completely
+positive maps indexed by record labels. In Kraus form,
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \mathcal I_i(\rho)=\sum_a K_{ia}\rho K_{ia}^{\dagger},
+ \qquad
+ \sum_{i,a}K_{ia}^{\dagger}K_{ia}=I.\)}\] The sum of these maps
+preserves trace. Given the positive trace pairing,
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle E_i=\sum_aK_{ia}^{\dagger}K_{ia},\qquad
+ p_i=\operatorname{tr}(E_i\rho)
+     =\operatorname{tr}\mathcal I_i(\rho),\qquad
+ \rho_i=\mathcal I_i(\rho)/p_i\quad(p_i>0).\)}\] The unnormalized maps
+are linear; normalization is conditional on a nonzero-probability
+record. A zero-probability branch has no normalized conditional state.
+The non-selective state is the sum of the unnormalized branches. These
+identities follow from the declared instrument and pairing; they are not
+a reconstruction of either from inscription histories.
+
+For an ideal projective instrument, the Kraus operators are the
+orthogonal projectors themselves. This gives the Lüders conditional
+update and an idempotent non-selective dephasing channel. General
+instruments need not be projective, repeatable or idempotent. An effect
+specifies an outcome's probability functional, but does not uniquely
+specify its disturbance map. The measuring interaction and record
+grouping are therefore necessary data.
+
+The exact finite implementation checks these identities and a dilation
+for admitted Gaussian-rational inputs. It does not generate one physical
+event. Conditional updating answers what follows \textbf{if this record
+occurred}; it cannot be used as its own explanation of occurrence.
+
+\subsubsection{13.4 An exact record with recoverable
+coherence}\label{an-exact-record-with-recoverable-coherence}
+
+Take two qubits, a system and an apparatus, with
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle |\psi\rangle=\tfrac35|0\rangle+\tfrac45|1\rangle,
+ \qquad |A\rangle=|0\rangle.\)}\] A controlled-NOT from system to
+apparatus gives
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle |\Psi\rangle=\tfrac35|00\rangle+\tfrac45|11\rangle,
+ \qquad \rho_{SA}=|\Psi\rangle\langle\Psi|.\)}\] Compare this with the
+dephased joint state
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \sigma_{SA}=\tfrac9{25}|00\rangle\langle00|
+             +\tfrac{16}{25}|11\rangle\langle11|.\)}\] Both states give
+the same system reduction, apparatus reduction and pointer distribution:
+the diagonal weights are nine twenty-fifths and sixteen twenty-fifths.
+Repeated sharp pointer reads are consistent within the ideal instrument.
+This is an available classical record distribution under the declared
+pointer readout. It is not a proof that the joint state is the mixture
+or that one pointer label was selected.
+
+Their difference has only two nonzero entries, each twelve
+twenty-fifths, between the basis vectors labelled 00 and 11. Its
+eigenvalues are
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \tfrac{12}{25},\quad-\tfrac{12}{25},\quad0,\quad0,
+ \qquad
+ D_{\rm tr}(\rho_{SA},\sigma_{SA})=\tfrac{12}{25}.\)}\] The bounded
+observable consisting of Pauli X on each qubit distinguishes them: its
+expectation is twenty-four twenty-fifths for the coherent state and zero
+for the mixture. Alternatively, applying the same controlled-NOT again
+recovers the initial coherent system state from the first preparation;
+the mixture yields a diagonal system state with the apparatus reset to
+zero. The system's Pauli-X readout then distinguishes them by the same
+amount.
+
+Every matrix entry in this example is rational. Its conclusion depends
+on the admitted joint controls. If the apparatus or environment cannot
+be controlled coherently, this erasure experiment may be unavailable.
+Extending the model with an orthogonal environmental record can remove
+the coherence from the system\allowbreak{}/\allowbreak{}apparatus
+reduction while retaining it globally. Losing access to that distinction
+explains the adequacy of a reduced description for a restricted task; it
+is not a derivation of objective collapse.
+
+\subsubsection{13.5 When a classical report is
+sufficient}\label{when-a-classical-report-is-sufficient}
+
+Let the report be a map from the admissible histories or states to a
+record space, and let a protected question have answer map q. Exact
+sufficiency is
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle q=\widehat q\circ p
+ \quad\Longleftrightarrow\quad
+ p(x)=p(y)\ \Longrightarrow\ q(x)=q(y).\)}\] The factor is unique on the
+report image. Equality of the two maps' fibers would impose a stronger
+faithfulness condition; factorization only requires that the report
+never identifies different protected answers. For a future experiment,
+the answer includes its probabilities or conditional reports, so present
+agreement alone may be insufficient.
+
+For a supplied nonempty effect menu, denoted separately from the
+compatible transformation class by \(\mathcal E_{\rm adm}\), define
+accessible distinguishability by
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle D_{\mathcal E_{\rm adm}}(\rho,\sigma)
+   =\sup_{E\in\mathcal E_{\rm adm}}
+      |\operatorname{tr}(E(\rho-\sigma))|.\)}\] It is bounded by trace
+distance. The full complex effect domain implies equality; a restricted
+menu also attains equality if it contains an optimal distinguishing
+effect for the given pair. An arbitrary finite menu need not. A
+classical description is adequate at a declared tolerance only when it
+preserves the protected answers under the admitted preparations, future
+controls, readouts and time horizon. If a later control converts a
+discarded phase into a readable population, the original population
+report was not dynamically sufficient. An algebraic completion may
+require observables the apparatus cannot measure jointly or cannot
+access at all.
+
+A sharp pointer record algebra generated by orthogonal projectors is
+commutative. The complete quantum algebra containing it need not be;
+even the block-diagonal fixed-point algebra of dephasing can retain
+noncommuting degrees of freedom within a higher-rank block. Thus a
+classical record can be a subalgebra of a quantum carrier, rather than a
+moment at which the entire carrier becomes classical. Its preferred
+basis comes from a specified coupling and stability criterion. A
+degenerate coupling does not choose a unique basis without further
+apparatus information.
+
+The existing finite sufficient-record derivation
+(\texttt{r\allowbreak{}e\allowbreak{}s\allowbreak{}e\allowbreak{}a\allowbreak{}r\allowbreak{}c\allowbreak{}h\allowbreak{}/\allowbreak{}q\allowbreak{}u\allowbreak{}a\allowbreak{}n\allowbreak{}t\allowbreak{}u\allowbreak{}m\allowbreak{}\_\allowbreak{}t\allowbreak{}o\allowbreak{}\_\allowbreak{}c\allowbreak{}l\allowbreak{}a\allowbreak{}s\allowbreak{}s\allowbreak{}i\allowbreak{}c\allowbreak{}a\allowbreak{}l\allowbreak{}\_\allowbreak{}d\allowbreak{}e\allowbreak{}s\allowbreak{}c\allowbreak{}e\allowbreak{}n\allowbreak{}t\allowbreak{}/\allowbreak{}R\allowbreak{}E\allowbreak{}A\allowbreak{}D\allowbreak{}M\allowbreak{}E\allowbreak{}.\allowbreak{}m\allowbreak{}d})
+establishes static factorization and invariant-row-space completion on
+its declared linear carriers. It also distinguishes autonomous
+expectation coordinates from jointly sharp measurements and from a
+realized event. Its finite certificates and conditional analytic bounds
+retain those premises.
+
+\subsubsection{13.6 Outcomes, observer agreement and the remaining
+boundary}\label{outcomes-observer-agreement-and-the-remaining-boundary}
+
+There is a useful elementary restriction on a density-only deterministic
+outcome rule. Suppose an affine map sends every density state to a
+vertex of a classical probability simplex and sends two pointer
+eigenstates to distinct vertices. On their equal mixture, affinity
+requires the midpoint of those vertices, which is not a vertex. No such
+map satisfies all three requirements. This argument assumes the density
+state is the complete input and classical mixing is represented
+affinely. It does not exclude an additional configuration, a stochastic
+event law, a relative-branch account or another explicitly enlarged
+carrier.
+
+Different interpretations provide different further premises. A definite
+configuration account supplies variables and dynamics beyond the density
+description; an objective-collapse account modifies dynamics; a
+relative-state account changes how outcomes are associated with
+observers and branches; an operational account can take outcome
+occurrence as a primitive. These are distinct positions, not alternative
+names for the same derived theorem. None follows solely by assigning a
+software label or discarding an environment.
+
+Records from multiple observers require compatible instruments, a
+declared comparison protocol and retained history. Separate outcome
+tables do not automatically admit a common nonnegative joint assignment
+across incompatible contexts. Conversely, contextuality does not prevent
+agreement on compatible pointer records. An observer who performs a
+coherent erasure has changed the experiment relative to one who
+preserves and rereads the mark; a comparison must include that change
+rather than merge both into an undeclared history.
+
+Our current answer therefore explains, under supplied quantum premises,
+how interactions furnish record probabilities, why particular reduced
+descriptions can be adequate and stable, and how conditional updates
+compose. It leaves two foundational burdens explicit: deriving the
+operational carrier from native histories, and accounting for actual
+outcome occurrence under a stated ontology or event law. Both questions
+remain open.
+
+\subsubsection{13.7 Testing two foundational carrier
+types}\label{testing-two-foundational-carrier-types}
+
+Begin with the hypothesis that a quantum carrier and a classical carrier
+are distinct foundational types. The claim becomes testable only after
+declaring their state spaces, readouts, allowed transfers and
+composition. Calling the types distinct does not specify a prediction.
+Conversely, embedding a classical register into a quantum matrix algebra
+does not prove that only quantum things exist. We separate the following
+versions of the hypothesis.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Hypothesis
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Finite operational content
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Result here
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Two types coexist & Quantum systems and classical registers have their
+own admitted states and transfers. & Consistent hybrid models exist; the
+bare claim is not refuted. \\
+A population record is the complete future carrier & Presently equal
+populations imply equal answers after every admitted control. & Refuted
+on the declared coherent-control protocol below. \\
+Classical storage faithfully replaces quantum storage & Positive,
+normalized encoding and retrieval preserve arbitrary unknown qubit
+inputs. & Refuted by the sharp four-state bound below. \\
+Additional classical variables explain quantum predictions & An enlarged
+classical description may depend on preparation, context, hidden
+variables or nonlocal dynamics. & Not excluded by the storage bound; its
+own premises and predictions must be tested. \\
+The full quantum carrier is all that exists & No additional ontology is
+needed or exists. & Operational sufficiency does not decide this
+ontological assertion. \\
+\end{longtable}
+
+\textbf{A consistent two-type countermodel.} Let
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \mathcal A=\bigoplus_{\lambda=1}^{m}M_2(\mathbb C).\)}\]
+A state is a tuple \((\rho_\lambda)_\lambda\), with each block positive
+and
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \sum_\lambda\operatorname{tr}\rho_\lambda=1.\)}\]
+Effects are tuples \(0\le E_\lambda\le I\); their probabilities are
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \sum_\lambda\operatorname{tr}(E_\lambda\rho_\lambda).\)}\]
+The center carries a classical label, while each block retains
+noncommuting qubit observables. Stochastic label changes and
+within-block quantum channels furnish consistent finite operations. A
+normalized POVM and supplied density preparations give the block
+transfer
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \rho_\lambda=\operatorname{tr}(F_\lambda\rho)\sigma_\lambda.\)}\]
+Summing the blocks discards the label. The model can be presented over
+\(\mathbb Q(i)\) on its exact finite fixtures.
+
+This is a genuine restriction of the full \(M_{2m}\) quantum model if
+coherences and controls between label blocks are prohibited. Its matrix
+embedding does not remove that restriction or decide its ontology. It
+also supplies a distribution on labels, not a derivation of one
+occurring event. Thus the existence of two operational types is
+mathematically consistent. A claim that a particular apparatus must
+inhabit such a restricted type needs evidence for the prohibited
+coherences and controls.
+
+\textbf{Present equality is not future equality.} In the declared qubit
+basis let
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle |\psi_\pm\rangle=\tfrac35|0\rangle\pm\tfrac45|1\rangle,
+ \qquad
+ U=\begin{pmatrix}3/5&4/5\\-4/5&3/5\end{pmatrix}.\)}\] Both states have
+population report \((9/25,16/25)\), but after the same available unitary
+\(U\), the probability of the first basis outcome is respectively \(1\)
+and \(49/625\). A model that identifies these states as the same
+complete state cannot predict both answers using only that record.
+Dephasing them to the same diagonal density operator makes their future
+answers equal; it has changed the state, rather than faithfully retained
+the discarded phase. This establishes that the population report is
+insufficient for that future question. It does not rule out classical
+storage of additional variables, nor assume that the displayed control
+is available in every device.
+
+\textbf{A sharp classical-storage obstruction.} Consider an
+unconditional, trace-preserving transfer of an unknown input qubit
+through a finite classical alphabet and back to a qubit. The
+intermediate outcome may be random; the protocol must succeed without
+postselection. Use the full positive qubit
+state\allowbreak{}/\allowbreak{}effect model and affine mixing. The
+encoder sees only the input state; it has no preparation label, quantum
+side memory or retained coherent environment. The decoder returns a
+normalized positive qubit state for each letter. No postselection or
+conditional success loophole is included. The test basis is disclosed
+only after the returned qubit is fixed; requesting a basis-dependent
+classical answer is a different protocol. These premises give the
+measure-and-prepare form
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \Phi(\rho)=\sum_\lambda
+     \operatorname{tr}(F_\lambda\rho)\sigma_\lambda,
+ \quad F_\lambda\ge0,\quad\sum_\lambda F_\lambda=I,
+ \quad\sigma_\lambda\ge0,\quad
+     \operatorname{tr}\sigma_\lambda=1.\)}\] A positive affine encoder
+on the full density-state domain has POVM response operators; an affine
+decoder from a probability simplex is specified by its states at the
+vertices. Thus the displayed form follows from the stated operational
+premises. It is also the standard classical-transfer form of an
+entanglement-breaking channel {[}11{]}. The finite Choi matrix, with
+input factor first, is
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle J_\Phi=\sum_\lambda F_\lambda^T\otimes\sigma_\lambda.\)}\]
+It is positive, and tracing its output factor gives \(I\); complete
+positivity and trace preservation therefore follow without choosing
+Kraus square roots outside the coefficient field.
+
+Let the four equiprobable inputs be
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle P_{Z\pm}=\tfrac12(I\pm Z),\qquad
+ P_{X\pm}=\tfrac12(I\pm X),\)}\] and define their average survival
+probability
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle S(\Phi)=\frac14\sum_{a\in\{X,Z\},\,s\in\{+,-\}}
+      \operatorname{tr}\bigl(P_{as}\Phi(P_{as})\bigr).\)}\] All four
+projectors have rational entries. The exact theorem is
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \boxed{S(\Phi)\le\frac34.}\)}\]
+It holds for every finite number of classical letters under the premises
+above, and the constant is attained.
+
+For a proof, use the real trace coordinates
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle w_\lambda=\operatorname{tr}F_\lambda,\qquad
+ f_{\lambda a}=\operatorname{tr}(F_\lambda a),\qquad
+ s_{\lambda a}=\operatorname{tr}(\sigma_\lambda a).\)}\] The two-by-two
+determinant and trace conditions for positivity imply
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle f_{\lambda X}^{\,2}+f_{\lambda Z}^{\,2}\le w_\lambda^2,
+ \qquad
+ s_{\lambda X}^{\,2}+s_{\lambda Z}^{\,2}\le1.\)}\] The omitted \(Y\)
+coordinates can only strengthen these inequalities. Cauchy--Schwarz and
+\(w_\lambda\ge0\) give the nonnegative margin
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle d_\lambda=w_\lambda
+       -f_{\lambda X}s_{\lambda X}
+       -f_{\lambda Z}s_{\lambda Z}\ge0.\)}\] Expanding the four traces
+and using \(\sum_\lambda w_\lambda=2\) yields
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle S(\Phi)=\frac12+\frac{1}{8}\sum_\lambda
+      (f_{\lambda X}s_{\lambda X}+f_{\lambda Z}s_{\lambda Z}).\)}\]
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \frac34-S(\Phi)=\frac18\sum_\lambda d_\lambda.\)}\]
+Measuring \(Z\) and preparing its obtained eigenstate gives survival
+probabilities \((1,1,1/2,1/2)\) in the order \(Z+,Z-,X+,X-\), attaining
+\(S=3/4\). Identity quantum storage gives \(S=1\). A faithful positive
+classical replacement preserving even these four preparations and their
+retrieval tests therefore cannot exist under these premises. More
+classical letters, shared randomness independent of the input, or an
+additional letter cannot improve the bound: each normalized strategy has
+the same inequality, and convex mixtures retain it.
+
+For a declared error criterion, if all four survival probabilities are
+at least \(1-\varepsilon\), the bound requires \(\varepsilon\ge1/4\).
+More generally, if each retrieved state is within trace distance
+\(\varepsilon\) of its input, its own projector's survival probability
+is at least \(1-\varepsilon\), giving the same necessary bound. Randomly
+choosing between \(X\) and \(Z\)
+measurement\allowbreak{}/\allowbreak{}preparation with equal weights
+attains survival \(3/4\) and trace distance \(1/4\) on each of the four
+states: the retrieved state is \(\tfrac34P+\tfrac14(I-P)\), whose
+difference from \(P\) has eigenvalues \(\pm1/4\). Both four-state error
+bounds are sharp. This is a bound on an unconditional classical-storage
+protocol, not a noise estimate for an arbitrary apparatus or a statement
+about selectively successful trials.
+
+\textbf{A static classical control and the boundary of the conclusion.}
+Four classical letters with predetermined signs \((z,x)\in\{+,-\}^2\)
+reproduce all the four preparations' static \(X/Z\) readouts: for a
+\(Z\) eigenstate, put equal probability on the two matching \(z\)
+letters, and similarly for an \(X\) eigenstate. This also preserves the
+equal-mixture identity
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \tfrac12(P_{Z+}+P_{Z-})=\tfrac12(P_{X+}+P_{X-})=I/2.\)}\]
+These finite tables do not refute a classical explanation.
+
+What they cannot supply is a positive
+encoding\allowbreak{}/\allowbreak{}retrieval on the full qubit carrier.
+A letter with definite \(x=z=+1\) would require a retrieved qubit with
+both expectations equal to one: the unit-probability readouts force that
+requirement on every letter with nonzero weight in both preparations.
+The candidate \((I+X+Z)/2\) has determinant \(-1/4\); allowing an extra
+\(Y\) coefficient makes this determinant still smaller. Similarly,
+extending that letter's response probability affinely to all qubits
+requires \(F_{++}=(I+X+Z+bY)/4\), whose determinant is \(-(1+b^2)/16\).
+Positivity fails. Restricting the admitted states and probes to the
+four-state convex hull, allowing contextual responses, or supplying a
+preparation label changes these premises and can evade the conclusion. A
+classical computer storing known matrix entries is also a description of
+inputs, not a positive physical encoding of an unknown qubit.
+
+The result establishes a concrete asymmetry: classical records can live
+inside a supplied quantum model, and may be sufficient for selected
+questions; an unknown quantum state cannot in general be replaced and
+restored through a solely classical positive carrier. Classical-looking
+behavior can reflect restricted access to coherence, actual loss of
+coherence, or a restricted hybrid model. Those possibilities must be
+distinguished by declared future controls and protected questions.
+Neither this obstruction nor coherent erasure refutes every two-type
+ontology, establishes that quantum ontology is exhaustive, or supplies
+the missing event-selection law.
+
+\subsubsection{13.8 Three separate carrier
+distinctions}\label{three-separate-carrier-distinctions}
+
+The two-type hypothesis becomes sharper when three different
+obstructions are kept separate. A report can lose a required future
+answer; compatible local probability tables can fail to have a positive
+global extension; and a declared classical center can conflict with
+purification of every state. None of these statements alone establishes
+that the quantum carrier is all that exists.
+
+\textbf{Test 1: future-question sufficiency.} Supply a finite
+preparation family, a present POVM report, a CPTP control and a future
+POVM. The report is the whole ensemble probability vector, not one
+sampled outcome. Ask whether the probability of outcome zero of the
+future POVM factors through that report. Two preparations with the same
+report and different answers disprove such a decoder; otherwise a finite
+decoder is returned on the supplied family. For
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle |\psi_\pm\rangle=(3|0\rangle\pm4|1\rangle)/5,\qquad
+ U=\frac15\begin{pmatrix}3&4\\-4&3\end{pmatrix},\)}\] Z populations
+coincide at \((9/25,16/25)\), but the probabilities of zero after \(U\)
+are \(1\) and \(49/625\). Identity control passes the same sufficiency
+test. Reporting the pulled-back future effect also restores sufficiency
+on this family. This is the finite protected-question criterion and the
+phase-blind descent obstruction on an exact fixture. A pass on these two
+states does not prove sufficiency for every preparation or every future
+control.
+
+\textbf{Test 2: positive Bell gluing.} Supply the four binary pair
+distributions for settings \(00,01,10,11\). Ask for nonnegative weights
+on the sixteen assignments \((a_0,a_1,b_0,b_1)\) reproducing all four
+marginals. Exact convex membership returns either those weights or a
+separating functional verified on all sixteen deterministic vertices.
+Signed solutions to linear equations are insufficient. For
+\(|\Phi^+\rangle\), take
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle A_0=Z,\quad A_1=X,\quad B_0=(4Z+3X)/5,\quad B_1=(4Z-3X)/5.\)}\]
+The correlation vector is \((4/5,4/5,3/5,-3/5)\), hence
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle S=E_{00}+E_{01}+E_{10}-E_{11}=14/5>2\)}\].
+Every context probability is strictly positive: their numerators over 20
+are respectively
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle (9,1,1,9),(9,1,1,9),(8,2,2,8),(2,8,8,2)\)}\],
+in \((++,+-,-+,--)\) order. Thus a support-only compatibility test
+admits all sixteen assignments and misses this obstruction. Another
+regression has \(S=0\) for this orientation but violates a different
+CHSH facet; the implementation tests the complete convex hull. Uniform
+independent outcomes provide the positive extension control. The
+numerators displayed here are the ones encoded in the Lean fixture; the
+Rust violation door V2 in source-notes supplement §11.33 uses the
+companion orientation \(B_1=(3Z-4X)/5\), with correlation vector
+\((4/5,3/5,3/5,-4/5)\) and the same \(S=14/5\).
+
+Bell locality and setting independence explain why one would require
+such a joint table in a physical model; they are additional premises,
+not outputs of the solver. In detail, suppose a common,
+setting-independent probability measure \(\mu\) on hidden states
+\(\lambda\) and local response distributions \(A(a\mid x,\lambda)\),
+\(B(b\mid y,\lambda)\) give the four pair tables. Then
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle w(a_0,a_1,b_0,b_1)=\int
+ A(a_0\mid0,\lambda)A(a_1\mid1,\lambda)
+ B(b_0\mid0,\lambda)B(b_1\mid1,\lambda)\,d\mu(\lambda)\)}\] is a
+nonnegative normalized table on the sixteen assignments and has those
+pair marginals: sum out the unused response factors, whose sums are one.
+This reduction works for finite, countable or continuous hidden-state
+spaces, provided the stated probabilities are measurable. Increasing
+their cardinality does not evade the obstruction. This finite result
+excludes that conjunction for the supplied statistics. It does not
+exclude nonlocal hidden-variable models or establish a unique ontology.
+The obstruction is failure of positivity-constrained global gluing,
+which must not be conflated with signed linear exactness or with a
+support-only contextuality obstruction. The source manuscript on finite
+Bell bounds (source-notes supplement §11.33) already identifies this
+joint-table premise; this test adds a shared executable experiment
+{[}26{]} and a Lean marginal-to-CHSH proof.
+
+\textbf{Test 3: central sectors and purification.} Declare the full
+positive normalized states of \(A=\bigoplus_i M_{n_i}(\mathbb C)\),
+standard tensor composition with another such algebra, and the available
+ancilla block sizes. A state has normalized central weights \(p_i\) and
+block states \(\rho_i\). A pure composite state occupies one joint
+central block, so its marginal has one central weight equal to one. A
+state with two positive central weights therefore has no pure extension
+within this model, for any ancilla of this form. More quantitatively,
+every extension \(\omega\) of that state and every marginal \(\sigma\)
+of a pure composite state obey
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \operatorname{Tr}(\omega^2)\le\sum_i p_i^2,\qquad
+ \tfrac12\|\rho-\sigma\|_1\ge1-\max_i p_i.\)}\] For the first
+inequality, sum the squared weights of normalized joint blocks, use
+purity at most one within each block, and then use
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \sum_j p_{ij}^2\le(\sum_j p_{ij})^2=p_i^2\)}\].
+For the second, the central measurement is a trace-distance contraction
+and distinguishes \(p\) from a point mass by \(1-p_k\). With a
+sufficiently large quantum ancilla both bounds are sharp: purify each
+\(\rho_i\) inside a chosen ancilla block for the first; for the second
+purify \(\rho_k\) in a block of maximal central weight. The half-half
+classical mixture gives both bounds \(1/2\). The exact finite
+calculation separately computes tighter purity, rank and
+marginal-distance constraints for the listed ancilla sizes.
+
+A single sector has no central obstruction, but an undersized ancilla
+can still prevent purification. The control with spectrum
+\((9/25,16/25)\) needs an ancilla block of size at least two. Requiring
+purification for every state rules out nontrivial centers only under
+these state-space, composition and purity premises. It neither rules out
+a consistent hybrid model that declines that requirement nor derives
+purification as a law of nature. This is the conditional
+center-elimination step in the companion obstruction analysis; real
+quantum theory's purification and the associativity of quaternion
+multiplication are unaffected.
+
+\paragraph{13.8.1 Relation to finite report
+quotients}\label{relation-to-finite-report-quotients}
+
+The three tests address distinct interfaces. Phase-sensitive readouts
+ask whether a report preserves answers to declared future experiments.
+Positive Bell extension asks whether compatible pair distributions are
+marginals of one nonnegative joint law. The central-sector bounds ask
+what extensions are possible in a specified direct-sum tensor model.
+None of these questions selects the underlying quantum state space.
+
+A finite protected-question quotient identifies two histories only when
+every admitted continuation gives the same answer and remains available.
+That is a minimal report relative to one finite experiment, not a
+derivation of positive operator algebras, complex scalars, or tensor
+composition. Similarly, true marginals and products of one-site
+marginals can each satisfy their consistency conditions even when their
+difference is nonzero. Report locality, local tomography, and Bell local
+causality therefore require different hypotheses. The detailed
+comparison and local source addresses are in the source-notes supplement
+and companion manuscript {[}12{]}.
+
+\paragraph{13.8.2 From primitive difference to Bell: the endpoint and
+the open
+step}\label{from-primitive-difference-to-bell-the-endpoint-and-the-open-step}
+
+Two questions must be separated. First, the finite algebra of a
+Bell\allowbreak{}/\allowbreak{}CHSH model closes once its state,
+observables, composition and probability rule are supplied. Second,
+primitive difference alone does not force those quantum inputs. Positive
+\(L^1\) weights are additional carrier data, not a theorem of a bare
+distinction relation. Once four binary response variables
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle A_0,A_1,B_0,B_1\in\{\mathord{-}1,+1\}\)}\]
+share one positive normalized joint law, every deterministic assignment
+has
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle S=A_0(B_0+B_1)+A_1(B_0-B_1)\in\{-2,2\},\)}\]
+
+and convexity gives \(|S|\leq2\). This conditional joint-extension
+theorem is proved in source-notes supplement §11.33; it is not a
+derivation of Bell's theorem from \(L^1\) alone. In the CHSH scenario,
+Fine's theorem identifies existence of the relevant common joint
+distribution with satisfaction of the complete
+Bell\allowbreak{}/\allowbreak{}CHSH family under the compatibility
+assumptions {[}16{]}. Bell's physical conclusion additionally uses
+locality and an identification of preparations, settings and outcomes
+{[}14,15{]}.
+
+The quantum side is now equally explicit. On the declared bipartite
+carrier, let
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \begin{aligned}
+A_0&=Z,& A_1&=X,\\
+B_0&=(Z+X)/\sqrt2,& B_1&=(Z-X)/\sqrt2,
+\end{aligned}\)}\]
+
+and use the entangled state
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle |\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2\)}\]
+with the trace\allowbreak{}/\allowbreak{}Born pairing. The exact
+implementation constructs the CHSH operator and verifies the two
+sum-of-squares inequalities
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle -2\sqrt2 I\leq B_{\rm CHSH}\leq2\sqrt2 I\, .\)}\]
+
+The same witness evaluates to \(S=2\sqrt2\) {[}17{]}. Every matrix entry
+in this witness is fixed by complex conjugation: the construction lives
+in the real field \(\mathbb Q(\sqrt2)\). It is also static. Therefore a
+specifically complex \(U(1)\) phase fiber and continuous unitary time
+evolution are not necessary for a Tsirelson-saturating CHSH witness.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Boundary
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What is now closed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What remains supplied or open
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+primitive difference to positive weights & finite
+difference\allowbreak{}/\allowbreak{}cochain and quotient machinery &
+positivity and normalized preparation weights are admitted data \\
+classical Bell face & one positive global joint law implies
+\(\lvert S\rvert\leq2\) exactly & physical locality, setting
+independence and experiment identification \\
+strict quantum violation & rational density matrix and observables give
+\(S=14/5>2\) and no positive joint table & tensor composition, entangled
+preparation, measurements and Born\allowbreak{}/\allowbreak{}trace
+readout \\
+quantum endpoint & exact SOS upper bound and exact witness give
+\(S=2\sqrt2\) over \(\mathbb Q(\sqrt2)\) & derivation or operational
+selection of the quantum inputs from native histories \\
+\end{longtable}
+
+This also corrects the proposed ``five-import boundary.'' Its five
+imports (the phase fiber, the quadratic readout, context parity, the
+frame function and the clock tower, each mapped to finite data in a
+research note
+\texttt{r\allowbreak{}e\allowbreak{}s\allowbreak{}e\allowbreak{}a\allowbreak{}r\allowbreak{}c\allowbreak{}h\allowbreak{}/\allowbreak{}q\allowbreak{}m\allowbreak{}\_\allowbreak{}2\allowbreak{}0\allowbreak{}7\allowbreak{}\_\allowbreak{}*}
+to
+\texttt{r\allowbreak{}e\allowbreak{}s\allowbreak{}e\allowbreak{}a\allowbreak{}r\allowbreak{}c\allowbreak{}h\allowbreak{}/\allowbreak{}q\allowbreak{}m\allowbreak{}\_\allowbreak{}2\allowbreak{}1\allowbreak{}1\allowbreak{}\_\allowbreak{}*})
+remain useful as a catalogue of structures used by \textbf{full complex
+quantum mechanics}, but they are neither proved independent nor a
+minimal basis for Bell.
+Quadratic\allowbreak{}/\allowbreak{}inner-product geometry and the Born
+pairing overlap rather than forming an established independence theorem.
+Same-party noncommutativity is load-bearing for the maximal CHSH
+construction, while cross-party observables commute. Bipartite
+composition and entangled preparation are load-bearing but absent from
+the five-item cascade. Complex phase and continuous dynamics belong to
+the larger theory, not to the static Bell minimum.
+
+\textbf{Verdict.} The finite algebraic road ends at Bell: conditional on
+the declared quantum interface, this repository now contains the
+classical bound, an exact violation, the Tsirelson upper certificate and
+an attaining witness. The foundational road from primitive difference
+does not end there. Its remaining step is the first derivation target in
+Source Notes §6 (retained subsection §13.9): derive or operationally
+justify the positive composite algebra, state, effects and pairing
+without silently importing the quantum model that the Bell calculation
+uses.
+
+\paragraph{13.8.3 Čech contextuality and the Regge
+firewall}\label{ux10dech-contextuality-and-the-regge-firewall}
+
+The sheaf-theoretic language sharpens the local-to-global part of this
+story, but only when its objects and degrees are kept distinct. A
+measurement scenario consists of a measurement set and a cover by
+compatible contexts. An empirical model is a family of probability
+distributions on those contexts whose marginals agree on overlaps. In
+Bell scenarios this compatibility is the no-signalling condition; in
+general contextuality scenarios it is often called no-disturbance. This
+is the compatible-family, or Čech degree-zero, condition for the
+declared distribution presheaf {[}18{]}. It is not yet a
+first-cohomology obstruction.
+
+Abramsky and Brandenburger identify a global section of the distribution
+presheaf with a noncontextual hidden-variable realization for a general
+measurement cover {[}18{]}. Fine's theorem is the more specific CHSH
+result used in §13.8.2 {[}16{]}. The cohomological refinement instead
+chooses a local section in an abelian presheaf derived from the support
+and constructs an obstruction class. A nonzero class is sufficient for
+contextuality, but the test is not complete: contextual models with a
+vanishing chosen cohomological obstruction exist {[}19{]}. Three
+distinctions follow.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Vanishing of the relevant obstruction class does not say that the
+  whole cohomology group is zero.
+\item
+  Compatible local distributions do not automatically constitute a
+  nonzero Čech \(H^1\) class; the coefficient presheaf, chosen local
+  section and coboundary maps must be declared.
+\item
+  The scalar CHSH excess
+
+  \[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \Delta_{\rm CHSH}=\max(0,|S|-2)\)}\]
+
+  is a useful violation margin, not a magnitude or norm of a Čech class.
+  Thus the rational witness in §13.8.2 has \(\Delta_{\rm CHSH}=4/5\),
+  and a PR box would have \(\Delta_{\rm CHSH}=2\), but these arithmetic
+  facts do not define a cohomology theory. The rational witness excludes
+  a positive global joint law; it does not, without a separately
+  declared support construction, compute a Čech obstruction. PR boxes
+  are among the examples for which the standard support-derived
+  obstruction is known to be nonzero {[}19{]}.
+\end{enumerate}
+
+The Mermin--Peres scenario does support an exact finite local-to-global
+obstruction. Let
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle d_0:\mathbb F_2^V\to\mathbb F_2^C\)}\]
+map nine observable values to the six context parities, let
+\(s\in\mathbb F_2^C\) be the declared sign vector, and let \(\ell\) sum
+all six context coordinates. Every observable occurs twice, so
+\(\ell d_0=0\), while the odd target has \(\ell(s)=1\). Hence
+\(s\notin\operatorname{im}d_0\). Every individual context and every
+five-context subfamily is satisfiable, but the complete six-context
+family is not. This is the exact locally satisfiable but globally
+inconsistent parity obstruction verified in source-notes supplement
+§11.50 and is the finite combinatorial core of the Peres--Mermin
+argument {[}5,6,20{]}. It is safe to call it a nonzero cokernel class.
+Calling it an \(H^1\) class additionally requires a declared next
+coboundary \(d_1\) with \(d_1s=0\); calling it a class in \(H^2\)
+requires a declared two-complex. The bare carrier graph has no
+degree-two cochains. Finally, the parity contradiction itself is finite
+\(\mathbb F_2\) algebra, but identifying its signs with quantum
+measurements uses the supplied commuting two-qubit Pauli operator
+realization. It is not a derivation of that quantum realization from
+parity alone.
+
+Phase holonomy needs the same firewall. Transition functions for a
+specified \(U(1)\) bundle can form a Čech 1-cocycle, but Aharonov--Bohm
+and Berry holonomies also depend on a connection and a loop {[}22,23{]}.
+Nontrivial connection holonomy can occur on a trivial bundle, so it is
+not automatically a nonzero class in a bare \(\check H^1\) of transition
+data. Likewise, calling a phase a coboundary requires a declared
+coefficient sheaf, cover and coboundary map. The paper therefore retains
+phase holonomy as a conditional structural analogy, not as a general
+identification with the contextuality obstruction above.
+
+The same discipline blocks the proposed Regge identification. Regge
+calculus places curvature on codimension-two hinges, with deficit
+
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle \epsilon_h=2\pi-\sum_{\sigma\supset h}\theta_{\sigma h}\)}\]
+
+for the appropriate dihedral angles {[}21{]}. In a two-dimensional
+equilateral triangulation the hinge is a vertex: six triangles give zero
+deficit, five a positive deficit and seven a negative deficit. That is a
+geometric curvature diagnostic. It neither supplies a measurement cover
+nor empirical probabilities. Even zero local deficits do not, without
+global hypotheses, force trivial topology or holonomy.
+
+Accordingly, no result here identifies a Čech obstruction with
+\(|\epsilon_h|\), establishes the bound
+\[\protect\adjustbox{max width=\linewidth}{\(\displaystyle S_{\rm CHSH}\leq\min(4,2+|\epsilon_h|)\)}\]
+or makes curvature a prerequisite for Bell violation. The existing
+experimental API records the angle but returns
+\texttt{N\allowbreak{}o\allowbreak{}n\allowbreak{}e} for the Čech
+obstruction, Bell bound and contextuality flag, including at zero
+deficit. The exact CHSH witness in §13.8.2 is independent of Regge
+curvature and reaches \(2\sqrt2\), so the proposed unconditional
+implication \(\epsilon=0\Rightarrow |S|\leq2\) cannot be a general
+quantum theorem.
+
+\textbf{Narrow claim and next test.} Čech cohomology can witness a
+declared local-to-global obstruction, while Regge deficits measure
+declared simplicial curvature; their resemblance is presently an
+analogy, not a bridge. A genuine bridge must map a specified
+triangulation and hinge data to a measurement cover, outcome presheaf
+and empirical distributions, prove overlap compatibility, define the
+coefficient complex, and then derive a bound that survives both a
+classical control and the zero-deficit quantum CHSH counterexample.
+Until those data and proofs exist, the proposed bridge remains open.
+
+\subsection{References}\label{references}
+
+Numbers in square brackets refer to this list; it is also shipped as
+\texttt{d\allowbreak{}o\allowbreak{}c\allowbreak{}s\allowbreak{}/\allowbreak{}r\allowbreak{}e\allowbreak{}f\allowbreak{}e\allowbreak{}r\allowbreak{}e\allowbreak{}n\allowbreak{}c\allowbreak{}e\allowbreak{}s\allowbreak{}.\allowbreak{}m\allowbreak{}d}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A. M. Gleason, ``Measures on the Closed Subspaces of a Hilbert
+  Space,'' Journal of Mathematics and Mechanics 6, 885--893 (1957).
+\item
+  A. Cabello, J. M. Estebaranz and G. García-Alcaine,
+  ``Bell-Kochen-Specker Theorem: A Proof with 18 Vectors,'' Physics
+  Letters A 212, 183--187 (1996).
+\item
+  P. Busch, ``Quantum States and Generalized Observables: A Simple Proof
+  of Gleason's Theorem,'' Physical Review Letters 91, 120403 (2003).
+\item
+  H. Weyl, ``The Theory of Groups and Quantum Mechanics,'' Dover
+  Publications (1950).
+\item
+  N. D. Mermin, ``Hidden Variables and the Two Theorems of John Bell,''
+  Reviews of Modern Physics 65, 803--815 (1993).
+\item
+  A. Peres, ``Incompatible Results of Quantum Measurements,'' Physics
+  Letters A 151, 107--108 (1990).
+\item
+  R. D. Sorkin, ``Quantum Mechanics as Quantum Measure Theory,'' Modern
+  Physics Letters A 9, 3119--3127 (1994).
+\item
+  M. Schlosshauer, ``Decoherence, the Measurement Problem, and
+  Interpretations of Quantum Mechanics,'' Reviews of Modern Physics 76,
+  1267--1305 (2004).
+  \href{https://arxiv.org/abs/quant-ph/0312059}{arXiv:quant-ph\allowbreak{}/\allowbreak{}0312059}.
+\item
+  T. Maudlin, ``Three Measurement Problems,'' Topoi 14, 7--15 (1995).
+  \href{https://doi.org/10.1007/BF00763473}{\nolinkurl{doi:10.1007/BF00763473}}.
+\item
+  W. H. Zurek, ``Decoherence, Einselection, and the Quantum Origins of
+  the Classical,'' Reviews of Modern Physics 75, 715--775 (2003).
+  \href{https://doi.org/10.1103/RevModPhys.75.715}{\nolinkurl{doi:10.1103/RevModPhys.75.715}}.
+\item
+  M. Horodecki, P. W. Shor and M. B. Ruskai, ``General Entanglement
+  Breaking Channels'' (2003).
+  \href{https://arxiv.org/abs/quant-ph/0302031}{arXiv:quant-ph\allowbreak{}/\allowbreak{}0302031};
+  journal version
+  \href{https://doi.org/10.1142/S0129055X03001709}{\nolinkurl{doi:10.1142/S0129055X03001709}}.
+\item
+  J. H. Carroll, \emph{Projection Obstruction for Factorized States},
+  author-review version 6.9.16 (2026), §§4.3.2, 7.6, 7.10 and Appendix
+  E. Local companion address:
+  \texttt{c\allowbreak{}o\allowbreak{}m\allowbreak{}p\allowbreak{}a\allowbreak{}n\allowbreak{}i\allowbreak{}o\allowbreak{}n\allowbreak{}\_\allowbreak{}p\allowbreak{}a\allowbreak{}p\allowbreak{}e\allowbreak{}r\allowbreak{}s\allowbreak{}/\allowbreak{}p\allowbreak{}r\allowbreak{}o\allowbreak{}j\allowbreak{}e\allowbreak{}c\allowbreak{}t\allowbreak{}i\allowbreak{}o\allowbreak{}n\allowbreak{}\_\allowbreak{}o\allowbreak{}b\allowbreak{}s\allowbreak{}t\allowbreak{}r\allowbreak{}u\allowbreak{}c\allowbreak{}t\allowbreak{}i\allowbreak{}o\allowbreak{}n\allowbreak{}.\allowbreak{}m\allowbreak{}d}.
+\item
+  J. H. Carroll, \emph{Trace-Zero Repair Quotients on a Finite Graph: An
+  Exact Qutrit Counterexample and the Correct Scalar-Divergence Dual},
+  Version 0.55.0 (2026). Local companion address:
+  \texttt{c\allowbreak{}o\allowbreak{}m\allowbreak{}p\allowbreak{}a\allowbreak{}n\allowbreak{}i\allowbreak{}o\allowbreak{}n\allowbreak{}\_\allowbreak{}p\allowbreak{}a\allowbreak{}p\allowbreak{}e\allowbreak{}r\allowbreak{}s\allowbreak{}/\allowbreak{}t\allowbreak{}r\allowbreak{}a\allowbreak{}c\allowbreak{}e\allowbreak{}\_\allowbreak{}z\allowbreak{}e\allowbreak{}r\allowbreak{}o\allowbreak{}\_\allowbreak{}q\allowbreak{}u\allowbreak{}o\allowbreak{}t\allowbreak{}i\allowbreak{}e\allowbreak{}n\allowbreak{}t\allowbreak{}\_\allowbreak{}d\allowbreak{}u\allowbreak{}a\allowbreak{}l\allowbreak{}i\allowbreak{}t\allowbreak{}y\allowbreak{}\_\allowbreak{}m\allowbreak{}o\allowbreak{}n\allowbreak{}o\allowbreak{}g\allowbreak{}r\allowbreak{}a\allowbreak{}p\allowbreak{}h\allowbreak{}.\allowbreak{}m\allowbreak{}d}.
+\item
+  J. S. Bell, ``On the Einstein Podolsky Rosen Paradox,'' \emph{Physics}
+  \textbf{1}, 195--200 (1964).
+  \href{https://doi.org/10.1103/PhysicsPhysiqueFizika.1.195}{\nolinkurl{doi:10.1103/PhysicsPhysiqueFizika.1.195}}.
+\item
+  J. F. Clauser, M. A. Horne, A. Shimony and R. A. Holt, ``Proposed
+  Experiment to Test Local Hidden-Variable Theories,'' \emph{Physical
+  Review Letters} \textbf{23}, 880--884 (1969).
+  \href{https://doi.org/10.1103/PhysRevLett.23.880}{\nolinkurl{doi:10.1103/PhysRevLett.23.880}}.
+\item
+  A. Fine, ``Hidden Variables, Joint Probability, and the Bell
+  Inequalities,'' \emph{Physical Review Letters} \textbf{48}, 291--295
+  (1982).
+  \href{https://doi.org/10.1103/PhysRevLett.48.291}{\nolinkurl{doi:10.1103/PhysRevLett.48.291}}.
+\item
+  B. S. Cirel'son, ``Quantum Generalizations of Bell's Inequality,''
+  \emph{Letters in Mathematical Physics} \textbf{4}, 93--100 (1980).
+  \href{https://doi.org/10.1007/BF00417500}{\nolinkurl{doi:10.1007/BF00417500}}.
+\item
+  S. Abramsky and A. Brandenburger, ``The Sheaf-Theoretic Structure of
+  Non-Locality and Contextuality,'' \emph{New Journal of Physics}
+  \textbf{13}, 113036 (2011).
+  \href{https://doi.org/10.1088/1367-2630/13/11/113036}{\nolinkurl{doi:10.1088/1367-2630/13/11/113036}}.
+\item
+  S. Abramsky, S. Mansfield and R. Soares Barbosa, ``The Cohomology of
+  Non-Locality and Contextuality,'' \emph{Electronic Proceedings in
+  Theoretical Computer Science} \textbf{95}, 1--14 (2012).
+  \href{https://doi.org/10.4204/EPTCS.95.1}{\nolinkurl{doi:10.4204/EPTCS.95.1}}.
+\item
+  N. D. Mermin, ``Simple Unified Form for the Major No-Hidden-Variables
+  Theorems,'' \emph{Physical Review Letters} \textbf{65}, 3373--3376
+  (1990).
+  \href{https://doi.org/10.1103/PhysRevLett.65.3373}{\nolinkurl{doi:10.1103/PhysRevLett.65.3373}}.
+\item
+  T. Regge, ``General Relativity without Coordinates,'' \emph{Il Nuovo
+  Cimento} \textbf{19}, 558--571 (1961).
+  \href{https://doi.org/10.1007/BF02733251}{\nolinkurl{doi:10.1007/BF02733251}}.
+\item
+  Y. Aharonov and D. Bohm, ``Significance of Electromagnetic Potentials
+  in the Quantum Theory,'' \emph{Physical Review} \textbf{115}, 485--491
+  (1959).
+  \href{https://doi.org/10.1103/PhysRev.115.485}{\nolinkurl{doi:10.1103/PhysRev.115.485}}.
+\item
+  M. V. Berry, ``Quantal Phase Factors Accompanying Adiabatic Changes,''
+  \emph{Proceedings of the Royal Society A} \textbf{392}, 45--57 (1984).
+  \href{https://doi.org/10.1098/rspa.1984.0023}{\nolinkurl{doi:10.1098/rspa.1984.0023}}.
+\item
+  A. Baker, ``Linear Forms in the Logarithms of Algebraic Numbers
+  (III),'' \emph{Mathematika} \textbf{14}(2), 220--228 (1967).
+  \href{https://doi.org/10.1112/S0025579300003843}{\nolinkurl{doi:10.1112/S0025579300003843}}.
+\item
+  B. Eastin and E. Knill, ``Restrictions on Transversal Encoded Quantum
+  Gate Sets,'' \emph{Physical Review Letters} \textbf{102}, 110502
+  (2009).
+  \href{https://doi.org/10.1103/PhysRevLett.102.110502}{\nolinkurl{doi:10.1103/PhysRevLett.102.110502}}.
+\item
+  \emph{Native joint operations and a Genesis-to-Bell experiment}, The
+  Symbol Game repository, revision
+  \texttt{4\allowbreak{}a\allowbreak{}4\allowbreak{}f\allowbreak{}d\allowbreak{}1\allowbreak{}9\allowbreak{}2\allowbreak{}f}
+  (2026); included in the code-companion archive as
+  \texttt{o\allowbreak{}m\allowbreak{}e\allowbreak{}g\allowbreak{}a\allowbreak{}\_\allowbreak{}e\allowbreak{}n\allowbreak{}g\allowbreak{}i\allowbreak{}n\allowbreak{}e\allowbreak{}/\allowbreak{}c\allowbreak{}r\allowbreak{}a\allowbreak{}t\allowbreak{}e\allowbreak{}s\allowbreak{}\_\allowbreak{}r\allowbreak{}s\allowbreak{}/\allowbreak{}o\allowbreak{}m\allowbreak{}e\allowbreak{}g\allowbreak{}a\allowbreak{}\_\allowbreak{}w\allowbreak{}d\allowbreak{}p\allowbreak{}/\allowbreak{}d\allowbreak{}o\allowbreak{}c\allowbreak{}s\allowbreak{}/\allowbreak{}g\allowbreak{}e\allowbreak{}n\allowbreak{}e\allowbreak{}s\allowbreak{}i\allowbreak{}s\allowbreak{}\_\allowbreak{}b\allowbreak{}e\allowbreak{}l\allowbreak{}l\allowbreak{}\_\allowbreak{}e\allowbreak{}x\allowbreak{}p\allowbreak{}e\allowbreak{}r\allowbreak{}i\allowbreak{}m\allowbreak{}e\allowbreak{}n\allowbreak{}t\allowbreak{}.\allowbreak{}m\allowbreak{}d}.
+\item
+  A. Baker, ``Linear Forms in the Logarithms of Algebraic Numbers (I),''
+  \emph{Mathematika} \textbf{13}, 204--216 (1966).
+\end{enumerate}
+
+\end{document}

@@ -1,8 +1,6 @@
 """Build the comprehensive Master Derivation Ledger for the Theory of Finite Quantum Mechanics.
 
-Generates:
-- papers/core/master_derivation_ledger.md
-- dag/derivations/MASTER_DERIVATION_LEDGER.md
+Generates the single live dag/derivations/MASTER_DERIVATION_LEDGER.md.
 
 AuthorityEffect: None.
 """
@@ -100,10 +98,10 @@ def build_ledger() -> str:
         "> **AuthorityEffect**: None  ",
         "> **Version**: 1.0.0  ",
         "> **Date**: 2026-10-21  ",
-        "> **Corpus Root**: [`papers/core/`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/papers/core) | [`dag/derivations/`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/dag/derivations)  ",
-        "> **Parent Monograph**: [`papers/core/finite_quantum_mechanics.md`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/papers/core/finite_quantum_mechanics.md)  ",
-        "> **Foundational Synthesis**: [`papers/foundations/theory_of_finite_quantum_foundations.md`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/papers/foundations/theory_of_finite_quantum_foundations.md)  ",
-        "> **Problem & Proof Atlas**: [`docs/QM_PROBLEM_AND_PROOF_ATLAS.md`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/docs/QM_PROBLEM_AND_PROOF_ATLAS.md) (`Q01`–`Q65`)  ",
+        "> **Corpus Root**: [`dag/derivations/`](./)  ",
+        "> **Parent Monograph**: [`finite_quantum_mechanics.md`](10_finite_qm_core/sources/finite_quantum_mechanics.md)  ",
+        "> **Foundational Synthesis**: [`theory_of_finite_quantum_foundations.md`](08_l1_to_l2/sources/theory_of_finite_quantum_foundations.md)  ",
+        "> **Problem & Proof Atlas**: [`docs/QM_PROBLEM_AND_PROOF_ATLAS.md`](../../docs/QM_PROBLEM_AND_PROOF_ATLAS.md) (`Q01`–`Q65`)  ",
         "",
         "---",
         "",
@@ -115,7 +113,7 @@ def build_ledger() -> str:
         "1. Every derivation step declares its precise parent prerequisites, mathematical statement, status, and governing obligation.",
         "2. A file path, test pass, status label, or schema validation is not treated as a mathematical proof.",
         "3. Finite model certificates and discrete obstruction results are explicitly distinguished from continuum limits and unproved physical interpretations.",
-        "4. Every single derivation step corresponds 1-to-1 with a standalone Markdown paper in [`dag/derivations/`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/dag/derivations) and a validated companion contract score.",
+        "4. Every single derivation step corresponds 1-to-1 with a standalone Markdown paper in [`dag/derivations/`](./) and a validated companion contract score.",
         "",
         "---",
         "",
@@ -215,13 +213,13 @@ def build_ledger() -> str:
         "",
         "## 3b. One Derivation Graph",
         "",
-        f"`dag/derivation_dag.json` ({len(dag['nodes'])} nodes, {len(dag['routes'])} routes) and `dag/theory_of_finite_qm.jsonl` ({record_count} records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as {len(unified['domain_records'])} new records; {len(unified['domain_aliases'])} of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.",
+        f"`dag/derivation_dag.json` ({len(dag['nodes'])} nodes, {len(dag['routes'])} routes) and `dag/theory_of_finite_qm.jsonl` ({record_count} records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`dag/derivations/26_fsp/fsp/`), dimension-six MUBs (`dag/derivations/25_mub/mub6/`), the Majorana problem (`dag/derivations/28_majorana/majorana/`) and the Dressing Field Method (`dag/derivations/24_dressing_field/ravera_dfm_dossier.md`) are folded in as {len(unified['domain_records'])} new records; {len(unified['domain_aliases'])} of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.",
         "",
         "---",
         "",
         "## 4. Foundational Synthesis Mapping: The 43 Source Packets (`QM_002` through `QM_212`)",
         "",
-        "The following table maps the 43 discrete quantum foundation source packets reviewed and unified in [`papers/foundations/theory_of_finite_quantum_foundations.md`](../foundations/theory_of_finite_quantum_foundations.md) to their primary `TFQ` derivation node in the DAG and their exact claim in the monograph:",
+        "The following table maps the 43 discrete quantum foundation source packets reviewed and unified in [`dag/derivations/08_l1_to_l2/sources/theory_of_finite_quantum_foundations.md`](08_l1_to_l2/sources/theory_of_finite_quantum_foundations.md) to their primary `TFQ` derivation node in the DAG and their exact claim in the monograph:",
         "",
         "| Packet ID | Monograph Chapter & Claim | Formal Mathematical Invariant | Primary TFQ Derivation Node | Lean 4 Theorem Kernel | Sovereign Test Harness |",
         "| :--- | :--- | :--- | :--- | :--- | :--- |",
@@ -323,13 +321,9 @@ def build_ledger() -> str:
 
 def main():
     ledger_content = build_ledger()
-    target_1 = REPO_ROOT / "papers" / "core" / "master_derivation_ledger.md"
     target_2 = REPO_ROOT / "dag" / "derivations" / "MASTER_DERIVATION_LEDGER.md"
 
-    target_1.write_text(ledger_content, encoding="utf-8")
-    print(f"Written: {target_1}")
-
-    target_2.write_text(ledger_content, encoding="utf-8")
+    target_2.write_text(ledger_content, encoding="utf-8", newline="\n")
     print(f"Written: {target_2}")
 
 

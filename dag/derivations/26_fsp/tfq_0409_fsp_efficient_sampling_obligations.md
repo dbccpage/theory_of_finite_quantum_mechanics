@@ -21,6 +21,6 @@ node leaves algorithmic complexity and unrestricted model coverage open.
 
 ## Evidence and next obligation
 
-- [papers/core/fsp/README.md](../../../papers/core/fsp/README.md)
+- [dag/derivations/26_fsp/fsp/README.md](../../../dag/derivations/26_fsp/fsp/README.md)
 
 Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.

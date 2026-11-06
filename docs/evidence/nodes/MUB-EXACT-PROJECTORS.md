@@ -43,20 +43,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Documents and data: `dag/derivations/25_mub/mub6/README.md`
+
+- file: [dag/derivations/25_mub/mub6/README.md](../../../dag/derivations/25_mub/mub6/README.md)
+- sha256 (`lf-normalised`): `fcf24743ee6d9dab9c377dc5158e9cac9769f062d7defbfb006e053c55255bf9`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md`
 
 - file: [dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md](../../../dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md)
-- sha256 (`lf-normalised`): `bf9e6f921ff6c5e41d8aabf191026a18ffd1487987c8846b01d727aabebb2ddd`
+- sha256 (`lf-normalised`): `dbeabd48b74ee8472b4783ed7b3a76dbb0937abd11b986cdccc220a9418689fc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0402
 - counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/README.md`
-
-- file: [papers/core/mub6/README.md](../../../papers/core/mub6/README.md)
-- sha256 (`lf-normalised`): `b876520ea3960bef932e3723a1c47c60d05dace398dcb9a77518b724d8216f8e`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

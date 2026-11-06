@@ -15,8 +15,8 @@ target:
     is sufficient, not necessary (INV-INVOL-CANC).
   source_refs:
   - dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md
-  - papers/core/fsp/the_problem_of_the_fermion_sign.md
-  - papers/core/fsp/theory_of_finite_fsp.md
+  - dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md
+  - dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md
   paper_refs:
   - dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md
   source_claim_label: PROVED_LEAN
@@ -38,7 +38,7 @@ operation_candidates:
   name: MeronConfig
   line: 48
   signature_excerpt: 'structure MeronConfig (C : Type u)'
-  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  source: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean
   repository: this_repository
   source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
   status: source_candidate_requires_semantic_review
@@ -46,7 +46,7 @@ operation_candidates:
   name: MeronFlipInvolution
   line: 53
   signature_excerpt: 'structure MeronFlipInvolution {C : Type u} (M : MeronConfig C)'
-  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  source: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean
   repository: this_repository
   source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
   status: source_candidate_requires_semantic_review
@@ -64,7 +64,7 @@ operation_candidates:
       | MeronSign.Minus => MeronSign.Plus
 
     theorem flipSign_involutive (s : MeronSign) : flipSign (flipSign s) = s
-  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  source: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean
   repository: this_repository
   source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
   status: source_candidate_requires_semantic_review
@@ -86,7 +86,7 @@ operation_candidates:
     def flipSign : MeronSign → MeronSign
       | MeronSign.Plus  => MeronSign.Minus
       | MeronSign.Minus => MeronSign.Plus
-  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  source: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean
   repository: this_repository
   source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
   status: source_candidate_requires_semantic_review
@@ -99,7 +99,7 @@ operation_candidates:
       | MeronSign.Minus => MeronSign.Plus
 
     theorem flipSign_involutive (s : MeronSign) : flipSign (flipSign s) = s
-  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  source: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean
   repository: this_repository
   source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
   status: source_candidate_requires_semantic_review
@@ -107,7 +107,7 @@ operation_candidates:
   name: TrotterPath
   line: 34
   signature_excerpt: 'structure TrotterPath (P : Type u)'
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -115,7 +115,7 @@ operation_candidates:
   name: BipartiteInvolution
   line: 42
   signature_excerpt: 'structure BipartiteInvolution {P : Type u} (T : TrotterPath P)'
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -129,7 +129,7 @@ operation_candidates:
 
     /-- A fermionic Trotter path with declared Boltzmann weight and Jordan-Wigner sign. -/
     structure TrotterPath (P : Type u)
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -148,7 +148,7 @@ operation_candidates:
 
     /-- A fermionic Trotter path with declared Boltzmann weight and Jordan-Wigner sign. -/
     structure TrotterPath (P : Type u)
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -161,7 +161,7 @@ relation_candidates:
         (inv : MeronFlipInvolution M) (c : C) :
         (M.weight c : Int) * toInt (M.sign c) +
         (M.weight (inv.tau c) : Int) * toInt (M.sign (inv.tau c)) = 0
-  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  source: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean
   repository: this_repository
   source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
   status: source_candidate_requires_semantic_review
@@ -173,7 +173,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem fixed_point_contradiction {C : Type u} {M : MeronConfig C}
         (inv : MeronFlipInvolution M) (c : C) (h_tau : inv.tau c = c) : False
-  source: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  source: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean
   repository: this_repository
   source_sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
   status: source_candidate_requires_semantic_review
@@ -187,7 +187,7 @@ relation_candidates:
         (inv : BipartiteInvolution T) (p : P) :
         (T.weight p : Int) * toInt (T.sign p) +
         (T.weight (inv.xi p) : Int) * toInt (T.sign (inv.xi p)) = 0
-  source: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  source: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   source_sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   status: source_candidate_requires_semantic_review
@@ -197,7 +197,7 @@ relation_candidates:
   name: unequal_three_term_cancellation
   line: 54
   signature_excerpt: 'theorem unequal_three_term_cancellation : ([2, -1, -1] : List Int).sum = 0'
-  source: papers/core/fsp/lean4/MeronCharacter.lean
+  source: dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean
   repository: this_repository
   source_sha256: 0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870
   status: source_candidate_requires_semantic_review
@@ -209,53 +209,53 @@ relation_candidates:
   signature_excerpt: |-
     theorem observable_doublet_counterexample :
         (1 : Int) + (-1) = 0 ∧ (1 : Int) * 1 + (-1) * (-1) = 2
-  source: papers/core/fsp/lean4/MeronCharacter.lean
+  source: dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean
   repository: this_repository
   source_sha256: 0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: papers/core/fsp/lean4/MeronClusterInvolution.lean::meron_pair_exact_cancellation
+- original_ref: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean::meron_pair_exact_cancellation
   availability: local
   symbol: meron_pair_exact_cancellation
-  path: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  path: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean
   repository: this_repository
   sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
   declaration_status: declaration_found_not_proof_checked
   line: 64
   role: source_lead_only
-- original_ref: papers/core/fsp/lean4/MeronClusterInvolution.lean::fixed_point_contradiction
+- original_ref: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean::fixed_point_contradiction
   availability: local
   symbol: fixed_point_contradiction
-  path: papers/core/fsp/lean4/MeronClusterInvolution.lean
+  path: dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean
   repository: this_repository
   sha256: 82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f
   declaration_status: declaration_found_not_proof_checked
   line: 87
   role: source_lead_only
-- original_ref: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean::bipartite_pair_exact_cancellation
+- original_ref: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean::bipartite_pair_exact_cancellation
   availability: local
   symbol: bipartite_pair_exact_cancellation
-  path: papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean
+  path: dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean
   repository: this_repository
   sha256: 85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd
   declaration_status: declaration_found_not_proof_checked
   line: 51
   role: source_lead_only
-- original_ref: papers/core/fsp/lean4/MeronCharacter.lean::unequal_three_term_cancellation
+- original_ref: dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean::unequal_three_term_cancellation
   availability: local
   symbol: unequal_three_term_cancellation
-  path: papers/core/fsp/lean4/MeronCharacter.lean
+  path: dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean
   repository: this_repository
   sha256: 0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870
   declaration_status: declaration_found_not_proof_checked
   line: 54
   role: source_lead_only
-- original_ref: papers/core/fsp/lean4/MeronCharacter.lean::observable_doublet_counterexample
+- original_ref: dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean::observable_doublet_counterexample
   availability: local
   symbol: observable_doublet_counterexample
-  path: papers/core/fsp/lean4/MeronCharacter.lean
+  path: dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean
   repository: this_repository
   sha256: 0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870
   declaration_status: declaration_found_not_proof_checked

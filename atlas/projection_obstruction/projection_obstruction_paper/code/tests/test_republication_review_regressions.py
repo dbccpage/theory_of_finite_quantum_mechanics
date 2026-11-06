@@ -809,8 +809,20 @@ def test_republic_review_every_bibliography_item_is_cited_in_body() -> None:
     assert missing == [], f"Found citations in body missing from References: {missing}"
 
 
+def test_residual_uncertainty_claim_has_an_explicit_nonexecutable_disposition() -> None:
+    from evidence import REQUIRED_CLAIM_IDS
+    from claim_coverage import PROSE_SUPPLEMENT_CLAIMS
+    from verify_certificate import REQUIRED_CLAIMS, EXPECTED_EVIDENCE_KINDS, EXPECTED_VERDICTS
+
+    assert "NUM1" in REQUIRED_CLAIM_IDS
+    assert "NUM1" in REQUIRED_CLAIMS
+    assert "NUM1" in PROSE_SUPPLEMENT_CLAIMS
+    assert EXPECTED_EVIDENCE_KINDS["NUM1"] == "not_executable"
+    assert EXPECTED_VERDICTS["NUM1"] == "refused"
+
+
 def test_republic_review_reference_36_historical_url_pin() -> None:
-    """R4: Reference [36] (renumbered to [26]) URL pin must point to a valid revision without 404."""
+    """R4: The private historical source is identified without promising a public URL."""
     import re
     import pathlib
 
@@ -821,10 +833,10 @@ def test_republic_review_reference_36_historical_url_pin() -> None:
     assert ref36_match is not None, "Reference [36]/[26] not found"
     ref36 = ref36_match.group(1)
 
-    valid = ("4a4fd192f" in ref36 and "crates_rs/omega_wdp/docs" in ref36) or (
-        "4bdf074" in ref36 and "documentation/rust_crates/omega_wdp/docs" in ref36
-    )
-    assert valid, f"Reference [36]/[26] URL pin is invalid:\n{ref36}"
+    assert "4bdf074a1b18cdeb710d991336e35f8f62979542" in ref36
+    assert "private working repository" in ref36
+    assert "proof and execution scopes are stated separately" in ref36
+    assert "https://" not in ref36
 
 
 def test_republic_review_duhamel_variational_priors_cited() -> None:

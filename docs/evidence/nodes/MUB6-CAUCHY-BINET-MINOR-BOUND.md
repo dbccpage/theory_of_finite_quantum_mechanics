@@ -32,7 +32,7 @@ The bound gives a chart, not nonextension; the selected minor need not be the ex
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C10 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C10 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -59,27 +59,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md](../../../dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md)
-- sha256 (`lf-normalised`): `2d2cf72a5120153187c879f28cb09899911e2af0281ad1b23e62fc1d3accaf4f`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1259
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md`
+
+- file: [dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md](../../../dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md)
+- sha256 (`lf-normalised`): `4171279cf3bcfc813ee7881b4bc6563021c90c32f1fb8bfc8a4762aedaf6dc97`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1259
+- counts toward the grade: no
 
 ## Routes
 

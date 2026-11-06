@@ -32,7 +32,7 @@ Lean or exact-code witness of the criterion is absent; the recovery model (deter
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-THM-SYNDROME-RECOVERY claims PROVED_PROSE; audited status PROVED_PROSE
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-THM-SYNDROME-RECOVERY claims PROVED_PROSE; audited status PROVED_PROSE
 
 ## Review
 
@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md](../../../dag/derivations/28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md)
-- sha256 (`lf-normalised`): `687055fa64aaf65662cb2ce2a3c7e36b98130c9683a5ac888fc2edb5cc8e0a61`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1147
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md`
+
+- file: [dag/derivations/28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md](../../../dag/derivations/28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md)
+- sha256 (`lf-normalised`): `66138ca16e34ee4df3aed607731a4acdb729074ab0110b14df3d19fcf176687f`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1147
+- counts toward the grade: no
 
 ## Routes
 

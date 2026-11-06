@@ -32,7 +32,7 @@ The 4x4 statements, the velocity-addition group law and general SO+(1,3; Q) fram
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.9-BOOST claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.9-BOOST claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -70,20 +70,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1134_dfm_boost_plane_lean.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1134_dfm_boost_plane_lean.md](../../../dag/derivations/24_dressing_field/tfq_1134_dfm_boost_plane_lean.md)
-- sha256 (`lf-normalised`): `e8be2a14095f171621fdfbd92cbb8b1e87b483fc1418a68a7b0f49bc017068d0`
+- sha256 (`lf-normalised`): `8b0079d128f246f5d8e7517d2ca5c346540fe810c21db8ed1d4dade85810c7d4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1134
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

@@ -239,3 +239,5 @@ Carrier degree equals simplex cardinality minus one. Adapter loss is the trace n
 **Lean scope:** Not mechanized in this deposit.
 
 The exact exercise runner checks only small finite algebra. The stored Lean report lists seven conditional declarations; it is not a fresh build receipt. See the review receipt for performed checks and unavailable replay gates.
+
+**PO034-C8**: §4.3 gives the written density-state perturbation and observed-cochain bounds. The new supplemental census proves the normed factor-replacement and residual bounds under explicit path-step estimates; the concrete density-matrix instantiation remains a written proof. See `lean4/projection_axiom_census.json`. Scalar examples in `docs/residual_error_budget/` validate supplied-bound arithmetic only.

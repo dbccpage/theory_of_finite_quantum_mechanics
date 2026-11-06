@@ -47,7 +47,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust implementation of the SnCarrier retraction`
 
 ### Python Oracles & Numerical Evaluators
-- `education/symmetric_group_presentations/code/sn_core.py::S6Descent` (private upstream source, not in this repository)
+- `education/2_symmetric_group_presentations/code/sn_core.py::S6Descent` (private upstream source, not in this repository)
 
 ---
 

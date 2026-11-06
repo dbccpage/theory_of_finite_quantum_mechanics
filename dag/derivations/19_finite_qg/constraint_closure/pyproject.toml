@@ -1,0 +1,29 @@
+[project]
+name = "gr002-constraint-closure-l1"
+version = "1.2.0"
+description = "Finite ℓ¹ cochain constraint quotients, Regge-calculus examples, and verification fixtures for GR-002."
+authors = [{ name = "Jeremy H. Carroll" }]
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "pydantic>=2",
+  "pypdf>=6.19.0",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8",
+  "pytest-xdist>=3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["code/tests"]
+pythonpath = ["code"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = []

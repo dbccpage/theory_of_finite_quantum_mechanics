@@ -1,16 +1,13 @@
-# PO-034 PDF build receipt
+# PO034 PDF build receipt
 
-Built 2026-10-10. Typesetting evidence only; no theorem certification.
+Built and visually reviewed 2026-11-05; typesetting evidence only.
 
-- Canonical Markdown SHA-256: 4aab3a55219a3f4326ec61bd9669f550bc09ff28ecefb54e6e17a9aa52ba3976
-- TeX SHA-256: d3edb49c2614553af6b49ba2f607719528dff6c785a8a95f37979b92c51bf7fc
-- PDF SHA-256: 36d2106adef22894c83c0de5d8970d977382cdd1a489d35c66043670951d88a2
+- Canonical Markdown SHA-256: bd152a54bc44887280527130e240caa05090457d00996ca122b67bca3cd6d4af
+- TeX SHA-256: 9a5593c36f3eb17d6d5e2e93dfbafe4f61b9939ff23b8f25f031ccac367a0724
+- PDF SHA-256: 79b5aa413fb08d744350c3e306cff0e4df86d5aef959276097e34535019bfc6f
 - Figure SHA-256: a7acfc14966f9e6c1b6405180d55be424c086e6e5a67e1f537ed85e9f820f083
-- Build: Pandoc 3.7.0.2 and MiKTeX-XeTeX 4.16 (MiKTeX 25.12), two passes.
-- Result: 24 pages; no overfull boxes or missing-character diagnostics.
-- Compiler log and auxiliary labels retained beside the PDF. No table of
-  contents is requested by this manuscript template.
-- Visual inspection: all 24 pages on contact sheets; changed example page 9
-  and interpretation page 18 additionally inspected at reading resolution.
-- The figure retains the analytic GHZ-family numerical trace-norm example;
-  no empirical convergence evidence is implied.
+- Pandoc 3.7.0.2; Tectonic 0.17.0 (XeTeX engine), explicit Latin Modern font files.
+- 26 pages; zero missing-glyph and overfull-box diagnostics.
+- Inspected title, changed analytic sections, and final supplemental scope pages.
+- Commands: `python scripts/build_paper_artifacts.py --tex-only`, then `tectonic --untrusted --keep-logs --keep-intermediates higher_cell_cochain_projection_and_retraction_dynamics.tex`.
+- PDF bytes depend on the named typesetting toolchain; no cross-platform PDF byte identity is asserted.

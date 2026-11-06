@@ -32,7 +32,7 @@ Run the identities in exact cyclotomic arithmetic; the paper code checks only Ya
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-ISING-BRAID-CHECK claims COMPUTATIONALLY_CHECKED; audited status OPEN
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-ISING-BRAID-CHECK claims COMPUTATIONALLY_CHECKED; audited status OPEN
 
 ## Review
 
@@ -68,27 +68,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1171_maj_ising_braid_exact_open.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1171_maj_ising_braid_exact_open.md](../../../dag/derivations/28_majorana/tfq_1171_maj_ising_braid_exact_open.md)
-- sha256 (`lf-normalised`): `1f9f4de50ceb4fc5d437688b0ee441468fb042f78225d9506a977112208fb2aa`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1171
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/the_majorana_problem_claim_ledger.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md`
 
-- file: [papers/core/majorana/the_majorana_problem_claim_ledger.md](../../../papers/core/majorana/the_majorana_problem_claim_ledger.md)
-- sha256 (`lf-normalised`): `37cc191a881cbb0f8fb52e30c2b865f9e9e70e235b4530df7bdd7d1b5728cb86`
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md)
+- sha256 (`lf-normalised`): `c6a3554eb30108d6294ec0ab42952efacd3f5deff58b23b0bf69d061978ac914`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1171_maj_ising_braid_exact_open.md`
+
+- file: [dag/derivations/28_majorana/tfq_1171_maj_ising_braid_exact_open.md](../../../dag/derivations/28_majorana/tfq_1171_maj_ising_braid_exact_open.md)
+- sha256 (`lf-normalised`): `a799ddc910fcea309a4b3849638eb8eea9e8938e92b4fc365dcaeaf6aa946cc7`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1171
+- counts toward the grade: no
 
 ## Routes
 

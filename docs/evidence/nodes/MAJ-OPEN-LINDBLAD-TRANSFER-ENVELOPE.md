@@ -32,7 +32,7 @@ The Lindblad derivation, the four-mode braiding model, the exponential poisoning
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-C18 claims PROVED_LEAN; audited status OPEN
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-C18 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -69,10 +69,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-1177
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
+
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
+- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md`
+
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md)
+- sha256 (`lf-normalised`): `c6a3554eb30108d6294ec0ab42952efacd3f5deff58b23b0bf69d061978ac914`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md`
 
 - file: [dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md](../../../dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md)
-- sha256 (`lf-normalised`): `c572f6ec9d7f6f31c18249f961648ab0d61a0df08442f366a8b4a5cbaa113cec`
+- sha256 (`lf-normalised`): `7613d8f3c479bc6bbb64dbe91dd2a8c39a34e7d344eafd3ce1e02fac4f2c3df4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1177
 - counts toward the grade: no
@@ -88,20 +102,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json](../../../dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json)
 - sha256 (`lf-normalised`): `81862bd19af6b166d221adc65dcaa408176237798809de1857f7239e995dca92`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
-- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/majorana/the_majorana_problem_claim_ledger.md`
-
-- file: [papers/core/majorana/the_majorana_problem_claim_ledger.md](../../../papers/core/majorana/the_majorana_problem_claim_ledger.md)
-- sha256 (`lf-normalised`): `37cc191a881cbb0f8fb52e30c2b865f9e9e70e235b4530df7bdd7d1b5728cb86`
 - cited in: node.source
 - counts toward the grade: yes
 

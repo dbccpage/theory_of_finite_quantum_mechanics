@@ -1,5 +1,7 @@
 # Theory of Finite Quantum Mechanics: Master Derivation Index
 
+Start with [the compressed first-mark-to-quantum-gravity route](FIRST_MARK_TO_QUANTUM_GRAVITY.md), [the source crosswalk](SOURCE_CROSSWALK.md), and [the missing gravity obligations](19_finite_qg/QUANTUM_GRAVITY_GAPS.md).
+
 This directory contains **one standalone Markdown paper per derivation step** tracking finite constructions, source records, explicit assumptions and open obligations from the inert inscription `<>` through the finite quantum programme and its application branches.
 
 Every paper declares its parent prerequisites, mathematical statement, exact rational / Lean 4 witnesses, and downstream consequences.
@@ -8,7 +10,7 @@ Every paper declares its parent prerequisites, mathematical statement, exact rat
 
 ## Table of Contents by Stage
 
-### PREGENESIS (35 derivations)
+### PREGENESIS (36 derivations)
 
 Folder: [`01_pregenesis/`](./01_pregenesis/)
 
@@ -49,6 +51,7 @@ Folder: [`01_pregenesis/`](./01_pregenesis/)
 | [`TFQ-0427`](./01_pregenesis/tfq_0427_context_fidelity.md) | context-fidelity | `OPEN_OBLIGATION` | [`TFQ-0426`](./01_pregenesis/tfq_0426_replay_necessity.md) |
 | [`TFQ-0428`](./01_pregenesis/tfq_0428_admission_before_distinction.md) | admission-before-distinction | `SOURCE_RECORD` | [`TFQ-0364`](./01_pregenesis/tfq_0364_three_trial_record_bound.md) |
 | [`TFQ-0429`](./01_pregenesis/tfq_0429_bundled_extension_refused.md) | bundled-extension-refused | `SOURCE_RECORD` | [`TFQ-0428`](./01_pregenesis/tfq_0428_admission_before_distinction.md) |
+| [`TFQ-2600`](./01_pregenesis/tfq_2600_comp_mark_admission_gap.md) | The first mark does not supply a computation model | `OPEN_OBLIGATION` | [`TFQ-0000`](./01_pregenesis/tfq_0000_inert_inscription.md) |
 
 ### GENESIS (92 derivations)
 
@@ -435,6 +438,8 @@ Folder: [`11_finite_qm_dynamics/`](./11_finite_qm_dynamics/)
 | [`TFQ-0246`](./11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md) | Hamiltonian generator admission still reserved | `OPEN_OBLIGATION` | [`TFQ-0245`](./11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md) |
 | [`TFQ-0247`](./11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md) | Heisenberg picture on a finite carrier | `SOURCE_RECORD` | [`TFQ-0245`](./11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md) |
 | [`TFQ-0248`](./11_finite_qm_dynamics/tfq_0248_finite_history_decoherence_matrix.md) | Finite history decoherence matrix | `SOURCE_RECORD` | [`TFQ-0247`](./11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md) |
+| [TFQ-2618](11_finite_qm_dynamics/tfq_2618_dyn_classical_hamilton_noether.md) | Area-preserving plane flow and a Hamiltonian charge | `PROVED_PROSE` | `TFQ-0001` |
+| [TFQ-2619](11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md) | An adjoint-preserving matrix derivation is Hamiltonian | `PROVED_PROSE` | `TFQ-1002` |
 | [`TFQ-1022`](./11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md) | fq-gap-real-embedding-choice | `COMPUTATIONAL_CONTROL` | [`TFQ-1006`](./10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md) |
 | [`TFQ-1039`](./11_finite_qm_dynamics/tfq_1039_ds_qm030_transfer_operator_shadow.md) | ds-qm030-transfer-operator-shadow | `COMPUTATIONAL_CONTROL` | [`TFQ-0239`](./11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md) |
 | [`TFQ-1040`](./11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md) | ds-continuous-time-exp-generator | `IMPORTED_ASSUMPTION` | [`TFQ-0303`](./08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md) |
@@ -475,7 +480,7 @@ Folder: [`12_finite_qm_structure/`](./12_finite_qm_structure/)
 | [`TFQ-1042`](./12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md) | ds-qm207-211-five-import-cascade | `COMPUTATIONAL_CONTROL` | [`TFQ-0253`](./12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md) |
 | [`TFQ-1043`](./12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md) | ds-qm204-born-uniqueness-import-boundary | `IMPORTED_ASSUMPTION` | [`TFQ-0306`](./08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md) |
 
-### FINITE_QM_INFORMATION (9 derivations)
+### FINITE_QM_INFORMATION (13 derivations)
 
 Folder: [`13_finite_qm_information/`](./13_finite_qm_information/)
 
@@ -490,6 +495,10 @@ Folder: [`13_finite_qm_information/`](./13_finite_qm_information/)
 | [`TFQ-0276`](./13_finite_qm_information/tfq_0276_everettian_relative_state_contact.md) | Everettian relative-state contact | `OPEN_OBLIGATION` | [`TFQ-0275`](./13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md) |
 | [`TFQ-0277`](./13_finite_qm_information/tfq_0277_typed_authority_boundary_suite.md) | Typed authority-boundary suite | `SOURCE_RECORD` | [`TFQ-0272`](./13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md) |
 | [`TFQ-0278`](./13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md) | Copenhagen slot reserved as an authority shadow | `OPEN_OBLIGATION` | [`TFQ-0272`](./13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md) |
+| [TFQ-2610](13_finite_qm_information/tfq_2610_qi_model_admission.md) | Operational quantum information model | `IMPORTED_ASSUMPTION` | `TFQ-1008` |
+| [TFQ-2611](13_finite_qm_information/tfq_2611_qi_classical_channel_lift.md) | A stochastic kernel has a quantum measure-and-prepare lift | `PROVED_PROSE` | `TFQ-2610` |
+| [TFQ-2612](13_finite_qm_information/tfq_2612_qi_no_cloning_pair.md) | A common unitary cannot clone distinct nonorthogonal rays | `PROVED_PROSE` | `TFQ-2610` |
+| [TFQ-2613](13_finite_qm_information/tfq_2613_qi_entropy_coding_obligations.md) | From finite information quantities to coding theorems | `OPEN_OBLIGATION` | `TFQ-2610` |
 
 ### FINITE_GAUGE (6 derivations)
 
@@ -607,7 +616,7 @@ Folder: [`18_finite_topological/`](./18_finite_topological/)
 | [`TFQ-0050`](./18_finite_topological/tfq_0050_either_add_an_exact_su_3_fusion_file_or_leave_that_obligation_open.md) | Either add an exact SU(3) fusion file or leave that obligation open | `OPEN_OBLIGATION` | [`TFQ-0049`](./18_finite_topological/tfq_0049_keep_frobenius_and_multiplicity_free_fusion_off_the_missing_color_hopf_algebra.md) |
 | [`TFQ-0051`](./18_finite_topological/tfq_0051_keep_the_spin_lift_on_declared_flat_complexes_and_off_the_dirac.md) | Keep the spin lift on declared flat complexes and off the Dirac | `COMPUTATIONAL_CONTROL` | [`TFQ-0050`](./18_finite_topological/tfq_0050_either_add_an_exact_su_3_fusion_file_or_leave_that_obligation_open.md) |
 
-### FINITE_QG (27 derivations)
+### FINITE_QG (28 derivations)
 
 Folder: [`19_finite_qg/`](./19_finite_qg/)
 
@@ -640,6 +649,7 @@ Folder: [`19_finite_qg/`](./19_finite_qg/)
 | [`TFQ-0109`](./19_finite_qg/tfq_0109_ppn_endpoint_checks_do_not_discharge_regge_calculus_the_einstein_equation_or.md) | PPN endpoint checks do not discharge Regge calculus, the Einstein equation, or | `FINITE_MAP` | [`TFQ-0108`](./19_finite_qg/tfq_0108_gap_caller_supplied_lambda_is_not_the_physical_cosmological_constant_and_the_grid.md) |
 | [`TFQ-0110`](./19_finite_qg/tfq_0110_gap_on_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_curvature.md) | GAP on continuum limit, Einstein equation, physical cosmological constant, and smooth curvature. | `NOT_QG` | [`TFQ-0109`](./19_finite_qg/tfq_0109_ppn_endpoint_checks_do_not_discharge_regge_calculus_the_einstein_equation_or.md) |
 | [`TFQ-0111`](./19_finite_qg/tfq_0111_the_interface_stays_open_gap_f000_f002_001_and_gap_f002_s001_001_are_not_discharged.md) | The interface stays open. GAP-F000-F002-001 and GAP-F002-S001-001 are not discharged | `OPEN_INTERFACE` | [`TFQ-0110`](./19_finite_qg/tfq_0110_gap_on_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_curvature.md) |
+| [TFQ-2620](19_finite_qg/tfq_2620_qg_full_theory_completion_open.md) | Complete quantum gravity beyond the finite models | `OPEN_OBLIGATION` | `TFQ-0084` |
 
 ### CONTINUUM_INTERFACE (14 derivations)
 
@@ -1050,10 +1060,23 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-1182](./28_majorana/tfq_1182_maj_open_evidence_adequacy.md) | Evidence adequacy of laboratory measurement maps | `OPEN_OBLIGATION` | [TFQ-1163](./28_majorana/tfq_1163_maj_detector_inadequate.md) | `MAJ-OPEN-EVIDENCE-ADEQUACY` |
 | [TFQ-1183](./28_majorana/tfq_1183_maj_open_poisson_schrodinger.md) | Self-consistent Poisson-Schrodinger junction solver | `OPEN_OBLIGATION` | [TFQ-1179](./28_majorana/tfq_1179_maj_open_multiterminal_envelope.md) | `MAJ-OPEN-POISSON-SCHRODINGER` |
 
-### COMPUTATION (82 derivations)
+### COMPUTATION (95 derivations)
 
 | ID | Name | Status | Parent | DAG node |
 |---|---|---|---|---|
+| [TFQ-2601](./29_computation/tfq_2601_comp_utm_conditional_route.md) | Conditional UTM route through the existing machine construction | `CONDITIONAL` | [TFQ-1284](./29_computation/tfq_1284_comp_c1_canonical_separated_alphabet.md) | `COMP-UTM-CONDITIONAL-ROUTE` |
+| [TFQ-2602](./29_computation/tfq_2602_comp_cost_model_import.md) | Encoding, input length and uniform step cost | `IMPORTED_ASSUMPTION` | [TFQ-2601](./29_computation/tfq_2601_comp_utm_conditional_route.md) | `COMP-COST-MODEL-IMPORT` |
+| [TFQ-2603](./29_computation/tfq_2603_comp_p_definition.md) | Deterministic polynomial time | `DEFINITION` | [TFQ-2602](./29_computation/tfq_2602_comp_cost_model_import.md) | `COMP-P-DEFINITION` |
+| [TFQ-2604](./29_computation/tfq_2604_comp_np_verifier_equivalence.md) | NP from polynomial witnesses and nondeterministic runs | `CONDITIONAL` | [TFQ-2603](./29_computation/tfq_2603_comp_p_definition.md) | `COMP-NP-VERIFIER-EQUIVALENCE` |
+| [TFQ-2605](./29_computation/tfq_2605_comp_unary_bounded_reach_np.md) | Unary step-bounded rewriting is in NP | `CONDITIONAL` | [TFQ-1286](./29_computation/tfq_1286_comp_c2_word_rewriting.md) | `COMP-UNARY-BOUNDED-REACH-NP` |
+| [TFQ-2606](./29_computation/tfq_2606_comp_cook_levin_import.md) | Cook-Levin and the reduction obligation | `IMPORTED_ASSUMPTION` | [TFQ-2604](./29_computation/tfq_2604_comp_np_verifier_equivalence.md) | `COMP-COOK-LEVIN-IMPORT` |
+| [TFQ-2607](./29_computation/tfq_2607_comp_p_vs_np_open.md) | P versus NP | `OPEN_OBLIGATION` | [TFQ-2603](./29_computation/tfq_2603_comp_p_definition.md) | `COMP-P-VS-NP-OPEN` |
+| [TFQ-2608](./29_computation/tfq_2608_comp_polynomial_presentation_invariance.md) | P and NP under efficient faithful encodings | `CONDITIONAL` | [TFQ-2604](./29_computation/tfq_2604_comp_np_verifier_equivalence.md) | `COMP-POLYNOMIAL-PRESENTATION-INVARIANCE` |
+| [TFQ-2609](./29_computation/tfq_2609_comp_reversible_boolean_embedding.md) | A reversible Boolean permutation embeds as a unitary | `CONDITIONAL` | [TFQ-1284](./29_computation/tfq_1284_comp_c1_canonical_separated_alphabet.md) | `COMP-REVERSIBLE-BOOLEAN-EMBEDDING` |
+| [TFQ-2614](./29_computation/tfq_2614_qc_uniform_circuits_bqp.md) | Uniform quantum circuits and BQP | `DEFINITION` | [TFQ-2610](./13_finite_qm_information/tfq_2610_qi_model_admission.md) | `QC-UNIFORM-CIRCUITS-BQP` |
+| [TFQ-2615](./29_computation/tfq_2615_qc_gate_error_budget.md) | Gate errors telescope across a finite circuit | `CONDITIONAL` | [TFQ-2614](./29_computation/tfq_2614_qc_uniform_circuits_bqp.md) | `QC-GATE-ERROR-BUDGET` |
+| [TFQ-2616](./29_computation/tfq_2616_qc_fault_tolerance_open.md) | Scalable physical quantum computation | `OPEN_OBLIGATION` | [TFQ-2614](./29_computation/tfq_2614_qc_uniform_circuits_bqp.md) | `QC-FAULT-TOLERANCE-OPEN` |
+| [TFQ-2617](./29_computation/tfq_2617_qc_np_bqp_relation_open.md) | NP and BQP remain distinct open comparisons | `OPEN_OBLIGATION` | [TFQ-2604](./29_computation/tfq_2604_comp_np_verifier_equivalence.md) | `QC-NP-BQP-RELATION-OPEN` |
 | [TFQ-1283](./29_computation/tfq_1283_comp_c1_first_separation_replay.md) | First separation replay as the two-mark alphabet | `COMPUTATIONAL_CONTROL` | [TFQ-0486](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) | `COMP-C1-FIRST-SEPARATION-REPLAY` |
 | [TFQ-1284](./29_computation/tfq_1284_comp_c1_canonical_separated_alphabet.md) | Canonical regimes on n marks are pairwise separated | `PROVED_LEAN` | [TFQ-1283](./29_computation/tfq_1283_comp_c1_first_separation_replay.md) | `COMP-C1-CANONICAL-SEPARATED-ALPHABET` |
 | [TFQ-1285](./29_computation/tfq_1285_comp_c1_identity_convention_input.md) | Identity convention is a declared input of the computation alphabet | `IMPORTED_ASSUMPTION` | [TFQ-1283](./29_computation/tfq_1283_comp_c1_first_separation_replay.md) | `COMP-C1-IDENTITY-CONVENTION-INPUT` |

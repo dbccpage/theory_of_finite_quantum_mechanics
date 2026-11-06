@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-sn-protected-answer-transport.md`
 
 - file: [dag/derivations/independent/pgw-sn-protected-answer-transport.md](../../../dag/derivations/independent/pgw-sn-protected-answer-transport.md)
-- sha256 (`lf-normalised`): `d40bcd22d8f5ab23edd2ff0aa805db2f82faf867db60b8c16811658287be5bdb`
+- sha256 (`lf-normalised`): `3fd918dc5551a1954c56977f9adff4b4c5c46885c5b42c996a7e7c67dcdc9de0`
 - cited in: node.source
 - counts toward the grade: yes
 

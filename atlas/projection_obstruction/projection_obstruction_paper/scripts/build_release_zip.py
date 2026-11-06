@@ -55,6 +55,7 @@ import tempfile
 import zipfile
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from regen_sha256sums import (
     MANIFEST_NAME,
     PAYLOAD_MANIFEST_NAME,

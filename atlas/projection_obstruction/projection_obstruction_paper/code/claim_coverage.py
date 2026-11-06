@@ -53,6 +53,7 @@ REQUIRED_LEDGER_CLAIM_IDS = REQUIRED_CLAIM_IDS
 
 
 PROSE_SUPPLEMENT_CLAIMS = {
+    "NUM1": "Residual uncertainty and correction budgets, section 5.18; scoped Lean supplement",
     "E-LIMITS": "Theorem 5.7 and Corollary 5.8, §5.10",
     "V65-METRIC": "Theorem 5.9 and Proposition 5.10, §5.11",
     "V65-PURE": "Theorem 5.11, §5.12",

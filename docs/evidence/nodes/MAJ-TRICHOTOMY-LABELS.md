@@ -32,7 +32,7 @@ These are diagnostic schedule classes only; their relation to FOC terminals is f
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-DEF-TRICHOTOMY-LABELS claims DEFINITION; audited status DEFINITION
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-DEF-TRICHOTOMY-LABELS claims DEFINITION; audited status DEFINITION
 
 ## Review
 
@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `papers/core/majorana/lean4/MajoranaCore.lean`
+### Lean: `dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
 
-- file: [papers/core/majorana/lean4/MajoranaCore.lean](../../../papers/core/majorana/lean4/MajoranaCore.lean)
+- file: [dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean](../../../dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean)
 - sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
 - cited in: node.lean, record TFQ-1139
 - replay: `verified`
   - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaCore.lean`
+- check: `cd lean4 && lake build   # the library that contains dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -73,20 +73,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md](../../../dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md)
-- sha256 (`lf-normalised`): `69399c499254af73931d8f6cdd99e07f034fa2443d1cd17fb710eda58ae8ced1`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1139
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md`
+
+- file: [dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md](../../../dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md)
+- sha256 (`lf-normalised`): `692956f95c9b95154427eb33f6426584dcf551451bd78a73dcff0eed2052a85c`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1139
+- counts toward the grade: no
 
 ## Routes
 

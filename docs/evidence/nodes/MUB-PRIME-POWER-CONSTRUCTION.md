@@ -95,10 +95,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0403
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/25_mub/mub6/README.md`
+
+- file: [dag/derivations/25_mub/mub6/README.md](../../../dag/derivations/25_mub/mub6/README.md)
+- sha256 (`lf-normalised`): `fcf24743ee6d9dab9c377dc5158e9cac9769f062d7defbfb006e053c55255bf9`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md`
 
 - file: [dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md](../../../dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md)
-- sha256 (`lf-normalised`): `2f116e1ab962c5884f1b46f70c8bc323833fafbd19c85cfdf9db435a7cda9261`
+- sha256 (`lf-normalised`): `e40901dfd6be0c8d88e1d7cfc318379fd081f2e7f300dec7302b5ed065966412`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0403
 - counts toward the grade: no
@@ -128,13 +135,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/research/campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json)
 - sha256 (`lf-normalised`): `4826491277051b78fa1d5060cc5be1d77ccd681537cdfbe64bfe1c9de1e39450`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/mub6/README.md`
-
-- file: [papers/core/mub6/README.md](../../../papers/core/mub6/README.md)
-- sha256 (`lf-normalised`): `b876520ea3960bef932e3723a1c47c60d05dace398dcb9a77518b724d8216f8e`
 - cited in: node.source
 - counts toward the grade: yes
 

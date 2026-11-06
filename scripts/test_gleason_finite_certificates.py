@@ -17,9 +17,18 @@ class TestGleasonFiniteCertificates(unittest.TestCase):
     def test_verify_all_certificates_passes(self) -> None:
         receipt = cert.verify_all_certificates()
         self.assertEqual(receipt["status"], "PASS")
-        self.assertEqual(receipt["frames_verified"], 21)
-        self.assertEqual(receipt["projection_identity_pairs_verified"], 81)
+        self.assertEqual(receipt["frames_verified"], 22)
+        self.assertEqual(receipt["projection_identity_pairs_verified"], 144)
         self.assertTrue(receipt["two_frame_meridian_antisymmetry_verified"])
+        self.assertEqual(receipt["target1_general_anchor_meridian_checks"], 27)
+        self.assertEqual(receipt["spherical_frame_pythagoras_checks"], 242)
+        self.assertEqual(receipt["two_frame_cross_anchor_checks"], 88)
+        self.assertTrue(receipt["witness_111_nine_anchor_isolation_verified"])
+        self.assertTrue(receipt["witness_111_two_frame_fifth_ball_verified"])
+        self.assertTrue(receipt["witness_neg211_one_eighth_isolation_verified"])
+        self.assertTrue(receipt["perturbed_two_frame_bounce_back_verified"])
+        self.assertTrue(receipt["witness_123_fifteen_ray_isolation_verified"])
+        self.assertEqual(receipt["meridian_step_modulus_decomp_pairs_verified"], 122)
 
     def test_is_frame_rejects_non_orthogonal_or_zero(self) -> None:
         self.assertFalse(
@@ -235,6 +244,184 @@ class TestGleasonFiniteCertificates(unittest.TestCase):
                         cert.ray_sin_sq(p, anchor) < Fraction(1, 2)
                         and cert.ray_sin_sq(q, anchor) < Fraction(1, 2)
                     )
+
+    def test_target1_general_anchor_meridian_and_isolation(self) -> None:
+        # 1. General-anchor meridian partner coincides with meridian_ortho at tomo_e1
+        y_eq = cert.GVec(cert.G_ZERO, cert.GaussRat.of(1), cert.GaussRat.of(2, -1))
+        self.assertEqual(
+            cert.anchor_meridian_ortho(cert.TOMO_E1, y_eq),
+            cert.meridian_ortho(y_eq),
+        )
+        self.assertEqual(
+            cert.anchor_kelvin_eq(cert.TOMO_E1, y_eq),
+            cert.kelvin_eq(y_eq),
+        )
+        # 2. General-anchor meridian bridge & raySinSq duality on non-unit anchors (e.g. tomo_e12, tomo_e23i)
+        for a_vec, y_vec in (
+            (cert.TOMO_E12, cert.PARTNER_E12_MINUS.smul(cert.GaussRat.of(Fraction(1, 3)))),
+            (cert.TOMO_E23I, cert.PARTNER_E23I_MINUS.smul(cert.GaussRat.of(Fraction(2, 5)))),
+            (cert.WITNESS_111, cert.WITNESS_NEG211.smul(cert.GaussRat.of(Fraction(1, 4)))),
+        ):
+            self.assertEqual(a_vec.inner(y_vec), cert.G_ZERO)
+            step_vec = cert.anchor_meridian_step(a_vec, y_vec)
+            ortho_vec = cert.anchor_meridian_ortho(a_vec, y_vec)
+            kelvin_vec = cert.anchor_kelvin_eq(a_vec, y_vec)
+            cross_vec = cert.herm_cross(a_vec, y_vec)
+            self.assertTrue(cert.is_frame(a_vec, y_vec, cross_vec))
+            self.assertTrue(cert.is_frame(step_vec, ortho_vec, cross_vec))
+            self.assertEqual(
+                ortho_vec.smul(cert.GaussRat.of(-Fraction(1) / y_vec.norm_sq())),
+                a_vec.add(kelvin_vec),
+            )
+            expected_sin = y_vec.norm_sq() / (a_vec.norm_sq() + y_vec.norm_sq())
+            self.assertEqual(cert.ray_sin_sq(step_vec, a_vec), expected_sin)
+            self.assertEqual(cert.ray_sin_sq(ortho_vec, y_vec), expected_sin)
+            for f in (cert.exotic_qi3, lambda u: (Fraction(1) + cert.sp(7, u)) / Fraction(3)):
+                self.assertEqual(f(step_vec) - f(a_vec), f(y_vec) - f(ortho_vec))
+                self.assertEqual(f(step_vec) + f(a_vec.add(kelvin_vec)), f(a_vec) + f(y_vec))
+            for g in (cert.s3, cert.s3_lead_all, lambda u: cert.sp(7, u)):
+                self.assertEqual(g(step_vec) - g(a_vec), g(y_vec) - g(ortho_vec))
+
+        # 3. Spherical 3-frame Pythagoras identity & two-frame cross-anchor proximity bound
+        for _, u, v, w in cert.build_test_frames():
+            for a_vec in cert.NINE_ANCHORS.values():
+                self.assertEqual(
+                    cert.ray_sin_sq(u, a_vec)
+                    + cert.ray_sin_sq(v, a_vec)
+                    + cert.ray_sin_sq(w, a_vec),
+                    Fraction(2),
+                )
+            self.assertLessEqual(
+                cert.ray_sin_sq(w, cert.TOMO_E3),
+                cert.ray_sin_sq(u, cert.TOMO_E1) + cert.ray_sin_sq(v, cert.TOMO_E2),
+            )
+            self.assertLessEqual(
+                cert.ray_sin_sq(w, cert.PARTNER_E12_MINUS),
+                cert.ray_sin_sq(u, cert.TOMO_E3) + cert.ray_sin_sq(v, cert.TOMO_E12),
+            )
+
+        # 4. witness_111 9-anchor isolation (raySinSq(u, a) >= 1/3 for all u perp witness_111)
+        for a_vec in cert.NINE_ANCHORS.values():
+            self.assertIn(
+                cert.ray_sin_sq(cert.WITNESS_111, a_vec),
+                (Fraction(1, 3), Fraction(2, 3)),
+            )
+            for u_ortho in (
+                cert.WITNESS_NEG211,
+                cert.PARTNER_E12_MINUS,
+                cert.PARTNER_E13_MINUS,
+                cert.PARTNER_E23_MINUS,
+                cert.GVec.real(1, 2, -3),
+            ):
+                self.assertGreaterEqual(
+                    cert.ray_sin_sq(u_ortho, a_vec),
+                    Fraction(1, 3),
+                )
+
+        # 5. Exact 2-frame B_{1/5}(T_9) determination of witness_111 vs. < 1/8 isolation at witness_neg211
+        self.assertTrue(
+            cert.is_frame(cert.WITNESS_NEG211, cert.PROBE_120, cert.PROBE_2M15)
+        )
+        self.assertEqual(
+            cert.ray_sin_sq(cert.PROBE_120, cert.TOMO_E12),
+            Fraction(1, 10),
+        )
+        self.assertEqual(
+            cert.ray_sin_sq(cert.PROBE_2M15, cert.TOMO_E3),
+            Fraction(1, 6),
+        )
+        for g in (cert.s3, cert.s3_lead_x, cert.s3_lead_all, lambda u: cert.sp(7, u)):
+            self.assertEqual(
+                g(cert.WITNESS_111),
+                g(cert.PROBE_120) + g(cert.PROBE_2M15),
+            )
+            eps_bound = max(abs(g(cert.PROBE_120)), abs(g(cert.PROBE_2M15)))
+            self.assertLessEqual(abs(g(cert.WITNESS_111)), 2 * eps_bound)
+            self.assertLessEqual(abs(g(cert.WITNESS_NEG211)), 2 * eps_bound)
+        self.assertEqual(
+            cert.ray_sin_sq(cert.WITNESS_NEG211, cert.PARTNER_E12_MINUS),
+            Fraction(1, 4),
+        )
+        u_neg_real = cert.GVec.real(1, 3, -1)
+        u_neg_cplx = cert.GVec(
+            cert.GaussRat.of(1, 1), cert.GaussRat.of(1, 2), cert.GaussRat.of(1, 0)
+        )
+        for u_neg, v_neg in (
+            (cert.PROBE_120, cert.PROBE_2M15),
+            (cert.PROBE_2M15, cert.PROBE_120),
+            (u_neg_real, cert.herm_cross(cert.WITNESS_NEG211, u_neg_real)),
+            (u_neg_cplx, cert.herm_cross(cert.WITNESS_NEG211, u_neg_cplx)),
+        ):
+            self.assertTrue(cert.is_frame(u_neg, v_neg, cert.WITNESS_NEG211))
+            self.assertGreaterEqual(
+                cert.ray_sin_sq(u_neg, cert.TOMO_E12)
+                + cert.ray_sin_sq(v_neg, cert.TOMO_E3),
+                Fraction(1, 4),
+            )
+            self.assertFalse(
+                cert.ray_sin_sq(u_neg, cert.TOMO_E12) < Fraction(1, 8)
+                and cert.ray_sin_sq(v_neg, cert.TOMO_E3) < Fraction(1, 8)
+            )
+
+        # 6. Perturbed two-frame bisector bounce-back (including non-collinear second-step perturbations with LHS > 0)
+        u_pert = cert.GVec.real(1, 5, -6)
+        v_pert = cert.herm_cross(cert.WITNESS_111, u_pert)
+        for u_prime, expected_lhs in (
+            (cert.GVec.real(1, 9, -13), Fraction(3, 251)),
+            (cert.GVec.real(-1, 3, -8), Fraction(6, 37)),
+        ):
+            v_prime = cert.herm_cross(v_pert, u_prime)
+            self.assertTrue(cert.is_frame(cert.WITNESS_111, u_pert, v_pert))
+            self.assertTrue(cert.is_frame(v_pert, u_prime, v_prime))
+            self.assertLessEqual(
+                cert.ray_sin_sq(v_pert, cert.WITNESS_NEG211),
+                cert.ray_sin_sq(u_pert, cert.PARTNER_E23_MINUS),
+            )
+            lhs_bounce = cert.ray_sin_sq(v_prime, cert.WITNESS_111)
+            self.assertEqual(lhs_bounce, expected_lhs)
+            self.assertGreater(lhs_bounce, Fraction(0))
+            self.assertLessEqual(
+                lhs_bounce,
+                cert.ray_sin_sq(u_pert, cert.PARTNER_E23_MINUS)
+                + cert.ray_sin_sq(u_prime, cert.PARTNER_E23_MINUS),
+            )
+
+        # 7. Generic ray witness_123 = (1, 2, 3) 9-anchor (>= 1/14) and 6-bisector (>= 1/28) frame partner isolation
+        for u_123 in (
+            cert.GVec.real(2, -1, 0),
+            cert.GVec.real(3, 0, -1),
+            cert.GVec.real(0, 3, -2),
+            cert.GVec.real(1, 1, -1),
+        ):
+            v_123 = cert.herm_cross(cert.WITNESS_123, u_123)
+            self.assertTrue(cert.is_frame(cert.WITNESS_123, u_123, v_123))
+            for partner_vec in (u_123, v_123):
+                for a_vec in cert.NINE_ANCHORS.values():
+                    self.assertGreaterEqual(
+                        cert.ray_sin_sq(partner_vec, a_vec),
+                        Fraction(1, 14),
+                    )
+                for b_vec in cert.SIX_PARTNERS.values():
+                    self.assertGreaterEqual(
+                        cert.ray_sin_sq(partner_vec, b_vec),
+                        Fraction(1, 28),
+                    )
+
+        # 8. Meridian-step modulus orthogonal projection decomposition & collinear identity
+        u = cert.WITNESS_111
+        c_col = cert.GaussRat.of(Fraction(3, 2), Fraction(-1, 2))
+        v_col = u.smul(c_col)
+        self.assertEqual(cert.ray_sin_sq(u, v_col), Fraction(0))
+        self.assertEqual(u.smul(cert.proj_scalar(u, v_col)), v_col)
+        v_noncol = cert.WITNESS_123
+        a_proj = u.smul(cert.proj_scalar(u, v_noncol))
+        y_orth = v_noncol.sub(a_proj)
+        self.assertEqual(a_proj.inner(y_orth), cert.G_ZERO)
+        self.assertEqual(a_proj.add(y_orth), v_noncol)
+        self.assertEqual(
+            y_orth.norm_sq() / (a_proj.norm_sq() + y_orth.norm_sq()),
+            cert.ray_sin_sq(u, v_noncol),
+        )
 
 
 if __name__ == "__main__":

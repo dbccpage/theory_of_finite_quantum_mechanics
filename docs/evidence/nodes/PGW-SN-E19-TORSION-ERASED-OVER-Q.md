@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Rust: `education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs`
+### Rust: `education/3_minimal_symbol_systems/code/rust/src/smith_normal_form.rs`
 
-- file: [education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs](../../../education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs)
+- file: [education/3_minimal_symbol_systems/code/rust/src/smith_normal_form.rs](../../../education/3_minimal_symbol_systems/code/rust/src/smith_normal_form.rs)
 - sha256 (`bytes`): `78cf459f4d860074ecad10cffdc415f211995b06e002bf7dd61f7bed216e0278`
 - cited in: node.rust
 
@@ -57,7 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md](../../../dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md)
-- sha256 (`lf-normalised`): `18c708aef9f7e580fac876277e3868baba1c45a99949a869f5906a4115c71a30`
+- sha256 (`lf-normalised`): `6731c15502695af9f3dc745974e735c5bfb2d7edac887ba4821907ceefc7a923`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0525
 - counts toward the grade: no
@@ -69,7 +69,7 @@ Named by the node; not in this repository and not checked here.
 - `external:sha256:5aef105ec34fddc0f0092687564bcbbf1a27ccde32e756b3050c2edbb23b6e9d:46-49`
 - `external:sha256:5aef105ec34fddc0f0092687564bcbbf1a27ccde32e756b3050c2edbb23b6e9d:51-54`
 - `external:sha256:a51ceb8d0d5703baac230c14caa4638cf25f3ae46fdc77013c7e09f27caaa1e9:146-147`
-- `external:upstream/education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs::compute_integral_homology`
+- `external:upstream/education/3_minimal_symbol_systems/code/rust/src/smith_normal_form.rs::compute_integral_homology`
 
 ## Absences recorded by the TFQ records
 

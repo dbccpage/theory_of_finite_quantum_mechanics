@@ -2,7 +2,7 @@ Status: AI-drafted, awaiting human review.
 
 # Admit: a fragment of the Genesis regime, with priced imports
 
-Admit is the language defined in `research/genesis_language/SPEC.md` and embedded in `lean4/AdmitCore.lean`, `lean4/AdmitReflect.lean`, `lean4/AdmitInterpret.lean`, and `lean4/AdmitImport.lean`. The core stores admitted data, form declarations, and ordered cuts. Supply does not change a regime. A cut is admitted only between two data indices that differ. An import record names axioms and a cost and sits beside the regime; `Holds` does not read it.
+Admit is the language defined in `education/7_genesis_language/SPEC.md` and embedded in `lean4/AdmitCore.lean`, `lean4/AdmitReflect.lean`, `lean4/AdmitInterpret.lean`, and `lean4/AdmitImport.lean`. The core stores admitted data, form declarations, and ordered cuts. Supply does not change a regime. A cut is admitted only between two data indices that differ. An import record names axioms and a cost and sits beside the regime; `Holds` does not read it.
 
 S(n) and MSS-N are not core rules. TFQ-0510 records the two boxed laws as design rules, not as theorems of 19L57G1. TFQ-0528 records the MSS-N atlas as external, with MSS-2 not equal to S(2) and licensed depth 0. Both are open imports.
 

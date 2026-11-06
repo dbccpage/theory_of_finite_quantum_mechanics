@@ -11,7 +11,7 @@ proofs.
 
 ## Keywords
 
-product-state retraction; oblique projection; quantum correlations; trace-norm defect; higher-order tensor components; simplicial cochains; Hodge Laplacian; graded square defect; finite Hamiltonian dynamics; Lean 4; evidence boundaries; Symbol Game.
+product-state retraction; oblique projection; quantum correlations; trace-norm defect; higher-order tensor components; simplicial cochains; Hodge Laplacian; graded square defect; finite Hamiltonian dynamics; Lean 4; evidence boundaries.
 
 ## Identity and license
 

@@ -10,17 +10,23 @@
 
 ## 1. Abstract & Formal Statement
 
-For a finite gauge group G, a nontrivial irreducible unitary representation R and dimension d >= 2, there are explicit beta_0 > 0, K and sigma > 0 depending on G, R and d such that for 0 <= beta < beta_0 the Wilson-action expectation of the R-character of every rectangular Wilson loop C on a finite periodic lattice much larger than C satisfies |<W_R(C)>| <= K exp(-sigma Area(C)), with Area(C) the minimal spanning area.
+Target: in an explicitly justified non-screening regime for a finite gauge group G and nontrivial irreducible unitary representation R in dimension d >= 2, construct the finite periodic-lattice Wilson expectation and derive explicit beta_0 > 0, K and sigma > 0 such that |<W_R(C)>| <= K exp(-sigma Area(C)) for rectangular loops C and 0 <= beta < beta_0 on lattices with stated size and boundary conditions. Current Lean lemmas establish the bound only for abstract expectations supplied with the cluster bounds; arbitrary higher-dimensional representations are not covered.
 
 ### Governing Obligation
-Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.
+Define the actual finite Wilson configuration sum and normalization, derive its character expansion, and prove the cluster/animal estimates currently supplied as structure fields, including in the abelian case. Prove the identification of the 2D decimation definition with an integrated expectation under explicit boundary conditions. Derive the non-screening and spanning-minimality premises for the claimed regime; a zero cubic character sum alone is insufficient. This would replace the declared formula in TFQ-0024 by a derived strong-coupling inequality, with no weak-coupling or continuum claim.
 
 ### Source Status
-Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked across Rust and Python; conditional on non-screening/center-protection in d >= 3 (including S_3, S_4, and A_5 cubic character invariants and d = 4 multi-plaquette boundary collar contraction bounds), unconditional for abelian and 2D decimation.
+Lean establishes geometric bound consequences for abstract expectation structures: the abelian case assumes AbelianWilsonExpectation.cluster_expansion_bound; the nonabelian case assumes NonAbelianWilsonExpectation.center_protected_bound and spanning minimality. The 2D decimation theorem unfolds a prescribed formula. Neither constructs the finite lattice Wilson measure or derives its cluster expansion. Rust/Python examples do not discharge these general premises. Status remains CONDITIONAL.
 
 ---
 
 ## 2. Derivation Context
+
+### Admitted Structural Imports
+- **Admitted**: `AbelianWilsonExpectation.cluster_expansion_bound`
+- **Admitted**: `NonAbelianWilsonExpectation.center_protected_bound`
+- **Admitted**: `CenterProtectedHypothesis.spanning_minimality`
+- **Admitted**: `Identification of exact2DDecimationValue with the finite Wilson measure`
 
 ### See Also
 - `TFQ-0031`
@@ -30,12 +36,10 @@ Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked ac
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/FQCD/StrongCouplingAreaLaw.lean`
-- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum`
-- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity`
-- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity`
-- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity`
-- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.abelian_strong_coupling_area_law`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.center_protected_3d_strong_coupling_area_law`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_group_2d_character_decimation_area_law`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.klarner_lattice_animal_geometric_sum`
 
 ### Rust Certifiers
 - `code/rust/src/fqcd/strong_coupling_area_law.rs`
@@ -56,4 +60,4 @@ Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked ac
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
+  - `dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md`

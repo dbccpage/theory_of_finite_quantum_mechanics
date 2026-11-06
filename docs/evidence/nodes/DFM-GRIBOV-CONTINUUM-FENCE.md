@@ -33,7 +33,7 @@ The recorded comparison is this pair of quadratic forms on two generators of one
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.8-FENCE claims PROVED_LEAN; audited status OPEN
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.8-FENCE claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -74,10 +74,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source, record TFQ-1132
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md](../../../dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md)
-- sha256 (`lf-normalised`): `4ecb1e1b5da9862860ee66b51f45865f5c81232cfdfe38ff83e531ad37f22a39`
+- sha256 (`lf-normalised`): `413051784fd9ec7618ee38d3d76a1b8ae8f44cac30ed649a76d869dd8345867d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1132
 - counts toward the grade: no
@@ -86,13 +93,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/derivations/independent/dfm-gribov-continuum-fence.md](../../../dag/derivations/independent/dfm-gribov-continuum-fence.md)
 - sha256 (`lf-normalised`): `19149f01a88b5d6441c19665a2d0e2e91ea0a1c4185edd2294ca8f8b6be544e6`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
 - cited in: node.source
 - counts toward the grade: yes
 

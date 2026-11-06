@@ -57,6 +57,6 @@ Lean formalizes the explicit four-component/four-direction rational kernel, its 
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
+  - `dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md`
   - `lean4/FermionSignWilsonDiracGamma5.lean`
   - `checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py`

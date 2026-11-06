@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md](../../../dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md)
-- sha256 (`lf-normalised`): `6ce77b0e46e13d34e02de83217801821e1d105ce307a6e81f1c1514909be2c72`
+- sha256 (`lf-normalised`): `19bb5c826be8bb38d02e10f2a55004e83b989eb9b160fb1fe6b7d65d2e848967`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0518
 - counts toward the grade: no
@@ -75,7 +75,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:sha256:157f84c3f7ee7150d5a2112923a602668ae545a0a318f5205025026142f58b71:155-158`
 - `external:sha256:157f84c3f7ee7150d5a2112923a602668ae545a0a318f5205025026142f58b71:98-99`
-- `external:upstream/education/symmetric_group_presentations/code/sn_core.py::S6Descent`
+- `external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S6Descent`
 
 ## Absences recorded by the TFQ records
 

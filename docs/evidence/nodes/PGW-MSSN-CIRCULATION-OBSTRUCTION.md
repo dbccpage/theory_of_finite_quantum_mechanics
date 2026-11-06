@@ -61,9 +61,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs`
+### Rust: `education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs`
 
-- file: [education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs](../../../education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs)
+- file: [education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs](../../../education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs)
 - sha256 (`bytes`): `439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2`
 - cited in: node.rust
 
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md](../../../dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md)
-- sha256 (`lf-normalised`): `23f2b07c2c0d921cdc33192d804149edae630d4b813b86083206c5d5bb62d1da`
+- sha256 (`lf-normalised`): `17e04ab27bb6776789c2e7f5effe68d7542187f026f53943d822f48c10dfeba6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0534
 - counts toward the grade: no
@@ -87,8 +87,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:sha256:1cd37babf20398c25a80ebbcad266a07807181d81f7502740c13b03d79822db7:11`
-- `external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux`
-- `external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization`
+- `external:upstream/education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux`
+- `external:upstream/education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization`
 
 ## Absences recorded by the TFQ records
 

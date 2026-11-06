@@ -9,7 +9,7 @@ Full findings, independent rebuild evidence, and the handoff to Claude are in
 ## Distinct questions and statuses
 
 - **TFQ-1055 / FQ-GLEASON-QI3-FRAME-FUNCTIONS:** the original statement has **no continuity
-  hypothesis**. Its universal quadratic-rigidity assertion is REFUTED, even for nonnegative
+  hypothesis**. Its unrestricted quadratic-rigidity assertion is REFUTED, even for nonnegative
   functions, by `exoticQi3_isNonnegFrameFunction` and `exoticQi3_not_quadratic`. The original
   decision question is retained verbatim; the zero-one and specified-extension alternatives
   have their separate negative answers. This is not an open pointwise-continuity statement.
@@ -105,7 +105,7 @@ the required accumulated-error control.
 A zero-weight residual supported in an angular cap of radius <45 degrees vanishes if
 each ray completes to an admissible rational orthogonal frame: a frame can meet that cap
 in at most one ray, and the frame identity forces its value to zero. This excludes that
-support construction only. It proves neither that a counterexample must be a Zorn/Hamel
+support construction only. It shows in this model neither that a counterexample must be a Zorn/Hamel
 object nor that a finite description or finite search could never discover one.
 
 The existing selective-oscillation results at `tomo_e1` rule out continuity everywhere
@@ -126,7 +126,7 @@ infinite-dimensional trace-class states.
 ## Phase 2 finite and exact-arithmetic Gleason model (`lean4/BornGaussianFiniteModel.lean`)
 
 `lean4/BornGaussianFiniteModel.lean` (checked by the nine-module Gleason audit in
-`dag/research/gleason_lean_audit.json` across 724 declarations using only `propext`,
+`dag/research/gleason_lean_audit.json` across 807 declarations using only `propext`,
 `Classical.choice`, and `Quot.sound`, with companion exact rational certificate checks in
 `scripts/verify_gleason_finite_certificates.py` and
 `dag/research/gleason_finite_model_receipt.json`) formalizes the finite and exact-arithmetic
@@ -181,7 +181,7 @@ Gleason model over $\mathbb{Q}(i)^3$:
      (`no_effectValuation_induces_exoticQi3`, `no_effectValuation_induces_sp`).
 
 4. **Exact rational equivalence of vector-level and projective ray-level pointwise continuity:**
-   - Proves the rational inequality `raySinSq u v₀ <= distSqVec u v₀ / normSqVec v₀`
+   - Establishes the rational inequality `raySinSq u v₀ <= distSqVec u v₀ / normSqVec v₀`
      (`raySinSq_le_distSqVec_div`) and the exact orthogonal projection identity
      `distSqVec (GVec.smul (projScalar u v₀) u) v₀ = normSqVec v₀ * raySinSq u v₀`
      (`distSqVec_projScalar_smul`).
@@ -297,4 +297,9 @@ Gleason model over $\mathbb{Q}(i)^3$:
        (`zero_on_xy_plane_of_subcone_zero_and_coordSignSymmetric`), and explicit obstruction for
        `dedekindRayCut` at $(a, b) = (1, 2)$ (`dedekindRayCut_isCoordSignSymmetric`,
        `dedekindRayCut_fails_gaussian_halving_at_1_2`).
+     - **Target 1 (`TFQ-1057` Section 7C of `lean4/BornGaussianFiniteModel.lean`) — General-anchor meridian coupling, spherical 3-frame Pythagoras identity, fixed-anchor frame isolation obstruction, and conditional `TFQ-1057` closures**:
+       - **General-anchor meridian partner and zero-slack bridge**: For any anchor $a \in \mathbb{Q}(i)^3 \setminus \{0\}$ and any equatorial ray $y \neq 0$ with $\langle a, y \rangle = 0$, the meridian step `anchorMeridianStep a y = a + y` and orthogonal partner `anchorMeridianOrtho a y` $= -\|y\|^2 a + \|a\|^2 y$ satisfy $\langle a+y, w(a,y) \rangle = 0$ (`inner_anchorMeridianStep_anchorMeridianOrtho`), non-vanishing (`addVec_a_y_ne_zero_of_ortho`, `anchorMeridianOrtho_ne_zero_of_ortho`), and share cross-product axis $a \times y$ (`isFrame_anchor_meridian_base`, `isFrame_anchor_meridian_rot`), yielding the exact Kelvin bridge $f(a+y) - f(a) = f(y) - f(w(a,y))$ (`anchor_meridian_kelvin_bridge`, `anchor_meridian_zeroWeight_bridge`) with equal step distances $d_{\text{ray}}^2(a+y, a) = d_{\text{ray}}^2(w(a,y), y) = \|y\|^2/(\|a\|^2 + \|y\|^2)$ (`anchorMeridianOrtho_raySinSq_eq`). Pointwise continuity at any finite anchor list yields a single shared modulus $\delta = \min_i \delta_i > 0$ simultaneously governing meridian steps across all anchor equators (`finite_anchors_pointwiseRayContinuous_common_delta`, `finite_anchors_uniform_equatorial_continuity_of_anchors_continuous`, `multi_axis_uniform_equatorial_continuity_of_axes_continuous`, `nine_anchor_uniform_equatorial_continuity_of_anchors_continuous`).
+       - **Spherical 3-frame Pythagoras identity, fixed-anchor frame isolation obstruction, and 2-step vs. $<1/8$ dichotomy**: Because $\text{quadRay}(\text{rayProj}(a))$ is a nonnegative frame function of weight $1$, every orthogonal 3-frame $\{u, v, w\}$ and non-zero ray $a$ satisfy $d_{\text{ray}}^2(u, a) + d_{\text{ray}}^2(v, a) + d_{\text{ray}}^2(w, a) = 2$ (`frame_raySinSq_sum_eq_two`, `anchor_frame_raySinSq_sum_eq_two`). Double-summing over two orthogonal 3-frames $\{u, v, w\}$ and $\{a_1, a_2, a_3\}$ yields the two-partner anchor proximity inequality $d_{\text{ray}}^2(w, a_3) \le d_{\text{ray}}^2(u, a_1) + d_{\text{ray}}^2(v, a_2)$ (`frame_third_raySinSq_le_add_of_ortho_anchors`) and the fixed-anchor frame isolation obstruction $\eta \le d_{\text{ray}}^2(u, a_1) + d_{\text{ray}}^2(v, a_2)$ whenever $d_{\text{ray}}^2(w, a_3) \ge \eta$ (`fixed_anchor_frame_isolation_obstruction`). For $w_{111} = (1, 1, 1)^T$, every single-frame partner $u \perp w_{111}$ has $d_{\text{ray}}^2(u, a) \ge 1/3$ from all 9 tomography anchors $a \in T_9$ (`witness111_raySinSq_nineAnchors_le_two_thirds`, `ortho_witness111_raySinSq_nineAnchors_ge_one_third`, `frame_witness111_partners_isolated_from_nineAnchors`), whereas chaining the 2-frame meridian antisymmetry $g(w_{111}) = -g(w_{-211})$ with the orthogonal 3-frame $(w_{-211}, p_{120}, p_{2,-1,5})$ (`probe_120`, `probe_2m15`, `isFrame_witness_neg211_probe120_probe2m15`) expresses $g(w_{111}) = g(p_{120}) + g(p_{2,-1,5})$ inside $B_{1/5}(T_9)$ with $d_{\text{ray}}^2(p_{120}, e_{12}) = 1/10$ and $d_{\text{ray}}^2(p_{2,-1,5}, e_3) = 1/6$ (`residual_witness111_eq_sum_in_fifth_ball`, `residual_witness111_abs_le_two_eps_of_fifth_ball`, `residual_witness111_eq_zero_of_fifth_ball`), while any single frame through $w_{-211}$ satisfies $1/4 \le d_{\text{ray}}^2(u, e_{12}) + d_{\text{ray}}^2(v, e_3)$ and cannot have both partners within $< 1/8$ (`witness_neg211_isolation_one_eighth`). Furthermore, perturbed two-frame chains through $w_{111}$ and $w_{-211}$ near `bisector_23_neg` bounce back toward $w_{111}$ (`perturbed_witness111_neg211_bounce_back`), and for the generic ray $w_{123} = (1, 2, 3)^T$ (`witness_123`), every $u \in w_{123}^\perp \setminus \{0\}$ and both partners in any frame through $w_{123}$ are isolated from all 9 anchors by $\ge 1/14$ and from all 6 bisectors by $\ge 1/28$ (`ortho_witness123_raySinSq_nine_and_six_ge`, `frame_witness123_partners_isolated_from_nine_and_six`).
+       - **Meridian-step characterization of uniform ray continuity and conditional `TFQ-1057` closures**: Defining `HasUniformMeridianStepModulus` and `HasDenseUniformModulusFromPointwise f : Prop := IsPointwiseRayContinuous f → HasUniformMeridianStepModulus f`, uniform projective ray continuity `IsUniformlyRayContinuous f` for any scale-invariant ray function is equivalent to having a uniform meridian-step modulus across all anchors $a \in \mathbb{Q}(i)^3 \setminus \{0\}$ and orthogonal tangent steps $y \in a^\perp \setminus \{0\}$ (`eq_of_raySinSq_eq_zero`, `hasUniformMeridianStepModulus_of_isUniformlyRayContinuous`, `isUniformlyRayContinuous_of_hasUniformMeridianStepModulus`, `isUniformlyRayContinuous_iff_hasUniformMeridianStepModulus`, `hasUniformMeridianStepModulus_iff_equatorial_kelvin_modulus`). Together with `HasBoundedAnchorAmplificationOn`, `HasBoundedAnchorAmplification`, and pointwise ray continuity of the Born residual (`isPointwiseRayContinuousAt_quadRay`, `isPointwiseRayContinuousAt_sub`, `isPointwiseRayContinuousAt_residual`, `isPointwiseRayContinuous_residual`), the conditional vanishing, Born uniqueness, witness inhabitation, and necessary-and-sufficient equivalence theorems (`exists_anchor_neighborhood_bound_of_pointwiseRayContinuous`, `zero_of_pointwise_and_bounded_anchor_amplification_on`, `zero_of_pointwise_and_bounded_anchor_amplification`, `born_from_pointwise_and_bounded_anchor_amplification_on`, `born_from_pointwise_and_bounded_anchor_amplification`, `born_density_matrix_of_pointwise_and_bounded_anchor_amplification`, `born_from_pointwise_and_dense_uniform_modulus`, `hasBoundedAnchorAmplificationOn_zero`, `hasBoundedAnchorAmplificationOn_residual_of_uniformlyRayContinuous`, `uniformlyRayContinuous_iff_pointwise_and_bounded_anchor_amplification`, `hasDenseUniformModulusFromPointwise_quadRay`, `uniformlyRayContinuous_iff_pointwise_and_dense_uniform_modulus`) isolate the exact amplification/meridian-step modulus bridge needed to close `TFQ-1057`.
+
 

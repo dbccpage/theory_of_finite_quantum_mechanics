@@ -32,7 +32,7 @@ Separation is a definitional discipline that the source code does not follow at 
 
 ## Source status
 
-WDP-CH04-N01 NONCLAIM; GTLA rules 4 and 6
+WDP-CH04-N01 NONCLAIM; GTLA rules 4 and 6 The legacy GTLA rubric is unavailable in this checkout; its historical path is marked external and supplies no local file evidence.
 
 ## Review
 
@@ -124,13 +124,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Documents and data: `.claude/rules/authority/rl_gtla_rules_rubric.md`
-
-- file: `.claude/rules/authority/rl_gtla_rules_rubric.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
@@ -154,6 +147,7 @@ Named by the node; not in this repository and not checked here.
 - `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - `external:sha256:bcb9825eb7031147a89239c7c5c90a65f7eb70bd996338ebbd0f1900316af187::EvidenceCeiling`
 - `external:sha256:d5bfe8d13dd272a247b6448dc6597b2683283e7245db0441e35009cd59637324::GuardEvidence`
+- `external:unavailable:.claude/rules/authority/rl_gtla_rules_rubric.md:54-90`
 
 ## Routes
 

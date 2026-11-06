@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from prose_proofs import ROOT, covered_ids, heading_anchor, lean_ref_resolves, proof_sections, render_index, section_errors
@@ -66,6 +67,17 @@ def test_coverage_excludes_invalid_sections_and_fenced_examples(tmp_path: Path):
 
 def test_index_from_nodes_to_sections_is_current():
     assert (ROOT / "dag" / "prose_proofs.md").read_text(encoding="utf-8") == render_index()
+
+
+def test_stage_proof_book_keeps_coverage_and_index_link(tmp_path: Path):
+    book = tmp_path / "dag/derivations/02_genesis/genesis_proofs.md"
+    book.parent.mkdir(parents=True)
+    book.write_text("# Quotient barrier\nDAG node: `GENESIS`\n*Proof.* By factorization.\n", encoding="utf-8")
+    nodes = {"GENESIS": {"id": "GENESIS", "stage": "GENESIS", "status": "PROVED_PROSE", "lean": []}}
+    (tmp_path / "dag/derivation_dag.json").write_text(json.dumps({"nodes": list(nodes.values())}), encoding="utf-8")
+
+    assert covered_ids(tmp_path, nodes) == {"GENESIS"}
+    assert "../dag/derivations/02_genesis/genesis_proofs.md#quotient-barrier" in render_index(tmp_path)
 
 
 def test_heading_anchor():

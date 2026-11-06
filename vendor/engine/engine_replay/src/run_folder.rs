@@ -196,11 +196,15 @@ pub fn sanitize_task_slug(task: &str) -> String {
 }
 
 /// Compute canonical run folder name `<utc>_<trigger>_<task>_<id>/`.
+///
+/// `seq` is a plain counter that keeps two runs with the same utc, trigger
+/// and task apart. The SHA-256 here only shortens the name; nothing secret
+/// goes in and the id is not a cryptographic nonce.
 pub fn generate_run_folder_name(
     utc: &str,
     trigger: RunTrigger,
     task: &str,
-    nonce: u64,
+    seq: u64,
 ) -> (String, String) {
     let slug = sanitize_task_slug(task);
     let mut hasher = Sha256::new();
@@ -210,7 +214,7 @@ pub fn generate_run_folder_name(
     hasher.update(b":");
     hasher.update(slug.as_bytes());
     hasher.update(b":");
-    hasher.update(nonce.to_string().as_bytes());
+    hasher.update(seq.to_string().as_bytes());
     let digest = format!("{:x}", hasher.finalize());
     let id_12 = &digest[..12];
     let folder_name = format!("{}_{}_{}_{}", utc, trigger.as_str(), slug, id_12);
@@ -555,10 +559,10 @@ impl RunFolder {
         utc: &str,
         trigger: RunTrigger,
         task: &str,
-        nonce: u64,
+        seq: u64,
         manifest_builder: impl FnOnce(String) -> RunManifestV1,
     ) -> Result<Self, RunFolderError> {
-        let (folder_name, _) = generate_run_folder_name(utc, trigger, task, nonce);
+        let (folder_name, _) = generate_run_folder_name(utc, trigger, task, seq);
         let folder_path = base_dir.join(&folder_name);
         if folder_path.exists() {
             return Err(RunFolderError::RunFolderExists(folder_path.display().to_string()));

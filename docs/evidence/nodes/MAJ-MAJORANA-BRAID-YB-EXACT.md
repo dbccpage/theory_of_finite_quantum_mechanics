@@ -32,7 +32,7 @@ Fixed counts 3..10; this is the Majorana exchange action, not the Ising 2x2 repr
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-MAJORANA-BRAID-YB claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-MAJORANA-BRAID-YB claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -56,20 +56,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md](../../../dag/derivations/28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md)
-- sha256 (`lf-normalised`): `fb730e61ebd5d0ee0b07a45966653d18a55d79424d7697c3d90f2c76ae04460e`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1172
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md`
+
+- file: [dag/derivations/28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md](../../../dag/derivations/28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md)
+- sha256 (`lf-normalised`): `e75b708995f09daac7b35cd0b7405b32b9ea9e8a27dbfa6365c2a737c6271812`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1172
+- counts toward the grade: no
 
 ## Routes
 

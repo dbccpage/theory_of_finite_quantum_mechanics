@@ -34,7 +34,7 @@ def check_evidence(ledger: dict, markdown: str) -> dict[str, int]:
     expected = [
         "PO034-C1", "PO034-C2", "PO034-C3",
         *(f"PO034-C3{letter}" for letter in "abcdef"),
-        *(f"PO034-C{i}" for i in range(4, 8)),
+        *(f"PO034-C{i}" for i in range(4, 9)),
     ]
     claims = ledger["claims"]
     if ledger.get("authority_effect") != "None" or [c["id"] for c in claims] != expected:
@@ -64,7 +64,9 @@ def check_evidence(ledger: dict, markdown: str) -> dict[str, int]:
                 raise ValueError("written proof must reference the canonical manuscript")
             source = safe_path(ROOT, proof["path"]).read_text(encoding="utf-8")
             heading = proof["heading"]
-            expected_lemma = "### Lemma 4.3" + claim["id"][-1] + " ("
+            expected_lemma = ("### 4.3 Robust product defects and observed cochains (PO034-C8)"
+                              if claim["id"] == "PO034-C8" else
+                              "### Lemma 4.3" + claim["id"][-1] + " (")
             if not heading.startswith(expected_lemma) or heading not in source.splitlines():
                 raise ValueError("written proof heading is missing or belongs to another claim")
             section = source.split(heading, 1)[1].split("\n### ", 1)[0]
@@ -114,7 +116,7 @@ def check_evidence(ledger: dict, markdown: str) -> dict[str, int]:
             raise ValueError("unknown formal evidence status")
     if referenced != reported or len(reported) != 7:
         raise ValueError("formal census inventory disagrees with the claim ledger")
-    if counts["written_only"] != 6 or counts["numerical_examples"] != 7:
+    if counts["written_only"] != 7 or counts["numerical_examples"] != 7:
         raise ValueError("written and numerical claim inventories disagree")
     counts["conditional_lean_targets"] = len(reported)
     return counts
@@ -157,34 +159,34 @@ def check_claim_ledger() -> dict[str, int]:
         if f"{label} SHA-256: {digest}" not in receipt:
             raise ValueError(f"stale {label} build receipt")
     print(
-        "PASS claim mappings: 13 claims; 6 written-only; 7 numerical example mappings; "
+        "PASS claim mappings: 14 claims; 7 written-only; 7 numerical example mappings; "
         "7 stored conditional abstract Lean targets (no fresh execution implied)"
     )
     return counts
 
 
-def release_snapshot(archive: Path | None = None) -> tuple:
-    errors = validate(ROOT, archive)
+def release_snapshot(archive: Path | None = None, extracted: bool = False) -> tuple:
+    errors = validate(ROOT, archive, extracted=extracted)
     if errors:
         raise ValueError("\n".join(errors))
     selected = archive or archive_path(ROOT)
-    controls = [ROOT / "MANIFEST.sha256", ROOT / "SHA256SUMS", selected]
+    controls = [ROOT / "MANIFEST.sha256", ROOT / "SHA256SUMS"] + ([] if extracted else [selected])
     for control in controls:
         _regular_control(control)
     return tuple(current_entries(ROOT)), tuple((str(p), sha256_file(p)) for p in controls)
 
 
-def run(command: list[str], label: str, initial: tuple, archive: Path | None) -> bool:
+def run(command: list[str], label: str, initial: tuple, archive: Path | None, extracted: bool = False) -> bool:
     try:
         env = dict(os.environ, PYTEST_DISABLE_PLUGIN_AUTOLOAD="1")
         result = subprocess.run(
-            command, cwd=ROOT, env=env, capture_output=True, text=True, timeout=60, check=False
+            command, cwd=ROOT, env=env, capture_output=True, text=True, timeout=900 if "tools/replay_projection_bounds.py" in command else 120, check=False
         )
     except (OSError, subprocess.TimeoutExpired) as error:
         print(f"FAIL {label}: {error}")
         return False
     try:
-        if release_snapshot(archive) != initial:
+        if release_snapshot(archive, extracted) != initial:
             raise ValueError("release tree or controls changed during replay")
     except (OSError, ValueError) as error:
         print(f"FAIL post-replay custody: {error}")
@@ -205,11 +207,14 @@ def main() -> int:
     )
     parser.add_argument("--integrity-only", action="store_true", help="check mappings and bytes only")
     parser.add_argument("--archive", type=Path, help="exact release ZIP to qualify")
+    parser.add_argument("--extracted", action="store_true", help="Verify extracted payload without claiming its outer ZIP was checked")
     args = parser.parse_args()
+    if args.extracted and args.archive:
+        parser.error("--extracted and --archive are mutually exclusive")
     archive = args.archive.absolute() if args.archive else None
     try:
-        initial = release_snapshot(archive)
-        print("PASS complete payload, manifests, and canonical ZIP")
+        initial = release_snapshot(archive, args.extracted)
+        print("PASS complete payload and manifests; outer ZIP not checked in extracted mode" if args.extracted else "PASS complete payload, manifests, and canonical ZIP")
         check_claim_ledger()
     except (OSError, ValueError, KeyError, TypeError, yaml.YAMLError) as error:
         print(f"FAIL package contract: {error}")
@@ -219,7 +224,7 @@ def main() -> int:
         return 0
 
     def replay(command: list[str], label: str) -> bool:
-        return run(command, label, initial, archive)
+        return run(command, label, initial, archive, args.extracted)
 
     py = sys.executable
     checks = [
@@ -232,6 +237,7 @@ def main() -> int:
         )
         print("REVIEW MODE: fresh pinned Lean and native Jupyter are not claimed.")
     else:
+        checks.append(replay([py, "tools/replay_projection_bounds.py"], "fresh supplemental bounds census"))
         checks.append(
             replay([py, "tools/replay_lean_axiom_census.py", "--replay"], "fresh pinned Lean replay")
         )

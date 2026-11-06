@@ -1,0 +1,976 @@
+A CONSTRAINT-CLOSURE TOY MODEL FOR ℓ¹ RESIDUALS ON FINITE COMPLEXES
+
+
+LINEAR COCHAIN QUOTIENTS, EXACT STRONG DUALITY, AND REGGE-CALCULUS EXAMPLES - WITH QUARANTINED HIGH-
+ENERGY SPECULATIONS
+
+
+Author: Jeremy H. Carroll
+Date: 2026-09-10
+Version: 1.2 Pre-Print
+Publication posture: As-is continuation of an earlier toy model, written as an exploratory exercise
+and not as a claim to derive physical law.
+
+---
+
+AUTHOR'S SCOPE NOTE
+
+
+This paper is a continuation of the original constraint-closure toy model. The original work was
+exploratory, but its public framing did not make the toy-model status clear enough. This version is
+therefore published as-is with the word "toy model" made explicit: it records how far finite ℓ¹
+residuals, quotient norms, dual certificates, and Regge-style examples can be pushed, and it records
+where the attempted extensions break.
+
+The intended contribution is modest. The Python and Lean artifacts are included as best-effort
+executable evidence for finite, discrete, linear-algebraic statements and for falsification receipts
+around overextended high-energy analogies. The paper does not claim that ℓ¹ methods derive
+continuous general relativity, the Standard Model gauge group SU(3) × SU(2) × U(1), electroweak
+symmetry breaking, supersymmetry, the fine-structure constant, dark matter, or physical law. It is
+offered for the author's own mathematical interest and for any reader who may find the finite toy-
+model machinery, failure modes, or executable receipts useful.
+
+---
+
+MECHANISM INVENTORY
+
+
+| Slot | Mathematical Binding | Exact Operational Definition |
+| Primitive Differences | Minimal non-sameness | Non-vanishing difference cochains on finite discrete carriers
+|
+| Carriers | Simplicial complexes K | Finite combinatorial cell complexes with canonical orientation |
+| Cochain Spaces | Cᵏ(K, ℝ) or Cᵏ(K, ℚ) | Chains and cochains with coboundary operators dₖ = ∂ₖ₊₁ᵀ |
+| Curvature Cochain | ωR ∈ Cᴰ⁻²(K) | Interior deficits εₕ = 2\pi - ∑ θₕ; boundary turning \tauₕ = \pi - ∑ θₕ |
+| ℓ¹ Cochain Metric | ‖ ω ‖₁ = ∑ₑ \lvert ωₑ \rvert | Unweighted or area-weighted absolute sum of cochain
+coefficients |
+| Constraint Residual Φ | ΦD([ω]) = \minα ‖ ω - D α ‖₁ | Minimal ℓ¹ distance on finite linear complex C¹ / im
+d₀; proposed GR constraint model |
+| Joint Constraint System | C¹(K) ⊕ C⁰(K) | Direct-sum system with block coboundary Dⱼₒᵢₙₜ = \beginpmatrix d₀
+0 \endpmatrix avoiding Hamiltonian blind spots |
+| Dual Witness w^* | w^* ∈ C₁(K), ∂₁ w^* = 0, ‖ w^* ‖_∞ ≤ 1 | Certified divergence-free 1-cycle attaining
+exact LP duality gap |
+| Simplicial Bianchi | ∑w\ₛᵢₘᵥ εᵥw \hateᵥw = 0, d₂ ε = 0 | Vertex gradient vanishing on stationary
+backgrounds; scalar coboundary on uniform/abelian models |
+| Ponzano--Regge Bound | Schläfli path bound & fixed-angle bound | \lvert Δ S \rvert ≤ ‖ J' - J ‖₁ \supₜ ‖
+θ(t) ‖_∞ ≤ \pi ‖ J' - J ‖₁; fixed-angle linear functional bound |
+| Quarantine Register | High Energy Quarantine Register | Five explicit falsification receipts fencing
+speculative particle physics analogies |
+| Executable Receipts | Finite run and proof-script evidence | Receipts certify scoped finite computations and
+formal checks, not truth of continuous physics |
+
+---
+
+0. WHY THIS TOY-MODEL CONTINUATION EXISTS
+
+
+In early developmental iterations of this repository, exploratory investigations attempted to
+traverse a speculative climb from primitive differences through Standard Model gauge groups (SU(3) ×
+SU(2) × U(1)), an electroweak Higgs potential (v = 246 GeV), a fine-structure constant (α⁻¹ ≈
+137.036), a supersymmetry threshold (Eₛₐₜ ≈ 85.6 TeV), and cosmological dark sector analogies.
+Rigorous diagnostic evaluations demonstrated that these speculative extrapolations relied upon hand-
+tuned parameters, divergent lattice sums, or unmotivated category assignments.
+
+Within its finite toy-model scope, this monograph establishes a rigorous linear-algebra layer for
+finite linear ℓ¹ constraint quotients, strong LP duality, and independently checkable certificates,
+with examples from discrete Regge calculus and proposed models of discrete gravitational
+constraints. The rigor belongs to the finite quotient/certificate statements and explicit
+counterexamples; the physical interpretation remains illustrative and conditional.
+
+WHAT IS MATHEMATICALLY ESTABLISHED
+
+
+1. Simplicial Geometry & Cochain Nilpotency: Exact boundary and coboundary operators on finite
+simplicial complexes in 2D, 3D, and 4D, with verified nilpotency ∂² = 0 and d² = 0 (Theorem 1.1).
+2. Finite ℓ¹ Quotient Invariance and Strong LP Duality: For any finite linear coboundary matrix D,
+the quotient norm ΦD([ω]) = \min_α ‖ω - Dα‖₁ is invariant under gauge shifts (Theorem 4.1),
+satisfies 0 ≤ ΦD([ω]) ≤ ‖ω‖₁, and attains exact strong duality with zero duality gap against a
+bounded divergence-free dual circulation witness (Theorem 5.1).
+3. Independently Checkable Dual Certificates: When ΦD([ω]) > 0, an auditor can check Dᵀ w^* = 0,
+‖w^*‖_∞ ≤ 1, and ⟨ w^*, ω ⟩ = ΦD([ω]) by direct arithmetic without trusting an external optimizer
+(Theorem 5.2).
+4. Ponzano--Regge Semiclassical Bounds: The discrete Regge action phase satisfies a fixed-angle
+linear functional bound and a geometric Schläfli path bound |S(J') - S(J)| ≤ ‖J' - J‖₁ \supₜ
+‖θ(J(t))‖_∞ ≤ \pi ‖J' - J‖₁ along nondegenerate deformation trajectories (Theorem 6.1).
+5. Direct-Sum Joint Constraint Formulation: Formulating joint momentum and scalar constraint
+diagnostics in C¹ ⊕ C⁰ with block operator Dⱼₒᵢₙₜ = \beginpmatrix d₀ 0 \endpmatrix strictly
+preserves scalar Hamiltonian violations (Φⱼₒᵢₙₜ = Φd_₀(p) + ‖H_\perp‖₁), eliminating the blind spot
+of naive coboundary encodings.
+6. Complete Quarantine of High-Energy Speculations: Five formal falsification receipts documenting
+why the speculative high-energy claims are non-sequiturs, category errors, or dimensional
+inconsistencies within this framework.
+
+WHAT IS SCOPED OR ILLUSTRATIVE
+
+
+- 3D Contracted Bianchi Gradient: The vanishing of the vertex action gradient -∑ εₑ \hate = 0 is
+established for interior vertices in stationary or flat-background regimes where vertex variation
+corresponds to an exact diffeomorphism gauge symmetry (Theorem 3.1).
+- 4D Simplicial Bianchi Identity: The scalar deficit cochain satisfies d₂ ε = 0 on uniform/symmetric
+complexes (such as regular boundaries where deficits are equal and cancel by alternating signs) and
+in abelian gauge models (F = dA). On generic curved 4-manifolds, the exact Regge Bianchi identity is
+non-abelian (∏ Uₜ = \mathbbI in SO(4)) and does not reduce to scalar cochain coboundary vanishing
+(d₂ ε ≠ 0, Theorem 3.2).
+- Implemented Gravitational Quantities: In the computational implementation, momentum constraints
+return edge momenta directly, and Hamiltonian constraints evaluate an unweighted sum of momentum
+squares minus discrete Ricci scalar curvature with unit dual cell volume. These are chosen toy
+quantities demonstrating linear algebraic quotient mechanics, rather than an asserted full
+continuous gravitational correspondence.
+
+WHAT IS A PROPOSED PHYSICAL APPLICATION (AND EXPLICITLY NOT DERIVED)
+
+
+- Continuous Wheeler--DeWitt Constraint Closure: The physical correspondence mapping continuous 3+1
+ADM phase-space variables (qₐᵦ, \piab) and the DeWitt supermetric Gₑₑ' to the edge cochain ω, and
+deriving the coboundary action ω ↦ ω - d₀ α from spatial diffeomorphisms, is a proposed discrete
+model rather than an established derivation. Minimizing ΦD(ω) evaluates linear gauge-orthogonality;
+it does not compute Poisson brackets of constraints, verify constraint algebra closure, or construct
+a quantum Wheeler--DeWitt operator.
+- Topological Cohomology vs Cochain Quotient: For general cochains ω ∈ C¹, the quotient space is C¹
+/ im d₀. It represents cohomology H¹ = \ker(d₁) / im(d₀) only when ω is a cocycle (d₁ ω = 0).
+
+WHAT IS EXPLICITLY NOT CLAIMED
+
+
+- That physical spacetime is a discrete lattice.
+- That the scalar identity d₂ ε = 0 holds on arbitrary curved 4D simplicial manifolds.
+- That the naive encoding ω = p + d₀ H_\perp detects Hamiltonian constraint violations.
+- That phase stability alone guarantees path-integral amplitude stability (volume prefactors and
+degeneracies remain uncontrolled).
+- That the Standard Model gauge group, Higgs VEV, or Yukawa couplings are derived from simplicial
+boundaries.
+- That supersymmetry exists at 85.6 TeV or any other scale.
+- That cold dark matter consists of isolated cochain edges.
+- That the fine-structure constant α is determined by hexagonal Regge lattices.
+
+---
+
+1. FOUNDATIONAL GEOMETRY: SIMPLICIAL COMPLEXES AND ℓ¹ COCHAINS
+
+
+1.1 SIMPLICIAL COMPLEXES AND CAYLEY--MENGER GEOMETRY
+
+
+Let K be a finite simplicial complex of dimension D. A k-simplex \sigmaᵏ ∈ K⁽ᵏ⁾ is determined by an
+ordered set of k+1 vertices (v₀, v₁, \dots, vₖ). The geometry of each simplex is specified by the
+matrix of squared edge lengths sᵢⱼ = ℓ(vᵢ, vⱼ)² = sⱼᵢ ≥ 0.
+
+Definition 1.1 (Cayley--Menger Determinant).
+For a d-simplex \sigmad, the Cayley--Menger matrix CM(\sigmad) ∈ ℝ⁽d⁺²⁾×⁽d⁺²⁾ is defined by:
+
+CM(\sigmad) = \beginpmatrix
+0 & 1 & 1 & \dots & 1
+1 & 0 & s₀₁ & \dots & s₀d
+1 & s₁₀ & 0 & \dots & s₁d
+\vdots & \vdots & \vdots & \ddots & \vdots
+1 & sd₀ & sd₁ & \dots & 0
+\endpmatrix
+
+The d-dimensional volume V(\sigmad) satisfies:
+
+V²(\sigmad) = \frac(-1)d⁺¹2d (d!)² \det CM(\sigmad)
+
+
+A configuration of edge lengths is geometrically realizable in Euclidean space ℝd if and only if
+V²(\tau) > 0 for all sub-simplices \tau \subseteq \sigmad.
+
+1.2 BOUNDARY AND COBOUNDARY OPERATORS
+
+
+Let Cₖ(K, ℝ) denote the vector space of formal real linear combinations of oriented k-simplices, and
+let Cᵏ(K, ℝ) = Hom(Cₖ, ℝ) denote the dual space of k-cochains.
+
+The boundary operator ∂ₖ: Cₖ → Cₖ₋₁ is defined on basis simplices by:
+
+∂ₖ (v₀, v₁, \dots, vₖ) = ∑ᵢ₌₀ᵏ (-1)ⁱ (v₀, \dots, \hatvᵢ, \dots, vₖ)
+
+The coboundary operator dₖ₋₁: Cᵏ⁻¹ → Cᵏ is the adjoint of ∂ₖ:
+
+⟨ dₖ₋₁ ω, c ⟩ = ⟨ ω, ∂ₖ c ⟩ \quad ∀ ω ∈ Cᵏ⁻¹, c ∈ Cₖ
+
+In matrix representation with respect to the canonical ordered bases, dₖ₋₁ = ∂ₖᵀ.
+
+Theorem 1.1 (Simplicial Operator Nilpotency).
+For every dimension k ≥ 1:
+
+∂ₖ₋₁ \circ ∂ₖ = 0 \quad and \quad dₖ \circ dₖ₋₁ = 0
+
+
+*Proof.*
+For any simplex \sigma = (v₀, \dots, vₖ):
+
+(∂ₖ₋₁ \circ ∂ₖ) \sigma = ∑ᵢ₌₀ᵏ (-1)ⁱ ∂ₖ₋₁ (v₀, \dots, \hatvᵢ, \dots, vₖ)
+
+Expanding the inner boundary splits into indices j < i and j > i:
+
+∑ᵢ₌₀ᵏ (-1)ⁱ ≤ft[ ∑ⱼ<ᵢ (-1)ʲ (v₀, \dots, \hatvⱼ, \dots, \hatvᵢ, \dots, vₖ) + ∑ⱼ>ᵢ (-1)ʲ⁻¹ (v₀, \dots,
+\hatvᵢ, \dots, \hatvⱼ, \dots, vₖ) \right]
+
+Relabeling indices shows that each pair of omitted vertices appears exactly twice with opposite
+signs (-1)ⁱ⁺ʲ and (-1)ⁱ⁺ʲ⁻¹, canceling identically to zero. Transposition gives dₖ \circ dₖ₋₁ =
+∂ₖ₊₁ᵀ \circ ∂ₖᵀ = (∂ₖ \circ ∂ₖ₊₁)ᵀ = 0. \square
+
+---
+
+2. DISCRETE REGGE ACTION AND CURVATURE DEFICIT COCHAINS
+
+
+In Regge calculus (Regge 1961), curved Riemannian manifolds are approximated by piece-wise flat
+simplicial complexes. Curvature is concentrated entirely on codimension-2 simplices, termed hinges
+(h ∈ K⁽ᴰ⁻²⁾).
+- In D=2: hinges are vertices v (D-2 = 0).
+- In D=3: hinges are edges e (D-2 = 1).
+- In D=4: hinges are triangles t (D-2 = 2).
+
+2.1 DIHEDRAL ANGLES AND DEFICIT ANGLES
+
+
+Definition 2.1 (Simplex Dihedral Angle).
+Let \sigmaᴰ be a D-simplex, and let h \subset \sigmaᴰ be a codimension-2 hinge. The hinge h is
+shared by exactly two codimension-1 faces (hyperfaces) f₁, f₂ \subset \sigmaᴰ. The dihedral angle
+θ(\sigmaᴰ, h) is the angle between the inward unit normals n₁, n₂ of f₁ and f₂:
+
+\cos θ(\sigmaᴰ, h) = - n₁ \cdot n₂
+
+For regular D-simplices where all edge lengths are equal:
+
+θᵣₑg(D) = \arccos≤ft(\frac1D\right)
+
+Specifically:
+- D=2 (equilateral triangle at vertex): \arccos(1/2) = \pi/3 ≈ 1.047198 rad.
+- D=3 (regular tetrahedron along edge): \arccos(1/3) ≈ 1.230959 rad.
+- D=4 (regular 4-simplex along triangle): \arccos(1/4) ≈ 1.318116 rad.
+
+Definition 2.2 (Regge Deficit and Boundary Turning Angles).
+For an interior hinge h ∈ int(K), the interior deficit angle εₕ measures local intrinsic curvature:
+
+εₕ = 2\pi - ∑\ₛᵢgₘₐᴰ\ₛᵤₚₛₑₜₕ θ(\sigmaᴰ, h), \quad h ∈ int(K)
+
+For a boundary hinge h ∈ ∂ K, the boundary turning angle \tauₕ measures discrete extrinsic boundary
+turning:
+
+\tauₕ = \pi - ∑\ₛᵢgₘₐᴰ\ₛᵤₚₛₑₜₕ θ(\sigmaᴰ, h), \quad h ∈ ∂ K
+
+
+2.2 THE DISCRETE REGGE ACTION AND ℓ¹ CURVATURE METRIC
+
+
+The discrete Regge action on a manifold with boundary decomposes into interior and boundary terms,
+mirroring the Einstein--Hilbert action with Gibbons--Hawking--York boundary term S = \frac116\pi G
+≤ft( ∈tM R \sqrtg \, dᴰ x + 2 ∈t∂M K \sqrth \, dᴰ⁻¹ x \right):
+
+SRₑggₑ = ∑ₕ∈ᵢₙₜ₍K₎ Aₕ \, εₕ + ∑ₕ∈∂K Aₕ \, \tauₕ
+
+where Aₕ is the volume of the hinge (Aᵥ = 1 in 2D, Aₑ = ℓₑ in 3D, and Aₜ = Area(t) in 4D).
+
+Definition 2.3 (Interior Curvature ℓ¹ Norm).
+Let ωR ∈ Cᴰ⁻²(int(K), ℝ) be the interior curvature cochain assigning εₕ to each interior hinge h ∈
+int(K). The ℓ¹ norm of interior curvature is:
+
+‖ωR‖ᵢₙₜ,₁ = ∑ₕ∈ᵢₙₜ₍K₎ Aₕ |εₕ|
+
+The total boundary turning is tracked separately as \mathcalT∂K = ∑ₕ∈∂K Aₕ |\tauₕ|.
+
+Theorem 2.1 (Local Flatness Invariant).
+A triangulated piecewise-linear manifold complex K is locally flat (locally isometric to Euclidean
+space ℝᴰ away from the boundary) if and only if the interior curvature norm vanishes:
+
+‖ωR‖ᵢₙₜ,₁ = 0 \quad ⟺ \quad εₕ = 0 \quad ∀ h ∈ int(K)
+
+
+*Proof & Scope Clarification:*
+If K is locally isometric to ℝᴰ, the sum of dihedral angles of simplices meeting around any interior
+codimension-2 hinge completes a full rotation of 2\pi radians around the hinge axis in the
+transverse 2-plane. Thus ∑ θ = 2\pi \implies εₕ = 0. Conversely, if εₕ = 0 at all interior hinges,
+parallel transport around any contractible loop of simplices has trivial holonomy (U = \mathbbI),
+ensuring local Euclidean metric recovery.
+
+*Separation of Boundary Turning:* Treating boundary hinges as carrying interior curvature leads to
+contradictions. For example, a single flat equilateral triangle in 2D has no interior hinges. At
+each of its three boundary vertices, the single triangle provides angle θ = \pi/3, giving boundary
+turning \tauᵥ = \pi - \pi/3 = 2\pi/3. Summing over the three vertices yields total boundary turning
+∑ \tauᵥ = 3 × (2\pi/3) = 2\pi, which is the topological Gauss-Bonnet turning of a closed planar
+curve (∈t \kappag ds = 2\pi), not local interior curvature.
+
+*Local Flatness vs Global Embedding:* Local Euclidean flatness (‖ωR‖ᵢₙₜ,₁ = 0) does not imply global
+isometric embedding in ℝᴰ. For instance, a triangulated flat torus Tᴰ is locally Euclidean and
+satisfies ‖ωR‖ᵢₙₜ,₁ = 0 everywhere, but cannot be embedded isometrically in ℝᴰ without metric
+distortion. \square
+
+---
+
+3. SIMPLICIAL BIANCHI IDENTITIES IN 3D AND 4D
+
+
+In continuum differential geometry, the contracted Bianchi identity \nabla_\mu G\mu\ⁿu = 0 ensures
+diffeomorphism invariance and the conservation of energy-momentum. In discrete Regge calculus, this
+identity manifests through geometric variations on simplicial complexes, though its exact non-
+abelian structure requires careful scoping.
+
+3.1 3D CONTRACTED BIANCHI IDENTITY AT VERTICES
+
+
+In 3D simplicial gravity, hinges are edges e = (v, w), and the discrete action is S = ∑ₑ ℓₑ εₑ.
+
+Theorem 3.1 (3D Contracted Bianchi Identity in Stationary / Flat Backgrounds).
+For any interior vertex v ∈ K⁽⁰⁾ of a 3D simplicial complex in a stationary background
+configuration, the variation of the discrete Regge action with respect to vertex coordinates xᵥ ∈ ℝ³
+satisfies:
+
+\frac∂ SRₑggₑ∂ xᵥ = -∑w\ₛᵢₘᵥ εᵥw \, \hateᵥw = 0
+
+where \hateᵥw = \fracxw - xᵥ‖xw - xᵥ‖ is the unit tangent vector directed along edge (v, w).
+
+*Proof & Physical Scope:*
+Under an infinitesimal vertex coordinate shift xᵥ ↦ xᵥ + δ xᵥ, the variation of the Regge action is:
+
+δ S = ∑ₑ ≤ft( δ ℓₑ \, εₑ + ℓₑ \, δ εₑ \right)
+
+By the Schläfli identity for polyhedra (Regge 1961), the second term vanishes identically: ∑ₑ ℓₑ δ
+εₑ = 0.
+The variation of the edge length ℓᵥw = ‖xw - xᵥ‖ with respect to xᵥ is:
+
+δ ℓᵥw = -\hateᵥw \cdot δ xᵥ
+
+Substituting this yields:
+
+δ S = -≤ft( ∑w\ₛᵢₘᵥ εᵥw \, \hateᵥw \right) \cdot δ xᵥ \implies \frac∂ S∂ xᵥ = -∑w\ₛᵢₘᵥ εᵥw \,
+\hateᵥw
+
+When the triangulation is stationary under coordinate relocations (such as on flat backgrounds where
+interior vertex displacement is a pure diffeomorphism gauge symmetry), δ S / δ xᵥ = 0, forcing
+∑w\ₛᵢₘᵥ εᵥw \hateᵥw = 0.
+
+*Limitation on Generic Curved Complexes:* On generic curved 4D or 3D Regge triangulations without
+stationarity, shifting an interior vertex changes the surrounding geometry and deficit angles; exact
+vertex gauge invariance is broken at finite lattice spacing and is recovered only in the continuum
+or on-shell limit (Bahr & Dittrich 2009). \square
+
+3.2 4D DISCRETE BIANCHI IDENTITY: HOLONOMY OBSTRUCTION AND SCOPED REGIMES
+
+
+In 4D spacetime, hinges are triangles t ∈ K⁽²⁾. In early versions of this monograph, it was asserted
+that the scalar deficit cochain ε ∈ C²(K) satisfies d₂ ε = 0 universally on all closed triangulated
+4-manifolds. That unrestricted claim is false and is formally withdrawn.
+
+Withdrawal of Unrestricted Scalar Claim:
+In 4D discrete gravity, curvature is fundamentally encoded in parallel transport holonomy matrices
+Uₜ ∈ SO(4) associated with triangular hinges. The exact geometric Bianchi identity around any 3-cell
+(tetrahedron \tau³) is the non-abelian path-ordered loop product (Hamber & Kagel 2001):
+
+∏ₜ\ₛᵤᵦₛₑₜ∂\ₜₐᵤ³ Uₜ = \mathbbI ∈ SO(4)
+
+Because SO(4) is non-abelian, the logarithm of a product of non-commuting rotation matrices does not
+equal the sum of their logarithms (\log ∏ Uᵢ ≠ ∑ \log Uᵢ). Projecting holonomies onto scalar deficit
+angles εₜ = θ(Uₜ) discards rotation planes and transport information. Consequently, the linear
+scalar coboundary (d₂ ε)(\tau³) = ∑ₜ\ₛᵤᵦₛₑₜ\ₜₐᵤ³ (-1)ⁱ εₜ_ᵢ does not vanish on generic curved
+complexes.
+
+Concrete Counterexample on ∂ Δ⁵ ≅ S⁴:
+Consider the boundary of a standard 5-simplex ∂ Δ⁵ with 6 vertices 0, \dots, 5, 15 edges, 20
+triangles, 15 tetrahedra, and 6 4-simplices.
+1. Set 14 edge lengths to ℓᵢⱼ = 1.0, and perturb only a single edge ℓ₀₁ = 1.1.
+2. Every 4-simplex remains strictly Euclidean and nondegenerate (smallest Gram matrix eigenvalue ≈
+0.4851).
+3. Simplicial operator nilpotency holds identically: ∂₂ \circ ∂₃ = 0 and d₂ \circ d₁ = 0.
+4. Recomputing the dihedral angles of all six 4-simplices and deficit angles of all twenty
+triangular hinges yields:
+
+‖d₂ ε‖₁ ≈ 1.956565, \quad ‖d₂ ε‖_∞ ≈ 0.244571, \quad (d₂ ε)(0,2,3,4) ≈ -0.244571
+
+Thus, even on the paper's own topology, the scalar deficit cochain fails to be closed under d₂.
+
+Theorem 3.2 (Simplicial Bianchi Identity: Scoped Regimes).
+The linear scalar coboundary identity d₂ ε = 0 holds strictly under the following declared
+conditions:
+1. *Uniform and symmetric complexes:* on regular boundary complexes where all deficit angles are
+identical (εₜ = c), the alternating face sum across every tetrahedron vanishes identically:
+
+(d₂ ε)(\tau³) = c - c + c - c = 0
+
+*(Incidence count correction:* In ∂ Δ⁵, each triangle belongs to exactly 6 - 3 = 3 (not 5)
+4-simplices. Its regular deficit angle is εᵣₑg = 2\pi - 3\arccos(1/4) ≈ 2.328837 rad, rather than
+-0.307395 rad).*
+2. *Discrete abelian gauge models:* for an abelian connection A ∈ C¹(K, ℝ) with curvature 2-form F =
+d₁ A, the operator nilpotency Theorem 1.1 guarantees d₂ F = d₂ d₁ A = 0 identically.
+3. *Linearized Regge calculus:* around flat Euclidean space where deficit angles are infinitesimal
+(ε = O(δ)), so non-abelian commutator terms [Uᵢ, Uⱼ] = O(ε²) are neglected. \square
+
+---
+
+4. FINITE LINEAR ℓ¹ CONSTRAINT QUOTIENTS AND PROPOSED DISCRETE GRAVITATIONAL MODELS
+
+
+4.1 CANONICAL 3+1 CAUCHY SLICES AND PROPOSED CONSTRAINT MODELS
+
+
+In continuous general relativity, the 3+1 ADM formulation describes gravity as a constrained
+Hamiltonian system on a spatial hypersurface Σ, governed by spatial diffeomorphism constraints
+\mathcalHₐ and the scalar Wheeler--DeWitt Hamiltonian constraint \mathcalH_\perp.
+
+In a discrete simplicial setting on a 3-complex Σ, one considers:
+1. Spatial metric edge lengths: qₑ = ℓₑ > 0 for e ∈ Σ⁽¹⁾.
+2. Conjugate momentum cochain: \pi ∈ C¹(Σ, ℝ), representing discrete extrinsic curvature.
+
+A proposed discrete model assigns constraint violations to edges or vertices:
+- Spatial Momentum Violation: \mathcalHₐ(v) = ∑ₑ\ₛᵤₚₛₑₜᵥ \piₑ \, \hateₐ.
+- Hamiltonian Scalar Violation: \mathcalH_\perp(v) = \frac1\sqrtqᵥ ∑ₑ,ₑ'\ₛᵤₚₛₑₜᵥ Gₑₑ' \piₑ \piₑ' -
+\sqrtqᵥ R(v), where Gₑₑ' is a discrete DeWitt supermetric.
+
+*Important Mathematical Scope Note:* The mapping from continuous canonical fields (qₐᵦ, \piab) to a
+discrete cochain ω ∈ C¹(Σ), the definition of the discrete supermetric Gₑₑ', and the identification
+of spatial coordinate reparametrizations with coboundaries ω ↦ ω - d₀ α constitute a proposed
+discrete model rather than an established mathematical derivation from continuous Einstein gravity.
+Minimizing an ℓ¹ residual Φ evaluates linear gauge-orthogonality on the discrete complex; it does
+not compute Poisson brackets of constraints, verify structure functions, or construct a quantum
+Wheeler--DeWitt operator acting on wave functionals Ψ[q].
+
+4.2 LINEAR COCHAIN QUOTIENTS: C¹ / IM(D₀) VS COHOMOLOGY H¹
+
+
+Let D: C⁰(Σ) → C¹(Σ) be any finite linear coboundary operator (such as the simplicial coboundary d₀
+= ∂₁ᵀ). Given an arbitrary constraint cochain ω ∈ C¹(Σ), gauge transformations act as translations
+by pure coboundaries:
+
+ω ↦ ω - D α, \quad α ∈ C⁰(Σ)
+
+The gauge-invariant measure of constraint violation is the quotient norm on the quotient vector
+space C¹(Σ) / im(D):
+
+Definition 4.1 (ℓ¹ Constraint Quotient Norm).
+For any finite linear operator D: ℝ|V| → ℝ|E| and cochain ω ∈ ℝ|E|:
+
+ΦD([ω]) = \minα∈ℝ|V| ‖ω - D α‖₁
+
+
+*Distinction Between Cochain Quotient and Cohomology:*
+For an arbitrary cochain ω, the quotient space is C¹ / im(d₀). It is not necessarily cohomology H¹ =
+\ker(d₁) / im(d₀). The quotient class [ω] belongs to cohomology if and only if ω is a cocycle (d₁ ω
+= 0).
+For example, on a single filled triangle with edges (0,1), (1,2), (2,0) and face (0,1,2), the
+circulation cochain ω = (1, 1, 1)ᵀ satisfies (d₁ ω)(0,1,2) = 1 + 1 + 1 = 3 ≠ 0. Thus ω is not a
+cocycle and carries no non-trivial class in H¹, yet its quotient distance Φ([ω]) = 3 is strictly
+positive.
+
+Theorem 4.1 (Gauge Invariance of ΦD).
+For any pure gauge vector γ ∈ ℝ|V|:
+
+ΦD([ω + D γ]) = ΦD([ω])
+
+
+*Proof.*
+By definition:
+
+ΦD([ω + D γ]) = \minα ‖ω + D γ - D α‖₁ = \minα ‖ω - D (α - γ)‖₁
+
+Substituting β = α - γ establishes that the set of vectors over which the minimum is taken is
+identical, hence ΦD([ω + D γ]) = ΦD([ω]). \square
+
+Definition 4.2 (Exact Linear Constraint Closure).
+A discrete state satisfies exact constraint closure if and only if ΦD([ω]) = 0. Because im(D) is a
+closed subspace in finite dimensions, this condition holds if and only if ω ∈ im(D) (i.e. the
+violation is entirely removable by gauge choice).
+
+4.3 THE HAMILTONIAN BLIND SPOT AND THE JOINT DIRECT-SUM SYSTEM
+
+
+In early drafts of this discrete constraint model, it was suggested that a total constraint cochain
+could be assembled by encoding the scalar Hamiltonian violation H_\perp ∈ C⁰(Σ) directly into C¹(Σ)
+via the coboundary:
+
+ω = p + d₀ H_\perp
+
+where p ∈ C¹(Σ) represents spatial momentum violations. However, as identified in peer review
+(Jeremy H. Carroll, Sept 2026), this encoding suffers from an exact Hamiltonian blind spot:
+
+Φd_₀(p + d₀ H_\perp) = \minα∈C⁰ ‖p + d₀ H_\perp - d₀ α‖₁ = \minα'∈C⁰ ‖p - d₀ α'‖₁ = Φd_₀(p)
+
+where α' = α - H_\perp. Consequently:
+
+1. The quotient distance Φd_₀(ω) is mathematically independent of every Hamiltonian cochain H_\perp,
+whether constant or non-constant.
+2. For any state with zero spatial momentum (p = 0), Φd_₀(d₀ H_\perp) = 0 identically, reporting
+false "exact closure" (isclosed = True) regardless of how severely the Hamiltonian constraint is
+violated.
+3. On a regular triangulated 3-sphere ∂Δ⁴ with all edge lengths 1.0 and zero momenta, each edge
+deficit is 2\pi - 3\arccos(1/3) ≈ 2.590307 rad, producing a large negative Hamiltonian defect
+H_\perp(v) ≈ -20.722456 at every vertex. Under the naive encoding ω = d₀ H_\perp, the solver reports
+Φ = 0 and isclosed = True, completely laundering away the scalar curvature violation.
+
+The Direct-Sum Joint Formulation:
+To prevent scalar violations from disappearing into the spatial gauge orbit, the joint constraint
+system is defined on the direct-sum space C¹(Σ) ⊕ C⁰(Σ):
+
+\Omegaⱼₒᵢₙₜ = \beginpmatrix p H_\perp \endpmatrix, \quad Dⱼₒᵢₙₜ = \beginpmatrix d₀ 0 \endpmatrix :
+C⁰(Σ) → C¹(Σ) ⊕ C⁰(Σ)
+
+Because the spatial gauge correction operator acts only on the momentum component, the joint ℓ¹
+quotient separates additively:
+
+ΦD_ⱼₒᵢₙₜ(\Omegaⱼₒᵢₙₜ) = \minα∈C⁰ ≤ft( ‖p - d₀ α‖₁ + ‖H_\perp - 0‖₁ \right) = Φd_₀(p) + ‖H_\perp‖₁
+
+This ensures that both momentum and Hamiltonian violations are strictly observable: a state achieves
+joint closure if and only if spatial momentum is pure gauge (Φd_₀(p) = 0) AND scalar Hamiltonian
+curvature vanishes identically (‖H_\perp‖₁ = 0).
+
+---
+
+5. EXACT STRONG DUALITY AND INDEPENDENTLY CHECKABLE DUAL CERTIFICATES
+
+
+When a discrete constraint cochain fails exact closure (ΦD([ω]) > 0), linear programming duality
+provides an independently checkable certificate that the violation cannot be removed by any
+coordinate choice.
+
+5.1 PRIMAL AND DUAL LINEAR PROGRAMS
+
+
+The primal minimization problem:
+
+ΦD([ω]) = \minα∈ℝ|V|,ᵤ∈ℝ|E| ∑ₑ∈E uₑ
+
+subject to:
+
+-uₑ ≤ ωₑ - (D α)ₑ ≤ uₑ, \quad uₑ ≥ 0
+
+
+The dual maximization problem:
+
+ΨD(ω) = \maxw∈ℝ|E| ∑ₑ∈E wₑ \, ωₑ
+
+subject to:
+
+Dᵀ w = 0, \quad -1 ≤ wₑ ≤ 1
+
+
+Theorem 5.1 (Exact Strong Duality and A Priori Bounds).
+For any finite matrix D and vector ω:
+1. Both primal and dual problems are feasible.
+2. The optimal value satisfies the elementary bounds:
+
+0 ≤ ΦD([ω]) ≤ ‖ω‖₁
+
+3. The optimal primal objective equals the optimal dual objective with identically zero duality gap:
+
+ΦD([ω]) = ΨD(ω) = \max\ₛᵤᵦₛₜₐcₖw∈ℝ|E| Dᵀw₌₀ ‖w‖_∞≤₁ ⟨ w, ω ⟩
+
+
+*Proof.*
+Feasibility: setting α = 0 and u = |ω| is primal feasible, establishing ΦD([ω]) ≤ ‖ω‖₁. Setting w =
+0 is dual feasible with value 0, establishing ΨD(ω) ≥ 0.
+Since the feasible regions are non-empty polyhedra and the primal objective is bounded below by 0
+(by non-negativity of norms), both optima exist and are attained at finite values. By the Strong
+Duality Theorem of Linear Programming (Schrijver 1986), the optimal values coincide: ΦD([ω]) =
+ΨD(ω). \square
+
+Theorem 5.2 (Independently Checkable Dual Circulation Witness).
+Let α^* be an optimal primal gauge fix, and let r^* = ω - D α^* be the optimal residual. If ΦD([ω])
+> 0, the dual optimizer w^* is an independently checkable certificate:
+1. *Divergence-free:* Dᵀ w^* = 0 (a 1-cycle in homology Z₁ when D = d₀).
+2. *Bounded:* ‖w^*‖_∞ ≤ 1.
+3. *Residual saturation:* ⟨ w^*, r^* ⟩ = ‖r^*‖₁ = ΦD([ω]).
+4. *Complementary slackness:*
+
+wₑ^* = \begincases
++1, & rₑ^* > 0
+-1, & rₑ^* < 0
+∈ [-1, 1], & rₑ^* = 0
+\endcases
+
+
+*Mathematical Significance:*
+Weak duality establishes that for any dual feasible w (Dᵀ w = 0, ‖w‖_∞ ≤ 1) and any gauge vector α:
+
+⟨ w, ω ⟩ = ⟨ w, ω - Dα ⟩ ≤ ‖w‖_∞ ‖ω - Dα‖₁ ≤ ‖ω - Dα‖₁
+
+Taking the infimum over α yields ⟨ w, ω ⟩ ≤ ΦD([ω]). Therefore, an external auditor can directly
+certify a lower bound on the constraint violation by evaluating ⟨ w^*, ω ⟩ > 0 and checking Dᵀ w^* =
+0 and ‖w^*‖_∞ ≤ 1 via elementary matrix-vector multiplication, without needing to trust or rerun an
+optimizer. When primal and dual objectives match, optimality is certified unconditionally.
+
+---
+
+6. PONZANO--REGGE ASYMPTOTICS AND ℓ¹ PHASE ENVELOPES
+
+
+The Ponzano--Regge model (Ponzano & Regge 1968) provides the canonical state sum for 3D quantum
+gravity, defined on a simplicial triangulation with spins jₑ ∈ \frac12ℕ attached to edges.
+
+6.1 WIGNER 6J SYMBOL, RACAH FORMULA, AND ALGEBRAIC RADICALS
+
+
+The amplitude for a single tetrahedron is given by the Wigner 6j symbol:
+
+≤ft\ \beginmatrix j₁ & j₂ & j₃ j₄ & j₅ & j₆ \endmatrix \right\
+
+Using the Racah single-sum formula, this amplitude evaluates to:
+
+\6j\ = Δ(j₁, j₂, j₃)Δ(j₁, j₅, j₆)Δ(j₄, j₂, j₆)Δ(j₄, j₅, j₃) ∑z \frac(-1)z (z+1)!∏ᵢ (z - pᵢ)! ∏ₖ (qₖ
+- z)!
+
+where each triangle coefficient Δ(a, b, c) = \sqrt\frac(a+b-c)!(a-b+c)!(-a+b+c)!(a+b+c+1)! contains
+a square-root radical.
+
+*Radical vs Rational Structure:*
+While symmetric configurations with identical spins can produce rational values (such as the regular
+all-spin-1 tetrahedron where \6j\ = 1/6), general 6j symbols lie in quadratic field extensions due
+to triangle square roots. For example, for spins (j₁, j₂, j₃; j₄, j₅, j₆) = (1, 1, 1; 1, 2, 2):
+
+≤ft\ \beginmatrix 1 & 1 & 1 1 & 2 & 2 \endmatrix \right\ = -\frac1\sqrt20
+
+Its square is rational (1/20), but the symbol itself requires radical arithmetic.
+
+6.2 SEMICLASSICAL ASYMPTOTICS AND ℓ¹ GEOMETRIC BOUNDS
+
+
+In the semiclassical limit where edge spins are scaled by a large integer k → ∞ (jₑ ↦ k jₑ), Roberts
+(1999) established the asymptotic formula:
+
+\k jₑ\ \sim \frac1\sqrt12\pi V(j) \, k⁻³/² \cos≤ft( k \, SRₑggₑ + \frac\pi4 \right)
+
+where V(j) is the volume of the unscaled tetrahedron (necessitating the k⁻³/² prefactor), and SRₑggₑ
+= ∑ₑ₌₁⁶ ≤ft(jₑ + \frac12k\right) θₑ.
+
+Theorem 6.1 (Ponzano--Regge Phase Bounds).
+1. *Fixed-Angle Linear Phase Bound:* For fixed dihedral angles θ ∈ ℝ⁶ and arbitrary spin variations
+j, j' ∈ ℝ⁶:
+
+|S_θ(j) - S_θ(j')| ≤ ‖j - j'‖₁ \, ‖θ‖_∞
+
+2. *Schläfli Geometric Path Bound:* For two geometric tetrahedra with edge length vectors J, J' ∈
+ℝ>₀⁶ (where Jₑ = jₑ + 1/2) connected by a smooth path J(t) (t ∈ [0, 1]) along which every
+intermediate configuration remains a nondegenerate Euclidean tetrahedron:
+
+|SRₑggₑ(J') - SRₑggₑ(J)| ≤ ‖J' - J‖₁ \sup₀≤ₜ≤₁ ‖θ(J(t))‖_∞ ≤ \pi ‖J' - J‖₁
+
+
+*Proof & Counterexample to Naive Angle-Freezing:*
+The proof of the fixed-angle bound follows directly from Hölder's inequality on ℝ⁶:
+
+|S_θ(j) - S_θ(j')| = ≤ft| ∑ₑ₌₁⁶ (jₑ - j'ₑ) θₑ \right| ≤ ∑ₑ₌₁⁶ |jₑ - j'ₑ| |θₑ| ≤ ‖j - j'‖₁ ‖θ‖_∞
+
+When edge lengths vary, however, dihedral angles θₑ = θₑ(J) also vary. Recomputing angles produces a
+counterexample to the naive endpoint bound |Δ S| ≤ ‖Δ j‖₁ ‖θ(j)‖_∞:
+- Start with all six spins jₑ = 2 (Jₑ = 2.5), where θₑ = \arccos(1/3) ≈ 1.230959 rad.
+- Increase only spin (0, 1) to j₀₁ = 3 (J₀₁ = 3.5), leaving other five spins at 2.
+- Both configurations are strictly nondegenerate Euclidean tetrahedra. Recomputing exact dihedral
+angles yields:
+
+|Δ S| ≈ 1.363496 > ‖Δ j‖₁ ‖θ(j)‖_∞ = 1.0 × 1.230959 = 1.230959
+
+To obtain a sound geometric bound, we apply the Schläfli differential identity dS = ∑ₑ₌₁⁶ θₑ dJₑ
+(since ∑ Jₑ dθₑ = 0). Integrating along the path J(t):
+
+|S(J') - S(J)| = ≤ft| ∈t₀¹ ∑ₑ₌₁⁶ θₑ(J(t)) \fracdJₑdt \, dt \right| ≤ ∈t₀¹ ∑ₑ₌₁⁶ |θₑ(t)| ≤ft| \fracdJₑdt
+\right| dt ≤ ‖J' - J‖₁ \sup₀≤ₜ≤₁ ‖θ(J(t))‖_∞
+
+Because every dihedral angle in a nondegenerate Euclidean tetrahedron satisfies 0 < θₑ < \pi, the
+universal geometric bound \pi ‖J' - J‖₁ holds unconditionally along any straight path that avoids
+degenerate configurations. \square
+
+---
+
+7. QUARANTINED HIGH-ENERGY SPECULATIVE ANALOGIES AND EXPLICIT FALSIFICATION RECEIPTS
+
+
+To preserve strict claim discipline, early speculative analogies are quarantined. The receipts below
+demonstrate that these speculative ideas fail due to missing derivations, category errors, or
+dimensional inconsistencies within this discrete framework, rather than constituting empirical
+refutations of continuous physical theories.
+
+7.1 RECEIPT: SIMPLICIAL GAUGE GROUP UNIQUENESS FALSIFIED
+
+- Target Observable: SU(3) × SU(2) × U(1) Standard Model gauge group.
+- Speculative Ansatz: Matching 2-simplices to SU(3), 1-simplices to SU(2), and 0-simplices to U(1).
+- Obstruction Type: Category error; absence of Lie algebra representations.
+- Proof of Failure: Simplicial boundary operators ∂ₖ: Cₖ → Cₖ₋₁ are abelian group homomorphisms over
+ℤ or ℝ. They do not encode Lie brackets, non-abelian structure constants [Tₐ, Tᵦ] = i fₐᵦc Tc, or
+gauge field representations. Any Lie group (e.g. SO(N), Sp(N), E₈) can be assigned to simplices with
+equal formal validity. The 3-2-1 hierarchy is mnemonic, not derived.
+
+7.2 RECEIPT: ELECTROWEAK HIGGS VEV DERIVATION FALSIFIED
+
+- Target Observable: Electroweak symmetry breaking VEV v = 246.22 GeV.
+- Speculative Ansatz: V(Φ) = -\mu² |Φ|² + \lambda |Φ|⁴ with v = \sqrt\mu² / \lambda.
+- Obstruction Type: Injected parameter scale.
+- Proof of Failure: The scalar potential V(Φ) is not derived from discrete constraint closure; it is
+injected by hand. The value v = 246 GeV is supplied as an empirical boundary datum, not a
+mathematical consequence of primitive difference or ℓ¹ cochain geometry.
+
+7.3 RECEIPT: TOPOLOGICAL SUSY SATURATION SCALE FALSIFIED
+
+- Target Observable: MSSM sparticle mass threshold at Eₛₐₜ ≈ 85.6 - 88.56 TeV.
+- Speculative Ansatz: Eₛₐₜ = vEW × 360^\circ.
+- Obstruction Type: Dimensional inconsistency and angle-unit numerology.
+- Proof of Failure: The degree is an arbitrary human convention (1/360 of a circle). Multiplying an
+energy (vEW = 246 GeV) by the dimensionless number 360 has no gauge-invariant physical meaning. In
+radians, vEW × 2\pi ≈ 1.55 TeV, which differs by a factor of 57. No superspace, supersymmetry
+algebra \Q_α, \barQ\dₒₜβ\ = 2 \sigma^\muα\dₒₜβ P_\mu, or supermultiplet is constructed.
+
+7.4 RECEIPT: HEXAGONAL WALL FINE-STRUCTURE CONSTANT FALSIFIED
+
+- Target Observable: QED fine-structure constant α⁻¹ = 137.035999...
+- Speculative Ansatz: 4\pi³ + \pi² + \pi ≈ 137.036304 via hexagonal Regge deficit lattice.
+- Obstruction Type: Boundary convention artifact and post-hoc numerical coincidence.
+- Proof of Failure: The formula 2\pi + 6\pi R reported in early notes charged boundary vertices with
+full 2\pi - ∑ θ rotations rather than the extrinsic boundary turning angle \tau = \pi - ∑ θ. Under
+the boundary turning convention \tau, the six corner vertices contribute \pi/3 each and the straight
+boundary vertices contribute zero, yielding total boundary turning ∑ \tau = 2\pi for every radius R,
+exactly matching the Gauss-Bonnet theorem (∈t \kappag ds = 2\pi). Interior vertices have deficit 0.
+The expression 4\pi³ + \pi² + \pi is an unmotivated algebraic combination selected post-hoc to
+approximate the CODATA value.
+
+7.5 RECEIPT: ISOLATED COCHAIN EDGE DARK MATTER ANALOGY FALSIFIED
+
+- Target Observable: Cosmological cold dark matter density \Omegac.
+- Speculative Ansatz: An isolated 1-simplex with raw norm 2 represents dark matter.
+- Obstruction Type: Missing dynamical stress-energy tensor and quotient gauge triviality.
+- Proof of Failure: Under the unrestricted coboundary d₀, an isolated edge has quotient residual
+Φd_₀ = 0, because assigning potential α₀ = 0, α₁ = 2 cancels the edge cochain completely. Raw
+cochain values do not represent surviving topological obstructions. Furthermore, an isolated edge
+possesses no stress-energy tensor T\ₘᵤ\ₙᵤ, no gravitational clustering dynamics, and no cosmological
+equation of state w = 0.
+
+---
+
+8. WORKED COMPUTATIONAL EXAMPLES & TEST INVARIANTS
+
+
+8.1 MINIMAL 2-SIMPLEX TRIANGLE LOOP
+
+Consider a single 2-simplex triangle with 3 vertices and 3 directed edges (0,1), (1,2), (2,0). The
+coboundary matrix d₀: C⁰ → C¹ is:
+
+d₀ = \beginpmatrix -1 & 1 & 0 0 & -1 & 1 1 & 0 & -1 \endpmatrix
+
+1. Exact Coboundary (Pure Gauge): Let ω = d₀ [1, 2, 0]ᵀ = [1, -2, 1]ᵀ.
+The solver yields Φ([ω]) = 0.0, duality gap < 10⁻¹⁴, and isclosed = True.
+2. Circulation Loop (Obstruction in C¹ / im d₀): Let ω = [1, 1, 1]ᵀ.
+The solver yields Φ([ω]) = 3.0, optimal gauge fix α^* = [0, 0, 0]ᵀ, and dual witness w^* = [1, 1,
+1]ᵀ.
+Notice that ∂₁ w^* = d₀ᵀ w^* = [-1+1, 1-1, 1-1]ᵀ = [0, 0, 0]ᵀ, and ‖w^*‖_∞ = 1 ≤ 1.
+The duality gap is Φ - ⟨ w^*, ω ⟩ = 3.0 - 3.0 = 0.0.
+*Note on Cohomology:* On a filled triangle with face (0,1,2), (d₁ ω)(0,1,2) = 3 ≠ 0. Thus ω is not a
+cocycle and does not represent an element of H¹(K), but rather a non-vanishing quotient residual in
+C¹(K) / im(d₀).
+
+8.2 CLOSED 4-SPHERE SIMPLICIAL BIANCHI VERIFICATION & PERTURBATION
+
+
+Consider the boundary of a 5-simplex ∂ Δ⁵ ≅ S⁴, comprising 6 vertices, 15 edges, 20 triangles, 15
+tetrahedra, and 6 4-simplices.
+
+1. Regular Symmetric Complex: Each triangle belongs to exactly 6 - 3 = 3 4-simplices. Assigning the
+regular deficit angle εᵣₑg = 2\pi - 3\arccos(1/4) ≈ 2.328837 rad to all 20 triangular hinges:
+
+d₂ ε = ∂₃ᵀ ε = 0 \quad (‖d₂ ε‖₁ = 0.0)
+
+Alternating signs cancel identically on every tetrahedron: c - c + c - c = 0.
+2. Perturbed Complex (Non-Abelian Failure): Setting ℓ₀₁ = 1.1 while keeping all other edges at 1.0
+preserves Euclidean nondegeneracy (smallest Gram eigenvalue ≈ 0.4851) but yields:
+
+‖d₂ ε‖₁ ≈ 1.956565, \quad ‖d₂ ε‖_∞ ≈ 0.244571
+
+confirming that generic curved 4-manifolds do not satisfy scalar Bianchi coboundary closure.
+
+8.3 HAMILTONIAN BLIND SPOT AND DIRECT-SUM RESOLUTION ON REGULAR ∂Δ⁴
+
+
+Consider the boundary complex of a regular 4-simplex ∂Δ⁴ (homeomorphic to the 3-sphere S³),
+comprising 5 vertices, 10 edges, 10 triangles, and 5 tetrahedra, with all edge lengths set to ℓₑ =
+1.0.
+
+1. Geometry and Deficit Angles:
+Each interior edge belongs to exactly 5 - 2 = 3 regular tetrahedra. The dihedral angle of a regular
+tetrahedron is θₜₑₜ = \arccos(1/3) ≈ 1.230959 rad.
+The deficit angle on every edge is:
+
+εₑ = 2\pi - 3\arccos(1/3) ≈ 2.590307 rad
+
+2. Scalar Curvature and Hamiltonian Value:
+Under the toy discrete Hamiltonian formulation, with zero momentum (pₑ = 0 for all edges) and unit
+dual volume Vᵥ^* = 1.0, the scalar constraint at vertex v evaluates:
+
+H_\perp(v) = ∑ₑ\ₛᵢₘᵥ pₑ² - R(v) = 0 - ∑ₑ\ₛᵢₘᵥ εₑ ≈ -20.722456
+
+This yields a total ℓ¹ Hamiltonian violation of ‖H_\perp‖₁ = ∑ᵥ₌₀⁴ |H_\perp(v)| = 5 × 20.722456 ≈
+103.612282.
+3. Failure of Naive Coboundary Encoding:
+In the naive formulation where constraints are mapped into a single 1-cochain ωₙₐᵢᵥₑ = p + d₀
+H_\perp, when p = 0, ωₙₐᵢᵥₑ = d₀ H_\perp is by definition an exact coboundary in im(d₀).
+Solving the linear program Φd_₀([ωₙₐᵢᵥₑ]) = \min_α ‖ωₙₐᵢᵥₑ - d₀ α‖₁ sets α^* = H_\perp and yields:
+
+Φd_₀([ωₙₐᵢᵥₑ]) = 0.0, \quad reporting is\closed = True
+
+The solver is completely blind to the scalar Hamiltonian violation of > 103.61.
+4. Direct-Sum Joint Resolution:
+Under the joint direct-sum system C¹(K) ⊕ C⁰(K) with block coboundary operator Dⱼₒᵢₙₜ =
+\beginpmatrix d₀ 0 \endpmatrix:
+
+Φⱼₒᵢₙₜ([ωⱼₒᵢₙₜ]) = \min_α ≤ft( ‖p - d₀ α‖₁ + ‖H_\perp - 0 α‖₁ \right) = Φd_₀([p]) + ‖H_\perp‖₁
+
+For p = 0, Φⱼₒᵢₙₜ = 0 + 103.612282 = 103.612282 > 0, correctly diagnosing the non-closure (isclosed
+= False).
+The certified dual witness is w^*ⱼₒᵢₙₜ = (0, sgn(H_\perp)) ∈ C₁ ⊕ C₀, satisfying Dⱼₒᵢₙₜᵀ w^*ⱼₒᵢₙₜ =
+d₀ᵀ 0 = 0, ‖w^*ⱼₒᵢₙₜ‖_∞ = 1, and attaining exact strong duality with gap 0.0.
+
+8.4 EXACT RATIONAL BASIS RECONSTRUCTION ON CARROLL'S REGRESSION CASE
+
+
+Floating-point linear programming solvers operating near machine precision or ill-conditioned
+geometry can report non-zero residuals or fail certification on tiny non-zero cochains. The exact
+rational solver exactᵣationall1quotient operates strictly over ℚ using Python's fractions.Fraction
+and certified Gauss--Jordan elimination.
+
+Consider the regression case identified by J. H. Carroll:
+
+ω = ≤ft[ \frac11000001 \right] ∈ C¹, \quad D = \beginpmatrix -1 & 1 \endpmatrix: C⁰ → C¹
+
+where C⁰ ≅ ℚ² and C¹ ≅ ℚ¹.
+
+1. Primal Resolution:
+The gauge condition is D α = -α₀ + α₁ = 1/1000001.
+Setting α₀ = 0 and α₁ = 1/1000001 yields an exact cancellation ω - Dα = [0].
+The solver reconstructs the primal gauge potential α^* = [0, 1/1000001]ᵀ, yielding exact primal
+objective:
+
+ΦD([ω]) = \frac01, \quad ΨD(ω) = \frac01, \quad Gap = \frac01, \quad is\closed = True, is\certified
+= True
+
+2. Dual Nullspace Certification:
+The dual constraint requires Dᵀ w = \beginpmatrix -1 1 \endpmatrix w = \beginpmatrix 0 0
+\endpmatrix, which forces w = [0].
+Since w = 0, the dual objective is ⟨ w, ω ⟩ = 0, which matches the primal value 0 identically.
+3. Comparison on Non-Zero Cycle:
+Conversely, on the directed triangle cycle ω = [1, 1, 1]ᵀ with incidence d₀, the exact solver
+identifies the nullspace witness w^* = [1, 1, 1]ᵀ, verifies d₀ᵀ w^* = [0, 0, 0]ᵀ, ‖w^*‖_∞ = 1, and
+produces Φ = 3/1, Ψ = 3/1, Gap = 0/1, is\closed = False, is\certified = True.
+
+8.5 FINITE HODGE--DIRAC GRADED ALGEBRA ON SIMPLICIAL COMPLEXES
+
+
+On finite simplicial complexes, discrete differential operators form a graded cochain complex C⁰
+\xrightarrowd₀ C¹ \xrightarrowd₁ C² \dots with nilpotency dₖ₊₁ dₖ = 0. The finite Hodge--Dirac
+operator D = d + d^* on C = \bigoplusₖ Cᵏ satisfies D² = Δ = d d^* + d^* d.
+
+1. Single-Triangle Delta Matrix Identity:
+On a single oriented 2-simplex Δ² with 3 vertices, 3 edges, and 1 face, with d₀: C⁰ → C¹ and d₁: C¹
+→ C²:
+
+Δ₁ = d₀ d₀ᵀ + d₁ᵀ d₁ = 3 I₃
+
+This is verified as a coordinate identity in hodgediracₛusy.py and formalized in Lean 4
+(delta1ᵢs₃ᵢdentity in GR002/HodgeDiracSUSY.lean).
+2. Witten Index and Spectrum:
+The finite Hodge Laplacian Δ decomposes into even and odd subspaces Ceveⁿ = C⁰ ⊕ C² (\dim = 3 + 1 =
+4) and Codd = C¹ (\dim = 3). The finite Witten index evaluates:
+
+W = \dim \ker(Δₑᵥₑₙ) - \dim \ker(Δₒdd) = β₀ + β₂ - β₁ = 1 + 0 - 0 = 1
+
+matching the Euler characteristic \chi(Δ²) = 1.
+On two triangles glued along an edge (4 vertices, 5 edges, 2 faces), the Hodge--Laplacian spectrum
+on 1-forms evaluates to \2, 2, 4, 4, 4\, with trace Tr(Δ₁) = 16.
+3. Physical Interpretation Boundary:
+These properties represent standard theorems in finite-dimensional graded exterior algebra and
+discrete differential geometry. They do not construct a continuous spacetime supersymmetry, a
+gravitino superpartner, or a spontaneous supersymmetry breaking scale.
+
+8.6 FIXED-CARRIER QUOTIENT HOMOGENEITY AND THE NO-DOUBLE-WELL INVARIANT
+
+
+A central question in discrete field theories is whether non-trivial symmetry-breaking effective
+potentials (such as the Higgs Mexican-hat double well) can emerge from pure ℓ¹ metric minimization
+without injected polynomial interactions.
+
+1. Quotient Absolute Homogeneity Theorem:
+Let K be a fixed finite cell carrier, D: Cᵏ⁻¹ → Cᵏ a linear coboundary operator, and ω ∈ Cᵏ. The
+quotient residual along a fixed ray t ↦ tω (t ∈ ℝ) satisfies:
+
+ΦD([tω]) = \min_α ‖tω - Dα‖₁ = |t| \minα' ‖ω - Dα'‖₁ = |t| ΦD([ω])
+
+where α' = α / t for t ≠ 0, and the case t = 0 is trivial.
+2. Formalization and Numerical Verification:
+This identity is formalized in Lean 4 (declarations fixedcarrierquotientₕomogeneity
+and quotientcandidateₕomogeneity in module GR002/LinearEnergy.lean).
+In numerical simulations (higgsₚurelinearcertificate.py), sampling E(\phi) = ΦD([\phi ω₀])
+across \phi ∈ [0.1, 5.0] confirms that a linear fit achieves R² = 1.000000, whereas a quartic
+double-well ansatz achieves only R² = 0.985563.
+3. Absence of Spontaneous Symmetry Breaking:
+Because t ↦ |t| ΦD([ω]) is strictly convex (or identically zero) with its global minimum
+uniquely at the origin t = 0 (formalized as linearₑnergyₕasₒriginₘinimum), pure linear
+ℓ¹ topology along fixed rays cannot produce a non-zero vacuum expectation value (v > 0)
+or double-well symmetry breaking. Any reported Higgs potential must be an explicit polynomial
+injection.
+
+8.7 DISCRETE DESCENT DYNAMICS ON NON-MANIFOLD COMPLEXES
+
+
+The Discrete Descent Algorithm (DDA) iterates local coexact updates to reduce curvature mass γₖ₊₁ =
+‖dₖ ω‖₁. While uncoupled local updates descend monotonically on planar duals and trees, they do not
+possess a universal descent guarantee on generic complexes.
+
+1. Five-Triangle Shared-Edge Counterexample:
+Consider five triangles (0, 1, i) (i = 2, \dots, 6) meeting at a single shared interior edge (0, 1)
+(a non-manifold 2-complex). Let the cochain have value 1.0 on the common edge (0, 1) and 0.0 on all
+outer edges.
+The initial curl magnitude on each face is 1.0, giving initial curvature mass γᵦₑfₒᵣₑ = 5.0.
+An uncoupled coexact update applies a boundary subtraction of -1/3 from each of the five triangles
+onto edge (0, 1), over-correcting it to 1.0 - 5(1/3) = -2/3. The updated curvature mass evaluates:
+
+γₐfₜₑᵣ = \frac203 ≈ 6.6667 > 5.0
+
+2. Loss Ledger Honesty & Prior-Degree Guards:
+Rather than recording the initial mass of 5.0 as canceled, the repaired DDA engine
+(discretedescentₑngine.py) explicitly evaluates the candidate complex, records Δ γ = +5/3,
+and sets curlₘasscanceled = 0.0.
+Furthermore, when higher-degree lifts encounter zero residual at degree k+1 while obligations at
+degree k remain unresolved, the engine returns status = TYPEDOBSTRUCTION, preventing a trivial
+higher-dimensional zero from declaring the global problem solved.
+
+---
+
+9. FALSIFIABILITY AND REPRODUCIBILITY
+
+
+Every mathematical theorem and numerical claim in this monograph is falsifiable by executing the
+verified test suite under Python 3.14:
+
+python -m pytest code/tests -n 8
+
+
+REPRODUCIBILITY CRITERIA:
+
+1. If any regular boundary complex where all deficit angles are uniform exhibits non-zero scalar
+Bianchi flux ‖d₂ ε‖₁ > 10⁻¹⁰, Theorem 3.2(1) is falsified.
+2. If any constraint cochain ω produces a duality gap |ΦD([ω]) - ΨD(ω)| > 10⁻⁸ between primal and
+dual LP solvers, Theorem 5.1 is falsified.
+3. If any two spin configurations along an admissible Euclidean path violate |S(J') - S(J)| ≤ \pi
+‖J' - J‖₁, Theorem 6.1(2) is falsified.
+4. If any pure gauge shift ω ↦ ω + D γ changes the quotient norm ΦD, Theorem 4.1 is falsified.
+
+---
+
+10. CANONICAL REFERENCES
+
+
+1. Regge, T. (1961). *General relativity without coordinates*. Il Nuovo Cimento, 19(3), 558--571.
+2. Hamber, H. W., & Kagel, G. (2001). *Exact Bianchi identity in Regge gravity*. Nuclear Physics B,
+608(1-2), 435--452. arXiv:gr-qc/0107031.
+3. Ponzano, G., & Regge, T. (1968). *Semiclassical limit of Racah coefficients*. Spectroscopic and
+group theoretical methods in physics, 1--58.
+4. Wheeler, J. A. (1968). *Superspace and the nature of quantum geometrodynamics*. Battelle
+Rencontres, 242--307.
+5. DeWitt, B. S. (1967). *Quantum theory of gravity. I. The canonical theory*. Physical Review,
+160(5), 1113.
+6. Misner, C. W., Thorne, K. S., & Wheeler, J. A. (1973). *Gravitation*. W. H. Freeman and Company,
+San Francisco.
+7. Friedberg, R., & Lee, T. D. (1984). *Derivation of Regge's action from Einstein's theory of
+general relativity*. Nuclear Physics B, 242(1), 145--166.
+8. Hamber, H. W. (2009). *Quantum Gravitation: The Feynman Path Integral Approach*. Springer Science
+& Business Media.
+9. Bahr, B., & Dittrich, B. (2009). *Regge calculus from a new perspective: Towards consistent
+approximations of quantum gravity*. Physical Review D, 80(12), 124030. arXiv:0905.1670.
+10. Freidel, L., & Louapre, D. (2003). *Non-perturbative summation over 3D discrete geometries*.
+Nuclear Physics B, 662(1-2), 279--298.
+11. Roberts, J. (1999). *Classical 6j-symbols and the tetrahedron*. Geometry & Topology, 3(1), 21--
+66. arXiv:math-ph/9812013.
+12. Schrijver, A. (1986). *Theory of Linear and Integer Programming*. John Wiley & Sons.

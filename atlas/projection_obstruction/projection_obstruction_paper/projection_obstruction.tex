@@ -91,7 +91,7 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\newcommand{\POReleaseVersion}{6.9.18}
+\newcommand{\POReleaseVersion}{6.9.20}
 % House preamble for the projection-obstruction paper line.
 %
 %  Typesetting is not evidence for any claim.
@@ -107,12 +107,14 @@
 
 \usepackage{fontspec}
 \usepackage{unicode-math}
-\setmainfont{Latin Modern Roman}
+\setmainfont{lmroman10-regular.otf}[BoldFont=lmroman10-bold.otf,ItalicFont=lmroman10-italic.otf,BoldItalicFont=lmroman10-bolditalic.otf]
 % Latin Modern Mono, not DejaVu or Consolas: it ships with every
 % TeX distribution, so the archive builds on a machine that has
 % only TeX Live or MiKTeX and no extra fonts installed.
-\setmonofont{Latin Modern Mono}[Scale=0.85]
-\setmathfont{Latin Modern Math}
+\setmonofont{lmmono10-regular.otf}[Scale=0.85]
+\setmathfont{latinmodern-math.otf}
+% Use the available backslash glyph for set difference on older TeX bundles.
+\AtBeginDocument{\renewcommand{\setminus}{\mathbin{\backslash}}}
 
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
@@ -180,7 +182,7 @@
 \hypersetup{
   pdftitle={Projection Obstruction for Factorized States},
   pdfauthor={Jeremy H. Carroll},
-  pdfsubject={PO-000 release 6.9.18; Python 6.9.6},
+  pdfsubject={PO-000 release 6.9.20; Python 6.9.6},
   colorlinks=true,
   linkcolor={RoyalBlue},
   filecolor={Maroon},
@@ -197,7 +199,7 @@
 \makeatother
 \subtitle{Nonlinear Dynamics, Conditional \(\ell^1\) Diagnostics, and Exact Short-Time Defect Bounds}
 \author{Jeremy H. Carroll}
-\date{Release 6.9.18 -- 2026-10-14}
+\date{Release 6.9.20 -- 2026-10-23}
 
 \begin{document}
 \maketitle
@@ -291,7 +293,7 @@ This paper connects to six main lines of research:
 
 \subsubsection{1.2 Research Series and Sibling Packages}\label{research-series-and-sibling-packages}
 
-To keep the present paper focused on quantum lattice dynamics, local correlation bounds, and physical visibility gaps, specialized and background developments are coordinated with companion packages in the \texttt{002\_projection\_obstruction} series and \texttt{coda\_atlas}:
+To keep the present paper focused on quantum lattice dynamics, local correlation bounds, and physical visibility gaps, specialized and background developments are coordinated with companion packages in the \texttt{projection\_obstruction} series and \texttt{coda\_atlas}:
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
@@ -315,15 +317,15 @@ Results used \& Scope
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{PO-001} & \emph{From Covering-Edge Descent Complexes to Functorial Presheaves and Coherence Defects} (v2.0.0) & \texttt{002\_projection\_obstruction/001\_from\_covering\_edge\_descent...} & Theorem 2.1, §3 & Saturated-chain presheaves, degree-2 composition curvature cochains \(K_{c,b,a}\), and operator cocycle coboundaries. \\
-\textbf{PO-006 (GS-003)} & \emph{Vector and Quantum Observer Geometries: Gauge Relativity and Trace Metric Bounds} (v0.4.0) & \texttt{002\_projection\_obstruction/006\_vector\_and\_quantum\_observer\_geometries} & §§2--4 & Non-scalar observer geometries, Schatten-norm operator bounds, dual witness certificates, and phase metrics. \\
-\textbf{PO-007 (GS-001)} & \emph{M-Compatible Gauge Classification for Banach Presheaf Coboundaries: The \(\ell^1\) Maximal-Symmetry Endpoint} (v4.7.0) & \texttt{002\_projection\_obstruction/007\_m\_compatible\_gauge\_classification} & Theorem 2.2, §3 & \(M\)-compatible gauge classification for Banach presheaves; maximal linear symmetry selecting weighted \(\ell^1\). \\
-\textbf{PO-008 (GS-002)} & \emph{SO(k)-Invariant Gauge Rigidity for Declared Euclidean Stalks: Local \(\ell^2\) Selection and Outer \(\ell^1\) Aggregation} (v2.0.0) & \texttt{002\_projection\_obstruction/008\_so\_k\_invariant\_gauge\_classification} & Theorem 1.1, §§2--3 & \(SO(k)\)-invariant gauge rigidity on Euclidean stalks; local \(\ell^2\) selection with outer \(\ell^1\) aggregation. \\
-\textbf{PO-009 (GS-000)} & \emph{Coordinate-Wise Additivity and Local \(\ell^1\) Gauge Selection} (v6.1.1) & \texttt{002\_projection\_obstruction/009\_coordinate\_wise\_additivity} & Theorems 1--3, §2 & Coordinate-wise additivity and local \(\ell^1\) gauge selection on finite graph cochains. \\
-\textbf{PO-033} & \emph{Certified Adaptive Quantum Dynamics from Projection Residuals} (v1.0.1) & \texttt{002\_projection\_obstruction/033\_certified\_adaptive\_quantum\_dynamics} & §3, §4, Claims PO033-C1--C6 & Conditional analytic bounds and uncertified adaptive cluster prototype (\texttt{HEURISTIC\_UNCERTIFIED}); Lean scope is conditional finite-sum inequalities over an abstract carrier (\texttt{Nat}/\texttt{Int}). Validated continuous-time ODE integration and conservative quadrature remain open work. \\
-\textbf{PO-034} & \emph{Higher-Cell Product Retractions, Simplicial Cochains, and Finite Retraction Dynamics} (v0.1.0) & \texttt{002\_projection\_obstruction/034\_higher\_cell\_cochain\_projection...} & §2, §3, Theorems 4.1--4.3 & Higher-cell product retractions, oblique projectors, simplicial cochain dynamics, and finite-dilation Taylor estimates. \\
-\textbf{PO-035} & \emph{Zero-Container Relational Spacetime, Emergent Lorentz Causality, and Witness Holonomy} (v0.1.0) & \texttt{002\_projection\_obstruction/035\_zero\_container\_relational\_spacetime...} & §§2--7, Claims RC-01--RC-10 & Defect 4-current conservation (\(\partial_\mu J^\mu=0\)), discrete relational spacetime, and witness holonomy. \\
-\textbf{Finite QM} & \emph{Finite Quantum Mechanics: Operational Jordan--Lie Foundations, Canonical Traces, and Central Purification} (v0.55.0) & \texttt{F004\_papers/006\_finite\_qm} & §§13.5--13.8, Claim FQM-13.8 & Operational Jordan--Lie foundations, character cancellation on the sign cube, positive Bell cone extensions, and central-sector purification obstructions (former Appendix E). \\
+\textbf{PO-001} & \emph{From Covering-Edge Descent Complexes to Functorial Presheaves and Coherence Defects} (v2.0.0) & \texttt{projection\_obstruction/001\_from\_covering\_edge\_descent...} & Theorem 2.1, §3 & Saturated-chain presheaves, degree-2 composition curvature cochains \(K_{c,b,a}\), and operator cocycle coboundaries. \\
+\textbf{PO-006 (GS-003)} & \emph{Vector and Quantum Observer Geometries: Gauge Relativity and Trace Metric Bounds} (v0.4.0) & \texttt{projection\_obstruction/vector\_and\_quantum\_observer\_geometries} & §§2--4 & Non-scalar observer geometries, Schatten-norm operator bounds, dual witness certificates, and phase metrics. \\
+\textbf{PO-007 (GS-001)} & \emph{M-Compatible Gauge Classification for Banach Presheaf Coboundaries: The \(\ell^1\) Maximal-Symmetry Endpoint} (v4.7.0) & \texttt{projection\_obstruction/m\_compatible\_gauge\_classification} & Theorem 2.2, §3 & \(M\)-compatible gauge classification for Banach presheaves; maximal linear symmetry selecting weighted \(\ell^1\). \\
+\textbf{PO-008 (GS-002)} & \emph{SO(k)-Invariant Gauge Rigidity for Declared Euclidean Stalks: Local \(\ell^2\) Selection and Outer \(\ell^1\) Aggregation} (v2.0.0) & \texttt{projection\_obstruction/so\_k\_invariant\_gauge\_classification} & Theorem 1.1, §§2--3 & \(SO(k)\)-invariant gauge rigidity on Euclidean stalks; local \(\ell^2\) selection with outer \(\ell^1\) aggregation. \\
+\textbf{PO-009 (GS-000)} & \emph{Coordinate-Wise Additivity and Local \(\ell^1\) Gauge Selection} (v6.1.1) & \texttt{projection\_obstruction/coordinate\_wise\_additivity} & Theorems 1--3, §2 & Coordinate-wise additivity and local \(\ell^1\) gauge selection on finite graph cochains. \\
+\textbf{PO-033} & \emph{Certified Adaptive Quantum Dynamics from Projection Residuals} (v1.0.1) & \texttt{projection\_obstruction/certified\_adaptive\_quantum\_dynamics} & §3, §4, Claims PO033-C1--C6 & Conditional analytic bounds and uncertified adaptive cluster prototype (\texttt{HEURISTIC\_UNCERTIFIED}); Lean scope is conditional finite-sum inequalities over an abstract carrier (\texttt{Nat}/\texttt{Int}). Validated continuous-time ODE integration and conservative quadrature remain open work. \\
+\textbf{PO-034} & \emph{Higher-Cell Product Retractions, Simplicial Cochains, and Finite Retraction Dynamics} (v0.1.0) & \texttt{projection\_obstruction/034\_higher\_cell\_cochain\_projection...} & §2, §3, Theorems 4.1--4.3 & Higher-cell product retractions, oblique projectors, simplicial cochain dynamics, and finite-dilation Taylor estimates. \\
+\textbf{PO-035} & \emph{Zero-Container Relational Spacetime, Emergent Lorentz Causality, and Witness Holonomy} (v0.1.0) & \texttt{projection\_obstruction/035\_zero\_container\_relational\_spacetime...} & §§2--7, Claims RC-01--RC-10 & Defect 4-current conservation (\(\partial_\mu J^\mu=0\)), discrete relational spacetime, and witness holonomy. \\
+\textbf{Finite QM} & \emph{Finite Quantum Mechanics: Operational Jordan--Lie Foundations, Canonical Traces, and Central Purification} (v0.55.0) & \texttt{papers/finite\_quantum\_mechanics} & §§13.5--13.8, Claim FQM-13.8 & Operational Jordan--Lie foundations, character cancellation on the sign cube, positive Bell cone extensions, and central-sector purification obstructions (former Appendix E). \\
 \emph{Archived Monograph Material} & \emph{Projection Obstruction for Factorized States} (pre-streamlining monograph) & Commits \texttt{90e6231546} / \texttt{d44f760555}; code: \texttt{code/retraction\_geometry.py} & Former §§3.4--3.14, Appendix D & Banach graph charts, shear retractions, parameter-chart transitions, bounded-left-inverse failure lemmas, and conditional extension reductions (omitted from the 69-page edition). \\
 \end{longtable}
 
@@ -679,7 +681,7 @@ section settles it.
 
 Theorem 4.2 does not assert that every useful diagnostic on a graph must be an \(\ell^1\) sum, nor that the trace norm is uniquely selected by completely positive trace-preserving (CPTP) monotonicity alone. Rather, it shows that finite replica additivity (RE3) decomposes a global diagnostic into singleton contributions, and singleton calibration (RE5) identifies each singleton contribution with the chosen local gauge.
 
-\emph{Related framework connections.} The complete transformation-monoid gauge classification, the \(SO(k)\)-invariance rigidity on Euclidean stalks, and the one-axiom-drop independence countermodels (including \texttt{l2\_combination\_not\_additive} and \texttt{doubled\_sum\_not\_calibrated} in \texttt{lean4/po000\_l005\_weighted\_hierarchy.lean}) are established in companion packages \textbf{PO-007} (\texttt{007\_m\_compatible\_gauge\_classification}), \textbf{PO-008} (\texttt{008\_so\_k\_invariant\_gauge\_classification}), and \textbf{PO-009} (\texttt{009\_coordinate\_wise\_additivity}). Linear measurement dimension counting on repair subspaces is established in the finite obstruction calculus of \textbf{PO-001}.
+\emph{Related framework connections.} The complete transformation-monoid gauge classification, the \(SO(k)\)-invariance rigidity on Euclidean stalks, and the one-axiom-drop independence countermodels (including \texttt{l2\_combination\_not\_additive} and \texttt{doubled\_sum\_not\_calibrated} in \texttt{lean4/po000\_l005\_weighted\_hierarchy.lean}) are established in companion packages \textbf{PO-007} (\texttt{m\_compatible\_gauge\_classification}), \textbf{PO-008} (\texttt{so\_k\_invariant\_gauge\_classification}), and \textbf{PO-009} (\texttt{coordinate\_wise\_additivity}). Linear measurement dimension counting on repair subspaces is established in the finite obstruction calculus of \textbf{PO-001}.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -2501,6 +2503,45 @@ Because every proper marginal of order \(\le 5\) is independent of \(\epsilon\),
 with trace norm \(\lVert\kappa_6(\rho(\epsilon)) - \kappa_6(\rho_{\mathrm{cl}})\rVert_1 = |\epsilon|\) and \(\lVert\kappa_6(\rho_+) - \kappa_6(\rho_-)\rVert_1 = 2\) (witnessed by the 6-body Pauli observable \(X^{\otimes 6}\), for which \(\langle X^{\otimes 6}\rangle_{\rho_+} - \langle X^{\otimes 6}\rangle_{\rho_-} = 2\)).
 These results complement multipartite Lieb--Robinson bounds (Tran et al.~{[}25{]}): whereas power-law Lieb--Robinson bounds constrain spatial propagation velocity in long-range architectures, the algebraic cancellation strata and parity constructions above identify exact structural blind spots where few-body marginals carry zero signal despite order-unity \(k\)-body connected correlations.
 
+\subsubsection{5.18 Residual uncertainty and the time available for correction (NUM1)}\label{residual-uncertainty-and-the-time-available-for-correction-num1}
+
+A numerical residual and an error enclosure have different roles. Suppose the hypotheses of a short-time bound in this paper give
+\[
+D(t)\ge \nu t-Kt^2\qquad(0\le t\le T),
+\]
+where \(\nu,K\ge0\), and suppose an independently validated computation gives
+\(|\widehat\nu-\nu|\le\eta\) with \(\widehat\nu,\eta\ge0\).
+Set \(\nu_-:=\max(0,\widehat\nu-\eta)\). Then
+\[
+D(t)\ge\max\{0,\nu_-t-Kt^2\}.
+\]
+\textbf{Proof.} The enclosure implies \(\nu\ge\nu_-\); substitution and \(D(t)\ge0\) give the claim. If \(K>0\) and \(\nu_->0\), then \(D(t)\ge\nu_-t/2\) on
+\(0\le t\le\min\{T,\nu_-/(2K)\}\). If \(K=0\), the linear bound holds throughout the declared interval. If \(\widehat\nu\le\eta\), this observation supplies no positive onset certificate. \(\square\)
+
+This is a boundary on what the recorded residual establishes, not a claim that the true residual vanishes when its uncertainty interval includes zero. For example, \(\widehat\nu=\eta=1/50\) yields zero guaranteed margin. The selected rational arithmetic is replayed by \texttt{code/residual\_error\_budget.py}; that calculator does not establish the input enclosure or the physical remainder bound.
+
+For upper error control, the actual-defect estimate of §5.10 extends across finitely many correction jumps. If \(e\) bounds the current trace-norm error, \(r\ge0\) bounds the actual defect rate on a horizon \(H\), and \(j\ge0\) reserves the integration and correction-jump allowances, then
+\[
+E(h)\le e+rh+j\qquad(0\le h\le H).
+\]
+For a trace-norm target \(\varepsilon\), with \(e+j\le\varepsilon\), the largest interval licensed by this scalar bound is
+\[
+h_{\rm safe}=\begin{cases}
+\min\{H,(\varepsilon-e-j)/r\},&r>0,\\
+H,&r=0.
+\end{cases}
+\]
+If \(e+j>\varepsilon\), the bound licenses no interval, including duration zero. Exhausting this sufficient budget does not prove that the actual error has crossed the target: cancellations may make the bound loose. PO-034 §4.3 propagates state uncertainty through the product retraction and its declared observation map.
+
+\textbf{Correction-jump derivation.} On each interval between finitely many correction times \(t_\ell\), let the approximate density path \(\widetilde\rho\) be absolutely continuous and define its actual defect \(R=\dot{\widetilde\rho}-\mathcal L_t\widetilde\rho\). Assume the exact linear propagator \(U(t,s)\) is trace-norm contractive on the Hermitian differences concerned, and that the defect has an integrable norm. A jump \(J_\ell=\widetilde\rho(t_\ell^+)-\widetilde\rho(t_\ell^-)\) changes \(\Delta=\rho-\widetilde\rho\) by \(-J_\ell\). Applying variation of constants on each interval and composing the propagators gives
+\[
+\Delta(t)=U(t,0)\Delta(0)-\int_0^t U(t,s)R(s)\,ds
+-\sum_{0<t_\ell\le t}U(t,t_\ell)J_\ell.
+\]
+Here the final value is the post-correction value if \(t\) is a jump time. Taking norms yields \(\|\Delta(t)\|_1\le\|\Delta(0)\|_1+\int_0^t\|R(s)\|_1\,ds+\sum_\ell\|J_\ell\|_1\). Thus the scalar budget above follows from \(\|\Delta(0)\|_1\le e\), a validated bound \(\int_0^h\|R(s)\|_1\,ds\le rh+j_{\rm integration}\), and \(\sum_\ell\|J_\ell\|_1\le j_{\rm jump}\) with \(j=j_{\rm integration}+j_{\rm jump}\). These are assumptions on the actual numerical path, not on a sampled ideal tangent field. An initial-time correction is included in \(e\) or as an explicitly counted jump. \(\square\)
+
+These distinctions also apply to channel diagnostics. A computed tiny negative Choi eigenvalue can be an eigensolver artifact, whereas a genuinely negative binary-rational Choi direction must still be refused. Likewise, an approximate Hamiltonian propagator may be useful as a numerical diagnostic while failing exact unitary admission. An accepted diagnostic, a state enclosure and a bound on the actual trajectory defect remain separate inputs. The extension uses the established a posteriori perspective of \href{https://arxiv.org/abs/2108.00022v2}{Zoufal, Sutter and Woerner}; the present jump and scalar-budget consequences are derived above.
+
 \subsection{6. Worked Examples}\label{worked-examples}
 
 \subsubsection{6.1 Example 1: Two Qubits with Exact Trace-Norm Defect}\label{example-1-two-qubits-with-exact-trace-norm-defect}
@@ -3616,9 +3657,9 @@ Discrete protected history carriers, partition refinement quotients, joint futur
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Finite QM} (\texttt{F004\_papers/006\_finite\_qm}, §13.8) develops the operational quantum realization, character cancellation on the sign cube, and the separation between linear gluing, support gluing, and positive Bell cone extensions.
+  \textbf{Finite QM} (\texttt{papers/finite\_quantum\_mechanics}, §13.8) develops the operational quantum realization, character cancellation on the sign cube, and the separation between linear gluing, support gluing, and positive Bell cone extensions.
 \item
-  \textbf{PO-035} (\texttt{002\_projection\_obstruction/035\_zero\_container\_relational\_spacetime...}) establishes defect 4-current conservation and relational spacetime holonomy.
+  \textbf{PO-035} (\texttt{projection\_obstruction/035\_zero\_container\_relational\_spacetime...}) establishes defect 4-current conservation and relational spacetime holonomy.
 \end{itemize}
 
 \subsection{Appendix A: Modular Architecture \& Sibling Directory}\label{appendix-a-modular-architecture-sibling-directory}
@@ -3631,9 +3672,9 @@ To maintain focus on quantum lattice dynamics, local correlation bounds, and obs
 \item
   \textbf{Decoupled Banach Chart Formulations:} The full hierarchy of Banach-manifold chart-derivative formulas, vertical shear retractions, parameter-chart transitions, and bounded left-inverse failure criteria (formerly Lemmas 3.4--3.14 and Examples 3.4--3.14) is omitted from this 69-page edition. These results are preserved in archived monograph revisions \texttt{90e6231546} / \texttt{d44f760555} and verified by symbolics in \texttt{code/retraction\_geometry.py}.
 \item
-  \textbf{Operational Quantum Foundations:} The operational Jordan--Lie reconstruction, positive cone characterizations, canonical trace witnesses, and central-sector purification obstructions (formerly Appendix E) are imported from companion package \texttt{Finite\ QM} (\texttt{F004\_papers/006\_finite\_qm}, §13.8) and formalized in \texttt{lean4/Po000JordanLie.lean} and \texttt{lean4/Po000JordanTrace.lean}.
+  \textbf{Operational Quantum Foundations:} The operational Jordan--Lie reconstruction, positive cone characterizations, canonical trace witnesses, and central-sector purification obstructions (formerly Appendix E) are imported from companion package \texttt{Finite\ QM} (\texttt{papers/finite\_quantum\_mechanics}, §13.8) and formalized in \texttt{lean4/Po000JordanLie.lean} and \texttt{lean4/Po000JordanTrace.lean}.
 \item
-  \textbf{Coordinated Sibling Packages:} Sibling packages in the \texttt{002\_projection\_obstruction} series and \texttt{coda\_atlas} are listed in the Authoritative Sibling Reference Table in §1.2.
+  \textbf{Coordinated Sibling Packages:} Sibling packages in the \texttt{projection\_obstruction} series and \texttt{coda\_atlas} are listed in the Authoritative Sibling Reference Table in §1.2.
 \end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -3825,7 +3866,7 @@ No external funding. No conflicts of interest.
 \item
   J. H. Carroll, ``Conditional Hilbert Lifts of \(\ell^1\) Sector Weights and Born Normalization Redundancy,'' companion note, 2026 (restated in §5.12).
 \item
-  J. H. Carroll, \emph{Finite Quantum Mechanics}, 2026, §§13.5--13.8. Manuscript. The finite linear-observer arguments used here are proved self-containedly in §7.6.
+  J. H. Carroll, \emph{Finite Quantum Mechanics}, 2026, §§13.5--13.8. \href{https://github.com/dbccpage/theory_of_finite_quantum_mechanics}{Manuscript}. The finite linear-observer arguments used here are proved self-containedly in §7.6.
 \item
   M. Hein, J. Eisert, and H. J. Briegel, ``Multiparty entanglement in graph states,'' \emph{Phys. Rev.~A} \textbf{69} (2004), 062311. \href{https://doi.org/10.1103/PhysRevA.69.062311}{doi:10.1103/PhysRevA.69.062311}.
 \item
@@ -3839,7 +3880,52 @@ No external funding. No conflicts of interest.
 \item
   M. C. Tran, C.-F. Chen, A. Ehrenberg, A. Y. Guo, A. Deshpande, Y. Hong, Z.-X. Gong, A. V. Gorshkov, and A. Lucas, ``Hierarchy of Linear Light Cones with Long-Range Interactions,'' \emph{Phys. Rev.~X} \textbf{11} (2021), 011016. \href{https://doi.org/10.1103/PhysRevX.11.011016}{doi:10.1103/PhysRevX.11.011016}.
 \item
-  \emph{Native joint operations and a Genesis-to-Bell experiment}, The Symbol Game repository, revision \texttt{4bdf074a1b18cdeb710d991336e35f8f62979542}, 2026. Joint experiment; stable history carrier. External source descriptions; their proof and execution scopes are stated separately.
+  \emph{Native joint operations and a Genesis-to-Bell experiment}, private working repository, revision \texttt{4bdf074a1b18cdeb710d991336e35f8f62979542}, 2026. External source descriptions; their proof and execution scopes are stated separately.
 \end{enumerate}
+
+\subsection{Supplemental formalization: uncertainty and correction (23 October 2026)}\label{supplemental-formalization-uncertainty-and-correction-23-october-2026}
+
+The standalone supplemental build \texttt{python\ tools/replay\_projection\_bounds.py\ -\/-mathlib\ PATH\_TO\_PREPARED\_MATHLIB}
+compiles \texttt{lean4/ProjectionBounds.lean} with Lean 4.35.0 and replays every named
+theorem in \texttt{lean4/ProjectionCensus.lean}. The 20-theorem result and exact source
+hashes are recorded in \texttt{lean4/projection\_axiom\_census.json}; the text axiom
+output is \texttt{lean4/projection\_axiom\_report.txt}. This supplements the existing
+census without replacing its historical scope. Dependencies are external and pinned in \texttt{lean4/projection\_dependencies.json}.
+Prepare the compiler and Mathlib cache as described in
+\texttt{docs/projection\_formalization.md}; the replay itself does not download dependencies. Only \texttt{propext}, \texttt{Quot.sound} and \texttt{Classical.choice} are allowed.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Bound
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lean result
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Explicit premise retained
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Robust rate and onset & \texttt{lowerRate\_le}, \texttt{uncertain\_onset}, \texttt{half\_slope\_window} & A two-sided rate enclosure and the actual Taylor lower estimate on its horizon \\
+Correction deadline & \texttt{correction\_window\_iff}, \texttt{zero\_rate\_window}, \texttt{safe\_horizon}, \texttt{exhausted\_budget} & Positive rate for division; a separate zero-rate branch; independently valid budgets and horizon \\
+Actual corrected update & \texttt{corrected\_step}, \texttt{accumulated\_budget} & A nonexpansive evolution, residual enclosure and correction displacement bound \\
+Finite transported jumps & \texttt{transported\_jump\_bound} & The variation-of-constants identity, an integral bound, and contractive transports \\
+Product and observed residual uncertainty & \texttt{factor\_replacement\_bound}, \texttt{product\_residual\_uncertainty}, \texttt{product\_defect\_uncertainty}, \texttt{observed\_residual\_bound}, \texttt{observed\_defect\_interval} & A factor-replacement path with each step bounded by the state distance; a declared Lipschitz observation \\
+\end{longtable}
+
+The scalar results are over the real numbers. The jump and residual theorems
+are over arbitrary normed additive groups, so they apply to a trace-norm
+carrier once its physical obligations are proved. In particular, the constant
+\(k+1\) is derived by telescoping \(k\) factor replacements and adding the original
+state discrepancy. The finite sum of jump norms is derived from the supplied
+transported-jump identity. Lean does not construct the continuous propagator,
+prove the density-matrix tensor/partial-trace estimates, or certify numerical
+integration in this supplement. Those statements remain written analytic
+premises. The new bounds do not turn a supplied error radius into an observed
+or statistically justified radius.
 
 \end{document}

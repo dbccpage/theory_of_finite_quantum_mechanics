@@ -32,7 +32,7 @@ The identity is checked by exact arithmetic only at p = (5,1,2,-1), q = (2,-1,1,
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.4-WT claims COMPUTATIONALLY_CHECKED; audited status PROVED_PROSE
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.4-WT claims COMPUTATIONALLY_CHECKED; audited status PROVED_PROSE
 
 ## Review
 
@@ -54,20 +54,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1113_dfm_clifford_ward_takahashi.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1113_dfm_clifford_ward_takahashi.md](../../../dag/derivations/24_dressing_field/tfq_1113_dfm_clifford_ward_takahashi.md)
-- sha256 (`lf-normalised`): `995ecad27b30f224869341703f78caf9d1f7583cfe73e882bb6da2fbde7ae606`
+- sha256 (`lf-normalised`): `6ad8b2626534f5daaf8cc710eaa292c546546e723aa89625fd822ebfee11b5cc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1113
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

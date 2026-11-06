@@ -1,0 +1,48 @@
+name: Projection Obstruction regressions
+
+on:
+  pull_request:
+    paths:
+      - 'atlas/projection_obstruction/projection_obstruction_paper/**'
+      - 'atlas/projection_obstruction/higher_cell_cochain_projection_and_retraction_dynamics/**'
+      - '.github/workflows/projection-obstruction.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - projection_obstruction_paper
+          - higher_cell_cochain_projection_and_retraction_dynamics
+    defaults:
+      run:
+        working-directory: atlas/projection_obstruction/${{ matrix.package }}
+    env:
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install numpy scipy sympy pytest pyyaml
+      - name: Python regression suite
+        run: python -I -B -m pytest code/tests -q --import-mode=importlib -m 'not native_integration'
+      - name: Optimized-interpreter admission checks
+        run: python -I -B -O -m pytest code/tests/test_projection_replay.py code/tests/test_residual_error_budget.py -q --import-mode=importlib
+      - name: Verify recorded Lean evidence (no fresh compilation)
+        run: python -I -B tools/replay_projection_bounds.py --verify-receipt
+      - name: Check main paper payload
+        if: matrix.package == 'projection_obstruction_paper'
+        run: python -I -B verify_deposit.py --integrity-only
+      - name: Check higher-cell payload
+        if: matrix.package == 'higher_cell_cochain_projection_and_retraction_dynamics'
+        run: python -I -B verify_deposit.py --extracted --integrity-only

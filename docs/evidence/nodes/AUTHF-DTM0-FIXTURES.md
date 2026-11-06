@@ -32,7 +32,7 @@ The self-loop result is exhaustion of one unit of fuel; no theorem says the loop
 
 ## Source status
 
-papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-3 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-3 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md`
 
 - file: [dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md](../../../dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md)
-- sha256 (`lf-normalised`): `7910849197fef2104083d598b9d2dc6f03d9b671f09ead32d21117908e659ddf`
+- sha256 (`lf-normalised`): `3736aceadd03ba0bc6579e5e88232e6a093450612134a6987e8360cae3f44988`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1342
 - counts toward the grade: no

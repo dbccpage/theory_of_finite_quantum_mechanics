@@ -32,7 +32,7 @@ This rules out one construction route only; it gives no upper bound on the numbe
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-052 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-052 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/25_mub/tfq_1222_mub6_no_field_of_order_six.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [dag/derivations/25_mub/tfq_1222_mub6_no_field_of_order_six.md](../../../dag/derivations/25_mub/tfq_1222_mub6_no_field_of_order_six.md)
-- sha256 (`lf-normalised`): `dcaac7dcc0d2ad8892515a7eeafd28e8f5962053206d3961b744b0c6db0e0412`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1222
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
-
-- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
-- sha256 (`lf-normalised`): `b515bf981d6c3a339c2b0a7937d54d9deb05f3b53186c584b83f5fa3419dc902`
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1222_mub6_no_field_of_order_six.md`
+
+- file: [dag/derivations/25_mub/tfq_1222_mub6_no_field_of_order_six.md](../../../dag/derivations/25_mub/tfq_1222_mub6_no_field_of_order_six.md)
+- sha256 (`lf-normalised`): `de702a21aa302a7578e7de32bf2422253b3d72c3837e1b9bcd1e21e947aa8fda`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1222
+- counts toward the grade: no
 
 ## Routes
 

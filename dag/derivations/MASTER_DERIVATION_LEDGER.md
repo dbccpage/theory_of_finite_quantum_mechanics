@@ -3,10 +3,10 @@
 > **AuthorityEffect**: None  
 > **Version**: 1.0.0  
 > **Date**: 2026-10-21  
-> **Corpus Root**: [`papers/core/`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/papers/core) | [`dag/derivations/`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/dag/derivations)  
-> **Parent Monograph**: [`papers/core/finite_quantum_mechanics.md`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/papers/core/finite_quantum_mechanics.md)  
-> **Foundational Synthesis**: [`papers/foundations/theory_of_finite_quantum_foundations.md`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/papers/foundations/theory_of_finite_quantum_foundations.md)  
-> **Problem & Proof Atlas**: [`docs/QM_PROBLEM_AND_PROOF_ATLAS.md`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/docs/QM_PROBLEM_AND_PROOF_ATLAS.md) (`Q01`–`Q65`)  
+> **Corpus Root**: [`dag/derivations/`](./)  
+> **Parent Monograph**: [`finite_quantum_mechanics.md`](10_finite_qm_core/sources/finite_quantum_mechanics.md)  
+> **Foundational Synthesis**: [`theory_of_finite_quantum_foundations.md`](08_l1_to_l2/sources/theory_of_finite_quantum_foundations.md)  
+> **Problem & Proof Atlas**: [`docs/QM_PROBLEM_AND_PROOF_ATLAS.md`](../../docs/QM_PROBLEM_AND_PROOF_ATLAS.md) (`Q01`–`Q65`)  
 
 ---
 
@@ -18,17 +18,17 @@ In strict adherence to the **Claim Hygiene Rule** and `AuthorityEffect: None`:
 1. Every derivation step declares its precise parent prerequisites, mathematical statement, status, and governing obligation.
 2. A file path, test pass, status label, or schema validation is not treated as a mathematical proof.
 3. Finite model certificates and discrete obstruction results are explicitly distinguished from continuum limits and unproved physical interpretations.
-4. Every single derivation step corresponds 1-to-1 with a standalone Markdown paper in [`dag/derivations/`](file:///c:/Users/a343o/source/repos/theory_of_finite_quantum_mechanics/dag/derivations) and a validated companion contract score.
+4. Every single derivation step corresponds 1-to-1 with a standalone Markdown paper in [`dag/derivations/`](./) and a validated companion contract score.
 
 ---
 
 ## 2. Derivation Stage Census & Status Taxonomy
 
-The derivation tree comprises **990 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
+The derivation tree comprises **1011 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
 
 | Stage Index | Stage Name | Derivation Step Count | Core Physical & Mathematical Focus | Primary DAG Range |
 | :--- | :--- | :---: | :--- | :--- |
-| §01 | `PREGENESIS` | 35 | Inert literal inscription `<>`, 6 primitive operations, report fiber criterion | [`TFQ-0000`..`TFQ-0429`] |
+| §01 | `PREGENESIS` | 36 | Inert literal inscription `<>`, 6 primitive operations, report fiber criterion | [`TFQ-0000`..`TFQ-2600`] |
 | §02 | `GENESIS` | 92 | Genesis regime events, distinction events, obligation cost floor $\ge 2$ | [`TFQ-0002`..`TFQ-0504`] |
 | §03 | `FINITE_OBSTRUCTION` | 9 | Discrete cochain complexes, $d_0$ coboundary, repair kernel and fibers | [`TFQ-0003`..`TFQ-0326`] |
 | §04 | `AUTHORIZATION` | 11 | Proposal spaces, reporting alphabets, terminalization classifications | [`TFQ-0327`..`TFQ-0509`] |
@@ -38,15 +38,15 @@ The derivation tree comprises **990 primary derivation steps** structured across
 | §08 | `L1_TO_L2` | 40 | Conditional finite Hilbert lift, square-root coordinate field, phase-blind quotient | [`TFQ-0006`..`TFQ-1047`] |
 | §09 | `FINITE_HILBERT` | 15 | Exact density operators, rational ray representation, Gleason boundary in $d=3$ | [`TFQ-0289`..`TFQ-0318`] |
 | §10 | `FINITE_QM_CORE` | 26 | Supplied Hilbert carrier, exact algebraic state spaces over $K = \mathbb{Q}(\zeta_n)$ | [`TFQ-0007`..`TFQ-1060`] |
-| §11 | `FINITE_QM_DYNAMICS` | 18 | Selective measurement updates, graded Feynman path sums, Cayley stepping | [`TFQ-0008`..`TFQ-1040`] |
+| §11 | `FINITE_QM_DYNAMICS` | 20 | Selective measurement updates, graded Feynman path sums, Cayley stepping | [`TFQ-0008`..`TFQ-2619`] |
 | §12 | `FINITE_QM_STRUCTURE` | 29 | Superposition fibers, Mermin-Peres contextuality, product non-factorization | [`TFQ-0249`..`TFQ-1043`] |
-| §13 | `FINITE_QM_INFORMATION` | 9 | Von Neumann entropy interface, repair capacity certificates, interpretation shadows | [`TFQ-0268`..`TFQ-0278`] |
+| §13 | `FINITE_QM_INFORMATION` | 13 | Von Neumann entropy interface, repair capacity certificates, interpretation shadows | [`TFQ-0268`..`TFQ-2613`] |
 | §14 | `FINITE_GAUGE` | 6 | Discrete gauge cochains, unit Gaussian connections, covariant difference | [`TFQ-0009`..`TFQ-1051`] |
 | §15 | `FINITE_QED` | 20 | Dirac inversion, Schur complements, Wick pairings, Balmer spectrum, Ward identities | [`TFQ-0010`..`TFQ-0074`] |
 | §16 | `FINITE_ELECTROWEAK` | 9 | Weinberg angle, neutral mass matrix det=0, anomaly polynomials, chiral projectors | [`TFQ-0075`..`TFQ-0083`] |
 | §17 | `FINITE_QCD` | 37 | Casimir factors, 81-entry Fierz replay, beta0 rational arithmetic, Wilson loop area law | [`TFQ-0011`..`TFQ-1054`] |
 | §18 | `FINITE_TOPOLOGICAL` | 9 | Exact ribbon categories, anyonic braiding, Yang-Baxter solutions, toric code | [`TFQ-0043`..`TFQ-0051`] |
-| §19 | `FINITE_QG` | 27 | Relational difference, Regge deficit angles, Hamiltonian constraint, spin foams | [`TFQ-0084`..`TFQ-0111`] |
+| §19 | `FINITE_QG` | 28 | Relational difference, Regge deficit angles, Hamiltonian constraint, spin foams | [`TFQ-0084`..`TFQ-2620`] |
 | §20 | `CONTINUUM_INTERFACE` | 14 | Open continuum limits, Pontryagin completion, cosmological constant bounds | [`TFQ-0085`..`TFQ-0124`] |
 | §21 | `IMPLEMENTATION_CORE` | 47 | Workspace crate architecture, exact ray evaluators, Kraus channel certifiers | [`TFQ-0125`..`TFQ-1046`] |
 | §22 | `IMPLEMENTATION_SIBLING` | 34 | Diagnostic controls, GF(2) parity schedules, exact rational measurements | [`TFQ-0166`..`TFQ-0199`] |
@@ -56,7 +56,7 @@ The derivation tree comprises **990 primary derivation steps** structured across
 | §26 | `FERMION_SIGN` | 41 | Signed-graph switching normal form, meron character cancellation on flip orbits | [`TFQ-0406`..`TFQ-1220`] |
 | §27 | `TENSOR_COMPOSITION` | 7 | Tomographic composite coordinates, operational effect cones, finite POVMs | [`TFQ-0410`..`TFQ-0416`] |
 | §28 | `MAJORANA` | 46 | F2 parity schedules, residual trichotomy, syndrome completion, tetron carriers | [`TFQ-1138`..`TFQ-1183`] |
-| §29 | `COMPUTATION` | 82 | Separated marks to word rewriting, TM0 simulation, halting undecidability, authorization incompleteness and quantum-computation self-obstruction | [`TFQ-1283`..`TFQ-1364`] |
+| §29 | `COMPUTATION` | 95 | Separated marks to word rewriting, TM0 simulation, halting undecidability, authorization incompleteness and quantum-computation self-obstruction | [`TFQ-2601`..`TFQ-1364`] |
 | §30 | `CONSTRUCTOR_THEORY` | 15 | Deutsch-Marletto task and superinformation vocabulary as imports; finite no-cloning, distinguishability and entangling-phase targets | [`TFQ-2000`..`TFQ-2014`] |
 | §31 | `CAUSAL_QFT` | 14 | Haag-Kastler nets, Reeh-Schlieder, causal perturbation theory and causal sets as imports; finite poset, cyclicity and ordering-fraction targets | [`TFQ-2100`..`TFQ-2113`] |
 | §32 | `ADS_CFT` | 13 | AdS/CFT, Ryu-Takayanagi and HaPPY holographic codes as imports; five-qubit perfect tensor and patch-entropy targets | [`TFQ-2200`..`TFQ-2212`] |
@@ -64,7 +64,7 @@ The derivation tree comprises **990 primary derivation steps** structured across
 
 ---
 
-## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-2532`)
+## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-2620`)
 
 Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.
 
@@ -521,7 +521,7 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-1049`** | fqcd-finite-transfer-matrix-gap | `FINITE_QCD` | `OPEN_OBLIGATION` | `TFQ-0011` | `FQCD-FINITE-TRANSFER-MATRIX-GAP` (OPEN) | - | [`TFQ-1049.md`](../../dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md) | Declarative / Formal Spec |
 | **`TFQ-1050`** | fqcd-wilson-dirac-gamma5-hermiticity | `FINITE_QCD` | `OPEN_OBLIGATION` | `TFQ-0026` | `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (OPEN) | - | [`TFQ-1050.md`](../../dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md) | Lean: `5`, Rust: `2`, Py: `3` |
 | **`TFQ-1051`** | fgauge-mednykh-2d-yang-mills | `FINITE_GAUGE` | `OPEN_OBLIGATION` | `TFQ-0009` | `FGAUGE-MEDNYKH-2D-YANG-MILLS` (OPEN) | - | [`TFQ-1051.md`](../../dag/derivations/14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md) | Declarative / Formal Spec |
-| **`TFQ-1052`** | fqcd-strong-coupling-area-law | `FINITE_QCD` | `CONDITIONAL` | `TFQ-0030` | `FQCD-STRONG-COUPLING-AREA-LAW` (CONDITIONAL) | - | [`TFQ-1052.md`](../../dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md) | Lean: `6`, Rust: `2`, Py: `2` |
+| **`TFQ-1052`** | fqcd-strong-coupling-area-law | `FINITE_QCD` | `CONDITIONAL` | `TFQ-0030` | `FQCD-STRONG-COUPLING-AREA-LAW` (CONDITIONAL) | - | [`TFQ-1052.md`](../../dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md) | Lean: `4`, Rust: `2`, Py: `2` |
 | **`TFQ-1053`** | fqcd-finite-group-freezing-fence | `FINITE_QCD` | `SOURCE_RECORD` | `TFQ-0031` | `FQCD-FINITE-GROUP-FREEZING-FENCE` (SOURCE_RECORD) | - | [`TFQ-1053.md`](../../dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md) | Declarative / Formal Spec |
 | **`TFQ-1054`** | fqcd-continuum-existence-announcement | `FINITE_QCD` | `SOURCE_RECORD` | `TFQ-0031` | `FQCD-CONTINUUM-EXISTENCE-ANNOUNCEMENT` (SOURCE_RECORD) | - | [`TFQ-1054.md`](../../dag/derivations/17_finite_qcd/tfq_1054_fqcd_continuum_existence_announcement.md) | Declarative / Formal Spec |
 | **`TFQ-1055`** | fq-gleason-qi3-frame-functions | `FINITE_QM_CORE` | `REFUTED` | `TFQ-0307` | `FQ-GLEASON-QI3-FRAME-FUNCTIONS` (REFUTED) | - | [`TFQ-1055.md`](../../dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md) | Lean: `181`, Py: `13` |
@@ -672,6 +672,14 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-0556`** | wdp-bridge-report-fiber-observer | `WDP` | `CONDITIONAL` | `TFQ-0554` | `PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER` (CONDITIONAL) | - | [`TFQ-0556.md`](../../dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) | Lean: `5`, Rust: `1`, Py: `2` |
 | **`TFQ-0557`** | wdp-synthesis-trunk-tiers | `WDP` | `SOURCE_RECORD` | `TFQ-0556` | `PGW-WDP-SYNTHESIS-TRUNK-TIERS` (DEFINITION) | - | [`TFQ-0557.md`](../../dag/derivations/06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) | Lean: `1`, Rust: `1`, Py: `1` |
 | **`TFQ-0558`** | wdp-handoff-to-l1 | `WDP` | `OPEN_OBLIGATION` | `TFQ-0557` | `PGW-WDP-HANDOFF-TO-L1` (OPEN) | - | [`TFQ-0558.md`](../../dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md) | Lean: `12`, Rust: `1`, Py: `2` |
+| **`TFQ-2600`** | The first mark does not supply a computation model | `PREGENESIS` | `OPEN_OBLIGATION` | `TFQ-0000` | `COMP-MARK-ADMISSION-GAP` (OPEN) | - | [`TFQ-2600.md`](../../dag/derivations/01_pregenesis/tfq_2600_comp_mark_admission_gap.md) | Declarative / Formal Spec |
+| **`TFQ-2610`** | Operational quantum information model | `FINITE_QM_INFORMATION` | `IMPORTED_ASSUMPTION` | `TFQ-1008` | `QI-MODEL-ADMISSION` (IMPORTED_ASSUMPTION) | - | [`TFQ-2610.md`](../../dag/derivations/13_finite_qm_information/tfq_2610_qi_model_admission.md) | Declarative / Formal Spec |
+| **`TFQ-2611`** | A stochastic kernel has a quantum measure-and-prepare lift | `FINITE_QM_INFORMATION` | `CONDITIONAL` | `TFQ-2610` | `QI-CLASSICAL-CHANNEL-LIFT` (CONDITIONAL) | - | [`TFQ-2611.md`](../../dag/derivations/13_finite_qm_information/tfq_2611_qi_classical_channel_lift.md) | Declarative / Formal Spec |
+| **`TFQ-2612`** | A common unitary cannot clone distinct nonorthogonal rays | `FINITE_QM_INFORMATION` | `CONDITIONAL` | `TFQ-2610` | `QI-NO-CLONING-PAIR` (CONDITIONAL) | - | [`TFQ-2612.md`](../../dag/derivations/13_finite_qm_information/tfq_2612_qi_no_cloning_pair.md) | Declarative / Formal Spec |
+| **`TFQ-2613`** | From finite information quantities to coding theorems | `FINITE_QM_INFORMATION` | `OPEN_OBLIGATION` | `TFQ-2610` | `QI-ENTROPY-CODING-OBLIGATIONS` (OPEN) | - | [`TFQ-2613.md`](../../dag/derivations/13_finite_qm_information/tfq_2613_qi_entropy_coding_obligations.md) | Declarative / Formal Spec |
+| **`TFQ-2618`** | Area-preserving plane flow and a Hamiltonian charge | `FINITE_QM_DYNAMICS` | `CONDITIONAL` | `TFQ-0001` | `DYN-CLASSICAL-HAMILTON-NOETHER` (CONDITIONAL) | - | [`TFQ-2618.md`](../../dag/derivations/11_finite_qm_dynamics/tfq_2618_dyn_classical_hamilton_noether.md) | Declarative / Formal Spec |
+| **`TFQ-2619`** | An adjoint-preserving matrix derivation is Hamiltonian | `FINITE_QM_DYNAMICS` | `CONDITIONAL` | `TFQ-1002` | `DYN-ALGEBRAIC-HAMILTON` (CONDITIONAL) | - | [`TFQ-2619.md`](../../dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md) | Declarative / Formal Spec |
+| **`TFQ-2620`** | Complete quantum gravity beyond the finite models | `FINITE_QG` | `OPEN_OBLIGATION` | `TFQ-0084` | `QG-FULL-THEORY-COMPLETION-OPEN` (OPEN) | - | [`TFQ-2620.md`](../../dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md) | Declarative / Formal Spec |
 | **`TFQ-0397`** | Group-valued connections on a finite multigraph | `DRESSING_FIELD` | `DEFINITION` | `TFQ-0009` | `DFM-GROUP-CONNECTION` (DEFINITION) | - | [`TFQ-0397.md`](../../dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md) | Py: `1` |
 | **`TFQ-0398`** | General finite-graph dressing and closed-walk holonomy | `DRESSING_FIELD` | `PROVED_LEAN` | `TFQ-0397` | `DFM-GENERAL-GRAPH-DRESSING` (PROVED_LEAN) | - | [`TFQ-0398.md`](../../dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | Lean: `3`, Rust: `1`, Py: `1` |
 | **`TFQ-0399`** | Tree-change covariance of the residual connection | `DRESSING_FIELD` | `PROVED_LEAN` | `TFQ-0398` | `DFM-TREE-CHANGE` (PROVED_LEAN) | - | [`TFQ-0399.md`](../../dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md) | Lean: `1`, Rust: `1`, Py: `1` |
@@ -692,6 +700,19 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-0414`** | Generated operational effect cone | `TENSOR_COMPOSITION` | `PROVED_LEAN` | `TFQ-0412` | `TENSOR-GENERATED-EFFECT-CONE` (PROVED_LEAN) | - | [`TFQ-0414.md`](../../dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md) | Lean: `4` |
 | **`TFQ-0415`** | Binary effects and explicit effect saturation | `TENSOR_COMPOSITION` | `PROVED_LEAN` | `TFQ-0412` | `TENSOR-BINARY-EFFECT-INTERVAL` (PROVED_LEAN) | - | [`TFQ-0415.md`](../../dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md) | Lean: `8` |
 | **`TFQ-0416`** | Finite POVMs and separate test saturation | `TENSOR_COMPOSITION` | `PROVED_LEAN` | `TFQ-0415` | `TENSOR-FINITE-POVM-AVAILABILITY` (PROVED_LEAN) | - | [`TFQ-0416.md`](../../dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md) | Lean: `4` |
+| **`TFQ-2601`** | Conditional UTM route through the existing machine construction | `COMPUTATION` | `CONDITIONAL` | `TFQ-1284` | `COMP-UTM-CONDITIONAL-ROUTE` (CONDITIONAL) | - | [`TFQ-2601.md`](../../dag/derivations/29_computation/tfq_2601_comp_utm_conditional_route.md) | Declarative / Formal Spec |
+| **`TFQ-2602`** | Encoding, input length and uniform step cost | `COMPUTATION` | `IMPORTED_ASSUMPTION` | `TFQ-2601` | `COMP-COST-MODEL-IMPORT` (IMPORTED_ASSUMPTION) | - | [`TFQ-2602.md`](../../dag/derivations/29_computation/tfq_2602_comp_cost_model_import.md) | Declarative / Formal Spec |
+| **`TFQ-2603`** | Deterministic polynomial time | `COMPUTATION` | `DEFINITION` | `TFQ-2602` | `COMP-P-DEFINITION` (DEFINITION) | - | [`TFQ-2603.md`](../../dag/derivations/29_computation/tfq_2603_comp_p_definition.md) | Declarative / Formal Spec |
+| **`TFQ-2604`** | NP from polynomial witnesses and nondeterministic runs | `COMPUTATION` | `CONDITIONAL` | `TFQ-2603` | `COMP-NP-VERIFIER-EQUIVALENCE` (CONDITIONAL) | - | [`TFQ-2604.md`](../../dag/derivations/29_computation/tfq_2604_comp_np_verifier_equivalence.md) | Declarative / Formal Spec |
+| **`TFQ-2605`** | Unary step-bounded rewriting is in NP | `COMPUTATION` | `CONDITIONAL` | `TFQ-1286` | `COMP-UNARY-BOUNDED-REACH-NP` (CONDITIONAL) | - | [`TFQ-2605.md`](../../dag/derivations/29_computation/tfq_2605_comp_unary_bounded_reach_np.md) | Declarative / Formal Spec |
+| **`TFQ-2606`** | Cook-Levin and the reduction obligation | `COMPUTATION` | `IMPORTED_ASSUMPTION` | `TFQ-2604` | `COMP-COOK-LEVIN-IMPORT` (IMPORTED_ASSUMPTION) | - | [`TFQ-2606.md`](../../dag/derivations/29_computation/tfq_2606_comp_cook_levin_import.md) | Declarative / Formal Spec |
+| **`TFQ-2607`** | P versus NP | `COMPUTATION` | `OPEN_OBLIGATION` | `TFQ-2603` | `COMP-P-VS-NP-OPEN` (OPEN) | - | [`TFQ-2607.md`](../../dag/derivations/29_computation/tfq_2607_comp_p_vs_np_open.md) | Declarative / Formal Spec |
+| **`TFQ-2608`** | P and NP under efficient faithful encodings | `COMPUTATION` | `CONDITIONAL` | `TFQ-2604` | `COMP-POLYNOMIAL-PRESENTATION-INVARIANCE` (CONDITIONAL) | - | [`TFQ-2608.md`](../../dag/derivations/29_computation/tfq_2608_comp_polynomial_presentation_invariance.md) | Declarative / Formal Spec |
+| **`TFQ-2609`** | A reversible Boolean permutation embeds as a unitary | `COMPUTATION` | `CONDITIONAL` | `TFQ-1284` | `COMP-REVERSIBLE-BOOLEAN-EMBEDDING` (CONDITIONAL) | - | [`TFQ-2609.md`](../../dag/derivations/29_computation/tfq_2609_comp_reversible_boolean_embedding.md) | Declarative / Formal Spec |
+| **`TFQ-2614`** | Uniform quantum circuits and BQP | `COMPUTATION` | `DEFINITION` | `TFQ-2610` | `QC-UNIFORM-CIRCUITS-BQP` (DEFINITION) | - | [`TFQ-2614.md`](../../dag/derivations/29_computation/tfq_2614_qc_uniform_circuits_bqp.md) | Declarative / Formal Spec |
+| **`TFQ-2615`** | Gate errors telescope across a finite circuit | `COMPUTATION` | `CONDITIONAL` | `TFQ-2614` | `QC-GATE-ERROR-BUDGET` (CONDITIONAL) | - | [`TFQ-2615.md`](../../dag/derivations/29_computation/tfq_2615_qc_gate_error_budget.md) | Declarative / Formal Spec |
+| **`TFQ-2616`** | Scalable physical quantum computation | `COMPUTATION` | `OPEN_OBLIGATION` | `TFQ-2614` | `QC-FAULT-TOLERANCE-OPEN` (OPEN) | - | [`TFQ-2616.md`](../../dag/derivations/29_computation/tfq_2616_qc_fault_tolerance_open.md) | Declarative / Formal Spec |
+| **`TFQ-2617`** | NP and BQP remain distinct open comparisons | `COMPUTATION` | `OPEN_OBLIGATION` | `TFQ-2604` | `QC-NP-BQP-RELATION-OPEN` (OPEN) | - | [`TFQ-2617.md`](../../dag/derivations/29_computation/tfq_2617_qc_np_bqp_relation_open.md) | Declarative / Formal Spec |
 | **`TFQ-1100`** | Tree and chord coordinates of a connection: triangle Mat2 witness | `DRESSING_FIELD` | `PROVED_LEAN` | `TFQ-0398` | `DFM-TREE-CHORD-COORDINATES` (PROVED_LEAN) | - | [`TFQ-1100.md`](../../dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md) | Lean: `2`, Py: `1` |
 | **`TFQ-1101`** | Abelian tree-dressing projector on rational 1-cochains | `DRESSING_FIELD` | `DEFINITION` | `TFQ-0398` | `DFM-ABELIAN-TREE-PROJECTOR` (DEFINITION) | - | [`TFQ-1101.md`](../../dag/derivations/24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md) | Declarative / Formal Spec |
 | **`TFQ-1102`** | Abelian tree retraction on the diamond graph | `DRESSING_FIELD` | `COMPUTATIONAL_CONTROL` | `TFQ-1101` | `DFM-ABELIAN-RETRACTION-DIAMOND` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-1102.md`](../../dag/derivations/24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md) | Py: `2` |
@@ -1067,13 +1088,13 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 
 ## 3b. One Derivation Graph
 
-`dag/derivation_dag.json` (938 nodes, 946 routes) and `dag/theory_of_finite_qm.jsonl` (990 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 267 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
+`dag/derivation_dag.json` (959 nodes, 967 routes) and `dag/theory_of_finite_qm.jsonl` (1011 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`dag/derivations/26_fsp/fsp/`), dimension-six MUBs (`dag/derivations/25_mub/mub6/`), the Majorana problem (`dag/derivations/28_majorana/majorana/`) and the Dressing Field Method (`dag/derivations/24_dressing_field/ravera_dfm_dossier.md`) are folded in as 267 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
 
 ---
 
 ## 4. Foundational Synthesis Mapping: The 43 Source Packets (`QM_002` through `QM_212`)
 
-The following table maps the 43 discrete quantum foundation source packets reviewed and unified in [`papers/foundations/theory_of_finite_quantum_foundations.md`](../foundations/theory_of_finite_quantum_foundations.md) to their primary `TFQ` derivation node in the DAG and their exact claim in the monograph:
+The following table maps the 43 discrete quantum foundation source packets reviewed and unified in [`dag/derivations/08_l1_to_l2/sources/theory_of_finite_quantum_foundations.md`](08_l1_to_l2/sources/theory_of_finite_quantum_foundations.md) to their primary `TFQ` derivation node in the DAG and their exact claim in the monograph:
 
 | Packet ID | Monograph Chapter & Claim | Formal Mathematical Invariant | Primary TFQ Derivation Node | Lean 4 Theorem Kernel | Sovereign Test Harness |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -1144,7 +1165,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 ## 6. Claim Hygiene Assessment
 
 ### 6.1 What this Master Ledger Supports
-- Complete, un-truncated mathematical cataloging of all 990 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
+- Complete, un-truncated mathematical cataloging of all 1011 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
 - Exact 1-to-1 bijection between ledger rows, standalone Markdown papers, and cryptographic contract score sidecars.
 - Complete mapping of the 43 foundational packets in `theory_of_finite_quantum_foundations.md` and the 65 atlas questions in `docs/QM_PROBLEM_AND_PROOF_ATLAS.md`.
 - Verification that every derivation carries explicitly declared premises, boundary fences, and multi-language implementation witnesses.
@@ -1155,7 +1176,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 - Does not assert that passing computational and formal verification replaces experimental laboratory observation.
 
 ### 6.3 The Narrowest Defensible Claim
-Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 990 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
+Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 1011 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
 
 ### 6.4 The Next Test Needed
 Run `python scripts/contract_scores.py check` to certify cryptographic integrity of all companion score sidecars, followed by `python scripts/verify_qm_atlas_loc.py` to confirm zero line-range drift across the repository.

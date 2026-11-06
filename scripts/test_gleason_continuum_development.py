@@ -50,6 +50,38 @@ class TestGleasonContinuumDevelopment(unittest.TestCase):
         self.assertEqual(res["escape_compression_for_k_ge_N"], "0")
         self.assertEqual(res["escape_full_stage_normalization"], "1")
 
+    def test_part_e_dim_d_subspace_lift(self) -> None:
+        res = vgcd.verify_part_e_dim_d_subspace_lift()
+        self.assertTrue(res["verified"])
+        self.assertTrue(res["c4_isometric_embed3D_verified"])
+        self.assertTrue(res["c5_isometric_embed3D_verified"])
+        self.assertTrue(res["replaceBasis3D_orthonormal_verified"])
+        self.assertTrue(res["replaceBasis3D_noncontiguous_slots_verified"])
+        self.assertEqual(res["subspace_3frame_trace_preserved"], "3/4")
+        self.assertTrue(res["subspaceMatrix3D_rayleigh_match_verified"])
+        self.assertTrue(res["coordinate_embed3D_matches_submatrix3D"])
+        self.assertTrue(res["pure_state_subspace3D_born_rule_verified"])
+        self.assertEqual(res["pure_state_subspace3D_partial_weight"], "3/5")
+
+    def test_non_orthonormal_basis_rejected(self) -> None:
+        e0 = [vgcd.GaussRat(1, 0), vgcd.GaussRat(0, 0)]
+        e1_bad = [vgcd.GaussRat(1, 0), vgcd.GaussRat(1, 0)]
+        self.assertFalse(vgcd.is_orthonormal_basis_d([e0, e1_bad]))
+
+        # Negative control: replacing 3 slots of standard basis of C^4 with duplicate slot index i0 == i1
+        # (dropping u1) or with a non-orthogonal triple is rejected by is_orthonormal_basis_d
+        std4 = [
+            [vgcd.GaussRat(1, 0) if j == i else vgcd.GaussRat(0, 0) for j in range(4)]
+            for i in range(4)
+        ]
+        self.assertTrue(vgcd.is_orthonormal_basis_d(std4))
+        rot_u0 = [vgcd.GaussRat(Fraction(3, 5), 0), vgcd.GaussRat(Fraction(4, 5), 0), vgcd.GaussRat(0, 0), vgcd.GaussRat(0, 0)]
+        rot_u1 = [vgcd.GaussRat(Fraction(4, 5), 0), vgcd.GaussRat(Fraction(-3, 5), 0), vgcd.GaussRat(0, 0), vgcd.GaussRat(0, 0)]
+        bad_dup_slots = vgcd.replace_basis_3d(std4, 0, 0, 2, rot_u0, rot_u1, std4[2])
+        self.assertFalse(vgcd.is_orthonormal_basis_d(bad_dup_slots))
+        bad_non_orth = vgcd.replace_basis_3d(std4, 0, 1, 2, std4[0], rot_u0, std4[2])
+        self.assertFalse(vgcd.is_orthonormal_basis_d(bad_non_orth))
+
     def test_zero_matrix_rejected(self) -> None:
         z = vgcd.GaussRat(0, 0)
         zero_mat = ((z, z, z), (z, z, z), (z, z, z))
@@ -62,6 +94,7 @@ class TestGleasonContinuumDevelopment(unittest.TestCase):
         self.assertEqual(receipt["authority_effect"], "None")
         self.assertEqual(receipt["lean_module"]["path"], "lean4/GleasonContinuumDevelopment.lean")
         self.assertEqual(len(receipt["lean_module"]["sha256"]), 64)
+        self.assertIn("part_e_dim_d_subspace_lift", receipt["parts"])
         for part_data in receipt["parts"].values():
             self.assertTrue(part_data["verified"])
 

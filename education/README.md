@@ -10,7 +10,7 @@ source text, not adopted as claims about this checkout.
 
 ## Provenance and inventory
 
-The six folders were copied from
+The six imported folders were copied from
 a private upstream repository at commit 2ce57b4f06ff670e4b2bf673b6790effbd9575c8.
 At import (commit `92a639ddc`) all 1,033 file paths, Git blob identities and modes matched
 that source. On 2026-10-26 the folders were renamed to descriptive names, links into the
@@ -20,14 +20,21 @@ in-repo copies under `atlas/`. That edit changed 379 files.
 identities, counts and inventory digest at import, and under `post_import_edits` the folder
 renames and each edited file with its original and current sha256.
 
-| Reference folder | Imported files |
-| --- | ---: |
-| [pregenesis_empty_mark](pregenesis_empty_mark/README.md) | 26 |
-| [genesis_primitives](genesis_primitives/README.md) | 158 |
-| [symmetric_group_presentations](symmetric_group_presentations/README.md) | 97 |
-| [minimal_symbol_systems](minimal_symbol_systems/README.md) | 346 |
-| [genesis_reading_notes](genesis_reading_notes/README.md) | 77 |
-| [witnessed_difference_programme](witnessed_difference_programme/README.md) | 329 |
+Since 2026-11-06 the folders carry numbered prefixes in reading order: Pre-Genesis, S(n),
+MSS-N, Genesis, then the Witnessed Difference Programme. The two Genesis folders that were under
+`research/` (6 and 7) moved here at the same time; they were written in this repository and are
+not part of the import.
+
+| Folder | Stage | Files |
+| --- | --- | ---: |
+| [1_pregenesis_empty_mark](1_pregenesis_empty_mark/README.md) | Pre-Genesis | 26 imported |
+| [2_symmetric_group_presentations](2_symmetric_group_presentations/README.md) | S(n) | 97 imported |
+| [3_minimal_symbol_systems](3_minimal_symbol_systems/README.md) | MSS-N | 346 imported |
+| [4_genesis_primitives](4_genesis_primitives/README.md) | Genesis | 158 imported |
+| [5_genesis_reading_notes](5_genesis_reading_notes/README.md) | Genesis | 77 imported |
+| [6_genesis_foundations](6_genesis_foundations/this_repo.md) | Genesis | 3, written here |
+| [7_genesis_language](7_genesis_language/SPEC.md) | Genesis | 1, written here |
+| [8_witnessed_difference_programme](8_witnessed_difference_programme/README.md) | WDP | 329 imported |
 
 This destination import does not establish that the upstream files were deleted,
 that ownership transferred, or that all included mathematics or code is correct.
@@ -45,9 +52,9 @@ Upstream reproduction commands still use the upstream folder layout.
 Several checkers retain the old directory-depth assumptions and depend on the
 shared PFP grammar owner,
 which was not imported. For example,
-[check_genesis.py](genesis_primitives/code/check_genesis.py) still searches the old grammar
+[check_genesis.py](4_genesis_primitives/code/check_genesis.py) still searches the old grammar
 locations. The
-[Genesis Ongoing pin checker](genesis_reading_notes/code/check_h3_pin.py) still targets the
+[Genesis Ongoing pin checker](5_genesis_reading_notes/code/check_h3_pin.py) still targets the
 old upstream atlas layout. Running these files from QM is not supported by
 this reference import.
 

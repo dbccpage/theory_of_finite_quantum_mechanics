@@ -32,7 +32,7 @@ Lean: FermionSignU1WilsonAction.fsp_u1_wilson_action states gauge invariance (fo
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-032 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-032 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -69,10 +69,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md`
 
 - file: [dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md](../../../dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md)
-- sha256 (`lf-normalised`): `fbf9823ab93e78c7f59833533a74cfed192e0f51630115457bd2a16c5baf081f`
+- sha256 (`lf-normalised`): `448d9a67390f5920c999fc946059a7b33b6d60245aebcd09e5280f5a9f438249`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1196
 - counts toward the grade: no
@@ -81,13 +88,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/derivations/independent/fsp-u1-wilson-action.md](../../../dag/derivations/independent/fsp-u1-wilson-action.md)
 - sha256 (`lf-normalised`): `3898d1db09829e4e842a76027f5021927c65f2b76cfe3c3add56d1aa78b5e0d1`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
-
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
 - cited in: node.source
 - counts toward the grade: yes
 

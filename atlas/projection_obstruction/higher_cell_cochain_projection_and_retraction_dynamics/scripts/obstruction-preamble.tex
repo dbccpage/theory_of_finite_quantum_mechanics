@@ -12,6 +12,8 @@
 \setmainfont{lmroman10-regular.otf}[BoldFont=lmroman10-bold.otf,ItalicFont=lmroman10-italic.otf,BoldItalicFont=lmroman10-bolditalic.otf]
 \setmonofont{lmmono10-regular.otf}[Scale=0.85]
 \setmathfont{latinmodern-math.otf}
+% Use the available backslash glyph for set difference on older TeX bundles.
+\AtBeginDocument{\renewcommand{\setminus}{\mathbin{\backslash}}}
 
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}

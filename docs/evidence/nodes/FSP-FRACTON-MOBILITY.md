@@ -32,7 +32,7 @@ The claim that these constraints suppress sign-inducing braids has no evidence h
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-054 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-054 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/26_fsp/tfq_1218_fsp_fracton_mobility.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
 
-- file: [dag/derivations/26_fsp/tfq_1218_fsp_fracton_mobility.md](../../../dag/derivations/26_fsp/tfq_1218_fsp_fracton_mobility.md)
-- sha256 (`lf-normalised`): `179498a884b3207743f3f449aea5a00cd1a855bb88571f2608637ad6d6aae87e`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1218
-- counts toward the grade: no
-
-### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
-
-- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
+- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
 - sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/26_fsp/tfq_1218_fsp_fracton_mobility.md`
+
+- file: [dag/derivations/26_fsp/tfq_1218_fsp_fracton_mobility.md](../../../dag/derivations/26_fsp/tfq_1218_fsp_fracton_mobility.md)
+- sha256 (`lf-normalised`): `0745e36dec3318648411ca5e763a8bc7850fef2abb4e486431acda4e2ef4f1ad`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1218
+- counts toward the grade: no
 
 ## Routes
 
