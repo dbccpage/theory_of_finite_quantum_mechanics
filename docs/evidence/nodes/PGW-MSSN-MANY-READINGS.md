@@ -64,14 +64,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md](../../../dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md)
-- sha256 (`lf-normalised`): `a8ac0f1ef75b36e56a760bef282047540cf29ea9da4d188ee55d808ee3986f7e`
+- sha256 (`lf-normalised`): `bda1daea91b3b83e70b8ae7fa8b21bde41a67d63ba6a71ef2213b65a856bb106`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0531
 - counts toward the grade: no
 
-### Documents and data: `education/minimal_symbol_systems/grammar/mssn.ebnf`
+### Documents and data: `education/3_minimal_symbol_systems/grammar/mssn.ebnf`
 
-- file: [education/minimal_symbol_systems/grammar/mssn.ebnf](../../../education/minimal_symbol_systems/grammar/mssn.ebnf)
+- file: [education/3_minimal_symbol_systems/grammar/mssn.ebnf](../../../education/3_minimal_symbol_systems/grammar/mssn.ebnf)
 - sha256 (`lf-normalised`): `2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac`
 - cited in: node.source
 - counts toward the grade: yes

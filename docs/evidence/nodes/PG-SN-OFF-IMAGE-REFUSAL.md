@@ -104,7 +104,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md](../../../dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md)
-- sha256 (`lf-normalised`): `5d11c8a2a13ab970178b0ab0250c7c2229a453b6560de10a32da874ffe27fd91`
+- sha256 (`lf-normalised`): `07a0bb6f0b70acd78effa311ee6bf9d0dded6c772cd696d0437d485e2df1cb84`
 - generated view: listed, not counted
 - cited in: record TFQ-0372
 - counts toward the grade: no
@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md](../../../dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md)
-- sha256 (`lf-normalised`): `a0a7d189750cba9bd600bb3bcbf628a1c236c0a5e29138b4aa5a7df476533d4f`
+- sha256 (`lf-normalised`): `1e3181aaff2f0d4718f322becb93a1580a33c48fb6a0bd1bbeef6b89ca3503f6`
 - generated view: listed, not counted
 - cited in: record TFQ-0335 (shared)
 - counts toward the grade: no

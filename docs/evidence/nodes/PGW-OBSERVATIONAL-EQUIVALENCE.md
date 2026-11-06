@@ -68,14 +68,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md](../../../dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md)
-- sha256 (`lf-normalised`): `adde2f4379ffb4a9772d73c98b25cc7d466c3f209ec0d1925cfeccea7ceb26e0`
+- sha256 (`lf-normalised`): `22c736816102d026d88441ce0e6471f95a60e9e8196166984c3f3bc23d784fc6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0421
 - counts toward the grade: no
 
-### Documents and data: `education/pregenesis_empty_mark/sources/analysis_derivation_v1.md`
+### Documents and data: `education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md`
 
-- file: [education/pregenesis_empty_mark/sources/analysis_derivation_v1.md](../../../education/pregenesis_empty_mark/sources/analysis_derivation_v1.md)
+- file: [education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md](../../../education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md)
 - sha256 (`lf-normalised`): `0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149`
 - cited in: node.source
 - counts toward the grade: yes

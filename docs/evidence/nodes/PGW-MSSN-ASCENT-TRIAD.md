@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Rust: `education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs`
+### Rust: `education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs`
 
-- file: [education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs](../../../education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs)
+- file: [education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs](../../../education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs)
 - sha256 (`bytes`): `439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2`
 - cited in: node.rust
 
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0529_mssn_ascent_triad.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0529_mssn_ascent_triad.md](../../../dag/derivations/05_mssn_sn/tfq_0529_mssn_ascent_triad.md)
-- sha256 (`lf-normalised`): `8ddaa134359d4ea110c19679e0b363a42afb958190fb1203de41a01f17188a61`
+- sha256 (`lf-normalised`): `dd2ec5a7b73ddb4035ca4a18cb3f538ac0e06a02d03b83079d5fc84126432cae`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0529
 - counts toward the grade: no
@@ -75,7 +75,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:sha256:6313c51659873eb093e3ef4171a13eac33217dd96e168a97416623d6248005b9:51-53`
 - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:29-31`
-- `external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::CandidateLift`
+- `external:upstream/education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::CandidateLift`
 
 ## Absences recorded by the TFQ records
 

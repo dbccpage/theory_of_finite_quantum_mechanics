@@ -94,7 +94,7 @@ Read [`REVIEWING.md`](REVIEWING.md). In short: choose a node (the example list a
 
 Every name says what the thing is, in plain English, so a reader never needs a lookup table.
 
-- **Folders and files:** lowercase `snake_case` words that describe the content, for example `education/witnessed_difference_programme/` and `dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics_proofs.md`. Use a two-digit prefix only when it gives the reading order (`01_experiment_design.md`).
+- **Folders and files:** lowercase `snake_case` words that describe the content, for example `education/8_witnessed_difference_programme/` and `dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics_proofs.md`. Use a two-digit prefix only when it gives the reading order (`01_experiment_design.md`).
 - **No opaque codes.** Don't use serial or catalogue codes such as `F004_`, `H052`, `PAPER000` or `tfq_1019_`, internal project or product names, or abbreviations a reader can't expand. A record that needs a timestamp starts its folder name with one (`20261026T120000Z_scope_audit`).
 - **DAG node ids** stay as they are, `UPPER-KEBAB-CASE` (`FQ-GAP-TENSOR-UNIQUENESS`), because they are stable public references. A file about one node is named after the node id in `snake_case`.
 - **Code:** use each language's convention, with descriptive names and no project prefix:

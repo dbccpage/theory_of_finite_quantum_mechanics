@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md](../../../dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md)
-- sha256 (`lf-normalised`): `0b53d28e9b440e6035c0fdb6473b5250eb5340a3c3adff94aa0e27dd553ee8e5`
+- sha256 (`lf-normalised`): `27f4dd1979c0a092d64a1e26de905849f30be9631ea57faae023be4ad03286e9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0516
 - counts toward the grade: no
@@ -93,7 +93,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:sha256:2e70889e739a5d0f329fc639a8a0a4b2e80e6a83d5232a9f2e92ae029c31fcca:24-27`
 - `external:sha256:2e70889e739a5d0f329fc639a8a0a4b2e80e6a83d5232a9f2e92ae029c31fcca:35-37`
-- `external:upstream/education/symmetric_group_presentations/code/sn_core.py::S4Orbit`
+- `external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S4Orbit`
 
 ## Absences recorded by the TFQ records
 

@@ -16,7 +16,7 @@ Read, in this order:
 3. S(n) and MSS-N: the `MSSN_SN` stage, the presentation carrier and the S(n) tower.
 4. H3V7N5QF: what it adds to Genesis.
 
-Then write `research/genesis_foundations/INVENTORY.md`. It is a complete, cited inventory (`repo:path::declaration`) of every data type, primitive, admission rule, invariant and proved theorem the three repositories provide for Pre-Genesis, Genesis, S(n) and MSS-N.
+Then write `education/6_genesis_foundations/INVENTORY.md`. It is a complete, cited inventory (`repo:path::declaration`) of every data type, primitive, admission rule, invariant and proved theorem the three repositories provide for Pre-Genesis, Genesis, S(n) and MSS-N.
 - Mark each entry as one of: proved in Lean (with the module and axioms), computed (exact), stated in prose only, or imported.
 - List explicitly what is **not** available: anything infinite, any notion of path or homotopy, any composition of higher cells.
 
@@ -71,7 +71,7 @@ The user asked for "our own unique mathematical language that can usurp any idea
 5. **What it cannot do.** A section stating the Gödel/Tarski limits as they apply, and what "absorbing a future idea" precisely means here: admission as a priced import with recorded conservativity status. It does not mean derivation from the core.
 
 **Deliverables.**
-- `research/genesis_language/SPEC.md`, with syntax, typing and admission rules.
+- `education/7_genesis_language/SPEC.md`, with syntax, typing and admission rules.
 - Lean modules for the core, the reflection layer and each interpretation theorem, built and receipted as in Phase 1.
 - A DAG stage for the language, with honest statuses.
 

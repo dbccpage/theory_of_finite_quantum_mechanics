@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Rust: `education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs`
+### Rust: `education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs`
 
-- file: [education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs](../../../education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs)
+- file: [education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs](../../../education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs)
 - sha256 (`bytes`): `439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2`
 - cited in: node.rust
 
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md](../../../dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md)
-- sha256 (`lf-normalised`): `7a1691e5b7e4b99097b7a79fd9dcee731508371b45ccfa2585c0ee8c51bcb404`
+- sha256 (`lf-normalised`): `4203e59d22b2befd1266fa22c5cd9268ef575226f994fd0a7764477a05710b70`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0510
 - counts toward the grade: no
@@ -75,7 +75,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:26-30`
 - `external:sha256:a51ceb8d0d5703baac230c14caa4638cf25f3ae46fdc77013c7e09f27caaa1e9:26-33`
-- `external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate`
+- `external:upstream/education/3_minimal_symbol_systems/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate`
 
 ## Absences recorded by the TFQ records
 

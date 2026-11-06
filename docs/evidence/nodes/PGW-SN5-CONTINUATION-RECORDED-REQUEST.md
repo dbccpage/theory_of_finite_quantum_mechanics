@@ -59,7 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md](../../../dag/derivations/05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md)
-- sha256 (`lf-normalised`): `f2ae52f872d4e46558ea0329bb6e07949f89635137545662d5293b7b1430891f`
+- sha256 (`lf-normalised`): `455069b29d1d1957c643de53b60a08e4068d7071f05ad316e14d4c581cbf3c75`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0517
 - counts toward the grade: no
@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:sha256:a6861fa4948d2c22250d8262817e8da205083614703dd40737904803b7482d93:19-27`
-- `external:upstream/education/symmetric_group_presentations/code/sn_core.py::S5Continuation`
+- `external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S5Continuation`
 
 ## Absences recorded by the TFQ records
 

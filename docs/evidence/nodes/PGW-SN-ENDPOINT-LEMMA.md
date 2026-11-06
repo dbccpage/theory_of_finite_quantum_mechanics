@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0515_sn_endpoint_lemma.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0515_sn_endpoint_lemma.md](../../../dag/derivations/05_mssn_sn/tfq_0515_sn_endpoint_lemma.md)
-- sha256 (`lf-normalised`): `92c4217f7dada7e8c157bcf809c6bb4c0730889b716123f011a89aecd15151e5`
+- sha256 (`lf-normalised`): `e644a533a6bd93eea195382011bfc9c89859925279380128059d03627f68d55c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0515
 - counts toward the grade: no
@@ -95,7 +95,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:sha256:17ebebc4a063d888d237da44f44f0937e15f6920e8e6fc63fbdf83909718616c:32-35`
 - `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:58-66`
-- `external:upstream/education/symmetric_group_presentations/code/sn_audit.py::verify_wir`
+- `external:upstream/education/2_symmetric_group_presentations/code/sn_audit.py::verify_wir`
 
 ## Absences recorded by the TFQ records
 

@@ -45,14 +45,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md](../../../dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md)
-- sha256 (`lf-normalised`): `68c71c90c954cedd39693e43c0a3b6312b9fb36fb83c98d7bfcaaf3f63268a6d`
+- sha256 (`lf-normalised`): `92323666483c8f7e17ef51f2e41e0efa61ab17580d4d6724fa7af0ce53f36019`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0417
 - counts toward the grade: no
 
-### Documents and data: `education/pregenesis_empty_mark/grammar/pre_genesis.ebnf`
+### Documents and data: `education/1_pregenesis_empty_mark/grammar/pre_genesis.ebnf`
 
-- file: [education/pregenesis_empty_mark/grammar/pre_genesis.ebnf](../../../education/pregenesis_empty_mark/grammar/pre_genesis.ebnf)
+- file: [education/1_pregenesis_empty_mark/grammar/pre_genesis.ebnf](../../../education/1_pregenesis_empty_mark/grammar/pre_genesis.ebnf)
 - sha256 (`lf-normalised`): `2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a`
 - cited in: node.source
 - counts toward the grade: yes
@@ -61,8 +61,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/education/pregenesis_empty_mark/code/check_pre_genesis.py::validate_cases`
-- `external:upstream/education/pregenesis_empty_mark/code/tests/test_pre_genesis_grammar.py::test_four_state_separation`
+- `external:upstream/education/1_pregenesis_empty_mark/code/check_pre_genesis.py::validate_cases`
+- `external:upstream/education/1_pregenesis_empty_mark/code/tests/test_pre_genesis_grammar.py::test_four_state_separation`
 
 ## Absences recorded by the TFQ records
 
