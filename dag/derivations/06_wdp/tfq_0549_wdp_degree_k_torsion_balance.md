@@ -1,6 +1,6 @@
 # [TFQ-0549] wdp-degree-k-torsion-balance
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `efae4646-2dbd-5c7a-8e23-071f2c56783b`  
 > **Parent Derivation**: [TFQ-0004](tfq_0004_witnessed_difference_degree_1_window.md)
 
@@ -26,14 +26,17 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Written proofs with Python checks and no Lean declaration; the coefficient field is part of the window, the degree-k extension says nothing about cup products or continuum forms, and the balance identities are not physical conservation laws.
+> Mechanized in Lean 4 (tetrahedron_d2_d1_zero, degree_k_window_exact_and_bounded, finite_graph_divergence_sum_zero, gauss_law_necessary_zero_sum, cycle_pairing_gauge_invariant, rp2_delta1_delta0_zero, rp2_delta1_double_right_inverse, and rp2_no_integral_repair_for_single_triangle in WdpBatch2.lean) and checked in Python simplicial.py.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: the claim map records WDP-CH05-P03, P04 and P06 as prose-only`
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.degree_k_window_exact_and_bounded`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.finite_graph_divergence_sum_zero`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.rp2_no_integral_repair_for_single_triangle`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.tetrahedron_d2_d1_zero`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust binding for the degree-k window, the RP2 torsion witness or the balance identities`

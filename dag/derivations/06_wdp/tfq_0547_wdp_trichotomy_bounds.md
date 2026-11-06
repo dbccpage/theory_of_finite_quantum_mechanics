@@ -1,6 +1,6 @@
 # [TFQ-0547] wdp-trichotomy-bounds
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `45decd49-4235-54ad-ad92-42e148b8f311`  
 > **Parent Derivation**: [TFQ-0546](tfq_0546_wdp_exact_sequence_h1_q1.md)
 
@@ -26,15 +26,18 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> P04–P06 are written proofs; Lean covers item 4 of P05 (closure_charge_le_opnorm_mul_phi, with the greatest-lower-bound half of the infimum as hypothesis) and P06 for ℚ-valued costs only (closure_ratio_signature), and the exhaustive trichotomy test on three small complexes is a finite check.
+> Mechanized in Lean 4 (closure_charge_le_opnorm_mul_phi in Obstruction.lean plus diagnostic_trichotomy_exclusive_exhaustive, no_reverse_bound_when_h1_nontrivial, gamma2_quotient_norm_laws, and irrational_weight_accumulation_violates_trichotomy in WdpBatch2.lean) and checked in Python core.py.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::closure_charge_le_opnorm_mul_phi`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
-- [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::closure_ratio_signature`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::WitnessedDifference.closure_charge_le_opnorm_mul_phi`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.diagnostic_trichotomy_exclusive_exhaustive`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.gamma2_quotient_norm_laws`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.irrational_weight_accumulation_violates_trichotomy`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean::WitnessedDifference.WdpBatch2.no_reverse_bound_when_h1_nontrivial`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `external:sha256:3301e36106cfe1fb4415d4f6218951cd83516f0a714d773fcb477ea3dce63814::TriadSignature` (private upstream source, not in this repository)

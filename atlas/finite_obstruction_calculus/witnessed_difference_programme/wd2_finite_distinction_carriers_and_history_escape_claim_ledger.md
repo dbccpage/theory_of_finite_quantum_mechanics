@@ -8,4 +8,5 @@
 | WD2-T3 | R_0 is an update congruence if and only if no pair in R_0 has a separating word. | proved | Lean `Wd2.no_escape_equivalence`, `Wd2.isUpdateCongruence_iff_r1_eq_r0`. Python `no_escape_profile`. |
 | WD2-T4 | A pair in R_n but not R_{n+1} has shortest separating length n + 1. | proved | Lean `Wd2.shortest_separating_word`. Python `shortest_separating_length` and `factored_report_profile`. |
 | WD2-T5 | A report that factors through the two endpoint observations preserves R_n. | proved | Lean `Wd2.factored_report_preserves_related`, `Wd2.factored_report_preserves_polyRelated`, `Wd2.unfactored_report_splits_r0`. Python `factored_report_profile`. |
-| WD2-T6 | R_∞ is the largest output-preserving update congruence, and every compatible quotient is at least as large. | withdrawn — non-claim. The quotient mapping property is outside this package; no finite quotient witness is labeled proved | The manuscript proof remains prose. This package does not call the quotient mapping property proved. |
+| WD2-T6 | R_∞ is the largest output-preserving update congruence, and every compatible quotient is at least as large. | proved | Lean `Wd2.rInfinity_coarsest_congruence`, `Wd2.minimal_deterministic_quotient_factorization`. Python `minimal_quotient_profile`. |
+

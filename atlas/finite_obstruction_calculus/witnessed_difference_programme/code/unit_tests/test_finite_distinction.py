@@ -8,6 +8,7 @@ from witnessed_difference.finite_distinction import (
     MooreMachine,
     distinction_relation,
     factored_report_profile,
+    minimal_quotient_profile,
     no_escape_profile,
     sharp_chain,
     sharp_profile,
@@ -58,9 +59,20 @@ def test_factored_reports_preserve_the_horizon_and_the_escape_length_is_two() ->
     assert profile["escape_length"] == 2
 
 
+def test_minimal_deterministic_quotient_factorization() -> None:
+    profile = minimal_quotient_profile()
+    assert profile["N"] == 0
+    assert profile["r_inf_classes"] == 2
+    assert profile["intermediate_classes"] == 3
+    assert profile["comparison_well_defined"] is True
+    assert profile["comparison_surjective"] is True
+    assert profile["cardinality_lower_bound"] is True
+
+
 def test_interface_aliases_and_properties() -> None:
     assert FiniteAutomaton is MooreMachine
     m = sharp_chain(3)
     sigs = distinction_relation(m, 2)
     assert len(sigs) == 3
     assert word_kernel_agrees(m, 2) is True
+

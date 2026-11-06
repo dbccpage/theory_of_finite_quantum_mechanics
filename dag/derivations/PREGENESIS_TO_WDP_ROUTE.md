@@ -199,8 +199,8 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 182 | [`TFQ-0524`](./05_mssn_sn/tfq_0524_sn_e18_l1_ties_l2_center.md) (new) | sn-e18-l1-ties-l2-center | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0522` |
 | 183 | [`TFQ-0004`](./06_wdp/tfq_0004_witnessed_difference_degree_1_window.md) | Witnessed-difference degree-1 window | `WDP` | `GAP` | `TFQ-0003` |
 | 184 | [`TFQ-0546`](./06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) (new) | wdp-exact-sequence-h1-q1 | `WDP` | `PROVED_LEAN` | `TFQ-0004` |
-| 185 | [`TFQ-0547`](./06_wdp/tfq_0547_wdp_trichotomy_bounds.md) (new) | wdp-trichotomy-bounds | `WDP` | `SOURCE_RECORD` | `TFQ-0546` |
-| 186 | [`TFQ-0549`](./06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md) (new) | wdp-degree-k-torsion-balance | `WDP` | `SOURCE_RECORD` | `TFQ-0004` |
+| 185 | [`TFQ-0547`](./06_wdp/tfq_0547_wdp_trichotomy_bounds.md) (new) | wdp-trichotomy-bounds | `WDP` | `PROVED_LEAN` | `TFQ-0546` |
+| 186 | [`TFQ-0549`](./06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md) (new) | wdp-degree-k-torsion-balance | `WDP` | `PROVED_LEAN` | `TFQ-0004` |
 | 187 | [`TFQ-0339`](./06_wdp/tfq_0339_preserve_a_protected_answer_exactly_on_report_fibers_and_do_not_derive.md) | Preserve a protected answer exactly on report fibers, and do not derive | `WDP` | `SOURCE_RECORD` | `TFQ-0338` |
 | 188 | [`TFQ-0340`](./06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md) | Refuse a symmetry-equivariant distinguished point on a finite set of size at | `WDP` | `OPEN_OBLIGATION` | `TFQ-0339` |
 | 189 | [`TFQ-0553`](./06_wdp/tfq_0553_wdp_observer_quotient_passivity.md) (new) | wdp-observer-quotient-passivity | `WDP` | `DEFINITION` | `TFQ-0339` |
@@ -215,13 +215,13 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 198 | [`TFQ-0562`](./06_wdp/tfq_0562_wd2_no_escape_update_congruence.md) (new) | wd2-no-escape-update-congruence | `WDP` | `PROVED_LEAN` | `TFQ-0561` |
 | 199 | [`TFQ-0563`](./06_wdp/tfq_0563_wd2_shortest_separating_word.md) (new) | wd2-shortest-separating-word | `WDP` | `PROVED_LEAN` | `TFQ-0562` |
 | 200 | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) (new) | wd2-factored-report-preservation | `WDP` | `PROVED_LEAN` | `TFQ-0563` |
-| 201 | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) (new) | wd2-minimal-deterministic-quotient | `WDP` | `OPEN_OBLIGATION` | `TFQ-0564` |
+| 201 | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) (new) | wd2-minimal-deterministic-quotient | `WDP` | `PROVED_LEAN` | `TFQ-0564` |
 | 202 | [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) (new) | wdp-bridge-o01-carrier-cut-genesis | `WDP` | `OPEN_OBLIGATION` | `TFQ-0565` |
 | 203 | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) (new) | wdp-bridge-o02-observer-repair | `WDP` | `OPEN_OBLIGATION` | `TFQ-0566` |
 | 204 | [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) (new) | wdp-bridge-o03-guarded-history-coherence | `WDP` | `OPEN_OBLIGATION` | `TFQ-0567` |
 | 205 | [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) (new) | wdp-bridge-o04-tensor-reconstruction | `WDP` | `OPEN_OBLIGATION` | `TFQ-0568` |
 | 206 | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) (new) | wdp-bridge-o05-authorization-firewall | `WDP` | `OPEN_OBLIGATION` | `TFQ-0569` |
-| 207 | [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) (new) | wdp-out-1-sharp-observer-completion | `WDP` | `SOURCE_RECORD` | `TFQ-0570` |
+| 207 | [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) (new) | wdp-out-1-sharp-observer-completion | `WDP` | `PROVED_LEAN` | `TFQ-0570` |
 | 208 | [`TFQ-0572`](./06_wdp/tfq_0572_wdp_out_2_guarded_swap_coherence.md) (new) | wdp-out-2-guarded-swap-coherence | `WDP` | `SOURCE_RECORD` | `TFQ-0571` |
 | 209 | [`TFQ-0573`](./06_wdp/tfq_0573_wdp_out_3_realizable_future_observation.md) (new) | wdp-out-3-realizable-future-observation | `WDP` | `SOURCE_RECORD` | `TFQ-0572` |
 | 210 | [`TFQ-0574`](./06_wdp/tfq_0574_wdp_out_4_rejection_rule_reuse.md) (new) | wdp-out-4-rejection-rule-reuse | `WDP` | `SOURCE_RECORD` | `TFQ-0573` |
@@ -246,7 +246,7 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 229 | [`TFQ-0348`](./06_wdp/tfq_0348_certify_a_rational_phi1_value_by_a_bounded_circulation_that_meets_a.md) | Certify a rational Phi1 value by a bounded circulation that meets a | `WDP` | `SOURCE_RECORD` | `TFQ-0345` |
 | 230 | [`TFQ-0548`](./06_wdp/tfq_0548_wdp_filled_triangle.md) (new) | wdp-filled-triangle | `WDP` | `PROVED_LEAN` | `TFQ-0348` |
 | 231 | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) | Supply the admitted cut (X, E, tau, K) as data, and do | `WDP` | `SOURCE_RECORD` | `TFQ-0343` |
-| 232 | [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) (new) | wdp-failed-sameness | `WDP` | `SOURCE_RECORD` | `TFQ-0360` |
+| 232 | [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) (new) | wdp-failed-sameness | `WDP` | `PROVED_LEAN` | `TFQ-0360` |
 | 233 | [`TFQ-0538`](./06_wdp/tfq_0538_wdp_quotient_defect_root_p.md) (new) | wdp-quotient-defect-root-p | `WDP` | `DEFINITION` | `TFQ-0536` |
 | 234 | [`TFQ-0539`](./06_wdp/tfq_0539_wdp_seven_witness_roles.md) (new) | wdp-seven-witness-roles | `WDP` | `DEFINITION` | `TFQ-0538` |
 | 235 | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) (new) | wdp-retention-packet | `WDP` | `DEFINITION` | `TFQ-0539` |

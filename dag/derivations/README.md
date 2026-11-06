@@ -243,7 +243,7 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0347`](./06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md) | Keep ExactClass, ClosedResidual, and ActiveClosureFailure off the routing terminal, and leave | `OPEN_OBLIGATION` | [`TFQ-0345`](./06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md) |
 | [`TFQ-0348`](./06_wdp/tfq_0348_certify_a_rational_phi1_value_by_a_bounded_circulation_that_meets_a.md) | Certify a rational Phi1 value by a bounded circulation that meets a | `SOURCE_RECORD` | [`TFQ-0345`](./06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md) |
 | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) | Supply the admitted cut (X, E, tau, K) as data, and do | `SOURCE_RECORD` | [`TFQ-0343`](./06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md) |
-| [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) | wdp-failed-sameness | `SOURCE_RECORD` | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) |
+| [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) | wdp-failed-sameness | `PROVED_LEAN` | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) |
 | [`TFQ-0537`](./06_wdp/tfq_0537_wdp_pointed_apartness.md) | wdp-pointed-apartness | `PROVED_LEAN` | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) |
 | [`TFQ-0538`](./06_wdp/tfq_0538_wdp_quotient_defect_root_p.md) | wdp-quotient-defect-root-p | `DEFINITION` | [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) |
 | [`TFQ-0539`](./06_wdp/tfq_0539_wdp_seven_witness_roles.md) | wdp-seven-witness-roles | `DEFINITION` | [`TFQ-0538`](./06_wdp/tfq_0538_wdp_quotient_defect_root_p.md) |
@@ -254,9 +254,9 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0544`](./06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md) | wdp-phi-well-defined-l1-duality | `CONDITIONAL` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
 | [`TFQ-0545`](./06_wdp/tfq_0545_wdp_closure_needs_degree.md) | wdp-closure-needs-degree | `DEFINITION` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
 | [`TFQ-0546`](./06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) | wdp-exact-sequence-h1-q1 | `PROVED_LEAN` | [`TFQ-0004`](./06_wdp/tfq_0004_witnessed_difference_degree_1_window.md) |
-| [`TFQ-0547`](./06_wdp/tfq_0547_wdp_trichotomy_bounds.md) | wdp-trichotomy-bounds | `SOURCE_RECORD` | [`TFQ-0546`](./06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) |
+| [`TFQ-0547`](./06_wdp/tfq_0547_wdp_trichotomy_bounds.md) | wdp-trichotomy-bounds | `PROVED_LEAN` | [`TFQ-0546`](./06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) |
 | [`TFQ-0548`](./06_wdp/tfq_0548_wdp_filled_triangle.md) | wdp-filled-triangle | `PROVED_LEAN` | [`TFQ-0348`](./06_wdp/tfq_0348_certify_a_rational_phi1_value_by_a_bounded_circulation_that_meets_a.md) |
-| [`TFQ-0549`](./06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md) | wdp-degree-k-torsion-balance | `SOURCE_RECORD` | [`TFQ-0004`](./06_wdp/tfq_0004_witnessed_difference_degree_1_window.md) |
+| [`TFQ-0549`](./06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md) | wdp-degree-k-torsion-balance | `PROVED_LEAN` | [`TFQ-0004`](./06_wdp/tfq_0004_witnessed_difference_degree_1_window.md) |
 | [`TFQ-0550`](./06_wdp/tfq_0550_wdp_succession_strict_order.md) | wdp-succession-strict-order | `DEFINITION` | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) |
 | [`TFQ-0551`](./06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md) | wdp-duration-exactness-period-witness | `DEFINITION` | [`TFQ-0550`](./06_wdp/tfq_0550_wdp_succession_strict_order.md) |
 | [`TFQ-0552`](./06_wdp/tfq_0552_wdp_finite_valuations.md) | wdp-finite-valuations | `DEFINITION` | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) |
@@ -272,13 +272,13 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0562`](./06_wdp/tfq_0562_wd2_no_escape_update_congruence.md) | wd2-no-escape-update-congruence | `PROVED_LEAN` | [`TFQ-0561`](./06_wdp/tfq_0561_wd2_sharp_stabilization_bound.md) |
 | [`TFQ-0563`](./06_wdp/tfq_0563_wd2_shortest_separating_word.md) | wd2-shortest-separating-word | `PROVED_LEAN` | [`TFQ-0562`](./06_wdp/tfq_0562_wd2_no_escape_update_congruence.md) |
 | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) | wd2-factored-report-preservation | `PROVED_LEAN` | [`TFQ-0563`](./06_wdp/tfq_0563_wd2_shortest_separating_word.md) |
-| [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) | wd2-minimal-deterministic-quotient | `OPEN_OBLIGATION` | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) |
+| [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) | wd2-minimal-deterministic-quotient | `PROVED_LEAN` | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) |
 | [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) | wdp-bridge-o01-carrier-cut-genesis | `OPEN_OBLIGATION` | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) |
 | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) | wdp-bridge-o02-observer-repair | `OPEN_OBLIGATION` | [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) |
 | [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) | wdp-bridge-o03-guarded-history-coherence | `OPEN_OBLIGATION` | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) |
 | [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) | wdp-bridge-o04-tensor-reconstruction | `OPEN_OBLIGATION` | [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) |
 | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) | wdp-bridge-o05-authorization-firewall | `OPEN_OBLIGATION` | [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) |
-| [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) | wdp-out-1-sharp-observer-completion | `SOURCE_RECORD` | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) |
+| [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) | wdp-out-1-sharp-observer-completion | `PROVED_LEAN` | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) |
 | [`TFQ-0572`](./06_wdp/tfq_0572_wdp_out_2_guarded_swap_coherence.md) | wdp-out-2-guarded-swap-coherence | `SOURCE_RECORD` | [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) |
 | [`TFQ-0573`](./06_wdp/tfq_0573_wdp_out_3_realizable_future_observation.md) | wdp-out-3-realizable-future-observation | `SOURCE_RECORD` | [`TFQ-0572`](./06_wdp/tfq_0572_wdp_out_2_guarded_swap_coherence.md) |
 | [`TFQ-0574`](./06_wdp/tfq_0574_wdp_out_4_rejection_rule_reuse.md) | wdp-out-4-rejection-rule-reuse | `SOURCE_RECORD` | [`TFQ-0573`](./06_wdp/tfq_0573_wdp_out_3_realizable_future_observation.md) |

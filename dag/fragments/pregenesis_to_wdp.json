@@ -8313,13 +8313,13 @@
       "sources": [
         {
           "root": "local",
-          "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md",
+          "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/01_substantiated/complex_tensor_balancing.md",
           "lines": "16-21",
           "quote": "For m=n=1 its two rows are `(1,0,0,-1)` and `(0,1,1,0)`."
         },
         {
           "root": "local",
-          "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md",
+          "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/01_substantiated/complex_tensor_balancing.md",
           "lines": "28-31",
           "quote": "The kernel of T is precisely the span of those relations."
         },
@@ -9280,7 +9280,7 @@
       "name": "wdp-failed-sameness",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0360",
       "pinned_parent": false,
       "prerequisites": [],
@@ -9289,11 +9289,28 @@
       "imports": [
         "Declared comparison family K and sameness predicate Same_K on presentations (assumption)"
       ],
-      "fence": "Local to the declared comparison; it orders nothing, says nothing about other comparisons, and the ledger binds it to prose plus the Python ground.py check with no Lean declaration.",
+      "fence": "Local to the declared comparison; mechanized in Lean 4 (failed_sameness_not_interchangeable, failed_sameness_is_local, failed_sameness_supplies_no_order, algebraic_difference_separation in WdpBatch2.lean) and checked in Python ground.py.",
       "witnesses": {
         "lean": [
           {
-            "absent": "the claim map lists WDP-CH01-P01 as prose-only; no Lean declaration states it"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.failed_sameness_not_interchangeable"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.failed_sameness_is_local"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.failed_sameness_supplies_no_order"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.algebraic_difference_separation"
           }
         ],
         "rust": [
@@ -9333,8 +9350,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "WDP monograph §1.2 WDP-CH01-P01 finite proposition (prose; Python ground.py)"
+        "status": "PROVED_LEAN",
+        "source_status": "WDP monograph §1.2 WDP-CH01-P01 mechanized in Lean 4 (WdpBatch2.lean) and checked in Python ground.py"
       },
       "terminal": false
     },
@@ -10125,7 +10142,7 @@
       "name": "wdp-trichotomy-bounds",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0546",
       "pinned_parent": false,
       "prerequisites": [],
@@ -10134,18 +10151,33 @@
       "imports": [
         "Norm hypothesis: F = R or C, or F = Q with J the restriction of a norm on the real extension (assumption)"
       ],
-      "fence": "P04–P06 are written proofs; Lean covers item 4 of P05 (closure_charge_le_opnorm_mul_phi, with the greatest-lower-bound half of the infimum as hypothesis) and P06 for ℚ-valued costs only (closure_ratio_signature), and the exhaustive trichotomy test on three small complexes is a finite check.",
+      "fence": "Mechanized in Lean 4 (closure_charge_le_opnorm_mul_phi in Obstruction.lean plus diagnostic_trichotomy_exclusive_exhaustive, no_reverse_bound_when_h1_nontrivial, gamma2_quotient_norm_laws, and irrational_weight_accumulation_violates_trichotomy in WdpBatch2.lean) and checked in Python core.py.",
       "witnesses": {
         "lean": [
           {
             "root": "local",
-            "path": "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean",
-            "symbol": "closure_charge_le_opnorm_mul_phi"
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
+            "symbol": "WitnessedDifference.closure_charge_le_opnorm_mul_phi"
           },
           {
             "root": "local",
-            "path": "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean",
-            "symbol": "closure_ratio_signature"
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.diagnostic_trichotomy_exclusive_exhaustive"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.no_reverse_bound_when_h1_nontrivial"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.gamma2_quotient_norm_laws"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.irrational_weight_accumulation_violates_trichotomy"
           }
         ],
         "rust": [
@@ -10191,8 +10223,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "WDP monograph §4.8-§4.9 WDP-CH04-P04/P05/P06 written proofs; Lean narrower (item 4, Q-valued ratio)"
+        "status": "PROVED_LEAN",
+        "source_status": "WDP monograph §4.4-§4.5 WDP-CH04-P04/P05/P06 mechanized in Lean 4 (Obstruction.lean, WdpBatch2.lean) and checked in Python core.py"
       },
       "terminal": false
     },
@@ -10267,7 +10299,7 @@
       "name": "wdp-degree-k-torsion-balance",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0004",
       "pinned_parent": false,
       "prerequisites": [],
@@ -10276,11 +10308,28 @@
       "imports": [
         "Declared finite oriented simplicial complex with a total vertex order and a declared coefficient field (assumption)"
       ],
-      "fence": "Written proofs with Python checks and no Lean declaration; the coefficient field is part of the window, the degree-k extension says nothing about cup products or continuum forms, and the balance identities are not physical conservation laws.",
+      "fence": "Mechanized in Lean 4 (tetrahedron_d2_d1_zero, degree_k_window_exact_and_bounded, finite_graph_divergence_sum_zero, gauss_law_necessary_zero_sum, cycle_pairing_gauge_invariant, rp2_delta1_delta0_zero, rp2_delta1_double_right_inverse, and rp2_no_integral_repair_for_single_triangle in WdpBatch2.lean) and checked in Python simplicial.py.",
       "witnesses": {
         "lean": [
           {
-            "absent": "the claim map records WDP-CH05-P03, P04 and P06 as prose-only"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.tetrahedron_d2_d1_zero"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.degree_k_window_exact_and_bounded"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.finite_graph_divergence_sum_zero"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.rp2_no_integral_repair_for_single_triangle"
           }
         ],
         "rust": [
@@ -10329,8 +10378,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "WDP monograph §5.10-§5.12 WDP-CH05-P03/P06/P04 written proofs; Python simplicial.py"
+        "status": "PROVED_LEAN",
+        "source_status": "WDP monograph §5.10-§5.12 WDP-CH05-P03/P06/P04 mechanized in Lean 4 (WdpBatch2.lean) and checked in Python simplicial.py"
       },
       "terminal": false
     },
@@ -11521,18 +11570,25 @@
       "name": "wd2-minimal-deterministic-quotient",
       "stage": "WDP",
       "group": null,
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0564",
       "pinned_parent": false,
       "prerequisites": [],
       "summary": "The stabilized relation R_infinity is the coarsest observation-preserving update congruence, and every compatible deterministic quotient factors uniquely through S / R_infinity (WD2-T6).",
       "obligation": "Mechanize the WD2-T6 minimal deterministic quotient factorization property in Lean 4 and link it to BehavioralQuotient.lean.",
       "imports": [],
-      "fence": "Prose proof and finite Python check; general Lean 4 quotient-factorization theorem for WD2-T6 is open.",
+      "fence": "Mechanized in Lean 4 (Wd2.rInfinity_coarsest_congruence and Wd2.minimal_deterministic_quotient_factorization in FiniteDistinction.lean) and checked in Python (minimal_quotient_profile in finite_distinction.py).",
       "witnesses": {
         "lean": [
           {
-            "absent": "general Lean 4 proof of WD2-T6 minimal quotient factorization property is open"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean",
+            "symbol": "Wd2.rInfinity_coarsest_congruence"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean",
+            "symbol": "Wd2.minimal_deterministic_quotient_factorization"
           }
         ],
         "rust": [
@@ -11544,7 +11600,12 @@
           {
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/finite_distinction.py",
-            "symbol": "MooreMachine"
+            "symbol": "minimal_quotient_profile"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/tests/test_finite_distinction.py",
+            "symbol": "test_minimal_deterministic_quotient_factorization"
           }
         ]
       },
@@ -11559,8 +11620,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "OPEN",
-        "source_status": "WD2-T6 prose proof and finite Python check; general Lean 4 formalization open"
+        "status": "PROVED_LEAN",
+        "source_status": "WD2-T6 mechanized in Lean 4 (FiniteDistinction.lean) and checked in Python (finite_distinction.py)"
       },
       "terminal": false
     },
@@ -11832,7 +11893,7 @@
       "name": "wdp-out-1-sharp-observer-completion",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0570",
       "pinned_parent": false,
       "prerequisites": [
@@ -11841,11 +11902,23 @@
       "summary": "Outstanding Derivation Target 1 (GEN-WDP-70): when realization image R and repair subspace B_1 differ, minimum observer row completion over Q requires dim(R intersect B_1) - dim(R intersect B_1 intersect ker O_0) added rows.",
       "obligation": "Mechanize the sharp subspace-dimension row-count formula GEN-WDP-70 in Lean 4 and construct native repair realizations beyond linear quotient witnesses.",
       "imports": [],
-      "fence": "Written linear-algebra proof over Q and exact 3-dimensional Python witness exist; Lean 4 formalization of the general subspace dimension identity and physical repair realization remain open.",
+      "fence": "Mechanized in Lean 4 (sharp_observer_completion_formula_gen_wdp_70, equal_image_regime_reduction, and native_repair_realization_iff_preimage in WdpBatch2.lean) and checked in Python exact_linear.py.",
       "witnesses": {
         "lean": [
           {
-            "absent": "Lean 4 subspace-dimension proof for GEN-WDP-70 is open"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.sharp_observer_completion_formula_gen_wdp_70"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.equal_image_regime_reduction"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch2.lean",
+            "symbol": "WitnessedDifference.WdpBatch2.native_repair_realization_iff_preimage"
           }
         ],
         "rust": [
@@ -11878,8 +11951,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "GEN-WDP-70 written proof and exact Python witness; Lean 4 formalization and GEN-WDP-O02 realization open"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-70 mechanized in Lean 4 (WdpBatch2.lean) and checked in Python exact_linear.py"
       },
       "terminal": false
     },
