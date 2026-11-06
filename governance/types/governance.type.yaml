@@ -1,0 +1,60 @@
+# governance/: the rules of the repository - the contract-score policy and its baseline (companion regime),
+# the approval records, the checker crate manifest and build hook, and (from this epic) the repository types.
+# AuthorityEffect: None.
+schema: repo-type/1
+file_for: governance
+
+classes:
+  - class: GovernanceFolder
+    path: governance
+    summary: The single home of repository rules - the contract-score policy, grandfather baseline, approved exceptions, the governance-check crate manifest and build hook, the companion schema, and the repository types with their epic.
+    role: config
+    counts: {now: 63, target: 64}
+    attributes:
+      - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
+      - {name: policy, match: policy.json, leaf: GovernancePolicy, required: true, now: 1, target: 1}
+      - {name: baseline, match: baseline.json, leaf: GovernanceBaseline, required: true, now: 1, target: 1}
+      - {name: crate_manifest, match: Cargo.toml, leaf: CargoManifest, required: true, now: 1, target: 1, note: "builds the governance crate whose sources live in code/rust/src/governance; CI uses this manifest (governance.yml:60,63)"}
+      - {name: crate_lock, match: Cargo.lock, leaf: CargoLock, required: true, now: 1, target: 1}
+      - {name: crate_companion, match: Cargo.contract.score.yaml, leaf: ContractScoreCompanion, required: true, now: 1, target: 1}
+      - {name: companion_schema, match: schema/contract-score.v1.json, leaf: CompanionSchema, required: true, now: 1, target: 1}
+      - {name: build_hook, match: hook/build.rs, leaf: BuildHook, required: true, now: 1, target: 1, note: "template of every code/rust build.rs; its sha256 is pinned in policy.json pinned_boilerplate"}
+      - {name: build_hook_companion, match: hook/build.contract.score.yaml, leaf: ContractScoreCompanion, required: true, now: 1, target: 1}
+      - {name: scoring_history, match: contract_scoring_history.md, leaf: GovernanceGuide, required: true, now: 0, target: 1, note: "moves here from docs/ in story S06"}
+      - {name: types, class: RepositoryTypes, required: true}
+    collections:
+      - {name: approvals, match: "approvals/*.{json,md}", leaf: ApprovalRecord, now: 47, target: 47, note: "maintainer-approved exceptions; policy.json and the README cite them"}
+      - {name: evidence, match: "evidence/*.json", leaf: GovernanceRunRecord, now: 1, target: 1}
+      - {name: tool_companions, match: "tools/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 3, target: 3}
+      - {name: tools, match: "tools/*.py", leaf: GovernanceTool, now: 3, target: 3}
+    invariants:
+      - {id: governance.policy_single_source, statement: "the companion suffix, populations, floor and exclusions are stated only in policy.json; other files cite it", holds_now: false, checked_by: unchecked, note: "rules/rules.yaml rule_2 restates a different companion set; story S03 deletes it"}
+      - {id: governance.baseline_only_shrinks, statement: "baseline.json gains no entry without a reason", holds_now: true, checked_by: "governance-check --root . check --changed-since <base> (CI governance.yml)"}
+      - {id: governance.crate_tests, statement: "the governance crate tests and the Python policy tests pass", holds_now: unknown, checked_by: "cargo test --locked --manifest-path governance/Cargo.toml and pytest scripts/test_governance_policy.py (CI governance.yml)"}
+    relations:
+      - {kind: checks, to: CodeFolder, via: "governance-check and every workspace build.rs read policy.json and baseline.json"}
+      - {kind: checks, to: LeanFolder, via: "policy.json population lean4/**/*.lean"}
+      - {kind: builds, to: CodeFolder, via: "governance/Cargo.toml points at code/rust/src/governance/src/*.rs"}
+
+  - class: RepositoryTypes
+    path: governance/types
+    summary: The repository typed as one object - the root class with the meta-schema and the naming and public-text rules, one type file per top-level folder, and the epic that brings the tree to the typed target.
+    role: config
+    counts: {now: 0, target: 15}
+    attributes:
+      - {name: root_type, match: repository.type.yaml, leaf: RepositoryTypeFile, required: true, now: 0, target: 1}
+      - {name: epic, match: repository_typing_epic.md, leaf: TypingEpic, required: true, now: 0, target: 1}
+    collections:
+      - {name: folder_types, match: "*.type.yaml", leaf: RepositoryTypeFile, now: 0, target: 13}
+    invariants:
+      - {id: types.one_file_per_folder, statement: "there is exactly one <folder>.type.yaml per top-level folder that is not a dot folder, and each defines the class the root attribute names", holds_now: true, checked_by: "scripts/check_repo_types.py (story S01)"}
+
+leaf_types:
+  - {name: GovernancePolicy, format: json, naming: lower, schema: tfqm.governance-policy.v1, companions: none, authored: hand}
+  - {name: GovernanceBaseline, format: json, naming: lower, schema: "one entry per line {path: {deficit, sha256, reason?}}", companions: none, authored: "generated:governance-check baseline --write (shrinks only)"}
+  - {name: CompanionSchema, format: "json schema", naming: lower, schema: "JSON Schema draft", companions: none, authored: hand}
+  - {name: GovernanceGuide, format: md, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: ApprovalRecord, format: "json or md", naming: lower, schema: none, companions: none, authored: hand}
+  - {name: GovernanceTool, format: py, naming: lower, schema: none, companions: convention, authored: hand}
+  - {name: RepositoryTypeFile, format: yaml, naming: lower, schema: "repo-type/1 (meta block of governance/types/repository.type.yaml)", companions: none, authored: hand}
+  - {name: TypingEpic, format: md, naming: lower, schema: none, companions: none, authored: hand}

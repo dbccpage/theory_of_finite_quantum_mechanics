@@ -1,0 +1,39 @@
+# docs/: the GitHub Pages site (built by .github/workflows/status.yml from docs/ with Jekyll), the generated
+# evidence pages, the overclaim gate and its review records, and maintenance records. AuthorityEffect: None.
+schema: repo-type/1
+file_for: docs
+
+classes:
+  - class: DocsFolder
+    path: docs
+    summary: The public site - home page, reviewer guide, the QM problem atlas, the evidence pages generated from the DAG, the overclaim baseline and review records, and dated maintenance records.
+    role: document
+    counts: {now: 1306, target: 1303}
+    attributes:
+      - {name: site_config, match: _config.yml, leaf: JekyllConfig, required: true, now: 1, target: 1}
+      - {name: home, match: index.md, leaf: SitePage, required: true, now: 1, target: 1}
+      - {name: reviewers, match: reviewers.md, leaf: SitePage, required: true, now: 1, target: 1}
+      - {name: qm_atlas, match: QM_PROBLEM_AND_PROOF_ATLAS.md, leaf: QmProblemAtlas, required: true, now: 1, target: 1, note: "upper-case name kept as a named exception: scripts/verify_qm_atlas_loc.py:15,53 reads this path"}
+      - {name: overclaim_baseline, match: overclaim/baseline.json, leaf: OverclaimBaseline, required: true, now: 1, target: 1}
+    collections:
+      - {name: evidence_index, match: "evidence/{README.md,mismatches.md}", leaf: GeneratedEvidencePage, authored: "generated:python -I -X utf8 dag/evidence/build_evidence.py --write", now: 2, target: 2}
+      - {name: evidence_node_pages, match: "evidence/nodes/*.md", leaf: GeneratedEvidencePage, authored: "generated:python -I -X utf8 dag/evidence/build_evidence.py --write", now: 988, target: 988, note: "named by DAG node id (naming rule dag_id); 988 pages"}
+      - {name: evidence_stage_pages, match: "evidence/stages/*.md", leaf: GeneratedEvidencePage, authored: "generated:python -I -X utf8 dag/evidence/build_evidence.py --write", now: 35, target: 35}
+      - {name: overclaim_reviews, match: "overclaim/reviews/*.md", leaf: OverclaimReview, now: 252, target: 252, note: "147 are named by checks companions, skills or the DAG (hashed); 105 by nothing (UNSURE, owner question Q2)"}
+      - {name: consolidation_records, match: "maintenance/source_consolidation/*", leaf: MaintenanceRecord, now: 3, target: 3}
+      - {name: maintenance_records, match: "maintenance/*.{md,json}", leaf: MaintenanceRecord, now: 20, target: 18}
+    invariants:
+      - {id: docs.evidence_current, statement: "docs/evidence equals the output of build_evidence.py", holds_now: false, checked_by: "python -I -X utf8 dag/evidence/build_evidence.py --check (story S02 puts it in CI)", note: "34 files stale at 88fa973cc"}
+      - {id: docs.liquid_safe, statement: "no page breaks the Jekyll Liquid parser", holds_now: unknown, checked_by: "python -I -X utf8 -m pytest scripts/test_docs_liquid_safe.py (after story S12; status.yml)"}
+      - {id: docs.links_resolve, statement: "relative links and backticked repository paths in docs/ resolve", holds_now: false, checked_by: "python -I -X utf8 scripts/auto/estate_audit.py docs --paths docs (non-blocking in overclaim.yml)", note: "reviewer 5 counted 137 broken relative links in docs/ (docs/index.md links status pages that the status workflow writes)"}
+    relations:
+      - {kind: cites, to: EvidenceFolder, via: "evidence pages link receipts and node reviews"}
+
+leaf_types:
+  - {name: JekyllConfig, format: yaml, naming: lower, schema: "Jekyll _config.yml", companions: none, authored: hand}
+  - {name: SitePage, format: md, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: QmProblemAtlas, format: md, naming: exception, schema: "line-range and symbol table read by scripts/verify_qm_atlas_loc.py", companions: none, authored: hand}
+  - {name: OverclaimBaseline, format: json, naming: lower, schema: none, companions: none, authored: "generated:python -I -X utf8 scripts/overclaim_scan.py --write-baseline"}
+  - {name: GeneratedEvidencePage, format: md, naming: dag_id or lower, schema: none, companions: none, authored: "generated:python -I -X utf8 dag/evidence/build_evidence.py --write"}
+  - {name: OverclaimReview, format: md, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: MaintenanceRecord, format: "md or json", naming: lower, schema: none, companions: none, authored: hand}

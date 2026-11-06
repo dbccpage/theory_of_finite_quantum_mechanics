@@ -1,0 +1,248 @@
+# The repository typed as one object: the root class, the meta-schema every type file in this folder follows,
+# the naming and public-text rules and the leaf types that several folders share.
+#
+# AuthorityEffect: None. These files say where each tracked file lives and what kind of file it is. They change
+# no DAG node, status or statement, and they are not evidence for any claim.
+#
+# `now` counts tracked files at commit 88fa973cc; `target` counts them after every story of
+# governance/types/repository_typing_epic.md. The checker reports count drift and does not fail on it.
+schema: repo-type/1
+file_for: "."
+
+meta:
+  files: "governance/types/repository.type.yaml (this file) and one <folder>.type.yaml per top-level folder; no other file in this folder is a type file"
+  ownership: >-
+    A class claims folders with exactly one of `path` (one folder), `paths` (several) or `path_glob` (every
+    top-level folder whose name matches and that no `path` or `paths` claims; each such folder is one instance).
+    A tracked file belongs to the class that claims its longest folder prefix, compared segment by segment; the
+    root class (path ".") owns every other file. Two classes may not claim the same folder.
+  matching: >-
+    A file is matched against the members of its owning class in order, first the attributes that carry `match`,
+    then the collections; the first match wins. `match` is a glob relative to the claimed folder the file lies in.
+    `*` matches any characters except `/` (a leading dot included), `?` one such character, `[...]` one character
+    of the set, `**` as a whole segment any number of segments (so `a/**` is everything below `a`, and `**` alone is
+    everything), and `{a,b}` one of the comma-separated choices; matching is case-sensitive. A pattern without
+    these characters is an exact path.
+  subclasses: "an attribute that carries `class` (and no `match` or path) says that the named class is part of this one; the class's own `path`, `paths` or `path_glob` says where it lives"
+  catch_all: >-
+    A member whose match is `**`, or whose leaf has `format: any`, is a catch-all. It must say `catch_all: true`
+    and have an `authored` value that starts with `imported:`. Hand-maintained trees therefore have none, and a new
+    kind of file there is UNTYPED until a member names it.
+  errors:
+    UNTYPED: a tracked file that no member of its owning class matches
+    DEAD: a member that matches no file (a member shadowed by earlier members included), or a leaf type that types no file
+    MISSING: a required `match` attribute that matches no file, or a required `class` attribute whose class owns no file
+    UNKNOWN: a member, attribute or relation that names a leaf type or class no type file defines
+    CLAIM: two classes claim one folder, or two type files define the same class or leaf name
+    FORM: a field missing or outside the grammar below
+    NAMING: a file or folder name outside its naming rule (report)
+    PUBLIC_TEXT: a hit of the public_text rule (report)
+  class_fields: "class; path | paths | path_glob; summary; role; counts {now, target} (the files it owns directly); attributes; collections; invariants; relations; totals (root only)"
+  member_fields: "name, match, leaf, now, target; optional authored (default hand), required (attributes only), catch_all, note"
+  leaf_fields: "name, format, naming, schema, companions, authored"
+  invariant_fields: "id, statement, holds_now (true | false | unknown), checked_by (a command, or unchecked), optional note"
+  roles: [source, proof, check, evidence, record, document, tooling, config, vendored, generated]
+  authored: "starts with `hand`, `generated:<command that rebuilds it>` or `imported:<ledger that binds its bytes>`; anything after the first clause is a note"
+  naming: "one or more names of naming_rules joined by ' or '"
+  companions: "none | policy (governance/policy.json decides) | review_ledger (checks/review_ledger pins source and companion) | convention (a .contract.score.yaml kept outside the governed populations)"
+  relation_kinds:
+    cites: a field or line in the source class names a path in the target class
+    imports: code in the source class loads modules of the target class
+    builds: a manifest in the source class compiles files of the target class
+    checks: a test, validator or CI job in the source class verifies files of the target class
+    generates: a command in the source class writes files of the target class
+    renders: a generator turns the source class into pages of the target class
+    consumes: the source class reads data of the target class at run time
+    derives_from: files of the source class are recorded copies of files of the target class, bound by a ledger
+  changes: "what the epic removes, moves or renames is listed once, in the appendix of the epic; the type files describe the target tree"
+
+# Each rule file of the repository is either subsumed by these types or referenced by them; none is restated.
+sources_of_truth:
+  - {file: rules/rules.yaml, relation: subsumed, note: "rule_1 is naming_rules; rule_2 (a three-file companion set) contradicts governance/policy.json and the tree and is dropped; rule_3 is invariant repo.qm_atlas_gate; story S03 deletes the file"}
+  - {file: library.yaml, relation: referenced, note: "the table of contents (shelves of books) in its own catalog schema; a library checker in a private sibling repository reads it as this repository's catalog, so it stays at the root and is not copied here; invariant repo.library_paths_resolve checks it"}
+  - {file: governance/policy.json, relation: referenced, note: "the companion regime (suffix, populations, floor, exclusions, pinned build.rs); leaf types say `companions: policy` and never restate it"}
+  - {file: governance/baseline.json, relation: referenced, note: "the grandfather list; stories that delete governed sources shrink it with `governance-check baseline --write`"}
+
+# A file name is accepted when it satisfies a rule its leaf type names or one of the universal rules readme,
+# toolchain and deposit_boilerplate. A folder name is accepted when it satisfies lower, lean_namespace_folder, dag_id
+# or utc_stamp. The rules imported and exception are reported, not enforced.
+naming_rules:
+  lower: {pattern: "^[._]*[a-z0-9][a-z0-9_.+-]*$", note: "the default (rules.yaml rule_1, widened to the leading dots and underscores of tool files and to the hyphen and plus that names already use)"}
+  readme: {pattern: "^README([._-][A-Za-z0-9_.-]+)?$", note: "README files may carry capitals"}
+  lean_module: {pattern: "^[A-Z][A-Za-z0-9_]*\\.lean$", note: "Lean module files are PascalCase (toolchain)"}
+  lean_named: {pattern: "^[A-Z][A-Za-z0-9_]*(\\.lean)?\\.[a-z.]+$", note: "a companion or note named after a Lean module keeps the module name; the suffix is lower case"}
+  lean_namespace_folder: {pattern: "^[A-Z][A-Za-z0-9_]*$", note: "a folder that is a Lean namespace (lean4/Imported/GenesisDerivation, ...)"}
+  toolchain: {pattern: "^(Cargo\\.toml|Cargo\\.lock|lean-toolchain|lake-manifest\\.json|LICENSE([-.][A-Za-z0-9]+)?)$", note: "names fixed by Cargo, elan, Lake and licence convention"}
+  deposit_boilerplate: {pattern: "^(MANIFEST\\.sha256|SHA256SUMS|CITATION\\.cff)$", note: "deposit conventions read by verify_deposit.py, regen_sha256sums.py and citation tooling"}
+  dag_id: {pattern: "^[A-Z0-9][A-Z0-9_-]*(\\.md)?$", note: "a page or folder named by a DAG node or stage id keeps the id's case (docs/evidence/nodes, docs/evidence/stages, evidence/results/<ID>)"}
+  utc_stamp: {pattern: "^[0-9]{8}T[0-9]{6}Z.*$", note: "run folders named by a UTC time stamp"}
+  root_document: {pattern: "^(CONTRIBUTING|REVIEWING|SCORING)\\.md$", note: "front-page documents at the root; SCORING.md is the rubric that governance/policy.json `rubric` names"}
+  tool_convention: {pattern: "^((AP|HP)_[A-Z0-9]+_[0-9]{3}_[a-z0-9_]+\\.md|SKILL\\.md|PROPOSED_SKILLS\\.md|FUNDING\\.yml|ISSUE_TEMPLATE)$", note: "names required by the pattern-card lint (scripts/auto/anti_pattern_lint.py CARD_NAME), the skill loader and GitHub"}
+  imported: {pattern: ".*", note: "bytes and names bound by a provenance ledger (atlas/PROVENANCE.json, education/IMPORT_PROVENANCE.json, vendor/engine/README.md); reported until the ledger is re-pinned"}
+  exception: {paths: [docs/QM_PROBLEM_AND_PROOF_ATLAS.md, lean4/RENAMES.json], note: "a file passes this rule only if its path is listed: scripts/verify_qm_atlas_loc.py:15,53 reads the first at that path, governance/baseline.json reasons cite the second; reported, not enforced"}
+
+public_text:
+  statement: >-
+    No tracked file names a private project or product brand or an AI model or vendor, and none uses the three
+    banned words. The text of a file is its path and, when its first 8,000 bytes hold no NUL byte, its content; path
+    and content are scanned separately. Insert a space between a lower-case letter or digit and a following
+    upper-case letter, lower-case everything, and replace every run of characters that are not ASCII letters by one
+    space. A hit is a word, or two adjacent words joined by one space, whose SHA-256 (UTF-8, hex) is in the lists
+    below, either as written or with one trailing "s" removed. The term list itself is not written in the public tree.
+  measured_now: "3,363 of 24,325 tracked files hit at 88fa973cc (2,011 private-name, 1,450 model or vendor, 215 banned-word; a file can be in several groups; 76 of them by path); the removals of the epic take out 298, leaving 3,065 for the staged scrub of stories S18 to S20 (counted by a scratch implementation of this statement during the adversarial review)"
+  allow:
+    - {match: "governance/types/repository.type.yaml", reason: "holds only the hashes"}
+  term_sha256:
+    private_project_or_brand:
+      - 2c273ea425716178178656e7476fcd39a72ce175c2501466b215c69a2c8aa115
+      - 899b6cd005f92be19d12cbbea86c474c6dcf00c76a60790d265e7b3a9d01997d
+      - 983226ce8318f463eef3cbf39d98342aafee1912ded5bfdf5588f8b3aecc56c1
+      - 0ed26d24b4abd5b7e88ce9d69b4938807a16133bca0209482131604670cbf21c
+      - 7511d5c1bb15e125816234aadb0922610993f6315b9be64351e02ac0f78557c0
+      - ea28f586f918fb871402a794f4a60da070eab3652e959b5efc62edaac4b63c59
+      - ef60477862193f7b2580f6bba2818e4d258c37796eea93fe23974704ec9705d6
+    ai_model_or_vendor:
+      - c857d09db23e6822e3600bc06ad8d58f92ed62bc8efd81c753f77048662cb97d
+      - c70eca6b0f88f44d81a41311647e50fda1ac454ec04ffd442b0eb4743a993131
+      - e12ce8285efc67c6d93d3a122e2589ed95089bcbb775ba5634d94e2b8385db07
+      - c9ad8f2cc1294afa0ef22fc2c019ff7243cdd272b2147ddca3f34c5036b05768
+      - 09cf980b5ff304ac11b7f6d2c5c263da2a867425798ef5cc5d2ebcf55c4fcd23
+      - bd3a92d8ddd3d1714692d44e892b634538cafc2fe8c3b88294c107c0cfbe449e
+      - 053ea4804ef1bb33d4a3d6fb024a614b6d257cebc2bc7cd915da9c9522f37ffc
+      - 60965168ce762e949600281ba6d01fee136e5b6e8257b1f216f9025ed324474c
+      - 5d72436256ada53828b51895a94bb8489e9f1ac4fe937a8024ef1594e7045ff6
+      - 57de4cf40144bdf7d00010f2f5557a7d642c2b9705309bfade167dd313e2ca93
+      - 7d3194f79e645c42e4396dda38be04766810ec6a00d00aced3ffc2a0a1f1a9ef
+      - add92b9cde2bdbf3daaf65a0db79e9b1a7fa428b71b4d6ce38c742eb6dca0c1c
+      - 3ea125d0bff386e6754b3782b300016fc79a9cf8f8669c0a5c3db64467ddb681
+      - 6f7ac1823da81d2e52d1a1549ee69c85bbf8bb56d06682849e7c09da2785ce3b
+      - c9ffc5da490765a099c857f6db6d3153039fff763b27ea2290a1c6095df80945
+    banned_word:
+      - 63eb87bfa94929fd1a002c4cbc74b6f7f440bba24358ec758e1881047e284c63
+      - c4acc48c8198ae43ee6b0827a62f9372cd074ba8fa4f91c008973bf2a206ea20
+      - 90ca8838fea027a1fea2570ffe19245eabf5edda1733dca305e8cd0c062f09f6
+      - 89ec6eb789c5acc1a1f70f8b0c2a5e73e24925b4fad8b0d3119490beabaa69df
+      - c205f711aa5d877300e2cdbcb5d060be2e0de276e525c020356210df8836e8e9
+      - 89ae83bb0864428cf44eb86d97b9a596e06f9e7a3d223656f99c961a44ee990d
+      - c912746150af04ef826c1de1624f0ab5ddd924846d2217f8828231611b07b8a1
+      - ede18a6d3baea50b3ec01a070625784e38de189bb34f3192376445fb1c5c136f
+      - 2331eb33ce2c3766148e1c820ba25cd54a398ebf7455d103cf14b78fc5826ae5
+      - 852fc7cb1d7cba938ba58deaf7b110f19b880475f56358ef18dd45ef4282831e
+      - 24335b433d1a5d01173e99348fd208353e039c1c08630d1bf3af5aba28a345c2
+      - 0a04d1ddd7658175e5e9dd296cd36a442862979ab74f905f1f2632831b911880
+      - 542bce4a780c500a797cd37e98ebd324e73e775a0dd9d036d21fdd6e28b86a13
+      - 747427ae323884e6f8a76e9148702cff8e0e225e0226bbf36c80a6b104922c0b
+
+classes:
+  - class: Repository
+    path: "."
+    summary: The theory of finite quantum mechanics as one typed tree, from the derivation graph and its Lean proofs to the code, checks and evidence behind each node status, with the tooling that governs them.
+    role: source
+    counts: {now: 518, target: 15}
+    totals: {files_now: 24325, files_target: 21976, mb_now: 687.8, mb_target: 646.7, top_level_folders_now: 16, top_level_folders_target: 13}
+    attributes:
+      - {name: atlas, class: AtlasFolder, required: true}
+      - {name: checks, class: ChecksFolder, required: true}
+      - {name: code, class: CodeFolder, required: true}
+      - {name: dag, class: DagFolder, required: true}
+      - {name: docs, class: DocsFolder, required: true}
+      - {name: education, class: EducationFolder, required: true}
+      - {name: evidence, class: EvidenceFolder, required: true}
+      - {name: governance, class: GovernanceFolder, required: true}
+      - {name: lean4, class: LeanFolder, required: true}
+      - {name: normal_forms, class: NormalFormsFolder, required: true}
+      - {name: papers, class: PapersFolder, required: true}
+      - {name: scripts, class: ScriptsFolder, required: true}
+      - {name: vendor, class: VendorFolder, required: true}
+      - {name: tool_config, class: ToolConfigFolders, required: true}
+      - {name: readme, match: README.md, leaf: FrontPage, required: true, now: 1, target: 1}
+      - {name: contributing, match: CONTRIBUTING.md, leaf: RootDocument, required: true, now: 1, target: 1}
+      - {name: reviewing, match: REVIEWING.md, leaf: RootDocument, required: true, now: 1, target: 1}
+      - {name: scoring_rubric, match: SCORING.md, leaf: ScoringRubric, required: true, now: 1, target: 1}
+      - {name: licence, match: LICENSE, leaf: LicenceText, required: true, now: 1, target: 1}
+      - {name: library_catalog, match: library.yaml, leaf: LibraryCatalog, required: true, now: 1, target: 1}
+      - {name: python_project, match: pyproject.toml, leaf: PythonProject, required: true, now: 1, target: 1}
+      - {name: python_lock, match: uv.lock, leaf: PythonLock, required: true, now: 1, target: 1}
+      - {name: git_attributes, match: .gitattributes, leaf: GitAttributes, required: true, now: 1, target: 1}
+      - {name: git_ignore, match: .gitignore, leaf: GitIgnore, required: true, now: 1, target: 1}
+      - {name: traceability_matrix, match: traceability_matrix.md, leaf: TraceabilityMatrix, required: false, now: 1, target: 1, note: "UNSURE: docs/ or the DAG reading note may absorb it"}
+    collections:
+      - {name: deposit_verifier, match: "{verify_deposit.py,deposit_paths.py,test_verify_deposit.py,test_deposit_paths.py}", leaf: RootDepositVerifier, now: 4, target: 4, note: "read by code/python/tests/test_deposit_verifier_evidence.py:16; moving them is owner question Q6"}
+    invariants:
+      - {id: repo.total, statement: "every tracked file is matched by exactly one member of exactly one class (no UNTYPED, no CLAIM)", holds_now: false, checked_by: "python -I -X utf8 scripts/check_repo_types.py (story S01)", note: "UNTYPED 1,185 at 88fa973cc and at the S01 commit; 0 in the target tree"}
+      - {id: repo.no_dead_types, statement: "every member and every leaf type has at least one instance", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "26 dead at the S01 commit: members and leaf types that receive files in later stories"}
+      - {id: repo.top_level_closed, statement: "the root holds exactly the 13 folders and the 15 files that the attributes and collections name, plus the three dot folders", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "16 non-dot folders and 18 root files at 88fa973cc"}
+      - {id: repo.naming, statement: "every file and folder name satisfies its naming rule", holds_now: false, checked_by: "scripts/check_repo_types.py --report naming (S01)", note: "two free upper-case names at 88fa973cc (code/rust/src/wdp/PO000_24G2.md, evidence/quality/full_functor_validation/REVIEW.md) and the run-contract file named in S16; after S16 and S17 only the exception and imported rules are reported"}
+      - {id: repo.public_text, statement: "no tracked file hits the public_text rule outside the allow list", holds_now: false, checked_by: "scripts/check_repo_types.py --report public-text (S01)", note: "3,363 files at 88fa973cc; stories S18 to S20 scrub them in stages"}
+      - {id: repo.no_archive_folders, statement: "no folder is named archive, archives, old, legacy, superseded, backup, source_archive or retired*, and no folder keeps superseded copies", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "after S10 renames the last DAG-cited file out of source_archive/, the target tree has none"}
+      - {id: repo.byte_duplicates_declared, statement: "two tracked files share a blob only when a derives_from relation or an allow entry of the owning class names the pair", holds_now: false, checked_by: "scripts/check_repo_types.py --report duplicates (S01)", note: "deposit boilerplate (LICENSE, lean-toolchain, empty files) is the main allowed group"}
+      - {id: repo.library_paths_resolve, statement: "every path and entry point in library.yaml exists", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "15 of its 153 paths are missing at 88fa973cc and 18 more go in S08 and S11; S03, S08 and S11 repoint them"}
+      - {id: repo.status_has_one_home, statement: "node statuses are written only in dag/derivation_dag.json and its fragments", holds_now: unknown, checked_by: "python -I -X utf8 dag/validate_derivation_dag.py --repo-root . (CI dag.yml)"}
+      - {id: repo.qm_atlas_gate, statement: "line ranges and symbol bindings in docs/QM_PROBLEM_AND_PROOF_ATLAS.md match the Lean, Rust, Python and manuscript files they name (former rules.yaml rule_3)", holds_now: unknown, checked_by: "python scripts/verify_qm_atlas_loc.py and python -m pytest code/python/tests/test_qm_atlas_loc.py (local hook from scripts/install_qm_atlas_hook.py; no CI job)"}
+      - {id: repo.governance_floor, statement: "every governed source passes the contract-score floor or is grandfathered with unchanged bytes", holds_now: true, checked_by: "governance-check --root . check and scripts/contract_scores.py check (CI governance.yml)"}
+      - {id: repo.readme_facts_current, statement: "the README facts block equals what scripts/build_readme_facts.py computes", holds_now: false, checked_by: "python -I -X utf8 scripts/build_readme_facts.py --check (no CI job; dag/tests/test_readme_facts.py)", note: "prints 'README facts are stale' at 88fa973cc; S02 regenerates the block"}
+    relations:
+      - {kind: checks, to: DagFolder, via: ".github/workflows/dag.yml runs dag/validate_derivation_dag.py --repo-root ."}
+      - {kind: checks, to: CodeFolder, via: ".github/workflows/governance.yml (governance-check, contract_scores.py, score_scope_contracts.py)"}
+      - {kind: checks, to: LeanFolder, via: ".github/workflows/governance.yml and lean-gleason.yml"}
+      - {kind: checks, to: ChecksFolder, via: ".github/workflows/reviewed-checkers.yml"}
+      - {kind: renders, to: Repository, via: "scripts/build_readme_facts.py --write rewrites the facts block of README.md"}
+      - {kind: renders, to: DocsFolder, via: ".github/workflows/status.yml (scripts/build_status.py, Jekyll build of docs/)"}
+
+  - class: ToolConfigFolders
+    path_glob: ".*"
+    summary: "The three dot folders at the root: CI workflows and templates (.github), anti-pattern cards and agent rules (.agents), and the agent-configuration folder with its skills and rules."
+    role: tooling
+    counts: {now: 62, target: 62}
+    collections:
+      - {name: workflows, match: "workflows/*.yml", leaf: CiWorkflow, now: 9, target: 9}
+      - {name: codeql_config, match: "codeql/*.yml", leaf: CiConfig, now: 1, target: 1}
+      - {name: issue_templates, match: "ISSUE_TEMPLATE/*.yml", leaf: CiConfig, now: 3, target: 3}
+      - {name: github_files, match: "{FUNDING.yml,pull_request_template.md}", leaf: CiConfig, now: 2, target: 2}
+      - {name: workflow_companion, match: "contracts/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 1, target: 1}
+      - {name: pattern_cards, match: "patterns/{anti,helpful}/*/*.md", leaf: PatternCard, now: 26, target: 26}
+      - {name: pattern_readme, match: "patterns/README.md", leaf: FolderReadme, now: 1, target: 1}
+      - {name: skills, match: "skills/**/*.md", leaf: SkillDocument, now: 17, target: 17}
+      - {name: rules, match: "rules/*.md", leaf: AgentRule, now: 2, target: 2}
+    invariants:
+      - {id: tool_config.workflows_listed, statement: "every workflow in .github/workflows is named in the epic's CI table", holds_now: true, checked_by: unchecked}
+      - {id: tool_config.cards_paired, statement: "every anti-pattern card has a helpful dual", holds_now: unknown, checked_by: "python -I -X utf8 scripts/auto/anti_pattern_lint.py (CI overclaim.yml)"}
+      - {id: tool_config.skills_load, statement: "every skill has valid front matter and a name matching its folder", holds_now: unknown, checked_by: "python -I -X utf8 scripts/auto/estate_audit.py skills (CI overclaim.yml, blocking on HIGH)"}
+
+leaf_types:
+  # root files
+  - {name: FrontPage, format: md, naming: readme, schema: none, companions: none, authored: "hand; its facts block is generated by python -I -X utf8 scripts/build_readme_facts.py --write"}
+  - {name: RootDocument, format: md, naming: root_document, schema: none, companions: none, authored: hand}
+  - {name: ScoringRubric, format: md, naming: root_document, schema: none, companions: none, authored: hand}
+  - {name: TraceabilityMatrix, format: md, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: LibraryCatalog, format: yaml, naming: lower, schema: "the catalog schema its header names, read by the sibling repository's library checker", companions: none, authored: hand}
+  - {name: RootDepositVerifier, format: py, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: PythonProject, format: toml, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: PythonLock, format: toml, naming: lower, schema: none, companions: none, authored: "generated:uv lock"}
+  - {name: GitAttributes, format: gitattributes, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: GitIgnore, format: gitignore, naming: lower, schema: none, companions: none, authored: hand}
+  # tool configuration
+  - {name: CiWorkflow, format: yaml, naming: lower, schema: "GitHub Actions workflow syntax", companions: none, authored: hand}
+  - {name: CiConfig, format: "yaml or md", naming: tool_convention or lower, schema: none, companions: none, authored: hand}
+  - {name: PatternCard, format: md, naming: tool_convention, schema: "scripts/auto/anti_pattern_lint.py CARD_NAME", companions: none, authored: hand}
+  - {name: SkillDocument, format: md, naming: tool_convention or lower, schema: "front matter name and description (scripts/auto/estate_audit.py skills)", companions: none, authored: hand}
+  - {name: AgentRule, format: md, naming: lower, schema: none, companions: none, authored: hand}
+  # shared by several folder files
+  - {name: FolderReadme, format: md, naming: readme, schema: none, companions: none, authored: hand}
+  - {name: ContractScoreCompanion, format: "json text in a .yaml file", naming: lower or lean_named, schema: governance/schema/contract-score.v1.json, companions: none, authored: "hand; current records appended by python -I -X utf8 scripts/score_scope_contracts.py record (governed sources only)"}
+  - {name: DocCompanion, format: yaml, naming: lower or lean_named, schema: none, companions: none, authored: hand}
+  - {name: LeanModule, format: lean, naming: lean_module or lower, schema: none, companions: policy, authored: hand}
+  - {name: PythonModule, format: py, naming: lower, schema: none, companions: policy, authored: hand}
+  - {name: PythonTest, format: py, naming: lower, schema: "pytest test module (test_*.py)", companions: policy, authored: hand}
+  - {name: RustSource, format: rs, naming: lower, schema: none, companions: policy, authored: hand}
+  - {name: CargoManifest, format: toml, naming: toolchain or lower, schema: none, companions: policy, authored: hand}
+  - {name: CargoLock, format: toml, naming: toolchain, schema: none, companions: none, authored: "generated:cargo generate-lockfile"}
+  - {name: LeanToolchainPin, format: text, naming: toolchain, schema: none, companions: none, authored: hand}
+  - {name: LicenceText, format: text, naming: toolchain, schema: none, companions: none, authored: hand}
+  - {name: DepositManifest, format: "sha256sum text", naming: deposit_boilerplate or lower, schema: "lines '<sha256>  <path>' (sha256sum -c reads them)", companions: none, authored: "generated:the deposit's scripts/regen_sha256sums.py (or tools/rebuild_release.py)"}
+  - {name: CitationFile, format: cff, naming: deposit_boilerplate or lower, schema: "Citation File Format 1.2", companions: none, authored: hand}
+  - {name: JsonRecord, format: "json, jsonl, yaml or text", naming: lower, schema: none, companions: none, authored: hand}
+  - {name: MarkdownNote, format: md, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: PdfRender, format: pdf, naming: lower, schema: none, companions: none, authored: "generated:the deposit's LaTeX build"}
+  - {name: Notebook, format: ipynb, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: SvgFigure, format: "svg or png", naming: lower, schema: none, companions: none, authored: hand}

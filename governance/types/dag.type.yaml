@@ -1,0 +1,78 @@
+# dag/: the derivation graph from the inert inscription to finite quantum mechanics, one derivation paper per
+# TFQ record, and the tools that keep graph, papers, views and evidence map consistent. AuthorityEffect: None.
+# Node statuses live here and nowhere else; no story of the epic changes a status or adds a node.
+schema: repo-type/1
+file_for: dag
+
+classes:
+  - class: DagFolder
+    path: dag
+    summary: The derivation graph (988 nodes, 996 routes, 1,040 TFQ records at 88fa973cc), the derivation paper of every record, the independent-check notes, and the sync, render, validate and evidence-map tools.
+    role: record
+    counts: {now: 80, target: 71}
+    attributes:
+      - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
+      - {name: reading_note, match: derivation_dag_reading_note.md, leaf: DagReadingNote, required: true, now: 1, target: 1, note: "absorbs theory_of_finite_qm.jsonl.README.md in story S07"}
+      - {name: graph, match: derivation_dag.json, leaf: DerivationGraph, required: true, now: 1, target: 1}
+      - {name: operad_binding, match: derivation_dag_operads.binding.yaml, leaf: OperadBinding, required: true, now: 1, target: 1}
+      - {name: validator, match: validate_derivation_dag.py, leaf: DagTool, required: true, now: 1, target: 1}
+      - {name: validator_companion, match: validate_derivation_dag.contract.score.yaml, leaf: ContractScoreCompanion, required: true, now: 1, target: 1}
+      - {name: view_jsonl, match: theory_of_finite_qm.jsonl, leaf: GeneratedDagView, required: true, now: 1, target: 1}
+      - {name: view_markdown, match: theory_of_finite_qm.md, leaf: GeneratedDagView, required: true, now: 1, target: 1}
+      - {name: prose_proof_index, match: prose_proofs.md, leaf: GeneratedDagView, required: true, now: 1, target: 1}
+      - {name: derivations, class: DerivationPapers, required: true}
+    collections:
+      - {name: fragments, match: "fragments/*.json", leaf: SyncFragment, now: 9, target: 9, note: "one owning sync tool per file (dag/tools/sync_*.py)"}
+      - {name: tool_companions, match: "{tools,tests,evidence}/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 22, target: 20}
+      - {name: tool_docs, match: "{tools,tests}/*.doc.yaml", leaf: DocCompanion, now: 6, target: 6}
+      - {name: tools, match: "tools/*.py", leaf: DagTool, now: 10, target: 10}
+      - {name: tests, match: "tests/*.py", leaf: DagTest, now: 17, target: 13, note: "tests of the graph and its tools only; story S12 moves out the four that test scripts/, docs/, the README and a checker"}
+      - {name: evidence_map_tools, match: "evidence/*.py", leaf: DagTool, now: 3, target: 3}
+      - {name: evidence_map, match: "evidence/evidence_map.json", leaf: EvidenceMap, authored: "generated:python -I -X utf8 dag/evidence/build_evidence.py --write", now: 1, target: 1}
+    invariants:
+      - {id: dag.validator_passes, statement: "the validator reports failures=0 and every path a node, route or record cites exists", holds_now: true, checked_by: "python -I -X utf8 dag/validate_derivation_dag.py --repo-root . (CI dag.yml; run during this review: nodes=988 routes=996 records=1040 failures=0)"}
+      - {id: dag.one_paper_per_record, statement: "every TFQ record has one dag/derivations/*/tfq_NNNN_*.md and every such page names a record", holds_now: true, checked_by: "dag/validate_derivation_dag.py"}
+      - {id: dag.views_are_renders, statement: "theory_of_finite_qm.jsonl and theory_of_finite_qm.md equal what render_dag_views.py makes of derivation_dag.json, and prose_proofs.md equals what prose_proofs.py makes of the proof sections", holds_now: true, checked_by: "dag/validate_derivation_dag.py (the two views); python -I -X utf8 dag/tools/prose_proofs.py and dag/tests/test_prose_proofs.py:69 (prose_proofs.md, rendered from papers/**/*.md, atlas and derivation proof files)"}
+      - {id: dag.evidence_map_current, statement: "evidence_map.json and docs/evidence/ equal what build_evidence.py renders from the DAG and the files it cites", holds_now: false, checked_by: "python -I -X utf8 dag/evidence/build_evidence.py --check (no CI job; story S02 adds one)", note: "exits 1 at 88fa973cc with 34 stale files because commits 56e16ec03 and 0ed4ea6c9 changed cited files without --write; not a line-ending effect"}
+      - {id: dag.sync_fixed_point, statement: "each sync tool run with no flag changes nothing on a clean tree", holds_now: unknown, checked_by: "python -X utf8 -m pytest -q dag/tests (no CI job; story S02 adds one)"}
+      - {id: dag.no_parallel_graph, statement: "no second graph file repeats nodes, routes or records of derivation_dag.json", holds_now: false, checked_by: unchecked, note: "wdp_derivation_dag.json repeats 151 nodes, 148 routes and 173 records field for field; deleted in story S07"}
+    relations:
+      - {kind: cites, to: LeanFolder, via: "node lean fields (595 distinct lean4/ strings, 512 resolve to tracked files; the others are marked or prose)"}
+      - {kind: cites, to: AtlasFolder, via: "node source and test fields"}
+      - {kind: cites, to: EvidenceFolder, via: "pfp_review paths with sha256 into evidence/results/<ID>/reviews"}
+      - {kind: cites, to: CodeFolder, via: "node rust and python fields (174 code files named literally)"}
+      - {kind: cites, to: PapersFolder, via: "node source fields"}
+      - {kind: cites, to: EducationFolder, via: "16 education files cited from dag/ (six in derivation_dag.json itself)"}
+      - {kind: renders, to: DocsFolder, via: "dag/evidence/render_evidence.py writes docs/evidence/"}
+      - {kind: generates, to: DagFolder, via: "dag/tools/sync_*.py write derivation pages and fragments-owned slices; render_dag_views.py writes the views"}
+
+  - class: DerivationPapers
+    path: dag/derivations
+    summary: One numbered folder per DAG stage holding one derivation paper per TFQ record, the stage notes and source extracts, plus the independent-check notes and four whole-graph indexes.
+    role: record
+    counts: {now: 1368, target: 1325}
+    attributes:
+      - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
+      - {name: master_ledger, match: master_derivation_ledger.md, leaf: GeneratedDagView, required: true, now: 1, target: 1, note: "generated:python -I -X utf8 scripts/build_master_derivation_ledger.py"}
+      - {name: route_page, match: pregenesis_to_wdp_route.md, leaf: GeneratedDagView, required: true, now: 1, target: 1}
+      - {name: first_mark_map, match: first_mark_to_quantum_gravity.md, leaf: DerivationIndex, required: true, now: 1, target: 1}
+    collections:
+      - {name: record_papers, match: "[0-9][0-9]_*/tfq_[0-9][0-9][0-9][0-9]_*.md", leaf: DerivationPaper, authored: "generated:dag/tools/sync_*.py for sync-owned slices; hand-written for the rest", now: 1040, target: 1040}
+      - {name: independent_notes, match: "independent/*.md", leaf: IndependentNote, now: 175, target: 175}
+      - {name: stage_sources, match: "[0-9][0-9]_*/sources/**", leaf: StageSource, now: 87, target: 87}
+      - {name: stage_notes, match: "[0-9][0-9]_*/*.md", leaf: StageNote, now: 19, target: 19, note: "33 are named by nothing (UNSURE, reviewer 4)"}
+
+leaf_types:
+  - {name: DagReadingNote, format: md, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: DerivationGraph, format: json, naming: lower, schema: "derivation_dag.v2 (checked by dag/validate_derivation_dag.py)", companions: none, authored: "hand, or through a fragment and its sync tool (dag/README.md 'Change')"}
+  - {name: OperadBinding, format: yaml, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: DagTool, format: py, naming: lower, schema: none, companions: convention, authored: hand}
+  - {name: DagTest, format: py, naming: lower, schema: "pytest test module", companions: convention, authored: hand}
+  - {name: GeneratedDagView, format: "jsonl or md", naming: lower, schema: none, companions: none, authored: "generated:python -I -X utf8 dag/tools/render_dag_views.py --write (the two theory_of_finite_qm views); python -I -X utf8 dag/tools/prose_proofs.py --write-index (prose_proofs.md); python -I -X utf8 scripts/build_master_derivation_ledger.py (master ledger)"}
+  - {name: SyncFragment, format: json, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: EvidenceMap, format: json, naming: lower, schema: evidence_map.v1, companions: none, authored: "generated:python -I -X utf8 dag/evidence/build_evidence.py --write"}
+  - {name: DerivationIndex, format: md, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: DerivationPaper, format: md, naming: lower, schema: "one TFQ record (checked by the validator)", companions: none, authored: hand}
+  - {name: IndependentNote, format: md, naming: lower, schema: "first line is the Status line (scripts/overclaim_scan.py rule R8)", companions: none, authored: hand}
+  - {name: StageSource, format: "md, tex, pdf or yaml", naming: lower, schema: none, companions: none, authored: hand}
+  - {name: StageNote, format: md, naming: lower, schema: none, companions: none, authored: hand}
