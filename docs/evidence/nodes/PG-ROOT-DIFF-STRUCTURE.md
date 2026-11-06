@@ -33,7 +33,7 @@ Admitted, not derived. Only coproduct neutrality for abstract payload types is k
 
 ## Source status
 
-DEFINITION (boundary ledger C1); DEFINED (ENC-1138); GTLA rule 2 'admitted root'
+DEFINITION (boundary ledger C1); DEFINED (ENC-1138); GTLA rule 2 'admitted root' The legacy GTLA rubric is unavailable in this checkout; its historical path is marked external and supplies no local file evidence.
 
 ## Review
 
@@ -122,13 +122,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0086 (shared)
 - counts toward the grade: no
 
-### Documents and data: `.claude/rules/authority/rl_gtla_rules_rubric.md`
-
-- file: `.claude/rules/authority/rl_gtla_rules_rubric.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md](../../../dag/derivations/01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md)
@@ -179,6 +172,7 @@ Named by the node; not in this repository and not checked here.
 - `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
 - `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
 - `external:sha256:e6ea3ff314ed30f8cf8330f499f7152d6f45ccb334d260f549f8650572f8d1c1:16`
+- `external:unavailable:.claude/rules/authority/rl_gtla_rules_rubric.md:24-31`
 
 ## Absences recorded by the TFQ records
 
@@ -196,8 +190,9 @@ Incoming (1):
 
 - `PG-R-GAP-DIAMOND-TO-ROOT` `GAP_NO_DERIVATION`: [PG-INERT-DIAMOND](PG-INERT-DIAMOND.md) (DEFINITION)
 
-Outgoing (3):
+Outgoing (4):
 
 - `PG-R-ROOT-TO-ADMISSION-FLOOR` `CONDITIONAL_ON_IMPORT`: [PG-ADMISSION-FLOOR](PG-ADMISSION-FLOOR.md) (PROVED_LEAN)
+- `SCI-R-DYN-CLASSICAL-HAMILTON-NOETHER` `DERIVED_PROSE`: [DYN-CLASSICAL-HAMILTON-NOETHER](DYN-CLASSICAL-HAMILTON-NOETHER.md) (CONDITIONAL)
 - `UDG-R-TFQ-0088` `RECORD_PARENT`: [TFQ-0088](TFQ-0088.md) (SOURCE_RECORD)
 - `X-R-ROOT-TO-PRIMDIFF-KERNEL` `CONDITIONAL_ON_IMPORT`: [FQ-PRIMDIFF-QUOTIENT-KERNEL](FQ-PRIMDIFF-QUOTIENT-KERNEL.md) (PROVED_LEAN)

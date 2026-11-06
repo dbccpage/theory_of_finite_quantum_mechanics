@@ -59,20 +59,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/26_fsp/fsp/README.md`
+
+- file: [dag/derivations/26_fsp/fsp/README.md](../../../dag/derivations/26_fsp/fsp/README.md)
+- sha256 (`lf-normalised`): `9ca453eb9c1585bb7fa750b056b73593076ccabc0f676d6af721a56ed00f6c4a`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md`
 
 - file: [dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md](../../../dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md)
-- sha256 (`lf-normalised`): `80a706cc9fc7a6dbb8e5ae6a555f4102705056dcaeee5fe087b42031d5578b26`
+- sha256 (`lf-normalised`): `843997db11ce848372a3ffac0853ceefcf4424de75264aeaad7fd3434556e04c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0407
 - counts toward the grade: no
-
-### Documents and data: `papers/core/fsp/README.md`
-
-- file: [papers/core/fsp/README.md](../../../papers/core/fsp/README.md)
-- sha256 (`lf-normalised`): `49bf9e23ec5b96cfd3fbd8bfff74f2a03d0151e20c497589d4233136dc24ca5b`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

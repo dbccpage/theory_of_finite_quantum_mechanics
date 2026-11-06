@@ -32,7 +32,7 @@ A toy instance of the split-fibre obstruction; it says nothing about receipts in
 
 ## Source status
 
-papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record self_receipt_blocks_authorization claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record self_receipt_blocks_authorization claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -59,20 +59,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md`
+### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
 
-- file: [dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md](../../../dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md)
-- sha256 (`lf-normalised`): `c4653f526643c83609126b1c79ed59f1fbee85c90b897a8ab62c5a833773145c`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1346
-- counts toward the grade: no
-
-### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
-
-- file: [papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
+- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
 - sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md`
+
+- file: [dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md](../../../dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md)
+- sha256 (`lf-normalised`): `403bbaa273472c9d229e8a4ebba9038389b6869c51d16d67d434a31f08af4531`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1346
+- counts toward the grade: no
 
 ## Routes
 

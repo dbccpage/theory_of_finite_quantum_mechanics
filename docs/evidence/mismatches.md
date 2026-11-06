@@ -6,10 +6,10 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 |---|---|
 | `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 0 |
 | `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 0 |
-| `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 33 |
+| `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 24 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 157 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 4 |
-| `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 52 |
+| `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 43 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 11 |
 
 ## `proved_lean_below_e3` (0)
@@ -24,7 +24,7 @@ PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none 
 
 None.
 
-## `receipt_not_current` (33)
+## `receipt_not_current` (24)
 
 A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit. Ordered by downstream nodes, most first.
 
@@ -32,8 +32,8 @@ A replay receipt exists for a cited Lean file, but its sha256 no longer matches 
 |---|---|---|---|---|---|
 | [FQ-CONTEXTUALITY-CECH-F2](nodes/FQ-CONTEXTUALITY-CECH-F2.md) | FINITE_QM_CORE | `PROVED_LEAN` | E3 | 51 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [DS-QM120-MERMIN-PERES-F2-OBSTRUCTION](nodes/DS-QM120-MERMIN-PERES-F2-OBSTRUCTION.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E3 | 50 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
-| [DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS](nodes/DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E3 | 48 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
-| [CT-MARLETTO-VEDRAL-2017-SOURCE](nodes/CT-MARLETTO-VEDRAL-2017-SOURCE.md) | CONSTRUCTOR_THEORY | `SOURCE_RECORD` | E1 | 29 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS](nodes/DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E3 | 49 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [CT-MARLETTO-VEDRAL-2017-SOURCE](nodes/CT-MARLETTO-VEDRAL-2017-SOURCE.md) | CONSTRUCTOR_THEORY | `SOURCE_RECORD` | E1 | 30 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [TFQ-0213](nodes/TFQ-0213.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 20 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [TFQ-0225](nodes/TFQ-0225.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 8 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s) |
@@ -42,20 +42,11 @@ A replay receipt exists for a cited Lean file, but its sha256 no longer matches 
 | [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CauchyCircleCompletion.lean: replay failed against 1 receipt(s) |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CauchyCircleCompletion.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CayleyProjectiveCircle.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CayleyProjectiveCircle.lean: replay failed against 1 receipt(s) |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1ChebyshevCauchyBridge.lean: replay failed against 1 receipt(s) |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1ChebyshevCauchyBridge.lean: replay failed against 1 receipt(s) |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1ChebyshevCauchyBridge.lean: replay failed against 1 receipt(s) |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CyclotomicTorsionTower.lean: replay failed against 1 receipt(s) |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1PythagoreanObstruction.lean: replay failed against 1 receipt(s) |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
 | [FQ-TRACE-ZERO-DUALITY-K23](nodes/FQ-TRACE-ZERO-DUALITY-K23.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 2 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
@@ -70,23 +61,23 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](nodes/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 718 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | `COMPUTATIONALLY_CHECKED` | E3 | 468 | 2 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-GENESIS-THREE-AXIS-VERDICT](nodes/PGW-GENESIS-THREE-AXIS-VERDICT.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E2 | 126 | 4 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-RUNG0-INHERITANCE-REPLAY](nodes/PGW-RUNG0-INHERITANCE-REPLAY.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 125 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-FORCED-CENSUS-COLUMN](nodes/PGW-FORCED-CENSUS-COLUMN.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 111 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 71 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM063-HOLONOMY-COHERENT-INTENSITY](nodes/DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 56 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM070-PRODUCT-NONFACTORIZATION](nodes/DS-QM070-PRODUCT-NONFACTORIZATION.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 50 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](nodes/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 737 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | `COMPUTATIONALLY_CHECKED` | E3 | 478 | 2 in-repo Rust or Python symbol(s) cited, none a test |
+| [PGW-GENESIS-THREE-AXIS-VERDICT](nodes/PGW-GENESIS-THREE-AXIS-VERDICT.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E2 | 139 | 4 in-repo Rust or Python symbol(s) cited, none a test |
+| [PGW-RUNG0-INHERITANCE-REPLAY](nodes/PGW-RUNG0-INHERITANCE-REPLAY.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 138 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [PGW-FORCED-CENSUS-COLUMN](nodes/PGW-FORCED-CENSUS-COLUMN.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 124 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 72 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM063-HOLONOMY-COHERENT-INTENSITY](nodes/DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 57 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM070-PRODUCT-NONFACTORIZATION](nodes/DS-QM070-PRODUCT-NONFACTORIZATION.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 51 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-RUNG2B-STAKE-MENU](nodes/PGW-RUNG2B-STAKE-MENU.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E1 | 44 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [COMP-C1-FIRST-SEPARATION-REPLAY](nodes/COMP-C1-FIRST-SEPARATION-REPLAY.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 43 | 6 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0125](nodes/TFQ-0125.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 40 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0126](nodes/TFQ-0126.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 39 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0127](nodes/TFQ-0127.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 38 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 34 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0013](nodes/TFQ-0013.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 33 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0166](nodes/TFQ-0166.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 32 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0166](nodes/TFQ-0166.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 33 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0015](nodes/TFQ-0015.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 31 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [COMP-C1-FIRST-SEPARATION-REPLAY](nodes/COMP-C1-FIRST-SEPARATION-REPLAY.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 30 | 6 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0131](nodes/TFQ-0131.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 30 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0018](nodes/TFQ-0018.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 28 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0019](nodes/TFQ-0019.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 27 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -99,17 +90,20 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0133](nodes/TFQ-0133.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 20 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0025](nodes/TFQ-0025.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 19 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM073-FINITE-CHSH-AND-PR-BOX](nodes/DS-QM073-FINITE-CHSH-AND-PR-BOX.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 17 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0197](nodes/TFQ-0197.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 17 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM102-SYNDROME-CAPACITY-BOUND](nodes/DS-QM102-SYNDROME-CAPACITY-BOUND.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 16 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0197](nodes/TFQ-0197.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 16 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM074-NO-SIGNALING-MARGINAL](nodes/DS-QM074-NO-SIGNALING-MARGINAL.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 15 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS](nodes/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 15 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0028](nodes/TFQ-0028.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 15 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0048](nodes/TFQ-0048.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E0 | 15 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS](nodes/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 14 | 3 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0198](nodes/TFQ-0198.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 15 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0029](nodes/TFQ-0029.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 14 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0198](nodes/TFQ-0198.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 14 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0030](nodes/TFQ-0030.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 13 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM061-BUILDABILITY-SET-S](nodes/DS-QM061-BUILDABILITY-SET-S.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 12 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM030-UNGRADED-OVERCOUNT](nodes/DS-QM030-UNGRADED-OVERCOUNT.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 9 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [FQ-CABELLO-FRAME-POLYTOPE-146](nodes/FQ-CABELLO-FRAME-POLYTOPE-146.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 9 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [FQ-POWER-RULE-P2-SELECTION](nodes/FQ-POWER-RULE-P2-SELECTION.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 9 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [FQ-SORKIN-READOUT-CLASS-QM208](nodes/FQ-SORKIN-READOUT-CLASS-QM208.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 9 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0144](nodes/TFQ-0144.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 9 | 2 in-repo Rust or Python symbol(s) cited, none a test |
 | [AUTH-TC0-TAPE-CONTROL-TYPING](nodes/AUTH-TC0-TAPE-CONTROL-TYPING.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 8 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM030-GRADED-PATHSUM](nodes/DS-QM030-GRADED-PATHSUM.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 8 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -150,9 +144,6 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO](nodes/DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-BELL-RATIONAL-VIOLATION-14-5](nodes/FQ-BELL-RATIONAL-VIOLATION-14-5.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-BUSCH-EFFECT-FRAME](nodes/FQ-BUSCH-EFFECT-FRAME.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [FQ-CABELLO-FRAME-POLYTOPE-146](nodes/FQ-CABELLO-FRAME-POLYTOPE-146.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [FQ-POWER-RULE-P2-SELECTION](nodes/FQ-POWER-RULE-P2-SELECTION.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [FQ-SORKIN-READOUT-CLASS-QM208](nodes/FQ-SORKIN-READOUT-CLASS-QM208.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [GP-GAP-EXACT-DUALITY](nodes/GP-GAP-EXACT-DUALITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [L1-QM020-THM7-REPRESENTATION-CAPACITY](nodes/L1-QM020-THM7-REPRESENTATION-CAPACITY.md) | L1_TO_L2 | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [L1-QM122-BORN-PAIRING-NONUNIQUE](nodes/L1-QM122-BORN-PAIRING-NONUNIQUE.md) | L1_TO_L2 | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -239,13 +230,13 @@ PROVED_PROSE with no in-repo source document cited. Ordered by downstream nodes,
 | [PGW-SN-E20-OBSERVER-COMPLETION](nodes/PGW-SN-E20-OBSERVER-COMPLETION.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 | [PGW-SN-E21-REPAIR-RANK](nodes/PGW-SN-E21-REPAIR-RANK.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 
-## `broken_reference` (52)
+## `broken_reference` (43)
 
 A cited in-repo path or symbol cannot be found in this checkout. Ordered by downstream nodes, most first.
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 507 | path not found: code/python/src/majorana/tests/unit/test_primitive_difference.py |
+| [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 517 | path not found: code/python/src/majorana/tests/unit/test_primitive_difference.py |
 | [TFQ-0125](nodes/TFQ-0125.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 40 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/finite_qm_engine.py |
 | [TFQ-0127](nodes/TFQ-0127.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 38 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/operational_axiom_selection.py |
 | [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 34 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/born_normalization.py |
@@ -263,15 +254,6 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 | [TFQ-0149](nodes/TFQ-0149.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 3 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/simplicial_complex_qm.py |
 | [TFQ-0176](nodes/TFQ-0176.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 3 | path not found: code/python/src/mub/mub_verify/a1_collar_swarm.py |
 | [TFQ-0230](nodes/TFQ-0230.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 3 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | symbol U1Finite.CauchyCircleCompletion.RegPhaseSeq.add_assoc_equiv not found in lean4/U1CauchyCircleCompletion.lean |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | symbol U1Finite.CauchyCircleCompletion.quad_half_angle_squares_to_u345 not found in lean4/U1CauchyCircleCompletion.lean |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | symbol U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.pureProjector_born_pairing not found in lean4/U1ChebyshevCauchyBridge.lean |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | symbol U1Finite.ChebyshevCauchyBridge.circleRatPow_eq_chebyshev not found in lean4/U1ChebyshevCauchyBridge.lean |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | symbol U1Finite.ChebyshevCauchyBridge.taylor_circle_norm_defect_identity not found in lean4/U1ChebyshevCauchyBridge.lean |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | symbol U1Finite.CyclotomicTorsionTower.ratPhaseQuot_divisible not found in lean4/U1CyclotomicTorsionTower.lean |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | symbol U1Finite.PhaseSynthesis.u1_phase_completion_synthesis not found in lean4/U1PhaseSynthesis.lean |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | symbol U1Finite.QuadraticTowerAndCayleyStone.chebT2Pow_succ not found in lean4/U1QuadraticTowerAndCayleyStone.lean |
-| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | symbol U1Finite.QuadraticTowerAndCayleyStone.u345_k2_double_angle_recovery not found in lean4/U1QuadraticTowerAndCayleyStone.lean |
 | [TFQ-0177](nodes/TFQ-0177.md) | IMPLEMENTATION_SIBLING | `OPEN` | E1 | 2 | path not found: code/python/src/mub/mub_verify/a1_collar_swarm.py |
 | [TFQ-0231](nodes/TFQ-0231.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E0 | 2 | path not found: code/python/src/majorana/tests/support/domain/shared_kernel/obstruction.py |
 | [TFQ-0138](nodes/TFQ-0138.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 1 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/dynamics_dichotomy.py |
@@ -304,15 +286,15 @@ A replay receipt names this node for a Lean module that the node does not cite i
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PG-INERT-DIAMOND](nodes/PG-INERT-DIAMOND.md) | PREGENESIS | `DEFINITION` | E3 | 810 | a replay receipt names this node for lean4/InertDiamond.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-SIX-OPERATIONS](nodes/PG-SIX-OPERATIONS.md) | PREGENESIS | `DEFINITION` | E3 | 788 | a replay receipt names this node for lean4/SixOperations.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](nodes/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) | WDP | `OPEN` | E3 | 512 | a replay receipt names this node for lean4/WdpBridgeObligations.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 507 | a replay receipt names this node for lean4/PrimdiffAxioms.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-WDP-DEGREE1-WINDOW](nodes/PG-WDP-DEGREE1-WINDOW.md) | WDP | `DEFINITION` | E3 | 506 | a replay receipt names this node for lean4/WdpDegree1Window.lean, but the node's lean, rust and source fields do not cite it |
-| [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](nodes/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 467 | a replay receipt names this node for lean4/ResidualSectorWeights.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-ROOT-DIFF-STRUCTURE](nodes/PG-ROOT-DIFF-STRUCTURE.md) | PREGENESIS | `ADMITTED_PRIMITIVE` | E3 | 262 | a replay receipt names this node for lean4/RootDiffStructure.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-INERT-DIAMOND](nodes/PG-INERT-DIAMOND.md) | PREGENESIS | `DEFINITION` | E3 | 831 | a replay receipt names this node for lean4/InertDiamond.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-SIX-OPERATIONS](nodes/PG-SIX-OPERATIONS.md) | PREGENESIS | `DEFINITION` | E3 | 807 | a replay receipt names this node for lean4/SixOperations.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](nodes/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) | WDP | `OPEN` | E3 | 522 | a replay receipt names this node for lean4/WdpBridgeObligations.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 517 | a replay receipt names this node for lean4/PrimdiffAxioms.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-WDP-DEGREE1-WINDOW](nodes/PG-WDP-DEGREE1-WINDOW.md) | WDP | `DEFINITION` | E3 | 516 | a replay receipt names this node for lean4/WdpDegree1Window.lean, but the node's lean, rust and source fields do not cite it |
+| [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](nodes/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 477 | a replay receipt names this node for lean4/ResidualSectorWeights.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-ROOT-DIFF-STRUCTURE](nodes/PG-ROOT-DIFF-STRUCTURE.md) | PREGENESIS | `ADMITTED_PRIMITIVE` | E3 | 281 | a replay receipt names this node for lean4/RootDiffStructure.lean, but the node's lean, rust and source fields do not cite it |
 | [FSP-WILSON-DIRAC-GAMMA5](nodes/FSP-WILSON-DIRAC-GAMMA5.md) | FERMION_SIGN | `IMPORTED_ASSUMPTION` | E3 | 22 | a replay receipt names this node for lean4/FermionSignWilsonDiracGamma5.lean, but the node's lean, rust and source fields do not cite it |
-| [L1-WDP-REALIFICATION-J](nodes/L1-WDP-REALIFICATION-J.md) | L1_TO_L2 | `DEFINITION` | E3 | 5 | a replay receipt names this node for lean4/RealificationJ.lean, but the node's lean, rust and source fields do not cite it |
+| [L1-WDP-REALIFICATION-J](nodes/L1-WDP-REALIFICATION-J.md) | L1_TO_L2 | `DEFINITION` | E3 | 6 | a replay receipt names this node for lean4/RealificationJ.lean, but the node's lean, rust and source fields do not cite it |
 | [L1-U1-SELECTOR-OTHER-SEGMENT](nodes/L1-U1-SELECTOR-OTHER-SEGMENT.md) | L1_TO_L2 | `OPEN` | E3 | 0 | a replay receipt names this node for lean4/U1SelectorSegment.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-WDP-DIAGNOSTIC-NOT-ROUTING](nodes/PG-WDP-DIAGNOSTIC-NOT-ROUTING.md) | WDP | `DEFINITION` | E3 | 0 | a replay receipt names this node for lean4/WdpDiagnosticRouting.lean, but the node's lean, rust and source fields do not cite it |
 

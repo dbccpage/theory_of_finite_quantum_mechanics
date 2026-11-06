@@ -32,7 +32,7 @@ Completeness of the represented ray set needs an independent bound on the number
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C41 claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C41 claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Python: `papers/core/mub6/research/five_derivations_20261015/replay_rur.py`
+### Python: `dag/derivations/25_mub/mub6/research/five_derivations_20261015/replay_rur.py`
 
-- file: [papers/core/mub6/research/five_derivations_20261015/replay_rur.py](../../../papers/core/mub6/research/five_derivations_20261015/replay_rur.py)
+- file: [dag/derivations/25_mub/mub6/research/five_derivations_20261015/replay_rur.py](../../../dag/derivations/25_mub/mub6/research/five_derivations_20261015/replay_rur.py)
 - sha256 (`bytes`): `cb9c8ac2bfa524dcb7667ba3cccb0edc1db8098b78e80882e5216150d6a53094`
 - cited in: record TFQ-1275
 
@@ -55,34 +55,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1275_mub6_szollosi_special_point_pairs.md`
+### Documents and data: `dag/derivations/25_mub/mub6/artifacts/mub6_szollosi_t5_cover_receipt.json`
 
-- file: [dag/derivations/25_mub/tfq_1275_mub6_szollosi_special_point_pairs.md](../../../dag/derivations/25_mub/tfq_1275_mub6_szollosi_special_point_pairs.md)
-- sha256 (`lf-normalised`): `ba61a5766df1239a2f9e83ebe14159609a23313a4efbd4fd5c9ed6c3dbf9cdb0`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1275
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/artifacts/mub6_szollosi_t5_cover_receipt.json`
-
-- file: [papers/core/mub6/artifacts/mub6_szollosi_t5_cover_receipt.json](../../../papers/core/mub6/artifacts/mub6_szollosi_t5_cover_receipt.json)
+- file: [dag/derivations/25_mub/mub6/artifacts/mub6_szollosi_t5_cover_receipt.json](../../../dag/derivations/25_mub/mub6/artifacts/mub6_szollosi_t5_cover_receipt.json)
 - sha256 (`lf-normalised`): `7ac57afc7fbd2c35c510223bb70ab91b2ee7f50cdae7ba798fdfebfcca0bf5fb`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/research/szollosi_vectors/README.md`
+### Documents and data: `dag/derivations/25_mub/mub6/research/szollosi_vectors/README.md`
 
-- file: [papers/core/mub6/research/szollosi_vectors/README.md](../../../papers/core/mub6/research/szollosi_vectors/README.md)
+- file: [dag/derivations/25_mub/mub6/research/szollosi_vectors/README.md](../../../dag/derivations/25_mub/mub6/research/szollosi_vectors/README.md)
 - sha256 (`lf-normalised`): `a9115bd04bd2e7e9101dc906441a29f1b2a3e53cc1bb077fc8679c443440d7e6`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1275_mub6_szollosi_special_point_pairs.md`
+
+- file: [dag/derivations/25_mub/tfq_1275_mub6_szollosi_special_point_pairs.md](../../../dag/derivations/25_mub/tfq_1275_mub6_szollosi_special_point_pairs.md)
+- sha256 (`lf-normalised`): `17eccdf687059e5cf248a839265236314f444c6b367c6cfccc4a56d64c796d49`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1275
+- counts toward the grade: no
 
 ## Routes
 

@@ -24,6 +24,6 @@ evidence boundaries.
 
 ## Evidence and next obligation
 
-- [papers/core/mub6/README.md](../../../papers/core/mub6/README.md)
+- [dag/derivations/25_mub/mub6/README.md](../../../dag/derivations/25_mub/mub6/README.md)
 
 Check the scalar field, adjoint, rank, resolutions and all cross-basis trace equalities before accepting a MUB witness.

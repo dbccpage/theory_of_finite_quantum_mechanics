@@ -32,7 +32,7 @@ These are label counts in MUB6OrbitConfiguration; the structure has no matrices 
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C01 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C01 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -59,27 +59,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md](../../../dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md)
-- sha256 (`lf-normalised`): `44bc5183caaf37f40a807ae7e1e05fba4f9efdcaf0ed00f58f7f18002d0e6cae`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1256
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md`
+
+- file: [dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md](../../../dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md)
+- sha256 (`lf-normalised`): `5e522d109f159471914d4cf7ffe0e70e0bb464e0d2b417483bf57f9f69e395ba`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1256
+- counts toward the grade: no
 
 ## Routes
 

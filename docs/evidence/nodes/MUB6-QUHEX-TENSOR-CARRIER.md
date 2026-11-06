@@ -32,7 +32,7 @@ The source statement that every 6x6 operator decomposes into Pauli and Gell-Mann
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-051 claims PROVED_LEAN; audited status DEFINITION
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-051 claims PROVED_LEAN; audited status DEFINITION
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/25_mub/tfq_1221_mub6_quhex_tensor_carrier.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [dag/derivations/25_mub/tfq_1221_mub6_quhex_tensor_carrier.md](../../../dag/derivations/25_mub/tfq_1221_mub6_quhex_tensor_carrier.md)
-- sha256 (`lf-normalised`): `9ea971e54cf42594b7ebf3b9be3a7cbdae6d2c19556f062bdde2f1203bb8af0f`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1221
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
-
-- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
-- sha256 (`lf-normalised`): `b515bf981d6c3a339c2b0a7937d54d9deb05f3b53186c584b83f5fa3419dc902`
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1221_mub6_quhex_tensor_carrier.md`
+
+- file: [dag/derivations/25_mub/tfq_1221_mub6_quhex_tensor_carrier.md](../../../dag/derivations/25_mub/tfq_1221_mub6_quhex_tensor_carrier.md)
+- sha256 (`lf-normalised`): `922641639b5d53114e91c56c233cb465dfc23ffbf5870d90776d396acc24aebf`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1221
+- counts toward the grade: no
 
 ## Routes
 

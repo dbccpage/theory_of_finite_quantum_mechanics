@@ -32,7 +32,7 @@ Evaluate EPRL-FK boundary contractions on a declared finite complex and determin
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-052 claims PROVED_LEAN; audited status OPEN
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-052 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -42,29 +42,29 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `papers/core/fsp/lean4/regge_wdw_core.lean`
+### Lean: `dag/derivations/26_fsp/fsp/lean4/regge_wdw_core.lean`
 
-- file: [papers/core/fsp/lean4/regge_wdw_core.lean](../../../papers/core/fsp/lean4/regge_wdw_core.lean)
+- file: [dag/derivations/26_fsp/fsp/lean4/regge_wdw_core.lean](../../../dag/derivations/26_fsp/fsp/lean4/regge_wdw_core.lean)
 - sha256 (`bytes`): `8f20ead1eb7c40441e6ccee48c7b5c828d0d93319928ea2df7ec322226e164b9`
 - cited in: node.source
 - replay: `none`
-- check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/regge_wdw_core.lean`
+- check: `cd lean4 && lake build   # the library that contains dag/derivations/26_fsp/fsp/lean4/regge_wdw_core.lean`
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1216_fsp_dirac_kahler_spinfoam_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1216_fsp_dirac_kahler_spinfoam_claim.md](../../../dag/derivations/26_fsp/tfq_1216_fsp_dirac_kahler_spinfoam_claim.md)
-- sha256 (`lf-normalised`): `51d9b49571be7eb6e70f1522e007bd0aedba09963ffa56f5001cee6badc0c565`
+- sha256 (`lf-normalised`): `3d73e9fa7e5fddae39314e27e16a421f0bf6e826c625a33b40f58d8213c4cdfe`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1216
 - counts toward the grade: no
-
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
-
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

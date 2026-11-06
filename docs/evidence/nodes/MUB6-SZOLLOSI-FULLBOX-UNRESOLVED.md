@@ -32,7 +32,7 @@ Status CONTRACTED_UNRESOLVED_BOX and UNRESOLVED_FULL_BOX: no exclusion and no ro
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C27 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C27 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -91,27 +91,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md](../../../dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md)
-- sha256 (`lf-normalised`): `7abca007cbccce4d534bab45cc6674950bcfdad137cb99797e1c07669fb9d542`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1272
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md`
+
+- file: [dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md](../../../dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md)
+- sha256 (`lf-normalised`): `a5cea05453c253ff232b8dc9c91fe1728064f2a4aac33976c4372dd7dfd258ca`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1272
+- counts toward the grade: no
 
 ## Routes
 

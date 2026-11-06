@@ -16,10 +16,10 @@ target:
     unresolved, and it uses three terminal values where TFQ-0330 names five.
   source_refs:
   - dag/derivations/29_computation/tfq_1335_auth_g5c_terminalization_consequence.md
-  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md
-  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md
-  - papers/foundations/authorization_incompleteness/proof_program.md
-  - papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_g5c_terminalization_update_packet.md
+  - dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md
+  - dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md
+  - dag/derivations/04_authorization/authorization_incompleteness/proof_program.md
+  - dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_g5c_terminalization_update_packet.md
   paper_refs:
   - dag/derivations/29_computation/tfq_1335_auth_g5c_terminalization_consequence.md
   source_claim_label: PROVED_LEAN
@@ -41,7 +41,7 @@ operation_candidates:
   name: AuthorizationTerminal
   line: 36
   signature_excerpt: inductive AuthorizationTerminal
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -51,7 +51,7 @@ operation_candidates:
   signature_excerpt: |-
     def AcceptanceSound {Proposal : Type} (valid : Proposal -> Prop)
         (terminalize : Proposal -> AuthorizationTerminal) : Prop
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -61,7 +61,7 @@ operation_candidates:
   signature_excerpt: |-
     def AcceptanceComplete {Proposal : Type} (valid : Proposal -> Prop)
         (terminalize : Proposal -> AuthorizationTerminal) : Prop
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -71,7 +71,7 @@ operation_candidates:
   signature_excerpt: |-
     def acceptanceBit {Proposal : Type}
         (terminalize : Proposal -> AuthorizationTerminal) : Proposal -> Bool
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -81,7 +81,7 @@ operation_candidates:
   signature_excerpt: |-
     def RejectionSound {Proposal : Type} (valid : Proposal -> Prop)
         (terminalize : Proposal -> AuthorizationTerminal) : Prop
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -91,7 +91,7 @@ operation_candidates:
   signature_excerpt: |-
     def TerminalClosed {Proposal : Type}
         (terminalize : Proposal -> AuthorizationTerminal) : Prop
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -99,7 +99,7 @@ operation_candidates:
   name: boolValidity
   line: 148
   signature_excerpt: 'def boolValidity (proposal : Bool) : Prop'
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -113,7 +113,7 @@ operation_candidates:
 
     theorem bool_terminalization_acceptance_sound :
         AcceptanceSound boolValidity boolTerminalize
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -128,7 +128,7 @@ relation_candidates:
         (sound : AcceptanceSound valid terminalize)
         (complete : AcceptanceComplete valid terminalize) :
         Decides valid (acceptanceBit terminalize)
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -146,7 +146,7 @@ relation_candidates:
         (allowedAcceptanceBit : allowed (acceptanceBit terminalize))
         (sound : AcceptanceSound valid terminalize)
         (complete : AcceptanceComplete valid terminalize) : False
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -162,7 +162,7 @@ relation_candidates:
         (rejectionSound : RejectionSound valid terminalize)
         (closed : TerminalClosed terminalize) :
         AcceptanceComplete valid terminalize
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -181,7 +181,7 @@ relation_candidates:
         (acceptanceSound : AcceptanceSound valid terminalize)
         (rejectionSound : RejectionSound valid terminalize)
         (closed : TerminalClosed terminalize) : False
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
@@ -196,53 +196,53 @@ relation_candidates:
           AcceptanceComplete boolValidity boolTerminalize ∧
           RejectionSound boolValidity boolTerminalize ∧
           TerminalClosed boolTerminalize
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   source_sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_decides_of_sound_complete
+- original_ref: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_decides_of_sound_complete
   availability: local
   symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptance_bit_decides_of_sound_complete
-  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  path: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   declaration_status: declaration_found_not_proof_checked
   line: 81
   role: source_lead_only
-- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization
+- original_ref: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization
   availability: local
   symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization
-  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  path: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   declaration_status: declaration_found_not_proof_checked
   line: 99
   role: source_lead_only
-- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete
+- original_ref: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete
   availability: local
   symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete
-  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  path: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   declaration_status: declaration_found_not_proof_checked
   line: 113
   role: source_lead_only
-- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization
+- original_ref: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization
   availability: local
   symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization
-  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  path: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   declaration_status: declaration_found_not_proof_checked
   line: 132
   role: source_lead_only
-- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible
+- original_ref: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean::AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible
   availability: local
   symbol: AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible
-  path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+  path: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
   repository: this_repository
   sha256: a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3
   declaration_status: declaration_found_not_proof_checked

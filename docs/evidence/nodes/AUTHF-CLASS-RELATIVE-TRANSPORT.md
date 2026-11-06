@@ -32,7 +32,7 @@ The allowed classes and the source no-decider premise are supplied; no computabi
 
 ## Source status
 
-papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record no_source_decider_blocks_total_authorizer claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record no_source_decider_blocks_total_authorizer claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1347_authf_class_relative_transport.md`
 
 - file: [dag/derivations/29_computation/tfq_1347_authf_class_relative_transport.md](../../../dag/derivations/29_computation/tfq_1347_authf_class_relative_transport.md)
-- sha256 (`lf-normalised`): `5be59ac840aa87a6ad771cf976e8779e42c0d19be995fb9ed220f1de82b4fb8f`
+- sha256 (`lf-normalised`): `31a5191de99619e60ad56f43a22de6362402d2be8caeb07f541931eab680e4b1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1347
 - counts toward the grade: no

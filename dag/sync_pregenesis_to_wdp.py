@@ -526,14 +526,15 @@ def generated_files(root: Path = ROOT):
         if r.get('dag') and 'reuse' in r['dag'] and r['dag']['reuse'] not in old_node_ids:
             raise ValueError(f'{r["id"]}: reused node {r["dag"]["reuse"]} is not in the DAG')
 
-    # Records: drop this slice, splice its block before the application block.
+    # Records: keep this slice ahead of later editorial and application blocks.
     new_records = [render_jsonl_record(r, manifest, by_id, records_by_id, node_ids) for r in recs]
     kept = [r for r in old_records if r.get('source_slice') != SLICE]
-    at = next((i for i, r in enumerate(kept) if r.get('source_slice') == 'application_branches'), len(kept))
+    at = next((i for i, r in enumerate(kept)
+               if r.get('source_slice') in {'source_consolidation', 'application_branches'}), len(kept))
     all_records = kept[:at] + new_records + kept[at:]
     dag['records'] = [views.canonical_record(r) for r in all_records]
 
-    # DAG: drop this fragment's nodes and routes, splice new blocks before the application blocks.
+    # DAG: drop this fragment's nodes and routes, then splice them ahead of later blocks.
     nodes = [n for n in dag['nodes'] if TAG not in n.get('tags', [])]
     routes = [x for x in dag['routes'] if not x['id'].startswith(ROUTE_PREFIX)]
     new_nodes, new_routes = [], []
@@ -549,8 +550,10 @@ def generated_files(root: Path = ROOT):
             inputs = ['PG-INERT-DIAMOND']
         new_nodes.append(render_dag_node(r, manifest))
         new_routes.append(render_route(r, manifest, inputs))
-    ni = next((i for i, n in enumerate(nodes) if 'application-branch' in n.get('tags', [])), len(nodes))
-    ri = next((i for i, x in enumerate(routes) if x['id'].startswith('APP-R-')), len(routes))
+    ni = next((i for i, n in enumerate(nodes)
+               if 'source-consolidation' in n.get('tags', []) or
+               'application-branch' in n.get('tags', [])), len(nodes))
+    ri = next((i for i, x in enumerate(routes) if x['id'].startswith(('SCI-R-', 'APP-R-'))), len(routes))
     dag['nodes'] = nodes[:ni] + new_nodes + nodes[ni:]
     dag['routes'] = routes[:ri] + new_routes + routes[ri:]
     dag['segment_notes'][SLICE] = [manifest['segment_note']]

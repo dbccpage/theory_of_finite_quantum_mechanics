@@ -32,7 +32,7 @@ Existence of two policies only; no policy is selected or justified.
 
 ## Source status
 
-papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record syntactic_halt_does_not_select_terminal_policy claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record syntactic_halt_does_not_select_terminal_policy claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md`
 
 - file: [dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md](../../../dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md)
-- sha256 (`lf-normalised`): `a2c244b8bec4a2594abfefcb73ac0cf399aa0c698d8ee8b4e0e7b0626140cc18`
+- sha256 (`lf-normalised`): `577ba44d5ba54c5d3ac0f9546c30d15e111b4bd556106dd03bcf29ff8a55cbc1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1353
 - counts toward the grade: no

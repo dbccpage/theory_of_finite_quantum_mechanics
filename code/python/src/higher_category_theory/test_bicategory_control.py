@@ -1,6 +1,6 @@
 """Unit, negative, integration, end-to-end, and mutation tests.
 
-Origin: papers/core/finite_quantum_mechanics_source_notes.md section on the source pentagon.
+Origin: dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics_source_notes.md section on the source pentagon.
 Claim: urn:omega:fqm:bicategory:strict-association-witness:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/higher_category_theory/test_bicategory_control.py.
@@ -274,7 +274,7 @@ _PACKAGE_PATH = Path(__file__).resolve().with_name("__init__.py")
 
 
 PRINT_TEXT = '1\n'
-ORIGIN_REL = 'papers/core/finite_quantum_mechanics_source_notes.md'
+ORIGIN_REL = 'dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics_source_notes.md'
 ORIGIN_MARKER = 'Biedenharn'
 CLAIM = 'urn:omega:fqm:bicategory:strict-association-witness:v1'
 EXPECTED = 1

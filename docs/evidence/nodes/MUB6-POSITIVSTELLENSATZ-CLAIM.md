@@ -32,7 +32,7 @@ No such certificate is in the checkout; the only Stengle identity present (singu
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-073 claims PROVED_LEAN; audited status OPEN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-073 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -42,41 +42,41 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/25_mub/tfq_1241_mub6_positivstellensatz_claim.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_change_log.md`
 
-- file: [dag/derivations/25_mub/tfq_1241_mub6_positivstellensatz_claim.md](../../../dag/derivations/25_mub/tfq_1241_mub6_positivstellensatz_claim.md)
-- sha256 (`lf-normalised`): `1ebb4a515408b474099d8d9568ef5d7ce70447a68482bac04df7836e810e5426`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1241
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6_change_log.md`
-
-- file: [papers/core/mub6/mub6_change_log.md](../../../papers/core/mub6/mub6_change_log.md)
-- sha256 (`lf-normalised`): `289562fee89b61899f12541494bd67401f95abfd5f45952610c1de80a121f556`
+- file: [dag/derivations/25_mub/mub6/mub6_change_log.md](../../../dag/derivations/25_mub/mub6/mub6_change_log.md)
+- sha256 (`lf-normalised`): `22c69b95eea012b3e0be02f10274bb53152f14cf487e289edcad3a02b45c7871`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_global_proof_atlas.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_global_proof_atlas.md`
 
-- file: [papers/core/mub6/mub6_global_proof_atlas.md](../../../papers/core/mub6/mub6_global_proof_atlas.md)
+- file: [dag/derivations/25_mub/mub6/mub6_global_proof_atlas.md](../../../dag/derivations/25_mub/mub6/mub6_global_proof_atlas.md)
 - sha256 (`lf-normalised`): `94d599e65738f154ef0604e436b2e084b04c879c965f6015916781ef857a1209`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
-- sha256 (`lf-normalised`): `b515bf981d6c3a339c2b0a7937d54d9deb05f3b53186c584b83f5fa3419dc902`
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1241_mub6_positivstellensatz_claim.md`
+
+- file: [dag/derivations/25_mub/tfq_1241_mub6_positivstellensatz_claim.md](../../../dag/derivations/25_mub/tfq_1241_mub6_positivstellensatz_claim.md)
+- sha256 (`lf-normalised`): `09a4e5c0fa2b1bd27a4df690dbd7838fee45c2650411144d8f5755cb0064e5d8`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1241
+- counts toward the grade: no
 
 ## Routes
 

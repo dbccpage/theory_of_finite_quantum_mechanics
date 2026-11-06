@@ -32,7 +32,7 @@ No laboratory protocol, device model, density operator, or measurement map from 
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-OPEN-EVIDENCE-ADEQUACY claims OPEN; audited status OPEN
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-OPEN-EVIDENCE-ADEQUACY claims OPEN; audited status OPEN
 
 ## Review
 
@@ -67,10 +67,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-1182
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
+
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
+- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md`
 
 - file: [dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md](../../../dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md)
-- sha256 (`lf-normalised`): `53021315432fb47c3a7921b819fe15cfd4ed3ae716afb15cdcd143c6f3b1ee01`
+- sha256 (`lf-normalised`): `8fb47f61005d1dee901c060005fed941836e5d82e7506877d94cff0ac17b699d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1182
 - counts toward the grade: no
@@ -86,13 +93,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json](../../../dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json)
 - sha256 (`lf-normalised`): `ac9a8bc4a2a09f521c43e6afa331c699120cd9fe5b4ee5bb7c032036136a375b`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
-- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 

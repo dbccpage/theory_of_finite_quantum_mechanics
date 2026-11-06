@@ -32,7 +32,7 @@ Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. N
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-IMPORT-BMVT claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-IMPORT-BMVT claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -86,20 +86,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md](../../../dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md)
-- sha256 (`lf-normalised`): `1d3837d997309cbd919cd4d870f1ed915b7307a9befed59b4d74a0f66aaac2c3`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1157
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md`
+
+- file: [dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md](../../../dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md)
+- sha256 (`lf-normalised`): `ae0a94dd82a90a1b2051c28da3b2f44901fa96318c757bde8b8cea61aded4684`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1157
+- counts toward the grade: no
 
 ## Routes
 

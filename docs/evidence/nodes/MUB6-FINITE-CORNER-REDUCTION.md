@@ -32,7 +32,7 @@ This record is that one integer block identity. It does not classify complex Had
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-FINITE-CORNER claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-FINITE-CORNER claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -73,20 +73,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md](../../../dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md)
-- sha256 (`lf-normalised`): `af5b0757884692264ef90193d94fd19fe1b0bc2e04189acf40f223f613ce0471`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1261
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md`
+
+- file: [dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md](../../../dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md)
+- sha256 (`lf-normalised`): `7955d18b834f1e953f7404629bb1dec272f31d279cf02b6482db4bb3b2af5479`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1261
+- counts toward the grade: no
 
 ## Routes
 

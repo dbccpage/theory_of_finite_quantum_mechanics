@@ -14,9 +14,9 @@ target:
     of the three.
   source_refs:
   - dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md
-  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md
-  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md
-  - papers/foundations/authorization_incompleteness/proof_program.md
+  - dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md
+  - dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md
+  - dag/derivations/04_authorization/authorization_incompleteness/proof_program.md
   paper_refs:
   - dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md
   source_claim_label: PROVED_LEAN
@@ -40,7 +40,7 @@ operation_candidates:
   signature_excerpt: |-
     structure ValidityReduction {HardInput Proposal : Type}
         (hard : HardInput -> Prop) (valid : Proposal -> Prop)
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
   repository: this_repository
   source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
   status: source_candidate_requires_semantic_review
@@ -53,7 +53,7 @@ operation_candidates:
         (allowedProposal : (Proposal -> Bool) -> Prop)
         {hard : HardInput -> Prop} {valid : Proposal -> Prop}
         (reduction : ValidityReduction hard valid) : Prop
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
   repository: this_repository
   source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
   status: source_candidate_requires_semantic_review
@@ -63,7 +63,7 @@ operation_candidates:
   signature_excerpt: |-
     def NoTotalDecider {Input : Type} (allowed : (Input -> Bool) -> Prop)
         (predicate : Input -> Prop) : Prop
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
   repository: this_repository
   source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
   status: source_candidate_requires_semantic_review
@@ -73,7 +73,7 @@ operation_candidates:
   signature_excerpt: |-
     def Decides {Input : Type} (predicate : Input -> Prop)
         (decider : Input -> Bool) : Prop
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
   repository: this_repository
   source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
   status: source_candidate_requires_semantic_review
@@ -91,7 +91,7 @@ relation_candidates:
         (closure : ClosedUnderReduction allowedHard allowedProposal reduction)
         (noSourceDecider : NoTotalDecider allowedHard hard) :
         NoTotalDecider allowedProposal valid
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
   repository: this_repository
   source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
   status: source_candidate_requires_semantic_review
@@ -111,7 +111,7 @@ relation_candidates:
         (hasAuthorizer : ∃ authorize,
           allowedProposal authorize ∧ Decides valid authorize) :
         ∃ decide, allowedHard decide ∧ Decides hard decide
-  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  source: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
   repository: this_repository
   source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
   status: source_candidate_requires_semantic_review
@@ -120,19 +120,19 @@ relation_candidates:
   bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
     follows automatically.
 source_bindings:
-- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer
+- original_ref: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer
   availability: local
   symbol: AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer
-  path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  path: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
   repository: this_repository
   sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
   declaration_status: declaration_found_not_proof_checked
   line: 79
   role: source_lead_only
-- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider
+- original_ref: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider
   availability: local
   symbol: AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider
-  path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  path: dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
   repository: this_repository
   sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
   declaration_status: declaration_found_not_proof_checked

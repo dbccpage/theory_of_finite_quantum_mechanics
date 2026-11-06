@@ -32,7 +32,7 @@ N_W is not an l1 minimizer (span(1,2), x = (1,0) gives norm 2 versus 1); the quo
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-030 claims PROVED_LEAN; audited status PROVED_PROSE
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-030 claims PROVED_LEAN; audited status PROVED_PROSE
 
 ## Review
 
@@ -42,13 +42,13 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `papers/core/fsp/lean4/NormalFormLaws.lean`
+### Lean: `dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean`
 
-- file: [papers/core/fsp/lean4/NormalFormLaws.lean](../../../papers/core/fsp/lean4/NormalFormLaws.lean)
+- file: [dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean](../../../dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean)
 - sha256 (`bytes`): `dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021`
 - cited in: node.lean, record TFQ-1195
 - replay: `none`
-- check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/NormalFormLaws.lean`
+- check: `cd lean4 && lake build   # the library that contains dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -84,34 +84,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
 
-- file: [dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md](../../../dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md)
-- sha256 (`lf-normalised`): `fee051410247fee4838adfb504acfe5a34e90c7bc131062b8b8e7f04d98e3693`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1195
-- counts toward the grade: no
-
-### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
-
-- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
+- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
 - sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
 
-- file: [papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
-- sha256 (`lf-normalised`): `d3b0b4deaf2b1c09ac29ba3e3206a2f6f832b7525b092992c8a6f72ed8a62dfb`
+- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
+- sha256 (`lf-normalised`): `f62735060966780e3eba1d7656156f6bb81163ce57e764ed3d2e0e63c75889d5`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md`
+
+- file: [dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md](../../../dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md)
+- sha256 (`lf-normalised`): `a3a0b715bd15a1e99178cdfd7279e6b575e3d4c280351ae140300118a4872ec9`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1195
+- counts toward the grade: no
 
 ## Routes
 

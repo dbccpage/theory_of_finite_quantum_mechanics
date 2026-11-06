@@ -13,7 +13,7 @@ Result: 1 node reviewed. 0 FULL, 0 NARROWED, 1 OVERCLAIM for any citation of thi
 - Node statement (`dag/fragments/application_branches.json:3267`): "The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0." The only declarations that compile with the three allowed axioms do not mention `diracOp`. Citing them for this sentence would present a hypothesis, or a lemma about a different object, as the theorem. Do not add them to the node's `lean` list and do not change the status.
 - Module section comment (`lean4/CampaignFspWilsonDiracGamma5.lean:906`): "Witness: 2×2 periodic lattice, mass -1, det = -3". `witness_det_eq_neg_three` (`lean4/CampaignFspWilsonDiracGamma5.lean:1091`) has that type and depends on `sorryAx` (log line 1125). The determinant `-3` is a Python fact about the matrix built from the Wilson formula.
 - Module header (`lean4/CampaignFspWilsonDiracGamma5.lean:19-21`) names gamma5-hermiticity, the characteristic polynomial, and the two-flavor square as the scope of the campaign file. `wilson_dirac_gamma5_consequences` (`lean4/CampaignFspWilsonDiracGamma5.lean:785`) states those conjuncts and depends on `sorryAx` (log line 1123).
-- Source-corpus sentence `papers/core/fsp/theory_of_finite_fsp.md:468` ("det(D_W) is real and strictly non-negative for two degenerate flavors", status line `PROVED_LEAN` at line 465) is not in this diff. The node `source_status` already records that audit. Do not copy that sentence into a derivation note or a pull-request body.
+- Source-corpus sentence `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md:468` ("det(D_W) is real and strictly non-negative for two degenerate flavors", status line `PROVED_LEAN` at line 465) is not in this diff. The node `source_status` already records that audit. Do not copy that sentence into a derivation note or a pull-request body.
 - `periodic_wilson_consequences` (`lean4/CampaignFspWilsonDiracGamma5.lean:892-904`) states only the adjoint identity and `star (det) = det` for a rectangular periodic lattice, and it depends on `sorryAx`. It does not state conjugate root multiplicities or the two-flavor square.
 
 What the four clean declarations do state, and must not be substituted for the node:
@@ -63,7 +63,7 @@ Findings the scanner could not decide, decided here:
 - `sorryAx` in the previous build's `#print axioms` output. Nine declarations that state the node's mathematics depend on it. Treat a future PROVED_LEAN citation of those declarations as OVERCLAIM until a rebuild prints only propext, Classical.choice, and Quot.sound.
 - `charpoly_rootMultiplicity_conj` assumes real coefficients. `two_flavor_det_real_nonneg` assumes `star z = z`. `two_flavor_det_eq_sq` is about every matrix. None of these is `gamma5 D_W gamma5 = D_Wᴴ`.
 - The section comment at line 906 states `det = -3` above a theorem that did not close.
-- The paper sentence at `papers/core/fsp/theory_of_finite_fsp.md:468` is outside the diff. It remains a source-corpus status claim. This review does not edit it.
+- The paper sentence at `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md:468` is outside the diff. It remains a source-corpus status claim. This review does not edit it.
 
 No baseline entry is proposed. `docs/overclaim/report.md` and `report.json` were not written and must not be committed.
 

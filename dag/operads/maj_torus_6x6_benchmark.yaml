@@ -12,8 +12,8 @@ target:
     at the syndrome step, so the elimination step is not timed; timing is machine-dependent.
   source_refs:
   - dag/derivations/28_majorana/tfq_1160_maj_torus_6x6_benchmark.md
-  - papers/core/majorana/the_majorana_problem.md
-  - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  - dag/derivations/28_majorana/majorana/the_majorana_problem.md
+  - dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md
   paper_refs:
   - dag/derivations/28_majorana/tfq_1160_maj_torus_6x6_benchmark.md
   source_claim_label: COMPUTATIONALLY_CHECKED
@@ -35,7 +35,7 @@ operation_candidates:
   name: gaussian_elimination_ops
   line: 119
   signature_excerpt: 'def gaussian_elimination_ops (n : Nat) : Nat'
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -46,17 +46,17 @@ relation_candidates:
   signature_excerpt: |-
     theorem gaussian_elimination_cubic_bound (n : Nat) :
         gaussian_elimination_ops n ≤ n * n * n
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::gaussian_elimination_cubic_bound
+- original_ref: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::gaussian_elimination_cubic_bound
   availability: local
   symbol: gaussian_elimination_cubic_bound
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  path: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   declaration_status: declaration_found_not_proof_checked

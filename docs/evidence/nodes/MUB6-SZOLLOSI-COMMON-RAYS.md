@@ -32,7 +32,7 @@ Exclusion needs the full set of common rays for each H; it is computed only at o
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C40 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C40 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -58,20 +58,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/25_mub/tfq_1274_mub6_szollosi_common_rays.md`
 
 - file: [dag/derivations/25_mub/tfq_1274_mub6_szollosi_common_rays.md](../../../dag/derivations/25_mub/tfq_1274_mub6_szollosi_common_rays.md)
-- sha256 (`lf-normalised`): `a19a138d674cd4971b3597062d6242e3fcad11a14e14e00bfd7b77c2578630c0`
+- sha256 (`lf-normalised`): `5e12ab3c6f9d93a23e40687f13d59ee05a7328eb2b9166eadca0ebf221b0ebae`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1274
 - counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
-
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 
