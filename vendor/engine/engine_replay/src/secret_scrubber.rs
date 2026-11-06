@@ -48,7 +48,7 @@ const KEY_PREFIXES: &[&str] = &[
 const SECRET_ENV_NAMES: &[&str] = &[
     "ANTHROPIC_API_KEY",
     "OPENAI_API_KEY",
-    "GEMINI_API_KEY",
+    "RUN_G_API_KEY",
     "ELEVENLABS_API_KEY",
     "CEREBRAS_API_KEY",
     "GROQ_API_KEY",

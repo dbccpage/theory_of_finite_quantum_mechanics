@@ -1,7 +1,7 @@
 """su2_cluster_benchmark_4d.py — Multi-Turn PFP Cluster Sweeps on L=8 (V=4096) 4D SU(2) Lattice.
 
 AuthorityEffect: None.
-Reference: sealed-derivation-v1 (3100c4e), Paper 011, gemini_000.md.
+Reference: sealed-derivation-v1 (3100c4e), Paper 011, run_g_000.md.
 
 Mechanizes:
 1. Scalable 4D Torus T^4 Gauge Architecture:
