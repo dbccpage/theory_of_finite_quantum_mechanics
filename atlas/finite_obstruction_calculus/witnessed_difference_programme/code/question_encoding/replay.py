@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
+import sys
 from pathlib import Path
 
 from .ffi import invoke
@@ -12,12 +14,12 @@ from .ffi import invoke
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 RECEIPT = PACKAGE_ROOT / "manifests" / "question_encoding_experiment.json"
 SOURCE_PATHS = (
-    "omega_engine/crates_rs/omega_wdp/src/question_preserving_encoding.rs",
-    "omega_engine/crates_rs/omega_wdp/src/examples/question_preserving_encoding.rs",
-    "omega_engine/crates_rs/tests/omega_wdp/question_preserving_encoding.rs",
-    "omega_engine/crates_rs/omega_category_theory/src/finite_report_query.rs",
-    "omega_engine/crates_rs/omega_functional/src/gamma2.rs",
-    "omega_engine/crates_rs/Cargo.lock",
+    "vendor/engine/engine_wdp/src/question_preserving_encoding.rs",
+    "vendor/engine/engine_wdp/src/examples/question_preserving_encoding.rs",
+    "vendor/engine/tests/engine_wdp/test_question_preserving_encoding.rs",
+    "vendor/engine/engine_category_theory/src/finite_report_query.rs",
+    "vendor/engine/engine_functional/src/gamma2.rs",
+    "vendor/engine/Cargo.lock",
 )
 
 
@@ -26,6 +28,26 @@ def repository_root() -> Path:
         if (root / SOURCE_PATHS[0]).is_file():
             return root
     raise FileNotFoundError("Replay needs the monorepo's canonical native sources.")
+
+
+def _default_binary_env() -> None:
+    if os.environ.get("WDP_QUESTION_ENCODING_BINARY"):
+        return
+    suffix = ".exe" if sys.platform == "win32" else ""
+    for root in PACKAGE_ROOT.parents:
+        for rel in (
+            f"target_paper_rust/debug/examples/question_preserving_encoding{suffix}",
+            f"target_paper_rust/release/examples/question_preserving_encoding{suffix}",
+            f"vendor/engine/target/debug/examples/question_preserving_encoding{suffix}",
+            f"vendor/engine/target/release/examples/question_preserving_encoding{suffix}",
+        ):
+            candidate = root / rel
+            if candidate.is_file():
+                os.environ["WDP_QUESTION_ENCODING_BINARY"] = str(candidate)
+                return
+
+
+_default_binary_env()
 
 
 def replay() -> dict:

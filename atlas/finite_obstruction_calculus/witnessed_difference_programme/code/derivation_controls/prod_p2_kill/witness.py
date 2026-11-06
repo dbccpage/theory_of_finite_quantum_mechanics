@@ -29,14 +29,17 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.p2_provenance_gate.adapter import (  # noqa: E402
-    WdpOutputGate,
-    evaluate_pilot_p2_kill_conditions,
-    valid_candidate_record,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p2_provenance_gate.adapter import (  # noqa: E402
+        WdpOutputGate,
+        evaluate_pilot_p2_kill_conditions,
+        valid_candidate_record,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     res = evaluate_pilot_p2_kill_conditions()
     if res["any_kill_condition_holds"]:
         raise RuntimeError("expected no P2 kill conditions to hold on the pilot batch")
@@ -44,6 +47,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_empty_claim_id() -> None:
+    _import_engine()
     gate = WdpOutputGate()
     res = gate.gate("", valid_candidate_record())
     if hasattr(res, "code"):

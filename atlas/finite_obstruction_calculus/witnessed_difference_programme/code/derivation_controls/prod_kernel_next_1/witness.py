@@ -29,21 +29,24 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.kernel.adapter import (  # noqa: E402
-    WdpReceiptIssuer,
-    from_receipt_record,
-    to_receipt_record,
-    to_typed_refusal,
-)
-from omega_engine_applications.wdp_products.kernel.contracts import (  # noqa: E402
-    ReceiptRecord,
-    TypedRefusal,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.kernel.adapter import (  # noqa: E402
+        WdpReceiptIssuer,
+        from_receipt_record,
+        to_receipt_record,
+        to_typed_refusal,
+    )
+    from omega_engine_applications.wdp_products.kernel.contracts import (  # noqa: E402
+        ReceiptRecord,
+        TypedRefusal,
+    )
+    globals().update(locals())
 from witnessed_difference.outcomes import Accepted, RefusalCode, Refused  # noqa: E402
 from witnessed_difference.receipts import make_receipt, verify_receipt  # noqa: E402
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     issuer = WdpReceiptIssuer(implementation_version="0.1.0")
     inputs = {"alpha": [1, 2], "beta": "payload"}
     output = {"result": "ok", "count": 2}
@@ -92,5 +95,6 @@ def witness() -> dict[str, object]:
 
 
 def refuse_authority_promotion(authority_effect: str = "Granted") -> None:
+    _import_engine()
     if authority_effect != "None":
         raise ValueError("ReceiptRecord and TypedRefusal forbid authority_effect != 'None'")

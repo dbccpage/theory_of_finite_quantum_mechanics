@@ -10,8 +10,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import stat
 import re
+import stat
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,7 +32,10 @@ def regular(path: Path) -> bytes:
 
 def verify(root: Path = ROOT) -> dict[str, object]:
     provenance = json.loads(regular(root / "source_provenance.json").decode("utf-8"))
-    inventory = json.loads(regular(root / "docs" / "legacy_observer_inventory.json").decode("utf-8"))
+    inv_path = root / "docs" / "01_substantiated" / "legacy_observer_inventory.json"
+    if not inv_path.exists():
+        inv_path = root / "docs" / "legacy_observer_inventory.json"
+    inventory = json.loads(regular(inv_path).decode("utf-8"))
     originals = provenance["files"]
     observed = inventory["original_files"]
     if len(observed) != len(originals):
@@ -53,7 +56,9 @@ def verify(root: Path = ROOT) -> dict[str, object]:
         paths.add(path)
         if recovery["recorded_path"] != path or recovery["recorded_sha256"] != digest:
             raise ValueError(f"original inventory identity drift: {path}")
-        member = root / "docs" / "source_archive" / "coda_original_source_snapshot" / f"{digest}.txt"
+        member = root / "docs" / "03_deletion_and_archive" / "source_archive" / "coda_original_source_snapshot" / f"{digest}.txt"
+        if not member.exists() and not member.is_symlink():
+            member = root / "docs" / "source_archive" / "coda_original_source_snapshot" / f"{digest}.txt"
         if member.is_symlink():
             raise ValueError(f"source archive member must be a regular file: {path}")
         data = regular(member)

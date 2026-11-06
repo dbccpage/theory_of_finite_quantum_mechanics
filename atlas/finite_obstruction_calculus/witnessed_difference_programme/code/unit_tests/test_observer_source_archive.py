@@ -17,11 +17,14 @@ SPEC.loader.exec_module(ARCHIVE)
 
 
 def copy_custody(tmp_path):
-    for relative in ("source_provenance.json", "docs/legacy_observer_inventory.json"):
+    for relative in ("source_provenance.json", "docs/01_substantiated/legacy_observer_inventory.json"):
         destination = tmp_path / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(PAPER / relative, destination)
-    shutil.copytree(PAPER / "docs" / "source_archive", tmp_path / "docs" / "source_archive")
+    shutil.copytree(
+        PAPER / "docs" / "03_deletion_and_archive" / "source_archive",
+        tmp_path / "docs" / "03_deletion_and_archive" / "source_archive",
+    )
     return tmp_path
 
 
@@ -35,7 +38,7 @@ def test_exact_original_corpus_is_replayable_without_network():
 
 def test_changed_source_bytes_cannot_become_original_custody(tmp_path):
     root = copy_custody(tmp_path)
-    member = next((root / "docs" / "source_archive" / "coda_original_source_snapshot").glob("*.txt"))
+    member = next((root / "docs" / "03_deletion_and_archive" / "source_archive" / "coda_original_source_snapshot").glob("*.txt"))
     member.write_bytes(member.read_bytes() + b"\nchanged")
     with pytest.raises(ValueError, match="bytes differ"):
         ARCHIVE.verify(root)
@@ -43,7 +46,7 @@ def test_changed_source_bytes_cannot_become_original_custody(tmp_path):
 
 def test_education_six_cannot_replace_the_original_genesis_six(tmp_path):
     root = copy_custody(tmp_path)
-    path = root / "docs" / "legacy_observer_inventory.json"
+    path = root / "docs" / "01_substantiated" / "legacy_observer_inventory.json"
     inventory = json.loads(path.read_text(encoding="utf-8"))
     family = next(f for f in inventory["identified_families"] if f["family"] == "six-component genesis")
     family["fields"] = ["C", "p", "comparison", "W", "V", "tau"]
@@ -54,7 +57,7 @@ def test_education_six_cannot_replace_the_original_genesis_six(tmp_path):
 
 def test_source_index_cannot_omit_a_recorded_semantic_occurrence(tmp_path):
     root = copy_custody(tmp_path)
-    path = root / "docs" / "legacy_observer_inventory.json"
+    path = root / "docs" / "01_substantiated" / "legacy_observer_inventory.json"
     inventory = json.loads(path.read_text(encoding="utf-8"))
     inventory["source_family_index"].pop()
     path.write_text(json.dumps(inventory), encoding="utf-8")

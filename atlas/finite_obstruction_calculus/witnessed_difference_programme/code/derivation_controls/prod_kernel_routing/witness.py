@@ -15,15 +15,18 @@ ROOT = next(p for p in Path(__file__).resolve().parents if (p / ".git").exists()
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from omega_engine_operating_system.adapters.rust_host.ffi import RustSymbolGameHost
-from omega_engine_operating_system.adapters.rust_host.theory_requests import (
-    functional_evaluate_payload,
-    functional_verify_payload,
-)
-from omega_engine_operations.domain.rop.result import Err
+def _import_engine() -> None:
+    from omega_engine_operating_system.adapters.rust_host.ffi import RustSymbolGameHost
+    from omega_engine_operating_system.adapters.rust_host.theory_requests import (
+        functional_evaluate_payload,
+        functional_verify_payload,
+    )
+    from omega_engine_operations.domain.rop.result import Err
+    globals().update(locals())
 
 
 def _invoke(action, payload):
+    _import_engine()
     result = RustSymbolGameHost().invoke_runtime(action, payload)
     if isinstance(result, Err):
         raise RuntimeError(str(result.error))
@@ -33,6 +36,7 @@ def _invoke(action, payload):
 
 
 def _packet(values, closure):
+    _import_engine()
     request = functional_evaluate_payload([[0] for _ in values], [closure], values)
     if isinstance(request, Err):
         raise ValueError(str(request.error))
@@ -49,6 +53,7 @@ def _guard(before, after, budget):
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     before = _packet([3, 0], [0, 1])
     after = _packet([1, 1], [0, 1])
     exact = _packet([0, 0], [0, 1])

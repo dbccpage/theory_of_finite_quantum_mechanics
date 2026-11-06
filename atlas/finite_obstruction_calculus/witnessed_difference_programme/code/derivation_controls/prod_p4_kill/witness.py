@@ -31,17 +31,20 @@ def _ensure_paths() -> Path:
 _ensure_paths()
 
 from finite_observation import replay_examples as fo_examples  # noqa: E402
-from omega_engine_applications.wdp_products.p4_observation_budget.adapter import (  # noqa: E402
-    WdpObservationPlanner,
-)
-from omega_engine_applications.wdp_products.p4_observation_budget.contracts import (  # noqa: E402
-    CompletionTarget,
-    Instrument,
-    SuiteVerdict,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p4_observation_budget.adapter import (  # noqa: E402
+        WdpObservationPlanner,
+    )
+    from omega_engine_applications.wdp_products.p4_observation_budget.contracts import (  # noqa: E402
+        CompletionTarget,
+        Instrument,
+        SuiteVerdict,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     bundle = fo_examples.build_bundle()
     summary = fo_examples.replay_bundle(bundle)
 
@@ -89,6 +92,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_unimproved_buyer_baseline() -> None:
+    _import_engine()
     planned_cost = Fraction(5)
     buyer_cost = Fraction(5)
     if planned_cost >= buyer_cost:

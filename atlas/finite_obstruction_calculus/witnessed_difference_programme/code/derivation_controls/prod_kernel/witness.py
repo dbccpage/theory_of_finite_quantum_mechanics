@@ -20,16 +20,19 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from certified_progress import producer as cp_producer
-from omega_engine_applications.wdp_products.kernel.adapter import (
-    WdpCertificateChecker,
-    WdpReceiptIssuer,
-    declare_pilot_agent_loop_arena,
-    evaluate_pilot_kernel_kill_conditions,
-)
-from omega_engine_applications.wdp_products.kernel.contracts import TypedRefusal
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.kernel.adapter import (
+        WdpCertificateChecker,
+        WdpReceiptIssuer,
+        declare_pilot_agent_loop_arena,
+        evaluate_pilot_kernel_kill_conditions,
+    )
+    from omega_engine_applications.wdp_products.kernel.contracts import TypedRefusal
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     kill_report = evaluate_pilot_kernel_kill_conditions()
     arena = declare_pilot_agent_loop_arena()
     cert = cp_producer.solve_progress(arena)["certificate"]

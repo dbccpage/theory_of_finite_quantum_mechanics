@@ -115,6 +115,8 @@ def verify(
             raise ValueError(f"duplicate archived path: {archived!r}")
         archived_paths.add(archived)
         archive_candidate = ROOT / archived
+        if not archive_candidate.exists() and not archive_candidate.is_symlink() and archived.startswith("docs/source_archive/"):
+            archive_candidate = ROOT / "docs/03_deletion_and_archive" / archived[len("docs/"):]
         if archive_candidate.is_symlink():
             raise ValueError(f"archived path must not be a symlink: {archived}")
         archive_path = archive_candidate.resolve()

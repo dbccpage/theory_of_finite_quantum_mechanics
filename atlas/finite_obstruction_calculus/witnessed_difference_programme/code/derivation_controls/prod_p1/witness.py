@@ -8,15 +8,18 @@ _REPO_ROOT = next(p for p in Path(__file__).resolve().parents if (p / ".git").ex
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from omega_engine_pfp.infrastructure.wdp_abstention_governor_adapter import (
-    WdpAbstentionGovernorAdapter,
-)
-from omega_engine_pfp.use_cases.abstention_governor import (
-    EvaluateAbstentionGovernorUseCase,
-)
+def _import_engine() -> None:
+    from omega_engine_pfp.infrastructure.wdp_abstention_governor_adapter import (
+        WdpAbstentionGovernorAdapter,
+    )
+    from omega_engine_pfp.use_cases.abstention_governor import (
+        EvaluateAbstentionGovernorUseCase,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     adapter = WdpAbstentionGovernorAdapter()
     use_case = EvaluateAbstentionGovernorUseCase(adapter)
 

@@ -29,17 +29,20 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.p4_observation_budget.adapter import (  # noqa: E402
-    WdpObservationPlanner,
-)
-from omega_engine_applications.wdp_products.p4_observation_budget.contracts import (  # noqa: E402
-    CompletionTarget,
-    Instrument,
-    SuiteVerdict,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p4_observation_budget.adapter import (  # noqa: E402
+        WdpObservationPlanner,
+    )
+    from omega_engine_applications.wdp_products.p4_observation_budget.contracts import (  # noqa: E402
+        CompletionTarget,
+        Instrument,
+        SuiteVerdict,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     outcome_map = {
         "I_all_expensive": {"s0": "0", "s1": "1", "s2": "2"},
         "I_pair01": {"s0": "0", "s1": "1", "s2": "1"},
@@ -83,6 +86,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_suboptimal_suite_verdict() -> None:
+    _import_engine()
     outcome_map = {
         "I_all_expensive": {"s0": "0", "s1": "1", "s2": "2"},
         "I_pair01": {"s0": "0", "s1": "1", "s2": "1"},

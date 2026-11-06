@@ -30,18 +30,21 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.kernel.contracts import TypedRefusal  # noqa: E402
-from omega_engine_applications.wdp_products.p5_claim_certification.adapter import (  # noqa: E402
-    WdpCertificationService,
-)
-from omega_engine_applications.wdp_products.p5_claim_certification.contracts import (  # noqa: E402
-    ClaimNode,
-    EvidencePointers,
-    Status,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.kernel.contracts import TypedRefusal  # noqa: E402
+    from omega_engine_applications.wdp_products.p5_claim_certification.adapter import (  # noqa: E402
+        WdpCertificationService,
+    )
+    from omega_engine_applications.wdp_products.p5_claim_certification.contracts import (  # noqa: E402
+        ClaimNode,
+        EvidencePointers,
+        Status,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     with tempfile.TemporaryDirectory() as tmp:
         tmp_path = Path(tmp)
         (tmp_path / "code").mkdir(parents=True, exist_ok=True)
@@ -89,6 +92,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_dependency_cycle() -> None:
+    _import_engine()
     ev = EvidencePointers(prose_statement="sec 1")
     a = ClaimNode(claim_id="A", status=Status.PROVED, evidence=ev, depends_on=("B",))
     b = ClaimNode(claim_id="B", status=Status.PROVED, evidence=ev, depends_on=("A",))

@@ -27,6 +27,7 @@ import WitnessedDifference.ComponentReports
 import WitnessedDifference.ComponentRepair
 import WitnessedDifference.ComponentCompletion
 import WitnessedDifference.ComponentQuantum
+import WitnessedDifference.FiniteDistinction
 
 /-!
 # Witnessed Difference

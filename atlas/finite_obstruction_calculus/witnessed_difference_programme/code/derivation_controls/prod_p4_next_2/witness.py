@@ -30,15 +30,18 @@ def _ensure_paths() -> Path:
 _ensure_paths()
 
 from observer_completion.observer_completion import M  # noqa: E402
-from omega_engine_applications.wdp_products.p4_observation_budget.adapter import (  # noqa: E402
-    map_completion_target_to_distinct_image,
-)
-from omega_engine_applications.wdp_products.p4_observation_budget.contracts import (  # noqa: E402
-    CompletionTarget,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p4_observation_budget.adapter import (  # noqa: E402
+        map_completion_target_to_distinct_image,
+    )
+    from omega_engine_applications.wdp_products.p4_observation_budget.contracts import (  # noqa: E402
+        CompletionTarget,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     source = M([[0, 0], [1, 0], [0, 1], [0, 0]], 2)
     repair = M([[1, 0], [0, 1], [0, 0], [0, 0]], 2)
     observer = M([[0, 0, 0, 1]], 4)
@@ -63,6 +66,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_non_completion_target() -> None:
+    _import_engine()
     source = M([[1]], 1)
     repair = M([[1]], 1)
     observer = M([[1]], 1)

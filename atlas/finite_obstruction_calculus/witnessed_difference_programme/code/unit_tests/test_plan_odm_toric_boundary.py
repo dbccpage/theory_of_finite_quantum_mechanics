@@ -21,6 +21,7 @@ RECEIPT = (
 HISTORICAL = (
     Path(__file__).resolve().parents[2]
     / "docs"
+    / "02_requiring_derivation"
     / "meron_field_limit_derivations"
     / "code"
     / "gate_e_exact_counterexample_receipt.json"

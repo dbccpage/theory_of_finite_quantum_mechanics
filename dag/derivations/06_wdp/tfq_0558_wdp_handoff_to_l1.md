@@ -54,7 +54,7 @@ In accordance with strict constructive principles:
 
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
-*None (Leaf or Terminal derivation in current tree)*
+- [TFQ-0559](tfq_0559_wd2_word_kernel_agreement.md)
 
 ---
 

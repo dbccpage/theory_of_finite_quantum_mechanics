@@ -29,17 +29,20 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.p2_provenance_gate.adapter import (  # noqa: E402
-    WdpOutputGate,
-    mutate_for_g5_step,
-)
-from omega_engine_applications.wdp_products.p2_provenance_gate.contracts import (  # noqa: E402
-    G5Step,
-    ValidationReport,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p2_provenance_gate.adapter import (  # noqa: E402
+        WdpOutputGate,
+        mutate_for_g5_step,
+    )
+    from omega_engine_applications.wdp_products.p2_provenance_gate.contracts import (  # noqa: E402
+        G5Step,
+        ValidationReport,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     gate = WdpOutputGate()
     isolated_steps: list[str] = []
     for step in G5Step:
@@ -61,6 +64,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_admitted_report_with_failure_fixture() -> None:
+    _import_engine()
     gate = WdpOutputGate()
     mutated = mutate_for_g5_step(G5Step.UNCERTAINTY)
     report = gate.gate("claim.g5.uncertainty", mutated)

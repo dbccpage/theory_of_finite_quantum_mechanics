@@ -4,7 +4,10 @@ from itertools import combinations, product
 
 import pytest
 
-from ..report_repair import least_repair, replay_repair, split_class
+try:
+    from ..report_repair import least_repair, replay_repair, split_class
+except ImportError:
+    from report_repair import least_repair, replay_repair, split_class
 
 
 def test_all_4681_small_tables_reach_the_least_repair_within_class_bound():

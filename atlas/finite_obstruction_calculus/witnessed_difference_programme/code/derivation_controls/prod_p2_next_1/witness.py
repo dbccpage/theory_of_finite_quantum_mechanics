@@ -29,23 +29,26 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.kernel.contracts import (  # noqa: E402
-    ReceiptRecord,
-    TypedRefusal,
-)
-from omega_engine_applications.wdp_products.p2_provenance_gate.adapter import (  # noqa: E402
-    WdpOutputGate,
-    mutate_for_g5_step,
-    valid_candidate_record,
-)
-from omega_engine_applications.wdp_products.p2_provenance_gate.contracts import (  # noqa: E402
-    G5Step,
-    ValidationFailure,
-    ValidationReport,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.kernel.contracts import (  # noqa: E402
+        ReceiptRecord,
+        TypedRefusal,
+    )
+    from omega_engine_applications.wdp_products.p2_provenance_gate.adapter import (  # noqa: E402
+        WdpOutputGate,
+        mutate_for_g5_step,
+        valid_candidate_record,
+    )
+    from omega_engine_applications.wdp_products.p2_provenance_gate.contracts import (  # noqa: E402
+        G5Step,
+        ValidationFailure,
+        ValidationReport,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     gate = WdpOutputGate()
     rec = valid_candidate_record()
     pass_report = gate.gate("claim.p2.001", rec)
@@ -84,6 +87,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_receipt_on_failing_report() -> None:
+    _import_engine()
     gate = WdpOutputGate()
     pass_report = gate.gate("claim.p2.001", valid_candidate_record())
     assert isinstance(pass_report, ValidationReport) and pass_report.receipt is not None

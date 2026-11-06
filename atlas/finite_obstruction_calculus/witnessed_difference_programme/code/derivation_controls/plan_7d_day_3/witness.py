@@ -6,8 +6,8 @@ AuthorityEffect: None.
 from __future__ import annotations
 
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[3]
 
@@ -48,7 +48,9 @@ def verify_lane_e_maps(
     ):
         raise ValueError("invalid Lane E parameters")
 
-    lane_e_doc = package_root / "docs" / "lane_e_character_duality_completion.md"
+    lane_e_doc = package_root / "docs" / "01_substantiated" / "lane_e_character_duality_completion.md"
+    if not lane_e_doc.is_file():
+        lane_e_doc = package_root / "docs" / "lane_e_character_duality_completion.md"
     if not lane_e_doc.is_file():
         raise ValueError("missing docs/lane_e_character_duality_completion.md")
     text = lane_e_doc.read_text(encoding="utf-8")

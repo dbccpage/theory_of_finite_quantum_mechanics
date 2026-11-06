@@ -134,10 +134,14 @@ def check_manuscript_and_archives(root: Path = PACKAGE_ROOT) -> dict[str, int | 
     idx_10_8 = text.index("### 10.8 Question-preserving encodings")
     idx_ch11_anchor = text.index('<a id="chapter-11"></a>')
     idx_ch11_heading = text.index("## Chapter 11 — Intersubjective presentation")
-    lean_files = list((root / "lean4").rglob("*.lean"))
+    lean_files = [p for p in (root / "lean4").rglob("*.lean") if ".lake" not in p.parts]
     wd_lean_files = list((root / "lean4" / "WitnessedDifference").glob("*.lean"))
-    s_manifest = root / "docs/source_archive/appendix_s_review/source_manifest.json"
-    loc_manifest = root / "docs/source_archive/locality_and_smearing/source_manifest.json"
+    s_manifest = root / "docs/03_deletion_and_archive/source_archive/appendix_s_review/source_manifest.json"
+    if not s_manifest.is_file():
+        s_manifest = root / "docs/source_archive/appendix_s_review/source_manifest.json"
+    loc_manifest = root / "docs/03_deletion_and_archive/source_archive/locality_and_smearing/source_manifest.json"
+    if not loc_manifest.is_file():
+        loc_manifest = root / "docs/source_archive/locality_and_smearing/source_manifest.json"
     return {
         "lean_total": len(lean_files),
         "lean_submodule_total": len(wd_lean_files),

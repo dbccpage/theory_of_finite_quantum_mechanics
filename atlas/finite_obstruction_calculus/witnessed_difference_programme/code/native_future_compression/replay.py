@@ -11,11 +11,10 @@ import stat
 import subprocess
 import sys
 import tempfile
+import tomllib
 from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
-
-import tomllib
 
 from .model import ACTIONS, NATIVE_SCHEMA, PROFILE, State, digest, fields, require, same, transition
 
@@ -207,6 +206,10 @@ def local_dependency_manifests(root, expected_sources):
     """Derive this adapter's non-test local closure from live manifests."""
     root = Path(root).absolute()
     workspace = root/"omega_engine/crates_rs/Cargo.toml"
+    owner_manifest = workspace.parent/"omega_wdp/Cargo.toml"
+    if not workspace.exists() and (root/"vendor/engine/Cargo.toml").exists():
+        workspace = root/"vendor/engine/Cargo.toml"
+        owner_manifest = workspace.parent/"engine_wdp/Cargo.toml"
     snapshots = {}
     def checked_manifest(path):
         data, snapshot = read_artifact(path)
@@ -218,7 +221,7 @@ def local_dependency_manifests(root, expected_sources):
     config = checked_manifest(workspace)
     require(not config.get("patch") and not config.get("replace"), "unsupported workspace dependency override")
     inherited = config.get("workspace", {}).get("dependencies", {})
-    pending = [workspace.parent/"omega_wdp/Cargo.toml"]
+    pending = [owner_manifest]
     seen = set()
     while pending:
         manifest = Path(os.path.abspath(pending.pop()))
@@ -258,10 +261,18 @@ class NativeCustody:
                 self.build.get("authority_effect") == "None", "native build schema or authority")
         sources = self.build.get("sources")
         require(type(sources) is dict and bool(sources), "native build sources")
-        for name in ("genesis_source_execution.rs", "genesis_marked_result.rs",
-                     "genesis_ongoing_adapter.rs", "native_future_compression.rs"):
-            require(f"omega_engine/crates_rs/omega_wdp/src/{name}" in sources,
-                    f"native owner absent from build receipt: {name}")
+        for name, alt in (
+            ("genesis_source_execution.rs", "genesis_source_execution.rs"),
+            ("genesis_marked_result.rs", "genesis_marked_result.rs"),
+            ("genesis_ongoing_adapter.rs", "genesis_ongoing_adapter.rs"),
+            ("native_future_compression.rs", "genesis_future_compression.rs"),
+        ):
+            require(
+                f"omega_engine/crates_rs/omega_wdp/src/{name}" in sources
+                or f"vendor/engine/engine_wdp/src/{name}" in sources
+                or f"vendor/engine/engine_wdp/src/{alt}" in sources,
+                f"native owner absent from build receipt: {name}",
+            )
         self.receipt_sha = self.receipt_snapshot.sha256
         self.verify()
 
@@ -311,7 +322,10 @@ class NativeCustody:
                             inventory.update(Path(directory)/f for f in files)
                 if (path.parent/"build.rs").exists() or (path.parent/"build.rs").is_symlink():
                     inventory.add(path.parent/"build.rs")
-        inventory.update(self.root/"omega_engine/crates_rs"/name for name in ("Cargo.toml", "Cargo.lock"))
+        ws_dir = self.root/"omega_engine/crates_rs"
+        if not (ws_dir/"Cargo.toml").exists() and (self.root/"vendor/engine/Cargo.toml").exists():
+            ws_dir = self.root/"vendor/engine"
+        inventory.update(ws_dir/name for name in ("Cargo.toml", "Cargo.lock"))
         same(sorted(p.relative_to(self.root).as_posix() for p in inventory),
              sorted(self.build["sources"]), "native source inventory changed")
         adapter = self.package / "code/causal_certificates/native/main.rs"

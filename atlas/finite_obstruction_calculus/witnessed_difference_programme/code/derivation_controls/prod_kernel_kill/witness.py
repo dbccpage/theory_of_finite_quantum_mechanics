@@ -30,13 +30,16 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.kernel.adapter import (  # noqa: E402
-    evaluate_pilot_kernel_kill_conditions,
-    pilot_agent_loop_certificate,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.kernel.adapter import (  # noqa: E402
+        evaluate_pilot_kernel_kill_conditions,
+        pilot_agent_loop_certificate,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     res = evaluate_pilot_kernel_kill_conditions()
     if any(res[name] is None for name in (
         "kill_no_finite_arena", "kill_receipts_unreplayed", "any_kill_condition_holds",
@@ -57,6 +60,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_tampered_pilot_certificate() -> None:
+    _import_engine()
     bad_cert = copy.deepcopy(pilot_agent_loop_certificate())
     bad_cert["task_id"] = "tampered"
     res = evaluate_pilot_kernel_kill_conditions(certificate=bad_cert)

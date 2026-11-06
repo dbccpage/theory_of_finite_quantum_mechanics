@@ -9,14 +9,38 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import subprocess
+import os
 import stat
+import subprocess
+import sys
 from pathlib import Path, PurePosixPath
 
 if __package__:
     from .check_ideal_prices import ExactPrices, analyze_prices
 else:  # Direct standalone invocation from the scripts directory.
     from check_ideal_prices import ExactPrices, analyze_prices
+
+
+def _default_causal_native_env() -> None:
+    names = ("WDP_CAUSAL_NATIVE_BIN", "WDP_CAUSAL_BUILD_RECEIPT", "WDP_CAUSAL_SOURCE_ROOT")
+    if all(os.environ.get(n) for n in names):
+        return
+    suffix = ".exe" if sys.platform == "win32" else ""
+    for root in Path(__file__).resolve().parents:
+        receipt = root / "target_paper_rust/causal_adapter/native_build_receipt.json"
+        for bin_rel in (
+            f"target_paper_rust/debug/wdp_causal_replay{suffix}",
+            f"target_paper_rust/causal_adapter/target/debug/wdp_causal_replay{suffix}",
+        ):
+            binary = root / bin_rel
+            if receipt.is_file() and binary.is_file():
+                os.environ.setdefault("WDP_CAUSAL_NATIVE_BIN", str(binary))
+                os.environ.setdefault("WDP_CAUSAL_BUILD_RECEIPT", str(receipt))
+                os.environ.setdefault("WDP_CAUSAL_SOURCE_ROOT", str(root))
+                return
+
+
+_default_causal_native_env()
 
 
 class CertificateRefusal(ValueError):
@@ -101,8 +125,11 @@ class NativeOwner:
         require(self.build.get("authority_effect") == "None", "native build authority")
         sources = self.build.get("sources")
         require(type(sources) is dict and bool(sources), "native sources absent")
-        required = "omega_engine/crates_rs/omega_wdp/src/genesis_source_execution.rs"
-        require(required in sources, "actual Source25 native owner not bound")
+        required = (
+            "omega_engine/crates_rs/omega_wdp/src/genesis_source_execution.rs",
+            "vendor/engine/engine_wdp/src/genesis_source_execution.rs",
+        )
+        require(any(r in sources for r in required), "actual Source25 native owner not bound")
         self.verify_custody()
         self.calls = 0
 
