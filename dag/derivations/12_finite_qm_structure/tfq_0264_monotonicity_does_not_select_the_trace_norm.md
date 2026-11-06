@@ -37,7 +37,7 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm081_stochastic_l1_contraction`](../../code/lean4/)
 - [`lean4/quantum_mechanics/TraceZeroDuality.lean::monotone_metric_distinct`](../../code/lean4/)
 - [`lean4/quantum_mechanics/TraceZeroDuality.lean::scaleMetric_monotone`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:e17359f64c885efb596f3390cf43cc40c25011d24ded59d783982b1eb15318df`](../../code/rust/src/)
@@ -46,7 +46,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`sources/atlas/papers/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
+- [`atlas/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
 
 ---
 

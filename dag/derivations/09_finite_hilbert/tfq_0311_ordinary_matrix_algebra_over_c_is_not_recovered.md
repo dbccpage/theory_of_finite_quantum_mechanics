@@ -51,7 +51,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`sources/atlas/papers/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py`](../../code/python/)
+- [`atlas/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py`](../../code/python/)
 
 ---
 
@@ -81,8 +81,8 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(L1-QM122-LEFTOVER-MNC-NOT-RECOVERED): 4*idx(93) + 3*stage_rank(6) + route_degree(2) == 392` ($\text{value} = 392$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(L1-QM122-LEFTOVER-MNC-NOT-RECOVERED): R_raw(216) - G_cob(105) - S_decoy(6) == 105 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 105$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications`
-- **Sovereign Rust Witness Anchor**: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
+- **Lean 4 Theorem Anchor**: `atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications`
+- **Sovereign Rust Witness Anchor**: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ec9b9688fabaa0c9bd197faf6ff73a3e645f3992778dc385593e9f7647d1d1eb`
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-FIN-GAUSS-MATRIX-ALGEBRA`)

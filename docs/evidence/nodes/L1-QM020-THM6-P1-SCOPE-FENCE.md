@@ -93,9 +93,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0305
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml`
+### Documents and data: `atlas/finite_quantum_mechanics/claims/claim_ledger.yaml`
 
-- file: [sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml)
 - sha256 (`lf-normalised`): `0d891e04d6b8ff46e95360a919f7c2a64074a2d4f9732a2e481f868e41c385a7`
 - cited in: node.source
 - counts toward the grade: yes
@@ -110,7 +110,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0305 python: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
+- TFQ-0305 python: no local python twin located for atlas/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
 
 ## Routes
 

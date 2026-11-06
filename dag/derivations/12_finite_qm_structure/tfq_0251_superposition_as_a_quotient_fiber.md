@@ -47,7 +47,7 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/H009PhaseFiber.lean::phasePD_zeroRel_iff`](../../code/lean4/)
 - [`lean4/quantum_mechanics/H009PhaseFiber.lean::phase_fiber`](../../code/lean4/)
 - [`lean4/quantum_mechanics/H009PhaseFiber.lean::relative_phase_in_fiber`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:726fa8afa05803e040d092cf665b4a775fb5f3626f1631071aac9763510e15d5::averages_to_dephasing`](../../code/rust/src/)
@@ -57,7 +57,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`sources/atlas/papers/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
+- [`atlas/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
 
 ---
 

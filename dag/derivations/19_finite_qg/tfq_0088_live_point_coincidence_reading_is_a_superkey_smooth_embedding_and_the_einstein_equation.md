@@ -32,7 +32,7 @@ In accordance with strict constructive principles:
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/general_relativity/relational_point_coincidence_and_witnessed_difference/code/relational_spacetime.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/general_relativity/relational_point_coincidence_and_witnessed_difference/code/relational_spacetime.py`](../../code/python/)
 
 ---
 

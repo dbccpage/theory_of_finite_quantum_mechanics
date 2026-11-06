@@ -109,7 +109,7 @@ Named by the node; not in this repository and not checked here.
 - TFQ-0059 python: not located
 - TFQ-0059 rust: no local rust twin located for external:sha256:5750c8892fd61b580168841520e2dbb88c42dc9a2870654a5b5a13df5a7e3be1
 - TFQ-0061 lean4: not located
-- TFQ-0061 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/symanzik_two_forest_bphz_control.py
+- TFQ-0061 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/symanzik_two_forest_bphz_control.py
 - TFQ-0061 rust: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579
 - TFQ-0072 lean4: not located
 - TFQ-0072 python: not located

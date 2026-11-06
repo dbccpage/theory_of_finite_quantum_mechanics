@@ -27,6 +27,16 @@ The computation and complexity sources share
 The import counts and prior byte audit below describe their historical
 snapshots, before this further consolidation; the new manifest records this move.
 
+## Restored source files, folded in 2026-11-06
+
+A later import restored 109 individually cited files (and their contract companions) under a separate
+`sources/atlas/papers/` tree. On 2026-11-06 that tree was folded in here: each file moved, byte for byte, into its
+paper folder (`fermion_sign_problem`, `finite_quantum_mechanics`, `finite_to_continuum`, `general_relativity`,
+`majorana`, `mub6`, `quantum_foundations`, and `finite_obstruction_calculus/lggr_quantum_observer_presheaf`).
+Four MUB receipts were byte-identical to `code/rust/quality/fixture_register/history/` and were removed. The
+manifest now lives in `PROVENANCE.json` under `restored_sources`. Same-named files elsewhere in the repository are
+later editions, not copies; these are the editions the DAG cites.
+
 ## What status these files have
 
 They are source texts. Whatever a file in `atlas/` says about being proved, verified or checked is the source's own wording. It is not a status in this repository, and it changes no node in `dag/derivation_dag.json`. The statuses in the DAG govern; see [`docs/evidence/README.md`](../docs/evidence/README.md) for how each status is backed.

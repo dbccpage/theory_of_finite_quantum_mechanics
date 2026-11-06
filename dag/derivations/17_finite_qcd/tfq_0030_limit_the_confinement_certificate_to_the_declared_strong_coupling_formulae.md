@@ -32,8 +32,8 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:b76d75cf31011b45adf41918beb988b8a475fb6967032f0649c5a0fb300eba30`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/qcd_beta0_wilson_confinement_control.py`](../../code/python/)
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/tests/e2e/test_e2e_qcd_beta0_wilson_confinement_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/qcd_beta0_wilson_confinement_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/tests/e2e/test_e2e_qcd_beta0_wilson_confinement_control.py`](../../code/python/)
 
 ---
 

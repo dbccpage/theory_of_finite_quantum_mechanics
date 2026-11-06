@@ -2,7 +2,7 @@
 
 dag/fragments/foc035_observer_presheaf.json holds one stage, OBSERVER_PRESHEAF. It maps the rows of the claim
 ledger of FOC-035 ("Local Green, Global Red: the Observer Tuple, the Empirical Presheaf and the Three-Role Gate",
-copied byte for byte under sources/atlas/) to nodes. A row keeps the status its evidence supports in this
+copied byte for byte under atlas/) to nodes. A row keeps the status its evidence supports in this
 repository, not the status it has in the source repository:
 
 - PROVED_LEAN only for the declarations of lean4/LggrFiniteResults.lean, with the statement narrowed to them;

@@ -169,7 +169,7 @@ Named by the node; not in this repository and not checked here.
 - TFQ-0093 rust: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e
 - TFQ-0108 rust: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e
 - TFQ-0108 rust: no local rust twin located for external:sha256:daa2544f59a9e79153dd422e291957ad086cabfeed37aa2bf2d5ddc847a4aade
-- TFQ-0110 lean4: no local lean twin located for sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/lean4/GR002.lean
+- TFQ-0110 lean4: no local lean twin located for atlas/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/lean4/GR002.lean
 - TFQ-0110 python: no local python twin located for dag/derivations/19_finite_qg/constraint_closure/code/l1_regge.py
 
 ## Routes

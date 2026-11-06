@@ -72,7 +72,7 @@ With $d_z(k) = m + \cos k_x + \cos k_y$ at the four Dirac points $k \in \{0, \pi
 From the repository root:
 
 ```text
-cd sources/atlas/papers/finite_quantum_mechanics
+cd atlas/finite_quantum_mechanics
 python3 -m pytest tests/e2e/test_e2e_regge_gravity_ghz_chern_control.py -q
 cd external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3
 cargo test -j 1 -p quantum_physics --lib -- regge_gravity

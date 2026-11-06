@@ -69,4 +69,4 @@ Section 13.8, where complex phase and continuous dynamics are said to belong to 
 - Supports: over Q(ζ₂₄), the finite spectral theorem holds exactly for F₄, X₄ and Z₃ with the stated multiplicities; the square roots in the algebra of U number 2^{occupied}; clocks refine exactly along divisibility; the stochastic swap has a unitary half step over Q(i) and no real or stochastic one.
 - Does not support: Stone's theorem; any derivation of continuity, of a generator with a unit, or of a preferred tower; independence of QM-211.
 - Narrowest claim: on the declared finite carriers the QM-211 import splits into an exactly computed clock tower, an imported two-step completion (direct limit, then metric), and the imported strong continuity and unit.
-- Next test: `cd sources/atlas/papers/finite_quantum_mechanics && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_clock_tower_control.py -q -p no:cacheprovider` (expect 6 passed).
+- Next test: `cd atlas/finite_quantum_mechanics && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_clock_tower_control.py -q -p no:cacheprovider` (expect 6 passed).

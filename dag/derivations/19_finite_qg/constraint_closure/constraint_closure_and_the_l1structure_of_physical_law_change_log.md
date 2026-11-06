@@ -3,7 +3,7 @@
 --- yaml
 title: Constraint-Closure Toy Model for ℓ¹ Residuals Change Log
 file_name: constraint_closure_and_the_l1structure_of_physical_law_change_log.md
-file_location: sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/
+file_location: atlas/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/
 status: Canonical
 evidence_scope: finite_receipts_only
 paper_id: GR-002

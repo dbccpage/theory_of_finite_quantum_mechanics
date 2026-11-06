@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:12edc74432418787b0ed633d04e6c77602431a6969b5172b53a4ffaf55e38d9f`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py`](../../code/python/)
 
 ---
 

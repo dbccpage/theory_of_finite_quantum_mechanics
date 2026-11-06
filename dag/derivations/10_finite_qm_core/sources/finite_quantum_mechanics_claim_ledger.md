@@ -3,7 +3,7 @@
 <!-- Source TeX uses underscores for subscripts, not Markdown emphasis. -->
 <!-- markdownlint-disable MD049 -->
 
-**Package:** `finite_qm` in `sources/atlas/papers/finite_quantum_mechanics`.
+**Package:** `finite_qm` in `atlas/finite_quantum_mechanics`.
 
 **AuthorityEffect:** None.
 

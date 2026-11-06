@@ -18,5 +18,5 @@ the WDP monograph.
 The same integration carried two in-repository papers, which stay in place
 with pointer notes: `omega_engine_projects/finite_qm/_papers_quantum_foundations/000_primitive_difference_for_quantum_carriers`
 (§§4.5, 5.2–5.5, 9.2) and
-`sources/atlas/papers/general_relativity/relational_point_coincidence_and_witnessed_difference`
+`atlas/general_relativity/relational_point_coincidence_and_witnessed_difference`
 (Appendices O.6 and P.4, with errata in its change log).

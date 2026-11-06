@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:ac46ba7dd3e8763a1c8f6bf42bc9e263b13e63bcc8783cdaf598f6ec34d4c9e3`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/vacuum_polarization_lamb_shift_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/vacuum_polarization_lamb_shift_control.py`](../../code/python/)
 
 ---
 

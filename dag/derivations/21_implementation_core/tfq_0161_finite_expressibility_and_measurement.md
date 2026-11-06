@@ -32,7 +32,7 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:64719e8ea699ce410bfdf038852518b4a6bc1c874cc58b9afe13ec52c5ca7129`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/finite_qm_expressibility_and_measurement_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/finite_qm_expressibility_and_measurement_control.py`](../../code/python/)
 
 ---
 

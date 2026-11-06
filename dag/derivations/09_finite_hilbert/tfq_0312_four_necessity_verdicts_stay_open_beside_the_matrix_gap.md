@@ -55,7 +55,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`sources/atlas/papers/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py`](../../code/python/)
+- [`atlas/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py`](../../code/python/)
 
 ---
 

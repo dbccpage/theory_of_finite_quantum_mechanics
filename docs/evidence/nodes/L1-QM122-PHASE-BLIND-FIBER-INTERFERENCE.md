@@ -119,7 +119,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0310 python: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
+- TFQ-0310 python: no local python twin located for atlas/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
 - TFQ-0310 rust: no local rust twin located for external:sha256:904a09d9ca4b18f97838457416046361842e537e895afce0374f8b6c670a1ef1
 - TFQ-0310 rust: no local rust twin located for external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6
 

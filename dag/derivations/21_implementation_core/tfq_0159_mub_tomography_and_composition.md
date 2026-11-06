@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/composition_tensor_mub.py`](../../code/python/)
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/four_wall_reconstruction_and_operad_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/four_wall_reconstruction_and_operad_control.py`](../../code/python/)
 
 ---
 
