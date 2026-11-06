@@ -11,7 +11,7 @@ from pathlib import Path
 import sys
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[3]
-REPO_ROOT = PACKAGE_ROOT.parents[4]
+REPO_ROOT = PACKAGE_ROOT.parents[2]
 EXPECTED_BINARY_SHA256 = "b37105dc9c58603b239bf1678af641c4f23bf5f23738642a97fd420853e27dcf"
 EXPECTED_LOCK_SHA256 = "8d7f43fa07f11af9502924843a56e74b3e8064365c2e29347dea4d8fc89900c1"
 
@@ -73,6 +73,8 @@ def verify_day_6_freeze(
         raise ValueError("native build receipt identity mismatch")
 
     bin_dir = repo_root / "omega_engine" / "crates_rs" / "omega_wdp" / "src" / "bin"
+    if not bin_dir.is_dir():
+        bin_dir = repo_root / "vendor" / "engine" / "engine_wdp" / "src" / "bin"
     for bin_name in ("genesis_extension.rs", "wdp_guarded_history.rs"):
         bin_path = bin_dir / bin_name
         if not bin_path.is_file():

@@ -30,22 +30,25 @@ def _ensure_paths() -> Path:
 _ensure_paths()
 
 import certified_progress.producer as cp_producer  # noqa: E402
-from omega_engine_applications.wdp_products.kernel.adapter import (  # noqa: E402
-    PILOT_ARENA_TASK_ID,
-    PILOT_ARENA_USABLE_BUDGET,
-    WdpCertificateChecker,
-    declare_pilot_agent_loop_arena,
-)
-from omega_engine_applications.wdp_products.p1_abstention_governor.adapter import (  # noqa: E402
-    WdpAbstentionGovernor,
-)
-from omega_engine_applications.wdp_products.p1_abstention_governor.contracts import (  # noqa: E402
-    GovernorReport,
-    TerminationLabel,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.kernel.adapter import (  # noqa: E402
+        PILOT_ARENA_TASK_ID,
+        PILOT_ARENA_USABLE_BUDGET,
+        WdpCertificateChecker,
+        declare_pilot_agent_loop_arena,
+    )
+    from omega_engine_applications.wdp_products.p1_abstention_governor.adapter import (  # noqa: E402
+        WdpAbstentionGovernor,
+    )
+    from omega_engine_applications.wdp_products.p1_abstention_governor.contracts import (  # noqa: E402
+        GovernorReport,
+        TerminationLabel,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     arena = declare_pilot_agent_loop_arena()
     cert = cp_producer.solve_progress(arena)["certificate"]
     checker = WdpCertificateChecker()
@@ -90,6 +93,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_negative_pilot_budget() -> None:
+    _import_engine()
     arena = declare_pilot_agent_loop_arena()
     cert = cp_producer.solve_progress(arena)["certificate"]
     governor = WdpAbstentionGovernor()

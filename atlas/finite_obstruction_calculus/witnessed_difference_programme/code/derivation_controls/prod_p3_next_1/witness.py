@@ -30,19 +30,22 @@ def _ensure_paths() -> Path:
 _ensure_paths()
 
 from antibody_transfer.replay_examples import example_input  # noqa: E402
-from omega_engine_applications.wdp_products.kernel.contracts import TypedRefusal  # noqa: E402
-from omega_engine_applications.wdp_products.p3_guard_transfer.adapter import (  # noqa: E402
-    WdpGuardTransferChecker,
-    make_source_guard_rule,
-    q4_worked_example_ledger,
-)
-from omega_engine_applications.wdp_products.p3_guard_transfer.contracts import (  # noqa: E402
-    BreakEven,
-    GuardRule,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.kernel.contracts import TypedRefusal  # noqa: E402
+    from omega_engine_applications.wdp_products.p3_guard_transfer.adapter import (  # noqa: E402
+        WdpGuardTransferChecker,
+        make_source_guard_rule,
+        q4_worked_example_ledger,
+    )
+    from omega_engine_applications.wdp_products.p3_guard_transfer.contracts import (  # noqa: E402
+        BreakEven,
+        GuardRule,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     checker = WdpGuardTransferChecker()
     transfer_problem = example_input()["transfer"]
     source_task = transfer_problem["source"]
@@ -86,6 +89,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_hits_exceeding_candidates() -> None:
+    _import_engine()
     BreakEven(
         candidates=4,
         hits=5,

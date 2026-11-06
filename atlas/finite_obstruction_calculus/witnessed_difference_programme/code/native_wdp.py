@@ -23,8 +23,12 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Mapping, Optional, Sequence, Tuple
 
+from witnessed_difference.native_functionals import (
+    FunctionalEvaluationError,
+    _unique_fields,
+    decode,
+)
 from witnessed_difference.obstruction import MatrixQuotientCertificate, verify_matrix_certificate
-from witnessed_difference.native_functionals import decode, FunctionalEvaluationError, _unique_fields
 from witnessed_difference.outcomes import Refused
 from witnessed_difference.ports import GenesisDescentResult, WdpObstructionSolution
 from witnessed_difference.rop import Err, Ok, Refusal, Result

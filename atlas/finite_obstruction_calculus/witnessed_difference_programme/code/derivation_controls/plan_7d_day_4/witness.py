@@ -5,8 +5,8 @@ AuthorityEffect: None.
 
 from __future__ import annotations
 
-from fractions import Fraction
 import json
+from fractions import Fraction
 from math import comb
 from pathlib import Path
 
@@ -197,7 +197,9 @@ def verify_lanes_a_and_d_scoped_reuse(
         raise ValueError("Lane D class count arithmetic failed")
 
     for ax_file in ("guarded_history_coherence_axioms.txt", "native_future_compression_axioms.txt"):
-        ax_path = package_root / "lean4" / ax_file
+        ax_path = package_root / "lean4" / "axioms" / ax_file
+        if not ax_path.is_file():
+            ax_path = package_root / "lean4" / ax_file
         if not ax_path.is_file():
             raise ValueError(f"missing Lean axiom census: {ax_file}")
 

@@ -34,12 +34,15 @@ from certified_progress.checker import check_certificate  # noqa: E402
 from certified_progress.fixtures import cheaper_route  # noqa: E402
 from certified_progress.model import graph_model  # noqa: E402
 from certified_progress.producer import solve_progress  # noqa: E402
-from omega_engine_applications.wdp_products.kernel.adapter import (  # noqa: E402
-    WdpCertificateChecker,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.kernel.adapter import (  # noqa: E402
+        WdpCertificateChecker,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     checker = WdpCertificateChecker()
 
     model = cheaper_route()
@@ -102,5 +105,6 @@ def witness() -> dict[str, object]:
 
 
 def refuse_producer_substitution(substitute_solver_answer: bool = True) -> None:
+    _import_engine()
     if substitute_solver_answer:
         raise ValueError("CertificateChecker never calls the producer or substitutes its own answer")

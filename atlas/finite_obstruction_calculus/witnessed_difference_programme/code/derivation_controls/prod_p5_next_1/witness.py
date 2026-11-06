@@ -29,17 +29,19 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.kernel.contracts import TypedRefusal  # noqa: E402
-from omega_engine_applications.wdp_products.p5_claim_certification.adapter import (  # noqa: E402
-    WdpCertificationService,
-    map_claim_status,
-    route_claim_to_ch20_status,
-)
-from omega_engine_applications.wdp_products.p5_claim_certification.contracts import (  # noqa: E402
-    ClaimNode,
-    EvidencePointers,
-    Status,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.kernel.contracts import TypedRefusal  # noqa: E402
+    from omega_engine_applications.wdp_products.p5_claim_certification.adapter import (  # noqa: E402
+        WdpCertificationService,
+        map_claim_status,
+        route_claim_to_ch20_status,
+    )
+    from omega_engine_applications.wdp_products.p5_claim_certification.contracts import (  # noqa: E402
+        ClaimNode,
+        EvidencePointers,
+        Status,
+    )
+    globals().update(locals())
 from witnessed_difference.relative_status import (  # noqa: E402
     Claim,
     ClaimStatus,
@@ -48,6 +50,7 @@ from witnessed_difference.relative_status import (  # noqa: E402
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     if len(ClaimStatus) != 15:
         raise RuntimeError(f"expected 15 ClaimStatus values, found {len(ClaimStatus)}")
 
@@ -104,6 +107,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_unmapped_definition_status() -> None:
+    _import_engine()
     res = map_claim_status(ClaimStatus.DEFINITION)
     if isinstance(res, TypedRefusal):
         raise ValueError(f"{res.code}: {res.reason}")

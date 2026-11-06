@@ -8,17 +8,20 @@ _REPO_ROOT = next(p for p in Path(__file__).resolve().parents if (p / ".git").ex
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from omega_engine_epistemic_immune_system.infrastructure.wdp_transferable_guard_adapter import (
-    WdpTransferableGuardAdapter,
-)
-from omega_engine_epistemic_immune_system.use_cases.transferable_guard_library import (
-    GuardTransferEvaluationRequest,
-    GuardTransferRefusal,
-    evaluate_guard_transfer,
-)
+def _import_engine() -> None:
+    from omega_engine_epistemic_immune_system.infrastructure.wdp_transferable_guard_adapter import (
+        WdpTransferableGuardAdapter,
+    )
+    from omega_engine_epistemic_immune_system.use_cases.transferable_guard_library import (
+        GuardTransferEvaluationRequest,
+        GuardTransferRefusal,
+        evaluate_guard_transfer,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     adapter = WdpTransferableGuardAdapter()
     valid_req = GuardTransferEvaluationRequest(task_id=1, level=1, episode_budget=18)
     verdict = evaluate_guard_transfer(valid_req, adapter)

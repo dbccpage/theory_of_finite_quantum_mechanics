@@ -282,7 +282,7 @@ Lean: 0 node `lean` fields and record `lean4` fields still name an atlas Lean fi
 
 ## Recommended copy list (not copied in this change)
 
-The papers, claim registers and data files that DAG nodes and records cite as `source` come to 106 files, 6.0 MB. 7 of them (1.2 MB) are no longer in the sibling working tree and would be restored from its git history. That is over the 5 MB this change allows for non-Lean files, so **none of them was copied**. Recommended: copy them verbatim, keeping their atlas-relative path, to `sources/atlas/<atlas-relative path>` in one follow-up change, then rewrite the `source` fields with `dag/research/lean_replay_campaign/rewrite_refs.py` (extend its table; the files are byte-identical, so `:line` references stay valid). The complete list with sizes is in the JSON file (entries whose `kind` is a document, yaml or data file and that are cited from the DAG classes). The largest:
+The papers, claim registers and data files that DAG nodes and records cite as `source` come to 106 files, 6.0 MB. 7 of them (1.2 MB) are no longer in the sibling working tree and would be restored from its git history. That is over the 5 MB this change allows for non-Lean files, so **none of them was copied**. Recommended: copy them verbatim, keeping their atlas-relative path, to `atlas/<atlas-relative path>` in one follow-up change, then rewrite the `source` fields with `dag/research/lean_replay_campaign/rewrite_refs.py` (extend its table; the files are byte-identical, so `:line` references stay valid). The complete list with sizes is in the JSON file (entries whose `kind` is a document, yaml or data file and that are cited from the DAG classes). The largest:
 
 | File | size | references |
 |---|---|---|

@@ -7,7 +7,7 @@ statement or replace the explicitly scoped reproduction records below.
 
 Jeremy H. Carroll · edition 2.4.5 · 2026-10-16
 
-Edition 2.4.5 adds [executable certificate refinement](docs/derivations/executable_reasoning_refinement.md)
+Edition 2.4.5 adds [executable certificate refinement](docs/01_substantiated/derivations/executable_reasoning_refinement.md)
 and formal graph transport to the reasoning calculus. Seventeen new Lean
 theorems connect concrete checkers to the abstract semantics; Python and Rust
 export certificates for independent kernel replay. The
@@ -38,10 +38,19 @@ explicit report map and protected question: a report preserves the answer
 exactly when the answer is constant on each report fiber. Linear repair
 systems and finite observation problems give concrete instances.
 
+## Four-Quadrant Epistemic Structure
+
+To ensure that human researchers and automated agents can immediately distinguish what is proved from what is open or archived, the programme is organized into a four-quadrant structure (see the master [QUADRANT_INDEX.md](QUADRANT_INDEX.md) and [docs/README.md](docs/README.md)):
+
+1. **Quadrant 1: Substantiated Assets (`docs/01_substantiated/`)**: Formally proved theorems, core Lean modules (`lean4/WitnessedDifference/`), verified Python modules (`code/witnessed_difference/`), passing tests, and confirmed claim ledgers (`witnessed_difference_programme_claim_ledger.md`, `wd2_finite_distinction_carriers_and_history_escape_claim_ledger.md`).
+2. **Quadrant 2: Requiring Derivation (`docs/02_requiring_derivation/`)**: Open derivations, active conjectures, the [Five Outstanding Derivations](docs/02_requiring_derivation/five_outstanding_derivations.md), Meron field limit derivations (`docs/02_requiring_derivation/meron_field_limit_derivations/`), the [affine thickening conjecture](docs/02_requiring_derivation/affine_thickening_conjecture.md), and [WD2 open general targets](docs/02_requiring_derivation/wd2_open_targets.md).
+3. **Quadrant 3: Deletion and Archive (`docs/03_deletion_and_archive/`)**: Obsolete, superseded swarms (`docs/03_deletion_and_archive/superseded_swarms/`), historical code snapshots (`docs/03_deletion_and_archive/source_archive/`), and purged transient build files.
+4. **Quadrant 4: Roadmap and Gaps (`docs/04_roadmap_and_gaps/`)**: The [Genesis bridge obligations](docs/04_roadmap_and_gaps/genesis_bridge_register.md) (`GEN-WDP-O01` through `GEN-WDP-O05`), DAG gate alignment (`PG-WDP-GENESIS-BRIDGE-OBLIGATIONS`), and long-term continuum limits.
+
 The [claim ledger](witnessed_difference_programme_claim_ledger.md),
-[current evidence guide](docs/current_claim_evidence.md),
+[current evidence guide](docs/01_substantiated/current_claim_evidence.md),
 [change log](witnessed_difference_programme_change_log.md) and
-[source errata](docs/source_errata_20261008.md) distinguish written results,
+[source errata](docs/03_deletion_and_archive/source_errata_20261008.md) distinguish written results,
 selected formalizations, executable checks and retained historical claims.
 Code correctness does not supply a physical interpretation or authorize an
 action. Proposal, evaluation and authorization have separate inputs and roles.
@@ -63,15 +72,15 @@ two unchanged modules on Lean 4.34.0, not a full build at the pinned versions.
 classifies the full legal schedule complex for paired removals and additions
 on one count key. For `1 <= c < n`, it has the homotopy type of the real
 no-`(c+1)`-equal arrangement complement; at `c = n-1` it is a sphere.
-The [complete proof](docs/guarded_schedule_topology.md) and
-[verification record](docs/guarded_schedule_topology_verification.md) separate
+The [complete proof](docs/01_substantiated/guarded_schedule_topology.md) and
+[verification record](docs/01_substantiated/guarded_schedule_topology_verification.md) separate
 the written topological theorem, 37 new Lean theorems and bounded executable
 checks. General guards and question-preserving execution quotients remain open.
 
 [Appendix P.23](witnessed_difference_programme.md#p23-sparse-integral-transport-and-polynomial-bounds-at-fixed-degree)
 constructs explicit integral maps with `p i = id` and
 `i p - id = d H + H d`. Its
-[minimum-sweep construction](docs/sparse_guarded_chain_transport.md) evaluates
+[minimum-sweep construction](docs/01_substantiated/sparse_guarded_chain_transport.md) evaluates
 sparse inputs without enumerating the execution complex, with polynomial
 computation and certificate-size bounds at fixed degree. The earlier
 first-descent version is retained separately. Reconstructed fillings have an
@@ -167,7 +176,7 @@ Paper, figures and documentation: [CC BY 4.0](https://creativecommons.org/licens
 Python, Lean and release tooling: Apache 2.0. The packaged Rust crate declares
 PolyForm Noncommercial 1.0.0; see [its license](code/rust/LICENSE).
 Retained sources preserve their original notices and are subject to the
-[current errata](docs/source_errata_20261008.md).
+[current errata](docs/03_deletion_and_archive/source_errata_20261008.md).
 
 The earlier published v0.5.0 deposit is [10.5281/zenodo.23114399](https://doi.org/10.5281/zenodo.23114399),
 in the [version family](https://doi.org/10.5281/zenodo.22880466). This correction
@@ -176,7 +185,7 @@ has no assigned version DOI and has not been republished by these edits.
 
 ## Witnessed reasoning edition, 2026-10-16
 
-The [inference calculus](docs/derivations/witnessed_reasoning_calculus.md)
+The [inference calculus](docs/01_substantiated/derivations/witnessed_reasoning_calculus.md)
 connects an explicitly admitted distinction regime to sound Horn inference,
 original graph-path witnesses, conservative learned facts and report-based
 limits. §14.8 now states the actual target-separating collision hypothesis.

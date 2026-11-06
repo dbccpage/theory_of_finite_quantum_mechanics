@@ -50,7 +50,10 @@ def source_snapshot(root: Path, packages: list[dict]) -> dict[str, str]:
         build_script = manifest.parent / "build.rs"
         if build_script.exists() or build_script.is_symlink():
             files.add(build_script)
-    files.update(root / "omega_engine/crates_rs" / name for name in ("Cargo.toml", "Cargo.lock"))
+    ws_dir = root / "omega_engine/crates_rs"
+    if not (ws_dir / "Cargo.toml").exists() and (root / "vendor/engine/Cargo.toml").exists():
+        ws_dir = root / "vendor/engine"
+    files.update(ws_dir / name for name in ("Cargo.toml", "Cargo.lock"))
     return {path.relative_to(root).as_posix(): sha(path) for path in sorted(files)}
 
 
@@ -61,20 +64,27 @@ def main() -> None:
     args = parser.parse_args()
     root, build = args.source_root.resolve(), args.build_dir.resolve()
     owner = root / "omega_engine/crates_rs/omega_wdp"
+    lock_src = root / "omega_engine/crates_rs/Cargo.lock"
+    if not owner.exists() and (root / "vendor/engine/engine_wdp").exists():
+        owner = root / "vendor/engine/engine_wdp"
+        lock_src = root / "vendor/engine/Cargo.lock"
+        dep_line = f'omega_wdp={{package="engine_wdp",path={json.dumps(owner.as_posix())}}}\n'
+    else:
+        dep_line = f'omega_wdp={{path={json.dumps(owner.as_posix())}}}\n'
     source = Path(__file__).with_name("main.rs").absolute()
     build.mkdir(parents=True, exist_ok=True)
     manifest = build / "Cargo.toml"
     manifest.write_text(
         '[package]\nname="wdp_causal_replay"\nversion="0.1.0"\nedition="2021"\n'
         '[workspace]\n[dependencies]\n'
-        f'omega_wdp={{path={json.dumps(owner.as_posix())}}}\n'
+        f'{dep_line}'
         'num-bigint="0.4"\nserde={version="1",features=["derive"]}\nserde_json="1"\n'
         f'[[bin]]\nname="wdp_causal_replay"\npath={json.dumps(source.as_posix())}\n',
         encoding="utf-8", newline="\n",
     )
     # Start from the explicit owner's locked registry versions; Cargo only adds
     # this adapter package and prunes unrelated workspace packages.
-    (build / "Cargo.lock").write_bytes((root / "omega_engine/crates_rs/Cargo.lock").read_bytes())
+    (build / "Cargo.lock").write_bytes(lock_src.read_bytes())
     command = ["cargo", "build", "--offline", "--manifest-path", str(manifest), "-j", "1"]
     metadata = subprocess.run(
         ["cargo", "metadata", "--offline", "--format-version", "1", "--manifest-path", str(manifest)],

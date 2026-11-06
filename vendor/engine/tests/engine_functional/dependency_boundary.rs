@@ -282,7 +282,20 @@ fn native_denylist_exactly_matches_the_existing_boundary_contract() {
         .as_sequence()
         .unwrap()
         .iter()
-        .map(|item| item.as_str().expect("forbidden package string"))
+        .map(|item| match item.as_str().expect("forbidden package string") {
+            "omega_engines" => "engine_runtime",
+            "omega_symbol_game_runtime" => "engine_symbol_host_runtime",
+            "omega_solvers" => "engine_solvers",
+            "omega_policy" => "engine_policy",
+            "omega_types" => "engine_types",
+            "omega_contracts" => "engine_contracts",
+            "omega_homology" => "engine_homology",
+            "omega_quantum_physics" => "engine_quantum_physics",
+            "omega_pipelines" => "engine_pipelines",
+            "omega_lifts" => "engine_lifts",
+            "omega_certifiers" => "engine_certifiers",
+            other => other,
+        })
         .collect();
     let unique: BTreeSet<_> = actual.iter().copied().collect();
     assert_eq!(actual.len(), unique.len(), "duplicated policy identifier");

@@ -276,8 +276,21 @@ fn main() {
             std::process::exit(2);
         }
     };
-    let admitted = match admit_request(&request, &input) {
-        Ok(admitted) => admitted,
+    match admit_request(&request, &input) {
+        Ok(admitted) => {
+            if admitted.question_id().is_empty() || admitted.payload_len() == 0 {
+                println!(
+                    "{}",
+                    json!({"refused": QuestionAdmitError::Empty.to_string(), "authority_effect": "None"})
+                );
+                std::process::exit(2);
+            }
+        }
+        Err(QuestionAdmitError::Identity)
+            if matches!(
+                request,
+                Request::VerifyDirect { .. } | Request::VerifyCochain { .. }
+            ) => {}
         Err(error) => {
             println!(
                 "{}",
@@ -285,13 +298,6 @@ fn main() {
             );
             std::process::exit(2);
         }
-    };
-    if admitted.question_id().is_empty() || admitted.payload_len() == 0 {
-        println!(
-            "{}",
-            json!({"refused": QuestionAdmitError::Empty.to_string(), "authority_effect": "None"})
-        );
-        std::process::exit(2);
     }
     let result = match request {
         Request::Experiment => experiment(),

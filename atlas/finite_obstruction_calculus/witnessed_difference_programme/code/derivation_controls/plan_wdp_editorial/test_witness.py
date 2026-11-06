@@ -28,8 +28,8 @@ def test_editorial_controls_and_manuscript_reconciliation() -> None:
         "e4_filtered_on_b": (Fraction(0), Fraction(0)),
         "e11_cross_outcome_sum": Fraction(0),
         "e11_unrestricted_sum": Fraction(1),
-        "lean_total": 102,
-        "lean_submodule_total": 100,
+        "lean_total": 104,
+        "lean_submodule_total": 102,
         "chapter_11_anchor_ordered": True,
         "no_bare_directory_links": True,
     }

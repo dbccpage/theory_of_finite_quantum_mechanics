@@ -152,7 +152,10 @@ def test_self_target_requires_same_owner_component_and_decoded_reaccess():
 
 def test_inventory_covers_every_manifest_occurrence_and_protects_missing_vocabulary():
     paper=Path(__file__).resolve().parents[2]
-    inventory=json.loads((paper/"docs/legacy_observer_inventory.json").read_text(encoding="utf-8"))
+    inv_path = paper / "docs/01_substantiated/legacy_observer_inventory.json"
+    if not inv_path.is_file():
+        inv_path = paper / "docs/legacy_observer_inventory.json"
+    inventory=json.loads(inv_path.read_text(encoding="utf-8"))
     source=json.loads((paper/"source_provenance.json").read_text(encoding="utf-8"))
     assert len(inventory["original_files"])==len(source["files"])==44
     assert len(inventory["absorbed_snapshots"])==len(source["absorbed_snapshots"])==15

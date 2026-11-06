@@ -9,16 +9,19 @@ _REPO_ROOT = next(p for p in Path(__file__).resolve().parents if (p / ".git").ex
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from omega_engine_cognitive_operations.infrastructure.wdp_provenance_output_gate_adapter import (
-    WdpProvenanceOutputGateAdapter,
-)
-from omega_engine_cognitive_operations.use_cases.provenance_output_gate import (
-    ProvenanceMeasurementRequest,
-    evaluate_provenance_output_gate,
-)
+def _import_engine() -> None:
+    from omega_engine_cognitive_operations.infrastructure.wdp_provenance_output_gate_adapter import (
+        WdpProvenanceOutputGateAdapter,
+    )
+    from omega_engine_cognitive_operations.use_cases.provenance_output_gate import (
+        ProvenanceMeasurementRequest,
+        evaluate_provenance_output_gate,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     adapter = WdpProvenanceOutputGateAdapter()
 
     valid_req = ProvenanceMeasurementRequest(

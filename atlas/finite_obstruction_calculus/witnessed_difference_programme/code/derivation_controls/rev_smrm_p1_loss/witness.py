@@ -33,16 +33,19 @@ _ensure_paths()
 import certified_progress.producer as cp_producer  # noqa: E402
 from certified_progress.fixtures import cheaper_route  # noqa: E402
 from certified_progress.model import graph_model  # noqa: E402
-from omega_engine_applications.wdp_products.p1_abstention_governor.adapter import (  # noqa: E402
-    WdpAbstentionGovernor,
-)
-from omega_engine_applications.wdp_products.p1_abstention_governor.contracts import (  # noqa: E402
-    GovernorReport,
-    TerminationLabel,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p1_abstention_governor.adapter import (  # noqa: E402
+        WdpAbstentionGovernor,
+    )
+    from omega_engine_applications.wdp_products.p1_abstention_governor.contracts import (  # noqa: E402
+        GovernorReport,
+        TerminationLabel,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     governor = WdpAbstentionGovernor()
     trapped_model = graph_model({"s": [("go", "1", ["d"])]}, targets=("t",))
     trapped_cert = cp_producer.solve_progress(trapped_model)["certificate"]
@@ -100,6 +103,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_loss_certificate_missing_b0() -> None:
+    _import_engine()
     out = witness()
     if out["missing_b0_label"] == "RefusedCertificate" and not out["missing_b0_verified"]:
         raise ValueError("RefusedCertificate: b_0 not in trap_set")

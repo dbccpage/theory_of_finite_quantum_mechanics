@@ -8,16 +8,19 @@ _REPO_ROOT = next(p for p in Path(__file__).resolve().parents if (p / ".git").ex
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from omega_engine_cognitive_operations.infrastructure.wdp_observation_budget_adapter import (
-    WdpObservationBudgetAdapter,
-)
-from omega_engine_cognitive_operations.use_cases.observation_budget_planner import (
-    ObservationBudgetRequest,
-    plan_observation_budget,
-)
+def _import_engine() -> None:
+    from omega_engine_cognitive_operations.infrastructure.wdp_observation_budget_adapter import (
+        WdpObservationBudgetAdapter,
+    )
+    from omega_engine_cognitive_operations.use_cases.observation_budget_planner import (
+        ObservationBudgetRequest,
+        plan_observation_budget,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     adapter = WdpObservationBudgetAdapter()
     req = ObservationBudgetRequest(
         outcome_map={
