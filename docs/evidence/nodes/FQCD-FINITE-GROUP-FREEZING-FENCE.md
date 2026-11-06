@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Documents and data: `dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md`
+
+- file: [dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md)
+- sha256 (`lf-normalised`): `8a802a811b96cbe022372b44d51b43396f36bc54c8f2302bb76716383ad5e11c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md](../../../dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md)
-- sha256 (`lf-normalised`): `d2e8d702d927d042b9c84c2d14ece2e71ba2fa286d2145efce6b8f4ccd0a4e13`
+- sha256 (`lf-normalised`): `86dc1c764782a9c1fc3f5ca9344bb6df599c1c0b5382fb8f1eecc3a36ab3d2fa`
 - generated view: listed, not counted
 - cited in: record TFQ-1053
 - counts toward the grade: no
-
-### Documents and data: `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
-
-- file: [papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md)
-- sha256 (`lf-normalised`): `dc388eaf79ed91e73233db79e15204ea6d67ba06bc5c30867589d745af7ae5f6`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 

@@ -32,7 +32,7 @@ Keep the finite clock period N and the hypothesis U_S^N = I_d explicit.
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.5-DEF claims DEFINITION; audited status DEFINITION
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.5-DEF claims DEFINITION; audited status DEFINITION
 
 ## Review
 
@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1115_dfm_page_wootters_clock_dressing.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1115_dfm_page_wootters_clock_dressing.md](../../../dag/derivations/24_dressing_field/tfq_1115_dfm_page_wootters_clock_dressing.md)
-- sha256 (`lf-normalised`): `7c4b7908dbe6654e070b5df9fd96e3ff628818dc4e615e7b705c0f4ff217671b`
+- sha256 (`lf-normalised`): `8f8e66cc108d9ab76a923259e814223360cc4b19854d6aadee4e0f9922478385`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1115
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

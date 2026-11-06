@@ -274,31 +274,31 @@
     "source_corpus_restatements": [
       {
         "source_id": "DFM-DEF-2.1",
-        "corpus": "papers/ravera_dfm_dossier.md",
+        "corpus": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "alias_of": "DFM-GROUP-CONNECTION",
         "alias_note": "Dossier Definition 2.1 fixes a connected directed graph and lists concrete groups (Q, U(1,Q(i)), B_2(Q), SU(2), SU(3), SO+(1,3;Q)); TFQ-0397 allows multigraphs, loops, forests and any supplied group, with the same gauge action U^g_(u,v) = g(v) U g(u)^{-1}."
       },
       {
         "source_id": "DFM-DEF-2.2",
-        "corpus": "papers/ravera_dfm_dossier.md",
+        "corpus": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "alias_of": "DFM-GENERAL-GRAPH-DRESSING",
         "alias_note": "Dossier Definition 2.2 (rooted tree holonomy u_T, dressed links u_T(v)^{-1} U u_T(u), identity on tree edges, chord value equal to the rooted fundamental-cycle holonomy) is the connected single-tree case of TFQ-0398 with u = T^{-1}; the coordinate bijection H^{|V|-1} x H^{b_1} = H^{|E|} is recorded separately as DFM-DEF-2.2-COORDS."
       },
       {
         "source_id": "DFM-DEF-2.2-ROOT",
-        "corpus": "papers/ravera_dfm_dossier.md",
+        "corpus": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "alias_of": "DFM-TREE-CHANGE",
         "alias_note": "The dossier clause that anchored gauges leave dressed links unchanged while an unanchored root value g(v_0) conjugates every dressed link is the root-gauge paragraph of TFQ-0399 (residual becomes g(r) R_e g(r)^{-1}); the dossier writes the conjugation with the opposite multiplication convention."
       },
       {
         "source_id": "DFM-P3.2-FENCE",
-        "corpus": "papers/ravera_dfm_dossier.md",
+        "corpus": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "alias_of": "DFM-HIERARCHICAL-BOREL",
         "alias_note": "Dossier Theorem 3.2 is wider than TFQ-0400. TFQ-0400 records unique factorization, normality, rooted-tree two-stage dressing for a supplied parent and depth, quotient invariance, the coboundary criterion, and the specified incidence operators. It does not build a spanning tree from an arbitrary graph, a computed cohomology group, or a 2-plaquette prism. The dossier diamond instance remains DFM-P3.2-TWO-STAGE."
       },
       {
         "source_id": "DFM-SEC5-SCOPE",
-        "corpus": "papers/ravera_dfm_dossier.md",
+        "corpus": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "alias_of": "DFM-CONTINUUM-INTERFACE",
         "alias_note": "Dossier section 5 restricts every claim to finite graphs and complexes over Q and Q(i) and leaves continuum Yang-Mills, gravity and the residual root and tree-change symmetries explicit, which is the obligation set of TFQ-0401."
       },
@@ -10098,14 +10098,14 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.",
-      "statement": "For a finite group G with a unitary representation, a finite periodic spatial lattice with edge set E and finite real beta, the temporal-gauge transfer matrix of the Wilson action acting on functions on G^E has strictly positive entries, so it has a simple largest eigenvalue lambda_0, a gauge-invariant Perron eigenvector, and every other eigenvalue satisfies |lambda| < lambda_0; the finite-volume gap log(lambda_0/|lambda_1|) is positive on the gauge-invariant subspace.",
+      "statement": "For a finite group G with a unitary representation, a finite periodic spatial lattice with edge set E and finite real beta, construct the temporal-gauge Wilson transfer matrix on functions on G^E and prove strict entrywise positivity and gauge equivariance. Its Perron eigenvalue lambda_0 is positive and simple, its normalized Perron vector is gauge invariant, and the non-Perron spectral-radius ratio q in the gauge-invariant sector satisfies 0 <= q < 1. Set q = 0 when that sector has no non-Perron eigenvalues. For q > 0 the logarithmic gap -log(q) is positive; q = 0 represents an infinite spectral decay rate, not a finite logarithm.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ],
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Prove the statement in Lean from the Perron-Frobenius theorem for positive matrices. The node is the automatic finite-volume gap only: it gives no bound uniform in volume or lattice spacing and is not the Yang-Mills mass gap of the Clay problem.",
+      "bottleneck": "Construct the transfer matrix and its gauge action, prove the required positivity and equivariance, and apply Perron-Frobenius in Lean. Handle zero subleading eigenvalues and the one-dimensional physical sector explicitly. Correlation-decay bounds require the relevant self-adjointness or operator estimates. No bound uniform in volume or lattice spacing, or continuum Yang-Mills mass gap, follows from the finite-volume statement.",
       "tags": [
         "finite-gauge-targets"
       ],
@@ -10121,7 +10121,7 @@
       "source_status": "Lean formalizes the explicit four-component/four-direction rational kernel, its Matrix wrapper, and real/nonnegative two-flavor determinant under backward-kernel adjointness. The original dimension-2/4 periodic-lattice and arbitrary-Clifford-representation target remains OPEN pending its carrier/Clifford/refinement bridge. Python independently checks a complete colored periodic fixture and rational block examples.",
       "statement": "On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md",
         "lean4/FermionSignWilsonDiracGamma5.lean",
         "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py"
       ],
@@ -10153,7 +10153,7 @@
       "source_status": "Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.",
       "statement": "For a finite group G and a closed orientable surface of genus g, |Hom(pi_1(Sigma_g), G)| / |G| equals the sum over irreducible complex representations R of G of (|G| / dim R)^(2g-2); this number is the zero-area partition function of two-dimensional lattice gauge theory with gauge group G and does not depend on the cellulation of the surface.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md",
         "lean4/FiniteGroupPachner.lean"
       ],
       "lean": [],
@@ -10171,25 +10171,28 @@
       "id": "FQCD-STRONG-COUPLING-AREA-LAW",
       "stage": "FINITE_QCD",
       "status": "CONDITIONAL",
-      "source_status": "Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked across Rust and Python; conditional on non-screening/center-protection in d >= 3 (including S_3, S_4, and A_5 cubic character invariants and d = 4 multi-plaquette boundary collar contraction bounds), unconditional for abelian and 2D decimation.",
-      "statement": "For a finite gauge group G, a nontrivial irreducible unitary representation R and dimension d >= 2, there are explicit beta_0 > 0, K and sigma > 0 depending on G, R and d such that for 0 <= beta < beta_0 the Wilson-action expectation of the R-character of every rectangular Wilson loop C on a finite periodic lattice much larger than C satisfies |<W_R(C)>| <= K exp(-sigma Area(C)), with Area(C) the minimal spanning area.",
+      "source_status": "Lean establishes geometric bound consequences for abstract expectation structures: the abelian case assumes AbelianWilsonExpectation.cluster_expansion_bound; the nonabelian case assumes NonAbelianWilsonExpectation.center_protected_bound and spanning minimality. The 2D decimation theorem unfolds a prescribed formula. Neither constructs the finite lattice Wilson measure or derives its cluster expansion. Rust/Python examples do not discharge these general premises. Status remains CONDITIONAL.",
+      "statement": "Target: in an explicitly justified non-screening regime for a finite gauge group G and nontrivial irreducible unitary representation R in dimension d >= 2, construct the finite periodic-lattice Wilson expectation and derive explicit beta_0 > 0, K and sigma > 0 such that |<W_R(C)>| <= K exp(-sigma Area(C)) for rectangular loops C and 0 <= beta < beta_0 on lattices with stated size and boundary conditions. Current Lean lemmas establish the bound only for abstract expectations supplied with the cluster bounds; arbitrary higher-dimensional representations are not covered.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ],
       "lean": [
-        "lean4/FQCD/StrongCouplingAreaLaw.lean",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.abelian_strong_coupling_area_law",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.center_protected_3d_strong_coupling_area_law",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_group_2d_character_decimation_area_law",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.klarner_lattice_animal_geometric_sum"
       ],
       "rust": [
         "code/rust/src/fqcd/strong_coupling_area_law.rs",
         "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
       ],
-      "imported_structure": [],
-      "bottleneck": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
+      "imported_structure": [
+        "AbelianWilsonExpectation.cluster_expansion_bound",
+        "NonAbelianWilsonExpectation.center_protected_bound",
+        "CenterProtectedHypothesis.spanning_minimality",
+        "Identification of exact2DDecimationValue with the finite Wilson measure"
+      ],
+      "bottleneck": "Define the actual finite Wilson configuration sum and normalization, derive its character expansion, and prove the cluster/animal estimates currently supplied as structure fields, including in the abelian case. Prove the identification of the 2D decimation definition with an integrated expectation under explicit boundary conditions. Derive the non-screening and spanning-minimality premises for the claimed regime; a zero cubic character sum alone is insufficient. This would replace the declared formula in TFQ-0024 by a derived strong-coupling inequality, with no weak-coupling or continuum claim.",
       "tags": [
         "finite-gauge-targets"
       ],
@@ -10204,7 +10207,7 @@
       "source_status": "Added 2026-10-27 with maintainer approval as a record of published or announced work; it carries no derivation status in this graph.",
       "statement": "Source record: lattice gauge theories whose gauge group is a finite subgroup of SU(2) or SU(3) follow the Lie-group theory at small beta and undergo a freezing transition at larger beta (Petcher-Weingarten 1980 for subgroups of SU(2); Bhanot-Rebbi 1981 for the 1080-element subgroup of SU(3)).",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md",
         "external:D. Petcher, D. H. Weingarten, Phys. Rev. D 22 (1980) 2465",
         "external:G. Bhanot, C. Rebbi, Phys. Rev. D 24 (1981) 3319"
       ],
@@ -10226,7 +10229,7 @@
       "source_status": "Added 2026-10-27 with maintainer approval as a record of published or announced work; it carries no derivation status in this graph.",
       "statement": "Source record: an OpenAI announcement of October 2026 reports a model-generated existence proof for four-dimensional pure Yang-Mills theory and QCD, building on the Balaban renormalization-group programme, with a Lean formalization reported complete on 2026-10-16 and an external group led by D. Gross writing it up. The announcement does not state that the Clay mass-gap problem is solved.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md",
         "external:https://openai.com/index/building-scientific-understanding-with-academic-communities/"
       ],
       "lean": [],
@@ -19867,7 +19870,7 @@
       "source": [
         "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/DressingFieldRefinementLimit.lean",
         "checks/independent/dfm-continuum-refinement-limit.py",
         "dag/derivations/independent/dfm-continuum-refinement-limit.md",
@@ -20392,11 +20395,11 @@
       "id": "DFM-TREE-CHORD-COORDINATES",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_LEAN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-DEF-2.2-COORDS claims PROVED_LEAN; audited status PROVED_LEAN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-DEF-2.2-COORDS claims PROVED_LEAN; audited status PROVED_LEAN",
       "statement": "On the triangle graph with tree edges 01, 12 and chord 02, for rational 2x2 matrices with right inverses and an anchored gauge (1, G1, G2), the rooted tree dressing sends both gauged tree links to the identity and sends the gauged chord to U02 U12^{-1} U01^{-1}, the ungauged rooted cycle holonomy.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ],
       "lean": [
@@ -20423,11 +20426,11 @@
       "id": "DFM-ABELIAN-TREE-PROJECTOR",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.1-DEF claims DEFINITION; audited status DEFINITION",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.1-DEF claims DEFINITION; audited status DEFINITION",
       "statement": "For a finite connected graph with coboundary (d_0 lambda)_(u,v) = lambda(v) - lambda(u) and a rooted spanning tree T, u_T[A](v) is the signed sum of A along the tree path from the root, and Pi_T(A) = A - d_0 u_T[A] on C^1(G; Q).",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ],
       "lean": [],
       "rust": [],
@@ -20449,11 +20452,11 @@
       "id": "DFM-ABELIAN-RETRACTION-DIAMOND",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.1-RETRACTION claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.1-RETRACTION claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
       "statement": "On the diamond graph (4 vertices, 5 edges, b_1 = 2) with the rational connection (3,-5,2,11,-4)/7 and one rational vertex gauge, for each of the 8 spanning trees Pi_T vanishes on the 3 tree edges and Pi_T(A + d_0 lambda) = Pi_T(A).",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ],
       "lean": [],
@@ -20477,11 +20480,11 @@
       "id": "DFM-TREE-CHANGE-GLZ-SYMANZIK-U",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.1-SYMANZIK claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.1-SYMANZIK claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
       "statement": "On the diamond graph, the 2x2 chord-coordinate matrix from a fixed tree T_0 to each of the 8 trees has determinant +1 or -1, and det(C_T diag(alpha) C_T^T) = U_G(alpha) = 247 for every tree at alpha = (2,3,5,7,11), with U_G(1,...,1) = 8.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1103_dfm_tree_change_glz_symanzik_u.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ],
       "lean": [],
@@ -20505,11 +20508,11 @@
       "id": "DFM-SYMANZIK-QED-AE-FENCE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.1-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.1-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
       "statement": "The dossier claim that rational intervals built from U_G bracket the imported 1-to-4-loop QED series a_e to 12 decimal places has no check in the cited replay module.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/DressingFieldSymanzikQedAeFence.lean",
         "dag/derivations/independent/dfm-symanzik-qed-ae-fence.md",
         "checks/independent/dfm-symanzik-qed-ae-fence.py"
@@ -20541,11 +20544,11 @@
       "id": "DFM-BOREL-LEVI-FACTORIZATION",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.2-DEF claims DEFINITION; audited status DEFINITION",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.2-DEF claims DEFINITION; audited status DEFINITION",
       "statement": "B_2(Q) is the group of invertible upper-triangular rational 2x2 matrices, N its unipotent normal subgroup and T_2(Q) the diagonal torus; a tree holonomy [[a,b],[0,d]] factors as [[1,b/d],[0,1]] diag(a,d), giving the stage-1 dressing u_N and stage-2 dressing t.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ],
       "lean": [],
       "rust": [],
@@ -20567,11 +20570,11 @@
       "id": "DFM-BOREL-TWO-STAGE-DIAMOND",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.2-TWO-STAGE claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.2-TWO-STAGE claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
       "statement": "On the diamond graph with one fixed tree, a pure-gauge B_2(Q) connection built from one rational vertex map is dressed to the identity on all 5 edges, and a connection with one chord multiplied by [[2,1],[0,3]] is dressed to the identity on tree edges and to a non-identity chord; stage-1 fields lie in N, stage-1 tree links are diagonal, and stage 2 reproduces the one-shot dressing.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ],
       "lean": [
@@ -20596,11 +20599,11 @@
       "id": "DFM-TREE-MOMENTUM-ROUTING",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.3-DEF claims DEFINITION; audited status DEFINITION",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.3-DEF claims DEFINITION; audited status DEFINITION",
       "statement": "For external momenta q_v in Q^d with sum zero and a spanning tree T, p_T(e) is minus the total momentum on one side of e for e in T and 0 on chords; F_0(alpha; q) is the sum over spanning 2-forests (F, V_1, V_2) of prod_{e not in F} alpha_e times |sum_{v in V_1} q_v|^2.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1107_dfm_tree_momentum_routing.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ],
       "lean": [],
       "rust": [],
@@ -20621,11 +20624,11 @@
       "id": "DFM-TWO-FOREST-F0-DIAMOND",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.3-F0 claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.3-F0 claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
       "statement": "On the diamond graph with alpha = (2,3,5,7,11) and four fixed external momenta in Q^2, the 2-forest enumeration has 10 forests and F_0 = 31153, and for each of the 8 spanning trees U_G (sum over tree-routed energies minus loop correction) equals 31153 with det L_T = 247.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1108_dfm_two_forest_f0_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ],
       "lean": [],
@@ -20646,11 +20649,11 @@
       "id": "DFM-BPHZ-SECTOR-KERNEL",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.3-BPHZ claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.3-BPHZ claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
       "statement": "For K(z; lambda) = (1 + z lambda) / (lambda (1 + lambda)) at z = 3/5, the four-term sum K1(z)K2(z) - K1(z)K2(0) - K1(0)K2(z) + K1(0)K2(0) equals (z/(1+lambda_1))(z/(1+lambda_2)) at 9 rational (lambda_1, lambda_2) pairs, with formal value z^2 = 9/25 at (0, 0).",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ],
       "lean": [],
@@ -20671,11 +20674,11 @@
       "id": "DFM-BPHZ-CONTINUUM-FENCE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.3-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.3-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
       "statement": "Algebraic cancellation of nested and overlapping UV boundary poles for actual Feynman-parametric integrands, and its use before continuum integration, is not established by the finite artifacts.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "dag/derivations/independent/dfm-bphz-continuum-fence.md"
       ],
       "lean": [
@@ -20717,11 +20720,11 @@
       "id": "DFM-DRESSED-DIRAC-PROPAGATOR",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.4-DEF claims DEFINITION; audited status DEFINITION",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.4-DEF claims DEFINITION; audited status DEFINITION",
       "statement": "gamma^mu in M_4(Q(i)) satisfy {gamma^mu, gamma^nu} = 2 eta^{mu nu} I_4 with eta = diag(1,-1,-1,-1); S_F(p) = (pslash - m)^{-1} = (pslash + m)/(p^2 - m^2) for p^2 != m^2; a vertex field is dressed by psi^(T)_v = u_T(v)^{-1} psi_v.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ],
       "lean": [],
       "rust": [],
@@ -20742,11 +20745,11 @@
       "id": "DFM-DRESSED-CORRELATOR-DIAMOND",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.4-CORRELATOR claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.4-CORRELATOR claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED",
       "statement": "On the diamond graph with five fixed unit Gaussian-rational edge phases, one unit vertex gauge and one-component Q(i) vertex fields, the bare product conj(psi_3) psi_1 changes under the gauge while the tree-dressed product is unchanged for each of the 8 spanning trees.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1112_dfm_dressed_correlator_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ],
       "lean": [],
@@ -20770,11 +20773,11 @@
       "id": "DFM-CLIFFORD-WARD-TAKAHASHI",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_PROSE",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.4-WT claims COMPUTATIONALLY_CHECKED; audited status PROVED_PROSE",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.4-WT claims COMPUTATIONALLY_CHECKED; audited status PROVED_PROSE",
       "statement": "In M_4(Q(i)), S_F^{-1}(p+q) - S_F^{-1}(p) = qslash, hence S_F(p+q) qslash S_F(p) = S_F(p) - S_F(p+q) at every rational (p, q, m) with both propagators non-singular.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1113_dfm_clifford_ward_takahashi.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ],
       "lean": [],
@@ -20795,11 +20798,11 @@
       "id": "DFM-Z1-Z2-COUNTERTERM-FENCE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.4-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.4-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
       "statement": "The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py",
         "lean4/DressingFieldZ1Z2CountertermFence.lean",
         "dag/derivations/independent/dfm-z1-z2-counterterm-fence.md",
@@ -20834,11 +20837,11 @@
       "id": "DFM-PAGE-WOOTTERS-CLOCK-DRESSING",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.5-DEF claims DEFINITION; audited status DEFINITION",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.5-DEF claims DEFINITION; audited status DEFINITION",
       "statement": "On Q(i)^N tensor Q(i)^d with cyclic clock shift S_C and a unitary step U_S with U_S^N = I_d, W = S_C tensor U_S and D = sum_t |t><t| tensor U_S^t; the discrete time shift is treated as the gauge action.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1115_dfm_page_wootters_clock_dressing.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ],
       "lean": [],
       "rust": [],
@@ -20859,11 +20862,11 @@
       "id": "DFM-CLOCK-DRESSING-INTERTWINER",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_PROSE",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.5-INTERTWINER claims COMPUTATIONALLY_CHECKED; audited status PROVED_PROSE",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.5-INTERTWINER claims COMPUTATIONALLY_CHECKED; audited status PROVED_PROSE",
       "statement": "If U_S is unitary with U_S^N = I_d, then D^dagger W D = S_C tensor I_d, and D^dagger sends each history state sum_t |t> tensor U_S^t psi_0 in ker(I - W) to (sum_t |t>) tensor psi_0.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1116_dfm_clock_dressing_intertwiner.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ],
       "lean": [],
@@ -20886,11 +20889,11 @@
       "id": "DFM-RELATIONAL-TIME-FENCE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.5-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.5-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
       "statement": "Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/DressingFieldRelationalTimeFence.lean",
         "dag/derivations/independent/dfm-relational-time-fence.md",
         "checks/independent/dfm-relational-time-fence.py"
@@ -20930,11 +20933,11 @@
       "id": "DFM-ELECTROWEAK-DOUBLET-DRESSING",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.6-DEF claims DEFINITION; audited status DEFINITION",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.6-DEF claims DEFINITION; audited status DEFINITION",
       "statement": "For a doublet Phi = (phi_1, phi_2) over Q(i) with Phi^dagger Phi = v^2, v in Q_{>0}, u(Phi) = (1/v)[[conj phi_2, phi_1], [-conj phi_1, phi_2]]; for rational (g, g') the neutral mass matrix is (v^2/4)[[g^2, -g g'], [-g g', g'^2]] with projectors P_gamma, P_Z.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1118_dfm_electroweak_doublet_dressing.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ],
       "lean": [],
       "rust": [],
@@ -20954,11 +20957,11 @@
       "id": "DFM-EW-DOUBLET-REDUCTION",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_LEAN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.6-DOUBLET claims PROVED_LEAN; audited status PROVED_LEAN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.6-DOUBLET claims PROVED_LEAN; audited status PROVED_LEAN",
       "statement": "For rational a, b, c, d, r with r != 0 and a^2 + b^2 + c^2 + d^2 = r^2, the four real component identities of u(Phi)^dagger Phi = (0, r) hold; for a real doublet (phi_+, phi_0) on the circle of radius r the real dressing matrix has determinant 1, is orthogonal and maps the doublet to (0, r).",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1119_dfm_ew_doublet_reduction.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean",
         "code/python/src/qm/ravera_dfm.py"
       ],
@@ -20983,11 +20986,11 @@
       "id": "DFM-WEINBERG-PROJECTORS-RHO",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_LEAN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.6-WEINBERG claims PROVED_LEAN; audited status PROVED_LEAN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.6-WEINBERG claims PROVED_LEAN; audited status PROVED_LEAN",
       "statement": "For rational g, g', v with g^2 + g'^2 != 0: sin^2 + cos^2 = 1, P_gamma + P_Z = I_2, P_gamma P_Z = P_Z P_gamma = 0, both are idempotent and M^2_neutral P_gamma = 0; if also g != 0 and v != 0 then M_W^2 / (M_Z^2 cos^2 theta_W) = 1.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1120_dfm_weinberg_projectors_rho.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ],
       "lean": [
@@ -21011,11 +21014,11 @@
       "id": "DFM-SM-ANOMALY-NC-THREE",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_LEAN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.6-ANOMALY claims PROVED_LEAN; audited status PROVED_LEAN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.6-ANOMALY claims PROVED_LEAN; audited status PROVED_LEAN",
       "statement": "With Y_Q = 1/6, Y_u = 2/3, Y_d = -1/3, Y_L = -1/2, Y_e = -1 and rational N_c: N_c(2Y_Q - Y_u - Y_d) = 0, the gravitational trace is 0, N_c Y_Q + Y_L = (N_c - 3)/6 and the cubic trace is (3 - N_c)/4, so each of the last two vanishes iff N_c = 3.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1121_dfm_sm_anomaly_nc_three.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ],
       "lean": [
@@ -21039,11 +21042,11 @@
       "id": "DFM-ELECTROWEAK-CONTINUUM-FENCE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.6-FENCE claims PROVED_LEAN; audited status OPEN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.6-FENCE claims PROVED_LEAN; audited status OPEN",
       "statement": "The residual U(1)_Y covariance u(e^{i alpha/2} Phi) = u(Phi) diag(e^{-i alpha/2}, e^{i alpha/2}), the dressed gauge field with derivative term, and the reading as an electroweak model without spontaneous symmetry breaking are not established by the finite artifacts.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/DressingFieldElectroweakContinuumFence.lean",
         "dag/derivations/independent/dfm-electroweak-continuum-fence.md",
         "checks/independent/dfm-electroweak-continuum-fence.py"
@@ -21082,11 +21085,11 @@
       "id": "DFM-CKM-BIPARTITE-REPHASING",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.7-DEF claims DEFINITION; audited status DEFINITION",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.7-DEF claims DEFINITION; audited status DEFINITION",
       "statement": "K_{N_g,N_g} has N_g up and N_g down vertices and N_g^2 edges carrying V_{alpha j}; rephasing V_{alpha j} -> e^{i phi_alpha} V_{alpha j} e^{-i phi_j} is a U(1) vertex coboundary, and the plaquette is Q_{alpha beta j k}(V) = V_{alpha j} V_{beta k} conj(V_{alpha k}) conj(V_{beta j}).",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ],
       "lean": [],
       "rust": [],
@@ -21106,11 +21109,11 @@
       "id": "DFM-CKM-CYCLE-COUNT",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_LEAN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.7-COUNT claims PROVED_LEAN; audited status PROVED_LEAN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.7-COUNT claims PROVED_LEAN; audited status PROVED_LEAN",
       "statement": "For every rational n, n^2 - (2n - 1) = (n - 1)^2, and (n - 1)(n - 2)/2 equals 0, 0, 1, 3 at n = 1, 2, 3, 4.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1124_dfm_ckm_cycle_count.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ],
       "lean": [
@@ -21133,11 +21136,11 @@
       "id": "DFM-JARLSKOG-QUARTET-INVARIANCE",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_LEAN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.7-QUARTET claims PROVED_LEAN; audited status PROVED_LEAN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.7-QUARTET claims PROVED_LEAN; audited status PROVED_LEAN",
       "statement": "For Gaussian rationals with |u_i| = |d_j| = 1, rephasing row i by u_i preserves v_ij conj(v_il), rephasing column j by d_j preserves v_ij conj(v_kj), and the quartet Q(v_ij, v_kl, v_il, v_kj) is unchanged when its two row-i entries are rephased by u_i.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean",
         "code/python/src/qm/ravera_dfm.py"
       ],
@@ -21163,11 +21166,11 @@
       "id": "DFM-CABIBBO-CP-PHASE-ZERO",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_LEAN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.7-TWO-GEN claims PROVED_LEAN; audited status PROVED_LEAN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.7-TWO-GEN claims PROVED_LEAN; audited status PROVED_LEAN",
       "statement": "For Gaussian rationals with v11 conj(v21) + v12 conj(v22) = 0, the quartet v11 v22 conj(v12) conj(v21) has imaginary part 0 and real part -|v12|^2 |v22|^2.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1126_dfm_cabibbo_cp_phase_zero.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ],
       "lean": [
@@ -21190,11 +21193,11 @@
       "id": "DFM-JARLSKOG-PYTHAGOREAN-WITNESS",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.7-THREE-GEN claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.7-THREE-GEN claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
       "statement": "For the fixed 3x3 Gaussian-rational matrix with c_i = 3/5, s_i = 4/5 and e^{i delta} = i, the three rows have unit norm, rows 1 and 2 are orthogonal, and the plaquette imaginary parts are +-5184/78125, nonzero.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1127_dfm_jarlskog_pythagorean_witness.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean",
         "code/python/src/qm/ravera_dfm.py"
       ],
@@ -21220,11 +21223,11 @@
       "id": "DFM-CKM-PHYSICS-FENCE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.7-FENCE claims PROVED_LEAN; audited status OPEN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.7-FENCE claims PROVED_LEAN; audited status OPEN",
       "statement": "Derivation of V from dressed Yukawa couplings, the unitarity-triangle reduction to (N_g - 1)(N_g - 2)/2 CP phases, and any statement about measured CP violation are not established.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/DressingFieldCkmPhysicsFence.lean",
         "dag/derivations/independent/dfm-ckm-physics-fence.md",
         "checks/independent/dfm-ckm-physics-fence.py"
@@ -21263,11 +21266,11 @@
       "id": "DFM-LANDAU-GRIBOV-KLEIN-FOUR",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.8-DEF claims DEFINITION; audited status DEFINITION",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.8-DEF claims DEFINITION; audited status DEFINITION",
       "statement": "On a finite graph with SU(3, Q(i)) links, the discrete Landau condition is the vanishing vertex divergence of the traceless anti-Hermitian parts of U^g; K_4 = {I, diag(1,-1,-1), diag(-1,1,-1), diag(-1,-1,1)}; the Hessian form along H^(23) = E_23 + E_32 is Tr(U (H^(23))^2).",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1129_dfm_landau_gribov_klein_four.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ],
       "lean": [],
       "rust": [],
@@ -21288,11 +21291,11 @@
       "id": "DFM-SU3-GRIBOV-COPIES-DIAMOND",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.8-GRIBOV claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.8-GRIBOV claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
       "statement": "On the diamond graph, the 64 anchored maps V -> K_4 applied to the trivial connection give 64 configurations (63 nontrivial) with Hermitian links, hence zero discrete Landau divergence; some link has trace -1 and Tr(U (H^(23))^2) = -2 versus +2 at the identity; dressing along one fixed tree sends all 64 to the trivial configuration.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1130_dfm_su3_gribov_copies_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean",
         "code/python/src/qm/ravera_dfm.py"
       ],
@@ -21319,11 +21322,11 @@
       "id": "DFM-SU3-TREE-DRESSING-DIAMOND",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.8-SU3 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.8-SU3 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
       "statement": "On the diamond graph with five fixed non-commuting Pythagorean SU(3, Q(i)) links and one anchored SU(3, Q(i)) vertex gauge, for each of the 8 spanning trees the dressing sets tree links to I_3 and the dressed configuration is gauge-unchanged.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ],
@@ -21352,11 +21355,11 @@
       "id": "DFM-GRIBOV-CONTINUUM-FENCE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.8-FENCE claims PROVED_LEAN; audited status OPEN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.8-FENCE claims PROVED_LEAN; audited status OPEN",
       "statement": "Statements about the continuum Gribov-Singer obstruction, the Gribov horizon of the Faddeev-Popov operator, ghost-free continuum quantization, or the Yang-Mills mass gap are not established by the finite diamond checks.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/DressingFieldGribovContinuumFence.lean",
         "dag/derivations/independent/dfm-gribov-continuum-fence.md",
         "checks/independent/dfm-gribov-continuum-fence.py"
@@ -21390,11 +21393,11 @@
       "id": "DFM-CARTAN-REGGE-TETRAD",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.9-DEF claims DEFINITION; audited status DEFINITION",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.9-DEF claims DEFINITION; audited status DEFINITION",
       "statement": "Lambda(beta) for rational beta in (-1, 1) is the boost with entries (1+beta^2)/(1-beta^2) and 2 beta/(1-beta^2); each 4-simplex carries e_sigma in GL(4, Q), each shared tetrahedron Omega in SO+(1,3; Q); g_sigma = e^T eta e, Gamma = e_sigma^{-1} Omega e_sigma', and H_h is the ordered product of Gamma around a hinge.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ],
       "lean": [],
       "rust": [],
@@ -21416,11 +21419,11 @@
       "id": "DFM-BOOST-PLANE-LEAN",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_LEAN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.9-BOOST claims PROVED_LEAN; audited status PROVED_LEAN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.9-BOOST claims PROVED_LEAN; audited status PROVED_LEAN",
       "statement": "For rational beta with 1 - beta^2 != 0, the 2x2 boost-plane matrix Lambda(beta) has determinant 1, Lambda(beta) Lambda(-beta) = I, Lambda^T eta_2 Lambda = eta_2, and e^T eta_2 e is unchanged when the 2x2 frame e is replaced by Lambda(-beta) e.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1134_dfm_boost_plane_lean.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ],
       "lean": [
@@ -21445,11 +21448,11 @@
       "id": "DFM-DRESSED-AFFINE-TRANSPORT",
       "stage": "DRESSING_FIELD",
       "status": "PROVED_PROSE",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.9-TRANSPORT claims PROVED_LEAN; audited status PROVED_PROSE",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.9-TRANSPORT claims PROVED_LEAN; audited status PROVED_PROSE",
       "statement": "For invertible rational tetrads and Omega in SO+(1,3; Q), Gamma = e_sigma^{-1} Omega e_sigma' is unchanged under independent frame changes (L_sigma, L_sigma') and satisfies Gamma^T g_sigma Gamma = g_sigma'.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ],
       "lean": [],
@@ -21473,11 +21476,11 @@
       "id": "DFM-HINGE-HOLONOMY-WITNESS",
       "stage": "DRESSING_FIELD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.9-HINGE claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.9-HINGE claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
       "statement": "A telescoping product of pure-gauge frame factors is I_4; Lambda(1/2) Lambda(1/3) Lambda(-1/3) has 4x4 trace 16/3 (boost-plane trace 10/3) and the same trace after tetrad conjugation; the product of three telescoping conjugated factors around a declared 3-cell is I_4.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean",
         "code/python/src/qm/ravera_dfm.py"
       ],
@@ -21504,11 +21507,11 @@
       "id": "DFM-REGGE-GRAVITY-FENCE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.9-FENCE claims OPEN; audited status OPEN",
+      "source_status": "dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.9-FENCE claims OPEN; audited status OPEN",
       "statement": "A 4D Regge complex with dressed hinge holonomies from edge lengths, a Spin+(1,3; Q(i)) spin-frame dressing of simplex spinors preserving a discrete Dirac action (the dossier's next test), and any continuum gravity reading are not constructed.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/DressingFieldReggeGravityFence.lean",
         "dag/derivations/independent/dfm-regge-gravity-fence.md",
         "checks/independent/dfm-regge-gravity-fence.py"
@@ -33634,7 +33637,7 @@
       "status": "GAP_NO_DERIVATION",
       "mechanism": "Prove the statement in Lean from the Perron-Frobenius theorem for positive matrices. The node is the automatic finite-volume gap only: it gives no bound uniform in volume or lattice spacing and is not the Yang-Mills mass gap of the Clay problem.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ]
     },
     {
@@ -33647,7 +33650,7 @@
       "status": "GAP_NO_DERIVATION",
       "mechanism": "Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ]
     },
     {
@@ -33659,7 +33662,7 @@
       "status": "GAP_NO_DERIVATION",
       "mechanism": "Prove the formula in Lean from the column orthogonality of characters, and the cellulation independence under the Pachner moves. Two-dimensional gauge theory has no propagating gluons, so the node models finite gauge structure and not four-dimensional confinement.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ]
     },
     {
@@ -33672,7 +33675,7 @@
       "status": "GAP_NO_DERIVATION",
       "mechanism": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ]
     },
     {
@@ -33685,7 +33688,7 @@
       "status": "RECORD_PARENT",
       "mechanism": "Fence: a fixed finite gauge group is not a route to the asymptotically free continuum limit, which needs beta to go to infinity; a finite route must enlarge the group, or pass to a quantum-group truncation, together with the lattice. The cited results are numerical; no rigorous freezing theorem is recorded here.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ]
     },
     {
@@ -33697,7 +33700,7 @@
       "status": "RECORD_PARENT",
       "mechanism": "Not reviewed here, and nothing in this graph depends on it. If the proof and its Lean code become public and survive review, record it as an imported assumption for the finite-to-continuum bridge of TFQ-0031 after checking its axioms; it does not promote any node of this graph.",
       "source": [
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ]
     },
     {
@@ -38252,7 +38255,7 @@
       "mechanism": "The general bijection (u_T on V minus the root, dressed chords) <-> H^{|E|} for every finite connected graph and group is stated in the dossier without proof and is not in Lean; the general neutralization and residual statements are TFQ-0398 and TFQ-0399.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38266,7 +38269,7 @@
       "mechanism": "Keep the root, the tree, the edge orientations and the additive group (Q, +) explicit; this is the additive case of TFQ-0397.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38280,7 +38283,7 @@
       "mechanism": "Idempotence and the chord-equals-cycle-holonomy clause are not separately checked; the general statement for all graphs is the (Q,+) specialization of TFQ-0398 and TFQ-0399 and should be cited from there.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38295,7 +38298,7 @@
       "mechanism": "The general claims (tree change acts by GL(b_1, Z); det L_T(alpha) = U_G(alpha) for every graph and positive alpha) are the classical matrix-tree theorem and are cited, not proved here.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1103_dfm_tree_change_glz_symanzik_u.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38310,7 +38313,7 @@
       "mechanism": "The edges and the weights are supplied. These eight subsets are one graph, not a theorem for every graph. The QED loop coefficients, the fine-structure constant, and continuum Feynman-parameter integrals stay open.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38324,7 +38327,7 @@
       "mechanism": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38338,7 +38341,7 @@
       "mechanism": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38352,7 +38355,7 @@
       "mechanism": "Keep the metric on Q^d, the sign convention for p_T and the mass term of F_G explicit.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1107_dfm_tree_momentum_routing.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38366,7 +38369,7 @@
       "mechanism": "The equality for every graph, dimension d and massive F_G is a classical parametric identity that is cited, not proved; only d = 2 and one momentum assignment are checked.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1108_dfm_two_forest_f0_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38380,7 +38383,7 @@
       "mechanism": "The identity is distributivity on one declared toy kernel; it is not Zimmermann's forest formula on a Feynman integrand and fixes no renormalization scheme.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38395,7 +38398,7 @@
       "mechanism": "The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38408,7 +38411,7 @@
       "mechanism": "Keep the gamma family admission and the non-singularity condition p^2 != m^2 explicit.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38422,7 +38425,7 @@
       "mechanism": "Four-component spinors with gamma^0, the tree-change holonomy factor and arbitrary graphs are not checked; the general U(1) case is a specialization of TFQ-0398 and TFQ-0399.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1112_dfm_dressed_correlator_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38436,7 +38439,7 @@
       "mechanism": "The identity is checked by exact arithmetic only at p = (5,1,2,-1), q = (2,-1,1,3), m = 2 together with the Clifford relations of the Dirac basis; no Lean witness.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1113_dfm_clifford_ward_takahashi.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38452,7 +38455,7 @@
       "mechanism": "The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38466,7 +38469,7 @@
       "mechanism": "Keep the finite clock period N and the hypothesis U_S^N = I_d explicit.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1115_dfm_page_wootters_clock_dressing.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38479,7 +38482,7 @@
       "mechanism": "Exact checks exist only for N = 4, d = 2, U_S = [[0,-1],[1,0]] and psi_0 = (3/5, 4/5); no Lean witness.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1116_dfm_clock_dressing_intertwiner.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38494,7 +38497,7 @@
       "mechanism": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38507,7 +38510,7 @@
       "mechanism": "Keep v rational and nonzero, and keep the hypercharge normalization (dossier Q = T_3 + Y, documentation Q = T_3 + Y/2) stated.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1118_dfm_electroweak_doublet_dressing.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38520,7 +38523,7 @@
       "mechanism": "Unitarity and det = 1 of the complex u(Phi), the covariance u(g_L Phi) = g_L u(Phi), and SU(2)_L invariance of the dressed W are not in Lean or Python.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1119_dfm_ew_doublet_reduction.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38534,7 +38537,7 @@
       "mechanism": "M_Z^2 as the nonzero eigenvalue and the tree-level reading of rho are definitions in the file, not derived from a Lagrangian.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1120_dfm_weinberg_projectors_rho.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38548,7 +38551,7 @@
       "mechanism": "These are polynomial identities over Q, not triangle-diagram anomaly computations; the dossier prints the cubic trace as (3/4)(3 - N_c) and the change log as 6 A_grav = 6(N_c - 3), both inconsistent with Lean, which is retained.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1121_dfm_sm_anomaly_nc_three.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38563,7 +38566,7 @@
       "mechanism": "The normalized residual law is recorded when z lies in Q(i), the squared modulus of z is 1, and a rational s with s*s equal to the doublet squared norm is supplied. Continuum gauge fields W_mu, derivatives, phases outside Q(i), and the Elitzur or symmetry-breaking reading stay open.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38577,7 +38580,7 @@
       "mechanism": "Keep the phases in the unit circle of Q(i) or declare the larger field.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38590,7 +38593,7 @@
       "mechanism": "That a spanning tree of K_{n,n} has 2n - 1 edges and that unitarity reduces the (n-1)^2 cycle phases to (n-1)(n-2)/2 CP phases are cited, not formalized.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1124_dfm_ckm_cycle_count.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38604,7 +38607,7 @@
       "mechanism": "Invariance under the full U(1)^{N_g} x U(1)^{N_g} rephasing follows by composing single-vertex steps and is not written in Lean; Python checks all 9 plaquettes under one fixed rephasing.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38618,7 +38621,7 @@
       "mechanism": "The physical reading (no CP phase for two generations) needs the full unitary 2x2 hypothesis set and the rephasing quotient.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1126_dfm_cabibbo_cp_phase_zero.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38632,7 +38635,7 @@
       "mechanism": "Full unitarity is not checked in Lean or Python (the external Rust asserts it); the instance is a chosen rational point, not measured CKM data.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1127_dfm_jarlskog_pythagorean_witness.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38647,7 +38650,7 @@
       "mechanism": "Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting polynomials, and measured CKM values stay open. The general nonzero-label table classification uses supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not established.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/DressingFieldCkmPhysicsFence.lean"
       ]
     },
@@ -38661,7 +38664,7 @@
       "mechanism": "The quadratic form along one generator is a stand-in for the Faddeev-Popov operator, not its spectrum.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1129_dfm_landau_gribov_klein_four.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38675,7 +38678,7 @@
       "mechanism": "The collapse holds because every copy is pure gauge; the check does not compare dressing with Landau gauge on configurations with nonzero curvature.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1130_dfm_su3_gribov_copies_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38690,7 +38693,7 @@
       "mechanism": "The statement for every group and graph is the specialization of TFQ-0398 and TFQ-0399 (root-fixing gauges leave residuals unchanged); continuum uniqueness is not claimed.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38705,7 +38708,7 @@
       "mechanism": "The recorded comparison is this pair of quadratic forms on two generators of one diagonal matrix. A refinement family of lattices, an operator spectrum, and a limit theorem stay open before any continuum transport.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38718,7 +38721,7 @@
       "mechanism": "Keep the frame action e -> L e and Omega -> L Omega L'^{-1} explicit.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -38731,7 +38734,7 @@
       "mechanism": "The 4x4 statements, the velocity-addition group law and general SO+(1,3; Q) frames are not in Lean.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1134_dfm_boost_plane_lean.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38746,7 +38749,7 @@
       "mechanism": "Exact 4x4 checks exist for two fixed tetrads, one boost-rotation frame change and Omega = Lambda(1/2), with the group law at beta = 1/3, 1/2; no Lean witness in dimension 4.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "code/python/src/qm/ravera_dfm.py"
       ]
     },
@@ -38760,7 +38763,7 @@
       "mechanism": "No simplicial complex, edge lengths or deficit angles are constructed, and the Bianchi check is a telescoping identity, not curvature on actual 3-cell boundaries.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "lean4/RaveraDfmFiniteToContinuum.lean"
       ]
     },
@@ -38775,7 +38778,7 @@
       "mechanism": "The lengths 3, 4, 5 and beta = 1/2 are supplied data. The block trace is not computed from those lengths. A 4D complex, a deficit angle, a spin-frame dressing, and a continuum reading stay open.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
       ]
     },
     {
@@ -60154,20 +60157,20 @@
       ],
       "f004_refs": [
         "dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md",
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ],
       "id": "TFQ-1049",
       "lean4": [],
       "local_id": "FQCD-FINITE-TRANSFER-MATRIX-GAP",
       "name": "fqcd-finite-transfer-matrix-gap",
-      "obligation": "Prove the statement in Lean from the Perron-Frobenius theorem for positive matrices. The node is the automatic finite-volume gap only: it gives no bound uniform in volume or lattice spacing and is not the Yang-Mills mass gap of the Clay problem.",
+      "obligation": "Construct the transfer matrix and its gauge action, prove the required positivity and equivariance, and apply Perron-Frobenius in Lean. Handle zero subleading eigenvalues and the one-dimensional physical sector explicitly. Correlation-decay bounds require the relevant self-adjointness or operator estimates. No bound uniform in volume or lattice spacing, or continuum Yang-Mills mass gap, follows from the finite-volume statement.",
       "parent_id": "TFQ-0011",
       "python": [],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "unified_dag",
       "stage": "FINITE_QCD",
-      "summary": "For a finite group G with a unitary representation, a finite periodic spatial lattice with edge set E and finite real beta, the temporal-gauge transfer matrix of the Wilson action acting on functions on G^E has strictly positive entries, so it has a simple largest eigenvalue lambda_0, a gauge-invariant Perron eigenvector, and every other eigenvalue satisfies |lambda| < lambda_0; the finite-volume gap log(lambda_0/|lambda_1|) is positive on the gauge-invariant subspace.",
+      "summary": "For a finite group G with a unitary representation, a finite periodic spatial lattice with edge set E and finite real beta, construct the temporal-gauge Wilson transfer matrix on functions on G^E and prove strict entrywise positivity and gauge equivariance. Its Perron eigenvalue lambda_0 is positive and simple, its normalized Perron vector is gauge invariant, and the non-Perron spectral-radius ratio q in the gauge-invariant sector satisfies 0 <= q < 1. Set q = 0 when that sector has no non-Perron eigenvalues. For q > 0 the logarithmic gap -log(q) is positive; q = 0 represents an infinite spectral decay rate, not a finite logarithm.",
       "uuid": "e16dc279-441e-54fa-9982-27762b4e67e7"
     },
     {
@@ -60178,7 +60181,7 @@
       ],
       "f004_refs": [
         "dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md",
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md",
         "lean4/FermionSignWilsonDiracGamma5.lean",
         "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py"
       ],
@@ -60217,7 +60220,7 @@
       ],
       "f004_refs": [
         "dag/derivations/14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md",
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md",
         "lean4/FiniteGroupPachner.lean"
       ],
       "id": "TFQ-1051",
@@ -60242,20 +60245,18 @@
       ],
       "f004_refs": [
         "dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md",
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ],
       "id": "TFQ-1052",
       "lean4": [
-        "lean4/FQCD/StrongCouplingAreaLaw.lean",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.abelian_strong_coupling_area_law",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.center_protected_3d_strong_coupling_area_law",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_group_2d_character_decimation_area_law",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.klarner_lattice_animal_geometric_sum"
       ],
       "local_id": "FQCD-STRONG-COUPLING-AREA-LAW",
       "name": "fqcd-strong-coupling-area-law",
-      "obligation": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
+      "obligation": "Define the actual finite Wilson configuration sum and normalization, derive its character expansion, and prove the cluster/animal estimates currently supplied as structure fields, including in the abelian case. Prove the identification of the 2D decimation definition with an integrated expectation under explicit boundary conditions. Derive the non-screening and spanning-minimality premises for the claimed regime; a zero cubic character sum alone is insufficient. This would replace the declared formula in TFQ-0024 by a derived strong-coupling inequality, with no weak-coupling or continuum claim.",
       "parent_id": "TFQ-0030",
       "python": [
         "code/python/src/fqcd/strong_coupling_area_law.py",
@@ -60268,7 +60269,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "FINITE_QCD",
-      "summary": "For a finite gauge group G, a nontrivial irreducible unitary representation R and dimension d >= 2, there are explicit beta_0 > 0, K and sigma > 0 depending on G, R and d such that for 0 <= beta < beta_0 the Wilson-action expectation of the R-character of every rectangular Wilson loop C on a finite periodic lattice much larger than C satisfies |<W_R(C)>| <= K exp(-sigma Area(C)), with Area(C) the minimal spanning area.",
+      "summary": "Target: in an explicitly justified non-screening regime for a finite gauge group G and nontrivial irreducible unitary representation R in dimension d >= 2, construct the finite periodic-lattice Wilson expectation and derive explicit beta_0 > 0, K and sigma > 0 such that |<W_R(C)>| <= K exp(-sigma Area(C)) for rectangular loops C and 0 <= beta < beta_0 on lattices with stated size and boundary conditions. Current Lean lemmas establish the bound only for abstract expectations supplied with the cluster bounds; arbitrary higher-dimensional representations are not covered.",
       "uuid": "6140bee6-f364-5e32-8776-3ea91bb9dcaf"
     },
     {
@@ -60279,7 +60280,7 @@
       ],
       "f004_refs": [
         "dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md",
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ],
       "id": "TFQ-1053",
       "lean4": [],
@@ -60303,7 +60304,7 @@
       ],
       "f004_refs": [
         "dag/derivations/17_finite_qcd/tfq_1054_fqcd_continuum_existence_announcement.md",
-        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+        "dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ],
       "id": "TFQ-1054",
       "lean4": [],
@@ -65255,7 +65256,7 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
-        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md",
         "dag/derivations/independent/dfm-continuum-refinement-limit.md",
         "dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json"
       ],
@@ -65775,7 +65776,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md",
-        "papers/ravera_dfm_dossier.md:67-80",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:67-80",
         "lean4/RaveraDfmFiniteToContinuum.lean:281-331"
       ],
       "id": "TFQ-1100",
@@ -65805,7 +65806,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md",
-        "papers/ravera_dfm_dossier.md:86-90"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:86-90"
       ],
       "id": "TFQ-1101",
       "lean4": [],
@@ -65829,7 +65830,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md",
-        "papers/ravera_dfm_dossier.md:88-96",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:88-96",
         "code/python/src/qm/ravera_dfm.py:214-280"
       ],
       "id": "TFQ-1102",
@@ -65857,7 +65858,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1103_dfm_tree_change_glz_symanzik_u.md",
-        "papers/ravera_dfm_dossier.md:91-96",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:91-96",
         "code/python/src/qm/ravera_dfm.py:214-280",
         "code/python/src/qm/ravera_dfm.py:373-421"
       ],
@@ -65886,8 +65887,8 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md",
-        "papers/ravera_dfm_dossier.md:96",
-        "papers/ravera_dfm_dossier.md:48",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:96",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:48",
         "lean4/DressingFieldSymanzikQedAeFence.lean",
         "dag/derivations/independent/dfm-symanzik-qed-ae-fence.md",
         "checks/independent/dfm-symanzik-qed-ae-fence.py"
@@ -65920,7 +65921,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md",
-        "papers/ravera_dfm_dossier.md:100-106"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:100-106"
       ],
       "id": "TFQ-1105",
       "lean4": [],
@@ -65944,7 +65945,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md",
-        "papers/ravera_dfm_dossier.md:104-110",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:104-110",
         "code/python/src/qm/ravera_dfm.py:285-368"
       ],
       "id": "TFQ-1106",
@@ -65974,7 +65975,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1107_dfm_tree_momentum_routing.md",
-        "papers/ravera_dfm_dossier.md:114-120"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:114-120"
       ],
       "id": "TFQ-1107",
       "lean4": [],
@@ -65998,7 +65999,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1108_dfm_two_forest_f0_diamond.md",
-        "papers/ravera_dfm_dossier.md:116-124",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:116-124",
         "code/python/src/qm/ravera_dfm.py:373-421"
       ],
       "id": "TFQ-1108",
@@ -66026,7 +66027,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md",
-        "papers/ravera_dfm_dossier.md:122-124",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:122-124",
         "code/python/src/qm/ravera_dfm.py:423-443"
       ],
       "id": "TFQ-1109",
@@ -66053,8 +66054,8 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md:118-124",
-        "papers/ravera_dfm_dossier.md:34",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:118-124",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:34",
         "dag/derivations/independent/dfm-bphz-continuum-fence.md"
       ],
       "id": "TFQ-1110",
@@ -66098,7 +66099,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md",
-        "papers/ravera_dfm_dossier.md:128-133"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:128-133"
       ],
       "id": "TFQ-1111",
       "lean4": [],
@@ -66122,7 +66123,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1112_dfm_dressed_correlator_diamond.md",
-        "papers/ravera_dfm_dossier.md:134",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:134",
         "code/python/src/qm/ravera_dfm.py:448-497"
       ],
       "id": "TFQ-1112",
@@ -66150,7 +66151,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1113_dfm_clifford_ward_takahashi.md",
-        "papers/ravera_dfm_dossier.md:135-141",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:135-141",
         "code/python/src/qm/ravera_dfm.py:499-571"
       ],
       "id": "TFQ-1113",
@@ -66177,7 +66178,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
-        "papers/ravera_dfm_dossier.md:139-141",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:139-141",
         "code/python/src/qm/ravera_dfm.py:565-571",
         "lean4/DressingFieldZ1Z2CountertermFence.lean",
         "dag/derivations/independent/dfm-z1-z2-counterterm-fence.md",
@@ -66213,7 +66214,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1115_dfm_page_wootters_clock_dressing.md",
-        "papers/ravera_dfm_dossier.md:145-152"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:145-152"
       ],
       "id": "TFQ-1115",
       "lean4": [],
@@ -66237,7 +66238,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1116_dfm_clock_dressing_intertwiner.md",
-        "papers/ravera_dfm_dossier.md:150-160",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:150-160",
         "code/python/src/qm/ravera_dfm.py:576-637"
       ],
       "id": "TFQ-1116",
@@ -66265,8 +66266,8 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md",
-        "papers/ravera_dfm_dossier.md:147",
-        "papers/ravera_dfm_dossier.md:158",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:147",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:158",
         "lean4/DressingFieldRelationalTimeFence.lean",
         "dag/derivations/independent/dfm-relational-time-fence.md",
         "checks/independent/dfm-relational-time-fence.py"
@@ -66307,7 +66308,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1118_dfm_electroweak_doublet_dressing.md",
-        "papers/ravera_dfm_dossier.md:164-176"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:164-176"
       ],
       "id": "TFQ-1118",
       "lean4": [],
@@ -66331,7 +66332,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1119_dfm_ew_doublet_reduction.md",
-        "papers/ravera_dfm_dossier.md:169-173",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:169-173",
         "lean4/RaveraDfmFiniteToContinuum.lean:39-68",
         "code/python/src/qm/ravera_dfm.py:642-657"
       ],
@@ -66362,7 +66363,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1120_dfm_weinberg_projectors_rho.md",
-        "papers/ravera_dfm_dossier.md:174-176",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:174-176",
         "lean4/RaveraDfmFiniteToContinuum.lean:70-111"
       ],
       "id": "TFQ-1120",
@@ -66392,7 +66393,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1121_dfm_sm_anomaly_nc_three.md",
-        "papers/ravera_dfm_dossier.md:178-185",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:178-185",
         "lean4/RaveraDfmFiniteToContinuum.lean:113-139"
       ],
       "id": "TFQ-1121",
@@ -66422,8 +66423,8 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md:166",
-        "papers/ravera_dfm_dossier.md:173-174",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:166",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:173-174",
         "lean4/DressingFieldElectroweakContinuumFence.lean",
         "dag/derivations/independent/dfm-electroweak-continuum-fence.md",
         "checks/independent/dfm-electroweak-continuum-fence.py"
@@ -66463,7 +66464,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md",
-        "papers/ravera_dfm_dossier.md:189-201"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:189-201"
       ],
       "id": "TFQ-1123",
       "lean4": [],
@@ -66487,7 +66488,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1124_dfm_ckm_cycle_count.md",
-        "papers/ravera_dfm_dossier.md:199-203",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:199-203",
         "lean4/RaveraDfmFiniteToContinuum.lean:166-176"
       ],
       "id": "TFQ-1124",
@@ -66516,7 +66517,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md",
-        "papers/ravera_dfm_dossier.md:204",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:204",
         "lean4/RaveraDfmFiniteToContinuum.lean:178-197",
         "code/python/src/qm/ravera_dfm.py:690-726"
       ],
@@ -66549,7 +66550,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1126_dfm_cabibbo_cp_phase_zero.md",
-        "papers/ravera_dfm_dossier.md:203",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:203",
         "lean4/RaveraDfmFiniteToContinuum.lean:199-211"
       ],
       "id": "TFQ-1126",
@@ -66578,7 +66579,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1127_dfm_jarlskog_pythagorean_witness.md",
-        "papers/ravera_dfm_dossier.md:204-208",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:204-208",
         "lean4/RaveraDfmFiniteToContinuum.lean:213-241",
         "code/python/src/qm/ravera_dfm.py:690-726"
       ],
@@ -66610,7 +66611,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
-        "papers/ravera_dfm_dossier.md:191-203",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:191-203",
         "lean4/DressingFieldCkmPhysicsFence.lean",
         "dag/derivations/independent/dfm-ckm-physics-fence.md",
         "checks/independent/dfm-ckm-physics-fence.py"
@@ -66651,7 +66652,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1129_dfm_landau_gribov_klein_four.md",
-        "papers/ravera_dfm_dossier.md:212-226"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:212-226"
       ],
       "id": "TFQ-1129",
       "lean4": [],
@@ -66675,7 +66676,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1130_dfm_su3_gribov_copies_diamond.md",
-        "papers/ravera_dfm_dossier.md:222-230",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:222-230",
         "lean4/RaveraDfmFiniteToContinuum.lean:244-265",
         "code/python/src/qm/ravera_dfm.py:797-894"
       ],
@@ -66708,7 +66709,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md",
-        "papers/ravera_dfm_dossier.md:228-230",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:228-230",
         "code/python/src/qm/ravera_dfm.py:778-837",
         "lean4/RaveraDfmFiniteToContinuum.lean:267-279"
       ],
@@ -66740,8 +66741,8 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md:32",
-        "papers/ravera_dfm_dossier.md:288",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:32",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:288",
         "lean4/DressingFieldGribovContinuumFence.lean",
         "dag/derivations/independent/dfm-gribov-continuum-fence.md",
         "checks/independent/dfm-gribov-continuum-fence.py"
@@ -66776,7 +66777,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md",
-        "papers/ravera_dfm_dossier.md:234-252"
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:234-252"
       ],
       "id": "TFQ-1133",
       "lean4": [],
@@ -66800,7 +66801,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1134_dfm_boost_plane_lean.md",
-        "papers/ravera_dfm_dossier.md:241-249",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:241-249",
         "lean4/RaveraDfmFiniteToContinuum.lean:334-363"
       ],
       "id": "TFQ-1134",
@@ -66830,7 +66831,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md",
-        "papers/ravera_dfm_dossier.md:250-256",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:250-256",
         "code/python/src/qm/ravera_dfm.py:959-995"
       ],
       "id": "TFQ-1135",
@@ -66860,7 +66861,7 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md",
-        "papers/ravera_dfm_dossier.md:258-260",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:258-260",
         "lean4/RaveraDfmFiniteToContinuum.lean:365-385",
         "code/python/src/qm/ravera_dfm.py:997-1028"
       ],
@@ -66892,8 +66893,8 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md",
-        "papers/ravera_dfm_dossier.md:288",
-        "papers/ravera_dfm_dossier.md:292-293",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:288",
+        "dag/derivations/24_dressing_field/ravera_dfm_dossier.md:292-293",
         "lean4/DressingFieldReggeGravityFence.lean",
         "dag/derivations/independent/dfm-regge-gravity-fence.md",
         "checks/independent/dfm-regge-gravity-fence.py"

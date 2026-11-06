@@ -138,20 +138,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md`
+
+- file: [dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md)
+- sha256 (`lf-normalised`): `8a802a811b96cbe022372b44d51b43396f36bc54c8f2302bb76716383ad5e11c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md](../../../dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md)
-- sha256 (`lf-normalised`): `ea254951a81b50256dd872369b2ddec14d4ec92f5607f7d6e22140dbaef992cd`
+- sha256 (`lf-normalised`): `077806366d0f1b2b5da64c6bdabdbf6d1c7641c1ff928a4b43f525a4f59e5fc3`
 - generated view: listed, not counted
 - cited in: record TFQ-1050
 - counts toward the grade: no
-
-### Documents and data: `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
-
-- file: [papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md)
-- sha256 (`lf-normalised`): `dc388eaf79ed91e73233db79e15204ea6d67ba06bc5c30867589d745af7ae5f6`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

@@ -32,7 +32,7 @@ The identity is distributivity on one declared toy kernel; it is not Zimmermann'
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.3-BPHZ claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.3-BPHZ claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -54,20 +54,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md](../../../dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md)
-- sha256 (`lf-normalised`): `b96a50078a1a4fd53c953ec332afdb23f874038d56a8686cd4e99062587cf44a`
+- sha256 (`lf-normalised`): `3fb7828e8ee7e2a248345878e4f0ab6663ee6aa36c3a4e456890a0e1ecd77f4b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1109
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

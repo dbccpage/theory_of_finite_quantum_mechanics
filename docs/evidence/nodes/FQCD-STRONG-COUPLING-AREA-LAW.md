@@ -4,15 +4,15 @@ Stage: [FINITE_QCD](../stages/FINITE_QCD.md). Status: `CONDITIONAL`. Evidence gr
 
 ## Statement
 
-> For a finite gauge group G, a nontrivial irreducible unitary representation R and dimension d \>= 2, there are explicit beta_0 \> 0, K and sigma \> 0 depending on G, R and d such that for 0 \<= beta \< beta_0 the Wilson-action expectation of the R-character of every rectangular Wilson loop C on a finite periodic lattice much larger than C satisfies |\<W_R(C)\>| \<= K exp(-sigma Area(C)), with Area(C) the minimal spanning area.
+> Target: in an explicitly justified non-screening regime for a finite gauge group G and nontrivial irreducible unitary representation R in dimension d \>= 2, construct the finite periodic-lattice Wilson expectation and derive explicit beta_0 \> 0, K and sigma \> 0 such that |\<W_R(C)\>| \<= K exp(-sigma Area(C)) for rectangular loops C and 0 \<= beta \< beta_0 on lattices with stated size and boundary conditions. Current Lean lemmas establish the bound only for abstract expectations supplied with the cluster bounds; arbitrary higher-dimensional representations are not covered.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 35
-- distinct cited Lean declarations covered by a current replay receipt: 33
+- cited Lean, Rust or Python symbols found in their in-repo files: 36
+- distinct cited Lean declarations covered by a current replay receipt: 34
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -24,15 +24,18 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
-None recorded.
+- AbelianWilsonExpectation.cluster_expansion_bound
+- NonAbelianWilsonExpectation.center_protected_bound
+- CenterProtectedHypothesis.spanning_minimality
+- Identification of exact2DDecimationValue with the finite Wilson measure
 
 ## Bottleneck
 
-Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.
+Define the actual finite Wilson configuration sum and normalization, derive its character expansion, and prove the cluster/animal estimates currently supplied as structure fields, including in the abelian case. Prove the identification of the 2D decimation definition with an integrated expectation under explicit boundary conditions. Derive the non-screening and spanning-minimality premises for the claimed regime; a zero cubic character sum alone is insufficient. This would replace the declared formula in TFQ-0024 by a derived strong-coupling inequality, with no weak-coupling or continuum claim.
 
 ## Source status
 
-Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked across Rust and Python; conditional on non-screening/center-protection in d \>= 3 (including S_3, S_4, and A_5 cubic character invariants and d = 4 multi-plaquette boundary collar contraction bounds), unconditional for abelian and 2D decimation.
+Lean establishes geometric bound consequences for abstract expectation structures: the abelian case assumes AbelianWilsonExpectation.cluster_expansion_bound; the nonabelian case assumes NonAbelianWilsonExpectation.center_protected_bound and spanning minimality. The 2D decimation theorem unfolds a prescribed formula. Neither constructs the finite lattice Wilson measure or derives its cluster expansion. Rust/Python examples do not discharge these general premises. Status remains CONDITIONAL.
 
 ## Review
 
@@ -71,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FQCD.ginsparg_wilson_overlap_relation_and_luscher_index_across_doubler_shells` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.ginsparg_wilson_overlap_relation_and_luscher_index_across_doubler_shells` |
 | `FQCD.hessian_subgroups_and_quartic_adjoint_casimir_obstruction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.hessian_subgroups_and_quartic_adjoint_casimir_obstruction` |
 | `FQCD.higher_genus_mednykh_abelianization_asymptotics_and_genus3_bounds` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.higher_genus_mednykh_abelianization_asymptotics_and_genus3_bounds` |
+| `FQCD.klarner_lattice_animal_geometric_sum` | yes | yes | yes | module-level | `#print axioms FQCD.klarner_lattice_animal_geometric_sum` |
 | `FQCD.klein_sigma168_invariants_and_complete_su3_defect_chain` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.klein_sigma168_invariants_and_complete_su3_defect_chain` |
 | `FQCD.overlap_modified_chirality_involution` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.overlap_modified_chirality_involution` |
 | `FQCD.overlap_modified_chirality_matrix_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.overlap_modified_chirality_matrix_square` |
@@ -114,20 +118,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md`
+
+- file: [dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md)
+- sha256 (`lf-normalised`): `8a802a811b96cbe022372b44d51b43396f36bc54c8f2302bb76716383ad5e11c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md](../../../dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md)
-- sha256 (`lf-normalised`): `2f5702298149e92418e33bea347052f3b9fea8f9ca1a99b7617fcd383d2722c5`
+- sha256 (`lf-normalised`): `59b15614363a4c6de5c9d75281879d230648657bd59ddc8c1a9f0880cfe5c938`
 - generated view: listed, not counted
 - cited in: record TFQ-1052
 - counts toward the grade: no
-
-### Documents and data: `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
-
-- file: [papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md)
-- sha256 (`lf-normalised`): `dc388eaf79ed91e73233db79e15204ea6d67ba06bc5c30867589d745af7ae5f6`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

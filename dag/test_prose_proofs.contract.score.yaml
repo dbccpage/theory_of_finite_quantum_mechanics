@@ -1,0 +1,61 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "dag/test_prose_proofs.py",
+  "contract": {
+    "schema_id": "finite-qm.code-companion.v1",
+    "subject": "dag/test_prose_proofs.py",
+    "source_sha256": "89469bb147ecd2e3d95feda6c9954e81f1284440f231ae1e49b372e9bb6ac0a7",
+    "authority_effect": "None",
+    "purpose": "Preserve proof coverage and generated links when a proof book moves into a numbered derivation stage.",
+    "owned_invariants": [
+      "Stage-root *_proofs.md books remain discoverable after relocation.",
+      "Only structurally valid proof sections contribute to coverage.",
+      "Generated section links point to the actual repository-relative file and heading."
+    ],
+    "validation": [
+      "python -m pytest dag/test_prose_proofs.py",
+      "Before/after coverage comparison and Genesis source SHA256 preservation."
+    ],
+    "boundaries": [
+      "Lexical citation and indexing checks do not re-prove the mathematical claims or confer certification."
+    ]
+  },
+  "current_contract": "1dec99dd5c4260e0006231f15f45fe37e1a76c0f75387b106f8405c3c990aa64",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1dec99dd5c4260e0006231f15f45fe37e1a76c0f75387b106f8405c3c990aa64",
+      "bytes": 868,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "dag/test_prose_proofs.py",
+        "source_sha256": "89469bb147ecd2e3d95feda6c9954e81f1284440f231ae1e49b372e9bb6ac0a7",
+        "authority_effect": "None",
+        "purpose": "Preserve proof coverage and generated links when a proof book moves into a numbered derivation stage.",
+        "owned_invariants": [
+          "Stage-root *_proofs.md books remain discoverable after relocation.",
+          "Only structurally valid proof sections contribute to coverage.",
+          "Generated section links point to the actual repository-relative file and heading."
+        ],
+        "validation": [
+          "python -m pytest dag/test_prose_proofs.py",
+          "Before/after coverage comparison and Genesis source SHA256 preservation."
+        ],
+        "boundaries": [
+          "Lexical citation and indexing checks do not re-prove the mathematical claims or confer certification."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"finite-qm.code-companion.v1\",\n  \"subject\": \"dag/test_prose_proofs.py\",\n  \"source_sha256\": \"89469bb147ecd2e3d95feda6c9954e81f1284440f231ae1e49b372e9bb6ac0a7\",\n  \"authority_effect\": \"None\",\n  \"purpose\": \"Preserve proof coverage and generated links when a proof book moves into a numbered derivation stage.\",\n  \"owned_invariants\": [\n    \"Stage-root *_proofs.md books remain discoverable after relocation.\",\n    \"Only structurally valid proof sections contribute to coverage.\",\n    \"Generated section links point to the actual repository-relative file and heading.\"\n  ],\n  \"validation\": [\n    \"python -m pytest dag/test_prose_proofs.py\",\n    \"Before/after coverage comparison and Genesis source SHA256 preservation.\"\n  ],\n  \"boundaries\": [\n    \"Lexical citation and indexing checks do not re-prove the mathematical claims or confer certification.\"\n  ]\n}\n",
+      "original_paths": [
+        "dag/test_prose_proofs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "dag/test_prose_proofs.contract.yaml": "1dec99dd5c4260e0006231f15f45fe37e1a76c0f75387b106f8405c3c990aa64"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Contract for proof-book relocation and indexing; no new independent score is asserted."
+}

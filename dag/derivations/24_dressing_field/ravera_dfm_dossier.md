@@ -1,7 +1,7 @@
 # The Dressing Field Method on Finite Graphs and Simplicial Complexes: Exact Cohomological Reduction, Gribov-Copy Elimination, and Rational Continuum Enclosures
 
 **Authors:** A.O.
-**Version:** v0.2.0
+**Version:** v0.2.0 (historical source; relocated 2026-11-05). **AuthorityEffect: None. The body preserves historical claims, including errors; cite the audited DAG coverage and errata below, not the body's proof-status claims.**
 **Date:** October 2026
 **Classification:** Mathematical Physics / Gauge Theory / Algebraic Graph Calculus / Discrete Differential Geometry
 
@@ -303,49 +303,49 @@ Audit of 2026-10-21. The unified derivation DAG (`dag/fragments/unified_dag.json
 
 | Source id | Kind | TFQ record | DAG node | Source claimed | Audited | Reconciliation |
 |---|---|---|---|---|---|---|
-| `DFM-DEF-2.1` | ALIAS | [TFQ-0397](../dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md) | `DFM-GROUP-CONNECTION` | - | **DEFINITION** | restated in trunk |
-| `DFM-DEF-2.2` | ALIAS | [TFQ-0398](../dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | `DFM-GENERAL-GRAPH-DRESSING` | - | **PROVED_LEAN** | restated in trunk |
-| `DFM-DEF-2.2-COORDS` | NEW | [TFQ-1100](../dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md) | `DFM-TREE-CHORD-COORDINATES` | PROVED_LEAN | **PROVED_LEAN** | same |
-| `DFM-DEF-2.2-ROOT` | ALIAS | [TFQ-0399](../dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md) | `DFM-TREE-CHANGE` | - | **PROVED_LEAN** | restated in trunk |
-| `DFM-P3.1-DEF` | NEW | [TFQ-1101](../dag/derivations/24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md) | `DFM-ABELIAN-TREE-PROJECTOR` | DEFINITION | **DEFINITION** | same |
-| `DFM-P3.1-FENCE` | NEW | [TFQ-1104](../dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md) | `DFM-SYMANZIK-QED-AE-FENCE` | COMPUTATIONALLY_CHECKED | **OPEN** | lowered |
-| `DFM-P3.1-RETRACTION` | NEW | [TFQ-1102](../dag/derivations/24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md) | `DFM-ABELIAN-RETRACTION-DIAMOND` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
-| `DFM-P3.1-SYMANZIK` | NEW | [TFQ-1103](../dag/derivations/24_dressing_field/tfq_1103_dfm_tree_change_glz_symanzik_u.md) | `DFM-TREE-CHANGE-GLZ-SYMANZIK-U` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
-| `DFM-P3.2-DEF` | NEW | [TFQ-1105](../dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md) | `DFM-BOREL-LEVI-FACTORIZATION` | DEFINITION | **DEFINITION** | same |
-| `DFM-P3.2-FENCE` | ALIAS | [TFQ-0400](../dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md) | `DFM-HIERARCHICAL-BOREL` | - | **OPEN** | restated in trunk |
-| `DFM-P3.2-TWO-STAGE` | NEW | [TFQ-1106](../dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md) | `DFM-BOREL-TWO-STAGE-DIAMOND` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
-| `DFM-P3.3-BPHZ` | NEW | [TFQ-1109](../dag/derivations/24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md) | `DFM-BPHZ-SECTOR-KERNEL` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
-| `DFM-P3.3-DEF` | NEW | [TFQ-1107](../dag/derivations/24_dressing_field/tfq_1107_dfm_tree_momentum_routing.md) | `DFM-TREE-MOMENTUM-ROUTING` | DEFINITION | **DEFINITION** | same |
-| `DFM-P3.3-F0` | NEW | [TFQ-1108](../dag/derivations/24_dressing_field/tfq_1108_dfm_two_forest_f0_diamond.md) | `DFM-TWO-FOREST-F0-DIAMOND` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
-| `DFM-P3.3-FENCE` | NEW | [TFQ-1110](../dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md) | `DFM-BPHZ-CONTINUUM-FENCE` | COMPUTATIONALLY_CHECKED | **OPEN** | lowered |
-| `DFM-P3.4-CORRELATOR` | NEW | [TFQ-1112](../dag/derivations/24_dressing_field/tfq_1112_dfm_dressed_correlator_diamond.md) | `DFM-DRESSED-CORRELATOR-DIAMOND` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
-| `DFM-P3.4-DEF` | NEW | [TFQ-1111](../dag/derivations/24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md) | `DFM-DRESSED-DIRAC-PROPAGATOR` | DEFINITION | **DEFINITION** | same |
-| `DFM-P3.4-FENCE` | NEW | [TFQ-1114](../dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md) | `DFM-Z1-Z2-COUNTERTERM-FENCE` | COMPUTATIONALLY_CHECKED | **OPEN** | lowered |
-| `DFM-P3.4-WT` | NEW | [TFQ-1113](../dag/derivations/24_dressing_field/tfq_1113_dfm_clifford_ward_takahashi.md) | `DFM-CLIFFORD-WARD-TAKAHASHI` | COMPUTATIONALLY_CHECKED | **PROVED_PROSE** | raised |
-| `DFM-P3.5-DEF` | NEW | [TFQ-1115](../dag/derivations/24_dressing_field/tfq_1115_dfm_page_wootters_clock_dressing.md) | `DFM-PAGE-WOOTTERS-CLOCK-DRESSING` | DEFINITION | **DEFINITION** | same |
-| `DFM-P3.5-FENCE` | NEW | [TFQ-1117](../dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md) | `DFM-RELATIONAL-TIME-FENCE` | COMPUTATIONALLY_CHECKED | **OPEN** | lowered |
-| `DFM-P3.5-INTERTWINER` | NEW | [TFQ-1116](../dag/derivations/24_dressing_field/tfq_1116_dfm_clock_dressing_intertwiner.md) | `DFM-CLOCK-DRESSING-INTERTWINER` | COMPUTATIONALLY_CHECKED | **PROVED_PROSE** | raised |
-| `DFM-P3.6-ANOMALY` | NEW | [TFQ-1121](../dag/derivations/24_dressing_field/tfq_1121_dfm_sm_anomaly_nc_three.md) | `DFM-SM-ANOMALY-NC-THREE` | PROVED_LEAN | **PROVED_LEAN** | same |
-| `DFM-P3.6-DEF` | NEW | [TFQ-1118](../dag/derivations/24_dressing_field/tfq_1118_dfm_electroweak_doublet_dressing.md) | `DFM-ELECTROWEAK-DOUBLET-DRESSING` | DEFINITION | **DEFINITION** | same |
-| `DFM-P3.6-DOUBLET` | NEW | [TFQ-1119](../dag/derivations/24_dressing_field/tfq_1119_dfm_ew_doublet_reduction.md) | `DFM-EW-DOUBLET-REDUCTION` | PROVED_LEAN | **PROVED_LEAN** | same |
-| `DFM-P3.6-FENCE` | NEW | [TFQ-1122](../dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md) | `DFM-ELECTROWEAK-CONTINUUM-FENCE` | PROVED_LEAN | **OPEN** | lowered |
-| `DFM-P3.6-WEINBERG` | NEW | [TFQ-1120](../dag/derivations/24_dressing_field/tfq_1120_dfm_weinberg_projectors_rho.md) | `DFM-WEINBERG-PROJECTORS-RHO` | PROVED_LEAN | **PROVED_LEAN** | same |
-| `DFM-P3.7-COUNT` | NEW | [TFQ-1124](../dag/derivations/24_dressing_field/tfq_1124_dfm_ckm_cycle_count.md) | `DFM-CKM-CYCLE-COUNT` | PROVED_LEAN | **PROVED_LEAN** | same |
-| `DFM-P3.7-DEF` | NEW | [TFQ-1123](../dag/derivations/24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md) | `DFM-CKM-BIPARTITE-REPHASING` | DEFINITION | **DEFINITION** | same |
-| `DFM-P3.7-FENCE` | NEW | [TFQ-1128](../dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md) | `DFM-CKM-PHYSICS-FENCE` | PROVED_LEAN | **OPEN** | lowered |
-| `DFM-P3.7-QUARTET` | NEW | [TFQ-1125](../dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md) | `DFM-JARLSKOG-QUARTET-INVARIANCE` | PROVED_LEAN | **PROVED_LEAN** | same |
-| `DFM-P3.7-THREE-GEN` | NEW | [TFQ-1127](../dag/derivations/24_dressing_field/tfq_1127_dfm_jarlskog_pythagorean_witness.md) | `DFM-JARLSKOG-PYTHAGOREAN-WITNESS` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
-| `DFM-P3.7-TWO-GEN` | NEW | [TFQ-1126](../dag/derivations/24_dressing_field/tfq_1126_dfm_cabibbo_cp_phase_zero.md) | `DFM-CABIBBO-CP-PHASE-ZERO` | PROVED_LEAN | **PROVED_LEAN** | same |
-| `DFM-P3.8-DEF` | NEW | [TFQ-1129](../dag/derivations/24_dressing_field/tfq_1129_dfm_landau_gribov_klein_four.md) | `DFM-LANDAU-GRIBOV-KLEIN-FOUR` | DEFINITION | **DEFINITION** | same |
-| `DFM-P3.8-FENCE` | NEW | [TFQ-1132](../dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md) | `DFM-GRIBOV-CONTINUUM-FENCE` | PROVED_LEAN | **OPEN** | lowered |
-| `DFM-P3.8-GRIBOV` | NEW | [TFQ-1130](../dag/derivations/24_dressing_field/tfq_1130_dfm_su3_gribov_copies_diamond.md) | `DFM-SU3-GRIBOV-COPIES-DIAMOND` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
-| `DFM-P3.8-SU3` | NEW | [TFQ-1131](../dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md) | `DFM-SU3-TREE-DRESSING-DIAMOND` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
-| `DFM-P3.9-BOOST` | NEW | [TFQ-1134](../dag/derivations/24_dressing_field/tfq_1134_dfm_boost_plane_lean.md) | `DFM-BOOST-PLANE-LEAN` | PROVED_LEAN | **PROVED_LEAN** | same |
-| `DFM-P3.9-DEF` | NEW | [TFQ-1133](../dag/derivations/24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md) | `DFM-CARTAN-REGGE-TETRAD` | DEFINITION | **DEFINITION** | same |
-| `DFM-P3.9-FENCE` | NEW | [TFQ-1137](../dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md) | `DFM-REGGE-GRAVITY-FENCE` | OPEN | **OPEN** | same |
-| `DFM-P3.9-HINGE` | NEW | [TFQ-1136](../dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | `DFM-HINGE-HOLONOMY-WITNESS` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
-| `DFM-P3.9-TRANSPORT` | NEW | [TFQ-1135](../dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md) | `DFM-DRESSED-AFFINE-TRANSPORT` | PROVED_LEAN | **PROVED_PROSE** | lowered |
-| `DFM-SEC5-SCOPE` | ALIAS | [TFQ-0401](../dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md) | `DFM-CONTINUUM-INTERFACE` | - | **OPEN** | restated in trunk |
+| `DFM-DEF-2.1` | ALIAS | [TFQ-0397](tfq_0397_dfm_group_connection.md) | `DFM-GROUP-CONNECTION` | - | **DEFINITION** | restated in trunk |
+| `DFM-DEF-2.2` | ALIAS | [TFQ-0398](tfq_0398_dfm_general_graph_dressing.md) | `DFM-GENERAL-GRAPH-DRESSING` | - | **PROVED_LEAN** | restated in trunk |
+| `DFM-DEF-2.2-COORDS` | NEW | [TFQ-1100](tfq_1100_dfm_tree_chord_coordinates.md) | `DFM-TREE-CHORD-COORDINATES` | PROVED_LEAN | **PROVED_LEAN** | same |
+| `DFM-DEF-2.2-ROOT` | ALIAS | [TFQ-0399](tfq_0399_dfm_tree_change.md) | `DFM-TREE-CHANGE` | - | **PROVED_LEAN** | restated in trunk |
+| `DFM-P3.1-DEF` | NEW | [TFQ-1101](tfq_1101_dfm_abelian_tree_projector.md) | `DFM-ABELIAN-TREE-PROJECTOR` | DEFINITION | **DEFINITION** | same |
+| `DFM-P3.1-FENCE` | NEW | [TFQ-1104](tfq_1104_dfm_symanzik_qed_ae_fence.md) | `DFM-SYMANZIK-QED-AE-FENCE` | COMPUTATIONALLY_CHECKED | **OPEN** | lowered |
+| `DFM-P3.1-RETRACTION` | NEW | [TFQ-1102](tfq_1102_dfm_abelian_retraction_diamond.md) | `DFM-ABELIAN-RETRACTION-DIAMOND` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
+| `DFM-P3.1-SYMANZIK` | NEW | [TFQ-1103](tfq_1103_dfm_tree_change_glz_symanzik_u.md) | `DFM-TREE-CHANGE-GLZ-SYMANZIK-U` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
+| `DFM-P3.2-DEF` | NEW | [TFQ-1105](tfq_1105_dfm_borel_levi_factorization.md) | `DFM-BOREL-LEVI-FACTORIZATION` | DEFINITION | **DEFINITION** | same |
+| `DFM-P3.2-FENCE` | ALIAS | [TFQ-0400](tfq_0400_dfm_hierarchical_borel.md) | `DFM-HIERARCHICAL-BOREL` | - | **PROVED_LEAN** | restated in trunk |
+| `DFM-P3.2-TWO-STAGE` | NEW | [TFQ-1106](tfq_1106_dfm_borel_two_stage_diamond.md) | `DFM-BOREL-TWO-STAGE-DIAMOND` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
+| `DFM-P3.3-BPHZ` | NEW | [TFQ-1109](tfq_1109_dfm_bphz_sector_kernel.md) | `DFM-BPHZ-SECTOR-KERNEL` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
+| `DFM-P3.3-DEF` | NEW | [TFQ-1107](tfq_1107_dfm_tree_momentum_routing.md) | `DFM-TREE-MOMENTUM-ROUTING` | DEFINITION | **DEFINITION** | same |
+| `DFM-P3.3-F0` | NEW | [TFQ-1108](tfq_1108_dfm_two_forest_f0_diamond.md) | `DFM-TWO-FOREST-F0-DIAMOND` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
+| `DFM-P3.3-FENCE` | NEW | [TFQ-1110](tfq_1110_dfm_bphz_continuum_fence.md) | `DFM-BPHZ-CONTINUUM-FENCE` | COMPUTATIONALLY_CHECKED | **OPEN** | lowered |
+| `DFM-P3.4-CORRELATOR` | NEW | [TFQ-1112](tfq_1112_dfm_dressed_correlator_diamond.md) | `DFM-DRESSED-CORRELATOR-DIAMOND` | COMPUTATIONALLY_CHECKED | **COMPUTATIONALLY_CHECKED** | same |
+| `DFM-P3.4-DEF` | NEW | [TFQ-1111](tfq_1111_dfm_dressed_dirac_propagator.md) | `DFM-DRESSED-DIRAC-PROPAGATOR` | DEFINITION | **DEFINITION** | same |
+| `DFM-P3.4-FENCE` | NEW | [TFQ-1114](tfq_1114_dfm_z1_z2_counterterm_fence.md) | `DFM-Z1-Z2-COUNTERTERM-FENCE` | COMPUTATIONALLY_CHECKED | **OPEN** | lowered |
+| `DFM-P3.4-WT` | NEW | [TFQ-1113](tfq_1113_dfm_clifford_ward_takahashi.md) | `DFM-CLIFFORD-WARD-TAKAHASHI` | COMPUTATIONALLY_CHECKED | **PROVED_PROSE** | raised |
+| `DFM-P3.5-DEF` | NEW | [TFQ-1115](tfq_1115_dfm_page_wootters_clock_dressing.md) | `DFM-PAGE-WOOTTERS-CLOCK-DRESSING` | DEFINITION | **DEFINITION** | same |
+| `DFM-P3.5-FENCE` | NEW | [TFQ-1117](tfq_1117_dfm_relational_time_fence.md) | `DFM-RELATIONAL-TIME-FENCE` | COMPUTATIONALLY_CHECKED | **OPEN** | lowered |
+| `DFM-P3.5-INTERTWINER` | NEW | [TFQ-1116](tfq_1116_dfm_clock_dressing_intertwiner.md) | `DFM-CLOCK-DRESSING-INTERTWINER` | COMPUTATIONALLY_CHECKED | **PROVED_PROSE** | raised |
+| `DFM-P3.6-ANOMALY` | NEW | [TFQ-1121](tfq_1121_dfm_sm_anomaly_nc_three.md) | `DFM-SM-ANOMALY-NC-THREE` | PROVED_LEAN | **PROVED_LEAN** | same |
+| `DFM-P3.6-DEF` | NEW | [TFQ-1118](tfq_1118_dfm_electroweak_doublet_dressing.md) | `DFM-ELECTROWEAK-DOUBLET-DRESSING` | DEFINITION | **DEFINITION** | same |
+| `DFM-P3.6-DOUBLET` | NEW | [TFQ-1119](tfq_1119_dfm_ew_doublet_reduction.md) | `DFM-EW-DOUBLET-REDUCTION` | PROVED_LEAN | **PROVED_LEAN** | same |
+| `DFM-P3.6-FENCE` | NEW | [TFQ-1122](tfq_1122_dfm_electroweak_continuum_fence.md) | `DFM-ELECTROWEAK-CONTINUUM-FENCE` | PROVED_LEAN | **OPEN** | lowered |
+| `DFM-P3.6-WEINBERG` | NEW | [TFQ-1120](tfq_1120_dfm_weinberg_projectors_rho.md) | `DFM-WEINBERG-PROJECTORS-RHO` | PROVED_LEAN | **PROVED_LEAN** | same |
+| `DFM-P3.7-COUNT` | NEW | [TFQ-1124](tfq_1124_dfm_ckm_cycle_count.md) | `DFM-CKM-CYCLE-COUNT` | PROVED_LEAN | **PROVED_LEAN** | same |
+| `DFM-P3.7-DEF` | NEW | [TFQ-1123](tfq_1123_dfm_ckm_bipartite_rephasing.md) | `DFM-CKM-BIPARTITE-REPHASING` | DEFINITION | **DEFINITION** | same |
+| `DFM-P3.7-FENCE` | NEW | [TFQ-1128](tfq_1128_dfm_ckm_physics_fence.md) | `DFM-CKM-PHYSICS-FENCE` | PROVED_LEAN | **OPEN** | lowered |
+| `DFM-P3.7-QUARTET` | NEW | [TFQ-1125](tfq_1125_dfm_jarlskog_quartet_invariance.md) | `DFM-JARLSKOG-QUARTET-INVARIANCE` | PROVED_LEAN | **PROVED_LEAN** | same |
+| `DFM-P3.7-THREE-GEN` | NEW | [TFQ-1127](tfq_1127_dfm_jarlskog_pythagorean_witness.md) | `DFM-JARLSKOG-PYTHAGOREAN-WITNESS` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
+| `DFM-P3.7-TWO-GEN` | NEW | [TFQ-1126](tfq_1126_dfm_cabibbo_cp_phase_zero.md) | `DFM-CABIBBO-CP-PHASE-ZERO` | PROVED_LEAN | **PROVED_LEAN** | same |
+| `DFM-P3.8-DEF` | NEW | [TFQ-1129](tfq_1129_dfm_landau_gribov_klein_four.md) | `DFM-LANDAU-GRIBOV-KLEIN-FOUR` | DEFINITION | **DEFINITION** | same |
+| `DFM-P3.8-FENCE` | NEW | [TFQ-1132](tfq_1132_dfm_gribov_continuum_fence.md) | `DFM-GRIBOV-CONTINUUM-FENCE` | PROVED_LEAN | **OPEN** | lowered |
+| `DFM-P3.8-GRIBOV` | NEW | [TFQ-1130](tfq_1130_dfm_su3_gribov_copies_diamond.md) | `DFM-SU3-GRIBOV-COPIES-DIAMOND` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
+| `DFM-P3.8-SU3` | NEW | [TFQ-1131](tfq_1131_dfm_su3_tree_dressing_diamond.md) | `DFM-SU3-TREE-DRESSING-DIAMOND` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
+| `DFM-P3.9-BOOST` | NEW | [TFQ-1134](tfq_1134_dfm_boost_plane_lean.md) | `DFM-BOOST-PLANE-LEAN` | PROVED_LEAN | **PROVED_LEAN** | same |
+| `DFM-P3.9-DEF` | NEW | [TFQ-1133](tfq_1133_dfm_cartan_regge_tetrad.md) | `DFM-CARTAN-REGGE-TETRAD` | DEFINITION | **DEFINITION** | same |
+| `DFM-P3.9-FENCE` | NEW | [TFQ-1137](tfq_1137_dfm_regge_gravity_fence.md) | `DFM-REGGE-GRAVITY-FENCE` | OPEN | **OPEN** | same |
+| `DFM-P3.9-HINGE` | NEW | [TFQ-1136](tfq_1136_dfm_hinge_holonomy_witness.md) | `DFM-HINGE-HOLONOMY-WITNESS` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | lowered |
+| `DFM-P3.9-TRANSPORT` | NEW | [TFQ-1135](tfq_1135_dfm_dressed_affine_transport.md) | `DFM-DRESSED-AFFINE-TRANSPORT` | PROVED_LEAN | **PROVED_PROSE** | lowered |
+| `DFM-SEC5-SCOPE` | ALIAS | [TFQ-0401](tfq_0401_dfm_continuum_interface.md) | `DFM-CONTINUUM-INTERFACE` | - | **OPEN** | restated in trunk |
 
 ### Audit errata (2026-10-21)
 
@@ -358,3 +358,26 @@ Audit of 2026-10-21. The unified derivation DAG (`dag/fragments/unified_dag.json
 - 2026-10-21 ERRATUM (DFM-BIANCHI-GRIBOV-LEAN, TFQ-1106/1130/1131/1136): Lean names cited for the Bianchi identity (sections 3.2, 3.9) and for Gribov-copy elimination (section 3.8) prove weaker statements than the prose: `spanning_tree_nonabelian_mat2_factorization` is one fixed triangle with Mat2Rat links, not B_2(Q), N or T_2(Q); `su3_diagonal_klein_four_landau_gribov_copies` is rational arithmetic on diagonal entries (its Landau term is (d1-d1)+(d2-d2)+(d3-d3) = 0) and `spanning_tree_dfm_eliminates_gribov_copies` works in the commutative group of nonzero rationals, not SU(3); `bianchi_loop` is h1 h2 h2^{-1} h1^{-1} = I in the 2x2 boost plane. The Python replay is the substantive check for sections 3.2 and 3.8; the DFM audited statuses reflect this.
 
 <!-- END UNIFIED-DAG-BACKLINKS -->
+
+
+## Current derivation coverage (2026-11-05)
+
+This historical source dossier belongs in `24_dressing_field`, beside the derivations that audit it. Its 38 dedicated records and five aliases are already in [the DAG JSON](../../derivation_dag.json) and [the source-corpus fragment](../../fragments/unified_dag.json). The generated table above resolves all 43 entries to their current statements. A proved finite identity does not close the broader obligation recorded beside it. No status is promoted by this relocation.
+
+| Source section | Existing TFQ records | Remaining scope |
+| --- | --- | --- |
+| Definitions 2.1–2.2 | TFQ-0397–0399, TFQ-1100 | General coordinate bijection remains an obligation; the Mat2 triangle is a finite witness. |
+| 3.1 Abelian tree dressing / Symanzik U | TFQ-1101–1104 | General analytic QED interface remains OPEN at `DFM-SYMANZIK-QED-AE-FENCE`. |
+| 3.2 Borel two-stage dressing | TFQ-0400, TFQ-1105–1106 | Cite the precise hierarchical-group hypotheses and the finite witness, not an unrestricted continuum reduction. |
+| 3.3 Momentum routing / BPHZ | TFQ-1107–1110 | Renormalized continuum limit remains OPEN at `DFM-BPHZ-CONTINUUM-FENCE`. |
+| 3.4 Dressed fermions / Ward identity | TFQ-1111–1114 | General counterterm equality remains OPEN at `DFM-Z1-Z2-COUNTERTERM-FENCE`. |
+| 3.5 Page–Wootters clocks | TFQ-1115–1117 | Physical relational-time extension remains OPEN at `DFM-RELATIONAL-TIME-FENCE`. |
+| 3.6 Electroweak dressing / anomalies | TFQ-1118–1122 | The real/rational component and anomaly identities do not prove the full complex covariance or continuum construction; `DFM-ELECTROWEAK-CONTINUUM-FENCE` remains OPEN. |
+| 3.7 Flavor rephasing / CKM | TFQ-1123–1128 | Physical mixing and continuum claims remain OPEN at `DFM-CKM-PHYSICS-FENCE`. |
+| 3.8 Gribov copies / SU(3) tree dressing | TFQ-1129–1132 | The finite examples do not settle continuum Gribov geometry; `DFM-GRIBOV-CONTINUUM-FENCE` remains OPEN. |
+| 3.9 Regge / tetrad dressing | TFQ-1133–1137 | The 4D complex, derived hinge holonomies and spin-frame/Dirac-action test remain OPEN at `DFM-REGGE-GRAVITY-FENCE`. |
+| Section 5 continuum scope | TFQ-0401 | `DFM-CONTINUUM-INTERFACE` remains the separate continuum obligation. |
+
+The proposed next test in section 5 is already part of [TFQ-1137](tfq_1137_dfm_regge_gravity_fence.md): construct the four-dimensional Regge geometry, derive hinge transport from its edge-length data, and construct a spin-frame dressing preserving the coupled discrete Dirac action. The rational boost and trace examples do not perform that construction. It remains listed, not completed.
+
+The redundant dossier change-log file has been deleted. The historical body and its generated errata remain here; older history is in [ravera_dfm_changes.md](../../research/ravera_dfm_changes.md) and Git history. Original body line positions are preserved for the DAG's source citations.

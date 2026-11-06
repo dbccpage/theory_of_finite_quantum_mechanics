@@ -32,7 +32,7 @@ No simplicial complex, edge lengths or deficit angles are constructed, and the B
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.9-HINGE claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.9-HINGE claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -82,20 +82,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md](../../../dag/derivations/24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md)
-- sha256 (`lf-normalised`): `ff0e189db10c9ff547624aad991cf287e15624dac911490b27a9462536647826`
+- sha256 (`lf-normalised`): `45824944a02c4216ea428ca9ebc8de22322859fdaf6e1ff9a8350efe9caae67b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1136
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

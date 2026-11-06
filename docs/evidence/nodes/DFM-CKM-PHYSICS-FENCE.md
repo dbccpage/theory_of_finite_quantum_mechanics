@@ -33,7 +33,7 @@ Yukawa couplings, mass-basis diagonalization, a unitarity identification of the 
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.7-FENCE claims PROVED_LEAN; audited status OPEN
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.7-FENCE claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -88,10 +88,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source, record TFQ-1128
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md](../../../dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md)
-- sha256 (`lf-normalised`): `f8ae32b6e385b2d4e241afa3928ad5c0ac16ddd21578b33a6ff1855303c4bfb5`
+- sha256 (`lf-normalised`): `923365ffa00fb4dab2a582b50e20381ab8fc40c76232fff0f6d39b7fc6166800`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1128
 - counts toward the grade: no
@@ -100,13 +107,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/derivations/independent/dfm-ckm-physics-fence.md](../../../dag/derivations/independent/dfm-ckm-physics-fence.md)
 - sha256 (`lf-normalised`): `927aefc8724d93d13ed00782056ecff6219edb2c153138d0be1cfe0de513e0d4`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
 - cited in: node.source
 - counts toward the grade: yes
 

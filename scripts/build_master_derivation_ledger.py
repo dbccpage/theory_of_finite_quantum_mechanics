@@ -215,7 +215,7 @@ def build_ledger() -> str:
         "",
         "## 3b. One Derivation Graph",
         "",
-        f"`dag/derivation_dag.json` ({len(dag['nodes'])} nodes, {len(dag['routes'])} routes) and `dag/theory_of_finite_qm.jsonl` ({record_count} records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as {len(unified['domain_records'])} new records; {len(unified['domain_aliases'])} of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.",
+        f"`dag/derivation_dag.json` ({len(dag['nodes'])} nodes, {len(dag['routes'])} routes) and `dag/theory_of_finite_qm.jsonl` ({record_count} records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`dag/derivations/24_dressing_field/ravera_dfm_dossier.md`) are folded in as {len(unified['domain_records'])} new records; {len(unified['domain_aliases'])} of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.",
         "",
         "---",
         "",
@@ -326,10 +326,10 @@ def main():
     target_1 = REPO_ROOT / "papers" / "core" / "master_derivation_ledger.md"
     target_2 = REPO_ROOT / "dag" / "derivations" / "MASTER_DERIVATION_LEDGER.md"
 
-    target_1.write_text(ledger_content, encoding="utf-8")
+    target_1.write_text(ledger_content, encoding="utf-8", newline="\n")
     print(f"Written: {target_1}")
 
-    target_2.write_text(ledger_content, encoding="utf-8")
+    target_2.write_text(ledger_content, encoding="utf-8", newline="\n")
     print(f"Written: {target_2}")
 
 

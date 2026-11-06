@@ -61,7 +61,7 @@ REPO = Path(__file__).resolve().parents[3]
 FSP_J = "papers/core/fsp/theory_of_finite_fsp.jsonl"
 MUB_J = "papers/core/mub6/theory_of_finite_mub6.jsonl"
 MAJ_M = "papers/core/majorana/the_majorana_problem.md"
-DFM_M = "papers/ravera_dfm_dossier.md"
+DFM_M = "dag/derivations/24_dressing_field/ravera_dfm_dossier.md"
 
 # Strength order used only to word the reconciliation column.
 RANK = {
@@ -263,11 +263,10 @@ TARGETS = [
     ),
     dict(
         key="dfm", corpus=[DFM_M], only=None,
-        label="Dressing Field Method dossier (papers/ravera_dfm_dossier.md)",
+        label="Dressing Field Method dossier (dag/derivations/24_dressing_field/ravera_dfm_dossier.md)",
         register=None, register_idcol=None, audit_jsonl=None,
         blocks=[
-            ("papers/ravera_dfm_dossier.md", "ledger"),
-            ("papers/ravera_dfm_dossier_change_log.md", "changelog_file"),
+            ("dag/derivations/24_dressing_field/ravera_dfm_dossier.md", "ledger"),
         ],
         manifests=None,
     ),
@@ -614,36 +613,25 @@ def audit_jsonl(d: Data, t: dict, rows: list[dict]) -> str:
     return "\n".join(out) + "\n"
 
 
-def changelog_file_text(t: dict, rows: list[dict]) -> str:
-    return ("# Change log: The Dressing Field Method on Finite Graphs and Simplicial Complexes "
-            "(papers/ravera_dfm_dossier.md)\n\nAuthorityEffect: None.\n\n"
-            "The dossier itself carries no change log in `papers/`; earlier versions are recorded in "
-            "`dag/research/ravera_dfm_changes.md`.\n\n" + block_changelog(t, rows) + "\n")
-
-
 def run_target(d: Data, t: dict, check: bool) -> list[str]:
     rows = corpus_rows(d, t)
     changed: list[str] = []
     touched: list[str] = []
     for rel, kind in t["blocks"]:
         p = REPO / rel
-        if kind == "changelog_file":
-            new = changelog_file_text(t, rows) if not p.exists() else apply_block(
-                p.read_text(encoding="utf-8"), block_changelog(t, rows), MD_BEGIN, MD_END, "end")
+        text = p.read_text(encoding="utf-8")
+        if kind in ("readme", "ledger"):
+            new = apply_block(text, block_md(d, t, rows, rel, kind), MD_BEGIN, MD_END, "end")
+        elif kind == "pointer":
+            new = apply_block(text, block_pointer(t, rows), MD_BEGIN, MD_END, "end")
+        elif kind == "yaml":
+            new = apply_block(text, block_yaml(t, rows), YML_BEGIN, YML_END, "end")
+        elif kind == "changelog_top":
+            new = apply_block(text, block_changelog(t, rows), MD_BEGIN, MD_END, "top")
+        elif kind == "changelog_end":
+            new = apply_block(text, block_changelog(t, rows), MD_BEGIN, MD_END, "end")
         else:
-            text = p.read_text(encoding="utf-8")
-            if kind in ("readme", "ledger"):
-                new = apply_block(text, block_md(d, t, rows, rel, kind), MD_BEGIN, MD_END, "end")
-            elif kind == "pointer":
-                new = apply_block(text, block_pointer(t, rows), MD_BEGIN, MD_END, "end")
-            elif kind == "yaml":
-                new = apply_block(text, block_yaml(t, rows), YML_BEGIN, YML_END, "end")
-            elif kind == "changelog_top":
-                new = apply_block(text, block_changelog(t, rows), MD_BEGIN, MD_END, "top")
-            elif kind == "changelog_end":
-                new = apply_block(text, block_changelog(t, rows), MD_BEGIN, MD_END, "end")
-            else:
-                raise SystemExit(kind)
+            raise SystemExit(kind)
         touched.append(rel)
         if check:
             old = p.read_text(encoding="utf-8") if p.exists() else None

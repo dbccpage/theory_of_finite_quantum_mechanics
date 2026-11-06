@@ -4,17 +4,21 @@ authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
   source_statement: For a finite group G with a unitary representation, a finite periodic spatial lattice
-    with edge set E and finite real beta, the temporal-gauge transfer matrix of the Wilson action acting
-    on functions on G^E has strictly positive entries, so it has a simple largest eigenvalue lambda_0,
-    a gauge-invariant Perron eigenvector, and every other eigenvalue satisfies |lambda| < lambda_0; the
-    finite-volume gap log(lambda_0/|lambda_1|) is positive on the gauge-invariant subspace.
+    with edge set E and finite real beta, construct the temporal-gauge Wilson transfer matrix on functions
+    on G^E and prove strict entrywise positivity and gauge equivariance. Its Perron eigenvalue lambda_0
+    is positive and simple, its normalized Perron vector is gauge invariant, and the non-Perron spectral-radius
+    ratio q in the gauge-invariant sector satisfies 0 <= q < 1. Set q = 0 when that sector has no non-Perron
+    eigenvalues. For q > 0 the logarithmic gap -log(q) is positive; q = 0 represents an infinite spectral
+    decay rate, not a finite logarithm.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: 'Prove the statement in Lean from the Perron-Frobenius theorem for positive matrices.
-    The node is the automatic finite-volume gap only: it gives no bound uniform in volume or lattice spacing
-    and is not the Yang-Mills mass gap of the Clay problem.'
+  source_bottleneck: Construct the transfer matrix and its gauge action, prove the required positivity
+    and equivariance, and apply Perron-Frobenius in Lean. Handle zero subleading eigenvalues and the one-dimensional
+    physical sector explicitly. Correlation-decay bounds require the relevant self-adjointness or operator
+    estimates. No bound uniform in volume or lattice spacing, or continuum Yang-Mills mass gap, follows
+    from the finite-volume statement.
   source_refs:
-  - papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md
+  - dag/derivations/17_finite_qcd/finite_lattice_gauge_theory_yang_mills_qcd.md
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md
   source_claim_label: OPEN
@@ -23,7 +27,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md
-    sha256: ee35a2cf25babed25f9f114c8f88e6e01bea110328a6398fcc0fdf2f1692a467
+    sha256: e3a86db5194b112c5ca8bcc6ab0a349c4e23632bd7f3382c2d3ba4892a8f18d7
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

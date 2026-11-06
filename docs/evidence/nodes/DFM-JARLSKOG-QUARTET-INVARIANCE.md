@@ -32,7 +32,7 @@ Invariance under the full U(1)^{N_g} x U(1)^{N_g} rephasing follows by composing
 
 ## Source status
 
-papers/ravera_dfm_dossier.md record DFM-P3.7-QUARTET claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/24_dressing_field/ravera_dfm_dossier.md record DFM-P3.7-QUARTET claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -95,20 +95,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/ravera_dfm_dossier.md`
+
+- file: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
+- sha256 (`lf-normalised`): `7e92fd253cacd0087171ab840dd8351c61b5440192c9df4de916da8bd7f9f76e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md](../../../dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md)
-- sha256 (`lf-normalised`): `851bacb26e377a842be2c3817352e946a39ffb338e2cc54abf0de853c5823c42`
+- sha256 (`lf-normalised`): `f2eb363963ae2c0bbb13aba08f24a567a55f210e69bffb208d746f55def7f3e1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1125
 - counts toward the grade: no
-
-### Documents and data: `papers/ravera_dfm_dossier.md`
-
-- file: [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- sha256 (`lf-normalised`): `76ae630ecb514d278773cdf5ea98ce77c80d8f969d1326f1b55e6772d13afcaa`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 
