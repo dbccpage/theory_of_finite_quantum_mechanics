@@ -7,13 +7,13 @@
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/GleasonRealSphere.lean",
-      "sha256": "ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb"
+      "sha256": "92324a54ba4167f232a7ae6be72160b84553e2bf9f05dfd45624812f2221699d"
     },
     "boundaries": [
       "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
       "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
     ],
-    "claim": "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r). Latitude constancy from continuity, Piron chains as multiplier products, quarter-turn identities, six-circle agreement, and a tight-frame identity over the six circle normals in place of zero counting.",
+    "claim": "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r), together with Target 2 (TFQ-1059) nonnegativity bounds (IsNonnegFrameFunction, bounded_of_nonneg, ortho_add_le_weight_of_nonneg, eq_zero_on_perp_of_pole_eq_weight), general Piron tangent-step inequalities (tangentStep_le_add_equator_of_nonneg, tangentStep_sub_le_weight_sub_pole_of_nonneg), shared-normal latitude addition (exists_common_normal_lat_add), and continuity-free Proposition 1, quarter-turn, six-circle, and pure-state reductions (equator_const_is_min_of_max, prop1_pole_of_max, continuousOn_of_max_and_equator_const, prop1_of_max, sum_phat_of_max, sum_rhat_of_min, eq_stdQuad_on_six_circles_of_extrema, pure_state_nonneg_gleason_real).",
     "contract_urn": "urn:tfqm:fq-gleason-qi3:gleasonrealsphere",
     "evidence": [
       {
@@ -22,15 +22,15 @@
       },
       {
         "path": "dag/research/gleason_lean_audit.json",
-        "sha256": "e4d40511530afe7735d1fa2a73fca294366d08de1634f7cb5e4dab41c2ded7ab"
+        "sha256": "6ed822e49fe8f3af8713f1da94ad9a88970f7c59a7fcbb36c5f458d61222a56e"
       },
       {
         "path": "lean4/GleasonRealSphere.lean",
-        "sha256": "ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb"
+        "sha256": "92324a54ba4167f232a7ae6be72160b84553e2bf9f05dfd45624812f2221699d"
       }
     ],
     "owned_invariants": [
-      "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r). Latitude constancy from continuity, Piron chains as multiplier products, quarter-turn identities, six-circle agreement, and a tight-frame identity over the six circle normals in place of zero counting.",
+      "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r), together with Target 2 (TFQ-1059) nonnegativity bounds (IsNonnegFrameFunction, bounded_of_nonneg, ortho_add_le_weight_of_nonneg, eq_zero_on_perp_of_pole_eq_weight), general Piron tangent-step inequalities (tangentStep_le_add_equator_of_nonneg, tangentStep_sub_le_weight_sub_pole_of_nonneg), shared-normal latitude addition (exists_common_normal_lat_add), and continuity-free Proposition 1, quarter-turn, six-circle, and pure-state reductions (equator_const_is_min_of_max, prop1_pole_of_max, continuousOn_of_max_and_equator_const, prop1_of_max, sum_phat_of_max, sum_rhat_of_min, eq_stdQuad_on_six_circles_of_extrema, pure_state_nonneg_gleason_real).",
       "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
     ],
     "schema_id": "tfqm.source-contract.v1",
@@ -161,7 +161,32 @@
       "GleasonReal.exists_max_unit",
       "GleasonReal.six_normals_tight",
       "GleasonReal.eq_zero_of_vanishes_on_six_circles",
-      "GleasonReal.gleason_real"
+      "GleasonReal.gleason_real",
+      "GleasonReal.IsNonnegFrameFunction",
+      "GleasonReal.IsNonnegFrameFunction.comp_ofFrame",
+      "GleasonReal.weight_nonneg_of_nonneg",
+      "GleasonReal.le_weight_of_nonneg",
+      "GleasonReal.bounded_of_nonneg",
+      "GleasonReal.ortho_add_le_weight_of_nonneg",
+      "GleasonReal.ortho_le_weight_sub_of_nonneg",
+      "GleasonReal.eq_zero_on_perp_of_pole_eq_weight",
+      "GleasonReal.tangentStep_le_add_equator_of_nonneg",
+      "GleasonReal.tangentStep_sub_le_weight_sub_pole_of_nonneg",
+      "GleasonReal.equator_const_is_min_of_max",
+      "GleasonReal.exists_common_normal_lat_add",
+      "GleasonReal.exists_lat_pair_sum_eq_refPt",
+      "GleasonReal.refPt_sub_add_le_of_lt",
+      "GleasonReal.refPt_sub_le_add_of_lt",
+      "GleasonReal.nat_mul_refPt_sub_le",
+      "GleasonReal.refPt_sub_le_nat_mul",
+      "GleasonReal.rat_mul_pole_sub_bounds_of_lat",
+      "GleasonReal.prop1_pole_of_max",
+      "GleasonReal.continuousOn_of_max_and_equator_const",
+      "GleasonReal.prop1_of_max",
+      "GleasonReal.sum_phat_of_max",
+      "GleasonReal.sum_rhat_of_min",
+      "GleasonReal.eq_stdQuad_on_six_circles_of_extrema",
+      "GleasonReal.pure_state_nonneg_gleason_real"
     ]
   },
   "contract_history": [
@@ -832,10 +857,205 @@
         ]
       },
       "sha256": "ff69bcfb18dede213e5911e206646a31b4e5081501e5653c51b851b2e1561155"
+    },
+    {
+      "bytes": 9601,
+      "original_paths": [
+        "lean4/GleasonRealSphere.contract.score.yaml#tfq-1059-continuum-piron-real-l4d-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonRealSphere.lean\",\n    \"sha256\": \"92324a54ba4167f232a7ae6be72160b84553e2bf9f05dfd45624812f2221699d\"\n  },\n  \"boundaries\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"claim\": \"Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r), together with Target 2 (TFQ-1059) nonnegativity bounds (IsNonnegFrameFunction, bounded_of_nonneg, ortho_add_le_weight_of_nonneg, eq_zero_on_perp_of_pole_eq_weight), general Piron tangent-step inequalities (tangentStep_le_add_equator_of_nonneg, tangentStep_sub_le_weight_sub_pole_of_nonneg), shared-normal latitude addition (exists_common_normal_lat_add), and continuity-free Proposition 1, quarter-turn, six-circle, and pure-state reductions (equator_const_is_min_of_max, prop1_pole_of_max, continuousOn_of_max_and_equator_const, prop1_of_max, sum_phat_of_max, sum_rhat_of_min, eq_stdQuad_on_six_circles_of_extrema, pure_state_nonneg_gleason_real).\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:gleasonrealsphere\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json\",\n      \"sha256\": \"d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"sha256\": \"6ed822e49fe8f3af8713f1da94ad9a88970f7c59a7fcbb36c5f458d61222a56e\"\n    },\n    {\n      \"path\": \"lean4/GleasonRealSphere.lean\",\n      \"sha256\": \"92324a54ba4167f232a7ae6be72160b84553e2bf9f05dfd45624812f2221699d\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r), together with Target 2 (TFQ-1059) nonnegativity bounds (IsNonnegFrameFunction, bounded_of_nonneg, ortho_add_le_weight_of_nonneg, eq_zero_on_perp_of_pole_eq_weight), general Piron tangent-step inequalities (tangentStep_le_add_equator_of_nonneg, tangentStep_sub_le_weight_sub_pole_of_nonneg), shared-normal latitude addition (exists_common_normal_lat_add), and continuity-free Proposition 1, quarter-turn, six-circle, and pure-state reductions (equator_const_is_min_of_max, prop1_pole_of_max, continuousOn_of_max_and_equator_const, prop1_of_max, sum_phat_of_max, sum_rhat_of_min, eq_stdQuad_on_six_circles_of_extrema, pure_state_nonneg_gleason_real).\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"GleasonReal.dot3\",\n    \"GleasonReal.cross3\",\n    \"GleasonReal.e1\",\n    \"GleasonReal.e3\",\n    \"GleasonReal.lat\",\n    \"GleasonReal.IsFrameFunction\",\n    \"GleasonReal.dot3_comm\",\n    \"GleasonReal.dot3_self_nonneg\",\n    \"GleasonReal.ne_zero_iff_dot3_self_pos\",\n    \"GleasonReal.dot3_self_pos\",\n    \"GleasonReal.ne_zero_of_dot3_self_pos\",\n    \"GleasonReal.ne_zero_of_apply_ne\",\n    \"GleasonReal.ne_zero_of_transverse_ne\",\n    \"GleasonReal.e1_ne_zero\",\n    \"GleasonReal.e3_ne_zero\",\n    \"GleasonReal.dot3_e3_self\",\n    \"GleasonReal.dot3_e1_self\",\n    \"GleasonReal.lat_e1\",\n    \"GleasonReal.lat_nonneg\",\n    \"GleasonReal.lat_le_one\",\n    \"GleasonReal.lat_smul\",\n    \"GleasonReal.lat_lt_iff\",\n    \"GleasonReal.lat_eq_iff\",\n    \"GleasonReal.pair_sum_eq_of_common_normal\",\n    \"GleasonReal.tangentDir\",\n    \"GleasonReal.tangentStep\",\n    \"GleasonReal.tangentStep_apply\",\n    \"GleasonReal.tangentStep_le\",\n    \"GleasonReal.pt\",\n    \"GleasonReal.pt_ne_zero_of_ne\",\n    \"GleasonReal.pt_transverse_ne\",\n    \"GleasonReal.tangentStep_pt\",\n    \"GleasonReal.chain_le\",\n    \"GleasonReal.one_add_tan_mul_I\",\n    \"GleasonReal.exists_chain_eq\",\n    \"GleasonReal.pt_eq_self\",\n    \"GleasonReal.norm_sq_transverse\",\n    \"GleasonReal.le_of_lat_lt\",\n    \"GleasonReal.lat_lt_lat_add_smul_e1\",\n    \"GleasonReal.eq_of_lat_eq\",\n    \"GleasonReal.sphere3\",\n    \"GleasonReal.sq_le_dot3_self\",\n    \"GleasonReal.continuous_dot3_self\",\n    \"GleasonReal.isCompact_sphere3\",\n    \"GleasonReal.e1_mem_sphere3\",\n    \"GleasonReal.sphere3_subset\",\n    \"GleasonReal.dot3_smul_smul\",\n    \"GleasonReal.dot3_smul_left\",\n    \"GleasonReal.dot3_smul_right\",\n    \"GleasonReal.exists_unit_smul\",\n    \"GleasonReal.exists_min\",\n    \"GleasonReal.exists_max\",\n    \"GleasonReal.equator_const_is_min\",\n    \"GleasonReal.refPt\",\n    \"GleasonReal.refPt_dot3\",\n    \"GleasonReal.refPt_ne_zero\",\n    \"GleasonReal.lat_refPt\",\n    \"GleasonReal.refPt_zero\",\n    \"GleasonReal.refPt_one\",\n    \"GleasonReal.linear_of_monotone_additive\",\n    \"GleasonReal.exists_frame_with_lat\",\n    \"GleasonReal.prop1_pole\",\n    \"GleasonReal.IsOrthonormal\",\n    \"GleasonReal.ofFrame\",\n    \"GleasonReal.toFrame\",\n    \"GleasonReal.ofFrame_apply\",\n    \"GleasonReal.dot3_ofFrame\",\n    \"GleasonReal.ofFrame_smul\",\n    \"GleasonReal.ofFrame_ne_zero\",\n    \"GleasonReal.continuous_ofFrame\",\n    \"GleasonReal.dot3_ofFrame_left\",\n    \"GleasonReal.toFrame_ofFrame\",\n    \"GleasonReal.completeness\",\n    \"GleasonReal.completeness'\",\n    \"GleasonReal.ofFrame_toFrame\",\n    \"GleasonReal.toFrame_ne_zero\",\n    \"GleasonReal.dot3_toFrame_self\",\n    \"GleasonReal.IsFrameFunction.comp_ofFrame\",\n    \"GleasonReal.continuousOn_comp_ofFrame\",\n    \"GleasonReal.exists_orthonormal_completion\",\n    \"GleasonReal.isOrthonormal_cross\",\n    \"GleasonReal.ofFrame_e1\",\n    \"GleasonReal.ofFrame_e3\",\n    \"GleasonReal.sum_sq_dot3_eq\",\n    \"GleasonReal.sq_div_dot3_smul\",\n    \"GleasonReal.sum_lat_eq\",\n    \"GleasonReal.prop1\",\n    \"GleasonReal.exists_min_on_equator_pole\",\n    \"GleasonReal.exists_min_perp\",\n    \"GleasonReal.phat\",\n    \"GleasonReal.rhat\",\n    \"GleasonReal.dot3_phat\",\n    \"GleasonReal.dot3_rhat\",\n    \"GleasonReal.phat_smul\",\n    \"GleasonReal.rhat_smul\",\n    \"GleasonReal.phat_ne_zero\",\n    \"GleasonReal.rhat_ne_zero\",\n    \"GleasonReal.continuous_phat\",\n    \"GleasonReal.continuous_rhat\",\n    \"GleasonReal.phat_e1\",\n    \"GleasonReal.rhat_e3\",\n    \"GleasonReal.IsFrameFunction.add\",\n    \"GleasonReal.IsFrameFunction.neg\",\n    \"GleasonReal.IsFrameFunction.sub\",\n    \"GleasonReal.IsFrameFunction.comp_phat\",\n    \"GleasonReal.IsFrameFunction.comp_rhat\",\n    \"GleasonReal.continuousOn_comp_phat\",\n    \"GleasonReal.continuousOn_comp_rhat\",\n    \"GleasonReal.sum_phat\",\n    \"GleasonReal.sum_rhat\",\n    \"GleasonReal.stdQuad\",\n    \"GleasonReal.isFrameFunction_stdQuad\",\n    \"GleasonReal.continuousOn_stdQuad\",\n    \"GleasonReal.stdQuad_add_phat\",\n    \"GleasonReal.stdQuad_add_rhat\",\n    \"GleasonReal.stdQuad_e1\",\n    \"GleasonReal.stdQuad_e3\",\n    \"GleasonReal.eq_stdQuad_on_six_circles\",\n    \"GleasonReal.dot3_add_left\",\n    \"GleasonReal.dot3_sub_left\",\n    \"GleasonReal.dot3_cross3_left\",\n    \"GleasonReal.dot3_cross3_right\",\n    \"GleasonReal.dot3_cross3_self\",\n    \"GleasonReal.exists_max_unit\",\n    \"GleasonReal.six_normals_tight\",\n    \"GleasonReal.eq_zero_of_vanishes_on_six_circles\",\n    \"GleasonReal.gleason_real\",\n    \"GleasonReal.IsNonnegFrameFunction\",\n    \"GleasonReal.IsNonnegFrameFunction.comp_ofFrame\",\n    \"GleasonReal.weight_nonneg_of_nonneg\",\n    \"GleasonReal.le_weight_of_nonneg\",\n    \"GleasonReal.bounded_of_nonneg\",\n    \"GleasonReal.ortho_add_le_weight_of_nonneg\",\n    \"GleasonReal.ortho_le_weight_sub_of_nonneg\",\n    \"GleasonReal.eq_zero_on_perp_of_pole_eq_weight\",\n    \"GleasonReal.tangentStep_le_add_equator_of_nonneg\",\n    \"GleasonReal.tangentStep_sub_le_weight_sub_pole_of_nonneg\",\n    \"GleasonReal.equator_const_is_min_of_max\",\n    \"GleasonReal.exists_common_normal_lat_add\",\n    \"GleasonReal.exists_lat_pair_sum_eq_refPt\",\n    \"GleasonReal.refPt_sub_add_le_of_lt\",\n    \"GleasonReal.refPt_sub_le_add_of_lt\",\n    \"GleasonReal.nat_mul_refPt_sub_le\",\n    \"GleasonReal.refPt_sub_le_nat_mul\",\n    \"GleasonReal.rat_mul_pole_sub_bounds_of_lat\",\n    \"GleasonReal.prop1_pole_of_max\",\n    \"GleasonReal.continuousOn_of_max_and_equator_const\",\n    \"GleasonReal.prop1_of_max\",\n    \"GleasonReal.sum_phat_of_max\",\n    \"GleasonReal.sum_rhat_of_min\",\n    \"GleasonReal.eq_stdQuad_on_six_circles_of_extrema\",\n    \"GleasonReal.pure_state_nonneg_gleason_real\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonRealSphere.lean",
+          "sha256": "92324a54ba4167f232a7ae6be72160b84553e2bf9f05dfd45624812f2221699d"
+        },
+        "boundaries": [
+          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
+        ],
+        "claim": "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r), together with Target 2 (TFQ-1059) nonnegativity bounds (IsNonnegFrameFunction, bounded_of_nonneg, ortho_add_le_weight_of_nonneg, eq_zero_on_perp_of_pole_eq_weight), general Piron tangent-step inequalities (tangentStep_le_add_equator_of_nonneg, tangentStep_sub_le_weight_sub_pole_of_nonneg), shared-normal latitude addition (exists_common_normal_lat_add), and continuity-free Proposition 1, quarter-turn, six-circle, and pure-state reductions (equator_const_is_min_of_max, prop1_pole_of_max, continuousOn_of_max_and_equator_const, prop1_of_max, sum_phat_of_max, sum_rhat_of_min, eq_stdQuad_on_six_circles_of_extrema, pure_state_nonneg_gleason_real).",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:gleasonrealsphere",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json",
+            "sha256": "d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660"
+          },
+          {
+            "path": "dag/research/gleason_lean_audit.json",
+            "sha256": "6ed822e49fe8f3af8713f1da94ad9a88970f7c59a7fcbb36c5f458d61222a56e"
+          },
+          {
+            "path": "lean4/GleasonRealSphere.lean",
+            "sha256": "92324a54ba4167f232a7ae6be72160b84553e2bf9f05dfd45624812f2221699d"
+          }
+        ],
+        "owned_invariants": [
+          "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r), together with Target 2 (TFQ-1059) nonnegativity bounds (IsNonnegFrameFunction, bounded_of_nonneg, ortho_add_le_weight_of_nonneg, eq_zero_on_perp_of_pole_eq_weight), general Piron tangent-step inequalities (tangentStep_le_add_equator_of_nonneg, tangentStep_sub_le_weight_sub_pole_of_nonneg), shared-normal latitude addition (exists_common_normal_lat_add), and continuity-free Proposition 1, quarter-turn, six-circle, and pure-state reductions (equator_const_is_min_of_max, prop1_pole_of_max, continuousOn_of_max_and_equator_const, prop1_of_max, sum_phat_of_max, sum_rhat_of_min, eq_stdQuad_on_six_circles_of_extrema, pure_state_nonneg_gleason_real).",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "GleasonReal.dot3",
+          "GleasonReal.cross3",
+          "GleasonReal.e1",
+          "GleasonReal.e3",
+          "GleasonReal.lat",
+          "GleasonReal.IsFrameFunction",
+          "GleasonReal.dot3_comm",
+          "GleasonReal.dot3_self_nonneg",
+          "GleasonReal.ne_zero_iff_dot3_self_pos",
+          "GleasonReal.dot3_self_pos",
+          "GleasonReal.ne_zero_of_dot3_self_pos",
+          "GleasonReal.ne_zero_of_apply_ne",
+          "GleasonReal.ne_zero_of_transverse_ne",
+          "GleasonReal.e1_ne_zero",
+          "GleasonReal.e3_ne_zero",
+          "GleasonReal.dot3_e3_self",
+          "GleasonReal.dot3_e1_self",
+          "GleasonReal.lat_e1",
+          "GleasonReal.lat_nonneg",
+          "GleasonReal.lat_le_one",
+          "GleasonReal.lat_smul",
+          "GleasonReal.lat_lt_iff",
+          "GleasonReal.lat_eq_iff",
+          "GleasonReal.pair_sum_eq_of_common_normal",
+          "GleasonReal.tangentDir",
+          "GleasonReal.tangentStep",
+          "GleasonReal.tangentStep_apply",
+          "GleasonReal.tangentStep_le",
+          "GleasonReal.pt",
+          "GleasonReal.pt_ne_zero_of_ne",
+          "GleasonReal.pt_transverse_ne",
+          "GleasonReal.tangentStep_pt",
+          "GleasonReal.chain_le",
+          "GleasonReal.one_add_tan_mul_I",
+          "GleasonReal.exists_chain_eq",
+          "GleasonReal.pt_eq_self",
+          "GleasonReal.norm_sq_transverse",
+          "GleasonReal.le_of_lat_lt",
+          "GleasonReal.lat_lt_lat_add_smul_e1",
+          "GleasonReal.eq_of_lat_eq",
+          "GleasonReal.sphere3",
+          "GleasonReal.sq_le_dot3_self",
+          "GleasonReal.continuous_dot3_self",
+          "GleasonReal.isCompact_sphere3",
+          "GleasonReal.e1_mem_sphere3",
+          "GleasonReal.sphere3_subset",
+          "GleasonReal.dot3_smul_smul",
+          "GleasonReal.dot3_smul_left",
+          "GleasonReal.dot3_smul_right",
+          "GleasonReal.exists_unit_smul",
+          "GleasonReal.exists_min",
+          "GleasonReal.exists_max",
+          "GleasonReal.equator_const_is_min",
+          "GleasonReal.refPt",
+          "GleasonReal.refPt_dot3",
+          "GleasonReal.refPt_ne_zero",
+          "GleasonReal.lat_refPt",
+          "GleasonReal.refPt_zero",
+          "GleasonReal.refPt_one",
+          "GleasonReal.linear_of_monotone_additive",
+          "GleasonReal.exists_frame_with_lat",
+          "GleasonReal.prop1_pole",
+          "GleasonReal.IsOrthonormal",
+          "GleasonReal.ofFrame",
+          "GleasonReal.toFrame",
+          "GleasonReal.ofFrame_apply",
+          "GleasonReal.dot3_ofFrame",
+          "GleasonReal.ofFrame_smul",
+          "GleasonReal.ofFrame_ne_zero",
+          "GleasonReal.continuous_ofFrame",
+          "GleasonReal.dot3_ofFrame_left",
+          "GleasonReal.toFrame_ofFrame",
+          "GleasonReal.completeness",
+          "GleasonReal.completeness'",
+          "GleasonReal.ofFrame_toFrame",
+          "GleasonReal.toFrame_ne_zero",
+          "GleasonReal.dot3_toFrame_self",
+          "GleasonReal.IsFrameFunction.comp_ofFrame",
+          "GleasonReal.continuousOn_comp_ofFrame",
+          "GleasonReal.exists_orthonormal_completion",
+          "GleasonReal.isOrthonormal_cross",
+          "GleasonReal.ofFrame_e1",
+          "GleasonReal.ofFrame_e3",
+          "GleasonReal.sum_sq_dot3_eq",
+          "GleasonReal.sq_div_dot3_smul",
+          "GleasonReal.sum_lat_eq",
+          "GleasonReal.prop1",
+          "GleasonReal.exists_min_on_equator_pole",
+          "GleasonReal.exists_min_perp",
+          "GleasonReal.phat",
+          "GleasonReal.rhat",
+          "GleasonReal.dot3_phat",
+          "GleasonReal.dot3_rhat",
+          "GleasonReal.phat_smul",
+          "GleasonReal.rhat_smul",
+          "GleasonReal.phat_ne_zero",
+          "GleasonReal.rhat_ne_zero",
+          "GleasonReal.continuous_phat",
+          "GleasonReal.continuous_rhat",
+          "GleasonReal.phat_e1",
+          "GleasonReal.rhat_e3",
+          "GleasonReal.IsFrameFunction.add",
+          "GleasonReal.IsFrameFunction.neg",
+          "GleasonReal.IsFrameFunction.sub",
+          "GleasonReal.IsFrameFunction.comp_phat",
+          "GleasonReal.IsFrameFunction.comp_rhat",
+          "GleasonReal.continuousOn_comp_phat",
+          "GleasonReal.continuousOn_comp_rhat",
+          "GleasonReal.sum_phat",
+          "GleasonReal.sum_rhat",
+          "GleasonReal.stdQuad",
+          "GleasonReal.isFrameFunction_stdQuad",
+          "GleasonReal.continuousOn_stdQuad",
+          "GleasonReal.stdQuad_add_phat",
+          "GleasonReal.stdQuad_add_rhat",
+          "GleasonReal.stdQuad_e1",
+          "GleasonReal.stdQuad_e3",
+          "GleasonReal.eq_stdQuad_on_six_circles",
+          "GleasonReal.dot3_add_left",
+          "GleasonReal.dot3_sub_left",
+          "GleasonReal.dot3_cross3_left",
+          "GleasonReal.dot3_cross3_right",
+          "GleasonReal.dot3_cross3_self",
+          "GleasonReal.exists_max_unit",
+          "GleasonReal.six_normals_tight",
+          "GleasonReal.eq_zero_of_vanishes_on_six_circles",
+          "GleasonReal.gleason_real",
+          "GleasonReal.IsNonnegFrameFunction",
+          "GleasonReal.IsNonnegFrameFunction.comp_ofFrame",
+          "GleasonReal.weight_nonneg_of_nonneg",
+          "GleasonReal.le_weight_of_nonneg",
+          "GleasonReal.bounded_of_nonneg",
+          "GleasonReal.ortho_add_le_weight_of_nonneg",
+          "GleasonReal.ortho_le_weight_sub_of_nonneg",
+          "GleasonReal.eq_zero_on_perp_of_pole_eq_weight",
+          "GleasonReal.tangentStep_le_add_equator_of_nonneg",
+          "GleasonReal.tangentStep_sub_le_weight_sub_pole_of_nonneg",
+          "GleasonReal.equator_const_is_min_of_max",
+          "GleasonReal.exists_common_normal_lat_add",
+          "GleasonReal.exists_lat_pair_sum_eq_refPt",
+          "GleasonReal.refPt_sub_add_le_of_lt",
+          "GleasonReal.refPt_sub_le_add_of_lt",
+          "GleasonReal.nat_mul_refPt_sub_le",
+          "GleasonReal.refPt_sub_le_nat_mul",
+          "GleasonReal.rat_mul_pole_sub_bounds_of_lat",
+          "GleasonReal.prop1_pole_of_max",
+          "GleasonReal.continuousOn_of_max_and_equator_const",
+          "GleasonReal.prop1_of_max",
+          "GleasonReal.sum_phat_of_max",
+          "GleasonReal.sum_rhat_of_min",
+          "GleasonReal.eq_stdQuad_on_six_circles_of_extrema",
+          "GleasonReal.pure_state_nonneg_gleason_real"
+        ]
+      },
+      "sha256": "144d2a14cb4c72bedd741edf37709d1bf895d4bc8b14b74608812469aef744f4"
     }
   ],
-  "current_contract": "ff69bcfb18dede213e5911e206646a31b4e5081501e5653c51b851b2e1561155",
-  "current_scoring": "93dc6235531f618a1583b5cfc1ffb12a2f456ff975ab987b1ebf61d9eeff5ce8",
+  "current_contract": "144d2a14cb4c72bedd741edf37709d1bf895d4bc8b14b74608812469aef744f4",
+  "current_scoring": "75c1f1c28ad803ced1fc03d3df2dfd7b3ae6d2e54f6731b9d5868cc5ec98eaa6",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -1059,6 +1279,64 @@
         "score_token": "L4D"
       },
       "sha256": "93dc6235531f618a1583b5cfc1ffb12a2f456ff975ab987b1ebf61d9eeff5ce8"
+    },
+    {
+      "bytes": 3689,
+      "original_paths": [
+        "lean4/GleasonRealSphere.contract.score.yaml#tfq-1059-continuum-piron-real-l4d-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonRealSphere.lean\",\n    \"sha256\": \"92324a54ba4167f232a7ae6be72160b84553e2bf9f05dfd45624812f2221699d\"\n  },\n  \"assessment_id\": \"tfq-1059-continuum-piron-real-l4d-v1\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-05T00:00:00Z\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json\",\n      \"sha256\": \"d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"sha256\": \"6ed822e49fe8f3af8713f1da94ad9a88970f7c59a7fcbb36c5f458d61222a56e\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.\",\n  \"limitations\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonRealSphere.lean",
+          "sha256": "92324a54ba4167f232a7ae6be72160b84553e2bf9f05dfd45624812f2221699d"
+        },
+        "assessment_id": "tfq-1059-continuum-piron-real-l4d-v1",
+        "basis": {
+          "G1": "Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.",
+          "G2": "Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.",
+          "G4": "Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.",
+          "G5": "Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-05T00:00:00Z",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json",
+            "sha256": "d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660"
+          },
+          {
+            "path": "dag/research/gleason_lean_audit.json",
+            "sha256": "6ed822e49fe8f3af8713f1da94ad9a88970f7c59a7fcbb36c5f458d61222a56e"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.",
+        "limitations": [
+          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "75c1f1c28ad803ced1fc03d3df2dfd7b3ae6d2e54f6731b9d5868cc5ec98eaa6"
     }
   ]
 }
