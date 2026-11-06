@@ -64,7 +64,7 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0378`](./02_genesis/tfq_0378_regime_tuple_and_events.md) | regime-tuple-and-events | `SOURCE_RECORD` | [`TFQ-0377`](./02_genesis/tfq_0377_mss0_only_inscription.md) |
 | [`TFQ-0379`](./02_genesis/tfq_0379_supply_does_not_admit.md) | supply-does-not-admit | `SOURCE_RECORD` | [`TFQ-0378`](./02_genesis/tfq_0378_regime_tuple_and_events.md) |
 | [`TFQ-0380`](./02_genesis/tfq_0380_readings_left_unselected.md) | readings-left-unselected | `OPEN_OBLIGATION` | [`TFQ-0379`](./02_genesis/tfq_0379_supply_does_not_admit.md) |
-| [`TFQ-0381`](./02_genesis/tfq_0381_cost_two_first_separation.md) | cost-two-first-separation | `SOURCE_RECORD` | [`TFQ-0380`](./02_genesis/tfq_0380_readings_left_unselected.md) |
+| [`TFQ-0381`](./02_genesis/tfq_0381_cost_two_first_separation.md) | cost-two-first-separation | `PROVED_LEAN` | [`TFQ-0380`](./02_genesis/tfq_0380_readings_left_unselected.md) |
 | [`TFQ-0382`](./02_genesis/tfq_0382_refined_minimum_class.md) | refined-minimum-class | `SOURCE_RECORD` | [`TFQ-0381`](./02_genesis/tfq_0381_cost_two_first_separation.md) |
 | [`TFQ-0383`](./02_genesis/tfq_0383_closure_round_inequality.md) | closure-round-inequality | `SOURCE_RECORD` | [`TFQ-0382`](./02_genesis/tfq_0382_refined_minimum_class.md) |
 | [`TFQ-0384`](./02_genesis/tfq_0384_cumulative_count_no_return.md) | cumulative-count-no-return | `SOURCE_RECORD` | [`TFQ-0383`](./02_genesis/tfq_0383_closure_round_inequality.md) |
@@ -107,11 +107,11 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0458`](./02_genesis/tfq_0458_faithful_descent_round_trip.md) | faithful-descent-round-trip | `PROVED_LEAN` | [`TFQ-0457`](./02_genesis/tfq_0457_quotient_retention.md) |
 | [`TFQ-0459`](./02_genesis/tfq_0459_canonical_key_classification.md) | canonical-key-classification | `PROVED_LEAN` | [`TFQ-0431`](./02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md) |
 | [`TFQ-0460`](./02_genesis/tfq_0460_incidence_construction_betti.md) | incidence-construction-betti | `SOURCE_RECORD` | [`TFQ-0455`](./02_genesis/tfq_0455_d2_initial_pointed.md) |
-| [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) | genesis-three-axis-verdict | `SOURCE_RECORD` | [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) |
-| [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) | rung0-inheritance-replay | `SOURCE_RECORD` | [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) |
+| [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) | genesis-three-axis-verdict | `PROVED_LEAN` | [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) |
+| [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) | rung0-inheritance-replay | `PROVED_LEAN` | [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) |
 | [`TFQ-0463`](./02_genesis/tfq_0463_rung1_stream_as_response.md) | rung1-stream-as-response | `OPEN_OBLIGATION` | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) |
 | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) | rung2a-stake-declared-label | `SOURCE_RECORD` | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) |
-| [`TFQ-0465`](./02_genesis/tfq_0465_rung2b_stake_menu.md) | rung2b-stake-menu | `SOURCE_RECORD` | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) |
+| [`TFQ-0465`](./02_genesis/tfq_0465_rung2b_stake_menu.md) | rung2b-stake-menu | `PROVED_LEAN` | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) |
 | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) | rung3-first-demand-index | `SOURCE_RECORD` | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) |
 | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) | rung4-index-up-to-isomorphism | `SOURCE_RECORD` | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) |
 | [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) | rung5-symmetry-along-history | `SOURCE_RECORD` | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) |
@@ -122,7 +122,7 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) | rung10-responder-adjacency-reach | `SOURCE_RECORD` | [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) |
 | [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) | c1-engine-class-144 | `SOURCE_RECORD` | [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) |
 | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) | c2-run-forward-every-history | `PROVED_LEAN` | [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) |
-| [`TFQ-0476`](./02_genesis/tfq_0476_forced_census_column.md) | forced-census-column | `SOURCE_RECORD` | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) |
+| [`TFQ-0476`](./02_genesis/tfq_0476_forced_census_column.md) | forced-census-column | `PROVED_LEAN` | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) |
 | [`TFQ-0477`](./02_genesis/tfq_0477_go_reach_ceiling.md) | go-reach-ceiling | `PROVED_LEAN` | [`TFQ-0389`](./02_genesis/tfq_0389_fewest_changes_formula.md) |
 | [`TFQ-0478`](./02_genesis/tfq_0478_go_contraction_step2_step3.md) | go-contraction-step2-step3 | `PROVED_LEAN` | [`TFQ-0477`](./02_genesis/tfq_0477_go_reach_ceiling.md) |
 | [`TFQ-0479`](./02_genesis/tfq_0479_go_multiplicity_monotone.md) | go-multiplicity-monotone | `PROVED_LEAN` | [`TFQ-0478`](./02_genesis/tfq_0478_go_contraction_step2_step3.md) |

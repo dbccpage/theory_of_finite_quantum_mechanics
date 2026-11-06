@@ -1,6 +1,6 @@
 # [TFQ-0476] forced-census-column
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `80e2daa0-9f5d-56e7-bd59-7f03667874b8`  
 > **Parent Derivation**: [TFQ-0475](tfq_0475_c2_run_forward_every_history.md)
 
@@ -34,6 +34,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.forced_census_column_twelve_row_verdict_and_countermodel`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.replayRung_elems_le`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_forced_census_column`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean)
 - [`lean4/Imported/GenesisDerivation/SecondRun/Run.lean::ereplay_elems_le`](../../../lean4/Imported/GenesisDerivation/SecondRun/Run.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

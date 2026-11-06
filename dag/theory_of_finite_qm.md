@@ -79,7 +79,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0002` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-REGIME-EVENTS` (DEFINITION) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-0003` | `FINITE_OBSTRUCTION` | `OPEN_OBLIGATION` | `TFQ-0003` (OPEN) | - |
 | `TFQ-0004` | `WDP` | `GAP` | `PG-WDP-DEGREE1-WINDOW` (DEFINITION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0005` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0005` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0006` | `L1_TO_L2` | `GAP` | `TFQ-0006` (OPEN) | - |
 | `TFQ-0007` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `TFQ-0007` (OPEN) | - |
 | `TFQ-0008` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `TFQ-0008` (OPEN) | - |
@@ -241,7 +241,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0164` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `TFQ-0164` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0165` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `TFQ-0165` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0166` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0166` (COMPUTATIONALLY_CHECKED) | - |
-| `TFQ-0167` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `L1-WDP-WITNESS-MASS` (DEFINITION), `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN) | `L1-WDP-WITNESS-MASS`: scoped_result_or_obstruction_reviewed / consistent; `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0167` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `L1-WDP-WITNESS-MASS` (DEFINITION), `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (PROVED_LEAN), `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN) | `L1-WDP-WITNESS-MASS`: scoped_result_or_obstruction_reviewed / consistent; `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / consistent; `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0168` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0168` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0169` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0169` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0170` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0170` (COMPUTATIONALLY_CHECKED) | - |
@@ -428,7 +428,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0351` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-FRAMEWORK-KKT-CERT` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0352` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-OBSERVER-AXIOMS-H1-H5` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0353` | `L1_EMERGENCE` | `PROVED_LEAN` | `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (PROVED_LEAN), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / consistent; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0355` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` (OPEN), `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-IMP-HILBERT-INNER-PRODUCT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0356` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS001-GAUGE-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0357` | `L1_EMERGENCE` | `PROVED_LEAN` | `L1-WDP-CH08-C01-REPLICA-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
@@ -576,11 +576,11 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0458` | `GENESIS` | `PROVED_LEAN` | `PGW-FAITHFUL-DESCENT-ROUND-TRIP` (PROVED_LEAN) | - |
 | `TFQ-0459` | `GENESIS` | `PROVED_LEAN` | `PGW-CANONICAL-KEY-CLASSIFICATION` (PROVED_LEAN) | - |
 | `TFQ-0460` | `GENESIS` | `SOURCE_RECORD` | `PGW-INCIDENCE-CONSTRUCTION-BETTI` (PROVED_LEAN) | - |
-| `TFQ-0461` | `GENESIS` | `SOURCE_RECORD` | `PGW-GENESIS-THREE-AXIS-VERDICT` (COMPUTATIONALLY_CHECKED) | - |
-| `TFQ-0462` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG0-INHERITANCE-REPLAY` (COMPUTATIONALLY_CHECKED) | - |
+| `TFQ-0461` | `GENESIS` | `PROVED_LEAN` | `PGW-GENESIS-THREE-AXIS-VERDICT` (PROVED_LEAN) | - |
+| `TFQ-0462` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG0-INHERITANCE-REPLAY` (PROVED_LEAN) | - |
 | `TFQ-0463` | `GENESIS` | `OPEN_OBLIGATION` | `PGW-RUNG1-STREAM-AS-RESPONSE` (OPEN) | - |
 | `TFQ-0464` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG2A-STAKE-DECLARED-LABEL` (CONDITIONAL) | - |
-| `TFQ-0465` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG2B-STAKE-MENU` (COMPUTATIONALLY_CHECKED) | - |
+| `TFQ-0465` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG2B-STAKE-MENU` (PROVED_LEAN) | - |
 | `TFQ-0466` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG3-FIRST-DEMAND-INDEX` (CONDITIONAL) | - |
 | `TFQ-0467` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM` (CONDITIONAL) | - |
 | `TFQ-0468` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG5-SYMMETRY-ALONG-HISTORY` (CONDITIONAL) | - |
@@ -591,7 +591,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0473` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG10-RESPONDER-ADJACENCY-REACH` (CONDITIONAL) | - |
 | `TFQ-0474` | `GENESIS` | `SOURCE_RECORD` | `PGW-C1-ENGINE-CLASS-144` (CONDITIONAL) | - |
 | `TFQ-0475` | `GENESIS` | `PROVED_LEAN` | `PGW-C2-RUN-FORWARD-EVERY-HISTORY` (PROVED_LEAN) | - |
-| `TFQ-0476` | `GENESIS` | `SOURCE_RECORD` | `PGW-FORCED-CENSUS-COLUMN` (COMPUTATIONALLY_CHECKED) | - |
+| `TFQ-0476` | `GENESIS` | `PROVED_LEAN` | `PGW-FORCED-CENSUS-COLUMN` (PROVED_LEAN) | - |
 | `TFQ-0477` | `GENESIS` | `PROVED_LEAN` | `PGW-GO-REACH-CEILING` (PROVED_LEAN) | - |
 | `TFQ-0478` | `GENESIS` | `PROVED_LEAN` | `PGW-GO-CONTRACTION-STEP2-STEP3` (PROVED_LEAN) | - |
 | `TFQ-0479` | `GENESIS` | `PROVED_LEAN` | `PGW-GO-MULTIPLICITY-MONOTONE` (PROVED_LEAN) | - |
@@ -2184,7 +2184,7 @@ Obligation: Replay the literal-root walk, read admitted instances as simplices u
 
 - UUID: `66b985c0-d8cd-5002-aee5-b6f9580270ab`
 - Parent: `TFQ-0454`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 The final source closeout records three independent axes after the author's 2026-09-28 freeze of snapshot 90ab34a0: research_phase CLOSED_WITH_OPEN_OBSTRUCTIONS, alpha_reference READY_WITHIN_DECLARED_SCOPE and original_seed_completion_gate UNSATISFIED, the last with its live-injection and comparison clauses unmet and the input-count floor NOT_ESTABLISHED. A source defect stays on the record: delta_events names a fresh datum w<n> from the current datum count, so when the sole admitted token is w1 a NewDatum item emits AdmitDatum(w1) and deduplication leaves the state unchanged; the standalone replay reproduces this. Pinned Lean modules use only propext and Quot.sound, companion results such as the carrier-general image factorization also use Classical.choice, and the compiled census reports 2,475 non-internal theorem constants. Native Rust and frozen Python agree on every context observation and portable key over 1,436 regimes, and the compiled Lean wire encoder agrees with Python on 1,439 tuples.
 
@@ -2194,7 +2194,7 @@ Obligation: Keep the three axes as separate verdicts, reproduce the w1 fresh-lab
 
 - UUID: `02afe41a-eeda-5192-97b5-ad5c157ece12`
 - Parent: `TFQ-0461`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung zero of the second derivation (pull request 130) answers Challenge 0 at stated scope: the sealed challenge reports and both sealed closed baselines regenerate exactly (reading L, 4 nodes, 3 terminal; reading F, 20 nodes, 16 terminal). The sealed grammar has six event kinds, of which only the supply preserves the state, and the two remaining declared inputs are named: the stake and the stream. Inertia is a finite computation from both readings: up to eight supplies leave the regime unchanged, and growth to five data under the all-free stake admits no form, raises no demand and leaves every state totally collapsed. The only Lean evidence cited is the sealed supply_no_op.
 
@@ -2224,7 +2224,7 @@ Obligation: State the label-source assembly, the three demand-inert kinds and th
 
 - UUID: `5c1d3782-fb74-553e-94c5-a52bd8537678`
 - Parent: `TFQ-0464`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung two track two (pull request 135) answers Challenge 2, the stake read off the state, within a declared menu and rectangle and by finite computation only. The menu has nine rules E1 to E9 reading six observables (profile equality, profile emptiness, profile size, pair-orbit membership, class count, requirement pattern). On both readings, both measures, two items, arity two, four held data, fifteen rounds and guard 250 (847 reached regimes), six rules commute with every renaming over 1,345,706 cases, while E3, E4 and E6, which read pair orbits, are OPEN at transport replay. E4 alone generates demands of both kinds and its invariance is among the OPEN three, so no member is both checked invariant and two-kinded; all nine are retained.
 
@@ -2334,7 +2334,7 @@ Obligation: Carry ereplay_elems_le, no_return and cycle_regime_const for every h
 
 - UUID: `80e2daa0-9f5d-56e7-bd59-7f03667874b8`
 - Parent: `TFQ-0475`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Continuation attempt two decides the FORCED column of all twelve rows of the definability census over the declared engine class at its bounds (rounds zero to fifteen, both readings), each NOT FORCED verdict naming a first failing engine and a path of its run. The element count and irreversibility are FORCED, at the bounds by computation and beyond them by the every-history theorems, every cycle of every run being made of switch edges; two-ness is FORCED over the 64 LIVE engines, every path holding two before any bound or guard node. Every other row (the observational class count, succession, duration, adjacency, reach, symmetry, branching, exhaustion and recurrence) is NOT FORCED with an executable countermodel; one state of one run is reached in five rounds and in six, so succession and duration are not functions of the state.
 

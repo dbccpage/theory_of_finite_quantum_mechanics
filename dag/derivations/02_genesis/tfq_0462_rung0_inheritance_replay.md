@@ -1,6 +1,6 @@
 # [TFQ-0462] rung0-inheritance-replay
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `02afe41a-eeda-5192-97b5-ad5c157ece12`  
 > **Parent Derivation**: [TFQ-0461](tfq_0461_genesis_three_axis_verdict.md)
 
@@ -33,6 +33,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.replay_admitDatum_growth`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.replay_supplies_no_op`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.rung0_inheritance_replay_and_unbounded_supply_datum_inertia`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_rung0_inheritance_replay`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean)
 - [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::supply_no_op`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
