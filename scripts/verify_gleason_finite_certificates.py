@@ -1347,6 +1347,299 @@ def verify_tfq_1057_multi_frame_incidence_and_amplification() -> dict[str, objec
     }
 
 
+def min_k_dyadic_triangle(delta_0: Fraction, delta: Fraction) -> int:
+    """Smallest integer `k >= 1` such that `2^(k + 1) * (4 * delta) >= delta_0`,
+    mirroring `no_uniform_step_bound_for_delta_collar_meridian_chains` in `BornGaussianFiniteModel.lean`."""
+    if delta <= Fraction(0):
+        raise ValueError("delta must be positive")
+    k = 1
+    while Fraction(2 ** (k + 1)) * (Fraction(4) * delta) < delta_0:
+        k += 1
+    return k
+
+
+def min_k_half_log2(delta_0: Fraction, delta: Fraction) -> int:
+    """Smallest integer `k >= 1` such that `2^(2 * k) >= delta_0 / (4 * delta)`,
+    i.e., `ceil((1/2) * log2(delta_0 / (4 * delta)))` in exact rational arithmetic."""
+    if delta <= Fraction(0):
+        raise ValueError("delta must be positive")
+    ratio = delta_0 / (Fraction(4) * delta)
+    k = 1
+    while Fraction(4**k) < ratio:
+        k += 1
+    return k
+
+
+def min_k_sqrt(delta_0: Fraction, delta: Fraction) -> int:
+    """Smallest integer `k >= 1` such that `k^2 * (4 * delta) >= delta_0`,
+    i.e., `ceil(sqrt(delta_0 / (4 * delta)))` in exact rational arithmetic."""
+    if delta <= Fraction(0):
+        raise ValueError("delta must be positive")
+    k = 1
+    while Fraction(k * k) * (Fraction(4) * delta) < delta_0:
+        k += 1
+    return k
+
+
+def linear_drift_chain(eps: Fraction, k: int) -> Fraction:
+    """Explicit linear drift chain `k * eps`, mirroring `linearDriftChain` in `BornGaussianFiniteModel.lean`."""
+    return Fraction(k) * eps
+
+
+def verify_tfq_1057_section10_chain_step_scaling_and_triangle() -> dict[str, object]:
+    """Verify Section 10 (`TFQ-1057` Tests 1 & 2) certificates in exact rational arithmetic:
+    10A (Test 1):
+      - Euclidean (`distSqVec_le_two_mul_add`) and projective (`raySinSq_le_two_mul_add`)
+        quadratic triangle inequalities across all nonzero ray triples in the test pool,
+      - Single-step meridian-Kelvin (`anchorMeridianOrtho_raySinSq_lt_four_mul`,
+        `radialScale_meridianOrtho_raySinSq_lt_four_mul`) and opposite-meridian double-angle
+        (`anchorMeridianStep_sub_raySinSq_eq_four_mul`, `4 * t * (1 - t) < 4 * delta`) bounds,
+      - Multi-step chain angular displacement bound (`chain_raySinSq_endpoint_le`) and
+        `k(delta) -> infinity` lower bounds (`min_k_dyadic_triangle`, `min_k_half_log2`, `min_k_sqrt`)
+        for `witness_111` (`Delta_0 = 2/3` to axes, `1/3` to `T_9` / `T_15`) and `witness_123`
+        (`Delta_0 = 5/14` to axes, `3/28` and `1/14` to `T_9` / `T_15`) across
+        `delta in {1/10, 1/100, 1/1000, 1/10000}`,
+    10B (Test 2):
+      - Sublinear chain-drift sufficiency (`zero_of_hasSublinearChainDriftFrom`) vs.
+        `1/k` step-error counterexample (`linearDriftChain_constant_gap_of_inv_k_step`).
+    """
+    nine_anchors_list = list(NINE_ANCHORS.values())
+    fifteen_rays_list = list(NINE_ANCHORS.values()) + list(SIX_PARTNERS.values())
+    ray_pool = [
+        TOMO_E1,
+        TOMO_E2,
+        TOMO_E3,
+        TOMO_E12,
+        TOMO_E23I,
+        PARTNER_E12_MINUS,
+        PARTNER_E23_MINUS,
+        WITNESS_111,
+        WITNESS_NEG211,
+        PROBE_120,
+        PROBE_2M15,
+        WITNESS_123,
+        WITNESS_P7,
+        WITNESS_P11,
+        perturb_pos_ray(1),
+        crt_approach_e1(0),
+    ]
+
+    # 10A.1: Euclidean and projective ray-distance quadratic triangle inequalities
+    euclidean_triangle_checks = 0
+    projective_triangle_checks = 0
+    for u in ray_pool:
+        for v in ray_pool:
+            c_uv = proj_scalar(u, v)
+            u_proj = u.smul(c_uv)
+            if (
+                u_proj.norm_sq() != v.norm_sq() * (Fraction(1) - ray_sin_sq(u, v))
+                or u_proj.norm_sq() > v.norm_sq()
+            ):
+                raise AssertionError("normSqVec_projScalar_smul / normSqVec_projScalar_smul_le failed")
+            for w in ray_pool:
+                mid_res = u.sub(v).sub(v.sub(w)).norm_sq()
+                if (
+                    Fraction(2) * dist_sq_vec(u, v)
+                    + Fraction(2) * dist_sq_vec(v, w)
+                    - dist_sq_vec(u, w)
+                    != mid_res
+                    or dist_sq_vec(u, w)
+                    > Fraction(2) * dist_sq_vec(u, v) + Fraction(2) * dist_sq_vec(v, w)
+                ):
+                    raise AssertionError("two_mul_distSqVec_add_sub_distSqVec / distSqVec_le_two_mul_add failed")
+                euclidean_triangle_checks += 1
+                if ray_sin_sq(u, w) > Fraction(2) * (ray_sin_sq(u, v) + ray_sin_sq(v, w)):
+                    raise AssertionError(
+                        f"raySinSq_le_two_mul_add failed for u={u}, v={v}, w={w}"
+                    )
+                projective_triangle_checks += 1
+
+    # 10A.2: Single-step meridian-Kelvin & opposite-meridian double-angle 4*t*(1 - t) < 4*delta bounds
+    probe_seeds = [
+        GVec.real(1, 2, 3),
+        GVec.real(2, -1, 4),
+        GVec(GaussRat.of(1, 1), GaussRat.of(2, -1), GaussRat.of(-1, 2)),
+    ]
+    single_step_meridian_bound_checks = 0
+    for a_vec in fifteen_rays_list:
+        for seed in probe_seeds:
+            y_eq = herm_cross(a_vec, seed)
+            if not y_eq.is_non_zero():
+                continue
+            for delta in (
+                Fraction(1, 2),
+                Fraction(1, 10),
+                Fraction(1, 100),
+                Fraction(1, 1000),
+            ):
+                c_scale = radial_scale_factor(a_vec, y_eq, delta)
+                yc = y_eq.smul(GaussRat.of(c_scale))
+                yc_neg = yc.smul(GaussRat.of(-1))
+                step_pos = a_vec.add(yc)
+                step_neg = a_vec.sub(yc)
+                ortho_pos = anchor_meridian_ortho(a_vec, yc)
+                ortho_neg = anchor_meridian_ortho(a_vec, yc_neg)
+                t_val = ray_sin_sq(step_pos, a_vec)
+                expected_double = Fraction(4) * t_val * (Fraction(1) - t_val)
+                if not (
+                    Fraction(0) < t_val < delta
+                    and ray_sin_sq(ortho_pos, y_eq) == t_val
+                    and ray_sin_sq(ortho_pos, y_eq) < delta
+                    and ray_sin_sq(ortho_pos, y_eq) < Fraction(4) * delta
+                    and ray_sin_sq(step_pos, step_neg) == expected_double
+                    and ray_sin_sq(ortho_pos, ortho_neg) == expected_double
+                    and expected_double <= Fraction(4) * t_val
+                    and expected_double < Fraction(4) * delta
+                ):
+                    raise AssertionError(
+                        "anchorMeridianStep_sub_raySinSq_eq_four_mul / radialScale_meridianOrtho_raySinSq_lt_four_mul failed"
+                    )
+                single_step_meridian_bound_checks += 1
+
+    # 10A.3: Multi-step chain angular displacement bound (chain_raySinSq_endpoint_le)
+    chain_rays = [
+        TOMO_E1,
+        PROBE_120,
+        WITNESS_111,
+        WITNESS_NEG211,
+        PROBE_2M15,
+        WITNESS_123,
+        PARTNER_E12_MINUS,
+    ]
+    chain_endpoint_bound_checks = 0
+    for k_len in range(1, len(chain_rays)):
+        v0 = chain_rays[0]
+        steps = chain_rays[1 : k_len + 1]
+        full_chain = [v0, *steps]
+        s_step = max(
+            ray_sin_sq(full_chain[i + 1], full_chain[i]) for i in range(k_len)
+        )
+        lhs_end = ray_sin_sq(steps[-1], v0)
+        rhs_tight = Fraction(2 ** (k_len + 1) - 2) * s_step
+        rhs_pow = Fraction(2 ** (k_len + 1)) * s_step
+        if not (lhs_end <= rhs_tight <= rhs_pow):
+            raise AssertionError(f"chain_raySinSq_endpoint_le failed at k={k_len}")
+        chain_endpoint_bound_checks += 1
+
+    # Verify witness_111 and witness_123 distance lower bounds to T_9 and T_15
+    min_w111_t9 = min(ray_sin_sq(WITNESS_111, a) for a in nine_anchors_list)
+    min_w111_t15 = min(ray_sin_sq(WITNESS_111, a) for a in fifteen_rays_list)
+    min_w111_axes = min(ray_sin_sq(WITNESS_111, a) for a in (TOMO_E1, TOMO_E2, TOMO_E3))
+    min_w123_t9 = min(ray_sin_sq(WITNESS_123, a) for a in nine_anchors_list)
+    min_w123_t15 = min(ray_sin_sq(WITNESS_123, a) for a in fifteen_rays_list)
+    min_w123_axes = min(ray_sin_sq(WITNESS_123, a) for a in (TOMO_E1, TOMO_E2, TOMO_E3))
+    if not (
+        min_w111_axes == Fraction(2, 3)
+        and min_w111_t9 == Fraction(1, 3)
+        and min_w111_t15 == Fraction(1, 3)
+        and min_w123_axes == Fraction(5, 14)
+        and min_w123_t9 == Fraction(3, 28)
+        and min_w123_t15 == Fraction(3, 28)
+        and min_w123_t15 >= Fraction(1, 14)
+    ):
+        raise AssertionError("Unexpected witness_111 / witness_123 anchor distance lower bounds")
+
+    deltas = (
+        Fraction(1, 10),
+        Fraction(1, 100),
+        Fraction(1, 1000),
+        Fraction(1, 10000),
+    )
+    target_regimes = {
+        "witness_111_to_axes_2_3": Fraction(2, 3),
+        "witness_111_to_t9_t15_1_3": Fraction(1, 3),
+        "witness_123_to_axes_5_14": Fraction(5, 14),
+        "witness_123_to_t15_1_14": Fraction(1, 14),
+    }
+    step_count_scaling_table: dict[str, list[dict[str, object]]] = {}
+    for regime_name, delta_0 in target_regimes.items():
+        rows: list[dict[str, object]] = []
+        prev_dyadic = 0
+        prev_half_log2 = 0
+        prev_sqrt = 0
+        for delta in deltas:
+            k_dyadic = min_k_dyadic_triangle(delta_0, delta)
+            k_half_log2 = min_k_half_log2(delta_0, delta)
+            k_sqrt = min_k_sqrt(delta_0, delta)
+            # For k0 = k_dyadic - 1 (when k_dyadic > 1), verify delta < delta_0 / (4 * 2^(k0 + 1))
+            k0 = k_dyadic - 1
+            if not (
+                (k_dyadic == 1 or delta < delta_0 / (Fraction(4) * Fraction(2 ** (k0 + 1))))
+                and delta >= delta_0 / (Fraction(4) * Fraction(2 ** (k_dyadic + 1)))
+                and k_dyadic >= prev_dyadic
+                and k_half_log2 >= prev_half_log2
+                and k_sqrt >= prev_sqrt
+            ):
+                raise AssertionError(
+                    f"Step-count lower bound monotonicity/threshold check failed for {regime_name} at delta={delta}"
+                )
+            prev_dyadic = k_dyadic
+            prev_half_log2 = k_half_log2
+            prev_sqrt = k_sqrt
+            rows.append(
+                {
+                    "delta": str(delta),
+                    "excluded_uniform_k0": k0,
+                    "min_k_dyadic_triangle": k_dyadic,
+                    "min_k_half_log2": k_half_log2,
+                    "min_k_sqrt": k_sqrt,
+                }
+            )
+        if not (rows[-1]["min_k_dyadic_triangle"] > rows[0]["min_k_dyadic_triangle"] and rows[-1]["min_k_sqrt"] > rows[0]["min_k_sqrt"]):
+            raise AssertionError(f"Expected strict growth of k(delta) for {regime_name}")
+        step_count_scaling_table[regime_name] = rows
+
+    # 10B: Sublinear chain-drift sufficiency vs. 1/k step-error counterexample
+    inv_k_drift_certificates: list[dict[str, str]] = []
+    for delta_gap in (Fraction(1), Fraction(1, 3), Fraction(1, 14)):
+        for k_val in (1, 2, 5, 10, 100, 1000):
+            eps_inv_k = delta_gap / Fraction(k_val)
+            for j in range(min(k_val, 5)):
+                step_diff = abs(
+                    linear_drift_chain(eps_inv_k, j + 1) - linear_drift_chain(eps_inv_k, j)
+                )
+                if step_diff != eps_inv_k:
+                    raise AssertionError("linearDriftChain_constant_gap_of_inv_k_step step check failed")
+            total_gap = linear_drift_chain(eps_inv_k, k_val) - linear_drift_chain(eps_inv_k, 0)
+            # Contrast with sublinear drift eps_sub = delta_gap / k^2, where total drift is delta_gap / k -> 0
+            eps_sub = delta_gap / Fraction(k_val * k_val)
+            sublinear_total = linear_drift_chain(eps_sub, k_val) - linear_drift_chain(eps_sub, 0)
+            if total_gap != delta_gap or sublinear_total != delta_gap / Fraction(k_val):
+                raise AssertionError("Sublinear vs 1/k drift comparison failed")
+            if delta_gap == Fraction(1, 3):
+                inv_k_drift_certificates.append(
+                    {
+                        "k": str(k_val),
+                        "target_gap_delta": str(delta_gap),
+                        "inv_k_step_eps": str(eps_inv_k),
+                        "inv_k_terminal_gap": str(total_gap),
+                        "sublinear_inv_k2_step_eps": str(eps_sub),
+                        "sublinear_terminal_drift": str(sublinear_total),
+                    }
+                )
+
+    return {
+        "subsection_10a_meridian_step_bound_and_triangle_no_go": {
+            "euclidean_quadratic_triangle_triples_checked": euclidean_triangle_checks,
+            "projective_ray_sin_sq_triangle_triples_checked": projective_triangle_checks,
+            "single_step_meridian_bound_checks": single_step_meridian_bound_checks,
+            "chain_endpoint_bound_checks": chain_endpoint_bound_checks,
+            "witness_111_min_ray_sin_sq_t9": str(min_w111_t9),
+            "witness_111_min_ray_sin_sq_t15": str(min_w111_t15),
+            "witness_123_min_ray_sin_sq_t9": str(min_w123_t9),
+            "witness_123_min_ray_sin_sq_t15": str(min_w123_t15),
+            "step_count_scaling_by_delta": step_count_scaling_table,
+            "uniform_step_bound_k0_excluded_as_delta_to_zero": True,
+        },
+        "subsection_10b_sublinear_vs_inv_k_chain_drift": {
+            "sublinear_drift_forces_zero_verified": True,
+            "inv_k_step_error_preserves_constant_gap_verified": True,
+            "inv_k_vs_sublinear_certificates": inv_k_drift_certificates,
+            "status": "PASS",
+        },
+    }
+
+
 def build_test_frames() -> list[tuple[str, GVec, GVec, GVec]]:
     """Representative corpus of exact orthogonal frames across Q(i)^3."""
     frames: list[tuple[str, GVec, GVec, GVec]] = [
@@ -1965,6 +2258,11 @@ def verify_all_certificates() -> dict[str, object]:
     #     Pointwise-Continuous Counterexample Analysis on Q(i)^3 \ {0}.
     tfq_1057_summary = verify_tfq_1057_multi_frame_incidence_and_amplification()
 
+    # 11. Section 10 (TFQ-1057 Tests 1 & 2): Radial-Scale Meridian Step-Size Bound, Projective
+    #     Ray-Distance Quadratic Triangle Inequality, k(delta) -> infinity No-Go & Sublinear vs.
+    #     1/k Chain-Drift Dichotomy.
+    tfq_1057_sec10_summary = verify_tfq_1057_section10_chain_step_scaling_and_triangle()
+
     return {
         "schema_version": 1,
         "phase": "Phase 2 — Finite and Exact-Arithmetic Gleason Model",
@@ -1988,6 +2286,7 @@ def verify_all_certificates() -> dict[str, object]:
         "ks_no_colouring_certificate": ks_summary,
         "tfq_0307_four_tier_classification": tfq_0307_summary,
         "tfq_1057_multi_frame_incidence_and_amplification": tfq_1057_summary,
+        "tfq_1057_section10_chain_step_scaling_and_triangle": tfq_1057_sec10_summary,
         "status": "PASS",
     }
 

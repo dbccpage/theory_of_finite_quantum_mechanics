@@ -693,7 +693,7 @@ def verify_part_e_dim_d_subspace_lift() -> dict[str, Any]:
     }
 
 
-TFQ1059_REQUIRED_DECLARATIONS: tuple[str, ...] = (
+TFQ1059_REAL_DECLARATIONS: tuple[str, ...] = (
     "nonempty_image_sphere3",
     "bddAbove_image_sphere3_of_nonneg",
     "bddBelow_image_sphere3_of_nonneg",
@@ -712,10 +712,53 @@ TFQ1059_REQUIRED_DECLARATIONS: tuple[str, ...] = (
     "eq_zero_of_vanishes_on_six_circles_of_extrema",
     "mixed_state_gleason_real_of_extrema",
     "gleason_real_of_continuousOn_sphere3",
+    "triaxial_eigenvalues_nonneg_and_ordered",
+    "stdQuad_nonneg_and_le_weight_of_eigenvalues",
+    "nonneg_gleason_real_of_extrema",
+    "nonneg_gleason_real_of_continuousOn_sphere3",
+)
+
+TFQ1059_COMPLEX_DECLARATIONS: tuple[str, ...] = (
     "deflateIsoC",
     "isFrameFunctionC_deflateIsoC",
     "isNonnegFrameFunctionC_deflateIsoC",
     "axisymmetric_mixed_state_nonneg_gleason_complex",
+    "nonempty_image_sphereC",
+    "bddAbove_image_sphereC_of_nonnegC",
+    "bddBelow_image_sphereC_of_nonnegC",
+    "le_sSup_sphereC_of_nonnegC",
+    "sInf_sphereC_le_of_nonnegC",
+    "sSup_sphereC_bounds_of_nonnegC",
+    "AttainsExtremaC",
+    "attainsExtremaC_of_continuousOn_sphereC",
+    "attainsExtremaC_of_continuousOn",
+    "complex_eigenvalues_nonneg_and_ordered",
+)
+
+TFQ1059_REQUIRED_DECLARATIONS: tuple[str, ...] = (
+    TFQ1059_REAL_DECLARATIONS + TFQ1059_COMPLEX_DECLARATIONS
+)
+
+TFQ1059_DECLARATION_NAMESPACES: dict[str, str] = {
+    **{name: "GleasonReal" for name in TFQ1059_REAL_DECLARATIONS},
+    **{name: "GleasonComplex" for name in TFQ1059_COMPLEX_DECLARATIONS},
+}
+
+TFQ1059_REQUIRED_PRINT_AXIOMS: tuple[str, ...] = (
+    "GleasonReal.triaxial_eigenvalues_nonneg_and_ordered",
+    "GleasonReal.stdQuad_nonneg_and_le_weight_of_eigenvalues",
+    "GleasonReal.nonneg_gleason_real_of_extrema",
+    "GleasonReal.nonneg_gleason_real_of_continuousOn_sphere3",
+    "GleasonComplex.nonempty_image_sphereC",
+    "GleasonComplex.bddAbove_image_sphereC_of_nonnegC",
+    "GleasonComplex.bddBelow_image_sphereC_of_nonnegC",
+    "GleasonComplex.le_sSup_sphereC_of_nonnegC",
+    "GleasonComplex.sInf_sphereC_le_of_nonnegC",
+    "GleasonComplex.sSup_sphereC_bounds_of_nonnegC",
+    "GleasonComplex.AttainsExtremaC",
+    "GleasonComplex.attainsExtremaC_of_continuousOn_sphereC",
+    "GleasonComplex.attainsExtremaC_of_continuousOn",
+    "GleasonComplex.complex_eigenvalues_nonneg_and_ordered",
 )
 
 
@@ -731,6 +774,65 @@ def std_quad_real(m_max: Fraction, alpha: Fraction, m_min: Fraction, v: RVec3) -
     if denom == 0:
         raise ValueError("Zero vector has no stdQuad value")
     return (m_max * v[0] * v[0] + alpha * v[1] * v[1] + m_min * v[2] * v[2]) / denom
+
+
+def check_triaxial_eigenvalues_ordered(
+    lam1: Fraction,
+    lam2: Fraction,
+    lam3: Fraction,
+    weight_w: Fraction,
+) -> bool:
+    """Checks `triaxial_eigenvalues_nonneg_and_ordered` and `complex_eigenvalues_nonneg_and_ordered`:
+    `lam2 == W - lam1 - lam3`, `0 <= lam3 <= lam2 <= lam1 <= W`, and `lam1 + lam2 + lam3 == W`."""
+    return (
+        lam2 == weight_w - lam1 - lam3
+        and Fraction(0, 1) <= lam3 <= lam2 <= lam1 <= weight_w
+        and lam1 + lam2 + lam3 == weight_w
+    )
+
+
+def check_std_quad_eigenvalue_bounds(
+    lam1: Fraction,
+    lam2: Fraction,
+    lam3: Fraction,
+    weight_w: Fraction,
+    v: RVec3,
+) -> bool:
+    """Checks `stdQuad_nonneg_and_le_weight_of_eigenvalues` for `v != 0`:
+    `lam3 <= stdQuad(v) <= lam1` and `0 <= stdQuad(v) <= W`."""
+    if not check_triaxial_eigenvalues_ordered(lam1, lam2, lam3, weight_w):
+        return False
+    q_val = std_quad_real(lam1, lam2, lam3, v)
+    return lam3 <= q_val <= lam1 and Fraction(0, 1) <= q_val <= weight_w
+
+
+def complex_triaxial_state_matrix(
+    p: GVec3,
+    q: GVec3,
+    r: GVec3,
+    lam1: Fraction,
+    lam2: Fraction,
+    lam3: Fraction,
+) -> GaussMatrix3:
+    """Constructs the 3x3 Hermitian matrix `lam1 |p><p| + lam2 |q><q| + lam3 |r><r|` over Q(i)."""
+    if (
+        norm_sq3(p) != Fraction(1, 1)
+        or norm_sq3(q) != Fraction(1, 1)
+        or norm_sq3(r) != Fraction(1, 1)
+        or inner3(p, q) != GaussRat(0, 0)
+        or inner3(p, r) != GaussRat(0, 0)
+        or inner3(q, r) != GaussRat(0, 0)
+    ):
+        raise ValueError("Eigenframe (p, q, r) must be orthonormal in Q(i)^3")
+    return tuple(
+        tuple(
+            GaussRat(lam1, 0) * (p[i] * p[j].conj())
+            + GaussRat(lam2, 0) * (q[i] * q[j].conj())
+            + GaussRat(lam3, 0) * (r[i] * r[j].conj())
+            for j in range(3)
+        )
+        for i in range(3)
+    )  # type: ignore[return-value]
 
 
 def of_frame_real(p: RVec3, q: RVec3, r: RVec3, v: RVec3) -> RVec3:
@@ -802,9 +904,12 @@ def strip_lean_comments(source: str) -> str:
 def check_lean_declarations_and_hygiene(
     lean_text: str,
     required_declarations: tuple[str, ...] = TFQ1059_REQUIRED_DECLARATIONS,
+    required_print_axioms: tuple[str, ...] | None = None,
 ) -> None:
-    """Verifies that comment-stripped Lean source contains zero forbidden tokens and
-    declares every required identifier as an actual theorem/lemma/def/structure/abbrev."""
+    """Verifies that comment-stripped Lean source contains zero forbidden tokens,
+    declares every required identifier as a non-private theorem/lemma/def/structure/abbrev
+    in its expected namespace (`GleasonReal` or `GleasonComplex`), and emits `#print axioms`
+    for every required axiom-check target."""
     stripped = strip_lean_comments(lean_text)
     forbidden_hits = [
         tok
@@ -814,17 +919,73 @@ def check_lean_declarations_and_hygiene(
     if forbidden_hits:
         raise ValueError(f"Forbidden Lean tokens found: {forbidden_hits}")
 
-    missing_decls = [
-        name
-        for name in required_declarations
-        if not re.search(
-            rf"^\s*(?:private\s+|protected\s+|noncomputable\s+)*(?:theorem|lemma|def|structure|abbrev)\s+{re.escape(name)}\b",
-            stripped,
-            re.MULTILINE,
-        )
-    ]
+    scope_re = re.compile(
+        r"^\s*(?:noncomputable\s+)?(?P<kw>namespace|section|mutual|end)(?:\s+(?P<name>[A-Za-z_\u0080-\uffff][\w.']*))?\s*$"
+    )
+    decl_re = re.compile(
+        r"^\s*(?P<mods>(?:(?:private|protected|noncomputable)\s+)*)(?:theorem|lemma|def|structure|abbrev)\s+(?P<name>[A-Za-z_\u0080-\uffff][\w.']*)\b"
+    )
+    scope_stack: list[tuple[str, str | None]] = []
+    declared_in_ns: dict[str, set[str]] = {}
+    has_any_namespace = False
+    for line in stripped.splitlines():
+        m_scope = scope_re.match(line)
+        if m_scope:
+            kw, sname = m_scope.group("kw"), m_scope.group("name")
+            if kw == "namespace" and sname:
+                has_any_namespace = True
+                for part in sname.split("."):
+                    scope_stack.append(("namespace", part))
+            elif kw in ("section", "mutual"):
+                if sname:
+                    for part in sname.split("."):
+                        scope_stack.append((kw, part))
+                else:
+                    scope_stack.append((kw, None))
+            elif kw == "end":
+                if sname:
+                    for _ in sname.split("."):
+                        if scope_stack:
+                            scope_stack.pop()
+                elif scope_stack:
+                    scope_stack.pop()
+            continue
+
+        m_decl = decl_re.match(line)
+        if m_decl:
+            mods = m_decl.group("mods") or ""
+            if "private" in mods.split():
+                continue
+            dname = m_decl.group("name")
+            ns_prefix = ".".join(part for kind, part in scope_stack if kind == "namespace" and part)
+            declared_in_ns.setdefault(dname, set()).add(ns_prefix)
+
+    missing_decls: list[str] = []
+    wrong_ns_decls: list[str] = []
+    for name in required_declarations:
+        if name not in declared_in_ns:
+            missing_decls.append(name)
+            continue
+        expected_ns = TFQ1059_DECLARATION_NAMESPACES.get(name)
+        if has_any_namespace and expected_ns is not None and expected_ns not in declared_in_ns[name]:
+            wrong_ns_decls.append(f"{name} (expected {expected_ns}, got {sorted(declared_in_ns[name])})")
     if missing_decls:
         raise ValueError(f"Missing TFQ-1059 declarations: {missing_decls}")
+    if wrong_ns_decls:
+        raise ValueError(f"TFQ-1059 declarations in wrong namespace: {wrong_ns_decls}")
+
+    print_axioms_targets = (
+        TFQ1059_REQUIRED_PRINT_AXIOMS
+        if required_print_axioms is None and required_declarations == TFQ1059_REQUIRED_DECLARATIONS
+        else (required_print_axioms or ())
+    )
+    missing_print_axioms = [
+        target
+        for target in print_axioms_targets
+        if not re.search(rf"^\s*#print\s+axioms\s+{re.escape(target)}\s*$", stripped, re.MULTILINE)
+    ]
+    if missing_print_axioms:
+        raise ValueError(f"Missing #print axioms commands: {missing_print_axioms}")
 
 
 def perp_min_witness_real(
@@ -1059,11 +1220,130 @@ def verify_part_f_tfq_1059_extrema_and_deflation() -> dict[str, Any]:
     assert tight_a == 4 * dot3_real(a_sum_pq, a_sum_pq) == Fraction(8, 1)
     assert tight_r - tight_a == Fraction(-4, 1)
 
+    # 6. Test 3: Real triaxial spectral ordering (`triaxial_eigenvalues_nonneg_and_ordered`),
+    #    Rayleigh-Ritz bounds (`stdQuad_nonneg_and_le_weight_of_eigenvalues`), and complete
+    #    nonnegative PSD Born form (`nonneg_gleason_real_of_extrema`,
+    #    `nonneg_gleason_real_of_continuousOn_sphere3`) across multiple spectral families
+    #    and both planar-rotated and full 3D-coupled rational eigenframes
+    p_full_r: RVec3 = (Fraction(1, 3), Fraction(2, 3), Fraction(2, 3))
+    q_full_r: RVec3 = (Fraction(2, 3), Fraction(1, 3), Fraction(-2, 3))
+    r_full_r: RVec3 = (Fraction(2, 3), Fraction(-2, 3), Fraction(1, 3))
+    assert dot3_real(p_full_r, p_full_r) == Fraction(1, 1)
+    assert dot3_real(q_full_r, q_full_r) == Fraction(1, 1)
+    assert dot3_real(r_full_r, r_full_r) == Fraction(1, 1)
+    assert dot3_real(p_full_r, q_full_r) == Fraction(0, 1)
+    assert dot3_real(p_full_r, r_full_r) == Fraction(0, 1)
+    assert dot3_real(q_full_r, r_full_r) == Fraction(0, 1)
+
+    real_spectral_families: list[tuple[Fraction, Fraction, Fraction, Fraction]] = [
+        (Fraction(1, 2), Fraction(1, 3), Fraction(1, 6), Fraction(1, 1)),   # triaxial normalized
+        (Fraction(3, 2), Fraction(1, 1), Fraction(1, 2), Fraction(3, 1)),   # triaxial unnormalized W = 3
+        (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)),   # pure state
+        (Fraction(3, 5), Fraction(1, 5), Fraction(1, 5), Fraction(1, 1)),   # axisymmetric degenerate
+        (Fraction(1, 3), Fraction(1, 3), Fraction(1, 3), Fraction(1, 1)),   # maximally mixed isotropic
+    ]
+    for lam1_f, lam2_f, lam3_f, w_fam in real_spectral_families:
+        assert check_triaxial_eigenvalues_ordered(lam1_f, lam2_f, lam3_f, w_fam)
+        for p_fr, q_fr, r_fr in ((p_rot_r, q_rot_r, r_rot_r), (p_full_r, q_full_r, r_full_r)):
+            f_fam_r = lambda w, p0=p_fr, q0=q_fr, r0=r_fr, l1=lam1_f, l2=lam2_f, l3=lam3_f: std_quad_real(
+                l1, l2, l3, to_frame_real(p0, q0, r0, w)
+            )
+            fp_r = f_fam_r(p_fr)
+            fq_r = f_fam_r(q_fr)
+            fr_r = f_fam_r(r_fr)
+            assert fp_r == lam1_f
+            assert fq_r == lam2_f == w_fam - fp_r - fr_r
+            assert fr_r == lam3_f
+            assert check_triaxial_eigenvalues_ordered(fp_r, fq_r, fr_r, w_fam)
+            assert f_fam_r(e1_r) + f_fam_r(e2_r) + f_fam_r(e3_r) == w_fam
+            for v in sample_real_vecs:
+                assert check_std_quad_eigenvalue_bounds(lam1_f, lam2_f, lam3_f, w_fam, v)
+                v_frame = to_frame_real(p_fr, q_fr, r_fr, v)
+                assert check_std_quad_eigenvalue_bounds(lam1_f, lam2_f, lam3_f, w_fam, v_frame)
+                fv_r = f_fam_r(v)
+                assert fr_r <= fv_r <= fp_r
+                assert Fraction(0, 1) <= fv_r <= w_fam
+                born_rhs_r = (
+                    fp_r * (dot3_real(v, p_fr) ** 2)
+                    + fq_r * (dot3_real(v, q_fr) ** 2)
+                    + fr_r * (dot3_real(v, r_fr) ** 2)
+                ) / dot3_real(v, v)
+                assert fv_r == born_rhs_r
+
+    # 7. Test 4: Complex unit-sphere `sInf`/`sSup` bounds (`sSup_sphereC_bounds_of_nonnegC`,
+    #    `le_sSup_sphereC_of_nonnegC`, `sInf_sphereC_le_of_nonnegC`), compactness extrema
+    #    attainment (`AttainsExtremaC`, `attainsExtremaC_of_continuousOn_sphereC`), and
+    #    complex spectral ordering (`complex_eigenvalues_nonneg_and_ordered`) on S^5 subset C^3
+    p_full_c: GVec3 = (
+        GaussRat(Fraction(1, 3), 0),
+        GaussRat(0, Fraction(2, 3)),
+        GaussRat(Fraction(2, 3), 0),
+    )
+    q_full_c: GVec3 = (
+        GaussRat(Fraction(2, 3), 0),
+        GaussRat(0, Fraction(1, 3)),
+        GaussRat(Fraction(-2, 3), 0),
+    )
+    r_full_c: GVec3 = (
+        GaussRat(Fraction(2, 3), 0),
+        GaussRat(0, Fraction(-2, 3)),
+        GaussRat(Fraction(1, 3), 0),
+    )
+    assert norm_sq3(p_full_c) == Fraction(1, 1)
+    assert norm_sq3(q_full_c) == Fraction(1, 1)
+    assert norm_sq3(r_full_c) == Fraction(1, 1)
+    assert inner3(p_full_c, q_full_c) == GaussRat(0, 0)
+    assert inner3(p_full_c, r_full_c) == GaussRat(0, 0)
+    assert inner3(q_full_c, r_full_c) == GaussRat(0, 0)
+
+    complex_scales: list[GaussRat] = [
+        GaussRat(1, 0),
+        GaussRat(0, 1),
+        GaussRat(2, -1),
+        GaussRat(Fraction(-3, 4), Fraction(1, 2)),
+    ]
+    for lam1_c, lam2_c, lam3_c, w_c in real_spectral_families:
+        for p_fc, q_fc, r_fc in ((p_rot_c, q_rot_c, r_rot_c), (p_full_c, q_full_c, r_full_c)):
+            rho_tri_c = complex_triaxial_state_matrix(p_fc, q_fc, r_fc, lam1_c, lam2_c, lam3_c)
+            F_tri_c = lambda v, m=rho_tri_c: herm_rayleigh(m, v)
+            fp_c = F_tri_c(p_fc)
+            fq_c = F_tri_c(q_fc)
+            fr_c = F_tri_c(r_fc)
+            assert fp_c == lam1_c
+            assert fq_c == lam2_c == w_c - fp_c - fr_c
+            assert fr_c == lam3_c
+            assert check_triaxial_eigenvalues_ordered(fp_c, fq_c, fr_c, w_c)
+            # Unit-sphere sInf/sSup trace-sandwich: 0 <= sInf(F '' sphereC) <= W/3 <= sSup(F '' sphereC) <= W
+            assert Fraction(0, 1) <= fr_c <= w_c / Fraction(3, 1) <= fp_c <= w_c
+            # Standard basis frame sum on C^3 equals W
+            e1_c, e2_c, e3_c = sample_complex_vecs[0], sample_complex_vecs[1], sample_complex_vecs[2]
+            assert F_tri_c(e1_c) + F_tri_c(e2_c) + F_tri_c(e3_c) == w_c
+            for v_c in sample_complex_vecs:
+                f_val_c = F_tri_c(v_c)
+                assert fr_c <= f_val_c <= fp_c
+                assert Fraction(0, 1) <= f_val_c <= w_c
+                # Spectral Born decomposition on C^3:
+                # F(v) = (lam1 |<p, v>|^2 + lam2 |<q, v>|^2 + lam3 |<r, v>|^2) / ||v||^2
+                born_rhs_c = (
+                    fp_c * inner3(p_fc, v_c).norm_sq()
+                    + fq_c * inner3(q_fc, v_c).norm_sq()
+                    + fr_c * inner3(r_fc, v_c).norm_sq()
+                ) / norm_sq3(v_c)
+                assert f_val_c == born_rhs_c
+                for c_sc in complex_scales:
+                    v_sc: GVec3 = (c_sc * v_c[0], c_sc * v_c[1], c_sc * v_c[2])
+                    assert F_tri_c(v_sc) == f_val_c
+
     return {
         "verified": True,
         "tfq1059_declarations_count": len(TFQ1059_REQUIRED_DECLARATIONS),
         "sphere3_sInf_sSup_sandwich_verified": True,
         "sphere3_sandwich_values": f"0 <= {m_min} <= {weight_w / 3} <= {m_max} <= {weight_w}",
+        "sphereC_sInf_sSup_sandwich_verified": True,
+        "sphereC_sandwich_values": f"0 <= {m_min} <= {weight_w / 3} <= {m_max} <= {weight_w}",
+        "real_triaxial_spectral_ordering_verified": True,
+        "complex_triaxial_spectral_ordering_verified": True,
+        "spectral_families_tested": len(real_spectral_families),
         "common_normal_equator_min_verified": True,
         "deflateIso_real_weight": str(W_iso_r - 3 * m_iso_r),
         "deflateIsoC_complex_weight": str(W_iso_c - 3 * m_iso_c),

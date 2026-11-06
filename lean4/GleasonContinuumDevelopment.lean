@@ -83,28 +83,34 @@ This module formalizes Phase 4 of the Gleason campaign across four primary mathe
     compression for `k ≥ N` while retaining total trace `1` at stage `k + 1`.
 
 ## E. Compactness, Supremum/Infimum Bounds, Isotropic Deflation & Mixed-State Extremum Reduction (`TFQ-1059`)
-* **Unit-Sphere Supremum & Infimum Bounds (`S²`)**:
+* **Unit-Sphere Supremum & Infimum Bounds (`S²` and `S⁵`)**:
   - `nonempty_image_sphere3`, `bddAbove_image_sphere3_of_nonneg`, `bddBelow_image_sphere3_of_nonneg`,
-    `le_sSup_sphere3_of_nonneg`, `sInf_sphere3_le_of_nonneg`, and `sSup_sphere3_bounds_of_nonneg`:
-    establishes `0 ≤ sInf (f '' sphere3) ≤ W / 3 ≤ sSup (f '' sphere3) ≤ W` for every nonnegative
-    frame function `f` of weight `W`.
-* **Compactness & Continuity-Free Orthogonal Extrema Reduction (`S²`)**:
+    `le_sSup_sphere3_of_nonneg`, `sInf_sphere3_le_of_nonneg`, `sSup_sphere3_bounds_of_nonneg`,
+    `nonempty_image_sphereC`, `bddAbove_image_sphereC_of_nonnegC`, `bddBelow_image_sphereC_of_nonnegC`,
+    `le_sSup_sphereC_of_nonnegC`, `sInf_sphereC_le_of_nonnegC`, and `sSup_sphereC_bounds_of_nonnegC`:
+    establishes `0 ≤ sInf ≤ W / 3 ≤ sSup ≤ W` for every nonnegative real (`sphere3`) or complex
+    (`sphereC`) frame function of weight `W` with zero continuity assumptions.
+* **Compactness & Continuity-Free Orthogonal Extrema Reduction (`S²` and `S⁵`)**:
   - `AttainsExtrema`, `attainsExtrema_of_continuousOn_sphere3`, `attainsExtrema_of_continuousOn`,
-    `exists_min_on_equator_pole_of_max_and_min`, and `exists_min_perp_of_max_and_min`: separates
-    the single compactness step on `sphere3` from the purely algebraic common-normal great-circle
-    identity that produces an orthogonal maximizer-minimizer pair `(p, r)`.
+    `exists_min_on_equator_pole_of_max_and_min`, `exists_min_perp_of_max_and_min`,
+    `AttainsExtremaC`, `attainsExtremaC_of_continuousOn_sphereC`, and `attainsExtremaC_of_continuousOn`:
+    separates compactness on `sphere3` and `sphereC` from the purely algebraic common-normal
+    great-circle identity that produces an orthogonal maximizer-minimizer pair `(p, r)`.
 * **Isotropic Minimum Deflation & Continuity-Free Axisymmetric Mixed-State Gleason Theorems (`ℝ³` and `ℂ³`)**:
   - `deflateIso`, `isFrameFunction_deflateIso`, `isNonnegFrameFunction_deflateIso`,
     `axisymmetric_mixed_state_nonneg_gleason_real`, `deflateIsoC`, `isFrameFunctionC_deflateIsoC`,
     `isNonnegFrameFunctionC_deflateIsoC`, and `axisymmetric_mixed_state_nonneg_gleason_complex`:
     establishes the Born quadratic form `F v = m + (F p - m) * |⟨p, v⟩|² / ‖v‖²` for every
     axisymmetric mixed state (`F p + 2 m = W`, `∀ v ≠ 0, m ≤ F v`) with zero continuity assumption.
-* **Continuity-Free Zero-Counting & General Triaxial Mixed-State Reduction (`S²`)**:
-  - `eq_zero_of_vanishes_on_six_circles_of_extrema`, `mixed_state_gleason_real_of_extrema`, and
-    `gleason_real_of_continuousOn_sphere3`: reduces any general triaxial mixed-state frame function
-    with orthogonal extrema `(p, r)` to a weight-zero residual `hResidual` that vanishes on all six
-    great circles `x = ±y`, `x = ±z`, `y = ±z` without continuity, and vanishes identically under
-    `AttainsExtrema hResidual`.
+* **Continuity-Free Zero-Counting, Triaxial Spectral Ordering & Nonnegative PSD Born Form (`ℝ³` and `ℂ³`)**:
+  - `eq_zero_of_vanishes_on_six_circles_of_extrema`, `mixed_state_gleason_real_of_extrema`,
+    `gleason_real_of_continuousOn_sphere3`, `triaxial_eigenvalues_nonneg_and_ordered`,
+    `stdQuad_nonneg_and_le_weight_of_eigenvalues`, `nonneg_gleason_real_of_extrema`,
+    `nonneg_gleason_real_of_continuousOn_sphere3`, and `complex_eigenvalues_nonneg_and_ordered`:
+    reduces any general triaxial mixed-state frame function with orthogonal extrema `(p, r)` to a
+    weight-zero residual `hResidual` that vanishes on all six great circles `x = ±y`, `x = ±z`,
+    `y = ±z` without continuity, vanishes identically under `AttainsExtrema hResidual`, and packages
+    the ordered nonnegative eigenvalues `0 ≤ λ₃ ≤ λ₂ ≤ λ₁ ≤ W` (`λ₁ + λ₂ + λ₃ = W`) in both `ℝ³` and `ℂ³`.
 -/
 
 namespace BornFinite.ContinuumDevelopment
@@ -1905,6 +1911,109 @@ theorem gleason_real_of_continuousOn_sphere3 {f : (Fin 3 → ℝ) → ℝ} {W : 
   exact ⟨p, q, r, hfr, f p, W - f p - f r, f r,
     hgleason (attainsExtrema_of_continuousOn_sphere3 hhf hc_res)⟩
 
+/-- **Triaxial spectral positivity and eigenvalue ordering (`ℝ³`).**
+For any nonnegative frame function `f` of weight `W` and any orthonormal frame `(p, q, r)` where
+`p` maximizes `f` and `r` minimizes `f`, the three principal values `λ₁ = f p`,
+`λ₂ = f q = W - f p - f r`, and `λ₃ = f r` satisfy `0 ≤ f r ≤ W - f p - f r ≤ f p ≤ W` and sum to `W`. -/
+theorem triaxial_eigenvalues_nonneg_and_ordered {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsNonnegFrameFunction f W) {p q r : Fin 3 → ℝ} (hfr : IsOrthonormal p q r)
+    (hmax : ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f p)
+    (hmin : ∀ v : Fin 3 → ℝ, v ≠ 0 → f r ≤ f v) :
+    f q = W - f p - f r ∧
+    0 ≤ f r ∧
+    f r ≤ W - f p - f r ∧
+    W - f p - f r ≤ f p ∧
+    f p ≤ W ∧
+    f p + (W - f p - f r) + f r = W := by
+  have hp0 : p ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hfr.pp]; exact one_pos)
+  have hq0 : q ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hfr.qq]; exact one_pos)
+  have hr0 : r ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hfr.rr]; exact one_pos)
+  have hsum := hf.frame p q r hp0 hq0 hr0 hfr.pq hfr.pr hfr.qr
+  have hr_nn := hf.nonneg r hr0
+  have hr_le_q := hmin q hq0
+  have hq_le_p := hmax q hq0
+  have hp_le_W := le_weight_of_nonneg hf hp0
+  refine ⟨by linarith, hr_nn, by linarith, by linarith, hp_le_W, by ring⟩
+
+/-- **Rayleigh-Ritz spectral sandwich and PSD bounds for `stdQuad` (`ℝ³`).**
+For any ordered nonnegative eigenvalues `0 ≤ lam₃ ≤ lam₂ ≤ lam₁` summing to `W` (`lam₁ + lam₂ + lam₃ = W`)
+and any nonzero vector `v ≠ 0`, `stdQuad lam₁ lam₂ lam₃ v` lies in `[lam₃, lam₁] ⊆ [0, W]`. -/
+theorem stdQuad_nonneg_and_le_weight_of_eigenvalues {lam₁ lam₂ lam₃ W : ℝ}
+    (h0 : 0 ≤ lam₃) (h32 : lam₃ ≤ lam₂) (h21 : lam₂ ≤ lam₁) (hW : lam₁ + lam₂ + lam₃ = W)
+    {v : Fin 3 → ℝ} (hv : v ≠ 0) :
+    lam₃ ≤ stdQuad lam₁ lam₂ lam₃ v ∧
+    stdQuad lam₁ lam₂ lam₃ v ≤ lam₁ ∧
+    0 ≤ stdQuad lam₁ lam₂ lam₃ v ∧
+    stdQuad lam₁ lam₂ lam₃ v ≤ W := by
+  have hpos : 0 < dot3 v v := dot3_self_pos hv
+  have hlow : lam₃ ≤ stdQuad lam₁ lam₂ lam₃ v := by
+    rw [stdQuad, le_div_iff₀ hpos]
+    unfold dot3
+    nlinarith [sq_nonneg (v 0), sq_nonneg (v 1), sq_nonneg (v 2)]
+  have hhigh : stdQuad lam₁ lam₂ lam₃ v ≤ lam₁ := by
+    rw [stdQuad, div_le_iff₀ hpos]
+    unfold dot3
+    nlinarith [sq_nonneg (v 0), sq_nonneg (v 1), sq_nonneg (v 2)]
+  refine ⟨hlow, hhigh, by linarith, by linarith⟩
+
+/-- **Nonnegative mixed-state Gleason theorem on `ℝ³ \ {0}` from extrema attainment alone.**
+If a nonnegative frame function `f` of weight `W` satisfies `AttainsExtrema f` and its triaxial
+residual satisfies `AttainsExtrema`, then there exist an orthonormal frame `(p, q, r)` and ordered
+nonnegative eigenvalues `0 ≤ lam₃ ≤ lam₂ ≤ lam₁ ≤ W` (`lam₁ = f p`, `lam₂ = f q`, `lam₃ = f r`,
+`lam₁ + lam₂ + lam₃ = W`) representing `f` as a positive-semidefinite Born quadratic form on `ℝ³ \ {0}`. -/
+theorem nonneg_gleason_real_of_extrema {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsNonnegFrameFunction f W) (hext : AttainsExtrema f)
+    (hext_res : ∀ p q r : Fin 3 → ℝ, IsOrthonormal p q r →
+      (∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f p) →
+      (∀ v : Fin 3 → ℝ, v ≠ 0 → f r ≤ f v) →
+      AttainsExtrema (fun v => f (ofFrame p q r v) - stdQuad (f p) (W - f p - f r) (f r) v)) :
+    ∃ p q r : Fin 3 → ℝ, IsOrthonormal p q r ∧
+      ∃ lam₁ lam₂ lam₃ : ℝ,
+        lam₁ = f p ∧ lam₂ = f q ∧ lam₃ = f r ∧
+        0 ≤ lam₃ ∧ lam₃ ≤ lam₂ ∧ lam₂ ≤ lam₁ ∧ lam₁ ≤ W ∧
+        lam₁ + lam₂ + lam₃ = W ∧
+        ∀ w : Fin 3 → ℝ, w ≠ 0 →
+          f w = (lam₁ * dot3 w p ^ 2 + lam₂ * dot3 w q ^ 2 + lam₃ * dot3 w r ^ 2) / dot3 w w := by
+  obtain ⟨p, hp, hmax⟩ := hext.1
+  obtain ⟨r, hr, hpr, hmin⟩ := exists_min_perp_of_max_and_min hf.toIsFrameFunction hp hmax hext.2
+  set q := cross3 p r with hq
+  have hfr : IsOrthonormal p q r := isOrthonormal_cross hp hr hpr
+  rcases triaxial_eigenvalues_nonneg_and_ordered hf hfr hmax hmin with
+    ⟨hfq, hr0, hrq, hqp, hpW, hsum⟩
+  have hgleason := (mixed_state_gleason_real_of_extrema hf.toIsFrameFunction hfr hmax hmin).2.2
+    (hext_res p q r hfr hmax hmin)
+  refine ⟨p, q, r, hfr, f p, f q, f r, rfl, rfl, rfl, hr0, by linarith, by linarith, hpW,
+    by linarith, fun w hw => ?_⟩
+  rw [hfq, hgleason w hw]
+
+/-- **Complete nonnegative mixed-state Gleason theorem on `ℝ³ \ {0}` from continuity on `sphere3`.**
+Every nonnegative frame function `f` of weight `W` whose restriction to `sphere3` is continuous
+admits an orthonormal eigenframe `(p, q, r)` and ordered nonnegative eigenvalues
+`0 ≤ lam₃ ≤ lam₂ ≤ lam₁ ≤ W` (`lam₁ = f p`, `lam₂ = f q`, `lam₃ = f r`, `lam₁ + lam₂ + lam₃ = W`) such that
+`f w = (lam₁ ⟨w, p⟩² + lam₂ ⟨w, q⟩² + lam₃ ⟨w, r⟩²) / ⟨w, w⟩` for every `w ≠ 0`. -/
+theorem nonneg_gleason_real_of_continuousOn_sphere3 {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsNonnegFrameFunction f W) (hc : ContinuousOn f sphere3) :
+    ∃ p q r : Fin 3 → ℝ, IsOrthonormal p q r ∧
+      ∃ lam₁ lam₂ lam₃ : ℝ,
+        lam₁ = f p ∧ lam₂ = f q ∧ lam₃ = f r ∧
+        0 ≤ lam₃ ∧ lam₃ ≤ lam₂ ∧ lam₂ ≤ lam₁ ∧ lam₁ ≤ W ∧
+        lam₁ + lam₂ + lam₃ = W ∧
+        ∀ w : Fin 3 → ℝ, w ≠ 0 →
+          f w = (lam₁ * dot3 w p ^ 2 + lam₂ * dot3 w q ^ 2 + lam₃ * dot3 w r ^ 2) / dot3 w w := by
+  refine nonneg_gleason_real_of_extrema hf
+    (attainsExtrema_of_continuousOn_sphere3 hf.toIsFrameFunction hc)
+    (fun p q r hfr hmax hmin => ?_)
+  have hhf := (mixed_state_gleason_real_of_extrema hf.toIsFrameFunction hfr hmax hmin).1
+  have hc_ofFrame : ContinuousOn (fun v => f (ofFrame p q r v)) sphere3 :=
+    hc.comp (continuous_ofFrame p q r).continuousOn (fun v hv => by
+      show dot3 (ofFrame p q r v) (ofFrame p q r v) = 1
+      rw [dot3_ofFrame hfr]
+      exact hv)
+  have hc_res : ContinuousOn
+      (fun v => f (ofFrame p q r v) - stdQuad (f p) (W - f p - f r) (f r) v) sphere3 :=
+    hc_ofFrame.sub ((continuousOn_stdQuad (f p) (W - f p - f r) (f r)).mono sphere3_subset)
+  exact attainsExtrema_of_continuousOn_sphere3 hhf hc_res
+
 end GleasonReal
 
 namespace GleasonComplex
@@ -2161,6 +2270,136 @@ theorem axisymmetric_mixed_state_nonneg_gleason_complex {F : (Fin 3 → ℂ) →
   have hW : W - 3 * m = F p - m := by linarith
   rw [hW, mul_div_assoc] at h
   linarith
+
+/-- The image `F '' sphereC` of the complex unit sphere `S⁵ ⊂ ℂ³` under any `F` is nonempty
+(witnessed by `![1, 0, 0] ∈ sphereC`). -/
+theorem nonempty_image_sphereC (F : (Fin 3 → ℂ) → ℝ) :
+    (F '' sphereC).Nonempty :=
+  ⟨F ![1, 0, 0], ![1, 0, 0], e1C_mem_sphereC, rfl⟩
+
+/-- For any nonnegative complex frame function `F` of weight `W`, the image `F '' sphereC` is
+bounded above by `W` (`W ∈ upperBounds (F '' sphereC)`). -/
+theorem bddAbove_image_sphereC_of_nonnegC {F : (Fin 3 → ℂ) → ℝ} {W : ℝ}
+    (hF : IsNonnegFrameFunctionC F W) :
+    BddAbove (F '' sphereC) := by
+  refine ⟨W, ?_⟩
+  rintro _ ⟨v, hv, rfl⟩
+  exact le_weight_of_nonnegC hF (sphereC_subset hv)
+
+/-- For any nonnegative complex frame function `F` of weight `W`, the image `F '' sphereC` is
+bounded below by `0` (`0 ∈ lowerBounds (F '' sphereC)`). -/
+theorem bddBelow_image_sphereC_of_nonnegC {F : (Fin 3 → ℂ) → ℝ} {W : ℝ}
+    (hF : IsNonnegFrameFunctionC F W) :
+    BddBelow (F '' sphereC) := by
+  refine ⟨0, ?_⟩
+  rintro _ ⟨v, hv, rfl⟩
+  exact hF.nonneg v (sphereC_subset hv)
+
+/-- By complex scale invariance, every value `F v` (`v ≠ 0`) of a nonnegative complex frame
+function is bounded above by the unit-sphere supremum `sSup (F '' sphereC)`. -/
+theorem le_sSup_sphereC_of_nonnegC {F : (Fin 3 → ℂ) → ℝ} {W : ℝ}
+    (hF : IsNonnegFrameFunctionC F W) {v : Fin 3 → ℂ} (hv : v ≠ 0) :
+    F v ≤ sSup (F '' sphereC) := by
+  obtain ⟨c, hc0, hcv⟩ := exists_unit_smulC hv
+  rw [← hF.scale v hv c hc0]
+  exact le_csSup (bddAbove_image_sphereC_of_nonnegC hF) ⟨c • v, hcv, rfl⟩
+
+/-- By complex scale invariance, every value `F v` (`v ≠ 0`) of a nonnegative complex frame
+function is bounded below by the unit-sphere infimum `sInf (F '' sphereC)`. -/
+theorem sInf_sphereC_le_of_nonnegC {F : (Fin 3 → ℂ) → ℝ} {W : ℝ}
+    (hF : IsNonnegFrameFunctionC F W) {v : Fin 3 → ℂ} (hv : v ≠ 0) :
+    sInf (F '' sphereC) ≤ F v := by
+  obtain ⟨c, hc0, hcv⟩ := exists_unit_smulC hv
+  rw [← hF.scale v hv c hc0]
+  exact csInf_le (bddBelow_image_sphereC_of_nonnegC hF) ⟨c • v, hcv, rfl⟩
+
+/-- Continuity-free trace-sandwich bounds for the unit-sphere infimum and supremum of any
+nonnegative complex frame function of weight `W` on `S⁵ ⊂ ℂ³`:
+`0 ≤ sInf (F '' sphereC) ≤ W / 3 ≤ sSup (F '' sphereC) ≤ W`. -/
+theorem sSup_sphereC_bounds_of_nonnegC {F : (Fin 3 → ℂ) → ℝ} {W : ℝ}
+    (hF : IsNonnegFrameFunctionC F W) :
+    0 ≤ sInf (F '' sphereC) ∧
+    sInf (F '' sphereC) ≤ W / 3 ∧
+    W / 3 ≤ sSup (F '' sphereC) ∧
+    sSup (F '' sphereC) ≤ W := by
+  have hp : (![1, 0, 0] : Fin 3 → ℂ) ≠ 0 := ne_zero_of_nsq_pos (by simp [nsq])
+  have hq : (![0, 1, 0] : Fin 3 → ℂ) ≠ 0 := ne_zero_of_nsq_pos (by simp [nsq])
+  have hr : (![0, 0, 1] : Fin 3 → ℂ) ≠ 0 := ne_zero_of_nsq_pos (by simp [nsq])
+  have hsum := hF.frame ![1, 0, 0] ![0, 1, 0] ![0, 0, 1] hp hq hr
+    (by simp [dotC]) (by simp [dotC]) (by simp [dotC])
+  have hinf_nonneg : 0 ≤ sInf (F '' sphereC) := by
+    refine le_csInf (nonempty_image_sphereC F) ?_
+    rintro _ ⟨v, hv, rfl⟩
+    exact hF.nonneg v (sphereC_subset hv)
+  have hsup_le_W : sSup (F '' sphereC) ≤ W := by
+    refine csSup_le (nonempty_image_sphereC F) ?_
+    rintro _ ⟨v, hv, rfl⟩
+    exact le_weight_of_nonnegC hF (sphereC_subset hv)
+  have h1_inf := sInf_sphereC_le_of_nonnegC hF hp
+  have h2_inf := sInf_sphereC_le_of_nonnegC hF hq
+  have h3_inf := sInf_sphereC_le_of_nonnegC hF hr
+  have h1_sup := le_sSup_sphereC_of_nonnegC hF hp
+  have h2_sup := le_sSup_sphereC_of_nonnegC hF hq
+  have h3_sup := le_sSup_sphereC_of_nonnegC hF hr
+  refine ⟨hinf_nonneg, by linarith, by linarith, hsup_le_W⟩
+
+/-- Extrema-attainment hypothesis on `ℂ³ \ {0}`: `F` attains its global maximum at a unit vector `p`
+and attains its global minimum at a unit vector `s` on `sphereC`. -/
+def AttainsExtremaC (F : (Fin 3 → ℂ) → ℝ) : Prop :=
+  (∃ p : Fin 3 → ℂ, nsq p = 1 ∧ ∀ v : Fin 3 → ℂ, v ≠ 0 → F v ≤ F p) ∧
+  (∃ s : Fin 3 → ℂ, nsq s = 1 ∧ ∀ v : Fin 3 → ℂ, v ≠ 0 → F s ≤ F v)
+
+/-- Continuity on the compact complex unit sphere `sphereC` (`S⁵ ⊂ ℂ³`) alone implies
+`AttainsExtremaC F` for any complex frame function `F`. -/
+theorem attainsExtremaC_of_continuousOn_sphereC {F : (Fin 3 → ℂ) → ℝ} {W : ℝ}
+    (hF : IsFrameFunctionC F W) (hc : ContinuousOn F sphereC) :
+    AttainsExtremaC F := by
+  constructor
+  · obtain ⟨p, hp, hmax⟩ := isCompact_sphereC.exists_isMaxOn ⟨_, e1C_mem_sphereC⟩ hc
+    refine ⟨p, hp, fun v hv => ?_⟩
+    obtain ⟨c, hc0, hcv⟩ := exists_unit_smulC hv
+    have : F (c • v) ≤ F p := hmax hcv
+    rwa [hF.scale v hv c hc0] at this
+  · obtain ⟨s, hs, hmin⟩ := isCompact_sphereC.exists_isMinOn ⟨_, e1C_mem_sphereC⟩ hc
+    refine ⟨s, hs, fun v hv => ?_⟩
+    obtain ⟨c, hc0, hcv⟩ := exists_unit_smulC hv
+    have : F s ≤ F (c • v) := hmin hcv
+    rwa [hF.scale v hv c hc0] at this
+
+/-- Continuity on `ℂ³ \ {0}` implies `AttainsExtremaC F` for any complex frame function `F`. -/
+theorem attainsExtremaC_of_continuousOn {F : (Fin 3 → ℂ) → ℝ} {W : ℝ}
+    (hF : IsFrameFunctionC F W) (hc : ContinuousOn F {v | v ≠ 0}) :
+    AttainsExtremaC F :=
+  attainsExtremaC_of_continuousOn_sphereC hF (hc.mono sphereC_subset)
+
+/-- **Complex spectral positivity and eigenvalue ordering (`ℂ³`).**
+For any nonnegative complex frame function `F` of weight `W` and any complex orthonormal frame
+`(p, q, r)` where `p` maximizes `F` and `r` minimizes `F`, the three principal values `F p`,
+`F q = W - F p - F r`, and `F r` satisfy `0 ≤ F r ≤ W - F p - F r ≤ F p ≤ W`. -/
+theorem complex_eigenvalues_nonneg_and_ordered {F : (Fin 3 → ℂ) → ℝ} {W : ℝ}
+    (hF : IsNonnegFrameFunctionC F W) {p q r : Fin 3 → ℂ} (hfr : IsOrthonormalC p q r)
+    (hmax : ∀ v : Fin 3 → ℂ, v ≠ 0 → F v ≤ F p)
+    (hmin : ∀ v : Fin 3 → ℂ, v ≠ 0 → F r ≤ F v) :
+    F q = W - F p - F r ∧
+    0 ≤ F r ∧
+    F r ≤ W - F p - F r ∧
+    W - F p - F r ≤ F p ∧
+    F p ≤ W := by
+  have hp1 : nsq p = 1 := by
+    have := hfr.pp; rw [dotC_self_eq_nsq] at this; exact_mod_cast this
+  have hq1 : nsq q = 1 := by
+    have := hfr.qq; rw [dotC_self_eq_nsq] at this; exact_mod_cast this
+  have hr1 : nsq r = 1 := by
+    have := hfr.rr; rw [dotC_self_eq_nsq] at this; exact_mod_cast this
+  have hp0 : p ≠ 0 := ne_zero_of_nsq_pos (by rw [hp1]; exact one_pos)
+  have hq0 : q ≠ 0 := ne_zero_of_nsq_pos (by rw [hq1]; exact one_pos)
+  have hr0 : r ≠ 0 := ne_zero_of_nsq_pos (by rw [hr1]; exact one_pos)
+  have hsum := hF.frame p q r hp0 hq0 hr0 hfr.pq hfr.pr hfr.qr
+  have hr_nn := hF.nonneg r hr0
+  have hr_le_q := hmin q hq0
+  have hq_le_p := hmax q hq0
+  have hp_le_W := le_weight_of_nonnegC hF hp0
+  refine ⟨by linarith, hr_nn, by linarith, by linarith, hp_le_W⟩
 
 end GleasonComplex
 
@@ -2962,3 +3201,18 @@ theorem isFrameFunctionD_complexRayleighD {d : ℕ} (M : Matrix (Fin d) (Fin d) 
 end
 
 end BornFinite.ContinuumDevelopment
+
+#print axioms GleasonReal.triaxial_eigenvalues_nonneg_and_ordered
+#print axioms GleasonReal.stdQuad_nonneg_and_le_weight_of_eigenvalues
+#print axioms GleasonReal.nonneg_gleason_real_of_extrema
+#print axioms GleasonReal.nonneg_gleason_real_of_continuousOn_sphere3
+#print axioms GleasonComplex.nonempty_image_sphereC
+#print axioms GleasonComplex.bddAbove_image_sphereC_of_nonnegC
+#print axioms GleasonComplex.bddBelow_image_sphereC_of_nonnegC
+#print axioms GleasonComplex.le_sSup_sphereC_of_nonnegC
+#print axioms GleasonComplex.sInf_sphereC_le_of_nonnegC
+#print axioms GleasonComplex.sSup_sphereC_bounds_of_nonnegC
+#print axioms GleasonComplex.AttainsExtremaC
+#print axioms GleasonComplex.attainsExtremaC_of_continuousOn_sphereC
+#print axioms GleasonComplex.attainsExtremaC_of_continuousOn
+#print axioms GleasonComplex.complex_eigenvalues_nonneg_and_ordered
