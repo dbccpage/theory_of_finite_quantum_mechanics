@@ -108,7 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
 
 - file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
-- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
+- sha256 (`lf-normalised`): `86f66f504083037c12df0c6e129a0ea3264ddd8aefaaf8f445a4dbc62bfc41c7`
 - cited in: node.source
 - counts toward the grade: yes
 

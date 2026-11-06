@@ -1,7 +1,7 @@
 """pfp_fsp_bridge.py — Proposal Fidelity Protocol (PFP) Mediation for FSP 4D SU(2).
 
 AuthorityEffect: None.
-Reference: sealed-derivation-v1 (3100c4e), Paper 011, gemini_000.md.
+Reference: sealed-derivation-v1 (3100c4e), Paper 011, run_g_000.md.
 
 Implements:
 1. Multi-Agent Symbol Game Match Architecture:
