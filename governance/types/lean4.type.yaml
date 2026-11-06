@@ -9,7 +9,7 @@ classes:
     path: lean4
     summary: The Lake package FiniteQuantum - flat PascalCase modules with contract-score companions, two namespace folders, and the imported modules under Imported/ with the manifests that bind them to their originals.
     role: proof
-    counts: {now: 1817, target: 1690}
+    counts: {now: 1818, target: 1691}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1, note: "describes another repository's layout; story S04 rewrites it"}
       - {name: lakefile, match: lakefile.lean, leaf: LakeFile, required: true, now: 1, target: 1, note: "194 lean_lib targets, 1,052 roots; lines 986 and 1016 name the missing folder atlas/papers (story S16)"}
@@ -22,7 +22,7 @@ classes:
     collections:
       - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 753, target: 752}
       - {name: doc_companions, match: "**/*.doc.yaml", leaf: DocCompanion, now: 123, target: 123, note: "no tool reads them (owner question Q7)"}
-      - {name: modules, match: "{*.lean,AuthIncompleteness/*.lean,FQCD/*.lean}", leaf: LeanModule, now: 790, target: 790}
+      - {name: modules, match: "{*.lean,AuthIncompleteness/*.lean,FQCD/*.lean}", leaf: LeanModule, now: 791, target: 791}
       - {name: mutation_harness, match: "{test_majorana_boundary.py,majorana_claim_oracle.py}", leaf: LeanMutationHarness, now: 2, target: 2, note: "reads _DIR/'MajoranaCore.lean'; stays beside the module it mutates"}
       - {name: reading_guides, match: "qm_*.md", leaf: LeanReadingGuide, now: 140, target: 16, note: "UNSURE: 16 Lean texts saved as .md that dag/derivations prose names; the other 124 go in story S04"}
     invariants:

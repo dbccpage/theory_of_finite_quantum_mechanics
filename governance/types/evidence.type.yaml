@@ -9,11 +9,12 @@ classes:
     path: evidence
     summary: Lean replay receipts and axiom reports, per-node review results (pinned by sha256 in the DAG pfp_review fields), per-PR validation records, governance and quality run records, and custody records of earlier imports and deletions.
     role: evidence
-    counts: {now: 1175, target: 870}
+    counts: {now: 1181, target: 876}
     attributes:
       - {name: scope_audit, match: contract_score_coverage_scope_audit.json, leaf: ScopeAudit, required: true, now: 1, target: 1}
     collections:
       - {name: axiom_reports, match: "axiom_reports/*.txt", leaf: AxiomReport, authored: "generated:a Lean #print axioms run", now: 2, target: 2}
+      - {name: verification_packages, match: "chsh_norm_admission/**", leaf: NodeVerificationPackage, now: 6, target: 6, note: "a node's verify.py with its outputs and README (added on main by #577)"}
       - {name: custody, match: "custody/**", leaf: CustodyRecord, now: 5, target: 5, note: "the audit trail of earlier imports and deletions"}
       - {name: dossiers, match: "dossiers/*.md", leaf: EvidenceDossier, now: 13, target: 2}
       - {name: governance_runs, match: "governance/**", leaf: GovernanceRunRecord, authored: "generated:governance/tools/capture_evidence.py", now: 9, target: 6}
@@ -37,6 +38,7 @@ leaf_types:
   - {name: ScopeAudit, format: json, naming: lower, schema: none, companions: none, authored: "generated:python -I -X utf8 scripts/score_scope_contracts.py check --write-audit"}
   - {name: AxiomReport, format: text, naming: lower, schema: none, companions: none, authored: "generated:lake env lean with #print axioms"}
   - {name: CustodyRecord, format: json, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: NodeVerificationPackage, format: "py, json or md", naming: lower, schema: none, companions: none, authored: hand}
   - {name: EvidenceDossier, format: md, naming: lower, schema: none, companions: none, authored: hand}
   - {name: GovernanceRunRecord, format: "json, log or csv", naming: lower, schema: none, companions: none, authored: "generated:governance/tools/capture_evidence.py"}
   - {name: LeanReplayReceipt, format: "json or log", naming: lower, schema: "lean replay receipt (sha256, exit code, axioms)", companions: none, authored: "generated:the replay scripts in scripts/"}

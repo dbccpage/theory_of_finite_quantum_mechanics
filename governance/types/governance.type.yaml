@@ -40,12 +40,12 @@ classes:
     path: governance/types
     summary: The repository typed as one object - the root class with the meta-schema and the naming and public-text rules, one type file per top-level folder, and the epic that brings the tree to the typed target.
     role: config
-    counts: {now: 0, target: 15}
+    counts: {now: 15, target: 15}
     attributes:
-      - {name: root_type, match: repository.type.yaml, leaf: RepositoryTypeFile, required: true, now: 0, target: 1}
-      - {name: epic, match: repository_typing_epic.md, leaf: TypingEpic, required: true, now: 0, target: 1}
+      - {name: root_type, match: repository.type.yaml, leaf: RepositoryTypeFile, required: true, now: 1, target: 1}
+      - {name: epic, match: repository_typing_epic.md, leaf: TypingEpic, required: true, now: 1, target: 1}
     collections:
-      - {name: folder_types, match: "*.type.yaml", leaf: RepositoryTypeFile, now: 0, target: 13}
+      - {name: folder_types, match: "*.type.yaml", leaf: RepositoryTypeFile, now: 13, target: 13}
     invariants:
       - {id: types.one_file_per_folder, statement: "there is exactly one <folder>.type.yaml per top-level folder that is not a dot folder, and each defines the class the root attribute names", holds_now: true, checked_by: "scripts/check_repo_types.py (story S01)"}
 

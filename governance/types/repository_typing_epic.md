@@ -3,8 +3,9 @@
 AuthorityEffect: None. This plan moves, merges and deletes files and wires a checker into CI. It changes no DAG
 node, status, statement or route, adds no DAG node, and changes no mathematical content.
 
-Baseline: commit 88fa973cc (origin/main). Every count is a count of tracked files at that commit or of the tree after
-every story, computed from `git ls-tree -r -l HEAD`, the types and the appendix of this file (section 8).
+Baseline: the merged tip, 341d2e3dc plus this branch (the review began at 88fa973cc; main then gained #574 to #577,
+which were merged into this branch and reconciled). Every count is a count of tracked files at that tip or of the tree
+after every story, computed from `git ls-tree -r -l HEAD`, the types and the appendix of this file (section 8).
 
 ## 1. What this epic does
 
@@ -14,7 +15,7 @@ then removed, so that the tree is a checkable object, without breaking anything.
 `governance/types/`: `repository.type.yaml` (the root class, the meta-schema `repo-type/1` in block `meta`, the
 naming and public-text rules, the shared leaf types), one `<folder>.type.yaml` per top-level folder of the target
 tree (the three dot folders are class `ToolConfigFolders` in the root file), and this epic. The types describe the
-target tree; each member records `now` (at 88fa973cc) and `target` (after the epic). What the epic removes, moves or
+target tree; each member records `now` (at the merged tip) and `target` (after the epic). What the epic removes, moves or
 renames is listed once, in section 8.
 
 Why `governance/types/`: `governance/` already holds the companion regime (`governance/policy.json`) and the
@@ -37,26 +38,26 @@ the root, keeps its own schema, and S03, S08 and S11 repoint its stale paths. `g
 |---|---:|---:|---:|---:|
 | atlas | 5,549 | 315.0 | 4,523 | 301.6 |
 | checks | 478 | 11.4 | 903 | 27.7 |
-| code | 6,150 | 154.7 | 5,965 | 151.1 |
-| dag | 1,448 | 38.5 | 1,396 | 35.1 |
+| code | 6,152 | 154.7 | 5,967 | 151.1 |
+| dag | 1,449 | 38.6 | 1,397 | 35.1 |
 | docs | 1,306 | 10.7 | 1,303 | 9.1 |
 | education | 1,056 | 10.9 | 1,094 | 13.3 |
-| evidence | 1,175 | 22.1 | 870 | 19.1 |
-| governance | 63 | 1.1 | 79 | 1.2 |
-| lean4 | 2,136 | 30.7 | 2,007 | 29.6 |
+| evidence | 1,181 | 22.3 | 876 | 19.3 |
+| governance | 78 | 1.3 | 79 | 1.3 |
+| lean4 | 2,137 | 30.8 | 2,008 | 29.7 |
 | normal_forms | 70 | 0.5 | 70 | 0.5 |
 | papers | 1,246 | 36.5 | 623 | 19.8 |
 | problem_sets | 50 | 0.3 | 0 (into education) | 0 |
 | reviews | 449 | 16.7 | 0 (into checks and evidence) | 0 |
 | rules | 1 | 0.0 | 0 (subsumed) | 0 |
-| scripts | 69 | 1.3 | 67 | 1.1 |
+| scripts | 69 | 1.3 | 67 | 1.2 |
 | vendor | 2,999 | 36.7 | 2,999 | 36.7 |
 | the three dot folders | 62 | 0.2 | 62 | 0.2 |
 | root files | 18 | 0.5 | 15 | 0.5 |
-| **total** | **24,325** | **687.8** | **21,976** | **646.7** |
+| **total** | **24,350** | **688.4** | **21,986** | **647.2** |
 
-Top-level folders without a dot: 16 now, 13 after. The "after" column counts the 17 files this epic adds (14 type
-files, this epic, 'scripts/check_repo_types.py' and its test) but not their bytes. 2,366 files (41.1 MB) are removed;
+Top-level folders without a dot: 16 now, 13 after. Both columns count the 15 files of `governance/types/`; the "after"
+column also counts the 2 files S01 adds ('scripts/check_repo_types.py' and its test) but not their bytes. 2,366 files (41.1 MB) are removed;
 546 of them are byte twins of a file that stays. 526 files move (S06 1, S10 1, S11 89, S12 6, S14 428, S16 1) and
 S17 renames 2. All other files stay where they are.
 
@@ -77,7 +78,7 @@ S17 renames 2. All other files stay where they are.
 6. Inside an atlas deposit, after removing or renaming files: record the deposit's integrity before the change with
    `sha256sum -c --quiet MANIFEST.sha256` and `sha256sum -c --quiet SHA256SUMS` from the deposit root (only
    genesis, the WDP, higher_cell and projection_obstruction_paper accept `verify_deposit.py --integrity-only`).
-   Ten of the 13 deposits already fail at 88fa973cc (atlas.type.yaml, invariant `deposit.manifest_matches`); list
+   Ten of the 13 deposits already fail at the merged tip (atlas.type.yaml, invariant `deposit.manifest_matches`); list
    those stale entries in the PR, because regenerating seals them too. Regenerate both files with the deposit's
    'scripts/regen_sha256sums.py' (in 12 deposits; `certified_adaptive_quantum_dynamics` has only
    `tools/rebuild_release.py` and 'scripts/rebuild_release.py', so edit its two manifests by hand); after, both
@@ -92,10 +93,10 @@ S17 renames 2. All other files stay where they are.
 Run before and after every story, from the root, on a clean checkout; "after" equals "before" except as the story
 says.
 
-| Id | Command | State at 88fa973cc |
+| Id | Command | State at 341d2e3dc |
 |---|---|---|
-| C1 | `python -I -X utf8 dag/validate_derivation_dag.py --repo-root .` | `nodes=988 routes=996 records=1040 failures=0` |
-| C2 | `python -I -X utf8 dag/evidence/build_evidence.py --check` | exit 1, 34 stale files (S02 fixes it) |
+| C1 | `python -I -X utf8 dag/validate_derivation_dag.py --repo-root .` | `nodes=989 routes=997 records=1041 failures=0` |
+| C2 | `python -I -X utf8 dag/evidence/build_evidence.py --check` | exit 1, 11 stale files (S02 fixes it) |
 | C3 | `cargo build --locked --release --manifest-path governance/Cargo.toml --bin governance-check`, then `governance/target/release/governance-check --root . check` (also with `--changed-since origin/main`), `python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main`, `python -I -X utf8 scripts/contract_scores.py check` | governance.yml passes on main |
 | C4 | `python -m pytest scripts/test_overclaim_scan.py scripts/auto/test_auto_checks.py -q -p no:cacheprovider`; `python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict`; `python -I -X utf8 scripts/auto/anti_pattern_lint.py --changed-since origin/main`; `python -I -X utf8 scripts/auto/estate_audit.py skills` | overclaim.yml passes on main |
 | C5 | `python -I -X utf8 scripts/build_readme_facts.py --check` (a story that changes a counted inventory runs `--write` and commits only the facts block) | stale (S02 fixes it) |
@@ -118,7 +119,7 @@ says.
 ## 4. Stories
 
 A story's files are the appendix lines tagged with it (section 8); `scripts/check_repo_types.py --plan Snn` prints
-them from S01 on. Counts are exact at 88fa973cc.
+them from S01 on. Counts are exact at the merged tip.
 
 ### S01 Add the type checker in report-only mode
 
@@ -142,24 +143,23 @@ them from S01 on. Counts are exact at 88fa973cc.
   contract, four review-ledger members, six problem-set members, five teaching-pack members, the projection review
   member and the scoring-history attribute; and the 8 leaf types only they use: RunContract, ReviewLedgerFile,
   CheckerReviewRecord, ReviewByteSnapshot, ProblemSheet, ProblemSolution, ProblemResult, GovernanceGuide);
-  `--report public-text` counts 3,363 files; `--plan` reproduces every count of section 8; C1 and C4 pass.
+  `--report public-text` counts 3,325 files; `--plan` reproduces every count of section 8; C1 and C4 pass.
 
 ### S02 Bring generated outputs up to date and check them in CI
 
-- Diagnosis: `build_evidence.py --check` exits 1 at 88fa973cc with 34 stale files, `dag/evidence/evidence_map.json`
-  among them. Not line endings (`core.autocrlf` is false; checked-out bytes equal the blobs): commit 56e16ec03 changed
-  `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean` (pages
-  record sha256 42063910..., the file is now 89ad84fa...) and 0ed4ea6c9 changed
-  `evidence/lean_receipts/gleason_lean_audit.json`, both without `--write`. The README facts block is stale too.
-- Do: `python -I -X utf8 dag/evidence/build_evidence.py --write` (commit the 34 files) and
+- Diagnosis: `build_evidence.py --check` exits 1 at 341d2e3dc with 11 stale files: `dag/evidence/evidence_map.json`,
+  `docs/evidence/README.md`, `docs/evidence/mismatches.md`, seven node pages, one stage page, and the missing page of
+  node FQ-CHSH-NORM-ADMISSION-COMPARISON, which #577 added without `--write`. (At 88fa973cc it was 34 files, left by
+  commits 56e16ec03 and 0ed4ea6c9; the label sweep regenerated them.) Not line endings: `core.autocrlf` is false and
+  the checked-out bytes equal the blobs. No workflow runs `--check`, so the drift goes unseen. The README facts block
+  is stale too.
+- Do: `python -I -X utf8 dag/evidence/build_evidence.py --write` (commit the files it reports) and
   `python -I -X utf8 scripts/build_readme_facts.py --write` (commit the facts block only). In `dag.yml` add a
   blocking step `python -I -X utf8 dag/evidence/build_evidence.py --check` and two steps with
   `continue-on-error: true`: `python -X utf8 -m pytest -q dag/tests dag/evidence/test_evidence.py` and
   `python -I -X utf8 scripts/build_readme_facts.py --check`; list in the PR every test that fails at this commit.
-- Accept: C2 prints `evidence map current`; C5 passes; no other file changes. The senior review measured the page
-  diff: 106 sha256 lines, 15 symbol rows of the WDP batch 11 to 13 nodes whose declaration-form column turns from no
-  to yes, and one line of `docs/evidence/nodes/TFQ-0385.md` that now shows the record status `dag/derivation_dag.json`
-  already holds; no grade or status changes. C1 passes.
+- Accept: C2 prints `evidence map current`; C5 passes; no file changes beyond the ones `--check` listed and the facts
+  block; no grade or status changes (the pages only catch up with the DAG); C1 passes.
 
 ### S03 Dissolve `rules/` and repoint `library.yaml`
 
@@ -172,7 +172,7 @@ them from S01 on. Counts are exact at 88fa973cc.
   `papers/core/` and 'papers/computation/' that no longer exist (their files now live in `dag/derivations/*/sources/`,
   `dag/derivations/master_derivation_ledger.md` and `atlas/computation_complexity_pvnp/`; point to those if the owner
   prefers).
-- Accept: UNTYPED falls by 1; the 15 paths of `library.yaml` missing at 88fa973cc resolve or are gone; C1, C4.
+- Accept: UNTYPED falls by 1; the 15 paths of `library.yaml` missing at the merged tip resolve or are gone; C1, C4.
 
 ### S04 Remove root leftovers, unused scripts and Lean text saved as Markdown
 
@@ -217,7 +217,7 @@ them from S01 on. Counts are exact at 88fa973cc.
   dossiers, per-PR validation JSON and run notes (69), `docs/maintenance/atlas_dependency_inventory.{json,md}` (2).
 - Keep, because something reads them without a literal file path:
   `evidence/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T162715Z_jordan_classical_qubit/` (40; cited by
-  `pfp_review.superseded_by` at `dag/derivation_dag.json`:5423 and `dag/fragments/pfp_review_decisions.json`:544);
+  `pfp_review.superseded_by` at `dag/derivation_dag.json`:5423,7115 and `dag/fragments/pfp_review_decisions.json`:544,869);
   `evidence/results/batches/20261019T232430Z_prompts_112_131/tools/witness_cases.json` and
   `evidence/results/batches/20261020T000351Z_prompts_132_151/tools/{specs.py,witness_cases.json}` (built and read by
   `code/python/tests/test_l1_import_exact.py`:12-13 and `test_born_boundary_exact.py`:7-9);
@@ -225,7 +225,7 @@ them from S01 on. Counts are exact at 88fa973cc.
   `dag/tools/sync_application_branches.py`:167 renders); the `code_2026_10_26` files linked from
   `docs/maintenance/code_quality_2026_10_26.md`:14,15,96, `reviewed_assessment_proposal.json`
   (`governance/README.md`:19) and that folder's `.gitattributes`. Its `SHA256SUMS` keeps naming 22 removed files and
-  already has 5 stale entries; nothing reads it (rule 8).
+  already has 3 stale entries; nothing reads it (rule 8).
 - Move `docs/CONTRACT_SCORING_HISTORY.md` to `governance/contract_scoring_history.md`; edit `docs/_config.yml`:28 and
   the links at `code/rust/quality/category_homology/README.md`:1137, `code/rust/quality/l4a_qm_six/README.md`:11,
   `code/rust/quality/l4a_six/README.md`:13 and `code/rust/quality/six_module/README.md`:233. The READMEs under
@@ -304,14 +304,14 @@ them from S01 on. Counts are exact at 88fa973cc.
 - Rename the one DAG-cited file left there, `source_archive/000_sn/paper_claim_ledger.md`, to
   `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/docs/sn_predecessor_claim_ledger.md`
   (the owner's rule allows no archive folder). Edit its owning fragment `dag/fragments/pregenesis_to_wdp.json`:7727
-  and follow rule 2, which rewrites `dag/derivation_dag.json`:18445,
+  and follow rule 2, which rewrites `dag/derivation_dag.json`:18449,
   `dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md`:61 and the evidence pages; reword the links to the
   deleted `source_archive/README.md` at the deposit's `README.md`:7, `paper.md`:477 and `paper.tex`:781 (the sentence
   only).
 - Keep three intentional twins: the higher-cell `claim_ledger.md` (`verify_deposit.py`:127-128,
   'code/tests/test_claim_evidence.py':25), `covering_edge_descent.md` ('code/monograph_narrative_harmonizer.py':42,
   `README.md`:58) and the pregenesis 'lean4/full_axiom_report.txt' (`tools/replay_full_axiom_census.py`:94).
-- Rule 6 for `symmetric_groups_and_minimal_symbol_systems` (6 stale entries at 88fa973cc) and
+- Rule 6 for `symmetric_groups_and_minimal_symbol_systems` (6 stale entries at the merged tip) and
   `certified_adaptive_quantum_dynamics` (11 and 12); drop the entries from `atlas/PROVENANCE.json`.
 - Checks: C1, C2, C4, C6. Accept: tracked files fall by 140, UNTYPED by 1; no folder named `source_archive` remains.
 
@@ -437,12 +437,18 @@ them from S01 on. Counts are exact at 88fa973cc.
   in `governance/baseline.json`:3375 (deficit FLOOR, sha256 a5bd8da3...): replace the sha256 and append to `reason`
   "Rebound on <date>: srcDir of GenesisSealedSource and GenesisOngoingSource repaired after the atlas fold; score
   unchanged.", and rebind `lean4/lakefile.contract.score.yaml` to the new bytes with the unchanged score
-  (`scripts/score_scope_contracts.py record`; the lakefile is governed). Checks: C3; `governance-check explain
-  lean4/lakefile.lean` shows it grandfathered; `lake build GenesisSealedSource GenesisOngoingSource` from `lean4/`;
-  lean-gleason.yml passes.
+  (`scripts/score_scope_contracts.py record`; the lakefile is governed). The lakefile bytes also sit in replay pins:
+  12 receipts under `evidence/lean_receipts/` pin `lean4/lakefile.lean`, and governance.yml:70-71 verifies them
+  (`scripts/replay_fqcd_lean.py --verify-receipt`, `scripts/replay_pr492_lean.py --verify-receipts`). Their migration
+  rule (scripts/replay_fqcd_lean.py:28-75, `evidence/lean_receipts/lean_replay_pin_migrations.json`) accepts only
+  added whole `lean_lib` stanzas, so a `srcDir` edit needs fresh replays on a machine with Lean (the two scripts
+  without the verify flag), or the owner's choice to extend that rule. Main already fails that step: #577 added a
+  root without a migration record (governance run 42294333196, "Stale replay pin: lean4/lakefile.lean"). Checks: C3;
+  `governance-check explain lean4/lakefile.lean` shows it grandfathered; `lake build GenesisSealedSource
+  GenesisOngoingSource` from `lean4/`; the two replay verifications; lean-gleason.yml passes.
 - Rename the run-contract file at the genesis_ongoing root (the 344 KB Markdown file, blob e5d97eed, whose upper-case
   name names an AI model) to `atlas/finite_obstruction_calculus/genesis_ongoing/run_contract.md`. Edit
-  `dag/derivation_dag.json`:2041 and :32660 (node PG-GEN-SAMENESS-REFINEMENTS and route PG-R-SAMENESS; no fragment owns
+  `dag/derivation_dag.json`:2041 and :32723 (node PG-GEN-SAMENESS-REFINEMENTS and route PG-R-SAMENESS; no fragment owns
   them), follow rule 2, repoint `atlas/PROVENANCE.json`:16403, and repoint every hit of the old name inside `atlas/`
   and `education/5_genesis_reading_notes/` (education edits go into `post_import_edits`). C1, C2.
 - The missing 'checks/exact_checkers/campaign/README.md' (deleted in a992b578d) is named by 19 files. Leave
@@ -472,7 +478,7 @@ them from S01 on. Counts are exact at 88fa973cc.
 
 ### S18 Public text, stage A: free prose and tooling
 
-- Scope: the 3,065 files that hit the rule after the removals, minus stages B to D: 500 files (330 in `code/`, mostly
+- Scope: the 3,030 files that hit the rule after the removals, minus stages B to D: 500 files (330 in `code/`, mostly
   quality READMEs and assessment JSON whose assessor field names a tool; 124 in `papers/`; 18 in the
   agent-configuration dot folder, all because the folder name is a hit, see Q14; 9 in `scripts/`; 7 at the root; 12
   elsewhere). `--report public-text` lists them.
@@ -483,7 +489,7 @@ them from S01 on. Counts are exact at 88fa973cc.
 
 ### S19 Public text, stage B: governed sources, DAG sources and generated pages
 
-- Scope: 65 governed sources, 227 DAG sources and derivation pages, 34 generated pages. Generated pages follow their
+- Scope: 61 governed sources, 223 DAG sources and derivation pages, 29 generated pages. Generated pages follow their
   sources by regeneration. Each governed source needs a rebound companion (rule 5) and owner approval per batch; DAG
   text follows `dag/README.md` "Change" and changes no status. A Lean module whose name carries a hit is renamed only
   with `lean4/RENAMES.json`, the lakefile root, the baseline entry and every DAG citation in one commit.
@@ -491,8 +497,8 @@ them from S01 on. Counts are exact at 88fa973cc.
 
 ### S20 Public text, stages C and D: records and imported trees (Q2, Q5)
 
-- Scope: 687 companions and manifests, 358 records, 610 files of imported trees (atlas, normal_forms/contracts,
-  education) and 584 vendored files. 51 of all remaining hits are in a path.
+- Scope: 677 companions and manifests, 350 records, 606 files of imported trees (atlas, normal_forms/contracts,
+  education) and 584 vendored files. 49 of all remaining hits are in a path.
 - Recommended: records and imported trees are not rewritten; `public_text.allow` gains one entry per class of
   immutable record, with its reason, and imported trees are re-imported from a scrubbed upstream revision when the
   owner has one. Paths that carry a hit are renamed with their ledgers in one commit.
@@ -555,7 +561,7 @@ workspace or every Lake library in CI (Q11); the content of vendor/ (Q5).
 | Q8 | Repoint the 30 education twins that S11 keeps (5 cited by the DAG through `dag/fragments/pregenesis_to_wdp.json`, 25 read or linked inside their module) to their canonical copies and delete them? | Yes, as a follow-up story per module; it edits imported files, so each edit goes into `post_import_edits`. |
 | Q9 | `library.yaml` stays at the root because the sibling repository's library checker reads it (its master list names `catalog: library.yaml`). Keep it, or move the catalog and update that checker in the same change? | Keep it; the types reference it and check its paths. |
 | Q10 | The nested workflow in genesis_ongoing never runs. Promote its checks to a root workflow, or delete it? | Delete it with `genesis_ongoing/ci/` unless the owner wants those checks in CI. |
-| Q11 | Add CI for the Rust workspace, the root pytest suite (284 Python files under code/python/tests) and dag/tests? None runs today. | Yes, non-blocking first; required before S15. |
+| Q11 | Add CI for the Rust workspace, the root pytest suite (285 Python files under code/python/tests) and dag/tests? None runs today. | Yes, non-blocking first; required before S15. |
 | Q12 | 116 of 158 independent checkers are run by neither CI nor a test. Run them or retire them with their notes? | Add them to reviewed-checkers.yml in batches; retire only with the owner. |
 | Q13 | `scripts/adversarial_witness_stress_test.py` is called by nothing. | Delete. |
 | Q14 | The agent-configuration dot folder's own name is a public-text hit (18 files). | A typed allow entry: the tool fixes the name. |
@@ -853,13 +859,17 @@ moved file or folder; reads of the loaders around each large removal; read-only 
     table sent projection-obstruction.yml to S10, while it is path-filtered to the two packages S14 edits; S22 waited
     for S15, which needs a build machine and changes no type; C5 is stale at HEAD and the plan did not say so; the
     docs type cited `docs/_config.yml`:24, a comment line.
+13. Found while reconciling with main: S16's lakefile edit would break the replay pins of `lean4/lakefile.lean`
+    that 12 receipts hold and governance.yml:70-71 verifies; their migration rule accepts only added whole `lean_lib`
+    stanzas. Main's governance job already fails at that step since #577. Fixed: S16 names the pins and the fresh
+    replays they need.
 
 ### Questions put to the plan, and the answers
 
 - Do the counts hold? On the senior's files my evaluator reproduces UNTYPED 1,185, 21,906 target files and
   646.2 MB, after three interpretation guesses that the new meta text removes. After the fixes: UNTYPED 1,178 at
-  HEAD and at S01 (`library.yaml` and six batch fixtures are now typed), 0 in the target; 21,976 target files and
-  646.7 MB; every member count exact; FORM 0; the per-story UNTYPED deltas sum to 1,178.
+  HEAD and at S01 (`library.yaml` and six batch fixtures are now typed), 0 in the target; every member count exact;
+  FORM 0; the per-story UNTYPED deltas sum to 1,178. At the merged tip: the same 1,178, 21,986 target files, 647.2 MB.
 - Is the atlas side canonical (O1 and O2, 613 files)? Yes: the 2026-11-05 content commits 41743c8ec, 6803005f0 and
   fd07f2df2 follow the papers copy of 5209ba624 (2026-10-27); the papers-only files are build by-products and
   dependencies the atlas edition dropped by design.
@@ -873,10 +883,23 @@ moved file or folder; reads of the loaders around each large removal; read-only 
 - The sweep of kept files found 152 live referrers of removed or moved paths; each is now named by its story or is a
   record under rule 8.
 
+### Reconciliation with main (#574 to #577)
+
+Main gained #574 to #577 after this review began; they were merged into this branch (0fbbb35cd) and the evaluator was
+re-run at the merged tip. 25 more files are tracked there (10 added by main, the 15 of this folder). The 6 renames lie
+inside folders that S09 and S14 remove or move. A new folder, `evidence/chsh_norm_admission/` (6 files), gained the
+member `verification_packages`; the counts of PythonTree, DerivationPapers, LeanFolder, EvidenceFolder and
+RepositoryTypes changed with main. The DAG lines that S10 and S16 cite moved (18445 to 18449, 32660 to 32723), and
+S06 now names both `superseded_by` citations of the kept run. C2 now reports 11 stale files, not 34. The public-text
+count is 3,325 (3,363 before the label sweep). S16 gained the replay-pin step (mistake 13). Unchanged at the tip: the
+appendix and every `(N files)` count, the per-story deltas, the deposit manifests (10 of 13 fail), the WDP-graph
+identity, the provenance figures and the 546 byte twins. A sweep of main's 240 changed files found no new consumer of a
+removed or moved path.
+
 ### Mutations
 
-- Type files: 140,816 to 108,252 bytes (the root file 51,484 to 26,110); the epic 113,429 to
-  87,748 bytes; the appendix 675 to 204 tagged lines (153 removal lines with globs, 37 KEEP lines, 14 moves); every
+- Type files: 140,816 to 108,803 bytes (the root file 51,484 to 26,181); the epic 113,429 to
+  90,443 bytes; the appendix 675 to 204 tagged lines (153 removal lines with globs, 37 KEEP lines, 14 moves); every
   `changes` block removed (the appendix is the one change list); class attributes carry no path; members drop the
   default `authored: hand`.
 
@@ -967,7 +990,7 @@ signoff:
 signoff_adversarial:
   role: adversarial reviewer of the repository-typing plan (second senior review)
   date: 2026-11-06
-  baseline: 88fa973cc
+  baseline: "88fa973cc; reconciled at 341d2e3dc plus this branch"
   files_written: "governance/types/*.type.yaml (14) and this epic, rewritten in place; nothing else in the repository was changed; nothing was staged or committed; the scratch evaluators live outside the repository"
   checked:
     - "A scratch evaluator written from block meta alone, run on HEAD, on the S01 commit (HEAD plus the 17 added files) and on the tree the appendix projects; before the fixes it reproduced the senior's UNTYPED 1,185, 21,906 files and 646.2 MB, and showed MISSING 7 at S01, not 4."
@@ -985,5 +1008,6 @@ signoff_adversarial:
     - "GitHub CI itself, and whether reviewers accept the S14 rebind of three reviewed tests with unchanged grades (Q4)."
     - "The 25 census generators were not re-run; their match is the senior's measurement."
     - "References built at run time that neither a path token nor a module import shows, outside the loaders named in the stories; the package tests before and after each story are the guard."
+  reconciled: "at the merged tip: HEAD UNTYPED 1,178, DEAD 29, MISSING 9; S01 1,178, 26, 7; target 0, 0, 0; FORM 0; 24,350 files and 688.4 MB to 21,986 files and 647.2 MB; C1 nodes=989 routes=997 records=1041 failures=0; C2 11 stale; public text 3,325 files; governance CI fails at the replay-pin step exactly as on main (run 42294333196)"
   verdict: "ready to commit"
 ```

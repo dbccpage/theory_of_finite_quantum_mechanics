@@ -4,7 +4,7 @@
 # AuthorityEffect: None. These files say where each tracked file lives and what kind of file it is. They change
 # no DAG node, status or statement, and they are not evidence for any claim.
 #
-# `now` counts tracked files at commit 88fa973cc; `target` counts them after every story of
+# `now` counts tracked files at the merged tip (341d2e3dc plus this branch); `target` counts them after every story of
 # governance/types/repository_typing_epic.md. The checker reports count drift and does not fail on it.
 schema: repo-type/1
 file_for: "."
@@ -89,7 +89,7 @@ public_text:
     upper-case letter, lower-case everything, and replace every run of characters that are not ASCII letters by one
     space. A hit is a word, or two adjacent words joined by one space, whose SHA-256 (UTF-8, hex) is in the lists
     below, either as written or with one trailing "s" removed. The term list itself is not written in the public tree.
-  measured_now: "3,363 of 24,325 tracked files hit at 88fa973cc (2,011 private-name, 1,450 model or vendor, 215 banned-word; a file can be in several groups; 76 of them by path); the removals of the epic take out 298, leaving 3,065 for the staged scrub of stories S18 to S20 (counted by a scratch implementation of this statement during the adversarial review)"
+  measured_now: "3,325 of 24,350 tracked files hit at the merged tip (2,012 private-name, 1,401 model or vendor, 215 banned-word; a file can be in several groups; 72 of them by path); the removals of the epic take out 295, leaving 3,030 for the staged scrub of stories S18 to S20 (3,363 at 88fa973cc, before the label sweep; counted by a scratch implementation of this statement)"
   allow:
     - {match: "governance/types/repository.type.yaml", reason: "holds only the hashes"}
   term_sha256:
@@ -139,7 +139,7 @@ classes:
     summary: The theory of finite quantum mechanics as one typed tree, from the derivation graph and its Lean proofs to the code, checks and evidence behind each node status, with the tooling that governs them.
     role: source
     counts: {now: 518, target: 15}
-    totals: {files_now: 24325, files_target: 21976, mb_now: 687.8, mb_target: 646.7, top_level_folders_now: 16, top_level_folders_target: 13}
+    totals: {files_now: 24350, files_target: 21986, mb_now: 688.4, mb_target: 647.2, top_level_folders_now: 16, top_level_folders_target: 13}
     attributes:
       - {name: atlas, class: AtlasFolder, required: true}
       - {name: checks, class: ChecksFolder, required: true}
@@ -169,14 +169,14 @@ classes:
     collections:
       - {name: deposit_verifier, match: "{verify_deposit.py,deposit_paths.py,test_verify_deposit.py,test_deposit_paths.py}", leaf: RootDepositVerifier, now: 4, target: 4, note: "read by code/python/tests/test_deposit_verifier_evidence.py:16; moving them is owner question Q6"}
     invariants:
-      - {id: repo.total, statement: "every tracked file is matched by exactly one member of exactly one class (no UNTYPED, no CLAIM)", holds_now: false, checked_by: "python -I -X utf8 scripts/check_repo_types.py (story S01)", note: "UNTYPED 1,185 at 88fa973cc and at the S01 commit; 0 in the target tree"}
+      - {id: repo.total, statement: "every tracked file is matched by exactly one member of exactly one class (no UNTYPED, no CLAIM)", holds_now: false, checked_by: "python -I -X utf8 scripts/check_repo_types.py (story S01)", note: "UNTYPED 1,178 at the merged tip and at the S01 commit; 0 in the target tree"}
       - {id: repo.no_dead_types, statement: "every member and every leaf type has at least one instance", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "26 dead at the S01 commit: members and leaf types that receive files in later stories"}
-      - {id: repo.top_level_closed, statement: "the root holds exactly the 13 folders and the 15 files that the attributes and collections name, plus the three dot folders", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "16 non-dot folders and 18 root files at 88fa973cc"}
-      - {id: repo.naming, statement: "every file and folder name satisfies its naming rule", holds_now: false, checked_by: "scripts/check_repo_types.py --report naming (S01)", note: "two free upper-case names at 88fa973cc (code/rust/src/wdp/PO000_24G2.md, evidence/quality/full_functor_validation/REVIEW.md) and the run-contract file named in S16; after S16 and S17 only the exception and imported rules are reported"}
-      - {id: repo.public_text, statement: "no tracked file hits the public_text rule outside the allow list", holds_now: false, checked_by: "scripts/check_repo_types.py --report public-text (S01)", note: "3,363 files at 88fa973cc; stories S18 to S20 scrub them in stages"}
+      - {id: repo.top_level_closed, statement: "the root holds exactly the 13 folders and the 15 files that the attributes and collections name, plus the three dot folders", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "16 non-dot folders and 18 root files at the merged tip"}
+      - {id: repo.naming, statement: "every file and folder name satisfies its naming rule", holds_now: false, checked_by: "scripts/check_repo_types.py --report naming (S01)", note: "two free upper-case names at the merged tip (code/rust/src/wdp/PO000_24G2.md, evidence/quality/full_functor_validation/REVIEW.md) and the run-contract file named in S16; after S16 and S17 only the exception and imported rules are reported"}
+      - {id: repo.public_text, statement: "no tracked file hits the public_text rule outside the allow list", holds_now: false, checked_by: "scripts/check_repo_types.py --report public-text (S01)", note: "3,325 files at the merged tip; stories S18 to S20 scrub them in stages"}
       - {id: repo.no_archive_folders, statement: "no folder is named archive, archives, old, legacy, superseded, backup, source_archive or retired*, and no folder keeps superseded copies", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "after S10 renames the last DAG-cited file out of source_archive/, the target tree has none"}
       - {id: repo.byte_duplicates_declared, statement: "two tracked files share a blob only when a derives_from relation or an allow entry of the owning class names the pair", holds_now: false, checked_by: "scripts/check_repo_types.py --report duplicates (S01)", note: "deposit boilerplate (LICENSE, lean-toolchain, empty files) is the main allowed group"}
-      - {id: repo.library_paths_resolve, statement: "every path and entry point in library.yaml exists", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "15 of its 153 paths are missing at 88fa973cc and 18 more go in S08 and S11; S03, S08 and S11 repoint them"}
+      - {id: repo.library_paths_resolve, statement: "every path and entry point in library.yaml exists", holds_now: false, checked_by: "scripts/check_repo_types.py (S01)", note: "15 of its 153 paths are missing at the merged tip and 18 more go in S08 and S11; S03, S08 and S11 repoint them"}
       - {id: repo.status_has_one_home, statement: "node statuses are written only in dag/derivation_dag.json and its fragments", holds_now: unknown, checked_by: "python -I -X utf8 dag/validate_derivation_dag.py --repo-root . (CI dag.yml)"}
       - {id: repo.qm_atlas_gate, statement: "line ranges and symbol bindings in docs/QM_PROBLEM_AND_PROOF_ATLAS.md match the Lean, Rust, Python and manuscript files they name (former rules.yaml rule_3)", holds_now: unknown, checked_by: "python scripts/verify_qm_atlas_loc.py and python -m pytest code/python/tests/test_qm_atlas_loc.py (local hook from scripts/install_qm_atlas_hook.py; no CI job)"}
       - {id: repo.governance_floor, statement: "every governed source passes the contract-score floor or is grandfathered with unchanged bytes", holds_now: true, checked_by: "governance-check --root . check and scripts/contract_scores.py check (CI governance.yml)"}

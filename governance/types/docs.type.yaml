@@ -23,7 +23,7 @@ classes:
       - {name: consolidation_records, match: "maintenance/source_consolidation/*", leaf: MaintenanceRecord, now: 3, target: 3}
       - {name: maintenance_records, match: "maintenance/*.{md,json}", leaf: MaintenanceRecord, now: 20, target: 18}
     invariants:
-      - {id: docs.evidence_current, statement: "docs/evidence equals the output of build_evidence.py", holds_now: false, checked_by: "python -I -X utf8 dag/evidence/build_evidence.py --check (story S02 puts it in CI)", note: "34 files stale at 88fa973cc"}
+      - {id: docs.evidence_current, statement: "docs/evidence equals the output of build_evidence.py", holds_now: false, checked_by: "python -I -X utf8 dag/evidence/build_evidence.py --check (story S02 puts it in CI)", note: "11 files stale at 341d2e3dc"}
       - {id: docs.liquid_safe, statement: "no page breaks the Jekyll Liquid parser", holds_now: unknown, checked_by: "python -I -X utf8 -m pytest scripts/test_docs_liquid_safe.py (after story S12; status.yml)"}
       - {id: docs.links_resolve, statement: "relative links and backticked repository paths in docs/ resolve", holds_now: false, checked_by: "python -I -X utf8 scripts/auto/estate_audit.py docs --paths docs (non-blocking in overclaim.yml)", note: "reviewer 5 counted 137 broken relative links in docs/ (docs/index.md links status pages that the status workflow writes)"}
     relations:

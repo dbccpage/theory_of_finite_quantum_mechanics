@@ -16,7 +16,7 @@ classes:
     collections:
       - {name: core_tools, match: "core/tools/*", leaf: DepositTool, now: 4, target: 4}
     invariants:
-      - {id: papers.no_atlas_twins, statement: "no paper folder is a copy of an atlas deposit", holds_now: false, checked_by: "scripts/check_repo_types.py --report duplicates", note: "eight copies at 88fa973cc; story S08"}
+      - {id: papers.no_atlas_twins, statement: "no paper folder is a copy of an atlas deposit", holds_now: false, checked_by: "scripts/check_repo_types.py --report duplicates", note: "eight copies at the merged tip; story S08"}
       - {id: papers.release_bundles_verified, statement: "the MUB(6) release bundles match their checksums", holds_now: unknown, checked_by: "code/python/tests/mub/test_publication_release.py:23,39 (root pytest; no CI job)"}
     relations:
       - {kind: checks, to: PapersFolder, via: "code/python/tests/mub/test_publication_release.py reads papers/core/mub6 and its zenodo copy"}
