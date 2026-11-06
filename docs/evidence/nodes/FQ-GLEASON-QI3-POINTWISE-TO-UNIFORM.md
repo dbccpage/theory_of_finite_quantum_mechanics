@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md](../../../dag/derivations/10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md)
-- sha256 (`lf-normalised`): `a8b81c743475e1db5e220b7ba646f4b6d2385ff2829b15c54f87b3c7ebc935df`
+- sha256 (`lf-normalised`): `b3c2b5f7520c053525b4a90d4d253000d2782d3dd8e8dd84256c700f1ee74e30`
 - generated view: listed, not counted
 - cited in: record TFQ-1057
 - counts toward the grade: no

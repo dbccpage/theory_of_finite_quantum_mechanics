@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1326_qcv_physical_satisfiability_open.md`
 
 - file: [dag/derivations/29_computation/tfq_1326_qcv_physical_satisfiability_open.md](../../../dag/derivations/29_computation/tfq_1326_qcv_physical_satisfiability_open.md)
-- sha256 (`lf-normalised`): `56ecae66d5aeeb63e5a524595a1aedf67168ac4df9f41977cfe507c2726267c7`
+- sha256 (`lf-normalised`): `7394103dec92952e04b18a9b329f9a6f6a6c81ec561d505e7e6bd5caa31f23ee`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1326
 - counts toward the grade: no

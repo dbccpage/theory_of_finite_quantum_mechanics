@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md](../../../dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md)
-- sha256 (`lf-normalised`): `55ee7ca02713c505ee01b4f46a5f33bd6325c50a13fadf99661c880b1977bcc2`
+- sha256 (`lf-normalised`): `16461be8005c9839133d109cdfef93be793886ea80ae82d5e0572f0a7b57a27f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2004
 - counts toward the grade: no

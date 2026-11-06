@@ -109,7 +109,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md`
 
 - file: [dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md](../../../dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md)
-- sha256 (`lf-normalised`): `4504148c540f3beacbcde4b67ff21318d615e0d725364470c13824b4b66e0795`
+- sha256 (`lf-normalised`): `8f516e402e499cfd6c848f304fc7dad2bae0ff35f92933da2102510788246e0b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1319
 - counts toward the grade: no

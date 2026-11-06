@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md](../../../dag/derivations/12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md)
-- sha256 (`lf-normalised`): `72502a0b4e5e6498f67034eb8ac8ac63e1c5c5132c179fb2bfceb3cc27f7c0fe`
+- sha256 (`lf-normalised`): `0288ccaca376ff04c47d153611fd1cdfa7b3a66094a4291c7f5dadca28b896ab`
 - generated view: listed, not counted
 - cited in: record TFQ-1013
 - counts toward the grade: no

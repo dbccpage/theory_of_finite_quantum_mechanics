@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1327_qcv_fresh_mark_supply_bridge.md`
 
 - file: [dag/derivations/29_computation/tfq_1327_qcv_fresh_mark_supply_bridge.md](../../../dag/derivations/29_computation/tfq_1327_qcv_fresh_mark_supply_bridge.md)
-- sha256 (`lf-normalised`): `342aa241e8b0ca02d6c1dad637a40bdd5943c687374fd32bd913c13e3f455f68`
+- sha256 (`lf-normalised`): `af84b8ecddedc8a30c0d1b17c6b5d7d0c6e314c1cadbd402aca4508ca09d3e3b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1327
 - counts toward the grade: no

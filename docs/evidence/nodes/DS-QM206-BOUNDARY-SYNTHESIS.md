@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1041_ds_qm206_boundary_synthesis.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1041_ds_qm206_boundary_synthesis.md](../../../dag/derivations/12_finite_qm_structure/tfq_1041_ds_qm206_boundary_synthesis.md)
-- sha256 (`lf-normalised`): `4dbb51b98295cd5cfba96eba27ac2fb5c89abe7f1c57352d721c5e36e98d4a5b`
+- sha256 (`lf-normalised`): `1f1feefb5987a301c2e80fdae68aba00a794d0603739962f21513e6b48d55482`
 - generated view: listed, not counted
 - cited in: record TFQ-1041
 - counts toward the grade: no

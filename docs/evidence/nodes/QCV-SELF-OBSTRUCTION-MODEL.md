@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivation_dag.json`
 
 - file: [dag/derivation_dag.json](../../../dag/derivation_dag.json)
-- sha256 (`lf-normalised`): `dbbd214abd9dfbf0c4a558fe8f92286bc53fff581d585d510fc25f618c26b692`
+- sha256 (`lf-normalised`): `283471ececb294d31c39a2bfb27303462b844b5da8a0efecc20dcc52f48dff45`
 - generated view: listed, not counted
 - cited in: node.source
 - counts toward the grade: no
@@ -120,7 +120,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md`
 
 - file: [dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md](../../../dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md)
-- sha256 (`lf-normalised`): `dba19c1723f71a99c7ddefcd267ae28429317894fd5197897e2988bc41db4582`
+- sha256 (`lf-normalised`): `4e8d31dc3250769d84e8bd44939df45b62ed55dad6057934f5dcc4d85f00bdbd`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1315
 - counts toward the grade: no

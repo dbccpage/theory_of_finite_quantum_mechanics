@@ -106,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md`
 
 - file: [dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md](../../../dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md)
-- sha256 (`lf-normalised`): `928c602c8d18a41d705ac16e9d268e414c16c004263dfe966a6342a44e51b715`
+- sha256 (`lf-normalised`): `98186c785013f00c9fb973a28e50779cb54eb93e04eb227789b1238f32633dc2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1201
 - counts toward the grade: no

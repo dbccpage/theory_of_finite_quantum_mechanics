@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md](../../../dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md)
-- sha256 (`lf-normalised`): `2c756c0d0478b8bfe2027c88e2f0d419aae84bc65ded962c6906c43f7265ead5`
+- sha256 (`lf-normalised`): `8ed80a3cfa414f3fac15548de39134c7269d68fb0140bc389adaeb09bdcaccdf`
 - generated view: listed, not counted
 - cited in: record TFQ-1002
 - counts toward the grade: no
@@ -119,9 +119,9 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `L1-R-REALIFICATION-J` `DERIVED_LEAN`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (CONDITIONAL)
+- `L1-R-REALIFICATION-J` `DERIVED_LEAN`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (PROVED_LEAN)
 
 Outgoing (2):
 
 - `SCI-R-DYN-ALGEBRAIC-HAMILTON` `DERIVED_PROSE`: [DYN-ALGEBRAIC-HAMILTON](DYN-ALGEBRAIC-HAMILTON.md) (CONDITIONAL)
-- `X-R-REALIFICATION-TO-ADAPTER` `COMPUTED`: [FQ-IMPL-REALIFICATION-ADAPTER](FQ-IMPL-REALIFICATION-ADAPTER.md) (COMPUTATIONALLY_CHECKED)
+- `X-R-REALIFICATION-TO-ADAPTER` `DERIVED_LEAN`: [FQ-IMPL-REALIFICATION-ADAPTER](FQ-IMPL-REALIFICATION-ADAPTER.md) (PROVED_LEAN)

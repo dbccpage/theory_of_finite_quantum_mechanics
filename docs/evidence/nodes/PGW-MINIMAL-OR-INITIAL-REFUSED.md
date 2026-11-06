@@ -1,6 +1,6 @@
 # PGW-MINIMAL-OR-INITIAL-REFUSED
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_PROSE`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_PROSE`. Evidence grade: 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 16
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 18
 - distinct cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -32,7 +32,7 @@ An explicit clock-closed observed-process class now has a proved initiality obst
 
 ## Source status
 
-genesis_source.txt question 10 claim refused \[unresolved\]; written refusal with scoped alternatives
+Clock-closed initiality refusal and stuttered state-minimality countermodel mechanized in GenesisProcessComparison.lean and WdpBatch7.lean
 
 ## Review
 
@@ -41,6 +41,21 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
+- sha256 (`bytes`): `325cb7b3dd05bf6b4c4f5081935af36bbddc9493b7404f2bb3cce46bc0e32fc5`
+- cited in: node.lean, record TFQ-0453
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch7.no_hom_from_self_loop_to_strict_clock` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch7.no_hom_from_self_loop_to_strict_clock` |
+| `WitnessedDifference.WdpBatch7.stuttered_adequate_process_not_state_minimal` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch7.stuttered_adequate_process_not_state_minimal` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/GenesisProcessComparison.lean`
 
@@ -99,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md`
 
 - file: [dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md](../../../dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md)
-- sha256 (`lf-normalised`): `a3143f06e5c08fe71cef652849dc0984a2700091e3e4bf466c98c7d23d411e4e`
+- sha256 (`lf-normalised`): `1b7dee7a44f269f7101a5b47a6664f72a0a5fbad0ecb40e1603978716a6ae244`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0453
 - counts toward the grade: no
@@ -113,7 +128,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0453 lean4: no Lean statement of minimality or initiality among finite processes satisfying the sealed challenges
 - TFQ-0453 python: no Python check; artifact determinism is repeated-run byte agreement, not a program
 - TFQ-0453 rust: no Rust check; artifact determinism is repeated-run byte agreement, not a program
 
@@ -121,8 +135,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `PGW-R-MINIMAL-OR-INITIAL-REFUSED` `DERIVED_PROSE`: [PGW-NO-ENDOGENOUS-DEMAND-GENERATOR](PGW-NO-ENDOGENOUS-DEMAND-GENERATOR.md) (PROVED_PROSE)
+- `PGW-R-MINIMAL-OR-INITIAL-REFUSED` `DERIVED_LEAN`: [PGW-NO-ENDOGENOUS-DEMAND-GENERATOR](PGW-NO-ENDOGENOUS-DEMAND-GENERATOR.md) (PROVED_LEAN)
 
 Outgoing (1):
 
-- `PGW-R-SEALED-TERMINAL-STATEMENT` `DERIVED_PROSE`: [PGW-SEALED-TERMINAL-STATEMENT](PGW-SEALED-TERMINAL-STATEMENT.md) (PROVED_PROSE)
+- `PGW-R-SEALED-TERMINAL-STATEMENT` `DERIVED_LEAN`: [PGW-SEALED-TERMINAL-STATEMENT](PGW-SEALED-TERMINAL-STATEMENT.md) (PROVED_LEAN)

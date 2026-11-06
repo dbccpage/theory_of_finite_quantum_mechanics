@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1183_maj_open_poisson_schrodinger.md`
 
 - file: [dag/derivations/28_majorana/tfq_1183_maj_open_poisson_schrodinger.md](../../../dag/derivations/28_majorana/tfq_1183_maj_open_poisson_schrodinger.md)
-- sha256 (`lf-normalised`): `07cf9873113e0d160a4286f810a5f17261cb2256171a6467ff3c65170cc23c78`
+- sha256 (`lf-normalised`): `d1c769d08c69dd2dd1dded487cca6ba3017a83530bae725460fc517e8d6641ae`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1183
 - counts toward the grade: no

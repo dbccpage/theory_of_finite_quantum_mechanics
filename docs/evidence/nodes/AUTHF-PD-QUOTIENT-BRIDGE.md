@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1360_authf_pd_quotient_bridge.md`
 
 - file: [dag/derivations/29_computation/tfq_1360_authf_pd_quotient_bridge.md](../../../dag/derivations/29_computation/tfq_1360_authf_pd_quotient_bridge.md)
-- sha256 (`lf-normalised`): `d30b493bff90266d5884a896d51e03ac910bb6b6a0fc2402ca308588d8546a07`
+- sha256 (`lf-normalised`): `eb032911f8708788a9f031c43897e697b236c13edef2ef5fbcd5f51ad9a75d0c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1360
 - counts toward the grade: no

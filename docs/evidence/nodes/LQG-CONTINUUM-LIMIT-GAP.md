@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md)
-- sha256 (`lf-normalised`): `dad38f9da5df6b4541c7c70ba1453bf09af00cb6b9106cbccaedf3c5ca0b076b`
+- sha256 (`lf-normalised`): `26429cd26dcc922bca8cdf76f187d8b2ec319f988fa7ba53de921d9e93e5a8e2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2315
 - counts toward the grade: no

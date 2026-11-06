@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1221_mub6_quhex_tensor_carrier.md`
 
 - file: [dag/derivations/25_mub/tfq_1221_mub6_quhex_tensor_carrier.md](../../../dag/derivations/25_mub/tfq_1221_mub6_quhex_tensor_carrier.md)
-- sha256 (`lf-normalised`): `9ea971e54cf42594b7ebf3b9be3a7cbdae6d2c19556f062bdde2f1203bb8af0f`
+- sha256 (`lf-normalised`): `b4e335300c221c942be963703357acb732b1d756dbd2b71da9e8ef91efe74ae8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1221
 - counts toward the grade: no

@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1166_maj_binding_nonclaims.md`
 
 - file: [dag/derivations/28_majorana/tfq_1166_maj_binding_nonclaims.md](../../../dag/derivations/28_majorana/tfq_1166_maj_binding_nonclaims.md)
-- sha256 (`lf-normalised`): `08084889054e6bc8cb607376c683f90f83995debba3695da7f8b6313fc1a3a6a`
+- sha256 (`lf-normalised`): `e0b06ea6a7f4747b104e87cb1e2cffe6f7a97cb65d1de55e55c5766c52c6b460`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1166
 - counts toward the grade: no

@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md`
 
 - file: [dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md](../../../dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md)
-- sha256 (`lf-normalised`): `1d63d0acf863861711578ae65d0c4e0cd96bcbd506252232712f22dd94fab63b`
+- sha256 (`lf-normalised`): `df69e2d4ede617f605932bb3cbdfb7e63b47cb9326fb9566867f7e2a30b0ec2f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1154
 - counts toward the grade: no

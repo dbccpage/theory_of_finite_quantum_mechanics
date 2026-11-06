@@ -59,7 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md`
 
 - file: [dag/derivations/28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md](../../../dag/derivations/28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md)
-- sha256 (`lf-normalised`): `fb730e61ebd5d0ee0b07a45966653d18a55d79424d7697c3d90f2c76ae04460e`
+- sha256 (`lf-normalised`): `70f75ad3aa1105e5a22f479a77ba8b276c5eafe305544376c48dd81a02d5d4d6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1172
 - counts toward the grade: no

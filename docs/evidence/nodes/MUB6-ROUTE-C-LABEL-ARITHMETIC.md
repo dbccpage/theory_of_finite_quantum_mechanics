@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md`
 
 - file: [dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md](../../../dag/derivations/25_mub/tfq_1256_mub6_route_c_label_arithmetic.md)
-- sha256 (`lf-normalised`): `44bc5183caaf37f40a807ae7e1e05fba4f9efdcaf0ed00f58f7f18002d0e6cae`
+- sha256 (`lf-normalised`): `6759deae08258c730a54dc1e07f1d65d91e9c9f4c30fa4bfa8c9ddf619ec31b0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1256
 - counts toward the grade: no

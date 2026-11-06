@@ -1,6 +1,6 @@
 # PGW-NO-ENDOGENOUS-DEMAND-GENERATOR
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_PROSE`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_PROSE`. Evidence grade: 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 7
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
@@ -32,7 +32,7 @@ This reports that no generator was derived, not that none exists in an extended 
 
 ## Source status
 
-genesis_source.txt section 9 written result with \[theorem\] and \[bounded theorem\] parts; Counting.lean allPairs_length
+genesis_source.txt section 9 closure fixpoint and round bound mechanized in Counting.lean, Rounds.lean, and WdpBatch7.lean
 
 ## Review
 
@@ -41,6 +41,22 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
+- sha256 (`bytes`): `325cb7b3dd05bf6b4c4f5081935af36bbddc9493b7404f2bb3cce46bc0e32fc5`
+- cited in: node.lean, record TFQ-0451
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch7.closure_fixpoint_no_unresolved_demand` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch7.closure_fixpoint_no_unresolved_demand` |
+| `WitnessedDifference.WdpBatch7.closure_round_bound_allPairs` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch7.closure_round_bound_allPairs` |
+| `WitnessedDifference.WdpBatch7.collapsed_pair_needs_external_policy_or_supply` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch7.collapsed_pair_needs_external_policy_or_supply` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisDerivation/Derivation/Counting.lean`
 
@@ -106,7 +122,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0451_no_endogenous_demand_generator.md`
 
 - file: [dag/derivations/02_genesis/tfq_0451_no_endogenous_demand_generator.md](../../../dag/derivations/02_genesis/tfq_0451_no_endogenous_demand_generator.md)
-- sha256 (`lf-normalised`): `9cf0959cff21a802e2105aa5c359d4b5553e1922398c28b57b09b2c2a857edce`
+- sha256 (`lf-normalised`): `1bb4b48c5c94f148938883cb61e54500301adefdbe28d0931ccd15c863e90485`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0451
 - counts toward the grade: no
@@ -115,12 +131,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `PGW-R-NO-ENDOGENOUS-DEMAND-GENERATOR` `DERIVED_PROSE`: [PGW-POLICY-ENDPOINT-ALL-SEPARATED](PGW-POLICY-ENDPOINT-ALL-SEPARATED.md) (PROVED_LEAN), [TFQ-0385](TFQ-0385.md) (OPEN)
+- `PGW-R-NO-ENDOGENOUS-DEMAND-GENERATOR` `DERIVED_LEAN`: [PGW-POLICY-ENDPOINT-ALL-SEPARATED](PGW-POLICY-ENDPOINT-ALL-SEPARATED.md) (PROVED_LEAN), [TFQ-0385](TFQ-0385.md) (PROVED_LEAN)
 
 Outgoing (5):
 
 - `APP-R-COMP-C4-UNBOUNDED-SUPPLY-IMPORT` `CONDITIONAL_ON_IMPORT`: [COMP-C4-UNBOUNDED-SUPPLY-IMPORT](COMP-C4-UNBOUNDED-SUPPLY-IMPORT.md) (IMPORTED_ASSUMPTION)
 - `PGW-R-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS` `DERIVED_LEAN`: [PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS](PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS.md) (PROVED_LEAN)
-- `PGW-R-IDENTITY-IS-INDEX-NOT-PROFILE` `DERIVED_PROSE`: [PGW-IDENTITY-IS-INDEX-NOT-PROFILE](PGW-IDENTITY-IS-INDEX-NOT-PROFILE.md) (PROVED_PROSE)
-- `PGW-R-MINIMAL-OR-INITIAL-REFUSED` `DERIVED_PROSE`: [PGW-MINIMAL-OR-INITIAL-REFUSED](PGW-MINIMAL-OR-INITIAL-REFUSED.md) (PROVED_PROSE)
-- `PGW-R-SEALED-TERMINAL-STATEMENT` `DERIVED_PROSE`: [PGW-SEALED-TERMINAL-STATEMENT](PGW-SEALED-TERMINAL-STATEMENT.md) (PROVED_PROSE)
+- `PGW-R-IDENTITY-IS-INDEX-NOT-PROFILE` `DERIVED_LEAN`: [PGW-IDENTITY-IS-INDEX-NOT-PROFILE](PGW-IDENTITY-IS-INDEX-NOT-PROFILE.md) (PROVED_LEAN)
+- `PGW-R-MINIMAL-OR-INITIAL-REFUSED` `DERIVED_LEAN`: [PGW-MINIMAL-OR-INITIAL-REFUSED](PGW-MINIMAL-OR-INITIAL-REFUSED.md) (PROVED_LEAN)
+- `PGW-R-SEALED-TERMINAL-STATEMENT` `DERIVED_LEAN`: [PGW-SEALED-TERMINAL-STATEMENT](PGW-SEALED-TERMINAL-STATEMENT.md) (PROVED_LEAN)

@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md](../../../dag/derivations/24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md)
-- sha256 (`lf-normalised`): `3a535b342a6e3cb9b51b6e94a8656f8011a4f902c45f6646f5114922ec99bc42`
+- sha256 (`lf-normalised`): `58fbcb9abbb4398aa34796503604888cf4a7fa1d81acfa6f250ac951e3655b83`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1102
 - counts toward the grade: no

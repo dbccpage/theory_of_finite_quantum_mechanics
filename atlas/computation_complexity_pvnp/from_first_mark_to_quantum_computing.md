@@ -107,7 +107,7 @@ product. This embeds the classical reversible circuit in a supplied quantum
 model. It does not force that model: phases, linear superposition, tensor
 products and the probability rule are new premises. The graph connects this
 step to the conditional Hilbert and tensor results and to
-[quantum information](../../dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md).
+[quantum information](../../dag/derivations/13_finite_qm_information/quantum_information.md).
 
 ## 6. Quantum circuits and BQP
 

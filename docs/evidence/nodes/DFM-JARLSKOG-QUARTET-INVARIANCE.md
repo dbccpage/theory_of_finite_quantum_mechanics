@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md](../../../dag/derivations/24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md)
-- sha256 (`lf-normalised`): `f2eb363963ae2c0bbb13aba08f24a567a55f210e69bffb208d746f55def7f3e1`
+- sha256 (`lf-normalised`): `79bfcaef5e2e40d7677e755c9a50a55295ca877aa99a5587d649bba0caac8ca8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1125
 - counts toward the grade: no

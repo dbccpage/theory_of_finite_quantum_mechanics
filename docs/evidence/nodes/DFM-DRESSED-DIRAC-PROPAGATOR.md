@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md](../../../dag/derivations/24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md)
-- sha256 (`lf-normalised`): `3e1dfcd070a65401eb638032986e3160ab30e86b17ab5c43f19fae5a5b6ff95b`
+- sha256 (`lf-normalised`): `aedac93a80d2a519fba285fab21b9ad45f8e56acd023c2e12eab5c68b15f131c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1111
 - counts toward the grade: no

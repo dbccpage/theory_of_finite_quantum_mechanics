@@ -100,7 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1144_maj_nilpotency_refusal.md`
 
 - file: [dag/derivations/28_majorana/tfq_1144_maj_nilpotency_refusal.md](../../../dag/derivations/28_majorana/tfq_1144_maj_nilpotency_refusal.md)
-- sha256 (`lf-normalised`): `1eeac0b1b576dbb64525c6158cb21c2046e1702244a074aff1751f2dc4fa8df0`
+- sha256 (`lf-normalised`): `b5a3bb2f654a20c63870a8ce8ba9009c44dd7590f3ca7b28bdf95459cd520b59`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1144
 - counts toward the grade: no

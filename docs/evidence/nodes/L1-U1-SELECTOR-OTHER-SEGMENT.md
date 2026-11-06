@@ -160,7 +160,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md](../../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md)
-- sha256 (`lf-normalised`): `06dea805707a832833f1e0887ad87209a817c97e0a34f35dd612791318e6d093`
+- sha256 (`lf-normalised`): `1988f6fcc054385489ceca00efe0831a2fd7836a8e9f3f9fd2d95b80d490352c`
 - generated view: listed, not counted
 - cited in: record TFQ-1003
 - counts toward the grade: no

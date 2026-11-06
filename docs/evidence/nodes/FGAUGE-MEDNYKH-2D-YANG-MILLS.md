@@ -55,7 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md](../../../dag/derivations/14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md)
-- sha256 (`lf-normalised`): `ee10f9b40bf62c33459987a62334c71b3d0f2ff99a26ddf637f47b5107aa4b3a`
+- sha256 (`lf-normalised`): `ae4114d78335836417c296712cf30b469b7a8c3ce226ac3fe1ab0130163c288f`
 - generated view: listed, not counted
 - cited in: record TFQ-1051
 - counts toward the grade: no

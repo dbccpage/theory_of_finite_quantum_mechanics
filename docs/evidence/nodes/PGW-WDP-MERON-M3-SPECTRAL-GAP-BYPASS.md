@@ -1,6 +1,6 @@
 # PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS
 
-Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidenc
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 1
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -20,7 +20,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -41,6 +41,35 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- sha256 (`bytes`): `3377cf9964df63977e7ecbd78fdcef5e5f7168469b06c3eafbe13e23929c74b2`
+- cited in: node.lean, record TFQ-0584
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch13.m3_margin_positivity_bypass` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch13.m3_margin_positivity_bypass` |
+| `WitnessedDifference.WdpBatch13.wdp_meron_m3_gate_e_obstruction_and_margin_bypass` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch13.wdp_meron_m3_gate_e_obstruction_and_margin_bypass` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean)
+- sha256 (`bytes`): `e0759f7adc6c5c4ebf06628f24c88a7cf0e84d24720dcf526b006a774318a3b9`
+- cited in: node.lean, record TFQ-0584
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch13Rep.wdp_meron_m3_gate_e_obstruction_and_margin_bypass` | yes | yes | no | - | `#print axioms WitnessedDifference.WdpBatch13Rep.wdp_meron_m3_gate_e_obstruction_and_margin_bypass` |
+
+- counts toward the grade: yes
 
 ### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/meron_field_limit_derivations/code/gate_e_exact_counterexample.py`
 
@@ -64,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0584_wdp_meron_m3_spectral_gap_bypass.md`
 
 - file: [dag/derivations/06_wdp/tfq_0584_wdp_meron_m3_spectral_gap_bypass.md](../../../dag/derivations/06_wdp/tfq_0584_wdp_meron_m3_spectral_gap_bypass.md)
-- sha256 (`lf-normalised`): `412862e0ebf33bd573f6d514223a7dc5f22b4bd75165aafb6c45ca71f2c62fba`
+- sha256 (`lf-normalised`): `9b971f9a745222cb02a978293874f4f940e69e1b0d23126feb1c703eaa508de3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0584
 - counts toward the grade: no
@@ -78,9 +107,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `PGW-R-WDP-MERON-M3-SPECTRAL-GAP-BYPASS` `GAP_NO_DERIVATION`: [PGW-WDP-MERON-M2-CUMULANT-BOUNDS](PGW-WDP-MERON-M2-CUMULANT-BOUNDS.md) (OPEN)
+- `PGW-R-WDP-MERON-M3-SPECTRAL-GAP-BYPASS` `DERIVED_LEAN`: [PGW-WDP-MERON-M2-CUMULANT-BOUNDS](PGW-WDP-MERON-M2-CUMULANT-BOUNDS.md) (PROVED_LEAN)
 
 Outgoing (2):
 
 - `PGW-R-WDP-MERON-M4-NATIVE-ADAPTERS` `DERIVED_LEAN`: [PGW-WDP-MERON-M4-NATIVE-ADAPTERS](PGW-WDP-MERON-M4-NATIVE-ADAPTERS.md) (PROVED_LEAN)
-- `PGW-R-WDP-MERON-SPACETIME-LIMIT` `GAP_NO_DERIVATION`: [PGW-WDP-MERON-SPACETIME-LIMIT](PGW-WDP-MERON-SPACETIME-LIMIT.md) (OPEN)
+- `PGW-R-WDP-MERON-SPACETIME-LIMIT` `DERIVED_LEAN`: [PGW-WDP-MERON-SPACETIME-LIMIT](PGW-WDP-MERON-SPACETIME-LIMIT.md) (PROVED_LEAN)

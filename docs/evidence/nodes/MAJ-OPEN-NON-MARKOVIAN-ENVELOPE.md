@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md`
 
 - file: [dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md](../../../dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md)
-- sha256 (`lf-normalised`): `7e973c4240d84cd89b43d42c0b033c2a273548c4fbbf4410acf6d958aec23917`
+- sha256 (`lf-normalised`): `27caa2e552f4445a4fe731bd5cddf50cd73fe2d8bded8493fa857ac2a21fc478`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1178
 - counts toward the grade: no

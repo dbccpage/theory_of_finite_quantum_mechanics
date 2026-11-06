@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md`
 
 - file: [dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md](../../../dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md)
-- sha256 (`lf-normalised`): `69399c499254af73931d8f6cdd99e07f034fa2443d1cd17fb710eda58ae8ced1`
+- sha256 (`lf-normalised`): `e475f0b42798550f2d399b63b337b81905d1fe23b21b6b09ee38180b5fa5de89`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1139
 - counts toward the grade: no

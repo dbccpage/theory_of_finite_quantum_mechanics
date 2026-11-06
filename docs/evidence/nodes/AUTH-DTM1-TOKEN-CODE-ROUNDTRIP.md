@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1332_auth_dtm1_token_code_roundtrip.md`
 
 - file: [dag/derivations/29_computation/tfq_1332_auth_dtm1_token_code_roundtrip.md](../../../dag/derivations/29_computation/tfq_1332_auth_dtm1_token_code_roundtrip.md)
-- sha256 (`lf-normalised`): `c0b28167100a86a1fa47ee00c013f386f68440970547bc04c9d524c55c737268`
+- sha256 (`lf-normalised`): `d11b374ddeaa68bf5a07615e0589881000d8fd6a89ba3f9b07988bb3c4db64f8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1332
 - counts toward the grade: no

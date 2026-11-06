@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1140_maj_phi1_hamming_coset.md`
 
 - file: [dag/derivations/28_majorana/tfq_1140_maj_phi1_hamming_coset.md](../../../dag/derivations/28_majorana/tfq_1140_maj_phi1_hamming_coset.md)
-- sha256 (`lf-normalised`): `881645b7897db7b1f56603b458bc8f19c92b0aff7643c1521061957fca4d455f`
+- sha256 (`lf-normalised`): `97e3b3038b0720ec96da9e0206509bf35414ff37711033a8d8dae21a364dec44`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1140
 - counts toward the grade: no

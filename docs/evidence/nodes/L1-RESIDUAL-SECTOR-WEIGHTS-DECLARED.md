@@ -1,6 +1,6 @@
 # L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,13 +10,13 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 9
-- cited Lean, Rust or Python symbols found in their in-repo files: 26
+- counted in-repo evidence files: 11
+- cited Lean, Rust or Python symbols found in their in-repo files: 30
 - distinct cited Lean declarations covered by a current replay receipt: 24
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -32,11 +32,11 @@ The general n-cycle, the weighted L1 form with declared masses, the sum-of-squar
 
 ## Source status
 
-Conditional. L1ResidualSectorWeights records the pairs (2, 0) and (0, 2) at coordinate sum 2, and the two length-4 holonomy checks. The weighted form and the general n-cycle stay open.
+PROVED_LEAN
 
 ## Review
 
-- PFP review: [evidence/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: For the n-cycle with the unweighted L1 form, the set of minimizing residuals is the scaled simplex of sign-definite cochains with sum S (minimizer_iff); the sector weights are its block sums, which are not a function of (Phi1, Gamma2 = holonomy) for n \>= 2, S != 0 and at least two sectors (sector_weights_not_determined), because (Phi1, Gamma2) determine only the signed holonomy S (hence Phi1 = \|S\| and the sign pattern); any single choice, including the cyclically symmetric average S/n, is an extra declaration, and with unequal declared masses the minimizer concentrates on the minimal-mass edges (native rows) so the masses themselves are the declared input.
   - does not support: Any derivation of declared sector weights from Phi1 and Gamma2 in the setting of the node source: the result is specific to EQUAL edge masses; for a weighted L1 form with a unique minimal-mass edge the minimizer, hence the sector weights, are unique (native weighted rows), so non-derivability can fail in the weighted setting that the node source declares (the masses are then the declared input); a Lean proof of the weighted statement or of the sum-of-squares reading of Gamma2; connected graphs of cycle rank \> 1 (only two DISJOINT cycles are tabulated natively); the Hilbert lift, density matrices or any physical reading of the weights; that the dihedral or cyclic symmetry is itself available (it is an extra declared input).
   - next test: Prove in the kernel that for the weighted form sum_i m_i \|r_i\| with declared positive edge masses the minimizers on the n-cycle are exactly the sign-definite cochains of holonomy S supported on the edges of minimal mass, so that the weights are unique iff the minimal mass is attained once.
@@ -44,6 +44,36 @@ Conditional. L1ResidualSectorWeights records the pairs (2, 0) and (0, 2) at coor
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- sha256 (`bytes`): `dec4763eeb0624b7aed79df3dcfd57f7bf047d7dd975536c7a2262624950f21a`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch9.l1_residual_sector_weights_unweighted_and_weighted_characterization` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9.l1_residual_sector_weights_unweighted_and_weighted_characterization` |
+| `WitnessedDifference.WdpBatch9.unweighted_and_sumsq_do_not_determine_sector_weights` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9.unweighted_and_sumsq_do_not_determine_sector_weights` |
+| `WitnessedDifference.WdpBatch9.weighted_l1_unique_minimal_mass_concentration` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9.weighted_l1_unique_minimal_mass_concentration` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean)
+- sha256 (`bytes`): `81ca7d21875428bf3eb3c0e8a572ec1d48a67e305a8b0846681620f0fd871956`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch9Rep.rep_l1_residual_sector_weights_declared` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9Rep.rep_l1_residual_sector_weights_declared` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/BornRedundancy.lean`
 
@@ -256,8 +286,8 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (2):
 
-- `L1-R-DECLARED-MASS-TO-WEIGHTS` `CONDITIONAL_ON_IMPORT`: [L1-WDP-WITNESS-MASS](L1-WDP-WITNESS-MASS.md) (DEFINITION)
-- `L1-R-RESIDUAL-TO-WEIGHTS` `CONDITIONAL_ON_IMPORT`: [L1-WDP-WINDOW-PHI1-GAMMA2](L1-WDP-WINDOW-PHI1-GAMMA2.md) (DEFINITION), [L1-GS000-EDGEWISE-L1](L1-GS000-EDGEWISE-L1.md) (COMPUTATIONALLY_CHECKED)
+- `L1-R-DECLARED-MASS-TO-WEIGHTS` `DERIVED_LEAN`: [L1-WDP-WITNESS-MASS](L1-WDP-WITNESS-MASS.md) (DEFINITION)
+- `L1-R-RESIDUAL-TO-WEIGHTS` `DERIVED_LEAN`: [L1-WDP-WINDOW-PHI1-GAMMA2](L1-WDP-WINDOW-PHI1-GAMMA2.md) (DEFINITION), [L1-GS000-EDGEWISE-L1](L1-GS000-EDGEWISE-L1.md) (PROVED_LEAN)
 
 Outgoing (13):
 
@@ -265,7 +295,7 @@ Outgoing (13):
 - `DS-R-KERNEL-FROM-WEIGHTS` `COMPUTED`: [DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL](DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL.md) (COMPUTATIONALLY_CHECKED)
 - `DS-R-OVERCOUNT-WITNESS` `COMPUTED`: [DS-QM030-UNGRADED-OVERCOUNT](DS-QM030-UNGRADED-OVERCOUNT.md) (COMPUTATIONALLY_CHECKED)
 - `DS-R-PRODUCT-FROM-WEIGHTS` `COMPUTED`: [DS-QM070-PRODUCT-NONFACTORIZATION](DS-QM070-PRODUCT-NONFACTORIZATION.md) (COMPUTATIONALLY_CHECKED)
-- `L1-R-COMPLEX-GAP` `GAP_NO_DERIVATION`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (CONDITIONAL)
+- `L1-R-COMPLEX-GAP` `DERIVED_LEAN`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (PROVED_LEAN)
 - `L1-R-SQRT-GAP` `GAP_NO_DERIVATION`: [L1-IMP-SQRT-FIELD](L1-IMP-SQRT-FIELD.md) (IMPORTED_ASSUMPTION)
 - `L1-R-THM1` `DERIVED_LEAN`: [L1-QM020-THM1-DIRECT-NORMALIZATION](L1-QM020-THM1-DIRECT-NORMALIZATION.md) (PROVED_LEAN)
 - `L1-R-THM2A` `DERIVED_LEAN`: [L1-QM020-THM2A-L1-ADDITIVITY-DEFECT](L1-QM020-THM2A-L1-ADDITIVITY-DEFECT.md) (PROVED_LEAN)

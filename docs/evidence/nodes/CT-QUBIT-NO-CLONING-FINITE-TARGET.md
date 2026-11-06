@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md](../../../dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md)
-- sha256 (`lf-normalised`): `3038895c7abcbfc16701989740ab5a3bf220513bc4f66c206a54cef3b672a4a7`
+- sha256 (`lf-normalised`): `5d3125cc68de97a68d5916164146dc011d79a6830ba36a00b0ecd67ae4ac78c9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2009
 - counts toward the grade: no

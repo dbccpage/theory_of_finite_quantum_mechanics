@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md`
 
 - file: [dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md](../../../dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md)
-- sha256 (`lf-normalised`): `c4653f526643c83609126b1c79ed59f1fbee85c90b897a8ab62c5a833773145c`
+- sha256 (`lf-normalised`): `0baad812b9f27592c8e40323a9a99dfe649796f905dcd58fc1f22f36ef4538d7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1346
 - counts toward the grade: no

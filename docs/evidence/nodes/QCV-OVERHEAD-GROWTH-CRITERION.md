@@ -117,7 +117,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1320_qcv_overhead_growth_criterion.md`
 
 - file: [dag/derivations/29_computation/tfq_1320_qcv_overhead_growth_criterion.md](../../../dag/derivations/29_computation/tfq_1320_qcv_overhead_growth_criterion.md)
-- sha256 (`lf-normalised`): `12627cdb1d0fe29be7709104eeb6eaa69b66d69d901d1fdb3df4c4eafdf02bfd`
+- sha256 (`lf-normalised`): `ac45d6cdea90d1efee13f4624d918d622aade511a1254a41c73f9480ed234eab`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1320
 - counts toward the grade: no

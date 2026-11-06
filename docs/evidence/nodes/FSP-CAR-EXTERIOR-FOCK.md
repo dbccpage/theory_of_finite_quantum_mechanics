@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1184_fsp_car_exterior_fock.md`
 
 - file: [dag/derivations/26_fsp/tfq_1184_fsp_car_exterior_fock.md](../../../dag/derivations/26_fsp/tfq_1184_fsp_car_exterior_fock.md)
-- sha256 (`lf-normalised`): `12211ec7bb7cbed826e134209fa5c857143c70c890e2d4c2741f30176daccd8f`
+- sha256 (`lf-normalised`): `fcc856cefe441dcd93f87888ee58416039d0c744d90960b3d44e50bdb22ae9f5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1184
 - counts toward the grade: no
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `APP-R-FSP-CAR-EXTERIOR-FOCK` `DERIVED_PROSE`: [L1-IMP-HILBERT-INNER-PRODUCT](L1-IMP-HILBERT-INNER-PRODUCT.md) (CONDITIONAL), [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (CONDITIONAL), [DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT](DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT.md) (IMPORTED_ASSUMPTION)
+- `APP-R-FSP-CAR-EXTERIOR-FOCK` `DERIVED_PROSE`: [L1-IMP-HILBERT-INNER-PRODUCT](L1-IMP-HILBERT-INNER-PRODUCT.md) (CONDITIONAL), [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (PROVED_LEAN), [DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT](DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT.md) (IMPORTED_ASSUMPTION)
 
 Outgoing (6):
 

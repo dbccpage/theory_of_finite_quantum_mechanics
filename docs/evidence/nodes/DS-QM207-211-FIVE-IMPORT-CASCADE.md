@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md](../../../dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md)
-- sha256 (`lf-normalised`): `79c1b8bf6d8efd01b90b4cfb4d1bbd46ba1ac96acebd63a1e4df6ebc7bf6074e`
+- sha256 (`lf-normalised`): `8b6ba3dd05b9783cff40156886257f1d1b294518352d1fba495f50d172a2fbb4`
 - generated view: listed, not counted
 - cited in: record TFQ-1042
 - counts toward the grade: no

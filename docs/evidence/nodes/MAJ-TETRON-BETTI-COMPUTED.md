@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md`
 
 - file: [dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md](../../../dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md)
-- sha256 (`lf-normalised`): `953f577e4c02a04eb9350308ca6157de06098a194b38105f3b188e5bfa0e1fd7`
+- sha256 (`lf-normalised`): `26597218290a0f7cdd1d802c02b6ba33893c3f4f1da0e3d97dea3842fa225377`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1152
 - counts toward the grade: no

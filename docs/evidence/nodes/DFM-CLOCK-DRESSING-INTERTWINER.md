@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1116_dfm_clock_dressing_intertwiner.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1116_dfm_clock_dressing_intertwiner.md](../../../dag/derivations/24_dressing_field/tfq_1116_dfm_clock_dressing_intertwiner.md)
-- sha256 (`lf-normalised`): `072e20b9ab54b5e17e96945d74f46e81f4b0247cf1ae2ec133f275bdb4e2188e`
+- sha256 (`lf-normalised`): `24820c102477f44e68215fae2055b82b214ada8a115d345c17af52b2de32ed98`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1116
 - counts toward the grade: no

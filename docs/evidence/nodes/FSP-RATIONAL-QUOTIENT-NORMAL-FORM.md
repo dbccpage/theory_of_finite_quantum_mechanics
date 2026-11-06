@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md`
 
 - file: [dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md](../../../dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md)
-- sha256 (`lf-normalised`): `fee051410247fee4838adfb504acfe5a34e90c7bc131062b8b8e7f04d98e3693`
+- sha256 (`lf-normalised`): `e7dc03b179d32f76d637c022fa9f2629285c5927ce49b7f0df55c25c71c4418d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1195
 - counts toward the grade: no

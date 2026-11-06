@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md`
 
 - file: [dag/derivations/26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md](../../../dag/derivations/26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md)
-- sha256 (`lf-normalised`): `78af10a412e701a4586150c5603561b4c57e2a0eb12889d51c30883aa266c2ae`
+- sha256 (`lf-normalised`): `794114906eedba4b77339e132f2f2eb980e93f112994f826c30a92dd14f59b17`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1185
 - counts toward the grade: no

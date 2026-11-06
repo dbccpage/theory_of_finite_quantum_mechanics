@@ -13,7 +13,7 @@
 
 ## 1. Where Genesis ends
 
-The reading order is `dag/derivations/PREGENESIS_TO_WDP_ROUTE.md`. The facts used here, with the records that carry them:
+The reading order is `dag/derivations/pregenesis_to_wdp_route.md`. The facts used here, with the records that carry them:
 
 | Fact | Record | Status in the DAG |
 |---|---|---|

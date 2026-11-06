@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2200_ads_maldacena_1997_source.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2200_ads_maldacena_1997_source.md](../../../dag/derivations/32_ads_cft/tfq_2200_ads_maldacena_1997_source.md)
-- sha256 (`lf-normalised`): `bccf7c804255773305cac41ecba353ea9d58b6b48c8d7d267a3e6c65fb111b6d`
+- sha256 (`lf-normalised`): `23fa0585d6347f03bcd3f57bf96843d64a8a1ed2b6123beacead166a922ef7e5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2200
 - counts toward the grade: no

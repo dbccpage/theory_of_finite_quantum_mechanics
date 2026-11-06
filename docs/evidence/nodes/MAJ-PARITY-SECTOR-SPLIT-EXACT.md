@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md`
 
 - file: [dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md](../../../dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md)
-- sha256 (`lf-normalised`): `746eee1c7c375aec1d5a869661db7fdaa98c55249d99ae539c9d8eeb66d463d5`
+- sha256 (`lf-normalised`): `c40ef5af63119b41db2e0d20338670cfffb3c56b11a8aef650436e7d309c7edc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1174
 - counts toward the grade: no

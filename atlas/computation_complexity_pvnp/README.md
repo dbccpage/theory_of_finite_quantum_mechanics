@@ -17,8 +17,8 @@ examples; their success does not decide P versus NP or ETH.
 
 Individual DAG papers are in
 [stage 29](../../dag/derivations/29_computation/), with quantum information in
-[stage 13](../../dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md).
-The [full reading spine](../../dag/derivations/FIRST_MARK_TO_QUANTUM_GRAVITY.md)
+[stage 13](../../dag/derivations/13_finite_qm_information/quantum_information.md).
+The [full reading spine](../../dag/derivations/first_mark_to_quantum_gravity.md)
 locates this branch relative to the primitive cut and quantum-gravity targets.
 
 The former `atlas/computation` and `atlas/complexity` folders were retired on

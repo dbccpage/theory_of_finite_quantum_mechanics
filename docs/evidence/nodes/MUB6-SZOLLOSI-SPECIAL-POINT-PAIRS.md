@@ -58,7 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1275_mub6_szollosi_special_point_pairs.md`
 
 - file: [dag/derivations/25_mub/tfq_1275_mub6_szollosi_special_point_pairs.md](../../../dag/derivations/25_mub/tfq_1275_mub6_szollosi_special_point_pairs.md)
-- sha256 (`lf-normalised`): `ba61a5766df1239a2f9e83ebe14159609a23313a4efbd4fd5c9ed6c3dbf9cdb0`
+- sha256 (`lf-normalised`): `79b7d4bb719e13115d45555a0668f63c64cad5060ad1c3ca93f98a217f3f1198`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1275
 - counts toward the grade: no

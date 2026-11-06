@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1005_l1_qm003_c17_composable_factorization.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1005_l1_qm003_c17_composable_factorization.md](../../../dag/derivations/08_l1_to_l2/tfq_1005_l1_qm003_c17_composable_factorization.md)
-- sha256 (`lf-normalised`): `b1690f1a31fedcbe26aeaafd4aae8e802ad7b2ba7ae930cad7f27ff414593192`
+- sha256 (`lf-normalised`): `d65cb72b09158564e9e727f8d6aff7b1a354521feb3466e15bd677475e7deb99`
 - generated view: listed, not counted
 - cited in: record TFQ-1005
 - counts toward the grade: no

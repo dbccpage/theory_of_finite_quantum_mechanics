@@ -106,7 +106,7 @@ validation receipt. A new successful source-bound replay is indexed. No DAG
 status or theorem changes. Generated checks are rerun after the final receipt.
 
 The broader integration documentation scanner has 0 HIGH, 5 MEDIUM, 130 LOW.
-Five MEDIUM links are inherited: MASTER_DERIVATION_LEDGER.md:1030,
+Five MEDIUM links are inherited: master_derivation_ledger.md:1030,
 dag/theory_of_finite_qm.md:8585, docs/evidence/stages/DRESSING_FIELD.md:15,
 dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics.md:431 and :1014. None is changed by this
 repair. Symbol/anchor syntax and inherited missing paths remain scanner prompts;

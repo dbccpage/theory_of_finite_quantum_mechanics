@@ -114,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md)
-- sha256 (`lf-normalised`): `90ebd092c4a10180c7446370337b30168c5e676e9d91762242b337f9c588dffd`
+- sha256 (`lf-normalised`): `22024658e0c59ee9b760ab9c11d46cc1c2eff90911feead04335553932a60d27`
 - generated view: listed, not counted
 - cited in: record TFQ-1022
 - counts toward the grade: no

@@ -46,7 +46,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1192_fsp_troyer_wiese_reduction.md`
 
 - file: [dag/derivations/26_fsp/tfq_1192_fsp_troyer_wiese_reduction.md](../../../dag/derivations/26_fsp/tfq_1192_fsp_troyer_wiese_reduction.md)
-- sha256 (`lf-normalised`): `1713486af2abc2d9daf5af9bc1cd698cafb4e02b47bd743c1645c741d6b56261`
+- sha256 (`lf-normalised`): `0b9299965c17d0000aa266462df3f728c049add47805523281a9438c4bf8ce8c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1192
 - counts toward the grade: no

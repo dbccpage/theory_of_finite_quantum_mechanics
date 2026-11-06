@@ -121,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md)
-- sha256 (`lf-normalised`): `b875f71f27523a017abfec8d8455bd14b595c61780d71c8587a7e74eb8590b49`
+- sha256 (`lf-normalised`): `52cba18e448f13bbf08f8524340ef4e2c26f236f21ed1c8bd1072950d979f851`
 - generated view: listed, not counted
 - cited in: record TFQ-1040
 - counts toward the grade: no

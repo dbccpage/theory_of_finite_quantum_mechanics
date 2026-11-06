@@ -57,7 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md`
 
 - file: [dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md](../../../dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md)
-- sha256 (`lf-normalised`): `a6786a9aed195888ec9449778bfa90d5d4bc6341163ccab03149943cb3566ffb`
+- sha256 (`lf-normalised`): `b26589b598446bce635200504248a8047b29f24fae7fe372c6317466a06b7b50`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1156
 - counts toward the grade: no

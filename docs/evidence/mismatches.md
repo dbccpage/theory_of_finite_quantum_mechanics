@@ -4,21 +4,35 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 
 | Flag | Count |
 |---|---|
-| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 27 |
+| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 48 |
 | `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 0 |
 | `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 24 |
-| `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 155 |
+| `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 148 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 4 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 43 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 11 |
 
-## `proved_lean_below_e3` (27)
+## `proved_lean_below_e3` (48)
 
 PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt. Ordered by downstream nodes, most first.
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
+| [PGW-SEALED-TERMINAL-STATEMENT](nodes/PGW-SEALED-TERMINAL-STATEMENT.md) | GENESIS | `PROVED_LEAN` | E2 | 175 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
+| [PGW-GENESIS-THREE-AXIS-VERDICT](nodes/PGW-GENESIS-THREE-AXIS-VERDICT.md) | GENESIS | `PROVED_LEAN` | E2 | 168 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [PGW-RUNG2A-STAKE-DECLARED-LABEL](nodes/PGW-RUNG2A-STAKE-DECLARED-LABEL.md) | GENESIS | `PROVED_LEAN` | E2 | 165 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-RUNG3-FIRST-DEMAND-INDEX](nodes/PGW-RUNG3-FIRST-DEMAND-INDEX.md) | GENESIS | `PROVED_LEAN` | E2 | 163 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
+| [PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM](nodes/PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM.md) | GENESIS | `PROVED_LEAN` | E2 | 162 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [PGW-RUNG5-SYMMETRY-ALONG-HISTORY](nodes/PGW-RUNG5-SYMMETRY-ALONG-HISTORY.md) | GENESIS | `PROVED_LEAN` | E2 | 161 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [PGW-RUNG6-SUCCESSION-ELEMENT-COUNT](nodes/PGW-RUNG6-SUCCESSION-ELEMENT-COUNT.md) | GENESIS | `PROVED_LEAN` | E2 | 160 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [PGW-RUNG7-DURATION-UNDER-CHANGING](nodes/PGW-RUNG7-DURATION-UNDER-CHANGING.md) | GENESIS | `PROVED_LEAN` | E2 | 159 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
+| [PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO](nodes/PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO.md) | GENESIS | `PROVED_LEAN` | E2 | 158 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES](nodes/PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES.md) | GENESIS | `PROVED_LEAN` | E2 | 157 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [PGW-RUNG10-RESPONDER-ADJACENCY-REACH](nodes/PGW-RUNG10-RESPONDER-ADJACENCY-REACH.md) | GENESIS | `PROVED_LEAN` | E2 | 156 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [PGW-C1-ENGINE-CLASS-144](nodes/PGW-C1-ENGINE-CLASS-144.md) | GENESIS | `PROVED_LEAN` | E2 | 155 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-RUNG2B-STAKE-MENU](nodes/PGW-RUNG2B-STAKE-MENU.md) | GENESIS | `PROVED_LEAN` | E2 | 73 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PGW-WDP-FAILED-SAMENESS](nodes/PGW-WDP-FAILED-SAMENESS.md) | WDP | `PROVED_LEAN` | E2 | 39 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-SN-POSTNIKOV-REFUSAL](nodes/PGW-SN-POSTNIKOV-REFUSAL.md) | MSSN_SN | `PROVED_LEAN` | E2 | 36 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [PGW-WDP-TRICHOTOMY-BOUNDS](nodes/PGW-WDP-TRICHOTOMY-BOUNDS.md) | WDP | `PROVED_LEAN` | E2 | 31 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PGW-WD2-WORD-KERNEL-AGREEMENT](nodes/PGW-WD2-WORD-KERNEL-AGREEMENT.md) | WDP | `PROVED_LEAN` | E2 | 28 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [PGW-WD2-REFINEMENT-STABILIZATION](nodes/PGW-WD2-REFINEMENT-STABILIZATION.md) | WDP | `PROVED_LEAN` | E2 | 27 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
@@ -28,7 +42,10 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [PGW-WD2-FACTORED-REPORT-PRESERVATION](nodes/PGW-WD2-FACTORED-REPORT-PRESERVATION.md) | WDP | `PROVED_LEAN` | E2 | 23 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT](nodes/PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT.md) | WDP | `PROVED_LEAN` | E2 | 22 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS](nodes/PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS.md) | WDP | `PROVED_LEAN` | E2 | 21 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR](nodes/PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR.md) | WDP | `PROVED_LEAN` | E2 | 20 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE](nodes/PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE.md) | WDP | `PROVED_LEAN` | E2 | 19 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION](nodes/PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION.md) | WDP | `PROVED_LEAN` | E2 | 18 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL](nodes/PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL.md) | WDP | `PROVED_LEAN` | E2 | 17 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION](nodes/PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION.md) | WDP | `PROVED_LEAN` | E2 | 16 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE](nodes/PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE.md) | WDP | `PROVED_LEAN` | E2 | 15 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION](nodes/PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION.md) | WDP | `PROVED_LEAN` | E2 | 14 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
@@ -41,10 +58,14 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [PGW-WDP-DEGREE-K-TORSION-BALANCE](nodes/PGW-WDP-DEGREE-K-TORSION-BALANCE.md) | WDP | `PROVED_LEAN` | E2 | 8 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION](nodes/PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION.md) | WDP | `PROVED_LEAN` | E2 | 7 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PGW-WDP-AFFINE-THICKENING-CONJECTURE](nodes/PGW-WDP-AFFINE-THICKENING-CONJECTURE.md) | WDP | `PROVED_LEAN` | E2 | 6 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
+| [PGW-WDP-MERON-M1-CORRELATION-ESTIMATES](nodes/PGW-WDP-MERON-M1-CORRELATION-ESTIMATES.md) | WDP | `PROVED_LEAN` | E2 | 5 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-WDP-MERON-M2-CUMULANT-BOUNDS](nodes/PGW-WDP-MERON-M2-CUMULANT-BOUNDS.md) | WDP | `PROVED_LEAN` | E2 | 4 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [FQ-IMPL-WDP-AMPLITUDE-BRIDGE](nodes/FQ-IMPL-WDP-AMPLITUDE-BRIDGE.md) | IMPLEMENTATION | `PROVED_LEAN` | E2 | 3 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
+| [PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS](nodes/PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS.md) | WDP | `PROVED_LEAN` | E2 | 3 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PGW-WDP-MERON-M4-NATIVE-ADAPTERS](nodes/PGW-WDP-MERON-M4-NATIVE-ADAPTERS.md) | WDP | `PROVED_LEAN` | E2 | 2 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR](nodes/PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR.md) | WDP | `PROVED_LEAN` | E2 | 1 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PG-GEN-SAMENESS-REFINEMENTS](nodes/PG-GEN-SAMENESS-REFINEMENTS.md) | GENESIS | `PROVED_LEAN` | E2 | 0 | grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7) |
+| [PGW-WDP-MERON-SPACETIME-LIMIT](nodes/PGW-WDP-MERON-SPACETIME-LIMIT.md) | WDP | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 
 ## `proved_lean_external_only` (0)
 
@@ -83,18 +104,12 @@ A replay receipt exists for a cited Lean file, but its sha256 no longer matches 
 | [DS-QM080-IMPORT-FREE-TRACE-NORM-CORE](nodes/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [TFQ-0316](nodes/TFQ-0316.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 
-## `computational_no_runnable_test` (155)
+## `computational_no_runnable_test` (148)
 
 COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Ordered by downstream nodes, most first.
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](nodes/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 766 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | `COMPUTATIONALLY_CHECKED` | E3 | 478 | 2 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-GENESIS-THREE-AXIS-VERDICT](nodes/PGW-GENESIS-THREE-AXIS-VERDICT.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E2 | 168 | 4 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-RUNG0-INHERITANCE-REPLAY](nodes/PGW-RUNG0-INHERITANCE-REPLAY.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 167 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-FORCED-CENSUS-COLUMN](nodes/PGW-FORCED-CENSUS-COLUMN.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 153 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-RUNG2B-STAKE-MENU](nodes/PGW-RUNG2B-STAKE-MENU.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E1 | 73 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 72 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM063-HOLONOMY-COHERENT-INTENSITY](nodes/DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 57 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM070-PRODUCT-NONFACTORIZATION](nodes/DS-QM070-PRODUCT-NONFACTORIZATION.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 51 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -145,7 +160,6 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [DS-QM030-TRANSFER-OPERATOR-SHADOW](nodes/DS-QM030-TRANSFER-OPERATOR-SHADOW.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM090-092-AUTHORITY-FIREWALL](nodes/DS-QM090-092-AUTHORITY-FIREWALL.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-DISCRETE-DYNAMICS-DICHOTOMY](nodes/FQ-DISCRETE-DYNAMICS-DICHOTOMY.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [FQ-IMPL-REALIFICATION-ADAPTER](nodes/FQ-IMPL-REALIFICATION-ADAPTER.md) | IMPLEMENTATION | `COMPUTATIONALLY_CHECKED` | E3 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-ALPHA-LICENSE-BINDING-M1-M8](nodes/PGW-ALPHA-LICENSE-BINDING-M1-M8.md) | IMPLEMENTATION | `COMPUTATIONALLY_CHECKED` | E1 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0034](nodes/TFQ-0034.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0148](nodes/TFQ-0148.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 4 | 1 in-repo Rust or Python symbol(s) cited, none a test |
@@ -314,10 +328,10 @@ A replay receipt names this node for a Lean module that the node does not cite i
 |---|---|---|---|---|---|
 | [PG-INERT-DIAMOND](nodes/PG-INERT-DIAMOND.md) | PREGENESIS | `DEFINITION` | E3 | 860 | a replay receipt names this node for lean4/InertDiamond.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-SIX-OPERATIONS](nodes/PG-SIX-OPERATIONS.md) | PREGENESIS | `DEFINITION` | E3 | 836 | a replay receipt names this node for lean4/SixOperations.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](nodes/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) | WDP | `OPEN` | E3 | 551 | a replay receipt names this node for lean4/WdpBridgeObligations.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](nodes/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) | WDP | `PROVED_LEAN` | E3 | 551 | a replay receipt names this node for lean4/WdpBridgeObligations.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 546 | a replay receipt names this node for lean4/PrimdiffAxioms.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-WDP-DEGREE1-WINDOW](nodes/PG-WDP-DEGREE1-WINDOW.md) | WDP | `DEFINITION` | E3 | 545 | a replay receipt names this node for lean4/WdpDegree1Window.lean, but the node's lean, rust and source fields do not cite it |
-| [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](nodes/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 477 | a replay receipt names this node for lean4/ResidualSectorWeights.lean, but the node's lean, rust and source fields do not cite it |
+| [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](nodes/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) | L1_TO_L2 | `PROVED_LEAN` | E3 | 477 | a replay receipt names this node for lean4/ResidualSectorWeights.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-ROOT-DIFF-STRUCTURE](nodes/PG-ROOT-DIFF-STRUCTURE.md) | PREGENESIS | `ADMITTED_PRIMITIVE` | E3 | 310 | a replay receipt names this node for lean4/RootDiffStructure.lean, but the node's lean, rust and source fields do not cite it |
 | [FSP-WILSON-DIRAC-GAMMA5](nodes/FSP-WILSON-DIRAC-GAMMA5.md) | FERMION_SIGN | `IMPORTED_ASSUMPTION` | E3 | 22 | a replay receipt names this node for lean4/FermionSignWilsonDiracGamma5.lean, but the node's lean, rust and source fields do not cite it |
 | [L1-WDP-REALIFICATION-J](nodes/L1-WDP-REALIFICATION-J.md) | L1_TO_L2 | `DEFINITION` | E3 | 6 | a replay receipt names this node for lean4/RealificationJ.lean, but the node's lean, rust and source fields do not cite it |

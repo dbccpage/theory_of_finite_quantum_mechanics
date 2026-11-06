@@ -1,6 +1,6 @@
 # PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL
 
-Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidenc
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -20,7 +20,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -56,10 +56,39 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- sha256 (`bytes`): `3377cf9964df63977e7ecbd78fdcef5e5f7168469b06c3eafbe13e23929c74b2`
+- cited in: node.lean, record TFQ-0570
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch13.guardedEnforcement_respects_boundary` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch13.guardedEnforcement_respects_boundary` |
+| `WitnessedDifference.WdpBatch13.o05_authorization_firewall_and_policy_enforcement_separation` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch13.o05_authorization_firewall_and_policy_enforcement_separation` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean)
+- sha256 (`bytes`): `e0759f7adc6c5c4ebf06628f24c88a7cf0e84d24720dcf526b006a774318a3b9`
+- cited in: node.lean, record TFQ-0570
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch13Rep.o05_authorization_firewall_and_policy_enforcement_separation` | yes | yes | no | - | `#print axioms WitnessedDifference.WdpBatch13Rep.o05_authorization_firewall_and_policy_enforcement_separation` |
+
+- counts toward the grade: yes
+
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
-- sha256 (`bytes`): `1bf7c1e971d501d47ce848a7d7c8149dd75542ace9fa09b229da2b5cc67f580c`
+- sha256 (`bytes`): `e1d9e23ed4bf94ba2f05b141cb8eecadcbd8e867ed8f2c1ca7ef86eedc82cfe1`
 - cited in: node.lean, record TFQ-0570
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
@@ -92,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md`
 
 - file: [dag/derivations/06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md](../../../dag/derivations/06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md)
-- sha256 (`lf-normalised`): `b7232f9ab0ea8116f1aad4fb9b1d83a587238b4845fd03b3b0f53fb1b767cb28`
+- sha256 (`lf-normalised`): `7fd3c148e7560eed422164d11b4fc61481587187ccd91f748f23e5c785b8b10e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0570
 - counts toward the grade: no
@@ -105,7 +134,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `PGW-R-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION](PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION.md) (OPEN), [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) (OPEN), [PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER](PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER.md) (PROVED_LEAN)
+- `PGW-R-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` `DERIVED_LEAN`: [PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION](PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION.md) (PROVED_LEAN), [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) (PROVED_LEAN), [PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER](PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER.md) (PROVED_LEAN)
 
 Outgoing (2):
 

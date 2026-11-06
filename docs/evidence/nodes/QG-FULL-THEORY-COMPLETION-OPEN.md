@@ -44,17 +44,17 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/19_finite_qg/QUANTUM_GRAVITY_GAPS.md`
+### Documents and data: `dag/derivations/19_finite_qg/quantum_gravity_gaps.md`
 
-- file: [dag/derivations/19_finite_qg/QUANTUM_GRAVITY_GAPS.md](../../../dag/derivations/19_finite_qg/QUANTUM_GRAVITY_GAPS.md)
-- sha256 (`lf-normalised`): `945ab075a433585465eb910b44513bf7f4738293b301cce5c9afdebba9bae675`
+- file: [dag/derivations/19_finite_qg/quantum_gravity_gaps.md](../../../dag/derivations/19_finite_qg/quantum_gravity_gaps.md)
+- sha256 (`lf-normalised`): `6b25ec7e87ee1bf47ed520c15fbdf850d63ba0c62174fc6ab42de480747d9118`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md](../../../dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md)
-- sha256 (`lf-normalised`): `4d21ae6660bd1c09f8b211b7bcc5e6d6f60b7958be13adea3cb230e450748613`
+- sha256 (`lf-normalised`): `99bcd559e3ac975dc813542d8fe13b7ef188201d3aa097651e1486b9c2f4ebf8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2620
 - counts toward the grade: no

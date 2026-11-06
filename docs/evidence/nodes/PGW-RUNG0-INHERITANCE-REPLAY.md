@@ -1,6 +1,6 @@
 # PGW-RUNG0-INHERITANCE-REPLAY
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evide
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
 - distinct cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `computational_no_runnable_test`: 1 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -32,7 +32,7 @@ A finite computation to eight supplies and five data plus the sealed supply_no_o
 
 ## Source status
 
-continuation.txt section 4 row 0 and section 6 rung zero; run ledger SD-00-1 to SD-00-5; finite computation
+continuation.txt section 4 row 0 and section 6 rung zero; run ledger SD-00-1 to SD-00-5; finite computation; mechanized in WitnessedDifference/WdpBatch9.lean
 
 ## Review
 
@@ -41,6 +41,36 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- sha256 (`bytes`): `dec4763eeb0624b7aed79df3dcfd57f7bf047d7dd975536c7a2262624950f21a`
+- cited in: node.lean, record TFQ-0462
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch9.replay_admitDatum_growth` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9.replay_admitDatum_growth` |
+| `WitnessedDifference.WdpBatch9.replay_supplies_no_op` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9.replay_supplies_no_op` |
+| `WitnessedDifference.WdpBatch9.rung0_inheritance_replay_and_unbounded_supply_datum_inertia` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9.rung0_inheritance_replay_and_unbounded_supply_datum_inertia` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean)
+- sha256 (`bytes`): `81ca7d21875428bf3eb3c0e8a572ec1d48a67e305a8b0846681620f0fd871956`
+- cited in: node.lean, record TFQ-0462
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch9Rep.rep_rung0_inheritance_replay` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9Rep.rep_rung0_inheritance_replay` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisDerivation/Derivation/Inertia.lean`
 
@@ -79,7 +109,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0462_rung0_inheritance_replay.md`
 
 - file: [dag/derivations/02_genesis/tfq_0462_rung0_inheritance_replay.md](../../../dag/derivations/02_genesis/tfq_0462_rung0_inheritance_replay.md)
-- sha256 (`lf-normalised`): `ded5300cd5a022dafc25554812967e25752f6f45f9d3cb0a8d904b8ff5593972`
+- sha256 (`lf-normalised`): `8a2ee31e4dc499c30cf528e8c03115d80dd614c8f9cd65e5fbba584b38ed9a13`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0462
 - counts toward the grade: no
@@ -96,9 +126,9 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PGW-R-RUNG0-INHERITANCE-REPLAY` `COMPUTED`: [PGW-GENESIS-THREE-AXIS-VERDICT](PGW-GENESIS-THREE-AXIS-VERDICT.md) (COMPUTATIONALLY_CHECKED)
+- `PGW-R-RUNG0-INHERITANCE-REPLAY` `DERIVED_LEAN`: [PGW-GENESIS-THREE-AXIS-VERDICT](PGW-GENESIS-THREE-AXIS-VERDICT.md) (PROVED_LEAN)
 
 Outgoing (2):
 
 - `PGW-R-RUNG1-STREAM-AS-RESPONSE` `GAP_NO_DERIVATION`: [PGW-RUNG1-STREAM-AS-RESPONSE](PGW-RUNG1-STREAM-AS-RESPONSE.md) (OPEN)
-- `PGW-R-RUNG2A-STAKE-DECLARED-LABEL` `CONDITIONAL_ON_IMPORT`: [PGW-RUNG2A-STAKE-DECLARED-LABEL](PGW-RUNG2A-STAKE-DECLARED-LABEL.md) (CONDITIONAL)
+- `PGW-R-RUNG2A-STAKE-DECLARED-LABEL` `DERIVED_LEAN`: [PGW-RUNG2A-STAKE-DECLARED-LABEL](PGW-RUNG2A-STAKE-DECLARED-LABEL.md) (PROVED_LEAN)

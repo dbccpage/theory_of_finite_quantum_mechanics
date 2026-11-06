@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md](../../../dag/derivations/10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md)
-- sha256 (`lf-normalised`): `8f4d87a09a39958a7b8a20d0a69af786225b80a34630c643834c6127892659ad`
+- sha256 (`lf-normalised`): `4fecad68c1cf32c5faa276c7e1f0de82bcfec3559d2a571ee6cb222e7cab4531`
 - generated view: listed, not counted
 - cited in: record TFQ-1060
 - counts toward the grade: no

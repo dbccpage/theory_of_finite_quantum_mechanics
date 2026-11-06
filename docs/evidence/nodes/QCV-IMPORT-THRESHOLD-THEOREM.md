@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md`
 
 - file: [dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md](../../../dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md)
-- sha256 (`lf-normalised`): `40a3409d717225bdaab802ee0a7b9792e2e10f4f281b083071b5648b5688f33f`
+- sha256 (`lf-normalised`): `b35a01f737f2dacea1621ad30377f13376e5d474b6439ee20f2a5349724bca1c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1318
 - counts toward the grade: no

@@ -102,14 +102,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/genesis_to_universal_computation.md`
 
 - file: [dag/derivations/29_computation/genesis_to_universal_computation.md](../../../dag/derivations/29_computation/genesis_to_universal_computation.md)
-- sha256 (`lf-normalised`): `d57c3593a55277cafb808fb1b2241dcf2ad97701205dca6b7874af70b5119068`
+- sha256 (`lf-normalised`): `27c7822177fe483a605b87cb9927dd1909001331834df7ed9d0b60ec1ad3108d`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md`
 
 - file: [dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md](../../../dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md)
-- sha256 (`lf-normalised`): `687c21435666f2bb13cfb315b4c739864ada5a5e08bd2b89c5cca3f6b3cf3ff4`
+- sha256 (`lf-normalised`): `53b0e144b06bf1692504bf26fb215c1548646fe73885e11336126f394621d619`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1283
 - counts toward the grade: no
@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `APP-R-COMP-C1-FIRST-SEPARATION-REPLAY` `COMPUTED`: [PGW-GENESIS-FREEZE-ENDPOINT-LEDGER](PGW-GENESIS-FREEZE-ENDPOINT-LEDGER.md) (DEFINITION), [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) (COMPUTATIONALLY_CHECKED), [PG-INERT-DIAMOND](PG-INERT-DIAMOND.md) (DEFINITION)
+- `APP-R-COMP-C1-FIRST-SEPARATION-REPLAY` `COMPUTED`: [PGW-GENESIS-FREEZE-ENDPOINT-LEDGER](PGW-GENESIS-FREEZE-ENDPOINT-LEDGER.md) (DEFINITION), [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) (PROVED_LEAN), [PG-INERT-DIAMOND](PG-INERT-DIAMOND.md) (DEFINITION)
 
 Outgoing (3):
 

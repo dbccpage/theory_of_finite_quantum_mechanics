@@ -148,7 +148,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md](../../../dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md)
-- sha256 (`lf-normalised`): `077806366d0f1b2b5da64c6bdabdbf6d1c7641c1ff928a4b43f525a4f59e5fc3`
+- sha256 (`lf-normalised`): `21b5724e5b68e3a7ea03707c02c603621ce74d14314b235fab99796ac54aba4b`
 - generated view: listed, not counted
 - cited in: record TFQ-1050
 - counts toward the grade: no

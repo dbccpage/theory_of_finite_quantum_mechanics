@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md`
 
 - file: [dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md](../../../dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md)
-- sha256 (`lf-normalised`): `0cc2149a32beb7bdd952b4bf483cf39a72c07d6fd8126cac77279267e30576ab`
+- sha256 (`lf-normalised`): `197f4f1c47d3f3bed30f7affb0ed15b06eca826479dcbc1f30d7a08c27a3af2c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1207
 - counts toward the grade: no

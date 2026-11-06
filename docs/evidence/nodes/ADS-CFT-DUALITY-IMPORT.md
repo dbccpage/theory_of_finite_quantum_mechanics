@@ -88,7 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md](../../../dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md)
-- sha256 (`lf-normalised`): `6ac79e999569621a82714f07286a3dffeded8d8cb9383b3a2c6dd63a31067779`
+- sha256 (`lf-normalised`): `876f65ed9304b5971490cbdb0dffb47cae88a8316c6aeb432b282fde1ca104d9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2202
 - counts toward the grade: no

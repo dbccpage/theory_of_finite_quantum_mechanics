@@ -1,6 +1,6 @@
 # Review of campaign PGW-CONTEXT-FIDELITY
 
-Scope: branch `derive/PGW-CONTEXT-FIDELITY` against `origin/main` `7fa69d621`. Reviewed against the statement written by `dag/sync_pregenesis_to_wdp.py` from `dag/fragments/pregenesis_to_wdp.json`. Rule applied: PROVED_LEAN only if Lean declarations in the repository state the node's full statement and compile with only `propext`, `Classical.choice` and `Quot.sound`.
+Scope: branch `derive/PGW-CONTEXT-FIDELITY` against `origin/main` `7fa69d621`. Reviewed against the statement written by `dag/tools/sync_pregenesis_to_wdp.py` from `dag/fragments/pregenesis_to_wdp.json`. Rule applied: PROVED_LEAN only if Lean declarations in the repository state the node's full statement and compile with only `propext`, `Classical.choice` and `Quot.sound`.
 
 Method: read `.claude/skills/overclaim-hunter/SKILL.md` and `rubric.md`; ran `python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict` (HIGH 0, MEDIUM 0, LOW 3). Read `lean4/CampaignPgwContextFidelity.lean` and the `#print axioms` lines from `lake build CampaignPgwContextFidelity` (Lean 4.35.0, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`). Re-ran `checks/independent/pgw-context-fidelity.py` (38 conditions, 0 failures). Not rebuilt: Rust and cargo. No status was raised.
 

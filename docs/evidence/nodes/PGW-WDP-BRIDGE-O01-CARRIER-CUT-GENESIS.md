@@ -59,7 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
-- sha256 (`bytes`): `1bf7c1e971d501d47ce848a7d7c8149dd75542ace9fa09b229da2b5cc67f580c`
+- sha256 (`bytes`): `e1d9e23ed4bf94ba2f05b141cb8eecadcbd8e867ed8f2c1ca7ef86eedc82cfe1`
 - cited in: node.lean, record TFQ-0566
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
@@ -107,8 +107,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `PGW-R-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` `DERIVED_LEAN`: [PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT](PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT.md) (PROVED_LEAN), [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) (OPEN), [PGW-WDP-GENESIS-BRIDGES-LEDGER](PGW-WDP-GENESIS-BRIDGES-LEDGER.md) (DEFINITION)
+- `PGW-R-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` `DERIVED_LEAN`: [PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT](PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT.md) (PROVED_LEAN), [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) (PROVED_LEAN), [PGW-WDP-GENESIS-BRIDGES-LEDGER](PGW-WDP-GENESIS-BRIDGES-LEDGER.md) (DEFINITION)
 
 Outgoing (1):
 
-- `PGW-R-WDP-BRIDGE-O02-OBSERVER-REPAIR` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR](PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR.md) (OPEN)
+- `PGW-R-WDP-BRIDGE-O02-OBSERVER-REPAIR` `DERIVED_LEAN`: [PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR](PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR.md) (PROVED_LEAN)

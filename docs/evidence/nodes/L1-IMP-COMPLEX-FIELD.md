@@ -1,6 +1,6 @@
 # L1-IMP-COMPLEX-FIELD
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 10
-- cited Lean, Rust or Python symbols found in their in-repo files: 13
+- counted in-repo evidence files: 12
+- cited Lean, Rust or Python symbols found in their in-repo files: 17
 - distinct cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -36,11 +36,11 @@ Local tomography and the carrier restriction are not derived from primitive diff
 
 ## Source status
 
-Conditional selection kernel-checked in evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection (Lean 4.35.0; ComplexFieldSelection, 22 headline axiom audits; exact Python and Rust replays, 291 rejected fixture-integrity mutations) and independently reviewed in evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261021T171132Z_pr138. Local tomography itself is an import here: OperationalTomography re-expresses it (an irreducible operation family that descends through the product observation exists iff local tomography holds; see FQ-OPERATIONAL-LOCAL-TOMOGRAPHY and OperationalFilterFamily.product_resets_irreducible_iff) and OperationalFieldSelection.selected_parameter consumes it (evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography). Authority effect: none. Earlier: WDP-CH05-D01/N01: a quantum-capable package declares a complex carrier; QM_122 H007: Gaussian integers are not a field
+PROVED_LEAN
 
 ## Review
 
-- PFP review: [evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Exact Q(i) multiplication/norm/reciprocal controls, general norm multiplicativity and integer norm5 nonunit control in Lean.
   - does not support: Construct the field instance/refinement and topology/completion required for C; these rational pairs do not admit a complete field.
   - next test: Construct the field instance/refinement and topology/completion required for C; these rational pairs do not admit a complete field.
@@ -48,6 +48,36 @@ Conditional selection kernel-checked in evidence/results/L1-IMP-COMPLEX-FIELD/ru
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- sha256 (`bytes`): `c11c08954dc32c9203e93e7615edd4b6e7ec6320d02543c4617226256a7964d7`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch10.composite_dimension_multiplicativity_selects_d_eq_two` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch10.composite_dimension_multiplicativity_selects_d_eq_two` |
+| `WitnessedDifference.WdpBatch10.gratNormSq_mul` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch10.gratNormSq_mul` |
+| `WitnessedDifference.WdpBatch10.l1_imp_complex_field_selection_and_gaussian_standin` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch10.l1_imp_complex_field_selection_and_gaussian_standin` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean)
+- sha256 (`bytes`): `bc49f2f3c659583494e3e796ac38a509874bcc8931aeb04542aff9e5b68aab24`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch10Rep.rep_l1_imp_complex_field` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch10Rep.rep_l1_imp_complex_field` |
+
+- counts toward the grade: yes
 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean`
 
@@ -193,7 +223,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `L1-R-COMPLEX-GAP` `GAP_NO_DERIVATION`: [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) (CONDITIONAL)
+- `L1-R-COMPLEX-GAP` `DERIVED_LEAN`: [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) (PROVED_LEAN)
 
 Outgoing (9):
 

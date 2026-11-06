@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md](../../../dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md)
-- sha256 (`lf-normalised`): `4ce61e1a05a776ae968fa2ea0ddd7828ae9d773115965c73468b35abf2420121`
+- sha256 (`lf-normalised`): `e504829107f51075a01d25e90626d9a8024e9aeeba158f8234e44c227a9c3c72`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1106
 - counts toward the grade: no

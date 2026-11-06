@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md)
-- sha256 (`lf-normalised`): `c4a16541e377896b62bf30813e1393f8fe5017d55aa21d43132cdd00757100ec`
+- sha256 (`lf-normalised`): `e34f8abed512c9aa0d192d76ee1c8b8cb1096505fca1b0137e88c2b8f7f4b3ad`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2308
 - counts toward the grade: no

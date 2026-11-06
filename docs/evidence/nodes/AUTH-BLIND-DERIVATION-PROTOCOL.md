@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1339_auth_blind_derivation_protocol.md`
 
 - file: [dag/derivations/29_computation/tfq_1339_auth_blind_derivation_protocol.md](../../../dag/derivations/29_computation/tfq_1339_auth_blind_derivation_protocol.md)
-- sha256 (`lf-normalised`): `424bcbf1a9a83177601079c1bf4ad9775918a2377895fff6dde23306fc1e01be`
+- sha256 (`lf-normalised`): `97a01680f4d2da3fdfca7febdeddb6a5a019a665c499e130d8a4da8105951384`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1339
 - counts toward the grade: no

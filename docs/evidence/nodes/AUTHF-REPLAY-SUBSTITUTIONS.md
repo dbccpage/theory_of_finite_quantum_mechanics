@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md`
 
 - file: [dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md](../../../dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md)
-- sha256 (`lf-normalised`): `39f72e86f4e7a4962bd09dd34d4bf5d6f3fd49cee462ee64d4f1c95c03c50ece`
+- sha256 (`lf-normalised`): `ae421e8d2cb770268542973a09b3bda4a92ca547de592209c580fd4ce8791c7b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1357
 - counts toward the grade: no

@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md`
 
 - file: [dag/derivations/28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md](../../../dag/derivations/28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md)
-- sha256 (`lf-normalised`): `cf507c80a11352ebdefe30e40142660de5eba7d7ecf85e99025e85f3dab90c1c`
+- sha256 (`lf-normalised`): `97ce5ba43e78ad4aeccb14123d337394f9a11e5b0415ae7292a69ad8e1f890b7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1181
 - counts toward the grade: no

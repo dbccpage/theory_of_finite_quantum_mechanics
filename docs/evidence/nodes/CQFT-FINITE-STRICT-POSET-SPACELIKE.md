@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2100_cqft_finite_strict_poset_spacelike.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2100_cqft_finite_strict_poset_spacelike.md](../../../dag/derivations/31_causal_qft/tfq_2100_cqft_finite_strict_poset_spacelike.md)
-- sha256 (`lf-normalised`): `18dceff1280637c1bf88af34fa3998b4e1e8b01ccc635e30b5d40c7319f2e507`
+- sha256 (`lf-normalised`): `fcfafe9b7da6f744c5c4c2305741842b3f005220e3ddf1646e18cb0fd3c2632b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2100
 - counts toward the grade: no

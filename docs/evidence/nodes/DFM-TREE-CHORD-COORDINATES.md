@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md](../../../dag/derivations/24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md)
-- sha256 (`lf-normalised`): `a7af7ec0401ac406cb9d46f75a31a5edc176f4da289b8d22fe86bad11b1db3b6`
+- sha256 (`lf-normalised`): `add77a7bd962dd4226925aa50988eb485a2d315aff44e2dead05570ceed050f4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1100
 - counts toward the grade: no

@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md](../../../dag/derivations/24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md)
-- sha256 (`lf-normalised`): `3cfba8b6159ca37d7853898c4997269c7c464ae90669a9af55688ebc8dee1261`
+- sha256 (`lf-normalised`): `4f55a6d100239b32446bb23d72e95b0967fc3a0dcb9d14480b51e5221dccd49f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1133
 - counts toward the grade: no

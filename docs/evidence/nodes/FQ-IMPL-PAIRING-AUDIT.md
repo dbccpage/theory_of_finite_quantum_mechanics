@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1028_fq_impl_pairing_audit.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1028_fq_impl_pairing_audit.md](../../../dag/derivations/21_implementation_core/tfq_1028_fq_impl_pairing_audit.md)
-- sha256 (`lf-normalised`): `a5c09229b303a4ec2d40460074e33c31d4f9deeeebe6e7651f96423821a2baba`
+- sha256 (`lf-normalised`): `ca673f8fc8768035cce0b0362ec94f9ecd36b9a90365e4c737d1061d8f06c428`
 - generated view: listed, not counted
 - cited in: record TFQ-1028
 - counts toward the grade: no

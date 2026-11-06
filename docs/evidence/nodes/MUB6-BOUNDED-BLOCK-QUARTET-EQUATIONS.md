@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md`
 
 - file: [dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md](../../../dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md)
-- sha256 (`lf-normalised`): `2736d8047d00a3f1471b19cb65ce33c1e9055ec31c688086e3f5def1e4444a11`
+- sha256 (`lf-normalised`): `958895e1fde0308466ce57266339f1d1bf29e53bd95bda60026936e79b1ed57b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1260
 - counts toward the grade: no
