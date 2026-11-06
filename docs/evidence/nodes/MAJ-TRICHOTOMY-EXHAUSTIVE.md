@@ -32,7 +32,7 @@ A Lean exhaustiveness lemma (a classical case split on d1 w = 0 and on membershi
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-THM-TRICHOTOMY-EXHAUSTIVE claims PROVED_LEAN; audited status PROVED_PROSE
+papers/core/majorana/the_majorana_problem.md record MAJ-THM-TRICHOTOMY-EXHAUSTIVE claims PROVED_LEAN; audited status PROVED_PROSE
 
 ## Review
 
@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
-
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
-- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/28_majorana/tfq_1142_maj_trichotomy_exhaustive.md`
 
 - file: [dag/derivations/28_majorana/tfq_1142_maj_trichotomy_exhaustive.md](../../../dag/derivations/28_majorana/tfq_1142_maj_trichotomy_exhaustive.md)
-- sha256 (`lf-normalised`): `3382e1ac20c5d43c76b3198d608502ab6080de279447c6ed2f4c657a148be32b`
+- sha256 (`lf-normalised`): `69c386eeb1f8ec7a6da84138cd32849d755fa70a619d568aec998a9d07b51e9f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1142
 - counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

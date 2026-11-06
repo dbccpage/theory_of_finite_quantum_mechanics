@@ -32,7 +32,7 @@ The result leaves three options (an unsound acceptance, an unsound rejection, or
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record closed_two_sided_terminalization_is_acceptance_complete claims PROVED_LEAN; audited status PROVED_LEAN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record closed_two_sided_terminalization_is_acceptance_complete claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1350_authf_terminal_closed_two_sided.md`
 
 - file: [dag/derivations/29_computation/tfq_1350_authf_terminal_closed_two_sided.md](../../../dag/derivations/29_computation/tfq_1350_authf_terminal_closed_two_sided.md)
-- sha256 (`lf-normalised`): `bb749f773771c08c8f0f0f00f1c6a7e32fe94e7611e903ce7011d64fba71767e`
+- sha256 (`lf-normalised`): `7b36e67cca0ec9cb1d08bba6b477619edbeb080d1dad0ca26f2ecaa6f82be219`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1350
 - counts toward the grade: no

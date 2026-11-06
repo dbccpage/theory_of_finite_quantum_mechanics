@@ -32,7 +32,7 @@ Only decode after encode is stated; injectivity of decode on arbitrary lists and
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record decodeMachine_encodeMachine claims PROVED_LEAN; audited status PROVED_LEAN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record decodeMachine_encodeMachine claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1344_authf_dtm1_roundtrip.md`
 
 - file: [dag/derivations/29_computation/tfq_1344_authf_dtm1_roundtrip.md](../../../dag/derivations/29_computation/tfq_1344_authf_dtm1_roundtrip.md)
-- sha256 (`lf-normalised`): `12dabe23e5f110ccea2f19b36d98d5d6aeb4b879107bee94f0680e65fef01cfa`
+- sha256 (`lf-normalised`): `54c64e07cd588c90b01016d3c29c5fcbad5fcd81affd5b176abdee99eebac9d3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1344
 - counts toward the grade: no

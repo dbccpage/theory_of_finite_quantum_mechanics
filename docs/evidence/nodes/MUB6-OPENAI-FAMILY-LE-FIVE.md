@@ -32,7 +32,7 @@ External and not built here: the upstream proof (3381 Lean files, about 205 MB, 
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-IMPORT-OPENAI-LE5 claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-IMPORT-OPENAI-LE5 claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/25_mub/mub6/documentation/mub6_master_classification_and_openai_comparative_synthesis.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md`
 
-- file: [dag/derivations/25_mub/mub6/documentation/mub6_master_classification_and_openai_comparative_synthesis.md](../../../dag/derivations/25_mub/mub6/documentation/mub6_master_classification_and_openai_comparative_synthesis.md)
+- file: [dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md](../../../dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md)
+- sha256 (`lf-normalised`): `d2a79fe2c336b509f08e3c94a1a7d06a01605070ef4208ba15595f91633a83e6`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1365
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/documentation/mub6_master_classification_and_openai_comparative_synthesis.md`
+
+- file: [papers/core/mub6/documentation/mub6_master_classification_and_openai_comparative_synthesis.md](../../../papers/core/mub6/documentation/mub6_master_classification_and_openai_comparative_synthesis.md)
 - sha256 (`lf-normalised`): `553804840511c2e6fcc48f0c9d1c7e418f1130fdccbc184e16faf2a0797b96b7`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/documentation/openai_mub6_le5_external_import.md`
+### Documents and data: `papers/core/mub6/documentation/openai_mub6_le5_external_import.md`
 
-- file: [dag/derivations/25_mub/mub6/documentation/openai_mub6_le5_external_import.md](../../../dag/derivations/25_mub/mub6/documentation/openai_mub6_le5_external_import.md)
+- file: [papers/core/mub6/documentation/openai_mub6_le5_external_import.md](../../../papers/core/mub6/documentation/openai_mub6_le5_external_import.md)
 - sha256 (`lf-normalised`): `09ebb4f28b5e74734d1be30202c6f83c482370d7c9c1e4e874813d135d297eeb`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md`
-
-- file: [dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md](../../../dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md)
-- sha256 (`lf-normalised`): `e7652d6a01b36c161ba870d7c0e8c6188471118ee5ac98194b33ab5168f65e08`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1365
-- counts toward the grade: no
 
 ## Routes
 

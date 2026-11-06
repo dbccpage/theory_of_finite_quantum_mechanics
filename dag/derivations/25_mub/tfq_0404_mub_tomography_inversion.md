@@ -28,6 +28,6 @@ It supplies no existence proof for d+1 MUBs in dimension six.
 
 ## Evidence and next obligation
 
-- [dag/derivations/25_mub/mub6/README.md](../../../dag/derivations/25_mub/mub6/README.md)
+- [papers/core/mub6/README.md](../../../papers/core/mub6/README.md)
 
 Mechanize the trace-inner-product dimension and reconstruction argument; constructing a complete MUB family is a separate existence obligation.

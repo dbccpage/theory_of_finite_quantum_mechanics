@@ -32,7 +32,7 @@ Fixed instance only; it does not establish the classification on other grids.
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-EX-TORUS-2X2 claims PROVED_PROSE; audited status COMPUTATIONALLY_CHECKED
+papers/core/majorana/the_majorana_problem.md record MAJ-EX-TORUS-2X2 claims PROVED_PROSE; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -71,20 +71,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
-
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
-- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/28_majorana/tfq_1145_maj_torus_2x2_worked_grid.md`
 
 - file: [dag/derivations/28_majorana/tfq_1145_maj_torus_2x2_worked_grid.md](../../../dag/derivations/28_majorana/tfq_1145_maj_torus_2x2_worked_grid.md)
-- sha256 (`lf-normalised`): `889c4658aa03513f9ea4c6d0a47ea415d846617c6cc8a1282f69ddda7a502e90`
+- sha256 (`lf-normalised`): `766d2ec6742dac11aebeecc918132539dcbc589b827ca5a564efd9f5e0ce30c7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1145
 - counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

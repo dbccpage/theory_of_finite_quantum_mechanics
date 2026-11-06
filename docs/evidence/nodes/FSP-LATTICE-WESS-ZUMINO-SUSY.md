@@ -32,7 +32,7 @@ Full interacting 2D continuum/lattice super-Poincare restoration remains open; l
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-040 claims PROVED_LEAN; audited status OPEN
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-040 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -94,17 +94,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
-
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md`
 
 - file: [dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md](../../../dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md)
-- sha256 (`lf-normalised`): `4b296e973a6b3f9f7409f71e395b23c0ea36ae984a46924116fd6a5081982842`
+- sha256 (`lf-normalised`): `54c5a5bf5b45f862897d57b71ef56d6dbfb07c5efee5a2e5b458f064aa444c1e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1204
 - counts toward the grade: no
@@ -113,6 +106,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/derivations/independent/fsp-lattice-wess-zumino-susy.md](../../../dag/derivations/independent/fsp-lattice-wess-zumino-susy.md)
 - sha256 (`lf-normalised`): `ebfe5965c240ecb78e1549aa642c05589acb5da3e326a6c0fe4e4bffcf380183`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
+
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
 

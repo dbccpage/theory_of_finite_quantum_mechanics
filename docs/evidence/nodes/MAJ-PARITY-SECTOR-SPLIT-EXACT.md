@@ -32,7 +32,7 @@ Fixed 2-mode instance; the paper code's ParityAlgebraModel check is floating poi
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-PARITY-SECTOR-EXACT claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+papers/core/majorana/the_majorana_problem.md record MAJ-PARITY-SECTOR-EXACT claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -68,20 +68,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
-
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
-- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md`
 
 - file: [dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md](../../../dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md)
-- sha256 (`lf-normalised`): `1ac0b9461e1054af982207562d296131328aa9de2523fad6824e0e3472647226`
+- sha256 (`lf-normalised`): `746eee1c7c375aec1d5a869661db7fdaa98c55249d99ae539c9d8eeb66d463d5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1174
 - counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

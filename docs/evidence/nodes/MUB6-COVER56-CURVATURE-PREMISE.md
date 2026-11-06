@@ -32,7 +32,7 @@ The 56 stored intervals carry a depth label 64 and positive margins but no contr
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-LEDGER-COVER56 claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-LEDGER-COVER56 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -57,27 +57,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
+- file: [dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md](../../../dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md)
+- sha256 (`lf-normalised`): `fe179c436de6e57f0f13f862f8a83b28d9fff55a6ae2e4176c521b316dfd51f3`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1273
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
 - sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md`
-
-- file: [dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md](../../../dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md)
-- sha256 (`lf-normalised`): `0dd0024a7668d32fb661df563c5f14891c57249ae788ba547ab83e4cefc39035`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1273
-- counts toward the grade: no
 
 ## Routes
 

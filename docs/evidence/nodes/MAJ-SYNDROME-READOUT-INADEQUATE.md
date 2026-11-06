@@ -32,7 +32,7 @@ Fixed instance; the adequacy of a syndrome-plus-class readout is asserted, not c
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-COMP-SYNDROME-READOUT claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+papers/core/majorana/the_majorana_problem.md record MAJ-COMP-SYNDROME-READOUT claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -67,20 +67,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
-
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
-- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/28_majorana/tfq_1164_maj_syndrome_readout_inadequate.md`
 
 - file: [dag/derivations/28_majorana/tfq_1164_maj_syndrome_readout_inadequate.md](../../../dag/derivations/28_majorana/tfq_1164_maj_syndrome_readout_inadequate.md)
-- sha256 (`lf-normalised`): `d5b2eb759f0f2da64f88f4b141c8363b10effd3a8cb5c1a714cc0862d53677ea`
+- sha256 (`lf-normalised`): `2fc5eb849562df679f036915265481997727aab9f3fb1c2b69c55cf941af311d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1164
 - counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

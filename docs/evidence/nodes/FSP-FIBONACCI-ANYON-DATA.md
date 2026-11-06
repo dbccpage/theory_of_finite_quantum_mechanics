@@ -32,7 +32,7 @@ The JSONL calls d_tau rational, which is false; the claim that braiding avoids s
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-045 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-045 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
+### Documents and data: `dag/derivations/26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md`
 
-- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
+- file: [dag/derivations/26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md](../../../dag/derivations/26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md)
+- sha256 (`lf-normalised`): `47bf1b7b81849ff6550ebd122cf295776f9549926d52273b2df73bc7aaaa410e`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1209
+- counts toward the grade: no
+
+### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
+
+- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
 - sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
 - sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md`
-
-- file: [dag/derivations/26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md](../../../dag/derivations/26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md)
-- sha256 (`lf-normalised`): `e931e65e846ded349296bd66ef315d12090631014c72b86477566f799b104b8f`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1209
-- counts toward the grade: no
 
 ## Routes
 

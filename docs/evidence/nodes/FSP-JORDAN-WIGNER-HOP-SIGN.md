@@ -32,7 +32,7 @@ The general Jordan-Wigner bijection c_j = (prod_{k\<j} -sigma^z_k) sigma^-_j bet
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-019 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-019 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -67,9 +67,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `dag/derivations/26_fsp/fsp/code/sign_sql/exact_models.py`
+### Python: `papers/core/fsp/code/sign_sql/exact_models.py`
 
-- file: [dag/derivations/26_fsp/fsp/code/sign_sql/exact_models.py](../../../dag/derivations/26_fsp/fsp/code/sign_sql/exact_models.py)
+- file: [papers/core/fsp/code/sign_sql/exact_models.py](../../../papers/core/fsp/code/sign_sql/exact_models.py)
 - sha256 (`bytes`): `4ed949a915cf5e3a290017ab798d47d16af3912c343d809c320c2543ad5820c3`
 - cited in: record TFQ-1185
 
@@ -79,27 +79,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
+### Documents and data: `dag/derivations/26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md`
 
-- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
+- file: [dag/derivations/26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md](../../../dag/derivations/26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md)
+- sha256 (`lf-normalised`): `78af10a412e701a4586150c5603561b4c57e2a0eb12889d51c30883aa266c2ae`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1185
+- counts toward the grade: no
+
+### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
+
+- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
 - sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
 - sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md`
-
-- file: [dag/derivations/26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md](../../../dag/derivations/26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md)
-- sha256 (`lf-normalised`): `46472af95b857363b7fef45b8f43c60b469f6eb6956c30463f5546eabf43cff9`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1185
-- counts toward the grade: no
 
 ## Routes
 

@@ -32,7 +32,7 @@ The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim,
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-C6 claims DEFINITION; audited status IMPORTED_ASSUMPTION
+papers/core/majorana/the_majorana_problem.md record MAJ-C6 claims DEFINITION; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -41,23 +41,6 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
-
-### Lean: `dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
-
-- file: [dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean](../../../dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean)
-- sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
-- cited in: node.lean, record TFQ-1167
-- replay: `verified`
-  - receipt [evidence/lean_receipts/lean_replay_campaign_majorana.json](../../../evidence/lean_receipts/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `KitaevSweetSpotChain` | yes | yes | yes | module-level | `#print axioms KitaevSweetSpotChain` |
-| `disjoint_majorana_pair_commute` | yes | yes | yes | module-level | `#print axioms disjoint_majorana_pair_commute` |
-| `mzm_boundary_decoupling` | yes | yes | yes | module-level | `#print axioms mzm_boundary_decoupling` |
-
-- counts toward the grade: yes
 
 ### Lean: `lean4/KitaevChainImport.lean`
 
@@ -77,6 +60,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `papers/core/majorana/lean4/MajoranaCore.lean`
+
+- file: [papers/core/majorana/lean4/MajoranaCore.lean](../../../papers/core/majorana/lean4/MajoranaCore.lean)
+- sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
+- cited in: node.lean, record TFQ-1167
+- replay: `verified`
+  - receipt [evidence/lean_receipts/lean_replay_campaign_majorana.json](../../../evidence/lean_receipts/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaCore.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `KitaevSweetSpotChain` | yes | yes | yes | module-level | `#print axioms KitaevSweetSpotChain` |
+| `disjoint_majorana_pair_commute` | yes | yes | yes | module-level | `#print axioms disjoint_majorana_pair_commute` |
+| `mzm_boundary_decoupling` | yes | yes | yes | module-level | `#print axioms mzm_boundary_decoupling` |
+
+- counts toward the grade: yes
+
 ### Python: `code/python/src/majorana/majorana_mzm_ising.py`
 
 - file: [code/python/src/majorana/majorana_mzm_ising.py](../../../code/python/src/majorana/majorana_mzm_ising.py)
@@ -89,27 +89,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
+### Documents and data: `dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md`
 
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md](../../../dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md)
+- sha256 (`lf-normalised`): `1abbd7439a3603dec1a5c4e1bc80b40baf8d7d47abc34d8531226bc7af0d4c45`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1167
+- counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md`
+### Documents and data: `papers/core/majorana/the_majorana_problem_claim_ledger.md`
 
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md)
+- file: [papers/core/majorana/the_majorana_problem_claim_ledger.md](../../../papers/core/majorana/the_majorana_problem_claim_ledger.md)
 - sha256 (`lf-normalised`): `c6a3554eb30108d6294ec0ab42952efacd3f5deff58b23b0bf69d061978ac914`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md`
-
-- file: [dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md](../../../dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md)
-- sha256 (`lf-normalised`): `018785cf5cd09b42b8b7ea306b7c1c930bbcdc0b3c996eb4239c7d7568b24bf4`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1167
-- counts toward the grade: no
 
 ## Routes
 

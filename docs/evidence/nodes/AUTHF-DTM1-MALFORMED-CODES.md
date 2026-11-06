@@ -32,7 +32,7 @@ Four named inputs only; no theorem characterizes the full domain of decodeMachin
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record invalid_symbol_tag_is_rejected claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record invalid_symbol_tag_is_rejected claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1345_authf_dtm1_malformed_codes.md`
 
 - file: [dag/derivations/29_computation/tfq_1345_authf_dtm1_malformed_codes.md](../../../dag/derivations/29_computation/tfq_1345_authf_dtm1_malformed_codes.md)
-- sha256 (`lf-normalised`): `1a1bb9fe97575eaa6672538a7d97991cfcb40c9d6c55b56668535818fcd29c03`
+- sha256 (`lf-normalised`): `58a523083e9e5d521ae963e64e00e2fe3eb289e484446cfbe7eec65ed16c97e3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1345
 - counts toward the grade: no

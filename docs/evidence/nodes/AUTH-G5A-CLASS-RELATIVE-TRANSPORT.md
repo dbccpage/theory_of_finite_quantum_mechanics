@@ -32,7 +32,7 @@ Instantiate the allowed classes with ComputablePred on a code type, take the hal
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-G5a claims proved, rooted target (axiom-free); audited status PROVED_LEAN
+papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-G5a claims proved, rooted target (axiom-free); audited status PROVED_LEAN
 
 ## Review
 
@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean`
+### Lean: `papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean)
+- file: [papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean](../../../papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean)
 - sha256 (`bytes`): `c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d`
 - cited in: node.lean, record TFQ-1334
 - replay: `verified`
   - receipt [evidence/lean_receipts/lean_replay_campaign_computation.json](../../../evidence/lean_receipts/lean_replay_campaign_computation.json) (module `papers.foundations.authorization_incompleteness.evidence.original.formal.global_computability_lift_models`): recorded sha256 `c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean`
+- check: `cd lean4 && lake build   # the library that contains papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -58,34 +58,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md`
+### Documents and data: `dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md](../../../dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md)
+- file: [dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md](../../../dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md)
+- sha256 (`lf-normalised`): `a18d753563e9a069689eb8991818203deb0eb5e8224897268b251b8601671043`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1334
+- counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md`
+
+- file: [papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md](../../../papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md)
 - sha256 (`lf-normalised`): `71cd507642cce8ef451189097acd333162642eeb85345ffa304bff305a620697`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md](../../../dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md)
+- file: [papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md](../../../papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md)
 - sha256 (`lf-normalised`): `28aa3a825d1b0296270b62f9a33a4a67b6c2a2d708028444a7f725ad46697feb`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/proof_program.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/proof_program.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/proof_program.md](../../../dag/derivations/04_authorization/authorization_incompleteness/proof_program.md)
+- file: [papers/foundations/authorization_incompleteness/proof_program.md](../../../papers/foundations/authorization_incompleteness/proof_program.md)
 - sha256 (`lf-normalised`): `e624d01a2371d6d8856a17c535ad1916abd8b1353450755c7281fe22e87b720f`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md`
-
-- file: [dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md](../../../dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md)
-- sha256 (`lf-normalised`): `190f13d9e5912a15f23f2cfa1cd61376e2bdaf90dacb8c6ef5baa61797f429f3`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1334
-- counts toward the grade: no
 
 ## Routes
 

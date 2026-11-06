@@ -32,7 +32,7 @@ Summing pairs to get sum_c w(c) sign(c) = 0 on a finite set is a prose orbit-par
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-027 claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-027 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean`
+### Lean: `papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean`
 
-- file: [dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean](../../../dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean)
+- file: [papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean](../../../papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean)
 - sha256 (`bytes`): `85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd`
 - cited in: node.lean, record TFQ-1193
 - replay: `verified`
   - receipt [evidence/lean_receipts/lean_replay_campaign_fermion_sign.json](../../../evidence/lean_receipts/lean_replay_campaign_fermion_sign.json) (module `papers.core.fsp.lean4.FrustratedSpectrumObstruction`): recorded sha256 `85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean`
+- check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -57,14 +57,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean`
+### Lean: `papers/core/fsp/lean4/MeronCharacter.lean`
 
-- file: [dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean](../../../dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean)
+- file: [papers/core/fsp/lean4/MeronCharacter.lean](../../../papers/core/fsp/lean4/MeronCharacter.lean)
 - sha256 (`bytes`): `0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870`
 - cited in: node.lean, record TFQ-1193
 - replay: `verified`
   - receipt [evidence/lean_receipts/lean_replay_campaign_fermion_sign.json](../../../evidence/lean_receipts/lean_replay_campaign_fermion_sign.json) (module `papers.core.fsp.lean4.MeronCharacter`): recorded sha256 `0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean`
+- check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/MeronCharacter.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -73,14 +73,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean`
+### Lean: `papers/core/fsp/lean4/MeronClusterInvolution.lean`
 
-- file: [dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean](../../../dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean)
+- file: [papers/core/fsp/lean4/MeronClusterInvolution.lean](../../../papers/core/fsp/lean4/MeronClusterInvolution.lean)
 - sha256 (`bytes`): `82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f`
 - cited in: node.lean, record TFQ-1193
 - replay: `verified`
   - receipt [evidence/lean_receipts/lean_replay_campaign_fermion_sign.json](../../../evidence/lean_receipts/lean_replay_campaign_fermion_sign.json) (module `papers.core.fsp.lean4.MeronClusterInvolution`): recorded sha256 `82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean`
+- check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/MeronClusterInvolution.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -102,27 +102,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
+### Documents and data: `dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md`
 
-- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
+- file: [dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md](../../../dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md)
+- sha256 (`lf-normalised`): `d468ddc65af580e92c745e184cda34fec6bf2b77046d68c68007468f1446c039`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1193
+- counts toward the grade: no
+
+### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
+
+- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
 - sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
 - sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md`
-
-- file: [dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md](../../../dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md)
-- sha256 (`lf-normalised`): `40265feb24da506c38363e0dedf79ef54b596b1923c6a2741e18630e50a02e73`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1193
-- counts toward the grade: no
 
 ## Routes
 

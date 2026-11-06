@@ -32,7 +32,7 @@ This fixes what a declared halt means in DTM0; it is not a statement about halti
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record step_halted_iff_declared_halt claims PROVED_LEAN; audited status PROVED_LEAN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record step_halted_iff_declared_halt claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1341_authf_dtm0_halt_iff_state.md`
 
 - file: [dag/derivations/29_computation/tfq_1341_authf_dtm0_halt_iff_state.md](../../../dag/derivations/29_computation/tfq_1341_authf_dtm0_halt_iff_state.md)
-- sha256 (`lf-normalised`): `223783c783f05cf555e7ed90c42b2c020a5e708eefa2815930ae42a1252e65f2`
+- sha256 (`lf-normalised`): `926b7e3985854cd18435a91cd005a2fa44e0911c8da2d15a28591c8173b9a632`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1341
 - counts toward the grade: no

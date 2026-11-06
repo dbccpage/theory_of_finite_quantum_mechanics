@@ -34,7 +34,7 @@ Construct flat fillings by group potentials and boundary triangle cancellation; 
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-050 claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-050 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -164,17 +164,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-1214
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
-
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md](../../../dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md)
-- sha256 (`lf-normalised`): `c617ad946ff52c245284205a75484fdb624536af692378985ac6e143c30e507e`
+- sha256 (`lf-normalised`): `903db8a7181efe9a5f043c70efe2dfb3b7a3ad12b9ed9864999575f6cd60c7be`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1214
 - counts toward the grade: no
@@ -190,6 +183,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json)
 - sha256 (`lf-normalised`): `14f5f9aefd737f4f8c4b771d115c3c6692d1db00e25fa2dfb9d6c136103af597`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
+
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
 

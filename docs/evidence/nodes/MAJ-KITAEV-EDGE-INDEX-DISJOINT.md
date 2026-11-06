@@ -32,7 +32,7 @@ Index-level statement only; operator commutation \[H, gamma_1\] = 0 is the exact
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-KITAEV-EDGE-INDEX claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/majorana/the_majorana_problem.md record MAJ-KITAEV-EDGE-INDEX claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean`
+### Lean: `papers/core/majorana/lean4/MajoranaGinCore.lean`
 
-- file: [dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean](../../../dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean)
+- file: [papers/core/majorana/lean4/MajoranaGinCore.lean](../../../papers/core/majorana/lean4/MajoranaGinCore.lean)
 - sha256 (`bytes`): `33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102`
 - cited in: node.lean, record TFQ-1168
 - replay: `verified`
   - receipt [evidence/lean_receipts/lean_replay_campaign_majorana.json](../../../evidence/lean_receipts/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaGinCore`): recorded sha256 `33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean`
+- check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaGinCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -72,27 +72,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/lean4/axiom_report.txt`
+### Documents and data: `dag/derivations/28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md`
 
-- file: [dag/derivations/28_majorana/majorana/lean4/axiom_report.txt](../../../dag/derivations/28_majorana/majorana/lean4/axiom_report.txt)
+- file: [dag/derivations/28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md](../../../dag/derivations/28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md)
+- sha256 (`lf-normalised`): `85fb78e9560c162d822bdf7ce5bf37fcc11367592caf5344d77e466f6cc77544`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1168
+- counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/lean4/axiom_report.txt`
+
+- file: [papers/core/majorana/lean4/axiom_report.txt](../../../papers/core/majorana/lean4/axiom_report.txt)
 - sha256 (`lf-normalised`): `ec4465011fdd2b18f2c9df263004e9050f8c394dece1841835ff0bcd1e00df79`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md`
-
-- file: [dag/derivations/28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md](../../../dag/derivations/28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md)
-- sha256 (`lf-normalised`): `0b5126a3f285ec5fdbb5a4b2a5ddd76bd82842b69b2d9690447b73ef35967673`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1168
-- counts toward the grade: no
 
 ## Routes
 

@@ -32,7 +32,7 @@ Subdividing the family parameter domain does not enlarge this candidate domain; 
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C19 claims COMPUTATIONALLY_CHECKED; audited status PROVED_PROSE
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C19 claims COMPUTATIONALLY_CHECKED; audited status PROVED_PROSE
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1267_mub6_deltoid_cover_box_defect.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
+- file: [dag/derivations/25_mub/tfq_1267_mub6_deltoid_cover_box_defect.md](../../../dag/derivations/25_mub/tfq_1267_mub6_deltoid_cover_box_defect.md)
+- sha256 (`lf-normalised`): `d2ccaa20c450111b5ab96f5b4a1224f840ac92b546bfd06a53b6c163a4d8b7e0`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1267
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
 - sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1267_mub6_deltoid_cover_box_defect.md`
-
-- file: [dag/derivations/25_mub/tfq_1267_mub6_deltoid_cover_box_defect.md](../../../dag/derivations/25_mub/tfq_1267_mub6_deltoid_cover_box_defect.md)
-- sha256 (`lf-normalised`): `a9715fc9f781af18ad7e08a9bec901305f7bfdaf63e99a2861f70f854445b716`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1267
-- counts toward the grade: no
 
 ## Routes
 

@@ -33,7 +33,7 @@ Rice's theorem for the programs of a Turing-complete language stays a citation. 
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-5 claims cited; local formalization open; audited status IMPORTED_ASSUMPTION
+papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-5 claims cited; local formalization open; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -93,34 +93,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md`
+### Documents and data: `dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md](../../../dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md)
+- file: [dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md](../../../dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md)
+- sha256 (`lf-normalised`): `2d64d0965a04e8a48e2552757dd4448e63a4b9e87dafa45c310470049c517366`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1337
+- counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md`
+
+- file: [papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md](../../../papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md)
 - sha256 (`lf-normalised`): `71cd507642cce8ef451189097acd333162642eeb85345ffa304bff305a620697`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md](../../../dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md)
+- file: [papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md](../../../papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md)
 - sha256 (`lf-normalised`): `28aa3a825d1b0296270b62f9a33a4a67b6c2a2d708028444a7f725ad46697feb`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/controlled_turing_derivation_series.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/controlled_turing_derivation_series.md](../../../dag/derivations/04_authorization/authorization_incompleteness/controlled_turing_derivation_series.md)
+- file: [papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md](../../../papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md)
 - sha256 (`lf-normalised`): `2573123162731ea63495b0ece777ae4b9e704e27b976fbc031df51c6f81c6f7b`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md`
-
-- file: [dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md](../../../dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md)
-- sha256 (`lf-normalised`): `4c31ac0baf3a45ef26b77e8fe3e0b1d395c30c7f9542ad5ccb97e95069555a64`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1337
-- counts toward the grade: no
 
 ## Routes
 

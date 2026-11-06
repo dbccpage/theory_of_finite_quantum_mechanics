@@ -35,7 +35,7 @@ Hermiticity, number conservation, a locality graph, a one- and two-body truncati
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-021 claims PROVED_LEAN; audited status PROVED_PROSE
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-021 claims PROVED_LEAN; audited status PROVED_PROSE
 
 ## Review
 
@@ -57,27 +57,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
+### Documents and data: `dag/derivations/26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md`
 
-- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
+- file: [dag/derivations/26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md](../../../dag/derivations/26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md)
+- sha256 (`lf-normalised`): `69257fc9cca40fe760b73932d3f601b6d539d8dcf601a4897897985b7e324630`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1187
+- counts toward the grade: no
+
+### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
+
+- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
 - sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
 - sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md`
-
-- file: [dag/derivations/26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md](../../../dag/derivations/26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md)
-- sha256 (`lf-normalised`): `97ec49fd2e6e31944bc40b381450b5b8bf445eea2443251ddeca4dfdccc03ab1`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1187
-- counts toward the grade: no
 
 ## Routes
 
