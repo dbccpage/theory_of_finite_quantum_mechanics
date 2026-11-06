@@ -27,7 +27,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> GEN-WDP-O05 remains open; software token verification and replay receipts cannot confer external institutional standing, physical truth, or appeal rights.
+> GEN-WDP-O05 remains open by design as an external institutional boundary; WdpBatch6.lean::receipt_verification_independent_of_jurisdiction formalizes that software receipt verification does not confer external institutional standing or appeal rights.
 
 ---
 
@@ -35,6 +35,7 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean::inscription_distinct_marks_apart`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.receipt_verification_independent_of_jurisdiction`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: external institutional jurisdiction cannot be discharged by software`

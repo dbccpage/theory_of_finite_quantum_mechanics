@@ -273,9 +273,9 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0563`](./06_wdp/tfq_0563_wd2_shortest_separating_word.md) | wd2-shortest-separating-word | `PROVED_LEAN` | [`TFQ-0562`](./06_wdp/tfq_0562_wd2_no_escape_update_congruence.md) |
 | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) | wd2-factored-report-preservation | `PROVED_LEAN` | [`TFQ-0563`](./06_wdp/tfq_0563_wd2_shortest_separating_word.md) |
 | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) | wd2-minimal-deterministic-quotient | `PROVED_LEAN` | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) |
-| [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) | wdp-bridge-o01-carrier-cut-genesis | `OPEN_OBLIGATION` | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) |
+| [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) | wdp-bridge-o01-carrier-cut-genesis | `PROVED_LEAN` | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) |
 | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) | wdp-bridge-o02-observer-repair | `OPEN_OBLIGATION` | [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) |
-| [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) | wdp-bridge-o03-guarded-history-coherence | `OPEN_OBLIGATION` | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) |
+| [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) | wdp-bridge-o03-guarded-history-coherence | `PROVED_LEAN` | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) |
 | [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) | wdp-bridge-o04-tensor-reconstruction | `OPEN_OBLIGATION` | [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) |
 | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) | wdp-bridge-o05-authorization-firewall | `OPEN_OBLIGATION` | [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) |
 | [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) | wdp-out-1-sharp-observer-completion | `PROVED_LEAN` | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) |
@@ -288,12 +288,12 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0578`](./06_wdp/tfq_0578_wdp_finite_hermitianization.md) | wdp-finite-hermitianization | `PROVED_LEAN` | [`TFQ-0577`](./06_wdp/tfq_0577_wdp_dagger_observer_gram_radical.md) |
 | [`TFQ-0579`](./06_wdp/tfq_0579_wdp_born_rule_nonselection.md) | wdp-born-rule-nonselection | `PROVED_LEAN` | [`TFQ-0578`](./06_wdp/tfq_0578_wdp_finite_hermitianization.md) |
 | [`TFQ-0580`](./06_wdp/tfq_0580_wdp_exact_scalar_hadamard_obstruction.md) | wdp-exact-scalar-hadamard-obstruction | `PROVED_LEAN` | [`TFQ-0579`](./06_wdp/tfq_0579_wdp_born_rule_nonselection.md) |
-| [`TFQ-0581`](./06_wdp/tfq_0581_wdp_affine_thickening_conjecture.md) | wdp-affine-thickening-conjecture | `OPEN_OBLIGATION` | [`TFQ-0580`](./06_wdp/tfq_0580_wdp_exact_scalar_hadamard_obstruction.md) |
+| [`TFQ-0581`](./06_wdp/tfq_0581_wdp_affine_thickening_conjecture.md) | wdp-affine-thickening-conjecture | `PROVED_LEAN` | [`TFQ-0580`](./06_wdp/tfq_0580_wdp_exact_scalar_hadamard_obstruction.md) |
 | [`TFQ-0582`](./06_wdp/tfq_0582_wdp_meron_m1_correlation_estimates.md) | wdp-meron-m1-correlation-estimates | `OPEN_OBLIGATION` | [`TFQ-0581`](./06_wdp/tfq_0581_wdp_affine_thickening_conjecture.md) |
 | [`TFQ-0583`](./06_wdp/tfq_0583_wdp_meron_m2_cumulant_bounds.md) | wdp-meron-m2-cumulant-bounds | `OPEN_OBLIGATION` | [`TFQ-0582`](./06_wdp/tfq_0582_wdp_meron_m1_correlation_estimates.md) |
 | [`TFQ-0584`](./06_wdp/tfq_0584_wdp_meron_m3_spectral_gap_bypass.md) | wdp-meron-m3-spectral-gap-bypass | `OPEN_OBLIGATION` | [`TFQ-0583`](./06_wdp/tfq_0583_wdp_meron_m2_cumulant_bounds.md) |
-| [`TFQ-0585`](./06_wdp/tfq_0585_wdp_meron_m4_native_adapters.md) | wdp-meron-m4-native-adapters | `OPEN_OBLIGATION` | [`TFQ-0584`](./06_wdp/tfq_0584_wdp_meron_m3_spectral_gap_bypass.md) |
-| [`TFQ-0586`](./06_wdp/tfq_0586_wdp_meron_m5_toric_noise_repair.md) | wdp-meron-m5-toric-noise-repair | `OPEN_OBLIGATION` | [`TFQ-0585`](./06_wdp/tfq_0585_wdp_meron_m4_native_adapters.md) |
+| [`TFQ-0585`](./06_wdp/tfq_0585_wdp_meron_m4_native_adapters.md) | wdp-meron-m4-native-adapters | `PROVED_LEAN` | [`TFQ-0584`](./06_wdp/tfq_0584_wdp_meron_m3_spectral_gap_bypass.md) |
+| [`TFQ-0586`](./06_wdp/tfq_0586_wdp_meron_m5_toric_noise_repair.md) | wdp-meron-m5-toric-noise-repair | `PROVED_LEAN` | [`TFQ-0585`](./06_wdp/tfq_0585_wdp_meron_m4_native_adapters.md) |
 | [`TFQ-0587`](./06_wdp/tfq_0587_wdp_meron_spacetime_limit.md) | wdp-meron-spacetime-limit | `OPEN_OBLIGATION` | [`TFQ-0586`](./06_wdp/tfq_0586_wdp_meron_m5_toric_noise_repair.md) |
 
 ### L1_EMERGENCE (12 derivations)

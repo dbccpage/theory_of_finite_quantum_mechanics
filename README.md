@@ -54,7 +54,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | DAG validator | `nodes=988 routes=996 records=1040 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
 | TFQ records | 1040 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
 | Derivation papers | 1492 in 36 stage folders | [`dag/derivations`](dag/derivations) |
-| Lean references in DAG nodes | 3517 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Lean references in DAG nodes | 3538 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Rust references in DAG nodes | 384 resolve to a file in this checkout, 0 do not, 575 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Nodes with executed review results | 177 nodes, 183 review directories | `evidence/results/*/reviews/` |
 | Review directories with a supports / does_not_support / narrowest_claim boundary | 166 | `evidence/results/*/reviews/*/*.json` |
@@ -76,7 +76,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
-Nodes by status: PROVED_LEAN 248, OPEN 204, COMPUTATIONALLY_CHECKED 192, DEFINITION 95, SOURCE_RECORD 83, IMPORTED_ASSUMPTION 73, CONDITIONAL 49, PROVED_PROSE 34, REFUTED 7, ADMITTED_PRIMITIVE 3.
+Nodes by status: PROVED_LEAN 253, OPEN 199, COMPUTATIONALLY_CHECKED 192, DEFINITION 95, SOURCE_RECORD 83, IMPORTED_ASSUMPTION 73, CONDITIONAL 49, PROVED_PROSE 34, REFUTED 7, ADMITTED_PRIMITIVE 3.
 
 Nodes by stage: PREGENESIS 32, GENESIS 89, MSSN_SN 28, WDP 58, L1_EMERGENCE 9, L1_TO_L2 48, FINITE_QM_CORE 39, FINITE_QM_DYNAMICS 24, FINITE_QM_STRUCTURE 44, IMPLEMENTATION 10, DRESSING_FIELD 43, MUTUALLY_UNBIASED_BASES 68, FERMION_SIGN 41, TENSOR_COMPOSITION 7, FINITE_OBSTRUCTION 9, AUTHORIZATION 8, FINITE_HILBERT 8, FINITE_QM_INFORMATION 4, FINITE_GAUGE 2, FINITE_QED 1, FINITE_QCD 37, FINITE_TOPOLOGICAL 9, FINITE_QG 16, CONTINUUM_INTERFACE 9, IMPLEMENTATION_CORE 41, IMPLEMENTATION_SIBLING 26, ENGINE_CUSTODY 34, MAJORANA 46, COMPUTATION 95, CONSTRUCTOR_THEORY 15, CAUSAL_QFT 14, ADS_CFT 13, LOOP_QUANTUM_GRAVITY 16, GENESIS_TO_HIGHER 12, OBSERVER_PRESHEAF 33.
 

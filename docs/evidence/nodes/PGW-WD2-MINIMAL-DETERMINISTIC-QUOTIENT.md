@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/tests/test_finite_distinction.py`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/code/tests/test_finite_distinction.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/tests/test_finite_distinction.py)
-- sha256 (`bytes`): `22d8e18d720549eb3ad223935b763c508410272e0122c46e3fcc3293865bf43c`
+- sha256 (`bytes`): `78be8bd3a12d59c8f1ff1e41d889b751b9386d113198940bc50dc589c5ec2600`
 - cited in: record TFQ-0565
 - check: `python -m pytest atlas/finite_obstruction_calculus/witnessed_difference_programme/code/tests/test_finite_distinction.py::test_minimal_deterministic_quotient_factorization`
 
@@ -109,4 +109,4 @@ Incoming (1):
 
 Outgoing (1):
 
-- `PGW-R-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS](PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS.md) (OPEN)
+- `PGW-R-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` `DERIVED_LEAN`: [PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS](PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS.md) (PROVED_LEAN)

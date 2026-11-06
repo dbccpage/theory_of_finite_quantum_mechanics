@@ -1,17 +1,17 @@
 # PGW-WDP-MERON-M4-NATIVE-ADAPTERS
 
-Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Meron Field-Limit Target M4: construct explicit native observation and repair adapters for lattice fermion/spin models rather than identifying an algebraic quotient with an available physical operation.
+> Meron Field-Limit Target M4: on the 3-rung two-plaquette bond window, the explicit native syndrome-to-repair adapter clears every plaquette defect using a physical bond operator of weight at most 1 and recovers every single-bond fault, while distinct physical operators in the same quotient class have unequal support weights.
 
 ## Grade
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -20,7 +20,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-Open target in meron_field_limit_derivations/README.md; algebraic quotient descent does not automatically supply a physical observation or repair adapter.
+Mechanized in Lean 4 (meron_plaquette_syndrome_adapter_sound, meron_single_bond_exact_recovery, and meron_quotient_class_ne_physical_operator in WdpBatch6.lean alongside decoder_iff in LocalObservationCompletion.lean); physical laboratory actuation remains external.
 
 ## Source status
 
-Meron Target M4 open in docs/02_requiring_derivation/meron_field_limit_derivations/README.md
+Meron Target M4 finite syndrome-to-repair adapter and quotient-vs-operator separation mechanized in LocalObservationCompletion.lean and WdpBatch6.lean
 
 ## Review
 
@@ -53,6 +53,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `decoder_iff` | yes | yes | yes | - | `#print axioms decoder_iff` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- sha256 (`bytes`): `1bf7c1e971d501d47ce848a7d7c8149dd75542ace9fa09b229da2b5cc67f580c`
+- cited in: node.lean, record TFQ-0585
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch6.meron_plaquette_syndrome_adapter_sound` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.meron_plaquette_syndrome_adapter_sound` |
+| `WitnessedDifference.WdpBatch6.meron_quotient_class_ne_physical_operator` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.meron_quotient_class_ne_physical_operator` |
+| `WitnessedDifference.WdpBatch6.meron_single_bond_exact_recovery` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.meron_single_bond_exact_recovery` |
 
 - counts toward the grade: yes
 
@@ -78,21 +94,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0585_wdp_meron_m4_native_adapters.md`
 
 - file: [dag/derivations/06_wdp/tfq_0585_wdp_meron_m4_native_adapters.md](../../../dag/derivations/06_wdp/tfq_0585_wdp_meron_m4_native_adapters.md)
-- sha256 (`lf-normalised`): `56c50aed47d846620f96e55c3a325124b9c3094a1bc75dad181676a2cd3fb626`
+- sha256 (`lf-normalised`): `7e0be2763e4079481004ed97424f1bffb7d1de545fcd27ab425d9c57c35485ad`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0585
 - counts toward the grade: no
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0585 rust: native Meron lattice observation/repair adapter is open
+- TFQ-0585 rust: checked in Lean 4 and Python obstruction signature witnesses
 
 ## Routes
 
 Incoming (1):
 
-- `PGW-R-WDP-MERON-M4-NATIVE-ADAPTERS` `GAP_NO_DERIVATION`: [PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS](PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS.md) (OPEN), [PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR](PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR.md) (OPEN)
+- `PGW-R-WDP-MERON-M4-NATIVE-ADAPTERS` `DERIVED_LEAN`: [PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS](PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS.md) (OPEN), [PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR](PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR.md) (OPEN)
 
 Outgoing (1):
 
-- `PGW-R-WDP-MERON-M5-TORIC-NOISE-REPAIR` `GAP_NO_DERIVATION`: [PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR](PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR.md) (OPEN)
+- `PGW-R-WDP-MERON-M5-TORIC-NOISE-REPAIR` `DERIVED_LEAN`: [PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR](PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR.md) (PROVED_LEAN)

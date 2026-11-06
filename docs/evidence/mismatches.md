@@ -4,7 +4,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 
 | Flag | Count |
 |---|---|
-| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 22 |
+| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 27 |
 | `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 0 |
 | `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 24 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 155 |
@@ -12,7 +12,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 43 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 11 |
 
-## `proved_lean_below_e3` (22)
+## `proved_lean_below_e3` (27)
 
 PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt. Ordered by downstream nodes, most first.
 
@@ -27,6 +27,8 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [PGW-WD2-SHORTEST-SEPARATING-WORD](nodes/PGW-WD2-SHORTEST-SEPARATING-WORD.md) | WDP | `PROVED_LEAN` | E2 | 24 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
 | [PGW-WD2-FACTORED-REPORT-PRESERVATION](nodes/PGW-WD2-FACTORED-REPORT-PRESERVATION.md) | WDP | `PROVED_LEAN` | E2 | 23 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT](nodes/PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT.md) | WDP | `PROVED_LEAN` | E2 | 22 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
+| [PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS](nodes/PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS.md) | WDP | `PROVED_LEAN` | E2 | 21 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE](nodes/PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE.md) | WDP | `PROVED_LEAN` | E2 | 19 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION](nodes/PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION.md) | WDP | `PROVED_LEAN` | E2 | 16 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE](nodes/PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE.md) | WDP | `PROVED_LEAN` | E2 | 15 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION](nodes/PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION.md) | WDP | `PROVED_LEAN` | E2 | 14 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
@@ -38,7 +40,10 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [PGW-WDP-BORN-RULE-NONSELECTION](nodes/PGW-WDP-BORN-RULE-NONSELECTION.md) | WDP | `PROVED_LEAN` | E2 | 8 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PGW-WDP-DEGREE-K-TORSION-BALANCE](nodes/PGW-WDP-DEGREE-K-TORSION-BALANCE.md) | WDP | `PROVED_LEAN` | E2 | 8 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION](nodes/PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION.md) | WDP | `PROVED_LEAN` | E2 | 7 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
+| [PGW-WDP-AFFINE-THICKENING-CONJECTURE](nodes/PGW-WDP-AFFINE-THICKENING-CONJECTURE.md) | WDP | `PROVED_LEAN` | E2 | 6 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [FQ-IMPL-WDP-AMPLITUDE-BRIDGE](nodes/FQ-IMPL-WDP-AMPLITUDE-BRIDGE.md) | IMPLEMENTATION | `PROVED_LEAN` | E2 | 3 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
+| [PGW-WDP-MERON-M4-NATIVE-ADAPTERS](nodes/PGW-WDP-MERON-M4-NATIVE-ADAPTERS.md) | WDP | `PROVED_LEAN` | E2 | 2 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR](nodes/PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR.md) | WDP | `PROVED_LEAN` | E2 | 1 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PG-GEN-SAMENESS-REFINEMENTS](nodes/PG-GEN-SAMENESS-REFINEMENTS.md) | GENESIS | `PROVED_LEAN` | E2 | 0 | grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7) |
 
 ## `proved_lean_external_only` (0)

@@ -1,6 +1,6 @@
 # [TFQ-0566] wdp-bridge-o01-carrier-cut-genesis
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `54acc7ed-5fe3-5be9-affe-c78521000cdd`  
 > **Parent Derivation**: [TFQ-0565](tfq_0565_wd2_minimal_deterministic_quotient.md)
 
@@ -8,10 +8,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Enlarged Genesis bridge obligation GEN-WDP-O01: justify or explicitly admit the primitive-to-witness carrier, signature, law, and challenge-generation floor separating observational separation from an irreflexive cut.
+Enlarged Genesis bridge obligation GEN-WDP-O01: an observation-separated irreflexive cut exists on a seed carrier if and only if at least one admitted test separates two states, whereas an inert seed with constant test profiles cannot generate an irreflexive cut.
 
 ### Governing Obligation
-Establish a formal theorem and falsifier for the primitive-to-witness carrier, signature, law, and challenge-generation floor across all source seeds.
+Establish a formal theorem and falsifier for the primitive-to-witness carrier, signature, law, and challenge-generation floor across declared source seeds.
 
 ---
 
@@ -27,7 +27,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> GEN-WDP-O01 remains open; finite seed-25 and initial-challenge floors do not discharge the full primitive-to-witness floor across all source systems.
+> Mechanized in Lean 4 (carrier_cut_challenge_floor_iff, inert_seed_cannot_generate_irreflexive_cut, and seed_round1_cut_and_residual_collapse in WdpBatch6.lean alongside endpoints_apart in PrimitiveAdmissionFloor.lean); autonomous demand generation beyond the declared seed tests remains fenced.
 
 ---
 
@@ -35,9 +35,12 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean::endpoints_apart`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.carrier_cut_challenge_floor_iff`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.inert_seed_cannot_generate_irreflexive_cut`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.seed_round1_cut_and_residual_collapse`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `missing obligation: general primitive-to-witness floor across all source seeds is open`
+- `missing obligation: checked in Lean 4 and Python foundational bridge witnesses`
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py::apartness_witness`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py)

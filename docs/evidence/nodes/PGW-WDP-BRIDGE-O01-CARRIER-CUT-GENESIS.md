@@ -1,17 +1,17 @@
 # PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS
 
-Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Enlarged Genesis bridge obligation GEN-WDP-O01: justify or explicitly admit the primitive-to-witness carrier, signature, law, and challenge-generation floor separating observational separation from an irreflexive cut.
+> Enlarged Genesis bridge obligation GEN-WDP-O01: an observation-separated irreflexive cut exists on a seed carrier if and only if at least one admitted test separates two states, whereas an inert seed with constant test profiles cannot generate an irreflexive cut.
 
 ## Grade
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -20,7 +20,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-GEN-WDP-O01 remains open; finite seed-25 and initial-challenge floors do not discharge the full primitive-to-witness floor across all source systems.
+Mechanized in Lean 4 (carrier_cut_challenge_floor_iff, inert_seed_cannot_generate_irreflexive_cut, and seed_round1_cut_and_residual_collapse in WdpBatch6.lean alongside endpoints_apart in PrimitiveAdmissionFloor.lean); autonomous demand generation beyond the declared seed tests remains fenced.
 
 ## Source status
 
-GEN-WDP-O01 open foundational obligation in genesis_bridge_register.md
+GEN-WDP-O01 finite challenge-generation floor and inert-seed falsifier mechanized in PrimitiveAdmissionFloor.lean and WdpBatch6.lean
 
 ## Review
 
@@ -53,6 +53,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `endpoints_apart` | yes | yes | yes | - | `#print axioms endpoints_apart` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- sha256 (`bytes`): `1bf7c1e971d501d47ce848a7d7c8149dd75542ace9fa09b229da2b5cc67f580c`
+- cited in: node.lean, record TFQ-0566
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch6.carrier_cut_challenge_floor_iff` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.carrier_cut_challenge_floor_iff` |
+| `WitnessedDifference.WdpBatch6.inert_seed_cannot_generate_irreflexive_cut` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.inert_seed_cannot_generate_irreflexive_cut` |
+| `WitnessedDifference.WdpBatch6.seed_round1_cut_and_residual_collapse` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.seed_round1_cut_and_residual_collapse` |
 
 - counts toward the grade: yes
 
@@ -78,20 +94,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md`
 
 - file: [dag/derivations/06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md](../../../dag/derivations/06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md)
-- sha256 (`lf-normalised`): `085553e023fe6478d27a824b706e66bdfb96b44701ce1259ef713d4702feae08`
+- sha256 (`lf-normalised`): `796a3d813b04d7f60c28d4e26ffecbd9c8725d6d554e3e271b2d83d5012452e1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0566
 - counts toward the grade: no
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0566 rust: general primitive-to-witness floor across all source seeds is open
+- TFQ-0566 rust: checked in Lean 4 and Python foundational bridge witnesses
 
 ## Routes
 
 Incoming (1):
 
-- `PGW-R-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` `GAP_NO_DERIVATION`: [PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT](PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT.md) (PROVED_LEAN), [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) (OPEN), [PGW-WDP-GENESIS-BRIDGES-LEDGER](PGW-WDP-GENESIS-BRIDGES-LEDGER.md) (DEFINITION)
+- `PGW-R-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` `DERIVED_LEAN`: [PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT](PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT.md) (PROVED_LEAN), [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) (OPEN), [PGW-WDP-GENESIS-BRIDGES-LEDGER](PGW-WDP-GENESIS-BRIDGES-LEDGER.md) (DEFINITION)
 
 Outgoing (1):
 

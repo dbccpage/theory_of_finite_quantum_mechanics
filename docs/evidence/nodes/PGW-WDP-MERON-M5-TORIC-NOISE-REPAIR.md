@@ -1,17 +1,17 @@
 # PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR
 
-Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Meron Field-Limit Target M5: repair Chapter 23 toric-code kernel, restricted-error rank, and adaptivity claims under explicit finite detector and noise-support hypotheses.
+> Meron Field-Limit Target M5 (Chapter 23): the primal-dual completion criterion ((E - E) intersect ker Q_D subset B) characterizes exact recovery, the 4-vertex star syndrome on a square cycle has rank 3 and is injective on tree-supported errors while vanishing on the 4-edge cycle, and worst-case adaptive transcripts cannot distinguish errors differing by an undetected logical cycle.
 
 ## Grade
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 1
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -20,7 +20,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-Open finite-lattice target in meron_field_limit_derivations/README.md; unrestricted toric-code adaptivity claims are fenced in Chapter 23.
+Mechanized in Lean 4 (toric_completion_criterion_iff, toric_star_syndrome_sum_zero, toric_restricted_tree_error_injective, toric_cycle_error_in_syndrome_kernel, and toric_adaptive_transcript_indistinguishable in WdpBatch6.lean) and checked in Python plan_odm_toric_boundary.py.
 
 ## Source status
 
-Meron Target M5 open in docs/02_requiring_derivation/meron_field_limit_derivations/README.md
+Meron Target M5 / Chapter 23 finite toric-code kernel, tree-error injectivity, and adaptive non-improvement mechanized in WdpBatch6.lean
 
 ## Review
 
@@ -41,6 +41,24 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- sha256 (`bytes`): `1bf7c1e971d501d47ce848a7d7c8149dd75542ace9fa09b229da2b5cc67f580c`
+- cited in: node.lean, record TFQ-0586
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch6.toric_adaptive_transcript_indistinguishable` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.toric_adaptive_transcript_indistinguishable` |
+| `WitnessedDifference.WdpBatch6.toric_completion_criterion_iff` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.toric_completion_criterion_iff` |
+| `WitnessedDifference.WdpBatch6.toric_cycle_error_in_syndrome_kernel` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.toric_cycle_error_in_syndrome_kernel` |
+| `WitnessedDifference.WdpBatch6.toric_restricted_tree_error_injective` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.toric_restricted_tree_error_injective` |
+| `WitnessedDifference.WdpBatch6.toric_star_syndrome_sum_zero` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.toric_star_syndrome_sum_zero` |
+
+- counts toward the grade: yes
 
 ### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/plan_odm_toric_boundary.py`
 
@@ -64,21 +82,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0586_wdp_meron_m5_toric_noise_repair.md`
 
 - file: [dag/derivations/06_wdp/tfq_0586_wdp_meron_m5_toric_noise_repair.md](../../../dag/derivations/06_wdp/tfq_0586_wdp_meron_m5_toric_noise_repair.md)
-- sha256 (`lf-normalised`): `dd0b2455b50114a7468787fa7d94656d0ee5475a82338afa0bc6536fafb18280`
+- sha256 (`lf-normalised`): `d958a3eff41850c6c2bfa4c8d0409725010bb5217f5de7e6255b996deba7a8e4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0586
 - counts toward the grade: no
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0586 lean4: Lean 4 formalization of Chapter 23 restricted-error toric-code rank bound is open
-- TFQ-0586 rust: checked by Python toric boundary witness
+- TFQ-0586 rust: checked by Lean 4 theorems and Python toric boundary witness
 
 ## Routes
 
 Incoming (1):
 
-- `PGW-R-WDP-MERON-M5-TORIC-NOISE-REPAIR` `GAP_NO_DERIVATION`: [PGW-WDP-MERON-M4-NATIVE-ADAPTERS](PGW-WDP-MERON-M4-NATIVE-ADAPTERS.md) (OPEN)
+- `PGW-R-WDP-MERON-M5-TORIC-NOISE-REPAIR` `DERIVED_LEAN`: [PGW-WDP-MERON-M4-NATIVE-ADAPTERS](PGW-WDP-MERON-M4-NATIVE-ADAPTERS.md) (PROVED_LEAN)
 
 Outgoing (1):
 

@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidenc
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-GEN-WDP-O05 remains open; software token verification and replay receipts cannot confer external institutional standing, physical truth, or appeal rights.
+GEN-WDP-O05 remains open by design as an external institutional boundary; WdpBatch6.lean::receipt_verification_independent_of_jurisdiction formalizes that software receipt verification does not confer external institutional standing or appeal rights.
 
 ## Source status
 
-GEN-WDP-O05 open governance refinement obligation in genesis_bridge_register.md
+GEN-WDP-O05 non-implication firewall mechanized in WdpBatch6.lean; external institutional jurisdiction remains outside software
 
 ## Review
 
@@ -53,6 +53,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `inscription_distinct_marks_apart` | yes | yes | yes | - | `#print axioms inscription_distinct_marks_apart` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- sha256 (`bytes`): `1bf7c1e971d501d47ce848a7d7c8149dd75542ace9fa09b229da2b5cc67f580c`
+- cited in: node.lean, record TFQ-0570
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch6.receipt_verification_independent_of_jurisdiction` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.receipt_verification_independent_of_jurisdiction` |
 
 - counts toward the grade: yes
 
@@ -78,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md`
 
 - file: [dag/derivations/06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md](../../../dag/derivations/06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md)
-- sha256 (`lf-normalised`): `12638b2eb3485a1762a4d1397bd4e86106d3e9fe0ce62e597acae30f9afd8aad`
+- sha256 (`lf-normalised`): `b7232f9ab0ea8116f1aad4fb9b1d83a587238b4845fd03b3b0f53fb1b767cb28`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0570
 - counts toward the grade: no

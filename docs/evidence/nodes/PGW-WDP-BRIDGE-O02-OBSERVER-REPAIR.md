@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidenc
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-GEN-WDP-O02 remains open; scoped seed-15, seed-16, seed-22, and seed-25 replays do not establish faithful representation of every original executable run.
+Finite orientation-sensitivity countermodel mechanized in WdpBatch6.lean (orientation_sensitive_pair_defect_nonreflection); physical laboratory repair actuation and faithful representation of every external executable run remain open.
 
 ## Source status
 
-GEN-WDP-O02 open refinement obligation in genesis_bridge_register.md
+GEN-WDP-O02 finite orientation-sensitivity countermodel mechanized in WdpBatch6.lean; external physical repair actuation remains open
 
 ## Review
 
@@ -53,6 +53,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `history_extension_unique` | yes | yes | yes | - | `#print axioms history_extension_unique` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- sha256 (`bytes`): `1bf7c1e971d501d47ce848a7d7c8149dd75542ace9fa09b229da2b5cc67f580c`
+- cited in: node.lean, record TFQ-0567
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch6.orientation_sensitive_pair_defect_nonreflection` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch6.orientation_sensitive_pair_defect_nonreflection` |
 
 - counts toward the grade: yes
 
@@ -78,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md`
 
 - file: [dag/derivations/06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md](../../../dag/derivations/06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md)
-- sha256 (`lf-normalised`): `9009a8b34e288999cdad2100a4bed01469bcf3f2158dcbd021d447947e53e0b3`
+- sha256 (`lf-normalised`): `6d961256644ca19e6783ca5e430346f261bd937402f576146a83d4b1b00a6c86`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0567
 - counts toward the grade: no
@@ -91,12 +105,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `PGW-R-WDP-BRIDGE-O02-OBSERVER-REPAIR` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS](PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS.md) (OPEN), [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) (OPEN), [PGW-WDP-BRIDGE-ONGOING-TO-WINDOW](PGW-WDP-BRIDGE-ONGOING-TO-WINDOW.md) (PROVED_LEAN)
+- `PGW-R-WDP-BRIDGE-O02-OBSERVER-REPAIR` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS](PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS.md) (PROVED_LEAN), [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) (OPEN), [PGW-WDP-BRIDGE-ONGOING-TO-WINDOW](PGW-WDP-BRIDGE-ONGOING-TO-WINDOW.md) (PROVED_LEAN)
 
 Outgoing (5):
 
-- `PGW-R-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE](PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE.md) (OPEN)
-- `PGW-R-WDP-MERON-M4-NATIVE-ADAPTERS` `GAP_NO_DERIVATION`: [PGW-WDP-MERON-M4-NATIVE-ADAPTERS](PGW-WDP-MERON-M4-NATIVE-ADAPTERS.md) (OPEN)
+- `PGW-R-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE` `DERIVED_LEAN`: [PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE](PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE.md) (PROVED_LEAN)
+- `PGW-R-WDP-MERON-M4-NATIVE-ADAPTERS` `DERIVED_LEAN`: [PGW-WDP-MERON-M4-NATIVE-ADAPTERS](PGW-WDP-MERON-M4-NATIVE-ADAPTERS.md) (PROVED_LEAN)
 - `PGW-R-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` `DERIVED_LEAN`: [PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION](PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION.md) (PROVED_LEAN)
 - `PGW-R-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION` `DERIVED_LEAN`: [PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION](PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION.md) (PROVED_LEAN)
 - `PGW-R-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION` `DERIVED_LEAN`: [PGW-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION](PGW-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION.md) (PROVED_LEAN)
