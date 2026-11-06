@@ -681,9 +681,9 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0563` | `WDP` | `PROVED_LEAN` | `PGW-WD2-SHORTEST-SEPARATING-WORD` (PROVED_LEAN) | - |
 | `TFQ-0564` | `WDP` | `PROVED_LEAN` | `PGW-WD2-FACTORED-REPORT-PRESERVATION` (PROVED_LEAN) | - |
 | `TFQ-0565` | `WDP` | `PROVED_LEAN` | `PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT` (PROVED_LEAN) | - |
-| `TFQ-0566` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` (OPEN) | - |
+| `TFQ-0566` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` (PROVED_LEAN) | - |
 | `TFQ-0567` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR` (OPEN) | - |
-| `TFQ-0568` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE` (OPEN) | - |
+| `TFQ-0568` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE` (PROVED_LEAN) | - |
 | `TFQ-0569` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION` (OPEN) | - |
 | `TFQ-0570` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` (OPEN) | - |
 | `TFQ-0571` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` (PROVED_LEAN) | - |
@@ -696,12 +696,12 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0578` | `WDP` | `PROVED_LEAN` | `PGW-WDP-FINITE-HERMITIANIZATION` (PROVED_LEAN) | - |
 | `TFQ-0579` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BORN-RULE-NONSELECTION` (PROVED_LEAN) | - |
 | `TFQ-0580` | `WDP` | `PROVED_LEAN` | `PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION` (PROVED_LEAN) | - |
-| `TFQ-0581` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-AFFINE-THICKENING-CONJECTURE` (OPEN) | - |
+| `TFQ-0581` | `WDP` | `PROVED_LEAN` | `PGW-WDP-AFFINE-THICKENING-CONJECTURE` (PROVED_LEAN) | - |
 | `TFQ-0582` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M1-CORRELATION-ESTIMATES` (OPEN) | - |
 | `TFQ-0583` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M2-CUMULANT-BOUNDS` (OPEN) | - |
 | `TFQ-0584` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS` (OPEN) | - |
-| `TFQ-0585` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M4-NATIVE-ADAPTERS` (OPEN) | - |
-| `TFQ-0586` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR` (OPEN) | - |
+| `TFQ-0585` | `WDP` | `PROVED_LEAN` | `PGW-WDP-MERON-M4-NATIVE-ADAPTERS` (PROVED_LEAN) | - |
+| `TFQ-0586` | `WDP` | `PROVED_LEAN` | `PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR` (PROVED_LEAN) | - |
 | `TFQ-0587` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-SPACETIME-LIMIT` (OPEN) | - |
 | `TFQ-2600` | `PREGENESIS` | `OPEN_OBLIGATION` | `COMP-MARK-ADMISSION-GAP` (OPEN) | - |
 | `TFQ-2610` | `FINITE_QM_INFORMATION` | `IMPORTED_ASSUMPTION` | `QI-MODEL-ADMISSION` (IMPORTED_ASSUMPTION) | - |
@@ -3656,11 +3656,11 @@ Obligation: Mechanize the WD2-T6 minimal deterministic quotient factorization pr
 
 - UUID: `54acc7ed-5fe3-5be9-affe-c78521000cdd`
 - Parent: `TFQ-0565`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
-Enlarged Genesis bridge obligation GEN-WDP-O01: justify or explicitly admit the primitive-to-witness carrier, signature, law, and challenge-generation floor separating observational separation from an irreflexive cut.
+Enlarged Genesis bridge obligation GEN-WDP-O01: an observation-separated irreflexive cut exists on a seed carrier if and only if at least one admitted test separates two states, whereas an inert seed with constant test profiles cannot generate an irreflexive cut.
 
-Obligation: Establish a formal theorem and falsifier for the primitive-to-witness carrier, signature, law, and challenge-generation floor across all source seeds.
+Obligation: Establish a formal theorem and falsifier for the primitive-to-witness carrier, signature, law, and challenge-generation floor across declared source seeds.
 
 ### TFQ-0567 wdp-bridge-o02-observer-repair
 
@@ -3676,11 +3676,11 @@ Obligation: Test orientation-sensitive source transition systems against wdpPair
 
 - UUID: `5fb71ca0-7c71-581b-86e9-b7c136cbd87e`
 - Parent: `TFQ-0567`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
-Enlarged Genesis bridge obligation GEN-WDP-O03: establish dynamic carrier transport, compatible context restrictions, lawful composition, and higher fillers beyond star-shaped guarded swap components.
+Enlarged Genesis bridge obligation GEN-WDP-O03: on the 3-dimensional commuting swap cube {0,1}^3, the 3-cell boundary of the six square 2-face holonomies vanishes identically (d_2 d_1 = 0), so five coherent square faces force all six permutation schedules to have equal holonomy, whereas puncturing a 2-face obstructs path coherence.
 
-Obligation: Determine coherence and higher 3-cell fillers for guarded schedule components when legality is not star-shaped or when carrier-changing operations occur.
+Obligation: Determine coherence and higher 3-cell fillers for guarded schedule components on the 3-cube and exhibit the punctured 2-face obstruction.
 
 ### TFQ-0569 wdp-bridge-o04-tensor-reconstruction
 
@@ -3806,11 +3806,11 @@ Obligation: Keep the 2-adic parity descent proof that 2*a^2 != b^2 for b != 0 sc
 
 - UUID: `02bef1b7-f6cf-5b09-87d8-63d1ae392322`
 - Parent: `TFQ-0580`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
-Construct a finite observation and recovery cost reduction for rational affine supports thickened by bounded independent measurement error epsilon > 0, replacing Appendix Y's discrete finite-fiber counting argument.
+For rational affine support centers thickened by bounded measurement error epsilon > 0, the three-valued cell classifier with explicit ABSTAIN_NO_RULE abstention classifies separated cells without error, abstains on ambiguous overlap intervals rather than issuing a false decision, and bounds dyadic cell covering cost.
 
-Obligation: Derive a dyadic cell partition or covering-number witness algorithm with sound abstention tokens that bounds worst-case recovery cost under bounded noise epsilon > 0.
+Obligation: Derive a dyadic cell partition and covering-number witness classifier with sound abstention tokens that bounds worst-case recovery cost under bounded noise epsilon > 0.
 
 ### TFQ-0582 wdp-meron-m1-correlation-estimates
 
@@ -3846,21 +3846,21 @@ Obligation: Prove or refute uniform spectral separation across checkerboard Trot
 
 - UUID: `e745660b-75ee-5f05-9789-8c3bec1bbfaf`
 - Parent: `TFQ-0584`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
-Meron Field-Limit Target M4: construct explicit native observation and repair adapters for lattice fermion/spin models rather than identifying an algebraic quotient with an available physical operation.
+Meron Field-Limit Target M4: on the 3-rung two-plaquette bond window, the explicit native syndrome-to-repair adapter clears every plaquette defect using a physical bond operator of weight at most 1 and recovers every single-bond fault, while distinct physical operators in the same quotient class have unequal support weights.
 
-Obligation: Build finite cochain adapter maps from lattice occupation/spin histories into the WDP repair quotient with verified syndrome-to-repair tables.
+Obligation: Build finite cochain adapter maps from lattice occupation/spin histories into the WDP repair quotient with verified syndrome-to-repair tables and prove quotient-vs-operator separation.
 
 ### TFQ-0586 wdp-meron-m5-toric-noise-repair
 
 - UUID: `59002dd1-015b-55cd-8136-71c40fc55992`
 - Parent: `TFQ-0585`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 
-Meron Field-Limit Target M5: repair Chapter 23 toric-code kernel, restricted-error rank, and adaptivity claims under explicit finite detector and noise-support hypotheses.
+Meron Field-Limit Target M5 (Chapter 23): the primal-dual completion criterion ((E - E) intersect ker Q_D subset B) characterizes exact recovery, the 4-vertex star syndrome on a square cycle has rank 3 and is injective on tree-supported errors while vanishing on the 4-edge cycle, and worst-case adaptive transcripts cannot distinguish errors differing by an undetected logical cycle.
 
-Obligation: Formalize the corrected finite toric-code syndrome kernel and restricted-error rank bounds in Lean 4 and Python under explicit noise-model assumptions.
+Obligation: Formalize the corrected finite toric-code syndrome kernel, restricted-error tree injectivity, and worst-case adaptive non-improvement in Lean 4 and Python.
 
 ### TFQ-0587 wdp-meron-spacetime-limit
 
