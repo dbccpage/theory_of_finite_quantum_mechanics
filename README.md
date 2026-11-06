@@ -65,7 +65,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 45, caveat_added 37, statement_narrowed 22, status_lowered 73 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Outside-corpus records audited | 267 records from 9 corpora | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Of those, claimed `PROVED_LEAN` by their source | 173: kept 88, refuted 2, recorded lower 83 (OPEN 36, IMPORTED_ASSUMPTION 17, COMPUTATIONALLY_CHECKED 15, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
-| Tracked `.lean` files | lean4 1106, papers 87, code 66, dag 242, other 68 (the `dag` files are run snapshots) | `git ls-files` |
+| Tracked `.lean` files | lean4 1106, papers 87, code 66, dag 242, other 60 (the `dag` files are run snapshots) | `git ls-files` |
 | Lake libraries / module roots in `lean4/lakefile.lean` | 194 / 1052 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
 | Lean toolchain | `leanprover/lean4:v4.35.0` | [`lean4/lean-toolchain`](lean4/lean-toolchain) |
 | Mathlib | `v4.35.0` (manifest rev `56a005855ea1`) | [`lean4/lakefile.lean`](lean4/lakefile.lean), [`lean4/lake-manifest.json`](lean4/lake-manifest.json) |
@@ -73,8 +73,8 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | Axioms named in those receipts | propext 473, Quot.sound 416, Classical.choice 385; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 156) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 6419 (plus 152 in `dag/results` snapshots) | `git ls-files '*.py'` |
-| Rust test functions (`#[test]`) | 16904 (plus 113 in `dag/results` snapshots) | `git ls-files '*.rs'` |
+| Python test functions (`def test_`) | 6397 (plus 152 in `dag/results` snapshots) | `git ls-files '*.py'` |
+| Rust test functions (`#[test]`) | 16890 (plus 113 in `dag/results` snapshots) | `git ls-files '*.rs'` |
 | Contract/score companions | combined_files = 3844, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
