@@ -1684,3 +1684,802 @@ theorem pure_state_nonneg_gleason_complex {F : (Fin 3 → ℂ) → ℝ} {W : ℝ
   ring
 
 end GleasonComplex
+
+namespace BornFinite.ContinuumDevelopment
+
+open GleasonComplex Complex ComplexConjugate Matrix Filter Topology
+open scoped BigOperators
+
+noncomputable section
+
+/-! ### Part E: Dimension `d = 3` to General Finite Dimension `d ≥ 3` Subspace Restriction Bridge -/
+
+/-- `d`-dimensional squared norm `‖v‖² = ∑ i, |v_i|²` on `ℂ^d`. -/
+def nsqD {d : ℕ} (v : Fin d → ℂ) : ℝ :=
+  ∑ i : Fin d, Complex.normSq (v i)
+
+lemma dotCD_add_left {d : ℕ} (u v w : Fin d → ℂ) :
+    dotCD (u + v) w = dotCD u w + dotCD v w := by
+  simp only [dotCD, Pi.add_apply, map_add, add_mul, Finset.sum_add_distrib]
+
+lemma dotCD_add_right {d : ℕ} (u v w : Fin d → ℂ) :
+    dotCD u (v + w) = dotCD u v + dotCD u w := by
+  simp only [dotCD, Pi.add_apply, mul_add, Finset.sum_add_distrib]
+
+lemma dotCD_sub_left {d : ℕ} (u v w : Fin d → ℂ) :
+    dotCD (u - v) w = dotCD u w - dotCD v w := by
+  simp only [dotCD, Pi.sub_apply, map_sub, sub_mul, Finset.sum_sub_distrib]
+
+lemma dotCD_sub_right {d : ℕ} (u v w : Fin d → ℂ) :
+    dotCD u (v - w) = dotCD u v - dotCD u w := by
+  simp only [dotCD, Pi.sub_apply, mul_sub, Finset.sum_sub_distrib]
+
+lemma dotCD_smul_left {d : ℕ} (c : ℂ) (u v : Fin d → ℂ) :
+    dotCD (c • u) v = conj c * dotCD u v := by
+  simp only [dotCD, Pi.smul_apply, smul_eq_mul, map_mul, mul_assoc, ← Finset.mul_sum]
+
+lemma dotCD_smul_right {d : ℕ} (c : ℂ) (u v : Fin d → ℂ) :
+    dotCD u (c • v) = c * dotCD u v := by
+  simp only [dotCD, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
+  refine Finset.sum_congr rfl fun i _ => by ring
+
+lemma dotCD_zero_left {d : ℕ} (v : Fin d → ℂ) :
+    dotCD 0 v = 0 := by
+  simp [dotCD]
+
+lemma dotCD_zero_right {d : ℕ} (u : Fin d → ℂ) :
+    dotCD u 0 = 0 := by
+  simp [dotCD]
+
+lemma dotCD_self_eq_nsqD {d : ℕ} (v : Fin d → ℂ) :
+    dotCD v v = (nsqD v : ℂ) := by
+  simp only [dotCD, nsqD, Complex.ofReal_sum, Complex.normSq_eq_conj_mul_self]
+
+lemma nsqD_nonneg {d : ℕ} (v : Fin d → ℂ) :
+    0 ≤ nsqD v :=
+  Finset.sum_nonneg fun i _ => Complex.normSq_nonneg (v i)
+
+lemma nsqD_eq_zero_iff {d : ℕ} (v : Fin d → ℂ) :
+    nsqD v = 0 ↔ v = 0 := by
+  unfold nsqD
+  rw [Finset.sum_eq_zero_iff_of_nonneg (fun i _ => Complex.normSq_nonneg (v i))]
+  constructor
+  · intro h
+    ext i
+    exact Complex.normSq_eq_zero.mp (h i (Finset.mem_univ i))
+  · rintro rfl i _
+    simp
+
+lemma nsqD_pos_iff_ne_zero {d : ℕ} (v : Fin d → ℂ) :
+    0 < nsqD v ↔ v ≠ 0 := by
+  constructor
+  · intro h hv
+    rw [hv, (nsqD_eq_zero_iff 0).mpr rfl] at h
+    exact lt_irrefl 0 h
+  · intro hv
+    exact lt_of_le_of_ne (nsqD_nonneg v) (fun h => hv ((nsqD_eq_zero_iff v).mp h.symm))
+
+lemma nsqD_smul {d : ℕ} (c : ℂ) (v : Fin d → ℂ) :
+    nsqD (c • v) = Complex.normSq c * nsqD v := by
+  simp only [nsqD, Pi.smul_apply, smul_eq_mul, map_mul, ← Finset.mul_sum]
+
+lemma nsqD_single {d : ℕ} (i : Fin d) (c : ℂ) :
+    nsqD (Pi.single i c) = Complex.normSq c := by
+  unfold nsqD
+  rw [Finset.sum_eq_single i]
+  · simp
+  · intro j _ hji
+    simp [Pi.single_eq_of_ne hji]
+  · intro hi
+    exact False.elim (hi (Finset.mem_univ i))
+
+lemma dotCD_single_single {d : ℕ} (i j : Fin d) (a b : ℂ) :
+    dotCD (Pi.single i a) (Pi.single j b) = if i = j then conj a * b else 0 := by
+  unfold dotCD
+  rw [Finset.sum_eq_single i]
+  · by_cases hij : i = j
+    · subst hij; simp
+    · simp [hij]
+  · intro k _ hki
+    simp [Pi.single_eq_of_ne hki]
+  · intro hi
+    exact False.elim (hi (Finset.mem_univ i))
+
+/-- Orthonormal triple of vectors `(e₁, e₂, e₃)` in `ℂ^d`. -/
+def IsOrthonormalTripleD {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) : Prop :=
+  nsqD e₁ = 1 ∧ nsqD e₂ = 1 ∧ nsqD e₃ = 1 ∧
+  dotCD e₁ e₂ = 0 ∧ dotCD e₁ e₃ = 0 ∧ dotCD e₂ e₃ = 0
+
+/-- Any three distinct standard coordinate basis vectors in `ℂ^d` form an orthonormal triple. -/
+theorem isOrthonormalTripleD_single {d : ℕ} {i₀ i₁ i₂ : Fin d}
+    (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂) :
+    IsOrthonormalTripleD (Pi.single i₀ 1) (Pi.single i₁ 1) (Pi.single i₂ 1) := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+  · simp [nsqD_single]
+  · simp [nsqD_single]
+  · simp [nsqD_single]
+  · simp [dotCD_single_single, h01]
+  · simp [dotCD_single_single, h02]
+  · simp [dotCD_single_single, h12]
+
+/-- Isometric linear embedding `ℂ³ → ℂ^d` spanned by `(e₁, e₂, e₃)`. -/
+def embed3D {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) (x : Fin 3 → ℂ) : Fin d → ℂ :=
+  x 0 • e₁ + x 1 • e₂ + x 2 • e₃
+
+lemma embed3D_add {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) (x y : Fin 3 → ℂ) :
+    embed3D e₁ e₂ e₃ (x + y) = embed3D e₁ e₂ e₃ x + embed3D e₁ e₂ e₃ y := by
+  ext i; simp [embed3D]; ring
+
+lemma embed3D_sub {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) (x y : Fin 3 → ℂ) :
+    embed3D e₁ e₂ e₃ (x - y) = embed3D e₁ e₂ e₃ x - embed3D e₁ e₂ e₃ y := by
+  ext i; simp [embed3D]; ring
+
+lemma embed3D_smul {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) (c : ℂ) (x : Fin 3 → ℂ) :
+    embed3D e₁ e₂ e₃ (c • x) = c • embed3D e₁ e₂ e₃ x := by
+  ext i; simp [embed3D]; ring
+
+lemma embed3D_zero {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) :
+    embed3D e₁ e₂ e₃ 0 = 0 := by
+  ext i; simp [embed3D]
+
+lemma embed3D_e0 {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) :
+    embed3D e₁ e₂ e₃ ![1, 0, 0] = e₁ := by
+  ext i; simp [embed3D]
+
+lemma embed3D_e1 {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) :
+    embed3D e₁ e₂ e₃ ![0, 1, 0] = e₂ := by
+  ext i; simp [embed3D]
+
+lemma embed3D_e2 {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) :
+    embed3D e₁ e₂ e₃ ![0, 0, 1] = e₃ := by
+  ext i; simp [embed3D]
+
+/-- `embed3D` preserves the Hermitian inner product when `(e₁, e₂, e₃)` is an orthonormal triple in `ℂ^d`. -/
+theorem dotCD_embed3D {d : ℕ} {e₁ e₂ e₃ : Fin d → ℂ}
+    (h : IsOrthonormalTripleD e₁ e₂ e₃) (x y : Fin 3 → ℂ) :
+    dotCD (embed3D e₁ e₂ e₃ x) (embed3D e₁ e₂ e₃ y) = GleasonComplex.dotC x y := by
+  rcases h with ⟨h1, h2, h3, h12, h13, h23⟩
+  have h11 : dotCD e₁ e₁ = 1 := by rw [dotCD_self_eq_nsqD, h1]; simp
+  have h22 : dotCD e₂ e₂ = 1 := by rw [dotCD_self_eq_nsqD, h2]; simp
+  have h33 : dotCD e₃ e₃ = 1 := by rw [dotCD_self_eq_nsqD, h3]; simp
+  have h21 : dotCD e₂ e₁ = 0 := by rw [← dotCD_conj_symm, h12, map_zero]
+  have h31 : dotCD e₃ e₁ = 0 := by rw [← dotCD_conj_symm, h13, map_zero]
+  have h32 : dotCD e₃ e₂ = 0 := by rw [← dotCD_conj_symm, h23, map_zero]
+  simp only [embed3D, dotCD_add_left, dotCD_add_right, dotCD_smul_left, dotCD_smul_right,
+    h11, h22, h33, h12, h13, h23, h21, h31, h32, GleasonComplex.dotC]
+  ring
+
+/-- `embed3D` is an isometry (`nsqD (embed3D e₁ e₂ e₃ x) = nsq x`) when `(e₁, e₂, e₃)` is orthonormal. -/
+theorem nsqD_embed3D {d : ℕ} {e₁ e₂ e₃ : Fin d → ℂ}
+    (h : IsOrthonormalTripleD e₁ e₂ e₃) (x : Fin 3 → ℂ) :
+    nsqD (embed3D e₁ e₂ e₃ x) = GleasonComplex.nsq x := by
+  have hd := dotCD_embed3D h x x
+  rw [dotCD_self_eq_nsqD, GleasonComplex.dotC_self_eq_nsq] at hd
+  exact_mod_cast hd
+
+/-- `embed3D e₁ e₂ e₃ x` is nonzero if and only if `x` is nonzero. -/
+theorem embed3D_ne_zero_iff {d : ℕ} {e₁ e₂ e₃ : Fin d → ℂ}
+    (h : IsOrthonormalTripleD e₁ e₂ e₃) (x : Fin 3 → ℂ) :
+    embed3D e₁ e₂ e₃ x ≠ 0 ↔ x ≠ 0 := by
+  refine not_congr ?_
+  rw [← nsqD_eq_zero_iff, nsqD_embed3D h, GleasonComplex.nsq_eq_zero_iff]
+
+/-- Continuity of `embed3D e₁ e₂ e₃ : (Fin 3 → ℂ) → (Fin d → ℂ)`. -/
+theorem continuous_embed3D {d : ℕ} (e₁ e₂ e₃ : Fin d → ℂ) :
+    Continuous (embed3D e₁ e₂ e₃) := by
+  unfold embed3D
+  fun_prop
+
+/-- Orthonormal basis of `ℂ^d`. -/
+def IsOrthonormalBasisD {d : ℕ} (B : Fin d → Fin d → ℂ) : Prop :=
+  (∀ i : Fin d, nsqD (B i) = 1) ∧ (∀ i j : Fin d, i ≠ j → dotCD (B i) (B j) = 0)
+
+/-- The standard coordinate basis `i ↦ Pi.single i 1` is an orthonormal basis of `ℂ^d`. -/
+theorem isOrthonormalBasisD_single {d : ℕ} :
+    IsOrthonormalBasisD (fun i : Fin d => Pi.single i (1 : ℂ)) :=
+  ⟨fun i => by simp [nsqD_single], fun i j hij => by simp [dotCD_single_single, hij]⟩
+
+/-- Any three pairwise distinct vectors of an orthonormal basis of `ℂ^d` form an orthonormal triple. -/
+theorem isOrthonormalTripleD_of_basis {d : ℕ} {B : Fin d → Fin d → ℂ}
+    (hB : IsOrthonormalBasisD B) {i₀ i₁ i₂ : Fin d}
+    (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂) :
+    IsOrthonormalTripleD (B i₀) (B i₁) (B i₂) :=
+  ⟨hB.1 i₀, hB.1 i₁, hB.1 i₂, hB.2 i₀ i₁ h01, hB.2 i₀ i₂ h02, hB.2 i₁ i₂ h12⟩
+
+/-- Replace the three slots `(i₀, i₁, i₂)` of a `d`-element family `B` by `(u₀, u₁, u₂)`. -/
+def replaceBasis3D {d : ℕ} (B : Fin d → Fin d → ℂ) (i₀ i₁ i₂ : Fin d)
+    (u₀ u₁ u₂ : Fin d → ℂ) (i : Fin d) : Fin d → ℂ :=
+  if i = i₀ then u₀ else if i = i₁ then u₁ else if i = i₂ then u₂ else B i
+
+private lemma dotCD_embed3D_basis_other {d : ℕ} {B : Fin d → Fin d → ℂ}
+    (hB : IsOrthonormalBasisD B) {i₀ i₁ i₂ j : Fin d}
+    (hj0 : j ≠ i₀) (hj1 : j ≠ i₁) (hj2 : j ≠ i₂) (x : Fin 3 → ℂ) :
+    dotCD (embed3D (B i₀) (B i₁) (B i₂) x) (B j) = 0 ∧
+    dotCD (B j) (embed3D (B i₀) (B i₁) (B i₂) x) = 0 := by
+  have h0j : dotCD (B i₀) (B j) = 0 := hB.2 i₀ j hj0.symm
+  have h1j : dotCD (B i₁) (B j) = 0 := hB.2 i₁ j hj1.symm
+  have h2j : dotCD (B i₂) (B j) = 0 := hB.2 i₂ j hj2.symm
+  have hj0' : dotCD (B j) (B i₀) = 0 := hB.2 j i₀ hj0
+  have hj1' : dotCD (B j) (B i₁) = 0 := hB.2 j i₁ hj1
+  have hj2' : dotCD (B j) (B i₂) = 0 := hB.2 j i₂ hj2
+  constructor
+  · simp [embed3D, dotCD_add_left, dotCD_smul_left, h0j, h1j, h2j]
+  · simp [embed3D, dotCD_add_right, dotCD_smul_right, hj0', hj1', hj2']
+
+private lemma replaceBasis3D_eq {d : ℕ} (B : Fin d → Fin d → ℂ) {i₀ i₁ i₂ : Fin d}
+    (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂) (u₀ u₁ u₂ : Fin d → ℂ) :
+    replaceBasis3D B i₀ i₁ i₂ u₀ u₁ u₂ i₀ = u₀ ∧
+    replaceBasis3D B i₀ i₁ i₂ u₀ u₁ u₂ i₁ = u₁ ∧
+    replaceBasis3D B i₀ i₁ i₂ u₀ u₁ u₂ i₂ = u₂ ∧
+    (∀ k : Fin d, k ≠ i₀ → k ≠ i₁ → k ≠ i₂ → replaceBasis3D B i₀ i₁ i₂ u₀ u₁ u₂ k = B k) := by
+  refine ⟨by simp [replaceBasis3D], by simp [replaceBasis3D, h01.symm],
+    by simp [replaceBasis3D, h02.symm, h12.symm],
+    fun k hk0 hk1 hk2 => by simp [replaceBasis3D, hk0, hk1, hk2]⟩
+
+/-- Rotating three distinct slots `(i₀, i₁, i₂)` of an orthonormal basis `B` of `ℂ^d` by any
+orthonormal triple `(x, y, z)` in `ℂ³` produces another orthonormal basis of `ℂ^d`. -/
+theorem isOrthonormalBasisD_replaceBasis3D {d : ℕ} {B : Fin d → Fin d → ℂ}
+    (hB : IsOrthonormalBasisD B) {i₀ i₁ i₂ : Fin d}
+    (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂)
+    {x y z : Fin 3 → ℂ} (hxyz : GleasonComplex.IsOrthonormalC x y z) :
+    IsOrthonormalBasisD
+      (replaceBasis3D B i₀ i₁ i₂
+        (embed3D (B i₀) (B i₁) (B i₂) x)
+        (embed3D (B i₀) (B i₁) (B i₂) y)
+        (embed3D (B i₀) (B i₁) (B i₂) z)) := by
+  have htr : IsOrthonormalTripleD (B i₀) (B i₁) (B i₂) :=
+    isOrthonormalTripleD_of_basis hB h01 h02 h12
+  have hx1 : GleasonComplex.nsq x = 1 := by
+    have := hxyz.pp; rw [GleasonComplex.dotC_self_eq_nsq] at this; exact_mod_cast this
+  have hy1 : GleasonComplex.nsq y = 1 := by
+    have := hxyz.qq; rw [GleasonComplex.dotC_self_eq_nsq] at this; exact_mod_cast this
+  have hz1 : GleasonComplex.nsq z = 1 := by
+    have := hxyz.rr; rw [GleasonComplex.dotC_self_eq_nsq] at this; exact_mod_cast this
+  have hyx : GleasonComplex.dotC y x = 0 := by
+    rw [GleasonComplex.dotC_conj_symm, hxyz.pq, map_zero]
+  have hzx : GleasonComplex.dotC z x = 0 := by
+    rw [GleasonComplex.dotC_conj_symm, hxyz.pr, map_zero]
+  have hzy : GleasonComplex.dotC z y = 0 := by
+    rw [GleasonComplex.dotC_conj_symm, hxyz.qr, map_zero]
+  rcases replaceBasis3D_eq B h01 h02 h12
+    (embed3D (B i₀) (B i₁) (B i₂) x)
+    (embed3D (B i₀) (B i₁) (B i₂) y)
+    (embed3D (B i₀) (B i₁) (B i₂) z) with ⟨hr0, hr1, hr2, hro⟩
+  refine ⟨?_, ?_⟩
+  · intro i
+    unfold replaceBasis3D
+    split_ifs
+    · rw [nsqD_embed3D htr, hx1]
+    · rw [nsqD_embed3D htr, hy1]
+    · rw [nsqD_embed3D htr, hz1]
+    · exact hB.1 i
+  · intro i j hij
+    by_cases hi0 : i = i₀
+    · rw [hi0, hr0]
+      by_cases hj0 : j = i₀
+      · exact False.elim (hij (hi0.trans hj0.symm))
+      · by_cases hj1 : j = i₁
+        · rw [hj1, hr1, dotCD_embed3D htr]; exact hxyz.pq
+        · by_cases hj2 : j = i₂
+          · rw [hj2, hr2, dotCD_embed3D htr]; exact hxyz.pr
+          · rw [hro j hj0 hj1 hj2]; exact (dotCD_embed3D_basis_other hB hj0 hj1 hj2 x).1
+    · by_cases hi1 : i = i₁
+      · rw [hi1, hr1]
+        by_cases hj0 : j = i₀
+        · rw [hj0, hr0, dotCD_embed3D htr]; exact hyx
+        · by_cases hj1 : j = i₁
+          · exact False.elim (hij (hi1.trans hj1.symm))
+          · by_cases hj2 : j = i₂
+            · rw [hj2, hr2, dotCD_embed3D htr]; exact hxyz.qr
+            · rw [hro j hj0 hj1 hj2]; exact (dotCD_embed3D_basis_other hB hj0 hj1 hj2 y).1
+      · by_cases hi2 : i = i₂
+        · rw [hi2, hr2]
+          by_cases hj0 : j = i₀
+          · rw [hj0, hr0, dotCD_embed3D htr]; exact hzx
+          · by_cases hj1 : j = i₁
+            · rw [hj1, hr1, dotCD_embed3D htr]; exact hzy
+            · by_cases hj2 : j = i₂
+              · exact False.elim (hij (hi2.trans hj2.symm))
+              · rw [hro j hj0 hj1 hj2]; exact (dotCD_embed3D_basis_other hB hj0 hj1 hj2 z).1
+        · rw [hro i hi0 hi1 hi2]
+          by_cases hj0 : j = i₀
+          · rw [hj0, hr0]; exact (dotCD_embed3D_basis_other hB hi0 hi1 hi2 x).2
+          · by_cases hj1 : j = i₁
+            · rw [hj1, hr1]; exact (dotCD_embed3D_basis_other hB hi0 hi1 hi2 y).2
+            · by_cases hj2 : j = i₂
+              · rw [hj2, hr2]; exact (dotCD_embed3D_basis_other hB hi0 hi1 hi2 z).2
+              · rw [hro j hj0 hj1 hj2]; exact hB.2 i j hij
+
+/-- Exact telescoping identity for 3-slot basis replacement: replacing `(B i₀, B i₁, B i₂)` by
+`(u₀, u₁, u₂)` changes the basis sum of `F` by `(F u₀ + F u₁ + F u₂) - (F (B i₀) + F (B i₁) + F (B i₂))`. -/
+theorem sum_replaceBasis3D_sub {d : ℕ} (F : (Fin d → ℂ) → ℝ)
+    (B : Fin d → Fin d → ℂ) {i₀ i₁ i₂ : Fin d}
+    (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂)
+    (u₀ u₁ u₂ : Fin d → ℂ) :
+    (∑ i : Fin d, F (replaceBasis3D B i₀ i₁ i₂ u₀ u₁ u₂ i)) - (∑ i : Fin d, F (B i)) =
+      (F u₀ + F u₁ + F u₂) - (F (B i₀) + F (B i₁) + F (B i₂)) := by
+  rw [← Finset.sum_sub_distrib]
+  have hterm : ∀ i : Fin d,
+      F (replaceBasis3D B i₀ i₁ i₂ u₀ u₁ u₂ i) - F (B i) =
+        (if i = i₀ then F u₀ - F (B i₀) else 0) +
+        (if i = i₁ then F u₁ - F (B i₁) else 0) +
+        (if i = i₂ then F u₂ - F (B i₂) else 0) := by
+    intro i
+    unfold replaceBasis3D
+    by_cases hi0 : i = i₀
+    · subst hi0; simp [h01, h02]
+    · by_cases hi1 : i = i₁
+      · subst hi1; simp [hi0, h12]
+      · by_cases hi2 : i = i₂
+        · subst hi2; simp [hi0, hi1]
+        · simp [hi0, hi1, hi2]
+  simp_rw [hterm]
+  rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
+  simp only [Finset.sum_ite_eq', Finset.mem_univ, ↓reduceIte]
+  ring
+
+/-- A `d`-dimensional frame function of weight `W` on `ℂ^d`: scale-invariant on nonzero vectors
+and summing to `W` on every orthonormal basis of `ℂ^d`. -/
+structure IsFrameFunctionD {d : ℕ} (F : (Fin d → ℂ) → ℝ) (W : ℝ) : Prop where
+  scale : ∀ v : Fin d → ℂ, v ≠ 0 → ∀ c : ℂ, c ≠ 0 → F (c • v) = F v
+  basis_sum : ∀ B : Fin d → Fin d → ℂ, IsOrthonormalBasisD B → (∑ i : Fin d, F (B i)) = W
+
+/-- Subspace 3-frame additivity on `ℂ^d`: scale-invariance on nonzero vectors together with
+3-frame weight conservation `F(embed3D x) + F(embed3D y) + F(embed3D z) = F e₁ + F e₂ + F e₃`
+on every 3D subspace spanned by an orthonormal triple `(e₁, e₂, e₃)` in `ℂ^d`. -/
+structure HasSubspace3FrameAdditivityD {d : ℕ} (F : (Fin d → ℂ) → ℝ) : Prop where
+  scale : ∀ v : Fin d → ℂ, v ≠ 0 → ∀ c : ℂ, c ≠ 0 → F (c • v) = F v
+  subspace_frame : ∀ {e₁ e₂ e₃ : Fin d → ℂ}, IsOrthonormalTripleD e₁ e₂ e₃ →
+    ∀ x y z : Fin 3 → ℂ, x ≠ 0 → y ≠ 0 → z ≠ 0 →
+      GleasonComplex.dotC x y = 0 → GleasonComplex.dotC x z = 0 → GleasonComplex.dotC y z = 0 →
+      F (embed3D e₁ e₂ e₃ x) + F (embed3D e₁ e₂ e₃ y) + F (embed3D e₁ e₂ e₃ z) =
+        F e₁ + F e₂ + F e₃
+
+/-- Restriction of `F : (Fin d → ℂ) → ℝ` to the 3D subspace spanned by `(e₁, e₂, e₃)`. -/
+def restrict3D {d : ℕ} (F : (Fin d → ℂ) → ℝ) (e₁ e₂ e₃ : Fin d → ℂ) (x : Fin 3 → ℂ) : ℝ :=
+  F (embed3D e₁ e₂ e₃ x)
+
+/-- Restricting any `d`-dimensional frame function `F` (`IsFrameFunctionD F W`) to the 3D subspace
+spanned by three distinct basis vectors `(B i₀, B i₁, B i₂)` of an orthonormal basis `B` yields a
+`ℂ³` frame function `IsFrameFunctionC` of weight `F (B i₀) + F (B i₁) + F (B i₂)`. -/
+theorem isFrameFunctionC_restrict3D_of_basis {d : ℕ} {F : (Fin d → ℂ) → ℝ} {W : ℝ}
+    (hF : IsFrameFunctionD F W) {B : Fin d → Fin d → ℂ} (hB : IsOrthonormalBasisD B)
+    {i₀ i₁ i₂ : Fin d} (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂) :
+    GleasonComplex.IsFrameFunctionC (restrict3D F (B i₀) (B i₁) (B i₂))
+      (F (B i₀) + F (B i₁) + F (B i₂)) where
+  scale v hv c hc := by
+    have htr := isOrthonormalTripleD_of_basis hB h01 h02 h12
+    show F (embed3D (B i₀) (B i₁) (B i₂) (c • v)) = F (embed3D (B i₀) (B i₁) (B i₂) v)
+    rw [embed3D_smul, hF.scale _ ((embed3D_ne_zero_iff htr v).mpr hv) c hc]
+  frame u v w hu hv hw huv huw hvw := by
+    have htr := isOrthonormalTripleD_of_basis hB h01 h02 h12
+    obtain ⟨cu, hcu0, hcu1⟩ := GleasonComplex.exists_unit_smulC hu
+    obtain ⟨cv, hcv0, hcv1⟩ := GleasonComplex.exists_unit_smulC hv
+    obtain ⟨cw, hcw0, hcw1⟩ := GleasonComplex.exists_unit_smulC hw
+    set x := cu • u
+    set y := cv • v
+    set z := cw • w
+    have hxyz : GleasonComplex.IsOrthonormalC x y z := by
+      refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+      · rw [GleasonComplex.dotC_self_eq_nsq, show GleasonComplex.nsq x = 1 from hcu1]; simp
+      · rw [GleasonComplex.dotC_self_eq_nsq, show GleasonComplex.nsq y = 1 from hcv1]; simp
+      · rw [GleasonComplex.dotC_self_eq_nsq, show GleasonComplex.nsq z = 1 from hcw1]; simp
+      · simp [x, y, GleasonComplex.dotC_smul_left, GleasonComplex.dotC_smul_right, huv]
+      · simp [x, z, GleasonComplex.dotC_smul_left, GleasonComplex.dotC_smul_right, huw]
+      · simp [y, z, GleasonComplex.dotC_smul_left, GleasonComplex.dotC_smul_right, hvw]
+    have hB' := isOrthonormalBasisD_replaceBasis3D hB h01 h02 h12 hxyz
+    have hsum' := hF.basis_sum _ hB'
+    have hsumB := hF.basis_sum B hB
+    have hdiff := sum_replaceBasis3D_sub F B h01 h02 h12
+      (embed3D (B i₀) (B i₁) (B i₂) x)
+      (embed3D (B i₀) (B i₁) (B i₂) y)
+      (embed3D (B i₀) (B i₁) (B i₂) z)
+    rw [hsum', hsumB, sub_self] at hdiff
+    have hx_eq : F (embed3D (B i₀) (B i₁) (B i₂) x) = F (embed3D (B i₀) (B i₁) (B i₂) u) := by
+      rw [show x = cu • u from rfl, embed3D_smul,
+        hF.scale _ ((embed3D_ne_zero_iff htr u).mpr hu) cu hcu0]
+    have hy_eq : F (embed3D (B i₀) (B i₁) (B i₂) y) = F (embed3D (B i₀) (B i₁) (B i₂) v) := by
+      rw [show y = cv • v from rfl, embed3D_smul,
+        hF.scale _ ((embed3D_ne_zero_iff htr v).mpr hv) cv hcv0]
+    have hz_eq : F (embed3D (B i₀) (B i₁) (B i₂) z) = F (embed3D (B i₀) (B i₁) (B i₂) w) := by
+      rw [show z = cw • w from rfl, embed3D_smul,
+        hF.scale _ ((embed3D_ne_zero_iff htr w).mpr hw) cw hcw0]
+    unfold restrict3D
+    linarith
+
+/-- Restricting any `F` satisfying `HasSubspace3FrameAdditivityD F` to the 3D subspace spanned by
+an orthonormal triple `(e₁, e₂, e₃)` yields a `ℂ³` frame function of weight `F e₁ + F e₂ + F e₃`. -/
+theorem isFrameFunctionC_restrict3D {d : ℕ} {F : (Fin d → ℂ) → ℝ}
+    (hF : HasSubspace3FrameAdditivityD F)
+    {e₁ e₂ e₃ : Fin d → ℂ} (h : IsOrthonormalTripleD e₁ e₂ e₃) :
+    GleasonComplex.IsFrameFunctionC (restrict3D F e₁ e₂ e₃) (F e₁ + F e₂ + F e₃) where
+  scale v hv c hc := by
+    show F (embed3D e₁ e₂ e₃ (c • v)) = F (embed3D e₁ e₂ e₃ v)
+    rw [embed3D_smul, hF.scale _ ((embed3D_ne_zero_iff h v).mpr hv) c hc]
+  frame u v w hu hv hw huv huw hvw :=
+    hF.subspace_frame h u v w hu hv hw huv huw hvw
+
+/-- Nonnegativity and 3-frame additivity lift to `IsNonnegFrameFunctionC` on every 3D subspace. -/
+theorem isNonnegFrameFunctionC_restrict3D {d : ℕ} {F : (Fin d → ℂ) → ℝ}
+    (hF : HasSubspace3FrameAdditivityD F)
+    (hnonneg : ∀ v : Fin d → ℂ, v ≠ 0 → 0 ≤ F v)
+    {e₁ e₂ e₃ : Fin d → ℂ} (h : IsOrthonormalTripleD e₁ e₂ e₃) :
+    GleasonComplex.IsNonnegFrameFunctionC (restrict3D F e₁ e₂ e₃) (F e₁ + F e₂ + F e₃) where
+  toIsFrameFunctionC := isFrameFunctionC_restrict3D hF h
+  nonneg x hx := hnonneg (embed3D e₁ e₂ e₃ x) ((embed3D_ne_zero_iff h x).mpr hx)
+
+/-- Nonnegativity and `IsFrameFunctionD` lift to `IsNonnegFrameFunctionC` on any 3 basis vectors. -/
+theorem isNonnegFrameFunctionC_restrict3D_of_basis {d : ℕ} {F : (Fin d → ℂ) → ℝ} {W : ℝ}
+    (hF : IsFrameFunctionD F W)
+    (hnonneg : ∀ v : Fin d → ℂ, v ≠ 0 → 0 ≤ F v)
+    {B : Fin d → Fin d → ℂ} (hB : IsOrthonormalBasisD B)
+    {i₀ i₁ i₂ : Fin d} (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂) :
+    GleasonComplex.IsNonnegFrameFunctionC (restrict3D F (B i₀) (B i₁) (B i₂))
+      (F (B i₀) + F (B i₁) + F (B i₂)) where
+  toIsFrameFunctionC := isFrameFunctionC_restrict3D_of_basis hF hB h01 h02 h12
+  nonneg x hx :=
+    hnonneg _ ((embed3D_ne_zero_iff (isOrthonormalTripleD_of_basis hB h01 h02 h12) x).mpr hx)
+
+/-- Continuity of `F` on `ℂ^d \ {0}` implies continuity of `restrict3D F e₁ e₂ e₃` on `ℂ³ \ {0}`. -/
+theorem continuousOn_restrict3D {d : ℕ} {F : (Fin d → ℂ) → ℝ}
+    (hc : ContinuousOn F {v : Fin d → ℂ | v ≠ 0})
+    {e₁ e₂ e₃ : Fin d → ℂ} (h : IsOrthonormalTripleD e₁ e₂ e₃) :
+    ContinuousOn (restrict3D F e₁ e₂ e₃) {x : Fin 3 → ℂ | x ≠ 0} :=
+  hc.comp (continuous_embed3D e₁ e₂ e₃).continuousOn
+    (fun x hx => (embed3D_ne_zero_iff h x).mpr hx)
+
+/-- **3D Subspace Gleason Representation in `ℂ^d`.**  For any continuous `F` on `ℂ^d \ {0}`
+satisfying `HasSubspace3FrameAdditivityD F` and any orthonormal triple `(e₁, e₂, e₃)` in `ℂ^d`,
+the restriction `restrict3D F e₁ e₂ e₃` has the spectral quadratic representation of
+`GleasonComplex.gleason_complex`. -/
+theorem gleason_subspace3D_of_continuousD {d : ℕ} {F : (Fin d → ℂ) → ℝ}
+    (hF : HasSubspace3FrameAdditivityD F)
+    (hc : ContinuousOn F {v : Fin d → ℂ | v ≠ 0})
+    {e₁ e₂ e₃ : Fin d → ℂ} (h : IsOrthonormalTripleD e₁ e₂ e₃) :
+    ∃ p q r : Fin 3 → ℂ, GleasonComplex.IsOrthonormalC p q r ∧ ∃ M α m : ℝ,
+      ∀ x : Fin 3 → ℂ, x ≠ 0 →
+        F (embed3D e₁ e₂ e₃ x) =
+          (M * Complex.normSq (GleasonComplex.dotC p x) +
+           α * Complex.normSq (GleasonComplex.dotC q x) +
+           m * Complex.normSq (GleasonComplex.dotC r x)) / GleasonComplex.nsq x :=
+  GleasonComplex.gleason_complex (isFrameFunctionC_restrict3D hF h) (continuousOn_restrict3D hc h)
+
+/-- **3D Basis-Subspace Gleason Representation in `ℂ^d`.**  For any continuous `d`-dimensional
+frame function `F` (`IsFrameFunctionD F W`) on `ℂ^d \ {0}` and any three pairwise distinct basis
+indices `i₀, i₁, i₂ : Fin d` of an orthonormal basis `B` (`IsOrthonormalBasisD B`), the 3D
+restriction `restrict3D F (B i₀) (B i₁) (B i₂)` has the spectral quadratic representation of
+`GleasonComplex.gleason_complex`. -/
+theorem gleason_basis3D_of_continuousD {d : ℕ} {F : (Fin d → ℂ) → ℝ} {W : ℝ}
+    (hF : IsFrameFunctionD F W)
+    (hc : ContinuousOn F {v : Fin d → ℂ | v ≠ 0})
+    {B : Fin d → Fin d → ℂ} (hB : IsOrthonormalBasisD B)
+    {i₀ i₁ i₂ : Fin d} (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂) :
+    ∃ p q r : Fin 3 → ℂ, GleasonComplex.IsOrthonormalC p q r ∧ ∃ M α m : ℝ,
+      ∀ x : Fin 3 → ℂ, x ≠ 0 →
+        F (embed3D (B i₀) (B i₁) (B i₂) x) =
+          (M * Complex.normSq (GleasonComplex.dotC p x) +
+           α * Complex.normSq (GleasonComplex.dotC q x) +
+           m * Complex.normSq (GleasonComplex.dotC r x)) / GleasonComplex.nsq x :=
+  GleasonComplex.gleason_complex
+    (isFrameFunctionC_restrict3D_of_basis hF hB h01 h02 h12)
+    (continuousOn_restrict3D hc (isOrthonormalTripleD_of_basis hB h01 h02 h12))
+
+/-- **Continuity-Free Pure-State Gleason Theorem on 3D Subspaces of `ℂ^d`.**  For any nonnegative
+`F` on `ℂ^d \ {0}` satisfying `HasSubspace3FrameAdditivityD F` and any orthonormal triple
+`(e₁, e₂, e₃)`, if `F` attains the full 3D subspace weight `F e₁ + F e₂ + F e₃` at a unit vector
+`embed3D e₁ e₂ e₃ p₀` (`nsq p₀ = 1`), then `F (embed3D e₁ e₂ e₃ x) = (F e₁ + F e₂ + F e₃) * |⟨p₀, x⟩|² / ‖x‖²`
+for all `x ≠ 0`, with zero continuity assumption on `F`. -/
+theorem pure_state_nonneg_gleason_subspace3D {d : ℕ} {F : (Fin d → ℂ) → ℝ}
+    (hF : HasSubspace3FrameAdditivityD F)
+    (hnonneg : ∀ v : Fin d → ℂ, v ≠ 0 → 0 ≤ F v)
+    {e₁ e₂ e₃ : Fin d → ℂ} (h : IsOrthonormalTripleD e₁ e₂ e₃)
+    {p₀ : Fin 3 → ℂ} (hp₀ : GleasonComplex.nsq p₀ = 1)
+    (hpW : F (embed3D e₁ e₂ e₃ p₀) = F e₁ + F e₂ + F e₃) :
+    ∀ x : Fin 3 → ℂ, x ≠ 0 →
+      F (embed3D e₁ e₂ e₃ x) =
+        (F e₁ + F e₂ + F e₃) * Complex.normSq (GleasonComplex.dotC p₀ x) / GleasonComplex.nsq x :=
+  GleasonComplex.pure_state_nonneg_gleason_complex
+    (isNonnegFrameFunctionC_restrict3D hF hnonneg h) hp₀ hpW
+
+/-- **Continuity-Free Pure-State Gleason Theorem on Basis 3-Subspaces of `ℂ^d`.**  Directly from
+`IsFrameFunctionD F W` and `IsOrthonormalBasisD B` for pairwise distinct `i₀, i₁, i₂ : Fin d`,
+without assuming continuity of `F`. -/
+theorem pure_state_nonneg_gleason_basis3D {d : ℕ} {F : (Fin d → ℂ) → ℝ} {W : ℝ}
+    (hF : IsFrameFunctionD F W)
+    (hnonneg : ∀ v : Fin d → ℂ, v ≠ 0 → 0 ≤ F v)
+    {B : Fin d → Fin d → ℂ} (hB : IsOrthonormalBasisD B)
+    {i₀ i₁ i₂ : Fin d} (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂)
+    {p₀ : Fin 3 → ℂ} (hp₀ : GleasonComplex.nsq p₀ = 1)
+    (hpW : F (embed3D (B i₀) (B i₁) (B i₂) p₀) = F (B i₀) + F (B i₁) + F (B i₂)) :
+    ∀ x : Fin 3 → ℂ, x ≠ 0 →
+      F (embed3D (B i₀) (B i₁) (B i₂) x) =
+        (F (B i₀) + F (B i₁) + F (B i₂)) *
+          Complex.normSq (GleasonComplex.dotC p₀ x) / GleasonComplex.nsq x :=
+  GleasonComplex.pure_state_nonneg_gleason_complex
+    (isNonnegFrameFunctionC_restrict3D_of_basis hF hnonneg hB h01 h02 h12) hp₀ hpW
+
+/-- `d`-dimensional Rayleigh quotient `Re ⟨v, M v⟩ / ‖v‖²` of `M : Matrix (Fin d) (Fin d) ℂ`. -/
+def complexRayleighD {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ) (v : Fin d → ℂ) : ℝ :=
+  complexQuadFormD M v / nsqD v
+
+lemma complexQuadFormD_smul {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ) (c : ℂ) (v : Fin d → ℂ) :
+    complexQuadFormD M (c • v) = Complex.normSq c * complexQuadFormD M v := by
+  unfold complexQuadFormD
+  rw [Matrix.mulVec_smul, dotCD_smul_left, dotCD_smul_right, ← mul_assoc,
+    ← Complex.normSq_eq_conj_mul_self, Complex.re_ofReal_mul]
+
+lemma complexRayleighD_smul {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ)
+    {v : Fin d → ℂ} (_hv : v ≠ 0) {c : ℂ} (hc : c ≠ 0) :
+    complexRayleighD M (c • v) = complexRayleighD M v := by
+  unfold complexRayleighD
+  rw [complexQuadFormD_smul, nsqD_smul,
+    mul_div_mul_left _ _ (Complex.normSq_pos.mpr hc).ne']
+
+/-- `d`-dimensional parallelogram law for the quadratic form `complexQuadFormD M`:
+`Q(u + v) + Q(u - v) = 2 Q(u) + 2 Q(v)`. -/
+theorem complexQuadFormD_parallelogram {d : ℕ} {M : Matrix (Fin d) (Fin d) ℂ}
+    (_hM : M.IsHermitian) (u v : Fin d → ℂ) :
+    complexQuadFormD M (u + v) + complexQuadFormD M (u - v) =
+      2 * complexQuadFormD M u + 2 * complexQuadFormD M v := by
+  unfold complexQuadFormD
+  simp only [Matrix.mulVec_add, Matrix.mulVec_sub, dotCD_add_left, dotCD_add_right,
+    dotCD_sub_left, dotCD_sub_right, Complex.add_re, Complex.sub_re]
+  ring
+
+/-- Alias `complexQuadForm3` for `complexQuadForm` on `3 × 3` complex matrices. -/
+abbrev complexQuadForm3 := complexQuadForm
+
+private lemma vec3_two {α : Type*} (a b c : α) : (![a, b, c] : Fin 3 → α) 2 = c := rfl
+
+/-- Evaluating `complexQuadFormD M` on a coordinate 3D subspace `embed3D (e_{i₀}) (e_{i₁}) (e_{i₂})`
+coincides with the `3 × 3` principal submatrix quadratic form `complexQuadForm3 (submatrix3D M ![i₀, i₁, i₂])`. -/
+theorem complexQuadFormD_embed3D_single_eq_submatrix3D {d : ℕ}
+    (M : Matrix (Fin d) (Fin d) ℂ) (i₀ i₁ i₂ : Fin d) (x : Fin 3 → ℂ) :
+    complexQuadFormD M (embed3D (Pi.single i₀ 1) (Pi.single i₁ 1) (Pi.single i₂ 1) x) =
+      complexQuadForm3 (submatrix3D M ![i₀, i₁, i₂]) x := by
+  unfold complexQuadFormD complexQuadForm3 complexQuadForm embed3D
+  congr 1
+  simp only [Matrix.mulVec_add, Matrix.mulVec_smul, dotCD_add_left, dotCD_add_right,
+    dotCD_smul_left, dotCD_smul_right, dotCD_single_mulVec_single,
+    GleasonComplex.dotC, Matrix.mulVec, dotProduct, Fin.sum_univ_three, submatrix3D,
+    Matrix.cons_val_zero, Matrix.cons_val_one, vec3_two]
+  ring
+
+/-- On any three pairwise distinct coordinate axes `(i₀, i₁, i₂)`, restricting the `d`-dimensional
+Rayleigh quotient `complexRayleighD M` via `embed3D` equals the `3 × 3` principal submatrix
+Rayleigh quotient `complexRayleigh (submatrix3D M ![i₀, i₁, i₂])`. -/
+theorem complexRayleighD_embed3D_single_eq_submatrix3D {d : ℕ}
+    (M : Matrix (Fin d) (Fin d) ℂ) {i₀ i₁ i₂ : Fin d}
+    (h01 : i₀ ≠ i₁) (h02 : i₀ ≠ i₂) (h12 : i₁ ≠ i₂) (x : Fin 3 → ℂ) :
+    complexRayleighD M (embed3D (Pi.single i₀ 1) (Pi.single i₁ 1) (Pi.single i₂ 1) x) =
+      complexRayleigh (submatrix3D M ![i₀, i₁, i₂]) x := by
+  unfold complexRayleighD complexRayleigh
+  rw [complexQuadFormD_embed3D_single_eq_submatrix3D,
+    nsqD_embed3D (isOrthonormalTripleD_single h01 h02 h12)]
+
+/-- `3 × 3` compressed matrix of `M : Matrix (Fin d) (Fin d) ℂ` on the 3-tuple `(e₁, e₂, e₃)`. -/
+def subspaceMatrix3D {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ)
+    (e₁ e₂ e₃ : Fin d → ℂ) : Matrix (Fin 3) (Fin 3) ℂ :=
+  fun a b => dotCD (![e₁, e₂, e₃] a) (M *ᵥ (![e₁, e₂, e₃] b))
+
+/-- If `M` is Hermitian on `ℂ^d`, its `3 × 3` compression `subspaceMatrix3D M e₁ e₂ e₃` onto any
+triple `(e₁, e₂, e₃)` is Hermitian. -/
+theorem subspaceMatrix3D_isHermitian {d : ℕ} {M : Matrix (Fin d) (Fin d) ℂ}
+    (hM : M.IsHermitian) (e₁ e₂ e₃ : Fin d → ℂ) :
+    (subspaceMatrix3D M e₁ e₂ e₃).IsHermitian := by
+  refine Matrix.IsHermitian.ext fun a b => ?_
+  simp only [subspaceMatrix3D, Complex.star_def]
+  rw [dotCD_conj_symm, dotCD_mulVec_left, hM.eq]
+
+/-- On standard coordinate basis vectors `(Pi.single i₀ 1, Pi.single i₁ 1, Pi.single i₂ 1)`,
+`subspaceMatrix3D M` coincides with the principal `3 × 3` submatrix `submatrix3D M ![i₀, i₁, i₂]`. -/
+theorem subspaceMatrix3D_single_eq_submatrix3D {d : ℕ}
+    (M : Matrix (Fin d) (Fin d) ℂ) (i₀ i₁ i₂ : Fin d) :
+    subspaceMatrix3D M (Pi.single i₀ 1) (Pi.single i₁ 1) (Pi.single i₂ 1) =
+      submatrix3D M ![i₀, i₁, i₂] := by
+  have hv : ∀ a : Fin 3,
+      (![Pi.single i₀ (1 : ℂ), Pi.single i₁ 1, Pi.single i₂ 1] : Fin 3 → Fin d → ℂ) a =
+        Pi.single ((![i₀, i₁, i₂] : Fin 3 → Fin d) a) (1 : ℂ) := by
+    intro a; fin_cases a <;> rfl
+  ext a b
+  simp only [subspaceMatrix3D, submatrix3D, hv, dotCD_single_mulVec_single]
+
+lemma dotCD_embed3D_mulVec_embed3D {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ)
+    (e₁ e₂ e₃ : Fin d → ℂ) (x : Fin 3 → ℂ) :
+    dotCD (embed3D e₁ e₂ e₃ x) (M *ᵥ embed3D e₁ e₂ e₃ x) =
+      GleasonComplex.dotC x (subspaceMatrix3D M e₁ e₂ e₃ *ᵥ x) := by
+  simp only [embed3D, subspaceMatrix3D, Matrix.mulVec_add, Matrix.mulVec_smul,
+    dotCD_add_left, dotCD_add_right, dotCD_smul_left, dotCD_smul_right,
+    GleasonComplex.dotC, Matrix.mulVec, dotProduct, Fin.sum_univ_three,
+    Matrix.cons_val_zero, Matrix.cons_val_one, vec3_two]
+  ring
+
+/-- Evaluating `complexQuadFormD M` along `embed3D e₁ e₂ e₃` equals the `3 × 3` quadratic form
+of `subspaceMatrix3D M e₁ e₂ e₃`. -/
+theorem complexQuadFormD_embed3D_eq_subspaceMatrix3D {d : ℕ}
+    (M : Matrix (Fin d) (Fin d) ℂ) (e₁ e₂ e₃ : Fin d → ℂ) (x : Fin 3 → ℂ) :
+    complexQuadFormD M (embed3D e₁ e₂ e₃ x) =
+      complexQuadForm3 (subspaceMatrix3D M e₁ e₂ e₃) x := by
+  unfold complexQuadFormD complexQuadForm3 complexQuadForm
+  rw [dotCD_embed3D_mulVec_embed3D]
+
+/-- For any orthonormal triple `(e₁, e₂, e₃)` in `ℂ^d`, restricting `complexRayleighD M` via
+`embed3D e₁ e₂ e₃` equals the `3 × 3` Rayleigh quotient `complexRayleigh (subspaceMatrix3D M e₁ e₂ e₃)`. -/
+theorem complexRayleighD_embed3D_eq_subspaceMatrix3D {d : ℕ}
+    (M : Matrix (Fin d) (Fin d) ℂ) {e₁ e₂ e₃ : Fin d → ℂ}
+    (h : IsOrthonormalTripleD e₁ e₂ e₃) (x : Fin 3 → ℂ) :
+    complexRayleighD M (embed3D e₁ e₂ e₃ x) =
+      complexRayleigh (subspaceMatrix3D M e₁ e₂ e₃) x := by
+  unfold complexRayleighD complexRayleigh
+  rw [complexQuadFormD_embed3D_eq_subspaceMatrix3D, nsqD_embed3D h]
+
+private lemma orthonormalC_outer_sum {p q r : Fin 3 → ℂ}
+    (h : GleasonComplex.IsOrthonormalC p q r) (i j : Fin 3) :
+    p i * conj (p j) + q i * conj (q j) + r i * conj (r j) =
+      if i = j then 1 else 0 := by
+  let U : Matrix (Fin 3) (Fin 3) ℂ := Matrix.of fun a l => (![p, q, r] l) a
+  have h1 : Matrix.conjTranspose U * U = 1 := by
+    have hpp := h.pp; have hqq := h.qq; have hrr := h.rr
+    have hpq := h.pq; have hpr := h.pr; have hqr := h.qr
+    have hqp : GleasonComplex.dotC q p = 0 := by rw [GleasonComplex.dotC_conj_symm, hpq, map_zero]
+    have hrp : GleasonComplex.dotC r p = 0 := by rw [GleasonComplex.dotC_conj_symm, hpr, map_zero]
+    have hrq : GleasonComplex.dotC r q = 0 := by rw [GleasonComplex.dotC_conj_symm, hqr, map_zero]
+    simp only [GleasonComplex.dotC] at hpp hqq hrr hpq hpr hqr hqp hrp hrq
+    ext a b
+    fin_cases a <;> fin_cases b <;>
+      simp [U, Matrix.mul_apply, Matrix.conjTranspose_apply, Fin.sum_univ_three] <;>
+      first
+      | exact hpp | exact hqq | exact hrr | exact hpq | exact hpr | exact hqr
+      | exact hqp | exact hrp | exact hrq
+  have h2 : U * Matrix.conjTranspose U = 1 := mul_eq_one_comm.1 h1
+  have := congrFun (congrFun h2 i) j
+  simpa [U, Matrix.mul_apply, Matrix.conjTranspose_apply, Fin.sum_univ_three,
+    Matrix.one_apply] using this
+
+private lemma dotC_mulVec_sum_of_isOrthonormalC {p q r : Fin 3 → ℂ}
+    (h : GleasonComplex.IsOrthonormalC p q r) (N : Matrix (Fin 3) (Fin 3) ℂ) :
+    GleasonComplex.dotC p (N *ᵥ p) + GleasonComplex.dotC q (N *ᵥ q) +
+      GleasonComplex.dotC r (N *ᵥ r) = N 0 0 + N 1 1 + N 2 2 := by
+  have k00 := orthonormalC_outer_sum h 0 0
+  have k01 := orthonormalC_outer_sum h 0 1
+  have k02 := orthonormalC_outer_sum h 0 2
+  have k10 := orthonormalC_outer_sum h 1 0
+  have k11 := orthonormalC_outer_sum h 1 1
+  have k12 := orthonormalC_outer_sum h 1 2
+  have k20 := orthonormalC_outer_sum h 2 0
+  have k21 := orthonormalC_outer_sum h 2 1
+  have k22 := orthonormalC_outer_sum h 2 2
+  simp at k00 k01 k02 k10 k11 k12 k20 k21 k22
+  simp only [GleasonComplex.dotC, Matrix.mulVec, dotProduct, Fin.sum_univ_three]
+  linear_combination
+    N 0 0 * k00 + N 0 1 * k10 + N 0 2 * k20 +
+    N 1 0 * k01 + N 1 1 * k11 + N 1 2 * k21 +
+    N 2 0 * k02 + N 2 1 * k12 + N 2 2 * k22
+
+/-- For every Hermitian `d × d` matrix `M`, its Rayleigh quotient `complexRayleighD M` satisfies
+3-frame additivity on every 3D subspace of `ℂ^d`. -/
+theorem hasSubspace3FrameAdditivityD_complexRayleighD {d : ℕ}
+    {M : Matrix (Fin d) (Fin d) ℂ} (_hM : M.IsHermitian) :
+    HasSubspace3FrameAdditivityD (complexRayleighD M) where
+  scale v hv c hc := complexRayleighD_smul M hv hc
+  subspace_frame {e₁ e₂ e₃} h x y z hx hy hz hxy hxz hyz := by
+    obtain ⟨cx, hcx0, hcx1⟩ := GleasonComplex.exists_unit_smulC hx
+    obtain ⟨cy, hcy0, hcy1⟩ := GleasonComplex.exists_unit_smulC hy
+    obtain ⟨cz, hcz0, hcz1⟩ := GleasonComplex.exists_unit_smulC hz
+    set p := cx • x
+    set q := cy • y
+    set r := cz • z
+    have hp1 : GleasonComplex.nsq p = 1 := hcx1
+    have hq1 : GleasonComplex.nsq q = 1 := hcy1
+    have hr1 : GleasonComplex.nsq r = 1 := hcz1
+    have hpqr : GleasonComplex.IsOrthonormalC p q r := by
+      refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+      · rw [GleasonComplex.dotC_self_eq_nsq, hp1]; simp
+      · rw [GleasonComplex.dotC_self_eq_nsq, hq1]; simp
+      · rw [GleasonComplex.dotC_self_eq_nsq, hr1]; simp
+      · simp [p, q, GleasonComplex.dotC_smul_left, GleasonComplex.dotC_smul_right, hxy]
+      · simp [p, r, GleasonComplex.dotC_smul_left, GleasonComplex.dotC_smul_right, hxz]
+      · simp [q, r, GleasonComplex.dotC_smul_left, GleasonComplex.dotC_smul_right, hyz]
+    have htr := dotC_mulVec_sum_of_isOrthonormalC hpqr (subspaceMatrix3D M e₁ e₂ e₃)
+    have hre := congrArg Complex.re htr
+    simp only [Complex.add_re, ← dotCD_embed3D_mulVec_embed3D] at hre
+    have hp_ray : complexRayleighD M (embed3D e₁ e₂ e₃ x) =
+        (dotCD (embed3D e₁ e₂ e₃ p) (M *ᵥ embed3D e₁ e₂ e₃ p)).re := by
+      have hsc : complexRayleighD M (embed3D e₁ e₂ e₃ p) = complexRayleighD M (embed3D e₁ e₂ e₃ x) := by
+        rw [show p = cx • x from rfl, embed3D_smul,
+          complexRayleighD_smul M ((embed3D_ne_zero_iff h x).mpr hx) hcx0]
+      rw [← hsc, complexRayleighD, nsqD_embed3D h, hp1, div_one]; rfl
+    have hq_ray : complexRayleighD M (embed3D e₁ e₂ e₃ y) =
+        (dotCD (embed3D e₁ e₂ e₃ q) (M *ᵥ embed3D e₁ e₂ e₃ q)).re := by
+      have hsc : complexRayleighD M (embed3D e₁ e₂ e₃ q) = complexRayleighD M (embed3D e₁ e₂ e₃ y) := by
+        rw [show q = cy • y from rfl, embed3D_smul,
+          complexRayleighD_smul M ((embed3D_ne_zero_iff h y).mpr hy) hcy0]
+      rw [← hsc, complexRayleighD, nsqD_embed3D h, hq1, div_one]; rfl
+    have hr_ray : complexRayleighD M (embed3D e₁ e₂ e₃ z) =
+        (dotCD (embed3D e₁ e₂ e₃ r) (M *ᵥ embed3D e₁ e₂ e₃ r)).re := by
+      have hsc : complexRayleighD M (embed3D e₁ e₂ e₃ r) = complexRayleighD M (embed3D e₁ e₂ e₃ z) := by
+        rw [show r = cz • z from rfl, embed3D_smul,
+          complexRayleighD_smul M ((embed3D_ne_zero_iff h z).mpr hz) hcz0]
+      rw [← hsc, complexRayleighD, nsqD_embed3D h, hr1, div_one]; rfl
+    have he1_ray : complexRayleighD M e₁ = (subspaceMatrix3D M e₁ e₂ e₃ 0 0).re := by
+      rw [complexRayleighD, h.1, div_one]; rfl
+    have he2_ray : complexRayleighD M e₂ = (subspaceMatrix3D M e₁ e₂ e₃ 1 1).re := by
+      rw [complexRayleighD, h.2.1, div_one]; rfl
+    have he3_ray : complexRayleighD M e₃ = (subspaceMatrix3D M e₁ e₂ e₃ 2 2).re := by
+      rw [complexRayleighD, h.2.2.1, div_one]; rfl
+    rw [hp_ray, hq_ray, hr_ray, he1_ray, he2_ray, he3_ray, hre]
+
+/-- Uniqueness of `d × d` Hermitian matrices from their Rayleigh quotients `complexRayleighD` on
+all nonzero vectors `v ∈ ℂ^d \ {0}`. -/
+theorem eq_of_complexRayleighD_eq {d : ℕ} {A B : Matrix (Fin d) (Fin d) ℂ}
+    (hA : A.IsHermitian) (hB : B.IsHermitian)
+    (h : ∀ v : Fin d → ℂ, v ≠ 0 → complexRayleighD A v = complexRayleighD B v) :
+    A = B := by
+  refine eq_of_complexQuadFormD_eq hA hB fun v => ?_
+  by_cases hv : v = 0
+  · subst hv
+    simp [complexQuadFormD, dotCD]
+  · have hn : nsqD v ≠ 0 := ((nsqD_pos_iff_ne_zero v).mpr hv).ne'
+    exact (div_left_inj' hn).mp (h v hv)
+
+/-- Parseval outer-product completeness for any `d`-dimensional orthonormal basis `B`:
+`∑ i : Fin d, conj (B i r) * B i s = δ_{r, s}`. -/
+theorem sum_conj_mul_of_isOrthonormalBasisD {d : ℕ} {B : Fin d → Fin d → ℂ}
+    (hB : IsOrthonormalBasisD B) (r s : Fin d) :
+    (∑ i : Fin d, conj (B i r) * B i s) = if r = s then 1 else 0 := by
+  let U : Matrix (Fin d) (Fin d) ℂ := Matrix.of fun i r => B i r
+  have h1 : U * Uᴴ = 1 := by
+    ext i j
+    simp only [U, Matrix.mul_apply, Matrix.of_apply, Matrix.conjTranspose_apply,
+      Matrix.one_apply, Complex.star_def]
+    have hdot : (∑ k : Fin d, B i k * conj (B j k)) = dotCD (B j) (B i) :=
+      Finset.sum_congr rfl fun k _ => mul_comm _ _
+    rw [hdot]
+    split_ifs with hij
+    · subst hij; rw [dotCD_self_eq_nsqD, hB.1 i, Complex.ofReal_one]
+    · exact hB.2 j i (Ne.symm hij)
+  have h2 : Uᴴ * U = 1 := mul_eq_one_comm.mp h1
+  have h3 := congrFun (congrFun h2 r) s
+  simpa [U, Matrix.mul_apply, Matrix.conjTranspose_apply, Matrix.one_apply, Complex.star_def] using h3
+
+/-- Basis-independent trace identity on `ℂ^d`: for any `M : Matrix (Fin d) (Fin d) ℂ` and any
+orthonormal basis `B` of `ℂ^d`, `∑ i : Fin d, ⟨B i, M (B i)⟩ = M.trace`. -/
+theorem sum_dotCD_mulVec_of_isOrthonormalBasisD {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ)
+    {B : Fin d → Fin d → ℂ} (hB : IsOrthonormalBasisD B) :
+    (∑ i : Fin d, dotCD (B i) (M *ᵥ B i)) = M.trace := by
+  have hexp : ∀ i : Fin d, dotCD (B i) (M *ᵥ B i) =
+      ∑ r : Fin d, ∑ s : Fin d, M r s * (conj (B i r) * B i s) := by
+    intro i
+    simp only [dotCD, Matrix.mulVec, dotProduct, Finset.mul_sum]
+    refine Finset.sum_congr rfl fun r _ => Finset.sum_congr rfl fun s _ => by ring
+  simp_rw [hexp]
+  rw [Finset.sum_comm]
+  have hswap : ∀ r : Fin d,
+      (∑ i : Fin d, ∑ s : Fin d, M r s * (conj (B i r) * B i s)) =
+      ∑ s : Fin d, M r s * (∑ i : Fin d, conj (B i r) * B i s) := by
+    intro r
+    rw [Finset.sum_comm]
+    refine Finset.sum_congr rfl fun s _ => (Finset.mul_sum _ _ _).symm
+  simp_rw [hswap, sum_conj_mul_of_isOrthonormalBasisD hB]
+  simp [Matrix.trace, Matrix.diag]
+
+/-- For any `M : Matrix (Fin d) (Fin d) ℂ` and any orthonormal basis `B` of `ℂ^d`, the Rayleigh
+quotients `complexRayleighD M (B i)` sum to `(M.trace).re`. -/
+theorem sum_complexRayleighD_of_isOrthonormalBasisD {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ)
+    {B : Fin d → Fin d → ℂ} (hB : IsOrthonormalBasisD B) :
+    (∑ i : Fin d, complexRayleighD M (B i)) = (M.trace).re := by
+  have hterm : ∀ i : Fin d, complexRayleighD M (B i) = (dotCD (B i) (M *ᵥ B i)).re := by
+    intro i
+    rw [complexRayleighD, complexQuadFormD, hB.1 i, div_one]
+  simp_rw [hterm, ← Complex.re_sum, sum_dotCD_mulVec_of_isOrthonormalBasisD M hB]
+
+/-- Every `d × d` complex matrix `M` induces a `d`-dimensional frame function `complexRayleighD M`
+of weight `(M.trace).re` across all orthonormal bases of `ℂ^d`. -/
+theorem isFrameFunctionD_complexRayleighD {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ) :
+    IsFrameFunctionD (complexRayleighD M) (M.trace).re where
+  scale _ hv _ hc := complexRayleighD_smul M hv hc
+  basis_sum _ hB := sum_complexRayleighD_of_isOrthonormalBasisD M hB
+
+end
+
+end BornFinite.ContinuumDevelopment
