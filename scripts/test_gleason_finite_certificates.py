@@ -423,6 +423,86 @@ class TestGleasonFiniteCertificates(unittest.TestCase):
             cert.ray_sin_sq(u, v_noncol),
         )
 
+    def test_ks_no_colouring_hypergraph_and_six_branch_unsat_core(self) -> None:
+        ks = cert.extract_and_verify_ks_no_colouring()
+        self.assertEqual(ks["box_rays_count"], 49)
+        self.assertEqual(ks["pair_completion_frames_count"], 82)
+        self.assertEqual(ks["pair_completions_outside_box_count"], 54)
+        self.assertEqual(ks["internal_triple_frames_count"], 26)
+        self.assertEqual(ks["total_frame_declarations"], 108)
+        self.assertEqual(ks["distinct_ordered_frames"], 103)
+        self.assertEqual(ks["distinct_unordered_frames"], 98)
+        self.assertEqual(ks["distinct_canonical_w_ordered_frames"], 96)
+        self.assertEqual(ks["distinct_sign_normalized_unordered_frames"], 86)
+        self.assertEqual(ks["distinct_canonical_projective_frames"], 76)
+        self.assertEqual(ks["distinct_raw_vectors"], 121)
+        self.assertEqual(ks["distinct_canonical_projective_rays"], 99)
+
+        core = ks["active_unsat_core"]
+        self.assertEqual(core["active_pair_frames_count"], 40)
+        self.assertEqual(core["active_triple_frames_count"], 22)
+        self.assertEqual(core["active_nonneg_rays_count"], 35)
+        self.assertEqual(core["active_total_frame_declarations"], 62)
+        self.assertEqual(core["active_distinct_ordered_frames"], 59)
+        self.assertEqual(core["active_distinct_unordered_frames"], 56)
+        self.assertEqual(core["active_distinct_raw_vectors"], 71)
+        self.assertEqual(core["active_distinct_canonical_rays"], 61)
+        self.assertEqual(core["branches_verified"], 6)
+        self.assertEqual(core["zero_one_valuations_count"], 0)
+        self.assertTrue(core["admits_exotic_qi3_nonneg_valuation"])
+
+        full_ks = ks["full_ks_scenario"]
+        self.assertEqual(full_ks["scenario_name"], "ksFiniteScenario")
+        self.assertEqual(full_ks["rays_count"], 121)
+        self.assertEqual(full_ks["frames_count"], 103)
+        self.assertEqual(full_ks["zero_one_valuations_count"], 0)
+        self.assertTrue(full_ks["admits_exotic_qi3_nonneg_valuation"])
+        self.assertFalse(full_ks["latitude_symmetry_assumed"])
+
+    def test_fifteen_anchor_bisector_vs_ks_scenario_dichotomy(self) -> None:
+        s9 = cert.nine_anchor_single_frame_scenario()
+        s15 = cert.fifteen_anchor_bisector_scenario()
+        self.assertEqual(len(s9.rays), 9)
+        self.assertEqual(len(s9.frames), 1)
+        self.assertEqual(len(s15.rays), 15)
+        self.assertEqual(len(s15.frames), 7)
+        self.assertTrue(cert.is_zero_one_scenario_valuation(s9, cert.indicator_x_axis_val))
+        self.assertTrue(cert.is_zero_one_scenario_valuation(s15, cert.tomo_positive_x_anchor_val))
+        self.assertEqual(cert.count_zero_one_scenario_valuations(s9), 192)
+        self.assertEqual(cert.count_zero_one_scenario_valuations(s15), 48)
+        self.assertTrue(cert.is_nonneg_scenario_valuation(s15, cert.exotic_qi3))
+
+    def test_tfq_0307_four_tier_operational_classification(self) -> None:
+        tfq = cert.verify_tfq_0307_four_tier_classification()
+        self.assertEqual(
+            tfq["tier1_zero_one_kochen_specker"]["fifteen_anchor_bisector_zero_one_valuations"],
+            48,
+        )
+        self.assertEqual(
+            tfq["tier1_zero_one_kochen_specker"]["ks_full_scenario_zero_one_valuations"],
+            0,
+        )
+        self.assertFalse(
+            tfq["tier1_zero_one_kochen_specker"]["latitude_symmetry_assumed"]
+        )
+        self.assertTrue(
+            tfq["tier2_rational_nonquadratic_frame_functions"]["ks_scenario_inhabited_by_exotic_qi3"]
+        )
+        self.assertEqual(
+            tfq["tier2_rational_nonquadratic_frame_functions"]["exotic_qi3_witness_111"],
+            "2/3",
+        )
+        self.assertTrue(
+            tfq["tier3_operator_effect_valuation_algebraic_born"]["excludes_exotic_qi3_without_topology"]
+        )
+        self.assertEqual(
+            tfq["tier3_operator_effect_valuation_algebraic_born"]["algebraic_residual_discrepancy_at_witness_111"],
+            "1/3",
+        )
+        self.assertTrue(
+            tfq["tier4_topological_and_continuum_gleason_closure"]["bounded_anchor_amplification_closes_born_uniquely"]
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

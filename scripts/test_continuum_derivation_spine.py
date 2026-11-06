@@ -63,6 +63,55 @@ class TestContinuumDerivationSpine(unittest.TestCase):
         self.assertTrue(res["verified"])
         self.assertEqual(res["quadratic_laplacian_exact"], "10/3")
 
+    def test_tfq_0307_operational_noncontextuality_bridge(self) -> None:
+        res = vcds.verify_tfq_0307_operational_noncontextuality_bridge()
+        self.assertTrue(res["verified"])
+        ks = res["ks_no_colouring_certificate"]
+        self.assertEqual(ks["box_rays_count"], 49)
+        self.assertEqual(ks["pair_completion_frames_count"], 82)
+        self.assertEqual(ks["internal_triple_frames_count"], 26)
+        self.assertEqual(ks["total_frame_declarations"], 108)
+        self.assertEqual(ks["distinct_ordered_frames"], 103)
+        self.assertEqual(ks["distinct_canonical_w_ordered_frames"], 96)
+        self.assertEqual(ks["distinct_sign_normalized_unordered_frames"], 86)
+        self.assertEqual(ks["active_unsat_core"]["active_total_frame_declarations"], 62)
+        self.assertEqual(ks["active_unsat_core"]["branches_verified"], 6)
+        self.assertEqual(ks["active_unsat_core"]["zero_one_valuations_count"], 0)
+        self.assertEqual(ks["full_ks_scenario"]["zero_one_valuations_count"], 0)
+        self.assertTrue(ks["full_ks_scenario"]["admits_exotic_qi3_nonneg_valuation"])
+        self.assertFalse(ks["full_ks_scenario"]["latitude_symmetry_assumed"])
+
+        tfq = res["tfq_0307_four_tier_classification"]
+        self.assertEqual(
+            tfq["tier1_zero_one_kochen_specker"]["nine_anchor_single_frame_zero_one_valuations"],
+            192,
+        )
+        self.assertEqual(
+            tfq["tier1_zero_one_kochen_specker"]["fifteen_anchor_bisector_zero_one_valuations"],
+            48,
+        )
+        self.assertEqual(
+            tfq["tier1_zero_one_kochen_specker"]["ks_full_scenario_zero_one_valuations"],
+            0,
+        )
+        self.assertTrue(
+            tfq["tier2_rational_nonquadratic_frame_functions"]["ks_scenario_inhabited_by_exotic_qi3"]
+        )
+        self.assertEqual(
+            tfq["tier2_rational_nonquadratic_frame_functions"]["exotic_qi3_witness_111"],
+            "2/3",
+        )
+        self.assertTrue(
+            tfq["tier3_operator_effect_valuation_algebraic_born"]["excludes_exotic_qi3_without_topology"]
+        )
+        self.assertEqual(
+            tfq["tier3_operator_effect_valuation_algebraic_born"]["algebraic_residual_discrepancy_at_witness_111"],
+            "1/3",
+        )
+        self.assertTrue(
+            tfq["tier4_topological_and_continuum_gleason_closure"]["bounded_anchor_amplification_closes_born_uniquely"]
+        )
+
     def test_build_receipt(self) -> None:
         receipt = vcds.build_receipt()
         self.assertEqual(receipt["schema_version"], "1.0.0")
@@ -72,7 +121,10 @@ class TestContinuumDerivationSpine(unittest.TestCase):
         self.assertEqual(len(receipt["stages"]), 8)
         for stage_data in receipt["stages"].values():
             self.assertTrue(stage_data["verified"])
+        self.assertIn("tfq_0307_operational_noncontextuality_bridge", receipt)
+        self.assertTrue(receipt["tfq_0307_operational_noncontextuality_bridge"]["verified"])
 
 
 if __name__ == "__main__":
     unittest.main()
+
