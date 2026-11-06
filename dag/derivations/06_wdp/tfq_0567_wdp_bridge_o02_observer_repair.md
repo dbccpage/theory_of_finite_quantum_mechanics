@@ -27,7 +27,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> GEN-WDP-O02 remains open; scoped seed-15, seed-16, seed-22, and seed-25 replays do not establish faithful representation of every original executable run.
+> Finite orientation-sensitivity countermodel mechanized in WdpBatch6.lean (orientation_sensitive_pair_defect_nonreflection); physical laboratory repair actuation and faithful representation of every external executable run remain open.
 
 ---
 
@@ -35,6 +35,7 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/OriginalGenesisObserver.lean::history_extension_unique`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/OriginalGenesisObserver.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.orientation_sensitive_pair_defect_nonreflection`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: all-seed source transition preservation/reflection adapter is open`

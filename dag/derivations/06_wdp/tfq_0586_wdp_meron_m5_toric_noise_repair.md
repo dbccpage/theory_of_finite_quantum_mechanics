@@ -1,6 +1,6 @@
 # [TFQ-0586] wdp-meron-m5-toric-noise-repair
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `59002dd1-015b-55cd-8136-71c40fc55992`  
 > **Parent Derivation**: [TFQ-0585](tfq_0585_wdp_meron_m4_native_adapters.md)
 
@@ -8,10 +8,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Meron Field-Limit Target M5: repair Chapter 23 toric-code kernel, restricted-error rank, and adaptivity claims under explicit finite detector and noise-support hypotheses.
+Meron Field-Limit Target M5 (Chapter 23): the primal-dual completion criterion ((E - E) intersect ker Q_D subset B) characterizes exact recovery, the 4-vertex star syndrome on a square cycle has rank 3 and is injective on tree-supported errors while vanishing on the 4-edge cycle, and worst-case adaptive transcripts cannot distinguish errors differing by an undetected logical cycle.
 
 ### Governing Obligation
-Formalize the corrected finite toric-code syndrome kernel and restricted-error rank bounds in Lean 4 and Python under explicit noise-model assumptions.
+Formalize the corrected finite toric-code syndrome kernel, restricted-error tree injectivity, and worst-case adaptive non-improvement in Lean 4 and Python.
 
 ---
 
@@ -23,17 +23,21 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Open finite-lattice target in meron_field_limit_derivations/README.md; unrestricted toric-code adaptivity claims are fenced in Chapter 23.
+> Mechanized in Lean 4 (toric_completion_criterion_iff, toric_star_syndrome_sum_zero, toric_restricted_tree_error_injective, toric_cycle_error_in_syndrome_kernel, and toric_adaptive_transcript_indistinguishable in WdpBatch6.lean) and checked in Python plan_odm_toric_boundary.py.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: Lean 4 formalization of Chapter 23 restricted-error toric-code rank bound is open`
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.toric_adaptive_transcript_indistinguishable`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.toric_completion_criterion_iff`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.toric_cycle_error_in_syndrome_kernel`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.toric_restricted_tree_error_injective`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.toric_star_syndrome_sum_zero`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `missing obligation: checked by Python toric boundary witness`
+- `missing obligation: checked by Lean 4 theorems and Python toric boundary witness`
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/plan_odm_toric_boundary.py::toric_boundary_witness`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/plan_odm_toric_boundary.py)

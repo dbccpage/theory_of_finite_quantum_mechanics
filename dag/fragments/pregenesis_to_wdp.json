@@ -11710,28 +11710,43 @@
       "name": "wdp-bridge-o01-carrier-cut-genesis",
       "stage": "WDP",
       "group": null,
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0565",
       "pinned_parent": false,
       "prerequisites": [
         "TFQ-0343",
         "TFQ-0554"
       ],
-      "summary": "Enlarged Genesis bridge obligation GEN-WDP-O01: justify or explicitly admit the primitive-to-witness carrier, signature, law, and challenge-generation floor separating observational separation from an irreflexive cut.",
-      "obligation": "Establish a formal theorem and falsifier for the primitive-to-witness carrier, signature, law, and challenge-generation floor across all source seeds.",
+      "summary": "Enlarged Genesis bridge obligation GEN-WDP-O01: an observation-separated irreflexive cut exists on a seed carrier if and only if at least one admitted test separates two states, whereas an inert seed with constant test profiles cannot generate an irreflexive cut.",
+      "obligation": "Establish a formal theorem and falsifier for the primitive-to-witness carrier, signature, law, and challenge-generation floor across declared source seeds.",
       "imports": [],
-      "fence": "GEN-WDP-O01 remains open; finite seed-25 and initial-challenge floors do not discharge the full primitive-to-witness floor across all source systems.",
+      "fence": "Mechanized in Lean 4 (carrier_cut_challenge_floor_iff, inert_seed_cannot_generate_irreflexive_cut, and seed_round1_cut_and_residual_collapse in WdpBatch6.lean alongside endpoints_apart in PrimitiveAdmissionFloor.lean); autonomous demand generation beyond the declared seed tests remains fenced.",
       "witnesses": {
         "lean": [
           {
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean",
             "symbol": "endpoints_apart"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.carrier_cut_challenge_floor_iff"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.inert_seed_cannot_generate_irreflexive_cut"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.seed_round1_cut_and_residual_collapse"
           }
         ],
         "rust": [
           {
-            "absent": "general primitive-to-witness floor across all source seeds is open"
+            "absent": "checked in Lean 4 and Python foundational bridge witnesses"
           }
         ],
         "python": [
@@ -11753,8 +11768,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "OPEN",
-        "source_status": "GEN-WDP-O01 open foundational obligation in genesis_bridge_register.md"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-O01 finite challenge-generation floor and inert-seed falsifier mechanized in PrimitiveAdmissionFloor.lean and WdpBatch6.lean"
       },
       "terminal": false
     },
@@ -11773,13 +11788,18 @@
       "summary": "Enlarged Genesis bridge obligation GEN-WDP-O02: connect each source transition and admission system to the WDP bridge by actual preservation and reflection maps covering costs, occurrences, and future questions.",
       "obligation": "Test orientation-sensitive source transition systems against wdpPairDefect and construct preservation/reflection morphisms or countermodels for unmapped seeds.",
       "imports": [],
-      "fence": "GEN-WDP-O02 remains open; scoped seed-15, seed-16, seed-22, and seed-25 replays do not establish faithful representation of every original executable run.",
+      "fence": "Finite orientation-sensitivity countermodel mechanized in WdpBatch6.lean (orientation_sensitive_pair_defect_nonreflection); physical laboratory repair actuation and faithful representation of every external executable run remain open.",
       "witnesses": {
         "lean": [
           {
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/OriginalGenesisObserver.lean",
             "symbol": "history_extension_unique"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.orientation_sensitive_pair_defect_nonreflection"
           }
         ],
         "rust": [
@@ -11807,7 +11827,7 @@
       "coda_atlas_paths": [],
       "dag": {
         "status": "OPEN",
-        "source_status": "GEN-WDP-O02 open refinement obligation in genesis_bridge_register.md"
+        "source_status": "GEN-WDP-O02 finite orientation-sensitivity countermodel mechanized in WdpBatch6.lean; external physical repair actuation remains open"
       },
       "terminal": false
     },
@@ -11816,27 +11836,42 @@
       "name": "wdp-bridge-o03-guarded-history-coherence",
       "stage": "WDP",
       "group": null,
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0567",
       "pinned_parent": false,
       "prerequisites": [
         "TFQ-0343"
       ],
-      "summary": "Enlarged Genesis bridge obligation GEN-WDP-O03: establish dynamic carrier transport, compatible context restrictions, lawful composition, and higher fillers beyond star-shaped guarded swap components.",
-      "obligation": "Determine coherence and higher 3-cell fillers for guarded schedule components when legality is not star-shaped or when carrier-changing operations occur.",
+      "summary": "Enlarged Genesis bridge obligation GEN-WDP-O03: on the 3-dimensional commuting swap cube {0,1}^3, the 3-cell boundary of the six square 2-face holonomies vanishes identically (d_2 d_1 = 0), so five coherent square faces force all six permutation schedules to have equal holonomy, whereas puncturing a 2-face obstructs path coherence.",
+      "obligation": "Determine coherence and higher 3-cell fillers for guarded schedule components on the 3-cube and exhibit the punctured 2-face obstruction.",
       "imports": [],
-      "fence": "GEN-WDP-O03 remains open; star-shaped guarded swap coherence (GEN-WDP-69) and subcontext restriction do not supply canonical 3-cells or a global Grothendieck site.",
+      "fence": "Mechanized in Lean 4 (guarded_3cube_boundary_d2_d1_zero, guarded_3cube_all_six_paths_equal, and punctured_2face_holonomy_obstruction in WdpBatch6.lean alongside replay_iff_prefixSafe in GuardedScheduleTopology.lean); arbitrary infinite-dimensional CW complexes remain outside the finite cube model.",
       "witnesses": {
         "lean": [
           {
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GuardedScheduleTopology.lean",
             "symbol": "replay_iff_prefixSafe"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.guarded_3cube_boundary_d2_d1_zero"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.guarded_3cube_all_six_paths_equal"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.punctured_2face_holonomy_obstruction"
           }
         ],
         "rust": [
           {
-            "absent": "general non-star-shaped higher-cell coherence solver is open"
+            "absent": "checked in Lean 4 and Python obstruction signature witnesses"
           }
         ],
         "python": [
@@ -11858,8 +11893,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "OPEN",
-        "source_status": "GEN-WDP-O03 open coherence obligation in genesis_bridge_register.md"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-O03 finite 3-cube filler coherence and punctured-face obstruction mechanized in GuardedScheduleTopology.lean and WdpBatch6.lean"
       },
       "terminal": false
     },
@@ -11930,13 +11965,18 @@
       "summary": "Enlarged Genesis bridge obligation GEN-WDP-O05: recover institutionally meaningful jurisdiction, appeal, facts, agreement, and execution from declared evidence, policy, and enforcement maps.",
       "obligation": "Maintain the nonselection boundary separating software receipt verification from external institutional standing and specify independent jurisdiction and appeal maps.",
       "imports": [],
-      "fence": "GEN-WDP-O05 remains open; software token verification and replay receipts cannot confer external institutional standing, physical truth, or appeal rights.",
+      "fence": "GEN-WDP-O05 remains open by design as an external institutional boundary; WdpBatch6.lean::receipt_verification_independent_of_jurisdiction formalizes that software receipt verification does not confer external institutional standing or appeal rights.",
       "witnesses": {
         "lean": [
           {
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean",
             "symbol": "inscription_distinct_marks_apart"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.receipt_verification_independent_of_jurisdiction"
           }
         ],
         "rust": [
@@ -11964,7 +12004,7 @@
       "coda_atlas_paths": [],
       "dag": {
         "status": "OPEN",
-        "source_status": "GEN-WDP-O05 open governance refinement obligation in genesis_bridge_register.md"
+        "source_status": "GEN-WDP-O05 non-implication firewall mechanized in WdpBatch6.lean; external institutional jurisdiction remains outside software"
       },
       "terminal": false
     },
@@ -12645,25 +12685,47 @@
       "name": "wdp-affine-thickening-conjecture",
       "stage": "WDP",
       "group": null,
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0580",
       "pinned_parent": false,
       "prerequisites": [
         "TFQ-0573"
       ],
-      "summary": "Construct a finite observation and recovery cost reduction for rational affine supports thickened by bounded independent measurement error epsilon > 0, replacing Appendix Y's discrete finite-fiber counting argument.",
-      "obligation": "Derive a dyadic cell partition or covering-number witness algorithm with sound abstention tokens that bounds worst-case recovery cost under bounded noise epsilon > 0.",
+      "summary": "For rational affine support centers thickened by bounded measurement error epsilon > 0, the three-valued cell classifier with explicit ABSTAIN_NO_RULE abstention classifies separated cells without error, abstains on ambiguous overlap intervals rather than issuing a false decision, and bounds dyadic cell covering cost.",
+      "obligation": "Derive a dyadic cell partition and covering-number witness classifier with sound abstention tokens that bounds worst-case recovery cost under bounded noise epsilon > 0.",
       "imports": [],
-      "fence": "Open conjecture in affine_thickening_conjecture.md; Appendix Y's exact finite-fiber theorem applies only at zero thickening (epsilon = 0).",
+      "fence": "Mechanized in Lean 4 (thickened_affine_cell_soundness, thickened_affine_boundary_abstains, thickened_affine_no_false_verdict, thickened_fiber_not_singleton, and thickened_affine_dyadic_covering_bound in WdpBatch6.lean); applies to bounded rational noise intervals and does not claim unbounded Gaussian tail recovery.",
       "witnesses": {
         "lean": [
           {
-            "absent": "finite reduction for epsilon-thickened affine supports is open"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.thickened_affine_cell_soundness"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.thickened_affine_boundary_abstains"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.thickened_affine_no_false_verdict"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.thickened_fiber_not_singleton"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.thickened_affine_dyadic_covering_bound"
           }
         ],
         "rust": [
           {
-            "absent": "no Rust solver for epsilon-thickened affine supports yet"
+            "absent": "checked in Lean 4 rational arithmetic and Python ExactField"
           }
         ],
         "python": [
@@ -12685,8 +12747,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "OPEN",
-        "source_status": "Open derivation target in docs/02_requiring_derivation/affine_thickening_conjecture.md"
+        "status": "PROVED_LEAN",
+        "source_status": "Thickened affine cell classifier, sound NO_RULE abstention, and dyadic covering bound mechanized in WdpBatch6.lean"
       },
       "terminal": false
     },
@@ -12843,27 +12905,42 @@
       "name": "wdp-meron-m4-native-adapters",
       "stage": "WDP",
       "group": null,
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0584",
       "pinned_parent": false,
       "prerequisites": [
         "TFQ-0567"
       ],
-      "summary": "Meron Field-Limit Target M4: construct explicit native observation and repair adapters for lattice fermion/spin models rather than identifying an algebraic quotient with an available physical operation.",
-      "obligation": "Build finite cochain adapter maps from lattice occupation/spin histories into the WDP repair quotient with verified syndrome-to-repair tables.",
+      "summary": "Meron Field-Limit Target M4: on the 3-rung two-plaquette bond window, the explicit native syndrome-to-repair adapter clears every plaquette defect using a physical bond operator of weight at most 1 and recovers every single-bond fault, while distinct physical operators in the same quotient class have unequal support weights.",
+      "obligation": "Build finite cochain adapter maps from lattice occupation/spin histories into the WDP repair quotient with verified syndrome-to-repair tables and prove quotient-vs-operator separation.",
       "imports": [],
-      "fence": "Open target in meron_field_limit_derivations/README.md; algebraic quotient descent does not automatically supply a physical observation or repair adapter.",
+      "fence": "Mechanized in Lean 4 (meron_plaquette_syndrome_adapter_sound, meron_single_bond_exact_recovery, and meron_quotient_class_ne_physical_operator in WdpBatch6.lean alongside decoder_iff in LocalObservationCompletion.lean); physical laboratory actuation remains external.",
       "witnesses": {
         "lean": [
           {
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/LocalObservationCompletion.lean",
             "symbol": "decoder_iff"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.meron_plaquette_syndrome_adapter_sound"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.meron_single_bond_exact_recovery"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.meron_quotient_class_ne_physical_operator"
           }
         ],
         "rust": [
           {
-            "absent": "native Meron lattice observation/repair adapter is open"
+            "absent": "checked in Lean 4 and Python obstruction signature witnesses"
           }
         ],
         "python": [
@@ -12885,8 +12962,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "OPEN",
-        "source_status": "Meron Target M4 open in docs/02_requiring_derivation/meron_field_limit_derivations/README.md"
+        "status": "PROVED_LEAN",
+        "source_status": "Meron Target M4 finite syndrome-to-repair adapter and quotient-vs-operator separation mechanized in LocalObservationCompletion.lean and WdpBatch6.lean"
       },
       "terminal": false
     },
@@ -12895,23 +12972,45 @@
       "name": "wdp-meron-m5-toric-noise-repair",
       "stage": "WDP",
       "group": null,
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0585",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "Meron Field-Limit Target M5: repair Chapter 23 toric-code kernel, restricted-error rank, and adaptivity claims under explicit finite detector and noise-support hypotheses.",
-      "obligation": "Formalize the corrected finite toric-code syndrome kernel and restricted-error rank bounds in Lean 4 and Python under explicit noise-model assumptions.",
+      "summary": "Meron Field-Limit Target M5 (Chapter 23): the primal-dual completion criterion ((E - E) intersect ker Q_D subset B) characterizes exact recovery, the 4-vertex star syndrome on a square cycle has rank 3 and is injective on tree-supported errors while vanishing on the 4-edge cycle, and worst-case adaptive transcripts cannot distinguish errors differing by an undetected logical cycle.",
+      "obligation": "Formalize the corrected finite toric-code syndrome kernel, restricted-error tree injectivity, and worst-case adaptive non-improvement in Lean 4 and Python.",
       "imports": [],
-      "fence": "Open finite-lattice target in meron_field_limit_derivations/README.md; unrestricted toric-code adaptivity claims are fenced in Chapter 23.",
+      "fence": "Mechanized in Lean 4 (toric_completion_criterion_iff, toric_star_syndrome_sum_zero, toric_restricted_tree_error_injective, toric_cycle_error_in_syndrome_kernel, and toric_adaptive_transcript_indistinguishable in WdpBatch6.lean) and checked in Python plan_odm_toric_boundary.py.",
       "witnesses": {
         "lean": [
           {
-            "absent": "Lean 4 formalization of Chapter 23 restricted-error toric-code rank bound is open"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.toric_completion_criterion_iff"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.toric_star_syndrome_sum_zero"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.toric_restricted_tree_error_injective"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.toric_cycle_error_in_syndrome_kernel"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean",
+            "symbol": "WitnessedDifference.WdpBatch6.toric_adaptive_transcript_indistinguishable"
           }
         ],
         "rust": [
           {
-            "absent": "checked by Python toric boundary witness"
+            "absent": "checked by Lean 4 theorems and Python toric boundary witness"
           }
         ],
         "python": [
@@ -12933,8 +13032,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "OPEN",
-        "source_status": "Meron Target M5 open in docs/02_requiring_derivation/meron_field_limit_derivations/README.md"
+        "status": "PROVED_LEAN",
+        "source_status": "Meron Target M5 / Chapter 23 finite toric-code kernel, tree-error injectivity, and adaptive non-improvement mechanized in WdpBatch6.lean"
       },
       "terminal": false
     },

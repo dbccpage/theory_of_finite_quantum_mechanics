@@ -76,3 +76,36 @@ def test_interface_aliases_and_properties() -> None:
     assert len(sigs) == 3
     assert word_kernel_agrees(m, 2) is True
 
+
+def test_batch6_meron_toric_and_3cube_witnesses() -> None:
+    # 1. Meron 3-rung plaquette syndrome-to-repair adapter
+    adapter = {
+        (0, 0): (0, 0, 0),
+        (1, 0): (1, 0, 0),
+        (0, 1): (0, 0, 1),
+        (1, 1): (0, 1, 0),
+    }
+    for b0 in (0, 1):
+        for b1 in (0, 1):
+            for b2 in (0, 1):
+                syn = (b0 ^ b1, b1 ^ b2)
+                rep = adapter[syn]
+                assert sum(rep) <= 1
+                cleared = (b0 ^ rep[0], b1 ^ rep[1], b2 ^ rep[2])
+                assert (cleared[0] ^ cleared[1], cleared[1] ^ cleared[2]) == (0, 0)
+                if b0 + b1 + b2 <= 1:
+                    assert rep == (b0, b1, b2)
+
+    # 2. Toric 4-cycle star syndrome: tree-supported errors are injective, full cycle is in kernel
+    def star_syndrome(e: tuple[int, int, int, int]) -> tuple[int, int, int, int]:
+        return (e[0] ^ e[3], e[0] ^ e[1], e[1] ^ e[2], e[2] ^ e[3])
+
+    tree_syndromes = {
+        star_syndrome((e0, e1, e2, 0))
+        for e0 in (0, 1)
+        for e1 in (0, 1)
+        for e2 in (0, 1)
+    }
+    assert len(tree_syndromes) == 8
+    assert star_syndrome((1, 1, 1, 1)) == (0, 0, 0, 0)
+

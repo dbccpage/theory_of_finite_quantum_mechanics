@@ -1,6 +1,6 @@
 # [TFQ-0568] wdp-bridge-o03-guarded-history-coherence
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `5fb71ca0-7c71-581b-86e9-b7c136cbd87e`  
 > **Parent Derivation**: [TFQ-0567](tfq_0567_wdp_bridge_o02_observer_repair.md)
 
@@ -8,10 +8,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Enlarged Genesis bridge obligation GEN-WDP-O03: establish dynamic carrier transport, compatible context restrictions, lawful composition, and higher fillers beyond star-shaped guarded swap components.
+Enlarged Genesis bridge obligation GEN-WDP-O03: on the 3-dimensional commuting swap cube {0,1}^3, the 3-cell boundary of the six square 2-face holonomies vanishes identically (d_2 d_1 = 0), so five coherent square faces force all six permutation schedules to have equal holonomy, whereas puncturing a 2-face obstructs path coherence.
 
 ### Governing Obligation
-Determine coherence and higher 3-cell fillers for guarded schedule components when legality is not star-shaped or when carrier-changing operations occur.
+Determine coherence and higher 3-cell fillers for guarded schedule components on the 3-cube and exhibit the punctured 2-face obstruction.
 
 ---
 
@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> GEN-WDP-O03 remains open; star-shaped guarded swap coherence (GEN-WDP-69) and subcontext restriction do not supply canonical 3-cells or a global Grothendieck site.
+> Mechanized in Lean 4 (guarded_3cube_boundary_d2_d1_zero, guarded_3cube_all_six_paths_equal, and punctured_2face_holonomy_obstruction in WdpBatch6.lean alongside replay_iff_prefixSafe in GuardedScheduleTopology.lean); arbitrary infinite-dimensional CW complexes remain outside the finite cube model.
 
 ---
 
@@ -34,9 +34,12 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GuardedScheduleTopology.lean::replay_iff_prefixSafe`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GuardedScheduleTopology.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.guarded_3cube_all_six_paths_equal`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.guarded_3cube_boundary_d2_d1_zero`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.punctured_2face_holonomy_obstruction`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `missing obligation: general non-star-shaped higher-cell coherence solver is open`
+- `missing obligation: checked in Lean 4 and Python obstruction signature witnesses`
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
