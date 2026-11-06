@@ -25,3 +25,10 @@ abbrev rep_rung5_symmetry_along_history :=
   @rung5_symmetry_step_law_and_both_ways_witness
 
 end WitnessedDifference.WdpBatch10Rep
+
+#print axioms WitnessedDifference.WdpBatch10Rep.rep_l1_imp_complex_field
+#print axioms WitnessedDifference.WdpBatch10Rep.rep_rung2a_stake_declared_label
+#print axioms WitnessedDifference.WdpBatch10Rep.rep_rung3_first_demand_index
+#print axioms WitnessedDifference.WdpBatch10Rep.rep_rung4_index_up_to_isomorphism
+#print axioms WitnessedDifference.WdpBatch10Rep.rep_rung5_symmetry_along_history
+

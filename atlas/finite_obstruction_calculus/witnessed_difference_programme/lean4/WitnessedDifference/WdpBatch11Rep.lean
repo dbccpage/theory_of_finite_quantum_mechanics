@@ -16,12 +16,26 @@ open WitnessedDifference.WdpBatch9
 open WitnessedDifference.WdpBatch10
 open WitnessedDifference.WdpBatch11
 
-export WitnessedDifference.WdpBatch11 (
-  rung6_succession_element_count_and_countermodels
-  rung7_duration_under_changing_and_gap_countermodels
-  rung8_element_count_across_iso_and_clean_stutter
-  rung9_twoness_observational_classes_and_stage_bounds
-  rung10_exhaustion_and_responder_move_witness
-)
+abbrev rung6_succession_element_count_and_countermodels :=
+  @WitnessedDifference.WdpBatch11.rung6_succession_element_count_and_countermodels
+
+abbrev rung7_duration_under_changing_and_gap_countermodels :=
+  @WitnessedDifference.WdpBatch11.rung7_duration_under_changing_and_gap_countermodels
+
+abbrev rung8_element_count_across_iso_and_clean_stutter :=
+  @WitnessedDifference.WdpBatch11.rung8_element_count_across_iso_and_clean_stutter
+
+abbrev rung9_twoness_observational_classes_and_stage_bounds :=
+  @WitnessedDifference.WdpBatch11.rung9_twoness_observational_classes_and_stage_bounds
+
+abbrev rung10_exhaustion_and_responder_move_witness :=
+  @WitnessedDifference.WdpBatch11.rung10_exhaustion_and_responder_move_witness
 
 end WitnessedDifference.WdpBatch11Rep
+
+#print axioms WitnessedDifference.WdpBatch11Rep.rung6_succession_element_count_and_countermodels
+#print axioms WitnessedDifference.WdpBatch11Rep.rung7_duration_under_changing_and_gap_countermodels
+#print axioms WitnessedDifference.WdpBatch11Rep.rung8_element_count_across_iso_and_clean_stutter
+#print axioms WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds
+#print axioms WitnessedDifference.WdpBatch11Rep.rung10_exhaustion_and_responder_move_witness
+

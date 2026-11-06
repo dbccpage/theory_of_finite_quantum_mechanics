@@ -377,14 +377,24 @@ def rungElems (r : RungRegime) : Nat :=
 theorem insertNew_length_le {α : Type} [DecidableEq α] (l : List α) (a : α) :
     l.length ≤ (insertNew l a).length := by
   unfold insertNew
-  split <;> simp
+  cases Decidable.em (a ∈ l) with
+  | inl h =>
+    rw [if_pos h]
+    exact Nat.le_refl _
+  | inr h =>
+    rw [if_neg h]
+    simp
 
 theorem insertNew_eq_or_succ {α : Type} [DecidableEq α] (l : List α) (a : α) :
     insertNew l a = l ∨ (insertNew l a).length = l.length + 1 := by
   unfold insertNew
-  split
-  · exact Or.inl rfl
-  · exact Or.inr (by simp)
+  cases Decidable.em (a ∈ l) with
+  | inl h =>
+    rw [if_pos h]
+    exact Or.inl rfl
+  | inr h =>
+    rw [if_neg h]
+    exact Or.inr (by simp)
 
 /-- Every sealed step preserves or raises `rungElems`. -/
 theorem stepRung_elems_le {r r' : RungRegime} {e : RungEvent}
@@ -398,34 +408,47 @@ theorem stepRung_elems_le {r r' : RungRegime} {e : RungEvent}
       subst h; simp only [rungElems]; omega
   | admitForm a =>
       simp only [stepRung] at h
-      split at h
-      · simp only [Option.some.injEq] at h
+      cases Decidable.em (1 ≤ a) with
+      | inl hc =>
+        rw [if_pos hc] at h
+        simp only [Option.some.injEq] at h
         subst h; simp only [rungElems, List.length_append, List.length_cons, List.length_nil]; omega
-      · cases h
+      | inr hc =>
+        rw [if_neg hc] at h; cases h
   | admitInst f args =>
       simp only [stepRung] at h
-      split at h
-      · simp only [Option.some.injEq] at h
+      cases Decidable.em (f < r.forms.length ∧ args.length = r.forms.getD f 0 ∧
+          (∀ x ∈ args, x < r.data)) with
+      | inl hc =>
+        rw [if_pos hc] at h
+        simp only [Option.some.injEq] at h
         subst h
         have := insertNew_length_le r.insts (f, args)
         simp only [rungElems]; omega
-      · cases h
+      | inr hc =>
+        rw [if_neg hc] at h; cases h
   | admitRuleAll f =>
       simp only [stepRung] at h
-      split at h
-      · simp only [Option.some.injEq] at h
+      cases Decidable.em (f < r.forms.length) with
+      | inl hc =>
+        rw [if_pos hc] at h
+        simp only [Option.some.injEq] at h
         subst h
         have := insertNew_length_le r.rules f
         simp only [rungElems]; omega
-      · cases h
+      | inr hc =>
+        rw [if_neg hc] at h; cases h
   | impose i j =>
       simp only [stepRung] at h
-      split at h
-      · simp only [Option.some.injEq] at h
+      cases Decidable.em (i < j ∧ j < r.data) with
+      | inl hc =>
+        rw [if_pos hc] at h
+        simp only [Option.some.injEq] at h
         subst h
         have := insertNew_length_le r.reqs (i, j)
         simp only [rungElems]; omega
-      · cases h
+      | inr hc =>
+        rw [if_neg hc] at h; cases h
 
 /-- Every history preserves or raises `rungElems`. -/
 theorem replayRung_elems_le (h : List RungEvent) {s t : RungRegime}
@@ -473,20 +496,20 @@ theorem forced_census_column_twelve_row_verdict_and_countermodel :
 
 /-! ## 5. L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED (L1_TO_L2) -/
 
-/-- Absolute value on `Rat`. -/
-def ratAbs (q : Rat) : Rat :=
+/-- Absolute value on `Int`. -/
+def ratAbs (q : Int) : Int :=
   if q < 0 then -q else q
 
-/-- 4-cycle residual cochain `(e0, e1, e2, e3)` over `Rat`. -/
+/-- 4-cycle residual cochain `(e0, e1, e2, e3)` over `Int` (exact integer-scaled cochain). -/
 structure Cochain4 where
-  e0 : Rat
-  e1 : Rat
-  e2 : Rat
-  e3 : Rat
+  e0 : Int
+  e1 : Int
+  e2 : Int
+  e3 : Int
   deriving DecidableEq, Repr
 
 /-- Signed holonomy `S = ∑_{i=0}^3 r_i` on the 4-cycle (invariant under coboundaries `d0 h`). -/
-def hol4 (r : Cochain4) : Rat :=
+def hol4 (r : Cochain4) : Int :=
   r.e0 + r.e1 + r.e2 + r.e3
 
 /-- Coboundary `(d0 h)_i = h_{i+1 mod 4} - h_i` on the 4-cycle. -/
@@ -496,55 +519,55 @@ def d0_4 (h : Cochain4) : Cochain4 :=
 /-- Every coboundary has zero holonomy on the 4-cycle. -/
 theorem hol4_d0_zero (h : Cochain4) : hol4 (d0_4 h) = 0 := by
   simp only [hol4, d0_4]
-  grind
+  omega
 
 /-- Unweighted L1 norm `Φ_1(r) = ∑_i |r_i|`. -/
-def unweightedL1_4 (r : Cochain4) : Rat :=
+def unweightedL1_4 (r : Cochain4) : Int :=
   ratAbs r.e0 + ratAbs r.e1 + ratAbs r.e2 + ratAbs r.e3
 
 /-- Weighted L1 norm `Φ_{1,m}(r) = ∑_i m_i |r_i|` with declared edge masses `m`. -/
-def weightedL1_4 (m r : Cochain4) : Rat :=
+def weightedL1_4 (m r : Cochain4) : Int :=
   m.e0 * ratAbs r.e0 + m.e1 * ratAbs r.e1 + m.e2 * ratAbs r.e2 + m.e3 * ratAbs r.e3
 
 /-- Sum-of-squares reading `Γ_2^{sq}(r) = ∑_i r_i^2`. -/
-def gamma2SumSq4 (r : Cochain4) : Rat :=
+def gamma2SumSq4 (r : Cochain4) : Int :=
   r.e0 * r.e0 + r.e1 * r.e1 + r.e2 * r.e2 + r.e3 * r.e3
 
 /-- Single-edge residual concentrated on edge 0 with holonomy `S`. -/
-def singleEdge0 (S : Rat) : Cochain4 :=
+def singleEdge0 (S : Int) : Cochain4 :=
   ⟨S, 0, 0, 0⟩
 
 /-- Single-edge residual concentrated on edge 1 with holonomy `S`. -/
-def singleEdge1 (S : Rat) : Cochain4 :=
+def singleEdge1 (S : Int) : Cochain4 :=
   ⟨0, S, 0, 0⟩
 
-/-- Dihedral/cyclic orbit-average residual `(S/4, S/4, S/4, S/4)`. -/
-def symmetricAverage4 (S : Rat) : Cochain4 :=
-  ⟨S / 4, S / 4, S / 4, S / 4⟩
+/-- Dihedral/cyclic orbit-average residual `(k, k, k, k)` of holonomy `4 * k`. -/
+def symmetricAverage4 (k : Int) : Cochain4 :=
+  ⟨k, k, k, k⟩
 
 /-- Sector 0 weight (`|r 0| + |r 2|`) under the bipartition `{0, 2}` vs `{1, 3}`. -/
-def sectorEvenWeight (r : Cochain4) : Rat :=
+def sectorEvenWeight (r : Cochain4) : Int :=
   ratAbs r.e0 + ratAbs r.e2
 
 /-- Sector 1 weight (`|r 1| + |r 3|`) under the bipartition `{0, 2}` vs `{1, 3}`. -/
-def sectorOddWeight (r : Cochain4) : Rat :=
+def sectorOddWeight (r : Cochain4) : Int :=
   ratAbs r.e1 + ratAbs r.e3
 
 /-- Sector weights always sum to the unweighted L1 norm. -/
 theorem sector_weights_sum_to_unweightedL1 (r : Cochain4) :
     sectorEvenWeight r + sectorOddWeight r = unweightedL1_4 r := by
   simp only [sectorEvenWeight, sectorOddWeight, unweightedL1_4]
-  grind
+  omega
 
 /-- For any positive holonomy `S > 0`, `singleEdge0 S` and `singleEdge1 S` lie in the same
     cohomology class (`singleEdge0 S - singleEdge1 S = d0_4 h`), achieve the same minimal
     unweighted L1 norm `S`, the same holonomy `S`, AND the same sum-of-squares `S^2`,
     yet have different sector weights (`S` vs `0` on the even sector), while the symmetric
-    average `symmetricAverage4 S` has sector weight `S / 2`. -/
-theorem unweighted_and_sumsq_do_not_determine_sector_weights (S : Rat) (hS : 0 < S) :
+    average `symmetricAverage4 S` has holonomy `4 * S` and even-sector weight `2 * S`. -/
+theorem unweighted_and_sumsq_do_not_determine_sector_weights (S : Int) (hS : 0 < S) :
     hol4 (singleEdge0 S) = S ∧
     hol4 (singleEdge1 S) = S ∧
-    hol4 (symmetricAverage4 S) = S ∧
+    hol4 (symmetricAverage4 S) = 4 * S ∧
     unweightedL1_4 (singleEdge0 S) = S ∧
     unweightedL1_4 (singleEdge1 S) = S ∧
     gamma2SumSq4 (singleEdge0 S) = S * S ∧
@@ -552,12 +575,12 @@ theorem unweighted_and_sumsq_do_not_determine_sector_weights (S : Rat) (hS : 0 <
     sectorEvenWeight (singleEdge0 S) = S ∧
     sectorEvenWeight (singleEdge1 S) = 0 ∧
     sectorEvenWeight (singleEdge0 S) ≠ sectorEvenWeight (singleEdge1 S) := by
-  have hNotLt : ¬ (S < 0) := by grind
-  have hZeroNotLt : ¬ ((0 : Rat) < 0) := by decide
+  have hNotLt : ¬ (S < 0) := by omega
+  have hZeroNotLt : ¬ ((0 : Int) < 0) := by decide
   simp only [hol4, unweightedL1_4, gamma2SumSq4, sectorEvenWeight,
     singleEdge0, singleEdge1, symmetricAverage4, ratAbs, hNotLt, hZeroNotLt, ite_false]
-  refine ⟨by grind, by grind, by grind, by grind, by grind, by grind, by grind, by grind, by grind, ?_⟩
-  grind
+  refine ⟨by omega, by omega, by omega, by omega, by omega, by omega,
+    by simp [Int.zero_add, Int.add_zero], by omega, by omega, by omega⟩
 
 /-- Weighted L1 decomposition identity for non-negative residuals of holonomy `S`:
     `weightedL1_4 m r - m.e0 * S = (m.e1 - m.e0) * r.e1 + (m.e2 - m.e0) * r.e2 + (m.e3 - m.e0) * r.e3`.
@@ -565,18 +588,19 @@ theorem unweighted_and_sumsq_do_not_determine_sector_weights (S : Rat) (hS : 0 <
     with `r.e1 + r.e2 + r.e3 > 0` has strictly larger weighted L1 cost than `singleEdge0 S`,
     so the declared masses `m` themselves uniquely select the minimizer. -/
 theorem weighted_l1_unique_minimal_mass_concentration
-    (m r : Cochain4) (S : Rat)
+    (m r : Cochain4) (S : Int)
     (hr0 : 0 ≤ r.e0) (hr1 : 0 ≤ r.e1) (hr2 : 0 ≤ r.e2) (hr3 : 0 ≤ r.e3)
     (hHol : hol4 r = S) :
     weightedL1_4 m r - m.e0 * S =
       (m.e1 - m.e0) * r.e1 + (m.e2 - m.e0) * r.e2 + (m.e3 - m.e0) * r.e3 := by
-  have h0 : ¬ (r.e0 < 0) := by grind
-  have h1 : ¬ (r.e1 < 0) := by grind
-  have h2 : ¬ (r.e2 < 0) := by grind
-  have h3 : ¬ (r.e3 < 0) := by grind
+  have h0 : ¬ (r.e0 < 0) := by omega
+  have h1 : ¬ (r.e1 < 0) := by omega
+  have h2 : ¬ (r.e2 < 0) := by omega
+  have h3 : ¬ (r.e3 < 0) := by omega
   simp only [weightedL1_4, ratAbs, h0, h1, h2, h3, ite_false]
-  simp only [hol4] at hHol
-  grind
+  rw [← hHol]
+  simp only [hol4, Int.mul_add, Int.sub_mul]
+  omega
 
 /-- Representative theorem for `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`:
     combines coboundary holonomy invariance, sector-weight conservation, unweighted and
@@ -584,12 +608,12 @@ theorem weighted_l1_unique_minimal_mass_concentration
 theorem l1_residual_sector_weights_unweighted_and_weighted_characterization :
     (∀ h : Cochain4, hol4 (d0_4 h) = 0) ∧
     (∀ r : Cochain4, sectorEvenWeight r + sectorOddWeight r = unweightedL1_4 r) ∧
-    (∀ S : Rat, 0 < S →
+    (∀ S : Int, 0 < S →
       hol4 (singleEdge0 S) = hol4 (singleEdge1 S) ∧
       unweightedL1_4 (singleEdge0 S) = unweightedL1_4 (singleEdge1 S) ∧
       gamma2SumSq4 (singleEdge0 S) = gamma2SumSq4 (singleEdge1 S) ∧
       sectorEvenWeight (singleEdge0 S) ≠ sectorEvenWeight (singleEdge1 S)) ∧
-    (∀ m r : Cochain4, ∀ S : Rat,
+    (∀ m r : Cochain4, ∀ S : Int,
       0 ≤ r.e0 → 0 ≤ r.e1 → 0 ≤ r.e2 → 0 ≤ r.e3 → hol4 r = S →
       weightedL1_4 m r - m.e0 * S =
         (m.e1 - m.e0) * r.e1 + (m.e2 - m.e0) * r.e2 + (m.e3 - m.e0) * r.e3) := by
@@ -601,3 +625,4 @@ theorem l1_residual_sector_weights_unweighted_and_weighted_characterization :
     h.2.2.2.2.2.1.trans h.2.2.2.2.2.2.1.symm, h.2.2.2.2.2.2.2.2.2⟩
 
 end WitnessedDifference.WdpBatch9
+

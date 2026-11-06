@@ -25,3 +25,10 @@ abbrev rep_l1_residual_sector_weights_declared :=
   @l1_residual_sector_weights_unweighted_and_weighted_characterization
 
 end WitnessedDifference.WdpBatch9Rep
+
+#print axioms WitnessedDifference.WdpBatch9Rep.rep_genesis_three_axis_verdict
+#print axioms WitnessedDifference.WdpBatch9Rep.rep_rung0_inheritance_replay
+#print axioms WitnessedDifference.WdpBatch9Rep.rep_rung2b_stake_menu
+#print axioms WitnessedDifference.WdpBatch9Rep.rep_forced_census_column
+#print axioms WitnessedDifference.WdpBatch9Rep.rep_l1_residual_sector_weights_declared
+

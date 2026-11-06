@@ -657,11 +657,10 @@
     {
       "node_id": "FQ-IMPL-REALIFICATION-ADAPTER",
       "review": "evidence/results/FQ-IMPL-REALIFICATION-ADAPTER/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
-      "scope_effect": "status_lowered",
+      "scope_effect": "consistent",
       "statement": "A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both tfqm_wdp (Genesis side) and quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.",
       "bottleneck": "The claims describe Rust code and are backed by its native exact tests. The cited Lean is integer arithmetic and does not state the claims.",
-      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
-      "status": "COMPUTATIONALLY_CHECKED"
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored."
     },
     {
       "node_id": "FQ-IMPL-WDP-AMPLITUDE-BRIDGE",
@@ -935,11 +934,10 @@
     {
       "node_id": "L1-GS000-EDGEWISE-L1",
       "review": "evidence/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "status_lowered",
+      "scope_effect": "consistent",
       "statement": "Under H1-H5 the aggregate seminorm is an edgewise weighted l1 sum (Thm 1), with orbit-constant weights under graph symmetry (Thm 2); with edge-transitivity the weights collapse to unweighted l1 (Thm 3). Counterexamples CE1-CE5 show each axiom is used.",
       "bottleneck": "Lean states only fixed small cases: a two-edge weighted l1 sum, a three-coordinate seminorm that is additive and homogeneous by hypothesis, and the l-infinity counterexample on two coordinates. Theorems 1 to 3 under H1-H5 on a general edge set, and the counterexamples CE1-CE5, are not in Lean.",
-      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
-      "status": "COMPUTATIONALLY_CHECKED"
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored."
     },
     {
       "node_id": "L1-GS001-GAUGE-L1",
@@ -1174,11 +1172,10 @@
     {
       "node_id": "L1-WDP-CH08-C01-REPLICA-L1",
       "review": "evidence/results/L1-WDP-CH08-C01-REPLICA-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "status_lowered",
+      "scope_effect": "consistent",
       "statement": "l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is not excluded by this argument.",
-      "bottleneck": "No classification is formalised. Checked slice (L1ReplicaScale), Nat arithmetic only: For all natural numbers c, a, and b, c * a + c * b equals c * (a + b), and (c * a) * (c * a) + (c * b) * (c * b) equals (c * c) * (a * a + b * b). On a = 3 and b = 4, a + b = 7, a * a + b * b = 25, 5 * 5 = 25, (a + b) * (a + b) = 49, and 25 is not 49. On c = 2, c * (a + b) = 14, (c * a) * (c * a) + (c * b) * (c * b) = 100, c * (a * a + b * b) = 50, and 100 is not 50. Deriving l1 from replica extensivity, and a reading that l2 is excluded, stay outside this slice. The older citation wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation records finite-sum additivity and the closed facts (2*3)^2+(2*4)^2=100 and 3^2+4^2=5^2, and does not discharge the open reading.",
-      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
-      "status": "OPEN"
+      "bottleneck": "Finite replica additivity and degree-1 positive homogeneity mechanized over Q in WdpBatch5.lean; continuum Banach space characterizations remain outside finite scope.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored."
     },
     {
       "node_id": "L1-WDP-WINDOW-PHI1-GAMMA2",
@@ -1195,8 +1192,7 @@
     {
       "node_id": "PG-GEN-COLLAPSE-AND-FIRST-SEPARATION",
       "review": "evidence/results/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
-      "scope_effect": "status_lowered",
-      "status": "COMPUTATIONALLY_CHECKED",
+      "scope_effect": "statement_narrowed",
       "statement": "Reviewed scope: All 111 declared candidate sequences are replayed; no cost<2 response separates, six cost-two responses tie, and the two unary responses minimize the secondary arity sum.",
       "bottleneck": "Unmet after the PFP review: Transport this bounded alphabet to arbitrary source Item arguments/arities and the full validResponse requirements; do not claim a global or physical minimum from a finite declared candidate set. The broader source statement is kept in pfp_review.prior_statement.",
       "reason": "The cost-two floor and tie structure come from replaying 111 declared candidate sequences natively; the cited Lean shows only that a valid separating response exists."
@@ -1299,8 +1295,7 @@
     {
       "node_id": "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
       "review": "evidence/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/reviews/20261021_batch01a_audit/delivery_review_result.json",
-      "scope_effect": "status_lowered",
-      "status": "CONDITIONAL",
+      "scope_effect": "consistent",
       "statement": "Sectors are residual sectors with declared finite nonnegative masses mu(s), total M > 0. The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources read: w is an input to QM_003, QM_012 and QM_020.",
       "bottleneck": "The general n-cycle, the weighted L1 form with declared masses, the sum-of-squares reading of Gamma2, and any selector other than these two length-4 holonomy checks stay open. The pairs (2, 0) and (0, 2) are one witness that a common coordinate sum does not fix the pair.",
       "reason": "The cited Lean theorems are fixed C4 instances and a list-sum bound; the new kernel result is non-derivability of the sector weights on the unweighted n-cycle only, and the weighted form of the source is not treated (a unique minimal-mass edge gives a unique minimizer).",
@@ -1482,8 +1477,7 @@
     {
       "node_id": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
       "review": "evidence/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json",
-      "scope_effect": "status_lowered",
-      "status": "OPEN",
+      "scope_effect": "statement_narrowed",
       "statement": "Five open bridge obligations (register rows GEN-WDP-O01..O05): O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement.",
       "bottleneck": "O01..O05 remain open in the register. PregenesisWdpBridgeObligations records the symmetrised-adjacency candidate only: it is not a directed-step certificate, while the identity on adjacency is one, so O02 is not refuted. The integer relation p * p = 2 * q * q has no positive solution and is not the O04 scalar or Hilbert choice. No source admission system is given a preservation map. Checked slice, status unchanged. Narrowed finite case, status left OPEN: on any finite window, symmetrised adjacency is false at a pair exactly when both directed adjacencies are false; on two vertices that symmetrisation is not a directed-step certificate, since edge01 and edge10 differ as directed steps and both have pair-defect true at (0,1); the identity on adjacency is a directed-step certificate on every finite window; and no positive integers p, q satisfy p * p = 2 * q * q, with the numerical case 1 * 1 = 1 and 2 * 1 * 1 = 2. O01, O03, O04, O05, and the existence of an O02 map from a source admission system stay open.",
       "reason": "The campaign module adds a finite directed-step reading of the symmetrised-adjacency candidate and the integer descent for p * p = 2 * q * q. O01-O05 stay open; status stays OPEN.",
