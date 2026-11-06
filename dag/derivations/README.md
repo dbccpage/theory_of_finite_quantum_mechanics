@@ -95,7 +95,7 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0446`](./02_genesis/tfq_0446_pruning_lemmas_cost_two.md) | pruning-lemmas-cost-two | `PROVED_LEAN` | [`TFQ-0445`](./02_genesis/tfq_0445_response_existence_mark_progress.md) |
 | [`TFQ-0447`](./02_genesis/tfq_0447_count_invariance_transport.md) | count-invariance-transport | `PROVED_LEAN` | [`TFQ-0444`](./02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md) |
 | [`TFQ-0448`](./02_genesis/tfq_0448_branch_trees_and_roles.md) | branch-trees-and-roles | `SOURCE_RECORD` | [`TFQ-0446`](./02_genesis/tfq_0446_pruning_lemmas_cost_two.md) |
-| [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) | closed-baseline-terminates | `SOURCE_RECORD` | [`TFQ-0383`](./02_genesis/tfq_0383_closure_round_inequality.md) |
+| [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) | closed-baseline-terminates | `PROVED_LEAN` | [`TFQ-0383`](./02_genesis/tfq_0383_closure_round_inequality.md) |
 | [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) | policy-endpoint-all-separated | `PROVED_LEAN` | [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) |
 | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) | no-endogenous-demand-generator | `PROVED_LEAN` | [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) |
 | [`TFQ-0452`](./02_genesis/tfq_0452_identity_is_index_not_profile.md) | identity-is-index-not-profile | `PROVED_LEAN` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
@@ -210,7 +210,7 @@ Folder: [`05_mssn_sn/`](./05_mssn_sn/)
 | [`TFQ-0517`](./05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md) | sn5-continuation-recorded-request | `SOURCE_RECORD` | [`TFQ-0516`](./05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md) |
 | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) | sn-off-image-refusal-proposal | `SOURCE_RECORD` | [`TFQ-0517`](./05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md) |
 | [`TFQ-0519`](./05_mssn_sn/tfq_0519_sn_protected_answer_transport.md) | sn-protected-answer-transport | `OPEN_OBLIGATION` | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) |
-| [`TFQ-0520`](./05_mssn_sn/tfq_0520_sn_postnikov_refusal.md) | sn-postnikov-refusal | `SOURCE_RECORD` | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) |
+| [`TFQ-0520`](./05_mssn_sn/tfq_0520_sn_postnikov_refusal.md) | sn-postnikov-refusal | `PROVED_LEAN` | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) |
 | [`TFQ-0521`](./05_mssn_sn/tfq_0521_sn_representation_quotient.md) | sn-representation-quotient | `SOURCE_RECORD` | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) |
 | [`TFQ-0522`](./05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md) | sn-e08-weighted-l1-duality | `SOURCE_RECORD` | [`TFQ-0516`](./05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md) |
 | [`TFQ-0523`](./05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md) | sn-e12-circulation-functional | `SOURCE_RECORD` | [`TFQ-0522`](./05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md) |

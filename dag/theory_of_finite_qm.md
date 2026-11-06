@@ -427,8 +427,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0350` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-CHAIN-D1D0-AXIOM` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0351` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-FRAMEWORK-KKT-CERT` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0352` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-OBSERVER-AXIOMS-H1-H5` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0353` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS000-EDGEWISE-L1` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (COMPUTATIONALLY_CHECKED) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0353` | `L1_EMERGENCE` | `PROVED_LEAN` | `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0355` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` (OPEN), `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-IMP-HILBERT-INNER-PRODUCT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0356` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS001-GAUGE-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0357` | `L1_EMERGENCE` | `PROVED_LEAN` | `L1-WDP-CH08-C01-REPLICA-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
@@ -455,8 +455,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0378` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-REGIME-EVENTS` (DEFINITION) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-0379` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-SUPPLY-NO-OP` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
 | `TFQ-0380` | `GENESIS` | `OPEN_OBLIGATION` | `PG-GEN-SUPPLY-NO-OP` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
-| `TFQ-0381` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
-| `TFQ-0382` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
+| `TFQ-0381` | `GENESIS` | `PROVED_LEAN` | `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
+| `TFQ-0382` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-0383` | `GENESIS` | `SOURCE_RECORD` | `TFQ-0383` (SOURCE_RECORD) | - |
 | `TFQ-0384` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-NO-RETURN` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
 | `TFQ-0385` | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0385` (OPEN) | - |
@@ -498,7 +498,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1024` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CORPUS-REWRITE` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1025` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-C500-ORIGINAL-TARGETS` (OPEN) | scoped_block_numeral_slice_reviewed / caveat_added |
 | `TFQ-1026` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (PROVED_LEAN) | reviewed_with_targeted_native_integration / consistent |
-| `TFQ-1027` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-REALIFICATION-ADAPTER` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
+| `TFQ-1027` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-REALIFICATION-ADAPTER` (PROVED_LEAN) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-1028` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-PAIRING-AUDIT` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_gaussian_integer_result_reviewed / caveat_added |
 | `TFQ-1030` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CIRCLE-U1` (IMPORTED_ASSUMPTION) | scoped_sign_pair_cycle_result_reviewed / caveat_added |
@@ -564,7 +564,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0446` | `GENESIS` | `PROVED_LEAN` | `PGW-PRUNING-LEMMAS-COST-TWO` (PROVED_LEAN) | - |
 | `TFQ-0447` | `GENESIS` | `PROVED_LEAN` | `PGW-COUNT-INVARIANCE-TRANSPORT` (PROVED_LEAN) | - |
 | `TFQ-0448` | `GENESIS` | `SOURCE_RECORD` | `PGW-BRANCH-TREES-AND-ROLES` (COMPUTATIONALLY_CHECKED) | - |
-| `TFQ-0449` | `GENESIS` | `SOURCE_RECORD` | `PGW-CLOSED-BASELINE-TERMINATES` (COMPUTATIONALLY_CHECKED) | - |
+| `TFQ-0449` | `GENESIS` | `PROVED_LEAN` | `PGW-CLOSED-BASELINE-TERMINATES` (PROVED_LEAN) | - |
 | `TFQ-0450` | `GENESIS` | `PROVED_LEAN` | `PGW-POLICY-ENDPOINT-ALL-SEPARATED` (PROVED_LEAN) | - |
 | `TFQ-0451` | `GENESIS` | `PROVED_LEAN` | `PGW-NO-ENDOGENOUS-DEMAND-GENERATOR` (PROVED_LEAN) | - |
 | `TFQ-0452` | `GENESIS` | `PROVED_LEAN` | `PGW-IDENTITY-IS-INDEX-NOT-PROFILE` (PROVED_LEAN) | - |
@@ -635,7 +635,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0517` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN5-CONTINUATION-RECORDED-REQUEST` (DEFINITION) | - |
 | `TFQ-0518` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL` (PROVED_LEAN) | - |
 | `TFQ-0519` | `MSSN_SN` | `OPEN_OBLIGATION` | `PGW-SN-PROTECTED-ANSWER-TRANSPORT` (OPEN) | - |
-| `TFQ-0520` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-POSTNIKOV-REFUSAL` (PROVED_PROSE) | - |
+| `TFQ-0520` | `MSSN_SN` | `PROVED_LEAN` | `PGW-SN-POSTNIKOV-REFUSAL` (PROVED_LEAN) | - |
 | `TFQ-0521` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-REPRESENTATION-QUOTIENT` (PROVED_LEAN) | - |
 | `TFQ-0522` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-E08-WEIGHTED-L1-DUALITY` (PROVED_LEAN) | - |
 | `TFQ-0523` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-E12-CIRCULATION-FUNCTIONAL` (PROVED_LEAN) | - |
@@ -1717,7 +1717,7 @@ Obligation: Reading L and Reading F both remain available; neither admission of 
 
 - UUID: `f39dea0e-e068-5840-846a-9de7b7c858cf`
 - Parent: `TFQ-0380`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 - Coda atlas: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - Atlas paths:
   - `external:sha256:9dd2ed282b00133517ad1afb404b1dd51cdd54e517e07c21e395abadc89a0144`
@@ -2064,7 +2064,7 @@ Obligation: Regenerate the four quotiented trees within the declared bounds and 
 
 - UUID: `7e838afc-09e9-550d-92f3-040a0cea91c5`
 - Parent: `TFQ-0383`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 With the external continuation policy disabled, the closed-system baselines are small: reading L has 4 nodes and 3 terminal branches, reading F has 20 nodes and 16 terminal branches, and both have zero guard-cut, round-cut and open branches. Every maximal branch ends at the all-pairs-separated fixpoint within the pair bound, using 1 round in L (bound 1) and 3 in F (bound 3), and the termination flag is computed over all maximal branches rather than from one terminal node. Under the declared round shape a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty).
 
@@ -3080,7 +3080,7 @@ Obligation: For each protected answer F supply F′ with F′∘u = F (such as r
 
 - UUID: `e3ff16d7-f5d8-5b58-983b-34d9b2631e2b`
 - Parent: `TFQ-0518`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 The construction index n of S(n) is distinct from Postnikov depth j. For j ≥ 0 the Postnikov truncations of a fixed space preserve π₀, so an empty space followed by a point cannot be two truncations of one space. If a topological realization ρ is supplied, its tower at fixed n is written P_j(ρ(S(n))) with its own hypotheses, and growth across n stays a separate construction that needs its own maps and preservation proofs. The combined paper lists S(n) is automatically a Postnikov tower among withdrawn inferences, and ledger row WDP-P001-017 withdraws automatic Postnikov structure.
 
@@ -3935,7 +3935,7 @@ Obligation: Admit H1 through H5 as observer hypotheses on a finite edge projecti
 
 - UUID: `6d27377a-8ee5-593d-9afa-a06eb0261ee6`
 - Parent: `TFQ-0352`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 - Coda atlas: `F000.S000`
 
 DAG node L1-GS000-EDGEWISE-L1 says that under H1-H5 the aggregate seminorm is an edgewise weighted l1 sum, that graph symmetry makes weights constant on orbits, and that edge-transitivity collapses the weights to unweighted l1. Counterexamples CE1 through CE5 are recorded as showing that each axiom is used. Route L1-R-OBSERVER-TO-GS000 takes only L1-OBSERVER-AXIOMS-H1-H5 as input. gauge_classification.rs names that GS-000 content in its header. This slice does not re-elaborate the cited Lean and does not promote the DAG status field.
@@ -8083,8 +8083,8 @@ Obligation: WDP-CH19-P11/P12 mechanized in WdpBatch4.lean alongside amplitude_br
 
 - UUID: `ede28733-9821-5833-8771-7cc0bfce6c1d`
 - Parent: `TFQ-1007`
-- Status: `COMPUTATIONAL_CONTROL`
-- DAG node: `FQ-IMPL-REALIFICATION-ADAPTER` (`COMPUTATIONALLY_CHECKED`)
+- Status: `PROVED_LEAN`
+- DAG node: `FQ-IMPL-REALIFICATION-ADAPTER` (`PROVED_LEAN`)
 
 A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both tfqm_wdp (Genesis side) and quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.
 

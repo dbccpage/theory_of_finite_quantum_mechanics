@@ -70,7 +70,7 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 53 | [`TFQ-0383`](./02_genesis/tfq_0383_closure_round_inequality.md) | closure-round-inequality | `GENESIS` | `SOURCE_RECORD` | `TFQ-0382` |
 | 54 | [`TFQ-0384`](./02_genesis/tfq_0384_cumulative_count_no_return.md) | cumulative-count-no-return | `GENESIS` | `SOURCE_RECORD` | `TFQ-0383` |
 | 55 | [`TFQ-0385`](./02_genesis/tfq_0385_rule_can_erase_separation.md) | rule-can-erase-separation | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0384` |
-| 56 | [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) (new) | closed-baseline-terminates | `GENESIS` | `SOURCE_RECORD` | `TFQ-0383` |
+| 56 | [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) (new) | closed-baseline-terminates | `GENESIS` | `PROVED_LEAN` | `TFQ-0383` |
 | 57 | [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) (new) | policy-endpoint-all-separated | `GENESIS` | `PROVED_LEAN` | `TFQ-0449` |
 | 58 | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) (new) | no-endogenous-demand-generator | `GENESIS` | `PROVED_LEAN` | `TFQ-0450` |
 | 59 | [`TFQ-0452`](./02_genesis/tfq_0452_identity_is_index_not_profile.md) (new) | identity-is-index-not-profile | `GENESIS` | `PROVED_LEAN` | `TFQ-0451` |
@@ -181,7 +181,7 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 164 | [`TFQ-0517`](./05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md) (new) | sn5-continuation-recorded-request | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0516` |
 | 165 | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) (new) | sn-off-image-refusal-proposal | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0517` |
 | 166 | [`TFQ-0519`](./05_mssn_sn/tfq_0519_sn_protected_answer_transport.md) (new) | sn-protected-answer-transport | `MSSN_SN` | `OPEN_OBLIGATION` | `TFQ-0518` |
-| 167 | [`TFQ-0520`](./05_mssn_sn/tfq_0520_sn_postnikov_refusal.md) (new) | sn-postnikov-refusal | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0518` |
+| 167 | [`TFQ-0520`](./05_mssn_sn/tfq_0520_sn_postnikov_refusal.md) (new) | sn-postnikov-refusal | `MSSN_SN` | `PROVED_LEAN` | `TFQ-0518` |
 | 168 | [`TFQ-0521`](./05_mssn_sn/tfq_0521_sn_representation_quotient.md) (new) | sn-representation-quotient | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0518` |
 | 169 | [`TFQ-0528`](./05_mssn_sn/tfq_0528_mssn_atlas_not_derivation.md) (new) | mssn-atlas-not-derivation | `MSSN_SN` | `DEFINITION` | `TFQ-0518` |
 | 170 | [`TFQ-0529`](./05_mssn_sn/tfq_0529_mssn_ascent_triad.md) (new) | mssn-ascent-triad | `MSSN_SN` | `DEFINITION` | `TFQ-0528` |

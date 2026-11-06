@@ -27,7 +27,9 @@ lean_lib WitnessedDifference where
     `WitnessedDifference.WdpBatch6,
     `WitnessedDifference.WdpBatch6Rep,
     `WitnessedDifference.WdpBatch7,
-    `WitnessedDifference.WdpBatch7Rep
+    `WitnessedDifference.WdpBatch7Rep,
+    `WitnessedDifference.WdpBatch8,
+    `WitnessedDifference.WdpBatch8Rep
   ]
 
 
