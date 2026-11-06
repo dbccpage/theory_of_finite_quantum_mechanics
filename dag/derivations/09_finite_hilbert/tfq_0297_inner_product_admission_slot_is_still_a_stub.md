@@ -61,3 +61,7 @@ In accordance with strict constructive principles:
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/H062CompositionTensorMub.lean::rival_fails_local_unitary_covariance`
 - **Sovereign Rust Witness Anchor**: `external:sha256:9765c2d94791424a10351167ef55ae78167558d6f03b943c2cc26ea339d421a6::passes_squared_chsh_bound`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 87f0f20c30bad111a4f5ce05e60c081a508274705c9aa20e9c893400500c28e0`
+
+## Scoped correction — 2026-11-06
+
+This historical QM_200 slot remains an open source obligation. It must be distinguished from the separate conditional sector-form uniqueness result now recorded by `L1-IMP-HILBERT-INNER-PRODUCT`. Section 6 above names `FQ-TENSOR-LU-RIVAL-EXCLUSION`, a different result: its PASS receipt is preserved as historical material but is not evidence discharging this inner-product slot. TFQ-2621 supplies a norm/admission comparison, not a derivation of quadratic geometry or a Born readout from primitives.

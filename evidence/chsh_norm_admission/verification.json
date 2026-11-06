@@ -1,0 +1,1026 @@
+{
+  "schema": "chsh-norm-admission-verification/1",
+  "checked_at_utc": "2026-11-06T20:48:42.471547+00:00",
+  "scope": "Conditional norm/dual theorems and exact finite controls only; no selection of the admitted premises.",
+  "scope_passed": true,
+  "toolchain": "leanprover/lean4:v4.35.0",
+  "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "checks": {
+    "lean": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\.elan\\toolchains\\leanprover--lean4---v4.35.0\\bin\\lean.exe",
+        "CHSHNormAdmission.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4",
+      "exit_code": 0,
+      "stdout": "'CHSHNormAdmission.unitEffect_iff_dual_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.correlator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.dual_sum_difference_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.algebraic_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.chsh_sq_le_eight' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.chsh_le_two_sqrt_two' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.reconstructed_polarization' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.inner_product_implies_parallelogram' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.probability_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.probability_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.marginal_alice' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.marginal_bob' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.probability_recovers_correlator' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.deterministic_local_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.positive_mixture_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l1_effect_plus' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l1_effect_minus' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l1_pr_witness' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l1_fails_parallelogram' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.linfty_effect_first' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.linfty_effect_second' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.linfty_pr_witness' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l2_effect' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l2_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l2_parallelogram' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l2_upper_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l2_witness_effects' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CHSHNormAdmission.l2_attainment' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stderr": ""
+    },
+    "tests": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "code/python/tests/test_chsh_norm_admission.py",
+        "code/python/tests/test_qm_atlas_loc.py",
+        "--basetemp=.pytest_cache/chsh_verification_tmp"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics",
+      "exit_code": 0,
+      "stdout": "..................                                                       [100%]\n18 passed in 2.80s\n",
+      "stderr": ""
+    },
+    "atlas": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "scripts/verify_qm_atlas_loc.py"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics",
+      "exit_code": 0,
+      "stdout": "QM_ATLAS_LOC_VERIFIER all_passed=True questions=65 verified_links=403 verified_window_symbols=197 rust_python_parity=True\n",
+      "stderr": ""
+    },
+    "dag_structure_views": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "dag/validate_derivation_dag.py",
+        "--repo-root",
+        ".",
+        "--no-files"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics",
+      "exit_code": 0,
+      "stdout": "nodes=989 routes=997 records=1041 failures=0\n",
+      "stderr": ""
+    }
+  },
+  "expected_theorems": [
+    "unitEffect_iff_dual_bound",
+    "correlator_bound",
+    "dual_sum_difference_bound",
+    "algebraic_bound",
+    "chsh_sq_le_eight",
+    "chsh_le_two_sqrt_two",
+    "reconstructed_polarization",
+    "inner_product_implies_parallelogram",
+    "probability_nonnegative",
+    "probability_normalized",
+    "marginal_alice",
+    "marginal_bob",
+    "probability_recovers_correlator",
+    "deterministic_local_bound",
+    "positive_mixture_bound",
+    "l1_effect_plus",
+    "l1_effect_minus",
+    "l1_pr_witness",
+    "l1_fails_parallelogram",
+    "linfty_effect_first",
+    "linfty_effect_second",
+    "linfty_pr_witness",
+    "l2_effect",
+    "l2_norm_sq",
+    "l2_parallelogram",
+    "l2_upper_bound",
+    "l2_witness_effects",
+    "l2_attainment"
+  ],
+  "axiom_audit_passed": true,
+  "axiom_dependencies": {
+    "unitEffect_iff_dual_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "correlator_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "dual_sum_difference_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "algebraic_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "chsh_sq_le_eight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "chsh_le_two_sqrt_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "reconstructed_polarization": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "inner_product_implies_parallelogram": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "probability_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "probability_normalized": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "marginal_alice": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "marginal_bob": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "probability_recovers_correlator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "deterministic_local_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "positive_mixture_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l1_effect_plus": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l1_effect_minus": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l1_pr_witness": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l1_fails_parallelogram": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "linfty_effect_first": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "linfty_effect_second": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "linfty_pr_witness": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l2_effect": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l2_norm_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l2_parallelogram": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l2_upper_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l2_witness_effects": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "l2_attainment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "no_source_holes_or_new_axioms": true,
+  "finite_replay": {
+    "schema": "chsh-norm-admission/1",
+    "scope": "Exact finite norm/dual correlator witnesses; no physical reconstruction or universal norm theorem.",
+    "witnesses": {
+      "l1": {
+        "dual_norm": "linfty",
+        "states": [
+          [
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            }
+          ]
+        ],
+        "effects": [
+          [
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "-1",
+              "sqrt2_coefficient": "0"
+            }
+          ]
+        ],
+        "state_norm_squared": [
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          }
+        ],
+        "effect_dual_norm_squared": [
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          }
+        ],
+        "correlations": [
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "-1",
+            "sqrt2_coefficient": "0"
+          }
+        ],
+        "behavior": [
+          [
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            }
+          ]
+        ],
+        "chsh": {
+          "rational": "4",
+          "sqrt2_coefficient": "0"
+        },
+        "basis_parallelogram_defect": {
+          "rational": "4",
+          "sqrt2_coefficient": "0"
+        }
+      },
+      "l2": {
+        "dual_norm": "l2",
+        "states": [
+          [
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            }
+          ]
+        ],
+        "effects": [
+          [
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "1/2"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "1/2"
+            }
+          ],
+          [
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "1/2"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "-1/2"
+            }
+          ]
+        ],
+        "state_norm_squared": [
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          }
+        ],
+        "effect_dual_norm_squared": [
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          }
+        ],
+        "correlations": [
+          {
+            "rational": "0",
+            "sqrt2_coefficient": "1/2"
+          },
+          {
+            "rational": "0",
+            "sqrt2_coefficient": "1/2"
+          },
+          {
+            "rational": "0",
+            "sqrt2_coefficient": "1/2"
+          },
+          {
+            "rational": "0",
+            "sqrt2_coefficient": "-1/2"
+          }
+        ],
+        "behavior": [
+          [
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "-1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "-1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "1/8"
+            }
+          ],
+          [
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "-1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "-1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "1/8"
+            }
+          ],
+          [
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "-1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "-1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "1/8"
+            }
+          ],
+          [
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "-1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "1/8"
+            },
+            {
+              "rational": "1/4",
+              "sqrt2_coefficient": "-1/8"
+            }
+          ]
+        ],
+        "chsh": {
+          "rational": "0",
+          "sqrt2_coefficient": "2"
+        },
+        "basis_parallelogram_defect": {
+          "rational": "0",
+          "sqrt2_coefficient": "0"
+        }
+      },
+      "linfty": {
+        "dual_norm": "l1",
+        "states": [
+          [
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "-1",
+              "sqrt2_coefficient": "0"
+            }
+          ]
+        ],
+        "effects": [
+          [
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1",
+              "sqrt2_coefficient": "0"
+            }
+          ]
+        ],
+        "state_norm_squared": [
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          }
+        ],
+        "effect_dual_norm_squared": [
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          }
+        ],
+        "correlations": [
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "1",
+            "sqrt2_coefficient": "0"
+          },
+          {
+            "rational": "-1",
+            "sqrt2_coefficient": "0"
+          }
+        ],
+        "behavior": [
+          [
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            }
+          ],
+          [
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "1/2",
+              "sqrt2_coefficient": "0"
+            },
+            {
+              "rational": "0",
+              "sqrt2_coefficient": "0"
+            }
+          ]
+        ],
+        "chsh": {
+          "rational": "4",
+          "sqrt2_coefficient": "0"
+        },
+        "basis_parallelogram_defect": {
+          "rational": "-2",
+          "sqrt2_coefficient": "0"
+        }
+      }
+    },
+    "local_assignments": [
+      [
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      [
+        -1,
+        -1,
+        -1,
+        1
+      ],
+      [
+        -1,
+        -1,
+        1,
+        -1
+      ],
+      [
+        -1,
+        -1,
+        1,
+        1
+      ],
+      [
+        -1,
+        1,
+        -1,
+        -1
+      ],
+      [
+        -1,
+        1,
+        -1,
+        1
+      ],
+      [
+        -1,
+        1,
+        1,
+        -1
+      ],
+      [
+        -1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        -1,
+        -1,
+        -1
+      ],
+      [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      [
+        1,
+        -1,
+        1,
+        -1
+      ],
+      [
+        1,
+        -1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        -1,
+        -1
+      ],
+      [
+        1,
+        1,
+        -1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        -1
+      ],
+      [
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "local_chsh_values": [
+      {
+        "rational": "2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "-2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "-2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "-2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "-2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "-2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "-2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "-2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "-2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "2",
+        "sqrt2_coefficient": "0"
+      },
+      {
+        "rational": "2",
+        "sqrt2_coefficient": "0"
+      }
+    ],
+    "positive_mixture_weights": [
+      "1/136",
+      "1/68",
+      "3/136",
+      "1/34",
+      "5/136",
+      "3/68",
+      "7/136",
+      "1/17",
+      "9/136",
+      "5/68",
+      "11/136",
+      "3/34",
+      "13/136",
+      "7/68",
+      "15/136",
+      "2/17"
+    ],
+    "positive_mixture_behavior": [
+      [
+        {
+          "rational": "7/68",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "11/68",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "23/68",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "27/68",
+          "sqrt2_coefficient": "0"
+        }
+      ],
+      [
+        {
+          "rational": "2/17",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "5/34",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "6/17",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "13/34",
+          "sqrt2_coefficient": "0"
+        }
+      ],
+      [
+        {
+          "rational": "11/68",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "15/68",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "19/68",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "23/68",
+          "sqrt2_coefficient": "0"
+        }
+      ],
+      [
+        {
+          "rational": "3/17",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "7/34",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "5/17",
+          "sqrt2_coefficient": "0"
+        },
+        {
+          "rational": "11/34",
+          "sqrt2_coefficient": "0"
+        }
+      ]
+    ],
+    "positive_mixture_chsh": {
+      "rational": "0",
+      "sqrt2_coefficient": "0"
+    }
+  },
+  "source_sha256": {
+    "lean4/CHSHNormAdmission.lean": "3e0df03c41166afe952ff5770d9ec72d6a0353fe3d9709a07c34cb0494b9d9fd",
+    "code/python/src/qm/chsh_norm_admission.py": "b4992d534d96fbc21edabb377ff56b24834539bb3bf5f47823c99a8e5184fc2b",
+    "evidence/chsh_norm_admission/verify.py": "61041c58899970d7b71415196b14985c227fcbaa488fc80b61bce13b17db0589",
+    "code/python/tests/test_chsh_norm_admission.py": "26410d7036d25989c7d96de9e4baca3e6ed0438bea9ea0566153b31ebff6b446",
+    "lean4/lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+    "lean4/lake-manifest.json": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1",
+    "lean4/lakefile.lean": "628b1b4bf0dbf86998ce8b5f02c41e9ee7d6ffeffbb4640ad72d8b584ad1320d",
+    "dag/derivation_dag.json": "edefe0329d4cee4b3089fe9c01490244ee3fbe5eb79d9e23e6360f793c9d82c4",
+    "dag/derivations/10_finite_qm_core/tfq_2621_chsh_norm_admission_comparison.md": "efec2c75972c82a97c83092db50fb658dc0f7963089a32155bcf8b4260475f8a",
+    "evidence/chsh_norm_admission/dag_validation.json": "1f662e36961eb413e8a515ed5000b2ec072a7f6472c6e64db615d7b1a9ff5b39",
+    "evidence/chsh_norm_admission/dag_validation_baseline.json": "b31ed19de00a7fd5b5243039b6e71a58f7f17fd75a84a39a9ae50de6022a2252"
+  },
+  "full_repository_dag_validation": {
+    "passed": false,
+    "baseline_failure_count": 1395,
+    "current_failure_count": 1395,
+    "new_failures": [],
+    "resolved_baseline_failures": [],
+    "new_slice_reference_failures": []
+  },
+  "limitations": [
+    "Full DAG reference validation has pre-existing failures; see separate comparison.",
+    "No derivation of carriers, real scalars, norm, effects or probability rule from Genesis.",
+    "Parallelogram law is an explicit premise of the general quadratic bound.",
+    "Negative controls are tests of invalid data, not a proof of minimal assumptions."
+  ]
+}

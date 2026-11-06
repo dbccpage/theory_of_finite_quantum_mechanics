@@ -1598,3 +1598,6 @@ lean_lib GleasonContinuumDevelopment where
 lean_lib ContinuumDerivationSpine where
   roots := #[`ContinuumDerivationSpine]
 
+-- Norm/dual CHSH admission comparison, with explicit parallelogram hypothesis.
+lean_lib CHSHAdmission where
+  roots := #[`CHSHNormAdmission]

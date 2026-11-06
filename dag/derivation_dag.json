@@ -5875,15 +5875,19 @@
       "id": "FQ-TSIRELSON-SOS-Q-SQRT2",
       "stage": "FINITE_QM_CORE",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "paper s13.8.2: exact SOS certificates -2sqrt2 I <= B_CHSH <= 2sqrt2 I and attaining witness over Q(sqrt2); QM-218",
-      "statement": "On the declared bipartite carrier with A0=Z, A1=X, B0=(Z+X)/sqrt2, B1=(Z-X)/sqrt2 and |Phi+>, the CHSH operator satisfies two exact SOS inequalities and attains 2sqrt2; the witness lives in the real field Q(sqrt2) and is static, so complex U(1) phase and continuous time are not needed. Lean: unit-norm-squared-4 vectors over Z[sqrt2] with scaled CHSH sum 8.",
+      "source_status": "paper s13.8.2: exact SOS certificates -2sqrt2 I <= B_CHSH <= 2sqrt2 I and attaining witness over Q(sqrt2); QM-218; scope reconciled with the existing 20261019 structure-audit receipt: fixed rational quadratic inequalities are kernel checked, full concrete matrix transport remains open.",
+      "statement": "On the declared bipartite carrier with A0=Z, A1=X, B0=(Z+X)/sqrt2, B1=(Z-X)/sqrt2 and |Phi+>, the CHSH operator satisfies two exact SOS inequalities and attains 2sqrt2; the witness lives in the real field Q(sqrt2) and is static, so complex U(1) phase and continuous time are not needed. Lean additionally checks rational four-coordinate scaled quadratic SOS inequalities and an attaining ratio for the fixed operator; this is not the full matrix-to-real transport.",
       "source": [
         "atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:1332",
         "atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:380"
       ],
       "lean": [
         "lean4/QuantumCorrelation.lean::q2_tsirelson_attainment",
-        "lean4/ContextualityThresholds.lean::conductor_24_contains_sqrt2"
+        "lean4/ContextualityThresholds.lean::conductor_24_contains_sqrt2",
+        "lean4/PromptStructure.lean::tsirelson_minus_sos",
+        "lean4/PromptStructure.lean::tsirelson_plus_sos",
+        "lean4/PromptStructure.lean::tsirelson_fixed_bound",
+        "lean4/PromptStructure.lean::tsirelson_scaled_attainment"
       ],
       "rust": [
         "external:sha256:24f64c814749a499091a6ff28d77985d0a958f2c7d61551981693687b67f45a9::evaluate_qm218_page_wootters_tsirelson_wigner",
@@ -5895,7 +5899,7 @@
         "entangled state (assumption)",
         "trace/Born pairing (assumption)"
       ],
-      "bottleneck": "Lean exhibits four vectors over Z[sqrt2] with squared norm 4 whose scaled CHSH sum is 8 sqrt2 (q2_tsirelson_attainment). The two SOS operator inequalities are native exact checks, not Lean.",
+      "bottleneck": "The reviewed Lean work includes rational four-coordinate scaled SOS inequalities and attainment for the fixed quadratic form (PromptStructure.tsirelson_fixed_bound and tsirelson_scaled_attainment), as well as the Z[sqrt2] vector witness. The concrete Q(sqrt2)-matrix to real quadratic-form transport remains open, so this node stays COMPUTATIONALLY_CHECKED; arbitrary observables and physical tensor/probability selection are not derived.",
       "tags": [],
       "pfp_review": {
         "review": "evidence/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json",
@@ -32469,6 +32473,65 @@
         "foc035"
       ],
       "see_also": []
+    },
+    {
+      "id": "FQ-CHSH-NORM-ADMISSION-COMPARISON",
+      "stage": "FINITE_QM_CORE",
+      "status": "PROVED_LEAN",
+      "source_status": "Fresh CHSHNormAdmission.lean compilation succeeded on 2026-11-06 with 28 theorem anchors and no warnings. Each audited theorem reports propext, Classical.choice and Quot.sound. Kernel statements retain the supplied norm/effect interface and branch-specific parallelogram premise. General inequalities need no finite-dimension hypothesis. Replay commands, hashes and exact checks are recorded by evidence/chsh_norm_admission/verify.py in verification.json.",
+      "statement": "For a declared real normed space, unit vectors and contractive linear effects, the CHSH value is bounded by the sum and difference norms and hence by 4. A supplied parallelogram law gives squared bound 8; Mathlib reconstructs the compatible inner product by polarization. Explicit two-dimensional l1 and linfinity witnesses attain 4, and an l2 witness attains 2sqrt2. The common unbiased binary response tables are nonnegative, normalized and no-signalling. A separate nonnegative global mixture of deterministic signs has CHSH bound 2.",
+      "source": [
+        "dag/derivations/10_finite_qm_core/tfq_2621_chsh_norm_admission_comparison.md",
+        "lean4/CHSHNormAdmission.lean",
+        "code/python/src/qm/chsh_norm_admission.py"
+      ],
+      "lean": [
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.correlator_bound",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.dual_sum_difference_bound",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.algebraic_bound",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.chsh_sq_le_eight",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.chsh_le_two_sqrt_two",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.reconstructed_polarization",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.inner_product_implies_parallelogram",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.probability_nonnegative",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.probability_normalized",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.marginal_alice",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.marginal_bob",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.deterministic_local_bound",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.positive_mixture_bound",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l1_effect_plus",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l1_effect_minus",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l1_pr_witness",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l1_fails_parallelogram",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.linfty_effect_first",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.linfty_effect_second",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.linfty_pr_witness",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l2_effect",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l2_witness_effects",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l2_attainment",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.unitEffect_iff_dual_bound",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.probability_recovers_correlator",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l2_norm_sq",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l2_parallelogram",
+        "lean4/CHSHNormAdmission.lean::CHSHNormAdmission.l2_upper_bound"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "real scalar field and real normed vector space: supplied; finite-dimensional examples have infinite underlying carriers",
+        "contractive effects and two vectors of norm at most one: supplied",
+        "unbiased binary probability rule (1+a*b*E)/4: supplied",
+        "parallelogram law: supplied only for the 2sqrt2 branch",
+        "full coordinate state/effect witnesses: declared finite-dimensional comparison examples"
+      ],
+      "bottleneck": "No derivation of the norm, quadratic readout, tensor composition or probability law from primitive difference. Parallelogram reconstruction reformulates inner-product geometry; the CHSH ceiling alone is not asserted to characterize it. Probability-table validity does not establish arbitrary composites or sequential instruments. The remaining task is to derive or weaken the geometric premises under explicitly supplied upstream assumptions.",
+      "tags": [
+        "chsh-norm-admission-comparison"
+      ],
+      "see_also": [
+        "L1-IMP-HILBERT-INNER-PRODUCT",
+        "FQ-TSIRELSON-SOS-Q-SQRT2",
+        "DS-QM073-BELL-THEOREM-OBSTRUCTED"
+      ]
     }
   ],
   "routes": [
@@ -45381,6 +45444,18 @@
       "source": [
         "atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N2"
       ]
+    },
+    {
+      "id": "FQ-R-CHSH-NORM-ADMISSION-COMPARISON-CONTEXT",
+      "inputs": [
+        "DS-QM073-FINITE-CHSH-AND-PR-BOX"
+      ],
+      "output": "FQ-CHSH-NORM-ADMISSION-COMPARISON",
+      "status": "RECORD_PARENT",
+      "source": [
+        "dag/derivations/10_finite_qm_core/tfq_2621_chsh_norm_admission_comparison.md"
+      ],
+      "note": "Comparison context only. This is not a derivation from a classical positive global joint distribution; the new norm/effect interface and branch-specific premises are supplied explicitly in the node."
     }
   ],
   "records": [
@@ -80265,6 +80340,33 @@
       "stage": "OBSERVER_PRESHEAF",
       "summary": "The LGGR test of PR 1050 of the source repository was not on its main branch at commit ae38eaa89 and is not cited by the note or its ledger. The row records a git log over the normal-forms test folder of that repository.",
       "uuid": "fe128b3e-3f7e-5a71-a798-ab02fe4aa06d"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FQ-CHSH-NORM-ADMISSION-COMPARISON"
+      ],
+      "f004_refs": [
+        "dag/derivations/10_finite_qm_core/tfq_2621_chsh_norm_admission_comparison.md"
+      ],
+      "id": "TFQ-2621",
+      "lean4": [
+        "lean4/CHSHNormAdmission.lean"
+      ],
+      "local_id": "FQ-CHSH-NORM-ADMISSION-COMPARISON",
+      "name": "CHSH norm geometry and the parallelogram admission",
+      "obligation": "Keep the norm/effect and probability interface explicit; preserve the primitive-to-Hilbert gap and distinguish classical global-joint locality from an l1 norm.",
+      "parent_id": "TFQ-0260",
+      "python": [
+        "code/python/src/qm/chsh_norm_admission.py"
+      ],
+      "record_status": "PROVED_LEAN",
+      "rust": [],
+      "source_slice": "chsh_norm_admission",
+      "stage": "FINITE_QM_CORE",
+      "summary": "For a declared real normed space, unit vectors and contractive linear effects, the CHSH value is bounded by the sum and difference norms and hence by 4. A supplied parallelogram law gives squared bound 8; Mathlib reconstructs the compatible inner product by polarization. Explicit two-dimensional l1 and linfinity witnesses attain 4, and an l2 witness attains 2sqrt2. The common unbiased binary response tables are nonnegative, normalized and no-signalling. A separate nonnegative global mixture of deterministic signs has CHSH bound 2.",
+      "uuid": "4b180ce6-0ab2-52b8-b0a3-d210f40a75df"
     }
   ]
 }
