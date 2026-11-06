@@ -31,4 +31,4 @@ and the existing `COMP-C1` through `COMP-C8` records.
 
 Supporting sources: [the existing pregenesis-to-WDP route](../PREGENESIS_TO_WDP_ROUTE.md),
 [authorization package](../04_authorization/authorization_incompleteness/README.md),
-and [the source crosswalk](../SOURCE_CROSSWALK.md).
+and [the source crosswalk](../../../docs/maintenance/source_consolidation/source_crosswalk.md).

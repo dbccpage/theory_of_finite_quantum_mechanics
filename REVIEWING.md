@@ -42,7 +42,7 @@ A verdict of A on proof correctness for a Lean node means "the declaration prove
 
 ## How to review a node
 
-Pick a node (issues carrying the label `review-needed` and the [example prompts](docs/contribute/example_prompts.md) are starting points, and the call below lists areas). Then read, in this order:
+Pick a node (issues carrying the label `review-needed` are starting points, and the call below lists areas). Then read, in this order:
 
 1. **The node.** Print it from the DAG. The command below uses the node L1-IMP-HILBERT-INNER-PRODUCT; **replace that id with the node you chose** (do not type angle brackets into a shell, where < is redirection):
    ```
@@ -51,13 +51,13 @@ Pick a node (issues carrying the label `review-needed` and the [example prompts]
    Note `status`, `statement`, `bottleneck`, `lean`, `rust`, `source` and `pfp_review` (the latter holds the narrowest claim from the earlier host review, if there is one). Status labels are defined in `status_legend` in the same file.
 2. **The evidence page** for the node. Each node has a generated evidence page at `docs/evidence/nodes/<NODE-ID>.md` (overview: [`docs/evidence/README.md`](docs/evidence/README.md)), listing the exact files, declarations, hashes, receipts and the command to check each item.
 3. **The Lean file.** The `lean` field names `path::declaration` pairs. Open the declaration and read its statement and the lines that follow it. Then compare it with the node statement, claim by claim. You can do this on GitHub without building. If you want to elaborate it, see the Lean setup in [`CONTRIBUTING.md`](CONTRIBUTING.md); the `#print axioms` lines at the end of a campaign module show what it depends on. A node with no `lean` entry has no Lean proof, and that is part of its label.
-4. **The independent check**, if there is one. Under the [campaign protocol](dag/pfp/campaign/README.md) each attempted target gets a script `checks/independent/<node id in lower case>.py`, a SymPy or plain-Python script that recomputes the claim without importing repository code; run it with `python -I -X utf8` and the script path. None exists on `main` yet. Nodes may have a Rust or Python certifier under `code/`, named in the `rust` field.
+4. **The independent check**, if there is one. Each attempted node gets a script `checks/independent/<node id in lower case>.py`, a SymPy or plain-Python script that recomputes the claim without importing repository code; run it with `python -I -X utf8` and the script path. None exists on `main` yet. Nodes may have a Rust or Python certifier under `code/`, named in the `rust` field.
 5. **The derivation note.** Every node has a paper under `dag/derivations/` (its path is the first `source` entry of most nodes). Attempted campaign targets also have `dag/derivations/independent/<node id in lower case>.md`, whose first line says whether a human has reviewed it. Only a named human reviewer may change that line; an AI-drafted note stays marked as such until one does.
 6. **The history.** `git log --follow` on the file, and the earlier review records under `dag/results/<node id>/reviews/`, show what was already narrowed and why.
 
 Then open a [*Derivation review* issue](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=derivation_review.yml). Give the node id, the commit you reviewed (`git rev-parse HEAD`), your background in one line, your verdict for each item, and your specific issues. Be specific: a line, a declaration name, a quantifier. A review that says "looks fine" is welcome if it says what you looked at.
 
-Reviewing the tooling instead? Code correctness of scripts such as `dag/validate_derivation_dag.py`, `dag/pfp/llm_ladder/verify.py` and `scripts/build_status.py` is a valid review too. Open the same issue form and give the file in place of a node id.
+Reviewing the tooling instead? Code correctness of scripts such as `dag/validate_derivation_dag.py` and `scripts/build_status.py` is a valid review too. Open the same issue form and give the file in place of a node id.
 
 ## How reviews are recorded
 

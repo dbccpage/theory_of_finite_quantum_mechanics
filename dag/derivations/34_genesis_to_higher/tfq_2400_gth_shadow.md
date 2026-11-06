@@ -37,7 +37,6 @@ See also: `PG-GEN-REGIME-EVENTS`, `PGW-ADMISSION-BEFORE-DISTINCTION`.
 ## Sources
 
 - Repository: `dag/derivations/independent/gth_shadow.md`
-- Repository: `dag/derivations/independent/gth-shadow.md`
 - Repository: `dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md`
 - Repository: `checks/independent/gth-shadow.py`
 - Repository: `lean4/GenesisToHigherShadow.lean`

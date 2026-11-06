@@ -20,8 +20,7 @@ A status label is only as strong as its evidence. `PROVED_LEAN` means a named Le
 
 ## Help
 
-- **Run a prompt.** Small finite nodes, a command that costs a few cents or nothing, and a check you can run yourself: [example prompts](contribute/example_prompts.md).
-- **Attempt a target.** Open nodes ranked by how much depends on them, with a per-target protocol: [`CONTRIBUTING.md`](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/main/CONTRIBUTING.md).
+- **Attempt an open node.** Each open node names what is missing, and the protocol for a result is in [`CONTRIBUTING.md`](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/main/CONTRIBUTING.md).
 - **Review.** If you are a mathematician or physicist and can read one node critically, see [`REVIEWING.md`](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/main/REVIEWING.md). Reviewers are credited in [the reviewer list](reviewers.md).
 
 ## Support

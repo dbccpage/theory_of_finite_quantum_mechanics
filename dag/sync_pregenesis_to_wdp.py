@@ -5,7 +5,7 @@ their papers, their records in derivation_dag.json (source_slice pregenesis_to_w
 spliced before the application-branch block), their DAG nodes and routes (spliced
 before the application-branch block), the five stage sections of
 dag/derivations/README.md that list them, and the appended child bullets in section 4
-of unpinned parent papers. Custody-pinned papers (dag/operads/*.yaml paper_source_pins)
+of unpinned parent papers. Custody-pinned papers (dag/fragments/pinned_papers.json)
 are never written.
 
 derivation_dag.json (schema derivation_dag.v2) is the single source of the derivation
@@ -93,21 +93,9 @@ def load_manifest(root: Path = ROOT):
 
 
 def pinned_papers(root: Path) -> set[str]:
-    """Repo-relative paths of papers whose bytes an operad record pins."""
-    pinned = set()
-    for path in sorted((root / 'dag/operads').glob('*.yaml')):
-        in_pins = False
-        for line in path.read_text(encoding='utf-8').splitlines():
-            if line.strip() == 'paper_source_pins:':
-                in_pins = True
-                continue
-            if in_pins:
-                item = re.match(r'^\s*- path: (dag/derivations/\S+\.md)\s*$', line)
-                if item:
-                    pinned.add(item.group(1))
-                elif not re.match(r'^\s+(sha256: \S+)?$', line):
-                    in_pins = False
-    return pinned
+    """Repo-relative paths of papers whose bytes must not be rewritten (fragments/pinned_papers.json)."""
+    data = json.loads((root / 'dag/fragments/pinned_papers.json').read_text(encoding='utf-8'))
+    return set(data['papers'])
 
 
 def read_records(root: Path) -> list[dict]:

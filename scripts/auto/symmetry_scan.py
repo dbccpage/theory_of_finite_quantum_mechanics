@@ -29,7 +29,7 @@ TOOL = "symmetry_scan"
 SCANNER = "scripts/overclaim_scan.py"
 VALIDATOR = "dag/validate_derivation_dag.py"
 LINT = "scripts/auto/anti_pattern_lint.py"
-PROSE_PATTERNS = ("README.md", "CONTRIBUTING.md", "REVIEWING.md", "dag/pfp/campaign/README.md",
+PROSE_PATTERNS = ("README.md", "CONTRIBUTING.md", "REVIEWING.md",
                   "dag/derivation_dag_reading_note.md", ".claude/skills/*.md", ".claude/rules/*.md",
                   ".agents/rules/*.md", ".agents/patterns/*.md")
 AXIOM_VOCAB = ("propext", "Classical.choice", "Quot.sound", "funext", "sorryAx", "Lean.ofReduceBool",

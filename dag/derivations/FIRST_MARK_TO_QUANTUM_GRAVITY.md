@@ -61,12 +61,12 @@ renderers and the Everett companion are preserved together in
 [the teaching source package](11_finite_qm_dynamics/hamilton_noether_sources/START_HERE.md).
 That package is historical supporting material, not a second canonical route.
 
-[The source crosswalk](SOURCE_CROSSWALK.md) gives destinations and DAG matches.
-[The manifest](source_consolidation_manifest.json) accounts for every original
+[The source crosswalk](../../docs/maintenance/source_consolidation/source_crosswalk.md) gives destinations and DAG matches.
+[The manifest](../../docs/maintenance/source_consolidation/source_consolidation_manifest.json) accounts for every original
 file. Historical hash-bound packages and verbatim reviews keep their original
 internal paths; those are provenance references, resolved through the crosswalk.
 No file was called a duplicate merely because its title or conclusion matched.
-The [validation receipt](CONSOLIDATION_VALIDATION.md) records the completed
+The [validation receipt](../../docs/maintenance/source_consolidation/consolidation_validation.md) records the completed
 checks and the inherited reference failures.
 
 ## Completion is a list of obligations

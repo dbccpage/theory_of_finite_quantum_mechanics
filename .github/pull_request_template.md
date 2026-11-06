@@ -7,7 +7,6 @@ State what was checked and with what. Do not describe a result as more than the 
 
 Tick one.
 
-- [ ] **Prompt result**: a recorded run of a prompt or of the LLM ladder. Changes no node status.
 - [ ] **Derived**: the node's full statement is proved from the admitted primitives, with no new imports.
 - [ ] **Reduced**: the statement is proved from a strictly weaker, named assumption. The node stays `CONDITIONAL`.
 - [ ] **Refuted / not derivable**: a countermodel shows the statement does not follow from the stated primitives.
