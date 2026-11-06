@@ -1,6 +1,6 @@
 """Build the comprehensive Master Derivation Ledger for the Theory of Finite Quantum Mechanics.
 
-Generates the single live dag/derivations/MASTER_DERIVATION_LEDGER.md.
+Generates the single live dag/derivations/master_derivation_ledger.md.
 
 AuthorityEffect: None.
 """
@@ -36,10 +36,10 @@ def build_ledger() -> str:
             rel = f.relative_to(REPO_ROOT).as_posix()
             path_by_id[f"TFQ-{m.group(1)}"] = rel
 
-    # 2b. DAG node of each record: derivation_dag.json and the JSONL are one graph (dag/sync_unified_dag.py)
+    # 2b. DAG node of each record: derivation_dag.json and the JSONL are one graph (dag/tools/sync_unified_dag.py)
     dag = json.loads((REPO_ROOT / "dag" / "derivation_dag.json").read_text(encoding="utf-8"))
     node_status = {n["id"]: n["status"] for n in dag["nodes"]}
-    # PFP review of a node (dag/sync_pfp_results.py): verdict and what the review did to the node.
+    # PFP review of a node (dag/tools/sync_pfp_results.py): verdict and what the review did to the node.
     node_review = {n["id"]: n["pfp_review"] for n in dag["nodes"] if "pfp_review" in n}
     unified =json.loads((REPO_ROOT / "dag" / "fragments" / "unified_dag.json").read_text(encoding="utf-8"))
 
@@ -213,7 +213,7 @@ def build_ledger() -> str:
         "",
         "## 3b. One Derivation Graph",
         "",
-        f"`dag/derivation_dag.json` ({len(dag['nodes'])} nodes, {len(dag['routes'])} routes) and `dag/theory_of_finite_qm.jsonl` ({record_count} records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`dag/derivations/24_dressing_field/ravera_dfm_dossier.md`) are folded in as {len(unified['domain_records'])} new records; {len(unified['domain_aliases'])} of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.",
+        f"`dag/derivation_dag.json` ({len(dag['nodes'])} nodes, {len(dag['routes'])} routes) and `dag/theory_of_finite_qm.jsonl` ({record_count} records) are one graph, kept joined by `dag/tools/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`dag/derivations/24_dressing_field/ravera_dfm_dossier.md`) are folded in as {len(unified['domain_records'])} new records; {len(unified['domain_aliases'])} of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.",
         "",
         "---",
         "",
@@ -321,7 +321,7 @@ def build_ledger() -> str:
 
 def main():
     ledger_content = build_ledger()
-    target_2 = REPO_ROOT / "dag" / "derivations" / "MASTER_DERIVATION_LEDGER.md"
+    target_2 = REPO_ROOT / "dag" / "derivations" / "master_derivation_ledger.md"
 
     target_2.write_text(ledger_content, encoding="utf-8", newline="\n")
     print(f"Written: {target_2}")

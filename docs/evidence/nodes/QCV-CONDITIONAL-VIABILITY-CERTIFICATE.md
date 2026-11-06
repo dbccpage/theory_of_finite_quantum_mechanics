@@ -117,7 +117,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md`
 
 - file: [dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md](../../../dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md)
-- sha256 (`lf-normalised`): `8ffc58f5a04ce04b6c8e807fc358603b6b547e841a5bfd909598f6125065d4b8`
+- sha256 (`lf-normalised`): `cc3d4efd960feebbb14ac5891c9f83354fa981305de24b6c8b5d33476c870c03`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1324
 - counts toward the grade: no

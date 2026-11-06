@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1036_gp_gap_exact_duality.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1036_gp_gap_exact_duality.md](../../../dag/derivations/12_finite_qm_structure/tfq_1036_gp_gap_exact_duality.md)
-- sha256 (`lf-normalised`): `df16518cc18e8c2417f1f28bd795a4d6065c0821a6bdeb81ffd5817d2ad095ff`
+- sha256 (`lf-normalised`): `6cb2a834f989591eb12df96f898f8a1f7282a6ef654b62d95c6bf1b7e892b214`
 - generated view: listed, not counted
 - cited in: record TFQ-1036
 - counts toward the grade: no

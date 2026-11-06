@@ -5,7 +5,7 @@ Start with the [two-page v5 PDF](two_sheets_v5.pdf): nine picture strips on one 
 - [Picture sheet](picture_sheet_v5.png) and [scalable SVG](picture_sheet_v5.svg)
 - [Math sheet](math_sheet_v5.pdf) and [searchable text](math_sheet_v5.md)
 - [Panel captions](panel_captions_v5.md)
-- [Complete contents and review history](START_HERE.md)
+- [Complete contents and review history](start_here.md)
 
 The pictures follow comparison, joining and cancellation, a report that loses direction, balance, a quarter-turn, area preservation, Hamiltonian motion, and a Noether example. The companion explicitly distinguishes supplied structures from derived consequences. This is a conditional teaching construction toward the larger many-worlds project; it does not derive Born probabilities, Everett's interpretation, Bell correlations, or physical laws from marks alone.
 
@@ -34,6 +34,6 @@ The v5 renderer deliberately imports the retained v4 and v3 renderers. Run in a 
 
 The 69 original files were copied byte-for-byte from this chat's artifact directory on 2026-11-03. [import_manifest.json](import_manifest.json) records their SHA-256 values; the folder attributes prevent Git line-ending conversion. Virtual environments and Python caches are excluded.
 
-Historical reviewer notes retain their original absolute Windows source locations and line references. Those links are provenance, not portable repository navigation, and source files may since have moved or changed. The relative links above and in START_HERE.md open the packaged artifacts. Do not rewrite historical remarks to update their pointers; add a separate correction instead.
+Historical reviewer notes retain their original absolute Windows source locations and line references. Those links are provenance, not portable repository navigation, and source files may since have moved or changed. The relative links above and in start_here.md open the packaged artifacts. Do not rewrite historical remarks to update their pointers; add a separate correction instead.
 
 This folder belongs to the Codex draft. Other material under `education/l1_to_many_worlds` is outside this package.

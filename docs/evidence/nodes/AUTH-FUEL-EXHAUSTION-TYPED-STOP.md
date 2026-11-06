@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md`
 
 - file: [dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md](../../../dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md)
-- sha256 (`lf-normalised`): `71d48336c845d4913920263dbf49ca41b55093e9e5196b689193510d86f0c69f`
+- sha256 (`lf-normalised`): `902815cb0e3f6a794b0deaa293ddc47a7b186c93299464cbbc10b77567de1e42`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1331
 - counts toward the grade: no

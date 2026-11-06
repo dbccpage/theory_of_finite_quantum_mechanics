@@ -23,5 +23,5 @@ Set S=sum_j delta(E_j1)E_1j. Leibniz on E_ab E_j1 shows [S,E_ab]=delta(E_ab). Ad
 
 ## Evidence
 
-[Combined source and derivation](DYNAMICS_HAMILTON_NOETHER.md#algebraic-hamiltonian).
+[Combined source and derivation](dynamics_hamilton_noether.md#algebraic-hamiltonian).
 This proof sketch awaits independent replay or Lean formalization. No new Lean theorem or execution receipt is claimed by this paper.

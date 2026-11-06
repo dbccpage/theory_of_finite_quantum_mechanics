@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md](../../../dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md)
-- sha256 (`lf-normalised`): `1958f3c0c31157d503be5d5aaf71d217f2b985602ad7a6d22a49d51bb0ccd386`
+- sha256 (`lf-normalised`): `9b0ff61348887b9902eb5bdba046949eea89bdd84fc0826352e6a580ae773828`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2006
 - counts toward the grade: no

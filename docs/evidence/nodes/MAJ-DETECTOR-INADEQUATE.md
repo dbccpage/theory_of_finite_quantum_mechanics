@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1163_maj_detector_inadequate.md`
 
 - file: [dag/derivations/28_majorana/tfq_1163_maj_detector_inadequate.md](../../../dag/derivations/28_majorana/tfq_1163_maj_detector_inadequate.md)
-- sha256 (`lf-normalised`): `2f237a1ce119deb6abe2b55cf9bb97ea412f39e58c4163794a5000a7d74af738`
+- sha256 (`lf-normalised`): `1e1de8d15392ed199df18bb2f37e5966d93e43f614534cfb626a1ab010d4e8c7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1163
 - counts toward the grade: no

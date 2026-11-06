@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2002_ct_genesis_separation_task_analogy.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2002_ct_genesis_separation_task_analogy.md](../../../dag/derivations/30_constructor_theory/tfq_2002_ct_genesis_separation_task_analogy.md)
-- sha256 (`lf-normalised`): `c333b50f8700fd0d05be319f9c43285c88d12f5aec3b96245dfdf7bd7d159748`
+- sha256 (`lf-normalised`): `829760f2f561fa29807c123641cebc3459088fc1f2c2e4eef77ad8d54bc6b6ca`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2002
 - counts toward the grade: no
@@ -54,7 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FRO-R-CT-GENESIS-SEPARATION-TASK-ANALOGY` `GAP_NO_DERIVATION`: [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) (COMPUTATIONALLY_CHECKED), [CT-TASK-CONSTRUCTOR-POSSIBILITY](CT-TASK-CONSTRUCTOR-POSSIBILITY.md) (IMPORTED_ASSUMPTION)
+- `FRO-R-CT-GENESIS-SEPARATION-TASK-ANALOGY` `GAP_NO_DERIVATION`: [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) (PROVED_LEAN), [CT-TASK-CONSTRUCTOR-POSSIBILITY](CT-TASK-CONSTRUCTOR-POSSIBILITY.md) (IMPORTED_ASSUMPTION)
 
 Outgoing (0):
 

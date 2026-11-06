@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1054_fqcd_continuum_existence_announcement.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1054_fqcd_continuum_existence_announcement.md](../../../dag/derivations/17_finite_qcd/tfq_1054_fqcd_continuum_existence_announcement.md)
-- sha256 (`lf-normalised`): `4da9c8b5e7246a466c40095d69f3efd7062940970f9a5dac88fa7989e3b52f0b`
+- sha256 (`lf-normalised`): `b3a921ef9cf6054b37591c03fa45a43a66846c7260a18cba1e8818d77f1648d9`
 - generated view: listed, not counted
 - cited in: record TFQ-1054
 - counts toward the grade: no

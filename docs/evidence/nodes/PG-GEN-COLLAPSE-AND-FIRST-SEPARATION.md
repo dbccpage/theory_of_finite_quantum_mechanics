@@ -1,6 +1,6 @@
 # PG-GEN-COLLAPSE-AND-FIRST-SEPARATION
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,17 +10,17 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evide
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -32,11 +32,11 @@ Unmet after the PFP review: Transport this bounded alphabet to arbitrary source 
 
 ## Source status
 
-Section 7 - cost-two first separation; U0/U1/BL/BD separable
+Section 7 cost-two first separation floor and 6-way mu1 / 2-way mu2 minima mechanized in Minimality.lean and WdpBatch8.lean
 
 ## Review
 
-- PFP review: [evidence/results/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../evidence/results/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../evidence/results/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: All 111 declared candidate sequences are replayed; no cost\<2 response separates, six cost-two responses tie, and the two unary responses minimize the secondary arity sum.
   - does not support: Transport this bounded alphabet to arbitrary source Item arguments/arities and the full validResponse requirements; do not claim a global or physical minimum from a finite declared candidate set.
   - next test: Transport this bounded alphabet to arbitrary source Item arguments/arities and the full validResponse requirements; do not claim a global or physical minimum from a finite declared candidate set.
@@ -44,6 +44,21 @@ Section 7 - cost-two first separation; U0/U1/BL/BD separable
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean)
+- sha256 (`bytes`): `42063910b1edb4aa7f509fb0310b262235a7ce77dd5d2e3a5cf03556ecb175b1`
+- cited in: node.lean, record TFQ-0381
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch8.first_separation_cost_two_floor` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch8.first_separation_cost_two_floor` |
+| `WitnessedDifference.WdpBatch8.first_separation_six_mu1_ties_and_two_mu2_unary_minima` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch8.first_separation_six_mu1_ties_and_two_mu2_unary_minima` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisDerivation/Derivation/Minimality.lean`
 
@@ -93,8 +108,6 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0381 lean4: declaration obligation: deltaU0_valid inside the declared response grammar
-- TFQ-0381 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Minimality.lean
 - TFQ-0381 python: missing obligation: a cost counter in genesis/code/derivation/candidates.py, listed and not opened, scoped to the declared response grammar
 - TFQ-0381 rust: missing obligation: minima.rs must record item cost two without dropping ties
 - TFQ-0381 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs
@@ -108,7 +121,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PG-R-FIRST-SEPARATION` `COMPUTED`: [PG-GEN-REGIME-EVENTS](PG-GEN-REGIME-EVENTS.md) (DEFINITION), [PG-COLLAPSE-BARRIER](PG-COLLAPSE-BARRIER.md) (PROVED_LEAN)
+- `PG-R-FIRST-SEPARATION` `DERIVED_LEAN`: [PG-GEN-REGIME-EVENTS](PG-GEN-REGIME-EVENTS.md) (DEFINITION), [PG-COLLAPSE-BARRIER](PG-COLLAPSE-BARRIER.md) (PROVED_LEAN)
 
 Outgoing (7):
 

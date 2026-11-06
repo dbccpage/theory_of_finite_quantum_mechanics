@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1012_fq_power_rule_p2_selection.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1012_fq_power_rule_p2_selection.md](../../../dag/derivations/10_finite_qm_core/tfq_1012_fq_power_rule_p2_selection.md)
-- sha256 (`lf-normalised`): `975e4f96387806fb795745928435c63184d25a1334309d67de031fd4bccc0f4f`
+- sha256 (`lf-normalised`): `556571fd497960e36d268dc452271f646e43ec131ed14118413195c6f3d40e85`
 - generated view: listed, not counted
 - cited in: record TFQ-1012
 - counts toward the grade: no

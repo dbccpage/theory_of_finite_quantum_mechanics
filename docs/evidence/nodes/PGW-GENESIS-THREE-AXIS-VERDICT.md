@@ -1,6 +1,6 @@
 # PGW-GENESIS-THREE-AXIS-VERDICT
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evide
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- counted in-repo evidence files: 7
+- cited Lean, Rust or Python symbols found in their in-repo files: 7
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 3
@@ -20,7 +20,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `computational_no_runnable_test`: 4 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
+- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -32,7 +32,7 @@ The axis values are recorded author-approved verdicts, not computed results: a c
 
 ## Source status
 
-closeout.txt section 10 recorded verdicts; paper.md section 12 defect and agreement counts (ledger WDP-P000-023, -024)
+closeout.txt section 10 recorded verdicts; paper.md section 12 defect and agreement counts (ledger WDP-P000-023, -024); mechanized in WitnessedDifference/WdpBatch9.lean
 
 ## Review
 
@@ -41,6 +41,35 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- sha256 (`bytes`): `dec4763eeb0624b7aed79df3dcfd57f7bf047d7dd975536c7a2262624950f21a`
+- cited in: node.lean, record TFQ-0461
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch9.delta_events_w1_fresh_label_collision` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9.delta_events_w1_fresh_label_collision` |
+| `WitnessedDifference.WdpBatch9.genesis_three_axis_verdict_and_w1_collision_certificate` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9.genesis_three_axis_verdict_and_w1_collision_certificate` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean)
+- sha256 (`bytes`): `81ca7d21875428bf3eb3c0e8a572ec1d48a67e305a8b0846681620f0fd871956`
+- cited in: node.lean, record TFQ-0461
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch9Rep.rep_genesis_three_axis_verdict` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch9Rep.rep_genesis_three_axis_verdict` |
+
+- counts toward the grade: yes
 
 ### Rust: `atlas/finite_obstruction_calculus/genesis/code/rust/src/bin/genesis_replay.rs`
 
@@ -96,22 +125,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0461_genesis_three_axis_verdict.md`
 
 - file: [dag/derivations/02_genesis/tfq_0461_genesis_three_axis_verdict.md](../../../dag/derivations/02_genesis/tfq_0461_genesis_three_axis_verdict.md)
-- sha256 (`lf-normalised`): `4836c38ffc7b77f331bf19d6b5fa16f5032fc7137f6c88868e52a52967ad27f1`
+- sha256 (`lf-normalised`): `4b996162cf024dad2da123f5c2b0bd06a7e91ee2e7ca55eac968c9897a21b741`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0461
 - counts toward the grade: no
-
-## Absences recorded by the TFQ records
-
-- TFQ-0461 lean4: no Lean statement of the verdicts or of the fresh-label defect; the axiom census is the compiled lean4/axiom_report.txt
 
 ## Routes
 
 Incoming (1):
 
-- `PGW-R-GENESIS-THREE-AXIS-VERDICT` `COMPUTED`: [PGW-SEALED-TERMINAL-STATEMENT](PGW-SEALED-TERMINAL-STATEMENT.md) (PROVED_PROSE)
+- `PGW-R-GENESIS-THREE-AXIS-VERDICT` `DERIVED_LEAN`: [PGW-SEALED-TERMINAL-STATEMENT](PGW-SEALED-TERMINAL-STATEMENT.md) (PROVED_LEAN)
 
 Outgoing (2):
 
 - `PGW-R-GENESIS-FREEZE-ENDPOINT-LEDGER` `DERIVED_PROSE`: [PGW-GENESIS-FREEZE-ENDPOINT-LEDGER](PGW-GENESIS-FREEZE-ENDPOINT-LEDGER.md) (DEFINITION)
-- `PGW-R-RUNG0-INHERITANCE-REPLAY` `COMPUTED`: [PGW-RUNG0-INHERITANCE-REPLAY](PGW-RUNG0-INHERITANCE-REPLAY.md) (COMPUTATIONALLY_CHECKED)
+- `PGW-R-RUNG0-INHERITANCE-REPLAY` `DERIVED_LEAN`: [PGW-RUNG0-INHERITANCE-REPLAY](PGW-RUNG0-INHERITANCE-REPLAY.md) (PROVED_LEAN)

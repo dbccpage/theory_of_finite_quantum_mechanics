@@ -1,6 +1,6 @@
 # Review of FQ-PRIM-TO-QM-SELECTION-OPEN
 
-Scope: branch `derive/FQ-PRIM-TO-QM-SELECTION-OPEN` before the pull request, base `7fa69d621c27`. Reviewed against the statement written by `dag/fragments/pfp_review_decisions.json` and applied by `dag/sync_pfp_results.py`. Rule applied: PROVED_LEAN only if Lean declarations in the repository state the node's full statement and compile with only propext, Classical.choice and Quot.sound.
+Scope: branch `derive/FQ-PRIM-TO-QM-SELECTION-OPEN` before the pull request, base `7fa69d621c27`. Reviewed against the statement written by `dag/fragments/pfp_review_decisions.json` and applied by `dag/tools/sync_pfp_results.py`. Rule applied: PROVED_LEAN only if Lean declarations in the repository state the node's full statement and compile with only propext, Classical.choice and Quot.sound.
 
 Method: read `.claude/skills/overclaim-hunter/SKILL.md` and `rubric.md`; ran `python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict` (HIGH 0, MEDIUM 0, LOW 3); read `lean4/CampaignFqPrimToQmSelection.lean` in full; rebuilt that module with Lean 4.35.0 (`lake build CampaignFqPrimToQmSelection`, read-only junction to the shared Mathlib cache). `#print axioms` reports no axioms for the four theorems. Recomputed the integers with `checks/independent/fq-prim-to-qm-selection-open.py` (`Fraction`, exit 0). Not rebuilt: the default Lean library, cargo, and the three older modules still cited on the node.
 

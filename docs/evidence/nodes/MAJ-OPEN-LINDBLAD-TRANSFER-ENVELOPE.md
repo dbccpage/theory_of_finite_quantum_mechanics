@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md`
 
 - file: [dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md](../../../dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md)
-- sha256 (`lf-normalised`): `c435c1c26e575ca14359b1665f1c18506241ea4f3ebcf04e3a226d21a448452d`
+- sha256 (`lf-normalised`): `4df151f0ec03c70790a9524d9e4b3efcd1abf64596f5a7ec4c3a91b20448322d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1177
 - counts toward the grade: no

@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md`
 
 - file: [dag/derivations/28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md](../../../dag/derivations/28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md)
-- sha256 (`lf-normalised`): `9c320b820791961af11a4324a73402379179d2669785707024f2a6aa23e75f31`
+- sha256 (`lf-normalised`): `a75759b99372b5f4173f5f035e6c8950a737d8b9ebd29ffccbc197ca64c33173`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1169
 - counts toward the grade: no

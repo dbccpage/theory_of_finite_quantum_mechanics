@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1229_mub6_karlsson_affine_ansatz.md`
 
 - file: [dag/derivations/25_mub/tfq_1229_mub6_karlsson_affine_ansatz.md](../../../dag/derivations/25_mub/tfq_1229_mub6_karlsson_affine_ansatz.md)
-- sha256 (`lf-normalised`): `5ee0d6459bdcd0df943f2b6931f00e43ce38089ef841b4256efb5cdb3a565db9`
+- sha256 (`lf-normalised`): `c38c3c86638cf518d77f1c861628ac3bd06917cd38f687dc02813c5190d97ebd`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1229
 - counts toward the grade: no

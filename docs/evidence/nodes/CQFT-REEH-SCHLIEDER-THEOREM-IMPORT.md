@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md](../../../dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md)
-- sha256 (`lf-normalised`): `cebc5683a22c1fbdc2025393015a4757b7c5e44a2e97b945d8f55d6b0016b65b`
+- sha256 (`lf-normalised`): `09fc127086cfb28d7d73dfc5268f18a2f8cfe153c30bdb5f5af523841135618b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2106
 - counts toward the grade: no

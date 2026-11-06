@@ -108,7 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md](../../../dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md)
-- sha256 (`lf-normalised`): `8ed5dd40bc4e9dde6b3a9abc8d1d630de91d8e601cb0db8fdb11a2a57276e220`
+- sha256 (`lf-normalised`): `107a9abb2e491fa662312466988b8200768434c97202c98dcc5ab541b54e3a3d`
 - generated view: listed, not counted
 - cited in: record TFQ-1018
 - counts toward the grade: no

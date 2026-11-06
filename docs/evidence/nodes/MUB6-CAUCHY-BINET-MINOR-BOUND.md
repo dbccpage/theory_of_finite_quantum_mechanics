@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md`
 
 - file: [dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md](../../../dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md)
-- sha256 (`lf-normalised`): `2d2cf72a5120153187c879f28cb09899911e2af0281ad1b23e62fc1d3accaf4f`
+- sha256 (`lf-normalised`): `6fb089a977057a3f5f49173c71018f843c17b3e59f863cc9fc6f9b4451b11ee8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1259
 - counts toward the grade: no

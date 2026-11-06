@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md](../../../dag/derivations/10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md)
-- sha256 (`lf-normalised`): `9bb45f7bc64fd547bfa41b5f8ba7621955f9b894a8b008e1e74c1bcb9840004f`
+- sha256 (`lf-normalised`): `f7bc2e83609a5f2cf2dc76ea77f26b5ce02d9b0f7e97891db9b299841c0a8b21`
 - generated view: listed, not counted
 - cited in: record TFQ-1016
 - counts toward the grade: no

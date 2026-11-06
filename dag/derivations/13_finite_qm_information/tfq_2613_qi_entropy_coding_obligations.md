@@ -24,5 +24,5 @@ Finite trace or entropy identities do not discharge operational coding theorems.
 
 ## Evidence
 
-[Combined source and derivation](QUANTUM_INFORMATION.md).
+[Combined source and derivation](quantum_information.md).
 No new Lean theorem or execution receipt is claimed by this paper.

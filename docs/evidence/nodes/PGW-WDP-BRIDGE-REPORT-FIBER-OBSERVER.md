@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
-- sha256 (`bytes`): `5139307750119e0e6f022ae813972e4625d02908d37d9067e6942e532181b6dd`
+- sha256 (`bytes`): `4f63ebe575318a31ee55f58fe2008082727873250bd2ddcfc0ee960086a56e19`
 - cited in: node.lean, record TFQ-0556
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
@@ -168,5 +168,5 @@ Outgoing (4):
 
 - `APP-R-AUTHF-LOGICAL-EXTERNALITY` `DERIVED_LEAN`: [AUTHF-LOGICAL-EXTERNALITY](AUTHF-LOGICAL-EXTERNALITY.md) (PROVED_LEAN)
 - `APP-R-AUTHF-SELF-RECEIPT-TOY` `DERIVED_LEAN`: [AUTHF-SELF-RECEIPT-TOY](AUTHF-SELF-RECEIPT-TOY.md) (PROVED_LEAN)
-- `PGW-R-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL](PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL.md) (OPEN)
+- `PGW-R-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` `DERIVED_LEAN`: [PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL](PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL.md) (PROVED_LEAN)
 - `PGW-R-WDP-SYNTHESIS-TRUNK-TIERS` `DERIVED_PROSE`: [PGW-WDP-SYNTHESIS-TRUNK-TIERS](PGW-WDP-SYNTHESIS-TRUNK-TIERS.md) (DEFINITION)

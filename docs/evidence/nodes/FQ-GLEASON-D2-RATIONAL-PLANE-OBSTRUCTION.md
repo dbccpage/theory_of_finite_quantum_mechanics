@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md](../../../dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md)
-- sha256 (`lf-normalised`): `c2adedface3a0cc0a26bc60dec79c97ed29feb27e9c1e7fb23a3d602c78dd770`
+- sha256 (`lf-normalised`): `a300a263e69435e8ea4a51c07f23ea79d0016e541adac27122a4bd91191cd1ae`
 - generated view: listed, not counted
 - cited in: record TFQ-1014
 - counts toward the grade: no

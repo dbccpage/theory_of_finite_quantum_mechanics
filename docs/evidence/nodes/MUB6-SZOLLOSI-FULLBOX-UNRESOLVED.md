@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md`
 
 - file: [dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md](../../../dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md)
-- sha256 (`lf-normalised`): `7abca007cbccce4d534bab45cc6674950bcfdad137cb99797e1c07669fb9d542`
+- sha256 (`lf-normalised`): `bf5286ccc888893eee8a05cfb28ed23bec56ab07fdd3601550714782548d675f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1272
 - counts toward the grade: no

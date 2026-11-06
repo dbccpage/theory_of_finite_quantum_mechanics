@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md`
 
 - file: [dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md](../../../dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md)
-- sha256 (`lf-normalised`): `2d64d0965a04e8a48e2552757dd4448e63a4b9e87dafa45c310470049c517366`
+- sha256 (`lf-normalised`): `954583f1f420bf518f6b93a1eb5dedee85b6e3fd1c11cbda954ef988c496efe1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1337
 - counts toward the grade: no

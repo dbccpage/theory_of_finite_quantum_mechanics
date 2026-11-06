@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md`
 
 - file: [dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md](../../../dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md)
-- sha256 (`lf-normalised`): `b1094cc7caa725abb00aa32377c414367e219395237880ebb5311bda6884672d`
+- sha256 (`lf-normalised`): `8443af590c12e331a8e14be5d09d89ea2a4fe953e3a20d8ba4a03eda447e3ced`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1362
 - counts toward the grade: no

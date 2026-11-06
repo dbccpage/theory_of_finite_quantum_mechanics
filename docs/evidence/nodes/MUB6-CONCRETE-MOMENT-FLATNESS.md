@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1277_mub6_concrete_moment_flatness.md`
 
 - file: [dag/derivations/25_mub/tfq_1277_mub6_concrete_moment_flatness.md](../../../dag/derivations/25_mub/tfq_1277_mub6_concrete_moment_flatness.md)
-- sha256 (`lf-normalised`): `e1a184e573575312c82d8667e493c522617249ffa91da5edd103c5547b4bb023`
+- sha256 (`lf-normalised`): `9a2c1afac814c763c5fe8dbc04d0a225053fc7e2e4522147d988841e9d9ccb3c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1277
 - counts toward the grade: no

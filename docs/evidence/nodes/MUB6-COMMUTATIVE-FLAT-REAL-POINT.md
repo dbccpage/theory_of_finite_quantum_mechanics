@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1280_mub6_commutative_flat_real_point.md`
 
 - file: [dag/derivations/25_mub/tfq_1280_mub6_commutative_flat_real_point.md](../../../dag/derivations/25_mub/tfq_1280_mub6_commutative_flat_real_point.md)
-- sha256 (`lf-normalised`): `7a6cbfc386d63ddd6a92c7b487858a15391de0da06c5a9f6389bc89a87ad3aba`
+- sha256 (`lf-normalised`): `ac2ffcce955be48908ebedcb998385d6cde50ec3c22c900f1d7a5f8756ce4ddf`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1280
 - counts toward the grade: no

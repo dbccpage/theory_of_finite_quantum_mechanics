@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1325_qcv_viability_needs_all_requirements.md`
 
 - file: [dag/derivations/29_computation/tfq_1325_qcv_viability_needs_all_requirements.md](../../../dag/derivations/29_computation/tfq_1325_qcv_viability_needs_all_requirements.md)
-- sha256 (`lf-normalised`): `6f38d3aa990e7be567b9ad798cbfdb2dca723c42a2bb00eba7186aff9b1e3c8d`
+- sha256 (`lf-normalised`): `a3704cbada7a285255478dcc2f14c3995c0d935ba690d34b5ee400a01823e93b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1325
 - counts toward the grade: no

@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md](../../../dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md)
-- sha256 (`lf-normalised`): `5d4dc0488e7b0f3cc9ea11344775b2e5957b6a14758c512529d9478ac9980ac7`
+- sha256 (`lf-normalised`): `9cd40d906b47102307fd5f168f690f8dc8bfa13dfa2f36179a5cb7000b29ee97`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2103
 - counts toward the grade: no

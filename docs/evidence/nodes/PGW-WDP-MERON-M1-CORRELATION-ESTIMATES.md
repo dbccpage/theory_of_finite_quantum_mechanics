@@ -1,6 +1,6 @@
 # PGW-WDP-MERON-M1-CORRELATION-ESTIMATES
 
-Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidenc
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -20,7 +20,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -56,6 +56,35 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- sha256 (`bytes`): `3377cf9964df63977e7ecbd78fdcef5e5f7168469b06c3eafbe13e23929c74b2`
+- cited in: node.lean, record TFQ-0582
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch13.m1_int_paired_bound` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch13.m1_int_paired_bound` |
+| `WitnessedDifference.WdpBatch13.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch13.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean)
+- sha256 (`bytes`): `e0759f7adc6c5c4ebf06628f24c88a7cf0e84d24720dcf526b006a774318a3b9`
+- cited in: node.lean, record TFQ-0582
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch13Rep.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction` | yes | yes | no | - | `#print axioms WitnessedDifference.WdpBatch13Rep.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction` |
+
+- counts toward the grade: yes
+
 ### Python: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/open_derivations/meron_spacetime_limit/meron_spacetime_finite_checks.py`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/open_derivations/meron_spacetime_limit/meron_spacetime_finite_checks.py](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/02_requiring_derivation/open_derivations/meron_spacetime_limit/meron_spacetime_finite_checks.py)
@@ -78,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0582_wdp_meron_m1_correlation_estimates.md`
 
 - file: [dag/derivations/06_wdp/tfq_0582_wdp_meron_m1_correlation_estimates.md](../../../dag/derivations/06_wdp/tfq_0582_wdp_meron_m1_correlation_estimates.md)
-- sha256 (`lf-normalised`): `0a911285a7170253d96c606845073fcdd0d17403fb773c57271ea94b628fd076`
+- sha256 (`lf-normalised`): `6ecfea5fc7159fcdb24b3cd4d1f778ee97b0b59565c9c6cded2e59704d083afa`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0582
 - counts toward the grade: no
@@ -91,9 +120,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `PGW-R-WDP-MERON-M1-CORRELATION-ESTIMATES` `GAP_NO_DERIVATION`: [PGW-WDP-AFFINE-THICKENING-CONJECTURE](PGW-WDP-AFFINE-THICKENING-CONJECTURE.md) (PROVED_LEAN), [PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION](PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION.md) (OPEN)
+- `PGW-R-WDP-MERON-M1-CORRELATION-ESTIMATES` `DERIVED_LEAN`: [PGW-WDP-AFFINE-THICKENING-CONJECTURE](PGW-WDP-AFFINE-THICKENING-CONJECTURE.md) (PROVED_LEAN), [PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION](PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION.md) (PROVED_LEAN)
 
 Outgoing (2):
 
-- `PGW-R-WDP-MERON-M2-CUMULANT-BOUNDS` `GAP_NO_DERIVATION`: [PGW-WDP-MERON-M2-CUMULANT-BOUNDS](PGW-WDP-MERON-M2-CUMULANT-BOUNDS.md) (OPEN)
-- `PGW-R-WDP-MERON-SPACETIME-LIMIT` `GAP_NO_DERIVATION`: [PGW-WDP-MERON-SPACETIME-LIMIT](PGW-WDP-MERON-SPACETIME-LIMIT.md) (OPEN)
+- `PGW-R-WDP-MERON-M2-CUMULANT-BOUNDS` `DERIVED_LEAN`: [PGW-WDP-MERON-M2-CUMULANT-BOUNDS](PGW-WDP-MERON-M2-CUMULANT-BOUNDS.md) (PROVED_LEAN)
+- `PGW-R-WDP-MERON-SPACETIME-LIMIT` `DERIVED_LEAN`: [PGW-WDP-MERON-SPACETIME-LIMIT](PGW-WDP-MERON-SPACETIME-LIMIT.md) (PROVED_LEAN)

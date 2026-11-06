@@ -209,7 +209,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md](../../../dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md)
-- sha256 (`lf-normalised`): `45b06d86ab18e8bbcd9550ed5bd2f061ca72a6f8bb644cf635339939a12d7dca`
+- sha256 (`lf-normalised`): `acfad6eaf3b8fe97e8dfbed4e1666ce54c16e8a70775e2de1d19b3335bab3be0`
 - generated view: listed, not counted
 - cited in: record TFQ-1047
 - counts toward the grade: no

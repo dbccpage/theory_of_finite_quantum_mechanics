@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md](../../../dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md)
-- sha256 (`lf-normalised`): `b6f55e012fd00fa7bcb246fe430724e2d06f03781b15e658cbd083ab88f01aad`
+- sha256 (`lf-normalised`): `286778962932752d08f62145493e80044111611a78bca138a6cc90b13ce85eb2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1137
 - counts toward the grade: no

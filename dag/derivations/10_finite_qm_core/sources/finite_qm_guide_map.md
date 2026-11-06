@@ -125,6 +125,6 @@ The foundational synthesis monograph [`dag/derivations/08_l1_to_l2/sources/theor
 
 Every single derivation step in the theory—from the bare, inert literal inscription `<>` (`TFQ-0000`) through primitive distinction, discrete cochain repair, algebraic Hilbert lifts, Cayley dynamics, entanglement, gauge theory, QED, electroweak, QCD, topological phases, to quantum gravity constraints (`TFQ-0111`), the continuum interface (`TFQ-0124`), and all application branches (`TFQ-0397`–`TFQ-0416`)—is indexed without omission in the companion master ledger:
 - [`dag/derivations/10_finite_qm_core/sources/master_derivation_ledger.md`](master_derivation_ledger.md)
-- [`dag/derivations/MASTER_DERIVATION_LEDGER.md`](../../../dag/derivations/MASTER_DERIVATION_LEDGER.md)
+- [`dag/derivations/master_derivation_ledger.md`](../../../dag/derivations/master_derivation_ledger.md)
 
 Each entry in the ledger links 1-to-1 to its standalone Markdown paper in `dag/derivations/` and documents its direct DAG parent, epistemic status, governing obligation, and multi-tier code and proof witnesses (Lean 4, Rust, Python).

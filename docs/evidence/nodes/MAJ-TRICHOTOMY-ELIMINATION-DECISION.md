@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md`
 
 - file: [dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md](../../../dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md)
-- sha256 (`lf-normalised`): `b8af2033861b18ee256b91cc69ad1e7a666dcca1d834c2a3664fa9d11f6693f2`
+- sha256 (`lf-normalised`): `37e75a91cc675595e8b3f91ff28019a7e866a07f4cb9745ae8b1d299a72fb32f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1143
 - counts toward the grade: no

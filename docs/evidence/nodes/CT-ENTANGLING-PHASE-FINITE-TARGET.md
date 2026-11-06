@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md](../../../dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md)
-- sha256 (`lf-normalised`): `b6f9b209bd475e8524edfd470ce23c28176a15259b4734055aaa27f1667fc7c1`
+- sha256 (`lf-normalised`): `9de63aff36cd8e453fd196c6527067df5bbb26105651dd7a9c1b2b4cb049f011`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2014
 - counts toward the grade: no

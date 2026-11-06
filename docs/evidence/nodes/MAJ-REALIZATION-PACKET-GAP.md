@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1162_maj_realization_packet_gap.md`
 
 - file: [dag/derivations/28_majorana/tfq_1162_maj_realization_packet_gap.md](../../../dag/derivations/28_majorana/tfq_1162_maj_realization_packet_gap.md)
-- sha256 (`lf-normalised`): `0e63f02e7e5114ef39d0f32e01956376af78276fb844f4d52fb3fdf7908837ce`
+- sha256 (`lf-normalised`): `d6d7dac35805c6d517177e6019b29bc47592517b2acdb95469100abe974e9bf6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1162
 - counts toward the grade: no

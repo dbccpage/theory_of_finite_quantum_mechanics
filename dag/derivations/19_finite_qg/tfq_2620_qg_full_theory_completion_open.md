@@ -26,5 +26,5 @@ Each row of the gravity obligation register requires its own theorem or physical
 
 ## Evidence
 
-[Combined source and derivation](QUANTUM_GRAVITY_GAPS.md).
+[Combined source and derivation](quantum_gravity_gaps.md).
 No new Lean theorem or execution receipt is claimed by this paper.

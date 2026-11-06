@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md`
 
 - file: [dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md](../../../dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md)
-- sha256 (`lf-normalised`): `a4b9d9515df9ca42f8d733f86bc27e359c903c1555580bfebaff448db42c4855`
+- sha256 (`lf-normalised`): `3e4ead8b0d95e0c1cc031b4fb3e8aa5570c8af03e9e31d897a6e6813295b0492`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1233
 - counts toward the grade: no

@@ -24,5 +24,5 @@ Finite code-distance, queue and recurrence witnesses retain their stated scope. 
 
 ## Evidence
 
-[Combined source and derivation](../13_finite_qm_information/QUANTUM_INFORMATION.md).
+[Combined source and derivation](../13_finite_qm_information/quantum_information.md).
 No new Lean theorem or execution receipt is claimed by this paper.

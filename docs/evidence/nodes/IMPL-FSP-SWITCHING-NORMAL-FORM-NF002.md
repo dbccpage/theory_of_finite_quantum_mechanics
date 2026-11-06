@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md](../../../dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md)
-- sha256 (`lf-normalised`): `b9e47ebdc5750808f549be2bbf172f54e5a6316d9d4d82bf9c1c0f9c03fbc01c`
+- sha256 (`lf-normalised`): `f8ae4634daae39794638b71ca9d1cc45a55f03a57c8057aa27866bb9b5c7384f`
 - generated view: listed, not counted
 - cited in: record TFQ-1044
 - counts toward the grade: no

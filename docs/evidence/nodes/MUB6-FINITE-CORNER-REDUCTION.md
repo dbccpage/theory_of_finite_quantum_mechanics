@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md`
 
 - file: [dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md](../../../dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md)
-- sha256 (`lf-normalised`): `af5b0757884692264ef90193d94fd19fe1b0bc2e04189acf40f223f613ce0471`
+- sha256 (`lf-normalised`): `ae5921c82ba5aa05fc1b676539882f43144b2d855b0f6dc7d76cf011760ee7a7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1261
 - counts toward the grade: no

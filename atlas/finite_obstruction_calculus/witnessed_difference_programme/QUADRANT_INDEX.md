@@ -146,7 +146,7 @@ witnessed_difference_programme/
 - **`GEN-WDP-O05` (`TFQ-0570` — Tier C Open):** Non-implication firewall mechanized in `WdpBatch6.lean::receipt_verification_independent_of_jurisdiction`; external institutional jurisdiction remains outside software receipts.
 
 ### 6.2 Master Derivation DAG & Standalone WDP Pre-Merge DAG Synchronization
-- Standalone WDP DAG: `dag/wdp_derivation_dag.json` and `dag/WDP_DERIVATION_DAG.md` (mirrored at `docs/04_roadmap_and_gaps/WDP_DERIVATION_DAG.md`), classifying all 68 core WDP/WD2 nodes into **60 Discharged/Definitions** (42 `PROVED_LEAN` including all 30 finite & tractable obligations across Batches 1–6, plus 18 `DEFINITION`) and **8 Deferred Continuum/External Obligations** (`Tier C`).
+- Standalone WDP DAG: `dag/wdp_derivation_dag.json` and `dag/wdp_derivation_dag.md` (mirrored at `docs/04_roadmap_and_gaps/WDP_DERIVATION_DAG.md`), classifying all 68 core WDP/WD2 nodes into **60 Discharged/Definitions** (42 `PROVED_LEAN` including all 30 finite & tractable obligations across Batches 1–6, plus 18 `DEFINITION`) and **8 Deferred Continuum/External Obligations** (`Tier C`).
 - Master Gate `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` in `dag/derivation_dag.json` (Status: `OPEN` for Tier C continuum/hardware/institutional items).
 - Corresponds to derivation records `TFQ-0559` through `TFQ-0587`.
 - Orientation-sensitive pair-defect nonreflection is mechanized in `WdpBatch6.lean::orientation_sensitive_pair_defect_nonreflection`.

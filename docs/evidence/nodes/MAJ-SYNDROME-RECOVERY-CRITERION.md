@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md`
 
 - file: [dag/derivations/28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md](../../../dag/derivations/28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md)
-- sha256 (`lf-normalised`): `687055fa64aaf65662cb2ce2a3c7e36b98130c9683a5ac888fc2edb5cc8e0a61`
+- sha256 (`lf-normalised`): `14a1be88d45597cd3078e496e80165940c7baa1dcf6d469fdffbc806cdadb0ee`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1147
 - counts toward the grade: no

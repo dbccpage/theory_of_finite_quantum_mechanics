@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1151_maj_tetron_array_carrier.md`
 
 - file: [dag/derivations/28_majorana/tfq_1151_maj_tetron_array_carrier.md](../../../dag/derivations/28_majorana/tfq_1151_maj_tetron_array_carrier.md)
-- sha256 (`lf-normalised`): `0983937e2faed106c9b848fce5854f106a516bcdf55202030b5312a0f6b8edbe`
+- sha256 (`lf-normalised`): `ff4a074d0909e76d172b55b49e7344f6f7505b275da5880432b7b35b5a3f690f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1151
 - counts toward the grade: no

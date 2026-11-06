@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_1039_ds_qm030_transfer_operator_shadow.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_1039_ds_qm030_transfer_operator_shadow.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_1039_ds_qm030_transfer_operator_shadow.md)
-- sha256 (`lf-normalised`): `fef2d167124468d066875caeea5cf064483a7568de54bd4a08b6dfafc808cffe`
+- sha256 (`lf-normalised`): `158d23dcdf5f629d0daacbdefe25bc7246c9061f7c12004e439d3e4b3d078aa5`
 - generated view: listed, not counted
 - cited in: record TFQ-1039
 - counts toward the grade: no

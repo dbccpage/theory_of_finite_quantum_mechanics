@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1038_gp_drop_one_census.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1038_gp_drop_one_census.md](../../../dag/derivations/10_finite_qm_core/tfq_1038_gp_drop_one_census.md)
-- sha256 (`lf-normalised`): `38103ae94256e136d6c745f06aef16eaacfa81561709bc5fd9c5f67b4d5b02c9`
+- sha256 (`lf-normalised`): `4f7cdc42430b15b320bfba95da731caaabbcdcbe5cd0d9e2f6f97ea129b919f9`
 - generated view: listed, not counted
 - cited in: record TFQ-1038
 - counts toward the grade: no

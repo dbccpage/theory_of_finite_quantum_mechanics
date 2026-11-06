@@ -1,6 +1,6 @@
 # PGW-RUNG2A-STAKE-DECLARED-LABEL
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `CONDITIONAL`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `CONDITIONAL`. Evidence grade: *
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -35,7 +35,7 @@ The names no_first_demand and grammar_carries_no_stake are wider than their stat
 
 ## Source status
 
-continuation.txt section 5.2 attempt 3 and section 6 rung two track one; run ledger SD-02a-1 to SD-02a-13; Lean at 19L57G1 only
+continuation.txt section 5.2 attempt 3 and section 6 rung two track one; run ledger SD-02a-1 to SD-02a-13; Lean at 19L57G1 only; mechanized in WitnessedDifference/WdpBatch10.lean
 
 ## Review
 
@@ -44,6 +44,36 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- sha256 (`bytes`): `c11c08954dc32c9203e93e7615edd4b6e7ec6320d02543c4617226256a7964d7`
+- cited in: node.lean, record TFQ-0464
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch10.free_stake_carries_no_demand` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch10.free_stake_carries_no_demand` |
+| `WitnessedDifference.WdpBatch10.growth_generates_apart_of_no_insts` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch10.growth_generates_apart_of_no_insts` |
+| `WitnessedDifference.WdpBatch10.rung2a_stake_declared_label_and_growth_cases` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch10.rung2a_stake_declared_label_and_growth_cases` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean)
+- sha256 (`bytes`): `bc49f2f3c659583494e3e796ac38a509874bcc8931aeb04542aff9e5b68aab24`
+- cited in: node.lean, record TFQ-0464
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch10Rep.rep_rung2a_stake_declared_label` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch10Rep.rep_rung2a_stake_declared_label` |
+
+- counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt`
 
@@ -62,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0464_rung2a_stake_declared_label.md`
 
 - file: [dag/derivations/02_genesis/tfq_0464_rung2a_stake_declared_label.md](../../../dag/derivations/02_genesis/tfq_0464_rung2a_stake_declared_label.md)
-- sha256 (`lf-normalised`): `44877659932cd08042d6134248c0ff4f2f70c680b38a86b49ebb1c292e087920`
+- sha256 (`lf-normalised`): `66ec0607cc4f64425ef4937b48f52675618eb6987eb06269271d942a2d4e67ca`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0464
 - counts toward the grade: no
@@ -87,9 +117,9 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PGW-R-RUNG2A-STAKE-DECLARED-LABEL` `CONDITIONAL_ON_IMPORT`: [PGW-RUNG0-INHERITANCE-REPLAY](PGW-RUNG0-INHERITANCE-REPLAY.md) (COMPUTATIONALLY_CHECKED)
+- `PGW-R-RUNG2A-STAKE-DECLARED-LABEL` `DERIVED_LEAN`: [PGW-RUNG0-INHERITANCE-REPLAY](PGW-RUNG0-INHERITANCE-REPLAY.md) (PROVED_LEAN)
 
 Outgoing (2):
 
-- `PGW-R-RUNG2B-STAKE-MENU` `COMPUTED`: [PGW-RUNG2B-STAKE-MENU](PGW-RUNG2B-STAKE-MENU.md) (COMPUTATIONALLY_CHECKED)
-- `PGW-R-RUNG3-FIRST-DEMAND-INDEX` `CONDITIONAL_ON_IMPORT`: [PGW-RUNG3-FIRST-DEMAND-INDEX](PGW-RUNG3-FIRST-DEMAND-INDEX.md) (CONDITIONAL)
+- `PGW-R-RUNG2B-STAKE-MENU` `DERIVED_LEAN`: [PGW-RUNG2B-STAKE-MENU](PGW-RUNG2B-STAKE-MENU.md) (PROVED_LEAN)
+- `PGW-R-RUNG3-FIRST-DEMAND-INDEX` `DERIVED_LEAN`: [PGW-RUNG3-FIRST-DEMAND-INDEX](PGW-RUNG3-FIRST-DEMAND-INDEX.md) (PROVED_LEAN)

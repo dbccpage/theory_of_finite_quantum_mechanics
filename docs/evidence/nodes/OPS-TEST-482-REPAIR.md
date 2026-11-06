@@ -49,12 +49,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Python: `dag/test_foc035_observer_presheaf.py`
+### Python: `dag/tests/test_foc035_observer_presheaf.py`
 
-- file: [dag/test_foc035_observer_presheaf.py](../../../dag/test_foc035_observer_presheaf.py)
-- sha256 (`bytes`): `a0a3c87c7ab5ed539634a273ac268ea9839bae3de6046585a7e99944a8254ee9`
+- file: [dag/tests/test_foc035_observer_presheaf.py](../../../dag/tests/test_foc035_observer_presheaf.py)
+- sha256 (`bytes`): `360643c298cd290f195a4e33d8a1b85beba16f28259f50ae2025648396c8a5a3`
 - cited in: node.source
-- check: `python -m pytest dag/test_foc035_observer_presheaf.py`
+- check: `python -m pytest dag/tests/test_foc035_observer_presheaf.py`
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md)
-- sha256 (`lf-normalised`): `c698a9fff5bbc6531bbbceef730c80f466926a48224c107772492c07af0cf900`
+- sha256 (`lf-normalised`): `ac617bfcd389d366f3d8159b40647618d611faedc31e261bfbc8d3c927410e9d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2516
 - counts toward the grade: no

@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md`
 
 - file: [dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md](../../../dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md)
-- sha256 (`lf-normalised`): `d6e0a5ea606ec7dafbfabcc9af4b2695518c141d6fc354951f983517f6daaa0b`
+- sha256 (`lf-normalised`): `47cac4d6666df4bea4f641f57a645bc4181a3f5071c75380e92760d757d7f20e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2407
 - counts toward the grade: no

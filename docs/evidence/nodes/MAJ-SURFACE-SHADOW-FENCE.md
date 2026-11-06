@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1150_maj_surface_shadow_fence.md`
 
 - file: [dag/derivations/28_majorana/tfq_1150_maj_surface_shadow_fence.md](../../../dag/derivations/28_majorana/tfq_1150_maj_surface_shadow_fence.md)
-- sha256 (`lf-normalised`): `c52836afdd84685cb3e52f1390daf888b0bc188a41cbd79afae3105ff504168c`
+- sha256 (`lf-normalised`): `e0f9cb9c39038bec23dd51e83e1b4f40fa2aed6344de11e86bca756f31eaeba9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1150
 - counts toward the grade: no

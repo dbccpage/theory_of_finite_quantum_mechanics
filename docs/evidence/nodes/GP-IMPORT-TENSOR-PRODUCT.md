@@ -131,7 +131,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md](../../../dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md)
-- sha256 (`lf-normalised`): `03b64474af4fc5995f47c4bf6e4fb17de2e28eddcd8e8f092bf18182e97389d5`
+- sha256 (`lf-normalised`): `8fdbb0d1a801d98b19d6417256b1366e58e4e693c57f6e023d23fd628aa88f7f`
 - generated view: listed, not counted
 - cited in: record TFQ-1032
 - counts toward the grade: no

@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md](../../../dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md)
-- sha256 (`lf-normalised`): `21b29247d9bd43d2bf659f4856267ba185b648f5bb7e09fda7f847b841dcaa9b`
+- sha256 (`lf-normalised`): `ad55f1b4e9b448d99f77019cfb9d9e9b8a97dc7731a4530e622d906a0e88596c`
 - generated view: listed, not counted
 - cited in: record TFQ-1011
 - counts toward the grade: no

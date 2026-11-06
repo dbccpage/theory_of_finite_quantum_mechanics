@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md](../../../dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md)
-- sha256 (`lf-normalised`): `cb05b1452d07f20c26223ab373376944689b1c7280e857a2ebe77c892b3e0c57`
+- sha256 (`lf-normalised`): `bd40eaa71a2bcc50633e8be3236408e9b33f5070395f5754f6d71f3a6a002c8e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2013
 - counts toward the grade: no

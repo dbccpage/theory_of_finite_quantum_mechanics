@@ -58,7 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md`
 
 - file: [dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md](../../../dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md)
-- sha256 (`lf-normalised`): `b69fb4ac02de0f48870476bd4bdae698b68df99eff9f3b92ea1f3c32a606a482`
+- sha256 (`lf-normalised`): `f8e2151b32c2d00f8d81d1fb053e10e1094960896a4729cfe0aa8d0005981920`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1148
 - counts toward the grade: no

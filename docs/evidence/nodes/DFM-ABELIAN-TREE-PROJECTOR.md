@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md](../../../dag/derivations/24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md)
-- sha256 (`lf-normalised`): `b3d52d2caa36f54a70ac701e45d866c7166908e1c763f115299a234faa3eca2d`
+- sha256 (`lf-normalised`): `d7eb29e071fe5de751d9fcb06b67af258e65f948dae4d98c32a4675573372f1d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1101
 - counts toward the grade: no

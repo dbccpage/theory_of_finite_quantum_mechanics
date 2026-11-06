@@ -19,7 +19,7 @@ only for a root) without a parent cycle, at least one existing_derivation_dag_id
 that is a node, and every node being named by at least one record; when files are
 checked, every record must have a derivation paper dag/derivations/*/tfq_NNNN_*.md.
 The views theory_of_finite_qm.jsonl and theory_of_finite_qm.md next to the DAG file must
-be byte-identical to what dag/render_dag_views.py renders (skip with --no-views).
+be byte-identical to what dag/tools/render_dag_views.py renders (skip with --no-views).
 
 References beginning with "pr:" or "external:" name pull requests or files outside
 this checkout and are not resolved.
@@ -44,8 +44,9 @@ BigRational = Fraction
 
 HERE = Path(__file__).resolve().parent
 DAG = HERE / "derivation_dag.json"
-if str(HERE) not in sys.path:
-    sys.path.insert(0, str(HERE))
+for _dir in (HERE, HERE / "tools"):
+    if str(_dir) not in sys.path:
+        sys.path.insert(0, str(_dir))
 import render_dag_views  # noqa: E402
 
 SCHEMA_VERSION = "derivation_dag.v2"
@@ -901,7 +902,7 @@ def view_errors(dag: dict[str, object], views_dir: Path) -> list[str]:
     for name, text in rendered.items():
         path = views_dir / name
         if not path.is_file() or path.read_bytes() != text.encode("utf-8"):
-            errs.append(f"view {name} differs from derivation_dag.json; run dag/render_dag_views.py --write")
+            errs.append(f"view {name} differs from derivation_dag.json; run dag/tools/render_dag_views.py --write")
     return errs
 
 

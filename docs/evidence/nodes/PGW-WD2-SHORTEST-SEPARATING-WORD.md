@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean)
-- sha256 (`bytes`): `5ad37f1db35cfbc13d56e204403f637565d877fb54979f3fc412565767969bc1`
+- sha256 (`bytes`): `f9d24bffacd77ea20333c3c3f24bb0cf82e4c72d317b3582db08797c522ff692`
 - cited in: node.lean, record TFQ-0563
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteDistinction.lean`

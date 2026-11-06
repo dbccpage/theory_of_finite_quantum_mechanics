@@ -58,7 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1232_mub6_product_triple_lower_bound.md`
 
 - file: [dag/derivations/25_mub/tfq_1232_mub6_product_triple_lower_bound.md](../../../dag/derivations/25_mub/tfq_1232_mub6_product_triple_lower_bound.md)
-- sha256 (`lf-normalised`): `d0770f1751d0176967a6912ea33ecb80e2741bd88b831519b7daaa07588f50df`
+- sha256 (`lf-normalised`): `cdf8e114f2632cd73f871761330d7075cf82b3618424785c337b27f7a9423c1f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1232
 - counts toward the grade: no

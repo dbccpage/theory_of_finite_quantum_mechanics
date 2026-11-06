@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md](../../../dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md)
-- sha256 (`lf-normalised`): `5af030429e97871ad72ca6a468b72ce26f4cf242d79e054e0f08c0bda902301f`
+- sha256 (`lf-normalised`): `c6ee5d088b78a4314e84bb1f46dc0a29793f43aa33989233629aaa512a388285`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2113
 - counts toward the grade: no

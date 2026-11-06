@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md](../../../dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md)
-- sha256 (`lf-normalised`): `079e6a9d557fa239510b06b323c9d6c4682aa089ad1de9194a9a2307dba234de`
+- sha256 (`lf-normalised`): `45038be0f9c2f112bea960733a21d1ec96d95e4baa830705bd967829e01e3767`
 - generated view: listed, not counted
 - cited in: record TFQ-1015
 - counts toward the grade: no

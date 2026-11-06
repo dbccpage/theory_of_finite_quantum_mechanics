@@ -55,7 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1366_mub_prime_power_characteristic_two.md`
 
 - file: [dag/derivations/25_mub/tfq_1366_mub_prime_power_characteristic_two.md](../../../dag/derivations/25_mub/tfq_1366_mub_prime_power_characteristic_two.md)
-- sha256 (`lf-normalised`): `09f9a588bbb39e69b87bbf1c6a9028d0125bb0b52dd22cf2f2225792960b3f65`
+- sha256 (`lf-normalised`): `24cf2ee49a35763442155093414cebd8d7cf5a0501e765ff22251ad98350a531`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1366
 - counts toward the grade: no

@@ -168,7 +168,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md](../../../dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md)
-- sha256 (`lf-normalised`): `41f3c74d40fe8a66bd060191b9a57e6254680e9d0c630e65154ac6885e2b9581`
+- sha256 (`lf-normalised`): `4eac722c9800e85063170fe6f0a1a167919fe7223da01059de653b00502027f4`
 - generated view: listed, not counted
 - cited in: record TFQ-1021
 - counts toward the grade: no
