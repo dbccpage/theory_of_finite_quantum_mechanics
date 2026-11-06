@@ -1,6 +1,6 @@
 # [TFQ-0584] wdp-meron-m3-spectral-gap-bypass
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `5698fe5b-1e61-5c55-a694-cfd1ec5e7193`  
 > **Parent Derivation**: [TFQ-0583](tfq_0583_wdp_meron_m2_cumulant_bounds.md)
 
@@ -30,6 +30,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean::WitnessedDifference.WdpBatch13.m3_margin_positivity_bypass`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean::WitnessedDifference.WdpBatch13.wdp_meron_m3_gate_e_obstruction_and_margin_bypass`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean::WitnessedDifference.WdpBatch13Rep.wdp_meron_m3_gate_e_obstruction_and_margin_bypass`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean)
 - `missing obligation: all-M spectral gap or bypass theorem is open`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

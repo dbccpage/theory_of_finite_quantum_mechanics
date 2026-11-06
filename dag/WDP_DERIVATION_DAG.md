@@ -14,26 +14,26 @@ The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction ca
 
 | DAG Status | Count | Pre-Merge Disposition for `omega_codex` |
 |---|---:|---|
-| `PROVED_LEAN` | 45 | **Discharged in Lean 4** (zero `sorry`/`admit`; ready for `omega_codex` merge; includes all 30 finite & tractable obligations across Batches 1–6 plus scoped finite bridge theorems in Batch 12). |
+| `PROVED_LEAN` | 50 | **All 50 Derivable Core Nodes Discharged in Lean 4** (zero `sorry`/`admit`; ready for `omega_codex` merge; includes all 30 finite & tractable obligations across Batches 1–6 plus all 8 scoped finite bridge/Meron targets across Batches 12–13). |
 | `DEFINITION` | 18 | **Declared Structural Definitions** (ready for `omega_codex` merge). |
 | `PROVED_PROSE` | 0 | **All 10 Discharged in Lean 4** (`TFQ-0536`, `TFQ-0547`, `TFQ-0549`, `TFQ-0571..0575`, `TFQ-0579`, `TFQ-0580`). |
 | `COMPUTATIONALLY_CHECKED` | 0 | **All 2 Discharged in Lean 4** (`TFQ-1026`, `TFQ-0391`). |
 | `CONDITIONAL` | 0 | **All 3 Discharged in Lean 4** (`TFQ-0544`, `TFQ-0556`, `TFQ-0293`). |
-| `OPEN` | 5 | **5 Scoped Finite Targets Scheduled for Batch 13** (`O05` authorization firewall + `M1..M3` & `SPACETIME-LIMIT` finite Meron targets). |
-| **Total Core WDP/WD2 Nodes** | **68** | **63 Discharged/Definitions, 5 Scheduled for Batch 13** |
+| `OPEN` | 0 | **All 8 Scoped Finite Bridge & Meron Targets Discharged in Lean 4** (external continuum/laboratory/institutional boundaries explicitly scoped). |
+| **Total Core WDP/WD2 Nodes** | **68** | **68 Discharged/Definitions (50 `PROVED_LEAN`, 18 `DEFINITION`, 0 Remaining)** |
 
 ### 1.2 Full 151-Node Subgraph Census (Core + Upstream Prerequisite Closure)
 
 | DAG Status | Count (151 Nodes) | Notes |
 |---|---:|---|
-| `PROVED_LEAN` | 109 | Includes 49 core WDP/WD2/L1/Impl nodes + 60 upstream Pre-Genesis/Genesis/Authorization/`S(n)`/`MSS-N` nodes (including Batches 7–12). |
+| `PROVED_LEAN` | 114 | **All 114 Derivable Nodes Discharged in Lean 4** (54 core WDP/WD2/L1/Impl nodes + 60 upstream Pre-Genesis/Genesis/Authorization/`S(n)`/`MSS-N` nodes across Batches 1–13). |
 | `DEFINITION` | 33 | 18 core WDP/WD2 definitions + 15 upstream structural definitions. |
 | `ADMITTED_PRIMITIVE` / `SOURCE_RECORD` | 4 | 2 `ADMITTED_PRIMITIVE` + 2 `SOURCE_RECORD` upstream anchors. |
 | `PROVED_PROSE` | 0 | **All 16 Discharged in Lean 4** (10 core WDP + 6 upstream Genesis/`S(n)`). |
 | `COMPUTATIONALLY_CHECKED` | 0 | **All 10 Discharged in Lean 4** (2 core WDP + 8 upstream Genesis/L1/Impl across Batches 4, 8, and 9). |
 | `CONDITIONAL` | 0 | **All 15 Discharged in Lean 4** (across Batches 4, 5, 9, 10, 11, and 12). |
-| `OPEN` | 5 | Remaining 5 scoped finite-slice targets scheduled for Batch 13 (`O05`, `M1`, `M2`, `M3`, `SPACETIME-LIMIT`). |
-| **Total `wdp_derivation_dag.json` Nodes** | **151** | **146 Discharged/Definitions/Primitives, 5 Remaining in Batch 13** |
+| `OPEN` | 0 | **All 14 Discharged in Lean 4** (across Batches 5, 6, 12, and 13). |
+| **Total `wdp_derivation_dag.json` Nodes** | **151** | **151 Discharged/Definitions/Primitives (114 `PROVED_LEAN`, 33 `DEFINITION`, 2 `ADMITTED_PRIMITIVE`, 2 `SOURCE_RECORD`, 0 Remaining)** |
 
 ---
 
@@ -150,23 +150,28 @@ All 14 finite obligations (combinatorial, linear-algebraic over $\mathbb{Q}$, or
 | Batch 12 | `TFQ-0385` | `TFQ-0385` | `PROVED_LEAN` | `WdpBatch12.lean::tfq_0385_uniform_rule_erases_separation_and_no_return` |
 | Batch 12 | `PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR` | `TFQ-0567` | `PROVED_LEAN` | `WdpBatch12.lean::wdp_bridge_o02_scoped_preservation_reflection_characterization`, `o02_preservation_reflection_comp`, `o02_collision_refutes_preservation_reflection` |
 | Batch 12 | `PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION` | `TFQ-0569` | `PROVED_LEAN` | `WdpBatch12.lean::wdp_bridge_o04_scoped_operational_readout_and_countermodel`, `gmat_born_numerator_identity` |
+| Batch 13 | `PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` | `TFQ-0570` | `PROVED_LEAN` | `WdpBatch13.lean::o05_authorization_firewall_and_policy_enforcement_separation`, `guardedEnforcement_respects_boundary` |
+| Batch 13 | `PGW-WDP-MERON-M1-CORRELATION-ESTIMATES` | `TFQ-0582` | `PROVED_LEAN` | `WdpBatch13.lean::wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction`, `m1_int_paired_bound` |
+| Batch 13 | `PGW-WDP-MERON-M2-CUMULANT-BOUNDS` | `TFQ-0583` | `PROVED_LEAN` | `WdpBatch13.lean::wdp_meron_m2_scoped_fourth_cumulant_nonselection`, `binary_spin_fourth_cumulant_neg_two` |
+| Batch 13 | `PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS` | `TFQ-0584` | `PROVED_LEAN` | `WdpBatch13.lean::wdp_meron_m3_gate_e_obstruction_and_margin_bypass`, `m3_margin_positivity_bypass` |
+| Batch 13 | `PGW-WDP-MERON-SPACETIME-LIMIT` | `TFQ-0587` | `PROVED_LEAN` | `WdpBatch13.lean::wdp_meron_spacetime_finite_history_trace_and_sign_discrepancy`, `finite_history_sum_eq_ordered_trace`, `signed_vs_unsigned_trace_discrepancy` |
 
 ---
 
-## 4. Tier C: 8 Continuum, Hardware & Institutional Obligations (Scoped Finite Slices Discharged / Scheduled)
+## 4. Tier C: 8 Continuum, Hardware & Institutional Obligations (All Scoped Finite Slices Discharged in Batches 12–13)
 
-These 8 obligations involve infinite-volume/continuum limits ($L, M \to \infty$), physical laboratory instrument actuation, or external institutional governance outside finite mathematics. Their scoped finite mathematical projections and countermodels are mechanized in `WdpBatch6.lean` and `WdpBatch12.lean` (with the remaining 5 scheduled for Batch 13):
+These 8 obligations involve infinite-volume/continuum limits ($L, M \to \infty$), physical laboratory instrument actuation, or external institutional governance outside finite mathematics. All 8 have their scoped finite mathematical projections and countermodels mechanized in `WdpBatch6.lean`, `WdpBatch12.lean`, and `WdpBatch13.lean`:
 
-| Node ID | TFQ Record | Current Status | Why Not Purely Finite / Pre-Merge Boundary |
+| Node ID | TFQ Record | Current Status | Scoped Finite Mechanization & External Boundary |
 |---|---|---|---|
 | `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` | `TFQ-0343` | `PROVED_LEAN` | Scoped finite slice mechanized in `WdpBatch12.lean::pg_wdp_genesis_bridge_scoped_finite_slice`; external continuum (O04), physical hardware (O02), and institutional standing (O05) remain outside software. |
 | `PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR` | `TFQ-0567` | `PROVED_LEAN` | Scoped finite preservation/reflection characterization and orientation-sensitivity countermodel mechanized in `WdpBatch12.lean::wdp_bridge_o02_scoped_preservation_reflection_characterization`; physical laboratory repair actuation remains external. |
 | `PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION` | `TFQ-0569` | `PROVED_LEAN` | Scoped finite operational readout and classical diagonal countermodel mechanized in `WdpBatch12.lean::wdp_bridge_o04_scoped_operational_readout_and_countermodel`; continuum Hilbert completion remains external. |
-| `PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` | `TFQ-0570` | `OPEN` | Non-implication firewall discharged in `WdpBatch6.lean::receipt_verification_independent_of_jurisdiction`; scheduled for Batch 13 promotion. |
-| `PGW-WDP-MERON-M1-CORRELATION-ESTIMATES` | `TFQ-0582` | `OPEN` | Scheduled for Batch 13 scoped finite-lattice correlation bound and non-uniformity obstruction mechanization. |
-| `PGW-WDP-MERON-M2-CUMULANT-BOUNDS` | `TFQ-0583` | `OPEN` | Scheduled for Batch 13 scoped finite-moment / fourth-cumulant non-Gaussianity witness mechanization. |
-| `PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS` | `TFQ-0584` | `OPEN` | Scheduled for Batch 13 Gate E finite-$M$ negativity obstruction and fixed-carrier response bypass mechanization. |
-| `PGW-WDP-MERON-SPACETIME-LIMIT` | `TFQ-0587` | `OPEN` | Scheduled for Batch 13 finite-volume occupation-basis vs unrestricted spin-trace discrepancy identity mechanization. |
+| `PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` | `TFQ-0570` | `PROVED_LEAN` | Scoped non-implication firewall and policy/enforcement separation mechanized in `WdpBatch13.lean::o05_authorization_firewall_and_policy_enforcement_separation`; external institutional standing cannot be created by software receipts. |
+| `PGW-WDP-MERON-M1-CORRELATION-ESTIMATES` | `TFQ-0582` | `PROVED_LEAN` | Scoped finite-lattice paired-difference bound and quarter-exponent scaling obstruction mechanized in `WdpBatch13.lean::wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction`. |
+| `PGW-WDP-MERON-M2-CUMULANT-BOUNDS` | `TFQ-0583` | `PROVED_LEAN` | Scoped finite fourth-cumulant non-Gaussianity and second-moment non-selection witness mechanized in `WdpBatch13.lean::wdp_meron_m2_scoped_fourth_cumulant_nonselection`. |
+| `PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS` | `TFQ-0584` | `PROVED_LEAN` | Scoped Gate E finite-$M$ negativity receipt and fixed-carrier strict-margin positivity bypass mechanized in `WdpBatch13.lean::wdp_meron_m3_gate_e_obstruction_and_margin_bypass`. |
+| `PGW-WDP-MERON-SPACETIME-LIMIT` | `TFQ-0587` | `PROVED_LEAN` | Scoped finite-volume occupation-history vs ordered-trace identity and Jordan–Wigner sign discrepancy mechanized in `WdpBatch13.lean::wdp_meron_spacetime_finite_history_trace_and_sign_discrepancy`. |
 
 ---
 

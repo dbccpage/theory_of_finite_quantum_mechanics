@@ -1,6 +1,6 @@
 # [TFQ-0570] wdp-bridge-o05-authorization-firewall
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `edcbc008-2485-5414-9267-2f58b1bf8200`  
 > **Parent Derivation**: [TFQ-0569](tfq_0569_wdp_bridge_o04_tensor_reconstruction.md)
 
@@ -35,6 +35,9 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean::inscription_distinct_marks_apart`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean::WitnessedDifference.WdpBatch13.guardedEnforcement_respects_boundary`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean::WitnessedDifference.WdpBatch13.o05_authorization_firewall_and_policy_enforcement_separation`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean::WitnessedDifference.WdpBatch13Rep.o05_authorization_firewall_and_policy_enforcement_separation`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean)
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.receipt_verification_independent_of_jurisdiction`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
