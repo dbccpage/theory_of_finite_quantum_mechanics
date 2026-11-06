@@ -11961,7 +11961,7 @@
       "name": "wdp-out-2-guarded-swap-coherence",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0571",
       "pinned_parent": false,
       "prerequisites": [
@@ -11970,13 +11970,33 @@
       "summary": "Outstanding Derivation Target 2 (GEN-WDP-69): if the legal complete histories of a Source_25 causal ideal form a star-shaped guard with respect to one legal center schedule, every legal swap loop is contractible inside the guard.",
       "obligation": "Mechanize the star-shaped guarded swap coherence theorem GEN-WDP-69 in Lean 4 and classify coherence for non-star-shaped guards.",
       "imports": [],
-      "fence": "Written proof in Appendix P.20 and bounded five-event search witness exist; Lean 4 formalization of star-shaped loop contraction and general non-star-shaped 3-cell coherence remain open.",
+      "fence": "Mechanized in Lean 4 (star_contraction_reaches_center, star_shaped_swap_complex_connected, star_shaped_loop_cochain_zero, and punctured_square_loop_not_contractible in WdpBatch3.lean alongside GuardedScheduleTopology.lean) and checked in Python obstruction.py.",
       "witnesses": {
         "lean": [
           {
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GuardedScheduleTopology.lean",
             "symbol": "replay_iff_prefixSafe"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.star_contraction_reaches_center"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.star_shaped_swap_complex_connected"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.star_shaped_loop_cochain_zero"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.punctured_square_loop_not_contractible"
           }
         ],
         "rust": [
@@ -12009,8 +12029,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "GEN-WDP-69 proved in prose (Appendix P.20); Lean 4 mechanization of star-shaped contraction open"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-69 mechanized in Lean 4 (WdpBatch3.lean, GuardedScheduleTopology.lean) and checked in Python"
       },
       "terminal": false
     },
@@ -12019,7 +12039,7 @@
       "name": "wdp-out-3-realizable-future-observation",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0572",
       "pinned_parent": false,
       "prerequisites": [
@@ -12028,11 +12048,18 @@
       "summary": "Outstanding Derivation Target 3 (GEN-WDP-71): in the declared eight-state future-operation table model, realizable static observation costs strictly exceed unrestricted partition costs, and adaptive two-step policies reduce average cost without reducing worst-case depth.",
       "obligation": "Mechanize the eight-state realizable observation table theorem in Lean 4 and test dynamic vs static observation separation on larger finite carriers.",
       "imports": [],
-      "fence": "Solved on the declared eight-state table model in realizable_observation.md; physical instrument realization and general dynamic-vs-static separation outside declared tables remain open.",
+      "fence": "Mechanized on the declared eight-state table model in Lean 4 (obs_decoder_unique_on_nonempty and eight_state_realizable_observation_gen_wdp_71 in WdpBatch3.lean) and checked in Python observer.py.",
       "witnesses": {
         "lean": [
           {
-            "absent": "Lean 4 formalization of the eight-state realizable observation table separation is open"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.obs_decoder_unique_on_nonempty"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.eight_state_realizable_observation_gen_wdp_71"
           }
         ],
         "rust": [
@@ -12065,8 +12092,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "Eight-state table model solved in docs/01_substantiated/derivations/realizable_observation.md; Lean 4 proof open"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-71 eight-state table model mechanized in Lean 4 (WdpBatch3.lean) and checked in Python"
       },
       "terminal": false
     },
@@ -12075,7 +12102,7 @@
       "name": "wdp-out-4-rejection-rule-reuse",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0573",
       "pinned_parent": false,
       "prerequisites": [
@@ -12084,13 +12111,33 @@
       "summary": "Outstanding Derivation Target 4 (GEN-WDP-72): a sound rejection rule pushed forward along a representation map remains sound on the target image only under fiber-constant target questions and explicit out-of-image abstention (NO_RULE).",
       "obligation": "Mechanize the nine-element rejection-rule reuse theorem and false-rejection counterexample in Lean 4.",
       "imports": [],
-      "fence": "Solved for declared nine-element image carriers in rejection_rule_reuse.md; recursive re-entry across changing checkers and institutional legitimacy (GEN-WDP-O05) remain open.",
+      "fence": "Mechanized on the nine-element image carriers in Lean 4 (reuse_decode_encode2, reuse_encode_decode_image, reuse_soundness_iff, reuse_coverage_iff, and reuse_scan_thresholds_and_task2_trap in WdpBatch3.lean) and checked in Python authority.py.",
       "witnesses": {
         "lean": [
           {
             "root": "local",
-            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean",
-            "symbol": "inscription_distinct_marks_apart"
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.reuse_decode_encode2"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.reuse_encode_decode_image"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.reuse_soundness_iff"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.reuse_coverage_iff"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.reuse_scan_thresholds_and_task2_trap"
           }
         ],
         "rust": [
@@ -12123,8 +12170,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "GEN-WDP-72 prose proof and 9-element carrier witness in rejection_rule_reuse.md; full Lean 4 mechanization open"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-72 nine-element reuse theorem mechanized in Lean 4 (WdpBatch3.lean) and checked in Python"
       },
       "terminal": false
     },
@@ -12133,7 +12180,7 @@
       "name": "wdp-out-5-future-faithful-compression",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0574",
       "pinned_parent": false,
       "prerequisites": [
@@ -12142,7 +12189,7 @@
       "summary": "Outstanding Derivation Target 5 (GEN-WDP-73): on the bounded five-edit native carrier (at most 3 literal terms, count total at most 4, horizon h=2), clipped signed counts and a 13-coordinate integer report determine all horizon-2 future observations.",
       "obligation": "Extend the Lean 4 horizon-2 compression proof (NativeFutureCompression.lean) to the general-horizon retention converse on larger finite carriers.",
       "imports": [],
-      "fence": "Horizon h=2 and count bound 4 are proved in NativeFutureCompression.lean, with bound-5 collision counterexample; general-horizon converse for arbitrary native carriers remains open.",
+      "fence": "Mechanized in Lean 4 for both h=2 (NativeFutureCompression.lean) and general horizon h with T <= 2h reconstruction and T = 2h + 1 sharp collision (general_horizon_clipped_signed_counts_unique, general_horizon_sharp_collision, general_horizon_composition_bound in WdpBatch3.lean).",
       "witnesses": {
         "lean": [
           {
@@ -12154,6 +12201,21 @@
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/NativeFutureCompression.lean",
             "symbol": "two_removal_answers_determine_clip"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.general_horizon_clipped_signed_counts_unique"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.general_horizon_sharp_collision"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.general_horizon_composition_bound"
           }
         ],
         "rust": [
@@ -12186,8 +12248,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "GEN-WDP-73 proved in prose and h=2 Lean 4 module (NativeFutureCompression.lean); general-horizon converse open"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-73 mechanized in Lean 4 for h=2 (NativeFutureCompression.lean) and general horizon h (WdpBatch3.lean)"
       },
       "terminal": false
     },
@@ -12363,14 +12425,14 @@
       "name": "wdp-born-rule-nonselection",
       "stage": "WDP",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0578",
       "pinned_parent": false,
       "prerequisites": [],
       "summary": "Positivity, normalization, phase invariance, and affinity admit a one-parameter family of state-effect readouts distinct from trace pairing, showing in this finite model that trace Born weights require an additional assumption (GEN-WDP-65).",
       "obligation": "Mechanize the full one-parameter non-trace readout family countermodel of GEN-WDP-65 in Lean 4 alongside FiniteStateEffectReadout.lean.",
       "imports": [],
-      "fence": "FiniteStateEffectReadout.lean formalizes factored Gaussian-rational trace readouts; the full one-parameter affine non-trace countermodel family is proved in prose and Python fixtures.",
+      "fence": "Mechanized in Lean 4 (born_numerator_identity and probability_normalized in FiniteStateEffectReadout.lean plus deformed_probability_normalized, deformed_probability_nonnegative, and born_rule_nonselection_gen_wdp_65 in WdpBatch3.lean) and checked in Python quantum.py.",
       "witnesses": {
         "lean": [
           {
@@ -12382,6 +12444,21 @@
             "root": "local",
             "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteStateEffectReadout.lean",
             "symbol": "WDP.FiniteStateEffectReadout.probability_normalized"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.deformed_probability_normalized"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.deformed_probability_nonnegative"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean",
+            "symbol": "WitnessedDifference.WdpBatch3.born_rule_nonselection_gen_wdp_65"
           }
         ],
         "rust": [
@@ -12408,8 +12485,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "GEN-WDP-65 proved in §17.10 with Lean 4 trace readout spine (FiniteStateEffectReadout.lean); full non-trace family Lean proof open"
+        "status": "PROVED_LEAN",
+        "source_status": "GEN-WDP-65 mechanized in Lean 4 (FiniteStateEffectReadout.lean, WdpBatch3.lean) and checked in Python"
       },
       "terminal": false
     },

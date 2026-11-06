@@ -1,0 +1,19 @@
+import WitnessedDifference.WdpBatch3
+
+#print axioms WitnessedDifference.WdpBatch3.star_contraction_reaches_center
+#print axioms WitnessedDifference.WdpBatch3.star_shaped_swap_complex_connected
+#print axioms WitnessedDifference.WdpBatch3.star_shaped_loop_cochain_zero
+#print axioms WitnessedDifference.WdpBatch3.punctured_square_loop_not_contractible
+#print axioms WitnessedDifference.WdpBatch3.obs_decoder_unique_on_nonempty
+#print axioms WitnessedDifference.WdpBatch3.eight_state_realizable_observation_gen_wdp_71
+#print axioms WitnessedDifference.WdpBatch3.reuse_decode_encode2
+#print axioms WitnessedDifference.WdpBatch3.reuse_encode_decode_image
+#print axioms WitnessedDifference.WdpBatch3.reuse_soundness_iff
+#print axioms WitnessedDifference.WdpBatch3.reuse_coverage_iff
+#print axioms WitnessedDifference.WdpBatch3.reuse_scan_thresholds_and_task2_trap
+#print axioms WitnessedDifference.WdpBatch3.general_horizon_clipped_signed_counts_unique
+#print axioms WitnessedDifference.WdpBatch3.general_horizon_sharp_collision
+#print axioms WitnessedDifference.WdpBatch3.general_horizon_composition_bound
+#print axioms WitnessedDifference.WdpBatch3.deformed_probability_normalized
+#print axioms WitnessedDifference.WdpBatch3.deformed_probability_nonnegative
+#print axioms WitnessedDifference.WdpBatch3.born_rule_nonselection_gen_wdp_65

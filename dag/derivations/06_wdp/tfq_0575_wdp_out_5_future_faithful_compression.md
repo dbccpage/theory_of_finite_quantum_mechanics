@@ -1,6 +1,6 @@
 # [TFQ-0575] wdp-out-5-future-faithful-compression
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `21bb2bf6-e9a6-59ec-8da3-65fe7b01a6fe`  
 > **Parent Derivation**: [TFQ-0574](tfq_0574_wdp_out_4_rejection_rule_reuse.md)
 
@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Horizon h=2 and count bound 4 are proved in NativeFutureCompression.lean, with bound-5 collision counterexample; general-horizon converse for arbitrary native carriers remains open.
+> Mechanized in Lean 4 for both h=2 (NativeFutureCompression.lean) and general horizon h with T <= 2h reconstruction and T = 2h + 1 sharp collision (general_horizon_clipped_signed_counts_unique, general_horizon_sharp_collision, general_horizon_composition_bound in WdpBatch3.lean).
 
 ---
 
@@ -35,6 +35,9 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/NativeFutureCompression.lean::horizon_two_composition_bound`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/NativeFutureCompression.lean)
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/NativeFutureCompression.lean::two_removal_answers_determine_clip`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/NativeFutureCompression.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.general_horizon_clipped_signed_counts_unique`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.general_horizon_composition_bound`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.general_horizon_sharp_collision`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: horizon-2 native compression verified in Lean 4 and Python`
