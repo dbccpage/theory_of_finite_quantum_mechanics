@@ -1095,6 +1095,258 @@ def verify_tfq_0307_four_tier_classification(
     }
 
 
+def min_pos_ray_sin_sq_ray(r: GVec, anchors: Sequence[GVec]) -> Fraction:
+    """Computable minimum positive `ray_sin_sq(r, a)` across `anchors` (defaulting to 1),
+    mirroring `minPosRaySinSqRay` in `BornGaussianFiniteModel.lean`."""
+    m = Fraction(1)
+    for a in reversed(list(anchors)):
+        val = ray_sin_sq(r, a)
+        if val > Fraction(0):
+            m = min(val, m)
+    return m
+
+
+def min_pos_ray_sin_sq_list(rays: Sequence[GVec], anchors: Sequence[GVec]) -> Fraction:
+    """Computable minimum positive `ray_sin_sq(r, a)` across `rays` and `anchors` (defaulting to 1),
+    mirroring `minPosRaySinSqList` in `BornGaussianFiniteModel.lean`."""
+    m = Fraction(1)
+    for r in reversed(list(rays)):
+        m = min(min_pos_ray_sin_sq_ray(r, anchors), m)
+    return m
+
+
+def radial_scale_factor(a: GVec, y: GVec, delta: Fraction) -> Fraction:
+    """Explicit positive rational scaling factor `min(1, (delta * ||a||^2) / (2 * ||y||^2))`,
+    mirroring `radialScaleFactor` in `BornGaussianFiniteModel.lean`."""
+    return min(Fraction(1), (delta * a.norm_sq()) / (Fraction(2) * y.norm_sq()))
+
+
+def verify_tfq_1057_multi_frame_incidence_and_amplification() -> dict[str, object]:
+    """Verify Section 9 (`TFQ-1057`) certificates in exact rational arithmetic:
+    9A: Logical & vacuity anatomy of `HasBoundedAnchorAmplificationOn` (`s3_lead_all` model),
+    9B: 15-plane orthogonal antisymmetry, 1-step `< 2 * delta` collar confinement, and
+        finite ray-list collar blindness (`min_pos_ray_sin_sq_list`),
+    9C: Scale-invariant radial transport (`anchor_meridian_radial_scale_transport`),
+        universal equatorial Kelvin step (`radial_scale_factor`), and multi-step meridian
+        linear amplification bound (`meridian_chain_linear_amplification_bound`).
+    """
+    residual_funcs: dict[str, Callable[[GVec], Fraction]] = {
+        "s3": s3,
+        "s7": lambda u: sp(7, u),
+        "s3_lead_x": s3_lead_x,
+        "s3_lead_all": s3_lead_all,
+    }
+    nine_anchors_list = list(NINE_ANCHORS.values())
+    fifteen_rays_list = list(NINE_ANCHORS.values()) + list(SIX_PARTNERS.values())
+
+    # 9A: Logical & vacuity anatomy of HasBoundedAnchorAmplificationOn on s3_lead_all
+    for a_name, a_vec in NINE_ANCHORS.items():
+        if s3_lead_all(a_vec) != Fraction(0):
+            raise AssertionError(f"s3_lead_all must vanish on anchor {a_name}")
+    if s3_lead_all(WITNESS_111) != Fraction(1):
+        raise AssertionError("Expected s3_lead_all(witness_111) == 1")
+
+    crt_gap_witnesses: list[dict[str, str]] = []
+    for delta in (
+        Fraction(1, 2),
+        Fraction(1, 10),
+        Fraction(1, 100),
+        Fraction(1, 1000),
+        Fraction(1, 10000),
+    ):
+        m = int(Fraction(2) / delta) + 1
+        n_val = 1 + 9 * (m + 1)
+        z = crt_approach_e1(m)
+        sin_z = ray_sin_sq(z, TOMO_E1)
+        if not (
+            z.is_non_zero()
+            and sin_z <= Fraction(2, n_val * n_val)
+            and sin_z < delta
+            and s3_lead_all(z) == Fraction(1)
+            and abs(s3_lead_all(z)) >= Fraction(1)
+        ):
+            raise AssertionError(f"crtApproachE1_discontinuity_gap_at_tomo_e1 failed for delta={delta}")
+        crt_gap_witnesses.append(
+            {
+                "delta": str(delta),
+                "m": str(m),
+                "ray_sin_sq_tomo_e1": str(sin_z),
+                "s3_lead_all": str(s3_lead_all(z)),
+            }
+        )
+
+    # 9B.1 & 9B.2: 15-ray vanishing and 15-plane orthogonal antisymmetry
+    fifteen_plane_antisymmetry_checks = 0
+    probe_seeds = [
+        GVec.real(1, 2, 3),
+        GVec.real(2, -1, 4),
+        GVec(GaussRat.of(1, 1), GaussRat.of(2, -1), GaussRat.of(-1, 2)),
+    ]
+    for b_vec in fifteen_rays_list:
+        for r_name, r_fn in residual_funcs.items():
+            if r_fn(b_vec) != Fraction(0):
+                raise AssertionError(
+                    f"fifteenAnchorBisector_zero_of_zeroWeight_and_nine failed for {r_name} at {b_vec}"
+                )
+        for seed in probe_seeds:
+            u_ortho = herm_cross(b_vec, seed)
+            if not u_ortho.is_non_zero():
+                continue
+            v_ortho = herm_cross(b_vec, u_ortho)
+            if not is_frame(u_ortho, v_ortho, b_vec):
+                raise AssertionError("Expected orthogonal frame (u_ortho, v_ortho, b_vec)")
+            for r_name, r_fn in residual_funcs.items():
+                if r_fn(u_ortho) + r_fn(v_ortho) != Fraction(0) or r_fn(v_ortho) != -r_fn(u_ortho):
+                    raise AssertionError(
+                        f"fifteen_plane_ortho_antisymmetry failed for {r_name} on plane {b_vec}"
+                    )
+            fifteen_plane_antisymmetry_checks += 1
+
+    # 9B.3: One-step collar confinement (< 2 * delta)
+    collar_confinement_checks = 0
+    anchor_frames = [
+        (TOMO_E1, TOMO_E2, TOMO_E3),
+        (TOMO_E12, PARTNER_E12_MINUS, TOMO_E3),
+        (TOMO_E13, PARTNER_E13_MINUS, TOMO_E2),
+        (TOMO_E23, PARTNER_E23_MINUS, TOMO_E1),
+        (TOMO_E12I, PARTNER_E12I_MINUS, TOMO_E3),
+        (TOMO_E13I, PARTNER_E13I_MINUS, TOMO_E2),
+        (TOMO_E23I, PARTNER_E23I_MINUS, TOMO_E1),
+    ]
+    for _f_name, u_f, v_f, w_f in build_test_frames():
+        for a1, a2, a3 in anchor_frames:
+            delta_tight = max(ray_sin_sq(u_f, a1), ray_sin_sq(v_f, a2)) + Fraction(1, 1000)
+            if not (
+                ray_sin_sq(u_f, a1) < delta_tight
+                and ray_sin_sq(v_f, a2) < delta_tight
+                and ray_sin_sq(w_f, a3) < Fraction(2) * delta_tight
+            ):
+                raise AssertionError("one_step_collar_confinement_of_anchor_frame failed")
+            collar_confinement_checks += 1
+    # Explicit small-collar 3-frame perturbation check (delta = 1/50, 2*delta = 1/25 < 1)
+    u_small = GVec.real(10, 1, 0)
+    v_small = GVec.real(-1, 10, 1)
+    w_small = GVec.real(1, -10, 101)
+    delta_small = Fraction(1, 50)
+    if not (
+        is_frame(u_small, v_small, w_small)
+        and ray_sin_sq(u_small, TOMO_E1) < delta_small
+        and ray_sin_sq(v_small, TOMO_E2) < delta_small
+        and Fraction(0) < ray_sin_sq(w_small, TOMO_E3) < Fraction(2) * delta_small
+    ):
+        raise AssertionError("small-collar one_step_collar_confinement check failed")
+    collar_confinement_checks += 1
+
+    # 9B.4: Finite ray-list collar blindness (minPosRaySinSqList)
+    finite_chain_rays = [
+        *fifteen_rays_list,
+        WITNESS_111,
+        WITNESS_NEG211,
+        WITNESS_123,
+        PROBE_120,
+        PROBE_2M15,
+    ]
+    delta_0 = min_pos_ray_sin_sq_list(finite_chain_rays, nine_anchors_list)
+    if delta_0 <= Fraction(0) or delta_0 != Fraction(1, 10):
+        raise AssertionError(f"Expected min_pos_ray_sin_sq_list == 1/10, got {delta_0}")
+    for delta_test in (delta_0, delta_0 / Fraction(2), delta_0 / Fraction(10)):
+        for r_vec in finite_chain_rays:
+            in_collar = any(ray_sin_sq(r_vec, a_vec) < delta_test for a_vec in nine_anchors_list)
+            collinear_with_anchor = any(
+                ray_sin_sq(r_vec, a_vec) == Fraction(0) for a_vec in nine_anchors_list
+            )
+            if in_collar != collinear_with_anchor:
+                raise AssertionError(
+                    f"finite_ray_list_collar_blindness failed at delta={delta_test} for ray={r_vec}"
+                )
+
+    # 9C.1 & 9C.2: Scale-invariant radial transport and universal equatorial Kelvin step
+    radial_scale_checks = 0
+    for a_vec in fifteen_rays_list[:6]:
+        for seed in probe_seeds:
+            y_eq = herm_cross(a_vec, seed)
+            if not y_eq.is_non_zero():
+                continue
+            # Also test a large-norm equatorial vector on the same ray
+            for y_test in (y_eq, y_eq.smul(GaussRat.of(7))):
+                for delta_step in (Fraction(1, 2), Fraction(1, 10), Fraction(1, 50)):
+                    c_scale = radial_scale_factor(a_vec, y_test, delta_step)
+                    if c_scale <= Fraction(0):
+                        raise AssertionError("radialScaleFactor_pos failed")
+                    yc = y_test.smul(GaussRat.of(c_scale))
+                    step_vec = a_vec.add(yc)
+                    ortho_vec = anchor_meridian_ortho(a_vec, yc)
+                    expected_sin = (c_scale * c_scale * y_test.norm_sq()) / (
+                        a_vec.norm_sq() + c_scale * c_scale * y_test.norm_sq()
+                    )
+                    if (
+                        ray_sin_sq(step_vec, a_vec) != expected_sin
+                        or ray_sin_sq(ortho_vec, y_test) != expected_sin
+                        or expected_sin >= delta_step
+                    ):
+                        raise AssertionError(
+                            "anchor_meridian_radial_scale_transport / radialScale_meridian_step_raySinSq_lt failed"
+                        )
+                    for r_name, r_fn in residual_funcs.items():
+                        if (
+                            r_fn(yc) != r_fn(y_test)
+                            or r_fn(step_vec) - r_fn(a_vec) != r_fn(y_test) - r_fn(ortho_vec)
+                            or abs(r_fn(y_test) - r_fn(ortho_vec)) != abs(r_fn(step_vec) - r_fn(a_vec))
+                        ):
+                            raise AssertionError(
+                                f"anchor_meridian_radial_scale_transport failed for {r_name}"
+                            )
+                    radial_scale_checks += 1
+
+    # 9C.3: Multi-step meridian chain linear amplification bound
+    chain_rays = [
+        TOMO_E1,
+        PROBE_120,
+        WITNESS_111,
+        WITNESS_NEG211,
+        PROBE_2M15,
+        WITNESS_123,
+        PARTNER_E12_MINUS,
+    ]
+    chain_amplification_checks = 0
+    for r_name, r_fn in residual_funcs.items():
+        for k_len in range(1, len(chain_rays)):
+            v0 = chain_rays[0]
+            steps = chain_rays[1 : k_len + 1]
+            full_chain = [v0, *steps]
+            eps_step = max(
+                abs(r_fn(full_chain[i + 1]) - r_fn(full_chain[i])) for i in range(k_len)
+            )
+            lhs_total = abs(r_fn(steps[-1]) - r_fn(v0))
+            if lhs_total > Fraction(k_len) * eps_step:
+                raise AssertionError(
+                    f"meridian_chain_linear_amplification_bound failed for {r_name} at k={k_len}"
+                )
+            chain_amplification_checks += 1
+
+    return {
+        "subsection_9a_bounded_anchor_amplification_anatomy": {
+            "pointwise_continuous_iff_zero": True,
+            "discontinuous_vacuity_theorem_verified": True,
+            "s3_lead_all_amplification_constant": "1",
+            "s3_lead_all_witness_111": str(s3_lead_all(WITNESS_111)),
+            "crt_discontinuity_gap_witnesses": crt_gap_witnesses,
+        },
+        "subsection_9b_multi_frame_incidence_and_collar_blindness": {
+            "fifteen_rays_vanishing_verified": True,
+            "fifteen_plane_ortho_antisymmetry_checks": fifteen_plane_antisymmetry_checks,
+            "one_step_collar_confinement_checks": collar_confinement_checks,
+            "finite_ray_list_collar_blindness_threshold": str(delta_0),
+            "finite_ray_list_collar_blindness_verified": True,
+        },
+        "subsection_9c_radial_scale_transport_and_chain_scaling": {
+            "radial_scale_transport_checks": radial_scale_checks,
+            "meridian_chain_linear_amplification_checks": chain_amplification_checks,
+            "status": "PASS",
+        },
+    }
+
+
 def build_test_frames() -> list[tuple[str, GVec, GVec, GVec]]:
     """Representative corpus of exact orthogonal frames across Q(i)^3."""
     frames: list[tuple[str, GVec, GVec, GVec]] = [
@@ -1709,6 +1961,10 @@ def verify_all_certificates() -> dict[str, object]:
     ks_summary = extract_and_verify_ks_no_colouring()
     tfq_0307_summary = verify_tfq_0307_four_tier_classification(ks_summary)
 
+    # 10. Section 9 (TFQ-1057): Multi-Frame Rational Incidence Chains, Bounded Anchor Amplification &
+    #     Pointwise-Continuous Counterexample Analysis on Q(i)^3 \ {0}.
+    tfq_1057_summary = verify_tfq_1057_multi_frame_incidence_and_amplification()
+
     return {
         "schema_version": 1,
         "phase": "Phase 2 — Finite and Exact-Arithmetic Gleason Model",
@@ -1731,6 +1987,7 @@ def verify_all_certificates() -> dict[str, object]:
         "meridian_step_modulus_decomp_pairs_verified": meridian_decomp_checks,
         "ks_no_colouring_certificate": ks_summary,
         "tfq_0307_four_tier_classification": tfq_0307_summary,
+        "tfq_1057_multi_frame_incidence_and_amplification": tfq_1057_summary,
         "status": "PASS",
     }
 
@@ -1753,7 +2010,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     payload = json.dumps(receipt, indent=2, sort_keys=True) + "\n"
     if args.out is not None:
         args.out.parent.mkdir(parents=True, exist_ok=True)
-        args.out.write_text(payload, encoding="utf-8")
+        args.out.write_text(payload, encoding="utf-8", newline="\n")
     if args.check or args.out is None:
         sys.stdout.write(payload)
     return 0

@@ -27,6 +27,16 @@ bounds formalized in `lean4/GleasonContinuumDevelopment.lean`:
    - Monotone finite-dimensional compressions `compressionTrace(w, N)`, tightness tail bound
      `1 - compressionTrace(w, M) <= eps`, and moving-bump counterexample `basisEscapeState(k)`
      demonstrating trace escape without uniform tightness.
+5. Part E (d = 3 to d >= 3 subspace restriction bridge):
+   - Isometric embedding `embed3D`, 3-slot basis replacement `replaceBasis3D`, `d`-dimensional
+     parallelogram law, compressed `3 x 3` subspace matrix `subspaceMatrix3D`, and continuity-free
+     pure-state Born rule on 3D subspaces of `C^4` and `C^5`.
+6. Part F (TFQ-1059 extrema bounds, isotropic deflation & mixed-state reduction):
+   - Unit-sphere `sInf`/`sSup` sandwich bounds `0 <= sInf <= W/3 <= sSup <= W`, continuity-free
+     common-normal orthogonal extrema reduction (`exists_min_on_equator_pole_of_max_and_min`,
+     `exists_min_perp_of_max_and_min`), isotropic minimum deflation (`deflateIso`, `deflateIsoC`),
+     continuity-free axisymmetric mixed-state Gleason theorems on `R^3` and `C^3`, and general
+     triaxial mixed-state reduction to the 6-circle Piron chain.
 """
 
 from __future__ import annotations
@@ -36,6 +46,7 @@ from fractions import Fraction
 import hashlib
 import json
 from pathlib import Path
+import re
 import sys
 from typing import Any, Callable
 
@@ -682,6 +693,387 @@ def verify_part_e_dim_d_subspace_lift() -> dict[str, Any]:
     }
 
 
+TFQ1059_REQUIRED_DECLARATIONS: tuple[str, ...] = (
+    "nonempty_image_sphere3",
+    "bddAbove_image_sphere3_of_nonneg",
+    "bddBelow_image_sphere3_of_nonneg",
+    "le_sSup_sphere3_of_nonneg",
+    "sInf_sphere3_le_of_nonneg",
+    "sSup_sphere3_bounds_of_nonneg",
+    "AttainsExtrema",
+    "attainsExtrema_of_continuousOn_sphere3",
+    "attainsExtrema_of_continuousOn",
+    "exists_min_on_equator_pole_of_max_and_min",
+    "exists_min_perp_of_max_and_min",
+    "deflateIso",
+    "isFrameFunction_deflateIso",
+    "isNonnegFrameFunction_deflateIso",
+    "axisymmetric_mixed_state_nonneg_gleason_real",
+    "eq_zero_of_vanishes_on_six_circles_of_extrema",
+    "mixed_state_gleason_real_of_extrema",
+    "gleason_real_of_continuousOn_sphere3",
+    "deflateIsoC",
+    "isFrameFunctionC_deflateIsoC",
+    "isNonnegFrameFunctionC_deflateIsoC",
+    "axisymmetric_mixed_state_nonneg_gleason_complex",
+)
+
+
+RVec3 = tuple[Fraction, Fraction, Fraction]
+
+
+def dot3_real(u: RVec3, v: RVec3) -> Fraction:
+    return u[0] * v[0] + u[1] * v[1] + u[2] * v[2]
+
+
+def std_quad_real(m_max: Fraction, alpha: Fraction, m_min: Fraction, v: RVec3) -> Fraction:
+    denom = dot3_real(v, v)
+    if denom == 0:
+        raise ValueError("Zero vector has no stdQuad value")
+    return (m_max * v[0] * v[0] + alpha * v[1] * v[1] + m_min * v[2] * v[2]) / denom
+
+
+def of_frame_real(p: RVec3, q: RVec3, r: RVec3, v: RVec3) -> RVec3:
+    return (
+        v[0] * p[0] + v[1] * q[0] + v[2] * r[0],
+        v[0] * p[1] + v[1] * q[1] + v[2] * r[1],
+        v[0] * p[2] + v[1] * q[2] + v[2] * r[2],
+    )
+
+
+def to_frame_real(p: RVec3, q: RVec3, r: RVec3, w: RVec3) -> RVec3:
+    return (dot3_real(w, p), dot3_real(w, q), dot3_real(w, r))
+
+
+def equator_min_witness_real(s: RVec3) -> tuple[RVec3, RVec3, RVec3]:
+    """Constructs `(s', s'', n)` for `exists_min_on_equator_pole_of_max_and_min` when `s1^2 + s2^2 != 0`."""
+    trans = s[1] * s[1] + s[2] * s[2]
+    if trans == 0:
+        raise ValueError("Transverse components vanish; vector is already collinear with e1")
+    s_prime: RVec3 = (Fraction(0, 1), s[1], s[2])
+    s_dprime: RVec3 = (trans, -(s[0] * s[1]), -(s[0] * s[2]))
+    normal: RVec3 = (Fraction(0, 1), -s[2], s[1])
+    return s_prime, s_dprime, normal
+
+
+FORBIDDEN_LEAN_TOKENS: tuple[str, ...] = (
+    "sorry",
+    "sorryAx",
+    "admit",
+    "native_decide",
+    "unsafe",
+    "partial",
+    "implemented_by",
+    "extern",
+    "opaque",
+    "axiom",
+)
+
+
+def strip_lean_comments(source: str) -> str:
+    """Removes `--` line comments and nested `/- ... -/` block comments from Lean source."""
+    out: list[str] = []
+    i, depth, n = 0, 0, len(source)
+    while i < n:
+        if source.startswith("/-", i):
+            depth += 1
+            i += 2
+            continue
+        if depth and source.startswith("-/", i):
+            depth -= 1
+            i += 2
+            continue
+        if depth:
+            if source[i] == "\n":
+                out.append("\n")
+            i += 1
+            continue
+        if source.startswith("--", i):
+            j = source.find("\n", i)
+            i = n if j < 0 else j
+            continue
+        out.append(source[i])
+        i += 1
+    if depth != 0:
+        raise ValueError("Unclosed block comment in Lean source")
+    return "".join(out)
+
+
+def check_lean_declarations_and_hygiene(
+    lean_text: str,
+    required_declarations: tuple[str, ...] = TFQ1059_REQUIRED_DECLARATIONS,
+) -> None:
+    """Verifies that comment-stripped Lean source contains zero forbidden tokens and
+    declares every required identifier as an actual theorem/lemma/def/structure/abbrev."""
+    stripped = strip_lean_comments(lean_text)
+    forbidden_hits = [
+        tok
+        for tok in FORBIDDEN_LEAN_TOKENS
+        if re.search(rf"(?<![\w.']){re.escape(tok)}(?![\w'])", stripped)
+    ]
+    if forbidden_hits:
+        raise ValueError(f"Forbidden Lean tokens found: {forbidden_hits}")
+
+    missing_decls = [
+        name
+        for name in required_declarations
+        if not re.search(
+            rf"^\s*(?:private\s+|protected\s+|noncomputable\s+)*(?:theorem|lemma|def|structure|abbrev)\s+{re.escape(name)}\b",
+            stripped,
+            re.MULTILINE,
+        )
+    ]
+    if missing_decls:
+        raise ValueError(f"Missing TFQ-1059 declarations: {missing_decls}")
+
+
+def perp_min_witness_real(
+    p: RVec3,
+    q: RVec3,
+    r: RVec3,
+    s: RVec3,
+) -> RVec3:
+    """Matches `exists_min_perp_of_max_and_min`: pulls `s` back to frame `(p, q, r)`,
+    applies `equator_min_witness_real`, and pushes `s'` back to ambient `R^3`."""
+    s_frame = to_frame_real(p, q, r, s)
+    s_prime_frame, _, _ = equator_min_witness_real(s_frame)
+    return of_frame_real(p, q, r, s_prime_frame)
+
+
+def deflate_iso_real(
+    f: Callable[[RVec3], Fraction],
+    c: Fraction,
+) -> Callable[[RVec3], Fraction]:
+    return lambda v: f(v) - c
+
+
+def deflate_iso_complex(
+    f: Callable[[GVec3], Fraction],
+    c: Fraction,
+) -> Callable[[GVec3], Fraction]:
+    return lambda v: f(v) - c
+
+
+def verify_part_f_tfq_1059_extrema_and_deflation() -> dict[str, Any]:
+    """Verifies Part F (TFQ-1059): unit-sphere sInf/sSup sandwich bounds, continuity-free
+    orthogonal extrema reduction, isotropic minimum deflation, continuity-free axisymmetric
+    mixed-state Gleason theorems on R^3 and C^3, and general triaxial mixed-state reduction
+    to the 6-circle Piron chain."""
+    lean_text = LEAN_MODULE_PATH.read_text(encoding="utf-8")
+    check_lean_declarations_and_hygiene(lean_text, TFQ1059_REQUIRED_DECLARATIONS)
+
+    # 1. Unit-sphere infimum/supremum sandwich bounds (`sSup_sphere3_bounds_of_nonneg`):
+    #    0 <= sInf(f '' sphere3) <= W/3 <= sSup(f '' sphere3) <= W
+    m_max = Fraction(1, 2)
+    alpha = Fraction(1, 3)
+    m_min = Fraction(1, 6)
+    weight_w = m_max + alpha + m_min
+    assert weight_w == Fraction(1, 1)
+    assert Fraction(0, 1) <= m_min <= weight_w / Fraction(3, 1) <= m_max <= weight_w
+
+    e1_r: RVec3 = (Fraction(1, 1), Fraction(0, 1), Fraction(0, 1))
+    e2_r: RVec3 = (Fraction(0, 1), Fraction(1, 1), Fraction(0, 1))
+    e3_r: RVec3 = (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))
+    f_triaxial = lambda v: std_quad_real(m_max, alpha, m_min, v)
+    assert f_triaxial(e1_r) + f_triaxial(e2_r) + f_triaxial(e3_r) == weight_w
+
+    sample_real_vecs: list[RVec3] = [
+        e1_r,
+        e2_r,
+        e3_r,
+        (Fraction(1, 1), Fraction(2, 1), Fraction(-2, 1)),
+        (Fraction(3, 1), Fraction(-4, 1), Fraction(5, 1)),
+        (Fraction(-2, 1), Fraction(1, 1), Fraction(3, 1)),
+    ]
+    for v in sample_real_vecs:
+        fv = f_triaxial(v)
+        assert m_min <= fv <= m_max
+        # Scale invariance check matching `le_sSup_sphere3_of_nonneg` / `sInf_sphere3_le_of_nonneg`
+        v_scaled: RVec3 = (Fraction(3, 2) * v[0], Fraction(3, 2) * v[1], Fraction(3, 2) * v[2])
+        assert f_triaxial(v_scaled) == fv
+
+    # 2. Continuity-free common-normal orthogonal extrema reduction
+    #    (`exists_min_on_equator_pole_of_max_and_min` and `exists_min_perp_of_max_and_min`):
+    #    Verify `<e1, s'> = <e1, n> = <s', n> = <s, s''> = <s, n> = <s'', n> = 0` and
+    #    the common-normal great-circle identity `f(e1) + f(s') = f(s) + f(s'')`.
+    s_off_axis: RVec3 = (Fraction(2, 1), Fraction(3, 1), Fraction(-1, 1))
+    s_prime, s_dprime, normal_n = equator_min_witness_real(s_off_axis)
+    assert s_prime[0] == Fraction(0, 1)
+    assert dot3_real(e1_r, s_prime) == Fraction(0, 1)
+    assert dot3_real(e1_r, normal_n) == Fraction(0, 1)
+    assert dot3_real(s_prime, normal_n) == Fraction(0, 1)
+    assert dot3_real(s_off_axis, s_dprime) == Fraction(0, 1)
+    assert dot3_real(s_off_axis, normal_n) == Fraction(0, 1)
+    assert dot3_real(s_dprime, normal_n) == Fraction(0, 1)
+    assert f_triaxial(e1_r) + f_triaxial(s_prime) == f_triaxial(s_off_axis) + f_triaxial(s_dprime)
+    # In an axisymmetric state where e1 is max (`f(e1) = M`) and the equator has min `m`,
+    # any minimizer `s` forces `f(s') <= f(s)` since `f(s'') <= f(e1)`
+    f_axisym_std = lambda v: std_quad_real(Fraction(3, 5), Fraction(1, 5), Fraction(1, 5), v)
+    assert f_axisym_std(e1_r) + f_axisym_std(s_prime) == f_axisym_std(s_off_axis) + f_axisym_std(s_dprime)
+    assert f_axisym_std(s_dprime) <= f_axisym_std(e1_r)
+    assert f_axisym_std(s_prime) <= f_axisym_std(s_off_axis)
+
+    # 3. Isotropic minimum deflation & continuity-free axisymmetric mixed-state Gleason theorem on R^3
+    #    (`deflateIso`, `isFrameFunction_deflateIso`, `isNonnegFrameFunction_deflateIso`,
+    #     `axisymmetric_mixed_state_nonneg_gleason_real`)
+    p_rot_r: RVec3 = (Fraction(3, 5), Fraction(4, 5), Fraction(0, 1))
+    q_rot_r: RVec3 = (Fraction(-4, 5), Fraction(3, 5), Fraction(0, 1))
+    r_rot_r: RVec3 = (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))
+    assert dot3_real(p_rot_r, p_rot_r) == Fraction(1, 1)
+    assert dot3_real(q_rot_r, q_rot_r) == Fraction(1, 1)
+    assert dot3_real(r_rot_r, r_rot_r) == Fraction(1, 1)
+    assert dot3_real(p_rot_r, q_rot_r) == Fraction(0, 1)
+    assert dot3_real(p_rot_r, r_rot_r) == Fraction(0, 1)
+    assert dot3_real(q_rot_r, r_rot_r) == Fraction(0, 1)
+
+    # Also verify `exists_min_perp_of_max_and_min` at the rotated unit pole `p_rot_r`
+    r_perp_rot = perp_min_witness_real(p_rot_r, q_rot_r, r_rot_r, s_off_axis)
+    assert dot3_real(r_perp_rot, r_perp_rot) > Fraction(0, 1)
+    assert dot3_real(p_rot_r, r_perp_rot) == Fraction(0, 1)
+
+    m_iso_r = Fraction(1, 5)
+    M_iso_r = Fraction(3, 5)
+    W_iso_r = M_iso_r + 2 * m_iso_r
+    assert W_iso_r == Fraction(1, 1)
+    f_axisym_r = lambda w: std_quad_real(M_iso_r, m_iso_r, m_iso_r, to_frame_real(p_rot_r, q_rot_r, r_rot_r, w))
+    f_deflated_r = deflate_iso_real(f_axisym_r, m_iso_r)
+    assert f_axisym_r(p_rot_r) + 2 * m_iso_r == W_iso_r
+    assert f_deflated_r(p_rot_r) == W_iso_r - 3 * m_iso_r
+    assert f_deflated_r(q_rot_r) == Fraction(0, 1)
+    assert f_deflated_r(r_rot_r) == Fraction(0, 1)
+    assert f_deflated_r(p_rot_r) + f_deflated_r(q_rot_r) + f_deflated_r(r_rot_r) == W_iso_r - 3 * m_iso_r
+    assert f_axisym_r(r_perp_rot) <= f_axisym_r(s_off_axis)
+
+    for w in sample_real_vecs:
+        assert f_deflated_r(w) >= Fraction(0, 1)
+        expected_r = m_iso_r + (f_axisym_r(p_rot_r) - m_iso_r) * (
+            (dot3_real(w, p_rot_r) ** 2) / dot3_real(w, w)
+        )
+        assert f_axisym_r(w) == expected_r
+
+    # 4. Isotropic minimum deflation & continuity-free axisymmetric mixed-state Gleason theorem on C^3
+    #    (`deflateIsoC`, `isFrameFunctionC_deflateIsoC`, `isNonnegFrameFunctionC_deflateIsoC`,
+    #     `axisymmetric_mixed_state_nonneg_gleason_complex`)
+    p_rot_c: GVec3 = (GaussRat(Fraction(3, 5), 0), GaussRat(0, Fraction(4, 5)), GaussRat(0, 0))
+    q_rot_c: GVec3 = (GaussRat(Fraction(4, 5), 0), GaussRat(0, Fraction(-3, 5)), GaussRat(0, 0))
+    r_rot_c: GVec3 = (GaussRat(0, 0), GaussRat(0, 0), GaussRat(1, 0))
+    assert norm_sq3(p_rot_c) == Fraction(1, 1)
+    assert norm_sq3(q_rot_c) == Fraction(1, 1)
+    assert norm_sq3(r_rot_c) == Fraction(1, 1)
+    assert inner3(p_rot_c, q_rot_c) == GaussRat(0, 0)
+    assert inner3(p_rot_c, r_rot_c) == GaussRat(0, 0)
+    assert inner3(q_rot_c, r_rot_c) == GaussRat(0, 0)
+
+    # Construct rho_axisym = (M - m)|p><p| + m I_3 with M = 3/5, m = 1/5 (trace W = 1)
+    M_iso_c = Fraction(3, 5)
+    m_iso_c = Fraction(1, 5)
+    W_iso_c = M_iso_c + 2 * m_iso_c
+    rho_axisym_c: GaussMatrix3 = tuple(
+        tuple(
+            GaussRat(M_iso_c - m_iso_c, 0) * (p_rot_c[i] * p_rot_c[j].conj())
+            + (GaussRat(m_iso_c, 0) if i == j else GaussRat(0, 0))
+            for j in range(3)
+        )
+        for i in range(3)
+    )  # type: ignore[assignment]
+    F_axisym_c = lambda v: herm_rayleigh(rho_axisym_c, v)
+    F_deflated_c = deflate_iso_complex(F_axisym_c, m_iso_c)
+    assert F_axisym_c(p_rot_c) == M_iso_c
+    assert F_axisym_c(p_rot_c) + 2 * m_iso_c == W_iso_c
+    assert F_deflated_c(p_rot_c) == W_iso_c - 3 * m_iso_c
+    assert F_deflated_c(q_rot_c) == Fraction(0, 1)
+    assert F_deflated_c(r_rot_c) == Fraction(0, 1)
+    assert F_deflated_c(p_rot_c) + F_deflated_c(q_rot_c) + F_deflated_c(r_rot_c) == W_iso_c - 3 * m_iso_c
+
+    sample_complex_vecs: list[GVec3] = [
+        (GaussRat(1, 0), GaussRat(0, 0), GaussRat(0, 0)),
+        (GaussRat(0, 0), GaussRat(1, 0), GaussRat(0, 0)),
+        (GaussRat(0, 0), GaussRat(0, 0), GaussRat(1, 0)),
+        (GaussRat(1, 1), GaussRat(2, -1), GaussRat(0, 3)),
+        (GaussRat(2, 0), GaussRat(-1, 2), GaussRat(1, -1)),
+    ]
+    for v_c in sample_complex_vecs:
+        assert F_deflated_c(v_c) >= Fraction(0, 1)
+        expected_c = m_iso_c + (F_axisym_c(p_rot_c) - m_iso_c) * (
+            inner3(p_rot_c, v_c).norm_sq() / norm_sq3(v_c)
+        )
+        assert F_axisym_c(v_c) == expected_c
+
+    # 5. Continuity-free triaxial mixed-state reduction & 6-circle zero counting
+    #    (`mixed_state_gleason_real_of_extrema` and `eq_zero_of_vanishes_on_six_circles_of_extrema`)
+    f_triaxial_rot = lambda w: std_quad_real(
+        m_max, alpha, m_min, to_frame_real(p_rot_r, q_rot_r, r_rot_r, w)
+    )
+    assert f_triaxial_rot(p_rot_r) == m_max
+    assert f_triaxial_rot(q_rot_r) == alpha
+    assert f_triaxial_rot(r_rot_r) == m_min
+    assert weight_w - f_triaxial_rot(p_rot_r) - f_triaxial_rot(r_rot_r) == alpha
+
+    def h_residual(v: RVec3) -> Fraction:
+        return f_triaxial_rot(of_frame_real(p_rot_r, q_rot_r, r_rot_r, v)) - std_quad_real(
+            f_triaxial_rot(p_rot_r),
+            weight_w - f_triaxial_rot(p_rot_r) - f_triaxial_rot(r_rot_r),
+            f_triaxial_rot(r_rot_r),
+            v,
+        )
+
+    assert h_residual(e1_r) + h_residual(e2_r) + h_residual(e3_r) == Fraction(0, 1)
+    six_circle_probes: list[RVec3] = [
+        (Fraction(2, 1), Fraction(2, 1), Fraction(-3, 1)),   # v0 = v1
+        (Fraction(2, 1), Fraction(-2, 1), Fraction(5, 1)),   # v0 = -v1
+        (Fraction(3, 1), Fraction(-1, 1), Fraction(3, 1)),   # v0 = v2
+        (Fraction(3, 1), Fraction(4, 1), Fraction(-3, 1)),   # v0 = -v2
+        (Fraction(-1, 1), Fraction(5, 1), Fraction(5, 1)),   # v1 = v2
+        (Fraction(7, 1), Fraction(4, 1), Fraction(-4, 1)),   # v1 = -v2
+    ]
+    for vc in six_circle_probes:
+        assert h_residual(vc) == Fraction(0, 1)
+
+    for w in sample_real_vecs:
+        rhs_triaxial = (
+            f_triaxial_rot(p_rot_r) * (dot3_real(w, p_rot_r) ** 2)
+            + (weight_w - f_triaxial_rot(p_rot_r) - f_triaxial_rot(r_rot_r))
+            * (dot3_real(w, q_rot_r) ** 2)
+            + f_triaxial_rot(r_rot_r) * (dot3_real(w, r_rot_r) ** 2)
+        ) / dot3_real(w, w)
+        assert f_triaxial_rot(w) == rhs_triaxial
+
+    # Verify the 6-normal tight-frame identity used in `eq_zero_of_vanishes_on_six_circles_of_extrema`:
+    # sum_{i=1}^6 <x, n_i>^2 = 4 ||x||^2, giving 4 ||r||^2 - 4 ||p + q||^2 = 4 - 8 = -4 != 0
+    six_normals: list[RVec3] = [
+        (Fraction(1, 1), Fraction(-1, 1), Fraction(0, 1)),
+        (Fraction(1, 1), Fraction(1, 1), Fraction(0, 1)),
+        (Fraction(1, 1), Fraction(0, 1), Fraction(-1, 1)),
+        (Fraction(1, 1), Fraction(0, 1), Fraction(1, 1)),
+        (Fraction(0, 1), Fraction(1, 1), Fraction(-1, 1)),
+        (Fraction(0, 1), Fraction(1, 1), Fraction(1, 1)),
+    ]
+    a_sum_pq: RVec3 = (
+        p_rot_r[0] + q_rot_r[0],
+        p_rot_r[1] + q_rot_r[1],
+        p_rot_r[2] + q_rot_r[2],
+    )
+    tight_r = sum((dot3_real(r_rot_r, n) ** 2 for n in six_normals), start=Fraction(0, 1))
+    tight_a = sum((dot3_real(a_sum_pq, n) ** 2 for n in six_normals), start=Fraction(0, 1))
+    assert tight_r == 4 * dot3_real(r_rot_r, r_rot_r) == Fraction(4, 1)
+    assert tight_a == 4 * dot3_real(a_sum_pq, a_sum_pq) == Fraction(8, 1)
+    assert tight_r - tight_a == Fraction(-4, 1)
+
+    return {
+        "verified": True,
+        "tfq1059_declarations_count": len(TFQ1059_REQUIRED_DECLARATIONS),
+        "sphere3_sInf_sSup_sandwich_verified": True,
+        "sphere3_sandwich_values": f"0 <= {m_min} <= {weight_w / 3} <= {m_max} <= {weight_w}",
+        "common_normal_equator_min_verified": True,
+        "deflateIso_real_weight": str(W_iso_r - 3 * m_iso_r),
+        "deflateIsoC_complex_weight": str(W_iso_c - 3 * m_iso_c),
+        "axisymmetric_mixed_state_real_verified": True,
+        "axisymmetric_mixed_state_complex_verified": True,
+        "triaxial_hResidual_six_circles_zero_verified": True,
+        "six_normals_tight_diff_r_minus_a": str(tight_r - tight_a),
+    }
+
+
 def build_receipt() -> dict[str, Any]:
     lean_sha256 = hashlib.sha256(LEAN_MODULE_PATH.read_bytes()).hexdigest()
     return {
@@ -698,6 +1090,7 @@ def build_receipt() -> dict[str, Any]:
             "part_c_continuum_automatic_regularity": verify_part_c_continuum_regularity(),
             "part_d_infinite_dimensional_and_trace_escape": verify_part_d_infinite_dim_and_trace_escape(),
             "part_e_dim_d_subspace_lift": verify_part_e_dim_d_subspace_lift(),
+            "part_f_tfq_1059_extrema_and_deflation": verify_part_f_tfq_1059_extrema_and_deflation(),
         },
     }
 
@@ -725,7 +1118,11 @@ def main(argv: list[str] | None = None) -> int:
     receipt = build_receipt()
     if args.write_receipt:
         args.receipt_path.parent.mkdir(parents=True, exist_ok=True)
-        args.receipt_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+        args.receipt_path.write_text(
+            json.dumps(receipt, indent=2) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
         print(json.dumps({"written": str(args.receipt_path), "all_passed": True}))
         return 0
     if args.check:

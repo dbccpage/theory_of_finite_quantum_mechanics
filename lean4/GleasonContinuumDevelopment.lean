@@ -81,12 +81,36 @@ This module formalizes Phase 4 of the Gleason campaign across four primary mathe
   - `basisEscapeState_escapes_to_zero_without_tightness`: establishes that a sequence of normalized
     trace-one states on successive orthogonal basis vectors vanishes on every fixed finite-dimensional
     compression for `k ≥ N` while retaining total trace `1` at stage `k + 1`.
+
+## E. Compactness, Supremum/Infimum Bounds, Isotropic Deflation & Mixed-State Extremum Reduction (`TFQ-1059`)
+* **Unit-Sphere Supremum & Infimum Bounds (`S²`)**:
+  - `nonempty_image_sphere3`, `bddAbove_image_sphere3_of_nonneg`, `bddBelow_image_sphere3_of_nonneg`,
+    `le_sSup_sphere3_of_nonneg`, `sInf_sphere3_le_of_nonneg`, and `sSup_sphere3_bounds_of_nonneg`:
+    establishes `0 ≤ sInf (f '' sphere3) ≤ W / 3 ≤ sSup (f '' sphere3) ≤ W` for every nonnegative
+    frame function `f` of weight `W`.
+* **Compactness & Continuity-Free Orthogonal Extrema Reduction (`S²`)**:
+  - `AttainsExtrema`, `attainsExtrema_of_continuousOn_sphere3`, `attainsExtrema_of_continuousOn`,
+    `exists_min_on_equator_pole_of_max_and_min`, and `exists_min_perp_of_max_and_min`: separates
+    the single compactness step on `sphere3` from the purely algebraic common-normal great-circle
+    identity that produces an orthogonal maximizer-minimizer pair `(p, r)`.
+* **Isotropic Minimum Deflation & Continuity-Free Axisymmetric Mixed-State Gleason Theorems (`ℝ³` and `ℂ³`)**:
+  - `deflateIso`, `isFrameFunction_deflateIso`, `isNonnegFrameFunction_deflateIso`,
+    `axisymmetric_mixed_state_nonneg_gleason_real`, `deflateIsoC`, `isFrameFunctionC_deflateIsoC`,
+    `isNonnegFrameFunctionC_deflateIsoC`, and `axisymmetric_mixed_state_nonneg_gleason_complex`:
+    establishes the Born quadratic form `F v = m + (F p - m) * |⟨p, v⟩|² / ‖v‖²` for every
+    axisymmetric mixed state (`F p + 2 m = W`, `∀ v ≠ 0, m ≤ F v`) with zero continuity assumption.
+* **Continuity-Free Zero-Counting & General Triaxial Mixed-State Reduction (`S²`)**:
+  - `eq_zero_of_vanishes_on_six_circles_of_extrema`, `mixed_state_gleason_real_of_extrema`, and
+    `gleason_real_of_continuousOn_sphere3`: reduces any general triaxial mixed-state frame function
+    with orthogonal extrema `(p, r)` to a weight-zero residual `hResidual` that vanishes on all six
+    great circles `x = ±y`, `x = ±z`, `y = ±z` without continuity, and vanishes identically under
+    `AttainsExtrema hResidual`.
 -/
 
 namespace BornFinite.ContinuumDevelopment
 
 open BornFinite BornFinite.GaussRat BornFinite.GaussianFrames BornFinite.GaussianTomography
-open BornFinite.GleasonBridge BornFinite.BornCompletion BornFinite.GaussianFiniteModel
+open BornFinite.GleasonBridge BornFinite.BornCompletion
 open GleasonComplex Complex ComplexConjugate Matrix
 open scoped BigOperators ComplexOrder
 
@@ -1475,6 +1499,412 @@ theorem pure_state_nonneg_gleason_real {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
   rw [this, hpW]
   ring
 
+/-! ### Target 3 (`TFQ-1059`): Supremum/infimum bounds on `S²`, compactness, isotropic deflation, and mixed-state extremum reduction -/
+
+/-- The image `f '' sphere3` of the unit sphere `S²` under any `f` is nonempty (witnessed by `e1`). -/
+theorem nonempty_image_sphere3 (f : (Fin 3 → ℝ) → ℝ) :
+    (f '' sphere3).Nonempty :=
+  ⟨f e1, e1, e1_mem_sphere3, rfl⟩
+
+/-- For any nonnegative frame function `f` of weight `W`, the image `f '' sphere3` is bounded above
+by `W` (`W ∈ upperBounds (f '' sphere3)`). -/
+theorem bddAbove_image_sphere3_of_nonneg {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsNonnegFrameFunction f W) :
+    BddAbove (f '' sphere3) := by
+  refine ⟨W, ?_⟩
+  rintro _ ⟨v, hv, rfl⟩
+  exact le_weight_of_nonneg hf (sphere3_subset hv)
+
+/-- For any nonnegative frame function `f` of weight `W`, the image `f '' sphere3` is bounded below
+by `0` (`0 ∈ lowerBounds (f '' sphere3)`). -/
+theorem bddBelow_image_sphere3_of_nonneg {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsNonnegFrameFunction f W) :
+    BddBelow (f '' sphere3) := by
+  refine ⟨0, ?_⟩
+  rintro _ ⟨v, hv, rfl⟩
+  exact hf.nonneg v (sphere3_subset hv)
+
+/-- By scale invariance, every value `f v` (`v ≠ 0`) of a nonnegative frame function is bounded above
+by the unit-sphere supremum `sSup (f '' sphere3)`. -/
+theorem le_sSup_sphere3_of_nonneg {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsNonnegFrameFunction f W) {v : Fin 3 → ℝ} (hv : v ≠ 0) :
+    f v ≤ sSup (f '' sphere3) := by
+  obtain ⟨c, hc0, hcv⟩ := exists_unit_smul hv
+  rw [← hf.scale v hv c hc0]
+  exact le_csSup (bddAbove_image_sphere3_of_nonneg hf) ⟨c • v, hcv, rfl⟩
+
+/-- By scale invariance, every value `f v` (`v ≠ 0`) of a nonnegative frame function is bounded below
+by the unit-sphere infimum `sInf (f '' sphere3)`. -/
+theorem sInf_sphere3_le_of_nonneg {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsNonnegFrameFunction f W) {v : Fin 3 → ℝ} (hv : v ≠ 0) :
+    sInf (f '' sphere3) ≤ f v := by
+  obtain ⟨c, hc0, hcv⟩ := exists_unit_smul hv
+  rw [← hf.scale v hv c hc0]
+  exact csInf_le (bddBelow_image_sphere3_of_nonneg hf) ⟨c • v, hcv, rfl⟩
+
+/-- Continuity-free trace-sandwich bounds for the unit-sphere infimum and supremum of any nonnegative
+frame function of weight `W`:
+`0 ≤ sInf (f '' sphere3) ≤ W / 3 ≤ sSup (f '' sphere3) ≤ W`. -/
+theorem sSup_sphere3_bounds_of_nonneg {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsNonnegFrameFunction f W) :
+    0 ≤ sInf (f '' sphere3) ∧
+    sInf (f '' sphere3) ≤ W / 3 ∧
+    W / 3 ≤ sSup (f '' sphere3) ∧
+    sSup (f '' sphere3) ≤ W := by
+  have he2 : (![0, 1, 0] : Fin 3 → ℝ) ≠ 0 := ne_zero_of_apply_ne (i := 1) (by simp)
+  have hsum := hf.frame e1 ![0, 1, 0] e3 e1_ne_zero he2 e3_ne_zero
+    (by simp [dot3, e1]) (by simp [dot3, e1, e3]) (by simp [dot3, e3])
+  have hinf_nonneg : 0 ≤ sInf (f '' sphere3) := by
+    refine le_csInf (nonempty_image_sphere3 f) ?_
+    rintro _ ⟨v, hv, rfl⟩
+    exact hf.nonneg v (sphere3_subset hv)
+  have hsup_le_W : sSup (f '' sphere3) ≤ W := by
+    refine csSup_le (nonempty_image_sphere3 f) ?_
+    rintro _ ⟨v, hv, rfl⟩
+    exact le_weight_of_nonneg hf (sphere3_subset hv)
+  have h1_inf := sInf_sphere3_le_of_nonneg hf e1_ne_zero
+  have h2_inf := sInf_sphere3_le_of_nonneg hf he2
+  have h3_inf := sInf_sphere3_le_of_nonneg hf e3_ne_zero
+  have h1_sup := le_sSup_sphere3_of_nonneg hf e1_ne_zero
+  have h2_sup := le_sSup_sphere3_of_nonneg hf he2
+  have h3_sup := le_sSup_sphere3_of_nonneg hf e3_ne_zero
+  refine ⟨hinf_nonneg, by linarith, by linarith, hsup_le_W⟩
+
+/-- Extrema-attainment hypothesis on `ℝ³ \ {0}`: `f` attains its global maximum at a unit vector `p`
+and attains its global minimum at a nonzero vector `s`. -/
+def AttainsExtrema (f : (Fin 3 → ℝ) → ℝ) : Prop :=
+  (∃ p : Fin 3 → ℝ, dot3 p p = 1 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f p) ∧
+  (∃ s : Fin 3 → ℝ, s ≠ 0 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 → f s ≤ f v)
+
+/-- Continuity on the compact unit sphere `sphere3` alone implies `AttainsExtrema f` for any frame
+function `f`. -/
+theorem attainsExtrema_of_continuousOn_sphere3 {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsFrameFunction f W) (hc : ContinuousOn f sphere3) :
+    AttainsExtrema f := by
+  constructor
+  · obtain ⟨p, hp, hmax⟩ := isCompact_sphere3.exists_isMaxOn ⟨e1, e1_mem_sphere3⟩ hc
+    refine ⟨p, hp, fun v hv => ?_⟩
+    obtain ⟨c, hc0, hcv⟩ := exists_unit_smul hv
+    have : f (c • v) ≤ f p := hmax hcv
+    rwa [hf.scale v hv c hc0] at this
+  · obtain ⟨s, hs, hmin⟩ := isCompact_sphere3.exists_isMinOn ⟨e1, e1_mem_sphere3⟩ hc
+    refine ⟨s, sphere3_subset hs, fun v hv => ?_⟩
+    obtain ⟨c, hc0, hcv⟩ := exists_unit_smul hv
+    have : f s ≤ f (c • v) := hmin hcv
+    rwa [hf.scale v hv c hc0] at this
+
+/-- Continuity on `ℝ³ \ {0}` implies `AttainsExtrema f` for any frame function `f`. -/
+theorem attainsExtrema_of_continuousOn {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsFrameFunction f W) (hc : ContinuousOn f {v | v ≠ 0}) :
+    AttainsExtrema f :=
+  attainsExtrema_of_continuousOn_sphere3 hf (hc.mono sphere3_subset)
+
+/-- Continuity-free Lemma 1(iv) at the pole `e1`: if `f` has a global maximum at `e1` and attains its
+global minimum at some nonzero vector `s`, then `f` also attains its global minimum at a nonzero
+vector `r` on the equator `{v 0 = 0}` (with zero continuity assumption on `f`). -/
+theorem exists_min_on_equator_pole_of_max_and_min {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsFrameFunction f W)
+    (hmax : ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f e1)
+    (hmin_ex : ∃ s : Fin 3 → ℝ, s ≠ 0 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 → f s ≤ f v) :
+    ∃ r : Fin 3 → ℝ, r ≠ 0 ∧ r 0 = 0 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 → f r ≤ f v := by
+  obtain ⟨s, hs, hmin⟩ := hmin_ex
+  by_cases hrs : s 1 ^ 2 + s 2 ^ 2 = 0
+  · have hs1 : s 1 = 0 := by nlinarith [sq_nonneg (s 1), sq_nonneg (s 2)]
+    have hs2 : s 2 = 0 := by nlinarith [sq_nonneg (s 1), sq_nonneg (s 2)]
+    have hs0 : s 0 ≠ 0 := by
+      intro h0; apply hs; ext i; fin_cases i <;> simp [h0, hs1, hs2]
+    have hse : s = (s 0) • e1 := by ext i; fin_cases i <;> simp [e1, hs1, hs2]
+    have he2 : (![0, 1, 0] : Fin 3 → ℝ) ≠ 0 := ne_zero_of_apply_ne (i := 1) (by simp)
+    refine ⟨![0, 1, 0], he2, by simp, fun v hv => ?_⟩
+    have h1 := hmax ![0, 1, 0] he2
+    have h2 := hmin v hv
+    rw [hse, hf.scale e1 e1_ne_zero (s 0) hs0] at h2
+    have h3 := hmax v hv
+    linarith
+  · let s' : Fin 3 → ℝ := ![0, s 1, s 2]
+    let s'' : Fin 3 → ℝ := ![s 1 ^ 2 + s 2 ^ 2, -(s 0 * s 1), -(s 0 * s 2)]
+    let n : Fin 3 → ℝ := ![0, -(s 2), s 1]
+    have hs' : s' ≠ 0 := ne_zero_of_transverse_ne (by simpa [s'] using hrs)
+    have hs'' : s'' ≠ 0 := ne_zero_of_apply_ne (i := 0) (by simpa [s''] using hrs)
+    have hn : n ≠ 0 := ne_zero_of_transverse_ne (by simp [n]; intro h; apply hrs; linarith)
+    have key := pair_sum_eq_of_common_normal hf e1_ne_zero hs' hs hs'' hn
+      (by simp [dot3, e1, s']) (by simp [dot3, e1, n]) (by simp [dot3, s', n]; ring)
+      (by simp [dot3, s'']; ring) (by simp [dot3, n]; ring) (by simp [dot3, s'', n]; ring)
+    have h2 := hmax s'' hs''
+    refine ⟨s', hs', by simp [s'], fun v hv => ?_⟩
+    have := hmin v hv
+    linarith
+
+/-- Continuity-free Lemma 1(iv) at an arbitrary unit pole `p`: if `f` has a global maximum at `p`
+and attains its global minimum at some nonzero vector `s`, then `f` attains its global minimum at a
+unit vector `r` orthogonal to `p` (`dot3 r r = 1 ∧ dot3 p r = 0`), with zero continuity assumption. -/
+theorem exists_min_perp_of_max_and_min {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsFrameFunction f W) {p : Fin 3 → ℝ} (hp : dot3 p p = 1)
+    (hmax : ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f p)
+    (hmin_ex : ∃ s : Fin 3 → ℝ, s ≠ 0 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 → f s ≤ f v) :
+    ∃ r : Fin 3 → ℝ, dot3 r r = 1 ∧ dot3 p r = 0 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 → f r ≤ f v := by
+  obtain ⟨q, r, h⟩ := exists_orthonormal_completion hp
+  have hF := hf.comp_ofFrame h
+  have hmaxF : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => f (ofFrame p q r v)) v ≤ (fun v => f (ofFrame p q r v)) e1 := by
+    intro v hv
+    simp only [ofFrame_e1]
+    exact hmax _ (ofFrame_ne_zero h hv)
+  have hminF_ex : ∃ s₀ : Fin 3 → ℝ, s₀ ≠ 0 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => f (ofFrame p q r v)) s₀ ≤ (fun v => f (ofFrame p q r v)) v := by
+    obtain ⟨s, hs, hmin⟩ := hmin_ex
+    refine ⟨toFrame p q r s, toFrame_ne_zero h hs, fun v hv => ?_⟩
+    simp only [ofFrame_toFrame h]
+    exact hmin _ (ofFrame_ne_zero h hv)
+  obtain ⟨r₀, hr₀, hr₀0, hminF⟩ := exists_min_on_equator_pole_of_max_and_min hF hmaxF hminF_ex
+  have hw : ofFrame p q r r₀ ≠ 0 := ofFrame_ne_zero h hr₀
+  obtain ⟨c, hc0, hcu⟩ := exists_unit_smul hw
+  refine ⟨c • ofFrame p q r r₀, hcu, ?_, fun v hv => ?_⟩
+  · rw [dot3_smul_right, dot3_comm, (dot3_ofFrame_left h r₀).1, hr₀0, mul_zero]
+  · rw [hf.scale _ hw c hc0]
+    have := hminF (toFrame p q r v) (toFrame_ne_zero h hv)
+    simpa only [ofFrame_toFrame h] using this
+
+/-- Isotropic shift (deflation) of a real frame function by a constant `c`:
+`deflateIso f c v = f v - c`. -/
+def deflateIso (f : (Fin 3 → ℝ) → ℝ) (c : ℝ) (v : Fin 3 → ℝ) : ℝ :=
+  f v - c
+
+/-- Subtracting an isotropic constant `c` from a frame function of weight `W` produces a frame
+function of weight `W - 3 * c`. -/
+theorem isFrameFunction_deflateIso {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsFrameFunction f W) (c : ℝ) :
+    IsFrameFunction (deflateIso f c) (W - 3 * c) where
+  scale v hv a ha := by
+    simp only [deflateIso, hf.scale v hv a ha]
+  frame u v w hu hv hw huv huw hvw := by
+    have := hf.frame u v w hu hv hw huv huw hvw
+    simp only [deflateIso]
+    linarith
+
+/-- Subtracting any global lower bound `m` (`∀ v ≠ 0, m ≤ f v`) from a frame function `f` of weight
+`W` produces a nonnegative frame function of weight `W - 3 * m`. -/
+theorem isNonnegFrameFunction_deflateIso {f : (Fin 3 → ℝ) → ℝ} {W m : ℝ}
+    (hf : IsFrameFunction f W) (hmin : ∀ v : Fin 3 → ℝ, v ≠ 0 → m ≤ f v) :
+    IsNonnegFrameFunction (deflateIso f m) (W - 3 * m) where
+  toIsFrameFunction := isFrameFunction_deflateIso hf m
+  nonneg v hv := sub_nonneg.mpr (hmin v hv)
+
+/-- **Continuity-free axisymmetric mixed-state Gleason theorem on `ℝ³`.**
+If `f` is a frame function of weight `W` bounded below by `m` (`∀ v ≠ 0, m ≤ f v`) and `p` is a unit
+vector such that `f p + 2 * m = W` (which holds for every axisymmetric / degenerate-spectrum mixed
+state `ρ = (M - m)|p⟩⟨p| + m I₃`), then `f v = m + (f p - m) * (⟨v, p⟩² / ⟨v, v⟩)` for every
+`v ≠ 0`, with zero continuity assumption on `f`. -/
+theorem axisymmetric_mixed_state_nonneg_gleason_real {f : (Fin 3 → ℝ) → ℝ} {W m : ℝ}
+    (hf : IsFrameFunction f W) (hmin : ∀ v : Fin 3 → ℝ, v ≠ 0 → m ≤ f v)
+    {p : Fin 3 → ℝ} (hp : dot3 p p = 1) (hpW : f p + 2 * m = W) :
+    ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      f v = m + (f p - m) * (dot3 v p ^ 2 / dot3 v v) := by
+  have hdef : IsNonnegFrameFunction (deflateIso f m) (W - 3 * m) :=
+    isNonnegFrameFunction_deflateIso hf hmin
+  have hp_def : deflateIso f m p = W - 3 * m := by
+    unfold deflateIso; linarith
+  intro v hv
+  have h := pure_state_nonneg_gleason_real hdef hp hp_def v hv
+  unfold deflateIso at h
+  have hW : W - 3 * m = f p - m := by linarith
+  rw [hW] at h
+  linarith
+
+/-- **Continuity-free zero counting on `S²`.**  A weight-zero frame function `h` that satisfies
+`AttainsExtrema h` and vanishes on the six great circles `x = ±y`, `x = ±z`, `y = ±z` vanishes
+identically on `ℝ³ \ {0}`, with zero continuity assumption on `h`. -/
+theorem eq_zero_of_vanishes_on_six_circles_of_extrema {h : (Fin 3 → ℝ) → ℝ}
+    (hh : IsFrameFunction h 0) (hext : AttainsExtrema h)
+    (h6 : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (v 0 = v 1 ∨ v 0 = -v 1 ∨ v 0 = v 2 ∨ v 0 = -v 2 ∨ v 1 = v 2 ∨ v 1 = -v 2) → h v = 0) :
+    ∀ v : Fin 3 → ℝ, v ≠ 0 → h v = 0 := by
+  obtain ⟨p, hp, hmax⟩ := hext.1
+  obtain ⟨r, hr, hpr, hmin⟩ := exists_min_perp_of_max_and_min hh hp hmax hext.2
+  set q := cross3 p r with hq
+  have hfr : IsOrthonormal p q r := isOrthonormal_cross hp hr hpr
+  have hp0 : p ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hp]; exact one_pos)
+  have hq0 : q ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hfr.qq]; exact one_pos)
+  have hr0 : r ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hr]; exact one_pos)
+  have hsum : h p + h q + h r = 0 := hh.frame p q r hp0 hq0 hr0 hfr.pq hfr.pr hfr.qr
+  have hH := hh.comp_ofFrame hfr
+  have hmaxH : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => h (ofFrame p q r v)) v ≤ (fun v => h (ofFrame p q r v)) e1 := by
+    intro v hv; simp only [ofFrame_e1]; exact hmax _ (ofFrame_ne_zero hfr hv)
+  have hminH : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => h (ofFrame p q r v)) e3 ≤ (fun v => h (ofFrame p q r v)) v := by
+    intro v hv; simp only [ofFrame_e3]; exact hmin _ (ofFrame_ne_zero hfr hv)
+  have hL8 := eq_stdQuad_on_six_circles_of_extrema hH hmaxH hminH
+  simp only [ofFrame_e1, ofFrame_e3] at hL8
+  have hEp : ∀ e : Fin 3 → ℝ, e ≠ 0 → dot3 e p = 0 → h e ≤ h q := by
+    intro e he hep
+    have he' : cross3 p e ≠ 0 := ne_zero_of_dot3_self_pos (by
+      rw [dot3_cross3_self, hp, dot3_comm p e, hep, one_mul]; simpa using dot3_self_pos he)
+    have h1 := hh.frame p e (cross3 p e) hp0 he he' (by rw [dot3_comm]; exact hep)
+      (dot3_cross3_left p e) (dot3_cross3_right p e)
+    have h2 := hmin _ he'
+    linarith
+  have hEr : ∀ e : Fin 3 → ℝ, e ≠ 0 → dot3 e r = 0 → h q ≤ h e := by
+    intro e he her
+    have he' : cross3 r e ≠ 0 := ne_zero_of_dot3_self_pos (by
+      rw [dot3_cross3_self, hr, dot3_comm r e, her, one_mul]; simpa using dot3_self_pos he)
+    have h1 := hh.frame r e (cross3 r e) hr0 he he' (by rw [dot3_comm]; exact her)
+      (dot3_cross3_left r e) (dot3_cross3_right r e)
+    have h2 := hmax _ he'
+    linarith
+  have hzero_perp : ∀ s : Fin 3 → ℝ, ∃ e : Fin 3 → ℝ, e ≠ 0 ∧ dot3 e s = 0 ∧ h e = 0 := by
+    intro s
+    by_cases hcr : cross3 s ![1, -1, 0] = 0
+    · have hs2 : s 2 = 0 := by have := congrFun hcr 0; simpa [cross3] using this
+      exact ⟨e3, e3_ne_zero, by simp [dot3, e3, hs2], h6 e3 e3_ne_zero (Or.inl (by simp [e3]))⟩
+    · refine ⟨cross3 s ![1, -1, 0], hcr, by rw [dot3_comm]; exact dot3_cross3_left _ _,
+        h6 _ hcr (Or.inl ?_)⟩
+      simp [cross3]
+  obtain ⟨ep, hep0, hep, hepz⟩ := hzero_perp p
+  obtain ⟨er, her0, her, herz⟩ := hzero_perp r
+  have hα0 : h q = 0 :=
+    le_antisymm (by have := hEr er her0 her; linarith) (by have := hEp ep hep0 hep; linarith)
+  have hm0 : h r = -h p := by linarith
+  set a := p + q with ha
+  have hap : dot3 a p = 1 := by rw [ha, dot3_add_left, hp, dot3_comm q p, hfr.pq]; ring
+  have haq : dot3 a q = 1 := by rw [ha, dot3_add_left, hfr.pq, hfr.qq]; ring
+  have har : dot3 a r = 0 := by rw [ha, dot3_add_left, hfr.pr, hfr.qr]; ring
+  have haa : dot3 a a = 2 := by
+    rw [ha, dot3_add_left, dot3_comm p, dot3_comm q, dot3_add_left, dot3_add_left, hp, hfr.qq,
+      hfr.pq, dot3_comm q p, hfr.pq]; ring
+  have key : ∀ n : Fin 3 → ℝ, (∀ v : Fin 3 → ℝ, v ≠ 0 → dot3 v n = 0 → h v = 0) →
+      h p * (dot3 r n ^ 2 - dot3 a n ^ 2) = 0 := by
+    intro n hn
+    set β := dot3 r n with hβ
+    set γ := dot3 a n with hγ
+    set vi := β • a - γ • r with hvi
+    have hvin : dot3 vi n = 0 := by
+      rw [hvi, dot3_sub_left, dot3_smul_left, dot3_smul_left, ← hβ, ← hγ]; ring
+    have hvp : dot3 vi p = β := by
+      rw [hvi, dot3_sub_left, dot3_smul_left, dot3_smul_left, hap, dot3_comm r p, hpr]; ring
+    have hvq : dot3 vi q = β := by
+      rw [hvi, dot3_sub_left, dot3_smul_left, dot3_smul_left, haq, dot3_comm r q, hfr.qr]; ring
+    have hvr : dot3 vi r = -γ := by
+      rw [hvi, dot3_sub_left, dot3_smul_left, dot3_smul_left, har, hr]; ring
+    by_cases hv0 : vi = 0
+    · have hβ0 : β = 0 := by rw [← hvp, hv0]; simp [dot3]
+      have hγ0 : γ = 0 := by
+        have := hvr; rw [hv0] at this; simp [dot3] at this; linarith
+      rw [hβ0, hγ0]; ring
+    · have h1 : h vi = 0 := hn vi hv0 hvin
+      have htf : toFrame p q r vi = ![β, β, -γ] := by
+        simp [toFrame, hvp, hvq, hvr]
+      have h2 := hL8 (toFrame p q r vi) (toFrame_ne_zero hfr hv0)
+        (Or.inl (by rw [htf]; simp))
+      rw [ofFrame_toFrame hfr, h1, htf] at h2
+      have hD : (β ^ 2 + β ^ 2 + γ ^ 2) ≠ 0 := by
+        have := dot3_self_pos (toFrame_ne_zero hfr hv0)
+        rw [htf] at this; simp [dot3] at this; nlinarith
+      simp only [stdQuad, dot3] at h2
+      simp at h2
+      rw [eq_comm, div_eq_zero_iff] at h2
+      rcases h2 with h2 | h2
+      · rw [hm0] at h2; linear_combination h2
+      · exfalso; apply hD; linarith
+  have k1 := key ![1, -1, 0] (fun v hv hvn => h6 v hv (Or.inl (by simp [dot3] at hvn; linarith)))
+  have k2 := key ![1, 1, 0] (fun v hv hvn => h6 v hv (Or.inr (Or.inl (by simp [dot3] at hvn; linarith))))
+  have k3 := key ![1, 0, -1] (fun v hv hvn => h6 v hv (Or.inr (Or.inr (Or.inl (by simp [dot3] at hvn; linarith)))))
+  have k4 := key ![1, 0, 1] (fun v hv hvn => h6 v hv (Or.inr (Or.inr (Or.inr (Or.inl (by simp [dot3] at hvn; linarith))))))
+  have k5 := key ![0, 1, -1] (fun v hv hvn => h6 v hv (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl (by simp [dot3] at hvn; linarith)))))))
+  have k6 := key ![0, 1, 1] (fun v hv hvn => h6 v hv (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (by simp [dot3] at hvn; linarith)))))))
+  have htr := six_normals_tight r
+  have hta := six_normals_tight a
+  have hM0 : h p = 0 := by
+    have : h p * (4 * dot3 r r - 4 * dot3 a a) = 0 := by
+      linear_combination k1 + k2 + k3 + k4 + k5 + k6 - h p * htr + h p * hta
+    rw [hr, haa] at this
+    linarith
+  intro v hv
+  obtain ⟨c, hc0, hcu⟩ := exists_unit_smul hv
+  obtain ⟨q', r', hfr'⟩ := exists_orthonormal_completion hcu
+  have hu0 : c • v ≠ 0 :=
+    ne_zero_of_dot3_self_pos (by rw [show dot3 (c • v) (c • v) = 1 from hcu]; exact one_pos)
+  have hq'0 : q' ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hfr'.qq]; exact one_pos)
+  have hr'0 : r' ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hfr'.rr]; exact one_pos)
+  have hfs := hh.frame _ q' r' hu0 hq'0 hr'0 hfr'.pq hfr'.pr hfr'.qr
+  have h1 := hmax _ hu0
+  have h2 := hmax _ hq'0
+  have h3 := hmax _ hr'0
+  rw [← hh.scale v hv c hc0]
+  linarith
+
+/-- **General triaxial mixed-state reduction to the continuity-free Piron chain.**
+For any frame function `f` of weight `W` and orthonormal frame `(p, q, r)` where `p` maximizes `f`
+and `r` minimizes `f`, the residual `hResidual v = f (ofFrame p q r v) - stdQuad (f p) (W - f p - f r) (f r) v`
+is a weight-zero frame function that automatically vanishes on all six great circles `x = ±y`,
+`x = ±z`, `y = ±z` (with zero continuity assumption on `f`), and if `AttainsExtrema hResidual` holds
+then `f` equals the triaxial Born quadratic form on all `w ≠ 0`. -/
+theorem mixed_state_gleason_real_of_extrema {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsFrameFunction f W) {p q r : Fin 3 → ℝ} (hfr : IsOrthonormal p q r)
+    (hmax : ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f p)
+    (hmin : ∀ v : Fin 3 → ℝ, v ≠ 0 → f r ≤ f v) :
+    let hResidual : (Fin 3 → ℝ) → ℝ :=
+      fun v => f (ofFrame p q r v) - stdQuad (f p) (W - f p - f r) (f r) v
+    IsFrameFunction hResidual 0 ∧
+    (∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (v 0 = v 1 ∨ v 0 = -v 1 ∨ v 0 = v 2 ∨ v 0 = -v 2 ∨ v 1 = v 2 ∨ v 1 = -v 2) →
+      hResidual v = 0) ∧
+    (AttainsExtrema hResidual → ∀ w : Fin 3 → ℝ, w ≠ 0 →
+      f w = (f p * dot3 w p ^ 2 + (W - f p - f r) * dot3 w q ^ 2 + f r * dot3 w r ^ 2) / dot3 w w) := by
+  dsimp only
+  have hF := hf.comp_ofFrame hfr
+  have hmaxF : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => f (ofFrame p q r v)) v ≤ (fun v => f (ofFrame p q r v)) e1 := by
+    intro v hv; simp only [ofFrame_e1]; exact hmax _ (ofFrame_ne_zero hfr hv)
+  have hminF : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => f (ofFrame p q r v)) e3 ≤ (fun v => f (ofFrame p q r v)) v := by
+    intro v hv; simp only [ofFrame_e3]; exact hmin _ (ofFrame_ne_zero hfr hv)
+  have hg := isFrameFunction_stdQuad (f p) (W - f p - f r) (f r)
+  have hhf : IsFrameFunction
+      (fun v => (fun v => f (ofFrame p q r v)) v - stdQuad (f p) (W - f p - f r) (f r) v) 0 := by
+    have := hF.sub hg
+    rwa [show W - (f p + (W - f p - f r) + f r) = 0 by ring] at this
+  have h6 : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (v 0 = v 1 ∨ v 0 = -v 1 ∨ v 0 = v 2 ∨ v 0 = -v 2 ∨ v 1 = v 2 ∨ v 1 = -v 2) →
+      f (ofFrame p q r v) - stdQuad (f p) (W - f p - f r) (f r) v = 0 := by
+    intro v hv hcirc
+    have := eq_stdQuad_on_six_circles_of_extrema hF hmaxF hminF v hv hcirc
+    simp only [ofFrame_e1, ofFrame_e3] at this
+    rw [this, sub_self]
+  refine ⟨hhf, h6, fun hext w hw => ?_⟩
+  have hz := eq_zero_of_vanishes_on_six_circles_of_extrema hhf hext h6
+    (toFrame p q r w) (toFrame_ne_zero hfr hw)
+  simp only [ofFrame_toFrame hfr] at hz
+  rw [sub_eq_zero] at hz
+  rw [hz, stdQuad, dot3_toFrame_self hfr]
+  simp [toFrame]
+
+/-- **Real Gleason theorem from continuity on the compact unit sphere `sphere3` alone.**
+Every frame function on `ℝ³ \ {0}` whose restriction to `sphere3` is continuous is a triaxial
+quadratic form divided by `⟨v, v⟩`, proved via `attainsExtrema_of_continuousOn_sphere3`,
+`exists_min_perp_of_max_and_min`, and `mixed_state_gleason_real_of_extrema`. -/
+theorem gleason_real_of_continuousOn_sphere3 {f : (Fin 3 → ℝ) → ℝ} {W : ℝ}
+    (hf : IsFrameFunction f W) (hc : ContinuousOn f sphere3) :
+    ∃ p q r : Fin 3 → ℝ, IsOrthonormal p q r ∧ ∃ M α m : ℝ, ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      f v = (M * dot3 v p ^ 2 + α * dot3 v q ^ 2 + m * dot3 v r ^ 2) / dot3 v v := by
+  have hext := attainsExtrema_of_continuousOn_sphere3 hf hc
+  obtain ⟨p, hp, hmax⟩ := hext.1
+  obtain ⟨r, hr, hpr, hmin⟩ := exists_min_perp_of_max_and_min hf hp hmax hext.2
+  set q := cross3 p r with hq
+  have hfr : IsOrthonormal p q r := isOrthonormal_cross hp hr hpr
+  have hred := mixed_state_gleason_real_of_extrema hf hfr hmax hmin
+  rcases hred with ⟨hhf, _, hgleason⟩
+  have hc_ofFrame : ContinuousOn (fun v => f (ofFrame p q r v)) sphere3 :=
+    hc.comp (continuous_ofFrame p q r).continuousOn (fun v hv => by
+      show dot3 (ofFrame p q r v) (ofFrame p q r v) = 1
+      rw [dot3_ofFrame hfr]
+      exact hv)
+  have hc_res : ContinuousOn
+      (fun v => f (ofFrame p q r v) - stdQuad (f p) (W - f p - f r) (f r) v) sphere3 :=
+    hc_ofFrame.sub ((continuousOn_stdQuad (f p) (W - f p - f r) (f r)).mono sphere3_subset)
+  exact ⟨p, q, r, hfr, f p, W - f p - f r, f r,
+    hgleason (attainsExtrema_of_continuousOn_sphere3 hhf hc_res)⟩
+
 end GleasonReal
 
 namespace GleasonComplex
@@ -1682,6 +2112,55 @@ theorem pure_state_nonneg_gleason_complex {F : (Fin 3 → ℂ) → ℝ} {W : ℝ
   have hprop := prop1_of_maxC hF.toIsFrameFunctionC hp hmax heq v hv
   rw [hprop, hpW]
   ring
+
+/-! ### Target 3 (`TFQ-1059`): Complex isotropic deflation and continuity-free axisymmetric mixed-state Gleason theorem on `ℂ³` -/
+
+/-- Isotropic shift (deflation) of a complex frame function on `ℂ³` by a real constant `c`:
+`deflateIsoC F c v = F v - c`. -/
+def deflateIsoC (F : (Fin 3 → ℂ) → ℝ) (c : ℝ) (v : Fin 3 → ℂ) : ℝ :=
+  F v - c
+
+/-- Subtracting an isotropic constant `c` from a complex frame function of weight `W` produces a
+complex frame function of weight `W - 3 * c`. -/
+theorem isFrameFunctionC_deflateIsoC {F : (Fin 3 → ℂ) → ℝ} {W : ℝ}
+    (hF : IsFrameFunctionC F W) (c : ℝ) :
+    IsFrameFunctionC (deflateIsoC F c) (W - 3 * c) where
+  scale v hv a ha := by
+    simp only [deflateIsoC, hF.scale v hv a ha]
+  frame u v w hu hv hw huv huw hvw := by
+    have := hF.frame u v w hu hv hw huv huw hvw
+    simp only [deflateIsoC]
+    linarith
+
+/-- Subtracting any global lower bound `m` (`∀ v ≠ 0, m ≤ F v`) from a complex frame function `F`
+of weight `W` produces a nonnegative complex frame function of weight `W - 3 * m`. -/
+theorem isNonnegFrameFunctionC_deflateIsoC {F : (Fin 3 → ℂ) → ℝ} {W m : ℝ}
+    (hF : IsFrameFunctionC F W) (hmin : ∀ v : Fin 3 → ℂ, v ≠ 0 → m ≤ F v) :
+    IsNonnegFrameFunctionC (deflateIsoC F m) (W - 3 * m) where
+  toIsFrameFunctionC := isFrameFunctionC_deflateIsoC hF m
+  nonneg v hv := sub_nonneg.mpr (hmin v hv)
+
+/-- **Continuity-free axisymmetric mixed-state Gleason theorem on `ℂ³`.**
+If `F` is a complex frame function of weight `W` bounded below by `m` (`∀ v ≠ 0, m ≤ F v`) and `p`
+is a unit vector (`nsq p = 1`) such that `F p + 2 * m = W` (which holds for every axisymmetric /
+degenerate-spectrum mixed state `ρ = (M - m)|p⟩⟨p| + m I₃` on `ℂ³`), then
+`F v = m + (F p - m) * (normSq (dotC p v) / nsq v)` for every `v ≠ 0`, with zero continuity
+assumption on `F`. -/
+theorem axisymmetric_mixed_state_nonneg_gleason_complex {F : (Fin 3 → ℂ) → ℝ} {W m : ℝ}
+    (hF : IsFrameFunctionC F W) (hmin : ∀ v : Fin 3 → ℂ, v ≠ 0 → m ≤ F v)
+    {p : Fin 3 → ℂ} (hp : nsq p = 1) (hpW : F p + 2 * m = W) :
+    ∀ v : Fin 3 → ℂ, v ≠ 0 →
+      F v = m + (F p - m) * (normSq (dotC p v) / nsq v) := by
+  have hdef : IsNonnegFrameFunctionC (deflateIsoC F m) (W - 3 * m) :=
+    isNonnegFrameFunctionC_deflateIsoC hF hmin
+  have hp_def : deflateIsoC F m p = W - 3 * m := by
+    unfold deflateIsoC; linarith
+  intro v hv
+  have h := pure_state_nonneg_gleason_complex hdef hp hp_def v hv
+  unfold deflateIsoC at h
+  have hW : W - 3 * m = F p - m := by linarith
+  rw [hW, mul_div_assoc] at h
+  linarith
 
 end GleasonComplex
 
