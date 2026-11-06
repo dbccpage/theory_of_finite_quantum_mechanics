@@ -26,14 +26,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/lean4/GR002/PonzanoRegge6j.lean`](../../lean4/)
+- [`absent: no local lean twin located for atlas/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/lean4/GR002/PonzanoRegge6j.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`absent: no local rust twin located for external:sha256:daa2544f59a9e79153dd422e291957ad086cabfeed37aa2bf2d5ddc847a4aade`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: no local python twin located for dag/derivations/19_finite_qg/constraint_closure/code/ponzano_regge.py`](../../code/python/)
-- [`absent: no local python twin located for sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/code/ponzano_regge_6j.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/code/ponzano_regge_6j.py`](../../code/python/)
 
 ---
 

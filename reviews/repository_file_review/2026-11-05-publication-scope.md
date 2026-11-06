@@ -21,7 +21,7 @@ describe the separate, older requested source checkout; they retain those local
 observations rather than replacing them with the publication checkout's result.
 
 Mutable current-main references are retargeted. Imported/verbatim snapshots,
-source-bound evidence and the separate sources/atlas/papers namespace retain
+source-bound evidence and the separate atlas/papers namespace retain
 their meanings. The three education code edits change grammar-source paths and
 pass their existing functional checks in both interpreter modes; their complete
 architectural file review remains queued outside this checks/code pass.

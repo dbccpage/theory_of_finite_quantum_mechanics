@@ -69,4 +69,4 @@ Section 13.8, where same-party noncommutativity is called load-bearing for the m
 - Supports: on Q(ζ₁₂)^d for d = 3, 4, the Weyl commutator holonomy is ω^{−ab} I, trivial iff d | ab, and conjugation invariant; over F₂ the Peres–Mermin assignment system has rank 5, cokernel of dimension 1, and total parity 1, so no deterministic assignment exists, while flipping one sign makes it solvable; a diagonal phase cochain supplies no second context.
 - Does not support: any derivation of a noncommutative algebra from weights; infinite-dimensional statements; independence of QM-209.
 - Narrowest claim: on the declared finite carriers the QM-209 import splits into two exactly computed cycle invariants (μ_d and Z/2), an imported topological completion, and the imported second context.
-- Next test: `cd sources/atlas/papers/finite_quantum_mechanics && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_context_parity_control.py -q -p no:cacheprovider` (expect 7 passed).
+- Next test: `cd atlas/finite_quantum_mechanics && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_context_parity_control.py -q -p no:cacheprovider` (expect 7 passed).

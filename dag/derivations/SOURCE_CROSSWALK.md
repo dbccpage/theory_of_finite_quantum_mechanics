@@ -104,7 +104,7 @@ older path spellings in their citation labels. Resolve those labels as follows:
 | `lean4/quantum_mechanics/LggrFiniteResults.lean` | [LggrFiniteResults.lean](../../lean4/LggrFiniteResults.lean) |
 | `atlas/papers/finite_obstruction_calculus/` | [finite_obstruction_calculus](../../atlas/finite_obstruction_calculus/) |
 
-`sources/atlas/papers/...` labels in the observer-presheaf fragment name the
+`atlas/...` labels in the observer-presheaf fragment name the
 external source tree. They are provenance identifiers rather than links to
 this checkout. These mappings repair navigation only; they do not verify a
 Lean declaration or change the status of a claim.

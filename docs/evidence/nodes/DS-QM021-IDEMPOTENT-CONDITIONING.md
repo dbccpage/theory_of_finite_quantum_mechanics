@@ -88,9 +88,9 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0235 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
+- TFQ-0235 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm
 - TFQ-0235 rust: no local rust twin located for external:sha256:32bcf706711e8c0460831c97a9d55d8e64bb3ba66c27d70d4d64695823902525
-- TFQ-0236 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
+- TFQ-0236 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm
 - TFQ-0236 rust: no local rust twin located for external:sha256:32bcf706711e8c0460831c97a9d55d8e64bb3ba66c27d70d4d64695823902525
 - TFQ-0236 rust: no local rust twin located for external:sha256:4fbc6b0667894450336cabb7dd92392cca1592abb3feb809e1fff47ee1281cec
 - TFQ-0236 rust: no local rust twin located for external:sha256:6391572c23248195d97785667c444e6f67da73cab83285825dc16d94e998598b

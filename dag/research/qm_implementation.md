@@ -40,7 +40,7 @@ After relocation and facade withdrawal:
 - `test_cptp_channels_stinespring.py`: **pins** `choi_theorem_ported_lean is False` and depolarizing p=1/7 dilation conductor 28. That is an honesty pin, not a Choi theorem.
 - `test_lean_replay.py`: application Lean is one flat PascalCase directory with no subdirectories (`application_lean_replay.validate_layout`); zero `: True := by trivial`; no `sorry`. Receipt source-byte hashes must still match. C750 B01 modules are therefore **outside** the application library the replay validator will accept.
 - `test_mub_source_snapshot.py` points at `external:unlocated`. That directory is absent. `SOURCE_SNAPSHOT.json` lives at `external:git-tree:72cd4f19cac9c95dd8a52bfab516ba940b262f2c` with status `UNINTEGRATED_SOURCE_SNAPSHOT`. The test as written cannot bind the live snapshot without a path repair.
-- `test_withdrawn_rows.py` pins the 31 audit-refuted packaging repairs against `sources/atlas/papers/quantum_foundations`, and **skips** when that tree is gone. After F004 retirement the withdrawal pins do not currently fire against `research/`.
+- `test_withdrawn_rows.py` pins the 31 audit-refuted packaging repairs against `atlas/quantum_foundations`, and **skips** when that tree is gone. After F004 retirement the withdrawal pins do not currently fire against `research/`.
 - `test_gap_register.py` validates only `gaps:` types in `{open_bridge, continuum_interface, evidence_vacuum, triage_required, missing_implementation, false_receipt}`. YAML-nested `GAP-C1000-*` (`declared_assumption` / `proved_theorem` / `open_question`) are not in that list and would be rejected if moved into `gaps:`.
 
 **Finite computation, not uniqueness.**

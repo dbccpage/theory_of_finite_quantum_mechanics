@@ -62,7 +62,7 @@ A reference in a generated paper or view, or in a sealed run artifact, follows f
 
 3 cited path(s) were not imported because this repository already holds a file with that role (see the import manifest); the references now name the in-repo file:
 
-- `sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean` -> `lean4/DerivationDagQMClosure.lean`
+- `atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean` -> `lean4/DerivationDagQMClosure.lean`
 - `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean` -> `lean4/SwitchingNormalForm.lean`
 - `lean4/quantum_mechanics/H016ContinuousDynamicsFork.lean` -> `lean4/H016ContinuousDynamicsFork.lean`
 
@@ -128,7 +128,7 @@ The table lists each group of sibling-tree paths that this checkout cites. *live
 | `atlas/projection_obstruction/projection_obstruction_paper` | 1 (1/0/0) | 0 | 1 | 0 | 0 | - |
 | `atlas/projection_obstruction/coordinate_wise_additivity` | 2 (2/0/0) | 7 | 1 | 15 | 2 | 1 paper / document, 1 Lean |
 | `atlas/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy` | 4 (4/0/0) | 7 | 7 | 3 | 0 | 2 Python |
-| `sources/atlas/papers/quantum_foundations` | 77 (0/40/37) | 0 | 77 | 0 | 0 | - |
+| `atlas/quantum_foundations` | 77 (0/40/37) | 0 | 77 | 0 | 0 | - |
 | `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/002_cofiber_to_banach_quotient_bridge` | 1 (0/0/1) | 4 | 0 | 5 | 1 | - |
 | `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/003_residual_density_calculus_l1_l2_boundary` | 1 (0/0/1) | 6 | 1 | 10 | 2 | - |
 | `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/012_density_matrices_as_diagonal_residual_weights` | 1 (0/0/1) | 4 | 0 | 5 | 1 | - |
@@ -185,34 +185,34 @@ The table lists each group of sibling-tree paths that this checkout cites. *live
 | `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/210_born_rule_postulate_and_state_effect_pairing` | 1 (0/0/1) | 6 | 2 | 10 | 2 | - |
 | `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/211_continuous_unitary_dynamics_and_l1_to_qm_synthesis` | 1 (0/0/1) | 4 | 1 | 5 | 1 | - |
 | `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/212_microsoft_majorana_problem` | 1 (0/0/1) | 4 | 0 | 9 | 1 | - |
-| `sources/atlas/papers/quantum_foundations/_code` | 4 (0/2/2) | 23 | 14 | 29 | 0 | -; removed: 2 Python |
-| `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm` | 4 (0/4/0) | 21 | 7 | 269 | 8 | -; removed: 1 yaml (other), 1 Python |
-| `sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law` | 13 (0/13/0) | 30 | 25 | 0 | 0 | -; removed: 6 Python, 3 Lean |
-| `sources/atlas/papers/general_relativity/relational_point_coincidence_and_witnessed_difference` | 4 (0/4/0) | 4 | 6 | 0 | 0 | -; removed: 1 Python |
-| `sources/atlas/papers/finite_quantum_mechanics` | 5 (0/3/2) | 84 | 21 | 274 | 28 | -; removed: 2 paper / document |
+| `atlas/quantum_foundations/_code` | 4 (0/2/2) | 23 | 14 | 29 | 0 | -; removed: 2 Python |
+| `atlas/quantum_foundations/dag_pregenesis_to_finite_qm` | 4 (0/4/0) | 21 | 7 | 269 | 8 | -; removed: 1 yaml (other), 1 Python |
+| `atlas/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law` | 13 (0/13/0) | 30 | 25 | 0 | 0 | -; removed: 6 Python, 3 Lean |
+| `atlas/general_relativity/relational_point_coincidence_and_witnessed_difference` | 4 (0/4/0) | 4 | 6 | 0 | 0 | -; removed: 1 Python |
+| `atlas/finite_quantum_mechanics` | 5 (0/3/2) | 84 | 21 | 274 | 28 | -; removed: 2 paper / document |
 | `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/apps` | 1 (0/0/1) | 1 | 0 | 19 | 0 | - |
-| `sources/atlas/papers/finite_quantum_mechanics/campaigns` | 28 (0/28/0) | 10 | 0 | 138 | 0 | -; removed: 10 data (json/jsonl/csv) |
-| `sources/atlas/papers/finite_quantum_mechanics/claims` | 3 (0/3/0) | 60 | 10 | 182 | 27 | -; removed: 3 yaml claim register |
+| `atlas/finite_quantum_mechanics/campaigns` | 28 (0/28/0) | 10 | 0 | 138 | 0 | -; removed: 10 data (json/jsonl/csv) |
+| `atlas/finite_quantum_mechanics/claims` | 3 (0/3/0) | 60 | 10 | 182 | 27 | -; removed: 3 yaml claim register |
 | `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/code` | 10 (0/0/10) | 10 | 0 | 190 | 0 | - |
-| `sources/atlas/papers/finite_quantum_mechanics/evidence` | 13 (0/13/0) | 12 | 0 | 244 | 0 | -; removed: 11 data (json/jsonl/csv), 1 paper / document |
-| `sources/atlas/papers/finite_quantum_mechanics/lean` | 2 (0/2/0) | 25 | 52 | 285 | 0 | -; removed: 2 Lean |
+| `atlas/finite_quantum_mechanics/evidence` | 13 (0/13/0) | 12 | 0 | 244 | 0 | -; removed: 11 data (json/jsonl/csv), 1 paper / document |
+| `atlas/finite_quantum_mechanics/lean` | 2 (0/2/0) | 25 | 52 | 285 | 0 | -; removed: 2 Lean |
 | `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean4` | 12 (0/0/12) | 22 | 0 | 190 | 0 | - |
-| `sources/atlas/papers/finite_quantum_mechanics/native` | 9 (0/9/0) | 53 | 32 | 258 | 24 | -; removed: 4 Rust |
-| `sources/atlas/papers/finite_quantum_mechanics/python` | 23 (0/21/2) | 127 | 102 | 108 | 0 | -; removed: 19 Python |
+| `atlas/finite_quantum_mechanics/native` | 9 (0/9/0) | 53 | 32 | 258 | 24 | -; removed: 4 Rust |
+| `atlas/finite_quantum_mechanics/python` | 23 (0/21/2) | 127 | 102 | 108 | 0 | -; removed: 19 Python |
 | `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research` | 13 (0/13/0) | 0 | 13 | 0 | 0 | - |
-| `sources/atlas/papers/finite_quantum_mechanics/tests` | 6 (0/4/2) | 8 | 2 | 0 | 0 | -; removed: 4 Python |
-| `sources/atlas/papers/finite_to_continuum` | 1 (0/1/0) | 0 | 1 | 0 | 0 | - |
+| `atlas/finite_quantum_mechanics/tests` | 6 (0/4/2) | 8 | 2 | 0 | 0 | -; removed: 4 Python |
+| `atlas/finite_to_continuum` | 1 (0/1/0) | 0 | 1 | 0 | 0 | - |
 | `omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/_docs` | 2 (0/2/0) | 0 | 2 | 0 | 0 | - |
-| `sources/atlas/papers/finite_to_continuum/code` | 8 (0/8/0) | 24 | 16 | 3 | 0 | -; removed: 8 Python |
-| `sources/atlas/papers/finite_to_continuum/lean4` | 3 (0/3/0) | 11 | 8 | 3 | 0 | -; removed: 3 Lean |
-| `sources/atlas/papers/fermion_sign_problem` | 1 (0/0/1) | 1 | 0 | 0 | 0 | - |
-| `sources/atlas/papers/fermion_sign_problem/code` | 26 (0/23/3) | 112 | 8 | 0 | 0 | -; removed: 23 Python |
-| `sources/atlas/papers/majorana` | 1 (0/1/0) | 0 | 1 | 0 | 0 | - |
-| `sources/atlas/papers/majorana/code` | 2 (0/2/0) | 5 | 1 | 3 | 0 | -; removed: 2 Python |
+| `atlas/finite_to_continuum/code` | 8 (0/8/0) | 24 | 16 | 3 | 0 | -; removed: 8 Python |
+| `atlas/finite_to_continuum/lean4` | 3 (0/3/0) | 11 | 8 | 3 | 0 | -; removed: 3 Lean |
+| `atlas/fermion_sign_problem` | 1 (0/0/1) | 1 | 0 | 0 | 0 | - |
+| `atlas/fermion_sign_problem/code` | 26 (0/23/3) | 112 | 8 | 0 | 0 | -; removed: 23 Python |
+| `atlas/majorana` | 1 (0/1/0) | 0 | 1 | 0 | 0 | - |
+| `atlas/majorana/code` | 2 (0/2/0) | 5 | 1 | 3 | 0 | -; removed: 2 Python |
 | `omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/lean4` | 1 (0/1/0) | 1 | 0 | 0 | 0 | -; removed: 1 Lean |
-| `sources/atlas/papers/mub6` | 3 (0/1/2) | 4 | 1 | 0 | 0 | - |
-| `sources/atlas/papers/mub6/artifacts` | 15 (0/14/1) | 28 | 0 | 0 | 0 | -; removed: 14 data (json/jsonl/csv) |
-| `sources/atlas/papers/mub6/code` | 2 (0/2/0) | 4 | 0 | 0 | 0 | -; removed: 2 Python |
+| `atlas/mub6` | 3 (0/1/2) | 4 | 1 | 0 | 0 | - |
+| `atlas/mub6/artifacts` | 15 (0/14/1) | 28 | 0 | 0 | 0 | -; removed: 14 data (json/jsonl/csv) |
+| `atlas/mub6/code` | 2 (0/2/0) | 4 | 0 | 0 | 0 | -; removed: 2 Python |
 | `omega_engine_atlas/coda_atlas/F004_papers/010_mub6/research` | 5 (0/5/0) | 5 | 0 | 0 | 0 | -; removed: 4 Python, 1 data (json/jsonl/csv) |
 | `omega_engine_atlas/coda_atlas/F004_papers/010_mub6/rust` | 1 (0/1/0) | 3 | 2 | 0 | 0 | -; removed: 1 Rust |
 | `omega_engine_atlas/coda_atlas/F004_papers/013_trace_zero_quotient_duality` | 2 (2/0/0) | 0 | 2 | 0 | 0 | - |
@@ -282,21 +282,21 @@ Lean: 0 node `lean` fields and record `lean4` fields still name an atlas Lean fi
 
 ## Recommended copy list (not copied in this change)
 
-The papers, claim registers and data files that DAG nodes and records cite as `source` come to 106 files, 6.0 MB. 7 of them (1.2 MB) are no longer in the sibling working tree and would be restored from its git history. That is over the 5 MB this change allows for non-Lean files, so **none of them was copied**. Recommended: copy them verbatim, keeping their atlas-relative path, to `sources/atlas/<atlas-relative path>` in one follow-up change, then rewrite the `source` fields with `dag/research/lean_replay_campaign/rewrite_refs.py` (extend its table; the files are byte-identical, so `:line` references stay valid). The complete list with sizes is in the JSON file (entries whose `kind` is a document, yaml or data file and that are cited from the DAG classes). The largest:
+The papers, claim registers and data files that DAG nodes and records cite as `source` come to 106 files, 6.0 MB. 7 of them (1.2 MB) are no longer in the sibling working tree and would be restored from its git history. That is over the 5 MB this change allows for non-Lean files, so **none of them was copied**. Recommended: copy them verbatim, keeping their atlas-relative path, to `atlas/<atlas-relative path>` in one follow-up change, then rewrite the `source` fields with `dag/research/lean_replay_campaign/rewrite_refs.py` (extend its table; the files are byte-identical, so `:line` references stay valid). The complete list with sizes is in the JSON file (entries whose `kind` is a document, yaml or data file and that are cited from the DAG classes). The largest:
 
 | File | size | references |
 |---|---|---|
 | `omega_engine_atlas/coda_atlas/F004_papers/plans/goal_dag.jsonl` | 1.1 MB | 9 |
 | `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md` | 999.2 KB | 86 |
 | `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md` | 898.0 KB | 85 |
-| `sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml` (removed) | 542.1 KB | 30 |
-| `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md` (removed) | 410.7 KB | 68 |
+| `atlas/finite_quantum_mechanics/claims/claim_ledger.yaml` (removed) | 542.1 KB | 30 |
+| `atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md` (removed) | 410.7 KB | 68 |
 | `atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md` | 336.2 KB | 11 |
 | `atlas/finite_obstruction_calculus/genesis/lean4/axiom_report.txt` | 172.0 KB | 8 |
-| `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md` (removed) | 152.8 KB | 254 |
+| `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md` (removed) | 152.8 KB | 254 |
 | `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md` | 129.4 KB | 27 |
 | `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt` | 81.2 KB | 83 |
-| `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml` (removed) | 74.2 KB | 206 |
+| `atlas/finite_quantum_mechanics/claims/gap_register.yaml` (removed) | 74.2 KB | 206 |
 | `atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt` | 57.6 KB | 107 |
 | `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md` | 57.3 KB | 34 |
 | `atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md` | 51.2 KB | 105 |
@@ -310,7 +310,7 @@ The papers, claim registers and data files that DAG nodes and records cite as `s
 | `omega_engine_education/documentation/006_oewdp/levels/level_09_behavioral_quotients_finite_states.md` | 30.0 KB | 6 |
 | `atlas/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md` | 29.5 KB | 8 |
 | `omega_engine_product_planning_office/architecture_review/06_genesis_native_route.md` | 27.3 KB | 9 |
-| `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml` (removed) | 27.1 KB | 71 |
+| `atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml` (removed) | 27.1 KB | 71 |
 
 Rust and Python files cited from node `rust` fields and record fields: 400 files, 6.1 MB (273 Rust, 127 Python). 244 of them are under `omega_engine/`. These were not copied; whether to cite an in-repo twin or record the citation as external is a decision for a reviewer.
 
@@ -396,31 +396,31 @@ Per paper or sub-folder (only folders with at least one path that resolves now o
 | `atlas/projection_obstruction/projection_obstruction_paper` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
 | `atlas/projection_obstruction/coordinate_wise_additivity` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (1 paper / document, 1 Lean; 61.4 KB) |
 | `atlas/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy` | **NOT YET SAFE** | 2 existing file(s) are cited by live files of this repo (2 Python; 88.2 KB) |
-| `sources/atlas/papers/quantum_foundations` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
-| `sources/atlas/papers/quantum_foundations/_code` | **ALREADY REMOVED** | 2 cited file(s) (2 Python; 5.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm` | **ALREADY REMOVED** | 2 cited file(s) (1 yaml (other), 1 Python; 39.1 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law` | **ALREADY REMOVED** | 9 cited file(s) (6 Python, 3 Lean; 40.2 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/general_relativity/relational_point_coincidence_and_witnessed_difference` | **ALREADY REMOVED** | 1 cited file(s) (1 Python; 8.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/finite_quantum_mechanics` | **ALREADY REMOVED** | 2 cited file(s) (2 paper / document; 563.5 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/finite_quantum_mechanics/campaigns` | **ALREADY REMOVED** | 10 cited file(s) (10 data (json/jsonl/csv); 215.1 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/finite_quantum_mechanics/claims` | **ALREADY REMOVED** | 3 cited file(s) (3 yaml claim register; 618.1 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/finite_quantum_mechanics/evidence` | **ALREADY REMOVED** | 12 cited file(s) (11 data (json/jsonl/csv), 1 paper / document; 431.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/finite_quantum_mechanics/lean` | **ALREADY REMOVED** | 2 cited file(s) (2 Lean; 277.6 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/finite_quantum_mechanics/native` | **ALREADY REMOVED** | 4 cited file(s) (4 Rust; 126.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/finite_quantum_mechanics/python` | **ALREADY REMOVED** | 19 cited file(s) (19 Python; 445.5 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/quantum_foundations` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
+| `atlas/quantum_foundations/_code` | **ALREADY REMOVED** | 2 cited file(s) (2 Python; 5.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/quantum_foundations/dag_pregenesis_to_finite_qm` | **ALREADY REMOVED** | 2 cited file(s) (1 yaml (other), 1 Python; 39.1 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law` | **ALREADY REMOVED** | 9 cited file(s) (6 Python, 3 Lean; 40.2 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/general_relativity/relational_point_coincidence_and_witnessed_difference` | **ALREADY REMOVED** | 1 cited file(s) (1 Python; 8.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_quantum_mechanics` | **ALREADY REMOVED** | 2 cited file(s) (2 paper / document; 563.5 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_quantum_mechanics/campaigns` | **ALREADY REMOVED** | 10 cited file(s) (10 data (json/jsonl/csv); 215.1 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_quantum_mechanics/claims` | **ALREADY REMOVED** | 3 cited file(s) (3 yaml claim register; 618.1 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_quantum_mechanics/evidence` | **ALREADY REMOVED** | 12 cited file(s) (11 data (json/jsonl/csv), 1 paper / document; 431.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_quantum_mechanics/lean` | **ALREADY REMOVED** | 2 cited file(s) (2 Lean; 277.6 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_quantum_mechanics/native` | **ALREADY REMOVED** | 4 cited file(s) (4 Rust; 126.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_quantum_mechanics/python` | **ALREADY REMOVED** | 19 cited file(s) (19 Python; 445.5 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
 | `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
-| `sources/atlas/papers/finite_quantum_mechanics/tests` | **ALREADY REMOVED** | 4 cited file(s) (4 Python; 25.3 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/finite_to_continuum` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
+| `atlas/finite_quantum_mechanics/tests` | **ALREADY REMOVED** | 4 cited file(s) (4 Python; 25.3 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_to_continuum` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
 | `omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/_docs` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
-| `sources/atlas/papers/finite_to_continuum/code` | **ALREADY REMOVED** | 8 cited file(s) (8 Python; 92.3 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/finite_to_continuum/lean4` | **ALREADY REMOVED** | 3 cited file(s) (3 Lean; 10.5 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/fermion_sign_problem/code` | **ALREADY REMOVED** | 23 cited file(s) (23 Python; 327.8 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/majorana` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
-| `sources/atlas/papers/majorana/code` | **ALREADY REMOVED** | 2 cited file(s) (2 Python; 10.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_to_continuum/code` | **ALREADY REMOVED** | 8 cited file(s) (8 Python; 92.3 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/finite_to_continuum/lean4` | **ALREADY REMOVED** | 3 cited file(s) (3 Lean; 10.5 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/fermion_sign_problem/code` | **ALREADY REMOVED** | 23 cited file(s) (23 Python; 327.8 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/majorana` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |
+| `atlas/majorana/code` | **ALREADY REMOVED** | 2 cited file(s) (2 Python; 10.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
 | `omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/lean4` | **ALREADY REMOVED** | 1 cited file(s) (1 Lean; 15.2 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/mub6` | **SAFE TO DELETE** | every live reference names a path that is not in the atlas (already broken); nothing is lost |
-| `sources/atlas/papers/mub6/artifacts` | **ALREADY REMOVED** | 14 cited file(s) (14 data (json/jsonl/csv); 188.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
-| `sources/atlas/papers/mub6/code` | **ALREADY REMOVED** | 2 cited file(s) (2 Python; 104.2 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/mub6` | **SAFE TO DELETE** | every live reference names a path that is not in the atlas (already broken); nothing is lost |
+| `atlas/mub6/artifacts` | **ALREADY REMOVED** | 14 cited file(s) (14 data (json/jsonl/csv); 188.9 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
+| `atlas/mub6/code` | **ALREADY REMOVED** | 2 cited file(s) (2 Python; 104.2 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
 | `omega_engine_atlas/coda_atlas/F004_papers/010_mub6/research` | **ALREADY REMOVED** | 5 cited file(s) (4 Python, 1 data (json/jsonl/csv); 54.8 KB) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
 | `omega_engine_atlas/coda_atlas/F004_papers/010_mub6/rust` | **ALREADY REMOVED** | 1 cited file(s) (1 Rust; 258 B) were deleted by sibling commit 3379759468; this repo's references to them no longer resolve and the content is only in the sibling's git history |
 | `omega_engine_atlas/coda_atlas/F004_papers/013_trace_zero_quotient_duality` | **SAFE TO DELETE** | no live reference (only sealed run artifacts or generated views, if any) |

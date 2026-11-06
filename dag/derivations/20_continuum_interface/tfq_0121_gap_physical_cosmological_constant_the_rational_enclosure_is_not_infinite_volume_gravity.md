@@ -32,7 +32,7 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:1d63cec400ac8406dc4fa31d974130853f1938647193bdbbf607c6c6b1358c69`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_to_continuum/code/meron_source_response.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_to_continuum/code/meron_source_response.py`](../../code/python/)
 
 ---
 

@@ -51,5 +51,5 @@ paper s1.3 finite Weyl construction from an anchored seed; clock/shift commutant
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:149`
-  - `sources/atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:380`
+  - `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:149`
+  - `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md:380`

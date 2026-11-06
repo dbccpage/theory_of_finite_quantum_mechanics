@@ -33,7 +33,7 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:8c984aacd751eca83b3e6ed98bfb7b99faa0ffc0580881b7d912b3d9ba02c94f`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/page_wootters_tsirelson_wigner_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/page_wootters_tsirelson_wigner_control.py`](../../code/python/)
 
 ---
 

@@ -52,8 +52,8 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/H010InterferenceNonDescent.lean::no_descent_through_fiber`](../../code/lean4/)
 - [`lean4/quantum_mechanics/InterferenceDeficit.lean::L1_cannot_compute_interference`](../../code/lean4/)
 - [`lean4/quantum_mechanics/InterferenceDeficit.lean::deficit_eq_cross_term`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/FiniteQM.lean`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/FiniteQM.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:be048d5e98615cff70b3cdc1ebaa78a56395d67d55ca655cbb41494e307cde65::cross_term`](../../code/rust/src/)
@@ -65,7 +65,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`sources/atlas/papers/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
+- [`atlas/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
 
 ---
 

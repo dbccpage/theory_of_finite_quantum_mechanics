@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / 'dag'))
 import sync_foc035_observer_presheaf as sync  # noqa: E402
 import validate_derivation_dag as validator  # noqa: E402
 
-LEDGER = ROOT / 'sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md'
+LEDGER = ROOT / 'atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md'
 NOTE = LEDGER.with_name('lggr_and_the_quantum_observer_presheaf.md')
 EXPECTED_STATUS = {
     'DEFINITION': {'OPS-OBSERVER-TUPLE'},
@@ -138,8 +138,8 @@ def test_papers_and_forbidden_words():
 
 
 def test_source_copies_are_byte_identical_to_the_recorded_digests():
-    prov = json.loads((ROOT / 'sources/atlas/PROVENANCE.json').read_text(encoding='utf-8'))
-    entries = {entry['in_repo_path']: entry for entry in prov['files']}
+    prov = json.loads((ROOT / 'atlas/PROVENANCE.json').read_text(encoding='utf-8'))
+    entries = {entry['in_repo_path']: entry for entry in prov['restored_sources']['files']}
     for path in (LEDGER, NOTE):
         entry = entries[path.relative_to(ROOT).as_posix()]
         data = path.read_bytes()

@@ -32,7 +32,7 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:c5ad48d5c22ea89b1e481b44062e0de0f36728afa54ea6439e12e592c239f77a`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py`](../../code/python/)
 
 ---
 
