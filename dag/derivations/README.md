@@ -120,7 +120,7 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) | rung8-element-count-across-iso | `PROVED_LEAN` | [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) |
 | [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) | rung9-two-ness-observational-classes | `PROVED_LEAN` | [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) |
 | [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) | rung10-responder-adjacency-reach | `PROVED_LEAN` | [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) |
-| [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) | c1-engine-class-144 | `SOURCE_RECORD` | [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) |
+| [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) | c1-engine-class-144 | `PROVED_LEAN` | [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) |
 | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) | c2-run-forward-every-history | `PROVED_LEAN` | [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) |
 | [`TFQ-0476`](./02_genesis/tfq_0476_forced_census_column.md) | forced-census-column | `PROVED_LEAN` | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) |
 | [`TFQ-0477`](./02_genesis/tfq_0477_go_reach_ceiling.md) | go-reach-ceiling | `PROVED_LEAN` | [`TFQ-0389`](./02_genesis/tfq_0389_fewest_changes_formula.md) |
@@ -274,9 +274,9 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) | wd2-factored-report-preservation | `PROVED_LEAN` | [`TFQ-0563`](./06_wdp/tfq_0563_wd2_shortest_separating_word.md) |
 | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) | wd2-minimal-deterministic-quotient | `PROVED_LEAN` | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) |
 | [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) | wdp-bridge-o01-carrier-cut-genesis | `PROVED_LEAN` | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) |
-| [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) | wdp-bridge-o02-observer-repair | `OPEN_OBLIGATION` | [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) |
+| [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) | wdp-bridge-o02-observer-repair | `PROVED_LEAN` | [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) |
 | [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) | wdp-bridge-o03-guarded-history-coherence | `PROVED_LEAN` | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) |
-| [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) | wdp-bridge-o04-tensor-reconstruction | `OPEN_OBLIGATION` | [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) |
+| [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) | wdp-bridge-o04-tensor-reconstruction | `PROVED_LEAN` | [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) |
 | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) | wdp-bridge-o05-authorization-firewall | `OPEN_OBLIGATION` | [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) |
 | [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) | wdp-out-1-sharp-observer-completion | `PROVED_LEAN` | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) |
 | [`TFQ-0572`](./06_wdp/tfq_0572_wdp_out_2_guarded_swap_coherence.md) | wdp-out-2-guarded-swap-coherence | `PROVED_LEAN` | [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) |

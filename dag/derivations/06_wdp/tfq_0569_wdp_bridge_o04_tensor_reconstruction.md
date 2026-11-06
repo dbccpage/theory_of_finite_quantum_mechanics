@@ -1,6 +1,6 @@
 # [TFQ-0569] wdp-bridge-o04-tensor-reconstruction
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `fd24d4ed-e899-5b9c-bc21-22d30e1ea94a`  
 > **Parent Derivation**: [TFQ-0568](tfq_0568_wdp_bridge_o03_guarded_history_coherence.md)
 
@@ -34,6 +34,9 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteStateEffectReadout.lean::born_numerator_identity`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteStateEffectReadout.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.gmat_born_numerator_identity`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.wdp_bridge_o04_scoped_operational_readout_and_countermodel`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.wdp_bridge_o04_scoped_operational_readout_and_countermodel`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: unconditional operational quantum selection is open`

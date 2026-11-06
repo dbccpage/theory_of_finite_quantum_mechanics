@@ -94,7 +94,7 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 77 | [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) (new) | rung8-element-count-across-iso | `GENESIS` | `PROVED_LEAN` | `TFQ-0470` |
 | 78 | [`TFQ-0472`](./02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) (new) | rung9-two-ness-observational-classes | `GENESIS` | `PROVED_LEAN` | `TFQ-0471` |
 | 79 | [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) (new) | rung10-responder-adjacency-reach | `GENESIS` | `PROVED_LEAN` | `TFQ-0472` |
-| 80 | [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) (new) | c1-engine-class-144 | `GENESIS` | `SOURCE_RECORD` | `TFQ-0473` |
+| 80 | [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) (new) | c1-engine-class-144 | `GENESIS` | `PROVED_LEAN` | `TFQ-0473` |
 | 81 | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) (new) | c2-run-forward-every-history | `GENESIS` | `PROVED_LEAN` | `TFQ-0474` |
 | 82 | [`TFQ-0476`](./02_genesis/tfq_0476_forced_census_column.md) (new) | forced-census-column | `GENESIS` | `PROVED_LEAN` | `TFQ-0475` |
 | 83 | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) (new) | genesis-freeze-endpoint-ledger | `GENESIS` | `SOURCE_RECORD` | `TFQ-0476` |
@@ -217,9 +217,9 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 200 | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) (new) | wd2-factored-report-preservation | `WDP` | `PROVED_LEAN` | `TFQ-0563` |
 | 201 | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) (new) | wd2-minimal-deterministic-quotient | `WDP` | `PROVED_LEAN` | `TFQ-0564` |
 | 202 | [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) (new) | wdp-bridge-o01-carrier-cut-genesis | `WDP` | `PROVED_LEAN` | `TFQ-0565` |
-| 203 | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) (new) | wdp-bridge-o02-observer-repair | `WDP` | `OPEN_OBLIGATION` | `TFQ-0566` |
+| 203 | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) (new) | wdp-bridge-o02-observer-repair | `WDP` | `PROVED_LEAN` | `TFQ-0566` |
 | 204 | [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) (new) | wdp-bridge-o03-guarded-history-coherence | `WDP` | `PROVED_LEAN` | `TFQ-0567` |
-| 205 | [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) (new) | wdp-bridge-o04-tensor-reconstruction | `WDP` | `OPEN_OBLIGATION` | `TFQ-0568` |
+| 205 | [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) (new) | wdp-bridge-o04-tensor-reconstruction | `WDP` | `PROVED_LEAN` | `TFQ-0568` |
 | 206 | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) (new) | wdp-bridge-o05-authorization-firewall | `WDP` | `OPEN_OBLIGATION` | `TFQ-0569` |
 | 207 | [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) (new) | wdp-out-1-sharp-observer-completion | `WDP` | `PROVED_LEAN` | `TFQ-0570` |
 | 208 | [`TFQ-0572`](./06_wdp/tfq_0572_wdp_out_2_guarded_swap_coherence.md) (new) | wdp-out-2-guarded-swap-coherence | `WDP` | `PROVED_LEAN` | `TFQ-0571` |

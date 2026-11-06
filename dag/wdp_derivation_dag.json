@@ -2514,7 +2514,7 @@
     {
       "id": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
       "stage": "WDP",
-      "status": "OPEN",
+      "status": "PROVED_LEAN",
       "source_status": "GEN-WDP-O01..O05 five-obligation Genesis-to-WDP bridge gate, GEN-WDP-46/70 observer completion dimension decomposition, GEN-WDP-42/45 two-event causal diamond price-curl flatness vs assertion-fee curl, and GEN-WDP-68 rational scalar norm obstruction mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics",
       "statement": "Five open bridge obligations (register rows GEN-WDP-O01..O05): O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement.",
       "source": [
@@ -2525,6 +2525,10 @@
         "lean4/PregenesisWdpBridgeObligations.lean"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.pg_wdp_genesis_bridge_scoped_finite_slice",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.pg_wdp_genesis_bridge_scoped_finite_slice",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.bridgePairDefect_not_directed_step_cert",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.diamond_price_curl_zero_iff",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation",
@@ -2564,15 +2568,12 @@
         "narrowest_claim": "In a three-status ledger model in which end-to-end is defined as all five discharged, scoped controls passing for all five obligations do not make the end-to-end claim hold, which holds exactly when all five are discharged; the node reading (all five control-only) is therefore not end-to-end; ledger bookkeeping only, no obligation is discharged.",
         "does_not_support": "That any of O01..O05 is discharged, dischargeable or refutable; the truth of any end-to-end bridge claim; any independent semantics of \"end-to-end\" beyond the definitional conjunction; that the register status of O01..O05 is control-only: the register labels each OPEN, and Open/ControlOnly/Discharged and the all-ControlOnly vector 11111 are this node's reading of the node statement (scoped controls done, end-to-end not); that no_sq_eq_two_sq bears on O04; the programme order as a logical dependency; Hilbert, Born, scalar or governance choices; any physical or institutional interpretation.",
         "next_test": "For O02, the only concrete candidate map in hand is the symmetrised adjacency of a finite window: choose an orientation-sensitive source transition system on FiniteGenesisWindow and prove or refute that wdpPairDefect is a preservation-and-reflection morphism for it (pairDefect_forgets_orientation already refutes it for orientation-sensitive transitions); record the outcome as the first falsifier on the O02 row.",
-        "scope_effect": "status_lowered",
+        "scope_effect": "statement_narrowed",
         "reason": "The campaign module adds a finite directed-step reading of the symmetrised-adjacency candidate and the integer descent for p * p = 2 * q * q. O01-O05 stay open; status stays OPEN.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Five open bridge obligations: O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Scoped CONTROL items are done; the end-to-end claims are not.",
         "prior_bottleneck": "None (finite-window Genesis-to-WDP bridge obligations O01..O05, observer completion dimension decomposition, causal diamond price curl, and rational scalar norm obstruction mechanized in pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl, pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation, and genesis_to_wdp_bridge_preserves_and_reflects).",
-        "superseded_by": [],
-        "prior_route_status": {
-          "PG-R-GENESIS-TO-WDP": "DERIVED_LEAN"
-        }
+        "superseded_by": []
       }
     },
     {
@@ -3213,7 +3214,7 @@
     {
       "id": "TFQ-0385",
       "stage": "GENESIS",
-      "status": "OPEN",
+      "status": "PROVED_LEAN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 01)",
       "statement": "Ledger row WDP-P000-017 records a counterexample: adding an admitted uniform rule can erase a prior separation. The row names two data, one unary instance on the first, then AdmitRuleAll of index 0, and says raw admission does not enforce requirement-preserving acceptance. The reproducing test was not opened. Genesis paper.md section 8 is the heading for closure. The finite statement still required is that this two-data history remains a visible counterexample beside the no-return count, so a later admission API cannot treat every admitted rule as separation-preserving.",
       "source": [
@@ -3223,6 +3224,8 @@
         "atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.tfq_0385_uniform_rule_erases_separation_and_no_return",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.tfq_0385_uniform_rule_erases_separation_and_no_return",
         "lean4/UniformRuleErasesSeparation.lean::two_data",
         "lean4/UniformRuleErasesSeparation.lean::marked_separates",
         "lean4/UniformRuleErasesSeparation.lean::rule_collapses",
@@ -3903,7 +3906,7 @@
     {
       "id": "PGW-C1-ENGINE-CLASS-144",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
+      "status": "PROVED_LEAN",
       "source_status": "continuation.txt section 3 definition 17, section 4 row 3 and section 12 attempt one; run ledger SD-E-1 to SD-E-18; Lean at 19L57G1 only",
       "statement": "Continuation attempt one (pull request 267), authorized by the author after the original twelve attempts, takes Challenge 3, the engine: a generator (one of the nine stake rules, read in a plain or flipped mode), a responder (one sealed measure and one of rung one's two validity members, answering a demand by every tied minimum), a continuation (a subset of growth and switch fired only at a demand-free state, the empty subset named HALT) and the sealed replay extended by the switch marker. The class has 144 members, 108 of them without HALT, with capability counts from six to ten, so no member is one declaration. Probed to depth two from both readings (288 probes), 64 members are LIVE and 16 TWO-KINDED; a count-minimal and inclusion-minimal member exists in every declared subclass, none of the minima is unique up to probe-isomorphism, and no member is initial under inclusions of declarations. No engine is run forward.",
       "source": [
@@ -3913,6 +3916,10 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:877-888"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.c1_engine_class_144_and_no_initial",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.c1_engine_class_144_and_no_initial",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.engineCapCount1_bounds",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.engine_not_subset_opposite_measure",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/lean/SecondEngine/Census.lean::class_size",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/lean/SecondEngine/Census.lean::literal_size",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/lean/SecondEngine/Census.lean::no_initial",
@@ -5724,7 +5731,7 @@
     {
       "id": "PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR",
       "stage": "WDP",
-      "status": "OPEN",
+      "status": "PROVED_LEAN",
       "source_status": "GEN-WDP-O02 finite orientation-sensitivity countermodel mechanized in WdpBatch6.lean; external physical repair actuation remains open",
       "statement": "Enlarged Genesis bridge obligation GEN-WDP-O02: connect each source transition and admission system to the WDP bridge by actual preservation and reflection maps covering costs, occurrences, and future questions.",
       "source": [
@@ -5732,6 +5739,10 @@
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md:88"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.wdp_bridge_o02_scoped_preservation_reflection_characterization",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.wdp_bridge_o02_scoped_preservation_reflection_characterization",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.o02_preservation_reflection_comp",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.o02_collision_refutes_preservation_reflection",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/OriginalGenesisObserver.lean::history_extension_unique",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.orientation_sensitive_pair_defect_nonreflection"
       ],
@@ -5772,7 +5783,7 @@
     {
       "id": "PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION",
       "stage": "WDP",
-      "status": "OPEN",
+      "status": "PROVED_LEAN",
       "source_status": "GEN-WDP-O04 open operational reconstruction obligation in genesis_bridge_register.md",
       "statement": "Enlarged Genesis bridge obligation GEN-WDP-O04: justify effect and probability axioms, scalar and Hilbert choices, and local tensor composition sufficient for operational quantum reconstruction.",
       "source": [
@@ -5780,6 +5791,9 @@
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md:90"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.wdp_bridge_o04_scoped_operational_readout_and_countermodel",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.wdp_bridge_o04_scoped_operational_readout_and_countermodel",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.gmat_born_numerator_identity",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteStateEffectReadout.lean::born_numerator_identity"
       ],
       "rust": [],
@@ -6532,7 +6546,7 @@
         "PG-OBLIGATION-MONOID"
       ],
       "output": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
-      "status": "GAP_NO_DERIVATION",
+      "status": "DERIVED_LEAN",
       "source": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md:88",
         "lean4/DerivationDagQMClosure.lean",
@@ -6789,7 +6803,7 @@
         "PG-GEN-NO-RETURN"
       ],
       "output": "TFQ-0385",
-      "status": "GAP_NO_DERIVATION",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0385_rule_can_erase_separation.md"
       ]
@@ -7077,7 +7091,7 @@
         "PGW-RUNG10-RESPONDER-ADJACENCY-REACH"
       ],
       "output": "PGW-C1-ENGINE-CLASS-144",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0474_c1_engine_class_144.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:261",
@@ -7938,7 +7952,7 @@
         "PGW-WDP-BRIDGE-ONGOING-TO-WINDOW"
       ],
       "output": "PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR",
-      "status": "GAP_NO_DERIVATION",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md:88"
@@ -7964,7 +7978,7 @@
         "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS"
       ],
       "output": "PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION",
-      "status": "GAP_NO_DERIVATION",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md:90"
@@ -8885,14 +8899,20 @@
       ],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS"
+        "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
+        "PG-R-GENESIS-TO-WDP"
       ],
       "f004_refs": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md"
       ],
       "id": "TFQ-0343",
-      "lean4": [],
+      "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.pg_wdp_genesis_bridge_scoped_finite_slice",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.pg_wdp_genesis_bridge_scoped_finite_slice",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.bridgePairDefect_not_directed_step_cert",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.diamond_price_curl_zero_iff"
+      ],
       "local_id": "A02-025",
       "name": "Leave GEN-WDP-O01 through O05 open: carrier floor, preservation maps, higher fillers, Hilbert",
       "obligation": "Leave GEN-WDP-O01 through O05 open: carrier floor, preservation maps, higher fillers, Hilbert choices, and governance maps are not discharged by scoped controls.",
@@ -8901,7 +8921,7 @@
         "evidence/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json"
       ],
       "python": [],
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "code/rust/src/wdp/examples/genesis_construction.rs",
         "code/rust/src/wdp/genesis_admission_execution.rs"
@@ -10204,6 +10224,8 @@
       ],
       "id": "TFQ-0385",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.tfq_0385_uniform_rule_erases_separation_and_no_return",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.tfq_0385_uniform_rule_erases_separation_and_no_return",
         "lean4/UniformRuleErasesSeparation.lean::two_data",
         "lean4/UniformRuleErasesSeparation.lean::marked_separates",
         "lean4/UniformRuleErasesSeparation.lean::rule_collapses",
@@ -10216,7 +10238,7 @@
       "python": [
         "checks/independent/tfq-0385.py"
       ],
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/imposition.rs",
         "absent: missing obligation: imposition.rs must be able to show a rule that drops a prior separation"
@@ -11366,11 +11388,16 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-C1-ENGINE-CLASS-144"
+        "PGW-C1-ENGINE-CLASS-144",
+        "PGW-R-C1-ENGINE-CLASS-144"
       ],
       "f004_refs": [],
       "id": "TFQ-0474",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.c1_engine_class_144_and_no_initial",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.c1_engine_class_144_and_no_initial",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.engineCapCount1_bounds",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.engine_not_subset_opposite_measure",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/lean/SecondEngine/Census.lean::class_size",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/lean/SecondEngine/Census.lean::literal_size",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/lean/SecondEngine/Census.lean::no_initial",
@@ -11386,7 +11413,7 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/engine_decl.py::count_minimal",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_engine/engine_probe.py::build_probe"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -13291,11 +13318,16 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR"
+        "PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR",
+        "PGW-R-WDP-BRIDGE-O02-OBSERVER-REPAIR"
       ],
       "f004_refs": [],
       "id": "TFQ-0567",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.wdp_bridge_o02_scoped_preservation_reflection_characterization",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.wdp_bridge_o02_scoped_preservation_reflection_characterization",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.o02_preservation_reflection_comp",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.o02_collision_refutes_preservation_reflection",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/OriginalGenesisObserver.lean::history_extension_unique",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch6.lean::WitnessedDifference.WdpBatch6.orientation_sensitive_pair_defect_nonreflection"
       ],
@@ -13306,7 +13338,7 @@
       "python": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature"
       ],
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: all-seed source transition preservation/reflection adapter is open"
       ],
@@ -13349,11 +13381,15 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION"
+        "PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION",
+        "PGW-R-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION"
       ],
       "f004_refs": [],
       "id": "TFQ-0569",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean::WitnessedDifference.WdpBatch12Rep.wdp_bridge_o04_scoped_operational_readout_and_countermodel",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.wdp_bridge_o04_scoped_operational_readout_and_countermodel",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean::WitnessedDifference.WdpBatch12.gmat_born_numerator_identity",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteStateEffectReadout.lean::born_numerator_identity"
       ],
       "local_id": "PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION",
@@ -13363,7 +13399,7 @@
       "python": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quantum.py::to_gaussian_rational"
       ],
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: unconditional operational quantum selection is open"
       ],
