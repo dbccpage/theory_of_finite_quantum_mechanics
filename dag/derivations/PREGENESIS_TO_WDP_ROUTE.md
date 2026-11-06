@@ -84,11 +84,11 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 67 | [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) (new) | genesis-three-axis-verdict | `GENESIS` | `PROVED_LEAN` | `TFQ-0454` |
 | 68 | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) (new) | rung0-inheritance-replay | `GENESIS` | `PROVED_LEAN` | `TFQ-0461` |
 | 69 | [`TFQ-0463`](./02_genesis/tfq_0463_rung1_stream_as_response.md) (new) | rung1-stream-as-response | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0462` |
-| 70 | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) (new) | rung2a-stake-declared-label | `GENESIS` | `SOURCE_RECORD` | `TFQ-0462` |
+| 70 | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) (new) | rung2a-stake-declared-label | `GENESIS` | `PROVED_LEAN` | `TFQ-0462` |
 | 71 | [`TFQ-0465`](./02_genesis/tfq_0465_rung2b_stake_menu.md) (new) | rung2b-stake-menu | `GENESIS` | `PROVED_LEAN` | `TFQ-0464` |
-| 72 | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) (new) | rung3-first-demand-index | `GENESIS` | `SOURCE_RECORD` | `TFQ-0464` |
-| 73 | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) (new) | rung4-index-up-to-isomorphism | `GENESIS` | `SOURCE_RECORD` | `TFQ-0466` |
-| 74 | [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) (new) | rung5-symmetry-along-history | `GENESIS` | `SOURCE_RECORD` | `TFQ-0467` |
+| 72 | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) (new) | rung3-first-demand-index | `GENESIS` | `PROVED_LEAN` | `TFQ-0464` |
+| 73 | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) (new) | rung4-index-up-to-isomorphism | `GENESIS` | `PROVED_LEAN` | `TFQ-0466` |
+| 74 | [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) (new) | rung5-symmetry-along-history | `GENESIS` | `PROVED_LEAN` | `TFQ-0467` |
 | 75 | [`TFQ-0469`](./02_genesis/tfq_0469_rung6_succession_element_count.md) (new) | rung6-succession-element-count | `GENESIS` | `SOURCE_RECORD` | `TFQ-0468` |
 | 76 | [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) (new) | rung7-duration-under-changing | `GENESIS` | `SOURCE_RECORD` | `TFQ-0469` |
 | 77 | [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) (new) | rung8-element-count-across-iso | `GENESIS` | `SOURCE_RECORD` | `TFQ-0470` |

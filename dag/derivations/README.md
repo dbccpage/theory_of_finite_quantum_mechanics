@@ -110,11 +110,11 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) | genesis-three-axis-verdict | `PROVED_LEAN` | [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) |
 | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) | rung0-inheritance-replay | `PROVED_LEAN` | [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) |
 | [`TFQ-0463`](./02_genesis/tfq_0463_rung1_stream_as_response.md) | rung1-stream-as-response | `OPEN_OBLIGATION` | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) |
-| [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) | rung2a-stake-declared-label | `SOURCE_RECORD` | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) |
+| [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) | rung2a-stake-declared-label | `PROVED_LEAN` | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) |
 | [`TFQ-0465`](./02_genesis/tfq_0465_rung2b_stake_menu.md) | rung2b-stake-menu | `PROVED_LEAN` | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) |
-| [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) | rung3-first-demand-index | `SOURCE_RECORD` | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) |
-| [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) | rung4-index-up-to-isomorphism | `SOURCE_RECORD` | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) |
-| [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) | rung5-symmetry-along-history | `SOURCE_RECORD` | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) |
+| [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) | rung3-first-demand-index | `PROVED_LEAN` | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) |
+| [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) | rung4-index-up-to-isomorphism | `PROVED_LEAN` | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) |
+| [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) | rung5-symmetry-along-history | `PROVED_LEAN` | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) |
 | [`TFQ-0469`](./02_genesis/tfq_0469_rung6_succession_element_count.md) | rung6-succession-element-count | `SOURCE_RECORD` | [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) |
 | [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) | rung7-duration-under-changing | `SOURCE_RECORD` | [`TFQ-0469`](./02_genesis/tfq_0469_rung6_succession_element_count.md) |
 | [`TFQ-0471`](./02_genesis/tfq_0471_rung8_element_count_across_iso.md) | rung8-element-count-across-iso | `SOURCE_RECORD` | [`TFQ-0470`](./02_genesis/tfq_0470_rung7_duration_under_changing.md) |
