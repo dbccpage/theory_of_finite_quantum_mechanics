@@ -666,11 +666,10 @@
     {
       "node_id": "FQ-IMPL-WDP-AMPLITUDE-BRIDGE",
       "review": "dag/results/FQ-IMPL-WDP-AMPLITUDE-BRIDGE/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
-      "scope_effect": "status_lowered",
+      "scope_effect": "consistent",
       "statement": "tfqm_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).",
-      "bottleneck": "The claims are about a Rust artifact and are backed by its native exact tests. The cited Lean is integer arithmetic (3^2 + 4^2 = 5^2 and similar) and does not state the claims.",
-      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
-      "status": "COMPUTATIONALLY_CHECKED"
+      "bottleneck": "WDP-CH19-P11/P12 mechanized in WdpBatch4.lean alongside amplitude_bridge.rs; continuous U(1) Lie-group topologies remain outside the finite Gaussian-rational carrier.",
+      "reason": "WDP Batch 4 mechanization: WdpBatch4.lean proves unit norm of u=(3+4i)/5, coboundary invariance of cycle holonomy, unit-phase invariance and non-coincidence of quadratic and quartic readouts, and u^n != 1 for all n >= 1 via mod-5 induction."
     },
     {
       "node_id": "FQ-INTERFERENCE-NONDESCENT",
@@ -1257,11 +1256,10 @@
     {
       "node_id": "PG-GEN-SAMENESS-REFINEMENTS",
       "review": "dag/results/PG-GEN-SAMENESS-REFINEMENTS/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
-      "scope_effect": "status_lowered",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "statement": "Reviewed scope: Actual excess/plain/together arrays, cancellation cost and bounded two-term rewriting orbits are exact; pointwise excess/cost identities are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Formalize the generated-sameness equivalence with rewriting, then address raising (23), filled terms (24) and filled triples/balance (25). Their ledgers are inspected source material, not newly verified results. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "The node cites three files with no symbol and says it was not read in detail; the review supports bounded two-term rewriting orbits and pointwise identities only."
+      "scope_effect": "consistent",
+      "statement": "Derivations 22-25 sameness refinements (together pairs, raising terms, filled terms, filled triples) and their loop, two-way, and triangle circulation invariants are mechanized in Twentysecond..Twentyfifth and WdpBatch4.lean.",
+      "bottleneck": "Claim ledgers 22-25 inventoried and sameness refinement invariants mechanized in Twentysecond..Twentyfifth and WdpBatch4.lean; continuum limits remain outside scope.",
+      "reason": "WDP Batch 4 mechanization: Twentysecond..Twentyfifth Lean libraries and WdpBatch4.lean mechanize the sameness hierarchy and its cohomological invariants."
     },
     {
       "node_id": "PG-GEN-SUPPLY-ERASURE",

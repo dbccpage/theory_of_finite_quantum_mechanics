@@ -72,9 +72,9 @@ All 6 items have complete written prose proofs in `docs/01_substantiated/wd2_fin
 | `PGW-WD2-FACTORED-REPORT-PRESERVATION` | `TFQ-0564` | `PROVED_LEAN` | Discharged in `FiniteDistinction.lean::Wd2.factored_report_preserves_related`, `Wd2.factored_report_preserves_polyRelated`, and `Wd2.unfactored_report_splits_r0`. |
 | `PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT` | `TFQ-0565` | `PROVED_LEAN` | Discharged in `FiniteDistinction.lean::Wd2.rInfinity_coarsest_congruence` and `Wd2.minimal_deterministic_quotient_factorization`. |
 
-### 3.2 Tier A2: 10 `PROVED_PROSE` WDP Theorems (9 Discharged in Batches 2–3, 1 Remaining)
+### 3.2 Tier A2: 10 `PROVED_PROSE` WDP Theorems (All 10 Discharged in Batches 2–4)
 
-These 10 nodes have written mathematical proofs in the WDP monograph or `docs/01_substantiated/derivations/` plus exact Python/Rust checks; 9 have been mechanized in `WdpBatch2.lean` and `WdpBatch3.lean`:
+These 10 nodes have written mathematical proofs in the WDP monograph or `docs/01_substantiated/derivations/` plus exact Python/Rust checks, and are now mechanized in `WdpBatch2.lean`, `WdpBatch3.lean`, `WdpBatch4.lean`, and `FiniteProcessComposition.lean`:
 
 | Node ID | TFQ Record | Current Status | Concrete In-Repo Completion Action |
 |---|---|---|---|
@@ -87,18 +87,18 @@ These 10 nodes have written mathematical proofs in the WDP monograph or `docs/01
 | `PGW-WDP-OUT-4-REJECTION-RULE-REUSE` | `TFQ-0574` | `PROVED_LEAN` | Discharged in `WdpBatch3.lean::reuse_decode_encode2`, `reuse_encode_decode_image`, `reuse_soundness_iff`, `reuse_coverage_iff`, and `reuse_scan_thresholds_and_task2_trap`. |
 | `PGW-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION` | `TFQ-0575` | `PROVED_LEAN` | Discharged in `WdpBatch3.lean::general_horizon_clipped_signed_counts_unique`, `general_horizon_sharp_collision`, and `general_horizon_composition_bound`. |
 | `PGW-WDP-BORN-RULE-NONSELECTION` | `TFQ-0579` | `PROVED_LEAN` | Discharged in `WdpBatch3.lean::deformed_probability_normalized`, `deformed_probability_nonnegative`, and `born_rule_nonselection_gen_wdp_65`. |
-| `PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION` | `TFQ-0580` | `PROVED_PROSE` | Add the 2-adic rational non-square theorem (forall q : Rat, q * q != 1/2) to WdpBatch4.lean. |
+| `PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION` | `TFQ-0580` | `PROVED_LEAN` | Discharged in `FiniteProcessComposition.lean::nat_two_mul_sq_ne_sq`, `int_two_mul_sq_ne_sq`, and `WdpBatch4.lean::exact_scalar_hadamard_and_t_obstruction`. |
 
-### 3.3 Tier A3 & Tier B: 14 Finite Computational / Conditional / Open Algebraic Bridges
+### 3.3 Tier A3 & Tier B: 14 Finite Computational / Conditional / Open Algebraic Bridges (4 Discharged in Batch 4, 10 Remaining)
 
 These 14 obligations are purely finite (combinatorial, linear-algebraic over $\mathbb{Q}$, or cochain-level) and can be discharged or answered by a finite countermodel in-repo before merging with `omega_codex`:
 
 | Node ID | TFQ Record | Current Status | Tractability Class | Concrete In-Repo Completion Action |
 |---|---|---|---|---|
-| `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` | `TFQ-1026` | `COMPUTATIONALLY_CHECKED` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Mechanize the finite rational/Gaussian-rational amplitude bridge identity in Lean 4. |
-| `PG-GEN-SAMENESS-REFINEMENTS` | `TFQ-0391` | `COMPUTATIONALLY_CHECKED` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Mechanize the finite sameness-refinement comparison across Genesis and WDP in Lean 4. |
-| `PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY` | `TFQ-0544` | `CONDITIONAL` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Mechanize finite LP strong duality for quotient norm Phi_1 over Q in Lean 4 using explicit dual circulation certificates. |
-| `PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER` | `TFQ-0556` | `CONDITIONAL` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Bind FoundationalBridges.lean::fiber_constant_iff_factors directly to the report-fiber observer node. |
+| `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` | `TFQ-1026` | `PROVED_LEAN` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Discharged in `WdpBatch4.lean::pythagorean_phase_unit_norm`, `triangle_holonomy_coboundary_invariant`, `readout_quadratic_phase_invariant`, `readout_quartic_phase_invariant`, and `gintPow34_im_ne_zero`. |
+| `PG-GEN-SAMENESS-REFINEMENTS` | `TFQ-0391` | `PROVED_LEAN` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Discharged in `Twentysecond..Twentyfifth` Lean modules and `WdpBatch4.lean::same23_preserves_around`, `same24_balances_iff`, and `same25_balances_iff`. |
+| `PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY` | `TFQ-0544` | `PROVED_LEAN` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Discharged in `WdpBatch4.lean::weighted_residual_shift_invariant`, `weighted_l1_weak_duality_triangle`, and `certified_primal_dual_optimality`. |
+| `PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER` | `TFQ-0556` | `PROVED_LEAN` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Discharged in `WdpBatch4.lean::report_fiber_decoder_iff`, `event_multiset_loses_final_state`, and `final_state_loses_occurrence_count`. |
 | `L1-IMP-COMPLEX-FIELD` | `TFQ-0293` | `CONDITIONAL` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Formalize the exact finite realification/Hermitianization condition selecting J^2 = -I up to orientation sign. |
 | `PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT` | `TFQ-0543` | `OPEN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Prove finite edge-sign cochain isomorphism under orientation reversal in Lean 4. |
 | `PGW-WDP-BRIDGE-ONGOING-TO-WINDOW` | `TFQ-0555` | `OPEN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Formalize the finite carrier-change counterexample and fixed-carrier cochain bridge in Lean 4. |

@@ -1,6 +1,6 @@
 # [TFQ-1026] FQ-IMPL-WDP-AMPLITUDE-BRIDGE
 
-> **Stage**: `IMPLEMENTATION_CORE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (`COMPUTATIONALLY_CHECKED`)  
+> **Stage**: `IMPLEMENTATION_CORE` | **Status**: `PROVED_LEAN` | **DAG node**: `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (`PROVED_LEAN`)  
 > **UUID**: `4d1a57cd-1d47-594f-9462-b64f8e6aedaa`  
 > **Parent Derivation**: [TFQ-1027](tfq_1027_fq_impl_realification_adapter.md)
 
@@ -13,10 +13,10 @@
 tfqm_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).
 
 ### Governing Obligation
-The claims are about a Rust artifact and are backed by its native exact tests. The cited Lean is integer arithmetic (3^2 + 4^2 = 5^2 and similar) and does not state the claims.
+WDP-CH19-P11/P12 mechanized in WdpBatch4.lean alongside amplitude_bridge.rs; continuous U(1) Lie-group topologies remain outside the finite Gaussian-rational carrier.
 
 ### Source Status
-"Executable finite evidence; AuthorityEffect: None" for WDP-CH19-P11 and P12; residual WDP-CH19-O03 open
+MECHANIZED in WdpBatch4.lean and verified by amplitude_bridge.rs
 
 ---
 
@@ -31,8 +31,12 @@ The claims are about a Rust artifact and are backed by its native exact tests. T
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_amplitude_realification_and_pairing_bridges`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra`
+- `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.pythagorean_phase_unit_norm`
+- `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.triangle_holonomy_coboundary_invariant`
+- `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.readout_quadratic_phase_invariant`
+- `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.readout_quartic_phase_invariant`
+- `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.readout_quadratic_ne_quartic`
+- `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean::WitnessedDifference.WdpBatch4.gintPow34_im_ne_zero`
 
 ### Rust Certifiers
 - `external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::same_up_to_common_phase`

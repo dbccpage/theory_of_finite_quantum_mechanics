@@ -74,7 +74,7 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0388`](./02_genesis/tfq_0388_ongoing_obstruction_answers.md) | ongoing-obstruction-answers | `SOURCE_RECORD` | [`TFQ-0387`](./02_genesis/tfq_0387_irreflexive_endpoints_distinct.md) |
 | [`TFQ-0389`](./02_genesis/tfq_0389_fewest_changes_formula.md) | fewest-changes-formula | `SOURCE_RECORD` | [`TFQ-0388`](./02_genesis/tfq_0388_ongoing_obstruction_answers.md) |
 | [`TFQ-0390`](./02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md) | rewriting-and-persistence-reconcile | `OPEN_OBLIGATION` | [`TFQ-0389`](./02_genesis/tfq_0389_fewest_changes_formula.md) |
-| [`TFQ-0391`](./02_genesis/tfq_0391_sameness_refinement_ledgers.md) | sameness-refinement-ledgers | `OPEN_OBLIGATION` | [`TFQ-0390`](./02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md) |
+| [`TFQ-0391`](./02_genesis/tfq_0391_sameness_refinement_ledgers.md) | sameness-refinement-ledgers | `PROVED_LEAN` | [`TFQ-0390`](./02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md) |
 | [`TFQ-0396`](./02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md) | sealed-tag-to-carrier-gap | `GAP` | [`TFQ-0395`](./01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md) |
 | [`TFQ-0430`](./02_genesis/tfq_0430_metatheory_object_language_split.md) | metatheory-object-language-split | `DEFINITION` | [`TFQ-0002`](./02_genesis/tfq_0002_genesis_regime_events_as_a_separate_admission_record.md) |
 | [`TFQ-0431`](./02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md) | regime-isomorphism-unordered-pairs | `DEFINITION` | [`TFQ-0430`](./02_genesis/tfq_0430_metatheory_object_language_split.md) |
@@ -251,7 +251,7 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) | wdp-retention-packet | `DEFINITION` | [`TFQ-0539`](./06_wdp/tfq_0539_wdp_seven_witness_roles.md) |
 | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) | wdp-graph-cochain-host | `DEFINITION` | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) |
 | [`TFQ-0543`](./06_wdp/tfq_0543_wdp_incidence_orientation_transport.md) | wdp-incidence-orientation-transport | `OPEN_OBLIGATION` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
-| [`TFQ-0544`](./06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md) | wdp-phi-well-defined-l1-duality | `CONDITIONAL` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
+| [`TFQ-0544`](./06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md) | wdp-phi-well-defined-l1-duality | `PROVED_LEAN` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
 | [`TFQ-0545`](./06_wdp/tfq_0545_wdp_closure_needs_degree.md) | wdp-closure-needs-degree | `DEFINITION` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
 | [`TFQ-0546`](./06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) | wdp-exact-sequence-h1-q1 | `PROVED_LEAN` | [`TFQ-0004`](./06_wdp/tfq_0004_witnessed_difference_degree_1_window.md) |
 | [`TFQ-0547`](./06_wdp/tfq_0547_wdp_trichotomy_bounds.md) | wdp-trichotomy-bounds | `PROVED_LEAN` | [`TFQ-0546`](./06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) |
@@ -263,7 +263,7 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0553`](./06_wdp/tfq_0553_wdp_observer_quotient_passivity.md) | wdp-observer-quotient-passivity | `DEFINITION` | [`TFQ-0339`](./06_wdp/tfq_0339_preserve_a_protected_answer_exactly_on_report_fibers_and_do_not_derive.md) |
 | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) | wdp-genesis-bridges-ledger | `SOURCE_RECORD` | [`TFQ-0553`](./06_wdp/tfq_0553_wdp_observer_quotient_passivity.md) |
 | [`TFQ-0555`](./06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md) | wdp-bridge-ongoing-to-window | `OPEN_OBLIGATION` | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) |
-| [`TFQ-0556`](./06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) | wdp-bridge-report-fiber-observer | `CONDITIONAL` | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) |
+| [`TFQ-0556`](./06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) | wdp-bridge-report-fiber-observer | `PROVED_LEAN` | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) |
 | [`TFQ-0557`](./06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) | wdp-synthesis-trunk-tiers | `SOURCE_RECORD` | [`TFQ-0556`](./06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) |
 | [`TFQ-0558`](./06_wdp/tfq_0558_wdp_handoff_to_l1.md) | wdp-handoff-to-l1 | `OPEN_OBLIGATION` | [`TFQ-0557`](./06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) |
 | [`TFQ-0559`](./06_wdp/tfq_0559_wd2_word_kernel_agreement.md) | wd2-word-kernel-agreement | `PROVED_LEAN` | [`TFQ-0558`](./06_wdp/tfq_0558_wdp_handoff_to_l1.md) |
@@ -287,7 +287,7 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0577`](./06_wdp/tfq_0577_wdp_dagger_observer_gram_radical.md) | wdp-dagger-observer-gram-radical | `PROVED_LEAN` | [`TFQ-0576`](./06_wdp/tfq_0576_wdp_additive_tensor_completion.md) |
 | [`TFQ-0578`](./06_wdp/tfq_0578_wdp_finite_hermitianization.md) | wdp-finite-hermitianization | `PROVED_LEAN` | [`TFQ-0577`](./06_wdp/tfq_0577_wdp_dagger_observer_gram_radical.md) |
 | [`TFQ-0579`](./06_wdp/tfq_0579_wdp_born_rule_nonselection.md) | wdp-born-rule-nonselection | `PROVED_LEAN` | [`TFQ-0578`](./06_wdp/tfq_0578_wdp_finite_hermitianization.md) |
-| [`TFQ-0580`](./06_wdp/tfq_0580_wdp_exact_scalar_hadamard_obstruction.md) | wdp-exact-scalar-hadamard-obstruction | `SOURCE_RECORD` | [`TFQ-0579`](./06_wdp/tfq_0579_wdp_born_rule_nonselection.md) |
+| [`TFQ-0580`](./06_wdp/tfq_0580_wdp_exact_scalar_hadamard_obstruction.md) | wdp-exact-scalar-hadamard-obstruction | `PROVED_LEAN` | [`TFQ-0579`](./06_wdp/tfq_0579_wdp_born_rule_nonselection.md) |
 | [`TFQ-0581`](./06_wdp/tfq_0581_wdp_affine_thickening_conjecture.md) | wdp-affine-thickening-conjecture | `OPEN_OBLIGATION` | [`TFQ-0580`](./06_wdp/tfq_0580_wdp_exact_scalar_hadamard_obstruction.md) |
 | [`TFQ-0582`](./06_wdp/tfq_0582_wdp_meron_m1_correlation_estimates.md) | wdp-meron-m1-correlation-estimates | `OPEN_OBLIGATION` | [`TFQ-0581`](./06_wdp/tfq_0581_wdp_affine_thickening_conjecture.md) |
 | [`TFQ-0583`](./06_wdp/tfq_0583_wdp_meron_m2_cumulant_bounds.md) | wdp-meron-m2-cumulant-bounds | `OPEN_OBLIGATION` | [`TFQ-0582`](./06_wdp/tfq_0582_wdp_meron_m1_correlation_estimates.md) |
@@ -719,7 +719,7 @@ Folder: [`21_implementation_core/`](./21_implementation_core/)
 | [`TFQ-0163`](./21_implementation_core/tfq_0163_interference_cancellation_and_path_sums.md) | Interference, cancellation, and path sums | `COMPUTATIONAL_CONTROL` | [`TFQ-0129`](./21_implementation_core/tfq_0129_exact_rays_and_pure_states.md) |
 | [`TFQ-0164`](./21_implementation_core/tfq_0164_ribbon_anyons_and_yang_baxter.md) | Ribbon anyons and Yang-Baxter | `COMPUTATIONAL_CONTROL` | [`TFQ-0127`](./21_implementation_core/tfq_0127_hilbert_carriers_and_tensor_index.md) |
 | [`TFQ-0165`](./21_implementation_core/tfq_0165_spin_network_area_labels.md) | Spin-network area labels | `COMPUTATIONAL_CONTROL` | [`TFQ-0127`](./21_implementation_core/tfq_0127_hilbert_carriers_and_tensor_index.md) |
-| [`TFQ-1026`](./21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md) | fq-impl-wdp-amplitude-bridge | `COMPUTATIONAL_CONTROL` | [`TFQ-1027`](./21_implementation_core/tfq_1027_fq_impl_realification_adapter.md) |
+| [`TFQ-1026`](./21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md) | fq-impl-wdp-amplitude-bridge | `PROVED_LEAN` | [`TFQ-1027`](./21_implementation_core/tfq_1027_fq_impl_realification_adapter.md) |
 | [`TFQ-1027`](./21_implementation_core/tfq_1027_fq_impl_realification_adapter.md) | fq-impl-realification-adapter | `COMPUTATIONAL_CONTROL` | [`TFQ-1007`](./10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md) |
 | [`TFQ-1028`](./21_implementation_core/tfq_1028_fq_impl_pairing_audit.md) | fq-impl-pairing-audit | `COMPUTATIONAL_CONTROL` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
 | [`TFQ-1044`](./21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md) | impl-fsp-switching-normal-form-nf002 | `PROVED_LEAN` | [`TFQ-0345`](./06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md) |

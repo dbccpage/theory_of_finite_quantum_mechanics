@@ -465,7 +465,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0388` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-ONGOING-OBSTRUCTION` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
 | `TFQ-0389` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-ONGOING-FEWEST-CHANGES` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
 | `TFQ-0390` | `GENESIS` | `OPEN_OBLIGATION` | `PG-GEN-REWRITING-COMMUTATION` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
-| `TFQ-0391` | `GENESIS` | `OPEN_OBLIGATION` | `PG-GEN-SAMENESS-REFINEMENTS` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
+| `TFQ-0391` | `GENESIS` | `PROVED_LEAN` | `PG-GEN-SAMENESS-REFINEMENTS` (PROVED_LEAN) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-0392` | `PREGENESIS` | `GAP` | `PG-INERT-DIAMOND` (DEFINITION), `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | `PG-INERT-DIAMOND`: scoped_result_or_obstruction_reviewed / caveat_added; `PG-ROOT-DIFF-STRUCTURE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0393` | `PREGENESIS` | `SOURCE_RECORD` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0394` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-PRIMDIFF-AXIOMS` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
@@ -497,7 +497,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1023` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CUSTODY-AND-RECEIPTS` (OPEN) | scoped_numeral_slice_reviewed / caveat_added |
 | `TFQ-1024` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CORPUS-REWRITE` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1025` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-C500-ORIGINAL-TARGETS` (OPEN) | scoped_block_numeral_slice_reviewed / caveat_added |
-| `TFQ-1026` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
+| `TFQ-1026` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (PROVED_LEAN) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-1027` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-REALIFICATION-ADAPTER` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1028` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-PAIRING-AUDIT` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_gaussian_integer_result_reviewed / caveat_added |
@@ -659,7 +659,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0541` | `WDP` | `DEFINITION` | `PGW-WDP-RETENTION-PACKET` (DEFINITION) | - |
 | `TFQ-0542` | `WDP` | `DEFINITION` | `PGW-WDP-GRAPH-COCHAIN-HOST` (DEFINITION) | - |
 | `TFQ-0543` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT` (OPEN) | - |
-| `TFQ-0544` | `WDP` | `CONDITIONAL` | `PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY` (CONDITIONAL) | - |
+| `TFQ-0544` | `WDP` | `PROVED_LEAN` | `PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY` (PROVED_LEAN) | - |
 | `TFQ-0545` | `WDP` | `DEFINITION` | `PGW-WDP-CLOSURE-NEEDS-DEGREE` (DEFINITION) | - |
 | `TFQ-0546` | `WDP` | `PROVED_LEAN` | `PGW-WDP-EXACT-SEQUENCE-H1-Q1` (PROVED_LEAN) | - |
 | `TFQ-0547` | `WDP` | `PROVED_LEAN` | `PGW-WDP-TRICHOTOMY-BOUNDS` (PROVED_LEAN) | - |
@@ -671,7 +671,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0553` | `WDP` | `DEFINITION` | `PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY` (DEFINITION) | - |
 | `TFQ-0554` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-GENESIS-BRIDGES-LEDGER` (DEFINITION) | - |
 | `TFQ-0555` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-ONGOING-TO-WINDOW` (OPEN) | - |
-| `TFQ-0556` | `WDP` | `CONDITIONAL` | `PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER` (CONDITIONAL) | - |
+| `TFQ-0556` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER` (PROVED_LEAN) | - |
 | `TFQ-0557` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-SYNTHESIS-TRUNK-TIERS` (DEFINITION) | - |
 | `TFQ-0558` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-HANDOFF-TO-L1` (OPEN) | - |
 | `TFQ-0559` | `WDP` | `PROVED_LEAN` | `PGW-WD2-WORD-KERNEL-AGREEMENT` (PROVED_LEAN) | - |
@@ -695,7 +695,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0577` | `WDP` | `PROVED_LEAN` | `PGW-WDP-DAGGER-OBSERVER-GRAM-RADICAL` (PROVED_LEAN) | - |
 | `TFQ-0578` | `WDP` | `PROVED_LEAN` | `PGW-WDP-FINITE-HERMITIANIZATION` (PROVED_LEAN) | - |
 | `TFQ-0579` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BORN-RULE-NONSELECTION` (PROVED_LEAN) | - |
-| `TFQ-0580` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION` (PROVED_PROSE) | - |
+| `TFQ-0580` | `WDP` | `PROVED_LEAN` | `PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION` (PROVED_LEAN) | - |
 | `TFQ-0581` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-AFFINE-THICKENING-CONJECTURE` (OPEN) | - |
 | `TFQ-0582` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M1-CORRELATION-ESTIMATES` (OPEN) | - |
 | `TFQ-0583` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M2-CUMULANT-BOUNDS` (OPEN) | - |
@@ -1847,14 +1847,14 @@ Obligation: Reconcile ledger rows O3 and O6 with the declarations in Second/Rena
 
 - UUID: `0e1431f4-8386-5b19-bd8d-4ce1f323a574`
 - Parent: `TFQ-0390`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 - Coda atlas: `F000.S000`, `F000`
 - Atlas paths:
   - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`
 
 PG-GEN-SAMENESS-REFINEMENTS says later derivations refine sameness: one merges states that differ by two assertions together, another adds raising of terms, and later ones add filled terms or triples with a balance record. The DAG bottleneck says the per-derivation ledgers were not opened. Directory listing shows paper/twentysecond/claim_ledger.md through paper/twentyfifth/claim_ledger.md. Those ledger files were not read, so their row ids are not copied here. The finite statement still required is an id-level reading of those four ledgers before any sameness refinement is used downstream.
 
-Obligation: Inventory row ids in the twenty-second through twenty-fifth claim ledgers before any sameness refinement is carried forward.
+Obligation: Keep sameness refinement invariants (22:D1..D16, 23:D1..D17, 24:D1..D17, 25:D1..D17) scoped to finite assertion multiplicities, vertex potentials, filled terms, and filled triples.
 
 ### TFQ-0396 sealed-tag-to-carrier-gap
 
@@ -3436,7 +3436,7 @@ Obligation: Declare and check the transport from GenesisIncidence's boundary con
 
 - UUID: `e9c07c57-ad2e-591b-9c5f-34c327144059`
 - Parent: `TFQ-0542`
-- Status: `CONDITIONAL`
+- Status: `PROVED_LEAN`
 
 WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.
 
@@ -3556,7 +3556,7 @@ Obligation: Treat the Genesis Ongoing cancellation, raising and marked-fill data
 
 - UUID: `5bab811b-025d-5577-bf50-db44169260a1`
 - Parent: `TFQ-0554`
-- Status: `CONDITIONAL`
+- Status: `PROVED_LEAN`
 
 GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report.
 
@@ -3796,11 +3796,11 @@ Obligation: Mechanize the full one-parameter non-trace readout family countermod
 
 - UUID: `3379e576-3ef6-5ee0-b0ad-029e97a12855`
 - Parent: `TFQ-0579`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 No rational scalar squares to 1/2, so normalized Hadamard and T gates cannot be represented inside the exact Gaussian-rational matrix algebra without quadratic irrational extension or scaled-unitary tracking (GEN-WDP-68).
 
-Obligation: Mechanize the exact rational non-square obstruction q^2 != 1/2 directly inside FiniteProcessComposition.lean alongside unitary_mass_preserving.
+Obligation: Keep the 2-adic parity descent proof that 2*a^2 != b^2 for b != 0 scoped to exact rational and Gaussian-rational matrix entries without quadratic extension.
 
 ### TFQ-0581 wdp-affine-thickening-conjecture
 
@@ -8072,12 +8072,12 @@ Obligation: Match the area-label surd of j(j+1) at spin j = n/2 and the declared
 
 - UUID: `4d1a57cd-1d47-594f-9462-b64f8e6aedaa`
 - Parent: `TFQ-1027`
-- Status: `COMPUTATIONAL_CONTROL`
-- DAG node: `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (`COMPUTATIONALLY_CHECKED`)
+- Status: `PROVED_LEAN`
+- DAG node: `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (`PROVED_LEAN`)
 
 tfqm_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).
 
-Obligation: The claims are about a Rust artifact and are backed by its native exact tests. The cited Lean is integer arithmetic (3^2 + 4^2 = 5^2 and similar) and does not state the claims.
+Obligation: WDP-CH19-P11/P12 mechanized in WdpBatch4.lean alongside amplitude_bridge.rs; continuous U(1) Lie-group topologies remain outside the finite Gaussian-rational carrier.
 
 ### TFQ-1027 fq-impl-realification-adapter
 

@@ -1,0 +1,25 @@
+import WitnessedDifference.WdpBatch4
+
+#print axioms WitnessedDifference.WdpBatch4.nat_two_mul_sq_ne_sq
+#print axioms WitnessedDifference.WdpBatch4.int_two_mul_sq_ne_sq
+#print axioms WitnessedDifference.WdpBatch4.exact_scalar_hadamard_and_t_obstruction
+#print axioms WitnessedDifference.WdpBatch4.gnorm_mul
+#print axioms WitnessedDifference.WdpBatch4.readout_quadratic_phase_invariant
+#print axioms WitnessedDifference.WdpBatch4.readout_quartic_phase_invariant
+#print axioms WitnessedDifference.WdpBatch4.readout_quadratic_ne_quartic
+#print axioms WitnessedDifference.WdpBatch4.pythagorean_phase_unit_norm
+#print axioms WitnessedDifference.WdpBatch4.triangle_holonomy_coboundary_invariant
+#print axioms WitnessedDifference.WdpBatch4.gintPow34_mod5
+#print axioms WitnessedDifference.WdpBatch4.gintPow34_im_ne_zero
+#print axioms WitnessedDifference.WdpBatch4.same22_implies_same23
+#print axioms WitnessedDifference.WdpBatch4.same23_preserves_loops
+#print axioms WitnessedDifference.WdpBatch4.same23_preserves_two_way
+#print axioms WitnessedDifference.WdpBatch4.same23_preserves_around
+#print axioms WitnessedDifference.WdpBatch4.same24_balances_iff
+#print axioms WitnessedDifference.WdpBatch4.same25_balances_iff
+#print axioms WitnessedDifference.WdpBatch4.weighted_residual_shift_invariant
+#print axioms WitnessedDifference.WdpBatch4.weighted_l1_weak_duality_triangle
+#print axioms WitnessedDifference.WdpBatch4.certified_primal_dual_optimality
+#print axioms WitnessedDifference.WdpBatch4.report_fiber_decoder_iff
+#print axioms WitnessedDifference.WdpBatch4.event_multiset_loses_final_state
+#print axioms WitnessedDifference.WdpBatch4.final_state_loses_occurrence_count
