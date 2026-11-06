@@ -26,14 +26,14 @@ The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction ca
 
 | DAG Status | Count (151 Nodes) | Notes |
 |---|---:|---|
-| `PROVED_LEAN` | 89 | Includes 44 core WDP/WD2/L1/Impl nodes + 45 upstream Pre-Genesis/Genesis/Authorization/`S(n)`/`MSS-N` nodes (including Batches 7–8). |
+| `PROVED_LEAN` | 94 | Includes 45 core WDP/WD2/L1/Impl nodes + 49 upstream Pre-Genesis/Genesis/Authorization/`S(n)`/`MSS-N` nodes (including Batches 7–9). |
 | `DEFINITION` | 33 | 18 core WDP/WD2 definitions + 15 upstream structural definitions. |
 | `ADMITTED_PRIMITIVE` / `SOURCE_RECORD` | 4 | 2 `ADMITTED_PRIMITIVE` + 2 `SOURCE_RECORD` upstream anchors. |
 | `PROVED_PROSE` | 0 | **All 16 Discharged in Lean 4** (10 core WDP + 6 upstream Genesis/`S(n)`). |
-| `COMPUTATIONALLY_CHECKED` | 4 | Remaining upstream computational nodes (scheduled for Batch 9). |
-| `CONDITIONAL` | 12 | Remaining upstream Rung / L1 conditional nodes (scheduled for Batches 9–12). |
+| `COMPUTATIONALLY_CHECKED` | 0 | **All 10 Discharged in Lean 4** (2 core WDP + 8 upstream Genesis/L1/Impl across Batches 4, 8, and 9). |
+| `CONDITIONAL` | 11 | Remaining upstream Rung / L1 conditional nodes (scheduled for Batches 10–12). |
 | `OPEN` | 9 | Remaining bridge / Meron scoped finite-slice targets (scheduled for Batches 12–13). |
-| **Total `wdp_derivation_dag.json` Nodes** | **151** | **126 Discharged/Definitions/Primitives, 25 Remaining across Batches 9–13** |
+| **Total `wdp_derivation_dag.json` Nodes** | **151** | **131 Discharged/Definitions/Primitives, 20 Remaining across Batches 10–13** |
 
 ---
 
@@ -130,6 +130,11 @@ All 14 finite obligations (combinatorial, linear-algebraic over $\mathbb{Q}$, or
 | Batch 8 | `L1-GS000-EDGEWISE-L1` | `TFQ-0353` | `PROVED_LEAN` | `WdpBatch8.lean::edgewise_weighted_l1_scaling_and_disjoint_additivity`, `orbit_constant_weights_collapse_to_unweighted_l1`, `gs000_counterexamples_ce1_to_ce5` |
 | Batch 8 | `FQ-IMPL-REALIFICATION-ADAPTER` | `TFQ-1027` | `PROVED_LEAN` | `WdpBatch8.lean::realify2x2_mul_and_transpose_hom`, `realify2x2_trace_and_hermitian_balance` |
 | Batch 8 | `PGW-CLOSED-BASELINE-TERMINATES` | `TFQ-0449` | `PROVED_LEAN` | `WdpBatch8.lean::closed_baseline_reading_l_and_f_tree_census`, `all_branches_terminate_iff_zero_cut_or_open` |
+| Batch 9 | `PGW-GENESIS-THREE-AXIS-VERDICT` | `TFQ-0461` | `PROVED_LEAN` | `WdpBatch9.lean::genesis_three_axis_verdict_and_w1_collision_certificate`, `delta_events_w1_fresh_label_collision` |
+| Batch 9 | `PGW-RUNG0-INHERITANCE-REPLAY` | `TFQ-0462` | `PROVED_LEAN` | `WdpBatch9.lean::rung0_inheritance_replay_and_unbounded_supply_datum_inertia`, `replay_supplies_no_op`, `replay_admitDatum_growth` |
+| Batch 9 | `PGW-RUNG2B-STAKE-MENU` | `TFQ-0465` | `PROVED_LEAN` | `WdpBatch9.lean::rung2b_stake_menu_no_member_both_invariant_and_two_kinded`, `profile_equality_renaming_invariant` |
+| Batch 9 | `PGW-FORCED-CENSUS-COLUMN` | `TFQ-0476` | `PROVED_LEAN` | `WdpBatch9.lean::forced_census_column_twelve_row_verdict_and_countermodel`, `replayRung_elems_le` |
+| Batch 9 | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` | `TFQ-0005`, `TFQ-0167`, `TFQ-0354` | `PROVED_LEAN` | `WdpBatch9.lean::l1_residual_sector_weights_unweighted_and_weighted_characterization`, `unweighted_and_sumsq_do_not_determine_sector_weights`, `weighted_l1_unique_minimal_mass_concentration` |
 
 ---
 

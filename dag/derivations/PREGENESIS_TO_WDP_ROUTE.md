@@ -65,7 +65,7 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 48 | [`TFQ-0378`](./02_genesis/tfq_0378_regime_tuple_and_events.md) | regime-tuple-and-events | `GENESIS` | `SOURCE_RECORD` | `TFQ-0377` |
 | 49 | [`TFQ-0379`](./02_genesis/tfq_0379_supply_does_not_admit.md) | supply-does-not-admit | `GENESIS` | `SOURCE_RECORD` | `TFQ-0378` |
 | 50 | [`TFQ-0380`](./02_genesis/tfq_0380_readings_left_unselected.md) | readings-left-unselected | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0379` |
-| 51 | [`TFQ-0381`](./02_genesis/tfq_0381_cost_two_first_separation.md) | cost-two-first-separation | `GENESIS` | `SOURCE_RECORD` | `TFQ-0380` |
+| 51 | [`TFQ-0381`](./02_genesis/tfq_0381_cost_two_first_separation.md) | cost-two-first-separation | `GENESIS` | `PROVED_LEAN` | `TFQ-0380` |
 | 52 | [`TFQ-0382`](./02_genesis/tfq_0382_refined_minimum_class.md) | refined-minimum-class | `GENESIS` | `SOURCE_RECORD` | `TFQ-0381` |
 | 53 | [`TFQ-0383`](./02_genesis/tfq_0383_closure_round_inequality.md) | closure-round-inequality | `GENESIS` | `SOURCE_RECORD` | `TFQ-0382` |
 | 54 | [`TFQ-0384`](./02_genesis/tfq_0384_cumulative_count_no_return.md) | cumulative-count-no-return | `GENESIS` | `SOURCE_RECORD` | `TFQ-0383` |
@@ -81,11 +81,11 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 64 | [`TFQ-0457`](./02_genesis/tfq_0457_quotient_retention.md) (new) | quotient-retention | `GENESIS` | `PROVED_LEAN` | `TFQ-0456` |
 | 65 | [`TFQ-0458`](./02_genesis/tfq_0458_faithful_descent_round_trip.md) (new) | faithful-descent-round-trip | `GENESIS` | `PROVED_LEAN` | `TFQ-0457` |
 | 66 | [`TFQ-0460`](./02_genesis/tfq_0460_incidence_construction_betti.md) (new) | incidence-construction-betti | `GENESIS` | `SOURCE_RECORD` | `TFQ-0455` |
-| 67 | [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) (new) | genesis-three-axis-verdict | `GENESIS` | `SOURCE_RECORD` | `TFQ-0454` |
-| 68 | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) (new) | rung0-inheritance-replay | `GENESIS` | `SOURCE_RECORD` | `TFQ-0461` |
+| 67 | [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) (new) | genesis-three-axis-verdict | `GENESIS` | `PROVED_LEAN` | `TFQ-0454` |
+| 68 | [`TFQ-0462`](./02_genesis/tfq_0462_rung0_inheritance_replay.md) (new) | rung0-inheritance-replay | `GENESIS` | `PROVED_LEAN` | `TFQ-0461` |
 | 69 | [`TFQ-0463`](./02_genesis/tfq_0463_rung1_stream_as_response.md) (new) | rung1-stream-as-response | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0462` |
 | 70 | [`TFQ-0464`](./02_genesis/tfq_0464_rung2a_stake_declared_label.md) (new) | rung2a-stake-declared-label | `GENESIS` | `SOURCE_RECORD` | `TFQ-0462` |
-| 71 | [`TFQ-0465`](./02_genesis/tfq_0465_rung2b_stake_menu.md) (new) | rung2b-stake-menu | `GENESIS` | `SOURCE_RECORD` | `TFQ-0464` |
+| 71 | [`TFQ-0465`](./02_genesis/tfq_0465_rung2b_stake_menu.md) (new) | rung2b-stake-menu | `GENESIS` | `PROVED_LEAN` | `TFQ-0464` |
 | 72 | [`TFQ-0466`](./02_genesis/tfq_0466_rung3_first_demand_index.md) (new) | rung3-first-demand-index | `GENESIS` | `SOURCE_RECORD` | `TFQ-0464` |
 | 73 | [`TFQ-0467`](./02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) (new) | rung4-index-up-to-isomorphism | `GENESIS` | `SOURCE_RECORD` | `TFQ-0466` |
 | 74 | [`TFQ-0468`](./02_genesis/tfq_0468_rung5_symmetry_along_history.md) (new) | rung5-symmetry-along-history | `GENESIS` | `SOURCE_RECORD` | `TFQ-0467` |
@@ -96,7 +96,7 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 79 | [`TFQ-0473`](./02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) (new) | rung10-responder-adjacency-reach | `GENESIS` | `SOURCE_RECORD` | `TFQ-0472` |
 | 80 | [`TFQ-0474`](./02_genesis/tfq_0474_c1_engine_class_144.md) (new) | c1-engine-class-144 | `GENESIS` | `SOURCE_RECORD` | `TFQ-0473` |
 | 81 | [`TFQ-0475`](./02_genesis/tfq_0475_c2_run_forward_every_history.md) (new) | c2-run-forward-every-history | `GENESIS` | `PROVED_LEAN` | `TFQ-0474` |
-| 82 | [`TFQ-0476`](./02_genesis/tfq_0476_forced_census_column.md) (new) | forced-census-column | `GENESIS` | `SOURCE_RECORD` | `TFQ-0475` |
+| 82 | [`TFQ-0476`](./02_genesis/tfq_0476_forced_census_column.md) (new) | forced-census-column | `GENESIS` | `PROVED_LEAN` | `TFQ-0475` |
 | 83 | [`TFQ-0486`](./02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) (new) | genesis-freeze-endpoint-ledger | `GENESIS` | `SOURCE_RECORD` | `TFQ-0476` |
 | 84 | [`TFQ-0487`](./02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md) (new) | endogenous-demands-exogenous-payments | `GENESIS` | `SOURCE_RECORD` | `TFQ-0486` |
 | 85 | [`TFQ-0488`](./02_genesis/tfq_0488_declared_challenge_import_per_level.md) (new) | declared-challenge-import-per-level | `GENESIS` | `DEFINITION` | `TFQ-0487` |

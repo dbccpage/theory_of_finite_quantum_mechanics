@@ -1,6 +1,6 @@
 # [TFQ-0461] genesis-three-axis-verdict
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `66b985c0-d8cd-5002-aee5-b6f9580270ab`  
 > **Parent Derivation**: [TFQ-0454](tfq_0454_sealed_terminal_statement.md)
 
@@ -30,7 +30,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: no Lean statement of the verdicts or of the fresh-label defect; the axiom census is the compiled lean4/axiom_report.txt`
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.delta_events_w1_fresh_label_collision`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.genesis_three_axis_verdict_and_w1_collision_certificate`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_genesis_three_axis_verdict`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/finite_obstruction_calculus/genesis/code/rust/src/bin/genesis_replay.rs::run`](../../../atlas/finite_obstruction_calculus/genesis/code/rust/src/bin/genesis_replay.rs)

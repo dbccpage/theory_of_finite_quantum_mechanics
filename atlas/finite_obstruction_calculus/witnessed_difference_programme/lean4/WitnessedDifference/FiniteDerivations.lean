@@ -58,3 +58,4 @@ import WitnessedDifference.WdpBatch5
 import WitnessedDifference.WdpBatch6
 import WitnessedDifference.WdpBatch7
 import WitnessedDifference.WdpBatch8
+import WitnessedDifference.WdpBatch9
