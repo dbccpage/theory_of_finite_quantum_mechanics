@@ -82,4 +82,4 @@ Section 13.8, the paragraph that corrects the proposed five-import boundary, and
 - Supports: on Q(ζ₁₂), inside the family α|c|² + β|c|⁴, the quadratic rule is the one with vanishing Sorkin I₃ on the tested triples; the two-report cross term equals 2|a|² Re of the loop holonomy and is gauge invariant; the ℓ¹ readout is additive on every pair; every amplitude of a rational weight lies in a finite extension.
 - Does not support: Sorkin's full theorem; any derivation of the quadratic rule outside the declared family; an inner product on Cⁿ; independence of QM-208 from the other imports.
 - Narrowest claim: on the declared finite carriers the QM-208 import splits into an exactly computed selection invariant, no completion step, and the imported composition rule.
-- Next test: `cd sources/atlas/papers/finite_quantum_mechanics && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_quadratic_readout_control.py -q -p no:cacheprovider` (expect 8 passed).
+- Next test: `cd atlas/finite_quantum_mechanics && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_quadratic_readout_control.py -q -p no:cacheprovider` (expect 8 passed).

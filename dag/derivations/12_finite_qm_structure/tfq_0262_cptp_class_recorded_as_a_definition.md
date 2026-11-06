@@ -35,7 +35,7 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`lean4/quantum_mechanics/H063CptpChannelsStinespring.lean::choi_dimension_is_four`](../../code/lean4/)
 - [`lean4/quantum_mechanics/H063CptpChannelsStinespring.lean::depol_choi_1_3_psd`](../../code/lean4/)
-- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`atlas/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`external:sha256:7ecaf8b5a2fd5a4428b83ca6f579e8bda5323dd5ca0b2d87b0138227eb0e5cf3`](../../code/rust/src/)
@@ -45,7 +45,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:e17359f64c885efb596f3390cf43cc40c25011d24ded59d783982b1eb15318df`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`sources/atlas/papers/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
+- [`atlas/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
 
 ---
 

@@ -37,8 +37,8 @@ In accordance with strict constructive principles:
 - [`absent: no local rust twin located for external:sha256:4935d5a66cc832a33b76053028b8f74c320534cc433c51a33c468491c9348a31`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/pauli_spin_statistics_graph_control.py`](../../code/python/)
-- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/context_parity_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/pauli_spin_statistics_graph_control.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm/use_cases/context_parity_control.py`](../../code/python/)
 
 ---
 

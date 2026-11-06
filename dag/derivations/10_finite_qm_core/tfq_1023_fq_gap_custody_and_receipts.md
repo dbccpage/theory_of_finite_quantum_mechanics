@@ -46,8 +46,8 @@ gap_register GAP-FQM-002/003/004/006..010/012/014/017/019/020/022 (statuses abse
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/finite_quantum_mechanics/claims/gap_register.yaml:428`
-  - `sources/atlas/finite_quantum_mechanics/claims/gap_register.yaml:546`
-  - `sources/atlas/finite_quantum_mechanics/claims/gap_register.yaml:560`
-  - `sources/atlas/finite_quantum_mechanics/claims/gap_register.yaml:573`
-  - `sources/atlas/finite_quantum_mechanics/claims/gap_register.yaml:587`
+  - `atlas/finite_quantum_mechanics/claims/gap_register.yaml:428`
+  - `atlas/finite_quantum_mechanics/claims/gap_register.yaml:546`
+  - `atlas/finite_quantum_mechanics/claims/gap_register.yaml:560`
+  - `atlas/finite_quantum_mechanics/claims/gap_register.yaml:573`
+  - `atlas/finite_quantum_mechanics/claims/gap_register.yaml:587`

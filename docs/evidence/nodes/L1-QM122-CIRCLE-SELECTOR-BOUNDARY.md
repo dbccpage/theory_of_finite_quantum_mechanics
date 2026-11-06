@@ -96,7 +96,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0312 python: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
+- TFQ-0312 python: no local python twin located for atlas/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
 
 ## Routes
 

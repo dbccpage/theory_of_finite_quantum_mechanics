@@ -2095,7 +2095,7 @@ Created `apps/finite_qm/` as a working application, deliberately outside
 
 **Consolidated in (copied, not moved — originals untouched):**
 
-- The ten packages of `sources/atlas/papers/quantum_foundations/`
+- The ten packages of `atlas/quantum_foundations/`
   (000–008, 010): 4,287 lines of prose across 8 real papers, plus 2 redirect
   stubs (003 absorbed into 004, 007 into 006 in the 2026-07-31 packaging merge).
   Contribution: **196 claim rows** and 15 author-recorded upgrade paths.

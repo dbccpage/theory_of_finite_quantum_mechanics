@@ -57,7 +57,7 @@ In accordance with strict constructive principles:
 
 ### Python Oracles & Numerical Evaluators
 - [`external:sha256:a2fd773252896051c9094d2d97692ddce4a9bd1a4cfe95f7e562909e5645b203`](../../code/python/)
-- [`sources/atlas/papers/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py`](../../code/python/)
+- [`atlas/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py`](../../code/python/)
 - [`external:unlocated`](../../code/python/)
 
 ---

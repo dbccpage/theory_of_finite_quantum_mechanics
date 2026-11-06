@@ -80,7 +80,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0271 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
+- TFQ-0271 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm
 
 ## Routes
 

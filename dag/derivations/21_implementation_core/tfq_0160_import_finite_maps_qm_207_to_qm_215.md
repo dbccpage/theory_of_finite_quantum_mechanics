@@ -34,8 +34,8 @@ In accordance with strict constructive principles:
 - [`external:sha256:73ff1307c7f46b2f7648dd055f2db749abcaa4b8ab76c43fa35099fb1cd20ed4`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/algebraic_bound_state_spectra_control.py`](../../code/python/)
-- [`sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/foundational_derivation_closure_control.py`](../../code/python/)
+- [`atlas/finite_quantum_mechanics/python/finite_qm/use_cases/algebraic_bound_state_spectra_control.py`](../../code/python/)
+- [`atlas/finite_quantum_mechanics/python/finite_qm/use_cases/foundational_derivation_closure_control.py`](../../code/python/)
 
 ---
 

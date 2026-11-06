@@ -111,7 +111,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0257 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
+- TFQ-0257 python: no local python twin located for atlas/finite_quantum_mechanics/python/finite_qm
 - TFQ-0257 rust: no local rust twin located for external:sha256:dd1b4e46a648387082ad2289a7af199984e2d166d08f5debbde4c4b30ddcf8c8
 
 ## Routes

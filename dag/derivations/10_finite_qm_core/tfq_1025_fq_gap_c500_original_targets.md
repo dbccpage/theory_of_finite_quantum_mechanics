@@ -52,5 +52,5 @@ GAP-C500-B01..B10 RESOLVED_WITH_SCOPED_EVIDENCE: "original target contract remai
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/finite_quantum_mechanics/claims/gap_register.yaml:660`
-  - `sources/atlas/finite_quantum_mechanics/claims/gap_register.yaml:1072`
+  - `atlas/finite_quantum_mechanics/claims/gap_register.yaml:660`
+  - `atlas/finite_quantum_mechanics/claims/gap_register.yaml:1072`
