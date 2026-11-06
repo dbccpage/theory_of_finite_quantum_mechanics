@@ -29,13 +29,16 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.p1_abstention_governor.adapter import (  # noqa: E402
-    evaluate_pilot_p1_kill_conditions,
-    operator_decision_for_label,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p1_abstention_governor.adapter import (  # noqa: E402
+        evaluate_pilot_p1_kill_conditions,
+        operator_decision_for_label,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     res = evaluate_pilot_p1_kill_conditions()
     if res["any_kill_condition_holds"]:
         raise RuntimeError("expected no P1 kill conditions to hold on the pilot arenas")
@@ -43,4 +46,5 @@ def witness() -> dict[str, object]:
 
 
 def refuse_invalid_termination_label() -> None:
+    _import_engine()
     operator_decision_for_label("NotALabel")  # type: ignore[arg-type]

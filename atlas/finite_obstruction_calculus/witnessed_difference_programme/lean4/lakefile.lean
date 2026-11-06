@@ -12,4 +12,10 @@ package witnessed_difference where
 
 @[default_target]
 lean_lib WitnessedDifference where
-  roots := #[`WitnessedDifference, `WitnessedDifference.AxiomReport]
+  roots := #[
+    `WitnessedDifference,
+    `WitnessedDifference.AxiomReport,
+    `WitnessedDifference.FiniteDistinction
+  ]
+
+

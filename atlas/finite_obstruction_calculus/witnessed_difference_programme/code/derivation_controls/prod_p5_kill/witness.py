@@ -29,17 +29,20 @@ def _ensure_paths() -> Path:
 
 _ensure_paths()
 
-from omega_engine_applications.wdp_products.p5_claim_certification.adapter import (  # noqa: E402
-    evaluate_pilot_p5_kill_conditions,
-)
-from omega_engine_applications.wdp_products.p5_claim_certification.contracts import (  # noqa: E402
-    ClaimNode,
-    EvidencePointers,
-    Status,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p5_claim_certification.adapter import (  # noqa: E402
+        evaluate_pilot_p5_kill_conditions,
+    )
+    from omega_engine_applications.wdp_products.p5_claim_certification.contracts import (  # noqa: E402
+        ClaimNode,
+        EvidencePointers,
+        Status,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     full_ev = EvidencePointers(
         prose_statement="sec 4.1",
         claim_ledger_row="WDP-CH04-P01",
@@ -73,6 +76,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_non_bool_ci_flag() -> None:
+    _import_engine()
     res = evaluate_pilot_p5_kill_conditions((), (), ci_executed=1)  # type: ignore[arg-type]
     if hasattr(res, "code"):
         raise ValueError(f"{res.code}: {res.reason}")

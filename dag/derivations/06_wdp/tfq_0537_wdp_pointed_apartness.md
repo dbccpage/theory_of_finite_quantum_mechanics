@@ -58,4 +58,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:466-478`
   - `external:sha256:b3182646c084a1d31b4c382572524489dcfa76f74bf74ee0863573424d048c65:165-170`
-  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:43-50`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md:43-50`

@@ -55,6 +55,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md:16-21`
-  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md:28-31`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/01_substantiated/complex_tensor_balancing.md:16-21`
+  - `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/01_substantiated/complex_tensor_balancing.md:28-31`
   - `external:sha256:17ebebc4a063d888d237da44f44f0937e15f6920e8e6fc63fbdf83909718616c:69-74`

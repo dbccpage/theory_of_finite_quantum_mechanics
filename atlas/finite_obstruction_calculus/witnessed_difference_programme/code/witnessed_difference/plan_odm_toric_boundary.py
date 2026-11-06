@@ -64,7 +64,9 @@ def _fraction(text: str) -> Fraction:
 
 def toric_boundary_witness() -> dict[str, object]:
     """Record the Gate E point and the proposals that stay open."""
-    receipt_path = PROGRAMME / RECEIPT_RELATIVE
+    receipt_path = PROGRAMME / "docs/02_requiring_derivation" / RECEIPT_RELATIVE[len("docs/"):]
+    if not receipt_path.exists():
+        receipt_path = PROGRAMME / RECEIPT_RELATIVE
     raw = receipt_path.read_bytes()
     receipt = json.loads(raw.decode("utf-8"))
     keys = sorted(receipt.keys())

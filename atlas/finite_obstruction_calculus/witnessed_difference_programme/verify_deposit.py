@@ -21,7 +21,7 @@ from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parent
 PAPER_STEM = "witnessed_difference_programme"
-RELEASE_DATE = "2026-10-13"
+RELEASE_DATE = "2026-10-16"
 ARCHIVE_NAME = f"{ROOT.name}_{RELEASE_DATE}.zip"
 RELEASE_ZIP_DATE = (*(int(part) for part in RELEASE_DATE.split("-")), 12, 0, 0)
 MANIFEST = ROOT / "SHA256SUMS"
@@ -40,6 +40,7 @@ PRODUCTION_MODULES = (
     "exact.py",
     "exact_linear.py",
     "figures.py",
+    "finite_distinction.py",
     "ground.py",
     "histories.py",
     "interference.py",
@@ -146,7 +147,8 @@ PUBLIC_NOTEBOOKS = {
 
 REQUIRED_FILES = (
     "README.md",
-    "docs/references.md",
+    "QUADRANT_INDEX.md",
+    "docs/01_substantiated/references.md",
     "source_provenance.json",
     "witnessed_difference_programme.md",
     "witnessed_difference_programme_change_log.md",
@@ -191,19 +193,10 @@ REQUIRED_FILES = (
     "lean4/WitnessedDifference/Composition.lean",
     "lean4/WitnessedDifference/AmplitudeBridge.lean",
     "lean4/WitnessedDifference/InstrumentAdapter.lean",
-    "scripts/build_deposit_zip.py",
     "scripts/build_paper_artifacts.py",
     "scripts/obstruction-preamble.tex",
     "scripts/capture_axiom_report.py",
     "scripts/regen_sha256sums.py",
-    "scripts/verify_release.py",
-    "manifests/claim_code_map.json",
-    "manifests/figure_manifest.json",
-    "manifests/historical_claim_occurrences.json",
-    "manifests/notebook_manifest.json",
-    "manifests/release_manifest.json",
-    "manifests/release_verification.json",
-    "images/conceptual/witnessed_difference_cover.png",
     "jupyter_notebooks/README.md",
     "jupyter_notebooks/000_primitive_difference.ipynb",
     "jupyter_notebooks/010_cochains_and_vector_obstruction.ipynb",

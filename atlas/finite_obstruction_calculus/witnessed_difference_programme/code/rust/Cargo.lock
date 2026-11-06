@@ -197,6 +197,224 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "252afb9ae5eaa683babdc6a068b3f5726eb19e05070c731f9b2a23a7c3e8ed34"
 
 [[package]]
+name = "engine_category_theory"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "num-rational",
+ "num-traits",
+ "serde",
+]
+
+[[package]]
+name = "engine_combinatorics"
+version = "0.1.0"
+dependencies = [
+ "num-bigint",
+ "num-traits",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_epk"
+version = "0.1.0"
+dependencies = [
+ "blake3",
+ "engine_functional",
+ "engine_holonomy",
+ "engine_homology",
+ "engine_policy",
+ "engine_replay",
+ "engine_types",
+ "linear_algebra",
+ "num-bigint",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_functional"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "blake3",
+ "engine_kernel",
+ "engine_number_theory",
+ "linear_algebra",
+ "nalgebra",
+ "num-bigint",
+ "num-complex 0.4.6",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_holonomy"
+version = "0.1.0"
+dependencies = [
+ "engine_homology",
+ "engine_kernel",
+ "linear_algebra",
+ "num-bigint",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "sha2",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_homology"
+version = "0.1.0"
+dependencies = [
+ "blake3",
+ "engine_functional",
+ "engine_homotopy_type_theory",
+ "engine_number_theory",
+ "hex",
+ "linear_algebra",
+ "nalgebra",
+ "num-bigint",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_homotopy_type_theory"
+version = "0.1.0"
+dependencies = [
+ "hex",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_kernel"
+version = "0.1.0"
+dependencies = [
+ "hex",
+ "num-bigint",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_number_theory"
+version = "0.1.0"
+dependencies = [
+ "engine_combinatorics",
+ "engine_kernel",
+ "linear_algebra",
+ "num-bigint",
+ "num-integer",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_policy"
+version = "0.1.0"
+dependencies = [
+ "engine_functional",
+ "engine_kernel",
+ "hex",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror 2.0.20",
+ "unicode-normalization",
+]
+
+[[package]]
+name = "engine_replay"
+version = "0.1.0"
+dependencies = [
+ "blake3",
+ "engine_functional",
+ "engine_types",
+ "linear_algebra",
+ "num-bigint",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_solvers"
+version = "0.1.0"
+dependencies = [
+ "blake3",
+ "engine_category_theory",
+ "engine_combinatorics",
+ "engine_epk",
+ "engine_functional",
+ "engine_holonomy",
+ "engine_homology",
+ "engine_homotopy_type_theory",
+ "engine_kernel",
+ "engine_number_theory",
+ "engine_policy",
+ "engine_types",
+ "hex",
+ "linear_algebra",
+ "nalgebra",
+ "num-bigint",
+ "num-complex 0.4.6",
+ "num-rational",
+ "num-traits",
+ "rand 0.8.8",
+ "rand_distr",
+ "serde",
+ "serde_json",
+ "sha2",
+ "sprs",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "engine_types"
+version = "0.1.0"
+dependencies = [
+ "engine_functional",
+ "engine_kernel",
+ "engine_policy",
+ "nalgebra",
+ "num-bigint",
+ "num-rational",
+ "num-traits",
+ "serde",
+ "serde_json",
+ "sha2",
+ "thiserror 2.0.20",
+ "uuid",
+]
+
+[[package]]
 name = "errno"
 version = "0.3.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -337,13 +555,13 @@ checksum = "b6d2cec3eae94f9f509c767b45932f1ada8350c4bdb85af2fcab4a3c14807981"
 name = "linear_algebra"
 version = "0.1.0"
 dependencies = [
+ "engine_category_theory",
+ "engine_combinatorics",
  "nalgebra",
  "num-bigint",
  "num-complex 0.4.6",
  "num-rational",
  "num-traits",
- "omega_category_theory",
- "omega_combinatorics",
  "serde",
  "thiserror 2.0.20",
 ]
@@ -483,242 +701,6 @@ checksum = "91df4bbde75afed763b708b7eee1e8e7651e02d97f6d5dd763e89367e957b23b"
 dependencies = [
  "hermit-abi",
  "libc",
-]
-
-[[package]]
-name = "omega_category_theory"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "num-rational",
- "num-traits",
- "serde",
-]
-
-[[package]]
-name = "omega_combinatorics"
-version = "0.1.0"
-dependencies = [
- "num-bigint",
- "num-traits",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_epk"
-version = "0.1.0"
-dependencies = [
- "linear_algebra",
- "num-bigint",
- "num-rational",
- "num-traits",
- "omega_functional",
- "omega_holonomy",
- "omega_homology",
- "omega_policy",
- "omega_replay",
- "omega_residual_families",
- "omega_types",
- "serde",
- "serde_json",
- "sha2",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_functional"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "blake3",
- "linear_algebra",
- "nalgebra",
- "num-bigint",
- "num-complex 0.4.6",
- "num-rational",
- "num-traits",
- "omega_kernel",
- "omega_number_theory",
- "serde",
- "serde_json",
- "sha2",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_holonomy"
-version = "0.1.0"
-dependencies = [
- "linear_algebra",
- "num-bigint",
- "num-rational",
- "num-traits",
- "omega_kernel",
- "serde",
- "sha2",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_homology"
-version = "0.1.0"
-dependencies = [
- "blake3",
- "hex",
- "linear_algebra",
- "nalgebra",
- "num-bigint",
- "num-rational",
- "num-traits",
- "omega_functional",
- "omega_homotopy_type_theory",
- "omega_number_theory",
- "serde",
- "serde_json",
- "sha2",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_homotopy_type_theory"
-version = "0.1.0"
-dependencies = [
- "hex",
- "serde",
- "serde_json",
- "sha2",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_kernel"
-version = "0.1.0"
-dependencies = [
- "hex",
- "num-bigint",
- "num-rational",
- "num-traits",
- "serde",
- "serde_json",
- "sha2",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_number_theory"
-version = "0.1.0"
-dependencies = [
- "linear_algebra",
- "num-bigint",
- "num-integer",
- "num-rational",
- "num-traits",
- "omega_combinatorics",
- "omega_kernel",
- "serde",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_policy"
-version = "0.1.0"
-dependencies = [
- "hex",
- "num-rational",
- "num-traits",
- "omega_functional",
- "omega_kernel",
- "serde",
- "serde_json",
- "sha2",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_replay"
-version = "0.1.0"
-dependencies = [
- "blake3",
- "linear_algebra",
- "nalgebra",
- "omega_functional",
- "omega_trace",
- "omega_types",
- "serde",
- "serde_json",
- "sha2",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_residual_families"
-version = "0.1.0"
-dependencies = [
- "blake3",
- "linear_algebra",
- "omega_functional",
- "omega_homology",
- "omega_types",
- "serde",
- "serde_json",
-]
-
-[[package]]
-name = "omega_solvers"
-version = "0.1.0"
-dependencies = [
- "blake3",
- "hex",
- "linear_algebra",
- "nalgebra",
- "num-bigint",
- "num-complex 0.4.6",
- "num-rational",
- "num-traits",
- "omega_combinatorics",
- "omega_epk",
- "omega_functional",
- "omega_holonomy",
- "omega_homology",
- "omega_homotopy_type_theory",
- "omega_kernel",
- "omega_number_theory",
- "omega_policy",
- "omega_types",
- "rand 0.8.8",
- "rand_distr",
- "serde",
- "serde_json",
- "sha2",
- "sprs",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_trace"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "omega_types"
-version = "0.1.0"
-dependencies = [
- "nalgebra",
- "num-bigint",
- "num-rational",
- "num-traits",
- "omega_functional",
- "omega_kernel",
- "omega_policy",
- "serde",
- "serde_json",
- "sha2",
- "thiserror 2.0.20",
- "uuid",
 ]
 
 [[package]]
@@ -1144,6 +1126,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "tinyvec"
+version = "1.13.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fd3ca314f692efd6c868f8408f53fe444634a845f96c028b97d35f6a1f79f0ee"
+
+[[package]]
 name = "typenum"
 version = "1.20.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1160,6 +1148,15 @@ name = "unicode-ident"
 version = "1.0.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
+
+[[package]]
+name = "unicode-normalization"
+version = "0.1.26"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "75cd3fb03d5288b3ba9a1ee103ac7e9cbb59f0b03d64f8ddfcc04dd42758a85d"
+dependencies = [
+ "tinyvec",
+]
 
 [[package]]
 name = "uuid"
@@ -1251,11 +1248,11 @@ dependencies = [
 name = "wdp_finite_witness"
 version = "0.1.0"
 dependencies = [
+ "engine_functional",
+ "engine_solvers",
  "num-bigint",
  "num-rational",
  "num-traits",
- "omega_functional",
- "omega_solvers",
  "proptest",
  "serde",
  "serde_json",

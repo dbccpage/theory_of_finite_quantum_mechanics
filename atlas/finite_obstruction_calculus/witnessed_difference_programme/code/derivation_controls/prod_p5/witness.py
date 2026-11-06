@@ -8,16 +8,19 @@ _REPO_ROOT = next(p for p in Path(__file__).resolve().parents if (p / ".git").ex
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from omega_engine_woland.infrastructure.wdp_claim_ledger_certification_adapter import (
-    WdpClaimLedgerCertificationAdapter,
-)
-from omega_engine_woland.use_cases.claim_ledger_certification_use_case import (
-    ClaimLedgerEntrySpecV1,
-    evaluate_claim_ledger_certification,
-)
+def _import_engine() -> None:
+    from omega_engine_woland.infrastructure.wdp_claim_ledger_certification_adapter import (
+        WdpClaimLedgerCertificationAdapter,
+    )
+    from omega_engine_woland.use_cases.claim_ledger_certification_use_case import (
+        ClaimLedgerEntrySpecV1,
+        evaluate_claim_ledger_certification,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     adapter = WdpClaimLedgerCertificationAdapter()
     entries = (
         ClaimLedgerEntrySpecV1(

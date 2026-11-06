@@ -157,7 +157,7 @@ fn audit(path: &str, source: &str) -> Result<Audit, syn::Error> {
 fn root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .ancestors()
-        .nth(3)
+        .nth(1)
         .unwrap()
         .to_owned()
 }

@@ -60,7 +60,7 @@ def _unique_fields(pairs):
 
 
 def evaluate(request: dict, *, tick: Callable[[], None] | None = None) -> dict:
-    from native_wdp import find_binary, NativeWdpUnavailable
+    from native_wdp import NativeWdpUnavailable, find_binary
 
     try:
         binary = find_binary("evaluate_wdp_functionals", "WDP_FUNCTIONALS_BIN")

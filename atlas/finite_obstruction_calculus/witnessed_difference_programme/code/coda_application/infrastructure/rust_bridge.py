@@ -24,11 +24,12 @@ class RustCrateBridge:
 
     @staticmethod
     def _default_workspace() -> Optional[Path]:
-        return next(
-            (p / "omega_engine" / "crates_rs" for p in Path(__file__).resolve().parents
-             if (p / "omega_engine" / "crates_rs" / "Cargo.toml").is_file()),
-            None,
-        )
+        for p in Path(__file__).resolve().parents:
+            if (p / "omega_engine" / "crates_rs" / "Cargo.toml").is_file():
+                return p / "omega_engine" / "crates_rs"
+            if (p / "vendor" / "engine" / "Cargo.toml").is_file():
+                return p / "vendor" / "engine"
+        return None
 
     def __init__(self, workspace_path: Optional[Path] = None):
         if workspace_path is None:
@@ -61,8 +62,13 @@ class RustCrateBridge:
                 crate_manifest = member / "Cargo.toml"
                 if crate_manifest.is_file():
                     package = tomllib.loads(crate_manifest.read_text(encoding="utf-8")).get("package", {})
-                    if isinstance(package.get("name"), str):
-                        crates.add(package["name"])
+                    name = package.get("name")
+                    if isinstance(name, str):
+                        crates.add(name)
+                        if name.startswith("engine_"):
+                            crates.add("omega_" + name[len("engine_") :])
+                        if name == "engine_certifiers":
+                            crates.add("omega_terminalizers")
         return sorted(crates)
 
     def solve_phi1_l1_via_rust(

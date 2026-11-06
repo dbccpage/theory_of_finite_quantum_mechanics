@@ -248,7 +248,7 @@ def test_live_full_manuscript_roundtrip_and_claim_census():
     assert len([r for r in ledger.records if r.register_kind == "canonical"]) == 154
     assert len([r for r in ledger.records if r.register_kind == "preserver_generator_supplement"]) == 9
     # October 16 source includes the mechanism inventory and witnessed reasoning.
-    assert len(doc.sections) == 440
+    assert len(doc.sections) == 442
     assert "### 20.14 From an admitted distinction to witnessed reasoning" in raw
     assert "### 20.15 Executable refinement and kernel replay" in raw
     assert all(r.claim_id in {c.claim_id for c in doc.claim_occurrences} for r in ledger.records)

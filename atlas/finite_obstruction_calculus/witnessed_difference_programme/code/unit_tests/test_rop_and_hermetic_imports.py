@@ -7,7 +7,6 @@ import ast
 from pathlib import Path
 
 import pytest
-
 from witnessed_difference.rop import Err, Ok, Refusal
 
 CODE = Path(__file__).resolve().parents[1]
@@ -68,7 +67,7 @@ def test_deposit_code_imports_no_engine_package_at_module_level() -> None:
     offenders = {
         path.relative_to(CODE).as_posix(): names
         for path in sorted(CODE.rglob("*.py"))
-        if "rust" not in path.relative_to(CODE).parts[:1]
+        if path.relative_to(CODE).parts[:1] != ("rust",)
         and (names := _module_level_engine_imports(path))
     }
     assert offenders == {}

@@ -11,7 +11,7 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | `FINITE_OBSTRUCTION` | 9 | 0 |
 | `AUTHORIZATION` | 6 | 5 |
 | `MSSN_SN` | 8 | 26 |
-| `WDP` | 10 | 23 |
+| `WDP` | 10 | 52 |
 
 | # | ID | Name | Stage | Status | Parent |
 |---|---|---|---|---|---|
@@ -208,24 +208,53 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 191 | [`TFQ-0556`](./06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) (new) | wdp-bridge-report-fiber-observer | `WDP` | `CONDITIONAL` | `TFQ-0554` |
 | 192 | [`TFQ-0557`](./06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) (new) | wdp-synthesis-trunk-tiers | `WDP` | `SOURCE_RECORD` | `TFQ-0556` |
 | 193 | [`TFQ-0558`](./06_wdp/tfq_0558_wdp_handoff_to_l1.md) (new) | wdp-handoff-to-l1 | `WDP` | `OPEN_OBLIGATION` | `TFQ-0557` |
-| 194 | [`TFQ-0343`](./06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md) | Leave GEN-WDP-O01 through O05 open: carrier floor, preservation maps, higher fillers, Hilbert | `WDP` | `OPEN_OBLIGATION` | `TFQ-0342` |
-| 195 | [`TFQ-0344`](./06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md) | Do not derive the degree-1 window (C0, C1, C2, d0, d1) from | `WDP` | `GAP` | `TFQ-0343` |
-| 196 | [`TFQ-0345`](./06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md) | On a declared window with d1 d0 = 0, compute Q1, kappa1, | `WDP` | `SOURCE_RECORD` | `TFQ-0344` |
-| 197 | [`TFQ-0346`](./06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md) | Do not lower Phi1 by passing to a larger complex, attaching faces, | `WDP` | `SOURCE_RECORD` | `TFQ-0345` |
-| 198 | [`TFQ-0347`](./06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md) | Keep ExactClass, ClosedResidual, and ActiveClosureFailure off the routing terminal, and leave | `WDP` | `OPEN_OBLIGATION` | `TFQ-0345` |
-| 199 | [`TFQ-0348`](./06_wdp/tfq_0348_certify_a_rational_phi1_value_by_a_bounded_circulation_that_meets_a.md) | Certify a rational Phi1 value by a bounded circulation that meets a | `WDP` | `SOURCE_RECORD` | `TFQ-0345` |
-| 200 | [`TFQ-0548`](./06_wdp/tfq_0548_wdp_filled_triangle.md) (new) | wdp-filled-triangle | `WDP` | `PROVED_LEAN` | `TFQ-0348` |
-| 201 | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) | Supply the admitted cut (X, E, tau, K) as data, and do | `WDP` | `SOURCE_RECORD` | `TFQ-0343` |
-| 202 | [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) (new) | wdp-failed-sameness | `WDP` | `SOURCE_RECORD` | `TFQ-0360` |
-| 203 | [`TFQ-0538`](./06_wdp/tfq_0538_wdp_quotient_defect_root_p.md) (new) | wdp-quotient-defect-root-p | `WDP` | `DEFINITION` | `TFQ-0536` |
-| 204 | [`TFQ-0539`](./06_wdp/tfq_0539_wdp_seven_witness_roles.md) (new) | wdp-seven-witness-roles | `WDP` | `DEFINITION` | `TFQ-0538` |
-| 205 | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) (new) | wdp-retention-packet | `WDP` | `DEFINITION` | `TFQ-0539` |
-| 206 | [`TFQ-0550`](./06_wdp/tfq_0550_wdp_succession_strict_order.md) (new) | wdp-succession-strict-order | `WDP` | `DEFINITION` | `TFQ-0541` |
-| 207 | [`TFQ-0551`](./06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md) (new) | wdp-duration-exactness-period-witness | `WDP` | `DEFINITION` | `TFQ-0550` |
-| 208 | [`TFQ-0552`](./06_wdp/tfq_0552_wdp_finite_valuations.md) (new) | wdp-finite-valuations | `WDP` | `DEFINITION` | `TFQ-0541` |
-| 209 | [`TFQ-0540`](./06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md) (new) | wdp-asymmetry-injection-ledger | `WDP` | `DEFINITION` | `TFQ-0536` |
-| 210 | [`TFQ-0537`](./06_wdp/tfq_0537_wdp_pointed_apartness.md) (new) | wdp-pointed-apartness | `WDP` | `PROVED_LEAN` | `TFQ-0360` |
-| 211 | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) (new) | wdp-graph-cochain-host | `WDP` | `DEFINITION` | `TFQ-0360` |
-| 212 | [`TFQ-0543`](./06_wdp/tfq_0543_wdp_incidence_orientation_transport.md) (new) | wdp-incidence-orientation-transport | `WDP` | `OPEN_OBLIGATION` | `TFQ-0542` |
-| 213 | [`TFQ-0544`](./06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md) (new) | wdp-phi-well-defined-l1-duality | `WDP` | `CONDITIONAL` | `TFQ-0542` |
-| 214 | [`TFQ-0545`](./06_wdp/tfq_0545_wdp_closure_needs_degree.md) (new) | wdp-closure-needs-degree | `WDP` | `DEFINITION` | `TFQ-0542` |
+| 194 | [`TFQ-0559`](./06_wdp/tfq_0559_wd2_word_kernel_agreement.md) (new) | wd2-word-kernel-agreement | `WDP` | `PROVED_LEAN` | `TFQ-0558` |
+| 195 | [`TFQ-0560`](./06_wdp/tfq_0560_wd2_refinement_stabilization.md) (new) | wd2-refinement-stabilization | `WDP` | `PROVED_LEAN` | `TFQ-0559` |
+| 196 | [`TFQ-0561`](./06_wdp/tfq_0561_wd2_sharp_stabilization_bound.md) (new) | wd2-sharp-stabilization-bound | `WDP` | `PROVED_LEAN` | `TFQ-0560` |
+| 197 | [`TFQ-0562`](./06_wdp/tfq_0562_wd2_no_escape_update_congruence.md) (new) | wd2-no-escape-update-congruence | `WDP` | `PROVED_LEAN` | `TFQ-0561` |
+| 198 | [`TFQ-0563`](./06_wdp/tfq_0563_wd2_shortest_separating_word.md) (new) | wd2-shortest-separating-word | `WDP` | `PROVED_LEAN` | `TFQ-0562` |
+| 199 | [`TFQ-0564`](./06_wdp/tfq_0564_wd2_factored_report_preservation.md) (new) | wd2-factored-report-preservation | `WDP` | `PROVED_LEAN` | `TFQ-0563` |
+| 200 | [`TFQ-0565`](./06_wdp/tfq_0565_wd2_minimal_deterministic_quotient.md) (new) | wd2-minimal-deterministic-quotient | `WDP` | `OPEN_OBLIGATION` | `TFQ-0564` |
+| 201 | [`TFQ-0566`](./06_wdp/tfq_0566_wdp_bridge_o01_carrier_cut_genesis.md) (new) | wdp-bridge-o01-carrier-cut-genesis | `WDP` | `OPEN_OBLIGATION` | `TFQ-0565` |
+| 202 | [`TFQ-0567`](./06_wdp/tfq_0567_wdp_bridge_o02_observer_repair.md) (new) | wdp-bridge-o02-observer-repair | `WDP` | `OPEN_OBLIGATION` | `TFQ-0566` |
+| 203 | [`TFQ-0568`](./06_wdp/tfq_0568_wdp_bridge_o03_guarded_history_coherence.md) (new) | wdp-bridge-o03-guarded-history-coherence | `WDP` | `OPEN_OBLIGATION` | `TFQ-0567` |
+| 204 | [`TFQ-0569`](./06_wdp/tfq_0569_wdp_bridge_o04_tensor_reconstruction.md) (new) | wdp-bridge-o04-tensor-reconstruction | `WDP` | `OPEN_OBLIGATION` | `TFQ-0568` |
+| 205 | [`TFQ-0570`](./06_wdp/tfq_0570_wdp_bridge_o05_authorization_firewall.md) (new) | wdp-bridge-o05-authorization-firewall | `WDP` | `OPEN_OBLIGATION` | `TFQ-0569` |
+| 206 | [`TFQ-0571`](./06_wdp/tfq_0571_wdp_out_1_sharp_observer_completion.md) (new) | wdp-out-1-sharp-observer-completion | `WDP` | `SOURCE_RECORD` | `TFQ-0570` |
+| 207 | [`TFQ-0572`](./06_wdp/tfq_0572_wdp_out_2_guarded_swap_coherence.md) (new) | wdp-out-2-guarded-swap-coherence | `WDP` | `SOURCE_RECORD` | `TFQ-0571` |
+| 208 | [`TFQ-0573`](./06_wdp/tfq_0573_wdp_out_3_realizable_future_observation.md) (new) | wdp-out-3-realizable-future-observation | `WDP` | `SOURCE_RECORD` | `TFQ-0572` |
+| 209 | [`TFQ-0574`](./06_wdp/tfq_0574_wdp_out_4_rejection_rule_reuse.md) (new) | wdp-out-4-rejection-rule-reuse | `WDP` | `SOURCE_RECORD` | `TFQ-0573` |
+| 210 | [`TFQ-0575`](./06_wdp/tfq_0575_wdp_out_5_future_faithful_compression.md) (new) | wdp-out-5-future-faithful-compression | `WDP` | `SOURCE_RECORD` | `TFQ-0574` |
+| 211 | [`TFQ-0576`](./06_wdp/tfq_0576_wdp_additive_tensor_completion.md) (new) | wdp-additive-tensor-completion | `WDP` | `PROVED_LEAN` | `TFQ-0575` |
+| 212 | [`TFQ-0577`](./06_wdp/tfq_0577_wdp_dagger_observer_gram_radical.md) (new) | wdp-dagger-observer-gram-radical | `WDP` | `PROVED_LEAN` | `TFQ-0576` |
+| 213 | [`TFQ-0578`](./06_wdp/tfq_0578_wdp_finite_hermitianization.md) (new) | wdp-finite-hermitianization | `WDP` | `PROVED_LEAN` | `TFQ-0577` |
+| 214 | [`TFQ-0579`](./06_wdp/tfq_0579_wdp_born_rule_nonselection.md) (new) | wdp-born-rule-nonselection | `WDP` | `SOURCE_RECORD` | `TFQ-0578` |
+| 215 | [`TFQ-0580`](./06_wdp/tfq_0580_wdp_exact_scalar_hadamard_obstruction.md) (new) | wdp-exact-scalar-hadamard-obstruction | `WDP` | `SOURCE_RECORD` | `TFQ-0579` |
+| 216 | [`TFQ-0581`](./06_wdp/tfq_0581_wdp_affine_thickening_conjecture.md) (new) | wdp-affine-thickening-conjecture | `WDP` | `OPEN_OBLIGATION` | `TFQ-0580` |
+| 217 | [`TFQ-0582`](./06_wdp/tfq_0582_wdp_meron_m1_correlation_estimates.md) (new) | wdp-meron-m1-correlation-estimates | `WDP` | `OPEN_OBLIGATION` | `TFQ-0581` |
+| 218 | [`TFQ-0583`](./06_wdp/tfq_0583_wdp_meron_m2_cumulant_bounds.md) (new) | wdp-meron-m2-cumulant-bounds | `WDP` | `OPEN_OBLIGATION` | `TFQ-0582` |
+| 219 | [`TFQ-0584`](./06_wdp/tfq_0584_wdp_meron_m3_spectral_gap_bypass.md) (new) | wdp-meron-m3-spectral-gap-bypass | `WDP` | `OPEN_OBLIGATION` | `TFQ-0583` |
+| 220 | [`TFQ-0585`](./06_wdp/tfq_0585_wdp_meron_m4_native_adapters.md) (new) | wdp-meron-m4-native-adapters | `WDP` | `OPEN_OBLIGATION` | `TFQ-0584` |
+| 221 | [`TFQ-0586`](./06_wdp/tfq_0586_wdp_meron_m5_toric_noise_repair.md) (new) | wdp-meron-m5-toric-noise-repair | `WDP` | `OPEN_OBLIGATION` | `TFQ-0585` |
+| 222 | [`TFQ-0587`](./06_wdp/tfq_0587_wdp_meron_spacetime_limit.md) (new) | wdp-meron-spacetime-limit | `WDP` | `OPEN_OBLIGATION` | `TFQ-0586` |
+| 223 | [`TFQ-0343`](./06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md) | Leave GEN-WDP-O01 through O05 open: carrier floor, preservation maps, higher fillers, Hilbert | `WDP` | `OPEN_OBLIGATION` | `TFQ-0342` |
+| 224 | [`TFQ-0344`](./06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md) | Do not derive the degree-1 window (C0, C1, C2, d0, d1) from | `WDP` | `GAP` | `TFQ-0343` |
+| 225 | [`TFQ-0345`](./06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md) | On a declared window with d1 d0 = 0, compute Q1, kappa1, | `WDP` | `SOURCE_RECORD` | `TFQ-0344` |
+| 226 | [`TFQ-0346`](./06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md) | Do not lower Phi1 by passing to a larger complex, attaching faces, | `WDP` | `SOURCE_RECORD` | `TFQ-0345` |
+| 227 | [`TFQ-0347`](./06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md) | Keep ExactClass, ClosedResidual, and ActiveClosureFailure off the routing terminal, and leave | `WDP` | `OPEN_OBLIGATION` | `TFQ-0345` |
+| 228 | [`TFQ-0348`](./06_wdp/tfq_0348_certify_a_rational_phi1_value_by_a_bounded_circulation_that_meets_a.md) | Certify a rational Phi1 value by a bounded circulation that meets a | `WDP` | `SOURCE_RECORD` | `TFQ-0345` |
+| 229 | [`TFQ-0548`](./06_wdp/tfq_0548_wdp_filled_triangle.md) (new) | wdp-filled-triangle | `WDP` | `PROVED_LEAN` | `TFQ-0348` |
+| 230 | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) | Supply the admitted cut (X, E, tau, K) as data, and do | `WDP` | `SOURCE_RECORD` | `TFQ-0343` |
+| 231 | [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) (new) | wdp-failed-sameness | `WDP` | `SOURCE_RECORD` | `TFQ-0360` |
+| 232 | [`TFQ-0538`](./06_wdp/tfq_0538_wdp_quotient_defect_root_p.md) (new) | wdp-quotient-defect-root-p | `WDP` | `DEFINITION` | `TFQ-0536` |
+| 233 | [`TFQ-0539`](./06_wdp/tfq_0539_wdp_seven_witness_roles.md) (new) | wdp-seven-witness-roles | `WDP` | `DEFINITION` | `TFQ-0538` |
+| 234 | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) (new) | wdp-retention-packet | `WDP` | `DEFINITION` | `TFQ-0539` |
+| 235 | [`TFQ-0550`](./06_wdp/tfq_0550_wdp_succession_strict_order.md) (new) | wdp-succession-strict-order | `WDP` | `DEFINITION` | `TFQ-0541` |
+| 236 | [`TFQ-0551`](./06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md) (new) | wdp-duration-exactness-period-witness | `WDP` | `DEFINITION` | `TFQ-0550` |
+| 237 | [`TFQ-0552`](./06_wdp/tfq_0552_wdp_finite_valuations.md) (new) | wdp-finite-valuations | `WDP` | `DEFINITION` | `TFQ-0541` |
+| 238 | [`TFQ-0540`](./06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md) (new) | wdp-asymmetry-injection-ledger | `WDP` | `DEFINITION` | `TFQ-0536` |
+| 239 | [`TFQ-0537`](./06_wdp/tfq_0537_wdp_pointed_apartness.md) (new) | wdp-pointed-apartness | `WDP` | `PROVED_LEAN` | `TFQ-0360` |
+| 240 | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) (new) | wdp-graph-cochain-host | `WDP` | `DEFINITION` | `TFQ-0360` |
+| 241 | [`TFQ-0543`](./06_wdp/tfq_0543_wdp_incidence_orientation_transport.md) (new) | wdp-incidence-orientation-transport | `WDP` | `OPEN_OBLIGATION` | `TFQ-0542` |
+| 242 | [`TFQ-0544`](./06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md) (new) | wdp-phi-well-defined-l1-duality | `WDP` | `CONDITIONAL` | `TFQ-0542` |
+| 243 | [`TFQ-0545`](./06_wdp/tfq_0545_wdp_closure_needs_degree.md) (new) | wdp-closure-needs-degree | `WDP` | `DEFINITION` | `TFQ-0542` |

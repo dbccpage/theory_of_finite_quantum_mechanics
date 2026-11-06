@@ -86,6 +86,9 @@ def regular(path: Path) -> bytes:
 
 def receipt_for(name: str) -> Path:
     filename = re.sub(r"(?<!^)(?=[A-Z])", "_", name).lower() + "_axioms.txt"
+    candidate = ROOT / "lean4" / "axioms" / filename
+    if candidate.exists() or candidate.is_symlink():
+        return candidate
     return ROOT / "lean4" / filename
 
 

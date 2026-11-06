@@ -53,13 +53,21 @@ def _expect_reject(name, function):
 
 def check_inertia_promotion(claim: dict) -> None:
     """A finite list of inertias, including the Gate E point, is not an all-M theorem."""
+    base_docs = Path(__file__).resolve().parents[2] / "docs"
     receipt_path = (
-        Path(__file__).resolve().parents[2]
-        / "docs"
+        base_docs
+        / "02_requiring_derivation"
         / "meron_field_limit_derivations"
         / "code"
         / "gate_e_exact_counterexample_receipt.json"
     )
+    if not receipt_path.exists():
+        receipt_path = (
+            base_docs
+            / "meron_field_limit_derivations"
+            / "code"
+            / "gate_e_exact_counterexample_receipt.json"
+        )
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     if (
         receipt["r"] != "1/10"

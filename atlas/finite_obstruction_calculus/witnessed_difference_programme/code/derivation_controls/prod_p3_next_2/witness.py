@@ -31,14 +31,17 @@ def _ensure_paths() -> Path:
 _ensure_paths()
 
 from antibody_transfer.replay_examples import example_input  # noqa: E402
-from omega_engine_applications.wdp_products.p3_guard_transfer.adapter import (  # noqa: E402
-    WdpGuardTransferChecker,
-    make_source_guard_rule,
-    q4_worked_example_ledger,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p3_guard_transfer.adapter import (  # noqa: E402
+        WdpGuardTransferChecker,
+        make_source_guard_rule,
+        q4_worked_example_ledger,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     checker = WdpGuardTransferChecker()
     source_task = example_input()["transfer"]["source"]
     rule = make_source_guard_rule("circulation", source_task)
@@ -72,6 +75,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_twelve_hits_as_strict_benefit() -> None:
+    _import_engine()
     ledger_12 = q4_worked_example_ledger(hits=12)
     if not ledger_12.strict_benefit():
         raise ValueError("12 hits yields saving 0; strict benefit requires at least 13 hits")

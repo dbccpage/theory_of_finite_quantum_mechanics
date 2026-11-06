@@ -5,10 +5,10 @@ AuthorityEffect: None.
 
 from __future__ import annotations
 
-from fractions import Fraction
 import importlib.util
-from pathlib import Path
 import sys
+from fractions import Fraction
+from pathlib import Path
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[3]
 
@@ -48,7 +48,9 @@ def verify_day_5_campaign(
     if not retain_raw_proposals:
         raise ValueError("omitting raw proposal retention refused")
 
-    pq_doc = package_root / "docs" / "protected_subgroup_character_quotients.md"
+    pq_doc = package_root / "docs" / "01_substantiated" / "protected_subgroup_character_quotients.md"
+    if not pq_doc.is_file():
+        pq_doc = package_root / "docs" / "protected_subgroup_character_quotients.md"
     if not pq_doc.is_file():
         raise ValueError("missing docs/protected_subgroup_character_quotients.md")
     pq_text = pq_doc.read_text(encoding="utf-8")

@@ -7,8 +7,8 @@ description = "Paper-side finite witness helpers for the Witnessed Difference Pr
 license = "PolyForm-Noncommercial-1.0.0"
 
 [dependencies]
-omega_functional = { path = "../../../../../../../omega_engine/crates_rs/omega_functional" }
-omega_solvers = { path = "../../../../../../../omega_engine/crates_rs/omega_solvers" }
+omega_functional = { package = "engine_functional", path = "../../../../../vendor/engine/engine_functional" }
+omega_solvers = { package = "engine_solvers", path = "../../../../../vendor/engine/engine_solvers" }
 num-bigint = { version = "0.4", features = ["serde"] }
 num-rational = { version = "0.4", features = ["serde"] }
 num-traits = "0.2"
@@ -23,6 +23,10 @@ path = "src/bin/solve_wdp_obstruction.rs"
 [[bin]]
 name = "solve_genesis_observer"
 path = "src/bin/solve_genesis_observer.rs"
+
+[[bin]]
+name = "evaluate_wdp_functionals"
+path = "src/bin/evaluate_wdp_functionals.rs"
 
 [lib]
 name = "wdp_finite_witness"

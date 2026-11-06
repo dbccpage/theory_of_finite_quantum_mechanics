@@ -30,14 +30,17 @@ def _ensure_paths() -> Path:
 _ensure_paths()
 
 from antibody_transfer.replay_examples import example_input  # noqa: E402
-from omega_engine_applications.wdp_products.p3_guard_transfer.adapter import (  # noqa: E402
-    WdpGuardTransferChecker,
-    evaluate_pilot_p3_kill_conditions,
-    make_source_guard_rule,
-)
+def _import_engine() -> None:
+    from omega_engine_applications.wdp_products.p3_guard_transfer.adapter import (  # noqa: E402
+        WdpGuardTransferChecker,
+        evaluate_pilot_p3_kill_conditions,
+        make_source_guard_rule,
+    )
+    globals().update(locals())
 
 
 def witness() -> dict[str, object]:
+    _import_engine()
     res = evaluate_pilot_p3_kill_conditions()
     if res["any_kill_condition_holds"]:
         raise RuntimeError("expected no P3 kill conditions to hold on the pilot workload")
@@ -45,6 +48,7 @@ def witness() -> dict[str, object]:
 
 
 def refuse_unsafe_point_transfer() -> None:
+    _import_engine()
     checker = WdpGuardTransferChecker()
     tp = example_input()["transfer"]
     unsafe_rule = make_source_guard_rule("unsafe-point", tp["source"])
