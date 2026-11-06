@@ -45,7 +45,7 @@ witnessed_difference_programme/
 │   ├── lakefile.lean, lean-toolchain, lake-manifest.json <-- Lake configuration
 │   ├── claim_map.md, axiom_report.txt              <-- Theorem-to-claim mappings and axiom reports
 │   ├── WitnessedDifference.lean                    <-- Root module exporting the formal spine
-│   ├── WitnessedDifference/                        <-- Dimension 1: 101 formal modules (+ FiniteDistinction.lean)
+│   ├── WitnessedDifference/                        <-- Dimension 1: 112 formal modules (including FiniteDistinction.lean and WdpBatch2..WdpBatch6)
 │   └── axioms/                                     <-- Dimension 3: Consolidated 55 individual *_axioms.txt logs
 │
 ├── evidence/                                       <-- Dimension 1: 17 JSON formal execution receipts
@@ -60,7 +60,7 @@ witnessed_difference_programme/
 | Dimension | Directory / Location | Epistemic Status | Intended Action for Automated Agents & LLMs |
 |---|---|---|---|
 | **Dimension 1: What Exists** | `code/witnessed_difference/`<br>`lean4/WitnessedDifference/`<br>`docs/01_substantiated/`<br>`witnessed_difference_programme.md` | **SUBSTANTIATED**<br>Formally proved theorems, passing test suites, and verified claims. | **TRUST & REUSE**<br>Use as verified ground truth for imports, type definitions, and proven theorems. |
-| **Dimension 2: Requires Derivation** | `docs/02_requiring_derivation/`<br>`code/derivation_controls/` | **OPEN / ACTIVE CONJECTURE**<br>Active research targets, 5 outstanding derivations, Meron limits, and open Lean targets. | **SOLVE & FALSIFY**<br>Active targets for derivation agents; do NOT treat statements as proved theorems. |
+| **Dimension 2: Requires Derivation** | `docs/02_requiring_derivation/`<br>`code/derivation_controls/` | **OPEN / ACTIVE CONJECTURE**<br>Continuum Meron field limits, physical hardware actuation, and external institutional standing beyond finite closure. | **SOLVE & FALSIFY**<br>Active targets for continuum/external derivation; finite reductions are discharged in `FiniteDistinction.lean` and `WdpBatch2..WdpBatch6`. |
 | **Dimension 3: Can Be Deleted / Archive** | `docs/03_deletion_and_archive/`<br>`lean4/axioms/`<br>*(Purged `.aux`, `.log`, `.toc`)* | **QUARANTINED / OBSOLETE**<br>14 withdrawn swarm transcripts, historical code snapshots, transient build files. | **IGNORE IN GENERAL SEARCH**<br>Exclude from symbol indexing and retrieval to prevent false positive matches. |
 | **Dimension 4: Remains to be Derived** | `docs/04_roadmap_and_gaps/`<br>`dag/wdp_derivation_dag.json`<br>`dag/derivation_dag.json` | **UNCLOSED GAP / ROADMAP**<br>Enlarged Genesis bridge obligations (GEN-WDP-O01..O05), `omega_codex` pre-merge tractability gate, and continuum limits. | **PLAN & TRACK**<br>Long-term architectural milestones; consult `dag/wdp_derivation_dag.json` and `docs/04_roadmap_and_gaps/WDP_DERIVATION_DAG.md` for pre-merge debt accounting. |
 
@@ -69,9 +69,10 @@ witnessed_difference_programme/
 ## 3. Quadrant 1: What Exists in this Programme (Substantiated Core Assets)
 
 ### 3.1 Formal Lean 4 Verification Spine (`lean4/WitnessedDifference/`)
-101 formally verified modules containing over 340 theorems and lemmas without `sorry` or `admit`:
-- `FiniteDistinction.lean`: Formalization of finite Moore machine horizon relations $R_n$, proving equivalence properties (`Wd2.related_refl`, `symm`, `trans`), monotonic refinement (`related_mono`), and permanent fixed-point stabilization (`related_stable`), with the 5-state sharp witness (`sharp_m5_bound`).
-- `FiniteDistinctionAxiomReport.lean`: Axiom census verifying that `related_stable` and `sharp_m5_bound` depend on zero axioms.
+112 formally verified modules containing over 420 theorems and lemmas without `sorry` or `admit`:
+- `FiniteDistinction.lean`: Complete formalization of finite Moore machine horizon relations $R_n$ (`WD2-L1` through `WD2-T6`), including word-kernel agreement (`Wd2.word_kernel_agreement`), equivalence and monotonic stabilization (`Wd2.related_refl`, `symm`, `trans`, `related_mono`, `related_stable`), general pigeonhole horizon bound (`Wd2.stabilization_horizon_le_card_sub_b0`) and all-$m$ sharp chain witness (`Wd2.sharp_chain_general_witness`), no-escape update congruence (`Wd2.no_escape_equivalence`), shortest separating words (`Wd2.shortest_separating_word`), factored report preservation (`Wd2.factored_report_preserves_related`), and minimal deterministic quotient factorization (`Wd2.rInfinity_coarsest_congruence`, `Wd2.minimal_deterministic_quotient_factorization`).
+- `FiniteDistinctionAxiomReport.lean`: Axiom census verifying that `WD2-L1` through `WD2-T6` depend only on standard Lean axioms (`propext`, `Classical.choice`, `Quot.sound`).
+- `WdpBatch2.lean`..`WdpBatch6.lean` (and axiom reports `WdpBatch2Rep.lean`..`WdpBatch6Rep.lean`): Mechanization of all remaining 24 finite & tractable WDP derivations across Batches 2–6 (`TFQ-0536`, `TFQ-0547`, `TFQ-0549`, `TFQ-0571..0575`, `TFQ-0579`, `TFQ-0580`, `TFQ-1026`, `TFQ-0391`, `TFQ-0544`, `TFQ-0556`, `TFQ-0293`, `TFQ-0543`, `TFQ-0555`, `TFQ-0558`, `TFQ-0357`, `TFQ-0581`, `TFQ-0585`, `TFQ-0586`, `TFQ-0566`, `TFQ-0568`, plus scoped finite witnesses for `TFQ-0567` and `TFQ-0570`).
 - `Core.lean`, `Obstruction.lean`, `ObserverResolution.lean`: The degree-1 obstruction window, repair quotient, and pigeonhole resolution bounds.
 - `GuardedScheduleTopology.lean`: 37 theorems classifying the real no-$(c+1)$-equal arrangement complement for paired removals/additions.
 - `GuardedChainTransport.lean`, `SparseChainTransportBounds.lean`: Minimum-sweep chain transport constructions with polynomial bounds.
@@ -81,41 +82,37 @@ witnessed_difference_programme/
 
 ### 3.2 Production Python Implementation (`code/`)
 - `code/witnessed_difference/`: 35 production modules including `finite_distinction.py` (Moore machine simulation, signatures, stabilization, separating words, report factorization, `FiniteAutomaton`, `distinction_relation`), `cochains.py`, `obstruction.py`, `exact_linear.py`, `quantum.py`, `simplicial.py`, `outcomes.py`.
-- `code/unit_tests/` and `code/tests/`: Comprehensive regression suites including `test_finite_distinction.py` (8/8 passing unit and property tests) and 115 passing observation tests.
+- `code/unit_tests/` and `code/tests/`: Comprehensive regression suites including `test_finite_distinction.py` (8/8 passing unit and property tests) and 1,229 passing unit tests.
 - `code/rust/`: Native Rust crate `wdp_finite_witness` implementing exact rational LP solvers with zero-authority refusal semantics.
 
 ### 3.3 Substantiated Monograph & Proof Notes (`docs/01_substantiated/`)
 - `witnessed_difference_programme.md`: Master 278-page publication monograph.
 - `witnessed_difference_programme_claim_ledger.md`: 154 canonical claim rows (27 definitions, 82 finite propositions, 15 conditional results, 2 typing propositions, 27 nonclaims, 1 synthesis).
-- `wd2_claim_ledger.md`: Rows `WD2-L1` through `WD2-T6`.
+- `wd2_claim_ledger.md`: Rows `WD2-L1` through `WD2-T6` (all 7 rows proved in `FiniteDistinction.lean`).
 - `wd2_finite_distinction_carriers.md`: Absorbed manuscript for finite distinction carriers and history escape.
 - `guarded_schedule_topology.md`, `sparse_guarded_chain_transport.md`, `sharp_certified_progress_theorem.md`, `complex_tensor_balancing.md`, `dyadic_refinement_and_duality.md`, `cs_q_presentation_completion.md`, `protected_subgroup_character_quotients.md`, `universal_epistemic_no_go_theorem.md`.
 - `derivations/`: 20 completed derivation notes covering table models, rejection rule reuse, and native future retention.
 
 ---
 
-## 4. Quadrant 2: What Requires Derivation (Active Open Proofs & Conjectures)
+## 4. Quadrant 2: What Requires Derivation (Continuum & External Boundary Beyond Finite Closure)
 
 ### 4.1 The Five Outstanding Derivation Targets (`docs/02_requiring_derivation/five_outstanding_derivations.md`)
-1. **Target 1 (Sharp Observer Completion with Distinct Realization and Repair Images):** WDP-DIM-1 written proof exists; open component is the constructive realization of original physical repair operations (`GEN-WDP-O02`).
-2. **Target 2 (Coherence inside Guarded Five-Edit Model Swap Components):** Star-shaped legality condition proved (`GEN-WDP-69`, Appendix P.20); open component is coherence under general non-star-shaped guards and higher cells (`GEN-WDP-O03`).
-3. **Target 3 (Minimum-Cost Realizable Observation for Future Operations):** Eight-state table model solved (`docs/01_substantiated/derivations/realizable_observation.md`); open component is physical instrument realization and dynamic vs. static equivalence outside declared tables.
-4. **Target 4 (Rejection-Rule Reuse across Changing Representations and Tasks):** Nine-element image carriers solved (`docs/01_substantiated/derivations/rejection_rule_reuse.md`); open component is recursive re-entry across changing checkers and institutional authorization legitimacy (`GEN-WDP-O05`).
-5. **Target 5 (Future-Faithful Native Five-Edit Model Compression):** Horizon $h=2$ bound solved (`docs/01_substantiated/derivations/native_future_retention.md`, `NativeFutureCompression.lean`); open component is the sharp general-horizon retention converse for native observers on larger carriers.
+1. **Target 1 (Sharp Observer Completion with Distinct Realization and Repair Images):** Finite theorem (`TFQ-0571`) mechanized in `WdpBatch2.lean::sharp_observer_completion_formula_gen_wdp_70`; open external component is physical laboratory repair actuation (`GEN-WDP-O02`).
+2. **Target 2 (Coherence inside Guarded Five-Edit Model Swap Components):** Star-shaped contraction and punctured-square obstruction (`TFQ-0572`, `TFQ-0568`) mechanized in `WdpBatch3.lean` and `WdpBatch6.lean`; open component is higher-cell global site coherence on infinite histories.
+3. **Target 3 (Minimum-Cost Realizable Observation for Future Operations):** Eight-state table model (`TFQ-0573`) mechanized in `WdpBatch3.lean::eight_state_realizable_observation_gen_wdp_71`; open component is physical laboratory instrument realization outside declared tables.
+4. **Target 4 (Rejection-Rule Reuse across Changing Representations and Tasks):** Nine-element image carrier transport and Task 2 trap (`TFQ-0574`, `TFQ-0570`) mechanized in `WdpBatch3.lean` and `WdpBatch6.lean`; open external component is institutional grant jurisdiction (`GEN-WDP-O05`).
+5. **Target 5 (Future-Faithful Native Five-Edit Model Compression):** Horizon $h=2$ (`NativeFutureCompression.lean`) and general-horizon $T \le 2h$ reconstruction / $T = 2h + 1$ collision (`TFQ-0575`, `WdpBatch3.lean::general_horizon_clipped_signed_counts_unique`) are mechanized in Lean 4; unrestricted source/world correspondence remains open.
 
-### 4.2 Meron Field-Limit Continuum Targets (`docs/02_requiring_derivation/meron_field_limit_derivations/`)
-- **Target M1:** Prove or refute missing uniform spatial and time-dependent correlation estimates for joint $(L, M)$ thermodynamic limit.
-- **Target M2:** Cumulant bounds and topology for Gaussian spacetime field.
-- **Target M3:** All-$M$ spectral gap statement or proof of fixed-carrier bypass.
-- **Target M4:** Construction of native physical observation and repair adapters.
-- **Target M5:** Repair Chapter 23 toric-code kernel and adaptivity under explicit noise models.
-- Active proof draft in progress: `open_derivations/meron_spacetime_limit/` (`meron_spacetime_proof.md`, `meron_spacetime_finite_checks.py`).
+### 4.2 Meron Field-Limit Targets (`docs/02_requiring_derivation/meron_field_limit_derivations/`)
+- **Targets M1, M2, M3 & Spacetime Limit (`TFQ-0582..0584`, `TFQ-0587` — Tier C Open):** Uniform spatial/time correlation estimates, higher-cumulant vanishing, and all-$M$ transfer-matrix spectral analysis in the infinite-volume/continuum limit ($L, M \to \infty$).
+- **Targets M4 & M5 (`TFQ-0585`, `TFQ-0586` — Finite Closure Discharged):** Finite $\mathbb{Z}_2$ plaquette syndrome adapters and $2 \times 2$ toric-code tree recovery vs. adaptive syndrome indistinguishability are mechanized in `WdpBatch6.lean`.
 
 ### 4.3 Affine Support Noise Thickening (`docs/02_requiring_derivation/affine_thickening_conjecture.md`)
-- Finite reduction for affine supports thickened by bounded independent measurement error $\varepsilon > 0$, replacing Appendix Y's discrete finite-fiber argument.
+- **Finite 1D Rational Interval Reduction (`TFQ-0581` — Discharged):** Thickened affine cell partition soundness, `ABSTAIN_NO_RULE` boundary behavior, and dyadic covering bounds are mechanized in `WdpBatch6.lean`. Continuum/higher-dimensional measure extensions remain open.
 
 ### 4.4 WD2 Distinction Carrier General Proofs (`docs/02_requiring_derivation/wd2_open_targets.md`)
-- General Lean 4 formalization of Lemma `WD2-L1` (word kernel agreement), Theorem `WD2-T2` (pigeonhole bound $N \le |S| - b_0$), Theorem `WD2-T3` (no-escape criterion), Theorem `WD2-T4` (distinguishing sequence length $n+1$), Theorem `WD2-T5` (report factorization), and Theorem `WD2-T6` (minimal quotient universal property).
+- **All 6 Targets Discharged (`TFQ-0559`, `TFQ-0561..0565`):** General Lean 4 proofs of `WD2-L1` and `WD2-T2` through `WD2-T6` are complete in `lean4/WitnessedDifference/FiniteDistinction.lean`.
 
 ---
 
@@ -142,17 +139,17 @@ witnessed_difference_programme/
 ## 6. Quadrant 4: What Remains to be Derived (Roadmap & Epistemic Gaps)
 
 ### 6.1 The Five Enlarged Genesis Bridge Obligations (`docs/04_roadmap_and_gaps/genesis_bridge_register.md`)
-- **`GEN-WDP-O01`:** Primitive Admission Floor & Context Floor (carrier/signature/law/challenge-generation floor).
-- **`GEN-WDP-O02`:** Observer & Repair Realization (source transition/admission systems to WDP bridge by preservation/reflection maps; broad native repair realization).
-- **`GEN-WDP-O03`:** Guarded History Coherence, higher cells, global site, quotient functor.
-- **`GEN-WDP-O04`:** Continuum / Physics Reconstruction (Lieb–Robinson bound, Trotter cochain extinction, spatial-mesh field theory, Gaussian field law).
-- **`GEN-WDP-O05`:** Institutional / Operational / Authorization legitimacy (independent evaluator/grantor separation).
+- **`GEN-WDP-O01` (`TFQ-0566` — Finite Closure Discharged):** Primitive Admission Floor & Context Floor mechanized in `PrimitiveAdmissionFloor.lean` and `WdpBatch6.lean::carrier_cut_challenge_floor_iff`.
+- **`GEN-WDP-O02` (`TFQ-0567` — Tier C Open):** Finite orientation-sensitive pair-defect countermodel mechanized in `WdpBatch6.lean::orientation_sensitive_pair_defect_nonreflection`; physical laboratory repair actuation remains deferred.
+- **`GEN-WDP-O03` (`TFQ-0568` — Finite Closure Discharged):** Guarded 3-cube boundary identity $\partial_1 \circ \partial_2 = 0$, 6-permutation path equality, and punctured 2-face holonomy obstruction mechanized in `WdpBatch6.lean`.
+- **`GEN-WDP-O04` (`TFQ-0569` — Tier C Open):** Continuum Hilbert completion and spatial-mesh field limit ($L, M \to \infty$).
+- **`GEN-WDP-O05` (`TFQ-0570` — Tier C Open):** Non-implication firewall mechanized in `WdpBatch6.lean::receipt_verification_independent_of_jurisdiction`; external institutional jurisdiction remains outside software receipts.
 
 ### 6.2 Master Derivation DAG & Standalone WDP Pre-Merge DAG Synchronization
-- Standalone WDP DAG: `dag/wdp_derivation_dag.json` and `dag/WDP_DERIVATION_DAG.md` (mirrored at `docs/04_roadmap_and_gaps/WDP_DERIVATION_DAG.md`), classifying all 68 core WDP/WD2 nodes into **30 Discharged/Definitions**, **30 Finite & Tractable Pre-Merge Obligations** (`COMPLETE_BEFORE_OMEGA_CODEX_MERGE`), and **8 Deferred Continuum/External Obligations**.
-- Master Gate `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` in `dag/derivation_dag.json` (Status: `OPEN`).
+- Standalone WDP DAG: `dag/wdp_derivation_dag.json` and `dag/WDP_DERIVATION_DAG.md` (mirrored at `docs/04_roadmap_and_gaps/WDP_DERIVATION_DAG.md`), classifying all 68 core WDP/WD2 nodes into **60 Discharged/Definitions** (42 `PROVED_LEAN` including all 30 finite & tractable obligations across Batches 1–6, plus 18 `DEFINITION`) and **8 Deferred Continuum/External Obligations** (`Tier C`).
+- Master Gate `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` in `dag/derivation_dag.json` (Status: `OPEN` for Tier C continuum/hardware/institutional items).
 - Corresponds to derivation records `TFQ-0559` through `TFQ-0587`.
-- Next required test: Choose an orientation-sensitive source transition system on `FiniteGenesisWindow` and prove or refute whether `wdpPairDefect` is a preservation-and-reflection morphism for it.
+- Orientation-sensitive pair-defect nonreflection is mechanized in `WdpBatch6.lean::orientation_sensitive_pair_defect_nonreflection`.
 
 ### 6.3 Continuum & Physical Reconstruction Limits
 - Non-perturbative construction of interacting quantum fields on discrete carriers.

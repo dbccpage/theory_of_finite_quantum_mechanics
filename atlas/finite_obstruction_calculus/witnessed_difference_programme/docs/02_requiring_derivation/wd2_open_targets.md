@@ -1,48 +1,42 @@
-# Active Derivation Targets: WD2 Distinction Carriers & History Escape
+# WD2 Finite Distinction Carriers — General Lean 4 Formalization Targets (Discharged)
 
-**Status:** OPEN / REQUIRING_DERIVATION  
-**Origin:** Satellite Paper #032 (`wd2_finite_distinction_carriers_and_history_escape`)  
-**Claim Ledger:** `wd2_claim_ledger.md`
+**AuthorityEffect:** None  
+**Source Package:** `witnessed_difference_finite_distinction_carriers_and_history_escape` (absorbed into `witnessed_difference_programme`)  
+**Status:** `PROVED_LEAN` (`TFQ-0559`, `TFQ-0561` through `TFQ-0565`)
 
----
+## Context
+The absorbed manuscript `docs/01_substantiated/wd2_finite_distinction_carriers.md` and claim ledger `docs/01_substantiated/wd2_claim_ledger.md` establish seven results (`WD2-L1` and `WD2-T1` through `WD2-T6`) for finite Moore machines $(S, \Sigma, Y, u, p)$ and horizon distinguishability relations $R_n$.
 
-## 1. Overview of Formalization Boundary
-
-In the satellite monograph, Theorem `WD2-T1` (monotonic refinement and permanent fixed-point stabilization) and the 5-state sharp witness `sharp_m5_bound` are formally verified in Lean 4 without `sorry` (`lean4/WitnessedDifference/FiniteDistinction.lean`). All claims are computationally verified on concrete instances in Python (`code/witnessed_difference/finite_distinction.py`).
-
-However, several general theorems and lemmas remain open for general formalization in Lean 4:
+All seven results (`WD2-L1` and `WD2-T1` through `WD2-T6`) now have complete, sorry-free Lean 4 proofs in `lean4/WitnessedDifference/FiniteDistinction.lean` (audited in `lean4/WitnessedDifference/FiniteDistinctionAxiomReport.lean`) alongside executable Python checks in `code/witnessed_difference/finite_distinction.py`.
 
 ---
 
-## 2. Target Inventory
+## Discharged General Lean 4 Targets
 
-### Target WD2-DERIV-01: Word Kernel Representation (Lemma WD2-L1)
-- **Statement:** At horizon $n$, the recursive horizon relation $R_n$ coincides exactly with the kernel of all input words of length at most $n$:
-  $$R_n = \bigcap_{|w| \le n} \ker(p \circ u_w)$$
-- **Current Status:** Prose proof in manuscript §3; finite instance checked in Python (`word_kernel_agrees`); general Lean 4 proof absent.
-- **Derivation Required:** Inductive proof in Lean 4 on list length connecting recursive definition `Wd2.related` with word execution over `List (Fin Σ)`.
+### 1. `WD2-DERIV-01`: Word Kernel Representation (`WD2-L1`, `TFQ-0559`)
+- **Statement:** Prove in Lean 4 that for every $n \ge 0$ and $s, t \in S$, $(s, t) \in R_n$ if and only if $p(u_w(s)) = p(u_w(t))$ for every word $w \in \Sigma^*$ of length $|w| \le n$.
+- **Lean 4 Discharge:** `FiniteDistinction.lean::Wd2.word_kernel_agreement` and `FiniteDistinction.lean::Wd2.poly_word_kernel_agreement`.
 
-### Target WD2-DERIV-02: Pigeonhole Stabilization Bound (Theorem WD2-T2)
-- **Statement:** For any finite deterministic Moore machine with state set $S$ and initial partition block count $b_0 = |S/R_0|$, the relation sequence stabilizes at an index $N \le |S| - b_0$, with $R_N = R_{N+1}$. Furthermore, the chain is sharp (achieves equality).
-- **Current Status:** Prose proof in manuscript §4; `sharp_profile` checked in Python; Lean `Wd2.sharp_m5_bound` verifies the 5-state horizon-3 witness only.
-- **Derivation Required:** Formalize the pigeonhole bound on strictly increasing partition block counts for finite types in Lean 4 using Mathlib's `Fintype` and partition lattice theory.
+### 2. `WD2-DERIV-02`: General Pigeonhole Stabilization Bound (`WD2-T2`, `TFQ-0561`)
+- **Statement:** Prove in Lean 4 that on a finite carrier $S$, if $b_n = |S / R_n|$ is the block count of $R_n$, then $b_n$ is strictly increasing up to stabilization horizon $N \le |S| - b_0 \le |S| - 1$, and construct the general $m$-state delay chain achieving $N = m - 2$ for arbitrary $m \ge 2$.
+- **Lean 4 Discharge:** `FiniteDistinction.lean::Wd2.stabilization_horizon_le_card_sub_b0` and `FiniteDistinction.lean::Wd2.sharp_chain_general_witness` (plus 5-state specialization `Wd2.sharp_m5_bound`).
 
-### Target WD2-DERIV-03: No-Escape Characterization (Theorem WD2-T3)
-- **Statement:** The initial observation relation $R_0$ is an update congruence if and only if $R_1 = R_0$, if and only if $R_n = R_0$ for all $n$, if and only if no pair in $R_0$ has a separating word.
-- **Current Status:** Prose proof in manuscript §5; checked on 2-state identity witness in Python; general Lean 4 proof absent.
-- **Derivation Required:** Formalize the 4-way equivalence in Lean 4.
+### 3. `WD2-DERIV-03`: No-Escape Characterization (`WD2-T3`, `TFQ-0562`)
+- **Statement:** Prove in Lean 4 the four-way equivalence:
+  1. $R_0$ is an update congruence on $S$ under all $a \in \Sigma$;
+  2. $R_1 = R_0$;
+  3. $R_n = R_0$ for all $n \ge 0$;
+  4. There exists a deterministic quotient update $\bar{u}_a : Y_0 \to Y_0$ on $Y_0 = p(S)$ such that $p \circ u_a = \bar{u}_a \circ p$.
+- **Lean 4 Discharge:** `FiniteDistinction.lean::Wd2.no_escape_equivalence` and `FiniteDistinction.lean::Wd2.isUpdateCongruence_iff_r1_eq_r0`.
 
-### Target WD2-DERIV-04: Shortest Separating Word Length (Theorem WD2-T4)
-- **Statement:** If $(s, t) \in R_n \setminus R_{n+1}$, the shortest word $w$ separating $s$ and $t$ has length exactly $n+1$, and can be constructed recursively as $\sigma v$ where $\sigma$ is the first distinguishing transition.
-- **Current Status:** Prose proof in manuscript §5; checked on 4-state chain in Python; general Lean 4 proof absent.
-- **Derivation Required:** Constructive existence and minimality proof in Lean 4.
+### 4. `WD2-DERIV-04`: Shortest Separating Word Length (`WD2-T4`, `TFQ-0563`)
+- **Statement:** Prove in Lean 4 that if $(s, t) \in R_n \setminus R_{n+1}$, then there exists a separating word $w \in \Sigma^{n+1}$ of length $n+1$ with $p(u_w(s)) \ne p(u_w(t))$, and no word of length $\le n$ separates $s$ and $t$.
+- **Lean 4 Discharge:** `FiniteDistinction.lean::Wd2.shortest_separating_word`.
 
-### Target WD2-DERIV-05: Report Factorization Invariance (Theorem WD2-T5)
-- **Statement:** A transition report $r(s, \sigma)$ that factors through the two endpoint observations preserves all horizon equivalence relations $R_n$.
-- **Current Status:** Prose proof in manuscript §5; checked on 4-state chain in Python; general Lean 4 proof absent.
-- **Derivation Required:** Formal Lean proof showing that factoring $r(s, \sigma) = g(p(s), \sigma, p(u_\sigma(s)))$ does not refine $R_n$.
+### 5. `WD2-DERIV-05`: Factored Report Preservation (`WD2-T5`, `TFQ-0564`)
+- **Statement:** Prove in Lean 4 that if a secondary report $g : S \to Z$ factors as $g = \bar{g} \circ p$, then adjoining $g$ to the immediate report leaves every horizon relation $R_n$ unchanged; conversely, if $g$ separates a pair in $R_0$, the adjoined horizon-0 relation strictly refines $R_0$.
+- **Lean 4 Discharge:** `FiniteDistinction.lean::Wd2.factored_report_preserves_related`, `FiniteDistinction.lean::Wd2.factored_report_preserves_polyRelated`, and `FiniteDistinction.lean::Wd2.unfactored_report_splits_r0`.
 
-### Target WD2-DERIV-06: Coarsest Update Congruence Quotient (Theorem WD2-T6)
-- **Statement:** $R_\infty = R_N$ is the coarsest output-preserving update congruence, and every compatible quotient machine is an abstraction of $S/R_\infty$.
-- **Current Status:** Prose proof in manuscript §6; explicitly withdrawn as a proved claim of the package; non-claim in claim ledger.
-- **Derivation Required:** Universal mapping property of the Nerode/Moore quotient in Lean 4.
+### 6. `WD2-DERIV-06`: Minimal Deterministic Quotient Universal Property (`WD2-T6`, `TFQ-0565`)
+- **Statement:** Prove in Lean 4 that $S / R_\infty$ is the coarsest quotient of $S$ through which $p$ factors and on which each $u_a$ descends to a deterministic map, and that any other such quotient $(Q, \pi, \tilde{u}, \tilde{p})$ admits a unique surjective homomorphism $Q \to S / R_\infty$ commuting with $\pi$, updates, and reports.
+- **Lean 4 Discharge:** `FiniteDistinction.lean::Wd2.rInfinity_coarsest_congruence` and `FiniteDistinction.lean::Wd2.minimal_deterministic_quotient_factorization`.

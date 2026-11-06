@@ -15,7 +15,17 @@ lean_lib WitnessedDifference where
   roots := #[
     `WitnessedDifference,
     `WitnessedDifference.AxiomReport,
-    `WitnessedDifference.FiniteDistinction
+    `WitnessedDifference.FiniteDistinction,
+    `WitnessedDifference.WdpBatch2,
+    `WitnessedDifference.WdpBatch2Rep,
+    `WitnessedDifference.WdpBatch3,
+    `WitnessedDifference.WdpBatch3Rep,
+    `WitnessedDifference.WdpBatch4,
+    `WitnessedDifference.WdpBatch4Rep,
+    `WitnessedDifference.WdpBatch5,
+    `WitnessedDifference.WdpBatch5Rep,
+    `WitnessedDifference.WdpBatch6,
+    `WitnessedDifference.WdpBatch6Rep
   ]
 
 

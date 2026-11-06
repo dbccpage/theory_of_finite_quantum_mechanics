@@ -30,7 +30,10 @@ When affine supports are thickened by non-zero noise $\varepsilon > 0$:
 
 ---
 
-## 3. Claim Boundaries
+## 3. Claim Boundaries & Finite Reduction Status (`TFQ-0581`)
 
-- **What would support completion:** An explicit finite algorithm that takes $(S, \varepsilon)$, produces a finite family of test questions, and proves that if a state can be distinguished under noise $\varepsilon$, the family of questions achieves minimum or bounded cost with guaranteed error control.
-- **What this document does NOT support:** It does not assert that the problem is solved, nor that heuristic sampling provides a valid mathematical proof.
+- **Discharged Finite 1D Rational Interval Reduction (`WdpBatch6.lean`, `TFQ-0581`):** `lean4/WitnessedDifference/WdpBatch6.lean` formalizes the 1D rational interval cell partition `classifyThickenedAffine` around $[a, b]$ with measurement margin $\varepsilon \ge 0$, proving:
+  1. `thickened_affine_cell_soundness` and `thickened_affine_no_false_verdict`: every noise realization $\delta \in [-\varepsilon, \varepsilon]$ preserves true membership on `CertifiedInside` ($[a + \varepsilon, b - \varepsilon]$) and true non-membership on `CertifiedOutside`.
+  2. `thickened_affine_boundary_abstains`: every point in the boundary uncertainty collars $[a - \varepsilon, a + \varepsilon)$ and $(b - \varepsilon, b + \varepsilon]$ returns `AbstainBoundary` (`ABSTAIN_NO_RULE`).
+  3. `thickened_affine_dyadic_covering_bound`: dyadic cell covering bound for rational intervals.
+- **What remains open:** Higher-dimensional polyhedral cell complexes ($k > 1$) and continuum Lebesgue/Gaussian measure extensions beyond the 1D rational interval reduction.

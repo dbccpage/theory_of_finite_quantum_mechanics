@@ -166,12 +166,8 @@ with 29,771 classes, under each of two declared terminal observation conventions
 Larger carriers, transported action labels, unbounded histories, instrument
 realization and the full O02/O03 obligations retain their separate open scope.
 
-**Completed derivation (sharp horizon–retention theorem extending GEN-WDP-73).**
-The general sharp horizon–retention claim below is a written argument, not a
-Lean theorem in this package. `NativeFutureCompression.lean` checks the
-special case $h=2$, total at most four, and the collision at total five.
-The previously credited general-horizon declaration names do not occur in
-that source; the corrected axiom report removes them.
+**Completed derivation (sharp horizon–retention theorem extending GEN-WDP-73, `TFQ-0575`).**
+`NativeFutureCompression.lean` checks the special case $h=2$, total at most four, and the collision at total five, and `WdpBatch3.lean` (`TFQ-0575`) mechanizes the general-horizon theorems `general_horizon_clipped_signed_counts_unique`, `general_horizon_sharp_collision`, and `general_horizon_composition_bound` (while targets 1–4 are additionally mechanized in `WdpBatch2.lean` and `WdpBatch3.lean` as `TFQ-0571..0574`).
 For nonnegative counts with total at most $T$, fixed coordinate signs, and $T \le 2h$, the coordinatewise caps
 $\min(c_i, h)$, together with the signed total, uniquely recover every count; legal removal probes supplying those caps
 through horizon $h$ make the observation map strictly injective and force raw equality (zero quotient compression).
