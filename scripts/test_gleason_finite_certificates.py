@@ -551,7 +551,61 @@ class TestGleasonFiniteCertificates(unittest.TestCase):
         self.assertEqual(sub9c["meridian_chain_linear_amplification_checks"], 24)
         self.assertEqual(sub9c["status"], "PASS")
 
+    def test_tfq_1057_section10_chain_step_scaling_and_triangle(self) -> None:
+        sec10 = cert.verify_tfq_1057_section10_chain_step_scaling_and_triangle()
+        sub10a = sec10["subsection_10a_meridian_step_bound_and_triangle_no_go"]
+        self.assertGreaterEqual(
+            sub10a["euclidean_quadratic_triangle_triples_checked"], 4000
+        )
+        self.assertGreaterEqual(
+            sub10a["projective_ray_sin_sq_triangle_triples_checked"], 4000
+        )
+        self.assertGreaterEqual(sub10a["single_step_meridian_bound_checks"], 100)
+        self.assertEqual(sub10a["chain_endpoint_bound_checks"], 6)
+        self.assertEqual(sub10a["witness_111_min_ray_sin_sq_t9"], "1/3")
+        self.assertEqual(sub10a["witness_111_min_ray_sin_sq_t15"], "1/3")
+        self.assertEqual(sub10a["witness_123_min_ray_sin_sq_t9"], "3/28")
+        self.assertEqual(sub10a["witness_123_min_ray_sin_sq_t15"], "3/28")
+        self.assertEqual(len(sub10a["step_count_scaling_by_delta"]), 4)
+        for rows in sub10a["step_count_scaling_by_delta"].values():
+            self.assertEqual(len(rows), 4)
+        self.assertTrue(sub10a["uniform_step_bound_k0_excluded_as_delta_to_zero"])
+
+        # Direct checks of step-count helper functions and edge cases
+        self.assertEqual(cert.min_k_dyadic_triangle(Fraction(0), Fraction(1, 10)), 1)
+        self.assertEqual(cert.min_k_half_log2(Fraction(0), Fraction(1, 10)), 1)
+        self.assertEqual(cert.min_k_sqrt(Fraction(0), Fraction(1, 10)), 1)
+        self.assertEqual(cert.min_k_half_log2(Fraction(1, 3), Fraction(1, 2)), 1)
+        self.assertEqual(
+            cert.min_k_dyadic_triangle(Fraction(1, 3), Fraction(1, 10000)), 9
+        )
+        self.assertEqual(cert.min_k_half_log2(Fraction(1, 3), Fraction(1, 10000)), 5)
+        self.assertEqual(cert.min_k_sqrt(Fraction(1, 3), Fraction(1, 10000)), 29)
+        with self.assertRaises(ValueError):
+            cert.min_k_dyadic_triangle(Fraction(1, 3), Fraction(0))
+        with self.assertRaises(ValueError):
+            cert.min_k_half_log2(Fraction(1, 3), Fraction(-1, 10))
+        with self.assertRaises(ValueError):
+            cert.min_k_sqrt(Fraction(1, 3), Fraction(0))
+
+        sub10b = sec10["subsection_10b_sublinear_vs_inv_k_chain_drift"]
+        self.assertTrue(sub10b["sublinear_drift_forces_zero_verified"])
+        self.assertTrue(sub10b["inv_k_step_error_preserves_constant_gap_verified"])
+        self.assertEqual(len(sub10b["inv_k_vs_sublinear_certificates"]), 6)
+        self.assertEqual(sub10b["status"], "PASS")
+
+        eps5 = Fraction(1, 15)
+        self.assertEqual(cert.linear_drift_chain(eps5, 0), Fraction(0))
+        self.assertEqual(cert.linear_drift_chain(eps5, 5), Fraction(1, 3))
+        for idx in range(5):
+            self.assertEqual(
+                cert.linear_drift_chain(eps5, idx + 1)
+                - cert.linear_drift_chain(eps5, idx),
+                eps5,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
+
 

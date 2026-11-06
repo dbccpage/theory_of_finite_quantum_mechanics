@@ -123,6 +123,35 @@ class TestContinuumDerivationSpine(unittest.TestCase):
             self.assertTrue(stage_data["verified"])
         self.assertIn("tfq_0307_operational_noncontextuality_bridge", receipt)
         self.assertTrue(receipt["tfq_0307_operational_noncontextuality_bridge"]["verified"])
+        self.assertIn("five_node_gleason_and_born_spine_synthesis", receipt)
+        self.assertTrue(receipt["five_node_gleason_and_born_spine_synthesis"]["verified"])
+
+    def test_five_node_gleason_and_born_spine_synthesis(self) -> None:
+        res = vcds.verify_five_node_gleason_and_born_spine_synthesis()
+        self.assertTrue(res["verified"])
+        self.assertEqual(
+            res["stage_10_lean_declarations"],
+            [
+                "tfq1057_collar_chain_and_drift_synthesis",
+                "tfq1059_real_and_complex_sphere_spectral_synthesis",
+                "five_node_gleason_and_born_spine_synthesis",
+            ],
+        )
+        sec10 = res["tfq_1057_collar_step_scaling_and_drift"]
+        self.assertTrue(sec10["uniform_step_bound_k0_excluded_as_delta_to_zero"])
+        self.assertEqual(sec10["witness_111_min_ray_sin_sq_t9"], "1/3")
+        self.assertEqual(sec10["witness_111_min_ray_sin_sq_t15"], "1/3")
+        self.assertEqual(sec10["witness_123_min_ray_sin_sq_t15"], "3/28")
+        self.assertTrue(sec10["sublinear_drift_forces_zero_verified"])
+        self.assertTrue(sec10["inv_k_step_error_preserves_constant_gap_verified"])
+
+        part_f = res["tfq_1059_sphere3_and_sphereC_spectral_synthesis"]
+        self.assertEqual(part_f["tfq1059_declarations_count"], 36)
+        self.assertTrue(part_f["sphere3_sInf_sSup_sandwich_verified"])
+        self.assertTrue(part_f["sphereC_sInf_sSup_sandwich_verified"])
+        self.assertTrue(part_f["real_triaxial_spectral_ordering_verified"])
+        self.assertTrue(part_f["complex_triaxial_spectral_ordering_verified"])
+        self.assertEqual(part_f["spectral_families_tested"], 5)
 
 
 if __name__ == "__main__":

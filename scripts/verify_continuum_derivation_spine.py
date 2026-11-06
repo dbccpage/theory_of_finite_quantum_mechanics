@@ -352,6 +352,82 @@ def verify_tfq_0307_operational_noncontextuality_bridge() -> dict[str, Any]:
     }
 
 
+def verify_five_node_gleason_and_born_spine_synthesis() -> dict[str, Any]:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import verify_gleason_continuum_development as vgcd
+    import verify_gleason_finite_certificates as vgfc
+
+    lean_path = (
+        LEAN_MODULE_PATH
+        if LEAN_MODULE_PATH.exists()
+        else Path(__file__).resolve().parent / "ContinuumDerivationSpine.lean"
+    )
+    lean_text = lean_path.read_text(encoding="utf-8")
+    required_stage10_decls = [
+        "tfq1057_collar_chain_and_drift_synthesis",
+        "tfq1059_real_and_complex_sphere_spectral_synthesis",
+        "five_node_gleason_and_born_spine_synthesis",
+    ]
+    for decl in required_stage10_decls:
+        assert f"theorem {decl}" in lean_text, f"Missing Stage 10 theorem {decl}"
+        assert (
+            f"#print axioms BornFinite.ContinuumDerivationSpine.{decl}" in lean_text
+        ), f"Missing #print axioms for {decl}"
+
+    tfq1057_sec10 = vgfc.verify_tfq_1057_section10_chain_step_scaling_and_triangle()
+    sub_10a = tfq1057_sec10["subsection_10a_meridian_step_bound_and_triangle_no_go"]
+    sub_10b = tfq1057_sec10["subsection_10b_sublinear_vs_inv_k_chain_drift"]
+    assert sub_10a["uniform_step_bound_k0_excluded_as_delta_to_zero"] is True
+    assert sub_10a["witness_111_min_ray_sin_sq_t9"] == "1/3"
+    assert sub_10a["witness_111_min_ray_sin_sq_t15"] == "1/3"
+    assert sub_10a["witness_123_min_ray_sin_sq_t15"] == "3/28"
+    assert sub_10b["sublinear_drift_forces_zero_verified"] is True
+    assert sub_10b["inv_k_step_error_preserves_constant_gap_verified"] is True
+
+    tfq1059_part_f = vgcd.verify_part_f_tfq_1059_extrema_and_deflation()
+    assert tfq1059_part_f["verified"] is True
+    assert tfq1059_part_f["tfq1059_declarations_count"] == 36
+    assert tfq1059_part_f["sphere3_sInf_sSup_sandwich_verified"] is True
+    assert tfq1059_part_f["sphereC_sInf_sSup_sandwich_verified"] is True
+    assert tfq1059_part_f["real_triaxial_spectral_ordering_verified"] is True
+    assert tfq1059_part_f["complex_triaxial_spectral_ordering_verified"] is True
+
+    return {
+        "verified": True,
+        "stage_10_lean_declarations": required_stage10_decls,
+        "tfq_1057_collar_step_scaling_and_drift": {
+            "uniform_step_bound_k0_excluded_as_delta_to_zero": sub_10a[
+                "uniform_step_bound_k0_excluded_as_delta_to_zero"
+            ],
+            "witness_111_min_ray_sin_sq_t9": sub_10a["witness_111_min_ray_sin_sq_t9"],
+            "witness_111_min_ray_sin_sq_t15": sub_10a["witness_111_min_ray_sin_sq_t15"],
+            "witness_123_min_ray_sin_sq_t15": sub_10a["witness_123_min_ray_sin_sq_t15"],
+            "sublinear_drift_forces_zero_verified": sub_10b[
+                "sublinear_drift_forces_zero_verified"
+            ],
+            "inv_k_step_error_preserves_constant_gap_verified": sub_10b[
+                "inv_k_step_error_preserves_constant_gap_verified"
+            ],
+        },
+        "tfq_1059_sphere3_and_sphereC_spectral_synthesis": {
+            "tfq1059_declarations_count": tfq1059_part_f["tfq1059_declarations_count"],
+            "sphere3_sInf_sSup_sandwich_verified": tfq1059_part_f[
+                "sphere3_sInf_sSup_sandwich_verified"
+            ],
+            "sphereC_sInf_sSup_sandwich_verified": tfq1059_part_f[
+                "sphereC_sInf_sSup_sandwich_verified"
+            ],
+            "real_triaxial_spectral_ordering_verified": tfq1059_part_f[
+                "real_triaxial_spectral_ordering_verified"
+            ],
+            "complex_triaxial_spectral_ordering_verified": tfq1059_part_f[
+                "complex_triaxial_spectral_ordering_verified"
+            ],
+            "spectral_families_tested": tfq1059_part_f["spectral_families_tested"],
+        },
+    }
+
+
 def build_receipt() -> dict[str, Any]:
     lean_path = LEAN_MODULE_PATH if LEAN_MODULE_PATH.exists() else Path(__file__).resolve().parent / "ContinuumDerivationSpine.lean"
     lean_sha256 = hashlib.sha256(lean_path.read_bytes()).hexdigest()
@@ -374,6 +450,7 @@ def build_receipt() -> dict[str, Any]:
             "stage_8_discrete_lattice_hamiltonian_bridge": verify_stage_8_discrete_lattice_hamiltonian(),
         },
         "tfq_0307_operational_noncontextuality_bridge": verify_tfq_0307_operational_noncontextuality_bridge(),
+        "five_node_gleason_and_born_spine_synthesis": verify_five_node_gleason_and_born_spine_synthesis(),
     }
 
 

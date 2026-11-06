@@ -210,6 +210,29 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
      at the identical projective step size (`anchor_meridian_radial_scale_transport`,
      `radialScale_meridian_step_raySinSq_lt`), and proves `k * ε` linear amplification along any
      `k`-step ray chain (`meridian_chain_linear_amplification_bound`).
+
+10. **Radial-Scale Meridian Step-Size Bound, Projective Ray-Distance Quadratic Triangle Inequality,
+    `k(δ) → ∞` No-Go & Sublinear vs. `1/k` Chain-Drift Dichotomy (`TFQ-1057` Tests 1 & 2)**:
+    * **10A. Radial-Scale Meridian-Kelvin Step-Size Bound, Quadratic Triangle Inequality & `k(δ) → ∞`
+      No-Go (`TFQ-1057` Test 1)**:
+      proves the opposite-meridian double-angle formula `raySinSq (a + y) (a - y) = 4 * t * (1 - t)`
+      (`anchorMeridianStep_sub_raySinSq_eq_four_mul`), the single-step meridian-Kelvin bounds
+      (`anchorMeridianOrtho_raySinSq_le_four_mul`, `anchorMeridianOrtho_raySinSq_lt_four_mul`,
+      `radialScale_meridianOrtho_raySinSq_lt_four_mul`), the Euclidean and projective quadratic
+      triangle inequalities `distSqVec a c ≤ 2 * distSqVec a b + 2 * distSqVec b c`
+      (`distSqVec_le_two_mul_add`) and `raySinSq u w ≤ 2 * (raySinSq u v + raySinSq v w)`
+      (`raySinSq_le_two_mul_add`), the multi-step angular displacement bound
+      `raySinSq (steps.getLastD v₀) v₀ ≤ (2^(k+1) - 2) * s ≤ 2^(k+1) * s`
+      (`chain_raySinSq_endpoint_le`), and the `k(δ) → ∞` no-go theorem for uniform step bounds
+      `K₀` (`no_uniform_step_bound_for_delta_collar_meridian_chains`, instantiated for `witness_111`
+      and `witness_123`).
+    * **10B. Sublinear Chain-Drift Sufficiency vs. `1/k` Step-Error Counterexample (`TFQ-1057` Test 2)**:
+      defines `HasSublinearChainDriftFrom` and proves that quantitative sublinear drift
+      `k(δ) * ε(δ) < η` forces `g x = 0` (`zero_of_hasSublinearChainDriftFrom`,
+      `zero_of_hasSublinearChainDriftFromAnchors`), while conversely the explicit profile
+      `linearDriftChain (Δ / k)` has per-step error `ε_k = Δ / k → 0` yet maintains a constant
+      terminal discrepancy `Δ > 0` at step `k` (`linearDriftChain_constant_gap_of_inv_k_step`,
+      `sublinear_vs_inv_k_chain_drift_dichotomy`).
 -/
 
 namespace BornFinite.GaussianFiniteModel
@@ -5157,6 +5180,508 @@ theorem meridian_chain_linear_amplification_bound (g : GVec → ℚ) (ε : ℚ)
       _ ≤ (rest.length : ℚ) * ε + ε := add_le_add hih hstep
       _ = ((rest.length : ℚ) + 1) * ε := by ring
 
+/-!
+## 10. Radial-Scale Meridian Step-Size Bound, Projective Ray-Distance Quadratic Triangle Inequality, `k(δ) → ∞` No-Go & Sublinear vs. `1/k` Chain-Drift Dichotomy (`TFQ-1057` Tests 1 & 2)
+
+This section resolves the two quantitative multi-step meridian-chain questions of `TFQ-1057`:
+
+* **Subsection 10A (Test 1: Radial-Scale Meridian Step-Size Bound, Projective Quadratic Triangle
+  Inequality & `k(δ) → ∞` No-Go for Uniform Step Count `K₀`)**:
+  1. `anchorMeridianStep_sub_raySinSq_eq_four_mul`, `anchorMeridianOrtho_raySinSq_le_four_mul`,
+     `anchorMeridianOrtho_raySinSq_lt_four_mul`, and `radialScale_meridianOrtho_raySinSq_lt_four_mul`:
+     proves the exact double-angle formula `raySinSq (a + y) (a - y) = 4 * t * (1 - t)` where
+     `t = raySinSq (a + y) a` and establishes that for any nonzero scale factor `c ≠ 0` whose
+     polar probe `a + y_c` lies in the `δ`-collar `raySinSq (a + y_c) a < δ`, the equatorial
+     meridian-Kelvin step `anchorMeridianOrtho a y_c` moves from `y` by
+     `raySinSq (anchorMeridianOrtho a y_c) y = t < δ < 4 * δ` while the opposite-meridian reflection
+     `a - y_c` moves from `a + y_c` by `4 * t * (1 - t) < 4 * δ`.
+  2. `distSqVec_le_two_mul_add` and `raySinSq_le_two_mul_add`: proves the exact rational Euclidean
+     quadratic triangle inequality `distSqVec a c ≤ 2 * distSqVec a b + 2 * distSqVec b c` and lifts
+     it via two-stage `projScalar` projection to the exact projective ray-distance quadratic triangle
+     inequality `raySinSq u w ≤ 2 * (raySinSq u v + raySinSq v w)` for all nonzero `u, v, w ∈ ℚ(i)³`.
+  3. `chain_raySinSq_endpoint_le` and `no_uniform_step_bound_for_delta_collar_meridian_chains`:
+     proves by induction that any `k`-step ray chain with step bound `raySinSq v_{i+1} v_i ≤ s`
+     satisfies `raySinSq (steps.getLastD v₀) v₀ ≤ (2^(k+1) - 2) * s ≤ 2^(k+1) * s`, and concludes
+     that for any fixed step bound `K₀` and any target ray `x` at positive distance
+     `Δ₀ = raySinSq x v₀ > 0`, no chain of length `k ≤ K₀` with step bound `4 * δ` can reach the ray
+     of `x` once `0 < δ < Δ₀ / (4 * 2^(K₀ + 1))` (instantiated explicitly for `witness_111` and
+     `witness_123`).
+* **Subsection 10B (Test 2: Sublinear Chain-Drift Sufficiency vs. `1/k` Step-Error Counterexample)**:
+  1. `HasSublinearChainDriftFrom`, `zero_of_hasSublinearChainDriftFrom`, and
+     `zero_of_hasSublinearChainDriftFromAnchors`: proves that if the product `k(δ) * ε(δ)` of chain
+     length and per-step residual drift can be made arbitrarily small (`< η` for every `η > 0`),
+     then `g x = 0`.
+  2. `linearDriftChain_constant_gap_of_inv_k_step` and `sublinear_vs_inv_k_chain_drift_dichotomy`:
+     proves that for any target discrepancy `Δ > 0` and any chain length `k ≥ 1`, the explicit
+     profile `linearDriftChain (Δ / k)` has per-step variation `ε_k = Δ / k → 0` as `k → ∞` yet
+     maintains a constant endpoint discrepancy `linearDriftChain (Δ / k) k - linearDriftChain (Δ / k) 0 = Δ > 0`.
+     Thus qualitative pointwise continuity (`ε(δ) → 0`) without quantitative sublinear control
+     `k(δ) * ε(δ) → 0` cannot close a `k(δ)`-step meridian chain as `k(δ) → ∞`.
+-/
+
+/-! ### Subsection 10A: Radial-Scale Meridian-Kelvin Step-Size Bound, Projective Ray-Distance Quadratic Triangle Inequality & `k(δ) → ∞` No-Go (`TFQ-1057` Test 1) -/
+
+/-- **Opposite-Meridian Double-Angle Projective Ray-Distance Identity
+(`anchorMeridianStep_sub_raySinSq_eq_four_mul`)**:
+for any nonzero orthogonal pair `a, y ∈ ℚ(i)³ \ {0}` (`GVec.inner a y = 0`), the projective ray
+distance between the opposite polar meridian steps `a + y` and `a - y` satisfies the exact
+rational double-angle formula `raySinSq (a + y) (a - y) = 4 * t * (1 - t)`, where
+`t := raySinSq (a + y) a = ‖y‖² / (‖a‖² + ‖y‖²)`. -/
+theorem anchorMeridianStep_sub_raySinSq_eq_four_mul {a y : GVec}
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0) :
+    raySinSq (GVec.add a y) (GVec.sub a y) =
+      4 * raySinSq (GVec.add a y) a * (1 - raySinSq (GVec.add a y) a) := by
+  have ha_pos := normSqVec_pos_of_nonZero ha
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have hsum_pos : 0 < normSqVec a + normSqVec y := add_pos ha_pos hy_pos
+  have hsum_ne : normSqVec a + normSqVec y ≠ 0 := ne_of_gt hsum_pos
+  have hya : GVec.inner y a = 0 := inner_eq_zero_symm hay
+  have hnorm_add : normSqVec (GVec.add a y) = normSqVec a + normSqVec y :=
+    (normSqVec_add_eq_normSqVec_sub_of_ortho hay).1
+  have hnorm_sub : normSqVec (GVec.sub a y) = normSqVec a + normSqVec y :=
+    (normSqVec_add_eq_normSqVec_sub_of_ortho hay).2
+  have hinner : (GVec.inner (GVec.add a y) (GVec.sub a y)).normSq =
+      (normSqVec a - normSqVec y) ^ 2 := by
+    rw [inner_add_left, GaussianTomography.inner_sub_right, GaussianTomography.inner_sub_right,
+        hay, hya, sub_zero, zero_sub, inner_self_eq_normSqVec a, inner_self_eq_normSqVec y]
+    simp only [GaussRat.normSq, GaussRat.re_add, GaussRat.im_add, GaussRat.re_neg, GaussRat.im_neg]
+    ring
+  rw [(anchorMeridianOrtho_raySinSq_eq ha hy hay).1]
+  unfold raySinSq
+  rw [hinner, hnorm_add, hnorm_sub]
+  field_simp
+  ring
+
+/-- **Single-Step Meridian–Kelvin Angular Displacement Bound
+(`anchorMeridianOrtho_raySinSq_le_four_mul`)**:
+for any nonzero orthogonal pair `a, y ∈ ℚ(i)³ \ {0}` (`GVec.inner a y = 0`),
+1. `raySinSq (anchorMeridianOrtho a y) y = raySinSq (a + y) a`,
+2. `raySinSq (anchorMeridianOrtho a y) y ≤ 4 * raySinSq (a + y) a`, and
+3. `raySinSq (a + y) (a - y) ≤ 4 * raySinSq (a + y) a`. -/
+theorem anchorMeridianOrtho_raySinSq_le_four_mul {a y : GVec}
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0) :
+    raySinSq (anchorMeridianOrtho a y) y = raySinSq (GVec.add a y) a ∧
+    raySinSq (anchorMeridianOrtho a y) y ≤ 4 * raySinSq (GVec.add a y) a ∧
+    raySinSq (GVec.add a y) (GVec.sub a y) ≤ 4 * raySinSq (GVec.add a y) a := by
+  have heq := anchorMeridianOrtho_raySinSq_eq ha hy hay
+  have heq_polar : raySinSq (anchorMeridianOrtho a y) y = raySinSq (GVec.add a y) a := by
+    rw [heq.1, heq.2]
+  have hay_nz : (GVec.add a y).NonZero := addVec_a_y_ne_zero_of_ortho a y ha hay
+  have ht_nn : 0 ≤ raySinSq (GVec.add a y) a := raySinSq_nonneg hay_nz ha
+  have ht_le : raySinSq (GVec.add a y) a ≤ 1 := raySinSq_le_one (GVec.add a y) a
+  have hsub := anchorMeridianStep_sub_raySinSq_eq_four_mul ha hy hay
+  refine ⟨heq_polar, by linarith, ?_⟩
+  rw [hsub]
+  nlinarith
+
+/-- **Collar-Constrained Meridian–Kelvin Angular Displacement Bound
+(`anchorMeridianOrtho_raySinSq_lt_four_mul`)**:
+if `a, y ∈ ℚ(i)³ \ {0}` are orthogonal (`GVec.inner a y = 0`) and the polar probe `a + y` lies in
+the `δ`-collar `raySinSq (a + y) a < δ`, then:
+1. `raySinSq (anchorMeridianOrtho a y) y < δ`,
+2. `raySinSq (anchorMeridianOrtho a y) y < 4 * δ`, and
+3. `raySinSq (a + y) (a - y) < 4 * δ`. -/
+theorem anchorMeridianOrtho_raySinSq_lt_four_mul {a y : GVec} {δ : ℚ}
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0)
+    (hδ : raySinSq (GVec.add a y) a < δ) :
+    raySinSq (anchorMeridianOrtho a y) y < δ ∧
+    raySinSq (anchorMeridianOrtho a y) y < 4 * δ ∧
+    raySinSq (GVec.add a y) (GVec.sub a y) < 4 * δ := by
+  obtain ⟨heq_polar, hle1, hle2⟩ := anchorMeridianOrtho_raySinSq_le_four_mul ha hy hay
+  have hay_nz : (GVec.add a y).NonZero := addVec_a_y_ne_zero_of_ortho a y ha hay
+  have ht_nn : 0 ≤ raySinSq (GVec.add a y) a := raySinSq_nonneg hay_nz ha
+  exact ⟨by linarith, by linarith, by linarith⟩
+
+/-- **Radial-Scale Meridian–Kelvin Angular Displacement Bound
+(`radialScale_meridianOrtho_raySinSq_lt_four_mul`)**:
+for any nonzero orthogonal pair `a, y ∈ ℚ(i)³ \ {0}` (`GVec.inner a y = 0`) and any nonzero
+rational scale factor `c ≠ 0`, if the radially scaled polar probe `a + y_c` (`y_c = c • y`) lies in
+the `δ`-collar `raySinSq (a + y_c) a < δ`, then the resulting equatorial Kelvin partner
+`anchorMeridianOrtho a y_c` moves from the original ray `y` by at most
+`raySinSq (anchorMeridianOrtho a y_c) y < δ < 4 * δ`, and the opposite polar probe `a - y_c` moves
+from `a + y_c` by `raySinSq (a + y_c) (a - y_c) < 4 * δ`. -/
+theorem radialScale_meridianOrtho_raySinSq_lt_four_mul {a y : GVec} {c δ : ℚ}
+    (ha : a.NonZero) (hy : y.NonZero) (hay : GVec.inner a y = 0)
+    (hc : c ≠ 0) (hδ : raySinSq (GVec.add a (GVec.smul ⟨c, 0⟩ y)) a < δ) :
+    let yc := GVec.smul ⟨c, 0⟩ y
+    raySinSq (anchorMeridianOrtho a yc) y < δ ∧
+    raySinSq (anchorMeridianOrtho a yc) y < 4 * δ ∧
+    raySinSq (GVec.add a yc) (GVec.sub a yc) < 4 * δ := by
+  dsimp only
+  have hc_gauss : (⟨c, 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    apply hc
+    exact congrArg GaussRat.re h
+  have hyc_nz : (GVec.smul ⟨c, 0⟩ y).NonZero := nonZero_smul hc_gauss hy
+  have hayc : GVec.inner a (GVec.smul ⟨c, 0⟩ y) = 0 := by
+    rw [GaussianTomography.inner_smul_right, hay, mul_zero]
+  have hlt := anchorMeridianOrtho_raySinSq_lt_four_mul ha hyc_nz hayc hδ
+  have hscale : raySinSq (anchorMeridianOrtho a (GVec.smul ⟨c, 0⟩ y)) y =
+      raySinSq (anchorMeridianOrtho a (GVec.smul ⟨c, 0⟩ y)) (GVec.smul ⟨c, 0⟩ y) :=
+    (raySinSq_smul_right _ y hc_gauss).symm
+  rw [hscale]
+  exact hlt
+
+/-- Exact parallelogram-residual identity for Euclidean squared distance on `ℚ(i)³`:
+`2 * distSqVec a b + 2 * distSqVec b c - distSqVec a c = normSqVec ((a - b) - (b - c))`. -/
+theorem two_mul_distSqVec_add_sub_distSqVec (a b c : GVec) :
+    2 * distSqVec a b + 2 * distSqVec b c - distSqVec a c =
+      normSqVec (GVec.sub (GVec.sub a b) (GVec.sub b c)) := by
+  simp only [distSqVec, normSqVec, GVec.sub, GaussRat.normSq,
+    GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+/-- **Euclidean Quadratic Triangle Inequality (`distSqVec_le_two_mul_add`)**:
+for any three vectors `a, b, c ∈ ℚ(i)³`, `distSqVec a c ≤ 2 * distSqVec a b + 2 * distSqVec b c`. -/
+theorem distSqVec_le_two_mul_add (a b c : GVec) :
+    distSqVec a c ≤ 2 * distSqVec a b + 2 * distSqVec b c := by
+  have hid := two_mul_distSqVec_add_sub_distSqVec a b c
+  have hnn := normSqVec_nonneg (GVec.sub (GVec.sub a b) (GVec.sub b c))
+  linarith
+
+/-- For any nonzero vectors `v, w ∈ ℚ(i)³ \ {0}`, the orthogonal projection of `w` onto `v` has
+squared norm `normSqVec (GVec.smul (projScalar v w) v) = normSqVec w * (1 - raySinSq v w)`. -/
+theorem normSqVec_projScalar_smul {v w : GVec} (hv : v.NonZero) (hw : w.NonZero) :
+    normSqVec (GVec.smul (projScalar v w) v) = normSqVec w * (1 - raySinSq v w) := by
+  have hnv : normSqVec v ≠ 0 := normSqVec_ne_zero_of_nonZero hv
+  have hnw : normSqVec w ≠ 0 := normSqVec_ne_zero_of_nonZero hw
+  rw [normSqVec_smul, projScalar_normSq, raySinSq]
+  field_simp
+  ring
+
+/-- Orthogonal projection onto any nonzero ray contracts squared norm:
+`normSqVec (GVec.smul (projScalar v w) v) ≤ normSqVec w`. -/
+theorem normSqVec_projScalar_smul_le {v w : GVec} (hv : v.NonZero) (hw : w.NonZero) :
+    normSqVec (GVec.smul (projScalar v w) v) ≤ normSqVec w := by
+  rw [normSqVec_projScalar_smul hv hw]
+  have hsin_nn : 0 ≤ raySinSq v w := raySinSq_nonneg hv hw
+  have hnw_nn : 0 ≤ normSqVec w := normSqVec_nonneg w
+  nlinarith
+
+/-- **Projective Ray-Distance Quadratic Triangle Inequality (`raySinSq_le_two_mul_add`)**:
+for any three nonzero vectors `u, v, w ∈ ℚ(i)³ \ {0}`,
+`raySinSq u w ≤ 2 * (raySinSq u v + raySinSq v w)`. -/
+theorem raySinSq_le_two_mul_add {u v w : GVec}
+    (hu : u.NonZero) (hv : v.NonZero) (hw : w.NonZero) :
+    raySinSq u w ≤ 2 * (raySinSq u v + raySinSq v w) := by
+  have huv_nn : 0 ≤ raySinSq u v := raySinSq_nonneg hu hv
+  have hvw_nn : 0 ≤ raySinSq v w := raySinSq_nonneg hv hw
+  have huw_le : raySinSq u w ≤ 1 := raySinSq_le_one u w
+  rcases (raySinSq_le_one u v).eq_or_lt with huv1 | huv_lt
+  · linarith
+  · rcases (raySinSq_le_one v w).eq_or_lt with hvw1 | hvw_lt
+    · linarith
+    · let c₁ := projScalar v w
+      let v₁ := GVec.smul c₁ v
+      have hc₁ : c₁ ≠ 0 := projScalar_ne_zero_of_raySinSq_lt_one hv hw hvw_lt
+      have hv₁ : v₁.NonZero := nonZero_smul hc₁ hv
+      have hdist_v1_w : distSqVec v₁ w = normSqVec w * raySinSq v w :=
+        distSqVec_projScalar_smul hv w
+      have hnorm_v1 : normSqVec v₁ ≤ normSqVec w :=
+        normSqVec_projScalar_smul_le hv hw
+      have hsin_uv1 : raySinSq u v₁ = raySinSq u v :=
+        raySinSq_smul_right u v hc₁
+      have huv1_lt : raySinSq u v₁ < 1 := by
+        rw [hsin_uv1]
+        exact huv_lt
+      let c₂ := projScalar u v₁
+      let u₁ := GVec.smul c₂ u
+      have hc₂ : c₂ ≠ 0 := projScalar_ne_zero_of_raySinSq_lt_one hu hv₁ huv1_lt
+      have hu₁ : u₁.NonZero := nonZero_smul hc₂ hu
+      have hdist_u1_v1 : distSqVec u₁ v₁ = normSqVec v₁ * raySinSq u v := by
+        rw [distSqVec_projScalar_smul hu v₁, hsin_uv1]
+      have hdist_u1_v1_le : distSqVec u₁ v₁ ≤ normSqVec w * raySinSq u v := by
+        rw [hdist_u1_v1]
+        exact mul_le_mul_of_nonneg_right hnorm_v1 huv_nn
+      have htri := distSqVec_le_two_mul_add u₁ v₁ w
+      have hdist_u1_w : distSqVec u₁ w ≤
+          normSqVec w * (2 * (raySinSq u v + raySinSq v w)) := by
+        linarith
+      have hnw_pos : 0 < normSqVec w := normSqVec_pos_of_nonZero hw
+      have hdiv : distSqVec u₁ w / normSqVec w ≤ 2 * (raySinSq u v + raySinSq v w) := by
+        rw [div_le_iff₀ hnw_pos]
+        linarith
+      have hsin_u1_w : raySinSq u w = raySinSq u₁ w :=
+        (raySinSq_smul_left u w hc₂).symm
+      rw [hsin_u1_w]
+      exact le_trans (raySinSq_le_distSqVec_div hu₁ hw) hdiv
+
+/-- Collinear nonzero rays have identical projective ray distance to every reference vector `v₀`. -/
+theorem raySinSq_eq_of_raySinSq_eq_zero {u x : GVec} (v₀ : GVec)
+    (hu : u.NonZero) (hx : x.NonZero) (h0 : raySinSq u x = 0) :
+    raySinSq x v₀ = raySinSq u v₀ := by
+  have hlt1 : raySinSq u x < 1 := by linarith
+  have hc : projScalar u x ≠ 0 := projScalar_ne_zero_of_raySinSq_lt_one hu hx hlt1
+  have hx_eq : GVec.smul (projScalar u x) u = x := eq_of_raySinSq_eq_zero hu h0
+  rw [← hx_eq, raySinSq_smul_left u v₀ hc]
+
+/-- Inductive predicate stating that along the ray chain `v₀ :: steps`, every step ray `v_{i+1}` is
+nonzero and satisfies the projective angular step bound `raySinSq v_{i+1} v_i ≤ s`. -/
+def ChainAngularStepBounded (s : ℚ) : GVec → List GVec → Prop
+  | _, [] => True
+  | v₀, v₁ :: rest => v₁.NonZero ∧ raySinSq v₁ v₀ ≤ s ∧ ChainAngularStepBounded s v₁ rest
+
+theorem chainAngularStepBounded_getLastD_nonZero {s : ℚ} {v₀ : GVec} {steps : List GVec}
+    (hv₀ : v₀.NonZero) (hchain : ChainAngularStepBounded s v₀ steps) :
+    (steps.getLastD v₀).NonZero := by
+  induction steps generalizing v₀ with
+  | nil => exact hv₀
+  | cons v₁ rest ih =>
+    rcases hchain with ⟨hv₁, _, hrest⟩
+    simp only [List.getLastD_cons]
+    exact ih hv₁ hrest
+
+/-- **Multi-Step Chain Angular Displacement Bound (`chain_raySinSq_endpoint_le`)**:
+for any chain `v₀ :: steps` of length `k = steps.length` with `v₀.NonZero` and
+`ChainAngularStepBounded s v₀ steps` (`0 ≤ s`), the projective ray distance between the terminal
+ray `steps.getLastD v₀` and the initial ray `v₀` satisfies
+`raySinSq (steps.getLastD v₀) v₀ ≤ (2^(k + 1) - 2) * s ≤ 2^(k + 1) * s`. -/
+theorem chain_raySinSq_endpoint_le {s : ℚ} (hs : 0 ≤ s) {v₀ : GVec} (hv₀ : v₀.NonZero)
+    (steps : List GVec) (hchain : ChainAngularStepBounded s v₀ steps) :
+    raySinSq (steps.getLastD v₀) v₀ ≤ ((2 : ℚ) ^ (steps.length + 1) - 2) * s ∧
+    raySinSq (steps.getLastD v₀) v₀ ≤ (2 : ℚ) ^ (steps.length + 1) * s := by
+  have hmain : raySinSq (steps.getLastD v₀) v₀ ≤ ((2 : ℚ) ^ (steps.length + 1) - 2) * s := by
+    induction steps generalizing v₀ with
+    | nil =>
+      simp only [List.getLastD_nil, List.length_nil, zero_add, pow_one, sub_self, zero_mul]
+      rw [raySinSq_self hv₀]
+    | cons v₁ rest ih =>
+      rcases hchain with ⟨hv₁, hstep, hrest⟩
+      have hih := ih hv₁ hrest
+      have hlast_nz : (rest.getLastD v₁).NonZero :=
+        chainAngularStepBounded_getLastD_nonZero hv₁ hrest
+      simp only [List.getLastD_cons, List.length_cons]
+      have htri := raySinSq_le_two_mul_add hlast_nz hv₁ hv₀
+      have hpow : (2 : ℚ) ^ (rest.length + 1 + 1) = 2 * (2 : ℚ) ^ (rest.length + 1) := by
+        rw [pow_succ']
+      rw [hpow]
+      linarith
+  exact ⟨hmain, by linarith⟩
+
+/-- **Main Theorem 10A: No Uniform Step Bound `K₀` for `δ`-Collar Meridian Chains
+(`no_uniform_step_bound_for_delta_collar_meridian_chains`)**:
+for any fixed step bound `K₀ : ℕ` and any nonzero rays `v₀, x ∈ ℚ(i)³ \ {0}` with positive
+projective separation `Δ₀ := raySinSq x v₀ > 0`, for every `0 < δ < Δ₀ / (4 * 2^(K₀ + 1))` and
+every chain `steps` of length `steps.length ≤ K₀` satisfying `ChainAngularStepBounded (4 * δ) v₀ steps`,
+the terminal ray `v_k := steps.getLastD v₀` satisfies:
+1. `v_k.NonZero`,
+2. `raySinSq v_k v₀ < raySinSq x v₀`, and
+3. `0 < raySinSq v_k x` (so `v_k` cannot reach the ray of `x`). -/
+theorem no_uniform_step_bound_for_delta_collar_meridian_chains
+    (K₀ : ℕ) {v₀ x : GVec} (hv₀ : v₀.NonZero) (hx : x.NonZero)
+    (_hpos : 0 < raySinSq x v₀)
+    {δ : ℚ} (hδ_pos : 0 < δ)
+    (hδ_small : δ < raySinSq x v₀ / (4 * (2 : ℚ) ^ (K₀ + 1)))
+    (steps : List GVec) (hlen : steps.length ≤ K₀)
+    (hchain : ChainAngularStepBounded (4 * δ) v₀ steps) :
+    (steps.getLastD v₀).NonZero ∧
+    raySinSq (steps.getLastD v₀) v₀ < raySinSq x v₀ ∧
+    0 < raySinSq (steps.getLastD v₀) x := by
+  have hs_nn : 0 ≤ 4 * δ := by linarith
+  have hvk_nz : (steps.getLastD v₀).NonZero :=
+    chainAngularStepBounded_getLastD_nonZero hv₀ hchain
+  have hend := (chain_raySinSq_endpoint_le hs_nn hv₀ steps hchain).2
+  have hpow_le : (2 : ℚ) ^ (steps.length + 1) ≤ (2 : ℚ) ^ (K₀ + 1) :=
+    pow_le_pow_right₀ (by norm_num : (1 : ℚ) ≤ 2) (Nat.add_le_add_right hlen 1)
+  have hpow_pos : (0 : ℚ) < 4 * (2 : ℚ) ^ (K₀ + 1) :=
+    mul_pos (by norm_num) (pow_pos two_pos (K₀ + 1))
+  have hmul_lt : δ * (4 * (2 : ℚ) ^ (K₀ + 1)) < raySinSq x v₀ :=
+    (lt_div_iff₀ hpow_pos).mp hδ_small
+  have hstep_le : (2 : ℚ) ^ (steps.length + 1) * (4 * δ) ≤
+      (2 : ℚ) ^ (K₀ + 1) * (4 * δ) :=
+    mul_le_mul_of_nonneg_right hpow_le hs_nn
+  have hvk_lt : raySinSq (steps.getLastD v₀) v₀ < raySinSq x v₀ := by
+    linarith
+  have hvk_x_pos : 0 < raySinSq (steps.getLastD v₀) x := by
+    rcases (raySinSq_nonneg hvk_nz hx).eq_or_lt with h0 | hgt
+    · exfalso
+      have heq := raySinSq_eq_of_raySinSq_eq_zero v₀ hvk_nz hx h0.symm
+      linarith
+    · exact hgt
+  exact ⟨hvk_nz, hvk_lt, hvk_x_pos⟩
+
+/-- Every anchor `a ∈ nineAnchorsList` lies at projective distance `1 / 3 ≤ raySinSq witness_111 a`
+from `witness_111 = (1, 1, 1)`. -/
+theorem witness111_raySinSq_nineAnchors_ge_one_third :
+    ∀ a ∈ nineAnchorsList, 1 / 3 ≤ raySinSq witness_111 a := by
+  intro a ha
+  simp only [nineAnchorsList, List.mem_cons, List.not_mem_nil, or_false] at ha
+  rcases ha with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+    norm_num [witness_111, tomo_e1, tomo_e2, tomo_e3, tomo_e12, tomo_e13, tomo_e23,
+      tomo_e12i, tomo_e13i, tomo_e23i, gv, GaussRat.I, raySinSq, normSqVec,
+      GVec.inner, GaussRat.normSq]
+
+/-- Every ray `a ∈ fifteenAnchorBisectorList` lies at projective distance
+`1 / 3 ≤ raySinSq witness_111 a` from `witness_111 = (1, 1, 1)`. -/
+theorem witness111_raySinSq_fifteenAnchorBisector_ge_one_third :
+    ∀ a ∈ fifteenAnchorBisectorList, 1 / 3 ≤ raySinSq witness_111 a := by
+  intro a ha
+  simp only [fifteenAnchorBisectorList, List.mem_append] at ha
+  rcases ha with h9 | h6
+  · exact witness111_raySinSq_nineAnchors_ge_one_third a h9
+  · simp only [sixBisectorPartnersList, List.mem_cons, List.not_mem_nil, or_false] at h6
+    rcases h6 with rfl | rfl | rfl | rfl | rfl | rfl <;>
+      norm_num [witness_111, bisector_12_neg, bisector_12i_neg, bisector_13_neg,
+        bisector_13i_neg, bisector_23_neg, bisector_23i_neg, gv, GaussRat.I,
+        raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
+
+/-- Every ray `a ∈ fifteenAnchorBisectorList` lies at projective distance
+`3 / 28 ≤ raySinSq witness_123 a` (and in particular `1 / 14 ≤ raySinSq witness_123 a`) from
+`witness_123 = (1, 2, 3)`. -/
+theorem witness123_raySinSq_fifteenAnchorBisector_ge :
+    ∀ a ∈ fifteenAnchorBisectorList,
+      3 / 28 ≤ raySinSq witness_123 a ∧ 1 / 14 ≤ raySinSq witness_123 a := by
+  intro a ha
+  have h3_28 : 3 / 28 ≤ raySinSq witness_123 a := by
+    simp only [fifteenAnchorBisectorList, List.mem_append, nineAnchorsList,
+      sixBisectorPartnersList, List.mem_cons, List.not_mem_nil, or_false] at ha
+    rcases ha with (rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl) |
+        (rfl | rfl | rfl | rfl | rfl | rfl) <;>
+      norm_num [witness_123, tomo_e1, tomo_e2, tomo_e3, tomo_e12, tomo_e13, tomo_e23,
+        tomo_e12i, tomo_e13i, tomo_e23i, bisector_12_neg, bisector_12i_neg,
+        bisector_13_neg, bisector_13i_neg, bisector_23_neg, bisector_23i_neg,
+        gv, GaussRat.I, raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
+  exact ⟨h3_28, by linarith⟩
+
+/-- **Explicit `witness_111` No-Go for Uniform-Length Meridian Chains from `nineAnchorsList`
+(`witness111_no_uniform_step_meridian_chain_from_nineAnchors`)**:
+for any fixed step bound `K₀ : ℕ`, any anchor `a ∈ nineAnchorsList`, any collar radius
+`0 < δ < (1 / 3) / (4 * 2^(K₀ + 1))`, and any chain `steps` of length `steps.length ≤ K₀`
+satisfying `ChainAngularStepBounded (4 * δ) a steps`, the terminal ray `steps.getLastD a` cannot
+reach `witness_111 = (1, 1, 1)`: `raySinSq (steps.getLastD a) a < raySinSq witness_111 a` and
+`0 < raySinSq (steps.getLastD a) witness_111`. -/
+theorem witness111_no_uniform_step_meridian_chain_from_nineAnchors
+    (K₀ : ℕ) {a : GVec} (ha : a ∈ nineAnchorsList)
+    {δ : ℚ} (hδ_pos : 0 < δ)
+    (hδ_small : δ < (1 / 3 : ℚ) / (4 * (2 : ℚ) ^ (K₀ + 1)))
+    (steps : List GVec) (hlen : steps.length ≤ K₀)
+    (hchain : ChainAngularStepBounded (4 * δ) a steps) :
+    (steps.getLastD a).NonZero ∧
+    raySinSq (steps.getLastD a) a < raySinSq witness_111 a ∧
+    0 < raySinSq (steps.getLastD a) witness_111 := by
+  have ha_nz : a.NonZero := nineAnchorsList_nonZero a ha
+  have hge : 1 / 3 ≤ raySinSq witness_111 a :=
+    witness111_raySinSq_nineAnchors_ge_one_third a ha
+  have hpos : 0 < raySinSq witness_111 a := by linarith
+  have hpow_pos : (0 : ℚ) < 4 * (2 : ℚ) ^ (K₀ + 1) :=
+    mul_pos (by norm_num) (pow_pos two_pos (K₀ + 1))
+  have hdiv_le : (1 / 3 : ℚ) / (4 * (2 : ℚ) ^ (K₀ + 1)) ≤
+      raySinSq witness_111 a / (4 * (2 : ℚ) ^ (K₀ + 1)) :=
+    div_le_div_of_nonneg_right hge hpow_pos.le
+  exact no_uniform_step_bound_for_delta_collar_meridian_chains
+    K₀ ha_nz witness_111_nonZero hpos hδ_pos (lt_of_lt_of_le hδ_small hdiv_le) steps hlen hchain
+
+/-- **Explicit `witness_123` No-Go for Uniform-Length Meridian Chains from `fifteenAnchorBisectorList`
+(`witness123_no_uniform_step_meridian_chain_from_fifteenAnchorBisector`)**:
+for any fixed step bound `K₀ : ℕ`, any anchor/bisector ray `a ∈ fifteenAnchorBisectorList`, any
+collar radius `0 < δ < (1 / 14) / (4 * 2^(K₀ + 1))`, and any chain `steps` of length
+`steps.length ≤ K₀` satisfying `ChainAngularStepBounded (4 * δ) a steps`, the terminal ray
+`steps.getLastD a` cannot reach `witness_123 = (1, 2, 3)`:
+`raySinSq (steps.getLastD a) a < raySinSq witness_123 a` and
+`0 < raySinSq (steps.getLastD a) witness_123`. -/
+theorem witness123_no_uniform_step_meridian_chain_from_fifteenAnchorBisector
+    (K₀ : ℕ) {a : GVec} (ha : a ∈ fifteenAnchorBisectorList)
+    {δ : ℚ} (hδ_pos : 0 < δ)
+    (hδ_small : δ < (1 / 14 : ℚ) / (4 * (2 : ℚ) ^ (K₀ + 1)))
+    (steps : List GVec) (hlen : steps.length ≤ K₀)
+    (hchain : ChainAngularStepBounded (4 * δ) a steps) :
+    (steps.getLastD a).NonZero ∧
+    raySinSq (steps.getLastD a) a < raySinSq witness_123 a ∧
+    0 < raySinSq (steps.getLastD a) witness_123 := by
+  have ha_nz : a.NonZero := fifteenAnchorBisectorList_nonZero a ha
+  have hge : 1 / 14 ≤ raySinSq witness_123 a :=
+    (witness123_raySinSq_fifteenAnchorBisector_ge a ha).2
+  have hpos : 0 < raySinSq witness_123 a := by linarith
+  have hpow_pos : (0 : ℚ) < 4 * (2 : ℚ) ^ (K₀ + 1) :=
+    mul_pos (by norm_num) (pow_pos two_pos (K₀ + 1))
+  have hdiv_le : (1 / 14 : ℚ) / (4 * (2 : ℚ) ^ (K₀ + 1)) ≤
+      raySinSq witness_123 a / (4 * (2 : ℚ) ^ (K₀ + 1)) :=
+    div_le_div_of_nonneg_right hge hpow_pos.le
+  exact no_uniform_step_bound_for_delta_collar_meridian_chains
+    K₀ ha_nz witness_123_nonZero hpos hδ_pos (lt_of_lt_of_le hδ_small hdiv_le) steps hlen hchain
+
+/-! ### Subsection 10B: Sublinear Chain-Drift Sufficiency vs. `1/k` Step-Error Counterexample (`TFQ-1057` Test 2) -/
+
+/-- **Sublinear Chain-Drift Condition (`HasSublinearChainDriftFrom`)**:
+`g : GVec → ℚ` has sublinear chain drift from `v₀` to `x` if for every tolerance `η > 0`, there
+exist a step bound `ε > 0` and a finite ray chain `steps : List GVec` terminating at
+`steps.getLastD v₀ = x` with `|g v₀| = 0`, `ChainStepBounded g ε v₀ steps`, and total accumulated
+drift `(steps.length : ℚ) * ε < η`. -/
+def HasSublinearChainDriftFrom (g : GVec → ℚ) (v₀ x : GVec) : Prop :=
+  ∀ η : ℚ, 0 < η → ∃ (ε : ℚ) (steps : List GVec),
+    0 < ε ∧
+    steps.getLastD v₀ = x ∧
+    |g v₀| = 0 ∧
+    ChainStepBounded g ε v₀ steps ∧
+    (steps.length : ℚ) * ε < η
+
+/-- **Sublinear Chain-Drift Vanishing Sufficiency (`zero_of_hasSublinearChainDriftFrom`)**:
+if `HasSublinearChainDriftFrom g v₀ x` holds, then `g x = 0`. -/
+theorem zero_of_hasSublinearChainDriftFrom {g : GVec → ℚ} {v₀ x : GVec}
+    (hsub : HasSublinearChainDriftFrom g v₀ x) :
+    g x = 0 := by
+  by_contra hne
+  have hη : 0 < |g x| := abs_pos.mpr hne
+  obtain ⟨ε, steps, _hε, hlast, hv₀_abs, hchain, hprod⟩ := hsub |g x| hη
+  have hv₀ : g v₀ = 0 := abs_eq_zero.mp hv₀_abs
+  have hamp := meridian_chain_linear_amplification_bound g ε v₀ steps hchain
+  rw [hlast, hv₀, sub_zero] at hamp
+  linarith
+
+/-- **Global Vanishing from Anchor-Origin Sublinear Chain Drift
+(`zero_of_hasSublinearChainDriftFromAnchors`)**:
+if for every nonzero ray `x ∈ ℚ(i)³ \ {0}` there exists an anchor `a ∈ anchors` such that
+`HasSublinearChainDriftFrom g a x` holds, then `g x = 0` for all nonzero `x ∈ ℚ(i)³`. -/
+theorem zero_of_hasSublinearChainDriftFromAnchors {g : GVec → ℚ} (anchors : List GVec)
+    (hall : ∀ x : GVec, x.NonZero → ∃ a ∈ anchors, HasSublinearChainDriftFrom g a x) :
+    ∀ x : GVec, x.NonZero → g x = 0 := by
+  intro x hx
+  obtain ⟨a, _ha, hsub⟩ := hall x hx
+  exact zero_of_hasSublinearChainDriftFrom hsub
+
+/-- **Sharp `1 / k` Step-Error Counterexample (`linearDriftChain_constant_gap_of_inv_k_step`)**:
+for any target discrepancy `Δ > 0` and any chain length `k ≥ 1`, the explicit profile
+`linearDriftChain (Δ / k)` has per-step variation `ε_k = Δ / k > 0` (which tends to `0` as
+`k → ∞`), yet its endpoint discrepancy at step `k` is identically
+`linearDriftChain (Δ / k) k - linearDriftChain (Δ / k) 0 = Δ > 0`.
+This proves that qualitative step-error decay `ε_k → 0` without quantitative sublinear control
+`k * ε_k → 0` cannot force vanishing of the terminal discrepancy. -/
+theorem linearDriftChain_constant_gap_of_inv_k_step {Δ : ℚ} (hΔ : 0 < Δ)
+    {k : ℕ} (hk : 1 ≤ k) :
+    let ε_k := Δ / (k : ℚ)
+    0 < ε_k ∧
+    (∀ j : ℕ, |linearDriftChain ε_k (j + 1) - linearDriftChain ε_k j| ≤ ε_k) ∧
+    linearDriftChain ε_k k - linearDriftChain ε_k 0 = Δ ∧
+    |linearDriftChain ε_k k - linearDriftChain ε_k 0| = Δ := by
+  dsimp only
+  have hk_pos : (0 : ℚ) < (k : ℚ) := Nat.cast_pos.mpr (by omega)
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_pos
+  have hε_pos : 0 < Δ / (k : ℚ) := div_pos hΔ hk_pos
+  have hatt := linearDriftChain_attains_bound hε_pos.le k
+  have hdiff : linearDriftChain (Δ / (k : ℚ)) k - linearDriftChain (Δ / (k : ℚ)) 0 = Δ := by
+    unfold linearDriftChain
+    simp only [Nat.cast_zero, zero_mul, sub_zero]
+    exact mul_div_cancel₀ Δ hk_ne
+  refine ⟨hε_pos, hatt.1, hdiff, ?_⟩
+  rw [hdiff, abs_of_pos hΔ]
+
+/-- **Sublinear vs. `1 / k` Chain-Drift Dichotomy (`sublinear_vs_inv_k_chain_drift_dichotomy`)**:
+packages the exact dichotomy of Test 2 (`TFQ-1057`):
+1. Quantitative sublinear control `HasSublinearChainDriftFrom g v₀ x` (`k * ε < η` for all `η > 0`)
+   forces `g x = 0`;
+2. Conversely, at every chain length `k ≥ 1` and every positive target gap `Δ > 0`, per-step error
+   `ε_k = Δ / k` satisfies the step bound `≤ Δ / k` while preserving the constant terminal gap `Δ`. -/
+theorem sublinear_vs_inv_k_chain_drift_dichotomy :
+    (∀ (g : GVec → ℚ) (v₀ x : GVec), HasSublinearChainDriftFrom g v₀ x → g x = 0) ∧
+    (∀ (Δ : ℚ), 0 < Δ → ∀ (k : ℕ), 1 ≤ k →
+      (∀ j : ℕ, |linearDriftChain (Δ / (k : ℚ)) (j + 1) - linearDriftChain (Δ / (k : ℚ)) j| ≤
+        Δ / (k : ℚ)) ∧
+      linearDriftChain (Δ / (k : ℚ)) k - linearDriftChain (Δ / (k : ℚ)) 0 = Δ) :=
+  ⟨fun _ _ _ hsub => zero_of_hasSublinearChainDriftFrom hsub,
+   fun _ hΔ _ hk =>
+     ⟨(linearDriftChain_constant_gap_of_inv_k_step hΔ hk).2.1,
+      (linearDriftChain_constant_gap_of_inv_k_step hΔ hk).2.2.1⟩⟩
+
 end BornFinite.GaussianFiniteModel
 
 #print axioms BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario
@@ -5358,3 +5883,25 @@ end BornFinite.GaussianFiniteModel
 #print axioms BornFinite.GaussianFiniteModel.radialScaleFactor_pos
 #print axioms BornFinite.GaussianFiniteModel.radialScale_meridian_step_raySinSq_lt
 #print axioms BornFinite.GaussianFiniteModel.meridian_chain_linear_amplification_bound
+#print axioms BornFinite.GaussianFiniteModel.anchorMeridianStep_sub_raySinSq_eq_four_mul
+#print axioms BornFinite.GaussianFiniteModel.anchorMeridianOrtho_raySinSq_le_four_mul
+#print axioms BornFinite.GaussianFiniteModel.anchorMeridianOrtho_raySinSq_lt_four_mul
+#print axioms BornFinite.GaussianFiniteModel.radialScale_meridianOrtho_raySinSq_lt_four_mul
+#print axioms BornFinite.GaussianFiniteModel.two_mul_distSqVec_add_sub_distSqVec
+#print axioms BornFinite.GaussianFiniteModel.distSqVec_le_two_mul_add
+#print axioms BornFinite.GaussianFiniteModel.normSqVec_projScalar_smul
+#print axioms BornFinite.GaussianFiniteModel.normSqVec_projScalar_smul_le
+#print axioms BornFinite.GaussianFiniteModel.raySinSq_le_two_mul_add
+#print axioms BornFinite.GaussianFiniteModel.raySinSq_eq_of_raySinSq_eq_zero
+#print axioms BornFinite.GaussianFiniteModel.chainAngularStepBounded_getLastD_nonZero
+#print axioms BornFinite.GaussianFiniteModel.chain_raySinSq_endpoint_le
+#print axioms BornFinite.GaussianFiniteModel.no_uniform_step_bound_for_delta_collar_meridian_chains
+#print axioms BornFinite.GaussianFiniteModel.witness111_raySinSq_nineAnchors_ge_one_third
+#print axioms BornFinite.GaussianFiniteModel.witness111_raySinSq_fifteenAnchorBisector_ge_one_third
+#print axioms BornFinite.GaussianFiniteModel.witness123_raySinSq_fifteenAnchorBisector_ge
+#print axioms BornFinite.GaussianFiniteModel.witness111_no_uniform_step_meridian_chain_from_nineAnchors
+#print axioms BornFinite.GaussianFiniteModel.witness123_no_uniform_step_meridian_chain_from_fifteenAnchorBisector
+#print axioms BornFinite.GaussianFiniteModel.zero_of_hasSublinearChainDriftFrom
+#print axioms BornFinite.GaussianFiniteModel.zero_of_hasSublinearChainDriftFromAnchors
+#print axioms BornFinite.GaussianFiniteModel.linearDriftChain_constant_gap_of_inv_k_step
+#print axioms BornFinite.GaussianFiniteModel.sublinear_vs_inv_k_chain_drift_dichotomy

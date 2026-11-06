@@ -48,6 +48,11 @@ quantum structures and the Gleason-Born chain (`BornGaussianFiniteModel`,
    3D subspaces (`no_zero_one_continuum_subspace3D`) and all finite dimensions `d ≥ 3`
    (`no_zero_one_continuum_frameFunctionD`), and the unified continuum `TFQ-0307` operational Born
    synthesis (`continuum_tfq0307_operational_born_synthesis`).
+10. **Stage 10 (`FiveNodeGleasonAndBornSpineSynthesis`)**: Synthesis of `TFQ-1057` Section 10
+    (`k(δ) → ∞` step-count scaling no-go for `δ`-collar meridian-Kelvin chains and the sublinear vs.
+    `1/k` chain-drift dichotomy), `TFQ-1059` Part F (`S²` and `S⁵` unit-sphere `sInf`/`sSup` trace
+    bounds, compactness extrema attainment, and nonnegative mixed-state spectral ordering), and the
+    `d ≥ 3` continuum `TFQ-0307` operational Born synthesis (`five_node_gleason_and_born_spine_synthesis`).
 
 All theorems are proved without `sorry` or extra axioms beyond Lean's standard kernel axioms
 (`propext`, `Classical.choice`, `Quot.sound`).
@@ -645,6 +650,175 @@ theorem continuum_tfq0307_operational_born_synthesis {d : ℕ} (hd : 3 ≤ d) :
    fun _ _ _ _ hF hc htri =>
      gleason_subspace3D_of_continuousD hF hc htri⟩
 
+/-! ### Stage 10: Five-Node Gleason & Born Spine Synthesis (`TFQ-1055`..`TFQ-1060` & `TFQ-0307`) -/
+
+/-- **`TFQ-1057` Collar-Chain Step Scaling and Sublinear Drift Synthesis
+(`tfq1057_collar_chain_and_drift_synthesis`)**:
+unites the Section 10 results of `BornGaussianFiniteModel`:
+1. The general `k(δ) → ∞` no-go theorem for uniform-length `δ`-collar meridian-Kelvin chains
+   (`no_uniform_step_bound_for_delta_collar_meridian_chains`),
+2. The explicit `witness_111 = (1, 1, 1)` step-bound obstruction from `nineAnchorsList`
+   (`witness111_no_uniform_step_meridian_chain_from_nineAnchors`),
+3. The explicit `witness_123 = (1, 2, 3)` step-bound obstruction from `fifteenAnchorBisectorList`
+   (`witness123_no_uniform_step_meridian_chain_from_fifteenAnchorBisector`), and
+4. The sublinear (`k * ε < η`) vs. `1 / k` (`ε_k = Δ / k`) chain-drift dichotomy
+   (`sublinear_vs_inv_k_chain_drift_dichotomy`). -/
+theorem tfq1057_collar_chain_and_drift_synthesis :
+    (∀ (K₀ : ℕ) (v₀ x : GVec),
+      v₀.NonZero → x.NonZero → 0 < raySinSq x v₀ →
+      ∀ (δ : ℚ), 0 < δ → δ < raySinSq x v₀ / (4 * (2 : ℚ) ^ (K₀ + 1)) →
+      ∀ (steps : List GVec), steps.length ≤ K₀ →
+      ChainAngularStepBounded (4 * δ) v₀ steps →
+      (steps.getLastD v₀).NonZero ∧
+        raySinSq (steps.getLastD v₀) v₀ < raySinSq x v₀ ∧
+        0 < raySinSq (steps.getLastD v₀) x) ∧
+    (∀ (K₀ : ℕ) (a : GVec), a ∈ nineAnchorsList →
+      ∀ (δ : ℚ), 0 < δ → δ < (1 / 3 : ℚ) / (4 * (2 : ℚ) ^ (K₀ + 1)) →
+      ∀ (steps : List GVec), steps.length ≤ K₀ →
+      ChainAngularStepBounded (4 * δ) a steps →
+      (steps.getLastD a).NonZero ∧
+        raySinSq (steps.getLastD a) a < raySinSq witness_111 a ∧
+        0 < raySinSq (steps.getLastD a) witness_111) ∧
+    (∀ (K₀ : ℕ) (a : GVec), a ∈ fifteenAnchorBisectorList →
+      ∀ (δ : ℚ), 0 < δ → δ < (1 / 14 : ℚ) / (4 * (2 : ℚ) ^ (K₀ + 1)) →
+      ∀ (steps : List GVec), steps.length ≤ K₀ →
+      ChainAngularStepBounded (4 * δ) a steps →
+      (steps.getLastD a).NonZero ∧
+        raySinSq (steps.getLastD a) a < raySinSq witness_123 a ∧
+        0 < raySinSq (steps.getLastD a) witness_123) ∧
+    ((∀ (g : GVec → ℚ) (v₀ x : GVec), HasSublinearChainDriftFrom g v₀ x → g x = 0) ∧
+     (∀ (Δ : ℚ), 0 < Δ → ∀ (k : ℕ), 1 ≤ k →
+       (∀ j : ℕ, |linearDriftChain (Δ / (k : ℚ)) (j + 1) - linearDriftChain (Δ / (k : ℚ)) j| ≤
+         Δ / (k : ℚ)) ∧
+       linearDriftChain (Δ / (k : ℚ)) k - linearDriftChain (Δ / (k : ℚ)) 0 = Δ)) :=
+  ⟨fun K₀ _ _ hv₀ hx hpos _ hδ_pos hδ_small steps hlen hchain =>
+     no_uniform_step_bound_for_delta_collar_meridian_chains
+       K₀ hv₀ hx hpos hδ_pos hδ_small steps hlen hchain,
+   fun K₀ _ ha _ hδ_pos hδ_small steps hlen hchain =>
+     witness111_no_uniform_step_meridian_chain_from_nineAnchors
+       K₀ ha hδ_pos hδ_small steps hlen hchain,
+   fun K₀ _ ha _ hδ_pos hδ_small steps hlen hchain =>
+     witness123_no_uniform_step_meridian_chain_from_fifteenAnchorBisector
+       K₀ ha hδ_pos hδ_small steps hlen hchain,
+   sublinear_vs_inv_k_chain_drift_dichotomy⟩
+
+/-- **`TFQ-1059` Real `S²` and Complex `S⁵` Spectral and Compactness Synthesis
+(`tfq1059_real_and_complex_sphere_spectral_synthesis`)**:
+unites the Part F results of `GleasonContinuumDevelopment`:
+1. Continuity-free `sInf`/`sSup` trace-sandwich bounds on `S² ⊂ ℝ³`
+   (`GleasonReal.sSup_sphere3_bounds_of_nonneg`),
+2. Complete nonnegative mixed-state Gleason spectral representation on `ℝ³ \ {0}` from continuity on
+   `S²` with ordered nonnegative eigenvalues `0 ≤ lam₃ ≤ lam₂ ≤ lam₁ ≤ W`
+   (`GleasonReal.nonneg_gleason_real_of_continuousOn_sphere3`),
+3. Continuity-free `sInf`/`sSup` trace-sandwich bounds on `S⁵ ⊂ ℂ³`
+   (`GleasonComplex.sSup_sphereC_bounds_of_nonnegC`),
+4. Compactness extremum attainment `AttainsExtremaC` on `S⁵ ⊂ ℂ³`
+   (`GleasonComplex.attainsExtremaC_of_continuousOn_sphereC`), and
+5. Complex spectral positivity and eigenvalue ordering `0 ≤ F r ≤ W - F p - F r ≤ F p ≤ W`
+   (`GleasonComplex.complex_eigenvalues_nonneg_and_ordered`). -/
+theorem tfq1059_real_and_complex_sphere_spectral_synthesis :
+    (∀ (f : (Fin 3 → ℝ) → ℝ) (W : ℝ),
+      GleasonReal.IsNonnegFrameFunction f W →
+      0 ≤ sInf (f '' GleasonReal.sphere3) ∧
+      sInf (f '' GleasonReal.sphere3) ≤ W / 3 ∧
+      W / 3 ≤ sSup (f '' GleasonReal.sphere3) ∧
+      sSup (f '' GleasonReal.sphere3) ≤ W) ∧
+    (∀ (f : (Fin 3 → ℝ) → ℝ) (W : ℝ),
+      GleasonReal.IsNonnegFrameFunction f W →
+      ContinuousOn f GleasonReal.sphere3 →
+      ∃ p q r : Fin 3 → ℝ, GleasonReal.IsOrthonormal p q r ∧
+        ∃ lam₁ lam₂ lam₃ : ℝ,
+          lam₁ = f p ∧ lam₂ = f q ∧ lam₃ = f r ∧
+          0 ≤ lam₃ ∧ lam₃ ≤ lam₂ ∧ lam₂ ≤ lam₁ ∧ lam₁ ≤ W ∧
+          lam₁ + lam₂ + lam₃ = W ∧
+          ∀ w : Fin 3 → ℝ, w ≠ 0 →
+            f w = (lam₁ * GleasonReal.dot3 w p ^ 2 +
+                   lam₂ * GleasonReal.dot3 w q ^ 2 +
+                   lam₃ * GleasonReal.dot3 w r ^ 2) / GleasonReal.dot3 w w) ∧
+    (∀ (F : (Fin 3 → ℂ) → ℝ) (W : ℝ),
+      GleasonComplex.IsNonnegFrameFunctionC F W →
+      0 ≤ sInf (F '' GleasonComplex.sphereC) ∧
+      sInf (F '' GleasonComplex.sphereC) ≤ W / 3 ∧
+      W / 3 ≤ sSup (F '' GleasonComplex.sphereC) ∧
+      sSup (F '' GleasonComplex.sphereC) ≤ W) ∧
+    (∀ (F : (Fin 3 → ℂ) → ℝ) (W : ℝ),
+      GleasonComplex.IsFrameFunctionC F W →
+      ContinuousOn F GleasonComplex.sphereC →
+      GleasonComplex.AttainsExtremaC F) ∧
+    (∀ (F : (Fin 3 → ℂ) → ℝ) (W : ℝ) (p q r : Fin 3 → ℂ),
+      GleasonComplex.IsNonnegFrameFunctionC F W →
+      GleasonComplex.IsOrthonormalC p q r →
+      (∀ v : Fin 3 → ℂ, v ≠ 0 → F v ≤ F p) →
+      (∀ v : Fin 3 → ℂ, v ≠ 0 → F r ≤ F v) →
+      F q = W - F p - F r ∧
+      0 ≤ F r ∧
+      F r ≤ W - F p - F r ∧
+      W - F p - F r ≤ F p ∧
+      F p ≤ W) :=
+  ⟨fun _ _ hf => GleasonReal.sSup_sphere3_bounds_of_nonneg hf,
+   fun _ _ hf hc => GleasonReal.nonneg_gleason_real_of_continuousOn_sphere3 hf hc,
+   fun _ _ hF => GleasonComplex.sSup_sphereC_bounds_of_nonnegC hF,
+   fun _ _ hF hc => GleasonComplex.attainsExtremaC_of_continuousOn_sphereC hF hc,
+   fun _ _ _ _ _ hF hfr hmax hmin =>
+     GleasonComplex.complex_eigenvalues_nonneg_and_ordered hF hfr hmax hmin⟩
+
+/-- **Master Five-Node Gleason & Born Spine Synthesis (`five_node_gleason_and_born_spine_synthesis`)**:
+combines for every finite Hilbert-space dimension `d ≥ 3`:
+1. The `TFQ-1057` `δ`-collar meridian-Kelvin step-count scaling no-go (`k(δ) → ∞`) and sublinear vs.
+   `1 / k` chain-drift dichotomy (`tfq1057_collar_chain_and_drift_synthesis`),
+2. The `TFQ-1059` real `S²` and complex `S⁵` unit-sphere `sInf`/`sSup` bounds, compactness extrema
+   attainment, and nonnegative mixed-state spectral ordering
+   (`tfq1059_real_and_complex_sphere_spectral_synthesis`), and
+3. The `d ≥ 3` continuum Kochen–Specker refutation, exact `EffectValuation` density-matrix bijection,
+   continuity-free pure-state Born rule, and continuous 3D-subspace Gleason representation
+   (`continuum_tfq0307_operational_born_synthesis`). -/
+theorem five_node_gleason_and_born_spine_synthesis {d : ℕ} (hd : 3 ≤ d) :
+    ((∀ (K₀ : ℕ) (a : GVec), a ∈ nineAnchorsList →
+      ∀ (δ : ℚ), 0 < δ → δ < (1 / 3 : ℚ) / (4 * (2 : ℚ) ^ (K₀ + 1)) →
+      ∀ (steps : List GVec), steps.length ≤ K₀ →
+      ChainAngularStepBounded (4 * δ) a steps →
+      (steps.getLastD a).NonZero ∧
+        raySinSq (steps.getLastD a) a < raySinSq witness_111 a ∧
+        0 < raySinSq (steps.getLastD a) witness_111) ∧
+     ((∀ (g : GVec → ℚ) (v₀ x : GVec), HasSublinearChainDriftFrom g v₀ x → g x = 0) ∧
+      (∀ (Δ : ℚ), 0 < Δ → ∀ (k : ℕ), 1 ≤ k →
+        (∀ j : ℕ, |linearDriftChain (Δ / (k : ℚ)) (j + 1) - linearDriftChain (Δ / (k : ℚ)) j| ≤
+          Δ / (k : ℚ)) ∧
+        linearDriftChain (Δ / (k : ℚ)) k - linearDriftChain (Δ / (k : ℚ)) 0 = Δ))) ∧
+    ((∀ (f : (Fin 3 → ℝ) → ℝ) (W : ℝ),
+      GleasonReal.IsNonnegFrameFunction f W →
+      ContinuousOn f GleasonReal.sphere3 →
+      ∃ p q r : Fin 3 → ℝ, GleasonReal.IsOrthonormal p q r ∧
+        ∃ lam₁ lam₂ lam₃ : ℝ,
+          lam₁ = f p ∧ lam₂ = f q ∧ lam₃ = f r ∧
+          0 ≤ lam₃ ∧ lam₃ ≤ lam₂ ∧ lam₂ ≤ lam₁ ∧ lam₁ ≤ W ∧
+          lam₁ + lam₂ + lam₃ = W ∧
+          ∀ w : Fin 3 → ℝ, w ≠ 0 →
+            f w = (lam₁ * GleasonReal.dot3 w p ^ 2 +
+                   lam₂ * GleasonReal.dot3 w q ^ 2 +
+                   lam₃ * GleasonReal.dot3 w r ^ 2) / GleasonReal.dot3 w w) ∧
+     (∀ (F : (Fin 3 → ℂ) → ℝ) (W : ℝ),
+      GleasonComplex.IsNonnegFrameFunctionC F W →
+      0 ≤ sInf (F '' GleasonComplex.sphereC) ∧
+      sInf (F '' GleasonComplex.sphereC) ≤ W / 3 ∧
+      W / 3 ≤ sSup (F '' GleasonComplex.sphereC) ∧
+      sSup (F '' GleasonComplex.sphereC) ≤ W)) ∧
+    ((¬ ∃ F : (Fin d → ℂ) → ℝ,
+      IsFrameFunctionD F 1 ∧ ∀ v : Fin d → ℂ, v ≠ 0 → F v = 0 ∨ F v = 1) ∧
+     (∀ W : EffectValuation (HermitianCarrier.space d),
+        (HermitianCarrier.density W)ᴴ = HermitianCarrier.density W ∧
+          HermitianCarrier.PsdH (HermitianCarrier.density W) ∧
+            (HermitianCarrier.density W).trace = 1 ∧
+              ∀ E : Matrix (Fin d) (Fin d) GaussRat,
+                (HermitianCarrier.space d).Effect E →
+                  W.v E = (HermitianCarrier.density W * E).trace.re)) :=
+  ⟨⟨tfq1057_collar_chain_and_drift_synthesis.2.1,
+    tfq1057_collar_chain_and_drift_synthesis.2.2.2⟩,
+   ⟨tfq1059_real_and_complex_sphere_spectral_synthesis.2.1,
+    tfq1059_real_and_complex_sphere_spectral_synthesis.2.2.1⟩,
+   ⟨(continuum_tfq0307_operational_born_synthesis hd).1,
+    (continuum_tfq0307_operational_born_synthesis hd).2.1.1⟩⟩
+
 end BornFinite.ContinuumDerivationSpine
 
 #print axioms BornFinite.ContinuumDerivationSpine.iota_ne_zero_of_nonZero
@@ -653,4 +827,7 @@ end BornFinite.ContinuumDerivationSpine
 #print axioms BornFinite.ContinuumDerivationSpine.no_zero_one_continuum_subspace3D
 #print axioms BornFinite.ContinuumDerivationSpine.no_zero_one_continuum_frameFunctionD
 #print axioms BornFinite.ContinuumDerivationSpine.continuum_tfq0307_operational_born_synthesis
+#print axioms BornFinite.ContinuumDerivationSpine.tfq1057_collar_chain_and_drift_synthesis
+#print axioms BornFinite.ContinuumDerivationSpine.tfq1059_real_and_complex_sphere_spectral_synthesis
+#print axioms BornFinite.ContinuumDerivationSpine.five_node_gleason_and_born_spine_synthesis
 

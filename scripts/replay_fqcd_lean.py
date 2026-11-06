@@ -29,8 +29,8 @@ PIN_PATHS = (SOURCE, "lean4/FermionSignWilsonDiracGamma5.lean", "lean4/lakefile.
 # that the only change is the recorded addition of whole lean_lib stanzas for other modules.
 PIN_MIGRATIONS = "evidence/lean_receipts/lean_replay_pin_migrations.json"
 MIGRATABLE_PATHS = {"lean4/lakefile.lean"}
-LEAN_LIB_STANZAS = re.compile(r"(?:lean_lib (\w+) where\n  roots := #\[`\w+(?:\.\w+)*\]\n\n)+")
-LEAN_LIB_ROOTS = re.compile(r"lean_lib (\w+) where\n  roots := #\[`(\w+(?:\.\w+)*)\]\n\n")
+LEAN_LIB_STANZAS = re.compile(r"(?:(?:--[^\n]*\n)*lean_lib (\w+) where\n  roots := #\[`\w+(?:\.\w+)*\]\n\n?)+")
+LEAN_LIB_ROOTS = re.compile(r"lean_lib (\w+) where\n  roots := #\[`(\w+(?:\.\w+)*)\]\n\n?")
 
 
 def sha(data: bytes) -> str:

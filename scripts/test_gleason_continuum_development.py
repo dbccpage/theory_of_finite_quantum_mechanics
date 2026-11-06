@@ -91,9 +91,14 @@ class TestGleasonContinuumDevelopment(unittest.TestCase):
     def test_part_f_tfq_1059_extrema_and_deflation(self) -> None:
         res = vgcd.verify_part_f_tfq_1059_extrema_and_deflation()
         self.assertTrue(res["verified"])
-        self.assertEqual(res["tfq1059_declarations_count"], 22)
+        self.assertEqual(res["tfq1059_declarations_count"], 36)
         self.assertTrue(res["sphere3_sInf_sSup_sandwich_verified"])
         self.assertEqual(res["sphere3_sandwich_values"], "0 <= 1/6 <= 1/3 <= 1/2 <= 1")
+        self.assertTrue(res["sphereC_sInf_sSup_sandwich_verified"])
+        self.assertEqual(res["sphereC_sandwich_values"], "0 <= 1/6 <= 1/3 <= 1/2 <= 1")
+        self.assertTrue(res["real_triaxial_spectral_ordering_verified"])
+        self.assertTrue(res["complex_triaxial_spectral_ordering_verified"])
+        self.assertEqual(res["spectral_families_tested"], 5)
         self.assertTrue(res["common_normal_equator_min_verified"])
         self.assertEqual(res["deflateIso_real_weight"], "2/5")
         self.assertEqual(res["deflateIsoC_complex_weight"], "2/5")
@@ -154,11 +159,28 @@ class TestGleasonContinuumDevelopment(unittest.TestCase):
             self.assertEqual(f_iso_deflated(vec), Fraction(0, 1))
 
         # Edge case 7: check_lean_declarations_and_hygiene rejects commented-out declarations,
-        # forbidden `sorry` tokens, and unclosed block comments
+        # private declarations, wrong namespaces, missing `#print axioms`, forbidden `sorry`
+        # tokens, and unclosed block comments
         with self.assertRaises(ValueError):
             vgcd.check_lean_declarations_and_hygiene(
                 "-- theorem nonempty_image_sphere3 : True := trivial\n",
                 ("nonempty_image_sphere3",),
+            )
+        with self.assertRaises(ValueError):
+            vgcd.check_lean_declarations_and_hygiene(
+                "namespace GleasonReal\nprivate theorem nonempty_image_sphere3 : True := trivial\nend GleasonReal\n",
+                ("nonempty_image_sphere3",),
+            )
+        with self.assertRaises(ValueError):
+            vgcd.check_lean_declarations_and_hygiene(
+                "namespace GleasonComplex\ntheorem nonempty_image_sphere3 : True := trivial\nend GleasonComplex\n",
+                ("nonempty_image_sphere3",),
+            )
+        with self.assertRaises(ValueError):
+            vgcd.check_lean_declarations_and_hygiene(
+                "namespace GleasonComplex\ntheorem nonempty_image_sphereC : True := trivial\nend GleasonComplex\n",
+                ("nonempty_image_sphereC",),
+                required_print_axioms=("GleasonComplex.nonempty_image_sphereC",),
             )
         with self.assertRaises(ValueError):
             vgcd.check_lean_declarations_and_hygiene(
@@ -167,6 +189,67 @@ class TestGleasonContinuumDevelopment(unittest.TestCase):
             )
         with self.assertRaises(ValueError):
             vgcd.strip_lean_comments("/- unclosed block comment")
+
+        # Edge case 8: check_triaxial_eigenvalues_ordered and check_std_quad_eigenvalue_bounds
+        # reject negative eigenvalues, misordered eigenvalues (lam2 > lam1 or lam3 > lam2),
+        # wrong trace sum, or the zero vector
+        self.assertFalse(
+            vgcd.check_triaxial_eigenvalues_ordered(
+                Fraction(3, 4), Fraction(1, 2), Fraction(-1, 4), Fraction(1, 1)
+            )
+        )
+        self.assertFalse(
+            vgcd.check_triaxial_eigenvalues_ordered(
+                Fraction(1, 3), Fraction(1, 2), Fraction(1, 6), Fraction(1, 1)
+            )
+        )
+        self.assertFalse(
+            vgcd.check_triaxial_eigenvalues_ordered(
+                Fraction(1, 2), Fraction(1, 6), Fraction(1, 3), Fraction(1, 1)
+            )
+        )
+        self.assertFalse(
+            vgcd.check_triaxial_eigenvalues_ordered(
+                Fraction(1, 2), Fraction(1, 3), Fraction(1, 6), Fraction(2, 1)
+            )
+        )
+        self.assertFalse(
+            vgcd.check_std_quad_eigenvalue_bounds(
+                Fraction(3, 4),
+                Fraction(1, 2),
+                Fraction(-1, 4),
+                Fraction(1, 1),
+                (Fraction(1, 1), Fraction(1, 1), Fraction(1, 1)),
+            )
+        )
+        with self.assertRaises(ValueError):
+            vgcd.check_std_quad_eigenvalue_bounds(
+                Fraction(1, 2),
+                Fraction(1, 3),
+                Fraction(1, 6),
+                Fraction(1, 1),
+                (Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)),
+            )
+
+        # Edge case 9: complex_triaxial_state_matrix rejects non-unit and unit-norm non-orthogonal
+        # eigenframes in Q(i)^3
+        e1_c = (vgcd.GaussRat(1, 0), vgcd.GaussRat(0, 0), vgcd.GaussRat(0, 0))
+        e2_c = (vgcd.GaussRat(0, 0), vgcd.GaussRat(1, 0), vgcd.GaussRat(0, 0))
+        e3_c = (vgcd.GaussRat(0, 0), vgcd.GaussRat(0, 0), vgcd.GaussRat(1, 0))
+        bad_r_c = (vgcd.GaussRat(1, 0), vgcd.GaussRat(0, 0), vgcd.GaussRat(1, 0))
+        unit_non_orth_c = (
+            vgcd.GaussRat(Fraction(3, 5), 0),
+            vgcd.GaussRat(0, Fraction(4, 5)),
+            vgcd.GaussRat(0, 0),
+        )
+        with self.assertRaises(ValueError):
+            vgcd.complex_triaxial_state_matrix(
+                e1_c, e2_c, bad_r_c, Fraction(1, 2), Fraction(1, 3), Fraction(1, 6)
+            )
+        with self.assertRaises(ValueError):
+            vgcd.complex_triaxial_state_matrix(
+                e1_c, unit_non_orth_c, e3_c, Fraction(1, 2), Fraction(1, 3), Fraction(1, 6)
+            )
 
     def test_build_receipt(self) -> None:
         receipt = vgcd.build_receipt()
