@@ -2,7 +2,7 @@
 
 > **AuthorityEffect**: None.
 > **Audit Date**: 2026-10-22
-> **Branch**: `gemini/openai-bridge-check`
+> **Branch**: `run_g/openai-bridge-check`
 > **Upstream Repository**: `https://github.com/openai/math` (shallow clone outside the repository, deleted after comparison)
 > **Pinned Upstream Commit**: `1581d4cbdd69a0faf34b2089614fe2a814316a6a`
 > **Local Bridge File**: `lean4/MubOpenAIBridge.lean` (SHA-256: `b1e325ed5a5ade354736155489d05860d51d8ec2c453b0efe424493b020e12e1`)

@@ -52,15 +52,15 @@ def main() -> int:
     # Write response to runs/ and workspace root
     out_dir = Path("runs")
     out_dir.mkdir(parents=True, exist_ok=True)
-    out_file = out_dir / "g4_sakana_fugu_ultra_v2_response.md"
+    out_file = out_dir / "g4_sakana_run_u_ultra_v2_response.md"
     out_file.write_text(receipt.content, encoding="utf-8")
     print(f"Response written to: {out_file}")
 
-    root_out = Path("g4_sakana_fugu_ultra_v2_response.md")
+    root_out = Path("g4_sakana_run_u_ultra_v2_response.md")
     root_out.write_text(receipt.content, encoding="utf-8")
     print(f"Response written to: {root_out}")
 
-    receipt_file = out_dir / "g4_sakana_fugu_ultra_v2_receipt.json"
+    receipt_file = out_dir / "g4_sakana_run_u_ultra_v2_receipt.json"
     receipt_data = {
         "model": receipt.model,
         "generation_id": receipt.generation_id,

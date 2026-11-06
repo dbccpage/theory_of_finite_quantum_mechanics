@@ -1,6 +1,6 @@
 # Independent referee report on "Can Everett be refuted?" (revision 2)
 
-Referee: Sakana `fugu-ultra-v2` (via OpenRouter), 2026-11-02, run once on revision 2 of [refuting_everett_assessment.md](refuting_everett_assessment.md) together with [everett_from_weights_math_only.md](everett_from_weights_math_only.md). Text below is the referee's, unedited except for headings and three word substitutions to the project's vocabulary (marked †). Revision 3 of the assessment adopts sections 1, 3 and 4; the ℚ(√2) witness is checked exactly in `check_conjugate_measure.py`. Claims marked UNSURE are the referee's own.
+Referee: Sakana `run_u-ultra-v2` (via OpenRouter), 2026-11-02, run once on revision 2 of [refuting_everett_assessment.md](refuting_everett_assessment.md) together with [everett_from_weights_math_only.md](everett_from_weights_math_only.md). Text below is the referee's, unedited except for headings and three word substitutions to the project's vocabulary (marked †). Revision 3 of the assessment adopts sections 1, 3 and 4; the ℚ(√2) witness is checked exactly in `check_conjugate_measure.py`. Claims marked UNSURE are the referee's own.
 
 ## 1. Errors
 

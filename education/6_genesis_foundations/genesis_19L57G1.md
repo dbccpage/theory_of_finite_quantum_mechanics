@@ -3,7 +3,7 @@
 Inventory of the public repository `dbccpage/19L57G1` at shallow clone
 `85a83ae7ce64dc2123ff218568a4ecd37e566d33` ("Add Apache 2.0 License
 attribution (#272)", 2026-10-17). Source tree read from
-`C:\Users\a343o\AppData\Local\Temp\fable-src\19L57G1`. Lean was not
+`C:\Users\a343o\AppData\Local\Temp\run_f-src\19L57G1`. Lean was not
 rebuilt. Axiom figures are the committed report
 `artifacts/lean_axioms.txt`, parsed against the report shape in
 `ci/check_lean_audit.py`. Python tests were not re-run.

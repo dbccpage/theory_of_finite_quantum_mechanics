@@ -46,7 +46,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
-- sha256 (`bytes`): `dec4763eeb0624b7aed79df3dcfd57f7bf047d7dd975536c7a2262624950f21a`
+- sha256 (`bytes`): `84c1b281079874d4029bc2c5b304b50e4db594e0d013a5c053854f1790e03977`
 - cited in: node.lean, record TFQ-0476
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean`
@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean)
-- sha256 (`bytes`): `81ca7d21875428bf3eb3c0e8a572ec1d48a67e305a8b0846681620f0fd871956`
+- sha256 (`bytes`): `498be0c6a626beb7c40ce3bffb05f971be18f94e39b639deb19789cb1717cc54`
 - cited in: node.lean, record TFQ-0476
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean`

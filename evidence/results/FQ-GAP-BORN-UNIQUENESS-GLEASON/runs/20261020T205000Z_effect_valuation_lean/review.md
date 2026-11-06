@@ -12,7 +12,7 @@ and additive on pairs of effects whose sum is an effect (`EffectValuation`, verb
 1. **Eight frozen targets** (`BornEffectValuation.lean`). `v 0 = 0`; `b - a` is an effect when
    `a ≤ b`; monotonicity; `v a ≤ 1`; `q • a` is an effect for `q ∈ [0,1]`; `v (k • a) = k v a`
    for natural `k` with `k • a` an effect; `v (q • a) = q v a` for rational `q ∈ [0,1]` (the
-   "first missing lemma" named by the Fable 5.1 checkpoint); and `|v a - v b| ≤ ε` when
+   "first missing lemma" named by the Run F 5.1 checkpoint); and `|v a - v b| ≤ ε` when
    `-(ε • u) ≤ a - b ≤ ε • u`. Rational homogeneity uses only additivity and rational
    divisibility of `V`; monotonicity is derived, not assumed.
 2. **Linear extension** (`BornLinearExtension.lean`). If `u` is an order unit (every element is

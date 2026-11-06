@@ -59,7 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
-- sha256 (`bytes`): `3377cf9964df63977e7ecbd78fdcef5e5f7168469b06c3eafbe13e23929c74b2`
+- sha256 (`bytes`): `a963d75f41109cf2955ef9129b6aceee3d2edc0203995d36d457bffc366b747a`
 - cited in: node.lean, record TFQ-0582
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean`
@@ -74,14 +74,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean)
-- sha256 (`bytes`): `e0759f7adc6c5c4ebf06628f24c88a7cf0e84d24720dcf526b006a774318a3b9`
+- sha256 (`bytes`): `6975782b2e706d331e81b6ee766fba2b94bf25cff0e66a2af837a49b8863635c`
 - cited in: node.lean, record TFQ-0582
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WitnessedDifference.WdpBatch13Rep.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction` | yes | yes | no | - | `#print axioms WitnessedDifference.WdpBatch13Rep.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction` |
+| `WitnessedDifference.WdpBatch13Rep.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch13Rep.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction` |
 
 - counts toward the grade: yes
 

@@ -55,7 +55,7 @@ joint space.
 ## Gaussian-rational valid control
 
 The existing TensorTomography.product_span is over R and C, not Q and Q(i).
-The new gaussian_product_span uses the repository's BornFable.GaussRat field and
+The new gaussian_product_span uses the repository's BornRunF.GaussRat field and
 proves, for all finite index types n,m, that every self-adjoint joint matrix lies
 in the Q-linear span of local self-adjoint Kronecker products. The proof uses
 matrix units and the exact identity

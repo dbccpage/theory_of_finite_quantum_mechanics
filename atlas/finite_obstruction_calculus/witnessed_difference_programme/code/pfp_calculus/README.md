@@ -16,7 +16,7 @@ identity on all real inputs, followed by exact endpoint evaluation; this is
 not numerical quadrature.
 
 `source/model_result.json` and `source/model_receipt.json` retain the actual
-archived round-04 response and its declared Gemini 2.5 Flash generation metadata.
+archived round-04 response and its declared Run G 2.5 Flash generation metadata.
 Those metadata were not re-queried from the provider. Source files were staged
 additions in the primary checkout at HEAD `952f5a56d862eec6ba7ba38210aade008a642931`;
 the individual byte hashes in `source_provenance.json` bind them, rather than

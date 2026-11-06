@@ -21,8 +21,8 @@ This folder contains the complete mathematical artifacts, prompts, model respons
    - [`deepseek_sprint4_prompt.md`](prompts/deepseek_sprint4_prompt.md): Sprint 4 prompt targeting Gate D (complex winding phases and Lee-Yang zero obstruction).
    - [`g3_prompt.md`](prompts/g3_prompt.md): Volume- and time-slice-uniform mixed-cumulant prompt.
    - [`g4_prompt.md`](prompts/g4_prompt.md): Time-resolved spacetime covariance limit prompt.
-   - [`fugu_prompt_3.md`](prompts/fugu_prompt_3.md): Strongest defensible spacetime field theorem prompt.
-   - [`fugu_prompt_4.md`](prompts/fugu_prompt_4.md): Infinite-family time-resolved covariance limit prompt.
+   - [`run_u_prompt_3.md`](prompts/run_u_prompt_3.md): Strongest defensible spacetime field theorem prompt.
+   - [`run_u_prompt_4.md`](prompts/run_u_prompt_4.md): Infinite-family time-resolved covariance limit prompt.
 
 2. [`responses/`](responses/):
    - [`deepseek_sprint6_g3_closure.md`](responses/deepseek_sprint6_g3_closure.md): DeepSeek Sprint 6 response delivering the final, definitive mathematical closure of G3.
@@ -35,8 +35,8 @@ This folder contains the complete mathematical artifacts, prompts, model respons
    - [`deepseek_g3_gate3_exact_proof.md`](responses/deepseek_g3_gate3_exact_proof.md): Gate 3 proof of infinite temperature and mode activation.
    - [`deepseek_g4_covariance_response.md`](responses/deepseek_g4_covariance_response.md): DeepSeek's initial G4 covariance response.
    - [`deepseek_g4_followup_response.md`](responses/deepseek_g4_followup_response.md): DeepSeek's follow-up corrections.
-   - [`g4_sakana_fugu_ultra_v2_response.md`](responses/g4_sakana_fugu_ultra_v2_response.md): Raw Fugu Ultra v2 generation response.
-   - [`g4_sakana_fugu_ultra_v2_receipt.json`](responses/g4_sakana_fugu_ultra_v2_receipt.json): Billing and token receipt for Fugu Ultra v2.
+   - [`g4_sakana_run_u_ultra_v2_response.md`](responses/g4_sakana_run_u_ultra_v2_response.md): Raw Run U Ultra v2 generation response.
+   - [`g4_sakana_run_u_ultra_v2_receipt.json`](responses/g4_sakana_run_u_ultra_v2_receipt.json): Billing and token receipt for Run U Ultra v2.
 
 3. [`code/`](code/):
    - [`gate_e_exact_counterexample.py`](code/gate_e_exact_counterexample.py): Sympy/Python script computing the exact rational characteristic polynomial and negative eigenvalue $\lambda_{\min} = -1/706440$ on the 16-dimensional CAR Fock space.

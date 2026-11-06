@@ -2,7 +2,7 @@
 
 AuthorityEffect: None. Citation: `sealed-derivation-v1` (`3100c4e`).
 Reviewed object: CODA `origin/main` at `1ab791507be54ee6f29825d1beac66cb4308bc37`.
-Author: Claude (Opus 5), reviewer. Not the owner, not an executor.
+Author: Claude (Run O 5), reviewer. Not the owner, not an executor.
 
 This is an analysis by one reviewer. It is not a plan the repository has
 adopted, and nothing in it discharges a gap by being written down.

@@ -29,37 +29,37 @@ All 30 sealed bet files from the private custody directory were verified against
 | Bet ID | Block | Actor | Raw Size (B) | LF Size (B) | SHA-256 Digest | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `BET-CLAUDE-C250-B01` | `block_01` | CLAUDE | 3590 | 3590 | `1637e0e6b847e8bff05e823a7fbe290621d4f4dd55c751fb14cabf1f2f0f5674` | MATCH |
-| `BET-GEMINI-C250-B01` | `block_01` | GEMINI | 2823 | 2823 | `c9dbf34d85e4aabf137e938922fea385096c1c5fd55eebc5100a7c3700f8a167` | MATCH |
+| `BET-RUN_G-C250-B01` | `block_01` | RUN_G | 2823 | 2823 | `c9dbf34d85e4aabf137e938922fea385096c1c5fd55eebc5100a7c3700f8a167` | MATCH |
 | `BET-JC-C250-B01` | `block_01` | JC | 3260 | 3260 | `67695ab9a07aecda5a5294fe5fdf32635a51daec00d90b46f670d0880beb8893` | MATCH |
 | `BET-CLAUDE-C250-B02` | `block_02` | CLAUDE | 3358 | 3358 | `46eccf7d1b44a42a72f812704164273ebb07e05e21fd95184e32584fb9a05789` | MATCH |
-| `BET-GEMINI-C250-B02` | `block_02` | GEMINI | 2764 | 2764 | `20802087e0ce44a43d8cb10964c27d03ea29b369c1f950e86582e3c5956fcb5f` | MATCH |
+| `BET-RUN_G-C250-B02` | `block_02` | RUN_G | 2764 | 2764 | `20802087e0ce44a43d8cb10964c27d03ea29b369c1f950e86582e3c5956fcb5f` | MATCH |
 | `BET-JC-C250-B02` | `block_02` | JC | 2998 | 2998 | `6e8752b2a920cc5efd45794635c9a4d6846c49253507a85e01b731945427c8f6` | MATCH |
 | `BET-CLAUDE-C250-B03` | `block_03` | CLAUDE | 3262 | 3262 | `eba2fe358d731b62ba39bb096d8f6c3c62111fe1880ccbc8957f78bec7004a03` | MATCH |
-| `BET-GEMINI-C250-B03` | `block_03` | GEMINI | 2822 | 2822 | `86123c1aacf824859533f0e205186ea2983e2c4f19bb40de89584fd3c517d1c3` | MATCH |
+| `BET-RUN_G-C250-B03` | `block_03` | RUN_G | 2822 | 2822 | `86123c1aacf824859533f0e205186ea2983e2c4f19bb40de89584fd3c517d1c3` | MATCH |
 | `BET-JC-C250-B03` | `block_03` | JC | 3119 | 3119 | `edd10729c4f100c50d8be1ff565943f3fe9b55f5561a120a3dc9a1860f969e47` | MATCH |
 | `BET-CLAUDE-C250-B04` | `block_04` | CLAUDE | 3890 | 3890 | `29e3dea56217a57644146fb54581a338f6994be461eac6f996a2e3b95ae546bb` | MATCH |
-| `BET-GEMINI-C250-B04` | `block_04` | GEMINI | 2593 | 2593 | `7cd3a1c7a0b03bcac5fccd3fab671fc2abdd0a326ce53fd50849cf4c1a1adbcd` | MATCH |
+| `BET-RUN_G-C250-B04` | `block_04` | RUN_G | 2593 | 2593 | `7cd3a1c7a0b03bcac5fccd3fab671fc2abdd0a326ce53fd50849cf4c1a1adbcd` | MATCH |
 | `BET-JC-C250-B04` | `block_04` | JC | 2850 | 2850 | `0986014d02001d38fd82ef279e3ece7bbc2397575c10eb5ef14ad1f2ffd77574` | MATCH |
 | `BET-CLAUDE-C250-B05` | `block_05` | CLAUDE | 3146 | 3146 | `512ee55bcabfe6cd9460562d88e62fbbd34c7c7f3779eb3e1ec59d1c5973017e` | MATCH |
-| `BET-GEMINI-C250-B05` | `block_05` | GEMINI | 2506 | 2506 | `7fdc1378e07ac2ca720abdf5b59bc6355254adfa787b1a269185bd7a2b74dff1` | MATCH |
+| `BET-RUN_G-C250-B05` | `block_05` | RUN_G | 2506 | 2506 | `7fdc1378e07ac2ca720abdf5b59bc6355254adfa787b1a269185bd7a2b74dff1` | MATCH |
 | `BET-JC-C250-B05` | `block_05` | JC | 2877 | 2877 | `46a4a1923aad69c4ea563a3d558471dd74b69dc00e9d8b61a3073145d6f0381a` | MATCH |
 | `BET-CLAUDE-C250-B06` | `block_06` | CLAUDE | 3234 | 3234 | `b8a34edde0380e0e7ea2b0f3ec43d4d0b0226548d575f54a9f3d97a6433e1554` | MATCH |
-| `BET-GEMINI-C250-B06` | `block_06` | GEMINI | 2648 | 2648 | `548e488e74f465eace8c504e65019e2e6f5ef6749ee827c8f10f823d050d4b3a` | MATCH |
+| `BET-RUN_G-C250-B06` | `block_06` | RUN_G | 2648 | 2648 | `548e488e74f465eace8c504e65019e2e6f5ef6749ee827c8f10f823d050d4b3a` | MATCH |
 | `BET-JC-C250-B06` | `block_06` | JC | 2682 | 2682 | `55ea5c63f97638144104d71a5787acf86b347cadbfdfe89893a63994bb62ca15` | MATCH |
 | `BET-CLAUDE-C250-B07` | `block_07` | CLAUDE | 2766 | 2766 | `e6306a2c24aeee209964ff5f4fa2b06649f662b8fd792f86e1291e337a14d8aa` | MATCH |
-| `BET-GEMINI-C250-B07` | `block_07` | GEMINI | 2642 | 2642 | `49891123f8b552c518b7f51b1bb33f93073043b8f0af6f42c5b4fb1ed405389e` | MATCH |
+| `BET-RUN_G-C250-B07` | `block_07` | RUN_G | 2642 | 2642 | `49891123f8b552c518b7f51b1bb33f93073043b8f0af6f42c5b4fb1ed405389e` | MATCH |
 | `BET-JC-C250-B07` | `block_07` | JC | 2861 | 2861 | `62b03ee98d8a1aedfc6215937786660413974e9a4e117b581277d76dff0c6587` | MATCH |
 | `BET-CLAUDE-C250-B08` | `block_08` | CLAUDE | 3261 | 3261 | `15b62e9b2e1ec22094729f53374548eb46e4f2075c798a6fbf97f9ea6f5e9f8e` | MATCH |
-| `BET-GEMINI-C250-B08` | `block_08` | GEMINI | 2709 | 2709 | `37bd90881b5cde9a65f8304a51eaca72ea817e3be9a71c6db9a27be8cde11846` | MATCH |
+| `BET-RUN_G-C250-B08` | `block_08` | RUN_G | 2709 | 2709 | `37bd90881b5cde9a65f8304a51eaca72ea817e3be9a71c6db9a27be8cde11846` | MATCH |
 | `BET-JC-C250-B08` | `block_08` | JC | 3071 | 3071 | `791358cb1f9d67835382caf11767b9305f4d706da0578e16d725a0a5734f8c1c` | MATCH |
 | `BET-CLAUDE-C250-B09` | `block_09` | CLAUDE | 3144 | 3144 | `3a2291061dffce01543d8ec81b57e6770fc81ccd568baa1597fcd9bad82c4125` | MATCH |
-| `BET-GEMINI-C250-B09` | `block_09` | GEMINI | 2724 | 2724 | `0c35199a2cae03b6488da75c7100bd3f0a3c68481cb8c56318de0483f7392009` | MATCH |
+| `BET-RUN_G-C250-B09` | `block_09` | RUN_G | 2724 | 2724 | `0c35199a2cae03b6488da75c7100bd3f0a3c68481cb8c56318de0483f7392009` | MATCH |
 | `BET-JC-C250-B09` | `block_09` | JC | 2963 | 2963 | `661cf536b4a0c70dd6d136f257fcbe7fd93983cd42a33fa19c43ec46aa8056ef` | MATCH |
 | `BET-CLAUDE-C250-B10` | `block_10` | CLAUDE | 4118 | 4118 | `7b3838e2dd924b98b50e6ebfee9b871f26525b462df18375f5bfc257dce5e3a3` | MATCH |
-| `BET-GEMINI-C250-B10` | `block_10` | GEMINI | 2999 | 2999 | `093ebd4c1a11bfbe7dc584787d2f9d169e6b900cd912ed50593daa04cc3bd1a4` | MATCH |
+| `BET-RUN_G-C250-B10` | `block_10` | RUN_G | 2999 | 2999 | `093ebd4c1a11bfbe7dc584787d2f9d169e6b900cd912ed50593daa04cc3bd1a4` | MATCH |
 | `BET-JC-C250-B10` | `block_10` | JC | 3617 | 3617 | `8d6855fb09f4afb567e5f8b267f09f7dee670378a8e9b126f89f4e1097b328a7` | MATCH |
 
-**Verification Result**: 30 of 30 matching (10 Claude, 10 Gemini, 10 JC). All digests match `SEALED_DIGESTS.txt` and `sealed_targets.json`.
+**Verification Result**: 30 of 30 matching (10 Claude, 10 Run G, 10 JC). All digests match `SEALED_DIGESTS.txt` and `sealed_targets.json`.
 
 ---
 
@@ -88,7 +88,7 @@ Audit of `apps/finite_qm/evidence/c250_machine_review_20260907.json` over 191 ma
 | Actor | HIT | MISS | OPEN | Total Clauses | Hit Rate (Scored) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **CLAUDE** | 30 | 11 | 21 | 62 | 73.17% (30/41) |
-| **GEMINI** | 34 | 10 | 23 | 67 | 77.27% (34/44) |
+| **RUN_G** | 34 | 10 | 23 | 67 | 77.27% (34/44) |
 | **JC** | 30 | 11 | 21 | 62 | 73.17% (30/41) |
 | **TOTAL** | **94** | **32** | **65** | **191** | **74.60% (94/126)** |
 
@@ -144,7 +144,7 @@ Results:
 In accordance with repository claim hygiene standards:
 
 1. **What this certification supports**:
-   - Supports exact pre-registration custody and digest match for all 30 C250 bet files across Claude, Gemini, and JC.
+   - Supports exact pre-registration custody and digest match for all 30 C250 bet files across Claude, Run G, and JC.
    - Supports exact mechanical reconciliation of 191 machine evaluation clauses to 94 HIT, 32 MISS, and 65 OPEN.
    - Supports the finding that all 65 OPEN clauses are caused by schema drift (`"field missing or null"`).
 2. **What this certification does NOT support**:

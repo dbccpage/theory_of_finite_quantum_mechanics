@@ -2,7 +2,7 @@
 
 AuthorityEffect: None. Citation: `sealed-derivation-v1` (`3100c4e`).
 Reviewed object: CODA `origin/main` at `5408282b`.
-Author: Claude (Opus 5), reviewer. Not the owner, not an executor.
+Author: Claude (Run O 5), reviewer. Not the owner, not an executor.
 
 An analysis by one reviewer. It changes how the campaign's published clause
 counts should be read. It does not change any mathematical claim, and nothing in

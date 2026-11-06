@@ -9,7 +9,7 @@
 **Executable Python Module:** [`python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py`](../python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py)  
 **Lean 4 Mechanization:** [`lean4/FiniteQM.lean`](../../lean4/FiniteQM.lean) and [`lean4/FiniteQM.lean`](../../lean4/FiniteQM.lean) (Part III)  
 **E2E Verification Suite:** [`tests/e2e/test_e2e_electroweak_dfm_weinberg_control.py`](../tests/e2e/test_e2e_electroweak_dfm_weinberg_control.py)  
-**Fable MCTS Receipt:** [`research/electroweak_dfm_weinberg_fable_receipt.json`](electroweak_dfm_weinberg_fable_receipt.json)
+**Run F MCTS Receipt:** [`research/electroweak_dfm_weinberg_run_f_receipt.json`](electroweak_dfm_weinberg_run_f_receipt.json)
 
 ---
 
