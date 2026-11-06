@@ -2,15 +2,14 @@
 
 **AuthorityEffect:** None. This file describes a process. It adds no result.
 
-> **On the use of AI.** Much of the code, proofs, prose and review in this repository is drafted by AI models and LLM coding agents (Claude, Gemini, Grok and others), directed and reviewed by the maintainer. That is the reason for the rules here, not an exception to them. Every claim must be backed by evidence a stranger can check: Lean proofs audited for axioms, exact computations, replay receipts and independent checks. Every code change carries a scored YAML contract and must clear the [acceptance rule](#acceptance-rule) below. Every status is reviewed statement against theorem by the overclaim gate. The same standard applies to every contributor, human or model, and to the maintainer. In practice it most often finds the work inadequate: AI-drafted claims are routinely narrowed in review (for example [#171](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/171) narrowed by [#176](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/176), and the campaign pull requests [#184](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/184), [#185](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/185) and [#187](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/187), recorded as Narrowed results), and we publish those corrections. This project is not here to promote unverified claims, speculation presented as result, or pretension. If something here overstates what is proved, that is a bug: please report it with a [bug report](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=bug_report.yml) or a [derivation review](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=derivation_review.yml).
+> **On the use of AI.** Much of the code, proofs, prose and review in this repository is drafted by AI models and coding agents, directed and reviewed by the maintainer. That is the reason for the rules here, not an exception to them. Every claim must be backed by evidence a stranger can check: Lean proofs audited for axioms, exact computations, replay receipts and independent checks. Every code change carries a scored YAML contract and must clear the [acceptance rule](#acceptance-rule) below. Every status is reviewed statement against theorem by the overclaim gate. The same standard applies to every contributor, human or model, and to the maintainer. In practice it most often finds the work inadequate: AI-drafted claims are routinely narrowed in review (for example [#171](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/171) narrowed by [#176](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/176), and the campaign pull requests [#184](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/184), [#185](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/185) and [#187](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/187), recorded as Narrowed results), and we publish those corrections. This project is not here to promote unverified claims, speculation presented as result, or pretension. If something here overstates what is proved, that is a bug: please report it with a [bug report](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=bug_report.yml) or a [derivation review](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=derivation_review.yml).
 
-This repository records how far finite, exact constructions reach toward quantum mechanics, and where structure has to be supplied from outside. Each step is a node in a derivation graph with a status label and the evidence for it. You can help in three ways. None of them needs the maintainer's permission to start.
+This repository records how far finite, exact constructions reach toward quantum mechanics, and where structure has to be supplied from outside. Each step is a node in a derivation graph with a status label and the evidence for it. You can help in two ways. None of them needs the maintainer's permission to start.
 
 | Way | What you do | Skills | Time |
 |---|---|---|---|
-| [1. Run an example prompt](#1-run-an-example-prompt) | Run a prepared, bounded prompt on a small finite node and submit the record. | Python, a command line, optionally an API key | 15 to 45 minutes, usually under 0.10 USD |
-| [2. Attempt a campaign target](#2-attempt-a-campaign-target) | Try to derive an open node in Lean, with an independent check and a prose derivation. | Lean 4 and Mathlib, or a precise paper proof and SymPy | Days; one pull request per target |
-| [3. Review](#3-review) | Read a node, its Lean file, its independent check and its derivation note, and report what you find. | Mathematics or physics background; Lean is useful but not required | 1 to 3 hours per node |
+| [1. Attempt an open node](#1-attempt-an-open-node) | Try to derive an open or conditional node in Lean, with an independent check and a prose derivation. | Lean 4 and Mathlib, or a precise paper proof and SymPy | Days; one pull request per node |
+| [2. Review](#2-review) | Read a node, its Lean file, its independent check and its derivation note, and report what you find. | Mathematics or physics background; Lean is useful but not required | 1 to 3 hours per node |
 
 Reviews are the most useful contribution at present. A reviewer who finds a statement that says more than its proof does is doing the project a service.
 
@@ -42,51 +41,18 @@ The rule applies to code added or changed from now on. It does not rescore exist
 - Rust (stable, with Cargo) is needed only to run the Rust certifiers in [`code/rust/`](code/rust).
 - Orientation: read the [README](README.md), then [`dag/derivation_dag_reading_note.md`](dag/derivation_dag_reading_note.md). The current counts and recent changes are on the generated status page, <https://dbccpage.github.io/theory_of_finite_quantum_mechanics/status/>, which the daily workflow publishes once GitHub Pages is enabled; you can build the same pages locally with `python -I -X utf8 scripts/build_status.py --write` (they are not committed). Per-node evidence pages are in [`docs/evidence/`](docs/evidence/README.md), generated by `dag/evidence/build_evidence.py`.
 
-## 1. Run an example prompt
+## 1. Attempt an open node
 
-[`docs/contribute/example_prompts.md`](docs/contribute/example_prompts.md) lists seven small, finite nodes. For each it gives the exact command, what a valid result looks like and how to check it yourself. The tool is the PFP LLM ladder in [`dag/pfp/llm_ladder/`](dag/pfp/llm_ladder) (design: [`DESIGN.md`](dag/pfp/llm_ladder/DESIGN.md)).
+The open and conditional nodes are listed in [`dag/derivation_dag.json`](dag/derivation_dag.json) with their `bottleneck`, which says what is missing. In outline:
 
-What a run does, and what it does not do:
-
-- The ladder compiles a short packet from the node, sends it to a model, and asks for typed slots: generators, relations, compositions, lemmas, near misses and open obligations.
-- **The reply is an untrusted proposal.** The host program checks every claim it can: that a cited declaration exists at the cited place, that a number recomputes exactly, that a Lean skeleton elaborates when Lean is available. Refused claims are kept as negative entries so that later calls do not repeat them.
-- `accepted` means that enough claims passed these host checks. It does **not** mean that the mathematics is right or that the node's status should change. Prompt-result pull requests never change a node's status.
-
-Steps. The commands below use the node `DFM-BPHZ-SECTOR-KERNEL` as the worked example; **replace it with the id of the node you chose, and `alice` with your GitHub handle**. Do not type angle brackets into a shell: `<` is redirection.
-
-1. Fork the repository and create a branch, for example `git switch -c community/alice/dfm-bphz-sector-kernel`.
-2. Preview the packet and the cost. This needs no key and makes no call:
-   ```
-   python -I -X utf8 dag/pfp/llm_ladder/ladder.py --node DFM-BPHZ-SECTOR-KERNEL --stage P0 --max-cost-usd 0.10 --max-tier 1 --dry-run
-   ```
-3. Provide your own key for the provider you want to use, in the environment or in a git-ignored `.env` file. The tool reads `GROQ_API_KEY` and `OPENROUTER_API_KEY` (free models are available on both) and `ANTHROPIC_API_KEY` (paid). Never print, commit or paste a key.
-4. Run it. Point the budget ledger at a file outside the repository, here the parent directory:
-   ```
-   python -I -X utf8 dag/pfp/llm_ladder/ladder.py --node DFM-BPHZ-SECTOR-KERNEL --stage P0 --max-cost-usd 0.10 --max-tier 1 --ledger ../tfqm-ledger.json
-   ```
-   `--max-cost-usd` is a hard cap on all paid calls in the run. `--max-tier 0 --max-cost-usd 0` uses free models only. The command prints a JSON summary and exits with 0 for `accepted`, 3 for `accepted_partial`, 4 for `skipped_ungroundable` and 1 for anything else.
-5. You may instead do it by hand: paste `system_prompt` and `user_prompt` from the node's file in [`dag/prompts/`](dag/prompts) into any model, and record the reply as a run folder (the example page shows how).
-6. **Submit only your own run folder.** A ladder run edits two shared files as a side effect, the negative-entry index `dag/operads/_hallucination_index.json` and, unless you used `--ledger`, the budget ledger `dag/pfp/llm_ladder/budget_ledger.json`. Do not commit them; the maintainer integrates them after review:
-   ```
-   git restore dag/operads/_hallucination_index.json dag/pfp/llm_ladder/budget_ledger.json
-   git status
-   ```
-   `git status` should list only the new folder under `dag/results/DFM-BPHZ-SECTOR-KERNEL/runs/`.
-7. Check the result yourself (the example page has a node-specific SymPy check), then open a pull request. Use the pull request template. State the outcome class **Prompt result**, and say plainly what the run did not establish.
-An unsuccessful run is a result. Submit it if it taught you something: a wrong claim that the host caught, or a node that has nothing to ground.
-
-## 2. Attempt a campaign target
-
-The derivation campaign ranks the open and conditional nodes that have never had a non-ladder run, and gives a per-target protocol: [`dag/pfp/campaign/README.md`](dag/pfp/campaign/README.md) (pull request [#180](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/180)). In outline:
-
-- One target, one pull request. Take targets in rank order, or tell the maintainer which one you are taking by opening an issue, so that two people do not do the same work.
+- One node, one pull request. Tell the maintainer which node you are taking by opening an issue, so that two people do not do the same work.
 - Every outcome that is proved is a result: **Derived** (the full statement is proved from the admitted primitives), **Reduced** (it is proved from a strictly weaker named assumption), **Refuted** (a countermodel shows the import is needed) or **Narrowed** (a precisely stated special case is proved).
 - Deliverables in the same pull request: one Lean module with `#print axioms` lines; a replay receipt; an independent check, a SymPy or plain-Python script that does not import repository code; a derivation note that starts with `Status: AI-drafted, awaiting human review.` if a model drafted it; and the DAG update through the owning fragment.
 - The pull request body carries the statement-versus-theorem table described below.
 
-If you do not use Lean, a precise paper derivation with an independent SymPy check is still useful as a **proposal**: open a pull request or an issue with it, labelled `campaign-target`, and say that it has no Lean proof. It will be recorded as a proposal, not as a result.
+If you do not use Lean, a precise paper derivation with an independent SymPy check is still useful as a **proposal**: open a pull request or an issue with it and say that it has no Lean proof. It will be recorded as a proposal, not as a result.
 
-## 3. Review
+## 2. Review
 
 Read [`REVIEWING.md`](REVIEWING.md). In short: choose a node (the example list and the issue label `review-needed` are good places to start), read its statement, its Lean declaration, its independent check and its derivation note, and open a *Derivation review* issue with a verdict on the statement, the proof and the prose. The maintainer records it, and you are credited in [`docs/reviewers.md`](docs/reviewers.md) if you wish. A review does not need a pull request.
 
@@ -133,8 +99,8 @@ These apply to every contribution. They are the reason the project keeps its lab
    ```
    `build_status.py --check` rebuilds the generated status pages in memory, compares them with any copy on disk, and fails if a generated file is committed (it needs the full git history, not a shallow clone).
    The two `--changed-since` commands look only at sources this change adds or edits. They do not read the grade floor and they do not write `evidence/contract_score_coverage_scope_audit.json`.
-   A change to the DAG also runs the sync scripts in the order given in the reading note and the campaign protocol.
-2. **Scope check.** Does the pull request change only what it says? A prompt-result pull request adds only one run folder under `dag/results/<node id>/runs/`. It does not touch the shared index `dag/operads/_hallucination_index.json`, the budget ledger or any node status; the maintainer integrates those after review.
+   A change to the DAG also runs the sync scripts in the order given in the reading note.
+2. **Scope check.** Does the pull request change only what it says? A node status changes only with the evidence named in the pull request.
 3. **Statement-versus-theorem table.** The maintainer reads it against the Lean declarations. This is the step that decides whether a status may change.
 4. **Independent review.** For anything that changes a node, the maintainer asks a reviewer (see [`REVIEWING.md`](REVIEWING.md)) to read the statement, proof and prose. The outcome is recorded.
 5. **Merge.** The maintainer merges. Review is by one person on a best-effort basis; there is no service-level promise. A pull request that overstates its result is asked to narrow it, not rejected. Code that does not meet the [acceptance rule](#acceptance-rule), including its explicitly authorized source exceptions, is not merged until it does.

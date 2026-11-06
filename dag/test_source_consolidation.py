@@ -1,6 +1,5 @@
 """Custody and semantic-boundary checks for the source consolidation."""
 from pathlib import Path
-import hashlib
 import json
 import re
 
@@ -9,20 +8,6 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def load(path):
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
-
-
-def test_every_source_has_its_declared_surviving_bytes():
-    manifest = load("dag/derivations/source_consolidation_manifest.json")
-    destinations = set()
-    for row in manifest["files"]:
-        target = (ROOT / row["destination"]).resolve()
-        assert target.is_relative_to(ROOT)
-        assert target not in destinations
-        destinations.add(target)
-        assert target.is_file(), row
-        assert hashlib.sha256(target.read_bytes()).hexdigest() == row.get("edited_sha256", row["sha256"])
-    for old in manifest["retired_directories"]:
-        assert not (ROOT / old).exists()
 
 
 def test_added_route_is_present_and_open_questions_stay_open():
@@ -45,7 +30,7 @@ def test_added_route_is_present_and_open_questions_stay_open():
 
 def test_new_reading_spine_and_derivation_links_resolve():
     paths = [ROOT / r["f004_refs"][0] for r in load("dag/fragments/computation_information_route.json")["records"]]
-    paths += [ROOT / "dag/derivations/FIRST_MARK_TO_QUANTUM_GRAVITY.md", ROOT / "dag/derivations/SOURCE_CROSSWALK.md"]
+    paths += [ROOT / "dag/derivations/FIRST_MARK_TO_QUANTUM_GRAVITY.md"]
     for paper in paths:
         for ref in re.findall(r"\]\(([^\s()]+)\)", paper.read_text(encoding="utf-8")):
             if ref.startswith(("https://", "http://", "#")):

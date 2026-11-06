@@ -61,24 +61,9 @@ def index_lean_files(root: Path) -> tuple[dict[str, str], dict[str, set[str]], d
 
 
 def load_custody_and_pins(root: Path) -> tuple[set[str], set[str]]:
-    custody_doc = json.loads((root / "dag/pfp/filename_custody.json").read_text(encoding="utf-8"))
-    custody_sealed = {row["path"] for row in custody_doc.get("prompts", [])} | {
-        row["path"] for row in custody_doc.get("papers", [])
-    }
-    pinned_papers: set[str] = set()
-    for p in sorted((root / "dag/operads").glob("*.yaml")):
-        in_pins = False
-        for line in p.read_text(encoding="utf-8").splitlines():
-            if line.strip() == "paper_source_pins:":
-                in_pins = True
-                continue
-            if in_pins:
-                item = re.match(r"^\s*- path: (dag/derivations/\S+\.md)\s*$", line)
-                if item:
-                    pinned_papers.add(item.group(1))
-                elif not re.match(r"^\s+(sha256: \S+)?$", line):
-                    in_pins = False
-    return custody_sealed, pinned_papers
+    """Papers whose bytes must not be rewritten (dag/fragments/pinned_papers.json); no sealed prompts remain."""
+    doc = json.loads((root / "dag/fragments/pinned_papers.json").read_text(encoding="utf-8"))
+    return set(), set(doc["papers"])
 
 
 def classify_reference(
@@ -156,7 +141,6 @@ def scan(root: Path = ROOT) -> dict[str, Any]:
             is_pinned = (
                 rel in custody_sealed
                 or rel in pinned_papers
-                or rel.startswith(("dag/operads/", "dag/prompts/"))
             )
             text = p.read_text(encoding="utf-8", errors="replace")
             for m in REF_RE.finditer(text):

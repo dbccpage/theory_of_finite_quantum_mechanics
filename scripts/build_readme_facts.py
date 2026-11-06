@@ -133,9 +133,6 @@ def derivation_papers() -> tuple[int, int]:
 # ---------------------------------------------------------------- PFP facts
 
 def pfp_facts() -> dict:
-    prompts = sorted((ROOT / "dag/prompts").glob("*.yaml"))
-    index = load_json("dag/operads/index.json")["nodes"]
-    stages = collections.Counter(n["current_stage"] for n in index)
     review_dirs = sorted(p for p in (ROOT / "dag/results").glob("*/reviews/*") if p.is_dir())
     nodes_with_reviews = {p.parent.parent.name for p in review_dirs}
     boundaries = sum(1 for d in review_dirs if has_boundary(d))
@@ -146,9 +143,6 @@ def pfp_facts() -> dict:
                   if isinstance(v, dict)]
         p4 += max([v for v in values if isinstance(v, int)], default=0)
     return {
-        "prompts": len(prompts),
-        "index_nodes": len(index),
-        "stages": stages,
         "review_dirs": len(review_dirs),
         "nodes_with_reviews": len(nodes_with_reviews),
         "boundaries": boundaries,
@@ -361,9 +355,6 @@ def render(skip_contracts: bool = False) -> str:
         ("Rust references in DAG nodes",
          f"{refs[('rust', 'present')]} resolve to a file in this checkout, {refs[('rust', 'absent')]} do not, "
          f"{refs[('rust', 'external')]} marked `external:`", link("dag/derivation_dag.json")),
-        ("PFP prompts / indexed operad collections", f"{pfp['prompts']} / {pfp['index_nodes']}",
-         f"{link('dag/prompts')}, {link('dag/operads/index.json')}"),
-        ("PFP stage per prompt", fmt_counter(pfp["stages"]), link("dag/operads/index.json")),
         ("Nodes with executed review results", f"{pfp['nodes_with_reviews']} nodes, {pfp['review_dirs']} review directories",
          "`dag/results/*/reviews/`"),
         ("Review directories with a supports / does_not_support / narrowest_claim boundary",

@@ -23,4 +23,4 @@ locates this branch relative to the primitive cut and quantum-gravity targets.
 
 The former `atlas/computation` and `atlas/complexity` folders were retired on
 2026-11-05. Their contents and paths are accounted for in the
-[consolidation manifest](../../dag/derivations/source_consolidation_manifest.json).
+[consolidation manifest](../../docs/maintenance/source_consolidation/source_consolidation_manifest.json).

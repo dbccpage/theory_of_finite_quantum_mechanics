@@ -1,3 +1,0 @@
-import PromptL1Imports
-#print axioms QuantumMechanics.PromptL1Imports.gauge_law
-#print axioms QuantumMechanics.PromptL1Imports.gauge_control

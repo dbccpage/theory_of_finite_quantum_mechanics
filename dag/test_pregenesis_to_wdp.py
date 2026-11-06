@@ -9,7 +9,6 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'dag'))
-sys.path.insert(0, str(ROOT / 'dag/pfp'))
 import sync_application_branches as app_sync
 import sync_pregenesis_to_wdp as pgw
 import validate_derivation_dag as validator
@@ -127,11 +126,9 @@ def test_section4_lists_children_of_new_and_unpinned_parents():
         assert listed[-len(kids):] == kids, (parent, listed, kids)
 
 
-def test_pinned_papers_unchanged():
-    import validate_prompts
-    report = validate_prompts.validate()
-    errors = report['errors'] if isinstance(report, dict) else report
-    assert not [e for e in errors if 'paper source pin changed' in e]
+def test_pinned_papers_exist():
+    pins = json.loads((ROOT / 'dag/fragments/pinned_papers.json').read_text(encoding='utf-8'))['papers']
+    assert pins and not [p for p in pins if not (ROOT / p).is_file()]
 
 
 def test_chain_reaches_root_and_dag_stays_valid():

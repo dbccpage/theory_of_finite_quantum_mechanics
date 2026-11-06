@@ -1,6 +1,6 @@
 # Theory of Finite Quantum Mechanics: Master Derivation Index
 
-Start with [the compressed first-mark-to-quantum-gravity route](FIRST_MARK_TO_QUANTUM_GRAVITY.md), [the source crosswalk](SOURCE_CROSSWALK.md), and [the missing gravity obligations](19_finite_qg/QUANTUM_GRAVITY_GAPS.md).
+Start with [the compressed first-mark-to-quantum-gravity route](FIRST_MARK_TO_QUANTUM_GRAVITY.md), [the source crosswalk](../../docs/maintenance/source_consolidation/source_crosswalk.md), and [the missing gravity obligations](19_finite_qg/QUANTUM_GRAVITY_GAPS.md).
 
 This directory contains **one standalone Markdown paper per derivation step** tracking finite constructions, source records, explicit assumptions and open obligations from the inert inscription `<>` through the finite quantum programme and its application branches.
 

@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "dag/derivations/source_consolidation_manifest.json"
+MANIFEST = ROOT / "docs/maintenance/source_consolidation/source_consolidation_manifest.json"
 
 
 def verify() -> list[str]:

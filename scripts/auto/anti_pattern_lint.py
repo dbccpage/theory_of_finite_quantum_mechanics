@@ -36,7 +36,7 @@ CATALOG = ".agents/patterns"
 REQUIRED_SLOTS = ("lean4", "markdown", "math", "python", "rust")
 CARD_NAME = re.compile(r"^(AP|HP)_([A-Z0-9]+_\d{3})_[a-z0-9_]+\.md$")
 
-# The tokens the campaign honesty gate forbids in added Lean (dag/pfp/campaign/README.md). axiom is a declaration keyword
+# The tokens the campaign honesty gate forbids in added Lean (the retired agent campaign protocol). axiom is a declaration keyword
 # and has its own rule; the other four are matched as whole words outside comments and strings.
 LEAN_FORBIDDEN = ("sorry", "admit", "native_decide", "unsafe", "axiom")  # a literal: scripts/auto/symmetry_scan.py reads it
 LEAN_ADMISSION_TOKENS = tuple(token for token in LEAN_FORBIDDEN if token != "axiom")
