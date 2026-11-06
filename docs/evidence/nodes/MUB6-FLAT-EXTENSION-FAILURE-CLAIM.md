@@ -32,7 +32,7 @@ By fourth_basis_iff_positive_flat_moments (MUB6-C36) this is equivalent to absen
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-071 claims PROVED_LEAN; audited status OPEN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-071 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -42,41 +42,41 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/25_mub/tfq_1239_mub6_flat_extension_failure_claim.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1239_mub6_flat_extension_failure_claim.md](../../../dag/derivations/25_mub/tfq_1239_mub6_flat_extension_failure_claim.md)
-- sha256 (`lf-normalised`): `0644616fea3bb9873a46fcaf055f78bbca620ddd4c0ebba4b6636ccb365c6c57`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1239
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
-- sha256 (`lf-normalised`): `b515bf981d6c3a339c2b0a7937d54d9deb05f3b53186c584b83f5fa3419dc902`
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1239_mub6_flat_extension_failure_claim.md`
+
+- file: [dag/derivations/25_mub/tfq_1239_mub6_flat_extension_failure_claim.md](../../../dag/derivations/25_mub/tfq_1239_mub6_flat_extension_failure_claim.md)
+- sha256 (`lf-normalised`): `24ac3cfb66db11cdc885a92eab4da33600a6dbe1a99b3f7f4769c9ee42ff0653`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1239
+- counts toward the grade: no
 
 ## Routes
 

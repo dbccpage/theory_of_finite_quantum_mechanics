@@ -32,7 +32,7 @@ Affine-fiber stratification of CHM(6) is not formalized; the counterexample is t
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-062 claims PROVED_LEAN; audited status REFUTED
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-062 claims PROVED_LEAN; audited status REFUTED
 
 ## Review
 
@@ -42,9 +42,9 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Python: `papers/core/mub6/research/five_derivations_20261015/verify_symbolic.py`
+### Python: `dag/derivations/25_mub/mub6/research/five_derivations_20261015/verify_symbolic.py`
 
-- file: [papers/core/mub6/research/five_derivations_20261015/verify_symbolic.py](../../../papers/core/mub6/research/five_derivations_20261015/verify_symbolic.py)
+- file: [dag/derivations/25_mub/mub6/research/five_derivations_20261015/verify_symbolic.py](../../../dag/derivations/25_mub/mub6/research/five_derivations_20261015/verify_symbolic.py)
 - sha256 (`bytes`): `99fbbe53afb24df19d0d4db5993e7e7a21c2531b0027f7d0383eff2da5e016c3`
 - cited in: record TFQ-1231
 
@@ -55,34 +55,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1231_mub6_affine_fiber_third_basis.md`
+### Documents and data: `dag/derivations/25_mub/mub6/documentation/theorem_mub6_lower_bound_kronecker_construction.md`
 
-- file: [dag/derivations/25_mub/tfq_1231_mub6_affine_fiber_third_basis.md](../../../dag/derivations/25_mub/tfq_1231_mub6_affine_fiber_third_basis.md)
-- sha256 (`lf-normalised`): `5f8e5560a3224afc109d14f279f5a8c961d00c930d4c736fead78d9f6f5c5e5b`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1231
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/documentation/theorem_mub6_lower_bound_kronecker_construction.md`
-
-- file: [papers/core/mub6/documentation/theorem_mub6_lower_bound_kronecker_construction.md](../../../papers/core/mub6/documentation/theorem_mub6_lower_bound_kronecker_construction.md)
+- file: [dag/derivations/25_mub/mub6/documentation/theorem_mub6_lower_bound_kronecker_construction.md](../../../dag/derivations/25_mub/mub6/documentation/theorem_mub6_lower_bound_kronecker_construction.md)
 - sha256 (`lf-normalised`): `5a2a33acb6179ab69d7fb75477c83b1092758c24ace7b24b7d26f96f66d46f27`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
-- sha256 (`lf-normalised`): `b515bf981d6c3a339c2b0a7937d54d9deb05f3b53186c584b83f5fa3419dc902`
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1231_mub6_affine_fiber_third_basis.md`
+
+- file: [dag/derivations/25_mub/tfq_1231_mub6_affine_fiber_third_basis.md](../../../dag/derivations/25_mub/tfq_1231_mub6_affine_fiber_third_basis.md)
+- sha256 (`lf-normalised`): `5f31755a4fe921827f0177534d9cb07d1e7e89f0ccc8b7404908b5f8f78e3939`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1231
+- counts toward the grade: no
 
 ## Routes
 

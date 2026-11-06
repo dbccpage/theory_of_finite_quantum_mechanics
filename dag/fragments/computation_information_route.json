@@ -1,0 +1,1281 @@
+{
+  "schema": "computation_information_route.v1",
+  "authority_effect": "None",
+  "nodes": [
+    {
+      "id": "COMP-MARK-ADMISSION-GAP",
+      "stage": "PREGENESIS",
+      "status": "OPEN",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "The inscription <> alone does not specify a carrier, identity convention, alphabet, rewriting rule or resource supply. An admission argument connecting it to the stated computation model remains open.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_2600_comp_mark_admission_gap.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#1-inscription-admission-and-a-machine-that-interprets-programs"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The established alphabet constructions quantify over admitted data and forms. They do not construct their own metatheory or admission from the inscription. Supply that bridge or retain it as an assumption.",
+      "tags": [
+        "source-consolidation"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "COMP-UTM-CONDITIONAL-ROUTE",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "With separated marks, declared rewriting and unbounded word supply, the existing fixed TM0 machine simulates termination of every encoded partial-recursive program. Its finite mark set is established; output decoding remains a separate open obligation.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2601_comp_utm_conditional_route.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#1-inscription-admission-and-a-machine-that-interprets-programs"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "admitted separated alphabet",
+        "declared rules",
+        "unbounded word supply",
+        "Mathlib evaluator and compilers"
+      ],
+      "bottleneck": "Compose the existing forward/backward rewriting simulation with the fixed evaluator compiler chain. This reuses the existing results without a new Lean claim. COMP-C6-TM0-OUTPUT-FORM-OPEN remains open; a halting iff theorem alone is not an output-value theorem.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "COMP-COST-MODEL-IMPORT",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "Complexity is measured after fixing finite input encodings, input length, a uniform machine model and elementary step costs. Computable simulation alone gives no polynomial overhead bound.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2602_comp_cost_model_import.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#2-the-extra-step-from-computability-to-complexity"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "finite encoding",
+        "input length",
+        "uniform machine model",
+        "elementary cost"
+      ],
+      "bottleneck": "Prove overhead bounds for each implementation translation used in a complexity claim. Keep computability and efficient simulation distinct.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "COMP-P-DEFINITION",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "P is the class of languages decided by one deterministic machine in time bounded by a polynomial in encoded input length.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2603_comp_p_definition.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#2-the-extra-step-from-computability-to-complexity"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "cost model",
+        "uniform polynomial bound"
+      ],
+      "bottleneck": "This defines a class of language families over inputs of unbounded length. A finite truth table does not establish membership for an unbounded family.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "COMP-NP-VERIFIER-EQUIVALENCE",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial proof sketch awaiting independent replay; no new Lean build.",
+      "statement": "Under a fixed finite-branching machine model, polynomial-time nondeterministic acceptance is equivalent to existence of polynomial-length witnesses checked by a deterministic polynomial-time verifier; P is contained in NP.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2604_comp_np_verifier_equivalence.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#2-the-extra-step-from-computability-to-complexity"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "finite branching",
+        "uniform polynomial bounds",
+        "finite input and witness encodings"
+      ],
+      "bottleneck": "A nondeterministic machine guesses the bounded witness and runs the verifier. Conversely encode the branch choices of an accepting polynomial-time run and replay them deterministically. There are polynomially many choices of constant bit length. For P containment ignore the witness and run the decider. No separation follows. Independent proof review or Lean formalization is still required.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "COMP-UNARY-BOUNDED-REACH-NP",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial proof sketch awaiting independent replay; no new Lean build.",
+      "statement": "For a fixed finite rewriting rule list, the language of triples (a,b,1^t) for which a reaches b in at most t steps belongs to NP.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2605_comp_unary_bounded_reach_np.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#3-where-np-appears-in-the-admitted-rewriting-model"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "fixed finite alphabet and rule list",
+        "unary step bound",
+        "explicit intermediate words"
+      ],
+      "bottleneck": "With c the largest right-hand-side length, each intermediate word has length at most |a|+tc. List at most t words, rule indices and positions. Verify each local substitution and the endpoints by polynomially many symbol comparisons. Binary t invalidates this certificate-size bound, not membership in NP by itself. Independent proof review or Lean formalization is still required.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "COMP-COOK-LEVIN-IMPORT",
+      "stage": "COMPUTATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "The Cook-Levin theorem supplies a polynomial reduction from nondeterministic polynomial-time acceptance to SAT. Applying NP-hardness to a specific rewriting or sign problem needs a further polynomial reduction.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2606_comp_cook_levin_import.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#3-where-np-appears-in-the-admitted-rewriting-model"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Cook-Levin theorem",
+        "valid tableau encoding",
+        "polynomial reduction cost"
+      ],
+      "bottleneck": "The tableau constrains initial configuration, local transitions and acceptance with polynomially many Boolean variables and clauses. This is an imported theorem, not a newly checked Lean result.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "COMP-P-VS-NP-OPEN",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "Determine whether every language in NP is in P, or exhibit an NP language outside P. The existing machine construction, finite checks and exponential search enumeration do not settle either alternative.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2607_comp_p_vs_np_open.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#4-p-versus-np-encodings-and-search"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A proof must quantify over uniform algorithms and unbounded input lengths. An upper bound for enumeration is not a lower bound for all algorithms. The official Clay statement lists the problem as unsolved.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "COMP-POLYNOMIAL-PRESENTATION-INVARIANCE",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial proof sketch awaiting independent replay; no new Lean build.",
+      "statement": "For two encodings with polynomial-time faithful translations in both directions, polynomial length bounds and polynomial valid-encoding recognition, language membership in P and NP is preserved.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2608_comp_polynomial_presentation_invariance.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#4-p-versus-np-encodings-and-search"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "faithful translations in both directions",
+        "polynomial time and size",
+        "decidable validity within polynomial time"
+      ],
+      "bottleneck": "Translate the input and compose with the target decider. For NP translate the input and use its target verifier; the polynomial target input size gives a polynomial witness-size bound in the source input size. Apply the reverse translation for the converse. Reject invalid encodings before translation. Independent proof review or Lean formalization is still required.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "COMP-REVERSIBLE-BOOLEAN-EMBEDDING",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial proof sketch awaiting independent replay; no new Lean build.",
+      "statement": "For any Boolean function f on a fixed finite input domain, (x,y) maps to (x,y XOR f(x)) by an involutive permutation. Its permutation matrix is unitary in the admitted standard complex inner product.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2609_comp_reversible_boolean_embedding.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#5-reversible-classical-gates-meet-an-admitted-quantum-model"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "finite Boolean domain",
+        "standard complex basis and inner product"
+      ],
+      "bottleneck": "Applying the map twice cancels the two XOR copies of f(x). A permutation matrix has orthonormal columns. This is a representation theorem; efficient implementation additionally requires a circuit and resource bound for f, and no physical quantum structure is selected. Independent proof review or Lean formalization is still required.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "QI-MODEL-ADMISSION",
+      "stage": "FINITE_QM_INFORMATION",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "Admit finite-dimensional complex Hilbert systems, tensor composition, positive trace-one states, effects, the Born pairing, and an available class of CPTP operations. These premises define the standard operational quantum information setting.",
+      "source": [
+        "dag/derivations/13_finite_qm_information/tfq_2610_qi_model_admission.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "complex Hilbert systems",
+        "tensor composition",
+        "positive state and effect cones",
+        "Born pairing",
+        "CPTP operation availability"
+      ],
+      "bottleneck": "The earlier finite and conditional reconstruction results inform these premises but do not select all of them from <>. State exactly which operational availability assumptions a downstream theorem uses.",
+      "tags": [
+        "source-consolidation"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "QI-CLASSICAL-CHANNEL-LIFT",
+      "stage": "FINITE_QM_INFORMATION",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial proof sketch awaiting independent replay; no new Lean build.",
+      "statement": "In the admitted complex matrix model every column-stochastic kernel K has a CPTP map with Kraus operators sqrt(K(j|i)) times |j><i|, sending diagonal probabilities p to diagonal probabilities Kp.",
+      "source": [
+        "dag/derivations/13_finite_qm_information/tfq_2611_qi_classical_channel_lift.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "complex square roots of nonnegative entries",
+        "standard basis",
+        "K(j|i) nonnegative with each column summing to one"
+      ],
+      "bottleneck": "Summing A_ji adjoint times A_ji gives the identity by column normalization. The operator-sum formula is completely positive and its output on a diagonal state is diag(Kp). It erases off-diagonal entries. Thus it is one lift, not a unique coherence-preserving reconstruction of K. Independent proof review or Lean formalization is still required.",
+      "tags": [
+        "source-consolidation"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "QI-NO-CLONING-PAIR",
+      "stage": "FINITE_QM_INFORMATION",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial proof sketch awaiting independent replay; no new Lean build.",
+      "statement": "In the admitted Hilbert tensor model, no single unitary with a fixed normalized blank clones two normalized vectors whose overlap has modulus strictly between zero and one.",
+      "source": [
+        "dag/derivations/13_finite_qm_information/tfq_2612_qi_no_cloning_pair.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Hilbert inner product",
+        "tensor product",
+        "unitary map",
+        "same blank"
+      ],
+      "bottleneck": "Inner-product preservation would give z=z squared, with z the overlap, for exact vector cloning. Allowing output phases still implies |z|=|z| squared. For 0<|z|<1 this is a contradiction. Orthogonal basis copying remains allowed. Independent proof review or Lean formalization is still required.",
+      "tags": [
+        "source-consolidation"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "QI-ENTROPY-CODING-OBLIGATIONS",
+      "stage": "FINITE_QM_INFORMATION",
+      "status": "OPEN",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "Connect the admitted state and channel models to source coding, channel capacity and error-correction claims with explicit code families, error metrics, asymptotic limits and achievability/converse statements.",
+      "source": [
+        "dag/derivations/13_finite_qm_information/tfq_2613_qi_entropy_coding_obligations.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "specified entropy base",
+        "code and channel families",
+        "error criterion",
+        "asymptotic regime"
+      ],
+      "bottleneck": "Finite trace or entropy identities do not discharge operational coding theorems. Import a precise external theorem or supply a repository proof with matching hypotheses. Keep natural-log entropy distinct from entropy in bits.",
+      "tags": [
+        "source-consolidation"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "QC-UNIFORM-CIRCUITS-BQP",
+      "stage": "COMPUTATION",
+      "status": "DEFINITION",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "With the admitted quantum model and an efficiently specified finite gate set, BQP consists of languages decided by polynomial-time uniform polynomial-size circuit families with acceptance at least 2/3 for yes instances and at most 1/3 for no instances.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2614_qc_uniform_circuits_bqp.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#6-quantum-circuits-and-bqp"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "uniform classical circuit generator",
+        "polynomial gate count",
+        "ancilla preparation",
+        "finite gate specification",
+        "Born measurement"
+      ],
+      "bottleneck": "Uniformity, input encoding, gate resources and bounded error are part of the definition. Classical control and quantum model admission are both prerequisites; the P versus NP open node is not a prerequisite.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "QC-GATE-ERROR-BUDGET",
+      "stage": "COMPUTATION",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial proof sketch awaiting independent replay; no new Lean build.",
+      "statement": "For two L-gate unitary circuits whose corresponding gates differ in operator norm by at most epsilon/L, with L positive, their products differ by at most epsilon.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2615_qc_gate_error_budget.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#6-quantum-circuits-and-bqp"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "unitary gates",
+        "operator norm",
+        "positive gate count",
+        "nonnegative error budget"
+      ],
+      "bottleneck": "Subtract the two products by replacing one factor at a time. Each term is a gate difference multiplied on either side by unitaries, so its norm is at most epsilon/L. Triangle inequality sums L terms. Efficient synthesis to this precision requires a separate theorem for the chosen gate set. Independent proof review or Lean formalization is still required.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "QC-FAULT-TOLERANCE-OPEN",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "Connect the circuit family to available gates, preparation, measurement, recovery and a specified noise model with error and resource bounds uniform in computation size.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2616_qc_fault_tolerance_open.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "noise model",
+        "fault-tolerant gadgets",
+        "uniform decoding and scheduling"
+      ],
+      "bottleneck": "Finite code-distance, queue and recurrence witnesses retain their stated scope. They do not establish a physical threshold without gadget and noise assumptions and a scaling theorem.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "QC-NP-BQP-RELATION-OPEN",
+      "stage": "COMPUTATION",
+      "status": "OPEN",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "Determine whether NP is contained in BQP under the standard uniform bounded-error circuit model. Factoring algorithms and finite quantum examples do not resolve this question or P versus NP.",
+      "source": [
+        "dag/derivations/29_computation/tfq_2617_qc_np_bqp_relation_open.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#6-quantum-circuits-and-bqp"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Supply a polynomial-time bounded-error algorithm for an NP-complete language to establish containment, or an appropriate separation theorem to refute it. No such result is supplied here.",
+      "tags": [
+        "source-consolidation",
+        "application-branch"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "DYN-CLASSICAL-HAMILTON-NOETHER",
+      "stage": "FINITE_QM_DYNAMICS",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial proof sketch awaiting independent replay; no new Lean build.",
+      "statement": "On a path-connected with every loop contractible plane domain with omega=dq wedge dp, a C1 area-preserving vector field has a Hamiltonian H with qdot=H_p and pdot=-H_q. For H=p squared/2 the q-translation charge p is conserved.",
+      "source": [
+        "dag/derivations/11_finite_qm_dynamics/tfq_2618_dyn_classical_hamilton_noether.md",
+        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#classical-hamilton-and-noether"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "oriented state plane",
+        "C1 vector field and local flow",
+        "area preservation",
+        "path-connected with every loop contractible domain"
+      ],
+      "bottleneck": "Area preservation gives u_q+v_p=0, hence alpha=u dp-v dq is closed. Exactness on the path-connected with every loop contractible domain supplies H. For the specified H, pdot=-H_q=0. Coordinates, regularity, topology and flow are supplied, not derived from the primitive. Independent proof review or Lean formalization is still required.",
+      "tags": [
+        "source-consolidation"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "DYN-ALGEBRAIC-HAMILTON",
+      "stage": "FINITE_QM_DYNAMICS",
+      "status": "CONDITIONAL",
+      "source_status": "Editorial proof sketch awaiting independent replay; no new Lean build.",
+      "statement": "Every Q(i)-linear adjoint-preserving derivation of the full algebra M_d(Q(i)), for positive d, has the form delta(A)=-i[H,A] for a Hermitian H, unique modulo a rational scalar identity.",
+      "source": [
+        "dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md",
+        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#algebraic-hamiltonian"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "full matrix algebra over Q(i)",
+        "positive dimension",
+        "Leibniz derivation",
+        "adjoint preservation"
+      ],
+      "bottleneck": "Set S=sum_j delta(E_j1)E_1j. Leibniz on E_ab E_j1 shows [S,E_ab]=delta(E_ab). Adjoint preservation makes S+S adjoint central, so replace S by its anti-Hermitian part. H=iS works. The commutant of the full matrix algebra is scalar, and Hermitian scalars in Q(i) are rational. This gives no time parameter or flow. Independent proof review or Lean formalization is still required.",
+      "tags": [
+        "source-consolidation"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "QG-FULL-THEORY-COMPLETION-OPEN",
+      "stage": "FINITE_QG",
+      "status": "OPEN",
+      "source_status": "Editorial reconstruction with explicit premises; no new Lean build.",
+      "statement": "Construct a physical quantum-gravity theory with specified degrees of freedom, observables, consistent dynamics and constraints, controlled refinement or effective limits, semiclassical gravity and matter recovery, and testable predictions. The finite models do not yet discharge this combined target.",
+      "source": [
+        "dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md",
+        "dag/derivations/19_finite_qg/QUANTUM_GRAVITY_GAPS.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "chosen physical interpretation",
+        "specified scale and units",
+        "regime of validity"
+      ],
+      "bottleneck": "Each row of the gravity obligation register requires its own theorem or physical evidence. Candidate routes can use different continuum or effective-limit contracts; finite exact receipts alone close none of the full-theory claim.",
+      "tags": [
+        "source-consolidation"
+      ],
+      "see_also": []
+    }
+  ],
+  "routes": [
+    {
+      "id": "SCI-R-COMP-MARK-ADMISSION-GAP",
+      "inputs": [
+        "PG-INERT-DIAMOND"
+      ],
+      "output": "COMP-MARK-ADMISSION-GAP",
+      "status": "GAP_NO_DERIVATION",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_2600_comp_mark_admission_gap.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#1-inscription-admission-and-a-machine-that-interprets-programs"
+      ]
+    },
+    {
+      "id": "SCI-R-COMP-UTM-CONDITIONAL-ROUTE",
+      "inputs": [
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+        "COMP-C5-TM0-STEP-SIMULATION",
+        "COMP-C6-TM0-HALTING-EQUIVALENCE",
+        "COMP-C6-FINITE-MARKS",
+        "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+        "COMP-MARK-ADMISSION-GAP"
+      ],
+      "output": "COMP-UTM-CONDITIONAL-ROUTE",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "source": [
+        "dag/derivations/29_computation/tfq_2601_comp_utm_conditional_route.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#1-inscription-admission-and-a-machine-that-interprets-programs"
+      ]
+    },
+    {
+      "id": "SCI-R-COMP-COST-MODEL-IMPORT",
+      "inputs": [
+        "COMP-UTM-CONDITIONAL-ROUTE"
+      ],
+      "output": "COMP-COST-MODEL-IMPORT",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "source": [
+        "dag/derivations/29_computation/tfq_2602_comp_cost_model_import.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#2-the-extra-step-from-computability-to-complexity"
+      ]
+    },
+    {
+      "id": "SCI-R-COMP-P-DEFINITION",
+      "inputs": [
+        "COMP-COST-MODEL-IMPORT"
+      ],
+      "output": "COMP-P-DEFINITION",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/29_computation/tfq_2603_comp_p_definition.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#2-the-extra-step-from-computability-to-complexity"
+      ]
+    },
+    {
+      "id": "SCI-R-COMP-NP-VERIFIER-EQUIVALENCE",
+      "inputs": [
+        "COMP-P-DEFINITION",
+        "COMP-COST-MODEL-IMPORT"
+      ],
+      "output": "COMP-NP-VERIFIER-EQUIVALENCE",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/29_computation/tfq_2604_comp_np_verifier_equivalence.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#2-the-extra-step-from-computability-to-complexity"
+      ]
+    },
+    {
+      "id": "SCI-R-COMP-UNARY-BOUNDED-REACH-NP",
+      "inputs": [
+        "COMP-C2-WORD-REWRITING",
+        "COMP-NP-VERIFIER-EQUIVALENCE"
+      ],
+      "output": "COMP-UNARY-BOUNDED-REACH-NP",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/29_computation/tfq_2605_comp_unary_bounded_reach_np.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#3-where-np-appears-in-the-admitted-rewriting-model"
+      ]
+    },
+    {
+      "id": "SCI-R-COMP-COOK-LEVIN-IMPORT",
+      "inputs": [
+        "COMP-NP-VERIFIER-EQUIVALENCE"
+      ],
+      "output": "COMP-COOK-LEVIN-IMPORT",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "source": [
+        "dag/derivations/29_computation/tfq_2606_comp_cook_levin_import.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#3-where-np-appears-in-the-admitted-rewriting-model"
+      ]
+    },
+    {
+      "id": "SCI-R-COMP-P-VS-NP-OPEN",
+      "inputs": [
+        "COMP-P-DEFINITION",
+        "COMP-NP-VERIFIER-EQUIVALENCE",
+        "COMP-COOK-LEVIN-IMPORT"
+      ],
+      "output": "COMP-P-VS-NP-OPEN",
+      "status": "GAP_NO_DERIVATION",
+      "source": [
+        "dag/derivations/29_computation/tfq_2607_comp_p_vs_np_open.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#4-p-versus-np-encodings-and-search"
+      ]
+    },
+    {
+      "id": "SCI-R-COMP-POLYNOMIAL-PRESENTATION-INVARIANCE",
+      "inputs": [
+        "COMP-NP-VERIFIER-EQUIVALENCE"
+      ],
+      "output": "COMP-POLYNOMIAL-PRESENTATION-INVARIANCE",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/29_computation/tfq_2608_comp_polynomial_presentation_invariance.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#4-p-versus-np-encodings-and-search"
+      ]
+    },
+    {
+      "id": "SCI-R-COMP-REVERSIBLE-BOOLEAN-EMBEDDING",
+      "inputs": [
+        "COMP-C1-CANONICAL-SEPARATED-ALPHABET"
+      ],
+      "output": "COMP-REVERSIBLE-BOOLEAN-EMBEDDING",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/29_computation/tfq_2609_comp_reversible_boolean_embedding.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#5-reversible-classical-gates-meet-an-admitted-quantum-model"
+      ]
+    },
+    {
+      "id": "SCI-R-QI-MODEL-ADMISSION",
+      "inputs": [
+        "FQ-POSITIVE-WEIGHTS-ADMITTED",
+        "FQ-GAP-BORN-UNIQUENESS-GLEASON",
+        "FQ-GAP-TENSOR-UNIQUENESS",
+        "FQ-CPTP-CLASS-DEFINITION"
+      ],
+      "output": "QI-MODEL-ADMISSION",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "source": [
+        "dag/derivations/13_finite_qm_information/tfq_2610_qi_model_admission.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ]
+    },
+    {
+      "id": "SCI-R-QI-CLASSICAL-CHANNEL-LIFT",
+      "inputs": [
+        "QI-MODEL-ADMISSION"
+      ],
+      "output": "QI-CLASSICAL-CHANNEL-LIFT",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/13_finite_qm_information/tfq_2611_qi_classical_channel_lift.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ]
+    },
+    {
+      "id": "SCI-R-QI-NO-CLONING-PAIR",
+      "inputs": [
+        "QI-MODEL-ADMISSION"
+      ],
+      "output": "QI-NO-CLONING-PAIR",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/13_finite_qm_information/tfq_2612_qi_no_cloning_pair.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ]
+    },
+    {
+      "id": "SCI-R-QI-ENTROPY-CODING-OBLIGATIONS",
+      "inputs": [
+        "QI-MODEL-ADMISSION",
+        "FQ-ENTROPY-DICHOTOMY-BAKER"
+      ],
+      "output": "QI-ENTROPY-CODING-OBLIGATIONS",
+      "status": "GAP_NO_DERIVATION",
+      "source": [
+        "dag/derivations/13_finite_qm_information/tfq_2613_qi_entropy_coding_obligations.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ]
+    },
+    {
+      "id": "SCI-R-QC-UNIFORM-CIRCUITS-BQP",
+      "inputs": [
+        "QI-MODEL-ADMISSION",
+        "COMP-COST-MODEL-IMPORT",
+        "COMP-REVERSIBLE-BOOLEAN-EMBEDDING"
+      ],
+      "output": "QC-UNIFORM-CIRCUITS-BQP",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/29_computation/tfq_2614_qc_uniform_circuits_bqp.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#6-quantum-circuits-and-bqp"
+      ]
+    },
+    {
+      "id": "SCI-R-QC-GATE-ERROR-BUDGET",
+      "inputs": [
+        "QC-UNIFORM-CIRCUITS-BQP"
+      ],
+      "output": "QC-GATE-ERROR-BUDGET",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/29_computation/tfq_2615_qc_gate_error_budget.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#6-quantum-circuits-and-bqp"
+      ]
+    },
+    {
+      "id": "SCI-R-QC-FAULT-TOLERANCE-OPEN",
+      "inputs": [
+        "QC-UNIFORM-CIRCUITS-BQP",
+        "QC-GATE-ERROR-BUDGET",
+        "QI-ENTROPY-CODING-OBLIGATIONS"
+      ],
+      "output": "QC-FAULT-TOLERANCE-OPEN",
+      "status": "GAP_NO_DERIVATION",
+      "source": [
+        "dag/derivations/29_computation/tfq_2616_qc_fault_tolerance_open.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ]
+    },
+    {
+      "id": "SCI-R-QC-NP-BQP-RELATION-OPEN",
+      "inputs": [
+        "COMP-NP-VERIFIER-EQUIVALENCE",
+        "QC-UNIFORM-CIRCUITS-BQP"
+      ],
+      "output": "QC-NP-BQP-RELATION-OPEN",
+      "status": "GAP_NO_DERIVATION",
+      "source": [
+        "dag/derivations/29_computation/tfq_2617_qc_np_bqp_relation_open.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#6-quantum-circuits-and-bqp"
+      ]
+    },
+    {
+      "id": "SCI-R-DYN-CLASSICAL-HAMILTON-NOETHER",
+      "inputs": [
+        "PG-ROOT-DIFF-STRUCTURE"
+      ],
+      "output": "DYN-CLASSICAL-HAMILTON-NOETHER",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/11_finite_qm_dynamics/tfq_2618_dyn_classical_hamilton_noether.md",
+        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#classical-hamilton-and-noether"
+      ]
+    },
+    {
+      "id": "SCI-R-DYN-ALGEBRAIC-HAMILTON",
+      "inputs": [
+        "L1-WDP-REALIFICATION-J"
+      ],
+      "output": "DYN-ALGEBRAIC-HAMILTON",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md",
+        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#algebraic-hamiltonian"
+      ]
+    },
+    {
+      "id": "SCI-R-QG-FULL-THEORY-COMPLETION-OPEN",
+      "inputs": [
+        "TFQ-0084",
+        "TFQ-0107",
+        "TFQ-0118",
+        "LQG-CONTINUUM-LIMIT-GAP",
+        "FQ-PRIM-TO-QM-SELECTION-OPEN"
+      ],
+      "output": "QG-FULL-THEORY-COMPLETION-OPEN",
+      "status": "GAP_NO_DERIVATION",
+      "source": [
+        "dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md",
+        "dag/derivations/19_finite_qg/QUANTUM_GRAVITY_GAPS.md"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "TFQ-2600",
+      "uuid": "338b94f4-5568-57ac-9c72-337a7b7fdc40",
+      "local_id": "COMP-MARK-ADMISSION-GAP",
+      "name": "The first mark does not supply a computation model",
+      "stage": "PREGENESIS",
+      "parent_id": "TFQ-0000",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "The inscription <> alone does not specify a carrier, identity convention, alphabet, rewriting rule or resource supply. An admission argument connecting it to the stated computation model remains open.",
+      "obligation": "The established alphabet constructions quantify over admitted data and forms. They do not construct their own metatheory or admission from the inscription. Supply that bridge or retain it as an assumption.",
+      "source_slice": "source_consolidation",
+      "existing_derivation_dag_ids": [
+        "COMP-MARK-ADMISSION-GAP"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/01_pregenesis/tfq_2600_comp_mark_admission_gap.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#1-inscription-admission-and-a-machine-that-interprets-programs"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2601",
+      "uuid": "1b40ab28-d0cb-5e5c-a7b7-bdceaa9d0787",
+      "local_id": "COMP-UTM-CONDITIONAL-ROUTE",
+      "name": "Conditional UTM route through the existing machine construction",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-1284",
+      "record_status": "CONDITIONAL",
+      "summary": "With separated marks, declared rewriting and unbounded word supply, the existing fixed TM0 machine simulates termination of every encoded partial-recursive program. Its finite mark set is established; output decoding remains a separate open obligation.",
+      "obligation": "Compose the existing forward/backward rewriting simulation with the fixed evaluator compiler chain. This reuses the existing results without a new Lean claim. COMP-C6-TM0-OUTPUT-FORM-OPEN remains open; a halting iff theorem alone is not an output-value theorem.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "COMP-UTM-CONDITIONAL-ROUTE"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2601_comp_utm_conditional_route.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#1-inscription-admission-and-a-machine-that-interprets-programs"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2602",
+      "uuid": "1f01376e-930e-5d12-88b3-11a4ef2c8a28",
+      "local_id": "COMP-COST-MODEL-IMPORT",
+      "name": "Encoding, input length and uniform step cost",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2601",
+      "record_status": "IMPORTED_ASSUMPTION",
+      "summary": "Complexity is measured after fixing finite input encodings, input length, a uniform machine model and elementary step costs. Computable simulation alone gives no polynomial overhead bound.",
+      "obligation": "Prove overhead bounds for each implementation translation used in a complexity claim. Keep computability and efficient simulation distinct.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "COMP-COST-MODEL-IMPORT"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2602_comp_cost_model_import.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#2-the-extra-step-from-computability-to-complexity"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2603",
+      "uuid": "27520b74-7022-552c-a649-f962d6c6be5e",
+      "local_id": "COMP-P-DEFINITION",
+      "name": "Deterministic polynomial time",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2602",
+      "record_status": "DEFINITION",
+      "summary": "P is the class of languages decided by one deterministic machine in time bounded by a polynomial in encoded input length.",
+      "obligation": "This defines a class of language families over inputs of unbounded length. A finite truth table does not establish membership for an unbounded family.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "COMP-P-DEFINITION"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2603_comp_p_definition.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#2-the-extra-step-from-computability-to-complexity"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2604",
+      "uuid": "b6f1aac2-3f6e-58f9-b626-985a54f1e9fc",
+      "local_id": "COMP-NP-VERIFIER-EQUIVALENCE",
+      "name": "NP from polynomial witnesses and nondeterministic runs",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2603",
+      "record_status": "CONDITIONAL",
+      "summary": "Under a fixed finite-branching machine model, polynomial-time nondeterministic acceptance is equivalent to existence of polynomial-length witnesses checked by a deterministic polynomial-time verifier; P is contained in NP.",
+      "obligation": "A nondeterministic machine guesses the bounded witness and runs the verifier. Conversely encode the branch choices of an accepting polynomial-time run and replay them deterministically. There are polynomially many choices of constant bit length. For P containment ignore the witness and run the decider. No separation follows. Independent proof review or Lean formalization is still required.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "COMP-NP-VERIFIER-EQUIVALENCE"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2604_comp_np_verifier_equivalence.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#2-the-extra-step-from-computability-to-complexity"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2605",
+      "uuid": "67a6dbf3-12be-5f31-aca7-85216653bd92",
+      "local_id": "COMP-UNARY-BOUNDED-REACH-NP",
+      "name": "Unary step-bounded rewriting is in NP",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-1286",
+      "record_status": "CONDITIONAL",
+      "summary": "For a fixed finite rewriting rule list, the language of triples (a,b,1^t) for which a reaches b in at most t steps belongs to NP.",
+      "obligation": "With c the largest right-hand-side length, each intermediate word has length at most |a|+tc. List at most t words, rule indices and positions. Verify each local substitution and the endpoints by polynomially many symbol comparisons. Binary t invalidates this certificate-size bound, not membership in NP by itself. Independent proof review or Lean formalization is still required.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "COMP-UNARY-BOUNDED-REACH-NP"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2605_comp_unary_bounded_reach_np.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#3-where-np-appears-in-the-admitted-rewriting-model"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2606",
+      "uuid": "df61cc7e-48be-557c-be84-be802d0082b7",
+      "local_id": "COMP-COOK-LEVIN-IMPORT",
+      "name": "Cook-Levin and the reduction obligation",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2604",
+      "record_status": "IMPORTED_ASSUMPTION",
+      "summary": "The Cook-Levin theorem supplies a polynomial reduction from nondeterministic polynomial-time acceptance to SAT. Applying NP-hardness to a specific rewriting or sign problem needs a further polynomial reduction.",
+      "obligation": "The tableau constrains initial configuration, local transitions and acceptance with polynomially many Boolean variables and clauses. This is an imported theorem, not a newly checked Lean result.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "COMP-COOK-LEVIN-IMPORT"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2606_comp_cook_levin_import.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#3-where-np-appears-in-the-admitted-rewriting-model"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2607",
+      "uuid": "4c74c45a-5575-59d8-b922-9c2f49584598",
+      "local_id": "COMP-P-VS-NP-OPEN",
+      "name": "P versus NP",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2603",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "Determine whether every language in NP is in P, or exhibit an NP language outside P. The existing machine construction, finite checks and exponential search enumeration do not settle either alternative.",
+      "obligation": "A proof must quantify over uniform algorithms and unbounded input lengths. An upper bound for enumeration is not a lower bound for all algorithms. The official Clay statement lists the problem as unsolved.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "COMP-P-VS-NP-OPEN"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2607_comp_p_vs_np_open.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#4-p-versus-np-encodings-and-search"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2608",
+      "uuid": "d7215c4b-6a0e-56a4-8a66-c694556d8d66",
+      "local_id": "COMP-POLYNOMIAL-PRESENTATION-INVARIANCE",
+      "name": "P and NP under efficient faithful encodings",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2604",
+      "record_status": "CONDITIONAL",
+      "summary": "For two encodings with polynomial-time faithful translations in both directions, polynomial length bounds and polynomial valid-encoding recognition, language membership in P and NP is preserved.",
+      "obligation": "Translate the input and compose with the target decider. For NP translate the input and use its target verifier; the polynomial target input size gives a polynomial witness-size bound in the source input size. Apply the reverse translation for the converse. Reject invalid encodings before translation. Independent proof review or Lean formalization is still required.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "COMP-POLYNOMIAL-PRESENTATION-INVARIANCE"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2608_comp_polynomial_presentation_invariance.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#4-p-versus-np-encodings-and-search"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2609",
+      "uuid": "89c422f9-cc07-5ffc-86ae-2247195f686e",
+      "local_id": "COMP-REVERSIBLE-BOOLEAN-EMBEDDING",
+      "name": "A reversible Boolean permutation embeds as a unitary",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-1284",
+      "record_status": "CONDITIONAL",
+      "summary": "For any Boolean function f on a fixed finite input domain, (x,y) maps to (x,y XOR f(x)) by an involutive permutation. Its permutation matrix is unitary in the admitted standard complex inner product.",
+      "obligation": "Applying the map twice cancels the two XOR copies of f(x). A permutation matrix has orthonormal columns. This is a representation theorem; efficient implementation additionally requires a circuit and resource bound for f, and no physical quantum structure is selected. Independent proof review or Lean formalization is still required.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "COMP-REVERSIBLE-BOOLEAN-EMBEDDING"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2609_comp_reversible_boolean_embedding.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#5-reversible-classical-gates-meet-an-admitted-quantum-model"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2610",
+      "uuid": "83c7dc85-6197-5b45-a04f-89b950d867d6",
+      "local_id": "QI-MODEL-ADMISSION",
+      "name": "Operational quantum information model",
+      "stage": "FINITE_QM_INFORMATION",
+      "parent_id": "TFQ-1008",
+      "record_status": "IMPORTED_ASSUMPTION",
+      "summary": "Admit finite-dimensional complex Hilbert systems, tensor composition, positive trace-one states, effects, the Born pairing, and an available class of CPTP operations. These premises define the standard operational quantum information setting.",
+      "obligation": "The earlier finite and conditional reconstruction results inform these premises but do not select all of them from <>. State exactly which operational availability assumptions a downstream theorem uses.",
+      "source_slice": "source_consolidation",
+      "existing_derivation_dag_ids": [
+        "QI-MODEL-ADMISSION"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/13_finite_qm_information/tfq_2610_qi_model_admission.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2611",
+      "uuid": "f7f354f2-0aa2-568e-a13a-fd1b54eef388",
+      "local_id": "QI-CLASSICAL-CHANNEL-LIFT",
+      "name": "A stochastic kernel has a quantum measure-and-prepare lift",
+      "stage": "FINITE_QM_INFORMATION",
+      "parent_id": "TFQ-2610",
+      "record_status": "CONDITIONAL",
+      "summary": "In the admitted complex matrix model every column-stochastic kernel K has a CPTP map with Kraus operators sqrt(K(j|i)) times |j><i|, sending diagonal probabilities p to diagonal probabilities Kp.",
+      "obligation": "Summing A_ji adjoint times A_ji gives the identity by column normalization. The operator-sum formula is completely positive and its output on a diagonal state is diag(Kp). It erases off-diagonal entries. Thus it is one lift, not a unique coherence-preserving reconstruction of K. Independent proof review or Lean formalization is still required.",
+      "source_slice": "source_consolidation",
+      "existing_derivation_dag_ids": [
+        "QI-CLASSICAL-CHANNEL-LIFT"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/13_finite_qm_information/tfq_2611_qi_classical_channel_lift.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2612",
+      "uuid": "62142906-10c0-5883-954b-195d915e02bf",
+      "local_id": "QI-NO-CLONING-PAIR",
+      "name": "A common unitary cannot clone distinct nonorthogonal rays",
+      "stage": "FINITE_QM_INFORMATION",
+      "parent_id": "TFQ-2610",
+      "record_status": "CONDITIONAL",
+      "summary": "In the admitted Hilbert tensor model, no single unitary with a fixed normalized blank clones two normalized vectors whose overlap has modulus strictly between zero and one.",
+      "obligation": "Inner-product preservation would give z=z squared, with z the overlap, for exact vector cloning. Allowing output phases still implies |z|=|z| squared. For 0<|z|<1 this is a contradiction. Orthogonal basis copying remains allowed. Independent proof review or Lean formalization is still required.",
+      "source_slice": "source_consolidation",
+      "existing_derivation_dag_ids": [
+        "QI-NO-CLONING-PAIR"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/13_finite_qm_information/tfq_2612_qi_no_cloning_pair.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2613",
+      "uuid": "096e3c44-a0ac-540f-8724-6c1068966213",
+      "local_id": "QI-ENTROPY-CODING-OBLIGATIONS",
+      "name": "From finite information quantities to coding theorems",
+      "stage": "FINITE_QM_INFORMATION",
+      "parent_id": "TFQ-2610",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "Connect the admitted state and channel models to source coding, channel capacity and error-correction claims with explicit code families, error metrics, asymptotic limits and achievability/converse statements.",
+      "obligation": "Finite trace or entropy identities do not discharge operational coding theorems. Import a precise external theorem or supply a repository proof with matching hypotheses. Keep natural-log entropy distinct from entropy in bits.",
+      "source_slice": "source_consolidation",
+      "existing_derivation_dag_ids": [
+        "QI-ENTROPY-CODING-OBLIGATIONS"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/13_finite_qm_information/tfq_2613_qi_entropy_coding_obligations.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2614",
+      "uuid": "bda7c7b9-77be-5f93-809c-dbcee91b6286",
+      "local_id": "QC-UNIFORM-CIRCUITS-BQP",
+      "name": "Uniform quantum circuits and BQP",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2610",
+      "record_status": "DEFINITION",
+      "summary": "With the admitted quantum model and an efficiently specified finite gate set, BQP consists of languages decided by polynomial-time uniform polynomial-size circuit families with acceptance at least 2/3 for yes instances and at most 1/3 for no instances.",
+      "obligation": "Uniformity, input encoding, gate resources and bounded error are part of the definition. Classical control and quantum model admission are both prerequisites; the P versus NP open node is not a prerequisite.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "QC-UNIFORM-CIRCUITS-BQP"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2614_qc_uniform_circuits_bqp.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#6-quantum-circuits-and-bqp"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2615",
+      "uuid": "22d53a7d-2fd7-52da-a74c-2fd7f1fc9942",
+      "local_id": "QC-GATE-ERROR-BUDGET",
+      "name": "Gate errors telescope across a finite circuit",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2614",
+      "record_status": "CONDITIONAL",
+      "summary": "For two L-gate unitary circuits whose corresponding gates differ in operator norm by at most epsilon/L, with L positive, their products differ by at most epsilon.",
+      "obligation": "Subtract the two products by replacing one factor at a time. Each term is a gate difference multiplied on either side by unitaries, so its norm is at most epsilon/L. Triangle inequality sums L terms. Efficient synthesis to this precision requires a separate theorem for the chosen gate set. Independent proof review or Lean formalization is still required.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "QC-GATE-ERROR-BUDGET"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2615_qc_gate_error_budget.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#6-quantum-circuits-and-bqp"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2616",
+      "uuid": "e7a95bf5-3e2f-56d8-91f7-ccf078e2e66c",
+      "local_id": "QC-FAULT-TOLERANCE-OPEN",
+      "name": "Scalable physical quantum computation",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2614",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "Connect the circuit family to available gates, preparation, measurement, recovery and a specified noise model with error and resource bounds uniform in computation size.",
+      "obligation": "Finite code-distance, queue and recurrence witnesses retain their stated scope. They do not establish a physical threshold without gadget and noise assumptions and a scaling theorem.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "QC-FAULT-TOLERANCE-OPEN"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2616_qc_fault_tolerance_open.md",
+        "dag/derivations/13_finite_qm_information/QUANTUM_INFORMATION.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2617",
+      "uuid": "dddc2efa-62c0-53b7-8027-4bbfcc9b1cda",
+      "local_id": "QC-NP-BQP-RELATION-OPEN",
+      "name": "NP and BQP remain distinct open comparisons",
+      "stage": "COMPUTATION",
+      "parent_id": "TFQ-2604",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "Determine whether NP is contained in BQP under the standard uniform bounded-error circuit model. Factoring algorithms and finite quantum examples do not resolve this question or P versus NP.",
+      "obligation": "Supply a polynomial-time bounded-error algorithm for an NP-complete language to establish containment, or an appropriate separation theorem to refute it. No such result is supplied here.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "QC-NP-BQP-RELATION-OPEN"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/29_computation/tfq_2617_qc_np_bqp_relation_open.md",
+        "atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md#6-quantum-circuits-and-bqp"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2618",
+      "uuid": "f553ef85-78b5-524b-81cd-d858ac13396b",
+      "local_id": "DYN-CLASSICAL-HAMILTON-NOETHER",
+      "name": "Area-preserving plane flow and a Hamiltonian charge",
+      "stage": "FINITE_QM_DYNAMICS",
+      "parent_id": "TFQ-0001",
+      "record_status": "CONDITIONAL",
+      "summary": "On a path-connected with every loop contractible plane domain with omega=dq wedge dp, a C1 area-preserving vector field has a Hamiltonian H with qdot=H_p and pdot=-H_q. For H=p squared/2 the q-translation charge p is conserved.",
+      "obligation": "Area preservation gives u_q+v_p=0, hence alpha=u dp-v dq is closed. Exactness on the path-connected with every loop contractible domain supplies H. For the specified H, pdot=-H_q=0. Coordinates, regularity, topology and flow are supplied, not derived from the primitive. Independent proof review or Lean formalization is still required.",
+      "source_slice": "source_consolidation",
+      "existing_derivation_dag_ids": [
+        "DYN-CLASSICAL-HAMILTON-NOETHER"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/11_finite_qm_dynamics/tfq_2618_dyn_classical_hamilton_noether.md",
+        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#classical-hamilton-and-noether"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2619",
+      "uuid": "6b6757f7-5054-514a-8241-4a69d428f096",
+      "local_id": "DYN-ALGEBRAIC-HAMILTON",
+      "name": "An adjoint-preserving matrix derivation is Hamiltonian",
+      "stage": "FINITE_QM_DYNAMICS",
+      "parent_id": "TFQ-1002",
+      "record_status": "CONDITIONAL",
+      "summary": "Every Q(i)-linear adjoint-preserving derivation of the full algebra M_d(Q(i)), for positive d, has the form delta(A)=-i[H,A] for a Hermitian H, unique modulo a rational scalar identity.",
+      "obligation": "Set S=sum_j delta(E_j1)E_1j. Leibniz on E_ab E_j1 shows [S,E_ab]=delta(E_ab). Adjoint preservation makes S+S adjoint central, so replace S by its anti-Hermitian part. H=iS works. The commutant of the full matrix algebra is scalar, and Hermitian scalars in Q(i) are rational. This gives no time parameter or flow. Independent proof review or Lean formalization is still required.",
+      "source_slice": "source_consolidation",
+      "existing_derivation_dag_ids": [
+        "DYN-ALGEBRAIC-HAMILTON"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/11_finite_qm_dynamics/tfq_2619_dyn_algebraic_hamilton.md",
+        "dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md#algebraic-hamiltonian"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-2620",
+      "uuid": "cf0bed54-8425-5266-a1e6-1f2a2b9c92b9",
+      "local_id": "QG-FULL-THEORY-COMPLETION-OPEN",
+      "name": "Complete quantum gravity beyond the finite models",
+      "stage": "FINITE_QG",
+      "parent_id": "TFQ-0084",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "Construct a physical quantum-gravity theory with specified degrees of freedom, observables, consistent dynamics and constraints, controlled refinement or effective limits, semiclassical gravity and matter recovery, and testable predictions. The finite models do not yet discharge this combined target.",
+      "obligation": "Each row of the gravity obligation register requires its own theorem or physical evidence. Candidate routes can use different continuum or effective-limit contracts; finite exact receipts alone close none of the full-theory claim.",
+      "source_slice": "source_consolidation",
+      "existing_derivation_dag_ids": [
+        "QG-FULL-THEORY-COMPLETION-OPEN"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/19_finite_qg/tfq_2620_qg_full_theory_completion_open.md",
+        "dag/derivations/19_finite_qg/QUANTUM_GRAVITY_GAPS.md"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    }
+  ]
+}

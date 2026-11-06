@@ -71,10 +71,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/26_fsp/fsp/README.md`
+
+- file: [dag/derivations/26_fsp/fsp/README.md](../../../dag/derivations/26_fsp/fsp/README.md)
+- sha256 (`lf-normalised`): `9ca453eb9c1585bb7fa750b056b73593076ccabc0f676d6af721a56ed00f6c4a`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/26_fsp/fsp/docs/sql_meron_hubbard.md`
+
+- file: [dag/derivations/26_fsp/fsp/docs/sql_meron_hubbard.md](../../../dag/derivations/26_fsp/fsp/docs/sql_meron_hubbard.md)
+- sha256 (`lf-normalised`): `88c5febb35077085c1e428eb5a75dc2d85357afd66bc2faff916abd8bf1a74de`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md`
 
 - file: [dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md](../../../dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md)
-- sha256 (`lf-normalised`): `9a23cc13f78442d23b4852e3edb6c06ceb20dc6a9699025192a1cf57d0b1968c`
+- sha256 (`lf-normalised`): `2ab69e5f0eb16bea9a32f38b8432cc6e9790ac60eca055a50bbe5ee106885893`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0408
 - counts toward the grade: no
@@ -82,21 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-hubbard-protected-representations.md`
 
 - file: [dag/derivations/independent/fsp-hubbard-protected-representations.md](../../../dag/derivations/independent/fsp-hubbard-protected-representations.md)
-- sha256 (`lf-normalised`): `78292dc1629e52f01ba4443b0f84a9da52b05a09d1e697d0bb946ed42bf3f352`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/README.md`
-
-- file: [papers/core/fsp/README.md](../../../papers/core/fsp/README.md)
-- sha256 (`lf-normalised`): `49bf9e23ec5b96cfd3fbd8bfff74f2a03d0151e20c497589d4233136dc24ca5b`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/docs/sql_meron_hubbard.md`
-
-- file: [papers/core/fsp/docs/sql_meron_hubbard.md](../../../papers/core/fsp/docs/sql_meron_hubbard.md)
-- sha256 (`lf-normalised`): `88c5febb35077085c1e428eb5a75dc2d85357afd66bc2faff916abd8bf1a74de`
+- sha256 (`lf-normalised`): `6afccf2581fb14befd3e2613ccb0aba460ec1a19f2207edc69e4711f50f77ab1`
 - cited in: node.source
 - counts toward the grade: yes
 

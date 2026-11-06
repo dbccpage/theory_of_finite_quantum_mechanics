@@ -22,7 +22,7 @@ target with exact package controls, not a general Hubbard sign theorem.
 
 ## Evidence and next obligation
 
-- [papers/core/fsp/README.md](../../../papers/core/fsp/README.md)
-- [papers/core/fsp/docs/sql_meron_hubbard.md](../../../papers/core/fsp/docs/sql_meron_hubbard.md)
+- [dag/derivations/26_fsp/fsp/README.md](../../../dag/derivations/26_fsp/fsp/README.md)
+- [dag/derivations/26_fsp/fsp/docs/sql_meron_hubbard.md](../../../dag/derivations/26_fsp/fsp/docs/sql_meron_hubbard.md)
 
 Prove the required determinant pairing and Hamiltonian-to-representation equality for each stated model, including boundary cases.

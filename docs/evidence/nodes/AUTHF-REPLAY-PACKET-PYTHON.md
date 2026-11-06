@@ -32,7 +32,7 @@ Evaluator correspondence to the Lean model, SHA-256 collision resistance, runtim
 
 ## Source status
 
-papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-23 claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-23 claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1361_authf_replay_packet_python.md`
 
 - file: [dag/derivations/29_computation/tfq_1361_authf_replay_packet_python.md](../../../dag/derivations/29_computation/tfq_1361_authf_replay_packet_python.md)
-- sha256 (`lf-normalised`): `0b8139913b4b2c961f179fb2f1eaaf558fdd73b12487278f0cb2296742353e2d`
+- sha256 (`lf-normalised`): `842ab7c745eb4a59d4e2221917f5d844753a53af85262dde1cec5552ac19565e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1361
 - counts toward the grade: no

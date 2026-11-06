@@ -32,7 +32,7 @@ The checked slice is the identity coboundary on functions Fin t to Bool: d1 afte
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-C13 claims PROVED_LEAN; audited status CONDITIONAL
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-C13 claims PROVED_LEAN; audited status CONDITIONAL
 
 ## Review
 
@@ -41,6 +41,21 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
+
+- file: [dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean](../../../dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean)
+- sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
+- cited in: node.lean, record TFQ-1154
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `legacy_carrier_obstruction` | yes | yes | yes | none | `#print axioms legacy_carrier_obstruction` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/MajoranaLegacyCarrierRetraction.lean`
 
@@ -70,21 +85,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `papers/core/majorana/lean4/MajoranaCore.lean`
-
-- file: [papers/core/majorana/lean4/MajoranaCore.lean](../../../papers/core/majorana/lean4/MajoranaCore.lean)
-- sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
-- cited in: node.lean, record TFQ-1154
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaCore.lean`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `legacy_carrier_obstruction` | yes | yes | yes | none | `#print axioms legacy_carrier_obstruction` |
-
-- counts toward the grade: yes
-
 ### Python: `code/python/src/majorana/majorana_mzm_ising.py`
 
 - file: [code/python/src/majorana/majorana_mzm_ising.py](../../../code/python/src/majorana/majorana_mzm_ising.py)
@@ -110,34 +110,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md](../../../dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md)
-- sha256 (`lf-normalised`): `1d63d0acf863861711578ae65d0c4e0cd96bcbd506252232712f22dd94fab63b`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1154
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/the_majorana_problem_change_log.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md`
 
-- file: [papers/core/majorana/the_majorana_problem_change_log.md](../../../papers/core/majorana/the_majorana_problem_change_log.md)
-- sha256 (`lf-normalised`): `4592b207071a2c05f46a6ffdd890a2332f957a7e6b805e9aa6c6988e451e9fa8`
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md)
+- sha256 (`lf-normalised`): `b09f10f3d19bcfcea3bde32cf2c4e055a2ba3d7274941c7904dafe730d38ad04`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/the_majorana_problem_claim_ledger.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md`
 
-- file: [papers/core/majorana/the_majorana_problem_claim_ledger.md](../../../papers/core/majorana/the_majorana_problem_claim_ledger.md)
-- sha256 (`lf-normalised`): `37cc191a881cbb0f8fb52e30c2b865f9e9e70e235b4530df7bdd7d1b5728cb86`
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md)
+- sha256 (`lf-normalised`): `c6a3554eb30108d6294ec0ab42952efacd3f5deff58b23b0bf69d061978ac914`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md`
+
+- file: [dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md](../../../dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md)
+- sha256 (`lf-normalised`): `7d3cc7113051946f3ebcf8d6abf3e28c36102ff2240a8806c4ec350be07be0fd`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1154
+- counts toward the grade: no
 
 ## Routes
 

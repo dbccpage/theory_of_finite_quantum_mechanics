@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 22. Grades: E1 2, E3 20. Statuses: PROVED_LEAN 1, PROVED_PROSE 1, COMPUTATIONALLY_CHECKED 12, CONDITIONAL 2, IMPORTED_ASSUMPTION 3, OPEN 3.
+Nodes: 24. Grades: E1 4, E3 20. Statuses: PROVED_LEAN 1, PROVED_PROSE 1, COMPUTATIONALLY_CHECKED 12, CONDITIONAL 4, IMPORTED_ASSUMPTION 3, OPEN 3.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -28,4 +28,6 @@ Nodes: 22. Grades: E1 2, E3 20. Statuses: PROVED_LEAN 1, PROVED_PROSE 1, COMPUTA
 | [TFQ-0008](../nodes/TFQ-0008.md) | `OPEN` | E3 | After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary... | [FiniteDynamicsInstrumentsPathSums.lean](../../../lean4/FiniteDynamicsInstrumentsPathSums.lean): `cayley_unitary_norm_conservation_exact`, `diamond_path_sum_interference_identities`, `euler_first_order_generator_norm_inflation_fence` +7<br>[PathSumCayleyEulerStep.lean](../../../lean4/PathSumCayleyEulerStep.lean): `cayley_at_1`, `cayley_at_2`, `cayley_norm` +9<br>[tfq-0008.py](../../../checks/independent/tfq-0008.py)<br>[tfq-0008.md](../../../dag/derivations/independent/tfq-0008.md)<br>+3 more file(s) | - |
 | [TFQ-0237](../nodes/TFQ-0237.md) | `OPEN` | E1 | QM_203 is an internal stub whose status box says it does not derive continuum quantum mechanics, physical dynamics, or authority. Every m... | [finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md) | - |
 | [TFQ-0238](../nodes/TFQ-0238.md) | `OPEN` | E1 | QM_205 reserves a pointer-basis slot and, in the binding status box, says it does not derive continuum quantum mechanics or mint authorit... | [finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md) | - |
+| [DYN-CLASSICAL-HAMILTON-NOETHER](../nodes/DYN-CLASSICAL-HAMILTON-NOETHER.md) | `CONDITIONAL` | E1 | On a path-connected with every loop contractible plane domain with omega=dq wedge dp, a C1 area-preserving vector field has a Hamiltonian... | [DYNAMICS_HAMILTON_NOETHER.md](../../../dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md) | - |
+| [DYN-ALGEBRAIC-HAMILTON](../nodes/DYN-ALGEBRAIC-HAMILTON.md) | `CONDITIONAL` | E1 | Every Q(i)-linear adjoint-preserving derivation of the full algebra M_d(Q(i)), for positive d, has the form delta(A)=-i\[H,A\] for a Hermit... | [DYNAMICS_HAMILTON_NOETHER.md](../../../dag/derivations/11_finite_qm_dynamics/DYNAMICS_HAMILTON_NOETHER.md) | - |
 

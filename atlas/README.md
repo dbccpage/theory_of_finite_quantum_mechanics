@@ -16,6 +16,17 @@ The original import copied seven paper folders from a private research repositor
 
 Each folder holds a paper (Markdown, TeX, PDF), its Lean 4 sources, and the Python, Rust, JSON and CSV files the paper cites.
 
+## QM and computation consolidation, 2026-11-05
+
+The former `foundations/` and `core/` contents now live under the corresponding
+numbered stages in [`dag/derivations`](../dag/derivations/). Start with the
+[combined reading path](../dag/derivations/FIRST_MARK_TO_QUANTUM_GRAVITY.md)
+and [file crosswalk](../dag/derivations/SOURCE_CROSSWALK.md).
+The computation and complexity sources share
+[`computation_complexity_pvnp/`](computation_complexity_pvnp/README.md).
+The import counts and prior byte audit below describe their historical
+snapshots, before this further consolidation; the new manifest records this move.
+
 ## What status these files have
 
 They are source texts. Whatever a file in `atlas/` says about being proved, verified or checked is the source's own wording. It is not a status in this repository, and it changes no node in `dag/derivation_dag.json`. The statuses in the DAG govern; see [`docs/evidence/README.md`](../docs/evidence/README.md) for how each status is backed.

@@ -146,7 +146,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0110_gap_on_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_curvature.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0110_gap_on_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_curvature.md](../../../dag/derivations/19_finite_qg/tfq_0110_gap_on_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_curvature.md)
-- sha256 (`lf-normalised`): `e25c3ba2ec04fd37f15db3abc0e38fd687bcd7503c817442a002bcbe12bf46a0`
+- sha256 (`lf-normalised`): `d53331a7e6449af63092c3555a6413e6d0611c90003c4691d492043e647557c7`
 - generated view: listed, not counted
 - cited in: record TFQ-0110
 - counts toward the grade: no
@@ -170,7 +170,7 @@ Named by the node; not in this repository and not checked here.
 - TFQ-0108 rust: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e
 - TFQ-0108 rust: no local rust twin located for external:sha256:daa2544f59a9e79153dd422e291957ad086cabfeed37aa2bf2d5ddc847a4aade
 - TFQ-0110 lean4: no local lean twin located for sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/lean4/GR002.lean
-- TFQ-0110 python: no local python twin located for papers/core/constraint_closure/code/l1_regge.py
+- TFQ-0110 python: no local python twin located for dag/derivations/19_finite_qg/constraint_closure/code/l1_regge.py
 
 ## Routes
 

@@ -32,7 +32,7 @@ The contract and adapters are supplied examples; the model is not the full Turin
 
 ## Source status
 
-papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record same_halt_control_blocks_control_only_decider claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record same_halt_control_blocks_control_only_decider claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -60,20 +60,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md`
+### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
 
-- file: [dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md](../../../dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md)
-- sha256 (`lf-normalised`): `b4abac63ecf6e940835ffc96ed612e03bcf45fc0413ecf008c5e3714079e712b`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1352
-- counts toward the grade: no
-
-### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
-
-- file: [papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
+- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
 - sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md`
+
+- file: [dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md](../../../dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md)
+- sha256 (`lf-normalised`): `2cefb75ddba9ec15ae3b4f7a9234fd619a47c4ecdb6cb5a26eaf50b885c69d9f`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1352
+- counts toward the grade: no
 
 ## Routes
 

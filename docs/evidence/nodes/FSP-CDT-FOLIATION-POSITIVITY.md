@@ -32,7 +32,7 @@ Positivity in CDT uses a Wick rotation of a declared action; derive it for a dec
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-051 claims PROVED_LEAN; audited status OPEN
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-051 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -54,20 +54,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md`
 
 - file: [dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md](../../../dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md)
-- sha256 (`lf-normalised`): `4088bc45cc02326cfc8499f4fe14b7579c6b233e08bc505e11cceda9679075f2`
+- sha256 (`lf-normalised`): `90e48b6a4794ea50f86cecdd08bf44c85dc4cb77aa757971644b433ef9ac2522`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1215
 - counts toward the grade: no
-
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
-
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

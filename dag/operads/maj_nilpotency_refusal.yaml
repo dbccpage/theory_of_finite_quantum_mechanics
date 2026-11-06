@@ -11,8 +11,8 @@ target:
     vector falsifies the nilpotency predicate.
   source_refs:
   - dag/derivations/28_majorana/tfq_1144_maj_nilpotency_refusal.md
-  - papers/core/majorana/the_majorana_problem.md
-  - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  - dag/derivations/28_majorana/majorana/the_majorana_problem.md
+  - dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md
   paper_refs:
   - dag/derivations/28_majorana/tfq_1144_maj_nilpotency_refusal.md
   source_claim_label: DEFINITION
@@ -35,7 +35,7 @@ operation_candidates:
   line: 73
   signature_excerpt: 'def evaluate_complex_nilpotency {n0 n1 n2 : Nat} (d0 : F2Map n0 n1) (d1 : F2Map
     n1 n2) : Prop'
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -43,7 +43,7 @@ operation_candidates:
   name: F2Map
   line: 36
   signature_excerpt: 'structure F2Map (n m : Nat)'
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -51,7 +51,7 @@ operation_candidates:
   name: F2Vec
   line: 17
   signature_excerpt: 'def F2Vec (n : Nat)'
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -59,7 +59,7 @@ operation_candidates:
   name: F2Vec.zero
   line: 19
   signature_excerpt: 'def F2Vec.zero (n : Nat) : F2Vec n'
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -67,7 +67,7 @@ operation_candidates:
   name: F2Vec.add
   line: 21
   signature_excerpt: 'def F2Vec.add {n : Nat} (v1 v2 : F2Vec n) : F2Vec n'
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -75,7 +75,7 @@ operation_candidates:
   name: f2_add
   line: 14
   signature_excerpt: 'def f2_add (a b : Bool) : Bool'
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -86,26 +86,26 @@ relation_candidates:
   signature_excerpt: |-
     theorem nilpotency_refusal_sound {n0 n1 n2 : Nat} (d0 : F2Map n0 n1) (d1 : F2Map n1 n2) :
         (∃ v : F2Vec n0, d1.apply (d0.apply v) ≠ F2Vec.zero n2) → ¬(evaluate_complex_nilpotency d0 d1)
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::evaluate_complex_nilpotency
+- original_ref: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::evaluate_complex_nilpotency
   availability: local
   symbol: evaluate_complex_nilpotency
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  path: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   declaration_status: declaration_found_not_proof_checked
   line: 73
   role: source_lead_only
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::nilpotency_refusal_sound
+- original_ref: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::nilpotency_refusal_sound
   availability: local
   symbol: nilpotency_refusal_sound
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  path: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   declaration_status: declaration_found_not_proof_checked

@@ -32,7 +32,7 @@ The source claims that S6 is isolated and that the CHM(6) moduli space is discon
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-061 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-061 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -57,27 +57,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md](../../../dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md)
-- sha256 (`lf-normalised`): `182b773f0028e3234ccbb5c1fd558fef582288af4b21d962a563056a2e1dde55`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1230
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
-
-- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
-- sha256 (`lf-normalised`): `b515bf981d6c3a339c2b0a7937d54d9deb05f3b53186c584b83f5fa3419dc902`
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md`
+
+- file: [dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md](../../../dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md)
+- sha256 (`lf-normalised`): `bd6f588b81b7f79266b84832782d152132014c3035bbd81b531d34c0f12b1f4e`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1230
+- counts toward the grade: no
 
 ## Routes
 

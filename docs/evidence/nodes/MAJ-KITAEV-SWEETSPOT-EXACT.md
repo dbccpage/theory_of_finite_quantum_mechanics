@@ -32,7 +32,7 @@ Fixed L = 2 instance; general L and the BdG spectrum remain imported.
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-KITAEV-SWEETSPOT-EXACT claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-KITAEV-SWEETSPOT-EXACT claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -57,20 +57,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md](../../../dag/derivations/28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md)
-- sha256 (`lf-normalised`): `9c320b820791961af11a4324a73402379179d2669785707024f2a6aa23e75f31`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1169
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md`
+
+- file: [dag/derivations/28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md](../../../dag/derivations/28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md)
+- sha256 (`lf-normalised`): `e25876748ba2ab001d35bb8d36f70fcac19124f2c7d7f573ffc2d0bce7851100`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1169
+- counts toward the grade: no
 
 ## Routes
 

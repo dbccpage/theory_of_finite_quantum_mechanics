@@ -73,7 +73,7 @@ In Lean 4, this is formalized as `half_filled_bipartite_weight_eq` and `half_fil
 
 When either the bipartite condition or the half-filling condition is omitted, the symmetry relations $\eta T \eta = T^{-1}$ and $\eta V_\downarrow \eta = V_\uparrow^{-1}$ break down. Without an algebraic pairing identity, individual auxiliary-field configurations can acquire opposite signs ($d_\uparrow > 0$ and $d_\downarrow < 0$), resulting in strictly negative determinant product weights $W(s) < 0$.
 
-Two concrete rational witnesses from `papers/core/fsp/docs/sql_meron_hubbard.md` §5 and `code/python/src/fsp/sign_sql/exact_models.py` have been independently recomputed using SymPy and plain Python (zero repository imports):
+Two concrete rational witnesses from `dag/derivations/26_fsp/fsp/docs/sql_meron_hubbard.md` §5 and `code/python/src/fsp/sign_sql/exact_models.py` have been independently recomputed using SymPy and plain Python (zero repository imports):
 
 ### 3.1 Witness 1: Doped 4-Site Ring (Broken Half-Filling)
 - **Geometry:** 4-site periodic ring ($|V|=4$, bonds $(0,1), (1,2), (2,3), (0,3)$), 4 time slices ($M=4$).

@@ -32,7 +32,7 @@ Each non-claim is a scope rule; none is a theorem.
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-FENCE-NONCLAIMS claims DEFINITION; audited status DEFINITION
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-FENCE-NONCLAIMS claims DEFINITION; audited status DEFINITION
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1166_maj_binding_nonclaims.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1166_maj_binding_nonclaims.md](../../../dag/derivations/28_majorana/tfq_1166_maj_binding_nonclaims.md)
-- sha256 (`lf-normalised`): `08084889054e6bc8cb607376c683f90f83995debba3695da7f8b6313fc1a3a6a`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1166
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/the_majorana_problem_claim_ledger.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md`
 
-- file: [papers/core/majorana/the_majorana_problem_claim_ledger.md](../../../papers/core/majorana/the_majorana_problem_claim_ledger.md)
-- sha256 (`lf-normalised`): `37cc191a881cbb0f8fb52e30c2b865f9e9e70e235b4530df7bdd7d1b5728cb86`
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md)
+- sha256 (`lf-normalised`): `c6a3554eb30108d6294ec0ab42952efacd3f5deff58b23b0bf69d061978ac914`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1166_maj_binding_nonclaims.md`
+
+- file: [dag/derivations/28_majorana/tfq_1166_maj_binding_nonclaims.md](../../../dag/derivations/28_majorana/tfq_1166_maj_binding_nonclaims.md)
+- sha256 (`lf-normalised`): `9e45d3864be529c0fed7cdbda7c40b586937038762ee10cbcfd20d6a2fc35286`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1166
+- counts toward the grade: no
 
 ## Routes
 

@@ -36,7 +36,7 @@ PROOF_STATUSES = ("PROVED_LEAN", "PROVED_PROSE", "COMPUTATIONALLY_CHECKED")
 _NODE_LINE = re.compile(r"^DAG nodes?: (.+)$")
 _HEADING = re.compile(r"^#{1,6} ")
 _TICKED = re.compile(r"`([^`]+)`")
-_LEAN_REF = re.compile(r"`((?:lean4|papers)/[^`:]+\.lean)::([^`]+)`")
+_LEAN_REF = re.compile(r"`((?:lean4|atlas|dag/derivations|papers)/[^`:]+\.lean)::([^`]+)`")
 _DAG = Path("dag") / "derivation_dag.json"
 _INDEX = Path("dag") / "prose_proofs.md"
 
@@ -57,7 +57,12 @@ def load_nodes(root: Path = ROOT) -> dict[str, dict]:
 def proof_sections(root: Path = ROOT) -> list[dict]:
     """Every discovered proof section, with its node ids, text and location."""
     sections = []
+    # Active proof books were consolidated into numbered derivation stages.
+    # Retain the legacy fixture root, without scanning frozen deposit interiors.
     paths = set((root / "papers").rglob("*.md"))
+    paths.update((root / "atlas").glob("*/*_proofs.md"))
+    paths.update((root / "atlas").glob("*_proofs.md"))
+    paths.update((root / "dag/derivations").glob("*/sources/*_proofs.md"))
     paths.update((root / "dag/derivations").glob("*/*_proofs.md"))
     for path in sorted(paths):
         lines = path.read_text(encoding="utf-8").splitlines()
@@ -105,7 +110,8 @@ def lean_refs(text: str) -> list[tuple[str, str]]:
 
 def lean_ref_resolves(root: Path, path: str, name: str) -> bool:
     file = (root / path).resolve()
-    roots = (root.resolve() / "lean4", root.resolve() / "papers")
+    roots = (root.resolve() / "lean4", root.resolve() / "atlas",
+             root.resolve() / "dag/derivations", root.resolve() / "papers")
     if ".." in Path(path).parts or not any(file.is_relative_to(p) for p in roots) or not file.is_file():
         return False
     declarations = declaration_names(file.read_text(encoding="utf-8"))

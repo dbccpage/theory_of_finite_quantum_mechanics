@@ -32,7 +32,7 @@ The sign of a closed term is a property of the supplied magnitudes, parities and
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-022 claims PROVED_LEAN; audited status PROVED_PROSE
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-022 claims PROVED_LEAN; audited status PROVED_PROSE
 
 ## Review
 
@@ -55,27 +55,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/tfq_1188_fsp_signed_hopping_path_series.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
 
-- file: [dag/derivations/26_fsp/tfq_1188_fsp_signed_hopping_path_series.md](../../../dag/derivations/26_fsp/tfq_1188_fsp_signed_hopping_path_series.md)
-- sha256 (`lf-normalised`): `a070b87b8f08aae21a6cc8c9486fe19afcc266319ee901e438bc1b80957bfb6a`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1188
-- counts toward the grade: no
-
-### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
-
-- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
+- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
 - sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/26_fsp/tfq_1188_fsp_signed_hopping_path_series.md`
+
+- file: [dag/derivations/26_fsp/tfq_1188_fsp_signed_hopping_path_series.md](../../../dag/derivations/26_fsp/tfq_1188_fsp_signed_hopping_path_series.md)
+- sha256 (`lf-normalised`): `74c949e364189fc58ff3c33b0d9e691e709d562dc9fee32f90aa94ca49bf843b`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1188
+- counts toward the grade: no
 
 ## Routes
 

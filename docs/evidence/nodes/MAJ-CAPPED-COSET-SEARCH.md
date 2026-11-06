@@ -32,7 +32,7 @@ Fixed instances; the upper-bound property of any searched representative is imme
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-COMP-BUDGET-CAP claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-COMP-BUDGET-CAP claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -81,27 +81,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md](../../../dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md)
-- sha256 (`lf-normalised`): `b7489a2c1eebc6fb298fc6f8cfbe9c82d49901cab6e782b97b0ba68ec47b7706`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1159
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/the_majorana_problem_change_log.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md`
 
-- file: [papers/core/majorana/the_majorana_problem_change_log.md](../../../papers/core/majorana/the_majorana_problem_change_log.md)
-- sha256 (`lf-normalised`): `4592b207071a2c05f46a6ffdd890a2332f957a7e6b805e9aa6c6988e451e9fa8`
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md)
+- sha256 (`lf-normalised`): `b09f10f3d19bcfcea3bde32cf2c4e055a2ba3d7274941c7904dafe730d38ad04`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md`
+
+- file: [dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md](../../../dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md)
+- sha256 (`lf-normalised`): `499b11f864c67d6e47e43ea196af11764e3e9c1668d1ba116d81c0b325332127`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1159
+- counts toward the grade: no
 
 ## Routes
 

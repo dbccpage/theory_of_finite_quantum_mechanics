@@ -14,9 +14,9 @@ target:
     label is not a normalizer.
   source_refs:
   - dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md
-  - papers/core/fsp/the_problem_of_the_fermion_sign.md
-  - papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md
-  - papers/core/fsp/theory_of_finite_fsp.md
+  - dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md
+  - dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md
+  - dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md
   paper_refs:
   - dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md
   source_claim_label: PROVED_PROSE
@@ -38,7 +38,7 @@ operation_candidates:
   name: IntegralCochain
   line: 12
   signature_excerpt: structure IntegralCochain
-  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  source: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   status: source_candidate_requires_semantic_review
@@ -46,7 +46,7 @@ operation_candidates:
   name: integralEquivalent
   line: 23
   signature_excerpt: 'def integralEquivalent (c d : IntegralCochain) : Prop'
-  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  source: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   status: source_candidate_requires_semantic_review
@@ -54,7 +54,7 @@ operation_candidates:
   name: integralNormal
   line: 20
   signature_excerpt: 'def integralNormal (c : IntegralCochain) : IntegralCochain'
-  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  source: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   status: source_candidate_requires_semantic_review
@@ -62,7 +62,7 @@ operation_candidates:
   name: integralGauge
   line: 17
   signature_excerpt: 'def integralGauge (a : Int) (c : IntegralCochain) : IntegralCochain'
-  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  source: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   status: source_candidate_requires_semantic_review
@@ -73,7 +73,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem integral_sound (c : IntegralCochain) :
         integralEquivalent c (integralNormal c)
-  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  source: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   status: source_candidate_requires_semantic_review
@@ -85,7 +85,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem integral_idempotent (c : IntegralCochain) :
         integralNormal (integralNormal c) = integralNormal c
-  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  source: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   status: source_candidate_requires_semantic_review
@@ -97,35 +97,35 @@ relation_candidates:
   signature_excerpt: |-
     theorem integral_complete (c d : IntegralCochain) :
         integralNormal c = integralNormal d ↔ integralEquivalent c d
-  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  source: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: papers/core/fsp/lean4/NormalFormLaws.lean::integral_sound
+- original_ref: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean::integral_sound
   availability: local
   symbol: integral_sound
-  path: papers/core/fsp/lean4/NormalFormLaws.lean
+  path: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   declaration_status: declaration_found_not_proof_checked
   line: 26
   role: source_lead_only
-- original_ref: papers/core/fsp/lean4/NormalFormLaws.lean::integral_idempotent
+- original_ref: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean::integral_idempotent
   availability: local
   symbol: integral_idempotent
-  path: papers/core/fsp/lean4/NormalFormLaws.lean
+  path: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   declaration_status: declaration_found_not_proof_checked
   line: 34
   role: source_lead_only
-- original_ref: papers/core/fsp/lean4/NormalFormLaws.lean::integral_complete
+- original_ref: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean::integral_complete
   availability: local
   symbol: integral_complete
-  path: papers/core/fsp/lean4/NormalFormLaws.lean
+  path: dag/derivations/26_fsp/fsp/lean4/NormalFormLaws.lean
   repository: this_repository
   sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
   declaration_status: declaration_found_not_proof_checked

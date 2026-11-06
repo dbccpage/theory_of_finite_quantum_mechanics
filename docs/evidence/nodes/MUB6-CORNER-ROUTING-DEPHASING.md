@@ -32,7 +32,7 @@ The labels carry no parameters or family realization; FullModuliClassification f
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-ATLAS-CORNER-ROUTING claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-ATLAS-CORNER-ROUTING claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -58,27 +58,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_global_proof_atlas.md`
 
-- file: [dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md](../../../dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md)
-- sha256 (`lf-normalised`): `faafeae2c46fa4323b660adb1eeb9cde6e0b55db15047c9f2a94e31647b8c815`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1266
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6_global_proof_atlas.md`
-
-- file: [papers/core/mub6/mub6_global_proof_atlas.md](../../../papers/core/mub6/mub6_global_proof_atlas.md)
+- file: [dag/derivations/25_mub/mub6/mub6_global_proof_atlas.md](../../../dag/derivations/25_mub/mub6/mub6_global_proof_atlas.md)
 - sha256 (`lf-normalised`): `94d599e65738f154ef0604e436b2e084b04c879c965f6015916781ef857a1209`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/research/superseded_notice.md`
+### Documents and data: `dag/derivations/25_mub/mub6/research/superseded_notice.md`
 
-- file: [papers/core/mub6/research/superseded_notice.md](../../../papers/core/mub6/research/superseded_notice.md)
+- file: [dag/derivations/25_mub/mub6/research/superseded_notice.md](../../../dag/derivations/25_mub/mub6/research/superseded_notice.md)
 - sha256 (`lf-normalised`): `c8db943e608d0b63ed08307fbb5af4f56f35ef216c5b5428a689118cfc2438c0`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md`
+
+- file: [dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md](../../../dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md)
+- sha256 (`lf-normalised`): `205e288d7c23beced625138a2c90e56abb89bcd1e88be054e69da562f2d6407a`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1266
+- counts toward the grade: no
 
 ## Routes
 

@@ -32,7 +32,7 @@ Emptiness over all admissible parameters and all third bases (no_quartet_iff_all
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C24 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C24 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -77,27 +77,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1268_mub6_szollosi_618_system.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1268_mub6_szollosi_618_system.md](../../../dag/derivations/25_mub/tfq_1268_mub6_szollosi_618_system.md)
-- sha256 (`lf-normalised`): `9d8b6c96d0e7582140342730131140bcb1df76399853b0761e230f6c5cf0e1db`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1268
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1268_mub6_szollosi_618_system.md`
+
+- file: [dag/derivations/25_mub/tfq_1268_mub6_szollosi_618_system.md](../../../dag/derivations/25_mub/tfq_1268_mub6_szollosi_618_system.md)
+- sha256 (`lf-normalised`): `0dbc4f7bc23f45904deb3e47f3304c9e7aa7115cd066a8e25af67dec0e5ee70d`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1268
+- counts toward the grade: no
 
 ## Routes
 
