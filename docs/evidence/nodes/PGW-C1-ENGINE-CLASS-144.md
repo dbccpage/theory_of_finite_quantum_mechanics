@@ -1,6 +1,6 @@
 # PGW-C1-ENGINE-CLASS-144
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `CONDITIONAL`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `CONDITIONAL`. Evidence grade: *
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -45,6 +45,36 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean)
+- sha256 (`bytes`): `206d2df25744c1084e2464bc013a9927f628937075c89b541d854257f5590410`
+- cited in: node.lean, record TFQ-0474
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch12.c1_engine_class_144_and_no_initial` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch12.c1_engine_class_144_and_no_initial` |
+| `WitnessedDifference.WdpBatch12.engineCapCount1_bounds` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch12.engineCapCount1_bounds` |
+| `WitnessedDifference.WdpBatch12.engine_not_subset_opposite_measure` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch12.engine_not_subset_opposite_measure` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean)
+- sha256 (`bytes`): `7722672b1b23be2106e7bec91f41eb2eb25b2671622b4975a848cd7be6562fa2`
+- cited in: node.lean, record TFQ-0474
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch12Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch12Rep.c1_engine_class_144_and_no_initial` | yes | yes | no | - | `#print axioms WitnessedDifference.WdpBatch12Rep.c1_engine_class_144_and_no_initial` |
+
+- counts toward the grade: yes
+
 ### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
 
 - file: [atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
@@ -55,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0474_c1_engine_class_144.md`
 
 - file: [dag/derivations/02_genesis/tfq_0474_c1_engine_class_144.md](../../../dag/derivations/02_genesis/tfq_0474_c1_engine_class_144.md)
-- sha256 (`lf-normalised`): `7f6b755028ce6e7688b50bb0eed8508f574ecc8c8c0e626b32d7714548b5adf3`
+- sha256 (`lf-normalised`): `75659f08707e73e209052ba2e61e348d3c2c92a1d27ad017854498aa9eba5d45`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0474
 - counts toward the grade: no
@@ -81,7 +111,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PGW-R-C1-ENGINE-CLASS-144` `CONDITIONAL_ON_IMPORT`: [PGW-RUNG10-RESPONDER-ADJACENCY-REACH](PGW-RUNG10-RESPONDER-ADJACENCY-REACH.md) (PROVED_LEAN)
+- `PGW-R-C1-ENGINE-CLASS-144` `DERIVED_LEAN`: [PGW-RUNG10-RESPONDER-ADJACENCY-REACH](PGW-RUNG10-RESPONDER-ADJACENCY-REACH.md) (PROVED_LEAN)
 
 Outgoing (1):
 

@@ -1,6 +1,6 @@
 # [TFQ-0582] wdp-meron-m1-correlation-estimates
 
-> **Stage**: `WDP` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `424ae1ad-c670-5e7d-985a-4b97be2af0a2`  
 > **Parent Derivation**: [TFQ-0581](tfq_0581_wdp_affine_thickening_conjecture.md)
 
@@ -34,6 +34,9 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/TrotterObservableFiltering.lean::paired_bound`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/TrotterObservableFiltering.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean::WitnessedDifference.WdpBatch13.m1_int_paired_bound`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean::WitnessedDifference.WdpBatch13.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean::WitnessedDifference.WdpBatch13Rep.wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch13Rep.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: joint (L, M) thermodynamic correlation bound is an open analytic target`
