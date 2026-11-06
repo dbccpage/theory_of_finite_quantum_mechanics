@@ -32,7 +32,7 @@ Prove the distance formulas (e.g. by a cut argument on the dual grid); the sourc
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-CLAIM-DISTANCE-FAMILY claims PROVED_PROSE; audited status OPEN
+papers/core/majorana/the_majorana_problem.md record MAJ-CLAIM-DISTANCE-FAMILY claims PROVED_PROSE; audited status OPEN
 
 ## Review
 
@@ -54,27 +54,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
+### Documents and data: `dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md`
 
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md](../../../dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md)
+- sha256 (`lf-normalised`): `a6786a9aed195888ec9449778bfa90d5d4bc6341163ccab03149943cb3566ffb`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1156
+- counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md`
+### Documents and data: `papers/core/majorana/the_majorana_problem_change_log.md`
 
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md)
+- file: [papers/core/majorana/the_majorana_problem_change_log.md](../../../papers/core/majorana/the_majorana_problem_change_log.md)
 - sha256 (`lf-normalised`): `b09f10f3d19bcfcea3bde32cf2c4e055a2ba3d7274941c7904dafe730d38ad04`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md`
-
-- file: [dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md](../../../dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md)
-- sha256 (`lf-normalised`): `4a4b00aee2092e917eed355becf73274d324c05967e5abf6ad87109ce299397e`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1156
-- counts toward the grade: no
 
 ## Routes
 

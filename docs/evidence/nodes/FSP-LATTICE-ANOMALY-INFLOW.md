@@ -32,7 +32,7 @@ Construct a regulated chiral boundary determinant whose projector, basis or meas
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-035 claims PROVED_LEAN; audited status OPEN
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-035 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -86,34 +86,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
+### Documents and data: `dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md`
 
-- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
+- file: [dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md](../../../dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md)
+- sha256 (`lf-normalised`): `2f82fbc415b3946e0e6350e2779d610a37696f645763d1894dcc2841f94411ee`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1199
+- counts toward the grade: no
+
+### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
+
+- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
 - sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
+### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
 
-- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
+- file: [papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
 - sha256 (`lf-normalised`): `f62735060966780e3eba1d7656156f6bb81163ce57e764ed3d2e0e63c75889d5`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
 - sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md`
-
-- file: [dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md](../../../dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md)
-- sha256 (`lf-normalised`): `783d2a5fe8f66fc916cbe225a0e88765d31abbc9f2fa2d9ead9b44f32bceb922`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1199
-- counts toward the grade: no
 
 ## Routes
 

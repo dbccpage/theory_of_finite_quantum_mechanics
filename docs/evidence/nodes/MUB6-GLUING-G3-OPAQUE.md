@@ -32,7 +32,7 @@ Combinatorial facts over uninterpreted predicates; a concrete interpretation in 
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-LEDGER-G3-GLUING claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-LEDGER-G3-GLUING claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -58,20 +58,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
-
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
-- sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/25_mub/tfq_1258_mub6_gluing_g3_opaque.md`
 
 - file: [dag/derivations/25_mub/tfq_1258_mub6_gluing_g3_opaque.md](../../../dag/derivations/25_mub/tfq_1258_mub6_gluing_g3_opaque.md)
-- sha256 (`lf-normalised`): `a7e8bf0fa4e25e8a3c54228db243a312c29567916713c413bbdfc45eeb8436a5`
+- sha256 (`lf-normalised`): `e3d904d32a7cc24c47243ae85a9f195eb9c76323fec21bbe9cc1f29c240b646a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1258
 - counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

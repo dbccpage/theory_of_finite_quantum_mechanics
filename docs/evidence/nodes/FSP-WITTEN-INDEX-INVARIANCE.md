@@ -32,7 +32,7 @@ Pairing is supplied by the shared spectral list; this does not derive that pairi
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-042 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-042 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -41,15 +41,6 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
-
-### Lean: `dag/derivations/26_fsp/fsp/lean4/regge_wdw_core.lean`
-
-- file: [dag/derivations/26_fsp/fsp/lean4/regge_wdw_core.lean](../../../dag/derivations/26_fsp/fsp/lean4/regge_wdw_core.lean)
-- sha256 (`bytes`): `8f20ead1eb7c40441e6ccee48c7b5c828d0d93319928ea2df7ec322226e164b9`
-- cited in: node.source
-- replay: `none`
-- check: `cd lean4 && lake build   # the library that contains dag/derivations/26_fsp/fsp/lean4/regge_wdw_core.lean`
-- counts toward the grade: yes
 
 ### Lean: `lean4/WittenPairing.lean`
 
@@ -72,6 +63,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `papers/core/fsp/lean4/regge_wdw_core.lean`
+
+- file: [papers/core/fsp/lean4/regge_wdw_core.lean](../../../papers/core/fsp/lean4/regge_wdw_core.lean)
+- sha256 (`bytes`): `8f20ead1eb7c40441e6ccee48c7b5c828d0d93319928ea2df7ec322226e164b9`
+- cited in: node.source
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/regge_wdw_core.lean`
+- counts toward the grade: yes
+
 ### Python: `checks/independent/fsp-witten-index-invariance.py`
 
 - file: [checks/independent/fsp-witten-index-invariance.py](../../../checks/independent/fsp-witten-index-invariance.py)
@@ -79,17 +79,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-1206
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
-
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md`
 
 - file: [dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md](../../../dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md)
-- sha256 (`lf-normalised`): `9831f86ff961e1d644dfbc42a041838a7eec6b31cbb59b5771f124ec7befd890`
+- sha256 (`lf-normalised`): `c3b081e1ac7bc64dd1e9142a48f0c85063ac25bc5ef8f8fa0152420e906a80e6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1206
 - counts toward the grade: no
@@ -105,6 +98,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [evidence/lean_receipts/campaign_fsp-witten-index-invariance_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-witten-index-invariance_lean_replay.json)
 - sha256 (`lf-normalised`): `a18f4e7c32191e37dff194780fdf991cb7c94a92c7c91eaee8bea38964854fec`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
+
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
 

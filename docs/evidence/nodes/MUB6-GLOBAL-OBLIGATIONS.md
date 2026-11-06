@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/25_mub/mub6/README.md`
+### Documents and data: `dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md`
 
-- file: [dag/derivations/25_mub/mub6/README.md](../../../dag/derivations/25_mub/mub6/README.md)
+- file: [dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md](../../../dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md)
+- sha256 (`lf-normalised`): `021163b482a0e1a7741b8cbeccaf0070ca74d30675326400805960ad35ba039b`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-0405
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/README.md`
+
+- file: [papers/core/mub6/README.md](../../../papers/core/mub6/README.md)
 - sha256 (`lf-normalised`): `fcf24743ee6d9dab9c377dc5158e9cac9769f062d7defbfb006e053c55255bf9`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/research/mub6_gap_registry.json`
+### Documents and data: `papers/core/mub6/research/mub6_gap_registry.json`
 
-- file: [dag/derivations/25_mub/mub6/research/mub6_gap_registry.json](../../../dag/derivations/25_mub/mub6/research/mub6_gap_registry.json)
+- file: [papers/core/mub6/research/mub6_gap_registry.json](../../../papers/core/mub6/research/mub6_gap_registry.json)
 - sha256 (`lf-normalised`): `54158552144e9e0ea942a0777b7c258b0f5697bb1bcefa9ed6ddef4cc94401a6`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md`
-
-- file: [dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md](../../../dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md)
-- sha256 (`lf-normalised`): `420c8505cd3aee18c5562bf5da28b3de696d5ae9b54abe099950d848650ec6ab`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-0405
-- counts toward the grade: no
 
 ## Routes
 

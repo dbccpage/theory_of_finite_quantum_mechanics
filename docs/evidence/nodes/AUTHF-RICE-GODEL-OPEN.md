@@ -32,7 +32,7 @@ Instantiate the transport for a nontrivial extensional property of encoded progr
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-25 claims OPEN; audited status OPEN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-25 claims OPEN; audited status OPEN
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/README.md`
+### Documents and data: `dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/README.md](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/README.md)
+- file: [dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md](../../../dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md)
+- sha256 (`lf-normalised`): `ead5173465a916243e4c7cd542892045da220da6e070701a2f3ee7ab86f02c86`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1363
+- counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/formal/README.md`
+
+- file: [papers/foundations/authorization_incompleteness/evidence/original/formal/README.md](../../../papers/foundations/authorization_incompleteness/evidence/original/formal/README.md)
 - sha256 (`lf-normalised`): `bee9b788be86ffc01647ed94d7259d5e7d8767fd9633064488101a952ecf6793`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
+- file: [papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
 - sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md`
-
-- file: [dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md](../../../dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md)
-- sha256 (`lf-normalised`): `973e3a28d66a2442c077ef8fb65ca5e4f268891ea0c010c34710196224687ab1`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1363
-- counts toward the grade: no
 
 ## Routes
 

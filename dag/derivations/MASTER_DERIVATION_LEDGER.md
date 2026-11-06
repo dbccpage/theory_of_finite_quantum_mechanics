@@ -1088,7 +1088,7 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 
 ## 3b. One Derivation Graph
 
-`dag/derivation_dag.json` (959 nodes, 967 routes) and `dag/theory_of_finite_qm.jsonl` (1011 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`dag/derivations/26_fsp/fsp/`), dimension-six MUBs (`dag/derivations/25_mub/mub6/`), the Majorana problem (`dag/derivations/28_majorana/majorana/`) and the Dressing Field Method (`dag/derivations/24_dressing_field/ravera_dfm_dossier.md`) are folded in as 267 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
+`dag/derivation_dag.json` (959 nodes, 967 routes) and `dag/theory_of_finite_qm.jsonl` (1011 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`dag/derivations/24_dressing_field/ravera_dfm_dossier.md`) are folded in as 267 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
 
 ---
 

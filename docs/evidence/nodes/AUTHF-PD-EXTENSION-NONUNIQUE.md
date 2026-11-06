@@ -32,7 +32,7 @@ The analogue is not the J011 interface and no naturality statement about all pri
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record primitive_interface_has_distinct_authorization_extensions claims PROVED_LEAN; audited status PROVED_LEAN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record primitive_interface_has_distinct_authorization_extensions claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -60,20 +60,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
-
-- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
-- sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md`
 
 - file: [dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md](../../../dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md)
-- sha256 (`lf-normalised`): `aa74bf154725a25f504c7d7aa1bb7ecf32c46d76aafcca8396999bd8376c8ae7`
+- sha256 (`lf-normalised`): `9a4488b48fa23c4bf52efbffdf7109da076bdfb5f97268eec1349503e0771670`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1359
 - counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
+
+- file: [papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
+- sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

@@ -32,7 +32,7 @@ Give a fermionic fracton Hamiltonian, its declared representation and show all p
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-055 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-055 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -106,27 +106,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `python -m pytest code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py`
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
+### Documents and data: `dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md`
 
-- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
+- file: [dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md](../../../dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md)
+- sha256 (`lf-normalised`): `de652e3c873f6fda84c9295e2c3f9c8e2d831f963e5d725566859c020da86119`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1219
+- counts toward the grade: no
+
+### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
+
+- file: [papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
 - sha256 (`lf-normalised`): `f62735060966780e3eba1d7656156f6bb81163ce57e764ed3d2e0e63c75889d5`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
 - sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md`
-
-- file: [dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md](../../../dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md)
-- sha256 (`lf-normalised`): `63f1155c2d33858a731f1749cd1d97f7b117b69971ecb02a8f89493ef4a90497`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1219
-- counts toward the grade: no
 
 ## Routes
 

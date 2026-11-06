@@ -32,7 +32,7 @@ An ideal-membership redundancy only; it gives no Jacobian rank or nonextension r
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-BALANCE-SYZYGY claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-BALANCE-SYZYGY claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -59,20 +59,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
-
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
-- sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md`
 
 - file: [dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md](../../../dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md)
-- sha256 (`lf-normalised`): `935e1f41e69e028458da29a55ded8c78f0ce293cd497e61dd3f6b0e0bf45c684`
+- sha256 (`lf-normalised`): `d8e7470cfc639794ff33f8df888b2b577a6921d9692a13ac56f4670f591e518d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1265
 - counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

@@ -34,7 +34,7 @@ Discharge the landing premise from concrete complex MU data and give the opaque 
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C05 claims CONDITIONAL; audited status CONDITIONAL
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C05 claims CONDITIONAL; audited status CONDITIONAL
 
 ## Review
 
@@ -60,27 +60,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1257_mub6_route_c_conditional.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
+- file: [dag/derivations/25_mub/tfq_1257_mub6_route_c_conditional.md](../../../dag/derivations/25_mub/tfq_1257_mub6_route_c_conditional.md)
+- sha256 (`lf-normalised`): `627169b5e5b3ab062e33c354a572b7b3a2847dd222c6cd2e9c79d423c155f446`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1257
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
 - sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1257_mub6_route_c_conditional.md`
-
-- file: [dag/derivations/25_mub/tfq_1257_mub6_route_c_conditional.md](../../../dag/derivations/25_mub/tfq_1257_mub6_route_c_conditional.md)
-- sha256 (`lf-normalised`): `8e7970d174c95b9149b45066dee85dae2caefe3b7ce03b53e42b1e5b65a07a90`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1257
-- counts toward the grade: no
 
 ## Routes
 

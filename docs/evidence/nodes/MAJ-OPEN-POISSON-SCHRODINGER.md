@@ -32,7 +32,7 @@ Listed as the next test; no solver exists in this checkout.
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-OPEN-POISSON-SCHRODINGER claims OPEN; audited status OPEN
+papers/core/majorana/the_majorana_problem.md record MAJ-OPEN-POISSON-SCHRODINGER claims OPEN; audited status OPEN
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
+### Documents and data: `dag/derivations/28_majorana/tfq_1183_maj_open_poisson_schrodinger.md`
 
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/tfq_1183_maj_open_poisson_schrodinger.md](../../../dag/derivations/28_majorana/tfq_1183_maj_open_poisson_schrodinger.md)
+- sha256 (`lf-normalised`): `07cf9873113e0d160a4286f810a5f17261cb2256171a6467ff3c65170cc23c78`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1183
+- counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md`
+### Documents and data: `papers/core/majorana/the_majorana_problem_claim_ledger.md`
 
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md)
+- file: [papers/core/majorana/the_majorana_problem_claim_ledger.md](../../../papers/core/majorana/the_majorana_problem_claim_ledger.md)
 - sha256 (`lf-normalised`): `c6a3554eb30108d6294ec0ab42952efacd3f5deff58b23b0bf69d061978ac914`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/28_majorana/tfq_1183_maj_open_poisson_schrodinger.md`
-
-- file: [dag/derivations/28_majorana/tfq_1183_maj_open_poisson_schrodinger.md](../../../dag/derivations/28_majorana/tfq_1183_maj_open_poisson_schrodinger.md)
-- sha256 (`lf-normalised`): `7125ec17e0615ec311e11bed5835361404714e30e6b6fdba6cae13fb2cc3ced5`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1183
-- counts toward the grade: no
 
 ## Routes
 

@@ -32,7 +32,7 @@ Give the exact stabilizer-class statement with a cited proof or an exact enumera
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-054 claims PROVED_LEAN; audited status OPEN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-054 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -42,27 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
+### Documents and data: `dag/derivations/25_mub/tfq_1224_mub6_weyl_stabilizer_bound.md`
 
-- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
+- file: [dag/derivations/25_mub/tfq_1224_mub6_weyl_stabilizer_bound.md](../../../dag/derivations/25_mub/tfq_1224_mub6_weyl_stabilizer_bound.md)
+- sha256 (`lf-normalised`): `04273515c8eb29e1a175dff08439c5ae3165e9953995c0ef8467c08e1d2cc736`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1224
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
+
+- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
+### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
 
-- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
 - sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1224_mub6_weyl_stabilizer_bound.md`
-
-- file: [dag/derivations/25_mub/tfq_1224_mub6_weyl_stabilizer_bound.md](../../../dag/derivations/25_mub/tfq_1224_mub6_weyl_stabilizer_bound.md)
-- sha256 (`lf-normalised`): `e70407d153662060ed40b01176043188c6f46da4785c5d805e2f5d04d6126bb0`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1224
-- counts toward the grade: no
 
 ## Routes
 

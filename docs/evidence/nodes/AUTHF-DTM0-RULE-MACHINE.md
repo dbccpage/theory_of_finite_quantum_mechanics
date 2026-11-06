@@ -34,7 +34,7 @@ The definition carries no input encoding, no unbounded-run semantics, no halting
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-1 claims PROVED_LEAN; audited status DEFINITION
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-1 claims PROVED_LEAN; audited status DEFINITION
 
 ## Review
 
@@ -80,20 +80,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
-
-- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
-- sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/29_computation/tfq_1340_authf_dtm0_rule_machine.md`
 
 - file: [dag/derivations/29_computation/tfq_1340_authf_dtm0_rule_machine.md](../../../dag/derivations/29_computation/tfq_1340_authf_dtm0_rule_machine.md)
-- sha256 (`lf-normalised`): `d15df51fe237f795c499bc5fc222bdd07c2a1665d6c3a4901bf6cad08247fc96`
+- sha256 (`lf-normalised`): `f5632fc9c0f7f77c8a95054b16c4ff6a23627efc4758122ae44e6c537934547c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1340
 - counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
+
+- file: [papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
+- sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

@@ -106,13 +106,13 @@ An observable numerator $\sum_cw(c)\sigma(c)A(c)$ cancels in the same way only i
 Without that condition a cancelling doublet can carry a nonzero numerator: signs $1,-1$ with
 $A=1,-1$ give $1\cdot1+(-1)(-1)=2$.
 
-Lean: `dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean::meron_pair_exact_cancellation`,
-`dag/derivations/26_fsp/fsp/lean4/MeronClusterInvolution.lean::fixed_point_contradiction`,
-`dag/derivations/26_fsp/fsp/lean4/FrustratedSpectrumObstruction.lean::bipartite_pair_exact_cancellation`
+Lean: `papers/core/fsp/lean4/MeronClusterInvolution.lean::meron_pair_exact_cancellation`,
+`papers/core/fsp/lean4/MeronClusterInvolution.lean::fixed_point_contradiction`,
+`papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean::bipartite_pair_exact_cancellation`
 (the same pair identity for a bipartite Trotter-path involution),
-`dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean::unequal_three_term_cancellation`,
-`dag/derivations/26_fsp/fsp/lean4/MeronCharacter.lean::observable_doublet_counterexample`, and
-`dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean::involution_pair_cancels_sign` (the pair identity
+`papers/core/fsp/lean4/MeronCharacter.lean::unequal_three_term_cancellation`,
+`papers/core/fsp/lean4/MeronCharacter.lean::observable_doublet_counterexample`, and
+`papers/core/majorana/lean4/MajoranaGinCore.lean::involution_pair_cancels_sign` (the pair identity
 $ws_1+ws_2=w(s_1+s_2)=0$). The step from pair sums to the total over $C$ is not in Lean.
 
 ### 1.4 The U(1) Wilson action
@@ -220,12 +220,12 @@ Every $w$ also has at least one label, by cases on $d_1w=0$ and on $w\in\operato
 half is not in Lean. Using (ii) on the legacy carrier needs the separate computation that its
 $H^1$ vanishes.
 
-Lean: `dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::coboundary_is_cocycle`,
-`dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::exact_not_open`,
-`dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::exact_not_closed_residual`,
-`dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::closed_residual_not_open`,
-`dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::trichotomy_pairwise_disjoint`,
-`dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction`.
+Lean: `papers/core/majorana/lean4/MajoranaCore.lean::coboundary_is_cocycle`,
+`papers/core/majorana/lean4/MajoranaCore.lean::exact_not_open`,
+`papers/core/majorana/lean4/MajoranaCore.lean::exact_not_closed_residual`,
+`papers/core/majorana/lean4/MajoranaCore.lean::closed_residual_not_open`,
+`papers/core/majorana/lean4/MajoranaCore.lean::trichotomy_pairwise_disjoint`,
+`papers/core/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction`.
 
 ### 2.2 Edge Majorana indices of the Kitaev chain
 
@@ -239,6 +239,6 @@ $1\le j<L$, the inter-site bond $(2j,2j+1)$ contains neither $1$ nor $2L$.
 At the sweet spot the Hamiltonian is a sum over these bonds, so $\gamma_1$ and $\gamma_{2L}$ appear
 in no term. That operator statement is a separate exact instance and is not proved here.
 
-Lean: `dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean::is_bulk_kitaev_bond`,
-`dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean::edge_mode_1_not_in_bulk`,
-`dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean::edge_mode_2L_not_in_bulk`.
+Lean: `papers/core/majorana/lean4/MajoranaGinCore.lean::is_bulk_kitaev_bond`,
+`papers/core/majorana/lean4/MajoranaGinCore.lean::edge_mode_1_not_in_bulk`,
+`papers/core/majorana/lean4/MajoranaGinCore.lean::edge_mode_2L_not_in_bulk`.

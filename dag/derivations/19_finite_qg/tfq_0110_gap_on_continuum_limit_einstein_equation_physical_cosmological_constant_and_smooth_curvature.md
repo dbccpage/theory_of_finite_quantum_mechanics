@@ -41,7 +41,7 @@ In accordance with strict constructive principles:
 - [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for dag/derivations/19_finite_qg/constraint_closure/code/l1_regge.py`](../../code/python/)
+- [`absent: no local python twin located for papers/core/constraint_closure/code/l1_regge.py`](../../code/python/)
 
 ---
 

@@ -32,7 +32,7 @@ An encoder and decoder for a request other than this closed list, the remaining 
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-DTM2 claims planned in a producer-side update packet; absent from ledger, proof program, goals and Lean; audited status OPEN
+papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-DTM2 claims planned in a producer-side update packet; absent from ledger, proof program, goals and Lean; audited status OPEN
 
 ## Review
 
@@ -61,27 +61,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md`
+### Documents and data: `dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md](../../../dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md)
+- file: [dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md](../../../dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md)
+- sha256 (`lf-normalised`): `b6e9f35f959ad3dd9b84c0dc948dbb33d299842c8e70a6a000b749c95be9bff9`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1333
+- counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md`
+
+- file: [papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md](../../../papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md)
 - sha256 (`lf-normalised`): `da69034cb8815cbc03629a322755b1ff7f35825f586ff3fefedc663082db0236`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md](../../../dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md)
+- file: [papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md](../../../papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md)
 - sha256 (`lf-normalised`): `4d392e64655a31fae0ff0602d9a7768b3ef21b02a869f12bd772f8cabd41c4cc`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md`
-
-- file: [dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md](../../../dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md)
-- sha256 (`lf-normalised`): `a8e2e067928d9d4db0f81d3632af7e5e3c3ce4f3d81554b217f85a7a0b580879`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1333
-- counts toward the grade: no
 
 ## Routes
 

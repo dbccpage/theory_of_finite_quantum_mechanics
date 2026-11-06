@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/26_fsp/fsp/README.md`
-
-- file: [dag/derivations/26_fsp/fsp/README.md](../../../dag/derivations/26_fsp/fsp/README.md)
-- sha256 (`lf-normalised`): `9ca453eb9c1585bb7fa750b056b73593076ccabc0f676d6af721a56ed00f6c4a`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md`
 
 - file: [dag/derivations/26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md](../../../dag/derivations/26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md)
-- sha256 (`lf-normalised`): `a1282e7e8aa2ec2fd7f06bce3c2fa640f2e5158c50ba4ba2c49d19880bc2b469`
+- sha256 (`lf-normalised`): `8b014adf668898124e8fd50ed95208215caf4c36353e085b1e3cb91217a65baa`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0409
 - counts toward the grade: no
+
+### Documents and data: `papers/core/fsp/README.md`
+
+- file: [papers/core/fsp/README.md](../../../papers/core/fsp/README.md)
+- sha256 (`lf-normalised`): `9ca453eb9c1585bb7fa750b056b73593076ccabc0f676d6af721a56ed00f6c4a`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

@@ -32,7 +32,7 @@ A tetron here is a 2-cell of a declared combinatorial carrier under an idealized
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-DEF-TETRON-CARRIER claims DEFINITION; audited status DEFINITION
+papers/core/majorana/the_majorana_problem.md record MAJ-DEF-TETRON-CARRIER claims DEFINITION; audited status DEFINITION
 
 ## Review
 
@@ -69,20 +69,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
-
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
-- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/28_majorana/tfq_1151_maj_tetron_array_carrier.md`
 
 - file: [dag/derivations/28_majorana/tfq_1151_maj_tetron_array_carrier.md](../../../dag/derivations/28_majorana/tfq_1151_maj_tetron_array_carrier.md)
-- sha256 (`lf-normalised`): `9e2afe5453148019bd800477d5729821fe53e6c2c00653dac2854a8ffec685ad`
+- sha256 (`lf-normalised`): `0983937e2faed106c9b848fce5854f106a516bcdf55202030b5312a0f6b8edbe`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1151
 - counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

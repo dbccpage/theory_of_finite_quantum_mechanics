@@ -32,7 +32,7 @@ A faithful comparison needs a finite-support tape restriction, the stay move spl
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-26 claims OPEN; audited status OPEN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-26 claims OPEN; audited status OPEN
 
 ## Review
 
@@ -54,20 +54,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/computability_carrier_candidates.json`
-
-- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/computability_carrier_candidates.json](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/computability_carrier_candidates.json)
-- sha256 (`lf-normalised`): `4af4d2ba26a0ea47b0f184523a2d7238d4e91d317cb526968e5ebe9bcbb1d102`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/29_computation/tfq_1364_authf_dtm0_simulation_open.md`
 
 - file: [dag/derivations/29_computation/tfq_1364_authf_dtm0_simulation_open.md](../../../dag/derivations/29_computation/tfq_1364_authf_dtm0_simulation_open.md)
-- sha256 (`lf-normalised`): `d2c3541837a22ad655f52a42b3b483645b3a0af1bb81e1f9787697d329ea88f8`
+- sha256 (`lf-normalised`): `0ea11217026b9c84fdc16e4f90b48ef8d903651d99fb3fa3fa56f385ee634372`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1364
 - counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json`
+
+- file: [papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json](../../../papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json)
+- sha256 (`lf-normalised`): `4af4d2ba26a0ea47b0f184523a2d7238d4e91d317cb526968e5ebe9bcbb1d102`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

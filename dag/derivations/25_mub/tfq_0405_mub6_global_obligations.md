@@ -22,7 +22,7 @@ upper bound of three.
 
 ## Evidence and next obligation
 
-- [dag/derivations/25_mub/mub6/README.md](../../../dag/derivations/25_mub/mub6/README.md)
-- [dag/derivations/25_mub/mub6/research/mub6_gap_registry.json](../../../dag/derivations/25_mub/mub6/research/mub6_gap_registry.json)
+- [papers/core/mub6/README.md](../../../papers/core/mub6/README.md)
+- [papers/core/mub6/research/mub6_gap_registry.json](../../../papers/core/mub6/research/mub6_gap_registry.json)
 
 Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion.

@@ -34,7 +34,7 @@ Relate the model to Mathlib Turing.TM0 by restricting initial tapes to finite su
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-DTM0 claims proved; partial carrier only; audited status DEFINITION
+papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-DTM0 claims proved; partial carrier only; audited status DEFINITION
 
 ## Review
 
@@ -44,14 +44,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean`
+### Lean: `papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean)
+- file: [papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean](../../../papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean)
 - sha256 (`bytes`): `0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9`
 - cited in: node.lean, record TFQ-1330
 - replay: `verified`
   - receipt [evidence/lean_receipts/lean_replay_campaign_computation.json](../../../evidence/lean_receipts/lean_replay_campaign_computation.json) (module `papers.foundations.authorization_incompleteness.evidence.original.formal.direct_turing_machine_models`): recorded sha256 `0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean`
+- check: `cd lean4 && lake build   # the library that contains papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -65,48 +65,48 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md`
+### Documents and data: `dag/derivations/29_computation/tfq_1330_auth_dtm0_finite_rule_machine.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md](../../../dag/derivations/04_authorization/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md)
+- file: [dag/derivations/29_computation/tfq_1330_auth_dtm0_finite_rule_machine.md](../../../dag/derivations/29_computation/tfq_1330_auth_dtm0_finite_rule_machine.md)
+- sha256 (`lf-normalised`): `aea8f8ecc8f2f8f8d5480b77c12b5e05040ac39586039ecce9a5db0dc020c42f`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1330
+- counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md`
+
+- file: [papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md](../../../papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_theory_red_team_dialogue_raw.md)
 - sha256 (`lf-normalised`): `d82040ae365722831a28a1b09e8571c6bccdfc925edf8faeb7343d8a7fb3ae04`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md](../../../dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory.md)
+- file: [papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md](../../../papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md)
 - sha256 (`lf-normalised`): `71cd507642cce8ef451189097acd333162642eeb85345ffa304bff305a620697`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md](../../../dag/derivations/04_authorization/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md)
+- file: [papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md](../../../papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md)
 - sha256 (`lf-normalised`): `28aa3a825d1b0296270b62f9a33a4a67b6c2a2d708028444a7f725ad46697feb`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/controlled_turing_derivation_series.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/controlled_turing_derivation_series.md](../../../dag/derivations/04_authorization/authorization_incompleteness/controlled_turing_derivation_series.md)
+- file: [papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md](../../../papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md)
 - sha256 (`lf-normalised`): `2573123162731ea63495b0ece777ae4b9e704e27b976fbc031df51c6f81c6f7b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/proof_program.md`
+### Documents and data: `papers/foundations/authorization_incompleteness/proof_program.md`
 
-- file: [dag/derivations/04_authorization/authorization_incompleteness/proof_program.md](../../../dag/derivations/04_authorization/authorization_incompleteness/proof_program.md)
+- file: [papers/foundations/authorization_incompleteness/proof_program.md](../../../papers/foundations/authorization_incompleteness/proof_program.md)
 - sha256 (`lf-normalised`): `e624d01a2371d6d8856a17c535ad1916abd8b1353450755c7281fe22e87b720f`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/29_computation/tfq_1330_auth_dtm0_finite_rule_machine.md`
-
-- file: [dag/derivations/29_computation/tfq_1330_auth_dtm0_finite_rule_machine.md](../../../dag/derivations/29_computation/tfq_1330_auth_dtm0_finite_rule_machine.md)
-- sha256 (`lf-normalised`): `dc93189a81b1e47f2052d43ae13db0b85abff236aff91d93da6d0d33b884b9d8`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1330
-- counts toward the grade: no
 
 ## Routes
 

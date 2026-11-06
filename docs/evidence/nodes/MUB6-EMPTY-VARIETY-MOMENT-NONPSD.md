@@ -32,7 +32,7 @@ Emptiness is a hypothesis and is not established for any MU triple.
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C37 claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C37 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -57,20 +57,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
-
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/25_mub/tfq_1282_mub6_empty_variety_moment_nonpsd.md`
 
 - file: [dag/derivations/25_mub/tfq_1282_mub6_empty_variety_moment_nonpsd.md](../../../dag/derivations/25_mub/tfq_1282_mub6_empty_variety_moment_nonpsd.md)
-- sha256 (`lf-normalised`): `8a095185635eb900687900d660878867776388746448a87d7c9fa5b85c0494c4`
+- sha256 (`lf-normalised`): `da8cdf4bbb43adb5d982d00cc9e41799cf127ec918147656a3134f650439f4ba`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1282
 - counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

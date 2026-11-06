@@ -32,7 +32,7 @@ The native sweep on this box returns CONTRACTED_UNRESOLVED_BOX; infeasibility is
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-QUADRATIC-LIFT claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-QUADRATIC-LIFT claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -73,20 +73,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
-
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
-- sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/25_mub/tfq_1262_mub6_quadratic_lift_386.md`
 
 - file: [dag/derivations/25_mub/tfq_1262_mub6_quadratic_lift_386.md](../../../dag/derivations/25_mub/tfq_1262_mub6_quadratic_lift_386.md)
-- sha256 (`lf-normalised`): `29cc7cce57b018dd3057f88071453fe9c40dcf24db7c64ed9104ff3aabcb685f`
+- sha256 (`lf-normalised`): `e2a4f7060056cb4b43c2672dc940a621a0419b65911aea493f3a57179ad3957a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1262
 - counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

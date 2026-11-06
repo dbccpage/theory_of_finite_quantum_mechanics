@@ -32,7 +32,7 @@ Imported literature result; the checkout has no X-cube stabilizer computation, a
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-053 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-053 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
-
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/26_fsp/tfq_1217_fsp_xcube_fracton_model.md`
 
 - file: [dag/derivations/26_fsp/tfq_1217_fsp_xcube_fracton_model.md](../../../dag/derivations/26_fsp/tfq_1217_fsp_xcube_fracton_model.md)
-- sha256 (`lf-normalised`): `537ee1cb26a50bb98c3d0213c6393524e6e86e6d9554e750606447aa06539383`
+- sha256 (`lf-normalised`): `557b03f4c61f5c463776bc32ab3d632b5bb3b742e2b1a786eb37867be4267752`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1217
 - counts toward the grade: no
+
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
+
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

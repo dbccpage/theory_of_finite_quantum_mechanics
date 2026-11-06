@@ -32,7 +32,7 @@ No such certificate, Gram computation or emptiness proof is in the checkout; var
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-066 claims PROVED_LEAN; audited status OPEN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-066 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -42,34 +42,34 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1235_mub6_gram_nullstellensatz_claim.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- file: [dag/derivations/25_mub/tfq_1235_mub6_gram_nullstellensatz_claim.md](../../../dag/derivations/25_mub/tfq_1235_mub6_gram_nullstellensatz_claim.md)
+- sha256 (`lf-normalised`): `086005381dfe7efeeec6a8eeed100cbc4e6eed0db74feab7f6801e4d05d65ea5`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1235
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
 - sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
+### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
+- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
+### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
 
-- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
 - sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1235_mub6_gram_nullstellensatz_claim.md`
-
-- file: [dag/derivations/25_mub/tfq_1235_mub6_gram_nullstellensatz_claim.md](../../../dag/derivations/25_mub/tfq_1235_mub6_gram_nullstellensatz_claim.md)
-- sha256 (`lf-normalised`): `115a93fa5382d153efae4c60a560b2421d96f74d77244b0e1f8d906305b9962b`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1235
-- counts toward the grade: no
 
 ## Routes
 

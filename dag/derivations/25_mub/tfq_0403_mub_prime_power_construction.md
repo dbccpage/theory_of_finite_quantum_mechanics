@@ -22,6 +22,6 @@ larger prime power, and dimension six stay outside this conclusion.
 
 ## Evidence and next obligation
 
-- [dag/derivations/25_mub/mub6/README.md](../../../dag/derivations/25_mub/mub6/README.md)
+- [papers/core/mub6/README.md](../../../papers/core/mub6/README.md)
 
 Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.

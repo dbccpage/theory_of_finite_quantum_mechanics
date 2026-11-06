@@ -22,7 +22,7 @@ The existing exact meron model is a finite example with explicit reconstruction.
 
 ## Evidence and next obligation
 
-- [dag/derivations/26_fsp/fsp/README.md](../../../dag/derivations/26_fsp/fsp/README.md)
+- [papers/core/fsp/README.md](../../../papers/core/fsp/README.md)
 - [lean4/MeronCharacter.lean::meron_orbit_cancels](../../../lean4/MeronCharacter.lean)
 - [lean4/MeronCharacter.lean::zero_meron_orbit_positive](../../../lean4/MeronCharacter.lean)
 - [lean4/MeronCharacter.lean::compression_preserves_partition](../../../lean4/MeronCharacter.lean)

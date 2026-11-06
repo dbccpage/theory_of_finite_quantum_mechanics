@@ -32,7 +32,7 @@ This restates the problem as an equivalent moment question without deciding it; 
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C36 claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C36 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -58,27 +58,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1281_mub6_fourth_basis_flat_moments.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
+- file: [dag/derivations/25_mub/tfq_1281_mub6_fourth_basis_flat_moments.md](../../../dag/derivations/25_mub/tfq_1281_mub6_fourth_basis_flat_moments.md)
+- sha256 (`lf-normalised`): `00fc011d18c36cca96b214de1ea20ad4dc23e74616221731e46c730529ec4bcc`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1281
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
 - sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1281_mub6_fourth_basis_flat_moments.md`
-
-- file: [dag/derivations/25_mub/tfq_1281_mub6_fourth_basis_flat_moments.md](../../../dag/derivations/25_mub/tfq_1281_mub6_fourth_basis_flat_moments.md)
-- sha256 (`lf-normalised`): `6dad5bae9384ff0b4a98c8b6f09e4ea62dbbff33849f66ef82c76dd2c8718ae8`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1281
-- counts toward the grade: no
 
 ## Routes
 

@@ -32,7 +32,7 @@ Forward theorem for moments induced by a supplied family; no reverse extraction 
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C30 claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C30 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -59,27 +59,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1277_mub6_concrete_moment_flatness.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
+- file: [dag/derivations/25_mub/tfq_1277_mub6_concrete_moment_flatness.md](../../../dag/derivations/25_mub/tfq_1277_mub6_concrete_moment_flatness.md)
+- sha256 (`lf-normalised`): `e1a184e573575312c82d8667e493c522617249ffa91da5edd103c5547b4bb023`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1277
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
 - sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1277_mub6_concrete_moment_flatness.md`
-
-- file: [dag/derivations/25_mub/tfq_1277_mub6_concrete_moment_flatness.md](../../../dag/derivations/25_mub/tfq_1277_mub6_concrete_moment_flatness.md)
-- sha256 (`lf-normalised`): `af16f5e1afaee04ef3eb239de854bbb37778595924d8be84ea3e299a44e43925`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1277
-- counts toward the grade: no
 
 ## Routes
 

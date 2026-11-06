@@ -32,7 +32,7 @@ This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary M
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-076 claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-076 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -73,41 +73,41 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
+- file: [dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md](../../../dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md)
+- sha256 (`lf-normalised`): `a6743f62e08dc03b0acb1baac27dc81e45b20aa88279781249afb39292936343`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1253
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
 - sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
+### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
+- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
+### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
 
-- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
 - sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md`
-
-- file: [dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md](../../../dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md)
-- sha256 (`lf-normalised`): `f350918152195c23d13e7812df5bc089bf4c70a0a0d393fa327a63702b802cd5`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1253
-- counts toward the grade: no
 
 ## Routes
 

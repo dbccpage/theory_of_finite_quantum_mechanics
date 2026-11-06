@@ -32,7 +32,7 @@ Derive the bath term A_s T^p and p(s) from the spectral density; the calculus mi
 
 ## Source status
 
-dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-C19 claims PROVED_LEAN; audited status OPEN
+papers/core/majorana/the_majorana_problem.md record MAJ-C19 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
+### Lean: `papers/core/majorana/lean4/MajoranaCore.lean`
 
-- file: [dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean](../../../dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean)
+- file: [papers/core/majorana/lean4/MajoranaCore.lean](../../../papers/core/majorana/lean4/MajoranaCore.lean)
 - sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
 - cited in: node.lean, record TFQ-1178
 - replay: `verified`
   - receipt [evidence/lean_receipts/lean_replay_campaign_majorana.json](../../../evidence/lean_receipts/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
+- check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -73,27 +73,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
+### Documents and data: `dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md`
 
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md](../../../dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md)
+- sha256 (`lf-normalised`): `7e973c4240d84cd89b43d42c0b033c2a273548c4fbbf4410acf6d958aec23917`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1178
+- counts toward the grade: no
+
+### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+
+- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md`
+### Documents and data: `papers/core/majorana/the_majorana_problem_claim_ledger.md`
 
-- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md)
+- file: [papers/core/majorana/the_majorana_problem_claim_ledger.md](../../../papers/core/majorana/the_majorana_problem_claim_ledger.md)
 - sha256 (`lf-normalised`): `c6a3554eb30108d6294ec0ab42952efacd3f5deff58b23b0bf69d061978ac914`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md`
-
-- file: [dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md](../../../dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md)
-- sha256 (`lf-normalised`): `47e5d723c0194accb12ff956d9d2a6a67aebb1131b2ff60e67002e3ba7199cd7`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1178
-- counts toward the grade: no
 
 ## Routes
 

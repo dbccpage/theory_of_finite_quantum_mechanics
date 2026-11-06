@@ -32,7 +32,7 @@ An extraction theorem; it says nothing about whether such a functional exists fo
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C35 claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C35 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -58,27 +58,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1280_mub6_commutative_flat_real_point.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
+- file: [dag/derivations/25_mub/tfq_1280_mub6_commutative_flat_real_point.md](../../../dag/derivations/25_mub/tfq_1280_mub6_commutative_flat_real_point.md)
+- sha256 (`lf-normalised`): `7a6cbfc386d63ddd6a92c7b487858a15391de0da06c5a9f6389bc89a87ad3aba`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1280
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
 - sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1280_mub6_commutative_flat_real_point.md`
-
-- file: [dag/derivations/25_mub/tfq_1280_mub6_commutative_flat_real_point.md](../../../dag/derivations/25_mub/tfq_1280_mub6_commutative_flat_real_point.md)
-- sha256 (`lf-normalised`): `93c4bb8575c2385d514c043228cb2aa2c1e67aa513ae3dce4d88e067813bdc8d`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1280
-- counts toward the grade: no
 
 ## Routes
 

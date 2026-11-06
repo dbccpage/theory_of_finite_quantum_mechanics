@@ -32,7 +32,7 @@ Six rfl facts on five named submissions; the model does not prove that every sub
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record self_pass_cannot_authorize_invalid_content claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record self_pass_cannot_authorize_invalid_content claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md`
 
 - file: [dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md](../../../dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md)
-- sha256 (`lf-normalised`): `5873899418e4d924e8425109c34f3ccea1da65716f28e39ffec118dfb4ee8f3f`
+- sha256 (`lf-normalised`): `39f72e86f4e7a4962bd09dd34d4bf5d6f3fd49cee462ee64d4f1c95c03c50ece`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1357
 - counts toward the grade: no

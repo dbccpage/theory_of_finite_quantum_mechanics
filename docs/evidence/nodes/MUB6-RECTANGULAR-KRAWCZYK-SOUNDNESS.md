@@ -32,7 +32,7 @@ Soundness only: no successful check on a quartet domain is supplied, and strict 
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C25 claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C25 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -74,27 +74,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
+### Documents and data: `dag/derivations/25_mub/tfq_1271_mub6_rectangular_krawczyk_soundness.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
+- file: [dag/derivations/25_mub/tfq_1271_mub6_rectangular_krawczyk_soundness.md](../../../dag/derivations/25_mub/tfq_1271_mub6_rectangular_krawczyk_soundness.md)
+- sha256 (`lf-normalised`): `7a5578cf976e1fb40df1867757a4ec9c4cc02f137644e7893148b711a8f46d04`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1271
+- counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
+### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
 
-- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
 - sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `dag/derivations/25_mub/tfq_1271_mub6_rectangular_krawczyk_soundness.md`
-
-- file: [dag/derivations/25_mub/tfq_1271_mub6_rectangular_krawczyk_soundness.md](../../../dag/derivations/25_mub/tfq_1271_mub6_rectangular_krawczyk_soundness.md)
-- sha256 (`lf-normalised`): `6c5f8af6ab8b5da6334621eb2d7a17a3aa5d85f598a45ff78c85d43e353eb8e7`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1271
-- counts toward the grade: no
 
 ## Routes
 

@@ -32,7 +32,7 @@ Areas, angles and the full-turn parameter are declared algebraic data. Geometric
 
 ## Source status
 
-dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-048 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-048 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -70,24 +70,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-1212
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
-
-- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
-- sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
-
-- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md`
 
 - file: [dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md](../../../dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md)
-- sha256 (`lf-normalised`): `043556e3831c4addd4d6b83b23c1c04c01f96782a4ab323848024c948d0deef4`
+- sha256 (`lf-normalised`): `ea08746d1f505dfab8bfd6949620ed4793fb4797a94e422aeb89c19bcb3984b3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1212
 - counts toward the grade: no
@@ -103,6 +89,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [evidence/lean_receipts/campaign_fsp-regge-deficit-action_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-regge-deficit-action_lean_replay.json)
 - sha256 (`lf-normalised`): `fdfc1d5bea996047431b34b41d5185ca6ed250b3d6758a2b75778ebbbe96ac71`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
+
+- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
+- sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
+
+- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `7945c7b1530510f48a0acc7c484332febe5003b2f99b1e2755f4706d224b330f`
 - cited in: node.source
 - counts toward the grade: yes
 

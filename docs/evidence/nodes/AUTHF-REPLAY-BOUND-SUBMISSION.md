@@ -32,7 +32,7 @@ Equality is structural equality of a finite record, not a digest; verifier sound
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record replayed_status_requires_bound_submission claims PROVED_LEAN; audited status PROVED_LEAN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record replayed_status_requires_bound_submission claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -59,20 +59,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
-
-- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
-- sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/29_computation/tfq_1356_authf_replay_bound_submission.md`
 
 - file: [dag/derivations/29_computation/tfq_1356_authf_replay_bound_submission.md](../../../dag/derivations/29_computation/tfq_1356_authf_replay_bound_submission.md)
-- sha256 (`lf-normalised`): `4b703cca504f9a275b21e5b006ff22681a99cdf7cd20528fff849b1732820bb3`
+- sha256 (`lf-normalised`): `51aec62f42754c0b8e2dc916e0f8d4961fd6fc98d8a488532c76c4438bbf05fa`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1356
 - counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
+
+- file: [papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
+- sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

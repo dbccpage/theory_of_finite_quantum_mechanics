@@ -32,7 +32,7 @@ This excludes one family of regions; the full box remains unresolved and no comp
 
 ## Source status
 
-dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-CLOSE-COLUMNS claims PROVED_LEAN; audited status PROVED_LEAN
+papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-CLOSE-COLUMNS claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -57,20 +57,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
-
-- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
-- sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/25_mub/tfq_1263_mub6_close_columns_exclusion.md`
 
 - file: [dag/derivations/25_mub/tfq_1263_mub6_close_columns_exclusion.md](../../../dag/derivations/25_mub/tfq_1263_mub6_close_columns_exclusion.md)
-- sha256 (`lf-normalised`): `6fd3ce09e8e425d9c17cddf7129c97f2bbb3fbd5ec29fe950723aa304bc326b2`
+- sha256 (`lf-normalised`): `c1081b8c461c698cb8180fcb0302514733f56d9a68dbd838ffa6a318a52ce93c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1263
 - counts toward the grade: no
+
+### Documents and data: `papers/core/mub6/mub6.md`
+
+- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

@@ -32,7 +32,7 @@ Adequacy, replay closure, extensionality, nontriviality and effective reduction 
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-24 claims OPEN; audited status OPEN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-24 claims OPEN; audited status OPEN
 
 ## Review
 
@@ -87,20 +87,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/computability_carrier_candidates.json`
-
-- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/computability_carrier_candidates.json](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/computability_carrier_candidates.json)
-- sha256 (`lf-normalised`): `4af4d2ba26a0ea47b0f184523a2d7238d4e91d317cb526968e5ebe9bcbb1d102`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md`
 
 - file: [dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md](../../../dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md)
-- sha256 (`lf-normalised`): `d02aa18db597edc97993ee3f343a8088223557f859723294c3c3499d27717e3f`
+- sha256 (`lf-normalised`): `b1094cc7caa725abb00aa32377c414367e219395237880ebb5311bda6884672d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1362
 - counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json`
+
+- file: [papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json](../../../papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json)
+- sha256 (`lf-normalised`): `4af4d2ba26a0ea47b0f184523a2d7238d4e91d317cb526968e5ebe9bcbb1d102`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 

@@ -32,7 +32,7 @@ In accordance with strict constructive principles:
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for dag/derivations/19_finite_qg/constraint_closure/code/l1_regge.py`](../../code/python/)
+- [`absent: no local python twin located for papers/core/constraint_closure/code/l1_regge.py`](../../code/python/)
 
 ---
 

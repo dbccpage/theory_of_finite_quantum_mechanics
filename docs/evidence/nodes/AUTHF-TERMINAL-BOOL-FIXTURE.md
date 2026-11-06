@@ -32,7 +32,7 @@ A decidable one-bit predicate only; it shows closed terminalization is not forbi
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record finite_closed_terminalizer_remains_possible claims PROVED_LEAN; audited status PROVED_LEAN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record finite_closed_terminalizer_remains_possible claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1351_authf_terminal_bool_fixture.md`
 
 - file: [dag/derivations/29_computation/tfq_1351_authf_terminal_bool_fixture.md](../../../dag/derivations/29_computation/tfq_1351_authf_terminal_bool_fixture.md)
-- sha256 (`lf-normalised`): `ac152d504e99bab0e6125ea0d07b8b9cd10b8150833ccefbeca9a3cc12572a59`
+- sha256 (`lf-normalised`): `14b04ed29e274d181c5438e171f858015d39d84cd4f1a54bce8d0ab86c6a6502`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1351
 - counts toward the grade: no

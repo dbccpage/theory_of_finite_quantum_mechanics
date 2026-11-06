@@ -32,7 +32,7 @@ Halting is the only source predicate instantiated; no Rice instance, no extensio
 
 ## Source status
 
-dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record no_computable_authorizer_of_computable_reduction claims PROVED_LEAN; audited status PROVED_LEAN
+papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record no_computable_authorizer_of_computable_reduction claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -60,20 +60,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md`
-
-- file: [dag/derivations/04_authorization/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md](../../../dag/derivations/04_authorization/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md)
-- sha256 (`lf-normalised`): `b4f7baee0dd634505d7da70a920b9bbb3548666ec77244eb9d1c7fc3d0191a6c`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md`
 
 - file: [dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md](../../../dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md)
-- sha256 (`lf-normalised`): `e30894ae56f845f5fff6a50e2fb9589fcf26a8433555642ade4880e0f25c56f9`
+- sha256 (`lf-normalised`): `549bdc0d6ec87752a5b13aa20794ea150615fe960755de49e04e74d06b02e4eb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1348
 - counts toward the grade: no
+
+### Documents and data: `papers/foundations/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md`
+
+- file: [papers/foundations/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md](../../../papers/foundations/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md)
+- sha256 (`lf-normalised`): `b4f7baee0dd634505d7da70a920b9bbb3548666ec77244eb9d1c7fc3d0191a6c`
+- cited in: node.source
+- counts toward the grade: yes
 
 ## Routes
 
