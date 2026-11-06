@@ -139,7 +139,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `L1-R-U1-GAP` `GAP_NO_DERIVATION`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (CONDITIONAL)
+- `L1-R-U1-GAP` `GAP_NO_DERIVATION`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (PROVED_LEAN)
 
 Outgoing (6):
 

@@ -54,12 +54,12 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | DAG validator | `nodes=988 routes=996 records=1040 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
 | TFQ records | 1040 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
 | Derivation papers | 1332 in 36 stage folders | [`dag/derivations`](dag/derivations) |
-| Lean references in DAG nodes | 3559 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Lean references in DAG nodes | 3609 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Rust references in DAG nodes | 384 resolve to a file in this checkout, 0 do not, 575 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Nodes with executed review results | 177 nodes, 183 review directories | `evidence/results/*/reviews/` |
 | Review directories with a supports / does_not_support / narrowest_claim boundary | 166 | `evidence/results/*/reviews/*/*.json` |
 | P4 mutations rejected, as recorded in review records (`rejected_P4_mutations`, one value per directory) | 43982 | `evidence/results/*/reviews/*/*.json` |
-| PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 50, caveat_added 37, statement_narrowed 23, status_lowered 67 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 51, caveat_added 37, statement_narrowed 23, status_lowered 66 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Outside-corpus records audited | 267 records from 9 corpora | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Of those, claimed `PROVED_LEAN` by their source | 173: kept 88, refuted 2, recorded lower 83 (OPEN 36, IMPORTED_ASSUMPTION 17, COMPUTATIONALLY_CHECKED 15, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Tracked `.lean` files | lean4 1106, papers 118, code 66, other 113 (the `dag` files are run snapshots) | `git ls-files` |
@@ -76,7 +76,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
-Nodes by status: PROVED_LEAN 263, OPEN 199, COMPUTATIONALLY_CHECKED 188, DEFINITION 95, SOURCE_RECORD 83, IMPORTED_ASSUMPTION 73, CONDITIONAL 49, PROVED_PROSE 28, REFUTED 7, ADMITTED_PRIMITIVE 3.
+Nodes by status: PROVED_LEAN 278, OPEN 199, COMPUTATIONALLY_CHECKED 184, DEFINITION 95, SOURCE_RECORD 83, IMPORTED_ASSUMPTION 73, CONDITIONAL 38, PROVED_PROSE 28, REFUTED 7, ADMITTED_PRIMITIVE 3.
 
 Nodes by stage: PREGENESIS 32, GENESIS 89, MSSN_SN 28, WDP 58, L1_EMERGENCE 9, L1_TO_L2 48, FINITE_QM_CORE 39, FINITE_QM_DYNAMICS 24, FINITE_QM_STRUCTURE 44, IMPLEMENTATION 10, DRESSING_FIELD 43, MUTUALLY_UNBIASED_BASES 68, FERMION_SIGN 41, TENSOR_COMPOSITION 7, FINITE_OBSTRUCTION 9, AUTHORIZATION 8, FINITE_HILBERT 8, FINITE_QM_INFORMATION 4, FINITE_GAUGE 2, FINITE_QED 1, FINITE_QCD 37, FINITE_TOPOLOGICAL 9, FINITE_QG 16, CONTINUUM_INTERFACE 9, IMPLEMENTATION_CORE 41, IMPLEMENTATION_SIBLING 26, ENGINE_CUSTODY 34, MAJORANA 46, COMPUTATION 95, CONSTRUCTOR_THEORY 15, CAUSAL_QFT 14, ADS_CFT 13, LOOP_QUANTUM_GRAVITY 16, GENESIS_TO_HIGHER 12, OBSERVER_PRESHEAF 33.
 
@@ -92,7 +92,7 @@ Nodes named in this README:
 | `FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION` | FINITE_QM_CORE | `PROVED_LEAN` |
 | `FQ-GAP-CONTINUUM-HILBERT-LIFT` | FINITE_QM_CORE | `CONDITIONAL` |
 | `L1-IMP-HILBERT-INNER-PRODUCT` | L1_TO_L2 | `CONDITIONAL` |
-| `L1-IMP-COMPLEX-FIELD` | L1_TO_L2 | `CONDITIONAL` |
+| `L1-IMP-COMPLEX-FIELD` | L1_TO_L2 | `PROVED_LEAN` |
 | `FQ-GAP-STONE-CONTINUOUS-TIME` | FINITE_QM_DYNAMICS | `CONDITIONAL` |
 | `FQ-GAP-U1-CIRCLE` | FINITE_QM_CORE | `CONDITIONAL` |
 | `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` | L1_TO_L2 | `CONDITIONAL` |

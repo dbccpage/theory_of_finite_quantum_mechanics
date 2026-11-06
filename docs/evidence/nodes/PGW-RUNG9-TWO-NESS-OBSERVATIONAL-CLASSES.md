@@ -1,6 +1,6 @@
 # PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `CONDITIONAL`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `CONDITIONAL`. Evidence grade: *
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
 
 ## Imported structure
 
@@ -44,6 +44,35 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean)
+- sha256 (`bytes`): `e2d0c2ea1c49f613edb5efd542c1092ab43be08646f4e1d56662a44c9529bf64`
+- cited in: node.lean, record TFQ-0472
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch11.collapsedRung_equivalence` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch11.collapsedRung_equivalence` |
+| `WitnessedDifference.WdpBatch11.rung9_twoness_observational_classes_and_stage_bounds` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch11.rung9_twoness_observational_classes_and_stage_bounds` |
+
+- counts toward the grade: yes
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean)
+- sha256 (`bytes`): `fb93c9f5733e92d52e89df3da4ab8183ded4cf103514b6ba0d3141cfadc26165`
+- cited in: node.lean, record TFQ-0472
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds` | yes | yes | no | - | `#print axioms WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds` |
+
+- counts toward the grade: yes
+
 ### Documents and data: `atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt`
 
 - file: [atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt](../../../atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt)
@@ -61,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0472_rung9_two_ness_observational_classes.md`
 
 - file: [dag/derivations/02_genesis/tfq_0472_rung9_two_ness_observational_classes.md](../../../dag/derivations/02_genesis/tfq_0472_rung9_two_ness_observational_classes.md)
-- sha256 (`lf-normalised`): `6a76b568e2c36d1ceabb440d76271f4c0ccba2b25a3e07980df055c7bf06616b`
+- sha256 (`lf-normalised`): `1624202c440cd260ef36ca1dfdaee22b7431cfce5c4d3f7db129e895bd36b20c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0472
 - counts toward the grade: no
@@ -86,8 +115,8 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PGW-R-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES` `CONDITIONAL_ON_IMPORT`: [PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO](PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO.md) (CONDITIONAL)
+- `PGW-R-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES` `DERIVED_LEAN`: [PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO](PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO.md) (PROVED_LEAN)
 
 Outgoing (1):
 
-- `PGW-R-RUNG10-RESPONDER-ADJACENCY-REACH` `CONDITIONAL_ON_IMPORT`: [PGW-RUNG10-RESPONDER-ADJACENCY-REACH](PGW-RUNG10-RESPONDER-ADJACENCY-REACH.md) (CONDITIONAL)
+- `PGW-R-RUNG10-RESPONDER-ADJACENCY-REACH` `DERIVED_LEAN`: [PGW-RUNG10-RESPONDER-ADJACENCY-REACH](PGW-RUNG10-RESPONDER-ADJACENCY-REACH.md) (PROVED_LEAN)

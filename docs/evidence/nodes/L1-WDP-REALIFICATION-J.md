@@ -119,7 +119,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `L1-R-REALIFICATION-J` `DERIVED_LEAN`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (CONDITIONAL)
+- `L1-R-REALIFICATION-J` `DERIVED_LEAN`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (PROVED_LEAN)
 
 Outgoing (2):
 

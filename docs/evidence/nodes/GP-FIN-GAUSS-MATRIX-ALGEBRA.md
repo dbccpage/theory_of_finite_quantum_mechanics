@@ -96,7 +96,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `X-R-GAUSS-ALGEBRA-FROM-Z-I` `DERIVED_LEAN`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (CONDITIONAL)
+- `X-R-GAUSS-ALGEBRA-FROM-Z-I` `DERIVED_LEAN`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (PROVED_LEAN)
 
 Outgoing (1):
 

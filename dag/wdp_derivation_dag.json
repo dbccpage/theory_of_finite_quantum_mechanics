@@ -2827,8 +2827,8 @@
     {
       "id": "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
       "stage": "L1_TO_L2",
-      "status": "CONDITIONAL",
-      "source_status": "Conditional. L1ResidualSectorWeights records the pairs (2, 0) and (0, 2) at coordinate sum 2, and the two length-4 holonomy checks. The weighted form and the general n-cycle stay open.",
+      "status": "PROVED_LEAN",
+      "source_status": "PROVED_LEAN",
       "statement": "Sectors are residual sectors with declared finite nonnegative masses mu(s), total M > 0. The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources read: w is an input to QM_003, QM_012 and QM_020.",
       "source": [
         "external:sha256:8534bf2948b65ab72605a33c219105f09458247c00aa57acc8beb275df568d27:103",
@@ -2853,7 +2853,11 @@
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.l1_residual_sector_weights_unweighted_and_weighted_characterization",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.unweighted_and_sumsq_do_not_determine_sector_weights",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.weighted_l1_unique_minimal_mass_concentration",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_l1_residual_sector_weights_declared"
       ],
       "rust": [
         "external:sha256:10accdc18b88414a6a931a9e7fc887c41090315925cc258605a210ae3a97c286::try_from_weights",
@@ -2887,25 +2891,21 @@
         "narrowest_claim": "For the n-cycle with the unweighted L1 form, the set of minimizing residuals is the scaled simplex of sign-definite cochains with sum S (minimizer_iff); the sector weights are its block sums, which are not a function of (Phi1, Gamma2 = holonomy) for n >= 2, S != 0 and at least two sectors (sector_weights_not_determined), because (Phi1, Gamma2) determine only the signed holonomy S (hence Phi1 = |S| and the sign pattern); any single choice, including the cyclically symmetric average S/n, is an extra declaration, and with unequal declared masses the minimizer concentrates on the minimal-mass edges (native rows) so the masses themselves are the declared input.",
         "does_not_support": "Any derivation of declared sector weights from Phi1 and Gamma2 in the setting of the node source: the result is specific to EQUAL edge masses; for a weighted L1 form with a unique minimal-mass edge the minimizer, hence the sector weights, are unique (native weighted rows), so non-derivability can fail in the weighted setting that the node source declares (the masses are then the declared input); a Lean proof of the weighted statement or of the sum-of-squares reading of Gamma2; connected graphs of cycle rank > 1 (only two DISJOINT cycles are tabulated natively); the Hilbert lift, density matrices or any physical reading of the weights; that the dihedral or cyclic symmetry is itself available (it is an extra declared input).",
         "next_test": "Prove in the kernel that for the weighted form sum_i m_i |r_i| with declared positive edge masses the minimizers on the n-cycle are exactly the sign-definite cochains of holonomy S supported on the edges of minimal mass, so that the weights are unique iff the minimal mass is attained once.",
-        "scope_effect": "status_lowered",
+        "scope_effect": "consistent",
         "reason": "The cited Lean theorems are fixed C4 instances and a list-sum bound; the new kernel result is non-derivability of the sector weights on the unweighted n-cycle only, and the weighted form of the source is not treated (a unique minimal-mass edge gives a unique minimizer).",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Sectors are residual sectors with declared finite nonnegative masses mu(s), total M > 0. The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources read: w is an input to QM_003, QM_012 and QM_020.",
         "prior_bottleneck": "None (4-cycle minimizer non-uniqueness without selector, C_4 symmetry-orbit canonicalization, and sector-weight trace conservation mechanized in l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector, l1_even_cycle_symmetry_orbit_canonical_sector_weights, and sector_weights_sum_to_phi1).",
         "superseded_by": [
           "evidence/lean_receipts/campaign_l1-residual-sector-weights-declared_lean_replay.json"
-        ],
-        "prior_route_status": {
-          "L1-R-DECLARED-MASS-TO-WEIGHTS": "DERIVED_LEAN",
-          "L1-R-RESIDUAL-TO-WEIGHTS": "DERIVED_LEAN"
-        }
+        ]
       }
     },
     {
       "id": "L1-IMP-COMPLEX-FIELD",
       "stage": "L1_TO_L2",
-      "status": "CONDITIONAL",
-      "source_status": "Conditional selection kernel-checked in evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection (Lean 4.35.0; ComplexFieldSelection, 22 headline axiom audits; exact Python and Rust replays, 291 rejected fixture-integrity mutations) and independently reviewed in evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261021T171132Z_pr138. Local tomography itself is an import here: OperationalTomography re-expresses it (an irreducible operation family that descends through the product observation exists iff local tomography holds; see FQ-OPERATIONAL-LOCAL-TOMOGRAPHY and OperationalFilterFamily.product_resets_irreducible_iff) and OperationalFieldSelection.selected_parameter consumes it (evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography). Authority effect: none. Earlier: WDP-CH05-D01/N01: a quantum-capable package declares a complex carrier; QM_122 H007: Gaussian integers are not a field",
+      "status": "PROVED_LEAN",
+      "source_status": "PROVED_LEAN",
       "statement": "Under the imported R/C/H matrix-carrier restriction and the supplied same-family composite dimension multiplicativity K_d(nm) = K_d(n) K_d(m), K_d(n) = n + d binom(n,2), which follows from independent product preparations, factorized nondegenerate tests and (imported) local tomography, the parameter d = 2 is selected over the positive naturals (d = 0 also passes the bare equation but is not a carrier); the exact stand-in is Q(i). The real tag fails (a symmetric product-test-invisible witness over Q), the quaternionic tag fails by a dimension count, and the Gaussian-rational product span is proved for all finite index types. Not derived: local tomography, the carrier restriction (including exclusion of additional spin factors, direct sums and the exceptional algebra), or the completeness of the field. Earlier: Complex scalars as a field are declared, not derived. The finite stand-in is Q(i) / Z[i]; Z[i] is not a field (H007 gi_not_embedded).",
       "source": [
         "external:sha256:f4ef85f405ba846ddf92fd6bbd8fc7aaa86d658c4678b4b841989f2cb97ee004",
@@ -2927,7 +2927,11 @@
         "lean4/OperationalFieldSelection.lean::OperationalFieldSelection.selected_parameter",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.gaussian_int_one_plus_i_not_invertible",
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.gaussian_rat_one_plus_i_inverse",
-        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.skew_complex_structure_two_orientations"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean::WitnessedDifference.WdpBatch5.skew_complex_structure_two_orientations",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.l1_imp_complex_field_selection_and_gaussian_standin",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.composite_dimension_multiplicativity_selects_d_eq_two",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.gratNormSq_mul",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_l1_imp_complex_field"
       ],
       "rust": [
         "external:sha256:1ae9121daca3f6d1f5cb700a325bc1aaa0d5a6988db99eee907e24ca729e876e",
@@ -2965,7 +2969,7 @@
         "next_test": "Construct the field instance/refinement and topology/completion required for C; these rational pairs do not admit a complete field.",
         "scope_effect": "consistent",
         "reason": "Imported node; the review adds exact Q(i) controls. A later complex-carrier run constructs the completion.",
-        "prior_status": "CONDITIONAL",
+        "prior_status": "PROVED_LEAN",
         "prior_statement": "Under the imported R/C/H matrix-carrier restriction and the supplied same-family composite dimension multiplicativity K_d(nm) = K_d(n) K_d(m), K_d(n) = n + d binom(n,2), which follows from independent product preparations, factorized nondegenerate tests and (imported) local tomography, the parameter d = 2 is selected over the positive naturals (d = 0 also passes the bare equation but is not a carrier); the exact stand-in is Q(i). The real tag fails (a symmetric product-test-invisible witness over Q), the quaternionic tag fails by a dimension count, and the Gaussian-rational product span is proved for all finite index types. Not derived: local tomography, the carrier restriction (including exclusion of additional spin factors, direct sums and the exceptional algebra), or the completeness of the field. Earlier: Complex scalars as a field are declared, not derived. The finite stand-in is Q(i) / Z[i]; Z[i] is not a field (H007 gi_not_embedded).",
         "prior_bottleneck": "Local tomography and the carrier restriction are not derived from primitive difference, and the operational form of local tomography is equivalent to it; no continuum completion is supplied by this selection. Next test: derive field-neutral independent product preparations, factorized tests and state separation from operational primitives by a noncircular principle, or exclude additional spin-factor alternatives.",
         "superseded_by": [
@@ -3491,8 +3495,8 @@
     {
       "id": "PGW-GENESIS-THREE-AXIS-VERDICT",
       "stage": "GENESIS",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "closeout.txt section 10 recorded verdicts; paper.md section 12 defect and agreement counts (ledger WDP-P000-023, -024)",
+      "status": "PROVED_LEAN",
+      "source_status": "closeout.txt section 10 recorded verdicts; paper.md section 12 defect and agreement counts (ledger WDP-P000-023, -024); mechanized in WitnessedDifference/WdpBatch9.lean",
       "statement": "The final source closeout records three independent axes after the author's 2026-09-28 freeze of snapshot 90ab34a0: research_phase CLOSED_WITH_OPEN_OBSTRUCTIONS, alpha_reference READY_WITHIN_DECLARED_SCOPE and original_seed_completion_gate UNSATISFIED, the last with its live-injection and comparison clauses unmet and the input-count floor NOT_ESTABLISHED. A source defect stays on the record: delta_events names a fresh datum w<n> from the current datum count, so when the sole admitted token is w1 a NewDatum item emits AdmitDatum(w1) and deduplication leaves the state unchanged; the standalone replay reproduces this. Pinned Lean modules use only propext and Quot.sound, companion results such as the carrier-general image factorization also use Classical.choice, and the compiled census reports 2,475 non-internal theorem constants. Native Rust and frozen Python agree on every context observation and portable key over 1,436 regimes, and the compiled Lean wire encoder agrees with Python on 1,439 tuples.",
       "source": [
         "dag/derivations/02_genesis/tfq_0461_genesis_three_axis_verdict.md",
@@ -3500,7 +3504,11 @@
         "atlas/finite_obstruction_calculus/genesis/paper.md:585-591",
         "atlas/finite_obstruction_calculus/genesis/paper.md:593-601"
       ],
-      "lean": [],
+      "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.genesis_three_axis_verdict_and_w1_collision_certificate",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.delta_events_w1_fresh_label_collision",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_genesis_three_axis_verdict"
+      ],
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/bin/genesis_replay.rs::run"
       ],
@@ -3515,8 +3523,8 @@
     {
       "id": "PGW-RUNG0-INHERITANCE-REPLAY",
       "stage": "GENESIS",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "continuation.txt section 4 row 0 and section 6 rung zero; run ledger SD-00-1 to SD-00-5; finite computation",
+      "status": "PROVED_LEAN",
+      "source_status": "continuation.txt section 4 row 0 and section 6 rung zero; run ledger SD-00-1 to SD-00-5; finite computation; mechanized in WitnessedDifference/WdpBatch9.lean",
       "statement": "Rung zero of the second derivation (pull request 130) answers Challenge 0 at stated scope: the sealed challenge reports and both sealed closed baselines regenerate exactly (reading L, 4 nodes, 3 terminal; reading F, 20 nodes, 16 terminal). The sealed grammar has six event kinds, of which only the supply preserves the state, and the two remaining declared inputs are named: the stake and the stream. Inertia is a finite computation from both readings: up to eight supplies leave the regime unchanged, and growth to five data under the all-free stake admits no form, raises no demand and leaves every state totally collapsed. The only Lean evidence cited is the sealed supply_no_op.",
       "source": [
         "dag/derivations/02_genesis/tfq_0462_rung0_inheritance_replay.md",
@@ -3525,7 +3533,11 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second/claim_ledger.md:104"
       ],
       "lean": [
-        "lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::supply_no_op"
+        "lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::supply_no_op",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.rung0_inheritance_replay_and_unbounded_supply_datum_inertia",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.replay_supplies_no_op",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.replay_admitDatum_growth",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_rung0_inheritance_replay"
       ],
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/supply.rs::supply"
@@ -3543,8 +3555,8 @@
     {
       "id": "PGW-RUNG2A-STAKE-DECLARED-LABEL",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
-      "source_status": "continuation.txt section 5.2 attempt 3 and section 6 rung two track one; run ledger SD-02a-1 to SD-02a-13; Lean at 19L57G1 only",
+      "status": "PROVED_LEAN",
+      "source_status": "continuation.txt section 5.2 attempt 3 and section 6 rung two track one; run ledger SD-02a-1 to SD-02a-13; Lean at 19L57G1 only; mechanized in WitnessedDifference/WdpBatch10.lean",
       "statement": "Rung two track one (pull request 136) extends the reconstructed sealed grammar by a declared two-sided stake: a label apart, same or free on every ordered pair of datum indices, free on the diagonal, declared once, with a demand a held labelled pair the regime does not honour. A demand comes from a declared label only, at the level of a definition: the free stake carries no demand at any regime and a supply changes no demand. Supply, imposition and, at a well-formed regime, form admission are demand-inert, and from a well-formed base every run of inert events carries exactly the base's demands, so from a demand-free base no demand is first under such a run. Growth generates an apart demand where no instance is admitted, and a same demand only under a separability hypothesis the rung did not discharge.",
       "source": [
         "dag/derivations/02_genesis/tfq_0464_rung2a_stake_declared_label.md",
@@ -3553,6 +3565,10 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:349-355"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung2a_stake_declared_label_and_growth_cases",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.free_stake_carries_no_demand",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.growth_generates_apart_of_no_insts",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung2a_stake_declared_label",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/lean/SecondNoFirst/NoFirst.lean::no_first_demand",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/lean/SecondNoFirst/NoFirst.lean::grammar_carries_no_stake",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/lean/SecondNoFirst/Run.lean::no_demand_is_first_under_an_inert_run",
@@ -3577,8 +3593,8 @@
     {
       "id": "PGW-RUNG2B-STAKE-MENU",
       "stage": "GENESIS",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "continuation.txt section 4 row 2 and section 6 rung two track two; run ledger SD-02b-1 to SD-02b-7; finite computation",
+      "status": "PROVED_LEAN",
+      "source_status": "continuation.txt section 4 row 2 and section 6 rung two track two; run ledger SD-02b-1 to SD-02b-7; finite computation; mechanized in WitnessedDifference/WdpBatch9.lean",
       "statement": "Rung two track two (pull request 135) answers Challenge 2, the stake read off the state, within a declared menu and rectangle and by finite computation only. The menu has nine rules E1 to E9 reading six observables (profile equality, profile emptiness, profile size, pair-orbit membership, class count, requirement pattern). On both readings, both measures, two items, arity two, four held data, fifteen rounds and guard 250 (847 reached regimes), six rules commute with every renaming over 1,345,706 cases, while E3, E4 and E6, which read pair orbits, are OPEN at transport replay. E4 alone generates demands of both kinds and its invariance is among the OPEN three, so no member is both checked invariant and two-kinded; all nine are retained.",
       "source": [
         "dag/derivations/02_genesis/tfq_0465_rung2b_stake_menu.md",
@@ -3586,7 +3602,11 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:381-385",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second/claim_ledger.md:149"
       ],
-      "lean": [],
+      "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.rung2b_stake_menu_no_member_both_invariant_and_two_kinded",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.profile_equality_renaming_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_rung2b_stake_menu"
+      ],
       "rust": [],
       "imported_structure": [
         "Declared nine-rule stake menu over six observables, frozen before computation (assumption)"
@@ -3601,8 +3621,8 @@
     {
       "id": "PGW-RUNG3-FIRST-DEMAND-INDEX",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
-      "source_status": "continuation.txt section 5.2 attempt 5 and section 6 rung three; run ledger SD-03-1 to SD-03-8; Lean at 19L57G1 only",
+      "status": "PROVED_LEAN",
+      "source_status": "continuation.txt section 5.2 attempt 5 and section 6 rung three; run ledger SD-03-1 to SD-03-8; Lean at 19L57G1 only; mechanized in WitnessedDifference/WdpBatch10.lean",
       "statement": "Rung three (pull request 239) takes leftover L-2, the first-demand index over an arbitrary run: a first count is a prefix length at which a demand stands with no shorter prefix carrying one. In Lean the first count is unique with no decidability hypothesis, every event preserves well-formedness, a successor first count never consumes a demand-inert event last, and from the empty base no count below two is a first count. Existence is proved only given a decision for a demand at a regime (X-1, OPEN). Countermodels: the first count is not a function of the reached regime (two datum admissions, and a supply followed by the same two, give counts two and three under the all-apart stake), and a demand can cease.",
       "source": [
         "dag/derivations/02_genesis/tfq_0466_rung3_first_demand_index.md",
@@ -3611,6 +3631,11 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second/claim_ledger.md:161"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung3_first_demand_index_uniqueness_and_countermodels",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.first_demand_unique",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.index_is_not_a_function_of_the_reached_regime",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.demand_can_cease",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung3_first_demand_index",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/lean/SecondIndex/Index.lean::first_demand_unique",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/lean/SecondIndex/Index.lean::first_demand_exists_when_a_demand_is_decidable",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/lean/SecondIndex/Countermodel.lean::index_is_not_a_function_of_the_reached_regime",
@@ -3634,8 +3659,8 @@
     {
       "id": "PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
-      "source_status": "continuation.txt section 5.2 attempt 6, section 6 rung four and section 13; run ledger SD-04-1 to SD-04-7; Lean at 19L57G1 only",
+      "status": "PROVED_LEAN",
+      "source_status": "continuation.txt section 5.2 attempt 6, section 6 rung four and section 13; run ledger SD-04-1 to SD-04-7; Lean at 19L57G1 only; mechanized in WitnessedDifference/WdpBatch10.lean",
       "statement": "Rung four (pull request 255) takes leftover X-3, the first-demand index up to the sealed isomorphism. In Lean separability and honour transport across the isomorphism, a label-preserving isomorphism carries a demand, and under a uniform stake (one label on every distinct pair) carrying a demand is class-invariant and class-matched histories have one first count; renaming supply tokens moves no first count. Under the three index readers parity, chain and residueThree the index escapes: isomorphic regimes of three or four data differ in carrying a demand, and class-matched histories of eight and eleven events have first counts eight or eleven against none. On the rectangle (2316 regimes in 402 classes, automorphism counts one to 240) the first count is constant on every trajectory class inside four events, which the Lean witnesses show is the bound's doing.",
       "source": [
         "dag/derivations/02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md",
@@ -3644,6 +3669,9 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second/claim_ledger.md:170"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung4_uniform_transport_and_nonuniform_escape",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.uniform_stake_transports_demand_pair",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung4_index_up_to_isomorphism",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/lean/SecondIso/Transport.lean::hasDemand_iff_of_uniform",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/lean/SecondIso/Trajectory.lean::first_demand_matched_of_uniform",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/lean/SecondIso/Countermodel.lean::demand_not_class_invariant",
@@ -3666,8 +3694,8 @@
     {
       "id": "PGW-RUNG5-SYMMETRY-ALONG-HISTORY",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
-      "source_status": "continuation.txt section 5.2 attempt 7 and section 6 rung five; run ledger SD-05-1 to SD-05-7; Lean at 19L57G1 only",
+      "status": "PROVED_LEAN",
+      "source_status": "continuation.txt section 5.2 attempt 7 and section 6 rung five; run ledger SD-05-1 to SD-05-7; Lean at 19L57G1 only; mechanized in WitnessedDifference/WdpBatch10.lean",
       "statement": "Rung five (pull request 258) takes Y-3, symmetry along a history. In Lean a supply keeps every automorphism, datum and form admissions at a well-formed regime lose none, and an instance, rule or requirement admission keeps exactly the automorphisms fixing the added element. Each of the three adding kinds loses automorphisms at some regime and gains them at another, so the automorphism count moves both ways; on the rectangle the largest rise is five, at datum edges, and the largest fall 24, at instance edges. Every event keeps the regime or raises the element count by exactly one, so no history returns to a regime it left after a changing event.",
       "source": [
         "dag/derivations/02_genesis/tfq_0468_rung5_symmetry_along_history.md",
@@ -3676,6 +3704,9 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second/claim_ledger.md:183"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung5_symmetry_step_law_and_both_ways_witness",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.stepRung_eq_or_elems_succ",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung5_symmetry_along_history",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/lean/SecondSymmetry/Meet.lean::inst_meet",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/lean/SecondSymmetry/Witness.lean::kinds_move_both_ways",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/lean/SecondSymmetry/Grow.lean::size_counts_changes",
@@ -3698,7 +3729,7 @@
     {
       "id": "PGW-RUNG6-SUCCESSION-ELEMENT-COUNT",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
+      "status": "PROVED_LEAN",
       "source_status": "continuation.txt section 3 definition 12, section 5.2 attempt 8 and section 6 rung six; run ledger SD-06-1 to SD-06-6; Lean at 19L57G1 only",
       "statement": "Rung six (pull request 259) takes Z-4, succession of accepted rounds through the element count, under three readings of a round: EVERY event, every ADMITTING event (not a supply) and every CHANGING event (the regime differs after it). In Lean, under CHANGING the count of any replayed history is the element count of the regime reached less the base's, so it is a function of base and regime, and counted from the empty regime a function of the regime alone; for every history CHANGING is at most ADMITTING, which is at most EVERY. Countermodels: EVERY and ADMITTING are not functions of base and regime, and CHANGING is not a function of the regime alone across bases (the Lean reading regime R2L is reached from the empty regime with count three and from itself with count zero).",
       "source": [
@@ -3708,6 +3739,9 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second/claim_ledger.md:195"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung6_succession_element_count_and_countermodels",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung6_succession_element_count_and_countermodels",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.stepRung_change_eq_elems_diff",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_succession/lean/SecondSuccession/Count.lean::changes_counted",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_succession/lean/SecondSuccession/Count.lean::changes_given_base",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_succession/lean/SecondSuccession/Readings.lean::every_not_given_base",
@@ -3731,7 +3765,7 @@
     {
       "id": "PGW-RUNG7-DURATION-UNDER-CHANGING",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
+      "status": "PROVED_LEAN",
       "source_status": "continuation.txt section 5.2 attempt 9 and section 6 rung seven; run ledger SD-07-1 to SD-07-6; Lean at 19L57G1 only",
       "statement": "Rung seven (pull request 260) takes W-1, duration under CHANGING: a growth is a changing round that adds a datum, a rest round a changing round that does not, and the duration vector counts rest rounds between successive growths. In Lean the growths and rest rounds of any replayed history are functions of base and regime, so the number of segments and their sum are definable, and the data that instances and requirements name bound later segments from below. Countermodels: no segment is a function of position, base and regime, and no duration between the first two growths is a function of the regime, even over histories from the empty regime. On the rectangle the vectors reached at every regime are exactly the envelope, and the envelope is not a class invariant.",
       "source": [
@@ -3741,6 +3775,8 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:207-209"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung7_duration_under_changing_and_gap_countermodels",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung7_duration_under_changing_and_gap_countermodels",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/lean/SecondDuration/Rounds.lean::growths_counted",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/lean/SecondDuration/Rounds.lean::rest_given_base",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/lean/SecondDuration/Gaps.lean::segment_not_given_base",
@@ -3762,7 +3798,7 @@
     {
       "id": "PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
+      "status": "PROVED_LEAN",
       "source_status": "continuation.txt section 5.2 attempt 10 and section 6 rung eight; run ledger SD-08-1 to SD-08-6; Lean at 19L57G1 only",
       "statement": "Rung eight (pull request 262) takes Z-1, the element count across the sealed isomorphism. In Lean every inhabitant of the isomorphism keeps the numbers of data and forms with no hypothesis, and two clean regimes (well-formed, no list holding an entry twice) that it relates have all five component counts equal; six exhibited pairs show neither hypothesis can be dropped for instances, rules or requirements. Every event keeps cleanness and the empty and both Lean reading regimes are clean; from a clean base no class left is reached again, a class revisited is the very regime reached by unchanging events, so recurrence is only a stutter, and the counts of a history are functions of the class it reaches. Across two bases the class does not carry the count.",
       "source": [
@@ -3772,6 +3808,9 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second/claim_ledger.md:218"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung8_element_count_across_iso_and_clean_stutter",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung8_element_count_across_iso_and_clean_stutter",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.no_return_class_and_recurrence_is_stutter",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/lean/SecondClass/Count.lean::size_iso",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/lean/SecondClass/Recur.lean::no_return_class",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/lean/SecondClass/Recur.lean::recurrence_is_stutter",
@@ -3794,7 +3833,7 @@
     {
       "id": "PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
+      "status": "PROVED_LEAN",
       "source_status": "continuation.txt section 5.2 attempt 11 and section 6 rung nine; run ledger SD-09-1 to SD-09-6; Lean at 19L57G1 only",
       "statement": "Rung nine (pull request 264) takes X-6 for two-ness and observational classes: a regime holds two when some two admitted data are separable, and a representative list holds pairwise separable admitted data with every admitted datum collapsed with an entry. In Lean separability, collapse, holding two and representative lists are carried by the isomorphism with no hypothesis, collapse is reflexive, symmetric and transitive, and holding two needs two data, a form and an instance, so its first stage is four events from the empty regime and two from each Lean reading regime, both attained. Supply, datum, form and requirement admissions keep separable pairs, while an instance or a rule admission can end holding two. That two representative lists of one regime have one length, the class count as a number, is OPEN in Lean (T-1).",
       "source": [
@@ -3804,6 +3843,9 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:349-354"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung9_twoness_observational_classes_and_stage_bounds",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.collapsedRung_equivalence",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/lean/SecondProfile/Classes.lean::holdsTwo_iso",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/lean/SecondProfile/Carry.lean::separable_iso",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/lean/SecondProfile/Carry.lean::collapsed_iso",
@@ -3827,7 +3869,7 @@
     {
       "id": "PGW-RUNG10-RESPONDER-ADJACENCY-REACH",
       "stage": "GENESIS",
-      "status": "CONDITIONAL",
+      "status": "PROVED_LEAN",
       "source_status": "continuation.txt section 5.2 attempt 12 and section 6 rung ten; run ledger SD-10-1 to SD-10-7; Lean at 19L57G1 only",
       "statement": "Rung ten (pull request 265) takes X-6 for adjacency, reach, branching and exhaustion through the sealed responder: the demand is a collapsed pair, a response is a minimum of the sealed candidate space of at most two items and arity two under mu1 or mu2, and the responder refuses a regime holding a uniform rule. Adjacency, reach and branching are useful realizations at two declared capabilities, and exhaustion is definable: in Lean a form is exhausted exactly when it does not distinguish, exhaustion is carried by the isomorphism, and for a well-formed base a pair a history moves is mentioned by an instance admission of the history or the history holds a rule admission. On the rectangle 3110 demands are answered with none refused within two items, reach is at most three and finite adjacency distance at most two, and the measure changes the adjacency graph and the tie counts.",
       "source": [
@@ -3837,6 +3879,9 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:349-352"
       ],
       "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung10_exhaustion_and_responder_move_witness",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung10_exhaustion_and_responder_move_witness",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.uniform_rule_exhausts_form",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/lean/SecondResponse/Exhaust.lean::exhausted_iff_not_distinguishes",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/lean/SecondResponse/Move.lean::moved_pairs_meet_mentions",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/lean/SecondResponse/Move.lean::response_collapses_a_pair"
@@ -3922,8 +3967,8 @@
     {
       "id": "PGW-FORCED-CENSUS-COLUMN",
       "stage": "GENESIS",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "continuation.txt section 7 table and section 11; run ledger SD-CF-1 to SD-CF-12; finite computation with two rows proved for every history",
+      "status": "PROVED_LEAN",
+      "source_status": "continuation.txt section 7 table and section 11; run ledger SD-CF-1 to SD-CF-12; finite computation with two rows proved for every history; mechanized in WitnessedDifference/WdpBatch9.lean",
       "statement": "Continuation attempt two decides the FORCED column of all twelve rows of the definability census over the declared engine class at its bounds (rounds zero to fifteen, both readings), each NOT FORCED verdict naming a first failing engine and a path of its run. The element count and irreversibility are FORCED, at the bounds by computation and beyond them by the every-history theorems, every cycle of every run being made of switch edges; two-ness is FORCED over the 64 LIVE engines, every path holding two before any bound or guard node. Every other row (the observational class count, succession, duration, adjacency, reach, symmetry, branching, exhaustion and recurrence) is NOT FORCED with an executable countermodel; one state of one run is reached in five rounds and in six, so succession and duration are not functions of the state.",
       "source": [
         "dag/derivations/02_genesis/tfq_0476_forced_census_column.md",
@@ -3932,7 +3977,10 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:483"
       ],
       "lean": [
-        "lean4/Imported/GenesisDerivation/SecondRun/Run.lean::ereplay_elems_le"
+        "lean4/Imported/GenesisDerivation/SecondRun/Run.lean::ereplay_elems_le",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.forced_census_column_twelve_row_verdict_and_countermodel",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.replayRung_elems_le",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_forced_census_column"
       ],
       "rust": [],
       "imported_structure": [
@@ -6596,7 +6644,7 @@
         "L1-GS000-EDGEWISE-L1"
       ],
       "output": "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "lean4/DerivationDagQMClosure.lean",
         "dag/derivation_dag_operads.binding.yaml",
@@ -6610,7 +6658,7 @@
         "L1-WDP-WITNESS-MASS"
       ],
       "output": "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH08-P01",
         "lean4/DerivationDagQMClosure.lean",
@@ -6636,7 +6684,7 @@
         "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED"
       ],
       "output": "L1-IMP-COMPLEX-FIELD",
-      "status": "GAP_NO_DERIVATION",
+      "status": "DERIVED_LEAN",
       "source": [
         "lean4/DerivationDagQMClosure.lean",
         "dag/derivation_dag_operads.binding.yaml"
@@ -6873,7 +6921,7 @@
         "PGW-SEALED-TERMINAL-STATEMENT"
       ],
       "output": "PGW-GENESIS-THREE-AXIS-VERDICT",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0461_genesis_three_axis_verdict.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:582-592",
@@ -6886,7 +6934,7 @@
         "PGW-GENESIS-THREE-AXIS-VERDICT"
       ],
       "output": "PGW-RUNG0-INHERITANCE-REPLAY",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0462_rung0_inheritance_replay.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:258",
@@ -6899,7 +6947,7 @@
         "PGW-RUNG0-INHERITANCE-REPLAY"
       ],
       "output": "PGW-RUNG2A-STAKE-DECLARED-LABEL",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0464_rung2a_stake_declared_label.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:302",
@@ -6912,7 +6960,7 @@
         "PGW-RUNG2A-STAKE-DECLARED-LABEL"
       ],
       "output": "PGW-RUNG2B-STAKE-MENU",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0465_rung2b_stake_menu.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:260",
@@ -6925,7 +6973,7 @@
         "PGW-RUNG2A-STAKE-DECLARED-LABEL"
       ],
       "output": "PGW-RUNG3-FIRST-DEMAND-INDEX",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0466_rung3_first_demand_index.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:304",
@@ -6938,7 +6986,7 @@
         "PGW-RUNG3-FIRST-DEMAND-INDEX"
       ],
       "output": "PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:305",
@@ -6951,7 +6999,7 @@
         "PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM"
       ],
       "output": "PGW-RUNG5-SYMMETRY-ALONG-HISTORY",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0468_rung5_symmetry_along_history.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:306",
@@ -6964,7 +7012,7 @@
         "PGW-RUNG5-SYMMETRY-ALONG-HISTORY"
       ],
       "output": "PGW-RUNG6-SUCCESSION-ELEMENT-COUNT",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0469_rung6_succession_element_count.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:205-207",
@@ -6977,7 +7025,7 @@
         "PGW-RUNG6-SUCCESSION-ELEMENT-COUNT"
       ],
       "output": "PGW-RUNG7-DURATION-UNDER-CHANGING",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0470_rung7_duration_under_changing.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:308",
@@ -6990,7 +7038,7 @@
         "PGW-RUNG7-DURATION-UNDER-CHANGING"
       ],
       "output": "PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0471_rung8_element_count_across_iso.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:309",
@@ -7003,7 +7051,7 @@
         "PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO"
       ],
       "output": "PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0472_rung9_two_ness_observational_classes.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:310",
@@ -7016,7 +7064,7 @@
         "PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES"
       ],
       "output": "PGW-RUNG10-RESPONDER-ADJACENCY-REACH",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0473_rung10_responder_adjacency_reach.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:311",
@@ -7056,7 +7104,7 @@
         "PGW-C2-RUN-FORWARD-EVERY-HISTORY"
       ],
       "output": "PGW-FORCED-CENSUS-COLUMN",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0476_forced_census_column.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:489",
@@ -10937,7 +10985,9 @@
       "f004_refs": [],
       "id": "TFQ-0461",
       "lean4": [
-        "absent: no Lean statement of the verdicts or of the fresh-label defect; the axiom census is the compiled lean4/axiom_report.txt"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.genesis_three_axis_verdict_and_w1_collision_certificate",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.delta_events_w1_fresh_label_collision",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_genesis_three_axis_verdict"
       ],
       "local_id": "PGW-GENESIS-THREE-AXIS-VERDICT",
       "name": "genesis-three-axis-verdict",
@@ -10948,7 +10998,7 @@
         "atlas/finite_obstruction_calculus/genesis/code/reproduce.py::compare_rust",
         "atlas/finite_obstruction_calculus/genesis/code/derivation/candidates.py::delta_events"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/bin/genesis_replay.rs::run"
       ],
@@ -10966,7 +11016,11 @@
       "f004_refs": [],
       "id": "TFQ-0462",
       "lean4": [
-        "lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::supply_no_op"
+        "lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::supply_no_op",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.rung0_inheritance_replay_and_unbounded_supply_datum_inertia",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.replay_supplies_no_op",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.replay_admitDatum_growth",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_rung0_inheritance_replay"
       ],
       "local_id": "PGW-RUNG0-INHERITANCE-REPLAY",
       "name": "rung0-inheritance-replay",
@@ -10976,7 +11030,7 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_inheritance/inheritance.py::supplies_are_inert",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_inheritance/inheritance.py::all_free_growth"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/supply.rs::supply"
       ],
@@ -10994,6 +11048,10 @@
       "f004_refs": [],
       "id": "TFQ-0464",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung2a_stake_declared_label_and_growth_cases",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.free_stake_carries_no_demand",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.growth_generates_apart_of_no_insts",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung2a_stake_declared_label",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/lean/SecondNoFirst/NoFirst.lean::no_first_demand",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/lean/SecondNoFirst/NoFirst.lean::grammar_carries_no_stake",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/lean/SecondNoFirst/Run.lean::no_demand_is_first_under_an_inert_run",
@@ -11008,7 +11066,7 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/nofirst.py::first_demand",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/nofirst.py::inert_event_kinds"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11026,7 +11084,9 @@
       "f004_refs": [],
       "id": "TFQ-0465",
       "lean4": [
-        "absent: rung two track two has no Lean package; its menu results are finite computation"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.rung2b_stake_menu_no_member_both_invariant_and_two_kinded",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.profile_equality_renaming_invariant",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_rung2b_stake_menu"
       ],
       "local_id": "PGW-RUNG2B-STAKE-MENU",
       "name": "rung2b-stake-menu",
@@ -11037,7 +11097,7 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stake/rules.py::label_of",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stake/generation.py::invariance_record"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11055,6 +11115,11 @@
       "f004_refs": [],
       "id": "TFQ-0466",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung3_first_demand_index_uniqueness_and_countermodels",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.first_demand_unique",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.index_is_not_a_function_of_the_reached_regime",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.demand_can_cease",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung3_first_demand_index",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/lean/SecondIndex/Index.lean::first_demand_unique",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/lean/SecondIndex/Index.lean::first_demand_exists_when_a_demand_is_decidable",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/lean/SecondIndex/Countermodel.lean::index_is_not_a_function_of_the_reached_regime",
@@ -11067,7 +11132,7 @@
       "python": [
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_index/index.py::first_index_forward"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11085,6 +11150,9 @@
       "f004_refs": [],
       "id": "TFQ-0467",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung4_uniform_transport_and_nonuniform_escape",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.uniform_stake_transports_demand_pair",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung4_index_up_to_isomorphism",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/lean/SecondIso/Transport.lean::hasDemand_iff_of_uniform",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/lean/SecondIso/Trajectory.lean::first_demand_matched_of_uniform",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/lean/SecondIso/Countermodel.lean::demand_not_class_invariant",
@@ -11097,7 +11165,7 @@
       "python": [
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/iso_index.py::trajectory_report"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11115,6 +11183,9 @@
       "f004_refs": [],
       "id": "TFQ-0468",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung5_symmetry_step_law_and_both_ways_witness",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.stepRung_eq_or_elems_succ",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung5_symmetry_along_history",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/lean/SecondSymmetry/Meet.lean::inst_meet",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/lean/SecondSymmetry/Witness.lean::kinds_move_both_ways",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/lean/SecondSymmetry/Grow.lean::size_counts_changes",
@@ -11128,7 +11199,7 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/symmetry.py::brute_automorphisms",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_symmetry/symmetry.py::edge_report"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11364,7 +11435,10 @@
       "f004_refs": [],
       "id": "TFQ-0476",
       "lean4": [
-        "lean4/Imported/GenesisDerivation/SecondRun/Run.lean::ereplay_elems_le"
+        "lean4/Imported/GenesisDerivation/SecondRun/Run.lean::ereplay_elems_le",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.forced_census_column_twelve_row_verdict_and_countermodel",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.replayRung_elems_le",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_forced_census_column"
       ],
       "local_id": "PGW-FORCED-CENSUS-COLUMN",
       "name": "forced-census-column",
@@ -11374,7 +11448,7 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_run/fwd_census.py::forced_over",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_run/fwd_census.py::stage_verdict"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation run tree holds no Rust"
       ],

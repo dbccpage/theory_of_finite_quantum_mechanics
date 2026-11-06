@@ -1,6 +1,6 @@
 # [TFQ-0464] rung2a-stake-declared-label
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `e7617de1-d55f-5505-a807-6bd87365d463`  
 > **Parent Derivation**: [TFQ-0462](tfq_0462_rung0_inheritance_replay.md)
 
@@ -36,6 +36,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.free_stake_carries_no_demand`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.growth_generates_apart_of_no_insts`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung2a_stake_declared_label_and_growth_cases`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung2a_stake_declared_label`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_nofirst/lean/SecondNoFirst/NoFirst.lean::grammar_carries_no_stake`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/lean/SecondNoFirst/NoFirst.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_nofirst/lean/SecondNoFirst/NoFirst.lean::no_first_demand`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/lean/SecondNoFirst/NoFirst.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_nofirst/lean/SecondNoFirst/Propagate.lean::growth_generates_apart_of_no_insts`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_nofirst/lean/SecondNoFirst/Propagate.lean)

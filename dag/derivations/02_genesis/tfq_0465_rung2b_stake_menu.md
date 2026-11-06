@@ -1,6 +1,6 @@
 # [TFQ-0465] rung2b-stake-menu
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `5c1d3782-fb74-553e-94c5-a52bd8537678`  
 > **Parent Derivation**: [TFQ-0464](tfq_0464_rung2a_stake_declared_label.md)
 
@@ -33,7 +33,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: rung two track two has no Lean package; its menu results are finite computation`
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.profile_equality_renaming_invariant`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean::WitnessedDifference.WdpBatch9.rung2b_stake_menu_no_member_both_invariant_and_two_kinded`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean::WitnessedDifference.WdpBatch9Rep.rep_rung2b_stake_menu`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch9Rep.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: the second-derivation rung trees hold no Rust`

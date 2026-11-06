@@ -1,6 +1,6 @@
 # [TFQ-0472] rung9-two-ness-observational-classes
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `16f0755d-8406-5bed-94b4-6c7817b531d4`  
 > **Parent Derivation**: [TFQ-0471](tfq_0471_rung8_element_count_across_iso.md)
 
@@ -35,6 +35,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.collapsedRung_equivalence`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung9_twoness_observational_classes_and_stage_bounds`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_profile/lean/SecondProfile/Carry.lean::collapsed_iso`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/lean/SecondProfile/Carry.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_profile/lean/SecondProfile/Carry.lean::separable_iso`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/lean/SecondProfile/Carry.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_profile/lean/SecondProfile/Classes.lean::holdsTwo_iso`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/lean/SecondProfile/Classes.lean)

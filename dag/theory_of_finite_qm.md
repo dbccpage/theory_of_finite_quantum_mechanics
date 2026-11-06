@@ -79,7 +79,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0002` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-REGIME-EVENTS` (DEFINITION) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-0003` | `FINITE_OBSTRUCTION` | `OPEN_OBLIGATION` | `TFQ-0003` (OPEN) | - |
 | `TFQ-0004` | `WDP` | `GAP` | `PG-WDP-DEGREE1-WINDOW` (DEFINITION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0005` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0005` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0006` | `L1_TO_L2` | `GAP` | `TFQ-0006` (OPEN) | - |
 | `TFQ-0007` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `TFQ-0007` (OPEN) | - |
 | `TFQ-0008` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `TFQ-0008` (OPEN) | - |
@@ -241,7 +241,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0164` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `TFQ-0164` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0165` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `TFQ-0165` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0166` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0166` (COMPUTATIONALLY_CHECKED) | - |
-| `TFQ-0167` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `L1-WDP-WITNESS-MASS` (DEFINITION), `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN) | `L1-WDP-WITNESS-MASS`: scoped_result_or_obstruction_reviewed / consistent; `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0167` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `L1-WDP-WITNESS-MASS` (DEFINITION), `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (PROVED_LEAN), `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN) | `L1-WDP-WITNESS-MASS`: scoped_result_or_obstruction_reviewed / consistent; `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / consistent; `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0168` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0168` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0169` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0169` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0170` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0170` (COMPUTATIONALLY_CHECKED) | - |
@@ -367,7 +367,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0290` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0291` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` (PROVED_LEAN), `L1-QM020-THM2B-MINKOWSKI` (IMPORTED_ASSUMPTION) | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-QM020-THM2B-MINKOWSKI`: scoped_natural_arithmetic_reviewed / caveat_added |
 | `TFQ-0292` | `L1_TO_L2` | `GAP` | `L1-IMP-SQRT-FIELD` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0293` | `L1_TO_L2` | `PROVED_LEAN` | `L1-IMP-COMPLEX-FIELD` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0293` | `L1_TO_L2` | `PROVED_LEAN` | `L1-IMP-COMPLEX-FIELD` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0294` | `L1_TO_L2` | `GAP` | `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0295` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0296` | `L1_TO_L2` | `GAP` | `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
@@ -428,7 +428,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0351` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-FRAMEWORK-KKT-CERT` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0352` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-OBSERVER-AXIOMS-H1-H5` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0353` | `L1_EMERGENCE` | `PROVED_LEAN` | `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (PROVED_LEAN), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / consistent; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0355` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` (OPEN), `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-IMP-HILBERT-INNER-PRODUCT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0356` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS001-GAUGE-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0357` | `L1_EMERGENCE` | `PROVED_LEAN` | `L1-WDP-CH08-C01-REPLICA-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
@@ -576,22 +576,22 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0458` | `GENESIS` | `PROVED_LEAN` | `PGW-FAITHFUL-DESCENT-ROUND-TRIP` (PROVED_LEAN) | - |
 | `TFQ-0459` | `GENESIS` | `PROVED_LEAN` | `PGW-CANONICAL-KEY-CLASSIFICATION` (PROVED_LEAN) | - |
 | `TFQ-0460` | `GENESIS` | `SOURCE_RECORD` | `PGW-INCIDENCE-CONSTRUCTION-BETTI` (PROVED_LEAN) | - |
-| `TFQ-0461` | `GENESIS` | `SOURCE_RECORD` | `PGW-GENESIS-THREE-AXIS-VERDICT` (COMPUTATIONALLY_CHECKED) | - |
-| `TFQ-0462` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG0-INHERITANCE-REPLAY` (COMPUTATIONALLY_CHECKED) | - |
+| `TFQ-0461` | `GENESIS` | `PROVED_LEAN` | `PGW-GENESIS-THREE-AXIS-VERDICT` (PROVED_LEAN) | - |
+| `TFQ-0462` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG0-INHERITANCE-REPLAY` (PROVED_LEAN) | - |
 | `TFQ-0463` | `GENESIS` | `OPEN_OBLIGATION` | `PGW-RUNG1-STREAM-AS-RESPONSE` (OPEN) | - |
-| `TFQ-0464` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG2A-STAKE-DECLARED-LABEL` (CONDITIONAL) | - |
-| `TFQ-0465` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG2B-STAKE-MENU` (COMPUTATIONALLY_CHECKED) | - |
-| `TFQ-0466` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG3-FIRST-DEMAND-INDEX` (CONDITIONAL) | - |
-| `TFQ-0467` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM` (CONDITIONAL) | - |
-| `TFQ-0468` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG5-SYMMETRY-ALONG-HISTORY` (CONDITIONAL) | - |
-| `TFQ-0469` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG6-SUCCESSION-ELEMENT-COUNT` (CONDITIONAL) | - |
-| `TFQ-0470` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG7-DURATION-UNDER-CHANGING` (CONDITIONAL) | - |
-| `TFQ-0471` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO` (CONDITIONAL) | - |
-| `TFQ-0472` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES` (CONDITIONAL) | - |
-| `TFQ-0473` | `GENESIS` | `SOURCE_RECORD` | `PGW-RUNG10-RESPONDER-ADJACENCY-REACH` (CONDITIONAL) | - |
+| `TFQ-0464` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG2A-STAKE-DECLARED-LABEL` (PROVED_LEAN) | - |
+| `TFQ-0465` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG2B-STAKE-MENU` (PROVED_LEAN) | - |
+| `TFQ-0466` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG3-FIRST-DEMAND-INDEX` (PROVED_LEAN) | - |
+| `TFQ-0467` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM` (PROVED_LEAN) | - |
+| `TFQ-0468` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG5-SYMMETRY-ALONG-HISTORY` (PROVED_LEAN) | - |
+| `TFQ-0469` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG6-SUCCESSION-ELEMENT-COUNT` (PROVED_LEAN) | - |
+| `TFQ-0470` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG7-DURATION-UNDER-CHANGING` (PROVED_LEAN) | - |
+| `TFQ-0471` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO` (PROVED_LEAN) | - |
+| `TFQ-0472` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES` (PROVED_LEAN) | - |
+| `TFQ-0473` | `GENESIS` | `PROVED_LEAN` | `PGW-RUNG10-RESPONDER-ADJACENCY-REACH` (PROVED_LEAN) | - |
 | `TFQ-0474` | `GENESIS` | `SOURCE_RECORD` | `PGW-C1-ENGINE-CLASS-144` (CONDITIONAL) | - |
 | `TFQ-0475` | `GENESIS` | `PROVED_LEAN` | `PGW-C2-RUN-FORWARD-EVERY-HISTORY` (PROVED_LEAN) | - |
-| `TFQ-0476` | `GENESIS` | `SOURCE_RECORD` | `PGW-FORCED-CENSUS-COLUMN` (COMPUTATIONALLY_CHECKED) | - |
+| `TFQ-0476` | `GENESIS` | `PROVED_LEAN` | `PGW-FORCED-CENSUS-COLUMN` (PROVED_LEAN) | - |
 | `TFQ-0477` | `GENESIS` | `PROVED_LEAN` | `PGW-GO-REACH-CEILING` (PROVED_LEAN) | - |
 | `TFQ-0478` | `GENESIS` | `PROVED_LEAN` | `PGW-GO-CONTRACTION-STEP2-STEP3` (PROVED_LEAN) | - |
 | `TFQ-0479` | `GENESIS` | `PROVED_LEAN` | `PGW-GO-MULTIPLICITY-MONOTONE` (PROVED_LEAN) | - |
@@ -2184,7 +2184,7 @@ Obligation: Replay the literal-root walk, read admitted instances as simplices u
 
 - UUID: `66b985c0-d8cd-5002-aee5-b6f9580270ab`
 - Parent: `TFQ-0454`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 The final source closeout records three independent axes after the author's 2026-09-28 freeze of snapshot 90ab34a0: research_phase CLOSED_WITH_OPEN_OBSTRUCTIONS, alpha_reference READY_WITHIN_DECLARED_SCOPE and original_seed_completion_gate UNSATISFIED, the last with its live-injection and comparison clauses unmet and the input-count floor NOT_ESTABLISHED. A source defect stays on the record: delta_events names a fresh datum w<n> from the current datum count, so when the sole admitted token is w1 a NewDatum item emits AdmitDatum(w1) and deduplication leaves the state unchanged; the standalone replay reproduces this. Pinned Lean modules use only propext and Quot.sound, companion results such as the carrier-general image factorization also use Classical.choice, and the compiled census reports 2,475 non-internal theorem constants. Native Rust and frozen Python agree on every context observation and portable key over 1,436 regimes, and the compiled Lean wire encoder agrees with Python on 1,439 tuples.
 
@@ -2194,7 +2194,7 @@ Obligation: Keep the three axes as separate verdicts, reproduce the w1 fresh-lab
 
 - UUID: `02afe41a-eeda-5192-97b5-ad5c157ece12`
 - Parent: `TFQ-0461`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung zero of the second derivation (pull request 130) answers Challenge 0 at stated scope: the sealed challenge reports and both sealed closed baselines regenerate exactly (reading L, 4 nodes, 3 terminal; reading F, 20 nodes, 16 terminal). The sealed grammar has six event kinds, of which only the supply preserves the state, and the two remaining declared inputs are named: the stake and the stream. Inertia is a finite computation from both readings: up to eight supplies leave the regime unchanged, and growth to five data under the all-free stake admits no form, raises no demand and leaves every state totally collapsed. The only Lean evidence cited is the sealed supply_no_op.
 
@@ -2214,7 +2214,7 @@ Obligation: Decide whether a fresh datum is ever part of a minimum response with
 
 - UUID: `e7617de1-d55f-5505-a807-6bd87365d463`
 - Parent: `TFQ-0462`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung two track one (pull request 136) extends the reconstructed sealed grammar by a declared two-sided stake: a label apart, same or free on every ordered pair of datum indices, free on the diagonal, declared once, with a demand a held labelled pair the regime does not honour. A demand comes from a declared label only, at the level of a definition: the free stake carries no demand at any regime and a supply changes no demand. Supply, imposition and, at a well-formed regime, form admission are demand-inert, and from a well-formed base every run of inert events carries exactly the base's demands, so from a demand-free base no demand is first under such a run. Growth generates an apart demand where no instance is admitted, and a same demand only under a separability hypothesis the rung did not discharge.
 
@@ -2224,7 +2224,7 @@ Obligation: State the label-source assembly, the three demand-inert kinds and th
 
 - UUID: `5c1d3782-fb74-553e-94c5-a52bd8537678`
 - Parent: `TFQ-0464`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung two track two (pull request 135) answers Challenge 2, the stake read off the state, within a declared menu and rectangle and by finite computation only. The menu has nine rules E1 to E9 reading six observables (profile equality, profile emptiness, profile size, pair-orbit membership, class count, requirement pattern). On both readings, both measures, two items, arity two, four held data, fifteen rounds and guard 250 (847 reached regimes), six rules commute with every renaming over 1,345,706 cases, while E3, E4 and E6, which read pair orbits, are OPEN at transport replay. E4 alone generates demands of both kinds and its invariance is among the OPEN three, so no member is both checked invariant and two-kinded; all nine are retained.
 
@@ -2234,7 +2234,7 @@ Obligation: Compute each menu rule's labels under every datum and form renaming 
 
 - UUID: `d85f4154-63c3-5e3e-b49f-0fa61c1d8013`
 - Parent: `TFQ-0464`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung three (pull request 239) takes leftover L-2, the first-demand index over an arbitrary run: a first count is a prefix length at which a demand stands with no shorter prefix carrying one. In Lean the first count is unique with no decidability hypothesis, every event preserves well-formedness, a successor first count never consumes a demand-inert event last, and from the empty base no count below two is a first count. Existence is proved only given a decision for a demand at a regime (X-1, OPEN). Countermodels: the first count is not a function of the reached regime (two datum admissions, and a supply followed by the same two, give counts two and three under the all-apart stake), and a demand can cease.
 
@@ -2244,7 +2244,7 @@ Obligation: Over every base, history and stake, carry uniqueness of the first co
 
 - UUID: `a6e062a3-1ca7-5232-86a7-4f1dfacf8d25`
 - Parent: `TFQ-0466`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung four (pull request 255) takes leftover X-3, the first-demand index up to the sealed isomorphism. In Lean separability and honour transport across the isomorphism, a label-preserving isomorphism carries a demand, and under a uniform stake (one label on every distinct pair) carrying a demand is class-invariant and class-matched histories have one first count; renaming supply tokens moves no first count. Under the three index readers parity, chain and residueThree the index escapes: isomorphic regimes of three or four data differ in carrying a demand, and class-matched histories of eight and eleven events have first counts eight or eleven against none. On the rectangle (2316 regimes in 402 classes, automorphism counts one to 240) the first count is constant on every trajectory class inside four events, which the Lean witnesses show is the bound's doing.
 
@@ -2254,7 +2254,7 @@ Obligation: Carry demand transport and first-count transport under a uniform sta
 
 - UUID: `1933f5e5-ad73-5418-8874-993dac785521`
 - Parent: `TFQ-0467`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung five (pull request 258) takes Y-3, symmetry along a history. In Lean a supply keeps every automorphism, datum and form admissions at a well-formed regime lose none, and an instance, rule or requirement admission keeps exactly the automorphisms fixing the added element. Each of the three adding kinds loses automorphisms at some regime and gains them at another, so the automorphism count moves both ways; on the rectangle the largest rise is five, at datum edges, and the largest fall 24, at instance edges. Every event keeps the regime or raises the element count by exactly one, so no history returns to a regime it left after a changing event.
 
@@ -2264,7 +2264,7 @@ Obligation: Characterise per event kind which automorphisms survive, exhibit los
 
 - UUID: `b6fa2aa4-84d2-5399-829d-1d10543adeb3`
 - Parent: `TFQ-0468`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung six (pull request 259) takes Z-4, succession of accepted rounds through the element count, under three readings of a round: EVERY event, every ADMITTING event (not a supply) and every CHANGING event (the regime differs after it). In Lean, under CHANGING the count of any replayed history is the element count of the regime reached less the base's, so it is a function of base and regime, and counted from the empty regime a function of the regime alone; for every history CHANGING is at most ADMITTING, which is at most EVERY. Countermodels: EVERY and ADMITTING are not functions of base and regime, and CHANGING is not a function of the regime alone across bases (the Lean reading regime R2L is reached from the empty regime with count three and from itself with count zero).
 
@@ -2274,7 +2274,7 @@ Obligation: Carry the CHANGING count as element count less the base's over every
 
 - UUID: `9220d16d-e497-5b67-a318-8fa7076f757c`
 - Parent: `TFQ-0469`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung seven (pull request 260) takes W-1, duration under CHANGING: a growth is a changing round that adds a datum, a rest round a changing round that does not, and the duration vector counts rest rounds between successive growths. In Lean the growths and rest rounds of any replayed history are functions of base and regime, so the number of segments and their sum are definable, and the data that instances and requirements name bound later segments from below. Countermodels: no segment is a function of position, base and regime, and no duration between the first two growths is a function of the regime, even over histories from the empty regime. On the rectangle the vectors reached at every regime are exactly the envelope, and the envelope is not a class invariant.
 
@@ -2284,7 +2284,7 @@ Obligation: Carry the growth and rest counts as functions of base and regime and
 
 - UUID: `c83ddeaf-d108-58a3-9059-4ac2549cd6c5`
 - Parent: `TFQ-0470`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung eight (pull request 262) takes Z-1, the element count across the sealed isomorphism. In Lean every inhabitant of the isomorphism keeps the numbers of data and forms with no hypothesis, and two clean regimes (well-formed, no list holding an entry twice) that it relates have all five component counts equal; six exhibited pairs show neither hypothesis can be dropped for instances, rules or requirements. Every event keeps cleanness and the empty and both Lean reading regimes are clean; from a clean base no class left is reached again, a class revisited is the very regime reached by unchanging events, so recurrence is only a stutter, and the counts of a history are functions of the class it reaches. Across two bases the class does not carry the count.
 
@@ -2294,7 +2294,7 @@ Obligation: Carry the component counts across the isomorphism between clean regi
 
 - UUID: `16f0755d-8406-5bed-94b4-6c7817b531d4`
 - Parent: `TFQ-0471`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung nine (pull request 264) takes X-6 for two-ness and observational classes: a regime holds two when some two admitted data are separable, and a representative list holds pairwise separable admitted data with every admitted datum collapsed with an entry. In Lean separability, collapse, holding two and representative lists are carried by the isomorphism with no hypothesis, collapse is reflexive, symmetric and transitive, and holding two needs two data, a form and an instance, so its first stage is four events from the empty regime and two from each Lean reading regime, both attained. Supply, datum, form and requirement admissions keep separable pairs, while an instance or a rule admission can end holding two. That two representative lists of one regime have one length, the class count as a number, is OPEN in Lean (T-1).
 
@@ -2304,7 +2304,7 @@ Obligation: Carry holding two and representative lists across the isomorphism, t
 
 - UUID: `9a1f1b2d-2654-5522-840d-6b9514b2ec5b`
 - Parent: `TFQ-0472`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Rung ten (pull request 265) takes X-6 for adjacency, reach, branching and exhaustion through the sealed responder: the demand is a collapsed pair, a response is a minimum of the sealed candidate space of at most two items and arity two under mu1 or mu2, and the responder refuses a regime holding a uniform rule. Adjacency, reach and branching are useful realizations at two declared capabilities, and exhaustion is definable: in Lean a form is exhausted exactly when it does not distinguish, exhaustion is carried by the isomorphism, and for a well-formed base a pair a history moves is mentioned by an instance admission of the history or the history holds a rule admission. On the rectangle 3110 demands are answered with none refused within two items, reach is at most three and finite adjacency distance at most two, and the measure changes the adjacency graph and the tie counts.
 
@@ -2334,7 +2334,7 @@ Obligation: Carry ereplay_elems_le, no_return and cycle_regime_const for every h
 
 - UUID: `80e2daa0-9f5d-56e7-bd59-7f03667874b8`
 - Parent: `TFQ-0475`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Continuation attempt two decides the FORCED column of all twelve rows of the definability census over the declared engine class at its bounds (rounds zero to fifteen, both readings), each NOT FORCED verdict naming a first failing engine and a path of its run. The element count and irreversibility are FORCED, at the bounds by computation and beyond them by the every-history theorems, every cycle of every run being made of switch edges; two-ness is FORCED over the 64 LIVE engines, every path holding two before any bound or guard node. Every other row (the observational class count, succession, duration, adjacency, reach, symmetry, branching, exhaustion and recurrence) is NOT FORCED with an executable countermodel; one state of one run is reached in five rounds and in six, so succession and duration are not functions of the state.
 

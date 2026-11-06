@@ -1,6 +1,6 @@
 # [TFQ-0470] rung7-duration-under-changing
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `9220d16d-e497-5b67-a318-8fa7076f757c`  
 > **Parent Derivation**: [TFQ-0469](tfq_0469_rung6_succession_element_count.md)
 
@@ -34,6 +34,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung7_duration_under_changing_and_gap_countermodels`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung7_duration_under_changing_and_gap_countermodels`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_duration/lean/SecondDuration/Gaps.lean::gap_not_from_genesis`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/lean/SecondDuration/Gaps.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_duration/lean/SecondDuration/Gaps.lean::segment_not_given_base`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/lean/SecondDuration/Gaps.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_duration/lean/SecondDuration/Rounds.lean::growths_counted`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/lean/SecondDuration/Rounds.lean)

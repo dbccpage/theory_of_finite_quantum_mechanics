@@ -1,6 +1,6 @@
 # [TFQ-0467] rung4-index-up-to-isomorphism
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `a6e062a3-1ca7-5232-86a7-4f1dfacf8d25`  
 > **Parent Derivation**: [TFQ-0466](tfq_0466_rung3_first_demand_index.md)
 
@@ -35,6 +35,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.rung4_uniform_transport_and_nonuniform_escape`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean::WitnessedDifference.WdpBatch10.uniform_stake_transports_demand_pair`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean::WitnessedDifference.WdpBatch10Rep.rep_rung4_index_up_to_isomorphism`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch10Rep.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_iso/lean/SecondIso/Countermodel.lean::demand_not_class_invariant`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/lean/SecondIso/Countermodel.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_iso/lean/SecondIso/Countermodel.lean::first_count_not_trajectory_invariant`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/lean/SecondIso/Countermodel.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_iso/lean/SecondIso/Trajectory.lean::first_demand_matched_of_uniform`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_iso/lean/SecondIso/Trajectory.lean)

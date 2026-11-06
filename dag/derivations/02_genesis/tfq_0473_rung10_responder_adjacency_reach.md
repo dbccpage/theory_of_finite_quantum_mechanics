@@ -1,6 +1,6 @@
 # [TFQ-0473] rung10-responder-adjacency-reach
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `9a1f1b2d-2654-5522-840d-6b9514b2ec5b`  
 > **Parent Derivation**: [TFQ-0472](tfq_0472_rung9_two_ness_observational_classes.md)
 
@@ -35,6 +35,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung10_exhaustion_and_responder_move_witness`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.uniform_rule_exhausts_form`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung10_exhaustion_and_responder_move_witness`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_response/lean/SecondResponse/Exhaust.lean::exhausted_iff_not_distinguishes`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/lean/SecondResponse/Exhaust.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_response/lean/SecondResponse/Move.lean::moved_pairs_meet_mentions`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/lean/SecondResponse/Move.lean)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_response/lean/SecondResponse/Move.lean::response_collapses_a_pair`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/lean/SecondResponse/Move.lean)
