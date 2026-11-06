@@ -1,6 +1,6 @@
 # [TFQ-0453] minimal-or-initial-refused
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `677ff5ab-6652-5c00-bbf4-9c8d2c9479d7`  
 > **Parent Derivation**: [TFQ-0451](tfq_0451_no_endogenous_demand_generator.md)
 
@@ -30,6 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.no_hom_from_self_loop_to_strict_clock`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.stuttered_adequate_process_not_state_minimal`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
 - [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.all_words_agree`](../../../lean4/GenesisProcessComparison.lean)
 - [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.all_words_minimum_size`](../../../lean4/GenesisProcessComparison.lean)
 - [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_clock_hom_of_self_loop`](../../../lean4/GenesisProcessComparison.lean)
@@ -38,7 +40,6 @@ In accordance with strict constructive principles:
 - [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.nonminimal_adequate_process`](../../../lean4/GenesisProcessComparison.lean)
 - [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.source_run_matches`](../../../lean4/GenesisProcessComparison.lean)
 - [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.source_supply_self_loop`](../../../lean4/GenesisProcessComparison.lean)
-- `missing obligation: no Lean statement of minimality or initiality among finite processes satisfying the sealed challenges`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check; artifact determinism is repeated-run byte agreement, not a program`

@@ -1,6 +1,6 @@
 # [TFQ-0516] sn4-policy-closure-cycle-space
 
-> **Stage**: `MSSN_SN` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `MSSN_SN` | **Status**: `PROVED_LEAN`  
 > **UUID**: `d59a360a-630d-51f0-984b-8cd671f1f702`  
 > **Parent Derivation**: [TFQ-0514](tfq_0514_sn3_cost_two_unary_mark.md)
 
@@ -33,6 +33,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.complete_graph_cycle_rank_identity`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.sn4_terminal_demand_empty_with_retained_history`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
 - [`lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty`](../../../lean4/Imported/GenesisDerivation/Derivation/Rounds.lean)
 - [`lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::dual_ledger_independence_at_stage_4`](../../../lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean)
 

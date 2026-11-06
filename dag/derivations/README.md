@@ -97,10 +97,10 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0448`](./02_genesis/tfq_0448_branch_trees_and_roles.md) | branch-trees-and-roles | `SOURCE_RECORD` | [`TFQ-0446`](./02_genesis/tfq_0446_pruning_lemmas_cost_two.md) |
 | [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) | closed-baseline-terminates | `SOURCE_RECORD` | [`TFQ-0383`](./02_genesis/tfq_0383_closure_round_inequality.md) |
 | [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) | policy-endpoint-all-separated | `PROVED_LEAN` | [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) |
-| [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) | no-endogenous-demand-generator | `SOURCE_RECORD` | [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) |
-| [`TFQ-0452`](./02_genesis/tfq_0452_identity_is_index_not_profile.md) | identity-is-index-not-profile | `SOURCE_RECORD` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
-| [`TFQ-0453`](./02_genesis/tfq_0453_minimal_or_initial_refused.md) | minimal-or-initial-refused | `SOURCE_RECORD` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
-| [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) | sealed-terminal-statement | `SOURCE_RECORD` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
+| [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) | no-endogenous-demand-generator | `PROVED_LEAN` | [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) |
+| [`TFQ-0452`](./02_genesis/tfq_0452_identity_is_index_not_profile.md) | identity-is-index-not-profile | `PROVED_LEAN` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
+| [`TFQ-0453`](./02_genesis/tfq_0453_minimal_or_initial_refused.md) | minimal-or-initial-refused | `PROVED_LEAN` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
+| [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) | sealed-terminal-statement | `PROVED_LEAN` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
 | [`TFQ-0455`](./02_genesis/tfq_0455_d2_initial_pointed.md) | d2-initial-pointed | `PROVED_LEAN` | [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) |
 | [`TFQ-0456`](./02_genesis/tfq_0456_five_presentation_questions.md) | five-presentation-questions | `DEFINITION` | [`TFQ-0455`](./02_genesis/tfq_0455_d2_initial_pointed.md) |
 | [`TFQ-0457`](./02_genesis/tfq_0457_quotient_retention.md) | quotient-retention | `PROVED_LEAN` | [`TFQ-0456`](./02_genesis/tfq_0456_five_presentation_questions.md) |
@@ -206,7 +206,7 @@ Folder: [`05_mssn_sn/`](./05_mssn_sn/)
 | [`TFQ-0513`](./05_mssn_sn/tfq_0513_sn2_opaque_collapse.md) | sn2-opaque-collapse | `SOURCE_RECORD` | [`TFQ-0512`](./05_mssn_sn/tfq_0512_sn1_supply_not_admission.md) |
 | [`TFQ-0514`](./05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md) | sn3-cost-two-unary-mark | `SOURCE_RECORD` | [`TFQ-0513`](./05_mssn_sn/tfq_0513_sn2_opaque_collapse.md) |
 | [`TFQ-0515`](./05_mssn_sn/tfq_0515_sn_endpoint_lemma.md) | sn-endpoint-lemma | `PROVED_LEAN` | [`TFQ-0514`](./05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md) |
-| [`TFQ-0516`](./05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md) | sn4-policy-closure-cycle-space | `SOURCE_RECORD` | [`TFQ-0514`](./05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md) |
+| [`TFQ-0516`](./05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md) | sn4-policy-closure-cycle-space | `PROVED_LEAN` | [`TFQ-0514`](./05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md) |
 | [`TFQ-0517`](./05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md) | sn5-continuation-recorded-request | `SOURCE_RECORD` | [`TFQ-0516`](./05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md) |
 | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) | sn-off-image-refusal-proposal | `SOURCE_RECORD` | [`TFQ-0517`](./05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md) |
 | [`TFQ-0519`](./05_mssn_sn/tfq_0519_sn_protected_answer_transport.md) | sn-protected-answer-transport | `OPEN_OBLIGATION` | [`TFQ-0518`](./05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) |

@@ -566,10 +566,10 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0448` | `GENESIS` | `SOURCE_RECORD` | `PGW-BRANCH-TREES-AND-ROLES` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0449` | `GENESIS` | `SOURCE_RECORD` | `PGW-CLOSED-BASELINE-TERMINATES` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0450` | `GENESIS` | `PROVED_LEAN` | `PGW-POLICY-ENDPOINT-ALL-SEPARATED` (PROVED_LEAN) | - |
-| `TFQ-0451` | `GENESIS` | `SOURCE_RECORD` | `PGW-NO-ENDOGENOUS-DEMAND-GENERATOR` (PROVED_PROSE) | - |
-| `TFQ-0452` | `GENESIS` | `SOURCE_RECORD` | `PGW-IDENTITY-IS-INDEX-NOT-PROFILE` (PROVED_PROSE) | - |
-| `TFQ-0453` | `GENESIS` | `SOURCE_RECORD` | `PGW-MINIMAL-OR-INITIAL-REFUSED` (PROVED_PROSE) | - |
-| `TFQ-0454` | `GENESIS` | `SOURCE_RECORD` | `PGW-SEALED-TERMINAL-STATEMENT` (PROVED_PROSE) | - |
+| `TFQ-0451` | `GENESIS` | `PROVED_LEAN` | `PGW-NO-ENDOGENOUS-DEMAND-GENERATOR` (PROVED_LEAN) | - |
+| `TFQ-0452` | `GENESIS` | `PROVED_LEAN` | `PGW-IDENTITY-IS-INDEX-NOT-PROFILE` (PROVED_LEAN) | - |
+| `TFQ-0453` | `GENESIS` | `PROVED_LEAN` | `PGW-MINIMAL-OR-INITIAL-REFUSED` (PROVED_LEAN) | - |
+| `TFQ-0454` | `GENESIS` | `PROVED_LEAN` | `PGW-SEALED-TERMINAL-STATEMENT` (PROVED_LEAN) | - |
 | `TFQ-0455` | `GENESIS` | `PROVED_LEAN` | `PGW-D2-INITIAL-POINTED` (PROVED_LEAN) | - |
 | `TFQ-0456` | `GENESIS` | `DEFINITION` | `PGW-FIVE-PRESENTATION-QUESTIONS` (DEFINITION) | - |
 | `TFQ-0457` | `GENESIS` | `PROVED_LEAN` | `PGW-QUOTIENT-RETENTION` (PROVED_LEAN) | - |
@@ -631,7 +631,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0513` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN2-OPAQUE-COLLAPSE` (PROVED_LEAN) | - |
 | `TFQ-0514` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN3-COST-TWO-UNARY-MARK` (PROVED_LEAN) | - |
 | `TFQ-0515` | `MSSN_SN` | `PROVED_LEAN` | `PGW-SN-ENDPOINT-LEMMA` (PROVED_LEAN) | - |
-| `TFQ-0516` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE` (PROVED_PROSE) | - |
+| `TFQ-0516` | `MSSN_SN` | `PROVED_LEAN` | `PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE` (PROVED_LEAN) | - |
 | `TFQ-0517` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN5-CONTINUATION-RECORDED-REQUEST` (DEFINITION) | - |
 | `TFQ-0518` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL` (PROVED_LEAN) | - |
 | `TFQ-0519` | `MSSN_SN` | `OPEN_OBLIGATION` | `PGW-SN-PROTECTED-ANSWER-TRANSPORT` (OPEN) | - |
@@ -2084,7 +2084,7 @@ Obligation: Show that a well-formed regime with satisfied requirements and no va
 
 - UUID: `d2dfaec3-d3a3-59e1-ba78-27c8c6ba1ff4`
 - Parent: `TFQ-0450`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 The continuation question asks whether the admitted structure can generate its next unresolved requirement without inspecting token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation. The sealed answer is that no object-language endogenous demand generator was derived: a collapsed pair is not an active obstruction by itself, and the declared closure policy only reissues the admitted requirement pattern. Under that policy the fixed finite datum set reaches the all-pairs-separated fixpoint within n(n−1)/2 rounds, the size of the requirement language (allPairs_length). At the fixpoint no unresolved requirement exists in that language, so any further requirement needs a fresh datum (external supply) or a new requirement kind (external goal).
 
@@ -2094,7 +2094,7 @@ Obligation: Record that closure under the declared policy stops at the all-pairs
 
 - UUID: `3faf6bec-8e88-51ff-a142-ac2a9644aba1`
 - Parent: `TFQ-0451`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Internal identity in the model is the datum index, never the profile (CL-IDENTITY-NOT-PROFILE). In reading F the first-round mu2 minimum admits one unary form with an instance marking datum 1; its only context is that form with one hole, so data 0 and 2 keep distinct indices with identical empty profiles while datum 1 is separated from both. A valid response separates the challenged pair by profiles, and other distinct data may stay observationally equivalent. The earlier sentence that from Challenge 3 round 1 onward each datum's internal identity is exactly its profile is false in the model and was withdrawn on 2026-09-08.
 
@@ -2104,7 +2104,7 @@ Obligation: Keep datum identity as the admission index, and check on the reading
 
 - UUID: `677ff5ab-6652-5c00-bbf4-9c8d2c9479d7`
 - Parent: `TFQ-0451`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Question 10 asks whether the final process is minimal or initial among a defined class of finite processes satisfying the same challenges. The sealed answer is that the claim is refused and tagged unresolved: no such initiality or minimality property was established. What is established is narrower: determinism of the artifacts across the exercised runs and platforms is a finite computation (byte-identical artifacts are repeated-run agreement, not an engine theorem), completeness of enumerations within declared bounds is a bounded theorem under its ledger conditions, and the per-stage minimality and uniqueness results are theorems with their stated scopes. An earlier wording, what is proved: determinism of the engine, was corrected on 2026-09-08.
 
@@ -2114,7 +2114,7 @@ Obligation: Refuse any minimality or initiality claim for the whole process, and
 
 - UUID: `1339dd05-26d5-5bf4-92d6-00047e85a2b6`
 - Parent: `TFQ-0451`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Section 11 of the sealed manuscript states the terminal result within the declared metatheory and candidate grammar, with one tag per clause. Clauses (a) to (c) are theorems: the initial inscription generates nothing and supply without admission never changes state; admission without judgment structure yields total collapse, so admission need not increase expressive power; and the first separation costs exactly two items in both readings. Clause (d) is a theorem for reading L (three tied mu1 classes and an infinite arity family), a bounded theorem for the five reading-F classes, and a theorem for mu2 uniqueness up to isomorphism in both readings, and clause (e) is the response-existence theorem. Clause (f) is a bounded theorem: no endogenous demand generator was derived and closure terminates within n(n−1)/2 rounds, 1 and 3 rounds in the baselines. Clause (g) is a finite computation, the external policy reaching depth 15 with mu2 quotient trees of 963 and 1847 nodes, and clause (h) is unresolved: both admission readings survive.
 
@@ -3040,7 +3040,7 @@ Obligation: From irreflexivity and R(a,b) derive a ≠ b, report endpoint count 
 
 - UUID: `d59a360a-630d-51f0-984b-8cd671f1f702`
 - Parent: `TFQ-0514`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 S(4) applies a supplied pair-separation closure policy. The sealed source derives no object-language endogenous demand generator; under the declared policy, which reads admitted structure and automorphism orbits and issues one requirement per orbit, the fixed finite datum set reaches the all-pairs-separated fixpoint, and a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty). At that terminal state the active separation-demand set is empty, so W₄ = ∅ and s₄ = 0, while the retained history H₄ stays nonempty. A complete graph K_m records the separated pairs of m data; for m ≥ 1 it is connected with cycle-space dimension m(m−1)/2 − m + 1.
 

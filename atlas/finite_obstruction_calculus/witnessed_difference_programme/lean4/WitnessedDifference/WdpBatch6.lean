@@ -195,21 +195,21 @@ def chain4Xor (a b : Fin 4 → Bool) : Fin 4 → Bool :=
   fun i => Bool.xor (a i) (b i)
 
 /-- Exact primal-dual completion criterion (`WDP-CH23-P03 / P14`):
-For a syndrome map `Q`, admissible error predicate `E`, and protected subgroup `B`,
+For a syndrome map `Q`, admissible error predicate `E`, and decidable protected subgroup `B`,
 every pair of admissible errors with equal syndrome has difference in `B` if and
 only if no dual failure pair `(e1, e2)` exists. -/
 theorem toric_completion_criterion_iff {P Y : Type}
-    ( diff : P → P → P ) (Q : P → Y) (E B : P → Prop) :
+    (diff : P → P → P) (Q : P → Y) (E B : P → Prop) [∀ p, Decidable (B p)] :
     (∀ e1 e2, E e1 → E e2 → Q e1 = Q e2 → B (diff e1 e2)) ↔
     ¬ (∃ e1 e2, E e1 ∧ E e2 ∧ Q e1 = Q e2 ∧ ¬ B (diff e1 e2)) := by
   constructor
   · intro h ⟨e1, e2, he1, he2, hQ, hnotB⟩
     exact hnotB (h e1 e2 he1 he2 hQ)
   · intro h e1 e2 he1 he2 hQ
-    by_cases hB : B (diff e1 e2)
-    · exact hB
-    · exfalso
-      exact h ⟨e1, e2, he1, he2, hQ, hB⟩
+    if hB : B (diff e1 e2) then
+      exact hB
+    else
+      exact False.elim (h ⟨e1, e2, he1, he2, hQ, hB⟩)
 
 /-- Star boundary map on the 4-edge square cycle `(e0, e1, e2, e3)`. -/
 def toricSquareStarSyndrome (e : Fin 4 → Bool) : Fin 4 → Bool
@@ -432,20 +432,21 @@ def asymmetricStepCost (u v : Fin 2) : Nat :=
   else if u == 1 && v == 0 then 2
   else 0
 
+theorem asymmetricStepCost_ne : asymmetricStepCost 0 1 ≠ asymmetricStepCost 1 0 := by
+  decide
+
 theorem orientation_sensitive_pair_defect_nonreflection
     (pairDefect : Fin 2 → Fin 2 → Nat)
     (hsym : ∀ u v, pairDefect u v = pairDefect v u) :
     asymmetricStepCost 0 1 ≠ asymmetricStepCost 1 0 ∧
     ¬ (∀ u v, pairDefect u v = asymmetricStepCost u v) := by
-  constructor
-  · decide
-  · intro hall
-    have h01 := hall 0 1
-    have h10 := hall 1 0
-    have hs := hsym 0 1
-    rw [h01, h10] at hs
-    revert hs
-    decide
+  refine ⟨asymmetricStepCost_ne, ?_⟩
+  intro hall
+  have h01 := hall 0 1
+  have h10 := hall 1 0
+  have hs := hsym 0 1
+  rw [h01, h10] at hs
+  exact asymmetricStepCost_ne hs
 
 /-- `TFQ-0570` (`GEN-WDP-O05`) authorization firewall non-implication witness:
 internal receipt verification (`verify r = true`) does not determine external
