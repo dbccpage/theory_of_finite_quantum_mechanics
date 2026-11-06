@@ -3215,7 +3215,7 @@
       "id": "TFQ-0385",
       "stage": "GENESIS",
       "status": "PROVED_LEAN",
-      "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 01)",
+      "source_status": "TFQ record_status PROVED_LEAN (source slice 01)",
       "statement": "Ledger row WDP-P000-017 records a counterexample: adding an admitted uniform rule can erase a prior separation. The row names two data, one unary instance on the first, then AdmitRuleAll of index 0, and says raw admission does not enforce requirement-preserving acceptance. The reproducing test was not opened. Genesis paper.md section 8 is the heading for closure. The finite statement still required is that this two-data history remains a visible counterexample beside the no-return count, so a later admission API cannot treat every admitted rule as separation-preserving.",
       "source": [
         "dag/derivations/02_genesis/tfq_0385_rule_can_erase_separation.md",
@@ -8350,7 +8350,7 @@
       "local_id": "WDP_WINDOW",
       "name": "Witnessed-difference degree-1 window",
       "obligation": "Treat the degree-1 window as declared until a derivation from Genesis admission is written.",
-      "parent_id": null,
+      "parent_id": "TFQ-0003",
       "pfp_review_refs": [
         "evidence/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/delivery_review_result.json"
       ],
@@ -8402,7 +8402,8 @@
         "external:git-tree:6c3ddd228c139e91dd74dc2ea348d97cc54608a0"
       ],
       "existing_derivation_dag_ids": [
-        "PG-ROOT-DIFF-STRUCTURE"
+        "PG-ROOT-DIFF-STRUCTURE",
+        "FQ-GAP-CONTINUUM-HILBERT-LIFT"
       ],
       "f004_refs": [
         "dag/derivations/09_finite_hilbert/sources/qm_122_finite_hilbert_boundary_from_primitive_difference.md"
@@ -8414,10 +8415,10 @@
       "local_id": "A09-001",
       "name": "FQ-GAP-CONTINUUM-HILBERT-LIFT stays unpaid; no continuum Hilbert space is admitted at the root",
       "obligation": "FQ-GAP-CONTINUUM-HILBERT-LIFT stays unpaid; no continuum Hilbert space is admitted at the root.",
-      "parent_id": null,
+      "parent_id": "TFQ-0008",
       "pfp_review_refs": [
-        "evidence/reviews/pr_374_current_scope_review.json",
-        "evidence/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        "evidence/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "evidence/reviews/pr_374_current_scope_review.json"
       ],
       "python": [
         "code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py"
@@ -8470,7 +8471,8 @@
       ],
       "existing_derivation_dag_ids": [
         "L1-WDP-WITNESS-MASS",
-        "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED"
+        "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
+        "L1-QM020-THM1-DIRECT-NORMALIZATION"
       ],
       "f004_refs": [],
       "id": "TFQ-0167",
@@ -8480,7 +8482,7 @@
       "local_id": "A06-002",
       "name": "Admit only exact nonnegative rational masses that sum to one, with no",
       "obligation": "Admit only exact nonnegative rational masses that sum to one, with no float authority.",
-      "parent_id": null,
+      "parent_id": "TFQ-0166",
       "pfp_review_refs": [
         "evidence/results/L1-QM020-THM1-DIRECT-NORMALIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json",
         "evidence/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/reviews/20261021_batch01a_audit/delivery_review_result.json",
@@ -8518,7 +8520,7 @@
       "local_id": "A06-030",
       "name": "Use finite rational homology and simplicial complexes as carriers, not as a",
       "obligation": "Use finite rational homology and simplicial complexes as carriers, not as a quantum derivation.",
-      "parent_id": null,
+      "parent_id": "TFQ-0166",
       "pfp_review_refs": [
         "evidence/results/PG-CHAIN-RETRACTION/reviews/20261021_batch01a_audit/delivery_review_result.json"
       ],
@@ -8568,7 +8570,7 @@
       "local_id": "A03-015",
       "name": "Complex field as a declared carrier",
       "obligation": "Declare any complex coefficient pack and do not read it off the report fiber.",
-      "parent_id": null,
+      "parent_id": "TFQ-0292",
       "pfp_review_refs": [
         "evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json"
       ],
@@ -8602,7 +8604,7 @@
       "local_id": "A02-015",
       "name": "Account finite demand by s_next = s - d + b only",
       "obligation": "Account finite demand by s_next = s - d + b only when the discharged subset and disjoint-birth hypotheses are supplied.",
-      "parent_id": null,
+      "parent_id": "TFQ-0332",
       "pfp_review_refs": [
         "evidence/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json"
       ],
@@ -8790,7 +8792,8 @@
       ],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PG-WDP-PROTECTED-QUESTIONS"
+        "PG-WDP-PROTECTED-QUESTIONS",
+        "PG-R-PROTECTED"
       ],
       "f004_refs": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/README.md",
@@ -8885,6 +8888,7 @@
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
         "PG-OBLIGATION-MONOID",
+        "PG-R-GAP-EVENT-OBLIGATION",
         "PG-GEN-REGIME-EVENTS",
         "PG-SN-CARRIER"
       ],
@@ -8957,6 +8961,7 @@
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
         "PG-WDP-DEGREE1-WINDOW",
+        "PG-R-GAP-GENESIS-TO-WINDOW",
         "PG-PRIMDIFF-AXIOMS"
       ],
       "f004_refs": [
@@ -8991,7 +8996,8 @@
       ],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PG-WDP-QUOTIENT-EXACT-SEQUENCE"
+        "PG-WDP-QUOTIENT-EXACT-SEQUENCE",
+        "PG-R-WINDOW-SEQUENCE"
       ],
       "f004_refs": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md"
@@ -9023,6 +9029,7 @@
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
         "PG-WDP-GROWTH-NO-REPAIR",
+        "PG-R-GROWTH",
         "PG-CHAIN-RETRACTION"
       ],
       "f004_refs": [
@@ -9058,7 +9065,8 @@
         "external:sha256:9e6382d28d7dcbdca845bec88104a21be9faa746f944a6b56d1495b03ca412ae"
       ],
       "existing_derivation_dag_ids": [
-        "PG-WDP-DIAGNOSTIC-NOT-ROUTING"
+        "PG-WDP-DIAGNOSTIC-NOT-ROUTING",
+        "PG-R-DIAG-NOT-ROUTING"
       ],
       "f004_refs": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md"
@@ -9186,7 +9194,8 @@
       ],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "L1-GS000-EDGEWISE-L1"
+        "L1-GS000-EDGEWISE-L1",
+        "L1-R-OBSERVER-TO-GS000"
       ],
       "f004_refs": [
         "atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md"
@@ -9222,6 +9231,7 @@
       ],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
+        "L1-R-RESIDUAL-TO-WEIGHTS",
         "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
         "L1-WDP-WINDOW-PHI1-GAMMA2",
         "L1-GS000-EDGEWISE-L1"
@@ -9257,7 +9267,8 @@
       ],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "L1-WDP-CH08-C01-REPLICA-L1"
+        "L1-WDP-CH08-C01-REPLICA-L1",
+        "L1-R-REPLICA-L1"
       ],
       "f004_refs": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md"
@@ -9292,7 +9303,8 @@
       ],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "L1-WDP-WITNESS-MASS"
+        "L1-WDP-WITNESS-MASS",
+        "L1-R-DECLARED-MASS-TO-WEIGHTS"
       ],
       "f004_refs": [
         "atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md"
@@ -9500,7 +9512,7 @@
       "local_id": "A01-007",
       "name": "collapsed-observation-barrier",
       "obligation": "Equal profiles yield no separating function of the collapsed quotient; separation needs data outside that quotient.",
-      "parent_id": null,
+      "parent_id": "TFQ-0364",
       "pfp_review_refs": [
         "evidence/results/PG-COLLAPSE-BARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json"
       ],
@@ -9876,7 +9888,7 @@
       "local_id": "A01-017",
       "name": "chain-retraction-old-class",
       "obligation": "A chain retraction cannot kill an old homology class; the two-point graph and the attached triangle stay the named finite instances.",
-      "parent_id": null,
+      "parent_id": "TFQ-0374",
       "pfp_review_refs": [
         "evidence/results/PG-CHAIN-RETRACTION/reviews/20261021_batch01a_audit/delivery_review_result.json"
       ],
@@ -10424,7 +10436,7 @@
       "local_id": "A01-033",
       "name": "sameness-refinement-ledgers",
       "obligation": "Keep sameness refinement invariants (22:D1..D16, 23:D1..D17, 24:D1..D17, 25:D1..D17) scoped to finite assertion multiplicities, vertex potentials, filled terms, and filled triples.",
-      "parent_id": null,
+      "parent_id": "TFQ-0390",
       "pfp_review_refs": [
         "evidence/results/PG-GEN-SAMENESS-REFINEMENTS/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json"
       ],
@@ -10451,6 +10463,7 @@
         "external:sha256:eed47042e450b5608d203687f53103f3f8f4cbc3e5056c8a3b73b9992a1811db"
       ],
       "existing_derivation_dag_ids": [
+        "PG-R-GAP-DIAMOND-TO-ROOT",
         "PG-INERT-DIAMOND",
         "PG-ROOT-DIFF-STRUCTURE"
       ],
@@ -10754,7 +10767,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-CLOSED-BASELINE-TERMINATES"
+        "PGW-CLOSED-BASELINE-TERMINATES",
+        "PGW-R-CLOSED-BASELINE-TERMINATES"
       ],
       "f004_refs": [],
       "id": "TFQ-0449",
@@ -10784,7 +10798,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-POLICY-ENDPOINT-ALL-SEPARATED"
+        "PGW-POLICY-ENDPOINT-ALL-SEPARATED",
+        "PGW-R-POLICY-ENDPOINT-ALL-SEPARATED"
       ],
       "f004_refs": [],
       "id": "TFQ-0450",
@@ -10811,7 +10826,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR"
+        "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+        "PGW-R-NO-ENDOGENOUS-DEMAND-GENERATOR"
       ],
       "f004_refs": [],
       "id": "TFQ-0451",
@@ -10842,7 +10858,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-IDENTITY-IS-INDEX-NOT-PROFILE"
+        "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
+        "PGW-R-IDENTITY-IS-INDEX-NOT-PROFILE"
       ],
       "f004_refs": [],
       "id": "TFQ-0452",
@@ -10871,7 +10888,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-MINIMAL-OR-INITIAL-REFUSED"
+        "PGW-MINIMAL-OR-INITIAL-REFUSED",
+        "PGW-R-MINIMAL-OR-INITIAL-REFUSED"
       ],
       "f004_refs": [],
       "id": "TFQ-0453",
@@ -10908,7 +10926,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SEALED-TERMINAL-STATEMENT"
+        "PGW-SEALED-TERMINAL-STATEMENT",
+        "PGW-R-SEALED-TERMINAL-STATEMENT"
       ],
       "f004_refs": [],
       "id": "TFQ-0454",
@@ -10935,7 +10954,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-D2-INITIAL-POINTED"
+        "PGW-D2-INITIAL-POINTED",
+        "PGW-R-D2-INITIAL-POINTED"
       ],
       "f004_refs": [],
       "id": "TFQ-0455",
@@ -10963,7 +10983,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-FIVE-PRESENTATION-QUESTIONS"
+        "PGW-FIVE-PRESENTATION-QUESTIONS",
+        "PGW-R-FIVE-PRESENTATION-QUESTIONS"
       ],
       "f004_refs": [],
       "id": "TFQ-0456",
@@ -10990,7 +11011,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-INCIDENCE-CONSTRUCTION-BETTI"
+        "PGW-INCIDENCE-CONSTRUCTION-BETTI",
+        "PGW-R-INCIDENCE-CONSTRUCTION-BETTI"
       ],
       "f004_refs": [],
       "id": "TFQ-0460",
@@ -11021,7 +11043,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GENESIS-THREE-AXIS-VERDICT"
+        "PGW-GENESIS-THREE-AXIS-VERDICT",
+        "PGW-R-GENESIS-THREE-AXIS-VERDICT"
       ],
       "f004_refs": [],
       "id": "TFQ-0461",
@@ -11052,7 +11075,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG0-INHERITANCE-REPLAY"
+        "PGW-RUNG0-INHERITANCE-REPLAY",
+        "PGW-R-RUNG0-INHERITANCE-REPLAY"
       ],
       "f004_refs": [],
       "id": "TFQ-0462",
@@ -11084,7 +11108,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG2A-STAKE-DECLARED-LABEL"
+        "PGW-RUNG2A-STAKE-DECLARED-LABEL",
+        "PGW-R-RUNG2A-STAKE-DECLARED-LABEL"
       ],
       "f004_refs": [],
       "id": "TFQ-0464",
@@ -11120,7 +11145,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG2B-STAKE-MENU"
+        "PGW-RUNG2B-STAKE-MENU",
+        "PGW-R-RUNG2B-STAKE-MENU"
       ],
       "f004_refs": [],
       "id": "TFQ-0465",
@@ -11151,7 +11177,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG3-FIRST-DEMAND-INDEX"
+        "PGW-RUNG3-FIRST-DEMAND-INDEX",
+        "PGW-R-RUNG3-FIRST-DEMAND-INDEX"
       ],
       "f004_refs": [],
       "id": "TFQ-0466",
@@ -11186,7 +11213,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM"
+        "PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM",
+        "PGW-R-RUNG4-INDEX-UP-TO-ISOMORPHISM"
       ],
       "f004_refs": [],
       "id": "TFQ-0467",
@@ -11219,7 +11247,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG5-SYMMETRY-ALONG-HISTORY"
+        "PGW-RUNG5-SYMMETRY-ALONG-HISTORY",
+        "PGW-R-RUNG5-SYMMETRY-ALONG-HISTORY"
       ],
       "f004_refs": [],
       "id": "TFQ-0468",
@@ -11253,11 +11282,15 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG6-SUCCESSION-ELEMENT-COUNT"
+        "PGW-RUNG6-SUCCESSION-ELEMENT-COUNT",
+        "PGW-R-RUNG6-SUCCESSION-ELEMENT-COUNT"
       ],
       "f004_refs": [],
       "id": "TFQ-0469",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung6_succession_element_count_and_countermodels",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung6_succession_element_count_and_countermodels",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.stepRung_change_eq_elems_diff",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_succession/lean/SecondSuccession/Count.lean::changes_counted",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_succession/lean/SecondSuccession/Count.lean::changes_given_base",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_succession/lean/SecondSuccession/Readings.lean::every_not_given_base",
@@ -11271,7 +11304,7 @@
       "python": [
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_succession/succession.py::counts"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11284,11 +11317,14 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG7-DURATION-UNDER-CHANGING"
+        "PGW-RUNG7-DURATION-UNDER-CHANGING",
+        "PGW-R-RUNG7-DURATION-UNDER-CHANGING"
       ],
       "f004_refs": [],
       "id": "TFQ-0470",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung7_duration_under_changing_and_gap_countermodels",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung7_duration_under_changing_and_gap_countermodels",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/lean/SecondDuration/Rounds.lean::growths_counted",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/lean/SecondDuration/Rounds.lean::rest_given_base",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/lean/SecondDuration/Gaps.lean::segment_not_given_base",
@@ -11302,7 +11338,7 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/duration.py::vector",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_duration/duration.py::envelope"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11315,11 +11351,15 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO"
+        "PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO",
+        "PGW-R-RUNG8-ELEMENT-COUNT-ACROSS-ISO"
       ],
       "f004_refs": [],
       "id": "TFQ-0471",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung8_element_count_across_iso_and_clean_stutter",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung8_element_count_across_iso_and_clean_stutter",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.no_return_class_and_recurrence_is_stutter",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/lean/SecondClass/Count.lean::size_iso",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/lean/SecondClass/Recur.lean::no_return_class",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/lean/SecondClass/Recur.lean::recurrence_is_stutter",
@@ -11332,7 +11372,7 @@
       "python": [
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_class/class_count.py::recurrences"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11345,11 +11385,15 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES"
+        "PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES",
+        "PGW-R-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES"
       ],
       "f004_refs": [],
       "id": "TFQ-0472",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung9_twoness_observational_classes_and_stage_bounds",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung9_twoness_observational_classes_and_stage_bounds",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.collapsedRung_equivalence",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/lean/SecondProfile/Classes.lean::holdsTwo_iso",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/lean/SecondProfile/Carry.lean::separable_iso",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/lean/SecondProfile/Carry.lean::collapsed_iso",
@@ -11364,7 +11408,7 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/profile_rows.py::holds_two",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_profile/profile_rows.py::class_count"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11377,11 +11421,15 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-RUNG10-RESPONDER-ADJACENCY-REACH"
+        "PGW-RUNG10-RESPONDER-ADJACENCY-REACH",
+        "PGW-R-RUNG10-RESPONDER-ADJACENCY-REACH"
       ],
       "f004_refs": [],
       "id": "TFQ-0473",
       "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11Rep.lean::WitnessedDifference.WdpBatch11Rep.rung10_exhaustion_and_responder_move_witness",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.rung10_exhaustion_and_responder_move_witness",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch11.lean::WitnessedDifference.WdpBatch11.uniform_rule_exhausts_form",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/lean/SecondResponse/Exhaust.lean::exhausted_iff_not_distinguishes",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/lean/SecondResponse/Move.lean::moved_pairs_meet_mentions",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/lean/SecondResponse/Move.lean::response_collapses_a_pair"
@@ -11394,7 +11442,7 @@
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/response_rows.py::adjacency",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_response/response_rows.py::moved_pairs"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: the second-derivation rung trees hold no Rust"
       ],
@@ -11445,7 +11493,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-C2-RUN-FORWARD-EVERY-HISTORY"
+        "PGW-C2-RUN-FORWARD-EVERY-HISTORY",
+        "PGW-R-C2-RUN-FORWARD-EVERY-HISTORY"
       ],
       "f004_refs": [],
       "id": "TFQ-0475",
@@ -11476,7 +11525,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-FORCED-CENSUS-COLUMN"
+        "PGW-FORCED-CENSUS-COLUMN",
+        "PGW-R-FORCED-CENSUS-COLUMN"
       ],
       "f004_refs": [],
       "id": "TFQ-0476",
@@ -11507,7 +11557,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GO-REACH-CEILING"
+        "PGW-GO-REACH-CEILING",
+        "PGW-R-GO-REACH-CEILING"
       ],
       "f004_refs": [],
       "id": "TFQ-0477",
@@ -11536,7 +11587,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GO-CONTRACTION-STEP2-STEP3"
+        "PGW-GO-CONTRACTION-STEP2-STEP3",
+        "PGW-R-GO-CONTRACTION-STEP2-STEP3"
       ],
       "f004_refs": [],
       "id": "TFQ-0478",
@@ -11567,7 +11619,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GO-MULTIPLICITY-MONOTONE"
+        "PGW-GO-MULTIPLICITY-MONOTONE",
+        "PGW-R-GO-MULTIPLICITY-MONOTONE"
       ],
       "f004_refs": [],
       "id": "TFQ-0479",
@@ -11596,7 +11649,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GO-TWO-RELATIONS-SWAP"
+        "PGW-GO-TWO-RELATIONS-SWAP",
+        "PGW-R-GO-TWO-RELATIONS-SWAP"
       ],
       "f004_refs": [],
       "id": "TFQ-0480",
@@ -11627,7 +11681,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GO-ADMISSION-GATE"
+        "PGW-GO-ADMISSION-GATE",
+        "PGW-R-GO-ADMISSION-GATE"
       ],
       "f004_refs": [],
       "id": "TFQ-0481",
@@ -11655,7 +11710,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GO-LEFTOVER-UNBOUNDEDNESS"
+        "PGW-GO-LEFTOVER-UNBOUNDEDNESS",
+        "PGW-R-GO-LEFTOVER-UNBOUNDEDNESS"
       ],
       "f004_refs": [],
       "id": "TFQ-0482",
@@ -11683,7 +11739,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GO-H1-CANCELLATION-EXCESS"
+        "PGW-GO-H1-CANCELLATION-EXCESS",
+        "PGW-R-GO-H1-CANCELLATION-EXCESS"
       ],
       "f004_refs": [],
       "id": "TFQ-0483",
@@ -11715,7 +11772,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GO-H2-STATE-RAISING-GAUGE"
+        "PGW-GO-H2-STATE-RAISING-GAUGE",
+        "PGW-R-GO-H2-STATE-RAISING-GAUGE"
       ],
       "f004_refs": [],
       "id": "TFQ-0484",
@@ -11747,7 +11805,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GO-H3-TWIN-FILLS-HOLONOMY"
+        "PGW-GO-H3-TWIN-FILLS-HOLONOMY",
+        "PGW-R-GO-H3-TWIN-FILLS-HOLONOMY"
       ],
       "f004_refs": [],
       "id": "TFQ-0485",
@@ -11781,7 +11840,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+        "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER",
+        "PGW-R-GENESIS-FREEZE-ENDPOINT-LEDGER"
       ],
       "f004_refs": [],
       "id": "TFQ-0486",
@@ -11808,7 +11868,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS"
+        "PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS",
+        "PGW-R-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS"
       ],
       "f004_refs": [],
       "id": "TFQ-0487",
@@ -11839,7 +11900,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-DECLARED-CHALLENGE-IMPORT-PER-LEVEL"
+        "PGW-DECLARED-CHALLENGE-IMPORT-PER-LEVEL",
+        "PGW-R-DECLARED-CHALLENGE-IMPORT-PER-LEVEL"
       ],
       "f004_refs": [],
       "id": "TFQ-0488",
@@ -11866,7 +11928,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-TYPED-REQUIREMENT-KINDS"
+        "PGW-TYPED-REQUIREMENT-KINDS",
+        "PGW-R-TYPED-REQUIREMENT-KINDS"
       ],
       "f004_refs": [],
       "id": "TFQ-0489",
@@ -11896,7 +11959,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-CAPABILITY-STAGE-COUNTER"
+        "PGW-CAPABILITY-STAGE-COUNTER",
+        "PGW-R-CAPABILITY-STAGE-COUNTER"
       ],
       "f004_refs": [],
       "id": "TFQ-0491",
@@ -11924,7 +11988,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-CANDIDATE-EXTENSION-GENERATOR"
+        "PGW-CANDIDATE-EXTENSION-GENERATOR",
+        "PGW-R-CANDIDATE-EXTENSION-GENERATOR"
       ],
       "f004_refs": [],
       "id": "TFQ-0492",
@@ -11952,7 +12017,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-FOUR-GATE-ACTIVE-OBSTRUCTION"
+        "PGW-FOUR-GATE-ACTIVE-OBSTRUCTION",
+        "PGW-R-FOUR-GATE-ACTIVE-OBSTRUCTION"
       ],
       "f004_refs": [],
       "id": "TFQ-0493",
@@ -11982,7 +12048,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD"
+        "PGW-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD",
+        "PGW-R-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD"
       ],
       "f004_refs": [],
       "id": "TFQ-0494",
@@ -12012,7 +12079,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-GENESIS-TO-SN-CROSSWALK"
+        "PGW-GENESIS-TO-SN-CROSSWALK",
+        "PGW-R-GENESIS-TO-SN-CROSSWALK"
       ],
       "f004_refs": [],
       "id": "TFQ-0495",
@@ -12039,7 +12107,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN-TWO-BOXED-LAWS"
+        "PGW-SN-TWO-BOXED-LAWS",
+        "PGW-R-SN-TWO-BOXED-LAWS"
       ],
       "f004_refs": [],
       "id": "TFQ-0510",
@@ -12066,7 +12135,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN0-GROUND-INERTIA"
+        "PGW-SN0-GROUND-INERTIA",
+        "PGW-R-SN0-GROUND-INERTIA"
       ],
       "f004_refs": [],
       "id": "TFQ-0511",
@@ -12096,7 +12166,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN1-SUPPLY-NOT-ADMISSION"
+        "PGW-SN1-SUPPLY-NOT-ADMISSION",
+        "PGW-R-SN1-SUPPLY-NOT-ADMISSION"
       ],
       "f004_refs": [],
       "id": "TFQ-0512",
@@ -12124,7 +12195,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN2-OPAQUE-COLLAPSE"
+        "PGW-SN2-OPAQUE-COLLAPSE",
+        "PGW-R-SN2-OPAQUE-COLLAPSE"
       ],
       "f004_refs": [],
       "id": "TFQ-0513",
@@ -12152,7 +12224,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN3-COST-TWO-UNARY-MARK"
+        "PGW-SN3-COST-TWO-UNARY-MARK",
+        "PGW-R-SN3-COST-TWO-UNARY-MARK"
       ],
       "f004_refs": [],
       "id": "TFQ-0514",
@@ -12182,7 +12255,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN-ENDPOINT-LEMMA"
+        "PGW-SN-ENDPOINT-LEMMA",
+        "PGW-R-SN-ENDPOINT-LEMMA"
       ],
       "f004_refs": [],
       "id": "TFQ-0515",
@@ -12212,7 +12286,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE"
+        "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE",
+        "PGW-R-SN4-POLICY-CLOSURE-CYCLE-SPACE"
       ],
       "f004_refs": [],
       "id": "TFQ-0516",
@@ -12242,7 +12317,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN5-CONTINUATION-RECORDED-REQUEST"
+        "PGW-SN5-CONTINUATION-RECORDED-REQUEST",
+        "PGW-R-SN5-CONTINUATION-RECORDED-REQUEST"
       ],
       "f004_refs": [],
       "id": "TFQ-0517",
@@ -12269,7 +12345,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL"
+        "PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL",
+        "PGW-R-SN-OFF-IMAGE-REFUSAL-PROPOSAL"
       ],
       "f004_refs": [],
       "id": "TFQ-0518",
@@ -12300,7 +12377,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN-POSTNIKOV-REFUSAL"
+        "PGW-SN-POSTNIKOV-REFUSAL",
+        "PGW-R-SN-POSTNIKOV-REFUSAL"
       ],
       "f004_refs": [],
       "id": "TFQ-0520",
@@ -12328,7 +12406,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN-REPRESENTATION-QUOTIENT"
+        "PGW-SN-REPRESENTATION-QUOTIENT",
+        "PGW-R-SN-REPRESENTATION-QUOTIENT"
       ],
       "f004_refs": [],
       "id": "TFQ-0521",
@@ -12358,7 +12437,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-SN-E08-WEIGHTED-L1-DUALITY"
+        "PGW-SN-E08-WEIGHTED-L1-DUALITY",
+        "PGW-R-SN-E08-WEIGHTED-L1-DUALITY"
       ],
       "f004_refs": [],
       "id": "TFQ-0522",
@@ -12394,7 +12474,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-FAILED-SAMENESS"
+        "PGW-WDP-FAILED-SAMENESS",
+        "PGW-R-WDP-FAILED-SAMENESS"
       ],
       "f004_refs": [],
       "id": "TFQ-0536",
@@ -12425,7 +12506,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-POINTED-APARTNESS"
+        "PGW-WDP-POINTED-APARTNESS",
+        "PGW-R-WDP-POINTED-APARTNESS"
       ],
       "f004_refs": [],
       "id": "TFQ-0537",
@@ -12453,7 +12535,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-QUOTIENT-DEFECT-ROOT-P"
+        "PGW-WDP-QUOTIENT-DEFECT-ROOT-P",
+        "PGW-R-WDP-QUOTIENT-DEFECT-ROOT-P"
       ],
       "f004_refs": [],
       "id": "TFQ-0538",
@@ -12481,7 +12564,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-SEVEN-WITNESS-ROLES"
+        "PGW-WDP-SEVEN-WITNESS-ROLES",
+        "PGW-R-WDP-SEVEN-WITNESS-ROLES"
       ],
       "f004_refs": [],
       "id": "TFQ-0539",
@@ -12508,7 +12592,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-ASYMMETRY-INJECTION-LEDGER"
+        "PGW-WDP-ASYMMETRY-INJECTION-LEDGER",
+        "PGW-R-WDP-ASYMMETRY-INJECTION-LEDGER"
       ],
       "f004_refs": [],
       "id": "TFQ-0540",
@@ -12535,7 +12620,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-RETENTION-PACKET"
+        "PGW-WDP-RETENTION-PACKET",
+        "PGW-R-WDP-RETENTION-PACKET"
       ],
       "f004_refs": [],
       "id": "TFQ-0541",
@@ -12563,7 +12649,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-GRAPH-COCHAIN-HOST"
+        "PGW-WDP-GRAPH-COCHAIN-HOST",
+        "PGW-R-WDP-GRAPH-COCHAIN-HOST"
       ],
       "f004_refs": [],
       "id": "TFQ-0542",
@@ -12591,7 +12678,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT"
+        "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT",
+        "PGW-R-WDP-INCIDENCE-ORIENTATION-TRANSPORT"
       ],
       "f004_refs": [],
       "id": "TFQ-0543",
@@ -12632,7 +12720,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY"
+        "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
+        "PGW-R-WDP-PHI-WELL-DEFINED-L1-DUALITY"
       ],
       "f004_refs": [],
       "id": "TFQ-0544",
@@ -12670,7 +12759,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-CLOSURE-NEEDS-DEGREE"
+        "PGW-WDP-CLOSURE-NEEDS-DEGREE",
+        "PGW-R-WDP-CLOSURE-NEEDS-DEGREE"
       ],
       "f004_refs": [],
       "id": "TFQ-0545",
@@ -12697,7 +12787,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-EXACT-SEQUENCE-H1-Q1"
+        "PGW-WDP-EXACT-SEQUENCE-H1-Q1",
+        "PGW-R-WDP-EXACT-SEQUENCE-H1-Q1"
       ],
       "f004_refs": [],
       "id": "TFQ-0546",
@@ -12726,7 +12817,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-TRICHOTOMY-BOUNDS"
+        "PGW-WDP-TRICHOTOMY-BOUNDS",
+        "PGW-R-WDP-TRICHOTOMY-BOUNDS"
       ],
       "f004_refs": [],
       "id": "TFQ-0547",
@@ -12758,7 +12850,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-FILLED-TRIANGLE"
+        "PGW-WDP-FILLED-TRIANGLE",
+        "PGW-R-WDP-FILLED-TRIANGLE"
       ],
       "f004_refs": [],
       "id": "TFQ-0548",
@@ -12785,7 +12878,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-DEGREE-K-TORSION-BALANCE"
+        "PGW-WDP-DEGREE-K-TORSION-BALANCE",
+        "PGW-R-WDP-DEGREE-K-TORSION-BALANCE"
       ],
       "f004_refs": [],
       "id": "TFQ-0549",
@@ -12817,7 +12911,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-SUCCESSION-STRICT-ORDER"
+        "PGW-WDP-SUCCESSION-STRICT-ORDER",
+        "PGW-R-WDP-SUCCESSION-STRICT-ORDER"
       ],
       "f004_refs": [],
       "id": "TFQ-0550",
@@ -12845,7 +12940,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-DURATION-EXACTNESS-PERIOD-WITNESS"
+        "PGW-WDP-DURATION-EXACTNESS-PERIOD-WITNESS",
+        "PGW-R-WDP-DURATION-EXACTNESS-PERIOD-WITNESS"
       ],
       "f004_refs": [],
       "id": "TFQ-0551",
@@ -12874,7 +12970,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-FINITE-VALUATIONS"
+        "PGW-WDP-FINITE-VALUATIONS",
+        "PGW-R-WDP-FINITE-VALUATIONS"
       ],
       "f004_refs": [],
       "id": "TFQ-0552",
@@ -12902,7 +12999,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY"
+        "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY",
+        "PGW-R-WDP-OBSERVER-QUOTIENT-PASSIVITY"
       ],
       "f004_refs": [],
       "id": "TFQ-0553",
@@ -12933,7 +13031,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-GENESIS-BRIDGES-LEDGER"
+        "PGW-WDP-GENESIS-BRIDGES-LEDGER",
+        "PGW-R-WDP-GENESIS-BRIDGES-LEDGER"
       ],
       "f004_refs": [],
       "id": "TFQ-0554",
@@ -12960,7 +13059,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-BRIDGE-ONGOING-TO-WINDOW"
+        "PGW-WDP-BRIDGE-ONGOING-TO-WINDOW",
+        "PGW-R-WDP-BRIDGE-ONGOING-TO-WINDOW"
       ],
       "f004_refs": [],
       "id": "TFQ-0555",
@@ -13002,7 +13102,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER"
+        "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER",
+        "PGW-R-WDP-BRIDGE-REPORT-FIBER-OBSERVER"
       ],
       "f004_refs": [],
       "id": "TFQ-0556",
@@ -13037,7 +13138,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-SYNTHESIS-TRUNK-TIERS"
+        "PGW-WDP-SYNTHESIS-TRUNK-TIERS",
+        "PGW-R-WDP-SYNTHESIS-TRUNK-TIERS"
       ],
       "f004_refs": [],
       "id": "TFQ-0557",
@@ -13064,7 +13166,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-HANDOFF-TO-L1"
+        "PGW-WDP-HANDOFF-TO-L1",
+        "PGW-R-WDP-HANDOFF-TO-L1"
       ],
       "f004_refs": [],
       "id": "TFQ-0558",
@@ -13105,7 +13208,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WD2-WORD-KERNEL-AGREEMENT"
+        "PGW-WD2-WORD-KERNEL-AGREEMENT",
+        "PGW-R-WD2-WORD-KERNEL-AGREEMENT"
       ],
       "f004_refs": [],
       "id": "TFQ-0559",
@@ -13133,7 +13237,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WD2-REFINEMENT-STABILIZATION"
+        "PGW-WD2-REFINEMENT-STABILIZATION",
+        "PGW-R-WD2-REFINEMENT-STABILIZATION"
       ],
       "f004_refs": [],
       "id": "TFQ-0560",
@@ -13165,7 +13270,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WD2-SHARP-STABILIZATION-BOUND"
+        "PGW-WD2-SHARP-STABILIZATION-BOUND",
+        "PGW-R-WD2-SHARP-STABILIZATION-BOUND"
       ],
       "f004_refs": [],
       "id": "TFQ-0561",
@@ -13194,7 +13300,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WD2-NO-ESCAPE-UPDATE-CONGRUENCE"
+        "PGW-WD2-NO-ESCAPE-UPDATE-CONGRUENCE",
+        "PGW-R-WD2-NO-ESCAPE-UPDATE-CONGRUENCE"
       ],
       "f004_refs": [],
       "id": "TFQ-0562",
@@ -13222,7 +13329,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WD2-SHORTEST-SEPARATING-WORD"
+        "PGW-WD2-SHORTEST-SEPARATING-WORD",
+        "PGW-R-WD2-SHORTEST-SEPARATING-WORD"
       ],
       "f004_refs": [],
       "id": "TFQ-0563",
@@ -13249,7 +13357,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WD2-FACTORED-REPORT-PRESERVATION"
+        "PGW-WD2-FACTORED-REPORT-PRESERVATION",
+        "PGW-R-WD2-FACTORED-REPORT-PRESERVATION"
       ],
       "f004_refs": [],
       "id": "TFQ-0564",
@@ -13278,7 +13387,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT"
+        "PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT",
+        "PGW-R-WD2-MINIMAL-DETERMINISTIC-QUOTIENT"
       ],
       "f004_refs": [],
       "id": "TFQ-0565",
@@ -13307,7 +13417,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS"
+        "PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS",
+        "PGW-R-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS"
       ],
       "f004_refs": [],
       "id": "TFQ-0566",
@@ -13370,7 +13481,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE"
+        "PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE",
+        "PGW-R-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE"
       ],
       "f004_refs": [],
       "id": "TFQ-0568",
@@ -13463,7 +13575,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION"
+        "PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION",
+        "PGW-R-WDP-OUT-1-SHARP-OBSERVER-COMPLETION"
       ],
       "f004_refs": [],
       "id": "TFQ-0571",
@@ -13492,7 +13605,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE"
+        "PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE",
+        "PGW-R-WDP-OUT-2-GUARDED-SWAP-COHERENCE"
       ],
       "f004_refs": [],
       "id": "TFQ-0572",
@@ -13523,7 +13637,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION"
+        "PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION",
+        "PGW-R-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION"
       ],
       "f004_refs": [],
       "id": "TFQ-0573",
@@ -13551,7 +13666,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-OUT-4-REJECTION-RULE-REUSE"
+        "PGW-WDP-OUT-4-REJECTION-RULE-REUSE",
+        "PGW-R-WDP-OUT-4-REJECTION-RULE-REUSE"
       ],
       "f004_refs": [],
       "id": "TFQ-0574",
@@ -13582,7 +13698,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION"
+        "PGW-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION",
+        "PGW-R-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION"
       ],
       "f004_refs": [],
       "id": "TFQ-0575",
@@ -13613,7 +13730,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-ADDITIVE-TENSOR-COMPLETION"
+        "PGW-WDP-ADDITIVE-TENSOR-COMPLETION",
+        "PGW-R-WDP-ADDITIVE-TENSOR-COMPLETION"
       ],
       "f004_refs": [],
       "id": "TFQ-0576",
@@ -13641,7 +13759,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-DAGGER-OBSERVER-GRAM-RADICAL"
+        "PGW-WDP-DAGGER-OBSERVER-GRAM-RADICAL",
+        "PGW-R-WDP-DAGGER-OBSERVER-GRAM-RADICAL"
       ],
       "f004_refs": [],
       "id": "TFQ-0577",
@@ -13669,7 +13788,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-FINITE-HERMITIANIZATION"
+        "PGW-WDP-FINITE-HERMITIANIZATION",
+        "PGW-R-WDP-FINITE-HERMITIANIZATION"
       ],
       "f004_refs": [],
       "id": "TFQ-0578",
@@ -13697,7 +13817,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-BORN-RULE-NONSELECTION"
+        "PGW-WDP-BORN-RULE-NONSELECTION",
+        "PGW-R-WDP-BORN-RULE-NONSELECTION"
       ],
       "f004_refs": [],
       "id": "TFQ-0579",
@@ -13728,7 +13849,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION"
+        "PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION",
+        "PGW-R-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION"
       ],
       "f004_refs": [],
       "id": "TFQ-0580",
@@ -13759,7 +13881,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-AFFINE-THICKENING-CONJECTURE"
+        "PGW-WDP-AFFINE-THICKENING-CONJECTURE",
+        "PGW-R-WDP-AFFINE-THICKENING-CONJECTURE"
       ],
       "f004_refs": [],
       "id": "TFQ-0581",
@@ -13883,7 +14006,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-MERON-M4-NATIVE-ADAPTERS"
+        "PGW-WDP-MERON-M4-NATIVE-ADAPTERS",
+        "PGW-R-WDP-MERON-M4-NATIVE-ADAPTERS"
       ],
       "f004_refs": [],
       "id": "TFQ-0585",
@@ -13913,7 +14037,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
-        "PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR"
+        "PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR",
+        "PGW-R-WDP-MERON-M5-TORIC-NOISE-REPAIR"
       ],
       "f004_refs": [],
       "id": "TFQ-0586",

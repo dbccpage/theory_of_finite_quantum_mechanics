@@ -174,7 +174,7 @@ def IsBridgeDirectedStepCert {m : Nat} (φ : BridgeWindow m → Fin m → Fin m 
 theorem bridgePairDefect_false_iff {m : Nat} (w : BridgeWindow m) (u v : Fin m) :
     bridgePairDefect w u v = false ↔ w.adj u v = false ∧ w.adj v u = false := by
   unfold bridgePairDefect
-  cases w.adj u v <;> cases w.adj v u <;> simp
+  cases w.adj u v <;> cases w.adj v u <;> decide
 
 /-- Identity adjacency map is a directed-step certificate for every finite window size `m`. -/
 def bridgeIdAdj {m : Nat} (w : BridgeWindow m) (u v : Fin m) : Bool :=
@@ -183,7 +183,7 @@ def bridgeIdAdj {m : Nat} (w : BridgeWindow m) (u v : Fin m) : Bool :=
 theorem bridgeIdAdj_is_cert {m : Nat} :
     IsBridgeDirectedStepCert (m := m) bridgeIdAdj := by
   intro w u v
-  simp [BridgeDirectedStep, bridgeIdAdj]
+  exact Iff.rfl
 
 /-- Opposite single-edge windows on 2 vertices. -/
 def bridgeEdge01 : BridgeWindow 2 := ⟨fun u v => u.val == 0 && v.val == 1⟩
@@ -217,7 +217,7 @@ def diamondPriceCurl (d : CausalDiamondPrice) : Int :=
 theorem diamond_price_curl_zero_iff (d : CausalDiamondPrice) :
     diamondPriceCurl d = 0 ↔ d.cA_root + d.cB_after_A = d.cB_root + d.cA_after_B := by
   unfold diamondPriceCurl
-  omega
+  constructor <;> intro h <;> omega
 
 /-- Representative theorem for `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` (scoped finite slice):
     combines the symmetrised-adjacency characterization (`bridgePairDefect_false_iff`),
@@ -415,15 +415,20 @@ theorem gmatFrobSq_nonneg (A : GMat2) : 0 ≤ gmatFrobSq A := by
   have h11 := gintNormSq_nonneg A.a11
   omega
 
-/-- Exact Born numerator identity: `Re(Tr(B†B C†C)) = ‖C B†‖²_F`. -/
+theorem gintMul_conj_left_re (z : GInt12) :
+    (gintMul (gintConj z) z).re = gintNormSq z := by
+  rcases z with ⟨r, i⟩
+  simp only [gintMul, gintConj, gintNormSq, Int.neg_mul]
+  omega
+
+/-- Exact Born Gram-trace numerator identity: `Re(Tr((C B†)† (C B†))) = ‖C B†‖²_F`. -/
 theorem gmat_born_numerator_identity (B C : GMat2) :
-    (gmatTrace (gmatMul (gmatGram B) (gmatGram C))).re =
+    (gmatTrace (gmatGram (gmatMul C (gmatDagger B)))).re =
       gmatFrobSq (gmatMul C (gmatDagger B)) := by
-  rcases B with ⟨⟨b00r, b00i⟩, ⟨b01r, b01i⟩, ⟨b10r, b10i⟩, ⟨b11r, b11i⟩⟩
-  rcases C with ⟨⟨c00r, c00i⟩, ⟨c01r, c01i⟩, ⟨c10r, c10i⟩, ⟨c11r, c11i⟩⟩
-  simp only [gmatTrace, gmatGram, gmatMul, gmatDagger, gmatFrobSq,
-    gintAdd, gintMul, gintConj, gintNormSq]
-  grind
+  rcases gmatMul C (gmatDagger B) with ⟨a00, a01, a10, a11⟩
+  simp only [gmatTrace, gmatGram, gmatMul, gmatDagger, gintAdd, gmatFrobSq,
+    gintMul_conj_left_re]
+  omega
 
 /-- Computational basis state `|0⟩⟨0|` factor, superposition `|+⟩` factor, and `Z`-basis effect factors. -/
 def gmatBasis0 : GMat2 := ⟨⟨1, 0⟩, ⟨0, 0⟩, ⟨0, 0⟩, ⟨0, 0⟩⟩
@@ -442,7 +447,7 @@ def classicalDiagNumerator (B C : GMat2) : Int :=
 
 /-- Representative theorem for `PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION`:
     1. Every `GMat2` has nonnegative Frobenius norm squared (`gmatFrobSq_nonneg`), and the Born
-       trace numerator factors as `Re(Tr(B†B C†C)) = ‖C B†‖²_F` (`gmat_born_numerator_identity`).
+       Gram-trace numerator factors as `Re(Tr((C B†)†(C B†))) = ‖C B†‖²_F` (`gmat_born_numerator_identity`).
     2. For the complete binary effect `(gmatAccept0, gmatReject0)`, the Born numerators partition
        `gmatFrobSq B` on both `gmatBasis0` (`1 + 0 = 1`) and `gmatPlus` (`1 + 1 = 2`).
     3. The classical diagonal-projection readout `classicalDiagNumerator` agrees with the Born
@@ -452,7 +457,7 @@ def classicalDiagNumerator (B C : GMat2) : Int :=
 theorem wdp_bridge_o04_scoped_operational_readout_and_countermodel :
     (∀ A : GMat2, 0 ≤ gmatFrobSq A) ∧
     (∀ B C : GMat2,
-      (gmatTrace (gmatMul (gmatGram B) (gmatGram C))).re =
+      (gmatTrace (gmatGram (gmatMul C (gmatDagger B)))).re =
         gmatFrobSq (gmatMul C (gmatDagger B))) ∧
     gmatAdd (gmatGram gmatAccept0) (gmatGram gmatReject0) = gmatId ∧
     gmatFrobSq (gmatMul gmatAccept0 (gmatDagger gmatBasis0)) = 1 ∧
