@@ -10,11 +10,11 @@ The original import copied seven paper folders from a private research repositor
 - `finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems`
 - `finite_obstruction_calculus/witnessed_difference_programme`
 - `finite_obstruction_calculus/genesis_ongoing`
-- `finite_obstruction_calculus/local_green_global_red`
+- `finite_obstruction_calculus/local_green_global_red` (removed 2026-11-06; the series now lives in [local_green_global_red_lggr](https://github.com/dbccpage/local_green_global_red_lggr))
 - `finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems`
 - `projection_obstruction`
 
-Each folder holds a paper (Markdown, TeX, PDF), its Lean 4 sources, and the Python, Rust, JSON and CSV files the paper cites.
+Each remaining folder holds a paper (Markdown, TeX, PDF), its Lean 4 sources, and the Python, Rust, JSON and CSV files the paper cites.
 
 ## QM and computation consolidation, 2026-11-05
 
