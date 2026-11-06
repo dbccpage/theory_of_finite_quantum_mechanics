@@ -42,6 +42,7 @@ Additional checks passed:
   their `--check` modes after regeneration.
 - `scripts/verify_qm_atlas_loc.py`: all 65 questions pass, with 403 links,
   197 in-window symbols and Rust/Python parity.
+- The relocated bicategory test passes 10 focused cases in normal and optimized Python. A new source-bound L4C reassessment retains prior history and cites `dag/research/bicategory_relocation_recheck_20261105.json`; this is scoped to the changed origin path.
 - The consolidated complexity checker passes all six finite check groups.
 - The core manuscript cites 187 distinct DAG-style identifiers; all resolve.
 - The prose citation scanner finds valid linked sections for 211 of the 220
