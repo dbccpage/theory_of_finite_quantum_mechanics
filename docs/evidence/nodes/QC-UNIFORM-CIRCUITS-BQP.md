@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md`
 
 - file: [atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md](../../../atlas/computation_complexity_pvnp/from_first_mark_to_quantum_computing.md)
-- sha256 (`lf-normalised`): `b6f7b89589ac601c37dda7e659a4b484f37b68b57d1c1227ed3581ebff25137b`
+- sha256 (`lf-normalised`): `b3aff2eb94aa10a76984e739451717a682e120ab83741ab0f902ca75069cae47`
 - cited in: node.source
 - counts toward the grade: yes
 

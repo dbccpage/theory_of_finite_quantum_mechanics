@@ -159,14 +159,14 @@ def test_r4_sha_and_axioms(tmp_path):
     sha = hashlib.sha256(GOOD_LEAN.encode()).hexdigest()
     root = make_repo(tmp_path, [node("N", "PROVED_LEAN", lean=["lean4/A.lean::good"])], {
         "lean4/A.lean": GOOD_LEAN,
-        "dag/research/ok_lean_replay.json": receipt("lean4/A.lean", sha),
-        "dag/research/badsha_lean_replay.json": receipt("lean4/A.lean", "0" * 64),
-        "dag/research/badax_lean_replay.json": receipt("lean4/A.lean", sha, {"A.good": ["propext", "Lean.ofReduceBool"]}),
-        "dag/research/missing_lean_replay.json": receipt("lean4/Gone.lean", sha),
+        "evidence/lean_receipts/ok_lean_replay.json": receipt("lean4/A.lean", sha),
+        "evidence/lean_receipts/badsha_lean_replay.json": receipt("lean4/A.lean", "0" * 64),
+        "evidence/lean_receipts/badax_lean_replay.json": receipt("lean4/A.lean", sha, {"A.good": ["propext", "Lean.ofReduceBool"]}),
+        "evidence/lean_receipts/missing_lean_replay.json": receipt("lean4/Gone.lean", sha),
     })
     found = rules(oc.scan(root), "R4")
     assert {f.subject for f in found} == {
-        "dag/research/badsha_lean_replay.json", "dag/research/badax_lean_replay.json", "dag/research/missing_lean_replay.json"}
+        "evidence/lean_receipts/badsha_lean_replay.json", "evidence/lean_receipts/badax_lean_replay.json", "evidence/lean_receipts/missing_lean_replay.json"}
     assert any("Lean.ofReduceBool" in f.evidence for f in found)
     assert all(f.severity == "HIGH" for f in found)
 
@@ -174,7 +174,7 @@ def test_r4_sha_and_axioms(tmp_path):
 def test_r4_accepts_crlf_checkout_hash(tmp_path):
     crlf = GOOD_LEAN.replace("\n", "\r\n").encode()
     sha_lf = hashlib.sha256(GOOD_LEAN.encode()).hexdigest()
-    root = make_repo(tmp_path, [node("N", "PROVED_LEAN", lean=["lean4/A.lean::good"])], {"dag/research/x_lean_replay.json": receipt("lean4/A.lean", sha_lf)})
+    root = make_repo(tmp_path, [node("N", "PROVED_LEAN", lean=["lean4/A.lean::good"])], {"evidence/lean_receipts/x_lean_replay.json": receipt("lean4/A.lean", sha_lf)})
     (root / "lean4").mkdir()
     (root / "lean4" / "A.lean").write_bytes(crlf)
     assert rules(oc.scan(root), "R4") == []
@@ -252,10 +252,10 @@ def test_r6_prose_calls_open_node_proved(tmp_path):
         ),
         "docs/note.md": (
             "Lean establishes N-OPEN.\n"
-            "Derived part (dag/results/N-OPEN/runs/2026): the sector form is diagonal. See ../nodes/N-OPEN.md for the node.\n"
+            "Derived part (evidence/results/N-OPEN/runs/2026): the sector form is diagonal. See ../nodes/N-OPEN.md for the node.\n"
             "N-IMP is imported; it is re-expressed rather than derived.\n"
         ),
-        "dag/research/not_scanned.md": "N-OPEN is proved.\n",
+        "evidence/lean_receipts/not_scanned.md": "N-OPEN is proved.\n",
     })
     found = rules(oc.scan(root), "R6")
     assert sorted((f.subject, f.line) for f in found) == [("README.md", 1), ("README.md", 5), ("docs/note.md", 1)]
@@ -331,8 +331,8 @@ def test_r9_status_rise_needs_lean_ref_and_receipt(tmp_path):
     ]
     make_repo(root, new_nodes)
     entry = {"module": "A", "dag_node": "N-FULL", "source": "lean4/A.lean", "sha256": sha, "axioms": {}}
-    (root / "dag" / "research").mkdir(parents=True)
-    (root / "dag" / "research" / "campaign_n-full_lean_replay.json").write_text(json.dumps({"lean_replay": {"results": [entry]}}), encoding="utf-8")
+    (root / "evidence" / "lean_receipts").mkdir(parents=True)
+    (root / "evidence" / "lean_receipts" / "campaign_n-full_lean_replay.json").write_text(json.dumps({"lean_replay": {"results": [entry]}}), encoding="utf-8")
     diff = oc.load_diff(root, "main")
     found = rules(oc.scan(root, diff), "R9")
     assert {f.subject for f in found} == {"N-NONE", "N-LEANONLY", "N-BRAND-NEW"}
@@ -345,7 +345,7 @@ def test_r9_touching_an_old_receipt_is_not_a_new_receipt(tmp_path):
     """Status rise + one new Lean ref + a whitespace-only edit to an old receipt must still be HIGH."""
     sha_a = hashlib.sha256(GOOD_LEAN.encode()).hexdigest()
     old_entry = {"module": "A", "dag_node": "N-OLD", "source": "lean4/A.lean", "sha256": sha_a, "axioms": {}}
-    receipt_path = Path("dag") / "research" / "old_lean_replay.json"
+    receipt_path = Path("evidence") / "lean_receipts" / "old_lean_replay.json"
     files = {"lean4/A.lean": GOOD_LEAN, "lean4/B.lean": GOOD_LEAN, receipt_path.as_posix(): json.dumps({"lean_replay": {"results": [old_entry]}})}
     root = make_repo(tmp_path, [node("N-OLD", "PROVED_LEAN", lean=["lean4/A.lean::good"]), node("N-RISE")], files)
     run_git(root, "init", "-q", "-b", "main")
@@ -371,7 +371,7 @@ def test_r9_touching_an_old_receipt_is_not_a_new_receipt(tmp_path):
 def test_r9_a_row_already_in_the_base_is_not_new(tmp_path):
     sha_b = hashlib.sha256(GOOD_LEAN.encode()).hexdigest()
     row = {"module": "B", "dag_node": "N-RISE", "source": "lean4/B.lean", "sha256": sha_b, "axioms": {}}
-    receipt_path = Path("dag") / "research" / "early_lean_replay.json"
+    receipt_path = Path("evidence") / "lean_receipts" / "early_lean_replay.json"
     files = {"lean4/B.lean": GOOD_LEAN, receipt_path.as_posix(): json.dumps({"lean_replay": {"results": [row]}})}
     root = make_repo(tmp_path, [node("N-RISE")], files)
     run_git(root, "init", "-q", "-b", "main")

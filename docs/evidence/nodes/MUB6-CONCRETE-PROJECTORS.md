@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f592f57d1ca98cd39a4450be121b582e62f38f2dec9cb1782d67776a60ec6601`
 - cited in: node.lean, record TFQ-1276
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `ConcreteMubProjectors`): recorded sha256 `f592f57d1ca98cd39a4450be121b582e62f38f2dec9cb1782d67776a60ec6601` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `ConcreteMubProjectors`): recorded sha256 `f592f57d1ca98cd39a4450be121b582e62f38f2dec9cb1782d67776a60ec6601` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ConcreteMubProjectors`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

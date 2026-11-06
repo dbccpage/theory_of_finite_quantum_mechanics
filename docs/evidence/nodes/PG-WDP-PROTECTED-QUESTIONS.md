@@ -36,7 +36,7 @@ WDP-CH03-P01 FINITE_PROVED; WDP-CH03-D01 definition; WDP-CH03-N01 nonclaim
 
 ## Review
 
-- PFP review: [dag/results/PG-WDP-PROTECTED-QUESTIONS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-WDP-PROTECTED-QUESTIONS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-WDP-PROTECTED-QUESTIONS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../evidence/results/PG-WDP-PROTECTED-QUESTIONS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: On a bare set of at least two points no point is invariant under all permutations, and in the pointwise-stabiliser model the minimal selecting declarations are exactly the single declared points (price one declared point; price zero on a one-point carrier; no selection on the empty carrier); symmetry-price bookkeeping only.
   - does not support: Retention, dynamics or observers being not possible or available (WDP-CH03-N01 is a nonclaim, not formalised); that Selecting / MinimalSelecting formalises WDP-CH03-D01 (D01 minimises declared input sets whose removal restores a symmetry that moves the output, relative to an implementation class and dependency preorder; here the minimal declarations making some point invariant under the pointwise stabiliser are computed, and the two agree on singletons only because the output is the declared point); a Lean notion of equivariant selection function (no_fully_invariant_point is its bare-set specialisation); the price of selection on structured carriers (rigid, cyclic, graph) or under the setwise stabiliser; WDP-CH03-P03; infinite-carrier cardinality; any physical or interpretive claim.
   - next test: On structured carriers compute the same selecting and minimal tables with Sym(X) replaced by an explicit automorphism group G (n-cycle with rotations, K4 graph with its automorphisms, a rigid carrier with trivial G) and test whether the frontier is still the singletons: a rigid carrier must give price 0 and the n-cycle with rotations price 1; any other value falsifies the claim that the singleton frontier is generic.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `3ce0aff3e18ce1934e1aba37e3a0f0e1687c8c9cff2bac911e0727c112e912b9`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Symmetry`): recorded sha256 `3ce0aff3e18ce1934e1aba37e3a0f0e1687c8c9cff2bac911e0727c112e912b9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_wdp.json](../../../evidence/lean_receipts/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Symmetry`): recorded sha256 `3ce0aff3e18ce1934e1aba37e3a0f0e1687c8c9cff2bac911e0727c112e912b9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -79,9 +79,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/WdpProtectedQuestions.lean](../../../lean4/WdpProtectedQuestions.lean)
 - sha256 (`bytes`): `a7d5d6803298dea34d336f5502e0ce9826646983a4d8a0731f54cfdbe2296937`
-- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (WdpProtectedQuestions)
+- cited in: node.lean, receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (WdpProtectedQuestions)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `WdpProtectedQuestions`): recorded sha256 `a7d5d6803298dea34d336f5502e0ce9826646983a4d8a0731f54cfdbe2296937` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `WdpProtectedQuestions`): recorded sha256 `a7d5d6803298dea34d336f5502e0ce9826646983a4d8a0731f54cfdbe2296937` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build WdpProtectedQuestions`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

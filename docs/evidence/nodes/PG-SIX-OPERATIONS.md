@@ -36,7 +36,7 @@ Six operations that must remain distinct (Pre-Genesis §3)
 
 ## Review
 
-- PFP review: [dag/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../evidence/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: By construction of its six state components, only Admit writes the admitted component of the six-operation state machine, and it changes it iff the item is new; the Reading L / Reading F pair has different admitted states in this machine and the same admitted state in the machine in which Supply also admits (a two-machine comparison for every token).
   - does not support: That these six operations or state fields match any host, the Genesis Python model or the Genesis event semantics (forms, instances, requirements); that the six operations are distinct beyond writing distinct fields of this machine (Retain and Operate are gated on admission by definition); that conflating operations is the source of the Reading L / Reading F split of Genesis (a causal reading; only the model-level two-machine comparison is checked); more than two items or traces longer than 4 natively (the Lean statements are general, the Lean instances are Nat items); the inert-inscription model of PG-INERT-DIAMOND (cross-referenced, not imported); any physical or interpretive reading.
   - next test: Bridge this machine to the Genesis event model: define a simulation from the six operations to Derivation/Basic.lean stepE (supply a no-op, admitDatum an admission) and prove it preserves the admitted regime on the histories of the theorems historyL_replays and historyF_replays of Inertia.lean (external Genesis files, read but not bound and without a pinned sha256).
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -65,9 +65,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/SixOperations.lean](../../../lean4/SixOperations.lean)
 - sha256 (`bytes`): `a05c568c76bd1e1a4b574171bf80fb2980e661d7f5d1f42d4f9ea826c1a849a1`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (SixOperations)
+- cited in: receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (SixOperations)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `SixOperations`): recorded sha256 `a05c568c76bd1e1a4b574171bf80fb2980e661d7f5d1f42d4f9ea826c1a849a1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `SixOperations`): recorded sha256 `a05c568c76bd1e1a4b574171bf80fb2980e661d7f5d1f42d4f9ea826c1a849a1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SixOperations`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -53,9 +53,9 @@ See also: `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`.
 - `external:arXiv:1503.06237`: F. Pastawski, B. Yoshida, D. Harlow and J. Preskill, "Holographic quantum error-correcting codes: Toy models for the bulk/boundary correspondence", arXiv:1503.06237 (2015); JHEP 06 (2015) 149.
 - Repository: `dag/derivations/independent/ads-happy-toy-not-duality-gap.md`
 - Repository: `checks/independent/ads-happy-toy-not-duality-gap.py`
-- Repository: `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json`
-- Repository: `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json`
-- Repository: `dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json`
+- Repository: `evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json`
+- Repository: `evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_independent.json`
 
 ## Lean 4 declarations read
 - `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.cftRenyiFactor_one`

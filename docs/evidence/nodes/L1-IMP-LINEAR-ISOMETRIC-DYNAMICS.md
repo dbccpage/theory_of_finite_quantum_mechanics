@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Statement
 
-> Derived part (dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner): on the exact Born carrier Q(i)^n with the inner product fixed up to scale by the sector-form run, every ray map preserving Born transition probabilities between rays is induced by a Q(i)-linear similarity (F^H F = d * 1, d \> 0) or by conjugation followed by one; the map is invertible, so the dynamics is reversible and linear or antilinear, isometric up to the positive scale d, with no continuity hypothesis. The scale is a unit choice only when d is a norm from Q(i): the scale-3 countermodel F3 preserves transition probabilities yet is no unitary nor antiunitary ray map, so the imported form "reversible linear isometries" is strictly stronger than what the finite carrier supports; the finite statement is "reversible linear or antilinear similarities". Imported part: that the dynamics acts on the rays of the lift and preserves the Born transition probabilities (node L1-IMP-TRANSITION-PROBABILITY-LAW); the carrier, the scalar field Q(i) and the quadratic readout. QM_122 H003 still shows that deterministic report dynamics do not by themselves give reversibility, and H006 supplies the permutation envelope, now a special (unitary) case.
+> Derived part (evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner): on the exact Born carrier Q(i)^n with the inner product fixed up to scale by the sector-form run, every ray map preserving Born transition probabilities between rays is induced by a Q(i)-linear similarity (F^H F = d * 1, d \> 0) or by conjugation followed by one; the map is invertible, so the dynamics is reversible and linear or antilinear, isometric up to the positive scale d, with no continuity hypothesis. The scale is a unit choice only when d is a norm from Q(i): the scale-3 countermodel F3 preserves transition probabilities yet is no unitary nor antiunitary ray map, so the imported form "reversible linear isometries" is strictly stronger than what the finite carrier supports; the finite statement is "reversible linear or antilinear similarities". Imported part: that the dynamics acts on the rays of the lift and preserves the Born transition probabilities (node L1-IMP-TRANSITION-PROBABILITY-LAW); the carrier, the scalar field Q(i) and the quadratic readout. QM_122 H003 still shows that deterministic report dynamics do not by themselves give reversibility, and H006 supplies the permutation envelope, now a special (unitary) case.
 
 ## Grade
 
@@ -34,11 +34,11 @@ Transition-probability preservation of the ray dynamics is supplied as an operat
 
 ## Source status
 
-Finite exact Wigner theorem kernel-checked in dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner (Lean 4.35.0): a map of the exact Born carrier Q(i)^n that sends nonzero vectors to nonzero vectors and preserves the transition probability tp x y = |\<x,y\>|^2/(|x|^2 |y|^2) (the normalised Born readout of rank-one effects, Kernel.tp_eq_born) is induced on rays by a Q(i)-linear similarity F^H F = d * 1 with a positive rational scale d, composed with the identity or with componentwise conjugation (Theorem.finite_wigner, finite_wigner_cases); the converse holds (tpPreserving_of_similarity) and the induced map is a bijection with inverse (1/d) F^H (similarity_bijective, Kernel.Similarity.inverse), so the dynamics is reversible and linear or antilinear, and no continuity hypothesis is used. The scale is removable (F = c * U with U unitary) iff d is a sum of two rational squares (Similarity.exists_unitary_iff); the countermodel F3 = \[\[1, -1+i\], \[1+i, 1\]\] with F3^H F3 = 3 * 1 preserves transition probabilities but is induced by no Q(i)-unitary and no Q(i)-antiunitary (F3_not_induced_by_unitary, F3_not_induced_by_antiunitary, three_not_sum_two_sq), so over the exact carrier the honest statement is similarity, not unitarity. The H006 permutation envelope is the unitary permMatrix (permMatrix_unitary). Aut Q(i) = {id, conjugation} (GaussRatAut.ringHom_eq_id_or_star). Exact replays: code/python/src/qm/finite_wigner.py (24 tests), code/rust/src/qm/finite_wigner.rs (29 tests). Earlier: Thm 6 assumption 5: reversible lifted dynamics by linear isometries; QM_122 H002/H003 determinism does not give reversibility
+Finite exact Wigner theorem kernel-checked in evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner (Lean 4.35.0): a map of the exact Born carrier Q(i)^n that sends nonzero vectors to nonzero vectors and preserves the transition probability tp x y = |\<x,y\>|^2/(|x|^2 |y|^2) (the normalised Born readout of rank-one effects, Kernel.tp_eq_born) is induced on rays by a Q(i)-linear similarity F^H F = d * 1 with a positive rational scale d, composed with the identity or with componentwise conjugation (Theorem.finite_wigner, finite_wigner_cases); the converse holds (tpPreserving_of_similarity) and the induced map is a bijection with inverse (1/d) F^H (similarity_bijective, Kernel.Similarity.inverse), so the dynamics is reversible and linear or antilinear, and no continuity hypothesis is used. The scale is removable (F = c * U with U unitary) iff d is a sum of two rational squares (Similarity.exists_unitary_iff); the countermodel F3 = \[\[1, -1+i\], \[1+i, 1\]\] with F3^H F3 = 3 * 1 preserves transition probabilities but is induced by no Q(i)-unitary and no Q(i)-antiunitary (F3_not_induced_by_unitary, F3_not_induced_by_antiunitary, three_not_sum_two_sq), so over the exact carrier the honest statement is similarity, not unitarity. The H006 permutation envelope is the unitary permMatrix (permMatrix_unitary). Aut Q(i) = {id, conjugation} (GaussRatAut.ringHom_eq_id_or_star). Exact replays: code/python/src/qm/finite_wigner.py (24 tests), code/rust/src/qm/finite_wigner.rs (29 tests). Earlier: Thm 6 assumption 5: reversible lifted dynamics by linear isometries; QM_122 H002/H003 determinism does not give reversibility
 
 ## Review
 
-- PFP review: [dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: Every Boolean map has an exact linear-extension control; only the two bijections have identity Gram matrices. Lean establishes swap preservation and collapse loss.
   - does not support: Refine the native extension to the source carrier and justify linearity/reversibility/isometry of physical dynamics. No permutation envelope derives a complex Hilbert unitary.
   - next test: Refine the native extension to the source carrier and justify linearity/reversibility/isometry of physical dynamics. No permutation envelope derives a complex Hilbert unitary.
@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `4a8cb01b2b211c84c8f0630d0a7716e75740731887e2ca9f8c400f3deb361814`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerKernel`): recorded sha256 `4a8cb01b2b211c84c8f0630d0a7716e75740731887e2ca9f8c400f3deb361814` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerKernel`): recorded sha256 `4a8cb01b2b211c84c8f0630d0a7716e75740731887e2ca9f8c400f3deb361814` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerKernel`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1358d7bfd2451add737744d0fc685cd5454dbb78f821b2261d14e8161be65a1e`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerSimilarity`): recorded sha256 `1358d7bfd2451add737744d0fc685cd5454dbb78f821b2261d14e8161be65a1e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerSimilarity`): recorded sha256 `1358d7bfd2451add737744d0fc685cd5454dbb78f821b2261d14e8161be65a1e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerSimilarity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -109,7 +109,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `77ae8e0eb904a0c1fa22dbbfdfd12e3504ab7424424c10beecd6a8173da63527`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerTheorem`): recorded sha256 `77ae8e0eb904a0c1fa22dbbfdfd12e3504ab7424424c10beecd6a8173da63527` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerTheorem`): recorded sha256 `77ae8e0eb904a0c1fa22dbbfdfd12e3504ab7424424c10beecd6a8173da63527` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerTheorem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -130,7 +130,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9d44ef37e63ef81c2c065116f1355ff405b8d62345314d23702fc937c84c2d3c`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `GaussRatAutomorphisms`): recorded sha256 `9d44ef37e63ef81c2c065116f1355ff405b8d62345314d23702fc937c84c2d3c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `GaussRatAutomorphisms`): recorded sha256 `9d44ef37e63ef81c2c065116f1355ff405b8d62345314d23702fc937c84c2d3c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GaussRatAutomorphisms`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -145,7 +145,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `7c4292b84dd988a7f220c8910579a0d6e4f8bf47fd2baf5ed66a49edf632c263`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `PermutationUnitary`): recorded sha256 `7c4292b84dd988a7f220c8910579a0d6e4f8bf47fd2baf5ed66a49edf632c263` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `PermutationUnitary`): recorded sha256 `7c4292b84dd988a7f220c8910579a0d6e4f8bf47fd2baf5ed66a49edf632c263` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PermutationUnitary`
 - counts toward the grade: yes
 
@@ -155,7 +155,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `2bfb9adde035f1c6480b5561afd988cfc9e3c60eed5ba3ae09c27f3d0a4aa677`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `ReversibilityGate`): recorded sha256 `2bfb9adde035f1c6480b5561afd988cfc9e3c60eed5ba3ae09c27f3d0a4aa677` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `ReversibilityGate`): recorded sha256 `2bfb9adde035f1c6480b5561afd988cfc9e3c60eed5ba3ae09c27f3d0a4aa677` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build ReversibilityGate`
 - counts toward the grade: yes
 
@@ -182,9 +182,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0303
 - counts toward the grade: no
 
-### Documents and data: `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md`
+### Documents and data: `evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md`
 
-- file: [dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md](../../../dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md)
+- file: [evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md](../../../evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md)
 - sha256 (`lf-normalised`): `8b5050fbb9f1e046b3f6fbde489956734d5e6d4b5f1ef936ad56cdd6abf82a49`
 - cited in: node.source
 - counts toward the grade: yes

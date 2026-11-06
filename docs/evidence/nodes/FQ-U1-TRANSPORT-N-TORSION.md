@@ -37,7 +37,7 @@ Z_N cycle holonomy gauge invariance and exponent-2 vs Z_3/Z_4 separation mechani
 
 ## Review
 
-- PFP review: [dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts are exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.
   - does not support: Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle or topological connectedness is derived.
   - next test: Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle or topological connectedness is derived.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c3326f87aa656cbec551fc23ecf89675379ae738888b497b8ecc3c748093acfa`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkCircle`): recorded sha256 `c3326f87aa656cbec551fc23ecf89675379ae738888b497b8ecc3c748093acfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkCircle`): recorded sha256 `c3326f87aa656cbec551fc23ecf89675379ae738888b497b8ecc3c748093acfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertWalkCircle`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `U1SelectorBoundary`): recorded sha256 `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `U1SelectorBoundary`): recorded sha256 `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build U1SelectorBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -91,10 +91,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
+
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
+
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md](../../../dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md)
-- sha256 (`lf-normalised`): `92badd834a2adb4c2df9a98953ddb29ba6a18a3b2e0ce2bd7c8e78a50222dda0`
+- sha256 (`lf-normalised`): `91794dd5f09c5810d4f3070aade06053e241cc98977b845cabbe66b909be73c3`
 - generated view: listed, not counted
 - cited in: record TFQ-0053 (shared)
 - counts toward the grade: no
@@ -110,24 +124,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0057_each_language_must_carry_rational_dirac_inversion_on_an_admitted_gamma_family.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0057_each_language_must_carry_rational_dirac_inversion_on_an_admitted_gamma_family.md](../../../dag/derivations/15_finite_qed/tfq_0057_each_language_must_carry_rational_dirac_inversion_on_an_admitted_gamma_family.md)
-- sha256 (`lf-normalised`): `bdb048cef13f55c2790909e788ed2b66c21d61488ecda497a8014f3008b873f4`
+- sha256 (`lf-normalised`): `aba4f6548c156df3043f7dea875d4b9a781bc947d47cb772f30e65f3a5ddf6e4`
 - generated view: listed, not counted
 - cited in: record TFQ-0057 (shared)
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
-
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
-
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
-- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 

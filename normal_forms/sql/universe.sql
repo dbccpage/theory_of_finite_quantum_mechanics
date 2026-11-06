@@ -9,7 +9,7 @@
 --           what is and is not modelled.
 -- Authority effect: None.  Every row is a restatement of a fact that is
 --           already in dag/derivation_dag.json, dag/evidence/
---           evidence_map.json, dag/research/*lean_replay*.json or an
+--           evidence_map.json, evidence/lean_receipts/*lean_replay*.json or an
 --           imported contract under normal_forms/contracts/.  Loading
 --           this schema grants no status to any claim.
 --
@@ -846,7 +846,7 @@ CREATE TABLE receipt_module_audit (
 --   Normal form : 6NF-style (key only)
 --   Candidate keys: (receipt_file, lean_module_name, declaration)
 --   Source      : the "axioms" object of each module result in
---                 dag/research/*lean_replay*.json, one row per declaration
+--                 evidence/lean_receipts/*lean_replay*.json, one row per declaration
 --                 name, including declarations that use no axiom.
 --                 Results sit at lean_replay.results, or at the top level
 --                 when a campaign receipt has no lean_replay object.

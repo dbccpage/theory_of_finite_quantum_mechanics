@@ -32,11 +32,11 @@ Not proved in Lean: that the n x n grid poset (a FiniteStrictPoset on n^2 points
 
 ## Source status
 
-Source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr-qc/0207103 Section III eqs. (4)-(5) pp. 4-5, and exact rational values f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and r(grid_n)=(n+3)/(2(n+1)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr-qc/0207103 Section III eqs. (4)-(5) pp. 4-5, and exact rational values f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and r(grid_n)=(n+3)/(2(n+1)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `gridStrictPairs_factorization`, `grid_ordering_fraction_closed_form`, `grid_ordering_fraction_minus_half`, `grid_values_2_to_6_and_c2_agreement`, `myrheim_meyer_nearest_dimension_checks`, `covers_subset_of_generating_subrelation`, `hasse_links_and_mobius_recursions_C1_C2`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_causal_qft.json](../../../dag/research/lean_replay_campaign_causal_qft.json) (module `CausalOrder`): recorded sha256 `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_causal_qft.json](../../../evidence/lean_receipts/lean_replay_campaign_causal_qft.json) (module `CausalOrder`): recorded sha256 `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CausalOrder`
 - counts toward the grade: yes
 
@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierMyrheimMeyer.lean](../../../lean4/FrontierMyrheimMeyer.lean)
 - sha256 (`bytes`): `85bc63a2e22cd344072233eb921722db8eb1b10167f23daa55f1cae15f6fece7`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierMyrheimMeyer)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierMyrheimMeyer)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierMyrheimMeyer`): recorded sha256 `85bc63a2e22cd344072233eb921722db8eb1b10167f23daa55f1cae15f6fece7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierMyrheimMeyer`): recorded sha256 `85bc63a2e22cd344072233eb921722db8eb1b10167f23daa55f1cae15f6fece7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierMyrheimMeyer`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -85,14 +85,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md](../../../dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md)
-- sha256 (`lf-normalised`): `e6e460c1befb7a6cf5e3211883c1a3648363ea24faeac87f059c8b8f2bed802e`
+- sha256 (`lf-normalised`): `5af030429e97871ad72ca6a468b72ce26f4cf242d79e054e0f08c0bda902301f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2113
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

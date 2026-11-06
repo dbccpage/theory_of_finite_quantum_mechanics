@@ -16,7 +16,7 @@ Under calibration, a nonzero observation and descent of an admitted operation fa
 Under calibration, a nonzero observation and descent of an admitted operation family, irreducibility of that family on the global state space forces injectivity (Schur-type). The existence of such a family is equivalent to local tomography, so this re-expresses rather than derives local tomography. A noncircular operational principle excluding hidden sectors is open; general tensor-cone uniqueness and operational classification remain open (FQ-GAP-TENSOR-UNIQUENESS). Does not support: A derivation of local tomography from primitive difference or from weaker operational premises; a noncircular principle excluding hidden sectors; tensor-cone uniqueness; physical availability of the constructed resets in any particular operational theory.
 
 ### Source Status
-Local tomography is imported. dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography (Lean 4.35.0, OperationalTomography and OperationalFieldSelection; independent review in dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144) establishes a field-neutral conditional theorem, and dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family (OperationalFilterFamily) establishes that its operational premise is equivalent to local tomography, so the pair re-expresses local tomography and does not derive it. Replays: Python Fraction and Rust BigRational; fixture-integrity mutations rejected (277 for the tomography fixtures, 623 for the filter fixtures). Authority effect: none.
+Local tomography is imported. evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography (Lean 4.35.0, OperationalTomography and OperationalFieldSelection; independent review in evidence/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144) establishes a field-neutral conditional theorem, and evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family (OperationalFilterFamily) establishes that its operational premise is equivalent to local tomography, so the pair re-expresses local tomography and does not derive it. Replays: Python Fraction and Rust BigRational; fixture-integrity mutations rejected (277 for the tomography fixtures, 623 for the filter fixtures). Authority effect: none.
 
 ---
 
@@ -62,8 +62,8 @@ Local tomography is imported. dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
-  - `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json`
-  - `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md`
-  - `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json`
-  - `dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md`
+  - `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
+  - `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json`
+  - `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md`
+  - `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json`
+  - `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md`

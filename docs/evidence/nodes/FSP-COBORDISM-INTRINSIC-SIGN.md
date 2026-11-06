@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/SignedTriangleSwitching.lean](../../../lean4/SignedTriangleSwitching.lean)
 - sha256 (`bytes`): `4ffc345ebf79bff4b3ad6ecc5ecbcecf84681f0373a6a95d8a86f1e81381beb8`
-- cited in: node.lean, receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (SignedTriangleSwitching), record TFQ-1211
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (SignedTriangleSwitching), record TFQ-1211
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json) (module `SignedTriangleSwitching`): recorded sha256 `4ffc345ebf79bff4b3ad6ecc5ecbcecf84681f0373a6a95d8a86f1e81381beb8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json) (module `SignedTriangleSwitching`): recorded sha256 `4ffc345ebf79bff4b3ad6ecc5ecbcecf84681f0373a6a95d8a86f1e81381beb8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build SignedTriangleSwitching`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -92,14 +92,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md`
 
 - file: [dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md](../../../dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md)
-- sha256 (`lf-normalised`): `b51442f77d92fe3ac837a0a247607c9e11553c77305bc60eb31f465ba1474afc`
+- sha256 (`lf-normalised`): `b398a5e45921634d50a035c3bde0151e7f8f8dd346d71f90bc2ec8eb04ff599d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1211
 - counts toward the grade: no
@@ -111,9 +111,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json`
 
-- file: [dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json)
 - sha256 (`lf-normalised`): `7e1a5f8db3cca1ab668bb4c88914d71f2f199cbf35be269cde266f749ee12fff`
 - cited in: node.source
 - counts toward the grade: yes

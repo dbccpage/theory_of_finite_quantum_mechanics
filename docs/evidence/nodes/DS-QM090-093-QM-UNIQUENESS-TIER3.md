@@ -36,7 +36,7 @@ QM-093-C4/C5/C18/C20 survival theorem under finite descent, sealed_can_fail witn
 
 ## Review
 
-- PFP review: [dag/results/DS-QM090-093-QM-UNIQUENESS-TIER3/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM090-093-QM-UNIQUENESS-TIER3/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM090-093-QM-UNIQUENESS-TIER3/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/DS-QM090-093-QM-UNIQUENESS-TIER3/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual context tables, global-assignment exclusion and spectator marginal recovery are exact; the odd-cycle and rational recovery statements are kernel checked.
   - does not support: Give the full theory/equivalence notion and exclude competing packet theories before Tier-3 complex-Hilbert uniqueness. No ontology or arbitrary non-QM theory classification is asserted.
   - next test: Give the full theory/equivalence notion and exclude competing packet theories before Tier-3 complex-Hilbert uniqueness. No ontology or arbitrary non-QM theory classification is asserted.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0274
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
+- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0274_tier_3_uniqueness_left_without_a_derivation.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0274_tier_3_uniqueness_left_without_a_derivation.md](../../../dag/derivations/12_finite_qm_structure/tfq_0274_tier_3_uniqueness_left_without_a_derivation.md)
-- sha256 (`lf-normalised`): `c36094f16de5f5853e91e390fbcdc7b8187bb10e87e484075cb15487958d4d9c`
+- sha256 (`lf-normalised`): `23ecc1412c1558471c849f7ea97047644cc3e77096b6487f96349d88e7cae14d`
 - generated view: listed, not counted
 - cited in: record TFQ-0274
 - counts toward the grade: no

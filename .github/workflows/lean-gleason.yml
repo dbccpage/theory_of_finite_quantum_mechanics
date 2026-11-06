@@ -38,11 +38,11 @@ on:
       - "scripts/test_gleason_continuum_development.py"
       - "scripts/verify_continuum_derivation_spine.py"
       - "scripts/test_continuum_derivation_spine.py"
-      - "dag/research/gleason_lean_audit.json"
-      - "dag/research/gleason_finite_model_receipt.json"
-      - "dag/research/gleason_continuum_shadow_receipt.json"
-      - "dag/research/gleason_continuum_development_receipt.json"
-      - "dag/research/continuum_derivation_spine_receipt.json"
+      - "evidence/lean_receipts/gleason_lean_audit.json"
+      - "evidence/lean_receipts/gleason_finite_model_receipt.json"
+      - "evidence/lean_receipts/gleason_continuum_shadow_receipt.json"
+      - "evidence/lean_receipts/gleason_continuum_development_receipt.json"
+      - "evidence/lean_receipts/continuum_derivation_spine_receipt.json"
       - ".github/workflows/lean-gleason.yml"
   push:
     branches: [main]
@@ -58,11 +58,11 @@ on:
       - "scripts/test_gleason_continuum_development.py"
       - "scripts/verify_continuum_derivation_spine.py"
       - "scripts/test_continuum_derivation_spine.py"
-      - "dag/research/gleason_lean_audit.json"
-      - "dag/research/gleason_finite_model_receipt.json"
-      - "dag/research/gleason_continuum_shadow_receipt.json"
-      - "dag/research/gleason_continuum_development_receipt.json"
-      - "dag/research/continuum_derivation_spine_receipt.json"
+      - "evidence/lean_receipts/gleason_lean_audit.json"
+      - "evidence/lean_receipts/gleason_finite_model_receipt.json"
+      - "evidence/lean_receipts/gleason_continuum_shadow_receipt.json"
+      - "evidence/lean_receipts/gleason_continuum_development_receipt.json"
+      - "evidence/lean_receipts/continuum_derivation_spine_receipt.json"
       - ".github/workflows/lean-gleason.yml"
   workflow_dispatch:
 
@@ -116,7 +116,7 @@ jobs:
           set -o pipefail
           lake env lean .audit/GleasonAudit.lean 2>&1 | tee ../gleason_audit_output.txt
 
-      - name: Verify reports, pins and axioms against dag/research/gleason_lean_audit.json
+      - name: Verify reports, pins and axioms against evidence/lean_receipts/gleason_lean_audit.json
         run: python -I -X utf8 scripts/gleason_lean_audit.py verify --lean-output gleason_audit_output.txt
 
       - name: Keep the raw audit output

@@ -36,7 +36,7 @@ QM207-C1 phase-blindness of L1 weights, QM208-C3 quadratic cross-term interferen
 
 ## Review
 
-- PFP review: [dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM207-211-FIVE-IMPORT-CASCADE/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/DS-QM207-211-FIVE-IMPORT-CASCADE/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact phase/readout and noncommutative matrix controls are retained; cross-term and quartic-gap polynomials are general rational kernel identities.
   - does not support: Prove each correctly specified physical necessity claim and supply phase, quadratic pairing, operator algebra, Born uniqueness and continuous dynamics. These controls do not derive or establish independence of all five imports.
   - next test: Prove each correctly specified physical necessity claim and supply phase, quadratic pairing, operator algebra, Born uniqueness and continuous dynamics. These controls do not derive or establish independence of all five imports.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29`
 - cited in: node.lean, record TFQ-1042
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornPairingBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-1042
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `de5afdd4f30362f888b675aec2108d2c5829d3b672f9cf16ead20ee3ace415cc`
 - cited in: node.lean, record TFQ-1042
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `OperatorAlgebraShadow`): recorded sha256 `de5afdd4f30362f888b675aec2108d2c5829d3b672f9cf16ead20ee3ace415cc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `OperatorAlgebraShadow`): recorded sha256 `de5afdd4f30362f888b675aec2108d2c5829d3b672f9cf16ead20ee3ace415cc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build OperatorAlgebraShadow`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
+- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust, record TFQ-1042
 
@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md](../../../dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md)
-- sha256 (`lf-normalised`): `5dc229bd9a171299153ccbefc50d1b96ab3c42cf714a570a3f6705e9e003f6d6`
+- sha256 (`lf-normalised`): `79c1b8bf6d8efd01b90b4cfb4d1bbd46ba1ac96acebd63a1e4df6ebc7bf6074e`
 - generated view: listed, not counted
 - cited in: record TFQ-1042
 - counts toward the grade: no

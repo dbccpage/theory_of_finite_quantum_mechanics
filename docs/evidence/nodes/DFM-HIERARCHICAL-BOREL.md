@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DressingFieldHierarchicalBorel.lean](../../../lean4/DressingFieldHierarchicalBorel.lean)
 - sha256 (`bytes`): `d5366519d454b57ed1a436eb257ff615fd94998cdc4fdf9cd7e15ec355ef117e`
-- cited in: node.lean, receipt dag/research/campaign_dfm-hierarchical-borel_lean_replay.json (DressingFieldHierarchicalBorel), record TFQ-0400
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_dfm-hierarchical-borel_lean_replay.json (DressingFieldHierarchicalBorel), record TFQ-0400
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-hierarchical-borel_lean_replay.json](../../../dag/research/campaign_dfm-hierarchical-borel_lean_replay.json) (module `DressingFieldHierarchicalBorel`): recorded sha256 `d5366519d454b57ed1a436eb257ff615fd94998cdc4fdf9cd7e15ec355ef117e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_dfm-hierarchical-borel_lean_replay.json](../../../evidence/lean_receipts/campaign_dfm-hierarchical-borel_lean_replay.json) (module `DressingFieldHierarchicalBorel`): recorded sha256 `d5366519d454b57ed1a436eb257ff615fd94998cdc4fdf9cd7e15ec355ef117e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DressingFieldHierarchicalBorel`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -106,10 +106,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source, record TFQ-0400
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/24_dressing_field/hierarchical_nonabelian_dfm_finite_map.md`
+
+- file: [dag/derivations/24_dressing_field/hierarchical_nonabelian_dfm_finite_map.md](../../../dag/derivations/24_dressing_field/hierarchical_nonabelian_dfm_finite_map.md)
+- sha256 (`lf-normalised`): `91082c6bbe1df302b72be629945e0bde9a93bda33d84f0ad308f4f2c6889c445`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md](../../../dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md)
-- sha256 (`lf-normalised`): `97cce5adfa884fce52e55214ad462ce5e0e74d7f905cf186a5ab8d0a34884cb7`
+- sha256 (`lf-normalised`): `445ecca8a36a3767a13b896824a6928c76c35d8cb9c9b9f0c60492433784ffc9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0400
 - counts toward the grade: no
@@ -121,17 +128,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_dfm-hierarchical-borel_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_dfm-hierarchical-borel_lean_replay.json`
 
-- file: [dag/research/campaign_dfm-hierarchical-borel_lean_replay.json](../../../dag/research/campaign_dfm-hierarchical-borel_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_dfm-hierarchical-borel_lean_replay.json](../../../evidence/lean_receipts/campaign_dfm-hierarchical-borel_lean_replay.json)
 - sha256 (`lf-normalised`): `bbfd0f641dd80bf8f67117ab0e155822dc0f25da129188eeb987ba047121da52`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `dag/research/hierarchical_nonabelian_dfm_finite_map.md`
-
-- file: [dag/research/hierarchical_nonabelian_dfm_finite_map.md](../../../dag/research/hierarchical_nonabelian_dfm_finite_map.md)
-- sha256 (`lf-normalised`): `91082c6bbe1df302b72be629945e0bde9a93bda33d84f0ad308f4f2c6889c445`
 - cited in: node.source
 - counts toward the grade: yes
 

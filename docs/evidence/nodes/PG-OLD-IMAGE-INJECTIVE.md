@@ -36,7 +36,7 @@ Proposition 4 / WDP-P001-005: typed old-image recovery implies injectivity of th
 
 ## Review
 
-- PFP review: [dag/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../evidence/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: A recovery r : B -\> A + Unit obeying r(u a) = inl a exists exactly when u is injective. For an injective lift it is determined only on the image: there are (\|A\|+1)^(\|B\|-\|A\|) of them, exactly one of which refuses every off-image point; when \|A\| \>= 1 and \|B\| \> \|A\| the others accept some off-image point as an old term, and for \|B\| = \|A\| or \|A\| = 0 the recovery is unique. The law fixes neither observations nor obstruction predicates (persistence through the identity lift only).
   - does not support: Off-image rejection as a property of the S(n) retraction (that is PG-SN-OFF-IMAGE-REFUSAL, which needs an added soundness hypothesis on r); the pinned SnCarrier lift and retraction; any definition of obstruction repair beyond persistence of a Boolean predicate through a lift (the source repair_not_implied instance uses the constant-true predicate and defines no repair); sets with more than four elements in the native census (the Lean count law_card is general for finite types); infinite types for the count; any physical or categorical reading.
   - next test: Define repair of an obstruction for a lift (a witness-count or chain criterion on the lifted pair) and decide for the identity embedding and for a non-identity injective lift whether the old obstruction count strictly drops, replacing the constant-predicate instance of repair_not_implied by a statement with a stated repair criterion.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/SnMssn/Paper001.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -80,9 +80,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/OldImageInjective.lean](../../../lean4/OldImageInjective.lean)
 - sha256 (`bytes`): `4f260c7c94cddf35ac4a372fabdfe8f07565dcd50672b382e6d2a3666ff8625d`
-- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (OldImageInjective)
+- cited in: node.lean, receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (OldImageInjective)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `OldImageInjective`): recorded sha256 `4f260c7c94cddf35ac4a372fabdfe8f07565dcd50672b382e6d2a3666ff8625d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `OldImageInjective`): recorded sha256 `4f260c7c94cddf35ac4a372fabdfe8f07565dcd50672b382e6d2a3666ff8625d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build OldImageInjective`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

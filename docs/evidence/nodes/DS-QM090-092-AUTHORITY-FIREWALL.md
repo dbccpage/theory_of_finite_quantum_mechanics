@@ -36,7 +36,7 @@ Unmet after the PFP review: Define a trusted receipt-validation/packet policy be
 
 ## Review
 
-- PFP review: [dag/results/DS-QM090-092-AUTHORITY-FIREWALL/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM090-092-AUTHORITY-FIREWALL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM090-092-AUTHORITY-FIREWALL/reviews/20261019_resources_audit/review_result.json](../../../evidence/results/DS-QM090-092-AUTHORITY-FIREWALL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Toy zero-defect gate arithmetic and logical nonimplication are kernel checked; every run retains AuthorityEffect None.
   - does not support: Define a trusted receipt-validation/packet policy before any real authorization; no general no-constructor theorem, publication terminal or physical claim is proved.
   - next test: Define a trusted receipt-validation/packet policy before any real authorization; no general no-constructor theorem, publication terminal or physical claim is proved.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0272, record TFQ-0275, record TFQ-0277
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md](../../../dag/derivations/13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md)
-- sha256 (`lf-normalised`): `f092f47ed0eb952123e0f05c84c52ef339af7baadbb267c3ef6e561c68305815`
+- sha256 (`lf-normalised`): `af4bddb4d2405b8258f8303378132deb42c593f27501fdbd622817b1068c0669`
 - generated view: listed, not counted
 - cited in: record TFQ-0272
 - counts toward the grade: no
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md](../../../dag/derivations/13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md)
-- sha256 (`lf-normalised`): `b24d7569df9368dc57292f936683c0a611956ae29245e7b4e90b05d6f1664064`
+- sha256 (`lf-normalised`): `5c881db1ee85b95b3d5f669a6a12d32fabd4ce29ec6029109a3c2bcb1034e2e5`
 - generated view: listed, not counted
 - cited in: record TFQ-0275
 - counts toward the grade: no

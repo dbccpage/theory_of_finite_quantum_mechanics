@@ -75,7 +75,7 @@ Searched `lean4/`, `papers/`, `code/`, `dag/` (tracked files) for every declarat
   in this repository or the recovered folder (the neighbouring `coda_research/_support` tree holds only `J011_minimal_publication.md`, which cites it). The file is
   kept with its import verbatim and a header saying NOT BUILT, and is excluded from the lakefile roots. The source records
   `propext` and `Quot.sound` for its negative theorems; that cannot be reproduced. The staged `PrimitiveDifference.lean` copies
-  under `dag/results/*/construction/lean4/` have a different API (`P.ZeroRel`, `classOf`), so substituting them would change
+  under `evidence/results/*/construction/lean4/` have a different API (`P.ZeroRel`, `classOf`), so substituting them would change
   the statements; this was not done.
 * **Python** (`code/python/src/qm/auth_incompleteness/`): `replay_packet.py` (port of the `.psm1` and `.ps1`),
   `carrier_candidates.py` (port of the candidate validator), `finite_models.py` (new executable twins of the DTM0 evaluator,

@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenesisDriverBSeventhEvent.lean](../../../lean4/PregenesisDriverBSeventhEvent.lean)
 - sha256 (`bytes`): `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222`
-- cited in: node.lean, receipt dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json (PregenesisDriverBSeventhEvent), receipt dag/research/pr_355_review_replay.json (PregenesisDriverBSeventhEvent), record TFQ-0503
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-driver-b-seventh-event_lean_replay.json (PregenesisDriverBSeventhEvent), receipt evidence/lean_receipts/pr_355_review_replay.json (PregenesisDriverBSeventhEvent), record TFQ-0503
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json](../../../dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json) (module `PregenesisDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_355_review_replay.json](../../../dag/research/pr_355_review_replay.json) (module `PregenesisDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-driver-b-seventh-event_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-driver-b-seventh-event_lean_replay.json) (module `PregenesisDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_355_review_replay.json](../../../evidence/lean_receipts/pr_355_review_replay.json) (module `PregenesisDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PregenesisDriverBSeventhEvent`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md`
 
 - file: [dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md](../../../dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md)
-- sha256 (`lf-normalised`): `cd017b15fd2d3e33f6da9e17edc2678336ace2e46a097bbe13990ebe64539500`
+- sha256 (`lf-normalised`): `7d56beac1ea051cdf56ccc27d12ed12ba8a7f189c10e49b17b6834cddc1cd0f9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0503
 - counts toward the grade: no
@@ -115,9 +115,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_pgw-driver-b-seventh-event_lean_replay.json`
 
-- file: [dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json](../../../dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_pgw-driver-b-seventh-event_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-driver-b-seventh-event_lean_replay.json)
 - sha256 (`lf-normalised`): `6ba7957262de988043708aa1ddff5fe330edfa09ccc2ae875e04f7ae73860b65`
 - cited in: node.source
 - counts toward the grade: yes

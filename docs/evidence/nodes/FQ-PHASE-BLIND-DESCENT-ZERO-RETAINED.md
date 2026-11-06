@@ -36,7 +36,7 @@ General-n row-sparsity characterization and projective-zero counterexample mecha
 
 ## Review
 
-- PFP review: [dag/results/FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED/reviews/20261019_scope_audit/review_result.json](../../../evidence/results/FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact integer population descent iff every row is sparse is rechecked generally. The all-ones zero-cancellation control is explicit; native cross-term differences are 4abxy and 4cdxy.
   - does not support: Prove the advertised normalized/projective characterization, with its exact carrier and retained-zero convention, separately; do not promote the stronger-looking target wording from the integer theorem.
   - next test: Prove the advertised normalized/projective characterization, with its exact carrier and retained-zero convention, separately; do not promote the stronger-looking target wording from the integer theorem.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b`
 - cited in: node.lean, record TFQ-0300 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornRedundancy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,13 +67,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.fq_phase_blind_descent_general_n_row_sparsity` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_phase_blind_descent_general_n_row_sparsity` |
 
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
+
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
+- cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md`
@@ -83,13 +90,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0300 (shared)
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
-
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
-- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 

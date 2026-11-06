@@ -36,7 +36,7 @@ WDP primitive admission floor (Lean file); WDP-CH01-P01/P02 FINITE_PROVED
 
 ## Review
 
-- PFP review: [dag/results/PG-ADMISSION-FLOOR/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-ADMISSION-FLOOR/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-ADMISSION-FLOOR/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/PG-ADMISSION-FLOOR/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: A law-bearing cut (an irreflexive relation with an exhibited pair) exists exactly on carriers with two distinct points, its endpoints are apart, and a map separates the endpoints of every cut it carries into an irreflexive target; the pair of marks alone does not supply the relation or its law.
   - does not support: Deriving the law (irreflexivity) from the primitive difference \<\> or from Real_0: the relation and its law remain supplied data; any selection of a preferred cut or orientation (two orientations exist on two points); infinite carriers beyond the Lean statements; the arity-cost tie-breaker of the source (declared_arity_cost_selects is a decide on a priced toy, not used here); the aggregate local theorem pg_to_sn_and_wdp_route_chain_composition, which is a fixed enumeration.
   - next test: Replay the admission-floor model counts on 1..4 points with the declared Real_0 axiom list added as constraints and decide whether any declared axiom forces irreflexivity of the relation, i.e. whether the counts of relations with an exhibited pair but no law drop to zero.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/AdmissionFloor.lean](../../../lean4/AdmissionFloor.lean)
 - sha256 (`bytes`): `6974f4c9df701c53aac00d5831e99669b5f2810c7a2e1587763cc6ed1324a717`
-- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (AdmissionFloor)
+- cited in: node.lean, receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (AdmissionFloor)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `AdmissionFloor`): recorded sha256 `6974f4c9df701c53aac00d5831e99669b5f2810c7a2e1587763cc6ed1324a717` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `AdmissionFloor`): recorded sha256 `6974f4c9df701c53aac00d5831e99669b5f2810c7a2e1587763cc6ed1324a717` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build AdmissionFloor`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9a5d905d70db6124a31a54d1616dfb70308ee04c095302061e86919afbe9d5d8`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PointedRelation`): recorded sha256 `9a5d905d70db6124a31a54d1616dfb70308ee04c095302061e86919afbe9d5d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PointedRelation`): recorded sha256 `9a5d905d70db6124a31a54d1616dfb70308ee04c095302061e86919afbe9d5d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e96f39ed83bdbf1bbf0b2141181770a58ee100528400ddda415e09a9426279ac`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PrimitiveAdmissionFloor`): recorded sha256 `e96f39ed83bdbf1bbf0b2141181770a58ee100528400ddda415e09a9426279ac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PrimitiveAdmissionFloor`): recorded sha256 `e96f39ed83bdbf1bbf0b2141181770a58ee100528400ddda415e09a9426279ac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -167,7 +167,7 @@ Outgoing (6):
 
 - `PG-R-IRREFLEXIVE` `DERIVED_LEAN`: [PG-GEN-IRREFLEXIVE-DISTINCT](PG-GEN-IRREFLEXIVE-DISTINCT.md) (PROVED_LEAN)
 - `PG-R-PROTECTED` `DERIVED_LEAN`: [PG-WDP-PROTECTED-QUESTIONS](PG-WDP-PROTECTED-QUESTIONS.md) (PROVED_LEAN)
-- `PGW-R-WDP-FAILED-SAMENESS` `DERIVED_PROSE`: [PGW-WDP-FAILED-SAMENESS](PGW-WDP-FAILED-SAMENESS.md) (PROVED_PROSE)
+- `PGW-R-WDP-FAILED-SAMENESS` `DERIVED_LEAN`: [PGW-WDP-FAILED-SAMENESS](PGW-WDP-FAILED-SAMENESS.md) (PROVED_LEAN)
 - `PGW-R-WDP-GRAPH-COCHAIN-HOST` `DERIVED_PROSE`: [PGW-WDP-GRAPH-COCHAIN-HOST](PGW-WDP-GRAPH-COCHAIN-HOST.md) (DEFINITION)
 - `PGW-R-WDP-POINTED-APARTNESS` `DERIVED_LEAN`: [PGW-WDP-POINTED-APARTNESS](PGW-WDP-POINTED-APARTNESS.md) (PROVED_LEAN)
 - `UDG-R-TFQ-0396` `GAP_NO_DERIVATION`: [TFQ-0396](TFQ-0396.md) (OPEN)

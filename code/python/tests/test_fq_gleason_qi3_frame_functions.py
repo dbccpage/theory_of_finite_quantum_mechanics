@@ -2268,7 +2268,7 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
         return hashlib.sha256((REPO_ROOT / rel_path).read_bytes()).hexdigest()
 
     replay_json = json.loads(
-        (REPO_ROOT / "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json").read_text(
+        (REPO_ROOT / "evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json").read_text(
             encoding="utf-8"
         )
     )
@@ -2276,13 +2276,13 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
         assert res["sha256"] == file_sha256(res["source"])
 
     validation_json = json.loads(
-        (REPO_ROOT / "dag/research/fq_gleason_qi3_validation.json").read_text(encoding="utf-8")
+        (REPO_ROOT / "evidence/lean_receipts/fq_gleason_qi3_validation.json").read_text(encoding="utf-8")
     )
     for rel_path, expected_sha in validation_json["source_sha256"].items():
         assert file_sha256(rel_path) == expected_sha, f"Stale SHA-256 for {rel_path} in fq_gleason_qi3_validation.json"
 
     assessment_json = json.loads(
-        (REPO_ROOT / "dag/research/fq_gleason_qi3_assessment.json").read_text(encoding="utf-8")
+        (REPO_ROOT / "evidence/lean_receipts/fq_gleason_qi3_assessment.json").read_text(encoding="utf-8")
     )
     for ev in assessment_json["evidence"]:
         assert file_sha256(ev["path"]) == ev["sha256"], f"Stale SHA-256 for {ev['path']} in fq_gleason_qi3_assessment.json"

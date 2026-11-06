@@ -36,7 +36,7 @@ Thm 4 audit: lift need not exist over the chosen rational coefficient field
 
 ## Review
 
-- PFP review: [dag/results/L1-IMP-SQRT-FIELD/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-IMP-SQRT-FIELD/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-IMP-SQRT-FIELD/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../evidence/results/L1-IMP-SQRT-FIELD/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact normalized-square classification on the retained rational packets, including zero/negative mass refusal and nonsquare controls.
   - does not support: Prove the rational-square decision refinement and construct any admitted algebraic/real square-root field. No blanket irrationality theorem is inferred from finite search.
   - next test: Prove the rational-square decision refinement and construct any admitted algebraic/real square-root field. No blanket irrationality theorem is inferred from finite search.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -69,10 +69,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0318 (shared)
 - counts toward the grade: no
 
+### Documents and data: `atlas/finite_quantum_mechanics/claims/claim_ledger.yaml`
+
+- file: [atlas/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../atlas/finite_quantum_mechanics/claims/claim_ledger.yaml)
+- sha256 (`lf-normalised`): `0d891e04d6b8ff46e95360a919f7c2a64074a2d4f9732a2e481f868e41c385a7`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0292_square_root_field_for_amplitude_coordinates.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0292_square_root_field_for_amplitude_coordinates.md](../../../dag/derivations/08_l1_to_l2/tfq_0292_square_root_field_for_amplitude_coordinates.md)
-- sha256 (`lf-normalised`): `db291f99665d2bb8664b64f0cc6db63f4bcf527da447d6837c037c809bac0842`
+- sha256 (`lf-normalised`): `07e3b9acadae12cd59339755516d43c60b300442b2e0e0e7a36c6ac4dfedb49e`
 - generated view: listed, not counted
 - cited in: record TFQ-0292
 - counts toward the grade: no
@@ -80,17 +87,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md](../../../dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md)
-- sha256 (`lf-normalised`): `9b86507c921e43ceabf0836dc6f5deeab5a703e4492785b99c07c7f768975686`
+- sha256 (`lf-normalised`): `5acb681e3f1309f9abda5226a82b8aa910168e0bcd10c1faaa11104242f22877`
 - generated view: listed, not counted
 - cited in: record TFQ-0318 (shared)
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_quantum_mechanics/claims/claim_ledger.yaml`
-
-- file: [atlas/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml)
-- sha256 (`lf-normalised`): `0d891e04d6b8ff46e95360a919f7c2a64074a2d4f9732a2e481f868e41c385a7`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 
@@ -105,8 +105,8 @@ Named by the node; not in this repository and not checked here.
 
 - TFQ-0292 python: no local python twin located for atlas/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
 - TFQ-0292 rust: no local rust twin located for external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4
-- TFQ-0318 python: no local python twin located for external:unlocated
 - TFQ-0318 python: no local python twin located for atlas/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
+- TFQ-0318 python: no local python twin located for external:unlocated
 - TFQ-0318 rust: no local rust twin located for external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4
 - TFQ-0318 rust: no local rust twin located for external:sha256:d58eb2c1f4ae2ac65cc7145554cd2a5c955e096776c1f6d9daafb2065b14450e
 

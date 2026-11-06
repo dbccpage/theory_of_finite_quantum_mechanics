@@ -1,6 +1,6 @@
 # PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY
 
-Stage: [WDP](../stages/WDP.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 25
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 28
 - distinct cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
@@ -33,7 +33,7 @@ The checked slice is the integer triangle coboundary: linearity, residual identi
 
 ## Source status
 
-WDP monograph §4.2-§4.3 WDP-CH04-P01, conditional P02 and C01 (imported LP duality)
+WDP-CH04-P01, WDP-CH04-P07, and certified primal-dual optimality mechanized in PregenesisWdpPhiWellDefinedL1Duality.lean and WdpBatch4.lean
 
 ## Review
 
@@ -43,13 +43,29 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
+- sha256 (`bytes`): `5139307750119e0e6f022ae813972e4625d02908d37d9067e6942e532181b6dd`
+- cited in: node.lean, record TFQ-0544
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch4.certified_primal_dual_optimality` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch4.certified_primal_dual_optimality` |
+| `WitnessedDifference.WdpBatch4.weighted_l1_weak_duality_triangle` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch4.weighted_l1_weak_duality_triangle` |
+| `WitnessedDifference.WdpBatch4.weighted_residual_shift_invariant` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch4.weighted_residual_shift_invariant` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
 - sha256 (`bytes`): `b5adb85d12297d203151348422a0400482d6cac0397e8fcc5381c9c8a54c9885`
 - cited in: node.lean, record TFQ-0544
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Obstruction`): recorded sha256 `b5adb85d12297d203151348422a0400482d6cac0397e8fcc5381c9c8a54c9885` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_wdp.json](../../../evidence/lean_receipts/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Obstruction`): recorded sha256 `b5adb85d12297d203151348422a0400482d6cac0397e8fcc5381c9c8a54c9885` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -62,10 +78,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenesisWdpPhiWellDefinedL1Duality.lean](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
 - sha256 (`bytes`): `cd7f4e4e6124de5b4cbf24d392371e953ca23b74d7b28d877e14df0559d06a17`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json (PregenesisWdpPhiWellDefinedL1Duality), receipt dag/research/pr_377_round2_replay.json (PregenesisWdpPhiWellDefinedL1Duality), record TFQ-0544
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json (PregenesisWdpPhiWellDefinedL1Duality), receipt evidence/lean_receipts/pr_377_round2_replay.json (PregenesisWdpPhiWellDefinedL1Duality), record TFQ-0544
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json](../../../dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json) (module `PregenesisWdpPhiWellDefinedL1Duality`): recorded sha256 `cd7f4e4e6124de5b4cbf24d392371e953ca23b74d7b28d877e14df0559d06a17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_377_round2_replay.json](../../../dag/research/pr_377_round2_replay.json) (module `PregenesisWdpPhiWellDefinedL1Duality`): recorded sha256 `cd7f4e4e6124de5b4cbf24d392371e953ca23b74d7b28d877e14df0559d06a17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json) (module `PregenesisWdpPhiWellDefinedL1Duality`): recorded sha256 `cd7f4e4e6124de5b4cbf24d392371e953ca23b74d7b28d877e14df0559d06a17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_377_round2_replay.json](../../../evidence/lean_receipts/pr_377_round2_replay.json) (module `PregenesisWdpPhiWellDefinedL1Duality`): recorded sha256 `cd7f4e4e6124de5b4cbf24d392371e953ca23b74d7b28d877e14df0559d06a17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PregenesisWdpPhiWellDefinedL1Duality`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -129,7 +145,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md`
 
 - file: [dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md](../../../dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md)
-- sha256 (`lf-normalised`): `3fadfd6461e646677e6cf1b095415ac6d5dd8798a7c63914ceb1e9caa797243e`
+- sha256 (`lf-normalised`): `2f22c52a4e19ccd94af2a846e818964939ac6a291abf3379ff6884f6891f2c7c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0544
 - counts toward the grade: no
@@ -145,7 +161,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PGW-R-WDP-PHI-WELL-DEFINED-L1-DUALITY` `CONDITIONAL_ON_IMPORT`: [PGW-WDP-GRAPH-COCHAIN-HOST](PGW-WDP-GRAPH-COCHAIN-HOST.md) (DEFINITION), [PGW-WDP-QUOTIENT-DEFECT-ROOT-P](PGW-WDP-QUOTIENT-DEFECT-ROOT-P.md) (DEFINITION), [PGW-SN-E08-WEIGHTED-L1-DUALITY](PGW-SN-E08-WEIGHTED-L1-DUALITY.md) (PROVED_LEAN)
+- `PGW-R-WDP-PHI-WELL-DEFINED-L1-DUALITY` `DERIVED_LEAN`: [PGW-WDP-GRAPH-COCHAIN-HOST](PGW-WDP-GRAPH-COCHAIN-HOST.md) (DEFINITION), [PGW-WDP-QUOTIENT-DEFECT-ROOT-P](PGW-WDP-QUOTIENT-DEFECT-ROOT-P.md) (DEFINITION), [PGW-SN-E08-WEIGHTED-L1-DUALITY](PGW-SN-E08-WEIGHTED-L1-DUALITY.md) (PROVED_LEAN)
 
 Outgoing (0):
 

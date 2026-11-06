@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/LqgEprlVertexImport.lean](../../../lean4/LqgEprlVertexImport.lean)
 - sha256 (`bytes`): `c06cffbac440dd638a872a3f301278a854a804f22aaf922b4933be64f7dcfffa`
-- cited in: node.lean, node.source, receipt dag/research/campaign_lqg-eprl-vertex-import_lean_replay.json (LqgEprlVertexImport), record TFQ-2314
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_lqg-eprl-vertex-import_lean_replay.json (LqgEprlVertexImport), record TFQ-2314
 - replay: `verified`
-  - receipt [dag/research/campaign_lqg-eprl-vertex-import_lean_replay.json](../../../dag/research/campaign_lqg-eprl-vertex-import_lean_replay.json) (module `LqgEprlVertexImport`): recorded sha256 `c06cffbac440dd638a872a3f301278a854a804f22aaf922b4933be64f7dcfffa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_lqg-eprl-vertex-import_lean_replay.json](../../../evidence/lean_receipts/campaign_lqg-eprl-vertex-import_lean_replay.json) (module `LqgEprlVertexImport`): recorded sha256 `c06cffbac440dd638a872a3f301278a854a804f22aaf922b4933be64f7dcfffa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build LqgEprlVertexImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

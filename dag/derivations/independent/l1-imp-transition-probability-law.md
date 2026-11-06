@@ -141,7 +141,7 @@ ordered interval of positive effects with its affine operations.
 
 ## Verification and scope
 
-See [the Lean replay receipt](../../research/campaign_l1-imp-transition-probability-law_lean_replay.json).
+See [the Lean replay receipt](../../../evidence/lean_receipts/campaign_l1-imp-transition-probability-law_lean_replay.json).
 The non-default Lake target uses Lean 4.35.0 and Mathlib
 56a005855ea17e0b0958f73ec801ae140b0a1679. Each explicitly named source declaration has an axiom
 report. Digests bind the accepted sources and output.

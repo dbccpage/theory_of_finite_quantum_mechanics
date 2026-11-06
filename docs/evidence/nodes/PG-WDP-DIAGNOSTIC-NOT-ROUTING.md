@@ -36,7 +36,7 @@ WDP-CH04-N01 NONCLAIM; GTLA rules 4 and 6 The legacy GTLA rubric is unavailable 
 
 ## Review
 
-- PFP review: [dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../evidence/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: Over hand-transcribed source tables, the diagnostic class, routing terminal, residual class and authority tag are different finite axes and nothing forces the partial class-to-terminal composite the source declares (the exact class is unrouted); a diagnostic value is at most a necessary eligibility gate for sealing a certificate, never authority. The source code itself names the exact class ExactRepair and tags ClosedResidual as StabilizedSurvivor, contrary to ledger N01.
   - does not support: That any policy from diagnostic classes to terminals is the correct one or is forced; WDP-CH04-O01, which stays conditional; any identification of terminal_status::ResidualClass (Exact, ClosedSurvivor, Open, Refused) with the diagnostic class (the unrelated omega_homology ResidualClass with values ExactRepair, StabilizedSurvivor, OpenObstruction has the three values of the diagnostic class and is not modelled); that the Rust class name ExactRepair and the ledger name ExactClass denote different things (the Lean exactRepairAllowed is the same predicate as certEligible, so the clause "ExactClass is not ExactRepair" has no anchor of its own); a route for the exact class (the source declares none); budget, rule or lift availability as routing inputs (none exist in the source routing code); evidence about the source from the leaves that are definitional in the model (authority counts, AuthTag); any physical or interpretive claim.
   - next test: Enumerate the 7 total extensions of the declared partial policy (the 7 choices of terminal for ExactClass) and decide for each whether it is compatible with (a) certificate eligibility being exact-class-only, (b) the 4-element image of terminal_from_fiber, (c) Certified requiring an authority-bearing terminal; then state the surviving extension(s) as the policy O01 must declare.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `4fa11b70e328f2c42e32c89548b8970033b8f2da996181f2526febe6dcfca324`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Routing`): recorded sha256 `4fa11b70e328f2c42e32c89548b8970033b8f2da996181f2526febe6dcfca324` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_wdp.json](../../../evidence/lean_receipts/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Routing`): recorded sha256 `4fa11b70e328f2c42e32c89548b8970033b8f2da996181f2526febe6dcfca324` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Routing.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -65,9 +65,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/WdpDiagnosticRouting.lean](../../../lean4/WdpDiagnosticRouting.lean)
 - sha256 (`bytes`): `36530ac192efceb10c24eb272573d98f8852d40e63d888897c24523fd75ecdf0`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (WdpDiagnosticRouting)
+- cited in: receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (WdpDiagnosticRouting)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `WdpDiagnosticRouting`): recorded sha256 `36530ac192efceb10c24eb272573d98f8852d40e63d888897c24523fd75ecdf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `WdpDiagnosticRouting`): recorded sha256 `36530ac192efceb10c24eb272573d98f8852d40e63d888897c24523fd75ecdf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build WdpDiagnosticRouting`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

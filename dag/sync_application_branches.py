@@ -163,11 +163,11 @@ def _render_application_index(folder, fragment, records, paper_paths):
     index += '\n' + MARKER + '\n\n## Application and composition derivation branches\n\n'
     index += ('These branches attach to existing finite carriers. A proved theorem has its stated hypotheses; '
               'an open research target remains open. See the [branch fragment](../fragments/application_branches.json) '
-              'and the [initial application receipt](../research/application_branches_validation.json). '
-              'The [tensor receipt](../research/tensor_composition_validation.json) is the historical prose/kernel snapshot; '
-              'the [formalization receipt](../research/tensor_formalization_validation.json) records the verified tomography and Schmidt extension. '
-              'The [measurement receipt](../research/tensor_measurement_validation.json) records the effect cone, binary interval and finite POVMs with explicit saturation premises. '
-              'The [countermodel receipt](../research/tensor_countermodel_validation.json) verifies the TFQ-0413 hypothesis boundaries.\n')
+              'and the [initial application receipt](../../evidence/reviews/application_branches_validation.json). '
+              'The [tensor receipt](../../evidence/lean_receipts/tensor_composition_validation.json) is the historical prose/kernel snapshot; '
+              'the [formalization receipt](../../evidence/lean_receipts/tensor_formalization_validation.json) records the verified tomography and Schmidt extension. '
+              'The [measurement receipt](../../evidence/lean_receipts/tensor_measurement_validation.json) records the effect cone, binary interval and finite POVMs with explicit saturation premises. '
+              'The [countermodel receipt](../../evidence/lean_receipts/tensor_countermodel_validation.json) verifies the TFQ-0413 hypothesis boundaries.\n')
     for stage in fragment['stages']:
         stage_records = [r for r in records if r['stage'] == stage]
         index += f'\n### {stage} ({len(stage_records)} derivations)\n\n'

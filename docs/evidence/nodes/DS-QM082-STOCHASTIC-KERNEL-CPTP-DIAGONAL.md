@@ -37,7 +37,7 @@ Lean exhibits two channels with the same diagonal shadow (diagonal_shadow_does_n
 
 ## Review
 
-- PFP review: [dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/reviews/20261019_resources_audit/review_result.json](../../../evidence/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact Kraus completeness, channel outputs, stochastic kernel and same-diagonal distinct-output controls are retained; scalar Cayley and population conservation are kernel checked.
   - does not support: Formalize all matrix/Kraus/tensor positivity transports and physical channel admission. Basis-relative stochastic shadows do not select a unique quantum channel.
   - next test: Formalize all matrix/Kraus/tensor positivity transports and physical channel admission. Basis-relative stochastic shadows do not select a unique quantum channel.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0265
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1ccdeea9abc91a85575d6d3f775cd685d795aea2ea081a24bc6251a6958f88d6`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkChannel`): recorded sha256 `1ccdeea9abc91a85575d6d3f775cd685d795aea2ea081a24bc6251a6958f88d6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkChannel`): recorded sha256 `1ccdeea9abc91a85575d6d3f775cd685d795aea2ea081a24bc6251a6958f88d6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertWalkChannel`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md](../../../dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md)
-- sha256 (`lf-normalised`): `ba1a34e4364e665fb88aef0bc7b63b68d976b9c0b82c9d11ea97ea6ecb3ab047`
+- sha256 (`lf-normalised`): `7195734ad5077a37ef609ca24f713e488fbf3236a96786f7cf74774905382c5e`
 - generated view: listed, not counted
 - cited in: record TFQ-0265
 - counts toward the grade: no

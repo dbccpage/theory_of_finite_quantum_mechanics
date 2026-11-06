@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9a5d905d70db6124a31a54d1616dfb70308ee04c095302061e86919afbe9d5d8`
 - cited in: node.lean, record TFQ-0537
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PointedRelation`): recorded sha256 `9a5d905d70db6124a31a54d1616dfb70308ee04c095302061e86919afbe9d5d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PointedRelation`): recorded sha256 `9a5d905d70db6124a31a54d1616dfb70308ee04c095302061e86919afbe9d5d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -82,9 +82,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md)
 - sha256 (`lf-normalised`): `616280b727abb20440caea09709a0e8f5512fbc8de20da8a3db124de2dc262ff`
 - cited in: node.source
 - counts toward the grade: yes
@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0537_wdp_pointed_apartness.md`
 
 - file: [dag/derivations/06_wdp/tfq_0537_wdp_pointed_apartness.md](../../../dag/derivations/06_wdp/tfq_0537_wdp_pointed_apartness.md)
-- sha256 (`lf-normalised`): `b4a01409f0fa430f8d22c3554bf72ef99c5c2546bdd581b95fe2b8234fadf86c`
+- sha256 (`lf-normalised`): `55c18cb3cd0cce6b2950205085f963c481a7104b4d2017d9694d04be6e9e39e3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0537
 - counts toward the grade: no

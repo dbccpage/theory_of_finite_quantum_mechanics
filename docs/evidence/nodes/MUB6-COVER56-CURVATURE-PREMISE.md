@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `7158a5c991e22efb8526564e05c1ef14b2ade65a874c82a7cd1d814d45e92ec5`
 - cited in: node.lean, record TFQ-1273
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `TargetA12SmaleSentry`): recorded sha256 `7158a5c991e22efb8526564e05c1ef14b2ade65a874c82a7cd1d814d45e92ec5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `TargetA12SmaleSentry`): recorded sha256 `7158a5c991e22efb8526564e05c1ef14b2ade65a874c82a7cd1d814d45e92ec5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build TargetA12SmaleSentry`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

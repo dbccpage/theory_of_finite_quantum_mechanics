@@ -36,7 +36,7 @@ U1SelectorBoundary / HilbertWalkCircle; headers: candidate; sign group excluded 
 
 ## Review
 
-- PFP review: [dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../evidence/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual cyclic regular-representation shift/square matrices and group-order controls, plus finite modular alternatives in Lean.
   - does not support: Provide genuine topological connectedness, selector uniqueness and source refinement. A Boolean selector pack or finite shadow cannot discharge U(1).
   - next test: Provide genuine topological connectedness, selector uniqueness and source refinement. A Boolean selector pack or finite shadow cannot discharge U(1).
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c3326f87aa656cbec551fc23ecf89675379ae738888b497b8ecc3c748093acfa`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkCircle`): recorded sha256 `c3326f87aa656cbec551fc23ecf89675379ae738888b497b8ecc3c748093acfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkCircle`): recorded sha256 `c3326f87aa656cbec551fc23ecf89675379ae738888b497b8ecc3c748093acfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertWalkCircle`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `U1SelectorBoundary`): recorded sha256 `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `U1SelectorBoundary`): recorded sha256 `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build U1SelectorBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md](../../../dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md)
-- sha256 (`lf-normalised`): `7a88ebef332ac78cab8de69c4643d54ce5f272c58f21c8d24bd3396a68a9e0e9`
+- sha256 (`lf-normalised`): `230994ba4c6c87849167b0e6a374f6a4d3c721bcf830a0b5d3e2882691655576`
 - generated view: listed, not counted
 - cited in: record TFQ-0312 (shared)
 - counts toward the grade: no

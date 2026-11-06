@@ -52,9 +52,9 @@ See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 - Repository: `dag/derivations/independent/cqft-causal-factorization-import.md`
 - Repository: `checks/independent/cqft-causal-factorization-import.py`
 - Repository: `lean4/CausalFactorizationImport.lean`
-- Repository: `dag/research/campaign_cqft-causal-factorization-import_lean_replay.json`
-- Repository: `dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json`
-- Repository: `dag/research/campaign_cqft-causal-factorization-import_independent.json`
+- Repository: `evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_mutation.json`
+- Repository: `evidence/lean_receipts/campaign_cqft-causal-factorization-import_independent.json`
 
 ## Lean 4 declarations read
 - `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.bogoliubovV_zero`

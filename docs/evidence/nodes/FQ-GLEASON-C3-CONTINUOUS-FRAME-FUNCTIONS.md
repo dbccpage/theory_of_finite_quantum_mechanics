@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc`
 - cited in: node.lean, node.source, record TFQ-1059
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonComplexSphere`): recorded sha256 `72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonComplexSphere`): recorded sha256 `72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonComplexSphere`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb`
 - cited in: node.lean, node.source, record TFQ-1059
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonRealSphere`): recorded sha256 `ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonRealSphere`): recorded sha256 `ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonRealSphere`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -77,21 +77,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1059_fq_gleason_c3_continuous_frame_functions.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1059_fq_gleason_c3_continuous_frame_functions.md](../../../dag/derivations/10_finite_qm_core/tfq_1059_fq_gleason_c3_continuous_frame_functions.md)
-- sha256 (`lf-normalised`): `0033f91250cb32d200df6d7cb501fddd28ad2d4f1e0decdc1dc3d7ea6f7835ce`
+- sha256 (`lf-normalised`): `ddb3dc28f41b4ea57a374750eae3ae50a0877794aee3c0c8b25f1401eae2d7ea`
 - generated view: listed, not counted
 - cited in: record TFQ-1059
 - counts toward the grade: no
 
-### Documents and data: `dag/research/pr500_review/manifest.json`
+### Documents and data: `evidence/reviews/pr500/manifest.json`
 
-- file: [dag/research/pr500_review/manifest.json](../../../dag/research/pr500_review/manifest.json)
+- file: [evidence/reviews/pr500/manifest.json](../../../evidence/reviews/pr500/manifest.json)
 - sha256 (`lf-normalised`): `c32d8f516a5d51ea49c8a18535dc4423363527c2a7fcbe27681c2bf269ff2e5f`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/pr500_review/review.md`
+### Documents and data: `evidence/reviews/pr500/review.md`
 
-- file: [dag/research/pr500_review/review.md](../../../dag/research/pr500_review/review.md)
+- file: [evidence/reviews/pr500/review.md](../../../evidence/reviews/pr500/review.md)
 - sha256 (`lf-normalised`): `ba7c9cce9598da12b30e194be375b1c48bfd9df89ee5f3f7f95aed943d689e26`
 - cited in: node.source
 - counts toward the grade: yes

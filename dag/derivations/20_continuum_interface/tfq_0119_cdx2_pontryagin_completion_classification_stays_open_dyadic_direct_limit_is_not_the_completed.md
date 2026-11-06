@@ -31,7 +31,7 @@
 ## 3. Independent Verification & Mutation Receipts
 
 - **Independent Checker (`checks/independent/tfq-0119.py`)**: `checks=892 direct_limit=298 non_dyadic=516 cauchy_fence=78 failures=0`.
-- **Lean Mutation Gate (`dag/research/campaign_tfq-0119_lean_mutation.json`)**: 6/6 semantic mutations killed (`all_killed=true`).
+- **Lean Mutation Gate (`evidence/lean_receipts/campaign_tfq-0119_lean_mutation.json`)**: 6/6 semantic mutations killed (`all_killed=true`).
 
 ## 4. Claim Hygiene Summary
 

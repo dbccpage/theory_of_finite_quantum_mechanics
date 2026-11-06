@@ -67,4 +67,4 @@ Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; 
   - `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md:668-680`
   - `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md:542-582`
   - `dag/derivations/independent/fsp-regge-deficit-action.md`
-  - `dag/research/campaign_fsp-regge-deficit-action_lean_replay.json`
+  - `evidence/lean_receipts/campaign_fsp-regge-deficit-action_lean_replay.json`

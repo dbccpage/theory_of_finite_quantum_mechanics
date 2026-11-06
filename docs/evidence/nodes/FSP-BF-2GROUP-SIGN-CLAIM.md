@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/BfCocycleObstruction.lean](../../../lean4/BfCocycleObstruction.lean)
 - sha256 (`bytes`): `0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0`
-- cited in: node.lean, receipt dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json (BfCocycleObstruction), record TFQ-1210
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-bf-2group-sign-claim_lean_replay.json (BfCocycleObstruction), record TFQ-1210
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json) (module `BfCocycleObstruction`): recorded sha256 `0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-bf-2group-sign-claim_lean_replay.json) (module `BfCocycleObstruction`): recorded sha256 `0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build BfCocycleObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -91,14 +91,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md](../../../dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md)
-- sha256 (`lf-normalised`): `661ca029df6f5f7a2a1817d791962fb9ebd8477be37a2f1e702456437d824b29`
+- sha256 (`lf-normalised`): `98dfdb13d9f9e1f0bc330ed3afb203e583a4a112194a35fcfa86bc1767bf3fb0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1210
 - counts toward the grade: no
@@ -110,9 +110,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_fsp-bf-2group-sign-claim_lean_replay.json`
 
-- file: [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-bf-2group-sign-claim_lean_replay.json)
 - sha256 (`lf-normalised`): `558f9650d8a80f2000e5bf6f26e9b5e63072b48f4f8d049b3a828b629d197ec2`
 - cited in: node.source
 - counts toward the grade: yes

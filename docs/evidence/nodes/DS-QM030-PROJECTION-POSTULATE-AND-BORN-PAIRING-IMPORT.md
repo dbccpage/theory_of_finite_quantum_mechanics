@@ -37,7 +37,7 @@ Overlaps L1_TO_L2 Born nodes (QM_020, other fragment).
 
 ## Review
 
-- PFP review: [dag/results/DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/results/DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../evidence/results/DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Scalar idempotence holds exactly at 0 and 1 in Lean; retained diagonal effect controls and two different normalized pairings are exact.
   - does not support: Derive or explicitly admit the spectral/projector structure and the physical observer pairing. The bare finite carrier does not select the Born rule or an actual event.
   - next test: Derive or explicitly admit the spectral/projector structure and the physical observer pairing. The bare finite carrier does not select the Born rule or an actual event.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornPairingBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0236 (shared), record TFQ-0241
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `881e01ee20e9af8f1d0f184edb5062447928fc98916c7a18f546d700fc839343`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `GleasonTheorem`): recorded sha256 `881e01ee20e9af8f1d0f184edb5062447928fc98916c7a18f546d700fc839343` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `GleasonTheorem`): recorded sha256 `881e01ee20e9af8f1d0f184edb5062447928fc98916c7a18f546d700fc839343` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonTheorem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md)
-- sha256 (`lf-normalised`): `22c068f6d8d57eff83d5919e716b5eb07d1c37e531a3f877505cc322f27433f1`
+- sha256 (`lf-normalised`): `21343be37a6fe9862d825997bcb1c290d921e890205c2b7b318917cf0f74a381`
 - generated view: listed, not counted
 - cited in: record TFQ-0236 (shared)
 - counts toward the grade: no
@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0241_projection_postulate_and_born_pairing_remain_imported.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0241_projection_postulate_and_born_pairing_remain_imported.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0241_projection_postulate_and_born_pairing_remain_imported.md)
-- sha256 (`lf-normalised`): `2ff5d99d90a29f686733fb3a7e7c7979be3e10986b116ce953f931bdbdada51a`
+- sha256 (`lf-normalised`): `325db6ee4963c44faffc64cf2b04a541b463752660ba1e65ee15443aea389c0a`
 - generated view: listed, not counted
 - cited in: record TFQ-0241
 - counts toward the grade: no

@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `bc1f160caa99139792dfb8b769a913dd1f713fdc5012ce66ab697895b5ac5b73`
 - cited in: node.lean, record TFQ-1258
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `Gluing`): recorded sha256 `bc1f160caa99139792dfb8b769a913dd1f713fdc5012ce66ab697895b5ac5b73` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `Gluing`): recorded sha256 `bc1f160caa99139792dfb8b769a913dd1f713fdc5012ce66ab697895b5ac5b73` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build Gluing`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

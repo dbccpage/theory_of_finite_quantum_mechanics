@@ -36,7 +36,7 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 
 ## Review
 
-- PFP review: [dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact normalized alternative profiles, quadratic rotation identity and a genuine Born/quartic divergence are kernel/native checked on the declared rational carrier.
   - does not support: Supply frame-function/effect/continuity/dimension hypotheses and a uniqueness theorem. Bare normalization does not derive Born pairing.
   - next test: Supply frame-function/effect/continuity/dimension hypotheses and a uniqueness theorem. Bare normalization does not derive Born pairing.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/BornUniquenessIntegerSlice.lean](../../../lean4/BornUniquenessIntegerSlice.lean)
 - sha256 (`bytes`): `b864a81a1b53f2fbd8c94d77ee31217f7b487fec0470f158d1c79c9388422b14`
-- cited in: node.lean, receipt dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json (BornUniquenessIntegerSlice), record TFQ-1043
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json (BornUniquenessIntegerSlice), record TFQ-1043
 - replay: `verified`
-  - receipt [dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json](../../../dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json) (module `BornUniquenessIntegerSlice`): recorded sha256 `b864a81a1b53f2fbd8c94d77ee31217f7b487fec0470f158d1c79c9388422b14` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json](../../../evidence/lean_receipts/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json) (module `BornUniquenessIntegerSlice`): recorded sha256 `b864a81a1b53f2fbd8c94d77ee31217f7b487fec0470f158d1c79c9388422b14` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornUniquenessIntegerSlice`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-1043
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `881e01ee20e9af8f1d0f184edb5062447928fc98916c7a18f546d700fc839343`
 - cited in: node.lean, record TFQ-1043
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `GleasonTheorem`): recorded sha256 `881e01ee20e9af8f1d0f184edb5062447928fc98916c7a18f546d700fc839343` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `GleasonTheorem`): recorded sha256 `881e01ee20e9af8f1d0f184edb5062447928fc98916c7a18f546d700fc839343` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonTheorem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

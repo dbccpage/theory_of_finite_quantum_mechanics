@@ -19,6 +19,6 @@ The rooted tree, given by a parent function and a strictly decreasing depth, and
 ## Evidence
 
 - [dag/derivations/independent/dfm-hierarchical-borel.md](../independent/dfm-hierarchical-borel.md)
-- [dag/research/campaign_dfm-hierarchical-borel_lean_replay.json](../../research/campaign_dfm-hierarchical-borel_lean_replay.json)
+- [evidence/lean_receipts/campaign_dfm-hierarchical-borel_lean_replay.json](../../../evidence/lean_receipts/campaign_dfm-hierarchical-borel_lean_replay.json)
 - [checks/independent/dfm-hierarchical-borel.py](../../../checks/independent/dfm-hierarchical-borel.py)
-- [dag/research/hierarchical_nonabelian_dfm_finite_map.md](../../research/hierarchical_nonabelian_dfm_finite_map.md)
+- [dag/derivations/24_dressing_field/hierarchical_nonabelian_dfm_finite_map.md](hierarchical_nonabelian_dfm_finite_map.md)

@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/AdsRtFormulaImport.lean](../../../lean4/AdsRtFormulaImport.lean)
 - sha256 (`bytes`): `3c2f558eef58018b8667ea9933648b6caa70ace6f6e37388cd7dc2edfe32c29c`
-- cited in: node.lean, receipt dag/research/campaign_ads-rt-formula-import_lean_replay.json (AdsRtFormulaImport), record TFQ-2204
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_ads-rt-formula-import_lean_replay.json (AdsRtFormulaImport), record TFQ-2204
 - replay: `verified`
-  - receipt [dag/research/campaign_ads-rt-formula-import_lean_replay.json](../../../dag/research/campaign_ads-rt-formula-import_lean_replay.json) (module `AdsRtFormulaImport`): recorded sha256 `3c2f558eef58018b8667ea9933648b6caa70ace6f6e37388cd7dc2edfe32c29c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ads-rt-formula-import_lean_replay.json](../../../evidence/lean_receipts/campaign_ads-rt-formula-import_lean_replay.json) (module `AdsRtFormulaImport`): recorded sha256 `3c2f558eef58018b8667ea9933648b6caa70ace6f6e37388cd7dc2edfe32c29c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build AdsRtFormulaImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md](../../../dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md)
-- sha256 (`lf-normalised`): `1825b86ad4c4ba5a82bb139987ed096d2c18ebf72c4bec64d1af183550465d4c`
+- sha256 (`lf-normalised`): `77331b5928464991e82424d2ae41a980bb13fc5f476b72f6e88cdab5a9b51102`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2204
 - counts toward the grade: no
@@ -95,23 +95,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-rt-formula-import_independent.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-rt-formula-import_independent.json`
 
-- file: [dag/research/campaign_ads-rt-formula-import_independent.json](../../../dag/research/campaign_ads-rt-formula-import_independent.json)
+- file: [evidence/lean_receipts/campaign_ads-rt-formula-import_independent.json](../../../evidence/lean_receipts/campaign_ads-rt-formula-import_independent.json)
 - sha256 (`lf-normalised`): `94586670fbaba3f6b4cc221b35ef34d686d32c9db6f8d9519788383c0749c093`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-rt-formula-import_lean_mutation.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-rt-formula-import_lean_mutation.json`
 
-- file: [dag/research/campaign_ads-rt-formula-import_lean_mutation.json](../../../dag/research/campaign_ads-rt-formula-import_lean_mutation.json)
+- file: [evidence/lean_receipts/campaign_ads-rt-formula-import_lean_mutation.json](../../../evidence/lean_receipts/campaign_ads-rt-formula-import_lean_mutation.json)
 - sha256 (`lf-normalised`): `2e8bbf419d4dbcc0fd74d2306dfd2ed6212b49a968dbe06d8dce76fbc9013ed7`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ads-rt-formula-import_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_ads-rt-formula-import_lean_replay.json`
 
-- file: [dag/research/campaign_ads-rt-formula-import_lean_replay.json](../../../dag/research/campaign_ads-rt-formula-import_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_ads-rt-formula-import_lean_replay.json](../../../evidence/lean_receipts/campaign_ads-rt-formula-import_lean_replay.json)
 - sha256 (`lf-normalised`): `a41c6aea86f266e385b6df4c6625dff49ec4ffc7f6fd0c07d5bd582ca013b02d`
 - cited in: node.source
 - counts toward the grade: yes

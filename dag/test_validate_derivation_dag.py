@@ -101,9 +101,9 @@ def test_file_reference_integration(tmp_path: Path) -> None:
 
 def _review(**changes: object) -> dict[str, object]:
     review: dict[str, object] = {
-        "review": "dag/results/N/reviews/r/review_result.json",
+        "review": "evidence/results/N/reviews/r/review_result.json",
         "review_sha256": "0" * 64,
-        "review_refs": ["dag/results/N/reviews/r/review_result.json"],
+        "review_refs": ["evidence/results/N/reviews/r/review_result.json"],
         "verdict": "scoped_result_or_obstruction_reviewed",
         "narrowest_claim": "a finite witness",
         "does_not_support": "the general statement",
@@ -156,19 +156,19 @@ def test_pfp_review_never_raises_a_status() -> None:
 
 
 def test_pfp_review_file_and_sha256_are_checked(tmp_path: Path) -> None:
-    review_file = tmp_path / "dag" / "results" / "N" / "reviews" / "r" / "review_result.json"
+    review_file = tmp_path / "evidence" / "results" / "N" / "reviews" / "r" / "review_result.json"
     review_file.parent.mkdir(parents=True)
     review_file.write_bytes(b'{"status": "ok"}\r\n')
     digest = dag.pfp_review_sha256(b'{"status": "ok"}\n')
     assert dag.pfp_review_sha256(review_file.read_bytes()) == digest
     node = _reviewed(review_sha256=digest)
-    node["source"] = ["dag/results/N/reviews/r/review_result.json"]
+    node["source"] = ["evidence/results/N/reviews/r/review_result.json"]
     assert dag.check(_graph([node], []), tmp_path) == []
     wrong = _reviewed()
-    wrong["source"] = ["dag/results/N/reviews/r/review_result.json"]
+    wrong["source"] = ["evidence/results/N/reviews/r/review_result.json"]
     assert any("does not match" in err for err in dag.check(_graph([wrong], []), tmp_path))
-    gone = _reviewed(review="dag/results/N/reviews/r/gone.json", review_refs=["dag/results/N/reviews/r/gone.json"])
-    gone["source"] = ["dag/results/N/reviews/r/review_result.json"]
+    gone = _reviewed(review="evidence/results/N/reviews/r/gone.json", review_refs=["evidence/results/N/reviews/r/gone.json"])
+    gone["source"] = ["evidence/results/N/reviews/r/review_result.json"]
     assert any("file missing" in err for err in dag.check(_graph([gone], []), tmp_path))
 
 

@@ -37,7 +37,7 @@ GS-000 declared axioms H1-H5
 
 ## Review
 
-- PFP review: [dag/results/L1-OBSERVER-AXIOMS-H1-H5/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-OBSERVER-AXIOMS-H1-H5/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-OBSERVER-AXIOMS-H1-H5/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-OBSERVER-AXIOMS-H1-H5/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: yes.
   - narrowest claim: Exact named rival defects and admitted weighted aggregate controls, with l-infinity and squared-energy counterexamples in Lean.
   - does not support: State and prove all observer axioms on the full finite projection and derive the conditional classification; these samples do not establish general axioms.
   - next test: State and prove all observer axioms on the full finite projection and derive the conditional classification; these samples do not establish general axioms.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -62,17 +62,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `code/rust/src/wdp/gauge_classification.rs`
-
-- file: [code/rust/src/wdp/gauge_classification.rs](../../../code/rust/src/wdp/gauge_classification.rs)
-- sha256 (`bytes`): `938dd12132fd41cdcdc3ebe3daa421dc174de67c1ecc1d9279ae0a05b2f17ef3`
-- cited in: record TFQ-0352
-- note: no test is cited for this symbol; its crate is tfqm_wdp
-- counts toward the grade: yes
-
 ### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
+- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -80,6 +72,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness` (rust_symbol) | yes | yes | yes | - | - |
 
+- counts toward the grade: yes
+
+### Rust: `code/rust/src/wdp/gauge_classification.rs`
+
+- file: [code/rust/src/wdp/gauge_classification.rs](../../../code/rust/src/wdp/gauge_classification.rs)
+- sha256 (`bytes`): `938dd12132fd41cdcdc3ebe3daa421dc174de67c1ecc1d9279ae0a05b2f17ef3`
+- cited in: record TFQ-0352
+- note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md`
@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0352_admit_h1_through_h5_as_observer_hypotheses_on_a_finite_edge_projection.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0352_admit_h1_through_h5_as_observer_hypotheses_on_a_finite_edge_projection.md](../../../dag/derivations/07_l1_emergence/tfq_0352_admit_h1_through_h5_as_observer_hypotheses_on_a_finite_edge_projection.md)
-- sha256 (`lf-normalised`): `e0fc4b5e256526f92bcd7823125ae8c7e8e764796655c9c132a7d89b86684213`
+- sha256 (`lf-normalised`): `7755b00ba496955cce5f8bb4f81b12e53823faf94e72f20facf2a0775a712f73`
 - generated view: listed, not counted
 - cited in: record TFQ-0352
 - counts toward the grade: no

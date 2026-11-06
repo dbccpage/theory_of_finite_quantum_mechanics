@@ -2,9 +2,9 @@ import importlib.util,sys,unittest
 from fractions import Fraction as Q
 from itertools import product
 from pathlib import Path
-ROOT=next(p for p in Path(__file__).resolve().parents if (p/'dag/pfp/prepare_stage.py').is_file())
+ROOT=next(p for p in Path(__file__).resolve().parents if (p/'checks/exact_checkers/exact_json.py').is_file())
 spec=importlib.util.spec_from_file_location('producer',ROOT/'code/python/src/qm/genesis_impl_exact.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-sys.path.insert(0,str(ROOT/'dag/pfp'));from genesis_impl_checker import verify
+sys.path.insert(0,str(ROOT/'checks/exact_checkers'));from genesis_impl_checker import verify
 class ExactControls(unittest.TestCase):
     def check(self,k,x):
         v=list(map(str,x));o=m.evaluate(k,v);verify(k,v,o);return list(map(Q,o))

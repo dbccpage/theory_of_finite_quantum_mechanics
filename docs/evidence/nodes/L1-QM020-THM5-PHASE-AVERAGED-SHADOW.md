@@ -38,7 +38,7 @@ Finite sign-group phase-averaging cross-term cancellation mechanized in Derivati
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../evidence/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Complete3-sector phase-conjugation mean, diagonal map and64 exact scalar readouts, with scalar cross cancellation in Lean.
   - does not support: Supply Haar measure, independence and Hilbert/source refinement. A finite polynomial-moment identity is not a continuum integration construction.
   - next test: Supply Haar measure, independence and Hilbert/source refinement. A finite polynomial-moment identity is not a continuum integration construction.
@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0302_phase_averaged_shadow_under_declared_phases.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0302_phase_averaged_shadow_under_declared_phases.md](../../../dag/derivations/08_l1_to_l2/tfq_0302_phase_averaged_shadow_under_declared_phases.md)
-- sha256 (`lf-normalised`): `d604cd4859b351530a4318d060009ee705174e7b205978342ab510455c242b93`
+- sha256 (`lf-normalised`): `0042195a8cda6a70db32bca127f42c92387d2cf8fa40e201083ef9ba16c2b84d`
 - generated view: listed, not counted
 - cited in: record TFQ-0302
 - counts toward the grade: no

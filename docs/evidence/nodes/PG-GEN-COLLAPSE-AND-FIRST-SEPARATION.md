@@ -36,7 +36,7 @@ Section 7 - cost-two first separation; U0/U1/BL/BD separable
 
 ## Review
 
-- PFP review: [dag/results/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../evidence/results/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: All 111 declared candidate sequences are replayed; no cost\<2 response separates, six cost-two responses tie, and the two unary responses minimize the secondary arity sum.
   - does not support: Transport this bounded alphabet to arbitrary source Item arguments/arities and the full validResponse requirements; do not claim a global or physical minimum from a finite declared candidate set.
   - next test: Transport this bounded alphabet to arbitrary source Item arguments/arities and the full validResponse requirements; do not claim a global or physical minimum from a finite declared candidate set.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `96894c39bed9b2e9661deabbbb9a2f75d85603e0ccdf3e9d505be2a0175e362c`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Minimality`): recorded sha256 `96894c39bed9b2e9661deabbbb9a2f75d85603e0ccdf3e9d505be2a0175e362c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Minimality`): recorded sha256 `96894c39bed9b2e9661deabbbb9a2f75d85603e0ccdf3e9d505be2a0175e362c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/Minimality.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

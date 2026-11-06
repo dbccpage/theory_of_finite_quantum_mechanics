@@ -36,7 +36,7 @@ Lean states the 2x2 case only: a product table has determinant 0 and the identit
 
 ## Review
 
-- PFP review: [dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/review_result.json](../../../evidence/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual marginals, normalized product reconstruction, signed residuals and Phi are checked; residual and zero-defect polynomials are general over Q in Lean.
   - does not support: Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement.
   - next test: Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0256
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `b2b24902375274d46ea58020d2f83ffad245f5b3eefa5a152d1366ac9f47b9e4`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `TensorCompositionBoundary`): recorded sha256 `b2b24902375274d46ea58020d2f83ffad245f5b3eefa5a152d1366ac9f47b9e4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `TensorCompositionBoundary`): recorded sha256 `b2b24902375274d46ea58020d2f83ffad245f5b3eefa5a152d1366ac9f47b9e4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build TensorCompositionBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md](../../../dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md)
-- sha256 (`lf-normalised`): `0ac994288b6212de4be7666abdf8f52211a71f98236cb991bf586d128f16759b`
+- sha256 (`lf-normalised`): `184dfdf57a3e80bb97c537f61dd653f2c8c13a9b31421810525de4f5bd11e5a9`
 - generated view: listed, not counted
 - cited in: record TFQ-0256
 - counts toward the grade: no

@@ -37,7 +37,7 @@ H062 / campaign C250 Block 05; ledger LEAN PROVED (RECEIPTED)
 
 ## Review
 
-- PFP review: [dag/results/FQ-TENSOR-LU-RIVAL-EXCLUSION/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-TENSOR-LU-RIVAL-EXCLUSION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-TENSOR-LU-RIVAL-EXCLUSION/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/FQ-TENSOR-LU-RIVAL-EXCLUSION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Exact tensor/right-Z and dump/right-Z arrays plus the genuine report-action non-descent witness are native/kernel checked.
   - does not support: Transport to the original abstract bilinear Kronecker interface, full local-unitary group and physical tensor/basis/inner-product admission. The rival counterexample alone does not derive the tensor product.
   - next test: Transport to the original abstract bilinear Kronecker interface, full local-unitary group and physical tensor/basis/inner-product admission. The rival counterexample alone does not derive the tensor product.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `4f8a0b0fa545b236994c9500ea184e2e9dc5b23432a2052bc55af8fa1313e194`
 - cited in: node.lean, record TFQ-1018
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `BilinearProduct`): recorded sha256 `4f8a0b0fa545b236994c9500ea184e2e9dc5b23432a2052bc55af8fa1313e194` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `BilinearProduct`): recorded sha256 `4f8a0b0fa545b236994c9500ea184e2e9dc5b23432a2052bc55af8fa1313e194` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BilinearProduct`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `eb8f9a7cb10a07586df55ac8f5ca3eb8fda3f059dcff1bef1e80de645542dd42`
 - cited in: node.lean, record TFQ-1018
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `CompositionTensorMub`): recorded sha256 `eb8f9a7cb10a07586df55ac8f5ca3eb8fda3f059dcff1bef1e80de645542dd42` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `CompositionTensorMub`): recorded sha256 `eb8f9a7cb10a07586df55ac8f5ca3eb8fda3f059dcff1bef1e80de645542dd42` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CompositionTensorMub`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `7c3e814fb15d303798bd5e66baddec08ede2033a7471e83f03bb178e7a2eb9c5`
 - cited in: node.lean, record TFQ-1018
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkInterface`): recorded sha256 `7c3e814fb15d303798bd5e66baddec08ede2033a7471e83f03bb178e7a2eb9c5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkInterface`): recorded sha256 `7c3e814fb15d303798bd5e66baddec08ede2033a7471e83f03bb178e7a2eb9c5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertWalkInterface`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -91,27 +91,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md`
-
-- file: [dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md](../../../dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md)
-- sha256 (`lf-normalised`): `232363a4cf1d34a99d91e036e2b74f1ffbb82bdbda0e94da7225d2c39656a16c`
-- generated view: listed, not counted
-- cited in: record TFQ-1018
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md`
+
+- file: [dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md](../../../dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md)
+- sha256 (`lf-normalised`): `8ed5dd40bc4e9dde6b3a9abc8d1d630de91d8e601cb0db8fdb11a2a57276e220`
+- generated view: listed, not counted
+- cited in: record TFQ-1018
+- counts toward the grade: no
 
 ### External sources
 

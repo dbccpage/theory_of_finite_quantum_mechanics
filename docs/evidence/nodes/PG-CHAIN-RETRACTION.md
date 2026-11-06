@@ -36,7 +36,7 @@ Theorem 6 / chain-retraction obstruction (homology injective)
 
 ## Review
 
-- PFP review: [dag/results/PG-CHAIN-RETRACTION/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-CHAIN-RETRACTION/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-CHAIN-RETRACTION/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/PG-CHAIN-RETRACTION/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: For chain maps i: C -\> D and r: D -\> C over a ring with r . i = id on the middle module and r commuting with the boundary, the induced map on homology is injective, so an extension admitting such an r cannot kill an old class; the two-points and triangle-with-face extensions kill a class (kernel, in the modelled degree fragment, and native) and admit no linear chain retraction (kernel, same fragment).
   - does not support: The bridge from declared inclusions to WDP-CH04-N02 (growth of the Genesis/WDP complexes does not repair an obstruction) for any actual Genesis/WDP complex pair; coefficient rings other than the declared one in the native tables; infinite or non-free complexes in the native tables; non-linear retractions and the full-complex (all degrees at once) formalisation of the two named cases; an integral failure of the converse for a genuine subcomplex inclusion (the Z instance is a one-term map, not a subcomplex); the converse over Q as a Lean theorem (it is a standard fact over a field, only observed here on the listed complexes); any physical reading.
   - next test: Take one actual Genesis/WDP growth inclusion named by WDP-CH04-N02, write it in the native complex encoding with its basis subset, and decide by the retraction system and the rank of H(i) whether the old obstruction class is killed or a chain retraction exists, so that the bridge from the general theorem to the WDP growth statement is tested on a real complex.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ChainRetraction.lean](../../../lean4/ChainRetraction.lean)
 - sha256 (`bytes`): `94f50b9df3ae5fa4f31c1461289535ce947ac7d769e9aece38acd2556451ed26`
-- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (ChainRetraction)
+- cited in: node.lean, receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (ChainRetraction)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `ChainRetraction`): recorded sha256 `94f50b9df3ae5fa4f31c1461289535ce947ac7d769e9aece38acd2556451ed26` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `ChainRetraction`): recorded sha256 `94f50b9df3ae5fa4f31c1461289535ce947ac7d769e9aece38acd2556451ed26` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ChainRetraction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `344749ef8c272d08ff04702031ce24e3cc5b41709f6c47d5f95afb2c3bf6d9f8`
 - cited in: record TFQ-0195
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_implementation_sibling.json](../../../dag/research/lean_replay_campaign_implementation_sibling.json) (module `FiniteCochain`): recorded sha256 `344749ef8c272d08ff04702031ce24e3cc5b41709f6c47d5f95afb2c3bf6d9f8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_implementation_sibling.json](../../../evidence/lean_receipts/lean_replay_campaign_implementation_sibling.json) (module `FiniteCochain`): recorded sha256 `344749ef8c272d08ff04702031ce24e3cc5b41709f6c47d5f95afb2c3bf6d9f8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteCochain`
 - counts toward the grade: yes
 
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `4f33ad872484bb41f59938fd85ff46e4aed3413b57a2815f28a787a29e0a1877`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Homology`): recorded sha256 `4f33ad872484bb41f59938fd85ff46e4aed3413b57a2815f28a787a29e0a1877` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Homology`): recorded sha256 `4f33ad872484bb41f59938fd85ff46e4aed3413b57a2815f28a787a29e0a1877` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Homology.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `95b210aaa49b592cff7b6c3c53ec558b3e50cebaae659c3df48b25f5ef48c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -117,7 +117,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `fdb943d23939f39abef9dab6b2dd9f3936cd23c0df02f4453ecf369e3b1a3e51` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/SnMssn/Paper001.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

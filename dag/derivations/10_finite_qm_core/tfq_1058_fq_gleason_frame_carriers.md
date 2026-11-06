@@ -46,8 +46,8 @@ Narrow hypothesis inventory for the Gleason proof chain, separating carrier and 
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `dag/research/pr500_review/review.md`
+  - `evidence/reviews/pr500/review.md`
   - `lean4/BornGaussianRationalFrameObstruction.lean`
   - `lean4/GleasonRealSphere.lean`
   - `lean4/GleasonComplexSphere.lean`
-  - `dag/research/pr500_review/manifest.json`
+  - `evidence/reviews/pr500/manifest.json`

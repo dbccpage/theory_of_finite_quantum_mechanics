@@ -10,8 +10,8 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 9
-- cited Lean, Rust or Python symbols found in their in-repo files: 10
+- counted in-repo evidence files: 10
+- cited Lean, Rust or Python symbols found in their in-repo files: 13
 - distinct cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -36,11 +36,11 @@ Local tomography and the carrier restriction are not derived from primitive diff
 
 ## Source status
 
-Conditional selection kernel-checked in dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection (Lean 4.35.0; ComplexFieldSelection, 22 headline axiom audits; exact Python and Rust replays, 291 rejected fixture-integrity mutations) and independently reviewed in dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261021T171132Z_pr138. Local tomography itself is an import here: OperationalTomography re-expresses it (an irreducible operation family that descends through the product observation exists iff local tomography holds; see FQ-OPERATIONAL-LOCAL-TOMOGRAPHY and OperationalFilterFamily.product_resets_irreducible_iff) and OperationalFieldSelection.selected_parameter consumes it (dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography). Authority effect: none. Earlier: WDP-CH05-D01/N01: a quantum-capable package declares a complex carrier; QM_122 H007: Gaussian integers are not a field
+Conditional selection kernel-checked in evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection (Lean 4.35.0; ComplexFieldSelection, 22 headline axiom audits; exact Python and Rust replays, 291 rejected fixture-integrity mutations) and independently reviewed in evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261021T171132Z_pr138. Local tomography itself is an import here: OperationalTomography re-expresses it (an irreducible operation family that descends through the product observation exists iff local tomography holds; see FQ-OPERATIONAL-LOCAL-TOMOGRAPHY and OperationalFilterFamily.product_resets_irreducible_iff) and OperationalFieldSelection.selected_parameter consumes it (evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography). Authority effect: none. Earlier: WDP-CH05-D01/N01: a quantum-capable package declares a complex carrier; QM_122 H007: Gaussian integers are not a field
 
 ## Review
 
-- PFP review: [dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: Exact Q(i) multiplication/norm/reciprocal controls, general norm multiplicativity and integer norm5 nonunit control in Lean.
   - does not support: Construct the field instance/refinement and topology/completion required for C; these rational pairs do not admit a complete field.
   - next test: Construct the field instance/refinement and topology/completion required for C; these rational pairs do not admit a complete field.
@@ -49,13 +49,29 @@ Conditional selection kernel-checked in dag/results/L1-IMP-COMPLEX-FIELD/runs/20
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- sha256 (`bytes`): `dcfbb2733e10b50e5582e2c8f7b3d9ce8220a199280cd4a2db35b573940f0b99`
+- cited in: node.lean, record TFQ-0293
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch5.gaussian_int_one_plus_i_not_invertible` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch5.gaussian_int_one_plus_i_not_invertible` |
+| `WitnessedDifference.WdpBatch5.gaussian_rat_one_plus_i_inverse` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch5.gaussian_rat_one_plus_i_inverse` |
+| `WitnessedDifference.WdpBatch5.skew_complex_structure_two_orientations` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch5.skew_complex_structure_two_orientations` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/ComplexFieldSelection.lean`
 
 - file: [lean4/ComplexFieldSelection.lean](../../../lean4/ComplexFieldSelection.lean)
 - sha256 (`bytes`): `9fa0607d7e51940ea4e8822333df3f3dbe7f5c9332eec5c01a281c75261a0535`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `ComplexFieldSelection`): recorded sha256 `9fa0607d7e51940ea4e8822333df3f3dbe7f5c9332eec5c01a281c75261a0535` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `ComplexFieldSelection`): recorded sha256 `9fa0607d7e51940ea4e8822333df3f3dbe7f5c9332eec5c01a281c75261a0535` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ComplexFieldSelection`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -75,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c975faaac47ea63dbbbfb40959b5af8c0cee04edb5a5c91f39f912fae741f6cf`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `Complexification`): recorded sha256 `c975faaac47ea63dbbbfb40959b5af8c0cee04edb5a5c91f39f912fae741f6cf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `Complexification`): recorded sha256 `c975faaac47ea63dbbbfb40959b5af8c0cee04edb5a5c91f39f912fae741f6cf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build Complexification`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -90,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -106,7 +122,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `OperationalFieldSelection`): recorded sha256 `c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `OperationalFieldSelection`): recorded sha256 `c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build OperationalFieldSelection`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -138,23 +154,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0293
 - counts toward the grade: no
 
-### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
+### Documents and data: `evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md)
+- file: [evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md](../../../evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md)
 - sha256 (`lf-normalised`): `9854dc36f40af42797cbdae8a8a115b3ebdc93cf85fd3e0b04dd99bb9f203632`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md`
+### Documents and data: `evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md`
 
-- file: [dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md](../../../dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md)
+- file: [evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md](../../../evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md)
 - sha256 (`lf-normalised`): `531bd889a8690afcf88b8fe7ce15a1ab00b4ad2cd0ef41496f395ab8823a68a8`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json`
+### Documents and data: `evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json`
 
-- file: [dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json](../../../dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json)
+- file: [evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json](../../../evidence/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json)
 - sha256 (`lf-normalised`): `ac708482b44b568b9d812fb710d4dc69621b680dd8d69e0d02b13f435efeb4b8`
 - cited in: node.source
 - counts toward the grade: yes

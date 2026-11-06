@@ -19,7 +19,7 @@ Not proved in Lean: that any two linear extensions of an arbitrary finite strict
 
 ## Source status
 
-Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.3
 
 If A_x A_y = A_y A_x for all spacelike pairs then the ordered product is invariant under any chain of adjacent spacelike swaps; C2 has exactly two linear extensions, joined by one adjacent spacelike swap, and with A_{d1}=X, A_{d2}=Z the two products differ by the sign -1; the N poset has exactly five linear extensions.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -47,7 +47,7 @@ Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations rea
 
 - Repository: `lean4/CausalOrder.lean`
 - Repository: `lean4/FrontierLinearExtension.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_append`

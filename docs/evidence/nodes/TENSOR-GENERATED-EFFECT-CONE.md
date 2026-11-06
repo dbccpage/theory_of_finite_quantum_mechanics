@@ -51,8 +51,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70`
 - cited in: node.lean, record TFQ-0414
 - replay: `verified`
-  - receipt [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json) (module `TensorEffectCone`): recorded sha256 `e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/tensor_measurement_validation.json](../../../dag/research/tensor_measurement_validation.json) (module `TensorEffectCone`): recorded sha256 `e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_countermodel_validation.json](../../../evidence/lean_receipts/tensor_countermodel_validation.json) (module `TensorEffectCone`): recorded sha256 `e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_measurement_validation.json](../../../evidence/lean_receipts/tensor_measurement_validation.json) (module `TensorEffectCone`): recorded sha256 `e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build TensorEffectCone`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,8 +67,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52`
 - cited in: node.lean, record TFQ-0414
 - replay: `verified`
-  - receipt [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json) (module `TensorEffectOrder`): recorded sha256 `7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/tensor_measurement_validation.json](../../../dag/research/tensor_measurement_validation.json) (module `TensorEffectOrder`): recorded sha256 `7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_countermodel_validation.json](../../../evidence/lean_receipts/tensor_countermodel_validation.json) (module `TensorEffectOrder`): recorded sha256 `7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_measurement_validation.json](../../../evidence/lean_receipts/tensor_measurement_validation.json) (module `TensorEffectOrder`): recorded sha256 `7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build TensorEffectOrder`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -84,8 +84,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9`
 - cited in: node.lean, record TFQ-0414
 - replay: `verified`
-  - receipt [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json) (module `TensorMeasurements`): recorded sha256 `41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/tensor_measurement_validation.json](../../../dag/research/tensor_measurement_validation.json) (module `TensorMeasurements`): recorded sha256 `41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_countermodel_validation.json](../../../evidence/lean_receipts/tensor_countermodel_validation.json) (module `TensorMeasurements`): recorded sha256 `41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_measurement_validation.json](../../../evidence/lean_receipts/tensor_measurement_validation.json) (module `TensorMeasurements`): recorded sha256 `41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build TensorMeasurements`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -97,14 +97,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md`
 
 - file: [dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md](../../../dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md)
-- sha256 (`lf-normalised`): `126de574698271544d28d12fda6f87f088637b5f3b4cf0ddd0aa6a974362cc02`
+- sha256 (`lf-normalised`): `eff3a2168ec98ff75bfe1546e18643a346dcd68ffee844be90ecd26b42a3df85`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0414
 - counts toward the grade: no
 
-### Documents and data: `dag/research/tensor_measurement_validation.json`
+### Documents and data: `evidence/lean_receipts/tensor_measurement_validation.json`
 
-- file: [dag/research/tensor_measurement_validation.json](../../../dag/research/tensor_measurement_validation.json)
+- file: [evidence/lean_receipts/tensor_measurement_validation.json](../../../evidence/lean_receipts/tensor_measurement_validation.json)
 - sha256 (`lf-normalised`): `b527b722e90d69dd18aa762d109425189ff7636e0b6510c1481e8579cff0f597`
 - cited in: node.source
 - counts toward the grade: yes

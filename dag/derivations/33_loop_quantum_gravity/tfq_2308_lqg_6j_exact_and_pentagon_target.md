@@ -19,7 +19,7 @@ Not proved in Lean: the Biedenharn-Elliott identity exhaustively for twice-spins
 
 ## Source status
 
-Racah single-sum rational squares and values for 2j <= 2 recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Racah single-sum rational squares and values for 2j <= 2 recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Racah single-sum rational squares and values for 2j <= 2 recomputed with Python 
 
 Racah single-sum S sqrt(P) with exact integers: S invariant under the generators of the 24 tetrahedral symmetries on all 3,418 admissible tuples with twice-spins <= 6; orthogonality on 1,928 tuples whose labels and intermediate x are <= 6; Biedenharn-Elliott identity on all 814 admissible 9-tuples with twice-spins <= 3 plus four explicit instances up to 6.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -50,7 +50,7 @@ See also: `TFQ-0105`, `TFQ-0198`.
 - Repository: `code/rust/src/general_relativity/spin_foam.rs`
 - Repository: `lean4/DiscreteSpinfoamAmplitudes.lean`
 - Repository: `lean4/FrontierClassical6j.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierClassical6j.lean::FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6`

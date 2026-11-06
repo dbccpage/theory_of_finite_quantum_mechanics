@@ -36,7 +36,7 @@ Local compatibility port replayed with Lean 4.33.1; enumeration length, uniquene
 
 ## Review
 
-- PFP review: [dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: All edge signings and vertex-switching orbits for the four declared graphs are exact; cycle XOR invariance and2^b Boolean-function cardinality are kernel checked.
   - does not support: Prove the general graph/forest refinement and freshly compile all source NF002 declarations before claiming its full core-only/no-Classical.choice theorem suite. This finite graph stage is not that suite.
   - next test: Prove the general graph/forest refinement and freshly compile all source NF002 declarations before claiming its full core-only/no-Classical.choice theorem suite. This finite graph stage is not that suite.
@@ -45,13 +45,13 @@ Local compatibility port replayed with Lean 4.33.1; enumeration length, uniquene
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
+### Lean: `evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
 
-- file: [dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean](../../../dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean)
+- file: [evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean](../../../evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean)
 - sha256 (`bytes`): `dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931`
 - cited in: node.source
 - replay: `none`
-- check: `cd lean4 && lake build   # the library that contains dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
+- check: `cd lean4 && lake build   # the library that contains evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
 - counts toward the grade: yes
 
 ### Lean: `lean4/SwitchingNormalForm.lean`
@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05`
 - cited in: node.lean, node.source, record TFQ-1044
 - replay: `verified`
-  - receipt [dag/research/tensor_measurement_validation.json](../../../dag/research/tensor_measurement_validation.json) (module `SwitchingNormalForm`): recorded sha256 `e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_measurement_validation.json](../../../evidence/lean_receipts/tensor_measurement_validation.json) (module `SwitchingNormalForm`): recorded sha256 `e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SwitchingNormalForm`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -80,20 +80,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md`
-
-- file: [dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md](../../../dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md)
-- sha256 (`lf-normalised`): `7cbdec04609b6361b8a4de6befc57780c9982f3d46dbd2fff83019090c6011ca`
-- generated view: listed, not counted
-- cited in: record TFQ-1044
-- counts toward the grade: no
-
 ### Documents and data: `atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
 
-- file: [atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
+- file: [atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
 - sha256 (`lf-normalised`): `bb38e1e763dba36d1194fde3c597b73c19f651ec9b4137eeb694fd92fed6f8fb`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md`
+
+- file: [dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md](../../../dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md)
+- sha256 (`lf-normalised`): `83d3d1899acc16215c1484a8ae9775f32473d44c271fa11e826279ceba8023be`
+- generated view: listed, not counted
+- cited in: record TFQ-1044
+- counts toward the grade: no
 
 ### External sources
 

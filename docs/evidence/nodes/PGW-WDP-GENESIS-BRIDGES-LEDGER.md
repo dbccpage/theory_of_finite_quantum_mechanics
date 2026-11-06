@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `8161a0b6da00a7cc263adf34016c92abd78e79111d981f81c42e4c493e8e6683`
 - cited in: node.lean, record TFQ-0554
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.FoundationalBridges`): recorded sha256 `8161a0b6da00a7cc263adf34016c92abd78e79111d981f81c42e4c493e8e6683` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_wdp.json](../../../evidence/lean_receipts/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.FoundationalBridges`): recorded sha256 `8161a0b6da00a7cc263adf34016c92abd78e79111d981f81c42e4c493e8e6683` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/FoundationalBridges.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -81,16 +81,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md)
 - sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md)
 - sha256 (`lf-normalised`): `616280b727abb20440caea09709a0e8f5512fbc8de20da8a3db124de2dc262ff`
 - cited in: node.source
 - counts toward the grade: yes
@@ -98,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md`
 
 - file: [dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md](../../../dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md)
-- sha256 (`lf-normalised`): `c70e7037ded399299fe6d88aee4a66fb107a60e0e8fc3e4658d251095c028e57`
+- sha256 (`lf-normalised`): `67239e604db6bd7403eb56b605cd69ca0bb59b8a05afd3e7a8f5ee882fcd8adb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0554
 - counts toward the grade: no
@@ -115,7 +115,8 @@ Incoming (1):
 
 - `PGW-R-WDP-GENESIS-BRIDGES-LEDGER` `DERIVED_PROSE`: [PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY](PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY.md) (DEFINITION), [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) (OPEN), [PGW-SN-POSTNIKOV-REFUSAL](PGW-SN-POSTNIKOV-REFUSAL.md) (PROVED_PROSE)
 
-Outgoing (2):
+Outgoing (3):
 
-- `PGW-R-WDP-BRIDGE-ONGOING-TO-WINDOW` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-ONGOING-TO-WINDOW](PGW-WDP-BRIDGE-ONGOING-TO-WINDOW.md) (OPEN)
-- `PGW-R-WDP-BRIDGE-REPORT-FIBER-OBSERVER` `CONDITIONAL_ON_IMPORT`: [PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER](PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER.md) (CONDITIONAL)
+- `PGW-R-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS](PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS.md) (OPEN)
+- `PGW-R-WDP-BRIDGE-ONGOING-TO-WINDOW` `DERIVED_LEAN`: [PGW-WDP-BRIDGE-ONGOING-TO-WINDOW](PGW-WDP-BRIDGE-ONGOING-TO-WINDOW.md) (PROVED_LEAN)
+- `PGW-R-WDP-BRIDGE-REPORT-FIBER-OBSERVER` `DERIVED_LEAN`: [PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER](PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER.md) (PROVED_LEAN)

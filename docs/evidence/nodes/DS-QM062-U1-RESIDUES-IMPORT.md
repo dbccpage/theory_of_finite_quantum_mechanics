@@ -38,7 +38,7 @@ Continuity of reversible dynamics, global field uniqueness, local tomography, a 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../evidence/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Actual J powers show order-four periodicity on retained indices; modulo-four aliasing is kernel checked for every natural k.
   - does not support: Supply continuity/topology, local tomography and a real exclusion/selection theorem if a full U(1) carrier is wanted. No finite-order exclusion follows from unbounded multiples.
   - next test: Supply continuity/topology, local tomography and a real exclusion/selection theorem if a full U(1) carrier is wanted. No finite-order exclusion follows from unbounded multiples.
@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0253 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,9 +66,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/U1ResiduesOrderFour.lean](../../../lean4/U1ResiduesOrderFour.lean)
 - sha256 (`bytes`): `e0cea83454141a891b39b8f1276fd453ef959066755a4bcd6a9430b01fcf9e4d`
-- cited in: node.lean, receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (U1ResiduesOrderFour)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_ds-qm062-u1-residues-import_lean_replay.json (U1ResiduesOrderFour)
 - replay: `verified`
-  - receipt [dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json](../../../dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json) (module `U1ResiduesOrderFour`): recorded sha256 `e0cea83454141a891b39b8f1276fd453ef959066755a4bcd6a9430b01fcf9e4d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ds-qm062-u1-residues-import_lean_replay.json](../../../evidence/lean_receipts/campaign_ds-qm062-u1-residues-import_lean_replay.json) (module `U1ResiduesOrderFour`): recorded sha256 `e0cea83454141a891b39b8f1276fd453ef959066755a4bcd6a9430b01fcf9e4d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1ResiduesOrderFour`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -122,7 +122,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md](../../../dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md)
-- sha256 (`lf-normalised`): `8d6df7390ca6d3b37c6f92c1217a79da71169b6f7e689137e31a1e6bfa827a15`
+- sha256 (`lf-normalised`): `69b5e2a125c11a6dc7b067d378f25b55c3ebd4e38fee114f7a631b15f7b3ad98`
 - generated view: listed, not counted
 - cited in: record TFQ-0253 (shared)
 - counts toward the grade: no

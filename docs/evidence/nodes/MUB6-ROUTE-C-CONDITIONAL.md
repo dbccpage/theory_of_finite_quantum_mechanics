@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `b46c397411b1baa513abfe191915fa9570b20dd180497bc456edf6e2aa2c84fd`
 - cited in: node.lean, record TFQ-1257
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `RouteCFourierLandingBypass`): recorded sha256 `b46c397411b1baa513abfe191915fa9570b20dd180497bc456edf6e2aa2c84fd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `RouteCFourierLandingBypass`): recorded sha256 `b46c397411b1baa513abfe191915fa9570b20dd180497bc456edf6e2aa2c84fd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build RouteCFourierLandingBypass`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

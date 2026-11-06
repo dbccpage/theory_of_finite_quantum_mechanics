@@ -10,7 +10,7 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
-RUN = ROOT/'dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T202420Z_operational_independence'
+RUN = ROOT/'evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T202420Z_operational_independence'
 SPEC = importlib.util.spec_from_file_location('operational_independence',ROOT/'code/python/src/qm/operational_independence.py')
 f = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(f)

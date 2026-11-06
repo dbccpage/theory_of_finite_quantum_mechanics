@@ -36,7 +36,7 @@ WDP 8.2 declared mass; WDP-CH08-D01, P01, O01; 8.1 'matching before number'
 
 ## Review
 
-- PFP review: [dag/results/L1-WDP-WITNESS-MASS/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-WDP-WITNESS-MASS/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-WDP-WITNESS-MASS/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-WDP-WITNESS-MASS/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: Exact atom and cell normalization, negative/zero refusal and generic rational normalization identity in Lean.
   - does not support: Prove arbitrary finite Boolean-algebra valuation uniqueness and source carrier refinement; declared mass does not derive probability interpretation.
   - next test: Prove arbitrary finite Boolean-algebra valuation uniqueness and source carrier refinement; declared mass does not derive probability interpretation.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -119,7 +119,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md](../../../dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md)
-- sha256 (`lf-normalised`): `41557758a7050c2588bc74805153b91fb9a233d4f895ea3a484d186cf3b0c2b1`
+- sha256 (`lf-normalised`): `f49fede4f22221c3c217c13cbad57a6e2d5aba0183fea4c4b9438ea021908c15`
 - generated view: listed, not counted
 - cited in: record TFQ-0167 (shared)
 - counts toward the grade: no

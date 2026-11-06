@@ -8,7 +8,7 @@ Status: AI-drafted, awaiting human review.
 
 **Independent check:** `checks/independent/genesis_hott_trunc.py`
 
-**Replay:** `dag/research/genesis_hott_trunc_lean_replay.json`
+**Replay:** `evidence/lean_receipts/genesis_hott_trunc_lean_replay.json`
 
 Citations used as declaration windows, not re-proved:
 

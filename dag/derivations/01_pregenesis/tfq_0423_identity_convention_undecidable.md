@@ -64,4 +64,4 @@ In accordance with strict constructive principles:
   - `external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:36-43`
   - `external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:43-53`
   - `dag/derivations/independent/pgw-identity-convention-undecidable.md:5`
-  - `dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json:7`
+  - `evidence/lean_receipts/campaign_pgw-identity-convention-undecidable_lean_replay.json:7`

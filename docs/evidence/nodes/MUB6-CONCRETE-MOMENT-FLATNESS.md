@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `d21b5473fcf73cdebafb14c690c72615af4684ea945c419af18204784e85dd57`
 - cited in: node.lean, record TFQ-1277
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `ConcreteMubMoments`): recorded sha256 `d21b5473fcf73cdebafb14c690c72615af4684ea945c419af18204784e85dd57` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `ConcreteMubMoments`): recorded sha256 `d21b5473fcf73cdebafb14c690c72615af4684ea945c419af18204784e85dd57` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ConcreteMubMoments`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

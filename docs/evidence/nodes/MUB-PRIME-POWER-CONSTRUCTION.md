@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/MubPrimePowerConstruction.lean](../../../lean4/MubPrimePowerConstruction.lean)
 - sha256 (`bytes`): `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec`
-- cited in: node.lean, receipt dag/research/campaign_mub-prime-power-construction_lean_replay.json (MubPrimePowerConstruction), receipt dag/research/pr_359_review_replay.json (MubPrimePowerConstruction), record TFQ-0403
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_mub-prime-power-construction_lean_replay.json (MubPrimePowerConstruction), receipt evidence/lean_receipts/pr_359_review_replay.json (MubPrimePowerConstruction), record TFQ-0403
 - replay: `verified`
-  - receipt [dag/research/campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json) (module `MubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_359_review_replay.json](../../../dag/research/pr_359_review_replay.json) (module `MubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_mub-prime-power-construction_lean_replay.json](../../../evidence/lean_receipts/campaign_mub-prime-power-construction_lean_replay.json) (module `MubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_359_review_replay.json](../../../evidence/lean_receipts/pr_359_review_replay.json) (module `MubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build MubPrimePowerConstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,9 +68,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/MubPrimePowerOddCharacteristic.lean](../../../lean4/MubPrimePowerOddCharacteristic.lean)
 - sha256 (`bytes`): `b06c0a46415edf0abf7d56c39eee5e0deb074d314f327026e8c9adabcdaa0c28`
-- cited in: node.lean, receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (MubPrimePowerOddCharacteristic)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_mub-prime-power-construction-odd_lean_replay.json (MubPrimePowerOddCharacteristic)
 - replay: `verified`
-  - receipt [dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json) (module `MubPrimePowerOddCharacteristic`): recorded sha256 `b06c0a46415edf0abf7d56c39eee5e0deb074d314f327026e8c9adabcdaa0c28` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_mub-prime-power-construction-odd_lean_replay.json](../../../evidence/lean_receipts/campaign_mub-prime-power-construction-odd_lean_replay.json) (module `MubPrimePowerOddCharacteristic`): recorded sha256 `b06c0a46415edf0abf7d56c39eee5e0deb074d314f327026e8c9adabcdaa0c28` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubPrimePowerOddCharacteristic`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/mub-prime-power-construction-odd.md`
 
 - file: [dag/derivations/independent/mub-prime-power-construction-odd.md](../../../dag/derivations/independent/mub-prime-power-construction-odd.md)
-- sha256 (`lf-normalised`): `9e8ad0fc2ac612f9c5b04dba9346d52f9d65c09154e568189cfce7b4ee816a45`
+- sha256 (`lf-normalised`): `f06ed70de2c7271e795c23d0034edad2f6a4985303b42fd5defca2aeef40a07d`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -124,16 +124,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_mub-prime-power-construction-odd_lean_replay.json`
 
-- file: [dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_mub-prime-power-construction-odd_lean_replay.json](../../../evidence/lean_receipts/campaign_mub-prime-power-construction-odd_lean_replay.json)
 - sha256 (`lf-normalised`): `c6ffea0c7c63b8026e7862b5b74364f234970dce759dde850517ba6cbfa35641`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_mub-prime-power-construction_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_mub-prime-power-construction_lean_replay.json`
 
-- file: [dag/research/campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_mub-prime-power-construction_lean_replay.json](../../../evidence/lean_receipts/campaign_mub-prime-power-construction_lean_replay.json)
 - sha256 (`lf-normalised`): `4826491277051b78fa1d5060cc5be1d77ccd681537cdfbe64bfe1c9de1e39450`
 - cited in: node.source
 - counts toward the grade: yes

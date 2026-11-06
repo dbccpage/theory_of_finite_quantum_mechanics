@@ -36,7 +36,7 @@ QM_122 ledger LEAN4_PROOF; file headers: 'Candidate only. Not PROVEN' (H013 head
 
 ## Review
 
-- PFP review: [dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Over Z\[i\] with the unnormalized two-sector Hadamard readout: both sector amplitudes nonzero implies the weight pair does not determine the readout; a zero first or zero second sector implies it does.
   - does not support: Complex-Hilbert amplitudes beyond Z\[i\]; normalized or projective states; more than two sectors; mixes other than the unnormalized 2x2 Hadamard; the embedding of Z\[i\] into C (non-descent on the Gaussian-lattice fibers gives non-descent on the full complex phase fibers only after that embedding is formalised); the identification of the module readout with the source declarations phaseBlind/mix/readout over Vec GaussInt Bool (H008/H010), which is a modelling identification, not a checked one; any measurement, branch or physical interpretation of the phase fiber.
   - next test: Decide non-descent of the normalized projective readout w(a+b)/(2(w(a)+w(b))) for n\>=3 complex sectors under a unitary mix other than the 2x2 Hadamard, by exhibiting a fiber pair with different readouts or a descending fiber.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e7ca49b4ca6cd26239b024ee0f171bba8b978d4d0b3eebb8ab99f9068b8cee04`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkPhaseBlindPresentation`): recorded sha256 `e7ca49b4ca6cd26239b024ee0f171bba8b978d4d0b3eebb8ab99f9068b8cee04` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkPhaseBlindPresentation`): recorded sha256 `e7ca49b4ca6cd26239b024ee0f171bba8b978d4d0b3eebb8ab99f9068b8cee04` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertWalkPhaseBlindPresentation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `a7247e052643452607f54ef0efa5ea98df3dc763e0620558ca81080fa73eca94`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `InterferenceNonDescent`): recorded sha256 `a7247e052643452607f54ef0efa5ea98df3dc763e0620558ca81080fa73eca94` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `InterferenceNonDescent`): recorded sha256 `a7247e052643452607f54ef0efa5ea98df3dc763e0620558ca81080fa73eca94` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound; only standard axioms: yes
 - check: `cd lean4 && lake build InterferenceNonDescent`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -80,9 +80,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PhaseBlindFiber.lean](../../../lean4/PhaseBlindFiber.lean)
 - sha256 (`bytes`): `302e3a2da088ad7de12570522d30a4bbd1f5c03099a22d4b7ff6be6baa75ad6d`
-- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (PhaseBlindFiber)
+- cited in: node.lean, receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (PhaseBlindFiber)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `PhaseBlindFiber`): recorded sha256 `302e3a2da088ad7de12570522d30a4bbd1f5c03099a22d4b7ff6be6baa75ad6d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `PhaseBlindFiber`): recorded sha256 `302e3a2da088ad7de12570522d30a4bbd1f5c03099a22d4b7ff6be6baa75ad6d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PhaseBlindFiber`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md](../../../dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md)
-- sha256 (`lf-normalised`): `083b6248edf3af2603535b7e43c809c8d6ad9c2f46029f290a9201c57374a9bf`
+- sha256 (`lf-normalised`): `a2e25aaa6b8ebe05b4c6772959290c0e792d41aa6e9ce49b4a47014e54a90fe2`
 - generated view: listed, not counted
 - cited in: record TFQ-0310
 - counts toward the grade: no

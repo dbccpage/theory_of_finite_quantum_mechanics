@@ -7,7 +7,7 @@ after the user approves it. Last refresh: 2026-10-23.
 
 - Date: 2026-10-23
 - Source: first test run of auto-suggest-new-skills, during the auto-skills import; `dag/derivation_dag_reading_note.md`
-  and the "Pipeline after any DAG change" section of `dag/pfp/campaign/README.md`
+  and the "Pipeline after any DAG change" section of `checks/exact_checkers/campaign/README.md`
 - Gap: every DAG change runs the fragment sync scripts in a fixed order, then the validator, the evidence pages and the
   README facts. The order is written in two documents and was the subject of earlier session lessons (sync order,
   receipt re-pin); no skill runs it.

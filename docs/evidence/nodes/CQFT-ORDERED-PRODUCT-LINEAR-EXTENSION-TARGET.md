@@ -32,11 +32,11 @@ Not proved in Lean: that any two linear extensions of an arbitrary finite strict
 
 ## Source status
 
-Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `orderedProd_eq_of_adjSpacelikeSwap`, `orderedProd_eq_of_spacelikeSwapChain`, `linear_extensions_of_C2_and_N`, `c2_extensions_connected_by_swap`, `c2_pauli_commuting_and_anticommuting_products`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_causal_qft.json](../../../dag/research/lean_replay_campaign_causal_qft.json) (module `CausalOrder`): recorded sha256 `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_causal_qft.json](../../../evidence/lean_receipts/lean_replay_campaign_causal_qft.json) (module `CausalOrder`): recorded sha256 `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CausalOrder`
 - counts toward the grade: yes
 
@@ -58,9 +58,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierLinearExtension.lean](../../../lean4/FrontierLinearExtension.lean)
 - sha256 (`bytes`): `31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierLinearExtension)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierLinearExtension)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierLinearExtension`): recorded sha256 `31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierLinearExtension`): recorded sha256 `31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierLinearExtension`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -77,14 +77,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md](../../../dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md)
-- sha256 (`lf-normalised`): `fa744417f2049199a2a92a5950cbe60df2410ef87bdff23552f54b16165c4c89`
+- sha256 (`lf-normalised`): `2cade9f3f05fc143a0ce38530cf0d33f585ae5bd14a15af7c3bfb7d57c1b15ff`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2110
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

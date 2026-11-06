@@ -1,6 +1,6 @@
 # PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER
 
-Stage: [WDP](../stages/WDP.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
-- cited Lean, Rust or Python symbols found in their in-repo files: 9
+- counted in-repo evidence files: 9
+- cited Lean, Rust or Python symbols found in their in-repo files: 12
 - distinct cited Lean declarations covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
@@ -32,7 +32,7 @@ The maps are declared. The result constructs no evaluator, permission grantor or
 
 ## Source status
 
-register GEN-WDP-03/06 with Lean ProposalAdmissionBridge; conditional on the declared report
+GEN-WDP-03 and GEN-WDP-06 mechanized in ReportFiberDescent.lean, ProposalAdmissionBridge.lean, and WdpBatch4.lean
 
 ## Review
 
@@ -42,13 +42,29 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
+- sha256 (`bytes`): `5139307750119e0e6f022ae813972e4625d02908d37d9067e6942e532181b6dd`
+- cited in: node.lean, record TFQ-0556
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch4.event_multiset_loses_final_state` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch4.event_multiset_loses_final_state` |
+| `WitnessedDifference.WdpBatch4.final_state_loses_occurrence_count` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch4.final_state_loses_occurrence_count` |
+| `WitnessedDifference.WdpBatch4.report_fiber_decoder_iff` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch4.report_fiber_decoder_iff` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean)
 - sha256 (`bytes`): `96cc6757237ae9cfcc72783b985ad3f8b77e0452928dc43cf0a2f653475248a2`
 - cited in: node.lean, record TFQ-0556
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge`): recorded sha256 `96cc6757237ae9cfcc72783b985ad3f8b77e0452928dc43cf0a2f653475248a2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_pregenesis.json](../../../evidence/lean_receipts/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge`): recorded sha256 `96cc6757237ae9cfcc72783b985ad3f8b77e0452928dc43cf0a2f653475248a2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -61,10 +77,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ReportFiberDescent.lean](../../../lean4/ReportFiberDescent.lean)
 - sha256 (`bytes`): `10d9dba7602b9931ced83b8d050aaa4d547e08502ca3d8915d04a7215bad1237`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json (ReportFiberDescent), receipt dag/research/pr_380_round2_replay.json (ReportFiberDescent), record TFQ-0556
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json (ReportFiberDescent), receipt evidence/lean_receipts/pr_380_round2_replay.json (ReportFiberDescent), record TFQ-0556
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json) (module `ReportFiberDescent`): recorded sha256 `10d9dba7602b9931ced83b8d050aaa4d547e08502ca3d8915d04a7215bad1237` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
-  - receipt [dag/research/pr_380_round2_replay.json](../../../dag/research/pr_380_round2_replay.json) (module `ReportFiberDescent`): recorded sha256 `10d9dba7602b9931ced83b8d050aaa4d547e08502ca3d8915d04a7215bad1237` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json) (module `ReportFiberDescent`): recorded sha256 `10d9dba7602b9931ced83b8d050aaa4d547e08502ca3d8915d04a7215bad1237` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_380_round2_replay.json](../../../evidence/lean_receipts/pr_380_round2_replay.json) (module `ReportFiberDescent`): recorded sha256 `10d9dba7602b9931ced83b8d050aaa4d547e08502ca3d8915d04a7215bad1237` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
 - check: `cd lean4 && lake build ReportFiberDescent`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -98,16 +114,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0556
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md)
 - sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md)
 - sha256 (`lf-normalised`): `616280b727abb20440caea09709a0e8f5512fbc8de20da8a3db124de2dc262ff`
 - cited in: node.source
 - counts toward the grade: yes
@@ -115,7 +131,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md`
 
 - file: [dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md](../../../dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md)
-- sha256 (`lf-normalised`): `a328022c7be8709093affc298a9febc3f4be886a201846a78c0330e21eadafba`
+- sha256 (`lf-normalised`): `fd8b701fd5f82280347800263766cbbb46096f713db2313d9bfd4e168d8019bf`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0556
 - counts toward the grade: no
@@ -127,9 +143,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json`
 
-- file: [dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json)
 - sha256 (`lf-normalised`): `cdaa2ff30bb7905eb0a52ac9ee2247230840ef8c83f8f87258f945b7834e0492`
 - cited in: node.source
 - counts toward the grade: yes
@@ -146,10 +162,11 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PGW-R-WDP-BRIDGE-REPORT-FIBER-OBSERVER` `CONDITIONAL_ON_IMPORT`: [PGW-WDP-GENESIS-BRIDGES-LEDGER](PGW-WDP-GENESIS-BRIDGES-LEDGER.md) (DEFINITION), [PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY](PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY.md) (DEFINITION)
+- `PGW-R-WDP-BRIDGE-REPORT-FIBER-OBSERVER` `DERIVED_LEAN`: [PGW-WDP-GENESIS-BRIDGES-LEDGER](PGW-WDP-GENESIS-BRIDGES-LEDGER.md) (DEFINITION), [PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY](PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY.md) (DEFINITION)
 
-Outgoing (3):
+Outgoing (4):
 
 - `APP-R-AUTHF-LOGICAL-EXTERNALITY` `DERIVED_LEAN`: [AUTHF-LOGICAL-EXTERNALITY](AUTHF-LOGICAL-EXTERNALITY.md) (PROVED_LEAN)
 - `APP-R-AUTHF-SELF-RECEIPT-TOY` `DERIVED_LEAN`: [AUTHF-SELF-RECEIPT-TOY](AUTHF-SELF-RECEIPT-TOY.md) (PROVED_LEAN)
+- `PGW-R-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL](PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL.md) (OPEN)
 - `PGW-R-WDP-SYNTHESIS-TRUNK-TIERS` `DERIVED_PROSE`: [PGW-WDP-SYNTHESIS-TRUNK-TIERS](PGW-WDP-SYNTHESIS-TRUNK-TIERS.md) (DEFINITION)

@@ -39,11 +39,11 @@ Standing slice: the integers 3, 4 and 5 satisfy 3 * 3 + 4 * 4 = 5 * 5, and for a
 
 ## Source status
 
-Carrier-level specification kernel-checked in dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec (lean4/DiscreteTimeStoneSpec.lean): a Q-parameter group (QParamGroup) restricts to the Z-action of its unit step (U_eq_discreteEvolution) and needs roots of every order (roots_of_all_orders); half-steps come in pairs +-V, so generator selection is a choice (matrix_half_step_not_unique); the rational 2x2 Pythagorean rotation R345 is a reversible discrete evolution (R345_pow_orthogonal) with no rational half-step (no_rational_half_step: any root is p*1 + r*J with p^2 = 4/5, whose denominator 5 is not a square), hence no Q-parameter group of rational 2x2 matrices passes through it (no_qparam_group_through_R345). Exact replays: code/python/src/qm/discrete_time_stone.py, code/rust/src/qm/discrete_time_stone.rs. Discrete Cayley unitary step U_H(t) = (I - i t H)(I + i t H)^(-1) on 2x2 traceless Hermitian matrices over Q(i) (exact resolvent identity, left/right unitarity, det = 1, projective-tangent composition law when 1 - t1*t2*||H||^2 != 0, south-pole collision -I_2 when 1 - t1*t2*||H||^2 = 0, and Born trace invariance) kernel-checked in lean4/U1QuadraticTowerAndCayleyStone.lean and lean4/U1PhaseSynthesis.lean (run 20261020T223000Z_u1_phase_completion_lean) and replayed in code/python/src/qm/u1_phase_completion.py and code/rust/src/qm/u1_phase_completion.rs. Earlier: Pythagorean rotation powers (3+4i)^k (k=1..4) and discrete modular frequency aliasing (k + N) % N = k % N mechanized in DerivationDagQMClosure.lean; continuous-time Stone generator remains an external import
+Carrier-level specification kernel-checked in evidence/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec (lean4/DiscreteTimeStoneSpec.lean): a Q-parameter group (QParamGroup) restricts to the Z-action of its unit step (U_eq_discreteEvolution) and needs roots of every order (roots_of_all_orders); half-steps come in pairs +-V, so generator selection is a choice (matrix_half_step_not_unique); the rational 2x2 Pythagorean rotation R345 is a reversible discrete evolution (R345_pow_orthogonal) with no rational half-step (no_rational_half_step: any root is p*1 + r*J with p^2 = 4/5, whose denominator 5 is not a square), hence no Q-parameter group of rational 2x2 matrices passes through it (no_qparam_group_through_R345). Exact replays: code/python/src/qm/discrete_time_stone.py, code/rust/src/qm/discrete_time_stone.rs. Discrete Cayley unitary step U_H(t) = (I - i t H)(I + i t H)^(-1) on 2x2 traceless Hermitian matrices over Q(i) (exact resolvent identity, left/right unitarity, det = 1, projective-tangent composition law when 1 - t1*t2*||H||^2 != 0, south-pole collision -I_2 when 1 - t1*t2*||H||^2 = 0, and Born trace invariance) kernel-checked in lean4/U1QuadraticTowerAndCayleyStone.lean and lean4/U1PhaseSynthesis.lean (run 20261020T223000Z_u1_phase_completion_lean) and replayed in code/python/src/qm/u1_phase_completion.py and code/rust/src/qm/u1_phase_completion.rs. Earlier: Pythagorean rotation powers (3+4i)^k (k=1..4) and discrete modular frequency aliasing (k + N) % N = k % N mechanized in DerivationDagQMClosure.lean; continuous-time Stone generator remains an external import
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: All-integer modulo-four aliasing is kernel checked; exact modulo-eight controls distinguish declared half-step tags.
   - does not support: Supply topology, strong continuity, actual exponentials and generator domains before invoking Stone; finite tags do not prove existence.
   - next test: Supply topology, strong continuity, actual exponentials and generator domains before invoking Stone; finite tags do not prove existence.
@@ -58,7 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0246 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f93836d6e4d23d84f1ef8859d0b27fc1dad268491062abbac01830e5bb25e225`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `DiscreteTimeStoneSpec`): recorded sha256 `f93836d6e4d23d84f1ef8859d0b27fc1dad268491062abbac01830e5bb25e225` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_dynamics.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_dynamics.json) (module `DiscreteTimeStoneSpec`): recorded sha256 `f93836d6e4d23d84f1ef8859d0b27fc1dad268491062abbac01830e5bb25e225` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DiscreteTimeStoneSpec`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -93,10 +93,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/StoneContinuousTimeIntegerSlice.lean](../../../lean4/StoneContinuousTimeIntegerSlice.lean)
 - sha256 (`bytes`): `515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (StoneContinuousTimeIntegerSlice), receipt dag/research/pr_373_review_replay.json (StoneContinuousTimeIntegerSlice)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fq-gap-stone-continuous-time_lean_replay.json (StoneContinuousTimeIntegerSlice), receipt evidence/lean_receipts/pr_373_review_replay.json (StoneContinuousTimeIntegerSlice)
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json](../../../dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json) (module `StoneContinuousTimeIntegerSlice`): recorded sha256 `515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_373_review_replay.json](../../../dag/research/pr_373_review_replay.json) (module `StoneContinuousTimeIntegerSlice`): recorded sha256 `515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gap-stone-continuous-time_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gap-stone-continuous-time_lean_replay.json) (module `StoneContinuousTimeIntegerSlice`): recorded sha256 `515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_373_review_replay.json](../../../evidence/lean_receipts/pr_373_review_replay.json) (module `StoneContinuousTimeIntegerSlice`): recorded sha256 `515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build StoneContinuousTimeIntegerSlice`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `5e386655bfce8c9cfbe9a515fd9946f2bac8ce38a8d49f47f4a9c9e6de56c38a`
 - cited in: node.lean
 - replay: `failed`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PhaseSynthesis`): recorded sha256 `5e386655bfce8c9cfbe9a515fd9946f2bac8ce38a8d49f47f4a9c9e6de56c38a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `U1PhaseSynthesis`): recorded sha256 `5e386655bfce8c9cfbe9a515fd9946f2bac8ce38a8d49f47f4a9c9e6de56c38a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1PhaseSynthesis`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -127,7 +127,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e89dc4485bffa69d0d7718ed3367b7a4bca45f4e0c4447cdd20fd352d1505a55`
 - cited in: node.lean
 - replay: `failed`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1QuadraticTowerAndCayleyStone`): recorded sha256 `e89dc4485bffa69d0d7718ed3367b7a4bca45f4e0c4447cdd20fd352d1505a55` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `U1QuadraticTowerAndCayleyStone`): recorded sha256 `e89dc4485bffa69d0d7718ed3367b7a4bca45f4e0c4447cdd20fd352d1505a55` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1QuadraticTowerAndCayleyStone`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -140,10 +140,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
+
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md)
-- sha256 (`lf-normalised`): `567c2a7e1ebeb376b74aff83982ba897398a10f6f26803414b3ba391f4776d75`
+- sha256 (`lf-normalised`): `b32edcc4589325b58c23cbbf065ffa48945cb4e59170c40689868668f01cf741`
 - generated view: listed, not counted
 - cited in: record TFQ-0246 (shared)
 - counts toward the grade: no
@@ -155,13 +162,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0083 (shared)
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
-
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 

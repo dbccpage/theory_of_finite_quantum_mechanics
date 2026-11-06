@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `a777a074f0104be599533d844ed727fdc962c8bc8d100eaf1c7ccb94990ab028`
 - cited in: node.lean, node.source, record TFQ-0507
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_implementation.json](../../../dag/research/lean_replay_campaign_implementation.json) (module `Imported.PfpCarriers.CarrierOrigin`): recorded sha256 `a777a074f0104be599533d844ed727fdc962c8bc8d100eaf1c7ccb94990ab028` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_implementation.json](../../../evidence/lean_receipts/lean_replay_campaign_implementation.json) (module `Imported.PfpCarriers.CarrierOrigin`): recorded sha256 `a777a074f0104be599533d844ed727fdc962c8bc8d100eaf1c7ccb94990ab028` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PfpCarriers/CarrierOrigin.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `0e3a98ed598a0b74eaf2b6c2c152cc41ea40a416766501734249920419c053ac`
 - cited in: node.lean, record TFQ-1262
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuadraticLiftNarrowBox`): recorded sha256 `0e3a98ed598a0b74eaf2b6c2c152cc41ea40a416766501734249920419c053ac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuadraticLiftNarrowBox`): recorded sha256 `0e3a98ed598a0b74eaf2b6c2c152cc41ea40a416766501734249920419c053ac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubQuadraticLiftNarrowBox`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `a9b19face97bd0413c997ca484bab4866b89085cee4330d29e55b10c5389b4d8`
 - cited in: node.lean, record TFQ-1262
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuadraticLiftTable`): recorded sha256 `a9b19face97bd0413c997ca484bab4866b89085cee4330d29e55b10c5389b4d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuadraticLiftTable`): recorded sha256 `a9b19face97bd0413c997ca484bab4866b89085cee4330d29e55b10c5389b4d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubQuadraticLiftTable`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

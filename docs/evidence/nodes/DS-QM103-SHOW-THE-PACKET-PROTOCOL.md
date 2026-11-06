@@ -36,7 +36,7 @@ Rotated-surface-code packet is an illustrative placeholder (no measured numbers)
 
 ## Review
 
-- PFP review: [dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: Exact field-completeness/scale/refusal controls are checked; presence of fields is not logical validation of their contents.
   - does not support: Provide substantive verified packet contents and meaningful scale/noise/throughput/leakage/overhead evidence. Eligibility for audit is not a physical or authority terminal.
   - next test: Provide substantive verified packet contents and meaningful scale/noise/throughput/leakage/overhead evidence. Eligibility for audit is not a physical or authority terminal.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md](../../../dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md)
-- sha256 (`lf-normalised`): `3f3b9bf181bed04962ac5f4424d094d205d5f0120bb651475f4c5c64431fc738`
+- sha256 (`lf-normalised`): `3cc699ad9fb553a01b5d247058e8373c52acf98838c31ffcc6eac5a5e3655f3d`
 - generated view: listed, not counted
 - cited in: record TFQ-0271
 - counts toward the grade: no

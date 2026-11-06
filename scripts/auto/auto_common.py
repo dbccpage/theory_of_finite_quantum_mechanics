@@ -25,7 +25,7 @@ EXIT_OK, EXIT_FINDINGS, EXIT_ENV = 0, 1, 2
 
 # Sealed model-output snapshots and vendored trees are data, not code or prose under review (the exclusions of
 # scripts/score_scope_contracts.py and the draft governance/policy.json).
-EXCLUDED_PREFIXES = ("dag/results/", "dag/sealed_runs/", "sealed_runs/", "atlas/")
+EXCLUDED_PREFIXES = ("evidence/results/", "dag/sealed_runs/", "sealed_runs/", "atlas/")
 EXCLUDED_PARTS = frozenset({".lake", "target", "node_modules", "__pycache__"})
 HUNK = re.compile(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@")
 SENTENCE_END = re.compile(r"(?<=[.!?;])\s+(?=[A-Z`*(\"'])")

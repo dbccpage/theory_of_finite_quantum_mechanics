@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FermionSignU1WilsonAction.lean](../../../lean4/FermionSignU1WilsonAction.lean)
 - sha256 (`bytes`): `32237d8b78a0e9602f1c161ab5cf769668891f4fbce58c6d426e632c998f9327`
-- cited in: node.lean, receipt dag/research/campaign_fsp-u1-wilson-action_lean_replay.json (FermionSignU1WilsonAction), record TFQ-1196
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-u1-wilson-action_lean_replay.json (FermionSignU1WilsonAction), record TFQ-1196
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-u1-wilson-action_lean_replay.json](../../../dag/research/campaign_fsp-u1-wilson-action_lean_replay.json) (module `FermionSignU1WilsonAction`): recorded sha256 `32237d8b78a0e9602f1c161ab5cf769668891f4fbce58c6d426e632c998f9327` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-u1-wilson-action_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-u1-wilson-action_lean_replay.json) (module `FermionSignU1WilsonAction`): recorded sha256 `32237d8b78a0e9602f1c161ab5cf769668891f4fbce58c6d426e632c998f9327` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FermionSignU1WilsonAction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-u1-wilson-action.md`
 
 - file: [dag/derivations/independent/fsp-u1-wilson-action.md](../../../dag/derivations/independent/fsp-u1-wilson-action.md)
-- sha256 (`lf-normalised`): `3898d1db09829e4e842a76027f5021927c65f2b76cfe3c3add56d1aa78b5e0d1`
+- sha256 (`lf-normalised`): `a70900d2360aa66fed36425a7673794f5dc4dc47b7ec00a2d24966614724a244`
 - cited in: node.source
 - counts toward the grade: yes
 

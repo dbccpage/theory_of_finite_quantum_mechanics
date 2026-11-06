@@ -36,7 +36,7 @@ MECHANIZED in SupplyErasure.lean (replayE_filter_supply and replayE_supply_only)
 
 ## Review
 
-- PFP review: [dag/results/PG-GEN-SUPPLY-ERASURE/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-SUPPLY-ERASURE/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-GEN-SUPPLY-ERASURE/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../evidence/results/PG-GEN-SUPPLY-ERASURE/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Full guarded replay states agree after supply erasure on the retained histories; generic erasure/filterMap and supply-prefix identities are kernel checked.
   - does not support: Prove the partial Option/failure and five-field Regime representation bridge for every source history. Erasure does not erase guard failures, actual admissions or external custody requirements.
   - next test: Prove the partial Option/failure and five-field Regime representation bridge for every source history. Erasure does not erase guard failures, actual admissions or external custody requirements.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/GenesisReplayRefinement.lean](../../../lean4/GenesisReplayRefinement.lean)
 - sha256 (`bytes`): `1fd113d89dc5cb36bf2638cd761c5fb02043d1f4f5476a0f6ffc5b6cc6f24c2c`
-- cited in: node.lean, receipt dag/research/campaign_pg-gen-supply-erasure_lean_replay.json (GenesisReplayRefinement)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pg-gen-supply-erasure_lean_replay.json (GenesisReplayRefinement)
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-gen-supply-erasure_lean_replay.json](../../../dag/research/campaign_pg-gen-supply-erasure_lean_replay.json) (module `GenesisReplayRefinement`): recorded sha256 `1fd113d89dc5cb36bf2638cd761c5fb02043d1f4f5476a0f6ffc5b6cc6f24c2c` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pg-gen-supply-erasure_lean_replay.json](../../../evidence/lean_receipts/campaign_pg-gen-supply-erasure_lean_replay.json) (module `GenesisReplayRefinement`): recorded sha256 `1fd113d89dc5cb36bf2638cd761c5fb02043d1f4f5476a0f6ffc5b6cc6f24c2c` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisReplayRefinement`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `14916819b36c6f1164b153ed9a0d6afeabed01ca3e56dfcc147ae9183ecfd72d`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Erasure`): recorded sha256 `14916819b36c6f1164b153ed9a0d6afeabed01ca3e56dfcc147ae9183ecfd72d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Erasure`): recorded sha256 `14916819b36c6f1164b153ed9a0d6afeabed01ca3e56dfcc147ae9183ecfd72d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/Erasure.lean`
 - counts toward the grade: yes
 
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `7ebb3d1215781bd1706298b24e194812509f7e1f8b502e5eed6aa884103bd2f8`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisPrimitives.SupplyErasure`): recorded sha256 `7ebb3d1215781bd1706298b24e194812509f7e1f8b502e5eed6aa884103bd2f8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisPrimitives.SupplyErasure`): recorded sha256 `7ebb3d1215781bd1706298b24e194812509f7e1f8b502e5eed6aa884103bd2f8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisPrimitives/SupplyErasure.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -109,6 +109,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `GenesisPrimitives.SupplyErasure.replayE_filter_supply` | yes | yes | yes | propext | `#print axioms GenesisPrimitives.SupplyErasure.replayE_filter_supply` |
 | `GenesisPrimitives.SupplyErasure.replayE_supply_only` | yes | yes | yes | propext | `#print axioms GenesisPrimitives.SupplyErasure.replayE_supply_only` |
 
+- counts toward the grade: yes
+
+### Documents and data: `atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+
+- file: [atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
+- sha256 (`lf-normalised`): `bb38e1e763dba36d1194fde3c597b73c19f651ec9b4137eeb694fd92fed6f8fb`
+- cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md`
@@ -123,13 +130,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/derivations/independent/pg-gen-supply-erasure.md](../../../dag/derivations/independent/pg-gen-supply-erasure.md)
 - sha256 (`lf-normalised`): `42dcb7fa7080074cc809349c58a1970bd1ca671654a36637e705cd19e785dcc2`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
-
-- file: [atlas/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
-- sha256 (`lf-normalised`): `bb38e1e763dba36d1194fde3c597b73c19f651ec9b4137eeb694fd92fed6f8fb`
 - cited in: node.source
 - counts toward the grade: yes
 

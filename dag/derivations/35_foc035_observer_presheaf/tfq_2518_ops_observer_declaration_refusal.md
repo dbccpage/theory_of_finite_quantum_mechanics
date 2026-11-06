@@ -44,4 +44,4 @@ See also: `OPS-THREE-ROLE-GATE`.
 - Repository: `lean4/ObserverDeclarationRefusal.lean`
 - Repository: `checks/independent/ops-observer-declaration-refusal.py`
 - Repository: `dag/derivations/independent/ops-observer-declaration-refusal.md`
-- Repository: `dag/research/campaign_ops-observer-declaration-refusal_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_ops-observer-declaration-refusal_lean_replay.json`

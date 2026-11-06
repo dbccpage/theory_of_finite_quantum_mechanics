@@ -2,11 +2,11 @@ import importlib.util,sys,unittest
 from pathlib import Path
 from fractions import Fraction as Q
 from itertools import product
-ROOT=next(p for p in Path(__file__).resolve().parents if (p/'dag/pfp/prepare_stage.py').is_file())
+ROOT=next(p for p in Path(__file__).resolve().parents if (p/'checks/exact_checkers/exact_json.py').is_file())
 def mod(name,path):
     s=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 producer=mod('resource_producer',ROOT/'code/python/src/qm/resources_exact.py')
-sys.path.insert(0,str(ROOT/'dag/pfp'));from resources_checker import verify
+sys.path.insert(0,str(ROOT/'checks/exact_checkers'));from resources_checker import verify
 class ResourceChecks(unittest.TestCase):
     def check_values(self,kind,v):
         inp=list(map(str,v));out=producer.evaluate(kind,inp);verify(kind,inp,out);return list(map(Q,out))

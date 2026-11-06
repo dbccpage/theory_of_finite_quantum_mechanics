@@ -32,11 +32,11 @@ Not proved in Lean: separating implies full column rank (so the three-way equiva
 
 ## Source status
 
-Algebraic instances verified with exact Python arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Algebraic instances verified with exact Python arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `cyclic_of_fullComplementaryRank`, `fullComplementaryRank_of_cyclic`, `separating_of_fullComplementaryRank`, `not_separating_of_right_kernel`, `single_site_not_cyclic_prod_ghz_w`, `pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierRsCyclicity.lean](../../../lean4/FrontierRsCyclicity.lean)
 - sha256 (`bytes`): `b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierRsCyclicity)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierRsCyclicity)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierRsCyclicity`): recorded sha256 `b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierRsCyclicity`): recorded sha256 `b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierRsCyclicity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,14 +67,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md](../../../dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md)
-- sha256 (`lf-normalised`): `808575bad0f15e050c33fe4683ec851b7ef4da887a7275521d26756b69507848`
+- sha256 (`lf-normalised`): `83da674df216b2f8ac99d2e67c27217ec568ccc850ddb778d45ef28f2ac37ee7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2107
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

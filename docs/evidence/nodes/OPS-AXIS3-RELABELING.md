@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ObserverPresheafAxis3Relabeling.lean](../../../lean4/ObserverPresheafAxis3Relabeling.lean)
 - sha256 (`bytes`): `99444c08ffc63267c995294241821245327485cbc0334f463d340b4a864ab24e`
-- cited in: node.source, receipt dag/research/campaign_ops-axis3-relabeling_lean_replay.json (ObserverPresheafAxis3Relabeling), receipt dag/research/pr_387_round2_replay.json (ObserverPresheafAxis3Relabeling), record TFQ-2526
+- cited in: node.source, receipt evidence/lean_receipts/campaign_ops-axis3-relabeling_lean_replay.json (ObserverPresheafAxis3Relabeling), receipt evidence/lean_receipts/pr_387_round2_replay.json (ObserverPresheafAxis3Relabeling), record TFQ-2526
 - replay: `verified`
-  - receipt [dag/research/campaign_ops-axis3-relabeling_lean_replay.json](../../../dag/research/campaign_ops-axis3-relabeling_lean_replay.json) (module `ObserverPresheafAxis3Relabeling`): recorded sha256 `99444c08ffc63267c995294241821245327485cbc0334f463d340b4a864ab24e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr_387_round2_replay.json](../../../dag/research/pr_387_round2_replay.json) (module `ObserverPresheafAxis3Relabeling`): recorded sha256 `99444c08ffc63267c995294241821245327485cbc0334f463d340b4a864ab24e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ops-axis3-relabeling_lean_replay.json](../../../evidence/lean_receipts/campaign_ops-axis3-relabeling_lean_replay.json) (module `ObserverPresheafAxis3Relabeling`): recorded sha256 `99444c08ffc63267c995294241821245327485cbc0334f463d340b4a864ab24e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_387_round2_replay.json](../../../evidence/lean_receipts/pr_387_round2_replay.json) (module `ObserverPresheafAxis3Relabeling`): recorded sha256 `99444c08ffc63267c995294241821245327485cbc0334f463d340b4a864ab24e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build ObserverPresheafAxis3Relabeling`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,10 +68,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
+
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
+- sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
+
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md)
-- sha256 (`lf-normalised`): `eb65609d758831aa4f4248de96a7670bd8ada4de92e933112879a68ef59d8943`
+- sha256 (`lf-normalised`): `d3ee734d591d9104ebb80909ea9d443e14a9447e0a6ddc8185876e71dccff938`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2526
 - counts toward the grade: no
@@ -83,24 +97,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ops-axis3-relabeling_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_ops-axis3-relabeling_lean_replay.json`
 
-- file: [dag/research/campaign_ops-axis3-relabeling_lean_replay.json](../../../dag/research/campaign_ops-axis3-relabeling_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_ops-axis3-relabeling_lean_replay.json](../../../evidence/lean_receipts/campaign_ops-axis3-relabeling_lean_replay.json)
 - sha256 (`lf-normalised`): `cc2040fdd3cda6b0e5f46d5be31d5977d84035173b01d118c841dcf88feff0c6`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
-
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
-- sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
-
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
-- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
 - cited in: node.source
 - counts toward the grade: yes
 

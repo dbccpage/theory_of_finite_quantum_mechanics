@@ -36,7 +36,7 @@ not supply a refinement family, a topology, or a convergence theorem.
 
 ## Evidence and next obligation
 
-- [dag/research/electroweak_dfm_weinberg_finite_map.md](../../../dag/research/electroweak_dfm_weinberg_finite_map.md)
+- [dag/derivations/24_dressing_field/electroweak_dfm_weinberg_finite_map.md](../../../dag/derivations/24_dressing_field/electroweak_dfm_weinberg_finite_map.md)
 - [dag/derivations/24_dressing_field/ravera_dfm_dossier.md](../../../dag/derivations/24_dressing_field/ravera_dfm_dossier.md)
 - [lean4/DressingFieldContinuumInterface.lean](../../../lean4/DressingFieldContinuumInterface.lean)
 - [checks/independent/dfm-continuum-interface.py](../../../checks/independent/dfm-continuum-interface.py)
@@ -49,4 +49,4 @@ In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), 
 
 The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN.
 
-See [the full derivation](../independent/dfm-continuum-refinement-limit.md) and `dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json`. The earlier finite-witness discussion above does not cover this new conditional result.
+See [the full derivation](../independent/dfm-continuum-refinement-limit.md) and `evidence/lean_receipts/campaign_dfm-continuum-refinement-limit_lean_replay.json`. The earlier finite-witness discussion above does not cover this new conditional result.

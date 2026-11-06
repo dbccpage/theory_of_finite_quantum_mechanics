@@ -34,7 +34,7 @@ The sufficient packages add explicit structure: a Gaussian-rational linear lift 
 
 ## Source status
 
-Supplied law of the ray dynamics in dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner: the dynamics sends nonzero vectors of the exact carrier Q(i)^n to nonzero vectors and preserves the transition probability tp x y = |\<x,y\>|^2/(|x|^2|y|^2) between nonzero vectors (Theorem.TpPreserving), equivalently the normalised Born readout hf (P x) y / vnorm y of rank-one effects (Similarity.tpPreserving_iff_born, Kernel.tp_eq_born). Nothing in the finite theory forces a dynamics to preserve this readout; it is the operational hypothesis of the Wigner theorem. Campaign outcome Narrowed: conditional sufficient packages and exact global two-sector ray countermodels, with no status promotion; see the campaign derivation note and Lean replay receipt.
+Supplied law of the ray dynamics in evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner: the dynamics sends nonzero vectors of the exact carrier Q(i)^n to nonzero vectors and preserves the transition probability tp x y = |\<x,y\>|^2/(|x|^2|y|^2) between nonzero vectors (Theorem.TpPreserving), equivalently the normalised Born readout hf (P x) y / vnorm y of rank-one effects (Similarity.tpPreserving_iff_born, Kernel.tp_eq_born). Nothing in the finite theory forces a dynamics to preserve this readout; it is the operational hypothesis of the Wigner theorem. Campaign outcome Narrowed: conditional sufficient packages and exact global two-sector ray countermodels, with no status promotion; see the campaign derivation note and Lean replay receipt.
 
 ## Review
 
@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `4a8cb01b2b211c84c8f0630d0a7716e75740731887e2ca9f8c400f3deb361814`
 - cited in: node.lean, record TFQ-1047
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerKernel`): recorded sha256 `4a8cb01b2b211c84c8f0630d0a7716e75740731887e2ca9f8c400f3deb361814` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerKernel`): recorded sha256 `4a8cb01b2b211c84c8f0630d0a7716e75740731887e2ca9f8c400f3deb361814` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerKernel`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1358d7bfd2451add737744d0fc685cd5454dbb78f821b2261d14e8161be65a1e`
 - cited in: node.lean, record TFQ-1047
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerSimilarity`): recorded sha256 `1358d7bfd2451add737744d0fc685cd5454dbb78f821b2261d14e8161be65a1e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerSimilarity`): recorded sha256 `1358d7bfd2451add737744d0fc685cd5454dbb78f821b2261d14e8161be65a1e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerSimilarity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `77ae8e0eb904a0c1fa22dbbfdfd12e3504ab7424424c10beecd6a8173da63527`
 - cited in: node.lean, node.source, record TFQ-1047
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerTheorem`): recorded sha256 `77ae8e0eb904a0c1fa22dbbfdfd12e3504ab7424424c10beecd6a8173da63527` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerTheorem`): recorded sha256 `77ae8e0eb904a0c1fa22dbbfdfd12e3504ab7424424c10beecd6a8173da63527` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerTheorem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -95,9 +95,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/TransitionProbability.lean](../../../lean4/TransitionProbability.lean)
 - sha256 (`bytes`): `b2bd31978802c1e023f0b58b87e3ef40955a535f6cc3785e2714896ec53fea36`
-- cited in: node.lean, receipt dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json (TransitionProbability), record TFQ-1047
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_l1-imp-transition-probability-law_lean_replay.json (TransitionProbability), record TFQ-1047
 - replay: `verified`
-  - receipt [dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json](../../../dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json) (module `TransitionProbability`): recorded sha256 `b2bd31978802c1e023f0b58b87e3ef40955a535f6cc3785e2714896ec53fea36` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_l1-imp-transition-probability-law_lean_replay.json](../../../evidence/lean_receipts/campaign_l1-imp-transition-probability-law_lean_replay.json) (module `TransitionProbability`): recorded sha256 `b2bd31978802c1e023f0b58b87e3ef40955a535f6cc3785e2714896ec53fea36` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build TransitionProbability`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -209,7 +209,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md](../../../dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md)
-- sha256 (`lf-normalised`): `aa32c9d601678d6cba3a22fb3b44c058c92c0d72417b1f4a549391bb38fe0f7f`
+- sha256 (`lf-normalised`): `45b06d86ab18e8bbcd9550ed5bd2f061ca72a6f8bb644cf635339939a12d7dca`
 - generated view: listed, not counted
 - cited in: record TFQ-1047
 - counts toward the grade: no
@@ -217,27 +217,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/l1-imp-transition-probability-law.md`
 
 - file: [dag/derivations/independent/l1-imp-transition-probability-law.md](../../../dag/derivations/independent/l1-imp-transition-probability-law.md)
-- sha256 (`lf-normalised`): `6c9010a68ea4b3c13f88f0467d5c98ec8dc4fd1afffedf7581dd48222a74601a`
+- sha256 (`lf-normalised`): `fa68b80c50a6c6eac6d3f99fae201498382942e665adc6f8f705a3f05d8eb651`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_l1-imp-transition-probability-law_lean_replay.json`
 
-- file: [dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json](../../../dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_l1-imp-transition-probability-law_lean_replay.json](../../../evidence/lean_receipts/campaign_l1-imp-transition-probability-law_lean_replay.json)
 - sha256 (`lf-normalised`): `0b7fff93e5596fb0885d32e91297b8ebefd9a3dd24fa3009a60e3aa2942e04b5`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md`
+### Documents and data: `evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md`
 
-- file: [dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md](../../../dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md)
+- file: [evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md](../../../evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md)
 - sha256 (`lf-normalised`): `8b5050fbb9f1e046b3f6fbde489956734d5e6d4b5f1ef936ad56cdd6abf82a49`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md`
+### Documents and data: `evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md`
 
-- file: [dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md](../../../dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md)
+- file: [evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md](../../../evidence/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md)
 - sha256 (`lf-normalised`): `c47b6d96998dcd53375828e9925862b63fcd37b84f6f12f13ac5960bf4a47629`
 - cited in: node.source
 - counts toward the grade: yes

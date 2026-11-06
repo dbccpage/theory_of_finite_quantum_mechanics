@@ -35,7 +35,7 @@ The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the
 
 ## Source status
 
-dag/research/quantum_computation_self_obstruction.md record QCV-Q5 claims CONDITIONAL; audited status CONDITIONAL
+dag/derivations/29_computation/quantum_computation_self_obstruction.md record QCV-Q5 claims CONDITIONAL; audited status CONDITIONAL
 
 ## Review
 
@@ -49,10 +49,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/NoisyComputationViabilityCertificate.lean](../../../lean4/NoisyComputationViabilityCertificate.lean)
 - sha256 (`bytes`): `c0f47e8463293305237215d3e00fd785fdc1f2716cad5fe43e636f01ee67398e`
-- cited in: node.lean, node.source, receipt dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json (NoisyComputationViabilityCertificate), receipt dag/research/pr_385_round2_replay.json (NoisyComputationViabilityCertificate), record TFQ-1324
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_qcv-conditional-viability-certificate_lean_replay.json (NoisyComputationViabilityCertificate), receipt evidence/lean_receipts/pr_385_round2_replay.json (NoisyComputationViabilityCertificate), record TFQ-1324
 - replay: `verified`
-  - receipt [dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json](../../../dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json) (module `NoisyComputationViabilityCertificate`): recorded sha256 `c0f47e8463293305237215d3e00fd785fdc1f2716cad5fe43e636f01ee67398e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_385_round2_replay.json](../../../dag/research/pr_385_round2_replay.json) (module `NoisyComputationViabilityCertificate`): recorded sha256 `c0f47e8463293305237215d3e00fd785fdc1f2716cad5fe43e636f01ee67398e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_qcv-conditional-viability-certificate_lean_replay.json](../../../evidence/lean_receipts/campaign_qcv-conditional-viability-certificate_lean_replay.json) (module `NoisyComputationViabilityCertificate`): recorded sha256 `c0f47e8463293305237215d3e00fd785fdc1f2716cad5fe43e636f01ee67398e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_385_round2_replay.json](../../../evidence/lean_receipts/pr_385_round2_replay.json) (module `NoisyComputationViabilityCertificate`): recorded sha256 `c0f47e8463293305237215d3e00fd785fdc1f2716cad5fe43e636f01ee67398e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build NoisyComputationViabilityCertificate`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83`
 - cited in: node.lean, record TFQ-1324
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `QcSelfObstruction`): recorded sha256 `be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_computation.json](../../../evidence/lean_receipts/lean_replay_campaign_computation.json) (module `QcSelfObstruction`): recorded sha256 `be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build QcSelfObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -107,24 +107,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/29_computation/quantum_computation_self_obstruction.md`
+
+- file: [dag/derivations/29_computation/quantum_computation_self_obstruction.md](../../../dag/derivations/29_computation/quantum_computation_self_obstruction.md)
+- sha256 (`lf-normalised`): `303d0562ed0666748c50b6b844ae4c57a8e4bd4bef15f817d7f4622a68783ccd`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md`
 
 - file: [dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md](../../../dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md)
-- sha256 (`lf-normalised`): `82dc2c7bc90f7c7ed5f51f5b57ff808bafbcc0fbb407b2d48337d78809794f01`
+- sha256 (`lf-normalised`): `8ffc58f5a04ce04b6c8e807fc358603b6b547e841a5bfd909598f6125065d4b8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1324
 - counts toward the grade: no
 
-### Documents and data: `dag/research/quantum_computation_self_obstruction.md`
+### Documents and data: `evidence/axiom_reports/quantum_computation_self_obstruction_axioms.txt`
 
-- file: [dag/research/quantum_computation_self_obstruction.md](../../../dag/research/quantum_computation_self_obstruction.md)
-- sha256 (`lf-normalised`): `8ae1b2ae291ee74f773da07740ebd0c1f98842bc01d7ec6a4d3c267e0077d178`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `dag/research/quantum_computation_self_obstruction_axioms.txt`
-
-- file: [dag/research/quantum_computation_self_obstruction_axioms.txt](../../../dag/research/quantum_computation_self_obstruction_axioms.txt)
+- file: [evidence/axiom_reports/quantum_computation_self_obstruction_axioms.txt](../../../evidence/axiom_reports/quantum_computation_self_obstruction_axioms.txt)
 - sha256 (`lf-normalised`): `b4c803ee2b1a4fe8af1d9d92a351fb11c61d2791bea01a5b7cd3dd7c1623af81`
 - cited in: node.source
 - counts toward the grade: yes

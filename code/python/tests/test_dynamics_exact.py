@@ -2,7 +2,7 @@ import importlib,sys,types,unittest
 from pathlib import Path
 from fractions import Fraction as Q
 ROOT=Path(__file__).resolve().parents[3]
-sys.path.insert(0,str(ROOT/'dag/pfp'))
+sys.path.insert(0,str(ROOT/'checks/exact_checkers'))
 pkg=types.ModuleType('scoped_dynamics');pkg.__path__=[str(Path(__file__).resolve().parents[1]/'src/qm')];sys.modules['scoped_dynamics']=pkg
 m=importlib.import_module('scoped_dynamics.dynamics_exact')
 from dynamics_checker import verify

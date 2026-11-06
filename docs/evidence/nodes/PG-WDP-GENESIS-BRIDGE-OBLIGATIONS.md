@@ -36,7 +36,7 @@ GEN-WDP-O01..O05 five-obligation Genesis-to-WDP bridge gate, GEN-WDP-46/70 obser
 
 ## Review
 
-- PFP review: [dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../evidence/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: In a three-status ledger model in which end-to-end is defined as all five discharged, scoped controls passing for all five obligations do not make the end-to-end claim hold, which holds exactly when all five are discharged; the node reading (all five control-only) is therefore not end-to-end; ledger bookkeeping only, no obligation is discharged.
   - does not support: That any of O01..O05 is discharged, dischargeable or refutable; the truth of any end-to-end bridge claim; any independent semantics of "end-to-end" beyond the definitional conjunction; that the register status of O01..O05 is control-only: the register labels each OPEN, and Open/ControlOnly/Discharged and the all-ControlOnly vector 11111 are this node's reading of the node statement (scoped controls done, end-to-end not); that no_sq_eq_two_sq bears on O04; the programme order as a logical dependency; Hilbert, Born, scalar or governance choices; any physical or institutional interpretation.
   - next test: For O02, the only concrete candidate map in hand is the symmetrised adjacency of a finite window: choose an orientation-sensitive source transition system on FiniteGenesisWindow and prove or refute that wdpPairDefect is a preservation-and-reflection morphism for it (pairDefect_forgets_orientation already refutes it for orientation-sensitive transitions); record the outcome as the first falsifier on the O02 row.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,9 +67,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenesisWdpBridgeObligations.lean](../../../lean4/PregenesisWdpBridgeObligations.lean)
 - sha256 (`bytes`): `7bbdcefde37106ab5e3dbbb17f86d94adc167d5036c41a44fe684a6a8d161729`
-- cited in: node.lean, node.source, receipt dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json (PregenesisWdpBridgeObligations)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json (PregenesisWdpBridgeObligations)
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json](../../../dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json) (module `PregenesisWdpBridgeObligations`): recorded sha256 `7bbdcefde37106ab5e3dbbb17f86d94adc167d5036c41a44fe684a6a8d161729` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json](../../../evidence/lean_receipts/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json) (module `PregenesisWdpBridgeObligations`): recorded sha256 `7bbdcefde37106ab5e3dbbb17f86d94adc167d5036c41a44fe684a6a8d161729` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PregenesisWdpBridgeObligations`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -90,9 +90,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/WdpBridgeObligations.lean](../../../lean4/WdpBridgeObligations.lean)
 - sha256 (`bytes`): `7993025b4054eac17f890e5f07649f18ef8adbf9826d86015667d4f10dcbfbc5`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (WdpBridgeObligations)
+- cited in: receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (WdpBridgeObligations)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `WdpBridgeObligations`): recorded sha256 `7993025b4054eac17f890e5f07649f18ef8adbf9826d86015667d4f10dcbfbc5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `WdpBridgeObligations`): recorded sha256 `7993025b4054eac17f890e5f07649f18ef8adbf9826d86015667d4f10dcbfbc5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build WdpBridgeObligations`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -118,6 +118,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
+
+- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
+- sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
+- cited in: node.rust
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness` (rust_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
 ### Rust: `code/rust/src/wdp/examples/genesis_construction.rs`
 
 - file: [code/rust/src/wdp/examples/genesis_construction.rs](../../../code/rust/src/wdp/examples/genesis_construction.rs)
@@ -134,18 +146,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
-
-- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
-- sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
-- cited in: node.rust
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness` (rust_symbol) | yes | yes | yes | - | - |
-
-- counts toward the grade: yes
-
 ### Python: `checks/independent/pg-wdp-genesis-bridge-obligations.py`
 
 - file: [checks/independent/pg-wdp-genesis-bridge-obligations.py](../../../checks/independent/pg-wdp-genesis-bridge-obligations.py)
@@ -153,9 +153,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md)
 - sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
 - cited in: node.source
 - counts toward the grade: yes
@@ -163,7 +163,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md`
 
 - file: [dag/derivations/06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md](../../../dag/derivations/06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md)
-- sha256 (`lf-normalised`): `ff35afe4e3f493fe232b27b9059c6a4145dee1f6f12d7a3962872db2830ee619`
+- sha256 (`lf-normalised`): `f2014542e8ce20f9c53fc781d96b85ca084b821e639a3737711db7563ec6d7cf`
 - generated view: listed, not counted
 - cited in: record TFQ-0343
 - counts toward the grade: no
@@ -192,7 +192,12 @@ Incoming (1):
 
 - `PG-R-GENESIS-TO-WDP` `GAP_NO_DERIVATION`: [PG-GEN-REGIME-EVENTS](PG-GEN-REGIME-EVENTS.md) (DEFINITION), [PG-SN-CARRIER](PG-SN-CARRIER.md) (PROVED_LEAN), [PG-OBLIGATION-MONOID](PG-OBLIGATION-MONOID.md) (PROVED_LEAN)
 
-Outgoing (2):
+Outgoing (7):
 
 - `PG-R-GAP-GENESIS-TO-WINDOW` `DERIVED_LEAN`: [PG-WDP-DEGREE1-WINDOW](PG-WDP-DEGREE1-WINDOW.md) (DEFINITION)
+- `PGW-R-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS](PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS.md) (OPEN)
+- `PGW-R-WDP-BRIDGE-O02-OBSERVER-REPAIR` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR](PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR.md) (OPEN)
+- `PGW-R-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE](PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE.md) (OPEN)
+- `PGW-R-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION](PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION.md) (OPEN)
+- `PGW-R-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL](PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL.md) (OPEN)
 - `PGW-R-WDP-GENESIS-BRIDGES-LEDGER` `DERIVED_PROSE`: [PGW-WDP-GENESIS-BRIDGES-LEDGER](PGW-WDP-GENESIS-BRIDGES-LEDGER.md) (DEFINITION)

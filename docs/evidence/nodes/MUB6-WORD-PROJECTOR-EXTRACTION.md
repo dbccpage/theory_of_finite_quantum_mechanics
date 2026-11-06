@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `bf4ba4e84287be003d95729e6ce870b0189bb1c6b9b7a733720e9df3c4470ec8`
 - cited in: node.lean, record TFQ-1278
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `FlatMomentBasisRelations`): recorded sha256 `bf4ba4e84287be003d95729e6ce870b0189bb1c6b9b7a733720e9df3c4470ec8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `FlatMomentBasisRelations`): recorded sha256 `bf4ba4e84287be003d95729e6ce870b0189bb1c6b9b7a733720e9df3c4470ec8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FlatMomentBasisRelations`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `46a1f2c66be5cc14899da49af63a0c3ae7d41a79260dbda333016f7e60e0c6fc`
 - cited in: node.lean, record TFQ-1278
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `FlatMomentProjectorExtraction`): recorded sha256 `46a1f2c66be5cc14899da49af63a0c3ae7d41a79260dbda333016f7e60e0c6fc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `FlatMomentProjectorExtraction`): recorded sha256 `46a1f2c66be5cc14899da49af63a0c3ae7d41a79260dbda333016f7e60e0c6fc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FlatMomentProjectorExtraction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

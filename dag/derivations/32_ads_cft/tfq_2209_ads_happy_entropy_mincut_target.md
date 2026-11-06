@@ -19,7 +19,7 @@ Not proved in Lean: that the 20 explicit generators are the boundary stabilizer 
 
 ## Source status
 
-Recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20 boundary legs (340 equalities S(A) = mincut(A) and 40 intervals with S(A) = 4 < 5 = mincut(A)). Lean: checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20 boundary legs (340 equalities S(A) = mincut(A) and 40 intervals with S(A) = 4 < 5 = mincut(A)). Lean: checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20
 
 For the stabilizer state of the six-tensor patch (hand-encoded generators) with bulk legs at logical zero: S(A) from the GF(2) rank formula and the star-graph minimal bond cut over the 20 x 19 contiguous intervals: S <= mincut on all 380, equality on exactly 340, S = mincut - 1 on exactly 40.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -50,7 +50,7 @@ See also: `ADS-RT-FORMULA-IMPORT`.
 
 - `external:arXiv:1503.06237`: F. Pastawski, B. Yoshida, D. Harlow and J. Preskill, "Holographic quantum error-correcting codes: Toy models for the bulk/boundary correspondence", arXiv:1503.06237 (2015); JHEP 06 (2015) 149.
 - Repository: `lean4/FrontierHappyMincut.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierHappyMincut.lean::FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20`

@@ -15,7 +15,7 @@ Sources, in this order:
 1. The session: a workflow done by hand three or more times (MIN_SPECIMENS), a repeated failure, a request no skill
    covers.
 2. The review files `docs/overclaim/reviews/*.md`: "What the scanner could not decide" sections that recur.
-3. The protocols: `dag/pfp/campaign/README.md`, `dag/derivation_dag_reading_note.md` (the sync order), CONTRIBUTING.md
+3. The protocols: `checks/exact_checkers/campaign/README.md`, `dag/derivation_dag_reading_note.md` (the sync order), CONTRIBUTING.md
    and REVIEWING.md. A multi-step procedure there with no skill is a candidate.
 
 External registries or papers only if the user asks; no paid provider calls.

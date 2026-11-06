@@ -237,12 +237,12 @@
       "id": "CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS",
       "stage": "CONSTRUCTOR_THEORY",
       "status": "PROVED_LEAN",
-      "source_status": "Source definition of distinguishability audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Source definition of distinguishability audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Formalized finite statement. For a finite set X and a report map q from X to R, two attributes A and B of X (nonemptiness is not needed) are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. Checked in Lean 4 over Finset for arbitrary types X and R with decidable equality on R: both directions and the biconditional; when q(A) and q(B) are disjoint the indicator of B on the union of A and B is constant on the fibers of q (HistoryReport.FiberConstant, the form PG-HISTORY-REPORT-CRITERION takes); and an exhaustive bitmask decision check over all (q, A, B) with nonempty attributes for 1<=|X|<=4 and 1<=|R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.",
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md",
         "lean4/FrontierDistinguishability.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierDistinguishability.lean::FrontierDistinguishability.separatedByTask_imp_disjoint_image",
@@ -297,7 +297,7 @@
         "dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md",
         "external:arXiv:1405.5563",
         "dag/derivations/independent/ct-information-media-interoperability.md",
-        "dag/research/campaign_ct-information-media-interoperability_lean_replay.json"
+        "evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json"
       ],
       "lean": [
         "lean4/InformationProductBoundary.lean::InformationProductBoundary.clones_product",
@@ -372,13 +372,13 @@
       "id": "CT-QUBIT-NO-CLONING-FINITE-TARGET",
       "stage": "CONSTRUCTOR_THEORY",
       "status": "PROVED_LEAN",
-      "source_status": "Numeric and algebraic claims verified with exact Python fractions.Fraction arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Numeric and algebraic claims verified with exact Python fractions.Fraction arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement over Q(i), checked in Lean 4 in the following narrowed form. Take the qubit with the six Pauli eigenstates as rays. (a) The explicit measure-and-prepare maps cloneZ, cloneX and cloneY (rho to the mixture of the two basis clones with weights Tr(P rho)) send each of |0>,|1>; |+>,|->; |+i>,|-i> to its own clone rho tensor rho; cloneZ is shown trace-preserving. (b) The exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the difference of the two clone sums has entry -1/2 on |00><11| and |11><00|, so no additive map (hence no linear map) clones all four of |0>,|1>,|+>,|->. (c) The exact squared overlaps of the six states are 1 (equal), 0 (antipodal) or 1/2 (otherwise); for a rational x in [0,1], x <= x^2 forces x in {0,1}; and an exhaustive count over the 64 subsets of the six states shows that exactly 10 subsets are pairwise equal-or-orthogonal (the empty set, 6 singletons and 3 antipodal pairs) and that the maximal such subsets are the three antipodal pairs. In Lean \"cloneable subset\" in (c) is defined as pairwise equal-or-orthogonal.",
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md",
         "lean4/Entanglement.lean",
         "lean4/FrontierNoCloning.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneZ_trace_preserving",
@@ -526,14 +526,14 @@
       "id": "CT-ENTANGLING-PHASE-FINITE-TARGET",
       "stage": "CONSTRUCTOR_THEORY",
       "status": "PROVED_LEAN",
-      "source_status": "Exact Gaussian-rational value C^2 = 1/5 at u = (3+4i)/5 verified with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Exact Gaussian-rational value C^2 = 1/5 at u = (3+4i)/5 verified with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement over Q(i), checked in Lean 4 for (a) to (c); (d) is not proved. For u in Q(i) (the Lean proofs of (a) and (b) do not use |u|=1), the two-qubit vector psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u is a product vector if and only if u=1. (b) The squared concurrence, defined as 4|det M|^2, equals |u-1|^2/4 for M_u; for u=(3+4i)/5, where |u|=1, it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), det(A M B^T) = det(A) det(M) det(B), so det M = 0 implies det(A M B^T) = 0: local operations cannot raise a product vector to Schmidt rank 2; and diag(1,1,1,u) applied to the product vector (1,1,1,1)/2 gives psi_u. The physical inference from such entanglement to a non-classical mediator is imported, not part of this target.",
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md",
         "lean4/Entanglement.lean",
         "lean4/DualWitness.lean",
         "lean4/FrontierEntanglingPhase.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.det_M_u",
@@ -685,13 +685,13 @@
       "id": "CQFT-FINITE-POSET-NET-TARGET",
       "stage": "CAUSAL_QFT",
       "status": "PROVED_LEAN",
-      "source_status": "Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement, checked in Lean 4 for site-factorized operators. For a FiniteStrictPoset P on n points put one qubit (a single-site monoid M) at each point; an operator A : Fin n -> M is localized in a subset O of P when it is the identity outside O, so the Lean \"algebra\" of O is the set of elementary tensor operators localized in O, not the full matrix algebra on the qubits in O. (a) Isotony: O1 inside O2 and A localized in O1 imply A localized in O2. (b) Locality: if every point of O1 is spacelike to every point of O2, then O1 and O2 are disjoint and operators localized in O1 and in O2 commute under the sitewise product. (c) The spacelike relation of CausalOrder.lean is symmetric (spacelike_symm) and irreflexive (spacelike_irrefl) and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 1 and 0 are spacelike, 0 and 3 are spacelike, and 1<3 are related. The content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md",
         "lean4/CausalOrder.lean",
         "lean4/FrontierPosetNet.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierPosetNet.lean::FrontierPosetNet.isotony",
@@ -750,9 +750,9 @@
         "dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md",
         "checks/independent/cqft-reeh-schlieder-theorem-import.py",
         "lean4/ReehSchliederImport.lean",
-        "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json",
-        "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json",
-        "dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json",
+        "evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json",
+        "evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json",
+        "evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_independent.json",
         "external:Nuovo-Cimento-22-1051-1961",
         "external:doi:10.1063/1.1704187"
       ],
@@ -791,12 +791,12 @@
       "id": "CQFT-RS-FINITE-CYCLICITY-TARGET",
       "stage": "CAUSAL_QFT",
       "status": "PROVED_LEAN",
-      "source_status": "Algebraic instances verified with exact Python arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Algebraic instances verified with exact Python arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement, checked in Lean 4 in the following narrowed form. Let Omega be a dA x dB matrix over a semiring R (the amplitude matrix of a vector in H_A tensor H_{A^c}; for qubits dA = 2^|A| and dB = 2^|A^c|, but the qubit tensor-factor bookkeeping is not formalised). Omega is cyclic for End(H_A) when every dA x dB matrix is X Omega for some X. (a) If Omega has a left inverse L with L Omega = I_dB (full column rank dB, which over a field is full rank of the reduced state on A^c) then Omega is cyclic and Omega is separating for End(H_{A^c}) (Omega Y = 0 implies Y = 0). (b) Conversely, cyclic implies a left inverse whenever dB <= dA (an injection Fin dB -> Fin dA is supplied). (c) A nonzero vector in the right kernel of Omega makes Omega not separating. (d) Exact 3-qubit instances over Z for the product vector |000>, GHZ = |000>+|111> and W = |100>+|010>+|001>: explicit nonzero right-kernel vectors for every single-site unfolding (2 x 4), explicit integer left inverses of every pair-of-sites unfolding (4 x 2) for GHZ and W, and a zero column in every pair-of-sites unfolding of |000>.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md",
         "lean4/FrontierRsCyclicity.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.cyclic_of_fullComplementaryRank",
@@ -852,9 +852,9 @@
         "dag/derivations/independent/cqft-causal-factorization-import.md",
         "checks/independent/cqft-causal-factorization-import.py",
         "lean4/CausalFactorizationImport.lean",
-        "dag/research/campaign_cqft-causal-factorization-import_lean_replay.json",
-        "dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json",
-        "dag/research/campaign_cqft-causal-factorization-import_independent.json",
+        "evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_replay.json",
+        "evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_mutation.json",
+        "evidence/lean_receipts/campaign_cqft-causal-factorization-import_independent.json",
         "external:numdam:AIHPA_1973__19_3_211_0",
         "external:arXiv:math-ph/9903028"
       ],
@@ -892,13 +892,13 @@
       "id": "CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET",
       "stage": "CAUSAL_QFT",
       "status": "PROVED_LEAN",
-      "source_status": "Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement, checked in Lean 4 in the following narrowed form. For a FiniteStrictPoset P and elements A_x (x in P) of a monoid with A_x A_y = A_y A_x for all spacelike pairs x,y: the ordered product along a listing of P is unchanged by one adjacent swap of spacelike elements, hence by any chain of adjacent spacelike swaps. Exact checks: the diamond C2 has exactly 2 linear extensions among the 24 permutations of its four points, [0,1,2,3] and [0,2,1,3], connected by one adjacent spacelike swap of 1 and 2; the N poset has exactly 5 linear extensions; with integer 2x2 Pauli matrices on C2 the two ordered products agree when the spacelike points 1 and 2 carry the commuting matrices Z and Z, and differ by the sign -1 (and are unequal) when they carry the anticommuting matrices X and Z. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md",
         "lean4/CausalOrder.lean",
         "lean4/FrontierLinearExtension.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_append",
@@ -971,7 +971,7 @@
       "id": "CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET",
       "stage": "CAUSAL_QFT",
       "status": "PROVED_LEAN",
-      "source_status": "Source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr-qc/0207103 Section III eqs. (4)-(5) pp. 4-5, and exact rational values f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and r(grid_n)=(n+3)/(2(n+1)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr-qc/0207103 Section III eqs. (4)-(5) pp. 4-5, and exact rational values f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and r(grid_n)=(n+3)/(2(n+1)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement, checked in Lean 4 in the following narrowed form. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs (CausalSet.ordering_fraction); Lean computes r(C1)=2/3 and r(C2)=5/6 from the relation tables of CausalOrder.lean. In Sorkin (2003, arXiv:gr-qc/0309009 Section 7 p. 16), the expected ordering fraction of a Poisson sprinkling into a d-dimensional Minkowski causal interval normalized by binom(N,2) is f(d) = (3/2) Gamma(d+1) Gamma(d/2 + 1) / Gamma(3d/2 + 1) = Gamma(d+1) Gamma(d/2) / (2 Gamma(3d/2)) (in Reid 2003, arXiv:gr-qc/0207103 Section III eq. (5) p. 5, normalizing by <N>^2 instead of binom(N,2) gives f(d)/2 = Gamma(d+1) Gamma(d/2) / (4 Gamma(3d/2))), with exact rational values f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10; in Lean these four values are entered as a table (70 f(d) = 70, 35, 16, 7) and not derived from the Gamma formula. (i) If the n x n grid with the componentwise product order has R(n) = (n(n+1)/2)^2 - n^2 strictly related pairs (a count entered as a definition in Lean, not derived from a poset), then 4 R(n) = n^2 (n-1)(n+3), the ordering fraction is r = (n+3)/(2(n+1)) for all n >= 2 with r(n) - 1/2 = 1/(n+1), the values for n=2..6 are 5/6, 3/4, 7/10, 2/3, 9/14, and r(2) = 5/6 equals the exactly computed r(C2) of the diamond. This is an observation about a lattice, not an instance of the sprinkling theorem. (ii) An exact nearest-dimension selector over d in {1,2,3,4} with tie reporting is defined and checked on the six inputs 5/6, 3/4, 7/10, 1/2, 8/35, 1/10, giving [1], [1,2] (an exact tie), [2], [2], [3], [4]. (iii) The Hasse covering relation of any FiniteStrictPoset is contained in every subrelation E of the order such that every related pair is in E or has an intermediate element (one half of \"unique transitive reduction\"); C1 has 2 links and C2 has 4; the Mobius tables c1_mu and c2_mu of CausalOrder.lean satisfy the Mobius recursion and c2_mu(d0,d3)=1.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md",
@@ -980,7 +980,7 @@
         "lean4/CausalOrder.lean",
         "code/python/src/general_relativity/causal_set.py",
         "lean4/FrontierMyrheimMeyer.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.gridStrictPairs_factorization",
@@ -1059,9 +1059,9 @@
         "dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md",
         "dag/derivations/independent/ads-cft-duality-import.md",
         "checks/independent/ads-cft-duality-import.py",
-        "dag/research/campaign_ads-cft-duality-import_lean_replay.json",
-        "dag/research/campaign_ads-cft-duality-import_lean_mutation.json",
-        "dag/research/campaign_ads-cft-duality-import_independent.json",
+        "evidence/lean_receipts/campaign_ads-cft-duality-import_lean_replay.json",
+        "evidence/lean_receipts/campaign_ads-cft-duality-import_lean_mutation.json",
+        "evidence/lean_receipts/campaign_ads-cft-duality-import_independent.json",
         "external:arXiv:hep-th/9711200",
         "external:arXiv:hep-th/9802109",
         "external:arXiv:hep-th/9802150"
@@ -1138,9 +1138,9 @@
         "dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md",
         "dag/derivations/independent/ads-rt-formula-import.md",
         "checks/independent/ads-rt-formula-import.py",
-        "dag/research/campaign_ads-rt-formula-import_lean_replay.json",
-        "dag/research/campaign_ads-rt-formula-import_lean_mutation.json",
-        "dag/research/campaign_ads-rt-formula-import_independent.json",
+        "evidence/lean_receipts/campaign_ads-rt-formula-import_lean_replay.json",
+        "evidence/lean_receipts/campaign_ads-rt-formula-import_lean_mutation.json",
+        "evidence/lean_receipts/campaign_ads-rt-formula-import_independent.json",
         "external:arXiv:hep-th/0603001"
       ],
       "lean": [
@@ -1255,7 +1255,7 @@
       "id": "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET",
       "stage": "ADS_CFT",
       "status": "PROVED_LEAN",
-      "source_status": "Source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) pp. 24-25, and weight enumerator 1 + 45 z^4 + 18 z^6, all twenty 3|3 bipartition entropies (3 bits) and minimum logical weight 3 recomputed in Python on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) pp. 24-25, and weight enumerator 1 + 45 z^4 + 18 z^6, all twenty 3|3 bipartition entropies (3 bits) and minimum logical weight 3 recomputed in Python on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Formalized finite statement. The [[5,1,3]] code of Laflamme, Miquel, Paz and Zurek has stabilizer generators XZZXI, IXZZX, XIXZZ, ZXIXZ and logical operators XXXXX and ZZZZZ. Its Choi state is the six-qubit stabilizer state with generators g tensor I (four of them), XXXXX tensor X and ZZZZZ tensor Z. Checked in Lean 4 on Pauli operators modulo phase (GF(2) symplectic vectors): the six generators pairwise commute and generate a group of 64 distinct elements, with weight distribution 1 element of weight 0, 45 of weight 4 and 18 of weight 6 (the hexacode six-qubit state), so every non-identity element has weight at least 4, which is the perfect-tensor condition (every bipartition with at most three legs on one side has a maximally mixed marginal); for all twenty 3|3 bipartitions the stabilizer subgroup supported on one side is trivial, so the entropy is 3 bits by the stabilizer formula S(A) = |A| - log2 |G_A|; and in the five-qubit code the normalizer of the 16-element stabilizer has order 64 and its 48 elements outside the stabilizer (the nontrivial logical operators, modulo phase) have minimum weight 3. The reading of weights and local stabilizer subgroups as marginals and entropies is the standard stabilizer-formalism dictionary and is not formalised on density matrices.",
       "source": [
         "dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md",
@@ -1265,7 +1265,7 @@
         "lean4/ShorNineQubitCode.lean",
         "lean4/SurfaceCodeToricTopology.lean",
         "lean4/FrontierFiveQubitPerfectTensor.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64",
@@ -1291,13 +1291,13 @@
       "id": "ADS-HAPPY-ENTROPY-MINCUT-TARGET",
       "stage": "ADS_CFT",
       "status": "PROVED_LEAN",
-      "source_status": "Recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20 boundary legs (340 equalities S(A) = mincut(A) and 40 intervals with S(A) = 4 < 5 = mincut(A)). Lean: checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20 boundary legs (340 equalities S(A) = mincut(A) and 40 intervals with S(A) = 4 < 5 = mincut(A)). Lean: checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement, checked in Lean 4 for a hand-encoded model. Contract six copies of the six-leg perfect tensor on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours, which are not adjacent to each other, so the patch has 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs, every bulk leg fixed in the logical zero state. In Lean the 20-qubit boundary stabilizer is given by 20 explicit generators (15 local to the five outer blocks and 5 pushed through the internal bonds from the central tensor): they pairwise commute and have full GF(2) rank 20. For all 380 proper contiguous boundary intervals A (20 starting positions, lengths 1 to 19), with S(A) = rank(G restricted to A) - |A| in bits and mincut(A) the minimal number of bonds cut separating A from its complement in the six-tensor star graph: S(A) <= mincut(A) on all 380 intervals, S(A) = mincut(A) on exactly 340 intervals, and S(A) = mincut(A) - 1 on exactly 40. The Ryu-Takayanagi equality therefore fails on this patch for 40 intervals; it is not a statement that holds for every region.",
       "source": [
         "dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md",
         "external:arXiv:1503.06237",
         "lean4/FrontierHappyMincut.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierHappyMincut.lean::FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20",
@@ -1320,7 +1320,7 @@
       "id": "ADS-LOGICAL-RECONSTRUCTION-TARGET",
       "stage": "ADS_CFT",
       "status": "PROVED_LEAN",
-      "source_status": "Recomputed in Python over the 64-element normalizer on 2026-10-22 (unique representative per logical class on each of the 10 triples, zero on each of the 10 pairs). Lean: checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Recomputed in Python over the 64-element normalizer on 2026-10-22 (unique representative per logical class on each of the 10 triples, zero on each of the 10 pairs). Lean: checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Formalized finite statement. For the [[5,1,3]] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of each of the three nontrivial logical classes (the cosets of the stabilizer by XXXXX, ZZZZZ and YYYYY, the product class), and no 2-qubit subset supports a representative of any of them. Equivalent statement also checked in Lean 4: all 105 non-identity Pauli errors of weight 1 or 2 anticommute with a stabilizer generator, so none lies in the normalizer and erasure of any two qubits is correctable (the Knill-Laflamme condition). All operators are Pauli operators modulo phase. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.",
       "source": [
         "dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md",
@@ -1328,7 +1328,7 @@
         "external:arXiv:quant-ph/9602019",
         "lean4/ThreeQubitCodeSyndromeRecovery.lean",
         "lean4/FrontierLogicalReconstruction.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierLogicalReconstruction.lean::FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes",
@@ -1359,9 +1359,9 @@
         "dag/derivations/independent/ads-regge-area-rt-gap.md",
         "checks/independent/ads-regge-area-rt-gap.py",
         "lean4/AdsReggeAreaRtGap.lean",
-        "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json",
-        "dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json",
-        "dag/research/campaign_ads-regge-area-rt-gap_independent.json"
+        "evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_replay.json",
+        "evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_mutation.json",
+        "evidence/lean_receipts/campaign_ads-regge-area-rt-gap_independent.json"
       ],
       "lean": [
         "lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts",
@@ -1401,9 +1401,9 @@
         "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md",
         "dag/derivations/independent/ads-happy-toy-not-duality-gap.md",
         "checks/independent/ads-happy-toy-not-duality-gap.py",
-        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json",
-        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json",
-        "dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json",
+        "evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_replay.json",
+        "evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json",
+        "evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_independent.json",
         "external:arXiv:1503.06237"
       ],
       "lean": [
@@ -1537,14 +1537,14 @@
       "id": "LQG-AREA-SPECTRUM-EXACT-TARGET",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "PROVED_LEAN",
-      "source_status": "Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement, checked in Lean 4 in the formal radical basis. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, 5/2, 3}, each term is c_j sqrt(s_j) with squarefree radicand s_j in {2, 3, 6, 15, 35}: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2 and 2 sqrt(3) for j = 1/2, 1, 3/2, 2, 5/2, 3 (radicands 3, 2, 15, 6, 35, 3); Lean checks k(k+2) = m_k^2 d_k with d_k squarefree for the twice-spins k = 1..6, and holds each term as a vector in the formal Q-module on the basis (sqrt2, sqrt3, sqrt6, sqrt15, sqrt35)/2. On that module: (i) the 210 puncture multisets of size at most 4 (the empty one and 209 nonempty ones) have 209 distinct reduced vectors, the zero vector included (208 nonzero); (ii) the unique collision is one puncture of spin 3 with four punctures of spin 1/2 (2 sqrt(3) = 4 x sqrt(3)/2); (iii) for a single puncture the squared area j(j+1) = k(k+2)/4 is at least 3/4, strictly increasing in k, with minimum 3/4 at j = 1/2 (area sqrt(3)/2).",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md",
         "external:arXiv:gr-qc/9411005",
         "external:arXiv:gr-qc/9602046",
         "lean4/FrontierAreaSpectrum.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.casimir_squarefree_factorizations",
@@ -1645,14 +1645,14 @@
       "id": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "PROVED_LEAN",
-      "source_status": "Racah single-sum rational squares and values for 2j <= 2 recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Racah single-sum rational squares and values for 2j <= 2 recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement, checked in Lean 4 in the following narrowed form. The Wigner 6j symbol with twice-spins at most 6 is S sqrt(P), where S is Racah's single-sum factor, computed with exact integer factorials, and P is the product of four rational triangle factors; Lean defines the rational square W^2 = S^2 P (sixJSquaredRat) in this way. Checks: (i) the signed Racah factor S is invariant under the four generators of the 24 tetrahedral symmetries (the column swaps 12 and 23 and the double row flips on columns 12 and 23) for all 3,418 admissible 6-tuples with twice-spins at most 6 (the invariance of P under the symmetries is evident, since they permute its four triangle factors, but is not part of the Lean check); (ii) the orthogonality relation sum over x of (x+1)(y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y') in twice-spin labels, for the 1,928 admissible tuples (a,b,c,d,y,y') whose labels and whose intermediate twice-spin x all lie at or below 6; (iii) the Biedenharn-Elliott (pentagon) identity for all 814 admissible 9-tuples with twice-spins at most 3, and for four explicit instances with twice-spins up to 6 (all labels 2; labels 3 with p=q=r=2; (a,b,c,d,e,f,p,q,r) = (4,2,3,3,2,4,3,3,2); and (6,0,6,0,6,0,6,6,6)). Exact arithmetic in the rationals with one square root per symbol.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md",
         "code/rust/src/general_relativity/spin_foam.rs",
         "lean4/DiscreteSpinfoamAmplitudes.lean",
         "lean4/FrontierClassical6j.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierClassical6j.lean::FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6",
@@ -1677,14 +1677,14 @@
       "id": "LQG-PR-ALLOWED-REGION-TARGET",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "PROVED_LEAN",
-      "source_status": "Cayley-Menger determinant 288 V^2 regimes (4 > 0 for regular j=1/2, 0 for flat, -6075/16 < 0 for admissible a=(4,4,4,4,4,8)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPrAllowedRegion (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Cayley-Menger determinant 288 V^2 regimes (4 > 0 for regular j=1/2, 0 for flat, -6075/16 < 0 for admissible a=(4,4,4,4,4,8)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPrAllowedRegion (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement, checked in Lean 4 in the following narrowed form. For each admissible 6-tuple (a,b,c,d,e,f) of twice-spins at most 8 (all four triads (a,b,c), (a,e,f), (d,b,f), (d,e,c) admissible), take lengths l = j + 1/2 = (twice-spin + 1)/2. Lean computes 288 V^2 (scaled by 64, as the integer cayleyMengerScaled64) as the 3x3 Gram determinant of the squared edge lengths at the vertex where a, b, f meet, which equals the Cayley-Menger determinant. Across all 13,691 admissible 6-tuples: 10,884 have 288 V^2 > 0 (classically allowed region, a Euclidean tetrahedron exists), 2,807 have 288 V^2 < 0 (forbidden region), and none has 288 V^2 = 0. Exact values of 288 V^2 and of the squared 6j symbol are checked on three witnesses only: (2,2,2,2,2,2) with 729/16 and 1/36; (1,1,2,1,1,2) with -81/16 and 1/36; (2,2,4,2,2,4) with -4375/16 and 1/900. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2309_lqg_pr_allowed_region_target.md",
         "external:arXiv:math-ph/9812013",
         "lean4/ReggePachnerWdw.lean",
         "lean4/FrontierPrAllowedRegion.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierPrAllowedRegion.lean::FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8",
@@ -1730,7 +1730,7 @@
       "id": "LQG-TV-LEVEL2-PENTAGON-TARGET",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "PROVED_LEAN",
-      "source_status": "Quantum Biedenharn-Elliott pentagon identity at level 2 (q = exp(i pi/4), twice-spins {0,1,2}) verified across all 3^9 = 19,683 label 9-tuples over Q(sqrt 2) using Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.",
+      "source_status": "Quantum Biedenharn-Elliott pentagon identity at level 2 (q = exp(i pi/4), twice-spins {0,1,2}) verified across all 3^9 = 19,683 label 9-tuples over Q(sqrt 2) using Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.",
       "statement": "Finite statement, checked in Lean 4 for a transcribed table. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the normalized recoupling symbol isingF(a,b,c,d,e,f) is entered in Lean as an explicit case table over Q(sqrt 2) (values 0, +-1, +-sqrt(2)/2, transcribed from ising_f in code/rust/src/general_relativity/spin_foam.rs). On that table Lean checks in exact arithmetic over Q(sqrt 2): the quantum dimensions (1, sqrt 2, 1) with d_1^2 - d_0 = d_2 and d_1 d_2 - d_1 = 0 (truncation); exactly 36 nonzero entries among the 729 label 6-tuples; the orthogonality relation sum over f of isingF(a,b,c,d,e,f) isingF(a,b,c,d,e',f) = delta(e,e') for all admissible labels; and the pentagon identity sum over r of isingF(a,b,c,q,p,r) isingF(a,r,d,e,q,s) isingF(b,c,d,s,r,t) = isingF(p,c,d,e,q,t) isingF(a,b,t,e,p,s) across all 3^9 = 19,683 label assignments in {0,1,2}^9 (both sides zero unless the six boundary triads are admissible). The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target discharges only the identity on those labels, not invariance of a state sum on a triangulated manifold.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md",
@@ -1740,7 +1740,7 @@
         "lean4/DiscreteSpinfoamAmplitudes.lean",
         "lean4/FourSimplexSpinfoamS4.lean",
         "lean4/FrontierTvLevel2Pentagon.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ],
       "lean": [
         "lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation",
@@ -1857,14 +1857,14 @@
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md",
         "lean4/LqgContinuumLimitGap.lean",
-        "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json",
+        "evidence/lean_receipts/campaign_lqg-continuum-limit-gap_lean_replay.json",
         "dag/derivations/independent/lqg-continuum-limit-gap.md",
         "checks/independent/lqg-continuum-limit-gap.py",
         "code/rust/src/general_relativity/spin_foam.rs",
         "lean4/LqgProjectiveLimit.lean",
         "checks/independent/lqg-projective-limit.py",
         "dag/derivations/independent/lqg-projective-limit.md",
-        "dag/research/campaign_lqg-projective-limit_lean_replay.json"
+        "evidence/lean_receipts/campaign_lqg-projective-limit_lean_replay.json"
       ],
       "lean": [
         "lean4/LqgContinuumLimitGap.lean::LqgContinuumLimitGap.level2_admissible_count",
@@ -1963,7 +1963,7 @@
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md",
         "lean4/FrontierDistinguishability.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2030,7 +2030,7 @@
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md",
         "lean4/FrontierNoCloning.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2099,7 +2099,7 @@
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md",
         "lean4/FrontierEntanglingPhase.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2166,7 +2166,7 @@
       "source": [
         "dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md",
         "lean4/FrontierPosetNet.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2217,7 +2217,7 @@
       "source": [
         "dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md",
         "lean4/FrontierRsCyclicity.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2259,7 +2259,7 @@
       "source": [
         "dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md",
         "lean4/FrontierLinearExtension.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2303,7 +2303,7 @@
       "source": [
         "dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md",
         "lean4/FrontierMyrheimMeyer.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2426,7 +2426,7 @@
       "source": [
         "dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md",
         "lean4/FrontierFiveQubitPerfectTensor.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2441,7 +2441,7 @@
       "source": [
         "dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md",
         "lean4/FrontierHappyMincut.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2456,7 +2456,7 @@
       "source": [
         "dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md",
         "lean4/FrontierLogicalReconstruction.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2554,7 +2554,7 @@
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md",
         "lean4/FrontierAreaSpectrum.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2610,7 +2610,7 @@
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md",
         "lean4/FrontierClassical6j.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2625,7 +2625,7 @@
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2309_lqg_pr_allowed_region_target.md",
         "lean4/FrontierPrAllowedRegion.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2654,7 +2654,7 @@
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md",
         "lean4/FrontierTvLevel2Pentagon.lean",
-        "dag/research/frontier_targets_lean_replay.json"
+        "evidence/lean_receipts/frontier_targets_lean_replay.json"
       ]
     },
     {
@@ -2913,7 +2913,7 @@
       "f004_refs": [
         "dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md",
         "dag/derivations/independent/ct-information-media-interoperability.md",
-        "dag/research/campaign_ct-information-media-interoperability_lean_replay.json"
+        "evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json"
       ],
       "id": "TFQ-2006",
       "lean4": [
@@ -3298,9 +3298,9 @@
         "dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md",
         "checks/independent/cqft-reeh-schlieder-theorem-import.py",
         "lean4/ReehSchliederImport.lean",
-        "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json",
-        "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json",
-        "dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json"
+        "evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json",
+        "evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json",
+        "evidence/lean_receipts/campaign_cqft-reeh-schlieder-theorem-import_independent.json"
       ],
       "id": "TFQ-2106",
       "lean4": [
@@ -3388,9 +3388,9 @@
         "dag/derivations/independent/cqft-causal-factorization-import.md",
         "checks/independent/cqft-causal-factorization-import.py",
         "lean4/CausalFactorizationImport.lean",
-        "dag/research/campaign_cqft-causal-factorization-import_lean_replay.json",
-        "dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json",
-        "dag/research/campaign_cqft-causal-factorization-import_independent.json"
+        "evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_replay.json",
+        "evidence/lean_receipts/campaign_cqft-causal-factorization-import_lean_mutation.json",
+        "evidence/lean_receipts/campaign_cqft-causal-factorization-import_independent.json"
       ],
       "id": "TFQ-2109",
       "lean4": [
@@ -3575,9 +3575,9 @@
       "f004_refs": [
         "dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md",
         "dag/derivations/independent/ads-cft-duality-import.md",
-        "dag/research/campaign_ads-cft-duality-import_lean_replay.json",
-        "dag/research/campaign_ads-cft-duality-import_lean_mutation.json",
-        "dag/research/campaign_ads-cft-duality-import_independent.json"
+        "evidence/lean_receipts/campaign_ads-cft-duality-import_lean_replay.json",
+        "evidence/lean_receipts/campaign_ads-cft-duality-import_lean_mutation.json",
+        "evidence/lean_receipts/campaign_ads-cft-duality-import_independent.json"
       ],
       "id": "TFQ-2202",
       "lean4": [
@@ -3649,9 +3649,9 @@
       "f004_refs": [
         "dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md",
         "dag/derivations/independent/ads-rt-formula-import.md",
-        "dag/research/campaign_ads-rt-formula-import_lean_replay.json",
-        "dag/research/campaign_ads-rt-formula-import_lean_mutation.json",
-        "dag/research/campaign_ads-rt-formula-import_independent.json"
+        "evidence/lean_receipts/campaign_ads-rt-formula-import_lean_replay.json",
+        "evidence/lean_receipts/campaign_ads-rt-formula-import_lean_mutation.json",
+        "evidence/lean_receipts/campaign_ads-rt-formula-import_independent.json"
       ],
       "id": "TFQ-2204",
       "lean4": [
@@ -3843,9 +3843,9 @@
         "dag/derivations/independent/ads-regge-area-rt-gap.md",
         "checks/independent/ads-regge-area-rt-gap.py",
         "lean4/AdsReggeAreaRtGap.lean",
-        "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json",
-        "dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json",
-        "dag/research/campaign_ads-regge-area-rt-gap_independent.json"
+        "evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_replay.json",
+        "evidence/lean_receipts/campaign_ads-regge-area-rt-gap_lean_mutation.json",
+        "evidence/lean_receipts/campaign_ads-regge-area-rt-gap_independent.json"
       ],
       "id": "TFQ-2211",
       "lean4": [
@@ -3885,9 +3885,9 @@
       "f004_refs": [
         "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md",
         "dag/derivations/independent/ads-happy-toy-not-duality-gap.md",
-        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json",
-        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json",
-        "dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json"
+        "evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_replay.json",
+        "evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json",
+        "evidence/lean_receipts/campaign_ads-happy-toy-not-duality-gap_independent.json"
       ],
       "id": "TFQ-2212",
       "lean4": [
@@ -4293,7 +4293,7 @@
       "f004_refs": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md",
         "dag/derivations/independent/lqg-projective-limit.md",
-        "dag/research/campaign_lqg-projective-limit_lean_replay.json"
+        "evidence/lean_receipts/campaign_lqg-projective-limit_lean_replay.json"
       ],
       "id": "TFQ-2315",
       "lean4": [
@@ -4429,7 +4429,7 @@
       "target": "",
       "connections": [
         "The trunk node FQ-GAP-TENSOR-UNIQUENESS asks which operational assumptions single out quantum composition. No source read for this change derives that from the interoperability principle (gap route recorded).",
-        "The scoped functional task model has a current replay in dag/research/campaign_ct-information-media-interoperability_lean_replay.json; the imported physical principle remains separate."
+        "The scoped functional task model has a current replay in evidence/lean_receipts/campaign_ct-information-media-interoperability_lean_replay.json; the imported physical principle remains separate."
       ],
       "non_claims": [
         "Not a derivation of tensor composition.",
@@ -5048,7 +5048,7 @@
       "open": [],
       "target": "",
       "connections": [
-        "TFQ-0084 names the Regge deficit on a finite simplicial complex; its P0 mining run is under dag/results/TFQ-0084."
+        "TFQ-0084 names the Regge deficit on a finite simplicial complex; its P0 mining run is under evidence/results/TFQ-0084."
       ],
       "non_claims": [
         "The state sum is not evaluated in the repository."

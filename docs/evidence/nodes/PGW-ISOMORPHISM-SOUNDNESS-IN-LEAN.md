@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenesisIsomorphismSoundness.lean](../../../lean4/PregenesisIsomorphismSoundness.lean)
 - sha256 (`bytes`): `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0`
-- cited in: node.lean, receipt dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json (PregenesisIsomorphismSoundness), receipt dag/research/pr_352_review_replay.json (PregenesisIsomorphismSoundness), record TFQ-0500
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json (PregenesisIsomorphismSoundness), receipt evidence/lean_receipts/pr_352_review_replay.json (PregenesisIsomorphismSoundness), record TFQ-0500
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json](../../../dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json) (module `PregenesisIsomorphismSoundness`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_352_review_replay.json](../../../dag/research/pr_352_review_replay.json) (module `PregenesisIsomorphismSoundness`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json) (module `PregenesisIsomorphismSoundness`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_352_review_replay.json](../../../evidence/lean_receipts/pr_352_review_replay.json) (module `PregenesisIsomorphismSoundness`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build PregenesisIsomorphismSoundness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -117,7 +117,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0500_isomorphism_soundness_in_lean.md`
 
 - file: [dag/derivations/02_genesis/tfq_0500_isomorphism_soundness_in_lean.md](../../../dag/derivations/02_genesis/tfq_0500_isomorphism_soundness_in_lean.md)
-- sha256 (`lf-normalised`): `c70fa644adc10b7f1b8aba349cdcacd0007e86afc6f6d294a697bb1bd8a1da0e`
+- sha256 (`lf-normalised`): `647eba5b312da6552e838732e0d9451a44e109d32416e6ca2bb6b5f55c338fe9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0500
 - counts toward the grade: no
@@ -129,9 +129,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json`
 
-- file: [dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json](../../../dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json)
 - sha256 (`lf-normalised`): `c9b03c277045c95d1dc054e62cfd9b1e1da0c3a9972832d83311fb9efb6e0e1d`
 - cited in: node.source
 - counts toward the grade: yes

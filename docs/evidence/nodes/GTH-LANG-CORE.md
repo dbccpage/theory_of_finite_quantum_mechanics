@@ -10,7 +10,7 @@ Stage: [GENESIS_TO_HIGHER](../stages/GENESIS_TO_HIGHER.md). Status: `OPEN`. Evid
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
+- counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
 - distinct cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/GenesisToHigherLangCore.lean](../../../lean4/GenesisToHigherLangCore.lean)
 - sha256 (`bytes`): `636989310f31a266c5c3b1e067e35c9a4adf712214beb041c93a61dab52c9dfa`
-- cited in: node.source, receipt dag/research/campaign_gth-lang-core_lean_replay.json (GenesisToHigherLangCore), receipt dag/research/pr_363_review_replay.json (GenesisToHigherLangCore)
+- cited in: node.source, receipt evidence/lean_receipts/campaign_gth-lang-core_lean_replay.json (GenesisToHigherLangCore), receipt evidence/lean_receipts/pr_363_review_replay.json (GenesisToHigherLangCore)
 - replay: `verified`
-  - receipt [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json) (module `GenesisToHigherLangCore`): recorded sha256 `636989310f31a266c5c3b1e067e35c9a4adf712214beb041c93a61dab52c9dfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_363_review_replay.json](../../../dag/research/pr_363_review_replay.json) (module `GenesisToHigherLangCore`): recorded sha256 `636989310f31a266c5c3b1e067e35c9a4adf712214beb041c93a61dab52c9dfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_gth-lang-core_lean_replay.json](../../../evidence/lean_receipts/campaign_gth-lang-core_lean_replay.json) (module `GenesisToHigherLangCore`): recorded sha256 `636989310f31a266c5c3b1e067e35c9a4adf712214beb041c93a61dab52c9dfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_363_review_replay.json](../../../evidence/lean_receipts/pr_363_review_replay.json) (module `GenesisToHigherLangCore`): recorded sha256 `636989310f31a266c5c3b1e067e35c9a4adf712214beb041c93a61dab52c9dfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisToHigherLangCore`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -72,17 +72,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md`
 
 - file: [dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md](../../../dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md)
-- sha256 (`lf-normalised`): `23f1f23ccf793e6c80ae712590714647785ddf5ba7832463ba0832948cd643e5`
+- sha256 (`lf-normalised`): `d6e0a5ea606ec7dafbfabcc9af4b2695518c141d6fc354951f983517f6daaa0b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2407
 - counts toward the grade: no
-
-### Documents and data: `dag/derivations/independent/gth-lang-core.md`
-
-- file: [dag/derivations/independent/gth-lang-core.md](../../../dag/derivations/independent/gth-lang-core.md)
-- sha256 (`lf-normalised`): `d47156399185fb078d795b94db5e7afc0e850aa247356b4f81b023351405b28c`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/independent/gth_lang_core.md`
 
@@ -91,9 +84,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_gth-lang-core_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_gth-lang-core_lean_replay.json`
 
-- file: [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_gth-lang-core_lean_replay.json](../../../evidence/lean_receipts/campaign_gth-lang-core_lean_replay.json)
 - sha256 (`lf-normalised`): `0e65892a723d0fb6f0e997e3eaed835602a641b8a930d8f65cd3e07c8368bf6e`
 - cited in: node.source
 - counts toward the grade: yes

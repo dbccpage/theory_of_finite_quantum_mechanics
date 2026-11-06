@@ -320,7 +320,7 @@ def test_majorana_citations_are_qualified_unique_and_reproduce_the_scoped_build(
 # ------------------------------------------------------------------ chosen nodes, checked independently
 
 def receipt_entries(name: str) -> list[dict]:
-    data = json.loads((ROOT / "dag/research" / name).read_text(encoding="utf-8"))
+    data = json.loads((ROOT / "evidence/lean_receipts" / name).read_text(encoding="utf-8"))
     return data["lean_replay"]["results"]
 
 
@@ -354,7 +354,7 @@ def test_five_qubit_perfect_tensor_is_e3_or_higher():
 
 def test_pgw_campaign_receipt_without_a_lean_replay_object_is_indexed():
     """The PGW campaign file itemises axioms at the top level. Indexing it does not change the node status."""
-    rel = "dag/research/campaign_pgw-presentation-not-expressive-lift_lean_replay.json"
+    rel = "evidence/lean_receipts/campaign_pgw-presentation-not-expressive-lift_lean_replay.json"
     data = json.loads((ROOT / rel).read_text(encoding="utf-8"))
     assert "lean_replay" not in data
     receipts = [r for r in document()["receipts"] if r["receipt_file"] == rel]
@@ -369,7 +369,7 @@ def test_pgw_campaign_receipt_without_a_lean_replay_object_is_indexed():
     assert current == data["sha256"]
     assert at_least(row["grade"], "E3")
     skipped = {item["file"] for item in document()["receipts_not_indexed"]}
-    assert "dag/research/tensor_countermodel_failed_replay.json" in skipped
+    assert "evidence/lean_receipts/tensor_countermodel_failed_replay.json" in skipped
 
 
 def test_pfp_batch_nodes_are_credited_through_their_receipt():

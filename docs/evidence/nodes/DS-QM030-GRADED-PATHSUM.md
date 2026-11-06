@@ -38,7 +38,7 @@ Unmet after the PFP review: Prove the full path-enumeration/matrix-power bridge 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM030-GRADED-PATHSUM/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM030-GRADED-PATHSUM/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM030-GRADED-PATHSUM/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/DS-QM030-GRADED-PATHSUM/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact two-state path enumeration, matrix powers and graded composition agree on retained lengths, including zero.
   - does not support: Prove the full path-enumeration/matrix-power bridge and transport to a selected physical dynamics; a weighted graph and chosen grading are inputs.
   - next test: Prove the full path-enumeration/matrix-power bridge and transport to a selected physical dynamics; a weighted graph and chosen grading are inputs.
@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0239, record TFQ-0240 (shared), record TFQ-0242
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md)
-- sha256 (`lf-normalised`): `2f474eb6d5d4c39560339bcffa1d75d35a4c2e173987ad7ee807b07edda3c138`
+- sha256 (`lf-normalised`): `c59942a37540a8643f3c458887e2e75812191817d6848fa9160916ba5192f351`
 - generated view: listed, not counted
 - cited in: record TFQ-0239
 - counts toward the grade: no
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md)
-- sha256 (`lf-normalised`): `ca6d79f457df035d3e635b0c9f43eca7c0907040e0d8b3cc28c711c0badc9dba`
+- sha256 (`lf-normalised`): `28c45c26bc946d72f9dd8a77d942ea001115ed9ba4d8392d315638fc02c2194b`
 - generated view: listed, not counted
 - cited in: record TFQ-0242
 - counts toward the grade: no

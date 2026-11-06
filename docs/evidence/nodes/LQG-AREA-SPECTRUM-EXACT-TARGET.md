@@ -32,11 +32,11 @@ Not proved in Lean: that the formal vector is the real area (no real square root
 
 ## Source status
 
-Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `NARROWED`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `casimir_squarefree_factorizations`, `spin3_equals_four_spin_half`, `area_spectrum_table_and_unique_degeneracy`, `smallest_nonzero_area_level_is_spin_half`, `single_puncture_area_sq_strictly_increasing`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierAreaSpectrum.lean](../../../lean4/FrontierAreaSpectrum.lean)
 - sha256 (`bytes`): `4559931b4f2cdf9b3d83eba2085b3175648b73e99db28b154240f19745cd53df`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierAreaSpectrum)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierAreaSpectrum)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierAreaSpectrum`): recorded sha256 `4559931b4f2cdf9b3d83eba2085b3175648b73e99db28b154240f19745cd53df` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierAreaSpectrum`): recorded sha256 `4559931b4f2cdf9b3d83eba2085b3175648b73e99db28b154240f19745cd53df` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierAreaSpectrum`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,14 +66,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md)
-- sha256 (`lf-normalised`): `3ccdf5dd253e15146ba95d23d3bb58ccbe329a9200250824078b7055d8c6f17a`
+- sha256 (`lf-normalised`): `cc7834efb79c5cd36891abf0f142f3eb75a7b8122836cc0db7d8a424c8f16107`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2304
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

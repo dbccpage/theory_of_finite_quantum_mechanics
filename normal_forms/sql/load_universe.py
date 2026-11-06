@@ -11,7 +11,7 @@ Sources read (nothing is written back to them):
 
     dag/derivation_dag.json
     dag/evidence/evidence_map.json
-    dag/research/*lean_replay*.json
+    evidence/lean_receipts/*lean_replay*.json
     normal_forms/contracts/PROVENANCE.json and the copied contract YAML files
 
 SQLite is used only as an execution engine for the ANSI DDL.  The loader
@@ -416,11 +416,11 @@ def read_json(path: pathlib.Path) -> dict:
 
 def read_sources(repo: pathlib.Path) -> dict:
     replay = {
-        f"dag/research/{p.name}": read_json(p)
-        for p in sorted((repo / "dag" / "research").glob("*lean_replay*.json"))
+        f"evidence/lean_receipts/{p.name}": read_json(p)
+        for p in sorted((repo / "evidence" / "lean_receipts").glob("*lean_replay*.json"))
     }
     if not replay:
-        raise LoadError("no dag/research/*lean_replay*.json files found")
+        raise LoadError("no evidence/lean_receipts/*lean_replay*.json files found")
     return {
         "dag": read_json(repo / "dag" / "derivation_dag.json"),
         "evidence_map": read_json(repo / "dag" / "evidence" / "evidence_map.json"),

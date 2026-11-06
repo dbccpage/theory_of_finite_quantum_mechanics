@@ -42,13 +42,13 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
+### Lean: `evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
 
-- file: [dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean](../../../dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean)
+- file: [evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean](../../../evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean)
 - sha256 (`bytes`): `dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931`
 - cited in: node.source
 - replay: `none`
-- check: `cd lean4 && lake build   # the library that contains dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
+- check: `cd lean4 && lake build   # the library that contains evidence/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
 - counts toward the grade: yes
 
 ### Lean: `lean4/SwitchingNormalForm.lean`
@@ -57,7 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05`
 - cited in: node.lean, node.source, record TFQ-0406
 - replay: `verified`
-  - receipt [dag/research/tensor_measurement_validation.json](../../../dag/research/tensor_measurement_validation.json) (module `SwitchingNormalForm`): recorded sha256 `e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/tensor_measurement_validation.json](../../../evidence/lean_receipts/tensor_measurement_validation.json) (module `SwitchingNormalForm`): recorded sha256 `e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SwitchingNormalForm`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md`
 
 - file: [dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md](../../../dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md)
-- sha256 (`lf-normalised`): `0abc7f61a6a66f537f1c7472a42b480f2869ae6f2cd4d7cb5d5d10d9f68ce145`
+- sha256 (`lf-normalised`): `b57af74ea730dbb84913b841e02420131e6ec2a6712f25d1a99095e5bbe1b81a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0406
 - counts toward the grade: no

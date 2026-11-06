@@ -32,7 +32,7 @@ The fault-tolerance threshold theorems of Shor, Aharonov and Ben-Or, Kitaev, Kni
 
 ## Source status
 
-dag/research/quantum_computation_self_obstruction.md record QCV-IMP-THRESHOLD claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION
+dag/derivations/29_computation/quantum_computation_self_obstruction.md record QCV-IMP-THRESHOLD claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ThresholdTheoremImport.lean](../../../lean4/ThresholdTheoremImport.lean)
 - sha256 (`bytes`): `b16952fa7f055afcb4f8ec5be0274cae786415c914beb9191640686be1567f0c`
-- cited in: node.lean, receipt dag/research/campaign_qcv-import-threshold-theorem_lean_replay.json (ThresholdTheoremImport), record TFQ-1318
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_qcv-import-threshold-theorem_lean_replay.json (ThresholdTheoremImport), record TFQ-1318
 - replay: `verified`
-  - receipt [dag/research/campaign_qcv-import-threshold-theorem_lean_replay.json](../../../dag/research/campaign_qcv-import-threshold-theorem_lean_replay.json) (module `ThresholdTheoremImport`): recorded sha256 `b16952fa7f055afcb4f8ec5be0274cae786415c914beb9191640686be1567f0c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_qcv-import-threshold-theorem_lean_replay.json](../../../evidence/lean_receipts/campaign_qcv-import-threshold-theorem_lean_replay.json) (module `ThresholdTheoremImport`): recorded sha256 `b16952fa7f055afcb4f8ec5be0274cae786415c914beb9191640686be1567f0c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build ThresholdTheoremImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -86,20 +86,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/29_computation/quantum_computation_self_obstruction.md`
+
+- file: [dag/derivations/29_computation/quantum_computation_self_obstruction.md](../../../dag/derivations/29_computation/quantum_computation_self_obstruction.md)
+- sha256 (`lf-normalised`): `303d0562ed0666748c50b6b844ae4c57a8e4bd4bef15f817d7f4622a68783ccd`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md`
 
 - file: [dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md](../../../dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md)
-- sha256 (`lf-normalised`): `b7bbbb4250baa2235a08164fd2a04c87e7f2dede5771adedad8ad79e550ced24`
+- sha256 (`lf-normalised`): `40a3409d717225bdaab802ee0a7b9792e2e10f4f281b083071b5648b5688f33f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1318
 - counts toward the grade: no
-
-### Documents and data: `dag/research/quantum_computation_self_obstruction.md`
-
-- file: [dag/research/quantum_computation_self_obstruction.md](../../../dag/research/quantum_computation_self_obstruction.md)
-- sha256 (`lf-normalised`): `8ae1b2ae291ee74f773da07740ebd0c1f98842bc01d7ec6a4d3c267e0077d178`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

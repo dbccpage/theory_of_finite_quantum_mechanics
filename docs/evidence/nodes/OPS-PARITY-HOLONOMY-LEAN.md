@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-The Lean statement is the narrowed one above; no Lean statement mentions a nerve, a cohomology class or the noncontextual fraction. Independently replayed with Lean 4.35.0; the source-bound axiom receipt is dag/research/foc035_observer_presheaf_lean_replay.json.
+The Lean statement is the narrowed one above; no Lean statement mentions a nerve, a cohomology class or the noncontextual fraction. Independently replayed with Lean 4.35.0; the source-bound axiom receipt is evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json.
 
 ## Source status
 
@@ -46,11 +46,11 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/LggrFiniteResults.lean](../../../lean4/LggrFiniteResults.lean)
 - sha256 (`bytes`): `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de`
-- cited in: node.lean, node.source, receipt dag/research/foc035_observer_presheaf_lean_replay.json (LggrFiniteResults), record TFQ-2502
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json (LggrFiniteResults), record TFQ-2502
 - replay: `verified`
-  - receipt [dag/research/foc035_observer_presheaf_lean_replay.json](../../../dag/research/foc035_observer_presheaf_lean_replay.json) (module `LggrFiniteResults`): recorded sha256 `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de` matches the current file; exit code 0; Lean Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/foc035_observer_presheaf_lean_replay.json](../../../dag/research/foc035_observer_presheaf_lean_replay.json) (module `LggrFiniteResults`): recorded sha256 `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de` matches the current file; exit code 0; Lean Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `LggrFiniteResults`): recorded sha256 `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json](../../../evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json) (module `LggrFiniteResults`): recorded sha256 `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de` matches the current file; exit code 0; Lean Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json](../../../evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json) (module `LggrFiniteResults`): recorded sha256 `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de` matches the current file; exit code 0; Lean Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `LggrFiniteResults`): recorded sha256 `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build LggrFiniteResults`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -60,32 +60,32 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md`
-
-- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md)
-- sha256 (`lf-normalised`): `54f42cb65672272b910b32f3814d74b5d1f409cc882038340e563d3870de435b`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-2502
-- counts toward the grade: no
-
-### Documents and data: `dag/research/foc035_observer_presheaf_lean_replay.json`
-
-- file: [dag/research/foc035_observer_presheaf_lean_replay.json](../../../dag/research/foc035_observer_presheaf_lean_replay.json)
-- sha256 (`lf-normalised`): `aa747939246b57696033aba8ac40835f9c0b8958a9d5b431634b1fc4c6952329`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
 - sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
 - sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md`
+
+- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md)
+- sha256 (`lf-normalised`): `987900136dfade7e06eb4f9506cdc1002f6741e5f5be224d47d038ce2e0dd5e0`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-2502
+- counts toward the grade: no
+
+### Documents and data: `evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json`
+
+- file: [evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json](../../../evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json)
+- sha256 (`lf-normalised`): `aa747939246b57696033aba8ac40835f9c0b8958a9d5b431634b1fc4c6952329`
 - cited in: node.source
 - counts toward the grade: yes
 

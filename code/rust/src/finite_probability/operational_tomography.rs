@@ -87,7 +87,7 @@ fn parse(v: &Value) -> Mat {
 }
 fn candidate() -> Value {
     let path=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(
-        "../../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p1/candidate.json");
+        "../../../../evidence/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p1/candidate.json");
     serde_json::from_slice(&std::fs::read(path).unwrap()).unwrap()
 }
 fn ops(e: &Value, key: &str) -> Vec<Mat> {

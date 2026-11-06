@@ -32,7 +32,7 @@ The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or q
 
 ## Source status
 
-dag/research/quantum_computation_self_obstruction.md record QCV-IMP-ABIN claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION
+dag/derivations/29_computation/quantum_computation_self_obstruction.md record QCV-IMP-ABIN claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/NoisyReversibleLimitsImport.lean](../../../lean4/NoisyReversibleLimitsImport.lean)
 - sha256 (`bytes`): `69c64b7f9f295d3ac3d68ed779b807f6fb393afeab4370b1d385e2b83b73024e`
-- cited in: node.lean, receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (NoisyReversibleLimitsImport), record TFQ-1321
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (NoisyReversibleLimitsImport), record TFQ-1321
 - replay: `verified`
-  - receipt [dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json](../../../dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json) (module `NoisyReversibleLimitsImport`): recorded sha256 `69c64b7f9f295d3ac3d68ed779b807f6fb393afeab4370b1d385e2b83b73024e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_qcv-import-noisy-reversible-limits_lean_replay.json](../../../evidence/lean_receipts/campaign_qcv-import-noisy-reversible-limits_lean_replay.json) (module `NoisyReversibleLimitsImport`): recorded sha256 `69c64b7f9f295d3ac3d68ed779b807f6fb393afeab4370b1d385e2b83b73024e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build NoisyReversibleLimitsImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -106,20 +106,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/29_computation/quantum_computation_self_obstruction.md`
+
+- file: [dag/derivations/29_computation/quantum_computation_self_obstruction.md](../../../dag/derivations/29_computation/quantum_computation_self_obstruction.md)
+- sha256 (`lf-normalised`): `303d0562ed0666748c50b6b844ae4c57a8e4bd4bef15f817d7f4622a68783ccd`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md`
 
 - file: [dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md](../../../dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md)
-- sha256 (`lf-normalised`): `fa7190ec8fc18e04731dec996295edf8f6b8755d383aa507382c81c91bd6b5ed`
+- sha256 (`lf-normalised`): `de13fd2500f30606b31ef535b30392dc2d2c72c927bdc35609cc261cb0452858`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1321
 - counts toward the grade: no
-
-### Documents and data: `dag/research/quantum_computation_self_obstruction.md`
-
-- file: [dag/research/quantum_computation_self_obstruction.md](../../../dag/research/quantum_computation_self_obstruction.md)
-- sha256 (`lf-normalised`): `8ae1b2ae291ee74f773da07740ebd0c1f98842bc01d7ec6a4d3c267e0077d178`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

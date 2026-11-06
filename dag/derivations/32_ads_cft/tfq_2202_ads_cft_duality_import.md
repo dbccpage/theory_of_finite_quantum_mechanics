@@ -60,9 +60,9 @@ See also: `FQ-GAP-CONTINUUM-HILBERT-LIFT`, `TFQ-0085`.
 - `external:arXiv:hep-th/9802150`: E. Witten, "Anti De Sitter Space And Holography", arXiv:hep-th/9802150 (1998); Adv. Theor. Math. Phys. 2 (1998) 253-291.
 - Repository: `dag/derivations/independent/ads-cft-duality-import.md`
 - Repository: `checks/independent/ads-cft-duality-import.py`
-- Repository: `dag/research/campaign_ads-cft-duality-import_lean_replay.json`
-- Repository: `dag/research/campaign_ads-cft-duality-import_lean_mutation.json`
-- Repository: `dag/research/campaign_ads-cft-duality-import_independent.json`
+- Repository: `evidence/lean_receipts/campaign_ads-cft-duality-import_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_ads-cft-duality-import_lean_mutation.json`
+- Repository: `evidence/lean_receipts/campaign_ads-cft-duality-import_independent.json`
 
 ## Lean 4 declarations read
 - `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.shadowDimension_involutive`

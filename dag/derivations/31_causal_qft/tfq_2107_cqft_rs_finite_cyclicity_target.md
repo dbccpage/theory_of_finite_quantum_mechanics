@@ -19,7 +19,7 @@ Not proved in Lean: separating implies full column rank (so the three-way equiva
 
 ## Source status
 
-Algebraic instances verified with exact Python arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Algebraic instances verified with exact Python arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -35,7 +35,7 @@ Algebraic instances verified with exact Python arithmetic on 2026-10-22. Lean: c
 
 Over a semiring: a left inverse of the dA x dB amplitude matrix Omega implies Omega cyclic for End(H_A) and separating for End(H_{A^c}); cyclic implies a left inverse when dB <= dA; a nonzero right-kernel vector makes Omega non-separating. Instances: GHZ_3 and W_3 have an integer left inverse for every pair of sites (hence are cyclic) and non-separating single-site complements; |000> has a zero column in every pair unfolding.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -50,7 +50,7 @@ See also: `CQFT-FINITE-POSET-NET-TARGET`.
 ## Sources
 
 - Repository: `lean4/FrontierRsCyclicity.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.cyclic_of_fullComplementaryRank`

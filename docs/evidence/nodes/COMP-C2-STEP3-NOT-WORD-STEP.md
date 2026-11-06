@@ -32,7 +32,7 @@ Still open: an encoding of every Genesis Step3 state, with a finite term set, a 
 
 ## Source status
 
-dag/research/genesis_to_universal_computation.md record COMP-C2e claims OPEN; audited status OPEN
+dag/derivations/29_computation/genesis_to_universal_computation.md record COMP-C2e claims OPEN; audited status OPEN
 
 ## Review
 
@@ -42,23 +42,23 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean`
+### Lean: `evidence/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean`
 
-- file: [dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean](../../../dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean)
+- file: [evidence/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean](../../../evidence/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean)
 - sha256 (`bytes`): `7345c48641a53a32a4952f3cd3900d3c4ef7e98e3f353df489e32429fed9a0b3`
 - cited in: node.source
 - replay: `none`
-- check: `cd lean4 && lake build   # the library that contains dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean`
+- check: `cd lean4 && lake build   # the library that contains evidence/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean`
 - counts toward the grade: yes
 
 ### Lean: `lean4/ComputationC2Step3NotWordStep.lean`
 
 - file: [lean4/ComputationC2Step3NotWordStep.lean](../../../lean4/ComputationC2Step3NotWordStep.lean)
 - sha256 (`bytes`): `5e2c7f853af31126192456d4a3105df7e19805dcef3eae4394e58507fcf48560`
-- cited in: node.lean, receipt dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json (ComputationC2Step3NotWordStep), receipt dag/research/pr_367_review_replay.json (ComputationC2Step3NotWordStep), record TFQ-1290
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_comp-c2-step3-not-word-step_lean_replay.json (ComputationC2Step3NotWordStep), receipt evidence/lean_receipts/pr_367_review_replay.json (ComputationC2Step3NotWordStep), record TFQ-1290
 - replay: `verified`
-  - receipt [dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json](../../../dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json) (module `ComputationC2Step3NotWordStep`): recorded sha256 `5e2c7f853af31126192456d4a3105df7e19805dcef3eae4394e58507fcf48560` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr_367_review_replay.json](../../../dag/research/pr_367_review_replay.json) (module `ComputationC2Step3NotWordStep`): recorded sha256 `5e2c7f853af31126192456d4a3105df7e19805dcef3eae4394e58507fcf48560` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_comp-c2-step3-not-word-step_lean_replay.json](../../../evidence/lean_receipts/campaign_comp-c2-step3-not-word-step_lean_replay.json) (module `ComputationC2Step3NotWordStep`): recorded sha256 `5e2c7f853af31126192456d4a3105df7e19805dcef3eae4394e58507fcf48560` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_367_review_replay.json](../../../evidence/lean_receipts/pr_367_review_replay.json) (module `ComputationC2Step3NotWordStep`): recorded sha256 `5e2c7f853af31126192456d4a3105df7e19805dcef3eae4394e58507fcf48560` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build ComputationC2Step3NotWordStep`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -71,20 +71,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/29_computation/genesis_to_universal_computation.md`
+
+- file: [dag/derivations/29_computation/genesis_to_universal_computation.md](../../../dag/derivations/29_computation/genesis_to_universal_computation.md)
+- sha256 (`lf-normalised`): `d57c3593a55277cafb808fb1b2241dcf2ad97701205dca6b7874af70b5119068`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md`
 
 - file: [dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md](../../../dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md)
-- sha256 (`lf-normalised`): `a6f5236a3250681bbc02e41d1fa8e73a7878a20d70b33e1faa6b3dfccec0bb23`
+- sha256 (`lf-normalised`): `4d648347e8de1adce569c48add6d5375e467889dd348a7cebb69f0964ba1713f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1290
 - counts toward the grade: no
-
-### Documents and data: `dag/research/genesis_to_universal_computation.md`
-
-- file: [dag/research/genesis_to_universal_computation.md](../../../dag/research/genesis_to_universal_computation.md)
-- sha256 (`lf-normalised`): `004aada51ca3ccf378160e4e84208bba2b409805f041a4ef7bbd8898576cd5c7`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

@@ -3314,7 +3314,7 @@ implementation of each concept:
   `lean4/U1PowerMapInjectivity.lean`, `lean4/U1CayleyProjectiveCircle.lean`,
   `lean4/U1CyclotomicTorsionTower.lean`, `lean4/U1CauchyCircleCompletion.lean`,
   `lean4/U1ChebyshevCauchyBridge.lean`, and `lean4/U1PhaseSynthesis.lean`
-  (sealed in `dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean`),
+  (sealed in `evidence/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean`),
   covering projective $\mathbb{P}^1(\mathbb{Q})$ Cayley compactification, 5-adic
   non-square half-angle obstruction, mod-5 Gaussian power injectivity,
   cyclotomic $\mathbb{Q}/\mathbb{Z}$ torsion-tower divisibility and Haar

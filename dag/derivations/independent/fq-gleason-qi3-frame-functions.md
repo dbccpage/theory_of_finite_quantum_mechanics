@@ -42,7 +42,7 @@ Neither obstruction below needs to assume that property separately.
 Lean names in the table have prefix `BornFinite.GaussianFrames` for
 `NoColouring`, and prefix `BornFinite` for `GaussianExtension` and
 `GaussianTomography`. The
-[replay receipt](../../research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json)
+[replay receipt](../../../evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json)
 records the actual build and axiom audit; a table entry alone is not a replay.
 
 ## 2. Binary values are excluded

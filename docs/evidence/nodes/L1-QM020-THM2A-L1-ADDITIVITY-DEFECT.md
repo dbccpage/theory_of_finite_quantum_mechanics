@@ -36,7 +36,7 @@ Thm 2a MECHANIZED / finite (rational l1 additivity defect kernel, natural-expone
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../evidence/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Exact scalar and disjoint-vector defect arrays, with a general disjoint-sign identity and the opposite-sign counterexample in Lean.
   - does not support: Prove source/list refinement and extend any l^p statement only under its real/natural exponent hypotheses. The false disjoint-same-sign biconditional is explicitly rejected.
   - next test: Prove source/list refinement and extend any l^p statement only under its real/natural exponent hypotheses. The false disjoint-same-sign biconditional is explicitly rejected.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b`
 - cited in: node.lean, record TFQ-0291 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornRedundancy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

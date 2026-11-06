@@ -32,7 +32,7 @@ Published source cited by title, authors and identifier (checked against the arX
 ## Connections to this repository
 
 - Route `FRO-R-LQG-PONZANO-REGGE-1968-SOURCE` (`RECORD_PARENT`) from `TFQ-0084`: Reading-order link to the finite gravity shadow, which names the Regge deficit and a spin-foam control.
-- TFQ-0084 names the Regge deficit on a finite simplicial complex; its P0 mining run is under dag/results/TFQ-0084.
+- TFQ-0084 names the Regge deficit on a finite simplicial complex; its P0 mining run is under evidence/results/TFQ-0084.
 
 See also: `TFQ-0090`, `TFQ-0100`.
 

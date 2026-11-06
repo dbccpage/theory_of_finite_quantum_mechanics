@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def test_measurement_receipt_has_fresh_complete_admission_free_replay():
-    receipt = json.loads((ROOT / 'dag/research/tensor_measurement_validation.json').read_text(encoding='utf-8'))
+    receipt = json.loads((ROOT / 'evidence/lean_receipts/tensor_measurement_validation.json').read_text(encoding='utf-8'))
     replay = receipt['lean_replay']
     expected = {
         'TensorConeReconstruction', 'TensorTomography', 'TensorCoordinates',
@@ -42,7 +42,7 @@ def test_measurement_receipt_has_fresh_complete_admission_free_replay():
 
 
 def test_historical_measurement_manifest_and_current_dag_claims_remain_bound():
-    receipt = json.loads((ROOT / 'dag/research/tensor_measurement_validation.json').read_text(encoding='utf-8'))
+    receipt = json.loads((ROOT / 'evidence/lean_receipts/tensor_measurement_validation.json').read_text(encoding='utf-8'))
     for path, expected_hash in receipt['sha256'].items():
         raw = subprocess.check_output(['git', 'show', receipt['verification_source_head'] + ':' + path], cwd=ROOT)
         assert hashlib.sha256(raw).hexdigest() == expected_hash, path

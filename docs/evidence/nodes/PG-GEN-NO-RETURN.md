@@ -36,7 +36,7 @@ Rounds / no-return / cumulative element count (Genesis §8-§9)
 
 ## Review
 
-- PFP review: [dag/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../evidence/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Actual guarded regime traces, duplicate/no-op controls and two-switch mode cycles are retained; conditional count no-return/cycle lemmas are kernel checked.
   - does not support: Prove the complete array-to-source Regime interpreter refinement and that every real source regime change strictly raises the source potential. A count comparison alone is not that refinement.
   - next test: Prove the complete array-to-source Regime interpreter refinement and that every real source regime change strictly raises the source potential. A count comparison alone is not that refinement.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/GenesisNoReturn.lean](../../../lean4/GenesisNoReturn.lean)
 - sha256 (`bytes`): `81b3ae2cc8bc285ce3ff5f1342edbb4a983f4af56d68c3758f4cdd4dd32c3a7b`
-- cited in: node.lean, receipt dag/research/campaign_pg-gen-no-return_lean_replay.json (GenesisNoReturn)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pg-gen-no-return_lean_replay.json (GenesisNoReturn)
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-gen-no-return_lean_replay.json](../../../dag/research/campaign_pg-gen-no-return_lean_replay.json) (module `GenesisNoReturn`): recorded sha256 `81b3ae2cc8bc285ce3ff5f1342edbb4a983f4af56d68c3758f4cdd4dd32c3a7b` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pg-gen-no-return_lean_replay.json](../../../evidence/lean_receipts/campaign_pg-gen-no-return_lean_replay.json) (module `GenesisNoReturn`): recorded sha256 `81b3ae2cc8bc285ce3ff5f1342edbb4a983f4af56d68c3758f4cdd4dd32c3a7b` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisNoReturn`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `74bbd43c3bc787180bf03028156f587570e5268ca8998fd72d312214cd72f6bd`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.SecondRun.Run`): recorded sha256 `74bbd43c3bc787180bf03028156f587570e5268ca8998fd72d312214cd72f6bd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.SecondRun.Run`): recorded sha256 `74bbd43c3bc787180bf03028156f587570e5268ca8998fd72d312214cd72f6bd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/SecondRun/Run.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

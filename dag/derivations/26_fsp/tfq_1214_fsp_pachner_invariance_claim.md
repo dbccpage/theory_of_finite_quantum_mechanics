@@ -74,4 +74,4 @@ Cited ReggePachnerWdw.lean::pachner_move_topological_invariance does not exist; 
 - **Cited Sources**:
   - `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md:694-706`
   - `dag/derivations/independent/fsp-pachner-invariance-claim.md`
-  - `dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json`
+  - `evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json`

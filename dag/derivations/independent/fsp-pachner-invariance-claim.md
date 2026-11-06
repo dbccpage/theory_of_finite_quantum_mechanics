@@ -144,7 +144,7 @@ here. None is part of the revised node statement.
 
 `lean4/FiniteGroupPachner.lean` is a non-default Lake target. The
 replay receipt is
-`dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json`.
+`evidence/lean_receipts/campaign_fsp-pachner-invariance-claim_lean_replay.json`.
 It records Lean 4.35.0, the pinned Mathlib source, source digests before and
 after the build, the exact audit importer and axiom reports. Every explicit
 definition, theorem, abbreviation, structure and named instance is audited;

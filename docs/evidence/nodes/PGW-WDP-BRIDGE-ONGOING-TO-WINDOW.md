@@ -1,6 +1,6 @@
 # PGW-WDP-BRIDGE-ONGOING-TO-WINDOW
 
-Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidenc
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 7
-- cited Lean, Rust or Python symbols found in their in-repo files: 13
+- counted in-repo evidence files: 8
+- cited Lean, Rust or Python symbols found in their in-repo files: 17
 - distinct cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
@@ -32,7 +32,7 @@ Open. One two-vertex carrier is checked. The coboundary cancellation, the denomi
 
 ## Source status
 
-docs/genesis_to_wdp_derivation_programme.md §4 and register GEN-WDP-07 (conditional, fixed carrier); bridge to the window owed
+Fixed-carrier antisymmetrized cochain bridge and symmetric/partial-filled/carrier-identification obstructions mechanized in PregenesisWdpBridgeOngoingToWindow.lean and WdpBatch5.lean
 
 ## Review
 
@@ -41,6 +41,23 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean)
+- sha256 (`bytes`): `dcfbb2733e10b50e5582e2c8f7b3d9ce8220a199280cd4a2db35b573940f0b99`
+- cited in: node.lean, record TFQ-0555
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch5.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch5.antisym_excess_raising_is_coboundary` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch5.antisym_excess_raising_is_coboundary` |
+| `WitnessedDifference.WdpBatch5.carrier_identification_breaks_same23_loop` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch5.carrier_identification_breaks_same23_loop` |
+| `WitnessedDifference.WdpBatch5.partial_filled_kernel_strictly_larger` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch5.partial_filled_kernel_strictly_larger` |
+| `WitnessedDifference.WdpBatch5.symmetric_excess_invisible_to_antisym` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch5.symmetric_excess_invisible_to_antisym` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean`
 
@@ -60,10 +77,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenesisWdpBridgeOngoing.lean](../../../lean4/PregenesisWdpBridgeOngoing.lean)
 - sha256 (`bytes`): `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json (PregenesisWdpBridgeOngoing), receipt dag/research/pr_357_review_replay.json (PregenesisWdpBridgeOngoing), record TFQ-0555
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json (PregenesisWdpBridgeOngoing), receipt evidence/lean_receipts/pr_357_review_replay.json (PregenesisWdpBridgeOngoing), record TFQ-0555
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json) (module `PregenesisWdpBridgeOngoing`): recorded sha256 `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_357_review_replay.json](../../../dag/research/pr_357_review_replay.json) (module `PregenesisWdpBridgeOngoing`): recorded sha256 `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json) (module `PregenesisWdpBridgeOngoing`): recorded sha256 `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_357_review_replay.json](../../../evidence/lean_receipts/pr_357_review_replay.json) (module `PregenesisWdpBridgeOngoing`): recorded sha256 `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PregenesisWdpBridgeOngoing`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -94,16 +111,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_ongoing_fixed_carrier_bridge.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_ongoing_fixed_carrier_bridge.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_ongoing_fixed_carrier_bridge.md)
 - sha256 (`lf-normalised`): `491de41d4978bbcdcd06c9857515113700be95b53e2a3700fe0ce540588036f7`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_to_wdp_derivation_programme.md)
 - sha256 (`lf-normalised`): `616280b727abb20440caea09709a0e8f5512fbc8de20da8a3db124de2dc262ff`
 - cited in: node.source
 - counts toward the grade: yes
@@ -111,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md`
 
 - file: [dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md](../../../dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md)
-- sha256 (`lf-normalised`): `04d7e1fc932567f492e9fa59beb8ba55af5da4e7aed9c7f0c047ad874b0a7685`
+- sha256 (`lf-normalised`): `6bf3d0692798fc3b4b8da60372c10b30501bcf536fd3f57ea759e1a98af57496`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0555
 - counts toward the grade: no
@@ -123,9 +140,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json`
 
-- file: [dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json)
 - sha256 (`lf-normalised`): `b76132c50ae7b593cba4a85ecc8a0b97ab0256cd706e1632bf63705de9c8a65d`
 - cited in: node.source
 - counts toward the grade: yes
@@ -142,8 +159,9 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PGW-R-WDP-BRIDGE-ONGOING-TO-WINDOW` `GAP_NO_DERIVATION`: [PGW-WDP-GENESIS-BRIDGES-LEDGER](PGW-WDP-GENESIS-BRIDGES-LEDGER.md) (DEFINITION), [PGW-GO-H3-TWIN-FILLS-HOLONOMY](PGW-GO-H3-TWIN-FILLS-HOLONOMY.md) (PROVED_LEAN)
+- `PGW-R-WDP-BRIDGE-ONGOING-TO-WINDOW` `DERIVED_LEAN`: [PGW-WDP-GENESIS-BRIDGES-LEDGER](PGW-WDP-GENESIS-BRIDGES-LEDGER.md) (DEFINITION), [PGW-GO-H3-TWIN-FILLS-HOLONOMY](PGW-GO-H3-TWIN-FILLS-HOLONOMY.md) (PROVED_LEAN)
 
-Outgoing (1):
+Outgoing (2):
 
+- `PGW-R-WDP-BRIDGE-O02-OBSERVER-REPAIR` `GAP_NO_DERIVATION`: [PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR](PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR.md) (OPEN)
 - `PGW-R-WDP-SYNTHESIS-TRUNK-TIERS` `DERIVED_PROSE`: [PGW-WDP-SYNTHESIS-TRUNK-TIERS](PGW-WDP-SYNTHESIS-TRUNK-TIERS.md) (DEFINITION)

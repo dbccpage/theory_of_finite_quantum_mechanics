@@ -152,7 +152,7 @@ def test_tensor_proof_boundaries_and_conditional_gap() -> None:
 
 
 def test_tensor_lean_replay_matches_sources_and_admission_policy() -> None:
-    receipt = json.loads((ROOT / 'dag/research/tensor_formalization_validation.json').read_text(encoding='utf-8'))
+    receipt = json.loads((ROOT / 'evidence/lean_receipts/tensor_formalization_validation.json').read_text(encoding='utf-8'))
     replay = receipt['lean_replay']
     modules = {'TensorConeReconstruction', 'TensorTomography', 'TensorCoordinates',
                'TensorSchmidt', 'TensorReachability', 'TensorOperationalCone', 'TensorComposition'}

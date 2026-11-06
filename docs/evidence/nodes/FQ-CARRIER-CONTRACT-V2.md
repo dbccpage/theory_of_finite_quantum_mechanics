@@ -38,7 +38,7 @@ REVIEWED_DECLARATIONS (carrier_contract.yaml); minimality_proved: false; all_tar
 
 ## Review
 
-- PFP review: [dag/results/FQ-CARRIER-CONTRACT-V2/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-CARRIER-CONTRACT-V2/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-CARRIER-CONTRACT-V2/reviews/20261019_next_ten_audit/review_result.json](../../../evidence/results/FQ-CARRIER-CONTRACT-V2/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: LCM120 on the actual inventory, literal conductor directedness and star-compatible RingHom theorem signatures, and seven independently checked quotient computations.
   - does not support: Constructed Q^ab colimit, proved Kronecker-Weber, field minimality, or verification of all amplitudes in all targets.
   - next test: Audit retained contract flags, complete coefficient arrays, actual Phi120 and optimized guard refusal.
@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9cd7c2e1e7fee5a2878cdf6cbf1603b4cef4b3e0654b9261f2c087e36b027695`
 - cited in: node.lean, record TFQ-1006
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `CyclotomicTowerDirected`): recorded sha256 `9cd7c2e1e7fee5a2878cdf6cbf1603b4cef4b3e0654b9261f2c087e36b027695` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `CyclotomicTowerDirected`): recorded sha256 `9cd7c2e1e7fee5a2878cdf6cbf1603b4cef4b3e0654b9261f2c087e36b027695` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CyclotomicTowerDirected`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `584e51cd0f1ed41d0f3b7fad0b4d235a6ce77e0d1ff41040379d1de748d124bc`
 - cited in: node.lean, record TFQ-1006
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HigherDimConductorBounds`): recorded sha256 `584e51cd0f1ed41d0f3b7fad0b4d235a6ce77e0d1ff41040379d1de748d124bc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HigherDimConductorBounds`): recorded sha256 `584e51cd0f1ed41d0f3b7fad0b4d235a6ce77e0d1ff41040379d1de748d124bc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build HigherDimConductorBounds`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -77,27 +77,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md](../../../dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md)
-- sha256 (`lf-normalised`): `7df51157931450301bbd5cd53c0b983bba69dd33bd2ebc4f14437a61007dc56c`
-- generated view: listed, not counted
-- cited in: record TFQ-1006
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/claims/carrier_contract.yaml`
 
-- file: [atlas/finite_quantum_mechanics/claims/carrier_contract.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/carrier_contract.yaml](../../../atlas/finite_quantum_mechanics/claims/carrier_contract.yaml)
 - sha256 (`lf-normalised`): `a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md](../../../dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md)
+- sha256 (`lf-normalised`): `43487e4476a33a4b020952128c696fd07e1ba578c76e29c7f0a48cca5231a3eb`
+- generated view: listed, not counted
+- cited in: record TFQ-1006
+- counts toward the grade: no
 
 ### External sources
 

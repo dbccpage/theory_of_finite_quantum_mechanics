@@ -51,7 +51,7 @@ def test_statuses_follow_the_evidence():
     for nid, node in by_id.items():
         if node['status'] == 'PROVED_LEAN':
             assert node['lean'] and all(x.startswith('lean4/LggrFiniteResults.lean::') for x in node['lean'])
-            receipt_path = 'dag/research/foc035_observer_presheaf_lean_replay.json'
+            receipt_path = 'evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json'
             assert receipt_path in node['source']
             receipt = json.loads((ROOT / receipt_path).read_text(encoding='utf-8'))
             entry = next(e for e in receipt['lean_replay']['results'] if e['dag_node'] == nid)
@@ -63,7 +63,7 @@ def test_statuses_follow_the_evidence():
         elif nid == 'OPS-RUST-RECEIPTS-AND-LIMITS':
             assert node['lean'] and all(
                 x.startswith('lean4/ObserverPresheafReceiptLimits.lean::') for x in node['lean'])
-            receipt_path = 'dag/research/campaign_ops-rust-receipts-and-limits_lean_replay.json'
+            receipt_path = 'evidence/lean_receipts/campaign_ops-rust-receipts-and-limits_lean_replay.json'
             assert receipt_path in node['source']
             receipt = json.loads((ROOT / receipt_path).read_text(encoding='utf-8'))
             entry = receipt['lean_replay']['results'][0]

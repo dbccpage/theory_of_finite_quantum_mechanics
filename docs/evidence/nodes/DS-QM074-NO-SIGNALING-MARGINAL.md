@@ -37,7 +37,7 @@ Lean states the two-qubit case: under an admitted tensor composition, a unitary 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/review_result.json](../../../evidence/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact contextual marginals distinguish nonsignaling correlated tables from the signaling control; scalar PR-family marginal and nonproduct controls are kernel checked.
   - does not support: Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting independence; no causality law is derived.
   - next test: Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting independence; no causality law is derived.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0261
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_constructor_theory.json](../../../dag/research/lean_replay_campaign_constructor_theory.json) (module `Entanglement`): recorded sha256 `bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_constructor_theory.json](../../../evidence/lean_receipts/lean_replay_campaign_constructor_theory.json) (module `Entanglement`): recorded sha256 `bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build Entanglement`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `NoSignalling`): recorded sha256 `8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `NoSignalling`): recorded sha256 `8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build NoSignalling`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md](../../../dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md)
-- sha256 (`lf-normalised`): `58a3610eb6858401659ba0cdebbc2477a60bef37c3af9d7229697c33a9c6dde4`
+- sha256 (`lf-normalised`): `2eb3c086c0fa53c9c9ba09b455c5ac90aa7d8fe48072251aee0e890a7477358f`
 - generated view: listed, not counted
 - cited in: record TFQ-0261
 - counts toward the grade: no

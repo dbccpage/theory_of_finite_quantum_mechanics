@@ -334,7 +334,7 @@ def readme_page(document: dict, rows: list[dict]) -> str:
             "### Where the Lean evidence stands", "",
             f"The `lean` fields of nodes cite {lean_decl['distinct']} distinct Lean declarations that lie in files of this checkout. "
             f"{lean_decl['replay_verified']} of them are in a file whose current sha256 matches a passing replay receipt; "
-            f"{lean_decl['no_receipt']} are in files with no receipt in `dag/research/`; "
+            f"{lean_decl['no_receipt']} are in files with no receipt in `evidence/lean_receipts/`; "
             f"{lean_decl['replay_stale']} are in files whose receipt no longer matches; "
             f"{lean_decl['replay_failed']} are in files whose current-hash receipt failed the build or axiom audit. "
             f"The `PROVED_LEAN` nodes cite {sum(pl_refs.values())} Lean references; "
@@ -382,7 +382,7 @@ def readme_page(document: dict, rows: list[dict]) -> str:
             f"{s['cited_symbols_found_but_no_declaration_form']}. E3 additionally requires a declaration form or a listing in the receipt.",
             "- Paths that begin with `omega_engine` or `.claude` name sibling trees that are not in this repository. "
             "They are recorded as `external_unresolved`: neither confirmed nor refuted here.",
-            "- Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. "
+            "- Lean receipts are the files in `evidence/lean_receipts/` whose Lean results carry a module name and a sha256. "
             "A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. "
             f"{lean_decl['replay_verified_and_declaration_itemised']} of the {lean_decl['replay_verified']} receipt-backed "
             "declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name "
@@ -406,7 +406,7 @@ def readme_page(document: dict, rows: list[dict]) -> str:
             "```", "python -c \"import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest())\" "
             "lean4/FrontierFiveQubitPerfectTensor.lean", "```", "",
             "The result should equal the recorded sha256 in "
-            "[`dag/research/frontier_targets_lean_replay.json`](../../dag/research/frontier_targets_lean_replay.json).", "",
+            "[`evidence/lean_receipts/frontier_targets_lean_replay.json`](../../evidence/lean_receipts/frontier_targets_lean_replay.json).", "",
             "### (c) Replay the Lean receipts", "",
             f"The receipts record builds with Lean {toolchain.split(':v')[-1]} and Mathlib at `{mathlib}`, "
             f"on {platforms}. Another platform with the same toolchain should reproduce the exit codes and the axiom lines; "
@@ -423,8 +423,8 @@ def readme_page(document: dict, rows: list[dict]) -> str:
             "#print axioms FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64", "```", "",
             "and run `lake env lean Check.lean`. The expected output lists only `propext`, `Classical.choice` and `Quot.sound`, or no axioms. "
             "Anything else, or a build error, contradicts the receipt. Receipts for the other modules are in "
-            "[`pfp_batch01_lean_replay.json`](../../dag/research/pfp_batch01_lean_replay.json) and the `tensor_*_validation.json` files "
-            "in [`dag/research/`](../../dag/research). The receipts record 25 to 225 seconds per module on one machine; "
+            "[`pfp_batch01_lean_replay.json`](../../evidence/lean_receipts/pfp_batch01_lean_replay.json) and the `tensor_*_validation.json` files "
+            "in [`evidence/lean_receipts/`](../../evidence/lean_receipts). The receipts record 25 to 225 seconds per module on one machine; "
             "replaying all of them takes hours.", "",
             "## Where status and evidence disagree", "",
             f"{s['mismatches_total']} flags on {s['mismatch_nodes']} nodes. They are reported here and the DAG statuses are not changed. "
@@ -442,11 +442,11 @@ def readme_page(document: dict, rows: list[dict]) -> str:
             "- It does not rebuild Lean, run Rust or Python tests, or fetch anything. A receipt is a recorded result, checked here only "
             "for a matching file hash.",
             "- It does not resolve the sibling atlas trees. Their references stay `external_unresolved`.",
-            "- It indexes the receipts in `dag/research/*.json` that carry per-module sha256 values. "
+            "- It indexes the receipts in `evidence/lean_receipts/*.json` that carry per-module sha256 values. "
             "Other receipts are not indexed: " + "; ".join(
                 f"`{x['file']}` ({x['reason']})" for x in document["receipts_not_indexed"]) +
             (". " if document["receipts_not_indexed"] else "") +
-            "The `*.axioms.txt` files, the per-run Lean receipts under `dag/results/`, and the Rust and Python test outcomes "
+            "The `*.axioms.txt` files, the per-run Lean receipts under `evidence/results/`, and the Rust and Python test outcomes "
             "are not used for grading in this version.",
             "- A grade is a floor for the evidence found by following the node's own citations. A node with a low grade may "
             "have better evidence that it does not cite.", ""]

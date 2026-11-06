@@ -37,7 +37,7 @@ Idempotent quotient predicate survival P(pi(pi(x))) = P(pi(x)) and fiber-constan
 
 ## Review
 
-- PFP review: [dag/results/DS-QM093-SURVIVAL-THEOREM/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM093-SURVIVAL-THEOREM/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM093-SURVIVAL-THEOREM/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/DS-QM093-SURVIVAL-THEOREM/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: The declared three-field antecedent truth table and missing-seal refusal are kernel/native checked; the real survival antecedent remains undischarged.
   - does not support: Obtain and validate the imported interface, replay evidence and sealed external terminalizer. A true input flag is not that evidence and does not terminalize anything.
   - next test: Obtain and validate the imported interface, replay evidence and sealed external terminalizer. A true input flag is not that evidence and does not terminalize anything.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0273 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md](../../../dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md)
-- sha256 (`lf-normalised`): `304acf8e240016f44632029ac3d7d6d9a7decd1e2b32baa2a768c10e8f2ec888`
+- sha256 (`lf-normalised`): `07184944f1b95d64160b124f3cf8672cd8ccd6caeb4870ff34354241e35858eb`
 - generated view: listed, not counted
 - cited in: record TFQ-0273 (shared)
 - counts toward the grade: no

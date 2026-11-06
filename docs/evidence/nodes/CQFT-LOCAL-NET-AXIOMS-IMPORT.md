@@ -47,9 +47,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/LocalNetAxiomsImport.lean](../../../lean4/LocalNetAxiomsImport.lean)
 - sha256 (`bytes`): `cade284a0f39f47108de8560e72198cf3dec3fcf6836f065c64d54b53ef99645`
-- cited in: node.lean, node.source, receipt dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json (LocalNetAxiomsImport), record TFQ-2103
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_cqft-local-net-axioms-import_lean_replay.json (LocalNetAxiomsImport), record TFQ-2103
 - replay: `verified`
-  - receipt [dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json](../../../dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json) (module `LocalNetAxiomsImport`): recorded sha256 `cade284a0f39f47108de8560e72198cf3dec3fcf6836f065c64d54b53ef99645` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_cqft-local-net-axioms-import_lean_replay.json](../../../evidence/lean_receipts/campaign_cqft-local-net-axioms-import_lean_replay.json) (module `LocalNetAxiomsImport`): recorded sha256 `cade284a0f39f47108de8560e72198cf3dec3fcf6836f065c64d54b53ef99645` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build LocalNetAxiomsImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

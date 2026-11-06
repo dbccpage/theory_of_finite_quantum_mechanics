@@ -32,15 +32,15 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z\[i\]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Campaign run (receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json): over Q^3 the mod-4 function exotic(v) = (1 + sgn v)/3 on integer vectors not all even is a frame function on all rational rays, takes the values 0, 1/3, 2/3, and is not quadratic (BornRationalRayObstruction: exotic_frame_function, exotic_not_quadratic), so on the rational carrier frame additivity on all orthogonal triples does not select the Born form even among nonnegative frame functions; and over Q(i)^3 a frame function that is a residue-modulo-2 class function on (1+i)-primitive Gaussian-integer vectors is 1/3 there (BornGaussianMod2ClassRigidity: mod2_class_function_is_third, 56 explicit frames). In FQ-GLEASON-QI3-FRAME-FUNCTIONS (BornGaussianRationalNoColouring, BornGaussianRationalExtensionObstruction, BornGaussianTomographyReduction): no {0,1}-valued frame function exists on Q(i)^3; the exotic Q^3 frame function has no signed extension to Q(i)^3; nine-ray Hermitian tomography reconstructs a unique trace-1 Hermitian form; the explicit 3-adic and 7-adic bounded zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative frame functions exoticQi3 = (1 + s3)/3 and exoticQi7 = (1 + s7)/3 refute unregularized signed and nonnegative quadratic rigidity on Q(i)^3 and span a 2D linearly independent residual subspace combResidual37 c3 c7; the uniform prime-indexed inert residual family sp p (with InertPrimeSpec p, p = 11 instance sp11, 3D subspace combResidual3_7_11, and finite m-prime InertPrimeResidualSystem m, supplied as a hypothesis and instantiated in Lean only for m = 2) is kernel-checked and jointly eliminated by archimedean continuity at tomo_e1, by extension to Q(i, sqrt(p))^3 only when each extension is additionally assumed to vanish on supplied orthogonal partner frames, or by operator-space projector linearity (quadratic_rigidity_iff_factorsThroughRayProjLinear); Subsection 9F formalizes planar frame-rotation identities, the orthogonal parallelogram law SatisfiesOrthoParallelogramZero (refuted on s3, s7, sp11 and eliminating all coordinate-sign-symmetric zero-weight residuals), Piron's meridian-descent inequality and dense Pythagorean rational circle step (exists_pironStep_within_delta), and the nonnegativity/continuity bridge (nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual); and Subsection 9G formalizes two-step Piron tangent algebra (eqTangentStep_comp_of_x_zero, eqTangentStep_cancel_of_x_zero), Kelvin-inverted meridian duality (meridian_kelvin_complement_of_pole_one), outward and inward radial monotonicity (piron_radial_scale_le_of_pole_one, piron_radial_inv_scale_ge_of_pole_one), the exact two-sided Piron-Pythagorean sandwich squeeze (pythagEqRot_sandwich_of_pole_one, pythagEqRot_archimedean_squeeze_of_pole_one), and equatorial-invariance vs. orthogonal parallelogram separation (sp_e1_add_pythagEqRot_eq, orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant). Operational justification of effect additivity or projector linearity and unconditional vanishing of all archimedean-continuous bounded zero-weight residuals without coordinate-sign symmetry or projector linearity remain open.
+The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z\[i\]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Campaign run (receipt evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json): over Q^3 the mod-4 function exotic(v) = (1 + sgn v)/3 on integer vectors not all even is a frame function on all rational rays, takes the values 0, 1/3, 2/3, and is not quadratic (BornRationalRayObstruction: exotic_frame_function, exotic_not_quadratic), so on the rational carrier frame additivity on all orthogonal triples does not select the Born form even among nonnegative frame functions; and over Q(i)^3 a frame function that is a residue-modulo-2 class function on (1+i)-primitive Gaussian-integer vectors is 1/3 there (BornGaussianMod2ClassRigidity: mod2_class_function_is_third, 56 explicit frames). In FQ-GLEASON-QI3-FRAME-FUNCTIONS (BornGaussianRationalNoColouring, BornGaussianRationalExtensionObstruction, BornGaussianTomographyReduction): no {0,1}-valued frame function exists on Q(i)^3; the exotic Q^3 frame function has no signed extension to Q(i)^3; nine-ray Hermitian tomography reconstructs a unique trace-1 Hermitian form; the explicit 3-adic and 7-adic bounded zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative frame functions exoticQi3 = (1 + s3)/3 and exoticQi7 = (1 + s7)/3 refute unregularized signed and nonnegative quadratic rigidity on Q(i)^3 and span a 2D linearly independent residual subspace combResidual37 c3 c7; the uniform prime-indexed inert residual family sp p (with InertPrimeSpec p, p = 11 instance sp11, 3D subspace combResidual3_7_11, and finite m-prime InertPrimeResidualSystem m, supplied as a hypothesis and instantiated in Lean only for m = 2) is kernel-checked and jointly eliminated by archimedean continuity at tomo_e1, by extension to Q(i, sqrt(p))^3 only when each extension is additionally assumed to vanish on supplied orthogonal partner frames, or by operator-space projector linearity (quadratic_rigidity_iff_factorsThroughRayProjLinear); Subsection 9F formalizes planar frame-rotation identities, the orthogonal parallelogram law SatisfiesOrthoParallelogramZero (refuted on s3, s7, sp11 and eliminating all coordinate-sign-symmetric zero-weight residuals), Piron's meridian-descent inequality and dense Pythagorean rational circle step (exists_pironStep_within_delta), and the nonnegativity/continuity bridge (nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual); and Subsection 9G formalizes two-step Piron tangent algebra (eqTangentStep_comp_of_x_zero, eqTangentStep_cancel_of_x_zero), Kelvin-inverted meridian duality (meridian_kelvin_complement_of_pole_one), outward and inward radial monotonicity (piron_radial_scale_le_of_pole_one, piron_radial_inv_scale_ge_of_pole_one), the exact two-sided Piron-Pythagorean sandwich squeeze (pythagEqRot_sandwich_of_pole_one, pythagEqRot_archimedean_squeeze_of_pole_one), and equatorial-invariance vs. orthogonal parallelogram separation (sp_e1_add_pythagEqRot_eq, orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant). Operational justification of effect additivity or projector linearity and unconditional vanishing of all archimedean-continuous bounded zero-weight residuals without coordinate-sign symmetry or projector linearity remain open.
 
 ## Source status
 
-Effect-additive (Busch-type) route kernel-checked over Q in dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean: every positive normalized effect-additive valuation on rational n x n matrices is E -\> trace(rho E) for a unique symmetric rational-PSD trace-one rho (born_representation, density_is_state, born_rule, state_valuation_correspondence); the eight frozen targets of runs/20261020T004525Z_fable51_born (val_zero .. val_sandwich) are discharged; the rational-sphere parity frame function (parity_frame_function, parity_not_quadratic) shows that additivity on orthogonal triples of rational rays in d=3 does not select the quadratic form. Continuum Gleason on S^{n-1} is not used; it remains an external import only for the projection-lattice route. Exact replays: code/python/src/qm/born_effect_valuation.py, code/rust/src/qm/born_effect_valuation.rs. Earlier: Born vs quartic rival separation on (3,4) and d=3 orthogonal frame additivity eliminating the quartic rival mechanized in DerivationDagQMClosure.lean
+Effect-additive (Busch-type) route kernel-checked over Q in evidence/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean: every positive normalized effect-additive valuation on rational n x n matrices is E -\> trace(rho E) for a unique symmetric rational-PSD trace-one rho (born_representation, density_is_state, born_rule, state_valuation_correspondence); the eight frozen targets of runs/20261020T004525Z_fable51_born (val_zero .. val_sandwich) are discharged; the rational-sphere parity frame function (parity_frame_function, parity_not_quadratic) shows that additivity on orthogonal triples of rational rays in d=3 does not select the quadratic form. Continuum Gleason on S^{n-1} is not used; it remains an external import only for the projection-lattice route. Exact replays: code/python/src/qm/born_effect_valuation.py, code/rust/src/qm/born_effect_valuation.rs. Earlier: Born vs quartic rival separation on (3,4) and d=3 orthogonal frame additivity eliminating the quartic rival mechanized in DerivationDagQMClosure.lean
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/reviews/20261019_next_ten_audit/review_result.json](../../../evidence/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: Concrete weak-contract and quartic-frame countermodels with exact normalized values and literal kernel scope.
   - does not support: general Born/Gleason uniqueness from one rejected rival, or necessity/regularity assumptions inferred from flags.
   - next test: Challenge actual coordinates/dimension/readout values and refuse uniqueness promotion.
@@ -55,7 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c0c6c946120523644c5a8bb8a66bd72ace71c0c16ea3d1871e8f54670ec3395a`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornEffectValuation`): recorded sha256 `c0c6c946120523644c5a8bb8a66bd72ace71c0c16ea3d1871e8f54670ec3395a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornEffectValuation`): recorded sha256 `c0c6c946120523644c5a8bb8a66bd72ace71c0c16ea3d1871e8f54670ec3395a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornEffectValuation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `5e44685120e200cf66416fe13f3fe762da0cb072157b62b92454dc9f4089665b`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornGaussRat`): recorded sha256 `5e44685120e200cf66416fe13f3fe762da0cb072157b62b92454dc9f4089665b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornGaussRat`): recorded sha256 `5e44685120e200cf66416fe13f3fe762da0cb072157b62b92454dc9f4089665b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussRat`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -83,9 +83,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/BornGaussianFrameRays.lean](../../../lean4/BornGaussianFrameRays.lean)
 - sha256 (`bytes`): `978b7e33c3accef4513c5d5151ee92bcd2612caf16b5bc084e095b764fadc7e6`
-- cited in: node.lean, receipt dag/research/born_gaussian_frames_lean_replay.json (BornGaussianFrameRays)
+- cited in: node.lean, receipt evidence/lean_receipts/born_gaussian_frames_lean_replay.json (BornGaussianFrameRays)
 - replay: `verified`
-  - receipt [dag/research/born_gaussian_frames_lean_replay.json](../../../dag/research/born_gaussian_frames_lean_replay.json) (module `BornGaussianFrameRays`): recorded sha256 `978b7e33c3accef4513c5d5151ee92bcd2612caf16b5bc084e095b764fadc7e6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/born_gaussian_frames_lean_replay.json](../../../evidence/lean_receipts/born_gaussian_frames_lean_replay.json) (module `BornGaussianFrameRays`): recorded sha256 `978b7e33c3accef4513c5d5151ee92bcd2612caf16b5bc084e095b764fadc7e6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianFrameRays`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -101,9 +101,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/BornGaussianMod2ClassRigidity.lean](../../../lean4/BornGaussianMod2ClassRigidity.lean)
 - sha256 (`bytes`): `ab4aceb7e4aac1f76ef2c7ad3d780f422796878ab6ab8d616f73d75d05386b9d`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json (BornGaussianMod2ClassRigidity)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json (BornGaussianMod2ClassRigidity)
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json](../../../dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json) (module `BornGaussianMod2ClassRigidity`): recorded sha256 `ab4aceb7e4aac1f76ef2c7ad3d780f422796878ab6ab8d616f73d75d05386b9d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json) (module `BornGaussianMod2ClassRigidity`): recorded sha256 `ab4aceb7e4aac1f76ef2c7ad3d780f422796878ab6ab8d616f73d75d05386b9d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianMod2ClassRigidity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -119,7 +119,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianRationalExtensionObstruction`): recorded sha256 `aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianRationalExtensionObstruction`): recorded sha256 `aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianRationalExtensionObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -132,9 +132,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/BornGaussianRationalFrameObstruction.lean](../../../lean4/BornGaussianRationalFrameObstruction.lean)
 - sha256 (`bytes`): `5564b1a4dd947620281406208466d2df9792aedc5e7eeae3073b7ba52a8134c2`
-- cited in: node.lean, receipt dag/research/born_gaussian_frames_lean_replay.json (BornGaussianRationalFrameObstruction)
+- cited in: node.lean, receipt evidence/lean_receipts/born_gaussian_frames_lean_replay.json (BornGaussianRationalFrameObstruction)
 - replay: `verified`
-  - receipt [dag/research/born_gaussian_frames_lean_replay.json](../../../dag/research/born_gaussian_frames_lean_replay.json) (module `BornGaussianRationalFrameObstruction`): recorded sha256 `5564b1a4dd947620281406208466d2df9792aedc5e7eeae3073b7ba52a8134c2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/born_gaussian_frames_lean_replay.json](../../../evidence/lean_receipts/born_gaussian_frames_lean_replay.json) (module `BornGaussianRationalFrameObstruction`): recorded sha256 `5564b1a4dd947620281406208466d2df9792aedc5e7eeae3073b7ba52a8134c2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianRationalFrameObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -157,7 +157,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianRationalNoColouring`): recorded sha256 `fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianRationalNoColouring`): recorded sha256 `fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianRationalNoColouring`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -172,7 +172,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianTomographyReduction`): recorded sha256 `745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianTomographyReduction`): recorded sha256 `745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianTomographyReduction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -301,7 +301,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `7fdb683ab5515376014639d26f6709f2409bec1d13631f8c3f38dadf4e4017d5`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornHermitianCarrier`): recorded sha256 `7fdb683ab5515376014639d26f6709f2409bec1d13631f8c3f38dadf4e4017d5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornHermitianCarrier`): recorded sha256 `7fdb683ab5515376014639d26f6709f2409bec1d13631f8c3f38dadf4e4017d5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornHermitianCarrier`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -317,7 +317,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `21f92d44fe846b08783f3641a47aec5a9b211a453faf4f4cd5c54d1421a06e5f`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornHermitianPsdDecomposition`): recorded sha256 `21f92d44fe846b08783f3641a47aec5a9b211a453faf4f4cd5c54d1421a06e5f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornHermitianPsdDecomposition`): recorded sha256 `21f92d44fe846b08783f3641a47aec5a9b211a453faf4f4cd5c54d1421a06e5f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornHermitianPsdDecomposition`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -332,7 +332,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `06463b9a757cf3b567ecdc07cee15df0dde4cad5cf2f214e2b3fcb8b304bad3d`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornHermitianTraceRepresentation`): recorded sha256 `06463b9a757cf3b567ecdc07cee15df0dde4cad5cf2f214e2b3fcb8b304bad3d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornHermitianTraceRepresentation`): recorded sha256 `06463b9a757cf3b567ecdc07cee15df0dde4cad5cf2f214e2b3fcb8b304bad3d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornHermitianTraceRepresentation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -350,7 +350,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9d76112b91323c8481b5a25597337e2922b6987bf34b460f22d5a23019968d17`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornLinearExtension`): recorded sha256 `9d76112b91323c8481b5a25597337e2922b6987bf34b460f22d5a23019968d17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornLinearExtension`): recorded sha256 `9d76112b91323c8481b5a25597337e2922b6987bf34b460f22d5a23019968d17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornLinearExtension`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -365,7 +365,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9637035fc88ea1e974d73efe00457798ad48c28f5d27061fe89c2dbc384ba4df`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornMatrixCarrier`): recorded sha256 `9637035fc88ea1e974d73efe00457798ad48c28f5d27061fe89c2dbc384ba4df` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornMatrixCarrier`): recorded sha256 `9637035fc88ea1e974d73efe00457798ad48c28f5d27061fe89c2dbc384ba4df` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornMatrixCarrier`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -380,7 +380,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8`
 - cited in: record TFQ-0307 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornNormalization`): recorded sha256 `83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornNormalization`): recorded sha256 `83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornNormalization`
 - counts toward the grade: no
 
@@ -390,7 +390,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `6e51927474e64564df8d05ddc75f7c8ac474dc382d0667e3d9a749ac4c5f6aa9`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornPsdDecomposition`): recorded sha256 `6e51927474e64564df8d05ddc75f7c8ac474dc382d0667e3d9a749ac4c5f6aa9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornPsdDecomposition`): recorded sha256 `6e51927474e64564df8d05ddc75f7c8ac474dc382d0667e3d9a749ac4c5f6aa9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornPsdDecomposition`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -403,9 +403,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/BornRationalRayObstruction.lean](../../../lean4/BornRationalRayObstruction.lean)
 - sha256 (`bytes`): `db82ac8f931e9f0d1c6870a141f3dac4e55f17d4feb437d0109df3ef51649ff0`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json (BornRationalRayObstruction)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json (BornRationalRayObstruction)
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json](../../../dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json) (module `BornRationalRayObstruction`): recorded sha256 `db82ac8f931e9f0d1c6870a141f3dac4e55f17d4feb437d0109df3ef51649ff0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json) (module `BornRationalRayObstruction`): recorded sha256 `db82ac8f931e9f0d1c6870a141f3dac4e55f17d4feb437d0109df3ef51649ff0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornRationalRayObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -427,7 +427,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `50f87e37e9cc467a2b36332fc8e8307bfa71ec9a5b19ac0dc44e36ce3412f6ba`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornRationalSphereObstruction`): recorded sha256 `50f87e37e9cc467a2b36332fc8e8307bfa71ec9a5b19ac0dc44e36ce3412f6ba` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornRationalSphereObstruction`): recorded sha256 `50f87e37e9cc467a2b36332fc8e8307bfa71ec9a5b19ac0dc44e36ce3412f6ba` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornRationalSphereObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -443,7 +443,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `04fc9c79e4fb5226c4427c81fea96bfaada1fe2ef3bb58863eddc73d48d779c7`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornTraceRepresentation`): recorded sha256 `04fc9c79e4fb5226c4427c81fea96bfaada1fe2ef3bb58863eddc73d48d779c7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `BornTraceRepresentation`): recorded sha256 `04fc9c79e4fb5226c4427c81fea96bfaada1fe2ef3bb58863eddc73d48d779c7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornTraceRepresentation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -461,7 +461,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -477,7 +477,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
 - cited in: record TFQ-0307 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qcd.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: no
 
@@ -487,7 +487,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `42c9d771c0f1c717bcf7673918fe0ee69046418ca70c1f6fd8ee9972977f9d30`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleason`): recorded sha256 `42c9d771c0f1c717bcf7673918fe0ee69046418ca70c1f6fd8ee9972977f9d30` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleason`): recorded sha256 `42c9d771c0f1c717bcf7673918fe0ee69046418ca70c1f6fd8ee9972977f9d30` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertWalkGleason`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -502,7 +502,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `17bb7bdba42a7ea9e389864cd6f5b6ab6537d525b4969b9e441f9db70a7f43e4`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `QuarticRivalSeparation`): recorded sha256 `17bb7bdba42a7ea9e389864cd6f5b6ab6537d525b4969b9e441f9db70a7f43e4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `QuarticRivalSeparation`): recorded sha256 `17bb7bdba42a7ea9e389864cd6f5b6ab6537d525b4969b9e441f9db70a7f43e4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build QuarticRivalSeparation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -514,9 +514,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `code/python/tests/test_fq_gleason_qi3_frame_functions.py`
 
 - file: [code/python/tests/test_fq_gleason_qi3_frame_functions.py](../../../code/python/tests/test_fq_gleason_qi3_frame_functions.py)
-- sha256 (`bytes`): `211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0`
+- sha256 (`bytes`): `f0f2bc9a9d8d2a28c24e2b262ef21dc769beec1061bb4a1ce239291dbc72dccf`
 - cited in: node.source
 - check: `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py`
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
+
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
+- cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md`
@@ -530,14 +537,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md`
 
 - file: [dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md](../../../dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md)
-- sha256 (`lf-normalised`): `117b3b26afb3b5286eb706c59b1b4427e6aecc82d15289a90045cf78fd762132`
+- sha256 (`lf-normalised`): `1b652bd48dc01bf8b81560860e644922c1494b462c8394b75c4eff0d93760c5b`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/independent/fq-gleason-qi3-frame-functions.md`
 
 - file: [dag/derivations/independent/fq-gleason-qi3-frame-functions.md](../../../dag/derivations/independent/fq-gleason-qi3-frame-functions.md)
-- sha256 (`lf-normalised`): `9e5f0878cd1565d478b5235b99e65b24138c0df26a367650097850ad25cad81e`
+- sha256 (`lf-normalised`): `b6f75235ab2f1d2a66a7ef925d09cb43beb284762f446208ae4a682117e4b0ef`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -548,17 +555,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json`
 
-- file: [dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json](../../../dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json)
 - sha256 (`lf-normalised`): `bb7224ff87e7c0de653fb381e4f0a4f8f154ab83d5d30cacfccc89a3f4f12fbd`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
-
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
 

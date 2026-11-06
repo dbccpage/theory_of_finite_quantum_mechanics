@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7`
 - cited in: node.lean, record TFQ-2101
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_causal_qft.json](../../../dag/research/lean_replay_campaign_causal_qft.json) (module `NoSignallingCore`): recorded sha256 `f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_causal_qft.json](../../../evidence/lean_receipts/lean_replay_campaign_causal_qft.json) (module `NoSignallingCore`): recorded sha256 `f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build NoSignallingCore`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

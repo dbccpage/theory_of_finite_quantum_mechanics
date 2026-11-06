@@ -47,7 +47,7 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 LEAN_MODULE_PATH = REPO_ROOT / "lean4" / "ContinuumDerivationSpine.lean"
-DEFAULT_RECEIPT_PATH = REPO_ROOT / "dag" / "research" / "continuum_derivation_spine_receipt.json"
+DEFAULT_RECEIPT_PATH = REPO_ROOT / "evidence" / "lean_receipts" / "continuum_derivation_spine_receipt.json"
 
 
 class GaussRat:
@@ -344,7 +344,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--write-receipt",
         action="store_true",
-        help="Write receipt JSON to dag/research/continuum_derivation_spine_receipt.json",
+        help="Write receipt JSON to evidence/lean_receipts/continuum_derivation_spine_receipt.json",
     )
     parser.add_argument(
         "--check",

@@ -32,11 +32,11 @@ Checked in Lean 4 by exhaustive GF(2) symplectic enumeration over the 64-element
 
 ## Source status
 
-Source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) pp. 24-25, and weight enumerator 1 + 45 z^4 + 18 z^6, all twenty 3|3 bipartition entropies (3 bits) and minimum logical weight 3 recomputed in Python on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) pp. 24-25, and weight enumerator 1 + 45 z^4 + 18 z^6, all twenty 3|3 bipartition entropies (3 bits) and minimum logical weight 3 recomputed in Python on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `FULL`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `FULL`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `choi_generators_commute_and_group_order_64`, `choi_perfect_tensor_weight_distribution`, `all_twenty_3_3_bipartitions_maximal_entropy`, `five_qubit_logical_minimum_weight_3`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierFiveQubitPerfectTensor.lean](../../../lean4/FrontierFiveQubitPerfectTensor.lean)
 - sha256 (`bytes`): `129bfdeb6503169d4a5cfc277cf71628909dd4abef168722b2f79f60567b152a`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierFiveQubitPerfectTensor)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierFiveQubitPerfectTensor)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierFiveQubitPerfectTensor`): recorded sha256 `129bfdeb6503169d4a5cfc277cf71628909dd4abef168722b2f79f60567b152a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierFiveQubitPerfectTensor`): recorded sha256 `129bfdeb6503169d4a5cfc277cf71628909dd4abef168722b2f79f60567b152a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierFiveQubitPerfectTensor`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f2d5f59e9a13738b15701e86732ca60e0ede0bfa144fca654ae8a777d2d44a67`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `ShorNineQubitCode`): recorded sha256 `f2d5f59e9a13738b15701e86732ca60e0ede0bfa144fca654ae8a777d2d44a67` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_ads_cft.json](../../../evidence/lean_receipts/lean_replay_campaign_ads_cft.json) (module `ShorNineQubitCode`): recorded sha256 `f2d5f59e9a13738b15701e86732ca60e0ede0bfa144fca654ae8a777d2d44a67` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build ShorNineQubitCode`
 - counts toward the grade: yes
 
@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `adc52228e292fc35de42d6f1ffda4123fac838d50b0b173e4b30bf1caad19bec`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `SurfaceCodeToricTopology`): recorded sha256 `adc52228e292fc35de42d6f1ffda4123fac838d50b0b173e4b30bf1caad19bec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_ads_cft.json](../../../evidence/lean_receipts/lean_replay_campaign_ads_cft.json) (module `SurfaceCodeToricTopology`): recorded sha256 `adc52228e292fc35de42d6f1ffda4123fac838d50b0b173e4b30bf1caad19bec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build SurfaceCodeToricTopology`
 - counts toward the grade: yes
 
@@ -88,21 +88,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `ThreeQubitCodeSyndromeRecovery`): recorded sha256 `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_ads_cft.json](../../../evidence/lean_receipts/lean_replay_campaign_ads_cft.json) (module `ThreeQubitCodeSyndromeRecovery`): recorded sha256 `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build ThreeQubitCodeSyndromeRecovery`
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md](../../../dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md)
-- sha256 (`lf-normalised`): `a282967e0bab6c070182c669ec20c45b96771c2e8749f9659dce0eeca86068b1`
+- sha256 (`lf-normalised`): `66d35daaf9b4aee800476889db9c43d8a6187f83d95052553f2f8718d9c0928e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2208
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

@@ -136,7 +136,7 @@ def scan(root: Path = ROOT) -> dict[str, Any]:
             if not p.is_file() or p.suffix not in (".md", ".yaml", ".yml"):
                 continue
             rel = p.relative_to(root).as_posix()
-            if rel.startswith("dag/results/"):
+            if rel.startswith("evidence/results/"):
                 continue
             is_pinned = (
                 rel in custody_sealed

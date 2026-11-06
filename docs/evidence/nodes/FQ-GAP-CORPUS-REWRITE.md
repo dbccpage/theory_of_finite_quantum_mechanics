@@ -36,7 +36,7 @@ GAP-F001-S000-003 (book lifecycle admission); deferred tag in book README
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-CORPUS-REWRITE/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-CORPUS-REWRITE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `OPEN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-GAP-CORPUS-REWRITE/reviews/20261019_scope_audit/review_result.json](../../../evidence/results/FQ-GAP-CORPUS-REWRITE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `OPEN`; qualifies for E4: yes.
   - narrowest claim: The captured source scope is inventoried with exact byte/newline/literal counts and cryptographic source custody; a proper subset cannot discharge a missing obligation.
   - does not support: Create a claim-by-claim whole-corpus rewrite/retirement ledger with original exit contracts and independently checked content; captured filenames and constant flags cannot supply it.
   - next test: Create a claim-by-claim whole-corpus rewrite/retirement ledger with original exit contracts and independently checked content; captured filenames and constant flags cannot supply it.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-1024
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -61,20 +61,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1024_fq_gap_corpus_rewrite.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1024_fq_gap_corpus_rewrite.md](../../../dag/derivations/10_finite_qm_core/tfq_1024_fq_gap_corpus_rewrite.md)
-- sha256 (`lf-normalised`): `79f532ccc31d2db0ba8d9c36465f17560881f1b439b16483e418794aef2653c7`
-- generated view: listed, not counted
-- cited in: record TFQ-1024
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1024_fq_gap_corpus_rewrite.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1024_fq_gap_corpus_rewrite.md](../../../dag/derivations/10_finite_qm_core/tfq_1024_fq_gap_corpus_rewrite.md)
+- sha256 (`lf-normalised`): `b75cdfbd210b552c8995776c4194bb3ccfa32330312000475f4f5b18e754ab07`
+- generated view: listed, not counted
+- cited in: record TFQ-1024
+- counts toward the grade: no
 
 ### External sources
 

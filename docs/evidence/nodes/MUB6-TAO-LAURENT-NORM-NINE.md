@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101`
 - cited in: node.lean, record TFQ-1253
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `Conjecture2GeneralMechanization`): recorded sha256 `6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `Conjecture2GeneralMechanization`): recorded sha256 `6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build Conjecture2GeneralMechanization`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3`
 - cited in: node.lean, record TFQ-1253
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubTaoLaurent`): recorded sha256 `52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubTaoLaurent`): recorded sha256 `52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubTaoLaurent`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

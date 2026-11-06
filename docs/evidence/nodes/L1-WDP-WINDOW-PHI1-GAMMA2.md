@@ -36,7 +36,7 @@ WDP-CH04-D02 definition; diagnostic classes ExactClass / ClosedResidual / Active
 
 ## Review
 
-- PFP review: [dag/results/L1-WDP-WINDOW-PHI1-GAMMA2/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-WDP-WINDOW-PHI1-GAMMA2/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/L1-WDP-WINDOW-PHI1-GAMMA2/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-WDP-WINDOW-PHI1-GAMMA2/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: Actual flatness refusal, weighted quotient residual and Gamma2/Phi1 with explicit zero-denominator handling; generic kernel identities and refusal control.
   - does not support: Provide arbitrary typed cochain-window validation and norm choices and prove refinement to the production Phi1/Gamma2 contract. No probability or sector weight follows.
   - next test: Provide arbitrary typed cochain-window validation and norm choices and prove refinement to the production Phi1/Gamma2 contract. No probability or sector weight follows.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md](../../../dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md)
-- sha256 (`lf-normalised`): `adee8da4c8fb532f934d1e32586c4f7ee0828e4feea3e8d72b0f86b48dc66fe2`
+- sha256 (`lf-normalised`): `f7b96ecaa69e6c5c79b61966cf890d7c9c3dcd5f426ed5372422305174d84aa2`
 - generated view: listed, not counted
 - cited in: record TFQ-0349 (shared)
 - counts toward the grade: no
@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md](../../../dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md)
-- sha256 (`lf-normalised`): `d4531de0213a9426dd4e3025c034634a7373aed0a94d9b8eb21bcf4f662e1e65`
+- sha256 (`lf-normalised`): `ca76d22c1953455e01843741ac5db44310b69bdb660b8624a6d9c5a730b8195e`
 - generated view: listed, not counted
 - cited in: record TFQ-0354 (shared)
 - counts toward the grade: no
@@ -139,5 +139,5 @@ Outgoing (8):
 - `APP-R-QCV-SELF-OBSTRUCTION-MODEL` `DERIVED_PROSE`: [QCV-SELF-OBSTRUCTION-MODEL](QCV-SELF-OBSTRUCTION-MODEL.md) (DEFINITION)
 - `L1-R-KKT` `DERIVED_LEAN`: [L1-FRAMEWORK-KKT-CERT](L1-FRAMEWORK-KKT-CERT.md) (PROVED_LEAN)
 - `L1-R-PHI1-QUOTIENT` `GAP_NO_DERIVATION`: [L1-QM002-O022A-PHI1-QUOTIENT](L1-QM002-O022A-PHI1-QUOTIENT.md) (OPEN)
-- `L1-R-REPLICA-L1` `GAP_NO_DERIVATION`: [L1-WDP-CH08-C01-REPLICA-L1](L1-WDP-CH08-C01-REPLICA-L1.md) (OPEN)
+- `L1-R-REPLICA-L1` `DERIVED_LEAN`: [L1-WDP-CH08-C01-REPLICA-L1](L1-WDP-CH08-C01-REPLICA-L1.md) (PROVED_LEAN)
 - `L1-R-RESIDUAL-TO-WEIGHTS` `CONDITIONAL_ON_IMPORT`: [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) (CONDITIONAL)

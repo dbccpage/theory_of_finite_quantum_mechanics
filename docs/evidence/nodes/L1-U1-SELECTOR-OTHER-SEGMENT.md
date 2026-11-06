@@ -36,7 +36,7 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 
 ## Review
 
-- PFP review: [dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/L1-U1-SELECTOR-OTHER-SEGMENT/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../evidence/results/L1-U1-SELECTOR-OTHER-SEGMENT/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Inside the unit Gaussian rationals the only phases of finite order are the four elements of mu_4; the rational circle points outside mu_4 are exactly those with 2x not an integer and they have infinite order (kernel instance: (3/5, 4/5)), so a finite phase group inside the Gaussian rationals has order dividing 4, whereas the unit circle over a finite field F_p is a different finite carrier with p -+ 1 elements (native table, not a kernel statement).
   - does not support: Any derivation of C or U(1) from finite carriers, or a proof that no such derivation exists: the node is a pointer to QM_028 / QM_062 owned by another segment and its selection is NOT established here; finite carriers in the sense of finite fields or finite rings (the unit circle over F_p has order p -+ 1, native table only): the theorem is a no-go only for finite subgroups of the unit Gaussian rationals, and the identification of a finite phase carrier with such a subgroup is not argued; larger finite phase groups in cyclotomic extensions (Q(zeta_8), Q(zeta_3), ...) which this result does not treat; completion, continuity, compactness or Haar measure of the circle; that there are infinitely many infinite-order points as a kernel statement (only the instance u345_infinite_order and the native census); the rival split-complex hyperbola x^2 - y^2 = 1 (the H011 flag rival_excluded); the H011 selector pack, whose selector_not_free is rfl on a record with a hand-set Boolean field; any physical reading of phases.
   - next test: Determine the unit circle {x^2 + y^2 = 1} over F_p and over Z/n exactly: prove that it is cyclic of order p - (-1/p) and show which phase orders a finite scalar ring does and does not force, as the finite-carrier counterpart of the Gaussian-rational torsion result; the torsion over Q(i, sqrt 2) and Q(zeta_3) is a secondary item.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-1003
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,10 +66,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/L1U1SelectorOtherSegment.lean](../../../lean4/L1U1SelectorOtherSegment.lean)
 - sha256 (`bytes`): `e9c220887eccbca20473d823ab81b5b7d329c5439e190a65b43723e902f9a430`
-- cited in: node.lean, node.source, receipt dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json (L1U1SelectorOtherSegment), receipt dag/research/pr435_review_lean_replay.json (L1U1SelectorOtherSegment), record TFQ-1003
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/campaign_l1-u1-selector-other-segment_lean_replay.json (L1U1SelectorOtherSegment), receipt evidence/lean_receipts/pr435_review_lean_replay.json (L1U1SelectorOtherSegment), record TFQ-1003
 - replay: `verified`
-  - receipt [dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json](../../../dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json) (module `L1U1SelectorOtherSegment`): recorded sha256 `e9c220887eccbca20473d823ab81b5b7d329c5439e190a65b43723e902f9a430` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr435_review_lean_replay.json](../../../dag/research/pr435_review_lean_replay.json) (module `L1U1SelectorOtherSegment`): recorded sha256 `e9c220887eccbca20473d823ab81b5b7d329c5439e190a65b43723e902f9a430` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_l1-u1-selector-other-segment_lean_replay.json](../../../evidence/lean_receipts/campaign_l1-u1-selector-other-segment_lean_replay.json) (module `L1U1SelectorOtherSegment`): recorded sha256 `e9c220887eccbca20473d823ab81b5b7d329c5439e190a65b43723e902f9a430` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr435_review_lean_replay.json](../../../evidence/lean_receipts/pr435_review_lean_replay.json) (module `L1U1SelectorOtherSegment`): recorded sha256 `e9c220887eccbca20473d823ab81b5b7d329c5439e190a65b43723e902f9a430` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build L1U1SelectorOtherSegment`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a`
 - cited in: node.lean, record TFQ-1003
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `U1SelectorBoundary`): recorded sha256 `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `U1SelectorBoundary`): recorded sha256 `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build U1SelectorBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -114,9 +114,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/U1SelectorSegment.lean](../../../lean4/U1SelectorSegment.lean)
 - sha256 (`bytes`): `beeffb4aefa76d734dc8999173366a040106dce3cf867c3778a0791c1cc044b2`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (U1SelectorSegment)
+- cited in: receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (U1SelectorSegment)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `U1SelectorSegment`): recorded sha256 `beeffb4aefa76d734dc8999173366a040106dce3cf867c3778a0791c1cc044b2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `U1SelectorSegment`): recorded sha256 `beeffb4aefa76d734dc8999173366a040106dce3cf867c3778a0791c1cc044b2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1SelectorSegment`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -140,7 +140,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
+- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust, record TFQ-1003
 
@@ -160,7 +160,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md](../../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md)
-- sha256 (`lf-normalised`): `c8a4e0fd8753a99065141fcf763edf811139d774f21de28a22a503232087241a`
+- sha256 (`lf-normalised`): `06dea805707a832833f1e0887ad87209a817c97e0a34f35dd612791318e6d093`
 - generated view: listed, not counted
 - cited in: record TFQ-1003
 - counts toward the grade: no
@@ -172,9 +172,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/pr435_review_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/pr435_review_lean_replay.json`
 
-- file: [dag/research/pr435_review_lean_replay.json](../../../dag/research/pr435_review_lean_replay.json)
+- file: [evidence/lean_receipts/pr435_review_lean_replay.json](../../../evidence/lean_receipts/pr435_review_lean_replay.json)
 - sha256 (`lf-normalised`): `a8a049ea96a6695af07f308de08728c612dda2990f635b30b83aec9a505e0ad5`
 - cited in: node.source
 - counts toward the grade: yes

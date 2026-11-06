@@ -57,7 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f2d5f59e9a13738b15701e86732ca60e0ede0bfa144fca654ae8a777d2d44a67`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `ShorNineQubitCode`): recorded sha256 `f2d5f59e9a13738b15701e86732ca60e0ede0bfa144fca654ae8a777d2d44a67` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_ads_cft.json](../../../evidence/lean_receipts/lean_replay_campaign_ads_cft.json) (module `ShorNineQubitCode`): recorded sha256 `f2d5f59e9a13738b15701e86732ca60e0ede0bfa144fca654ae8a777d2d44a67` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build ShorNineQubitCode`
 - counts toward the grade: yes
 
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `adc52228e292fc35de42d6f1ffda4123fac838d50b0b173e4b30bf1caad19bec`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `SurfaceCodeToricTopology`): recorded sha256 `adc52228e292fc35de42d6f1ffda4123fac838d50b0b173e4b30bf1caad19bec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_ads_cft.json](../../../evidence/lean_receipts/lean_replay_campaign_ads_cft.json) (module `SurfaceCodeToricTopology`): recorded sha256 `adc52228e292fc35de42d6f1ffda4123fac838d50b0b173e4b30bf1caad19bec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build SurfaceCodeToricTopology`
 - counts toward the grade: yes
 
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `ThreeQubitCodeSyndromeRecovery`): recorded sha256 `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_ads_cft.json](../../../evidence/lean_receipts/lean_replay_campaign_ads_cft.json) (module `ThreeQubitCodeSyndromeRecovery`): recorded sha256 `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build ThreeQubitCodeSyndromeRecovery`
 - counts toward the grade: yes
 

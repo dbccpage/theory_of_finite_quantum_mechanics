@@ -1,11 +1,11 @@
 ---
 name: overclaim-hunter
-description: Hunt for claims in this repository that exceed what is proved. Use before merging any PR that changes DAG statuses, node statements, Lean files, replay receipts or public prose; after every batch of the derivation campaign (dag/pfp/campaign); and weekly on main. Runs the mechanical scanner (scripts/overclaim_scan.py), then does a human-judgement statement-vs-theorem review of every flagged node and every node whose status changed, rechecks every number with exact arithmetic, and writes a review file plus a PR comment. Not for writing derivations or raising statuses.
+description: Hunt for claims in this repository that exceed what is proved. Use before merging any PR that changes DAG statuses, node statements, Lean files, replay receipts or public prose; after every batch of the derivation campaign (checks/exact_checkers/campaign); and weekly on main. Runs the mechanical scanner (scripts/overclaim_scan.py), then does a human-judgement statement-vs-theorem review of every flagged node and every node whose status changed, rechecks every number with exact arithmetic, and writes a review file plus a PR comment. Not for writing derivations or raising statuses.
 ---
 
 # Overclaim hunter
 
-The project's credibility rests on never claiming more than is proved. PR #171 promoted 14 nodes to PROVED_LEAN and the review (#176, `dag/research/frontier_targets_lean_review.md`) found 3 held, 11 needed narrowing, and 3 counts in prose were wrong. This skill finds that class of problem. The scanner finds prompts; **you** decide. An empty scan is not a clean bill: the scanner cannot read what a Lean statement means.
+The project's credibility rests on never claiming more than is proved. PR #171 promoted 14 nodes to PROVED_LEAN and the review (#176, `evidence/reviews/frontier_targets/frontier_targets_lean_review.md`) found 3 held, 11 needed narrowing, and 3 counts in prose were wrong. This skill finds that class of problem. The scanner finds prompts; **you** decide. An empty scan is not a clean bill: the scanner cannot read what a Lean statement means.
 
 Rubric, failure catalogue and the review-file template: [rubric.md](rubric.md). Read it before the first review.
 
@@ -49,7 +49,7 @@ Scope: every node with a HIGH or MEDIUM finding, **plus every node whose status 
    - **NARROWED**: some claims are proved. Write the **exact narrowed statement** and the **bottleneck text** for what is not proved. The status may stay PROVED_LEAN only if the narrowed statement is fully proved.
    - **OVERCLAIM**: nothing the statement says is proved by the cited Lean (or the Lean is absent from the checkout). Propose the status to revert to (the status of the base ref, or OPEN), never a higher one.
 
-Use the table format of `dag/research/frontier_targets_lean_review.md`. Typical traps are in [rubric.md](rubric.md): a witness that restates the hypothesis; a check exhaustive only to a small bound while the node says "all"; identities checked against a table copied from Rust instead of derived; a hypothesis of a lemma presented as a theorem; a closed instance (`decide`) behind a general sentence; one direction of an iff.
+Use the table format of `evidence/reviews/frontier_targets/frontier_targets_lean_review.md`. Typical traps are in [rubric.md](rubric.md): a witness that restates the hypothesis; a check exhaustive only to a small bound while the node says "all"; identities checked against a table copied from Rust instead of derived; a hypothesis of a lemma presented as a theorem; a closed instance (`decide`) behind a general sentence; one direction of an iff.
 
 For R1 (no Lean in this checkout): the node is not PROVED_LEAN here. Propose the lowered status unless the atlas reference is re-homed into this repository with a receipt.
 For R3 (admission) or R4 (receipt mismatch, non-standard axiom): every node citing the module or receipt is OVERCLAIM until fixed.

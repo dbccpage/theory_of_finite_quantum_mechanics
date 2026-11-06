@@ -19,7 +19,7 @@ Checked in Lean 4 over the 16-element stabilizer, its three logical cosets, all 
 
 ## Source status
 
-Recomputed in Python over the 64-element normalizer on 2026-10-22 (unique representative per logical class on each of the 10 triples, zero on each of the 10 pairs). Lean: checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Recomputed in Python over the 64-element normalizer on 2026-10-22 (unique representative per logical class on each of the 10 triples, zero on each of the 10 pairs). Lean: checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Recomputed in Python over the 64-element normalizer on 2026-10-22 (unique repres
 
 For each of the 10 triples T of {1..5} and each class in {X-bar, Y-bar, Z-bar} some representative has support inside T; for each of the 10 pairs none of the three classes has a representative inside the pair; all 105 Paulis of weight 1 or 2 anticommute with a stabilizer generator.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -52,7 +52,7 @@ See also: `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 - `external:arXiv:quant-ph/9602019`: R. Laflamme, C. Miquel, J. P. Paz and W. H. Zurek, "Perfect Quantum Error Correction Code", arXiv:quant-ph/9602019 (1996).
 - Repository: `lean4/ThreeQubitCodeSyndromeRecovery.lean`
 - Repository: `lean4/FrontierLogicalReconstruction.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierLogicalReconstruction.lean::FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes`

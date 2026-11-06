@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
 - cited in: node.lean, record TFQ-1154
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_majorana.json](../../../evidence/lean_receipts/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -61,10 +61,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/MajoranaLegacyCarrierRetraction.lean](../../../lean4/MajoranaLegacyCarrierRetraction.lean)
 - sha256 (`bytes`): `81a3d3bef75c8550de5174c37588eb346cbd705557e3bcb480023a7b3148cc06`
-- cited in: node.lean, receipt dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json (MajoranaLegacyCarrierRetraction), receipt dag/research/pr_382_round2_replay.json (MajoranaLegacyCarrierRetraction), record TFQ-1154
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_maj-legacy-carrier-retraction_lean_replay.json (MajoranaLegacyCarrierRetraction), receipt evidence/lean_receipts/pr_382_round2_replay.json (MajoranaLegacyCarrierRetraction), record TFQ-1154
 - replay: `verified`
-  - receipt [dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json](../../../dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json) (module `MajoranaLegacyCarrierRetraction`): recorded sha256 `81a3d3bef75c8550de5174c37588eb346cbd705557e3bcb480023a7b3148cc06` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_382_round2_replay.json](../../../dag/research/pr_382_round2_replay.json) (module `MajoranaLegacyCarrierRetraction`): recorded sha256 `81a3d3bef75c8550de5174c37588eb346cbd705557e3bcb480023a7b3148cc06` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_maj-legacy-carrier-retraction_lean_replay.json](../../../evidence/lean_receipts/campaign_maj-legacy-carrier-retraction_lean_replay.json) (module `MajoranaLegacyCarrierRetraction`): recorded sha256 `81a3d3bef75c8550de5174c37588eb346cbd705557e3bcb480023a7b3148cc06` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_382_round2_replay.json](../../../evidence/lean_receipts/pr_382_round2_replay.json) (module `MajoranaLegacyCarrierRetraction`): recorded sha256 `81a3d3bef75c8550de5174c37588eb346cbd705557e3bcb480023a7b3148cc06` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build MajoranaLegacyCarrierRetraction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

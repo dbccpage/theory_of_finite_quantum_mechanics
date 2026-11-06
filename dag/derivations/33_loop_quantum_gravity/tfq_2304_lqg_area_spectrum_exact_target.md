@@ -19,7 +19,7 @@ Not proved in Lean: that the formal vector is the real area (no real square root
 
 ## Source status
 
-Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -34,7 +34,7 @@ Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3
 
 Formal radical basis (sqrt2, sqrt3, sqrt6, sqrt15, sqrt35)/2: for puncture multisets with at most 4 elements and spins in {1/2,...,3} there are 209 distinct reduced vectors among 210 multisets; the unique collision is (one puncture of spin 3) = (four punctures of spin 1/2); the single-puncture squared area is at least 3/4 with minimum at j = 1/2.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -52,7 +52,7 @@ See also: `TFQ-0105`, `TFQ-0198`.
 - `external:arXiv:gr-qc/9411005`: C. Rovelli and L. Smolin, "Discreteness of area and volume in quantum gravity", arXiv:gr-qc/9411005 (1994); Nucl. Phys. B 442 (1995) 593-622; erratum B 456 (1995) 753.
 - `external:arXiv:gr-qc/9602046`: A. Ashtekar and J. Lewandowski, "Quantum Theory of Gravity I: Area Operators", arXiv:gr-qc/9602046 (1996); Class. Quantum Grav. 14 (1997) A55-A82.
 - Repository: `lean4/FrontierAreaSpectrum.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.casimir_squarefree_factorizations`

@@ -189,11 +189,11 @@ ERRATA = {
          "Theorem 3.6 item 3 prints the cubic hypercharge trace as (3/4)(3 - N_c). The retained Lean "
          "statement `sm_anomaly_polynomials_general_nc` gives (3 - N_c)/4 (value 1/2 at N_c = 1). The "
          "[SU(2)_L]^2 U(1)_Y coefficient (N_c - 3)/6 agrees. The companion change log "
-         "`dag/research/ravera_dfm_changes.md` ('6 A_grav = 6(N_c - 3)') is also inconsistent: the "
+         "`dag/derivations/24_dressing_field/sources/ravera_dfm_changes.md` ('6 A_grav = 6(N_c - 3)') is also inconsistent: the "
          "gravitational coefficient vanishes identically."),
         ("DFM-QEM-CONVENTION", "TFQ-1118/1119",
          "The dossier uses Q = T_3 + Y with Y_Phi = 1/2, so Q_EM = diag(1, 0) on the doublet and the "
-         "anomaly table uses Y_Q = 1/6, Y_L = -1/2; the companion `dag/research/ravera_dfm_docs.md` "
+         "anomaly table uses Y_Q = 1/6, Y_L = -1/2; the companion `dag/derivations/24_dressing_field/sources/ravera_dfm_docs.md` "
          "uses Q = T_3 + Y/2. The dossier convention is the one tied to the Lean anomaly table and is "
          "retained; the two normalizations must not be mixed."),
         ("DFM-ROOT-CONJUGATION", "TFQ-0399",
@@ -201,7 +201,7 @@ ERRATA = {
          "With the stated u_T(v)^g = g(v) u_T(v) g(v_0)^{-1} and U^{dress} = u_T(v)^{-1} U u_T(u), the "
          "action is g(v_0) U^{dress} g(v_0)^{-1}, as in TFQ-0399."),
         ("DFM-CLOCK-IDENTITY", "TFQ-1116",
-         "`dag/research/ravera_dfm_docs.md` writes the Page-Wootters identity as (I_C - S_C) (x) I_S, "
+         "`dag/derivations/24_dressing_field/sources/ravera_dfm_docs.md` writes the Page-Wootters identity as (I_C - S_C) (x) I_S, "
          "which disagrees with the dossier (D^dagger W D = S_C (x) I_S) and the code."),
         ("DFM-BIANCHI-GRIBOV-LEAN", "TFQ-1106/1130/1131/1136",
          "Lean names cited for the Bianchi identity (sections 3.2, 3.9) and for Gribov-copy elimination "

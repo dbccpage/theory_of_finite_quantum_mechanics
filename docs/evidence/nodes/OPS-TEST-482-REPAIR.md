@@ -52,32 +52,32 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `dag/test_foc035_observer_presheaf.py`
 
 - file: [dag/test_foc035_observer_presheaf.py](../../../dag/test_foc035_observer_presheaf.py)
-- sha256 (`bytes`): `66148a006577647bc2bd17c8f113a125215d40d946a9be29ba9325051e04828b`
+- sha256 (`bytes`): `a0a3c87c7ab5ed539634a273ac268ea9839bae3de6046585a7e99944a8254ee9`
 - cited in: node.source
 - check: `python -m pytest dag/test_foc035_observer_presheaf.py`
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md`
-
-- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md)
-- sha256 (`lf-normalised`): `9293a0fc7778f81e0288c38bccb8d7b396d19fb743c78e1cb15ee5db00e80fa9`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-2516
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
 - sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
 - sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md`
+
+- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md)
+- sha256 (`lf-normalised`): `c698a9fff5bbc6531bbbceef730c80f466926a48224c107772492c07af0cf900`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-2516
+- counts toward the grade: no
 
 ## Routes
 

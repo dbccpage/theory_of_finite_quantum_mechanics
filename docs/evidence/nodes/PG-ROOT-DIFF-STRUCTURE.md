@@ -37,7 +37,7 @@ DEFINITION (boundary ledger C1); DEFINED (ENC-1138); GTLA rule 2 'admitted root'
 
 ## Review
 
-- PFP review: [dag/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../evidence/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: yes.
   - narrowest claim: The typed coproduct of two payload types (same two-constructor shape as OntologyBasic.Real0) is a categorical coproduct that supplies no map between the channels and no element of either channel: a map out of it that is the identity on one channel exists exactly when that channel is nonempty or the other is empty (so bare existence of such a map is not a reduction theorem for inhabited channels), and the two nonemptiness conditions are independent of the construction and of each other.
   - does not support: Anything about the actual OntologyBasic.Real0 beyond its constructor shape (the file is not imported; its payloads are universe-polymorphic record types). The real Real0 has the record TYPES PrimitiveDifference and Structure as channels; both are inhabited, so by retracts_to_pd_iff and retracts_to_s_iff retractions in both directions exist for it: the emptiness cases of this file are not instances of the real node, and nothing here says either channel is irreducible to the other. That either channel exists, is real or has an origin (admitted posits, ENC-1138 lineage withdrawn); the passage from the literal inscription (PG-INERT-DIAMOND, route marked GAP_NO_DERIVATION); the clauses "carrier-Structure precedes a primitive difference", "residual-Structure Q^1 = C^1/im d0 is what the difference produces" and "the ladder is a definability order"; any physical or interpretive reading.
   - next test: Formalise the clause "carrier-Structure precedes a primitive difference": define precedence as the statement that a PrimitiveDifference record can be built with no Structure value in scope (Source := PUnit) and a Structure record with no PrimitiveDifference, then decide whether Source must equal Structure.Carrier for the node text to be meant, by a finite model or a counterexample.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -88,9 +88,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/RootDiffStructure.lean](../../../lean4/RootDiffStructure.lean)
 - sha256 (`bytes`): `ce8199c0bf04911639fbe7cd7fe1d7bc619e30b16fe11ecb88dbb1220beb855a`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (RootDiffStructure)
+- cited in: receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (RootDiffStructure)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `RootDiffStructure`): recorded sha256 `ce8199c0bf04911639fbe7cd7fe1d7bc619e30b16fe11ecb88dbb1220beb855a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `RootDiffStructure`): recorded sha256 `ce8199c0bf04911639fbe7cd7fe1d7bc619e30b16fe11ecb88dbb1220beb855a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build RootDiffStructure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

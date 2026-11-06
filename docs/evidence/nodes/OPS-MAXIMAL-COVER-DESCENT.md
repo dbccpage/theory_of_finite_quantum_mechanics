@@ -49,27 +49,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md`
-
-- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md)
-- sha256 (`lf-normalised`): `aed67ff30685eb3b5a5c387621696a89018513b56e7df3773b4e6ec6532431eb`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-2506
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
 - sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
 - sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md`
+
+- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md)
+- sha256 (`lf-normalised`): `fe9f353beb3714c11615c5541ef245e789a8c870ddc7a4f1f4216c65a2ed074f`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-2506
+- counts toward the grade: no
 
 ## Routes
 

@@ -36,7 +36,7 @@ Tier-1 direction independence (Lemma 4.1), gauge proportionality (Corollary 2), 
 
 ## Review
 
-- PFP review: [dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: All eight signed-permutation gauge values, swap anisotropy, and equal-length direction countercontrol; exact sign/swap laws in Lean.
   - does not support: Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.
   - next test: Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.
@@ -49,9 +49,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/L1SignedPermutationGauge.lean](../../../lean4/L1SignedPermutationGauge.lean)
 - sha256 (`bytes`): `e4a66a1f3bbbeab211980d213bcfb68daf75ed2a9927e690730c4bb448a2ba65`
-- cited in: node.lean, receipt dag/research/campaign_l1-gs001-gauge-l1_lean_replay.json (L1SignedPermutationGauge)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_l1-gs001-gauge-l1_lean_replay.json (L1SignedPermutationGauge)
 - replay: `verified`
-  - receipt [dag/research/campaign_l1-gs001-gauge-l1_lean_replay.json](../../../dag/research/campaign_l1-gs001-gauge-l1_lean_replay.json) (module `L1SignedPermutationGauge`): recorded sha256 `e4a66a1f3bbbeab211980d213bcfb68daf75ed2a9927e690730c4bb448a2ba65` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_l1-gs001-gauge-l1_lean_replay.json](../../../evidence/lean_receipts/campaign_l1-gs001-gauge-l1_lean_replay.json) (module `L1SignedPermutationGauge`): recorded sha256 `e4a66a1f3bbbeab211980d213bcfb68daf75ed2a9927e690730c4bb448a2ba65` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build L1SignedPermutationGauge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -69,17 +69,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `code/rust/src/wdp/gauge_classification.rs`
-
-- file: [code/rust/src/wdp/gauge_classification.rs](../../../code/rust/src/wdp/gauge_classification.rs)
-- sha256 (`bytes`): `938dd12132fd41cdcdc3ebe3daa421dc174de67c1ecc1d9279ae0a05b2f17ef3`
-- cited in: record TFQ-0356
-- note: no test is cited for this symbol; its crate is tfqm_wdp
-- counts toward the grade: yes
-
 ### Rust: `atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
+- file: [atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../atlas/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -87,6 +79,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness` (rust_symbol) | yes | yes | yes | - | - |
 
+- counts toward the grade: yes
+
+### Rust: `code/rust/src/wdp/gauge_classification.rs`
+
+- file: [code/rust/src/wdp/gauge_classification.rs](../../../code/rust/src/wdp/gauge_classification.rs)
+- sha256 (`bytes`): `938dd12132fd41cdcdc3ebe3daa421dc174de67c1ecc1d9279ae0a05b2f17ef3`
+- cited in: record TFQ-0356
+- note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/projection_obstruction/m_compatible_gauge_classification`
@@ -98,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0356_keep_the_m_compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0356_keep_the_m_compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md](../../../dag/derivations/07_l1_emergence/tfq_0356_keep_the_m_compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md)
-- sha256 (`lf-normalised`): `8273cf40e3c9e3da7c4a8b88e01c641b5672367ea2a3d539532bfc9063826508`
+- sha256 (`lf-normalised`): `98d63c82ba799efd2f7625f7bd30964101a4df11f09eb915661897ff993f0b0b`
 - generated view: listed, not counted
 - cited in: record TFQ-0356
 - counts toward the grade: no

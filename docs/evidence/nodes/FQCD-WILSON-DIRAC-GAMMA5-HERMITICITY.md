@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FQCD/StrongCouplingAreaLaw.lean](../../../lean4/FQCD/StrongCouplingAreaLaw.lean)
 - sha256 (`bytes`): `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b`
-- cited in: node.lean, receipt dag/research/campaign_tfq-1050_lean_replay.json (FQCD.StrongCouplingAreaLaw), record TFQ-1050
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_tfq-1050_lean_replay.json (FQCD.StrongCouplingAreaLaw), record TFQ-1050
 - replay: `verified`
-  - receipt [dag/research/campaign_tfq-1050_lean_replay.json](../../../dag/research/campaign_tfq-1050_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/campaign_tfq-1052_lean_replay.json](../../../dag/research/campaign_tfq-1052_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_tfq-1050_lean_replay.json](../../../evidence/lean_receipts/campaign_tfq-1050_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_tfq-1052_lean_replay.json](../../../evidence/lean_receipts/campaign_tfq-1052_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/FQCD/StrongCouplingAreaLaw.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json](../../../dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json) (module `FermionSignWilsonDiracGamma5`): recorded sha256 `ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-wilson-dirac-gamma5_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-wilson-dirac-gamma5_lean_replay.json) (module `FermionSignWilsonDiracGamma5`): recorded sha256 `ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FermionSignWilsonDiracGamma5`
 - counts toward the grade: yes
 

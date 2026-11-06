@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a`
 - cited in: node.lean, node.source, record TFQ-1057
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianTomographyReduction`): recorded sha256 `745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianTomographyReduction`): recorded sha256 `745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianTomographyReduction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f`
 - cited in: node.lean, node.source, record TFQ-1057
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonGaussianBridge`): recorded sha256 `14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-born-qi3-continuum-completion_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-born-qi3-continuum-completion_lean_replay.json) (module `GleasonGaussianBridge`): recorded sha256 `14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonGaussianBridge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -73,31 +73,31 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/10_finite_qm_core/pointwise_vs_uniform_note.md`
+
+- file: [dag/derivations/10_finite_qm_core/pointwise_vs_uniform_note.md](../../../dag/derivations/10_finite_qm_core/pointwise_vs_uniform_note.md)
+- sha256 (`lf-normalised`): `c67d4e9de30833d5297343e98903dbb8c563de12c90d93ea7d7dfa4881ace3df`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md](../../../dag/derivations/10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md)
-- sha256 (`lf-normalised`): `282b75846f6ae84ccbbecb2ace3e8c64a6c618d2b44f536d5254d6e6ca65bd48`
+- sha256 (`lf-normalised`): `a8b81c743475e1db5e220b7ba646f4b6d2385ff2829b15c54f87b3c7ebc935df`
 - generated view: listed, not counted
 - cited in: record TFQ-1057
 - counts toward the grade: no
 
-### Documents and data: `dag/research/pointwise_vs_uniform_note.md`
+### Documents and data: `evidence/reviews/pr500/manifest.json`
 
-- file: [dag/research/pointwise_vs_uniform_note.md](../../../dag/research/pointwise_vs_uniform_note.md)
-- sha256 (`lf-normalised`): `02a6762d52e7faf7844c3bed0491e34fc3c5d22de9313eb1e9fb4d89263b49f3`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `dag/research/pr500_review/manifest.json`
-
-- file: [dag/research/pr500_review/manifest.json](../../../dag/research/pr500_review/manifest.json)
+- file: [evidence/reviews/pr500/manifest.json](../../../evidence/reviews/pr500/manifest.json)
 - sha256 (`lf-normalised`): `c32d8f516a5d51ea49c8a18535dc4423363527c2a7fcbe27681c2bf269ff2e5f`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/pr500_review/review.md`
+### Documents and data: `evidence/reviews/pr500/review.md`
 
-- file: [dag/research/pr500_review/review.md](../../../dag/research/pr500_review/review.md)
+- file: [evidence/reviews/pr500/review.md](../../../evidence/reviews/pr500/review.md)
 - sha256 (`lf-normalised`): `ba7c9cce9598da12b30e194be375b1c48bfd9df89ee5f3f7f95aed943d689e26`
 - cited in: node.source
 - counts toward the grade: yes

@@ -19,7 +19,7 @@ Not proved in Lean: that the transcribed table equals the quantum 6j symbol at q
 
 ## Source status
 
-Quantum Biedenharn-Elliott pentagon identity at level 2 (q = exp(i pi/4), twice-spins {0,1,2}) verified across all 3^9 = 19,683 label 9-tuples over Q(sqrt 2) using Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Quantum Biedenharn-Elliott pentagon identity at level 2 (q = exp(i pi/4), twice-spins {0,1,2}) verified across all 3^9 = 19,683 label 9-tuples over Q(sqrt 2) using Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Quantum Biedenharn-Elliott pentagon identity at level 2 (q = exp(i pi/4), twice-
 
 Transcribed level-2 F-symbol table over Q(sqrt 2) (q = exp(i pi/4), labels {0,1/2,1}): 36 nonzero entries; orthogonality for all admissible labels; the pentagon identity on all 3^9 = 19,683 label assignments.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -54,7 +54,7 @@ See also: `TFQ-0105`, `TFQ-0198`, `TFQ-0104`.
 - Repository: `lean4/DiscreteSpinfoamAmplitudes.lean`
 - Repository: `lean4/FourSimplexSpinfoamS4.lean`
 - Repository: `lean4/FrontierTvLevel2Pentagon.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation`

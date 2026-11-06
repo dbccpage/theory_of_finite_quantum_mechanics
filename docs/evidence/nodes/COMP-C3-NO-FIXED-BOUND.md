@@ -32,7 +32,7 @@ The checked slice is one letter, no rewrite step, and length bound 1: (0) reache
 
 ## Source status
 
-dag/research/genesis_to_universal_computation.md record COMP-C3e claims CONDITIONAL; audited status CONDITIONAL
+dag/derivations/29_computation/genesis_to_universal_computation.md record COMP-C3e claims CONDITIONAL; audited status CONDITIONAL
 
 ## Review
 
@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ComputationC3NoFixedBound.lean](../../../lean4/ComputationC3NoFixedBound.lean)
 - sha256 (`bytes`): `3976a6960ee7650cdbb431214f8b8585dbdc9443bc924c7f2d6e4a2d6b78be12`
-- cited in: node.lean, receipt dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json (ComputationC3NoFixedBound), receipt dag/research/pr_383_round2_replay.json (ComputationC3NoFixedBound), record TFQ-1295
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_comp-c3-no-fixed-bound_lean_replay.json (ComputationC3NoFixedBound), receipt evidence/lean_receipts/pr_383_round2_replay.json (ComputationC3NoFixedBound), record TFQ-1295
 - replay: `verified`
-  - receipt [dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json](../../../dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json) (module `ComputationC3NoFixedBound`): recorded sha256 `3976a6960ee7650cdbb431214f8b8585dbdc9443bc924c7f2d6e4a2d6b78be12` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_383_round2_replay.json](../../../dag/research/pr_383_round2_replay.json) (module `ComputationC3NoFixedBound`): recorded sha256 `3976a6960ee7650cdbb431214f8b8585dbdc9443bc924c7f2d6e4a2d6b78be12` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_comp-c3-no-fixed-bound_lean_replay.json](../../../evidence/lean_receipts/campaign_comp-c3-no-fixed-bound_lean_replay.json) (module `ComputationC3NoFixedBound`): recorded sha256 `3976a6960ee7650cdbb431214f8b8585dbdc9443bc924c7f2d6e4a2d6b78be12` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_383_round2_replay.json](../../../evidence/lean_receipts/pr_383_round2_replay.json) (module `ComputationC3NoFixedBound`): recorded sha256 `3976a6960ee7650cdbb431214f8b8585dbdc9443bc924c7f2d6e4a2d6b78be12` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ComputationC3NoFixedBound`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -71,20 +71,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/29_computation/genesis_to_universal_computation.md`
+
+- file: [dag/derivations/29_computation/genesis_to_universal_computation.md](../../../dag/derivations/29_computation/genesis_to_universal_computation.md)
+- sha256 (`lf-normalised`): `d57c3593a55277cafb808fb1b2241dcf2ad97701205dca6b7874af70b5119068`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md`
 
 - file: [dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md](../../../dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md)
-- sha256 (`lf-normalised`): `e9ef54e7ceea34e4649fb13e24629c49e11875201eae6445826573914e9a7169`
+- sha256 (`lf-normalised`): `115522409f69cd4b4fbeed1d6d0a65c644fc8a163952d5dd5e3b0c73f538944e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1295
 - counts toward the grade: no
-
-### Documents and data: `dag/research/genesis_to_universal_computation.md`
-
-- file: [dag/research/genesis_to_universal_computation.md](../../../dag/research/genesis_to_universal_computation.md)
-- sha256 (`lf-normalised`): `004aada51ca3ccf378160e4e84208bba2b409805f041a4ef7bbd8898576cd5c7`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

@@ -1,7 +1,7 @@
 """Generate the project status page and the daily digests under docs/status/.
 
 AuthorityEffect: None. This script reports counts and changes that it computes from
-`dag/derivation_dag.json`, `dag/pfp/campaign/LOG.md` and the git history. It adds no
+`dag/derivation_dag.json`, `checks/exact_checkers/campaign/LOG.md` and the git history. It adds no
 result and promotes no status.
 
     python -I -X utf8 scripts/build_status.py --write [--with-prs] [--as-of YYYY-MM-DD]
@@ -57,8 +57,8 @@ from typing import Callable
 
 ROOT = Path(__file__).resolve().parents[1]
 DAG_PATH = "dag/derivation_dag.json"
-LOG_PATH = "dag/pfp/campaign/LOG.md"
-CAMPAIGN_README = "dag/pfp/campaign/README.md"
+LOG_PATH = "checks/exact_checkers/campaign/LOG.md"
+CAMPAIGN_README = "checks/exact_checkers/campaign/README.md"
 EVIDENCE_README = "docs/evidence/README.md"
 OUT_DIR = "docs/status"
 REPO_URL = "https://github.com/dbccpage/theory_of_finite_quantum_mechanics"

@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ObserverDeclarationRefusal.lean](../../../lean4/ObserverDeclarationRefusal.lean)
 - sha256 (`bytes`): `037498cc1dda660449040d7cde6747c8812be83fff91546274c8b9e850afd25e`
-- cited in: node.source, receipt dag/research/campaign_ops-observer-declaration-refusal_lean_replay.json (ObserverDeclarationRefusal), receipt dag/research/pr_386_round2_replay.json (ObserverDeclarationRefusal)
+- cited in: node.source, receipt evidence/lean_receipts/campaign_ops-observer-declaration-refusal_lean_replay.json (ObserverDeclarationRefusal), receipt evidence/lean_receipts/pr_386_round2_replay.json (ObserverDeclarationRefusal)
 - replay: `verified`
-  - receipt [dag/research/campaign_ops-observer-declaration-refusal_lean_replay.json](../../../dag/research/campaign_ops-observer-declaration-refusal_lean_replay.json) (module `ObserverDeclarationRefusal`): recorded sha256 `037498cc1dda660449040d7cde6747c8812be83fff91546274c8b9e850afd25e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_386_round2_replay.json](../../../dag/research/pr_386_round2_replay.json) (module `ObserverDeclarationRefusal`): recorded sha256 `037498cc1dda660449040d7cde6747c8812be83fff91546274c8b9e850afd25e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ops-observer-declaration-refusal_lean_replay.json](../../../evidence/lean_receipts/campaign_ops-observer-declaration-refusal_lean_replay.json) (module `ObserverDeclarationRefusal`): recorded sha256 `037498cc1dda660449040d7cde6747c8812be83fff91546274c8b9e850afd25e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_386_round2_replay.json](../../../evidence/lean_receipts/pr_386_round2_replay.json) (module `ObserverDeclarationRefusal`): recorded sha256 `037498cc1dda660449040d7cde6747c8812be83fff91546274c8b9e850afd25e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ObserverDeclarationRefusal`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -98,10 +98,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
+
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
+- sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
+
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md)
-- sha256 (`lf-normalised`): `0b65f2f7622ca567ece0d9344e34a9abe2cd8ae6c49e6c5125139515d8c2bef7`
+- sha256 (`lf-normalised`): `e02f36928e941da2fd079112f1dfe01c7e1632fcc5667dd29b062b1ee37d9ab9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2518
 - counts toward the grade: no
@@ -113,24 +127,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_ops-observer-declaration-refusal_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_ops-observer-declaration-refusal_lean_replay.json`
 
-- file: [dag/research/campaign_ops-observer-declaration-refusal_lean_replay.json](../../../dag/research/campaign_ops-observer-declaration-refusal_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_ops-observer-declaration-refusal_lean_replay.json](../../../evidence/lean_receipts/campaign_ops-observer-declaration-refusal_lean_replay.json)
 - sha256 (`lf-normalised`): `6ed3b6fd271cb0582b164ef3463be2723b7d0ae5b37a3bf687de924ee3aeeb0b`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
-
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
-- sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
-
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
-- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
 - cited in: node.source
 - counts toward the grade: yes
 

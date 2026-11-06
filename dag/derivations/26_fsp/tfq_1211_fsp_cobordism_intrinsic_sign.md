@@ -60,4 +60,4 @@ Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not
   - `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md:829-853`
   - `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32`
   - `dag/derivations/independent/fsp-cobordism-intrinsic-sign.md`
-  - `dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json`
+  - `evidence/lean_receipts/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json`

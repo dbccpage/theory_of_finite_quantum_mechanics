@@ -40,4 +40,4 @@ See also: `PGW-MSSN-SYNTAX-NOT-DECODING`.
 - Repository: `dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md`
 - Repository: `lean4/GenesisToHigherLangCore.lean`
 - Repository: `checks/independent/gth-lang-core.py`
-- Repository: `dag/research/campaign_gth-lang-core_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_gth-lang-core_lean_replay.json`

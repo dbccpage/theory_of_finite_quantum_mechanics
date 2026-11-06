@@ -32,11 +32,11 @@ Checked in Lean 4 over the 16-element stabilizer, its three logical cosets, all 
 
 ## Source status
 
-Recomputed in Python over the 64-element normalizer on 2026-10-22 (unique representative per logical class on each of the 10 triples, zero on each of the 10 pairs). Lean: checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Recomputed in Python over the 64-element normalizer on 2026-10-22 (unique representative per logical class on each of the 10 triples, zero on each of the 10 pairs). Lean: checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `FULL`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `FULL`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `every_triple_reconstructs_all_three_logical_classes`, `no_pair_supports_any_nontrivial_logical_class`, `two_qubit_erasure_detectable_all_105`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierLogicalReconstruction.lean](../../../lean4/FrontierLogicalReconstruction.lean)
 - sha256 (`bytes`): `d6f5ed40800a8c76ebdd20cd96d7bafedcbd379de3b7abdd9a8821b744e9f76c`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierLogicalReconstruction)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierLogicalReconstruction)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierLogicalReconstruction`): recorded sha256 `d6f5ed40800a8c76ebdd20cd96d7bafedcbd379de3b7abdd9a8821b744e9f76c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierLogicalReconstruction`): recorded sha256 `d6f5ed40800a8c76ebdd20cd96d7bafedcbd379de3b7abdd9a8821b744e9f76c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierLogicalReconstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,21 +67,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `ThreeQubitCodeSyndromeRecovery`): recorded sha256 `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_ads_cft.json](../../../evidence/lean_receipts/lean_replay_campaign_ads_cft.json) (module `ThreeQubitCodeSyndromeRecovery`): recorded sha256 `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build ThreeQubitCodeSyndromeRecovery`
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md](../../../dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md)
-- sha256 (`lf-normalised`): `d8e098a19ac884307f1317ee16299f55f96269ad4c3d41d398ce89fb3699971d`
+- sha256 (`lf-normalised`): `59445ebddc508f7a32f0bceef1cbd9033188705a982b6dff9a4ed6545e2b8c58`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2210
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

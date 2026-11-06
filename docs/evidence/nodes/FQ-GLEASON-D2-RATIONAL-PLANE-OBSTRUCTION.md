@@ -36,7 +36,7 @@ repository module GleasonRationalPlane.lean (gap register S000-004/010); older G
 
 ## Review
 
-- PFP review: [dag/results/FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION/reviews/20261019_scope_audit/review_result.json](../../../evidence/results/FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: The source rational-plane binary frame function is generally scale-invariant, additive on nonzero orthogonal frames, and has no quadratic representation; the concrete fitting residual is reproduced exactly.
   - does not support: No extension to dimension at least three, arbitrary real frames or a general Gleason reconstruction is supplied. A complete refined-carrier operad remains open.
   - next test: No extension to dimension at least three, arbitrary real frames or a general Gleason reconstruction is supplied. A complete refined-carrier operad remains open.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `91a4852b4de9cca52e348a22b6cb01a13bb27545c7be8cfef3793c337e2f46fb`
 - cited in: node.lean, record TFQ-1014
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `GleasonRationalPlane`): recorded sha256 `91a4852b4de9cca52e348a22b6cb01a13bb27545c7be8cfef3793c337e2f46fb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `GleasonRationalPlane`): recorded sha256 `91a4852b4de9cca52e348a22b6cb01a13bb27545c7be8cfef3793c337e2f46fb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonRationalPlane`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `881e01ee20e9af8f1d0f184edb5062447928fc98916c7a18f546d700fc839343`
 - cited in: node.lean, record TFQ-1014
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `GleasonTheorem`): recorded sha256 `881e01ee20e9af8f1d0f184edb5062447928fc98916c7a18f546d700fc839343` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `GleasonTheorem`): recorded sha256 `881e01ee20e9af8f1d0f184edb5062447928fc98916c7a18f546d700fc839343` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GleasonTheorem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -76,20 +76,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md`
-
-- file: [dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md](../../../dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md)
-- sha256 (`lf-normalised`): `4b0afcd82b553b954f90065e50fdbaa31634795f8c8309bde1480a5c263d1839`
-- generated view: listed, not counted
-- cited in: record TFQ-1014
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md`
+
+- file: [dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md](../../../dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md)
+- sha256 (`lf-normalised`): `c2adedface3a0cc0a26bc60dec79c97ed29feb27e9c1e7fb23a3d602c78dd770`
+- generated view: listed, not counted
+- cited in: record TFQ-1014
+- counts toward the grade: no
 
 ### External sources
 

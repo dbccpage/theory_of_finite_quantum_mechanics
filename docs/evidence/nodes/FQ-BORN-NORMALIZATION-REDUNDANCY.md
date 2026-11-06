@@ -36,7 +36,7 @@ ledger: LEAN SOURCE (UNREPLAYED) for the 8 BornRedundancy rows (GAP-FQM-019)
 
 ## Review
 
-- PFP review: [dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-BORN-NORMALIZATION-REDUNDANCY/reviews/20261019_next_ten_audit/review_result.json](../../../evidence/results/FQ-BORN-NORMALIZATION-REDUNDANCY/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: The quotient is by positive scaling of weight vectors, with a unique normalized representative; equal weights can still come from different amplitude rays.
   - does not support: Classification of complex amplitude rays, derivation or uniqueness of Born pairing, a formal probability-subtype operad, or publication/erratum completion.
   - next test: Batch review must check the literal weight/amplitude distinction and every retained proof/native receipt.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8`
 - cited in: record TFQ-0295 (shared), record TFQ-0317 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornNormalization`): recorded sha256 `83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornNormalization`): recorded sha256 `83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornNormalization`
 - counts toward the grade: no
 
@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b`
 - cited in: node.lean, record TFQ-0290 (shared), record TFQ-0295 (shared), record TFQ-0317 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornRedundancy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -77,14 +77,28 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
 - cited in: record TFQ-0317 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qcd.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: no
+
+### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
+
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md`
+
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
+- sha256 (`lf-normalised`): `0ec068458cb98411a43fd5ca8f50797bfcf3563185b7a1fbe8348b1a9616fa44`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md](../../../dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md)
-- sha256 (`lf-normalised`): `9d91fd836966dc16496f2580af4a3b8876195958b350204a2726100c0d4a0007`
+- sha256 (`lf-normalised`): `2279fc814192e6e95e1be64ef303148b2cae5c877d48eac38589abb6e9e87353`
 - generated view: listed, not counted
 - cited in: record TFQ-0290 (shared)
 - counts toward the grade: no
@@ -92,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0295_born_readout_of_a_supplied_lift_is_redundant.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0295_born_readout_of_a_supplied_lift_is_redundant.md](../../../dag/derivations/08_l1_to_l2/tfq_0295_born_readout_of_a_supplied_lift_is_redundant.md)
-- sha256 (`lf-normalised`): `4cb5a1d4d42ce0a9a678a81b8b510452710902ea99e9e14e4df03ee537b4b2db`
+- sha256 (`lf-normalised`): `c40eb9857b3c9865143e268d97cf7628f982c74558d926fcaa14f9c26311ba7e`
 - generated view: listed, not counted
 - cited in: record TFQ-0295 (shared)
 - counts toward the grade: no
@@ -104,20 +118,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0317 (shared)
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
-
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md`
-
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
-- sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 
@@ -131,8 +131,8 @@ Named by the node; not in this repository and not checked here.
 
 - TFQ-0290 python: no local python twin located for atlas/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
 - TFQ-0290 rust: no local rust twin located for external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4
-- TFQ-0295 python: no local python twin located for external:unlocated
 - TFQ-0295 python: no local python twin located for atlas/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
+- TFQ-0295 python: no local python twin located for external:unlocated
 - TFQ-0295 rust: no local rust twin located for external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4
 - TFQ-0295 rust: no local rust twin located for external:sha256:d58eb2c1f4ae2ac65cc7145554cd2a5c955e096776c1f6d9daafb2065b14450e
 

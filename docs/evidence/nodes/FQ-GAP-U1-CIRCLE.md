@@ -43,7 +43,7 @@ The Q(i) integer witness and other retained declarations have source files in th
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json](../../../evidence/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: The rational Cayley parametrization satisfies the unit-circle equation on retained points, with exact inverse t=y/(x+1), and a general cleared identity. The square-root equations force a^2=4/5; bounded powers are computed exactly.
   - does not support: Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.
   - next test: Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.
@@ -58,7 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0253 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `f2134e62fa16f42a34052a2dd2e7f2f985ecdee198bde1ef92904f2104b406fb`
 - cited in: node.lean
 - replay: `failed`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1CayleyProjectiveCircle`): recorded sha256 `f2134e62fa16f42a34052a2dd2e7f2f985ecdee198bde1ef92904f2104b406fb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: none (not itemised); only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `U1CayleyProjectiveCircle`): recorded sha256 `f2134e62fa16f42a34052a2dd2e7f2f985ecdee198bde1ef92904f2104b406fb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: none (not itemised); only standard axioms: yes
 - check: `cd lean4 && lake build U1CayleyProjectiveCircle`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -88,10 +88,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/U1CircleIntegerWitness.lean](../../../lean4/U1CircleIntegerWitness.lean)
 - sha256 (`bytes`): `3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-u1-circle_lean_replay.json (U1CircleIntegerWitness), receipt dag/research/pr_366_review_replay.json (U1CircleIntegerWitness)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fq-gap-u1-circle_lean_replay.json (U1CircleIntegerWitness), receipt evidence/lean_receipts/pr_366_review_replay.json (U1CircleIntegerWitness)
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-u1-circle_lean_replay.json](../../../dag/research/campaign_fq-gap-u1-circle_lean_replay.json) (module `U1CircleIntegerWitness`): recorded sha256 `3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_366_review_replay.json](../../../dag/research/pr_366_review_replay.json) (module `U1CircleIntegerWitness`): recorded sha256 `3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fq-gap-u1-circle_lean_replay.json](../../../evidence/lean_receipts/campaign_fq-gap-u1-circle_lean_replay.json) (module `U1CircleIntegerWitness`): recorded sha256 `3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_366_review_replay.json](../../../evidence/lean_receipts/pr_366_review_replay.json) (module `U1CircleIntegerWitness`): recorded sha256 `3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1CircleIntegerWitness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -109,7 +109,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `5e386655bfce8c9cfbe9a515fd9946f2bac8ce38a8d49f47f4a9c9e6de56c38a`
 - cited in: node.lean
 - replay: `failed`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PhaseSynthesis`): recorded sha256 `5e386655bfce8c9cfbe9a515fd9946f2bac8ce38a8d49f47f4a9c9e6de56c38a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `U1PhaseSynthesis`): recorded sha256 `5e386655bfce8c9cfbe9a515fd9946f2bac8ce38a8d49f47f4a9c9e6de56c38a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1PhaseSynthesis`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -125,7 +125,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `6d85984de1c08becebf70cd45a9ba1999e446203dbc8a0f90f9039f18f8325b5`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PowerMapInjectivity`): recorded sha256 `6d85984de1c08becebf70cd45a9ba1999e446203dbc8a0f90f9039f18f8325b5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `U1PowerMapInjectivity`): recorded sha256 `6d85984de1c08becebf70cd45a9ba1999e446203dbc8a0f90f9039f18f8325b5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1PowerMapInjectivity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -140,7 +140,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `9421e810e53425d9c9a4abdeb732be7b26c89929dd9936a3f2ec8a844aac2325`
 - cited in: node.lean
 - replay: `failed`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PythagoreanObstruction`): recorded sha256 `9421e810e53425d9c9a4abdeb732be7b26c89929dd9936a3f2ec8a844aac2325` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: none (not itemised); only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `U1PythagoreanObstruction`): recorded sha256 `9421e810e53425d9c9a4abdeb732be7b26c89929dd9936a3f2ec8a844aac2325` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: none (not itemised); only standard axioms: yes
 - check: `cd lean4 && lake build U1PythagoreanObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -155,7 +155,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e89dc4485bffa69d0d7718ed3367b7a4bca45f4e0c4447cdd20fd352d1505a55`
 - cited in: node.lean
 - replay: `failed`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1QuadraticTowerAndCayleyStone`): recorded sha256 `e89dc4485bffa69d0d7718ed3367b7a4bca45f4e0c4447cdd20fd352d1505a55` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `U1QuadraticTowerAndCayleyStone`): recorded sha256 `e89dc4485bffa69d0d7718ed3367b7a4bca45f4e0c4447cdd20fd352d1505a55` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1QuadraticTowerAndCayleyStone`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -165,10 +165,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
+
+- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../atlas/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md](../../../dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md)
-- sha256 (`lf-normalised`): `71e46fba825f45715355268e43c9c0eb27e2d7cc388a1eac92b22c860143ce22`
+- sha256 (`lf-normalised`): `3ae4132d3d741f58cf35e63eabb09bd5e43d2b0ee74488ccfac92fc46f19c8be`
 - generated view: listed, not counted
 - cited in: record TFQ-0294 (shared)
 - counts toward the grade: no
@@ -176,7 +183,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md](../../../dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md)
-- sha256 (`lf-normalised`): `8d6df7390ca6d3b37c6f92c1217a79da71169b6f7e689137e31a1e6bfa827a15`
+- sha256 (`lf-normalised`): `69b5e2a125c11a6dc7b067d378f25b55c3ebd4e38fee114f7a631b15f7b3ad98`
 - generated view: listed, not counted
 - cited in: record TFQ-0253 (shared)
 - counts toward the grade: no
@@ -184,7 +191,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md](../../../dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md)
-- sha256 (`lf-normalised`): `92badd834a2adb4c2df9a98953ddb29ba6a18a3b2e0ce2bd7c8e78a50222dda0`
+- sha256 (`lf-normalised`): `91794dd5f09c5810d4f3070aade06053e241cc98977b845cabbe66b909be73c3`
 - generated view: listed, not counted
 - cited in: record TFQ-0053 (shared)
 - counts toward the grade: no
@@ -204,13 +211,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0055 (shared)
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_quantum_mechanics/claims/gap_register.yaml`
-
-- file: [atlas/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 
@@ -240,7 +240,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `FQ-R-GAP-U1` `CONDITIONAL_ON_IMPORT`: [FQ-U1-TRANSPORT-N-TORSION](FQ-U1-TRANSPORT-N-TORSION.md) (COMPUTATIONALLY_CHECKED), [FQ-IMPL-WDP-AMPLITUDE-BRIDGE](FQ-IMPL-WDP-AMPLITUDE-BRIDGE.md) (COMPUTATIONALLY_CHECKED)
+- `FQ-R-GAP-U1` `CONDITIONAL_ON_IMPORT`: [FQ-U1-TRANSPORT-N-TORSION](FQ-U1-TRANSPORT-N-TORSION.md) (COMPUTATIONALLY_CHECKED), [FQ-IMPL-WDP-AMPLITUDE-BRIDGE](FQ-IMPL-WDP-AMPLITUDE-BRIDGE.md) (PROVED_LEAN)
 
 Outgoing (1):
 

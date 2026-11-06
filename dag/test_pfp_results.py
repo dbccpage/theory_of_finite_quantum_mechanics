@@ -26,7 +26,7 @@ def load(path):
 def reviewed_folders():
     """Result folders that hold at least one review file; batches and custody are not nodes."""
     found = set()
-    for folder in (ROOT / 'dag/results').iterdir():
+    for folder in (ROOT / 'evidence/results').iterdir():
         reviews = folder / 'reviews'
         if folder.name not in ('batches', 'custody') and reviews.is_dir() and any(
                 (sub / name).exists() for sub in reviews.iterdir() if sub.is_dir() for name in REVIEW_FILES):
@@ -102,7 +102,7 @@ def test_review_is_the_latest_review_file_of_its_folder():
         if review is None:
             continue
         path = ROOT / review['review']
-        folder = ROOT / 'dag/results' / node_id / 'reviews'
+        folder = ROOT / 'evidence/results' / node_id / 'reviews'
         assert path.parent.parent == folder, node_id
         latest = sorted(sub.name for sub in folder.iterdir() if sub.is_dir() and any((sub / f).exists() for f in REVIEW_FILES))[-1]
         assert path.parent.name == latest, node_id

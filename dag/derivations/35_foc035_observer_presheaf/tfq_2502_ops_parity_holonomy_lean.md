@@ -15,7 +15,7 @@ In Lean (LggrFiniteResults), take a length n > 0 and edge parities b : Nat -> Bo
 
 ## Governing obligation
 
-The Lean statement is the narrowed one above; no Lean statement mentions a nerve, a cohomology class or the noncontextual fraction. Independently replayed with Lean 4.35.0; the source-bound axiom receipt is dag/research/foc035_observer_presheaf_lean_replay.json.
+The Lean statement is the narrowed one above; no Lean statement mentions a nerve, a cohomology class or the noncontextual fraction. Independently replayed with Lean 4.35.0; the source-bound axiom receipt is evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json.
 
 ## Source status
 
@@ -41,4 +41,4 @@ See also: `IMPL-LGGR-FINITE-RESULTS-LEAN`, `FQ-CONTEXTUALITY-CECH-F2`.
 - Repository: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4`
 - Repository: `lean4/LggrFiniteResults.lean`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md`
-- Repository: `dag/research/foc035_observer_presheaf_lean_replay.json`
+- Repository: `evidence/lean_receipts/foc035_observer_presheaf_lean_replay.json`

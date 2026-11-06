@@ -36,7 +36,7 @@ Unmet after the PFP review: Formalize the masked support/restriction bridge and 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM021-IDEMPOTENT-CONDITIONING/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM021-IDEMPOTENT-CONDITIONING/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/DS-QM021-IDEMPOTENT-CONDITIONING/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/DS-QM021-IDEMPOTENT-CONDITIONING/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact sector normalization, support collapse and repeated-conditioning idempotence are reproduced on retained finite tables.
   - does not support: Formalize the masked support/restriction bridge and justify any physical sector rule. Classical normalization is not a derived projection postulate or solution to measurement.
   - next test: Formalize the masked support/restriction bridge and justify any physical sector rule. Classical normalization is not a derived projection postulate or solution to measurement.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0235, record TFQ-0236 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0235_selective_measurement_update_as_idempotent_conditioning.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0235_selective_measurement_update_as_idempotent_conditioning.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0235_selective_measurement_update_as_idempotent_conditioning.md)
-- sha256 (`lf-normalised`): `22a9e1c00bdd5909016a20eaf1c589de1e15d513b89f5cb5cd5347b370abded4`
+- sha256 (`lf-normalised`): `8881f576ccd8b1533ea39c2b306c86b83434760b8e1cac23c1e199ae68eafef1`
 - generated view: listed, not counted
 - cited in: record TFQ-0235
 - counts toward the grade: no
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md)
-- sha256 (`lf-normalised`): `22c068f6d8d57eff83d5919e716b5eb07d1c37e531a3f877505cc322f27433f1`
+- sha256 (`lf-normalised`): `21343be37a6fe9862d825997bcb1c290d921e890205c2b7b318917cf0f74a381`
 - generated view: listed, not counted
 - cited in: record TFQ-0236 (shared)
 - counts toward the grade: no

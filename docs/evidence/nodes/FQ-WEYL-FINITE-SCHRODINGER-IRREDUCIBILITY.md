@@ -37,7 +37,7 @@ paper s1.3 finite Weyl construction from an anchored seed; clock/shift commutant
 
 ## Review
 
-- PFP review: [dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../evidence/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Exact d=3 Weyl basis reconstruction and commutator controls, plus the generic conditional scalar-commutant theorem and literal cubic-root algebra.
   - does not support: Transport the array model to field/matrix semantics and prove representation irreducibility for all admitted odd primes. Primitive-root existence, seed selection and infinite-dimensional results are not derived.
   - next test: Transport the array model to field/matrix semantics and prove representation irreducibility for all admitted odd primes. Primitive-root existence, seed selection and infinite-dimensional results are not derived.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-1020
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c83b1a430883d0f0eb2d7c6bc37e0f6cfda80f2aa71fd7901d5a565cbebb4185`
 - cited in: node.lean, record TFQ-1020
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `WeylCommutant`): recorded sha256 `c83b1a430883d0f0eb2d7c6bc37e0f6cfda80f2aa71fd7901d5a565cbebb4185` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `WeylCommutant`): recorded sha256 `c83b1a430883d0f0eb2d7c6bc37e0f6cfda80f2aa71fd7901d5a565cbebb4185` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build WeylCommutant`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -76,20 +76,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md`
-
-- file: [dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md](../../../dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md)
-- sha256 (`lf-normalised`): `07d53e2e358f9901860ed0e7d96b72306e0f903c7905b0817e231441356da404`
-- generated view: listed, not counted
-- cited in: record TFQ-1020
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md`
+
+- file: [dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md](../../../dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md)
+- sha256 (`lf-normalised`): `3aebb41278c9f9caff3b523eefffa583f568978d6272ea408df43b5e28c5f325`
+- generated view: listed, not counted
+- cited in: record TFQ-1020
+- counts toward the grade: no
 
 ### External sources
 

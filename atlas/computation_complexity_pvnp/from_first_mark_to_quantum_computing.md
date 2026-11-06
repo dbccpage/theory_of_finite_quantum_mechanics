@@ -26,7 +26,7 @@ Binary coding of marks also does not automatically preserve every operational
 or time-cost property of a rewriting implementation.
 
 Sources: [the detailed proofs](computation_proofs.md#1-rewriting-over-marks-and-turing-machines),
-[the machine research record](../../dag/research/genesis_to_universal_computation.md),
+[the machine research record](../../dag/derivations/29_computation/genesis_to_universal_computation.md),
 and [Mathlib's evaluator construction](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Computability/TuringMachine/ToPartrec.html).
 
 ## 2. The extra step from computability to complexity

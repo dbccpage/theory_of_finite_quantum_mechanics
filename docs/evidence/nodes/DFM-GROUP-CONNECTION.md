@@ -43,27 +43,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Python: `dag/research/finite_graph_dressing.py`
+### Python: `checks/finite_graph_dressing/finite_graph_dressing.py`
 
-- file: [dag/research/finite_graph_dressing.py](../../../dag/research/finite_graph_dressing.py)
+- file: [checks/finite_graph_dressing/finite_graph_dressing.py](../../../checks/finite_graph_dressing/finite_graph_dressing.py)
 - sha256 (`bytes`): `bc0c027d037cac345a2602fa0d6acb1446ac262328b868844c20994cce7479c6`
 - cited in: record TFQ-0397
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/24_dressing_field/hierarchical_nonabelian_dfm_finite_map.md`
+
+- file: [dag/derivations/24_dressing_field/hierarchical_nonabelian_dfm_finite_map.md](../../../dag/derivations/24_dressing_field/hierarchical_nonabelian_dfm_finite_map.md)
+- sha256 (`lf-normalised`): `91082c6bbe1df302b72be629945e0bde9a93bda33d84f0ad308f4f2c6889c445`
+- cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md](../../../dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md)
-- sha256 (`lf-normalised`): `df4865f34200afa63bacecf4b1bba5d0a0dbbfb8c7ab59e83f90b61b7308354d`
+- sha256 (`lf-normalised`): `da98b77f0988a0085b1f5541e237a1e71df0eaa120153fe0b58ccfaae95057bb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0397
 - counts toward the grade: no
-
-### Documents and data: `dag/research/hierarchical_nonabelian_dfm_finite_map.md`
-
-- file: [dag/research/hierarchical_nonabelian_dfm_finite_map.md](../../../dag/research/hierarchical_nonabelian_dfm_finite_map.md)
-- sha256 (`lf-normalised`): `91082c6bbe1df302b72be629945e0bde9a93bda33d84f0ad308f4f2c6889c445`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

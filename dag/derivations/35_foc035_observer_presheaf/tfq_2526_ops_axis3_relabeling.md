@@ -43,4 +43,4 @@ See also: `PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY`.
 - Repository: `lean4/ObserverPresheafAxis3Relabeling.lean`
 - Repository: `checks/independent/ops-axis3-relabeling.py`
 - Repository: `dag/derivations/independent/ops-axis3-relabeling.md`
-- Repository: `dag/research/campaign_ops-axis3-relabeling_lean_replay.json`
+- Repository: `evidence/lean_receipts/campaign_ops-axis3-relabeling_lean_replay.json`

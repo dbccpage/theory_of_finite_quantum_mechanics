@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `6cb86265e7c2befbec6ba89c24036f13b07ecb6c5a382d6394ad0c89d242e50c`
 - cited in: node.lean, record TFQ-0484
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentythird.Nothing`): recorded sha256 `6cb86265e7c2befbec6ba89c24036f13b07ecb6c5a382d6394ad0c89d242e50c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentythird.Nothing`): recorded sha256 `6cb86265e7c2befbec6ba89c24036f13b07ecb6c5a382d6394ad0c89d242e50c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `7737fb68d558cd6c3e815417bc7df93db71c0b382997e57669339896ea958830`
 - cited in: node.lean, record TFQ-0484
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentythird.Raise`): recorded sha256 `7737fb68d558cd6c3e815417bc7df93db71c0b382997e57669339896ea958830` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentythird.Raise`): recorded sha256 `7737fb68d558cd6c3e815417bc7df93db71c0b382997e57669339896ea958830` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e804d64c01c0e8e37e0606fb0f9f5362c05d1a78c184e47114186ecd5c83ec1f`
 - cited in: node.lean, record TFQ-0484
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentythird.Same`): recorded sha256 `e804d64c01c0e8e37e0606fb0f9f5362c05d1a78c184e47114186ecd5c83ec1f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_genesis.json](../../../evidence/lean_receipts/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentythird.Same`): recorded sha256 `e804d64c01c0e8e37e0606fb0f9f5362c05d1a78c184e47114186ecd5c83ec1f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

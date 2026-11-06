@@ -49,27 +49,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md`
-
-- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md)
-- sha256 (`lf-normalised`): `a089c41e413ea326fb66efc61071ae8a403ddad529ac5b53db0059ff146a6c50`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-2503
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
 - sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
 
-- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- file: [atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../atlas/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
 - sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md`
+
+- file: [dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md)
+- sha256 (`lf-normalised`): `d091885e8df4d4d46452e9261ff4b6894aa51dc2fc3ce08197d44096197e7b61`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-2503
+- counts toward the grade: no
 
 ### External sources
 

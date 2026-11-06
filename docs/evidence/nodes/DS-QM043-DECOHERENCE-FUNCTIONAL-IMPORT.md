@@ -38,7 +38,7 @@ The formula D_jk = Tr(C_j rho C_k^dagger), a density operator, class operators, 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json](../../../evidence/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Actual class-operator Gram tables are positive semidefinite, and exact controls separate class completeness, Kraus completeness, diagonal trace and global weight.
   - does not support: Justify the class-operator family, density and physical history normalization, and formalize the native Gram-table bridge. No general decoherence functional is derived.
   - next test: Justify the class-operator family, density and physical history normalization, and formalize the native Gram-table bridge. No general decoherence functional is derived.
@@ -51,9 +51,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DecoherenceFunctionalGram.lean](../../../lean4/DecoherenceFunctionalGram.lean)
 - sha256 (`bytes`): `456535c1ea379be8081e785984de7183d3890d78c3e000ce5843f9144c6e2a86`
-- cited in: node.lean, receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (DecoherenceFunctionalGram)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (DecoherenceFunctionalGram)
 - replay: `verified`
-  - receipt [dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json](../../../dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json) (module `DecoherenceFunctionalGram`): recorded sha256 `456535c1ea379be8081e785984de7183d3890d78c3e000ce5843f9144c6e2a86` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_ds-qm043-decoherence-functional-import_lean_replay.json](../../../evidence/lean_receipts/campaign_ds-qm043-decoherence-functional-import_lean_replay.json) (module `DecoherenceFunctionalGram`): recorded sha256 `456535c1ea379be8081e785984de7183d3890d78c3e000ce5843f9144c6e2a86` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DecoherenceFunctionalGram`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0248 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -100,7 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0248_finite_history_decoherence_matrix.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0248_finite_history_decoherence_matrix.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0248_finite_history_decoherence_matrix.md)
-- sha256 (`lf-normalised`): `d93f4bd4cea478dcd897bae13debcdfc6d4a50bc8ef1376855753cfc3f2fee2a`
+- sha256 (`lf-normalised`): `d941781391d639516b690e8558c0a12717d7fcfa8760df1c518192cb4f6577b3`
 - generated view: listed, not counted
 - cited in: record TFQ-0248 (shared)
 - counts toward the grade: no

@@ -19,7 +19,7 @@ Statement (d), an exact separating functional on the 4x4 density matrix relative
 
 ## Source status
 
-Exact Gaussian-rational value C^2 = 1/5 at u = (3+4i)/5 verified with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Exact Gaussian-rational value C^2 = 1/5 at u = (3+4i)/5 verified with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -34,7 +34,7 @@ Exact Gaussian-rational value C^2 = 1/5 at u = (3+4i)/5 verified with Python fra
 
 For u in Q(i): psi_u is product iff u=1; C^2 = 4|det M_u|^2 = |u-1|^2/4 (C^2=1/5 at u=(3+4i)/5); det(A M B^T) = det(A) det(M) det(B) for all 2x2 A, B over Q(i), so local operations preserve det M = 0; the phase gate diag(1,1,1,u) maps the product vector (1,1,1,1)/2 to psi_u.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -52,7 +52,7 @@ See also: `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS`.
 - Repository: `lean4/Entanglement.lean`
 - Repository: `lean4/DualWitness.lean`
 - Repository: `lean4/FrontierEntanglingPhase.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.det_M_u`

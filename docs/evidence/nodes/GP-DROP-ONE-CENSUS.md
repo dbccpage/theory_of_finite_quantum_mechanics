@@ -36,7 +36,7 @@ declared census at merge dba1434b; later finish table
 
 ## Review
 
-- PFP review: [dag/results/GP-DROP-ONE-CENSUS/reviews/20261019_structure_audit/review_result.json](../../../dag/results/GP-DROP-ONE-CENSUS/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/GP-DROP-ONE-CENSUS/reviews/20261019_structure_audit/review_result.json](../../../evidence/results/GP-DROP-ONE-CENSUS/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: The actual source-declared eight-entry import census has no duplicates and partitions into three lost labels and five open labels. Counts and partition are recomputed without promoting labels to necessity theorems.
   - does not support: Necessity of the five open extras requires mathematical constructions or countermodels. Source labels and this census alone cannot supply those arguments.
   - next test: Necessity of the five open extras requires mathematical constructions or countermodels. Source labels and this census alone cannot supply those arguments.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `1775f5c8d4c99a99d01cc3465fa8e0abaa7c66f0c1f546da02be6a54d911d11d`
 - cited in: node.lean, record TFQ-1038
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleasonExtrasDropOne`): recorded sha256 `1775f5c8d4c99a99d01cc3465fa8e0abaa7c66f0c1f546da02be6a54d911d11d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleasonExtrasDropOne`): recorded sha256 `1775f5c8d4c99a99d01cc3465fa8e0abaa7c66f0c1f546da02be6a54d911d11d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertWalkGleasonExtrasDropOne`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `d17eada69f37e9abb28ebc93122facd32716683618eed2c8e19e2b952b84daeb`
 - cited in: node.lean, record TFQ-1038
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleasonFinish`): recorded sha256 `d17eada69f37e9abb28ebc93122facd32716683618eed2c8e19e2b952b84daeb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleasonFinish`): recorded sha256 `d17eada69f37e9abb28ebc93122facd32716683618eed2c8e19e2b952b84daeb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertWalkGleasonFinish`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

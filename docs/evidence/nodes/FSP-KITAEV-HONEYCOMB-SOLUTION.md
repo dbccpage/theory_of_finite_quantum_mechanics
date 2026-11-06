@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/KitaevSectorBlock.lean](../../../lean4/KitaevSectorBlock.lean)
 - sha256 (`bytes`): `5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf`
-- cited in: node.lean, receipt dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json (KitaevSectorBlock), receipt dag/research/pr_378_round2_replay.json (KitaevSectorBlock), record TFQ-1207
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json (KitaevSectorBlock), receipt evidence/lean_receipts/pr_378_round2_replay.json (KitaevSectorBlock), record TFQ-1207
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json) (module `KitaevSectorBlock`): recorded sha256 `5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_378_round2_replay.json](../../../dag/research/pr_378_round2_replay.json) (module `KitaevSectorBlock`): recorded sha256 `5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json) (module `KitaevSectorBlock`): recorded sha256 `5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_378_round2_replay.json](../../../evidence/lean_receipts/pr_378_round2_replay.json) (module `KitaevSectorBlock`): recorded sha256 `5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build KitaevSectorBlock`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -99,14 +99,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
 - file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- sha256 (`lf-normalised`): `939c2fe4f4e92e25c3d6d7eb0e2d5930a01adb4ad7cb285b54308a70a1e7ac18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md`
 
 - file: [dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md](../../../dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md)
-- sha256 (`lf-normalised`): `ac7c3f5604994b8e6b0ade3b133932410bc6125e958122f98031eb381d70b089`
+- sha256 (`lf-normalised`): `ede8cd8d6c64ca724687e6dc4ba3b5eb7e9a88f0a5141fcc3ae47f9ce539d734`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1207
 - counts toward the grade: no
@@ -118,9 +118,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json`
 
-- file: [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json)
+- file: [evidence/lean_receipts/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../evidence/lean_receipts/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json)
 - sha256 (`lf-normalised`): `ede952607daf57ff1891a402fcdb893fc8c306a96f70cc2be4ad113ae1b5a267`
 - cited in: node.source
 - counts toward the grade: yes

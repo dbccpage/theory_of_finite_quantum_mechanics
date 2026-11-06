@@ -1,10 +1,10 @@
 """Concrete expected witnesses plus independent predicates over all reviewed cases."""
 import importlib.util,json,sys,unittest
 from pathlib import Path
-ROOT=next(p for p in Path(__file__).resolve().parents if (p/'dag/pfp/prepare_stage.py').exists())
+ROOT=next(p for p in Path(__file__).resolve().parents if (p/'checks/exact_checkers/exact_json.py').exists())
 s=importlib.util.spec_from_file_location('born_producer',ROOT/'code/python/src/qm/born_boundary_exact.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
-sys.path.insert(0,str(ROOT/'dag/pfp'));from born_boundary_checker import verify
-B=ROOT/'dag/results/batches/20261020T000351Z_prompts_132_151'
+sys.path.insert(0,str(ROOT/'checks/exact_checkers'));from born_boundary_checker import verify
+B=ROOT/'evidence/results/batches/20261020T000351Z_prompts_132_151'
 sys.path.insert(0,str(B/'tools'));from specs import S
 rows=json.loads((B/'tools/witness_cases.json').read_bytes())
 class ExactControls(unittest.TestCase):pass

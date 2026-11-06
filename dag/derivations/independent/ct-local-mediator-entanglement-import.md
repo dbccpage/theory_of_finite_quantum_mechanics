@@ -54,7 +54,7 @@ Therefore no pair `(A, B)` of 2x2 matrices over `Q(i)` satisfies `A M_1 B^T = M_
 
 ## 3. What is proved
 
-All Lean declarations compile under Lean 4.35.0 with only `propext`, `Classical.choice`, `Quot.sound` (rebuilt by the reviewer; see `dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json`).
+All Lean declarations compile under Lean 4.35.0 with only `propext`, `Classical.choice`, `Quot.sound` (rebuilt by the reviewer; see `evidence/lean_receipts/campaign_ct-local-mediator-entanglement-import_lean_replay.json`).
 
 1. `schmidtRank_local_le`: for a field K, finite index types and matrices A, M, B, `rank(A M B^T) <= rank M`. `schmidtRank_le_one_preserved` and `schmidtRank_not_reachable` are corollaries. Scope: one linear local map applied to one pure bipartite vector.
 2. `applyLocalOp_det`: `det(A M B^T) = det A * det M * det B` for 2x2 over `Q(i)`.

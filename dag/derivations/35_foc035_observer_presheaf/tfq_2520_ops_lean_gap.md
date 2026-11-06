@@ -44,4 +44,4 @@ See also: `IMPL-LGGR-FINITE-RESULTS-LEAN`.
 - Repository: `lean4/ObserverPresheafLeanGap.lean`
 - Repository: `checks/independent/ops-lean-gap.py`
 - Repository: `dag/derivations/independent/ops-lean-gap.md`
-- Repository: `dag/research/pr439_review_lean_replay.json`
+- Repository: `evidence/lean_receipts/pr439_review_lean_replay.json`

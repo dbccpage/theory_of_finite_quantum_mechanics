@@ -32,11 +32,11 @@ Checked in Lean 4 on Finset for all finite carriers and by the exhaustive check 
 
 ## Source status
 
-Source definition of distinguishability audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Source definition of distinguishability audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## Review
 
-- Frontier Lean review: [dag/research/frontier_targets_lean_review.md](../../../dag/research/frontier_targets_lean_review.md); verdict `FULL`; qualifies for E4: yes.
+- Frontier Lean review: [evidence/reviews/frontier_targets/frontier_targets_lean_review.md](../../../evidence/reviews/frontier_targets/frontier_targets_lean_review.md); verdict `FULL`; qualifies for E4: yes.
   - theorems that discharge the node, as listed by the review: `separatedByTask_iff_disjoint_image` (and both directions), `fiberConstant_indicator_of_disjoint_image`, `exhaustive_distinguishability_check_le4_le3`
   - the review's reason for its verdict is in the row of this node in the review file
 
@@ -48,9 +48,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/FrontierDistinguishability.lean](../../../lean4/FrontierDistinguishability.lean)
 - sha256 (`bytes`): `5599a6efaac3ebd3e3006e03464cc71cff77b459ce32207572243e2a7aa496f2`
-- cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierDistinguishability)
+- cited in: node.lean, node.source, receipt evidence/lean_receipts/frontier_targets_lean_replay.json (FrontierDistinguishability)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierDistinguishability`): recorded sha256 `5599a6efaac3ebd3e3006e03464cc71cff77b459ce32207572243e2a7aa496f2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json) (module `FrontierDistinguishability`): recorded sha256 `5599a6efaac3ebd3e3006e03464cc71cff77b459ce32207572243e2a7aa496f2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierDistinguishability`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,14 +66,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md](../../../dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md)
-- sha256 (`lf-normalised`): `f4f02250816f96a4f38a0fc794923450535d1c2283f0676d756ccc61aa059683`
+- sha256 (`lf-normalised`): `55ee7ca02713c505ee01b4f46a5f33bd6325c50a13fadf99661c880b1977bcc2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2004
 - counts toward the grade: no
 
-### Documents and data: `dag/research/frontier_targets_lean_replay.json`
+### Documents and data: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
-- file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
+- file: [evidence/lean_receipts/frontier_targets_lean_replay.json](../../../evidence/lean_receipts/frontier_targets_lean_replay.json)
 - sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes

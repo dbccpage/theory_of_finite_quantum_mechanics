@@ -36,7 +36,7 @@ Thm 2b STANDARD / imported real analysis; audit: imported
 
 ## Review
 
-- PFP review: [dag/research/pr_388_current_scope_review.json](../../../dag/research/pr_388_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_natural_arithmetic_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [evidence/reviews/pr_388_current_scope_review.json](../../../evidence/reviews/pr_388_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_natural_arithmetic_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Reviewed scope: Nat values a and b satisfy (a + b) * (a + b) = a * a + b * b + 2 * (a * b). When both are positive, 2 * (a * b) \> 0 and a * a + b * b \< (a + b) * (a + b). When the left input is 0, 2 * (0 * b) = 0 and (0 + b) * (0 + b) = b * b. When the right input is 0, 2 * (a * 0) = 0 and (a + 0) * (a + 0) = a * a. Nat values a and b satisfy (a + b) * (a + b) * (a + b) = a * a * a + b * b * b + 3 * a * b * (a + b). A disjoint Nat pair satisfies (x + 0) * (x + 0) + (0 + y) * (0 + y) = x * x + y * y.
   - does not support: Real exponent p\>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.
   - next test: Retain the real-analysis import until the original real-p statement is mechanized.
@@ -51,7 +51,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b`
 - cited in: record TFQ-0291 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json](../../../evidence/lean_receipts/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornRedundancy`
 - counts toward the grade: no
 
@@ -59,10 +59,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/L1MinkowskiSquareExpansion.lean](../../../lean4/L1MinkowskiSquareExpansion.lean)
 - sha256 (`bytes`): `b273845ba9ac549d0874c53cf6cf526446cebbd24624f6bba6a37d98697e65ed`
-- cited in: node.lean, receipt dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json (L1MinkowskiSquareExpansion), receipt dag/research/pr_388_round2_replay.json (L1MinkowskiSquareExpansion)
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_l1-qm020-thm2b-minkowski_lean_replay.json (L1MinkowskiSquareExpansion), receipt evidence/lean_receipts/pr_388_round2_replay.json (L1MinkowskiSquareExpansion)
 - replay: `verified`
-  - receipt [dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json](../../../dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json) (module `L1MinkowskiSquareExpansion`): recorded sha256 `b273845ba9ac549d0874c53cf6cf526446cebbd24624f6bba6a37d98697e65ed` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_388_round2_replay.json](../../../dag/research/pr_388_round2_replay.json) (module `L1MinkowskiSquareExpansion`): recorded sha256 `b273845ba9ac549d0874c53cf6cf526446cebbd24624f6bba6a37d98697e65ed` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_l1-qm020-thm2b-minkowski_lean_replay.json](../../../evidence/lean_receipts/campaign_l1-qm020-thm2b-minkowski_lean_replay.json) (module `L1MinkowskiSquareExpansion`): recorded sha256 `b273845ba9ac549d0874c53cf6cf526446cebbd24624f6bba6a37d98697e65ed` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_388_round2_replay.json](../../../evidence/lean_receipts/pr_388_round2_replay.json) (module `L1MinkowskiSquareExpansion`): recorded sha256 `b273845ba9ac549d0874c53cf6cf526446cebbd24624f6bba6a37d98697e65ed` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build L1MinkowskiSquareExpansion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -79,6 +79,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/finite_quantum_mechanics/claims/claim_ledger.yaml`
+
+- file: [atlas/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../atlas/finite_quantum_mechanics/claims/claim_ledger.yaml)
+- sha256 (`lf-normalised`): `0d891e04d6b8ff46e95360a919f7c2a64074a2d4f9732a2e481f868e41c385a7`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md](../../../dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md)
@@ -86,13 +93,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0291 (shared)
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_quantum_mechanics/claims/claim_ledger.yaml`
-
-- file: [atlas/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml)
-- sha256 (`lf-normalised`): `0d891e04d6b8ff46e95360a919f7c2a64074a2d4f9732a2e481f868e41c385a7`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 

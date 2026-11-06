@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
 - cited in: node.lean, record TFQ-1167
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_majorana.json](../../../evidence/lean_receipts/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -63,9 +63,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/KitaevChainImport.lean](../../../lean4/KitaevChainImport.lean)
 - sha256 (`bytes`): `1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f`
-- cited in: node.lean, receipt dag/research/campaign_maj-import-kitaev-chain_lean_replay.json (KitaevChainImport), record TFQ-1167
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_maj-import-kitaev-chain_lean_replay.json (KitaevChainImport), record TFQ-1167
 - replay: `verified`
-  - receipt [dag/research/campaign_maj-import-kitaev-chain_lean_replay.json](../../../dag/research/campaign_maj-import-kitaev-chain_lean_replay.json) (module `KitaevChainImport`): recorded sha256 `1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_maj-import-kitaev-chain_lean_replay.json](../../../evidence/lean_receipts/campaign_maj-import-kitaev-chain_lean_replay.json) (module `KitaevChainImport`): recorded sha256 `1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build KitaevChainImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

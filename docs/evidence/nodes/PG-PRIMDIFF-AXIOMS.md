@@ -37,7 +37,7 @@ PrimitiveDifferenceAxiom A1-A10 (Rust enum); Genesis admission kernel
 
 ## Review
 
-- PFP review: [dag/results/PG-PRIMDIFF-AXIOMS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-PRIMDIFF-AXIOMS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [evidence/results/PG-PRIMDIFF-AXIOMS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../evidence/results/PG-PRIMDIFF-AXIOMS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: In a small product model (carriers of at most three points, at most one triangular face, A10 a free flag), the transcribed axioms A1, A4, A5 and A10 are jointly satisfiable and A1, A4, A10 are each violable alone from one point and A5 (together with A7) from three points; A3 holds because a reflexive-transitive closure is a preorder; A7 is A5 under the reading of A7 as d1 vanishing on im d0; the kernel enforces only A1 and carrier membership (the token is stored, never checked); and the transcribed R_cl rule refuses exactly on the exact-but-not-closed cell that d1 o d0 = 0 empties, a branch the source cannot reach because it rejects d1 o d0 != 0 at construction. This is evidence about a transcription of the list, not a derivation of it.
   - does not support: A derivation of the axiom list (obligation GEN-WDP-O01 and paper pin tfq_0394 stay open: this is a transcription and a small-model study, not a justification); that the predicates for A2, A4 and A6-A9 are the intended ones (the pinned file has names only; the one-line glosses come from an external copy of the file whose bytes differ from the pin); independence of A1 and A10 as a finding about the axioms (it holds by construction of the product model); A9: the relabelling check is an isomorphism (permuting vertex labels while keeping the cochain index-wise) and cannot fail, so it says nothing about observer-selected metrics; carriers of more than 3 points; real-valued Phi1, Gamma2 and R_cl values (here Phi1 is the unit-weight L1 distance to im d0 in integers and Gamma the L1 norm of d1 h); that the exact/closed classification equals classify_exact; any reachability of the source r_cl None branch; the Born, Hilbert or physical reading of any axiom.
   - next test: Obtain the definitions of A2, A4 and A6-A9 from the FOC-006 / FOC-000 sources (not bound here), replace the gloss-based predicates by them, and decide whether A9 is independent at all: test it with a weighted L1 norm whose weights are not permuted with the vertices (an observer-selected metric), since the present relabelling check is an isomorphism and cannot fail.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,9 +66,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PrimdiffAxioms.lean](../../../lean4/PrimdiffAxioms.lean)
 - sha256 (`bytes`): `f41974512bd2143da41aa286cf55a45b2169c2e6690996bc01945cbea4ad8e16`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (PrimdiffAxioms)
+- cited in: receipt evidence/lean_receipts/pfp_batch01_lean_replay.json (PrimdiffAxioms)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `PrimdiffAxioms`): recorded sha256 `f41974512bd2143da41aa286cf55a45b2169c2e6690996bc01945cbea4ad8e16` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pfp_batch01_lean_replay.json](../../../evidence/lean_receipts/pfp_batch01_lean_replay.json) (module `PrimdiffAxioms`): recorded sha256 `f41974512bd2143da41aa286cf55a45b2169c2e6690996bc01945cbea4ad8e16` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PrimdiffAxioms`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -119,9 +119,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0394
 - counts toward the grade: no
 
-### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+### Documents and data: `atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md`
 
-- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/04_roadmap_and_gaps/genesis_bridge_register.md)
 - sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
 - cited in: node.source
 - counts toward the grade: yes

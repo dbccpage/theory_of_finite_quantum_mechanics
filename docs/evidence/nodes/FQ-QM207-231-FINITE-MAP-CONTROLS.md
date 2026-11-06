@@ -37,7 +37,7 @@ Finite rational/integer control invariants for QM-207..231 mechanized across Fin
 
 ## Review
 
-- PFP review: [dag/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json](../../../evidence/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: The selected rational energy polynomial, exact minimizer and virial identity are kernel/native checked for all rational z where stated.
   - does not support: Derive the variational functional from the actual Hamiltonian/ansatz and audit the remaining finite-map rows and their residual imports. No batch closure of all25 controls, QED/QCD/gravity or physical spectrum is claimed.
   - next test: Derive the variational functional from the actual Hamiltonian/ansatz and audit the remaining finite-map rows and their residual imports. No batch closure of all25 controls, QED/QCD/gravity or physical spectrum is claimed.
@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `74e9ff5ac26167de3efcf46a7ce29be7c9fac106d6fe3b61a848f75ce28610d1`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQFTAndGravity`): recorded sha256 `74e9ff5ac26167de3efcf46a7ce29be7c9fac106d6fe3b61a848f75ce28610d1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qcd.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qcd.json) (module `FiniteQFTAndGravity`): recorded sha256 `74e9ff5ac26167de3efcf46a7ce29be7c9fac106d6fe3b61a848f75ce28610d1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQFTAndGravity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qcd.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQM`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -75,6 +75,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `graph_conf2_exchange_betti_and_character_collapse` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms graph_conf2_exchange_betti_and_character_collapse` |
 | `helium_kellner_variational_bound_and_virial_identity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms helium_kellner_variational_bound_and_virial_identity` |
 
+- counts toward the grade: yes
+
+### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
+
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
+- cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md`
@@ -88,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0057_each_language_must_carry_rational_dirac_inversion_on_an_admitted_gamma_family.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0057_each_language_must_carry_rational_dirac_inversion_on_an_admitted_gamma_family.md](../../../dag/derivations/15_finite_qed/tfq_0057_each_language_must_carry_rational_dirac_inversion_on_an_admitted_gamma_family.md)
-- sha256 (`lf-normalised`): `bdb048cef13f55c2790909e788ed2b66c21d61488ecda497a8014f3008b873f4`
+- sha256 (`lf-normalised`): `aba4f6548c156df3043f7dea875d4b9a781bc947d47cb772f30e65f3a5ddf6e4`
 - generated view: listed, not counted
 - cited in: record TFQ-0057 (shared)
 - counts toward the grade: no
@@ -96,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0058_each_language_must_carry_u_g_equals_the_scaled_principal_minor_of_the.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0058_each_language_must_carry_u_g_equals_the_scaled_principal_minor_of_the.md](../../../dag/derivations/15_finite_qed/tfq_0058_each_language_must_carry_u_g_equals_the_scaled_principal_minor_of_the.md)
-- sha256 (`lf-normalised`): `aa51b225eb833484e8435aceecc24dd01615ce698c5ab7681b5d469cef24bcf5`
+- sha256 (`lf-normalised`): `3037c0e231fe2b320e01212163004290750bce9aa9505048f9855a099cc53b82`
 - generated view: listed, not counted
 - cited in: record TFQ-0058
 - counts toward the grade: no
@@ -104,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0060_each_language_must_carry_c1_1_2_exactly_and_higher_coefficients_only.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0060_each_language_must_carry_c1_1_2_exactly_and_higher_coefficients_only.md](../../../dag/derivations/15_finite_qed/tfq_0060_each_language_must_carry_c1_1_2_exactly_and_higher_coefficients_only.md)
-- sha256 (`lf-normalised`): `01c297a208ae4d29e10e65b3b9c0a49a9b84c48b8b31ab4861e8383279ee0600`
+- sha256 (`lf-normalised`): `c54a60b34852c1c4c61dfd35753c07344c2217bfb4c04ae88fe9885c83c23b18`
 - generated view: listed, not counted
 - cited in: record TFQ-0060
 - counts toward the grade: no
@@ -112,7 +119,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0061_each_language_must_carry_2_forest_f0_equals_the_schur_complement_on_the.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0061_each_language_must_carry_2_forest_f0_equals_the_schur_complement_on_the.md](../../../dag/derivations/15_finite_qed/tfq_0061_each_language_must_carry_2_forest_f0_equals_the_schur_complement_on_the.md)
-- sha256 (`lf-normalised`): `ba4ac1f7ed211c27bbf5a76fb60538ce5001d2f0922cb5caf9e40a4cc32ba046`
+- sha256 (`lf-normalised`): `9d95f8753643972408fc82d0f17178501b434abbee6a1dd16cd79416af72d54d`
 - generated view: listed, not counted
 - cited in: record TFQ-0061 (shared)
 - counts toward the grade: no
@@ -120,7 +127,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0063_each_language_must_carry_at_every_rational_loop_momentum_q_contracted_into.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0063_each_language_must_carry_at_every_rational_loop_momentum_q_contracted_into.md](../../../dag/derivations/15_finite_qed/tfq_0063_each_language_must_carry_at_every_rational_loop_momentum_q_contracted_into.md)
-- sha256 (`lf-normalised`): `f747d7d18983a57d1aa667cf688f2b515f9578b6be52c95dc7adf8e751917bfd`
+- sha256 (`lf-normalised`): `0aca8accfc13358c7ef2c65f94e256ec8c0da872eb12fab48ada472061af00f1`
 - generated view: listed, not counted
 - cited in: record TFQ-0063
 - counts toward the grade: no
@@ -128,7 +135,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0064_each_language_must_carry_exact_cancellation_of_the_declared_infrared_cutoff_between.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0064_each_language_must_carry_exact_cancellation_of_the_declared_infrared_cutoff_between.md](../../../dag/derivations/15_finite_qed/tfq_0064_each_language_must_carry_exact_cancellation_of_the_declared_infrared_cutoff_between.md)
-- sha256 (`lf-normalised`): `736ea360947fc0cc04b4981e1eaf8d45be30e3e34365ca91bace42481406b0ec`
+- sha256 (`lf-normalised`): `90a771e55684b9e4ab2fcbfb144d1e1f5ab6e8f3d666d28e74a0e039a1e0ed32`
 - generated view: listed, not counted
 - cited in: record TFQ-0064
 - counts toward the grade: no
@@ -136,7 +143,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0065_each_language_must_carry_transverse_projector_identities_the_bubble_trace_match_u_1.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0065_each_language_must_carry_transverse_projector_identities_the_bubble_trace_match_u_1.md](../../../dag/derivations/15_finite_qed/tfq_0065_each_language_must_carry_transverse_projector_identities_the_bubble_trace_match_u_1.md)
-- sha256 (`lf-normalised`): `79dc5632a42912c3bb194a190f291c360fb9427e0987dd058f5bd0cb6d41fed2`
+- sha256 (`lf-normalised`): `2ce29256afce134bde183cc5ae5c3b77049c79dadba3e7faa1a69ef51cac9f42`
 - generated view: listed, not counted
 - cited in: record TFQ-0065
 - counts toward the grade: no
@@ -144,7 +151,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0066_each_language_must_carry_the_twelve_digit_prefixes_for_pi_r_9_m_2_4_the_running.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0066_each_language_must_carry_the_twelve_digit_prefixes_for_pi_r_9_m_2_4_the_running.md](../../../dag/derivations/15_finite_qed/tfq_0066_each_language_must_carry_the_twelve_digit_prefixes_for_pi_r_9_m_2_4_the_running.md)
-- sha256 (`lf-normalised`): `46e7ea2a8f121e8eb3aa3f33a02f8aa7487b847e3a8233b23a5a24085dc27b97`
+- sha256 (`lf-normalised`): `79e2df7e291721a82f237a7fddcb044b556fa8c5129af77ce92008ec29ae0c4f`
 - generated view: listed, not counted
 - cited in: record TFQ-0066
 - counts toward the grade: no
@@ -152,7 +159,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0067_each_language_must_carry_kravchuk_brackets_and_spacing_balmer_values_1_n_2_on.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0067_each_language_must_carry_kravchuk_brackets_and_spacing_balmer_values_1_n_2_on.md](../../../dag/derivations/15_finite_qed/tfq_0067_each_language_must_carry_kravchuk_brackets_and_spacing_balmer_values_1_n_2_on.md)
-- sha256 (`lf-normalised`): `ecfd79c9a67ae784a8c02be7275d29a8ce6a576970c52d044f322d03db485ed1`
+- sha256 (`lf-normalised`): `da368c35a7e7a1948519f6431fb57eb0139364282d06dbb1ec5a238d9455e366`
 - generated view: listed, not counted
 - cited in: record TFQ-0067 (shared)
 - counts toward the grade: no
@@ -160,7 +167,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0068_each_language_must_carry_n_2_coefficients_5_128_5_128_and_1_128_splitting_1_32.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0068_each_language_must_carry_n_2_coefficients_5_128_5_128_and_1_128_splitting_1_32.md](../../../dag/derivations/15_finite_qed/tfq_0068_each_language_must_carry_n_2_coefficients_5_128_5_128_and_1_128_splitting_1_32.md)
-- sha256 (`lf-normalised`): `50abf75c903a47307d5f165e6119318a09842740b0dbad384befb67633d5ca9d`
+- sha256 (`lf-normalised`): `013ad28ee683ed1ec756a228c705f1b80c10fa357a5b2628f37d339a71bea8ee`
 - generated view: listed, not counted
 - cited in: record TFQ-0068
 - counts toward the grade: no
@@ -168,7 +175,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0069_each_language_must_carry_the_uehling_prefix_and_the_lamb_bands_only.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0069_each_language_must_carry_the_uehling_prefix_and_the_lamb_bands_only.md](../../../dag/derivations/15_finite_qed/tfq_0069_each_language_must_carry_the_uehling_prefix_and_the_lamb_bands_only.md)
-- sha256 (`lf-normalised`): `e1deba16786b8ac2f594a00e277ab60a026bb518831d5024fddd99fb5c98a088`
+- sha256 (`lf-normalised`): `9756b780e7a3f39464c118564ef40bb3169e544a81cf139dd6bcf9d85e30819c`
 - generated view: listed, not counted
 - cited in: record TFQ-0069
 - counts toward the grade: no
@@ -176,7 +183,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0070_each_language_must_carry_kellner_value_729_256_hylleraas_sign_change_on_2_9035_2_9030.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0070_each_language_must_carry_kellner_value_729_256_hylleraas_sign_change_on_2_9035_2_9030.md](../../../dag/derivations/15_finite_qed/tfq_0070_each_language_must_carry_kellner_value_729_256_hylleraas_sign_change_on_2_9035_2_9030.md)
-- sha256 (`lf-normalised`): `a77c7300f900a323f3fbc4287e1c5bee437c98d716c3843c3a79057e6b4da86c`
+- sha256 (`lf-normalised`): `314acb552fa69e17ed3c9ed1ee184c983acf952148a07b3178eecb8876bb4a10`
 - generated view: listed, not counted
 - cited in: record TFQ-0070
 - counts toward the grade: no
@@ -184,7 +191,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0074_each_language_must_carry_klein_nishina_forward_value_1_thomson_shape_1_u_2_2_s_u.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0074_each_language_must_carry_klein_nishina_forward_value_1_thomson_shape_1_u_2_2_s_u.md](../../../dag/derivations/15_finite_qed/tfq_0074_each_language_must_carry_klein_nishina_forward_value_1_thomson_shape_1_u_2_2_s_u.md)
-- sha256 (`lf-normalised`): `f7c16f248f4286683ea7e56f3e8137c9068ed0825be08af0a187fdef86611d45`
+- sha256 (`lf-normalised`): `07e03c078545cc00550c74655ee38c3610e103f945d9ecc99d09f4fe3bdb1e3c`
 - generated view: listed, not counted
 - cited in: record TFQ-0074
 - counts toward the grade: no
@@ -192,7 +199,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/16_finite_electroweak/tfq_0075_each_language_must_carry_for_a_rational_doublet_of_radius_r_u_phi.md`
 
 - file: [dag/derivations/16_finite_electroweak/tfq_0075_each_language_must_carry_for_a_rational_doublet_of_radius_r_u_phi.md](../../../dag/derivations/16_finite_electroweak/tfq_0075_each_language_must_carry_for_a_rational_doublet_of_radius_r_u_phi.md)
-- sha256 (`lf-normalised`): `120dc11f26329f6d975b40a0ab2a691956915020c88c62090c1e8180765918aa`
+- sha256 (`lf-normalised`): `4568c59a5379f4e497695118c3b0697ddde40804f7b57875255f82f7672377da`
 - generated view: listed, not counted
 - cited in: record TFQ-0075
 - counts toward the grade: no
@@ -200,7 +207,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/16_finite_electroweak/tfq_0076_each_language_must_carry_det_of_the_neutral_mass_matrix_is_0.md`
 
 - file: [dag/derivations/16_finite_electroweak/tfq_0076_each_language_must_carry_det_of_the_neutral_mass_matrix_is_0.md](../../../dag/derivations/16_finite_electroweak/tfq_0076_each_language_must_carry_det_of_the_neutral_mass_matrix_is_0.md)
-- sha256 (`lf-normalised`): `edf789639f744fcf87213a1a26df6d23b5f9550ba300015facc0a59736fd083a`
+- sha256 (`lf-normalised`): `f04b9dffc316169eff815f7f82ecef089a45fb75d43616dc2dbb531d080b4a4b`
 - generated view: listed, not counted
 - cited in: record TFQ-0076
 - counts toward the grade: no
@@ -208,7 +215,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/16_finite_electroweak/tfq_0077_each_language_must_carry_q_t3_y_on_the_standard.md`
 
 - file: [dag/derivations/16_finite_electroweak/tfq_0077_each_language_must_carry_q_t3_y_on_the_standard.md](../../../dag/derivations/16_finite_electroweak/tfq_0077_each_language_must_carry_q_t3_y_on_the_standard.md)
-- sha256 (`lf-normalised`): `053cd070b065c511e618ae1a9fde6406a7df364e1bbadbda5dfba1575d9da960`
+- sha256 (`lf-normalised`): `1c6060820ef0d2f64958d082b7deb6074595519c6b2d2bd24c430fe34ee1aa7c`
 - generated view: listed, not counted
 - cited in: record TFQ-0077
 - counts toward the grade: no
@@ -216,7 +223,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/16_finite_electroweak/tfq_0078_each_language_must_carry_the_four_anomaly_polynomials_vanish_at_n_c.md`
 
 - file: [dag/derivations/16_finite_electroweak/tfq_0078_each_language_must_carry_the_four_anomaly_polynomials_vanish_at_n_c.md](../../../dag/derivations/16_finite_electroweak/tfq_0078_each_language_must_carry_the_four_anomaly_polynomials_vanish_at_n_c.md)
-- sha256 (`lf-normalised`): `f144c862403f701bff28c669c6959f219b2f9dfcf432ba8d0c00a0d31bbcc226`
+- sha256 (`lf-normalised`): `036a078c46014fff8b19cd941d67384ea6c59109d962af5668975df7b95f5d4f`
 - generated view: listed, not counted
 - cited in: record TFQ-0078
 - counts toward the grade: no
@@ -224,7 +231,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/16_finite_electroweak/tfq_0079_each_language_must_carry_weyl_gamma5_square_and_trace_chiral_projector_algebra.md`
 
 - file: [dag/derivations/16_finite_electroweak/tfq_0079_each_language_must_carry_weyl_gamma5_square_and_trace_chiral_projector_algebra.md](../../../dag/derivations/16_finite_electroweak/tfq_0079_each_language_must_carry_weyl_gamma5_square_and_trace_chiral_projector_algebra.md)
-- sha256 (`lf-normalised`): `e5763ffaeb8b29fa059a707c989c9658c388145cb66e2ef501c72c0a7aa9fda5`
+- sha256 (`lf-normalised`): `fa96d1dd66f077d052d5ae1d06e6cc033d6e2cec5190253a1d2a8e4ac5ad9ed5`
 - generated view: listed, not counted
 - cited in: record TFQ-0079
 - counts toward the grade: no
@@ -232,7 +239,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/16_finite_electroweak/tfq_0080_rust_and_python_must_carry_exact_two_sided_unitarity_d_b_triangle_closure_and.md`
 
 - file: [dag/derivations/16_finite_electroweak/tfq_0080_rust_and_python_must_carry_exact_two_sided_unitarity_d_b_triangle_closure_and.md](../../../dag/derivations/16_finite_electroweak/tfq_0080_rust_and_python_must_carry_exact_two_sided_unitarity_d_b_triangle_closure_and.md)
-- sha256 (`lf-normalised`): `3d27c7676281cc9960ab07f4c745e380aba21601f8f3638915675d74b98ea7e5`
+- sha256 (`lf-normalised`): `f6ed54a21c4854ee8d794bc739de7c62f980b00dfa372c1a0272467e1ccac903`
 - generated view: listed, not counted
 - cited in: record TFQ-0080
 - counts toward the grade: no
@@ -240,7 +247,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/16_finite_electroweak/tfq_0081_each_language_must_carry_s_n_c_n_c_3_the_values_1_and_1_3.md`
 
 - file: [dag/derivations/16_finite_electroweak/tfq_0081_each_language_must_carry_s_n_c_n_c_3_the_values_1_and_1_3.md](../../../dag/derivations/16_finite_electroweak/tfq_0081_each_language_must_carry_s_n_c_n_c_3_the_values_1_and_1_3.md)
-- sha256 (`lf-normalised`): `1bc7622bacb05fe5eda2c126c7a290f1578289d650ecd24cfb11da1ba98ac2f4`
+- sha256 (`lf-normalised`): `e157ec729a980200aa8413c9a027f029591e596e5bd3fa3fba390f168f6b331e`
 - generated view: listed, not counted
 - cited in: record TFQ-0081
 - counts toward the grade: no
@@ -248,7 +255,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/16_finite_electroweak/tfq_0082_each_language_must_carry_the_octet_and_decuplet_relations_as_polynomial_identities.md`
 
 - file: [dag/derivations/16_finite_electroweak/tfq_0082_each_language_must_carry_the_octet_and_decuplet_relations_as_polynomial_identities.md](../../../dag/derivations/16_finite_electroweak/tfq_0082_each_language_must_carry_the_octet_and_decuplet_relations_as_polynomial_identities.md)
-- sha256 (`lf-normalised`): `208316f709e8dfee202d961e65f0d8d57a654ac6addbef6a8ffcecca73ec031c`
+- sha256 (`lf-normalised`): `30e0aea10e001da68a2db72aa0e61688069429864427e9fa35b92f420eca296f`
 - generated view: listed, not counted
 - cited in: record TFQ-0082
 - counts toward the grade: no
@@ -260,13 +267,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0083 (shared)
 - counts toward the grade: no
-
-### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
-
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
-- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### External sources
 

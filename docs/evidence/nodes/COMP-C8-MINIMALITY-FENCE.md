@@ -32,7 +32,7 @@ Simulation of a machine over a coded alphabet by a machine over the two marks an
 
 ## Source status
 
-dag/research/genesis_to_universal_computation.md record COMP-C8b claims OPEN; audited status OPEN
+dag/derivations/29_computation/genesis_to_universal_computation.md record COMP-C8b claims OPEN; audited status OPEN
 
 ## Review
 
@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/ComputationC8MinimalityFence.lean](../../../lean4/ComputationC8MinimalityFence.lean)
 - sha256 (`bytes`): `25c0d482ab5ec38503c85ce2d0e04d0bee0638fb31e31c2f8006a6e228d400eb`
-- cited in: node.lean, receipt dag/research/campaign_comp-c8-minimality-fence_lean_replay.json (ComputationC8MinimalityFence), receipt dag/research/pr_370_review_replay.json (ComputationC8MinimalityFence), record TFQ-1313
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_comp-c8-minimality-fence_lean_replay.json (ComputationC8MinimalityFence), receipt evidence/lean_receipts/pr_370_review_replay.json (ComputationC8MinimalityFence), record TFQ-1313
 - replay: `verified`
-  - receipt [dag/research/campaign_comp-c8-minimality-fence_lean_replay.json](../../../dag/research/campaign_comp-c8-minimality-fence_lean_replay.json) (module `ComputationC8MinimalityFence`): recorded sha256 `25c0d482ab5ec38503c85ce2d0e04d0bee0638fb31e31c2f8006a6e228d400eb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_370_review_replay.json](../../../dag/research/pr_370_review_replay.json) (module `ComputationC8MinimalityFence`): recorded sha256 `25c0d482ab5ec38503c85ce2d0e04d0bee0638fb31e31c2f8006a6e228d400eb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_comp-c8-minimality-fence_lean_replay.json](../../../evidence/lean_receipts/campaign_comp-c8-minimality-fence_lean_replay.json) (module `ComputationC8MinimalityFence`): recorded sha256 `25c0d482ab5ec38503c85ce2d0e04d0bee0638fb31e31c2f8006a6e228d400eb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/pr_370_review_replay.json](../../../evidence/lean_receipts/pr_370_review_replay.json) (module `ComputationC8MinimalityFence`): recorded sha256 `25c0d482ab5ec38503c85ce2d0e04d0bee0638fb31e31c2f8006a6e228d400eb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build ComputationC8MinimalityFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -61,20 +61,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/29_computation/genesis_to_universal_computation.md`
+
+- file: [dag/derivations/29_computation/genesis_to_universal_computation.md](../../../dag/derivations/29_computation/genesis_to_universal_computation.md)
+- sha256 (`lf-normalised`): `d57c3593a55277cafb808fb1b2241dcf2ad97701205dca6b7874af70b5119068`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md`
 
 - file: [dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md](../../../dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md)
-- sha256 (`lf-normalised`): `eb8c2d59c19ad52573bf66db5d029df0880c909f51e65da22ebd31bb64f0927b`
+- sha256 (`lf-normalised`): `f479e8aa0bb2f8d4386a9ca035da0e6ca2d726ab980c5dfd2e6c686ce5b2eb36`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1313
 - counts toward the grade: no
-
-### Documents and data: `dag/research/genesis_to_universal_computation.md`
-
-- file: [dag/research/genesis_to_universal_computation.md](../../../dag/research/genesis_to_universal_computation.md)
-- sha256 (`lf-normalised`): `004aada51ca3ccf378160e4e84208bba2b409805f041a4ef7bbd8898576cd5c7`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

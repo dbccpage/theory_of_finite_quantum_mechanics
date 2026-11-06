@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `3a85b6f0aeb2658077d77a0d8a0ef23a0be5e05765fd9e812409aea3bd25e61e`
 - cited in: node.lean, record TFQ-1263
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuadraticTransitionSeparation`): recorded sha256 `3a85b6f0aeb2658077d77a0d8a0ef23a0be5e05765fd9e812409aea3bd25e61e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json](../../../evidence/lean_receipts/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuadraticTransitionSeparation`): recorded sha256 `3a85b6f0aeb2658077d77a0d8a0ef23a0be5e05765fd9e812409aea3bd25e61e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubQuadraticTransitionSeparation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

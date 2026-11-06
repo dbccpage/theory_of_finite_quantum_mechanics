@@ -46,9 +46,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/IdentityConvention.lean](../../../lean4/IdentityConvention.lean)
 - sha256 (`bytes`): `3a3d58657a3f1ce6a385da5e3afe1e74bbce3eb37257582f8359e197e9388fda`
-- cited in: node.lean, receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (IdentityConvention), record TFQ-0423
+- cited in: node.lean, receipt evidence/lean_receipts/campaign_pgw-identity-convention-undecidable_lean_replay.json (IdentityConvention), record TFQ-0423
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json) (module `IdentityConvention`): recorded sha256 `3a3d58657a3f1ce6a385da5e3afe1e74bbce3eb37257582f8359e197e9388fda` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [evidence/lean_receipts/campaign_pgw-identity-convention-undecidable_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-identity-convention-undecidable_lean_replay.json) (module `IdentityConvention`): recorded sha256 `3a3d58657a3f1ce6a385da5e3afe1e74bbce3eb37257582f8359e197e9388fda` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build IdentityConvention`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md](../../../dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md)
-- sha256 (`lf-normalised`): `e1d81d40b90fa3a47d3561fc6c7cd6d2895d48b4c9cca6e9090d46807818a668`
+- sha256 (`lf-normalised`): `940b4931ca0fc44744059fd7bc8504b6ee66a3380fe2965234951c5f7faa4b8a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0423
 - counts toward the grade: no
@@ -92,17 +92,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json`
-
-- file: [dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json)
-- sha256 (`lf-normalised`): `37e83844e20d3c63f8b4613e0c2b5c86437d46829d65190f001798adf17089d3`
-- cited in: node.source
-- counts toward the grade: yes
-
 ### Documents and data: `education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md`
 
 - file: [education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md](../../../education/1_pregenesis_empty_mark/sources/analysis_derivation_v1.md)
 - sha256 (`lf-normalised`): `0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `evidence/lean_receipts/campaign_pgw-identity-convention-undecidable_lean_replay.json`
+
+- file: [evidence/lean_receipts/campaign_pgw-identity-convention-undecidable_lean_replay.json](../../../evidence/lean_receipts/campaign_pgw-identity-convention-undecidable_lean_replay.json)
+- sha256 (`lf-normalised`): `37e83844e20d3c63f8b4613e0c2b5c86437d46829d65190f001798adf17089d3`
 - cited in: node.source
 - counts toward the grade: yes
 

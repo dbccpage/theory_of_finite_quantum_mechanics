@@ -32,7 +32,7 @@ Machines in the TM0 form only (one write or one move per transition); representa
 
 ## Source status
 
-dag/research/genesis_to_universal_computation.md record COMP-C5a claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/29_computation/genesis_to_universal_computation.md record COMP-C5a claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c`
 - cited in: node.lean, node.source, record TFQ-1299
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisCompTM`): recorded sha256 `5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_computation.json](../../../evidence/lean_receipts/lean_replay_campaign_computation.json) (module `GenesisCompTM`): recorded sha256 `5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisCompTM`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -94,20 +94,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/29_computation/genesis_to_universal_computation.md`
+
+- file: [dag/derivations/29_computation/genesis_to_universal_computation.md](../../../dag/derivations/29_computation/genesis_to_universal_computation.md)
+- sha256 (`lf-normalised`): `d57c3593a55277cafb808fb1b2241dcf2ad97701205dca6b7874af70b5119068`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md`
 
 - file: [dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md](../../../dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md)
-- sha256 (`lf-normalised`): `a8331ef32a78a7908aaa95636c15ec9929265b852180118dfbba6b81ca990df2`
+- sha256 (`lf-normalised`): `bfbe64213a478238cb240dd9b03ff2e242c631948a3aca1ae555fea5ea36582d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1299
 - counts toward the grade: no
-
-### Documents and data: `dag/research/genesis_to_universal_computation.md`
-
-- file: [dag/research/genesis_to_universal_computation.md](../../../dag/research/genesis_to_universal_computation.md)
-- sha256 (`lf-normalised`): `004aada51ca3ccf378160e4e84208bba2b409805f041a4ef7bbd8898576cd5c7`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

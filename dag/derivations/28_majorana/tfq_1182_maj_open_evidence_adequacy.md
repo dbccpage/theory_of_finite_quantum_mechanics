@@ -55,4 +55,4 @@ Decided integer facts on readings (1, 0) and (1, 1): the difference is (0, -1); 
   - `dag/derivations/28_majorana/majorana/the_majorana_problem.md:367-367`
   - `dag/derivations/28_majorana/majorana/the_majorana_problem.md:128-139`
   - `dag/derivations/independent/maj-open-evidence-adequacy.md`
-  - `dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json`
+  - `evidence/lean_receipts/campaign_maj-open-evidence-adequacy_lean_replay.json`

@@ -38,7 +38,7 @@ ledger: LEAN PROVED (RECEIPTED); H008/H009 headers: "Candidate only. Not PROVEN.
 
 ## Review
 
-- PFP review: [dag/results/FQ-PHASE-FIBER-QUOTIENT/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-PHASE-FIBER-QUOTIENT/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [evidence/results/FQ-PHASE-FIBER-QUOTIENT/reviews/20261019_scope_audit/review_result.json](../../../evidence/results/FQ-PHASE-FIBER-QUOTIENT/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Source phase-equivalence and relative/global-phase kernel statements are rechecked; the full single-coordinate norm25 integer fiber has twelve points while the declared unit orbit has four.
   - does not support: Relate multi-report unit-group orbits to the intended quotient without identifying an orbit with the full norm fiber. A general finite-group action/quotient operad and coherence proof remain open.
   - next test: Relate multi-report unit-group orbits to the intended quotient without identifying an orbit with the full norm fiber. A general finite-group action/quotient operad and coherence proof remain open.
@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: record TFQ-0251 (shared)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 - counts toward the grade: no
 
@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `e7ca49b4ca6cd26239b024ee0f171bba8b978d4d0b3eebb8ab99f9068b8cee04`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkPhaseBlindPresentation`): recorded sha256 `e7ca49b4ca6cd26239b024ee0f171bba8b978d4d0b3eebb8ab99f9068b8cee04` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkPhaseBlindPresentation`): recorded sha256 `e7ca49b4ca6cd26239b024ee0f171bba8b978d4d0b3eebb8ab99f9068b8cee04` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertWalkPhaseBlindPresentation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `ee7078faf56d9ea2aa0702383cefe2e9fbe1bf90097f60ecfaeb79a3170c6300`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `PhaseFiber`): recorded sha256 `ee7078faf56d9ea2aa0702383cefe2e9fbe1bf90097f60ecfaeb79a3170c6300` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_core.json) (module `PhaseFiber`): recorded sha256 `ee7078faf56d9ea2aa0702383cefe2e9fbe1bf90097f60ecfaeb79a3170c6300` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PhaseFiber`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -88,27 +88,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md`
-
-- file: [dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md](../../../dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md)
-- sha256 (`lf-normalised`): `ca85cb4fb1b084167b9dca863fd66db0a63a1612295534e3fdebd0865c14727c`
-- generated view: listed, not counted
-- cited in: record TFQ-0251 (shared)
-- counts toward the grade: no
-
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics.md)
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md`
 
-- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
-- sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
+- file: [atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md](../../../atlas/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md)
+- sha256 (`lf-normalised`): `0ec068458cb98411a43fd5ca8f50797bfcf3563185b7a1fbe8348b1a9616fa44`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md`
+
+- file: [dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md](../../../dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md)
+- sha256 (`lf-normalised`): `4a225ec1197863335986548732f15c5e39349a68518304aaebf376e762286479`
+- generated view: listed, not counted
+- cited in: record TFQ-0251 (shared)
+- counts toward the grade: no
 
 ### External sources
 

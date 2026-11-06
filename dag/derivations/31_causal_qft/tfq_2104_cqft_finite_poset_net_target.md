@@ -19,7 +19,7 @@ Not proved in Lean: the statements for the full local matrix algebras A(O) (line
 
 ## Source status
 
-Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
+Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in evidence/lean_receipts/frontier_targets_lean_replay.json; per-node review in evidence/reviews/frontier_targets/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -33,7 +33,7 @@ Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.3
 
 For every FiniteStrictPoset P and subsets O1, O2: operators localized in O1 are localized in any O2 containing O1; if all pairs (x,y) in O1 x O2 are spacelike then O1, O2 are disjoint and operators localized in O1 and O2 commute under the sitewise product (elementary tensors); spacelike is symmetric and irreflexive; on the N poset, spacelike(1,0) and spacelike(0,3) hold while 1<3.
 
-Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `evidence/lean_receipts/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
@@ -49,7 +49,7 @@ See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 
 - Repository: `lean4/CausalOrder.lean`
 - Repository: `lean4/FrontierPosetNet.lean`
-- Repository: `dag/research/frontier_targets_lean_replay.json`
+- Repository: `evidence/lean_receipts/frontier_targets_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/FrontierPosetNet.lean::FrontierPosetNet.isotony`

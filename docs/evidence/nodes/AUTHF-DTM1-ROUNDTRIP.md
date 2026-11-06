@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a`
 - cited in: node.lean, node.source, record TFQ-1344
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `AuthIncompleteness.TokenCode`): recorded sha256 `462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [evidence/lean_receipts/lean_replay_campaign_computation.json](../../../evidence/lean_receipts/lean_replay_campaign_computation.json) (module `AuthIncompleteness.TokenCode`): recorded sha256 `462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/AuthIncompleteness/TokenCode.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
