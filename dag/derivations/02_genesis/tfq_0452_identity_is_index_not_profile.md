@@ -1,6 +1,6 @@
 # [TFQ-0452] identity-is-index-not-profile
 
-> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `GENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `3faf6bec-8e88-51ff-a142-ac2a9644aba1`  
 > **Parent Derivation**: [TFQ-0451](tfq_0451_no_endogenous_demand_generator.md)
 
@@ -30,6 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.distinct_indices_can_share_profile`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.identity_is_index_not_profile_u0f`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
 - [`lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean::U0F`](../../../lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

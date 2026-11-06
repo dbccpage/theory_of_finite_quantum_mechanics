@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
 
 - file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean)
-- sha256 (`bytes`): `5139307750119e0e6f022ae813972e4625d02908d37d9067e6942e532181b6dd`
+- sha256 (`bytes`): `4f63ebe575318a31ee55f58fe2008082727873250bd2ddcfc0ee960086a56e19`
 - cited in: node.lean, record TFQ-1026
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch4.lean`
@@ -89,7 +89,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `FQ-R-AMPLITUDE-BRIDGE` `DERIVED_LEAN`: [FQ-IMPL-REALIFICATION-ADAPTER](FQ-IMPL-REALIFICATION-ADAPTER.md) (COMPUTATIONALLY_CHECKED)
+- `FQ-R-AMPLITUDE-BRIDGE` `DERIVED_LEAN`: [FQ-IMPL-REALIFICATION-ADAPTER](FQ-IMPL-REALIFICATION-ADAPTER.md) (PROVED_LEAN)
 
 Outgoing (1):
 

@@ -1,6 +1,6 @@
 # PGW-IDENTITY-IS-INDEX-NOT-PROFILE
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_PROSE`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_PROSE`. Evidence grade: 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
 - distinct cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
@@ -32,7 +32,7 @@ Question 11 itself stays unanswered by instruction, because naming external stru
 
 ## Source status
 
-genesis_source.txt question 11 internal statement (CL-IDENTITY-NOT-PROFILE) and withdrawal of 2026-09-08
+CL-IDENTITY-NOT-PROFILE and U0F empty-profile pair coincidence mechanized in MinimalityF.lean and WdpBatch7.lean
 
 ## Review
 
@@ -41,6 +41,21 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
+- sha256 (`bytes`): `325cb7b3dd05bf6b4c4f5081935af36bbddc9493b7404f2bb3cce46bc0e32fc5`
+- cited in: node.lean, record TFQ-0452
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch7.distinct_indices_can_share_profile` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch7.distinct_indices_can_share_profile` |
+| `WitnessedDifference.WdpBatch7.identity_is_index_not_profile_u0f` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch7.identity_is_index_not_profile_u0f` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean`
 
@@ -91,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md`
 
 - file: [dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md](../../../dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md)
-- sha256 (`lf-normalised`): `4c7e8164ca4b92a138369fc17751a60946a4d777113caf5a461e14f9d8410b9d`
+- sha256 (`lf-normalised`): `5b0f79245c51831577454e99553b1ee71aa5da40db6524d29fc3102ba1e8d09c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0452
 - counts toward the grade: no
@@ -100,8 +115,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `PGW-R-IDENTITY-IS-INDEX-NOT-PROFILE` `DERIVED_PROSE`: [PGW-NO-ENDOGENOUS-DEMAND-GENERATOR](PGW-NO-ENDOGENOUS-DEMAND-GENERATOR.md) (PROVED_PROSE)
+- `PGW-R-IDENTITY-IS-INDEX-NOT-PROFILE` `DERIVED_LEAN`: [PGW-NO-ENDOGENOUS-DEMAND-GENERATOR](PGW-NO-ENDOGENOUS-DEMAND-GENERATOR.md) (PROVED_LEAN)
 
 Outgoing (1):
 
-- `PGW-R-SEALED-TERMINAL-STATEMENT` `DERIVED_PROSE`: [PGW-SEALED-TERMINAL-STATEMENT](PGW-SEALED-TERMINAL-STATEMENT.md) (PROVED_PROSE)
+- `PGW-R-SEALED-TERMINAL-STATEMENT` `DERIVED_LEAN`: [PGW-SEALED-TERMINAL-STATEMENT](PGW-SEALED-TERMINAL-STATEMENT.md) (PROVED_LEAN)

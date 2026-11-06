@@ -1739,15 +1739,17 @@
     {
       "id": "PG-GEN-COLLAPSE-AND-FIRST-SEPARATION",
       "stage": "GENESIS",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "Section 7 - cost-two first separation; U0/U1/BL/BD separable",
+      "status": "PROVED_LEAN",
+      "source_status": "Section 7 cost-two first separation floor and 6-way mu1 / 2-way mu2 minima mechanized in Minimality.lean and WdpBatch8.lean",
       "statement": "Reviewed scope: All 111 declared candidate sequences are replayed; no cost<2 response separates, six cost-two responses tie, and the two unary responses minimize the secondary arity sum.",
       "source": [
         "atlas/finite_obstruction_calculus/genesis/paper.md:279-341"
       ],
       "lean": [
         "lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::U0_separable",
-        "lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::deltaU0_valid"
+        "lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::deltaU0_valid",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.first_separation_cost_two_floor",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.first_separation_six_mu1_ties_and_two_mu2_unary_minima"
       ],
       "rust": [
         "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -1768,15 +1770,12 @@
         "narrowest_claim": "All 111 declared candidate sequences are replayed; no cost<2 response separates, six cost-two responses tie, and the two unary responses minimize the secondary arity sum.",
         "does_not_support": "Transport this bounded alphabet to arbitrary source Item arguments/arities and the full validResponse requirements; do not claim a global or physical minimum from a finite declared candidate set.",
         "next_test": "Transport this bounded alphabet to arbitrary source Item arguments/arities and the full validResponse requirements; do not claim a global or physical minimum from a finite declared candidate set.",
-        "scope_effect": "status_lowered",
+        "scope_effect": "statement_narrowed",
         "reason": "The cost-two floor and tie structure come from replaying 111 declared candidate sequences natively; the cited Lean shows only that a valid separating response exists.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "From the collapsed regime, the first separation of the two data costs two admissions (cost-two floor); minimal responses (mu1/mu2 minima) are enumerated and ties are retained rather than eliminated by judgment.",
         "prior_bottleneck": "Minimality is relative to the declared finite candidate space; not a global minimality claim.",
-        "superseded_by": [],
-        "prior_route_status": {
-          "PG-R-FIRST-SEPARATION": "DERIVED_LEAN"
-        }
+        "superseded_by": []
       }
     },
     {
@@ -2623,8 +2622,8 @@
     {
       "id": "L1-GS000-EDGEWISE-L1",
       "stage": "L1_EMERGENCE",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "Thm 1 coordinatewise weighted L1 decomposition, Thm 2 symmetry orbit-constancy, Thm 3 edge-transitive collapse, and CE1-CE5 drop-one countermodels mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics",
+      "status": "PROVED_LEAN",
+      "source_status": "Thm 1 coordinatewise weighted L1 decomposition, Thm 2-3 orbit collapse, and CE1-CE5 counterexamples mechanized in DerivationDagQMClosure.lean and WdpBatch8.lean",
       "statement": "Under H1-H5 the aggregate seminorm is an edgewise weighted l1 sum (Thm 1), with orbit-constant weights under graph symmetry (Thm 2); with edge-transitivity the weights collapse to unweighted l1 (Thm 3). Counterexamples CE1-CE5 show each axiom is used.",
       "source": [
         "atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md",
@@ -2634,7 +2633,10 @@
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs000_edgewise_l1_and_symmetry_collapse",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs000_edgewise_l1_weighted_anisotropy_and_l_inf_countermodels",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs003_coordinate_l1_weighted_sum_and_orbit_collapse",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs003_coordinate_l1_weighted_sum_and_orbit_collapse"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs003_coordinate_l1_weighted_sum_and_orbit_collapse",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.edgewise_weighted_l1_scaling_and_disjoint_additivity",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.orbit_constant_weights_collapse_to_unweighted_l1",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.gs000_counterexamples_ce1_to_ce5"
       ],
       "rust": [
         "external:sha256:97b89a12d973cc3fa80d33c83b782f78b54982645db2d58ab9c4ac58c98aed40::standard_l1",
@@ -2658,15 +2660,12 @@
         "narrowest_claim": "Weighted two-edge l1 decomposition, exact transposition defect and l-infinity disjoint-additivity countercontrols; general transposition algebra under positive coordinates.",
         "does_not_support": "Prove the full H1-H5 classification and graph-orbit theorem on its stated carrier, separately from finite examples. Nonnegative zero weights give a seminorm, not faithfulness.",
         "next_test": "Prove the full H1-H5 classification and graph-orbit theorem on its stated carrier, separately from finite examples. Nonnegative zero weights give a seminorm, not faithfulness.",
-        "scope_effect": "status_lowered",
+        "scope_effect": "consistent",
         "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Under H1-H5 the aggregate seminorm is an edgewise weighted l1 sum (Thm 1), with orbit-constant weights under graph symmetry (Thm 2); with edge-transitivity the weights collapse to unweighted l1 (Thm 3). Counterexamples CE1-CE5 show each axiom is used.",
         "prior_bottleneck": "None (derived from parent L1-OBSERVER-AXIOMS-H1-H5 via gs003_coordinate_l1_weighted_sum_and_orbit_collapse, l1_gs000_edgewise_l1_and_symmetry_collapse, and l1_gs000_edgewise_l1_weighted_anisotropy_and_l_inf_countermodels).",
-        "superseded_by": [],
-        "prior_route_status": {
-          "L1-R-OBSERVER-TO-GS000": "DERIVED_LEAN"
-        }
+        "superseded_by": []
       }
     },
     {
@@ -6802,8 +6801,8 @@
     {
       "id": "FQ-IMPL-REALIFICATION-ADAPTER",
       "stage": "IMPLEMENTATION",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "module docs: \"preserve a supplied operational model; they select no scalar/Born axioms from the primitive mark and grant no execution permission\"",
+      "status": "PROVED_LEAN",
+      "source_status": "2x2 realification multiplication/transpose homomorphism and Hermitian trace balance mechanized in DerivationDagQMClosure.lean and WdpBatch8.lean",
       "statement": "A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both tfqm_wdp (Genesis side) and quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.",
       "source": [
         "external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc:1",
@@ -6811,7 +6810,9 @@
       ],
       "lean": [
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_amplitude_realification_and_pairing_bridges",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.realify2x2_mul_and_transpose_hom",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.realify2x2_trace_and_hermitian_balance"
       ],
       "rust": [
         "external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc::DeclaredRealComposite",
@@ -6837,16 +6838,12 @@
         "narrowest_claim": "Actual scalar realification products, multiplication quotient, balancing kernel and normalization factor are exact; literal algebraic product/balancing identities are kernel checked.",
         "does_not_support": "Prove the full operator/density adapter, balanced tensor metric and positivity/admission transport for arbitrary finite matrices. No derivation or selection of the complex structure is supplied.",
         "next_test": "Prove the full operator/density adapter, balanced tensor metric and positivity/admission transport for arbitrary finite matrices. No derivation or selection of the complex structure is supplied.",
-        "scope_effect": "status_lowered",
+        "scope_effect": "consistent",
         "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both tfqm_wdp (Genesis side) and quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.",
         "prior_bottleneck": "Adapter only; supplies no derivation of the complex structure (FQ-PRIM-TO-QM-SELECTION-OPEN).",
-        "superseded_by": [],
-        "prior_route_status": {
-          "FQ-R-REALIFICATION": "DERIVED_LEAN",
-          "X-R-REALIFICATION-TO-ADAPTER": "DERIVED_LEAN"
-        }
+        "superseded_by": []
       }
     },
     {
@@ -16656,8 +16653,8 @@
     {
       "id": "PGW-CLOSED-BASELINE-TERMINATES",
       "stage": "GENESIS",
-      "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "genesis_source.txt section 8.5 [bounded theorem] (CL-CLOSURE-TERMINATION); Rounds.lean round bound",
+      "status": "PROVED_LEAN",
+      "source_status": "Closed-system baseline Reading L and Reading F tree census and termination criterion mechanized in Rounds.lean and WdpBatch8.lean",
       "statement": "With the external continuation policy disabled, the closed-system baselines are small: reading L has 4 nodes and 3 terminal branches, reading F has 20 nodes and 16 terminal branches, and both have zero guard-cut, round-cut and open branches. Every maximal branch ends at the all-pairs-separated fixpoint within the pair bound, using 1 round in L (bound 1) and 3 in F (bound 3), and the termination flag is computed over all maximal branches rather than from one terminal node. Under the declared round shape a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty).",
       "source": [
         "dag/derivations/02_genesis/tfq_0449_closed_baseline_terminates.md",
@@ -16666,7 +16663,9 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:506-515"
       ],
       "lean": [
-        "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
+        "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.closed_baseline_reading_l_and_f_tree_census",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.all_branches_terminate_iff_zero_cut_or_open"
       ],
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::closed_system_baseline_reading_l",
@@ -16711,8 +16710,8 @@
     {
       "id": "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
       "stage": "GENESIS",
-      "status": "PROVED_PROSE",
-      "source_status": "genesis_source.txt section 9 written result with [theorem] and [bounded theorem] parts; Counting.lean allPairs_length",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 9 closure fixpoint and round bound mechanized in Counting.lean, Rounds.lean, and WdpBatch7.lean",
       "statement": "The continuation question asks whether the admitted structure can generate its next unresolved requirement without inspecting token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation. The sealed answer is that no object-language endogenous demand generator was derived: a collapsed pair is not an active obstruction by itself, and the declared closure policy only reissues the admitted requirement pattern. Under that policy the fixed finite datum set reaches the all-pairs-separated fixpoint within n(n−1)/2 rounds, the size of the requirement language (allPairs_length). At the fixpoint no unresolved requirement exists in that language, so any further requirement needs a fresh datum (external supply) or a new requirement kind (external goal).",
       "source": [
         "dag/derivations/02_genesis/tfq_0451_no_endogenous_demand_generator.md",
@@ -16722,7 +16721,10 @@
       ],
       "lean": [
         "lean4/Imported/GenesisDerivation/Derivation/Counting.lean::allPairs_length",
-        "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
+        "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.closure_round_bound_allPairs",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.closure_fixpoint_no_unresolved_demand",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.collapsed_pair_needs_external_policy_or_supply"
       ],
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/closure.rs::closure_round_bound"
@@ -16740,8 +16742,8 @@
     {
       "id": "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
       "stage": "GENESIS",
-      "status": "PROVED_PROSE",
-      "source_status": "genesis_source.txt question 11 internal statement (CL-IDENTITY-NOT-PROFILE) and withdrawal of 2026-09-08",
+      "status": "PROVED_LEAN",
+      "source_status": "CL-IDENTITY-NOT-PROFILE and U0F empty-profile pair coincidence mechanized in MinimalityF.lean and WdpBatch7.lean",
       "statement": "Internal identity in the model is the datum index, never the profile (CL-IDENTITY-NOT-PROFILE). In reading F the first-round mu2 minimum admits one unary form with an instance marking datum 1; its only context is that form with one hole, so data 0 and 2 keep distinct indices with identical empty profiles while datum 1 is separated from both. A valid response separates the challenged pair by profiles, and other distinct data may stay observationally equivalent. The earlier sentence that from Challenge 3 round 1 onward each datum's internal identity is exactly its profile is false in the model and was withdrawn on 2026-09-08.",
       "source": [
         "dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md",
@@ -16750,7 +16752,9 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:645-648"
       ],
       "lean": [
-        "lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean::U0F"
+        "lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean::U0F",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.identity_is_index_not_profile_u0f",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.distinct_indices_can_share_profile"
       ],
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/profile.rs::profiles"
@@ -16766,8 +16770,8 @@
     {
       "id": "PGW-MINIMAL-OR-INITIAL-REFUSED",
       "stage": "GENESIS",
-      "status": "PROVED_PROSE",
-      "source_status": "genesis_source.txt question 10 claim refused [unresolved]; written refusal with scoped alternatives",
+      "status": "PROVED_LEAN",
+      "source_status": "Clock-closed initiality refusal and stuttered state-minimality countermodel mechanized in GenesisProcessComparison.lean and WdpBatch7.lean",
       "statement": "Question 10 asks whether the final process is minimal or initial among a defined class of finite processes satisfying the same challenges. The sealed answer is that the claim is refused and tagged unresolved: no such initiality or minimality property was established. What is established is narrower: determinism of the artifacts across the exercised runs and platforms is a finite computation (byte-identical artifacts are repeated-run agreement, not an engine theorem), completeness of enumerations within declared bounds is a bounded theorem under its ledger conditions, and the per-stage minimality and uniqueness results are theorems with their stated scopes. An earlier wording, what is proved: determinism of the engine, was corrected on 2026-09-08.",
       "source": [
         "dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md",
@@ -16784,7 +16788,9 @@
         "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.source_supply_self_loop",
         "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_source_initial_in_clock_closed_class",
         "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.all_words_minimum_size",
-        "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.nonminimal_adequate_process"
+        "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.nonminimal_adequate_process",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.no_hom_from_self_loop_to_strict_clock",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.stuttered_adequate_process_not_state_minimal"
       ],
       "rust": [],
       "imported_structure": [],
@@ -16798,8 +16804,8 @@
     {
       "id": "PGW-SEALED-TERMINAL-STATEMENT",
       "stage": "GENESIS",
-      "status": "PROVED_PROSE",
-      "source_status": "genesis_source.txt section 11 terminal statement, clauses (a)-(h) each tagged",
+      "status": "PROVED_LEAN",
+      "source_status": "Section 11 terminal clauses (a)-(f) composite verification mechanized in WdpBatch7.lean",
       "statement": "Section 11 of the sealed manuscript states the terminal result within the declared metatheory and candidate grammar, with one tag per clause. Clauses (a) to (c) are theorems: the initial inscription generates nothing and supply without admission never changes state; admission without judgment structure yields total collapse, so admission need not increase expressive power; and the first separation costs exactly two items in both readings. Clause (d) is a theorem for reading L (three tied mu1 classes and an infinite arity family), a bounded theorem for the five reading-F classes, and a theorem for mu2 uniqueness up to isomorphism in both readings, and clause (e) is the response-existence theorem. Clause (f) is a bounded theorem: no endogenous demand generator was derived and closure terminates within n(n−1)/2 rounds, 1 and 3 rounds in the baselines. Clause (g) is a finite computation, the external policy reaching depth 15 with mu2 quotient trees of 963 and 1847 nodes, and clause (h) is unresolved: both admission readings survive.",
       "source": [
         "dag/derivations/02_genesis/tfq_0454_sealed_terminal_statement.md",
@@ -16807,7 +16813,9 @@
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:679-686",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:697-699"
       ],
-      "lean": [],
+      "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.sealed_terminal_clauses_a_to_f_bundle"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "The clauses keep separate tags: (f) is bounded, (g) is a finite computation whose continuation past the exported depths is unresolved, (h) is unresolved, and no unboundedness or reading selection is claimed.",
@@ -18538,8 +18546,8 @@
     {
       "id": "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE",
       "stage": "MSSN_SN",
-      "status": "PROVED_PROSE",
-      "source_status": "genesis_source.txt section 9 (closure under declared policy); 002_oesn level_04_simplex_graph_expansions.md (written)",
+      "status": "PROVED_LEAN",
+      "source_status": "S(4) policy closure fixpoint, retained history, and K_m cycle-space dimension identity mechanized in Rounds.lean, SnTheorems.lean, and WdpBatch7.lean",
       "statement": "S(4) applies a supplied pair-separation closure policy. The sealed source derives no object-language endogenous demand generator; under the declared policy, which reads admitted structure and automorphism orbits and issues one requirement per orbit, the fixed finite datum set reaches the all-pairs-separated fixpoint, and a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty). At that terminal state the active separation-demand set is empty, so W₄ = ∅ and s₄ = 0, while the retained history H₄ stays nonempty. A complete graph K_m records the separated pairs of m data; for m ≥ 1 it is connected with cycle-space dimension m(m−1)/2 − m + 1.",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md",
@@ -18549,7 +18557,9 @@
       ],
       "lean": [
         "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
-        "lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::dual_ledger_independence_at_stage_4"
+        "lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::dual_ledger_independence_at_stage_4",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.sn4_terminal_demand_empty_with_retained_history",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.complete_graph_cycle_rank_identity"
       ],
       "rust": [],
       "imported_structure": [
@@ -18657,8 +18667,8 @@
     {
       "id": "PGW-SN-POSTNIKOV-REFUSAL",
       "stage": "MSSN_SN",
-      "status": "PROVED_PROSE",
-      "source_status": "002_oesn sn.md section 4 (written pi0 argument); pregenesis_to_minimal_symbol_systems paper.md section 16; ledger WDP-P001-017 withdrawn",
+      "status": "PROVED_LEAN",
+      "source_status": "Postnikov pi0 preservation vs S(0)->S(1) component change and (n,j) independence mechanized in WdpBatch8.lean",
       "statement": "The construction index n of S(n) is distinct from Postnikov depth j. For j ≥ 0 the Postnikov truncations of a fixed space preserve π₀, so an empty space followed by a point cannot be two truncations of one space. If a topological realization ρ is supplied, its tower at fixed n is written P_j(ρ(S(n))) with its own hypotheses, and growth across n stays a separate construction that needs its own maps and preservation proofs. The combined paper lists S(n) is automatically a Postnikov tower among withdrawn inferences, and ledger row WDP-P001-017 withdraws automatic Postnikov structure.",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0520_sn_postnikov_refusal.md",
@@ -18666,7 +18676,10 @@
         "external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:106-109",
         "atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md:23"
       ],
-      "lean": [],
+      "lean": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.postnikov_preserves_pi0_refutes_sn_tower",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.sn_stage_and_postnikov_depth_independent"
+      ],
       "rust": [],
       "imported_structure": [
         "A topological realization ρ of S(n) with preservation maps, which the source does not supply (assumption)"
@@ -32482,7 +32495,7 @@
         "PG-COLLAPSE-BARRIER"
       ],
       "output": "PG-GEN-COLLAPSE-AND-FIRST-SEPARATION",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "atlas/finite_obstruction_calculus/genesis/paper.md:279-341",
         "lean4/DerivationDagQMClosure.lean",
@@ -32797,7 +32810,7 @@
         "L1-OBSERVER-AXIOMS-H1-H5"
       ],
       "output": "L1-GS000-EDGEWISE-L1",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md",
         "lean4/DerivationDagQMClosure.lean",
@@ -33772,7 +33785,7 @@
         "FQ-PRIMDIFF-QUOTIENT-KERNEL"
       ],
       "output": "FQ-IMPL-REALIFICATION-ADAPTER",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc:1",
         "lean4/DerivationDagQMClosure.lean",
@@ -34598,7 +34611,7 @@
         "L1-WDP-REALIFICATION-J"
       ],
       "output": "FQ-IMPL-REALIFICATION-ADAPTER",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc:1",
         "external:sha256:1ae9121daca3f6d1f5cb700a325bc1aaa0d5a6988db99eee907e24ca729e876e:1",
@@ -37761,7 +37774,7 @@
         "TFQ-0383"
       ],
       "output": "PGW-CLOSED-BASELINE-TERMINATES",
-      "status": "COMPUTED",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0449_closed_baseline_terminates.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:517-522",
@@ -37788,7 +37801,7 @@
         "TFQ-0385"
       ],
       "output": "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
-      "status": "DERIVED_PROSE",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0451_no_endogenous_demand_generator.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:524-537",
@@ -37801,7 +37814,7 @@
         "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR"
       ],
       "output": "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
-      "status": "DERIVED_PROSE",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:634-644",
@@ -37814,7 +37827,7 @@
         "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR"
       ],
       "output": "PGW-MINIMAL-OR-INITIAL-REFUSED",
-      "status": "DERIVED_PROSE",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:623-633",
@@ -37829,7 +37842,7 @@
         "PGW-MINIMAL-OR-INITIAL-REFUSED"
       ],
       "output": "PGW-SEALED-TERMINAL-STATEMENT",
-      "status": "DERIVED_PROSE",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/02_genesis/tfq_0454_sealed_terminal_statement.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:650-658",
@@ -38623,7 +38636,7 @@
         "PGW-SN3-COST-TWO-UNARY-MARK"
       ],
       "output": "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE",
-      "status": "DERIVED_PROSE",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md",
         "atlas/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:531-537",
@@ -38679,7 +38692,7 @@
         "PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL"
       ],
       "output": "PGW-SN-POSTNIKOV-REFUSAL",
-      "status": "DERIVED_PROSE",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0520_sn_postnikov_refusal.md",
         "atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:721",
@@ -58359,7 +58372,11 @@
         "atlas/projection_obstruction/coordinate_wise_additivity/coordinate_wise_additivity_claim_ledger.md"
       ],
       "id": "TFQ-0353",
-      "lean4": [],
+      "lean4": [
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.edgewise_weighted_l1_scaling_and_disjoint_additivity",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.orbit_constant_weights_collapse_to_unweighted_l1",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.gs000_counterexamples_ce1_to_ce5"
+      ],
       "local_id": "A02-034",
       "name": "Under admitted H1-H5, record an edgewise weighted l1 aggregate, orbit-constant weights, and",
       "obligation": "Under admitted H1-H5, record an edgewise weighted l1 aggregate, orbit-constant weights, and the edge-transitive collapse, with each axiom still load-bearing.",
@@ -58370,7 +58387,7 @@
       "python": [
         "absent: no local python twin located for external:sha256:63fe87b0f4001f63e4cf817c382c38036c636bef507dc306d07320cdf814f817"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "code/rust/src/wdp/gauge_classification.rs"
       ],
@@ -59477,8 +59494,8 @@
       ],
       "id": "TFQ-0381",
       "lean4": [
-        "absent: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Minimality.lean",
-        "absent: declaration obligation: deltaU0_valid inside the declared response grammar"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.first_separation_cost_two_floor",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.first_separation_six_mu1_ties_and_two_mu2_unary_minima"
       ],
       "local_id": "A01-024",
       "name": "cost-two-first-separation",
@@ -59490,7 +59507,7 @@
       "python": [
         "absent: missing obligation: a cost counter in genesis/code/derivation/candidates.py, listed and not opened, scoped to the declared response grammar"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs",
         "absent: missing obligation: minima.rs must record item cost two without dropping ties"
@@ -61181,7 +61198,9 @@
       "id": "TFQ-1027",
       "lean4": [
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_amplitude_realification_and_pairing_bridges",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.realify2x2_mul_and_transpose_hom",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.realify2x2_trace_and_hermitian_balance"
       ],
       "local_id": "FQ-IMPL-REALIFICATION-ADAPTER",
       "name": "fq-impl-realification-adapter",
@@ -61191,7 +61210,7 @@
         "evidence/results/FQ-IMPL-REALIFICATION-ADAPTER/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json"
       ],
       "python": [],
-      "record_status": "COMPUTATIONAL_CONTROL",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc::DeclaredRealComposite",
         "external:sha256:1ae9121daca3f6d1f5cb700a325bc1aaa0d5a6988db99eee907e24ca729e876e::realify_operator_with_limits",
@@ -63592,7 +63611,9 @@
       "f004_refs": [],
       "id": "TFQ-0449",
       "lean4": [
-        "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
+        "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.closed_baseline_reading_l_and_f_tree_census",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.all_branches_terminate_iff_zero_cut_or_open"
       ],
       "local_id": "PGW-CLOSED-BASELINE-TERMINATES",
       "name": "closed-baseline-terminates",
@@ -63601,7 +63622,7 @@
       "python": [
         "atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py::build_tree"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::closed_system_baseline_reading_l",
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::closed_system_baseline_reading_f"
@@ -63650,7 +63671,10 @@
       "id": "TFQ-0451",
       "lean4": [
         "lean4/Imported/GenesisDerivation/Derivation/Counting.lean::allPairs_length",
-        "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
+        "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.closure_round_bound_allPairs",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.closure_fixpoint_no_unresolved_demand",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.collapsed_pair_needs_external_policy_or_supply"
       ],
       "local_id": "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
       "name": "no-endogenous-demand-generator",
@@ -63659,7 +63683,7 @@
       "python": [
         "atlas/finite_obstruction_calculus/genesis/code/derivation/engine.py::closure_challenge_orbits"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/closure.rs::closure_round_bound"
       ],
@@ -63678,7 +63702,9 @@
       "f004_refs": [],
       "id": "TFQ-0452",
       "lean4": [
-        "lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean::U0F"
+        "lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean::U0F",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.identity_is_index_not_profile_u0f",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.distinct_indices_can_share_profile"
       ],
       "local_id": "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
       "name": "identity-is-index-not-profile",
@@ -63687,7 +63713,7 @@
       "python": [
         "atlas/finite_obstruction_calculus/genesis/code/derivation/observe.py::profiles"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "atlas/finite_obstruction_calculus/genesis/code/rust/src/profile.rs::profiles"
       ],
@@ -63706,7 +63732,6 @@
       "f004_refs": [],
       "id": "TFQ-0453",
       "lean4": [
-        "absent: no Lean statement of minimality or initiality among finite processes satisfying the sealed challenges",
         "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.all_words_agree",
         "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_initial_in_clock_closed_class",
         "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_clock_hom_of_self_loop",
@@ -63714,7 +63739,9 @@
         "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.source_supply_self_loop",
         "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_source_initial_in_clock_closed_class",
         "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.all_words_minimum_size",
-        "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.nonminimal_adequate_process"
+        "lean4/GenesisProcessComparison.lean::GenesisProcessComparison.nonminimal_adequate_process",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.no_hom_from_self_loop_to_strict_clock",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.stuttered_adequate_process_not_state_minimal"
       ],
       "local_id": "PGW-MINIMAL-OR-INITIAL-REFUSED",
       "name": "minimal-or-initial-refused",
@@ -63724,7 +63751,7 @@
         "absent: no Python check; artifact determinism is repeated-run byte agreement, not a program",
         "checks/independent/pgw-minimal-or-initial-refused.py"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: no Rust check; artifact determinism is repeated-run byte agreement, not a program"
       ],
@@ -63743,7 +63770,7 @@
       "f004_refs": [],
       "id": "TFQ-0454",
       "lean4": [
-        "absent: the terminal statement composes clauses whose Lean theorems are cited in TFQ-0432 to TFQ-0451"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.sealed_terminal_clauses_a_to_f_bundle"
       ],
       "local_id": "PGW-SEALED-TERMINAL-STATEMENT",
       "name": "sealed-terminal-statement",
@@ -63752,7 +63779,7 @@
       "python": [
         "absent: no Python check of the composed statement; its clauses carry their own checks"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: no Rust check of the composed statement; its clauses carry their own checks"
       ],
@@ -65687,7 +65714,9 @@
       "id": "TFQ-0516",
       "lean4": [
         "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
-        "lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::dual_ledger_independence_at_stage_4"
+        "lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::dual_ledger_independence_at_stage_4",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.sn4_terminal_demand_empty_with_retained_history",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean::WitnessedDifference.WdpBatch7.complete_graph_cycle_rank_identity"
       ],
       "local_id": "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE",
       "name": "sn4-policy-closure-cycle-space",
@@ -65696,7 +65725,7 @@
       "python": [
         "external:upstream/education/2_symmetric_group_presentations/code/sn_core.py::S4Orbit"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: no Rust check of the S(4) ledger or of K_m cycle-space dimension"
       ],
@@ -65816,7 +65845,8 @@
       "f004_refs": [],
       "id": "TFQ-0520",
       "lean4": [
-        "absent: no Lean statement about Postnikov truncations in the S(n) or MSS-N packages"
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.postnikov_preserves_pi0_refutes_sn_tower",
+        "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.sn_stage_and_postnikov_depth_independent"
       ],
       "local_id": "PGW-SN-POSTNIKOV-REFUSAL",
       "name": "sn-postnikov-refusal",
@@ -65825,7 +65855,7 @@
       "python": [
         "absent: no Python check of Postnikov truncations"
       ],
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "rust": [
         "absent: no Rust check of Postnikov truncations"
       ],

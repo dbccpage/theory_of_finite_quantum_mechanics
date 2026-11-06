@@ -6,15 +6,15 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 988 nodes in 36 stages. Evidence grades: E0 70, E1 287, E2 81, E3 549, E4 1.
+The DAG has 988 nodes in 36 stages. Evidence grades: E0 70, E1 285, E2 83, E3 549, E4 1.
 
 ### What is proved here, what is imported, what is open
 
 | Group | Statuses | Nodes | Meaning |
 |---|---|---|---|
-| Proved in this repository, kernel-checked Lean | `PROVED_LEAN` | 253 | Lean declarations are cited as stating the node. Whether they lie in this repository and have a current replay receipt is in the grade table. |
-| Proved in prose | `PROVED_PROSE` | 34 | A written proof exists; no machine check is claimed. |
-| Checked by computation | `COMPUTATIONALLY_CHECKED` | 192 | An exact finite computation is recorded. |
+| Proved in this repository, kernel-checked Lean | `PROVED_LEAN` | 263 | Lean declarations are cited as stating the node. Whether they lie in this repository and have a current replay receipt is in the grade table. |
+| Proved in prose | `PROVED_PROSE` | 28 | A written proof exists; no machine check is claimed. |
+| Checked by computation | `COMPUTATIONALLY_CHECKED` | 188 | An exact finite computation is recorded. |
 | Conditional on named hypotheses | `CONDITIONAL` | 49 | Holds given hypotheses that the node names; the hypotheses are not derived. |
 | Definitions | `DEFINITION` | 95 | A definition or construction, not a claim of truth. |
 | Imported or admitted, not derived here | `IMPORTED_ASSUMPTION`, `ADMITTED_PRIMITIVE` | 76 | Taken in from outside the finite construction. Admitted as a starting object. |
@@ -22,21 +22,21 @@ The DAG has 988 nodes in 36 stages. Evidence grades: E0 70, E1 287, E2 81, E3 54
 | Open | `OPEN` | 199 | No derivation is recorded. |
 | Refuted | `REFUTED` | 7 | A counterexample is recorded. |
 
-Of the 253 `PROVED_LEAN` nodes, 226 reach grade E3 or E4 (89 percent); 27 do not. The second group is listed in [mismatches](mismatches.md).
+Of the 263 `PROVED_LEAN` nodes, 234 reach grade E3 or E4 (88 percent); 29 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 1 nodes meet all three. Among the 549 nodes at E3, 118 have a qualifying review, 24 of those cite in-repo Rust or Python code that is not a test, and 61 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 1 nodes meet all three. Among the 549 nodes at E3, 121 have a qualifying review, 25 of those cite in-repo Rust or Python code that is not a test, and 61 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 3057 distinct Lean declarations that lie in files of this checkout. 2865 of them are in a file whose current sha256 matches a passing replay receipt; 179 are in files with no receipt in `evidence/lean_receipts/`; 0 are in files whose receipt no longer matches; 13 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1324 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 3078 distinct Lean declarations that lie in files of this checkout. 2865 of them are in a file whose current sha256 matches a passing replay receipt; 200 are in files with no receipt in `evidence/lean_receipts/`; 0 are in files whose receipt no longer matches; 13 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1366 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
 | Status | E0 | E1 | E2 | E3 | E4 | Total |
 |---|---|---|---|---|---|---|
-| `PROVED_LEAN` | 0 | 0 | 27 | 226 | 0 | 253 |
-| `PROVED_PROSE` | 3 | 15 | 8 | 8 | 0 | 34 |
-| `COMPUTATIONALLY_CHECKED` | 5 | 87 | 23 | 77 | 0 | 192 |
+| `PROVED_LEAN` | 0 | 0 | 29 | 234 | 0 | 263 |
+| `PROVED_PROSE` | 3 | 13 | 8 | 4 | 0 | 28 |
+| `COMPUTATIONALLY_CHECKED` | 5 | 87 | 23 | 73 | 0 | 188 |
 | `CONDITIONAL` | 0 | 21 | 0 | 27 | 1 | 49 |
 | `DEFINITION` | 4 | 29 | 8 | 54 | 0 | 95 |
 | `IMPORTED_ASSUMPTION` | 4 | 16 | 0 | 53 | 0 | 73 |
@@ -44,22 +44,22 @@ The `lean` fields of nodes cite 3057 distinct Lean declarations that lie in file
 | `SOURCE_RECORD` | 39 | 43 | 0 | 1 | 0 | 83 |
 | `OPEN` | 15 | 72 | 14 | 98 | 0 | 199 |
 | `REFUTED` | 0 | 4 | 1 | 2 | 0 | 7 |
-| Total | 70 | 287 | 81 | 549 | 1 | 988 |
+| Total | 70 | 285 | 83 | 549 | 1 | 988 |
 
 ### Stage by evidence grade
 
 | Stage | E0 | E1 | E2 | E3 | E4 | Total | `PROVED_LEAN` | Flags |
 |---|---|---|---|---|---|---|---|---|
 | [PREGENESIS](stages/PREGENESIS.md) | 3 | 5 | 0 | 24 | 0 | 32 | 12 | 5 |
-| [GENESIS](stages/GENESIS.md) | 0 | 17 | 7 | 65 | 0 | 89 | 37 | 6 |
-| [MSSN_SN](stages/MSSN_SN.md) | 5 | 5 | 4 | 14 | 0 | 28 | 12 | 4 |
+| [GENESIS](stages/GENESIS.md) | 0 | 16 | 8 | 65 | 0 | 89 | 43 | 6 |
+| [MSSN_SN](stages/MSSN_SN.md) | 5 | 4 | 5 | 14 | 0 | 28 | 14 | 5 |
 | [WDP](stages/WDP.md) | 0 | 1 | 33 | 24 | 0 | 58 | 36 | 28 |
-| [L1_EMERGENCE](stages/L1_EMERGENCE.md) | 0 | 0 | 0 | 9 | 0 | 9 | 2 | 1 |
+| [L1_EMERGENCE](stages/L1_EMERGENCE.md) | 0 | 0 | 0 | 9 | 0 | 9 | 3 | 0 |
 | [L1_TO_L2](stages/L1_TO_L2.md) | 10 | 0 | 0 | 38 | 0 | 48 | 3 | 13 |
 | [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 0 | 0 | 37 | 1 | 39 | 12 | 16 |
 | [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 0 | 4 | 0 | 20 | 0 | 24 | 1 | 18 |
 | [FINITE_QM_STRUCTURE](stages/FINITE_QM_STRUCTURE.md) | 0 | 0 | 0 | 44 | 0 | 44 | 11 | 26 |
-| [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 1 | 1 | 1 | 7 | 0 | 10 | 5 | 5 |
+| [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 1 | 1 | 1 | 7 | 0 | 10 | 6 | 4 |
 | [DRESSING_FIELD](stages/DRESSING_FIELD.md) | 0 | 10 | 8 | 25 | 0 | 43 | 11 | 2 |
 | [MUTUALLY_UNBIASED_BASES](stages/MUTUALLY_UNBIASED_BASES.md) | 0 | 28 | 3 | 37 | 0 | 68 | 32 | 3 |
 | [FERMION_SIGN](stages/FERMION_SIGN.md) | 0 | 10 | 6 | 25 | 0 | 41 | 5 | 1 |
@@ -153,14 +153,14 @@ and run `lake env lean Check.lean`. The expected output lists only `propext`, `C
 
 ## Where status and evidence disagree
 
-264 flags on 218 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
+263 flags on 217 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
 
 | Flag | Count | Meaning |
 |---|---|---|
-| `proved_lean_below_e3` | 27 | PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt |
+| `proved_lean_below_e3` | 29 | PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt |
 | `proved_lean_external_only` | 0 | PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout |
 | `receipt_not_current` | 24 | A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit |
-| `computational_no_runnable_test` | 155 | COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited |
+| `computational_no_runnable_test` | 152 | COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited |
 | `proved_prose_no_in_repo_document` | 4 | PROVED_PROSE with no in-repo source document cited |
 | `broken_reference` | 43 | A cited in-repo path or symbol cannot be found in this checkout |
 | `receipt_names_uncited_module` | 11 | A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) |
@@ -169,7 +169,9 @@ The ten flags on `PROVED_LEAN` nodes with the most downstream nodes:
 
 | Node | Stage | Grade | Downstream nodes | Flag |
 |---|---|---|---|---|
+| [PGW-SEALED-TERMINAL-STATEMENT](nodes/PGW-SEALED-TERMINAL-STATEMENT.md) | GENESIS | E2 | 175 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
 | [PGW-WDP-FAILED-SAMENESS](nodes/PGW-WDP-FAILED-SAMENESS.md) | WDP | E2 | 39 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [PGW-SN-POSTNIKOV-REFUSAL](nodes/PGW-SN-POSTNIKOV-REFUSAL.md) | MSSN_SN | E2 | 36 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [PGW-WDP-TRICHOTOMY-BOUNDS](nodes/PGW-WDP-TRICHOTOMY-BOUNDS.md) | WDP | E2 | 31 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PGW-WD2-WORD-KERNEL-AGREEMENT](nodes/PGW-WD2-WORD-KERNEL-AGREEMENT.md) | WDP | E2 | 28 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [PGW-WD2-REFINEMENT-STABILIZATION](nodes/PGW-WD2-REFINEMENT-STABILIZATION.md) | WDP | E2 | 27 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
@@ -177,8 +179,6 @@ The ten flags on `PROVED_LEAN` nodes with the most downstream nodes:
 | [PGW-WD2-NO-ESCAPE-UPDATE-CONGRUENCE](nodes/PGW-WD2-NO-ESCAPE-UPDATE-CONGRUENCE.md) | WDP | E2 | 25 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [PGW-WD2-SHORTEST-SEPARATING-WORD](nodes/PGW-WD2-SHORTEST-SEPARATING-WORD.md) | WDP | E2 | 24 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
 | [PGW-WD2-FACTORED-REPORT-PRESERVATION](nodes/PGW-WD2-FACTORED-REPORT-PRESERVATION.md) | WDP | E2 | 23 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
-| [PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT](nodes/PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT.md) | WDP | E2 | 22 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
-| [PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS](nodes/PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS.md) | WDP | E2 | 21 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 
 ## What this map does not do
 

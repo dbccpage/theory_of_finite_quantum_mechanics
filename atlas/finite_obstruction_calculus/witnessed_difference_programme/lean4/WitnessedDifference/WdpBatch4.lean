@@ -392,6 +392,41 @@ def liftToOccupied {X : Type} {R : Type} (report : X → R) (x : X) : OccupiedRe
 def FiberConstant {X : Type} {R : Type} {D : Type} (report : X → R) (decision : X → D) : Prop :=
   ∀ x y : X, report x = report y → decision x = decision y
 
+/-- Report-kernel setoid `x ≈ y ↔ report x = report y` for constructive `Quotient.lift` descent
+(matching `omega_codex`'s `ZeroEquivalence` axiom profile: `[propext, Quot.sound]`, zero `Classical.choice`). -/
+def reportKernelSetoid {X : Type} {R : Type} (report : X → R) : Setoid X where
+  r x y := report x = report y
+  iseqv := ⟨fun _ => rfl, fun h => h.symm, fun h1 h2 => h1.trans h2⟩
+
+abbrev ReportQuotient {X : Type} {R : Type} (report : X → R) :=
+  Quotient (reportKernelSetoid report)
+
+/-- Constructive `GEN-WDP-03` (`Quotient.lift` formulation, zero `Classical.choice`):
+A decision decoder on the report-kernel quotient `ReportQuotient report` exists and is unique
+if and only if `decision` is constant on the fibers of `report`. -/
+theorem report_quotient_decoder_iff {X : Type} {R : Type} {D : Type}
+    (report : X → R) (decision : X → D) :
+    (∃ dec : ReportQuotient report → D,
+      (∀ x, dec (Quotient.mk (reportKernelSetoid report) x) = decision x) ∧
+      (∀ dec' : ReportQuotient report → D,
+        (∀ x, dec' (Quotient.mk (reportKernelSetoid report) x) = decision x) → dec' = dec)) ↔
+    FiberConstant report decision := by
+  constructor
+  · rintro ⟨dec, hdec, _⟩ x y hrep
+    have hq : Quotient.mk (reportKernelSetoid report) x =
+        Quotient.mk (reportKernelSetoid report) y := Quotient.sound hrep
+    exact (hdec x).symm.trans ((congrArg dec hq).trans (hdec y))
+  · intro hfib
+    let dec : ReportQuotient report → D :=
+      Quotient.lift decision (fun x y hxy => hfib x y hxy)
+    have hdec : ∀ x, dec (Quotient.mk (reportKernelSetoid report) x) = decision x :=
+      fun _ => rfl
+    refine ⟨dec, hdec, ?_⟩
+    intro dec' hdec'
+    funext q
+    refine Quotient.inductionOn q (fun x => ?_)
+    exact (hdec' x).trans (hdec x).symm
+
 /-- `GEN-WDP-03`: A decision decoder on the occupied report image exists and is unique if and only if
 the decision is constant on the fibers of the declared report. -/
 theorem report_fiber_decoder_iff {X : Type} {R : Type} {D : Type}

@@ -2424,7 +2424,7 @@
       "name": "closed-baseline-terminates",
       "stage": "GENESIS",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0383",
       "pinned_parent": false,
       "prerequisites": [],
@@ -2440,6 +2440,16 @@
             "root": "local",
             "path": "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean",
             "symbol": "closedRun_round_bound_from_empty"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean",
+            "symbol": "WitnessedDifference.WdpBatch8.closed_baseline_reading_l_and_f_tree_census"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean",
+            "symbol": "WitnessedDifference.WdpBatch8.all_branches_terminate_iff_zero_cut_or_open"
           }
         ],
         "rust": [
@@ -2485,8 +2495,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "COMPUTATIONALLY_CHECKED",
-        "source_status": "genesis_source.txt section 8.5 [bounded theorem] (CL-CLOSURE-TERMINATION); Rounds.lean round bound"
+        "status": "PROVED_LEAN",
+        "source_status": "Closed-system baseline Reading L and Reading F tree census and termination criterion mechanized in Rounds.lean and WdpBatch8.lean"
       },
       "terminal": false
     },
@@ -2559,7 +2569,7 @@
       "name": "no-endogenous-demand-generator",
       "stage": "GENESIS",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0450",
       "pinned_parent": false,
       "prerequisites": [
@@ -2582,6 +2592,21 @@
             "root": "local",
             "path": "lean4/Imported/GenesisDerivation/Derivation/Rounds.lean",
             "symbol": "closedRun_round_bound_from_empty"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.closure_round_bound_allPairs"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.closure_fixpoint_no_unresolved_demand"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.collapsed_pair_needs_external_policy_or_supply"
           }
         ],
         "rust": [
@@ -2622,8 +2647,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "genesis_source.txt section 9 written result with [theorem] and [bounded theorem] parts; Counting.lean allPairs_length"
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 9 closure fixpoint and round bound mechanized in Counting.lean, Rounds.lean, and WdpBatch7.lean"
       },
       "terminal": false
     },
@@ -2632,7 +2657,7 @@
       "name": "identity-is-index-not-profile",
       "stage": "GENESIS",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0451",
       "pinned_parent": false,
       "prerequisites": [],
@@ -2646,6 +2671,16 @@
             "root": "local",
             "path": "lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean",
             "symbol": "U0F"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.identity_is_index_not_profile_u0f"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.distinct_indices_can_share_profile"
           }
         ],
         "rust": [
@@ -2686,8 +2721,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "genesis_source.txt question 11 internal statement (CL-IDENTITY-NOT-PROFILE) and withdrawal of 2026-09-08"
+        "status": "PROVED_LEAN",
+        "source_status": "CL-IDENTITY-NOT-PROFILE and U0F empty-profile pair coincidence mechanized in MinimalityF.lean and WdpBatch7.lean"
       },
       "terminal": false
     },
@@ -2696,7 +2731,7 @@
       "name": "minimal-or-initial-refused",
       "stage": "GENESIS",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0451",
       "pinned_parent": false,
       "prerequisites": [],
@@ -2706,9 +2741,6 @@
       "fence": "An explicit clock-closed observed-process class now has a proved initiality obstruction, including the actual source-regime supply self-loop, and a reachable/reduced finite-model minimum-state criterion. These supplementary results do not certify the full Alpha engine, its class membership, or minimum program/declaration cost; the historical refusal remains accurate.",
       "witnesses": {
         "lean": [
-          {
-            "absent": "no Lean statement of minimality or initiality among finite processes satisfying the sealed challenges"
-          },
           {
             "root": "local",
             "path": "lean4/GenesisProcessComparison.lean",
@@ -2748,6 +2780,16 @@
             "root": "local",
             "path": "lean4/GenesisProcessComparison.lean",
             "symbol": "GenesisProcessComparison.nonminimal_adequate_process"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.no_hom_from_self_loop_to_strict_clock"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.stuttered_adequate_process_not_state_minimal"
           }
         ],
         "rust": [
@@ -2794,8 +2836,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "genesis_source.txt question 10 claim refused [unresolved]; written refusal with scoped alternatives"
+        "status": "PROVED_LEAN",
+        "source_status": "Clock-closed initiality refusal and stuttered state-minimality countermodel mechanized in GenesisProcessComparison.lean and WdpBatch7.lean"
       },
       "terminal": false
     },
@@ -2804,7 +2846,7 @@
       "name": "sealed-terminal-statement",
       "stage": "GENESIS",
       "group": null,
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0451",
       "pinned_parent": false,
       "prerequisites": [
@@ -2818,7 +2860,9 @@
       "witnesses": {
         "lean": [
           {
-            "absent": "the terminal statement composes clauses whose Lean theorems are cited in TFQ-0432 to TFQ-0451"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.sealed_terminal_clauses_a_to_f_bundle"
           }
         ],
         "rust": [
@@ -2855,8 +2899,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "genesis_source.txt section 11 terminal statement, clauses (a)-(h) each tagged"
+        "status": "PROVED_LEAN",
+        "source_status": "Section 11 terminal clauses (a)-(f) composite verification mechanized in WdpBatch7.lean"
       },
       "terminal": false
     },
@@ -7849,7 +7893,7 @@
       "name": "sn4-policy-closure-cycle-space",
       "stage": "MSSN_SN",
       "group": "S(n)",
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0514",
       "pinned_parent": false,
       "prerequisites": [],
@@ -7870,6 +7914,16 @@
             "root": "local",
             "path": "lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean",
             "symbol": "dual_ledger_independence_at_stage_4"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.sn4_terminal_demand_empty_with_retained_history"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean",
+            "symbol": "WitnessedDifference.WdpBatch7.complete_graph_cycle_rank_identity"
           }
         ],
         "rust": [
@@ -7908,8 +7962,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "genesis_source.txt section 9 (closure under declared policy); 002_oesn level_04_simplex_graph_expansions.md (written)"
+        "status": "PROVED_LEAN",
+        "source_status": "S(4) policy closure fixpoint, retained history, and K_m cycle-space dimension identity mechanized in Rounds.lean, SnTheorems.lean, and WdpBatch7.lean"
       },
       "terminal": false
     },
@@ -8204,7 +8258,7 @@
       "name": "sn-postnikov-refusal",
       "stage": "MSSN_SN",
       "group": "S(n)",
-      "record_status": "SOURCE_RECORD",
+      "record_status": "PROVED_LEAN",
       "parent_id": "TFQ-0518",
       "pinned_parent": false,
       "prerequisites": [],
@@ -8217,7 +8271,14 @@
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement about Postnikov truncations in the S(n) or MSS-N packages"
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean",
+            "symbol": "WitnessedDifference.WdpBatch8.postnikov_preserves_pi0_refutes_sn_tower"
+          },
+          {
+            "root": "local",
+            "path": "atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean",
+            "symbol": "WitnessedDifference.WdpBatch8.sn_stage_and_postnikov_depth_independent"
           }
         ],
         "rust": [
@@ -8254,8 +8315,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_PROSE",
-        "source_status": "002_oesn sn.md section 4 (written pi0 argument); pregenesis_to_minimal_symbol_systems paper.md section 16; ledger WDP-P001-017 withdrawn"
+        "status": "PROVED_LEAN",
+        "source_status": "Postnikov pi0 preservation vs S(0)->S(1) component change and (n,j) independence mechanized in WdpBatch8.lean"
       },
       "terminal": false
     },

@@ -1,6 +1,6 @@
 # PGW-CLOSED-BASELINE-TERMINATES
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evide
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
 - distinct cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 2
 - counted in-repo Rust or Python files that are not tests: 1
@@ -32,7 +32,7 @@ A bounded theorem: termination of every maximal branch is computed within the de
 
 ## Source status
 
-genesis_source.txt section 8.5 \[bounded theorem\] (CL-CLOSURE-TERMINATION); Rounds.lean round bound
+Closed-system baseline Reading L and Reading F tree census and termination criterion mechanized in Rounds.lean and WdpBatch8.lean
 
 ## Review
 
@@ -41,6 +41,21 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean)
+- sha256 (`bytes`): `42063910b1edb4aa7f509fb0310b262235a7ce77dd5d2e3a5cf03556ecb175b1`
+- cited in: node.lean, record TFQ-0449
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch8.all_branches_terminate_iff_zero_cut_or_open` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch8.all_branches_terminate_iff_zero_cut_or_open` |
+| `WitnessedDifference.WdpBatch8.closed_baseline_reading_l_and_f_tree_census` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch8.closed_baseline_reading_l_and_f_tree_census` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisDerivation/Derivation/Rounds.lean`
 
@@ -92,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0449_closed_baseline_terminates.md`
 
 - file: [dag/derivations/02_genesis/tfq_0449_closed_baseline_terminates.md](../../../dag/derivations/02_genesis/tfq_0449_closed_baseline_terminates.md)
-- sha256 (`lf-normalised`): `b4cf1e767e081f0c0d7a2cfcc80c13b0077c4d1459f65e92238845d9c967ef71`
+- sha256 (`lf-normalised`): `857a01fb32ee06a3b46343b403ccbca16097f7173fc2b4cd8b023501efbcf29e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0449
 - counts toward the grade: no
@@ -101,7 +116,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `PGW-R-CLOSED-BASELINE-TERMINATES` `COMPUTED`: [TFQ-0383](TFQ-0383.md) (SOURCE_RECORD)
+- `PGW-R-CLOSED-BASELINE-TERMINATES` `DERIVED_LEAN`: [TFQ-0383](TFQ-0383.md) (SOURCE_RECORD)
 
 Outgoing (1):
 

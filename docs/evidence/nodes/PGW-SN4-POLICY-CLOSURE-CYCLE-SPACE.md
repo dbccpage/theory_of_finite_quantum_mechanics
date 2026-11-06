@@ -1,6 +1,6 @@
 # PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE
 
-Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_PROSE`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,8 +10,8 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_PROSE`. Evidence grade: 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
@@ -32,7 +32,7 @@ Neither supply nor a stage number selects the policy, and there is no claim that
 
 ## Source status
 
-genesis_source.txt section 9 (closure under declared policy); 002_oesn level_04_simplex_graph_expansions.md (written)
+S(4) policy closure fixpoint, retained history, and K_m cycle-space dimension identity mechanized in Rounds.lean, SnTheorems.lean, and WdpBatch7.lean
 
 ## Review
 
@@ -41,6 +41,21 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean)
+- sha256 (`bytes`): `325cb7b3dd05bf6b4c4f5081935af36bbddc9493b7404f2bb3cce46bc0e32fc5`
+- cited in: node.lean, record TFQ-0516
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch7.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch7.complete_graph_cycle_rank_identity` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch7.complete_graph_cycle_rank_identity` |
+| `WitnessedDifference.WdpBatch7.sn4_terminal_demand_empty_with_retained_history` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch7.sn4_terminal_demand_empty_with_retained_history` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisDerivation/Derivation/Rounds.lean`
 
@@ -82,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md](../../../dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md)
-- sha256 (`lf-normalised`): `27f4dd1979c0a092d64a1e26de905849f30be9631ea57faae023be4ad03286e9`
+- sha256 (`lf-normalised`): `e145d6167947c083747432669c58dd95f69ffaf3079a35b15ac7862a0a2f5b28`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0516
 - counts toward the grade: no
@@ -103,7 +118,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `PGW-R-SN4-POLICY-CLOSURE-CYCLE-SPACE` `DERIVED_PROSE`: [PGW-SN3-COST-TWO-UNARY-MARK](PGW-SN3-COST-TWO-UNARY-MARK.md) (PROVED_LEAN)
+- `PGW-R-SN4-POLICY-CLOSURE-CYCLE-SPACE` `DERIVED_LEAN`: [PGW-SN3-COST-TWO-UNARY-MARK](PGW-SN3-COST-TWO-UNARY-MARK.md) (PROVED_LEAN)
 
 Outgoing (2):
 

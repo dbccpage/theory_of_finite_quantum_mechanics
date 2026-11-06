@@ -1,6 +1,6 @@
 # L1-GS000-EDGEWISE-L1
 
-Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,17 +10,17 @@ Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `COMPUTATIONALLY_CHECK
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 7
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `computational_no_runnable_test`: 2 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -32,11 +32,11 @@ Lean states only fixed small cases: a two-edge weighted l1 sum, a three-coordina
 
 ## Source status
 
-Thm 1 coordinatewise weighted L1 decomposition, Thm 2 symmetry orbit-constancy, Thm 3 edge-transitive collapse, and CE1-CE5 drop-one countermodels mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
+Thm 1 coordinatewise weighted L1 decomposition, Thm 2-3 orbit collapse, and CE1-CE5 counterexamples mechanized in DerivationDagQMClosure.lean and WdpBatch8.lean
 
 ## Review
 
-- PFP review: [evidence/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [evidence/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../evidence/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Weighted two-edge l1 decomposition, exact transposition defect and l-infinity disjoint-additivity countercontrols; general transposition algebra under positive coordinates.
   - does not support: Prove the full H1-H5 classification and graph-orbit theorem on its stated carrier, separately from finite examples. Nonnegative zero weights give a seminorm, not faithfulness.
   - next test: Prove the full H1-H5 classification and graph-orbit theorem on its stated carrier, separately from finite examples. Nonnegative zero weights give a seminorm, not faithfulness.
@@ -44,6 +44,22 @@ Thm 1 coordinatewise weighted L1 decomposition, Thm 2 symmetry orbit-constancy, 
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean`
+
+- file: [atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean)
+- sha256 (`bytes`): `42063910b1edb4aa7f509fb0310b262235a7ce77dd5d2e3a5cf03556ecb175b1`
+- cited in: node.lean, record TFQ-0353
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WitnessedDifference.WdpBatch8.edgewise_weighted_l1_scaling_and_disjoint_additivity` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch8.edgewise_weighted_l1_scaling_and_disjoint_additivity` |
+| `WitnessedDifference.WdpBatch8.gs000_counterexamples_ce1_to_ce5` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch8.gs000_counterexamples_ce1_to_ce5` |
+| `WitnessedDifference.WdpBatch8.orbit_constant_weights_collapse_to_unweighted_l1` | yes | yes | yes | - | `#print axioms WitnessedDifference.WdpBatch8.orbit_constant_weights_collapse_to_unweighted_l1` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
@@ -142,7 +158,7 @@ Named by the node; not in this repository and not checked here.
 
 Incoming (1):
 
-- `L1-R-OBSERVER-TO-GS000` `COMPUTED`: [L1-OBSERVER-AXIOMS-H1-H5](L1-OBSERVER-AXIOMS-H1-H5.md) (ADMITTED_PRIMITIVE)
+- `L1-R-OBSERVER-TO-GS000` `DERIVED_LEAN`: [L1-OBSERVER-AXIOMS-H1-H5](L1-OBSERVER-AXIOMS-H1-H5.md) (ADMITTED_PRIMITIVE)
 
 Outgoing (4):
 

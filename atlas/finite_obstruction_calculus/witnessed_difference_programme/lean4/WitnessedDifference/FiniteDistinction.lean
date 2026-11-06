@@ -14,13 +14,29 @@ def related (observe : Nat → Nat) (update : Nat → Nat → Nat) (alphabet : L
       (observe s == observe t) &&
         alphabet.all fun σ => related observe update alphabet n (update s σ) (update t σ)
 
+theorem list_all_true {α : Type} (p : α → Bool) (l : List α)
+    (h : ∀ a, p a = true) : l.all p = true := by
+  induction l with
+  | nil => rfl
+  | cons head tail ih =>
+      show (p head && tail.all p) = true
+      rw [h head, ih]
+      rfl
+
+theorem nat_beq_self (x : Nat) : (x == x) = true :=
+  decide_eq_true rfl
+
 theorem related_refl (observe : Nat → Nat) (update : Nat → Nat → Nat)
     (alphabet : List Nat) (n s : Nat) :
     related observe update alphabet n s s = true := by
   induction n generalizing s with
-  | zero => simp [related]
+  | zero =>
+      unfold related
+      exact nat_beq_self (observe s)
   | succ n ih =>
-      simp [related, List.all_eq_true, ih]
+      unfold related
+      rw [nat_beq_self (observe s), Bool.true_and]
+      exact list_all_true _ alphabet (fun σ => ih (update s σ))
 
 theorem related_symm (observe : Nat → Nat) (update : Nat → Nat → Nat)
     (alphabet : List Nat) (n s t : Nat)
@@ -550,13 +566,15 @@ theorem unfactored_report_splits_r0 :
     let unfactoredReport : Nat → Nat → Nat := fun s _ => s
     (∀ n : Nat, related observe update alphabet n 0 1 = true) ∧
       reportTrace update unfactoredReport 0 [0] ≠ reportTrace update unfactoredReport 1 [0] := by
-  dsimp only
+  intro observe update alphabet unfactoredReport
   refine ⟨?_, by decide⟩
   intro n
   induction n with
   | zero => rfl
   | succ n ih =>
-      simp [related, ih]
+      change (true && (related observe update alphabet n 0 1 && true)) = true
+      rw [Bool.true_and, Bool.and_true]
+      exact ih
 
 /-!
 ## 6. Minimal Deterministic Quotient (WD2-T6)

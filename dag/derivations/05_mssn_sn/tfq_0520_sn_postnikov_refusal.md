@@ -1,6 +1,6 @@
 # [TFQ-0520] sn-postnikov-refusal
 
-> **Stage**: `MSSN_SN` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `MSSN_SN` | **Status**: `PROVED_LEAN`  
 > **UUID**: `e3ff16d7-f5d8-5b58-983b-34d9b2631e2b`  
 > **Parent Derivation**: [TFQ-0518](tfq_0518_sn_off_image_refusal_proposal.md)
 
@@ -33,7 +33,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: no Lean statement about Postnikov truncations in the S(n) or MSS-N packages`
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.postnikov_preserves_pi0_refutes_sn_tower`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean::WitnessedDifference.WdpBatch8.sn_stage_and_postnikov_depth_independent`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch8.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of Postnikov truncations`

@@ -427,8 +427,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0350` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-CHAIN-D1D0-AXIOM` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0351` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-FRAMEWORK-KKT-CERT` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0352` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-OBSERVER-AXIOMS-H1-H5` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0353` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS000-EDGEWISE-L1` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (COMPUTATIONALLY_CHECKED) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0353` | `L1_EMERGENCE` | `PROVED_LEAN` | `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0355` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` (OPEN), `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-IMP-HILBERT-INNER-PRODUCT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0356` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS001-GAUGE-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0357` | `L1_EMERGENCE` | `PROVED_LEAN` | `L1-WDP-CH08-C01-REPLICA-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
@@ -455,8 +455,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0378` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-REGIME-EVENTS` (DEFINITION) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-0379` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-SUPPLY-NO-OP` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
 | `TFQ-0380` | `GENESIS` | `OPEN_OBLIGATION` | `PG-GEN-SUPPLY-NO-OP` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
-| `TFQ-0381` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
-| `TFQ-0382` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
+| `TFQ-0381` | `GENESIS` | `PROVED_LEAN` | `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
+| `TFQ-0382` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-0383` | `GENESIS` | `SOURCE_RECORD` | `TFQ-0383` (SOURCE_RECORD) | - |
 | `TFQ-0384` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-NO-RETURN` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
 | `TFQ-0385` | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0385` (OPEN) | - |
@@ -498,7 +498,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1024` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CORPUS-REWRITE` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1025` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-C500-ORIGINAL-TARGETS` (OPEN) | scoped_block_numeral_slice_reviewed / caveat_added |
 | `TFQ-1026` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (PROVED_LEAN) | reviewed_with_targeted_native_integration / consistent |
-| `TFQ-1027` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-REALIFICATION-ADAPTER` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
+| `TFQ-1027` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-REALIFICATION-ADAPTER` (PROVED_LEAN) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-1028` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-PAIRING-AUDIT` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_gaussian_integer_result_reviewed / caveat_added |
 | `TFQ-1030` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CIRCLE-U1` (IMPORTED_ASSUMPTION) | scoped_sign_pair_cycle_result_reviewed / caveat_added |
@@ -564,12 +564,12 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0446` | `GENESIS` | `PROVED_LEAN` | `PGW-PRUNING-LEMMAS-COST-TWO` (PROVED_LEAN) | - |
 | `TFQ-0447` | `GENESIS` | `PROVED_LEAN` | `PGW-COUNT-INVARIANCE-TRANSPORT` (PROVED_LEAN) | - |
 | `TFQ-0448` | `GENESIS` | `SOURCE_RECORD` | `PGW-BRANCH-TREES-AND-ROLES` (COMPUTATIONALLY_CHECKED) | - |
-| `TFQ-0449` | `GENESIS` | `SOURCE_RECORD` | `PGW-CLOSED-BASELINE-TERMINATES` (COMPUTATIONALLY_CHECKED) | - |
+| `TFQ-0449` | `GENESIS` | `PROVED_LEAN` | `PGW-CLOSED-BASELINE-TERMINATES` (PROVED_LEAN) | - |
 | `TFQ-0450` | `GENESIS` | `PROVED_LEAN` | `PGW-POLICY-ENDPOINT-ALL-SEPARATED` (PROVED_LEAN) | - |
-| `TFQ-0451` | `GENESIS` | `SOURCE_RECORD` | `PGW-NO-ENDOGENOUS-DEMAND-GENERATOR` (PROVED_PROSE) | - |
-| `TFQ-0452` | `GENESIS` | `SOURCE_RECORD` | `PGW-IDENTITY-IS-INDEX-NOT-PROFILE` (PROVED_PROSE) | - |
-| `TFQ-0453` | `GENESIS` | `SOURCE_RECORD` | `PGW-MINIMAL-OR-INITIAL-REFUSED` (PROVED_PROSE) | - |
-| `TFQ-0454` | `GENESIS` | `SOURCE_RECORD` | `PGW-SEALED-TERMINAL-STATEMENT` (PROVED_PROSE) | - |
+| `TFQ-0451` | `GENESIS` | `PROVED_LEAN` | `PGW-NO-ENDOGENOUS-DEMAND-GENERATOR` (PROVED_LEAN) | - |
+| `TFQ-0452` | `GENESIS` | `PROVED_LEAN` | `PGW-IDENTITY-IS-INDEX-NOT-PROFILE` (PROVED_LEAN) | - |
+| `TFQ-0453` | `GENESIS` | `PROVED_LEAN` | `PGW-MINIMAL-OR-INITIAL-REFUSED` (PROVED_LEAN) | - |
+| `TFQ-0454` | `GENESIS` | `PROVED_LEAN` | `PGW-SEALED-TERMINAL-STATEMENT` (PROVED_LEAN) | - |
 | `TFQ-0455` | `GENESIS` | `PROVED_LEAN` | `PGW-D2-INITIAL-POINTED` (PROVED_LEAN) | - |
 | `TFQ-0456` | `GENESIS` | `DEFINITION` | `PGW-FIVE-PRESENTATION-QUESTIONS` (DEFINITION) | - |
 | `TFQ-0457` | `GENESIS` | `PROVED_LEAN` | `PGW-QUOTIENT-RETENTION` (PROVED_LEAN) | - |
@@ -631,11 +631,11 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0513` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN2-OPAQUE-COLLAPSE` (PROVED_LEAN) | - |
 | `TFQ-0514` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN3-COST-TWO-UNARY-MARK` (PROVED_LEAN) | - |
 | `TFQ-0515` | `MSSN_SN` | `PROVED_LEAN` | `PGW-SN-ENDPOINT-LEMMA` (PROVED_LEAN) | - |
-| `TFQ-0516` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE` (PROVED_PROSE) | - |
+| `TFQ-0516` | `MSSN_SN` | `PROVED_LEAN` | `PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE` (PROVED_LEAN) | - |
 | `TFQ-0517` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN5-CONTINUATION-RECORDED-REQUEST` (DEFINITION) | - |
 | `TFQ-0518` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL` (PROVED_LEAN) | - |
 | `TFQ-0519` | `MSSN_SN` | `OPEN_OBLIGATION` | `PGW-SN-PROTECTED-ANSWER-TRANSPORT` (OPEN) | - |
-| `TFQ-0520` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-POSTNIKOV-REFUSAL` (PROVED_PROSE) | - |
+| `TFQ-0520` | `MSSN_SN` | `PROVED_LEAN` | `PGW-SN-POSTNIKOV-REFUSAL` (PROVED_LEAN) | - |
 | `TFQ-0521` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-REPRESENTATION-QUOTIENT` (PROVED_LEAN) | - |
 | `TFQ-0522` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-E08-WEIGHTED-L1-DUALITY` (PROVED_LEAN) | - |
 | `TFQ-0523` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-E12-CIRCULATION-FUNCTIONAL` (PROVED_LEAN) | - |
@@ -1717,7 +1717,7 @@ Obligation: Reading L and Reading F both remain available; neither admission of 
 
 - UUID: `f39dea0e-e068-5840-846a-9de7b7c858cf`
 - Parent: `TFQ-0380`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 - Coda atlas: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - Atlas paths:
   - `external:sha256:9dd2ed282b00133517ad1afb404b1dd51cdd54e517e07c21e395abadc89a0144`
@@ -2064,7 +2064,7 @@ Obligation: Regenerate the four quotiented trees within the declared bounds and 
 
 - UUID: `7e838afc-09e9-550d-92f3-040a0cea91c5`
 - Parent: `TFQ-0383`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 With the external continuation policy disabled, the closed-system baselines are small: reading L has 4 nodes and 3 terminal branches, reading F has 20 nodes and 16 terminal branches, and both have zero guard-cut, round-cut and open branches. Every maximal branch ends at the all-pairs-separated fixpoint within the pair bound, using 1 round in L (bound 1) and 3 in F (bound 3), and the termination flag is computed over all maximal branches rather than from one terminal node. Under the declared round shape a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty).
 
@@ -2084,7 +2084,7 @@ Obligation: Show that a well-formed regime with satisfied requirements and no va
 
 - UUID: `d2dfaec3-d3a3-59e1-ba78-27c8c6ba1ff4`
 - Parent: `TFQ-0450`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 The continuation question asks whether the admitted structure can generate its next unresolved requirement without inspecting token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation. The sealed answer is that no object-language endogenous demand generator was derived: a collapsed pair is not an active obstruction by itself, and the declared closure policy only reissues the admitted requirement pattern. Under that policy the fixed finite datum set reaches the all-pairs-separated fixpoint within n(n−1)/2 rounds, the size of the requirement language (allPairs_length). At the fixpoint no unresolved requirement exists in that language, so any further requirement needs a fresh datum (external supply) or a new requirement kind (external goal).
 
@@ -2094,7 +2094,7 @@ Obligation: Record that closure under the declared policy stops at the all-pairs
 
 - UUID: `3faf6bec-8e88-51ff-a142-ac2a9644aba1`
 - Parent: `TFQ-0451`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Internal identity in the model is the datum index, never the profile (CL-IDENTITY-NOT-PROFILE). In reading F the first-round mu2 minimum admits one unary form with an instance marking datum 1; its only context is that form with one hole, so data 0 and 2 keep distinct indices with identical empty profiles while datum 1 is separated from both. A valid response separates the challenged pair by profiles, and other distinct data may stay observationally equivalent. The earlier sentence that from Challenge 3 round 1 onward each datum's internal identity is exactly its profile is false in the model and was withdrawn on 2026-09-08.
 
@@ -2104,7 +2104,7 @@ Obligation: Keep datum identity as the admission index, and check on the reading
 
 - UUID: `677ff5ab-6652-5c00-bbf4-9c8d2c9479d7`
 - Parent: `TFQ-0451`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Question 10 asks whether the final process is minimal or initial among a defined class of finite processes satisfying the same challenges. The sealed answer is that the claim is refused and tagged unresolved: no such initiality or minimality property was established. What is established is narrower: determinism of the artifacts across the exercised runs and platforms is a finite computation (byte-identical artifacts are repeated-run agreement, not an engine theorem), completeness of enumerations within declared bounds is a bounded theorem under its ledger conditions, and the per-stage minimality and uniqueness results are theorems with their stated scopes. An earlier wording, what is proved: determinism of the engine, was corrected on 2026-09-08.
 
@@ -2114,7 +2114,7 @@ Obligation: Refuse any minimality or initiality claim for the whole process, and
 
 - UUID: `1339dd05-26d5-5bf4-92d6-00047e85a2b6`
 - Parent: `TFQ-0451`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Section 11 of the sealed manuscript states the terminal result within the declared metatheory and candidate grammar, with one tag per clause. Clauses (a) to (c) are theorems: the initial inscription generates nothing and supply without admission never changes state; admission without judgment structure yields total collapse, so admission need not increase expressive power; and the first separation costs exactly two items in both readings. Clause (d) is a theorem for reading L (three tied mu1 classes and an infinite arity family), a bounded theorem for the five reading-F classes, and a theorem for mu2 uniqueness up to isomorphism in both readings, and clause (e) is the response-existence theorem. Clause (f) is a bounded theorem: no endogenous demand generator was derived and closure terminates within n(n−1)/2 rounds, 1 and 3 rounds in the baselines. Clause (g) is a finite computation, the external policy reaching depth 15 with mu2 quotient trees of 963 and 1847 nodes, and clause (h) is unresolved: both admission readings survive.
 
@@ -3040,7 +3040,7 @@ Obligation: From irreflexivity and R(a,b) derive a ≠ b, report endpoint count 
 
 - UUID: `d59a360a-630d-51f0-984b-8cd671f1f702`
 - Parent: `TFQ-0514`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 S(4) applies a supplied pair-separation closure policy. The sealed source derives no object-language endogenous demand generator; under the declared policy, which reads admitted structure and automorphism orbits and issues one requirement per orbit, the fixed finite datum set reaches the all-pairs-separated fixpoint, and a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty). At that terminal state the active separation-demand set is empty, so W₄ = ∅ and s₄ = 0, while the retained history H₄ stays nonempty. A complete graph K_m records the separated pairs of m data; for m ≥ 1 it is connected with cycle-space dimension m(m−1)/2 − m + 1.
 
@@ -3080,7 +3080,7 @@ Obligation: For each protected answer F supply F′ with F′∘u = F (such as r
 
 - UUID: `e3ff16d7-f5d8-5b58-983b-34d9b2631e2b`
 - Parent: `TFQ-0518`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 The construction index n of S(n) is distinct from Postnikov depth j. For j ≥ 0 the Postnikov truncations of a fixed space preserve π₀, so an empty space followed by a point cannot be two truncations of one space. If a topological realization ρ is supplied, its tower at fixed n is written P_j(ρ(S(n))) with its own hypotheses, and growth across n stays a separate construction that needs its own maps and preservation proofs. The combined paper lists S(n) is automatically a Postnikov tower among withdrawn inferences, and ledger row WDP-P001-017 withdraws automatic Postnikov structure.
 
@@ -3935,7 +3935,7 @@ Obligation: Admit H1 through H5 as observer hypotheses on a finite edge projecti
 
 - UUID: `6d27377a-8ee5-593d-9afa-a06eb0261ee6`
 - Parent: `TFQ-0352`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 - Coda atlas: `F000.S000`
 
 DAG node L1-GS000-EDGEWISE-L1 says that under H1-H5 the aggregate seminorm is an edgewise weighted l1 sum, that graph symmetry makes weights constant on orbits, and that edge-transitivity collapses the weights to unweighted l1. Counterexamples CE1 through CE5 are recorded as showing that each axiom is used. Route L1-R-OBSERVER-TO-GS000 takes only L1-OBSERVER-AXIOMS-H1-H5 as input. gauge_classification.rs names that GS-000 content in its header. This slice does not re-elaborate the cited Lean and does not promote the DAG status field.
@@ -8083,8 +8083,8 @@ Obligation: WDP-CH19-P11/P12 mechanized in WdpBatch4.lean alongside amplitude_br
 
 - UUID: `ede28733-9821-5833-8771-7cc0bfce6c1d`
 - Parent: `TFQ-1007`
-- Status: `COMPUTATIONAL_CONTROL`
-- DAG node: `FQ-IMPL-REALIFICATION-ADAPTER` (`COMPUTATIONALLY_CHECKED`)
+- Status: `PROVED_LEAN`
+- DAG node: `FQ-IMPL-REALIFICATION-ADAPTER` (`PROVED_LEAN`)
 
 A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both tfqm_wdp (Genesis side) and quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.
 
