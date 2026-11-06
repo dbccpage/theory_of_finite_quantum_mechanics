@@ -103,7 +103,7 @@ the overclaim scanner's tokens plus `axiom`). By hand, two differences between t
 |---|---|---|---|
 | AP_LN_001 / AP_LN_004 | 0 | | no admission token or axiom declaration outside comments, strings and identifier uses |
 | AP_PY_019 | 23 | `code/python/src/majorana/test_codaq_omega_engine_integration.py:42` (`assert True`); `code/python/src/majorana/test_finite_matrix_recovery.py:353` (`assert 8 > 4`); `code/python/tests/test_finite_witness.py:109` (`assert 5 * 5 - 3 * 3 == 16`) | 19 of 23 are in `code/python/src/majorana/` |
-| AP_PY_006 | 5 | `code/rust/quality/l4a_qm_six/replay.py:209` hard-codes a the_symbol_game `Cargo.lock` path on one workstation; `papers/core/constraint_closure/public_export/build_publication_assets.py:633` | |
+| AP_PY_006 | 5 | `code/rust/quality/l4a_qm_six/replay.py:209` hard-codes a the_symbol_game `Cargo.lock` path on one workstation; `dag/derivations/19_finite_qg/constraint_closure/public_export/build_publication_assets.py:633` | |
 | AP_MATH_011 | 0 | | no floating point in the 9 independent checks |
 | AP_PY_001 | 24 | blanket `# type: ignore` | LOW |
 

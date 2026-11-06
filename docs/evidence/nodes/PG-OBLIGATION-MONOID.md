@@ -32,7 +32,7 @@ Genesis events and S(n) maps carrying context-independent generated/discharged v
 
 ## Source status
 
-WDP-CH03-P02, P03 MECHANIZED in DerivationDagQMClosure.lean and Rust witness
+WDP-CH03-P02, P03 MECHANIZED in DerivationDagQMClosure.lean and Rust witness The legacy GTLA rubric is unavailable in this checkout; its historical path is marked external and supplies no local file evidence.
 
 ## Review
 
@@ -101,13 +101,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `.claude/rules/authority/rl_gtla_rules_rubric.md`
-
-- file: `.claude/rules/authority/rl_gtla_rules_rubric.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md](../../../dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md)
@@ -125,6 +118,7 @@ Named by the node; not in this repository and not checked here.
 - `external:sha256:5c5cb8a52c5879da00a72654ee0c47e551e4839cb3b2cee5daa00557af3c58d8::Obligations`
 - `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_wdp_obligations_and_growth_witness`
 - `external:sha256:7728578ae5d0dac8e95aa86964e9d32cb0db2b72757ba9460b7aad180d489780`
+- `external:unavailable:.claude/rules/authority/rl_gtla_rules_rubric.md:34-41`
 
 ## Absences recorded by the TFQ records
 

@@ -334,7 +334,7 @@ Where they are (first three path components): `code/python/src` 279, `papers/cor
 
 `Cargo.toml` path dependencies (excluding sealed copies under `dag/results/**`): 53 entries, 1 leave the repository:
 
-- `papers/core/mub6/code/Cargo.toml`: dependency `omega_mub`, `path = "../../../../../omega_engine/crates_rs/omega_mub"`
+- `dag/derivations/25_mub/mub6/code/Cargo.toml`: dependency `omega_mub`, `path = "../../../../../omega_engine/crates_rs/omega_mub"`
 
 
 337 files name an absolute `...\the_symbol_game\...` path in prose, scripts or receipts; they are listed in the JSON.

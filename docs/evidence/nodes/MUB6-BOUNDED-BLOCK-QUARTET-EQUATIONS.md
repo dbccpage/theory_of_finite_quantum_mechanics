@@ -32,7 +32,7 @@ Infeasibility of these equations is open; the positive determinant bound is need
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C12 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C12 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -87,27 +87,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md](../../../dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md)
-- sha256 (`lf-normalised`): `2736d8047d00a3f1471b19cb65ce33c1e9055ec31c688086e3f5def1e4444a11`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1260
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md`
+
+- file: [dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md](../../../dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md)
+- sha256 (`lf-normalised`): `ed1dbc2c17ee2fca5ae39a0cb0a8f383b3c0782a272399988cf3a3449a66f603`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1260
+- counts toward the grade: no
 
 ## Routes
 

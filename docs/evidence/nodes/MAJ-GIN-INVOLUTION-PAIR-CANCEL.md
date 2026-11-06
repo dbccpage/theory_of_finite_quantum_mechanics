@@ -32,7 +32,7 @@ Single pair only; no global involution on a configuration space is constructed.
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-GIN-INVOLUTION-CANCEL claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-GIN-INVOLUTION-CANCEL claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `papers/core/majorana/lean4/MajoranaGinCore.lean`
+### Lean: `dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean`
 
-- file: [papers/core/majorana/lean4/MajoranaGinCore.lean](../../../papers/core/majorana/lean4/MajoranaGinCore.lean)
+- file: [dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean](../../../dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean)
 - sha256 (`bytes`): `33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102`
 - cited in: node.lean, record TFQ-1175
 - replay: `verified`
   - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaGinCore`): recorded sha256 `33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaGinCore.lean`
+- check: `cd lean4 && lake build   # the library that contains dag/derivations/28_majorana/majorana/lean4/MajoranaGinCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -58,27 +58,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/lean4/axiom_report.txt`
 
-- file: [dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md](../../../dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md)
-- sha256 (`lf-normalised`): `5a3baca2fd3a6560709d18f1d8bd26cc6518e846097611dfee2571c7e21e9a44`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1175
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/lean4/axiom_report.txt`
-
-- file: [papers/core/majorana/lean4/axiom_report.txt](../../../papers/core/majorana/lean4/axiom_report.txt)
+- file: [dag/derivations/28_majorana/majorana/lean4/axiom_report.txt](../../../dag/derivations/28_majorana/majorana/lean4/axiom_report.txt)
 - sha256 (`lf-normalised`): `ec4465011fdd2b18f2c9df263004e9050f8c394dece1841835ff0bcd1e00df79`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md`
+
+- file: [dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md](../../../dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md)
+- sha256 (`lf-normalised`): `55a64a3570c532208f8fa87529c1e116ed1465b0391de12a17ac292ff4d1bbdc`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1175
+- counts toward the grade: no
 
 ## Routes
 

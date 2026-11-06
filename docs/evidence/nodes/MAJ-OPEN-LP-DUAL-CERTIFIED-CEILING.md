@@ -32,7 +32,7 @@ No LP relaxation or dual certificate for the F2 coset weight is implemented in t
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-OPEN-LP-DUAL-CEILING claims OPEN; audited status OPEN
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-OPEN-LP-DUAL-CEILING claims OPEN; audited status OPEN
 
 ## Review
 
@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md](../../../dag/derivations/28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md)
-- sha256 (`lf-normalised`): `cf507c80a11352ebdefe30e40142660de5eba7d7ecf85e99025e85f3dab90c1c`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1181
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md`
+
+- file: [dag/derivations/28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md](../../../dag/derivations/28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md)
+- sha256 (`lf-normalised`): `9a9975c93d26d054ce17d7bb5e7d56c70c18823385c0548847d0079d925ca082`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1181
+- counts toward the grade: no
 
 ## Routes
 

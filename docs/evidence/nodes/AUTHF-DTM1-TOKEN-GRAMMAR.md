@@ -32,7 +32,7 @@ Tokens are natural numbers, not bytes; there is no configuration or input encodi
 
 ## Source status
 
-papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-4 claims PROVED_LEAN; audited status DEFINITION
+dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-4 claims PROVED_LEAN; audited status DEFINITION
 
 ## Review
 
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1343_authf_dtm1_token_grammar.md`
 
 - file: [dag/derivations/29_computation/tfq_1343_authf_dtm1_token_grammar.md](../../../dag/derivations/29_computation/tfq_1343_authf_dtm1_token_grammar.md)
-- sha256 (`lf-normalised`): `66b71d48c4e3987d6633baff6553cb9d8e4ec5866269dd908e216a570fa690a6`
+- sha256 (`lf-normalised`): `f0c306a93f0fde7e7f2307a95abc081bb1b7c6a64307dd1df076db078d7301a1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1343
 - counts toward the grade: no

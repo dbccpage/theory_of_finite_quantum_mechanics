@@ -33,9 +33,13 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols() -> Non
     frontier = json.loads((ROOT / 'dag/fragments/frontier_branches.json').read_text(encoding='utf-8'))
     gth = json.loads((ROOT / 'dag/fragments/genesis_to_higher.json').read_text(encoding='utf-8'))
     ops = json.loads((ROOT / 'dag/fragments/foc035_observer_presheaf.json').read_text(encoding='utf-8'))
+    consolidated = json.loads((ROOT / 'dag/fragments/computation_information_route.json').read_text(encoding='utf-8'))
+    # The new computation records are already counted in the application fragment;
+    # its companion trunk records live in the pregenesis, information and dynamics stages.
+    consolidated_trunk = [r for r in consolidated['records'] if r['source_slice'] == 'source_consolidation']
     assert len(ids) == len(records) == (397 + len(unified['node_records']) + len(pregenesis_to_wdp['records'])
                                         + len(f["records"]) + len(frontier['records']) + len(gth['records'])
-                                        + len(ops['records']))
+                                        + len(ops['records']) + len(consolidated_trunk))
     papers = list((ROOT / 'dag/derivations').rglob('tfq_*.md'))
     paper_ids: list[str] = []
     for paper in papers:
@@ -54,7 +58,7 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols() -> Non
         for field in ('source', 'lean', 'rust'):
             for reference in n[field]:
                 path, _, symbol = reference.partition('::')
-                source = ROOT / path
+                source = ROOT / path.split('#', 1)[0]
                 assert source.is_file(), reference
                 if symbol:
                     # Same leaf rule as validate_derivation_dag.py: last segment after :: and after a dot.

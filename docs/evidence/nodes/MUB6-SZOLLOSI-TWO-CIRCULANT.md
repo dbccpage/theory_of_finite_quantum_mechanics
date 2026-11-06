@@ -32,7 +32,7 @@ Transport to a dephased representative, classification of arbitrary CHM(6), the 
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-059 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-059 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -75,41 +75,41 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1228_mub6_szollosi_two_circulant.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1228_mub6_szollosi_two_circulant.md](../../../dag/derivations/25_mub/tfq_1228_mub6_szollosi_two_circulant.md)
-- sha256 (`lf-normalised`): `54660a8d7271e4c61da27a5bab798009b9f8b472fa1ba88d3c200397a414b327`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1228
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
-- sha256 (`lf-normalised`): `b515bf981d6c3a339c2b0a7937d54d9deb05f3b53186c584b83f5fa3419dc902`
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1228_mub6_szollosi_two_circulant.md`
+
+- file: [dag/derivations/25_mub/tfq_1228_mub6_szollosi_two_circulant.md](../../../dag/derivations/25_mub/tfq_1228_mub6_szollosi_two_circulant.md)
+- sha256 (`lf-normalised`): `a94f20159d8b3b6933260b03c06e7b74c0d856e62e320e16a1316486402563c4`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1228
+- counts toward the grade: no
 
 ## Routes
 

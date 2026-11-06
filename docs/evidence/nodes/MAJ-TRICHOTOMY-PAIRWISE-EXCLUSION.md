@@ -32,7 +32,7 @@ Exhaustiveness (each residual has at least one label) is not stated in Lean; it 
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-C2 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-C2 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `papers/core/majorana/lean4/MajoranaCore.lean`
+### Lean: `dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
 
-- file: [papers/core/majorana/lean4/MajoranaCore.lean](../../../papers/core/majorana/lean4/MajoranaCore.lean)
+- file: [dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean](../../../dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean)
 - sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
 - cited in: node.lean, record TFQ-1141
 - replay: `verified`
   - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaCore.lean`
+- check: `cd lean4 && lake build   # the library that contains dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -100,41 +100,41 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/claim_ledger.yaml`
 
-- file: [dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md](../../../dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md)
-- sha256 (`lf-normalised`): `886b672d855ddf42c3b8ac9e572a70c34f7af3e5fb7086d067081789b12117be`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1141
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/claim_ledger.yaml`
-
-- file: [papers/core/majorana/claim_ledger.yaml](../../../papers/core/majorana/claim_ledger.yaml)
-- sha256 (`lf-normalised`): `3d5ac164f2ed90437e87eaea0c31fc883334a8f25a34eb4d6159cc428bc20f89`
+- file: [dag/derivations/28_majorana/majorana/claim_ledger.yaml](../../../dag/derivations/28_majorana/majorana/claim_ledger.yaml)
+- sha256 (`lf-normalised`): `1f37344a954f8aa15399391a21705a912b2891ae308997f85eee303f709418eb`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/lean4/axiom_report.txt`
+### Documents and data: `dag/derivations/28_majorana/majorana/lean4/axiom_report.txt`
 
-- file: [papers/core/majorana/lean4/axiom_report.txt](../../../papers/core/majorana/lean4/axiom_report.txt)
+- file: [dag/derivations/28_majorana/majorana/lean4/axiom_report.txt](../../../dag/derivations/28_majorana/majorana/lean4/axiom_report.txt)
 - sha256 (`lf-normalised`): `ec4465011fdd2b18f2c9df263004e9050f8c394dece1841835ff0bcd1e00df79`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/the_majorana_problem_claim_ledger.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md`
 
-- file: [papers/core/majorana/the_majorana_problem_claim_ledger.md](../../../papers/core/majorana/the_majorana_problem_claim_ledger.md)
-- sha256 (`lf-normalised`): `37cc191a881cbb0f8fb52e30c2b865f9e9e70e235b4530df7bdd7d1b5728cb86`
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md)
+- sha256 (`lf-normalised`): `c6a3554eb30108d6294ec0ab42952efacd3f5deff58b23b0bf69d061978ac914`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md`
+
+- file: [dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md](../../../dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md)
+- sha256 (`lf-normalised`): `d54b483e7086a914c39bd88ad44d358bd1fc2d9d4fe32da22fc68075ecb895f0`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1141
+- counts toward the grade: no
 
 ## Routes
 

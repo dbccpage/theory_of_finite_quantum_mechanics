@@ -32,7 +32,7 @@ The result concerns the explicitly defined Z2 cochain model and normalized repha
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-046 claims PROVED_LEAN; audited status OPEN
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-046 claims PROVED_LEAN; audited status OPEN
 
 ## Review
 
@@ -74,10 +74,31 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-1210
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
+
+- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
+- sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
+
+- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
+- sha256 (`lf-normalised`): `f62735060966780e3eba1d7656156f6bb81163ce57e764ed3d2e0e63c75889d5`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md](../../../dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md)
-- sha256 (`lf-normalised`): `7b04fa620b1e36295467311440d343c0c72abeeb84391b782012dc6870ddb9d3`
+- sha256 (`lf-normalised`): `661ca029df6f5f7a2a1817d791962fb9ebd8477be37a2f1e702456437d824b29`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1210
 - counts toward the grade: no
@@ -93,27 +114,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json)
 - sha256 (`lf-normalised`): `558f9650d8a80f2000e5bf6f26e9b5e63072b48f4f8d049b3a828b629d197ec2`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
-
-- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
-- sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
-
-- file: [papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
-- sha256 (`lf-normalised`): `d3b0b4deaf2b1c09ac29ba3e3206a2f6f832b7525b092992c8a6f72ed8a62dfb`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
-
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
 - cited in: node.source
 - counts toward the grade: yes
 

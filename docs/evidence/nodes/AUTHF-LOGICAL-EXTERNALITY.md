@@ -32,7 +32,7 @@ Site is an unused finite label; the statement carries no custody, security or in
 
 ## Source status
 
-papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record physical_separation_neither_needed_nor_sufficient_for_toy_authorization claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record physical_separation_neither_needed_nor_sufficient_for_toy_authorization claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -59,20 +59,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/29_computation/tfq_1358_authf_logical_externality.md`
+### Documents and data: `dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
 
-- file: [dag/derivations/29_computation/tfq_1358_authf_logical_externality.md](../../../dag/derivations/29_computation/tfq_1358_authf_logical_externality.md)
-- sha256 (`lf-normalised`): `ce41742c0478ff1a3fa3d8fd1c33dea0e5e47a0c2201022e98eb84c778e7d79f`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1358
-- counts toward the grade: no
-
-### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md`
-
-- file: [papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
+- file: [dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md](../../../dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md)
 - sha256 (`lf-normalised`): `50b2673ad6e6ce3e8f3cba55fbcc848fac64db21600db6e8d1a9e63e96b7f915`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/29_computation/tfq_1358_authf_logical_externality.md`
+
+- file: [dag/derivations/29_computation/tfq_1358_authf_logical_externality.md](../../../dag/derivations/29_computation/tfq_1358_authf_logical_externality.md)
+- sha256 (`lf-normalised`): `3b2aa128d1a9b8595bce6976bc97231377b4d8ecfccfb60f330aa1f10b298deb`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1358
+- counts toward the grade: no
 
 ## Routes
 

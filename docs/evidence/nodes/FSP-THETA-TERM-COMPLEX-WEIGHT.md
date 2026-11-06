@@ -32,7 +32,7 @@ The record is this four-index Gaussian-integer table. It does not introduce an e
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-034 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-034 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -93,10 +93,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
+
+- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
+- sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md`
 
 - file: [dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md](../../../dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md)
-- sha256 (`lf-normalised`): `3e91bbc2261f1798486de74df3d5dbc9ab9ce26d3ef36da0ba6ea4d0a6e1abd0`
+- sha256 (`lf-normalised`): `dd3b90bcb881c14d1cd6ff97fe31a4ab023fc6da549d105e345105351fa31d57`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1198
 - counts toward the grade: no
@@ -105,20 +119,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/derivations/independent/fsp-theta-term-complex-weight.md](../../../dag/derivations/independent/fsp-theta-term-complex-weight.md)
 - sha256 (`lf-normalised`): `c5c9befeb2823e3de35b52d480ac392c69eaefdde4101985568ec0558a7735a4`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
-
-- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
-- sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
-
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
 - cited in: node.source
 - counts toward the grade: yes
 

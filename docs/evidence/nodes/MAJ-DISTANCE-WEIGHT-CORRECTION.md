@@ -32,7 +32,7 @@ Write the two-direction weight argument from Theorem 4.4 (sum of two weight-t er
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-COR-DISTANCE-WEIGHT claims PROVED_PROSE; audited status OPEN
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-COR-DISTANCE-WEIGHT claims PROVED_PROSE; audited status OPEN
 
 ## Review
 
@@ -55,20 +55,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md](../../../dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md)
-- sha256 (`lf-normalised`): `b69fb4ac02de0f48870476bd4bdae698b68df99eff9f3b92ea1f3c32a606a482`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1148
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md`
+
+- file: [dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md](../../../dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md)
+- sha256 (`lf-normalised`): `4db8ffc18fdbfd592575b218f1f5486de4789cc74978e32f63d56dda3408539a`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1148
+- counts toward the grade: no
 
 ## Routes
 

@@ -33,7 +33,7 @@ Standard algebra imported, not derived here; the trunk mechanizes only the two-g
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-020 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-020 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -96,20 +96,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-1186
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md`
 
 - file: [dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md](../../../dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md)
-- sha256 (`lf-normalised`): `f92e9f56cb924363b8b5b8aa31c0edb5a65b2633eccceb34830e1befb105263f`
+- sha256 (`lf-normalised`): `7575a9c457d1fefe8aa623422287665e87db601b1bc383880d8f7e33ad20c0ad`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1186
 - counts toward the grade: no
-
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
-
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
-- cited in: node.source
-- counts toward the grade: yes
 
 ## Routes
 

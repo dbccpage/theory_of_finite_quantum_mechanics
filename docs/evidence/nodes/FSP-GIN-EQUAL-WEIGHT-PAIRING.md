@@ -32,7 +32,7 @@ Pairing is on exact weight fibers of enumerated paths, not a spectator-preservin
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-029 claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-029 claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `papers/core/fsp/lean4/FermionGinCore.lean`
+### Lean: `dag/derivations/26_fsp/fsp/lean4/FermionGinCore.lean`
 
-- file: [papers/core/fsp/lean4/FermionGinCore.lean](../../../papers/core/fsp/lean4/FermionGinCore.lean)
+- file: [dag/derivations/26_fsp/fsp/lean4/FermionGinCore.lean](../../../dag/derivations/26_fsp/fsp/lean4/FermionGinCore.lean)
 - sha256 (`bytes`): `256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8`
 - cited in: node.lean, record TFQ-1194
 - replay: `verified`
   - receipt [dag/research/lean_replay_campaign_fermion_sign.json](../../../dag/research/lean_replay_campaign_fermion_sign.json) (module `papers.core.fsp.lean4.FermionGinCore`): recorded sha256 `256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/FermionGinCore.lean`
+- check: `cd lean4 && lake build   # the library that contains dag/derivations/26_fsp/fsp/lean4/FermionGinCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -89,34 +89,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md`
 
-- file: [dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md](../../../dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md)
-- sha256 (`lf-normalised`): `40a68a203c4143d417c024584cc7011258239667aa50abb79cb2e7ee65e0cbe7`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1194
-- counts toward the grade: no
-
-### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
-
-- file: [papers/core/fsp/the_problem_of_the_fermion_sign.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign.md)
+- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign.md)
 - sha256 (`lf-normalised`): `5f5dfaa7a3794d1fee0299865df221b6db1c14ebf6f3925b1729e784a28e3194`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md`
 
-- file: [papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
-- sha256 (`lf-normalised`): `d3b0b4deaf2b1c09ac29ba3e3206a2f6f832b7525b092992c8a6f72ed8a62dfb`
+- file: [dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md](../../../dag/derivations/26_fsp/fsp/the_problem_of_the_fermion_sign_claim_ledger.md)
+- sha256 (`lf-normalised`): `f62735060966780e3eba1d7656156f6bb81163ce57e764ed3d2e0e63c75889d5`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
 
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md`
+
+- file: [dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md](../../../dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md)
+- sha256 (`lf-normalised`): `677bc4c4a65d8f0e0b178f38bb5a327886c223fd92e703c73a137e2b104b1caa`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1194
+- counts toward the grade: no
 
 ## Routes
 

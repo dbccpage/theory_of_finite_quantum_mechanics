@@ -32,7 +32,7 @@ Fixed sizes only; a closed-form proof for all rows and cols is absent.
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-COMP-TETRON-BETTI claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-COMP-TETRON-BETTI claims COMPUTATIONALLY_CHECKED; audited status COMPUTATIONALLY_CHECKED
 
 ## Review
 
@@ -77,27 +77,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust, record TFQ-1152
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md](../../../dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md)
-- sha256 (`lf-normalised`): `953f577e4c02a04eb9350308ca6157de06098a194b38105f3b188e5bfa0e1fd7`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1152
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/majorana/the_majorana_problem_change_log.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md`
 
-- file: [papers/core/majorana/the_majorana_problem_change_log.md](../../../papers/core/majorana/the_majorana_problem_change_log.md)
-- sha256 (`lf-normalised`): `4592b207071a2c05f46a6ffdd890a2332f957a7e6b805e9aa6c6988e451e9fa8`
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem_change_log.md)
+- sha256 (`lf-normalised`): `b09f10f3d19bcfcea3bde32cf2c4e055a2ba3d7274941c7904dafe730d38ad04`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md`
+
+- file: [dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md](../../../dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md)
+- sha256 (`lf-normalised`): `054c8f71a764d5d45e7192ff13a36a7fcf2c7d149323420d29eda8c813aa869c`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1152
+- counts toward the grade: no
 
 ## Routes
 

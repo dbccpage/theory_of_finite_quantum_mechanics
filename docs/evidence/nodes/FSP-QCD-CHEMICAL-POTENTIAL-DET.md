@@ -32,7 +32,7 @@ Standard continuum/thermodynamic QCD chemical-potential sign-problem framework i
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-037 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-037 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION
 
 ## Review
 
@@ -103,10 +103,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md`
 
 - file: [dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md](../../../dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md)
-- sha256 (`lf-normalised`): `928c602c8d18a41d705ac16e9d268e414c16c004263dfe966a6342a44e51b715`
+- sha256 (`lf-normalised`): `cd840b4c071acdf53bfc8b5c23aeead0c10ddda047006f95b70c9d9cb07df3f9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1201
 - counts toward the grade: no
@@ -115,13 +122,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/derivations/independent/fsp-qcd-chemical-potential-det.md](../../../dag/derivations/independent/fsp-qcd-chemical-potential-det.md)
 - sha256 (`lf-normalised`): `e21a0969eb966833dda9dfa2778c00b70db7ed7e06d7788183fe61395cc09527`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
-
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
 - cited in: node.source
 - counts toward the grade: yes
 

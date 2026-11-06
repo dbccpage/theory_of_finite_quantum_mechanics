@@ -34,7 +34,7 @@ Construct flat fillings by group potentials and boundary triangle cancellation; 
 
 ## Source status
 
-papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-050 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/26_fsp/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-050 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -164,10 +164,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-1214
 - counts toward the grade: yes
 
+### Documents and data: `dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md`
+
+- file: [dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md](../../../dag/derivations/26_fsp/fsp/theory_of_finite_fsp.md)
+- sha256 (`lf-normalised`): `35240c1939b58f01a4b474cc2b417083bad91c03cf35bfa0d6d80ccff37cb47c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md](../../../dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md)
-- sha256 (`lf-normalised`): `130e156bdb079b1072bca8b55cce438ecfe5a8fdd1d80e681d68c38a6a409007`
+- sha256 (`lf-normalised`): `1c31bf4980eb465e0ca8679f140ef5c11e071da3bce48244bd3dd96862f44436`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1214
 - counts toward the grade: no
@@ -183,13 +190,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json)
 - sha256 (`lf-normalised`): `14f5f9aefd737f4f8c4b771d115c3c6692d1db00e25fa2dfb9d6c136103af597`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
-
-- file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3e88f1a70b66b0b90cc915acb5c802c118775e65cc8970af6c5a423f27ddd755`
 - cited in: node.source
 - counts toward the grade: yes
 

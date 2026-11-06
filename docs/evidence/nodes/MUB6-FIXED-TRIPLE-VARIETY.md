@@ -32,7 +32,7 @@ Emptiness is not established for any MU triple or uniformly over a family; a com
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-064 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-064 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -60,41 +60,41 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md](../../../dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md)
-- sha256 (`lf-normalised`): `a4b9d9515df9ca42f8d733f86bc27e359c903c1555580bfebaff448db42c4855`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1233
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl)
 - sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
+### Documents and data: `dag/derivations/25_mub/mub6/theory_of_finite_mub6.md`
 
-- file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
-- sha256 (`lf-normalised`): `b515bf981d6c3a339c2b0a7937d54d9deb05f3b53186c584b83f5fa3419dc902`
+- file: [dag/derivations/25_mub/mub6/theory_of_finite_mub6.md](../../../dag/derivations/25_mub/mub6/theory_of_finite_mub6.md)
+- sha256 (`lf-normalised`): `0e5866c8c56eb624576b512e2f51f0378271797285bb11c764a9708a234085e1`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md`
+
+- file: [dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md](../../../dag/derivations/25_mub/tfq_1233_mub6_fixed_triple_variety.md)
+- sha256 (`lf-normalised`): `5ac5b9b4187396a8cc309a35b441d1d068a7f986606b0a977bce9c8f413a4961`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1233
+- counts toward the grade: no
 
 ## Routes
 

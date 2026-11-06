@@ -32,7 +32,7 @@ Forward construction only: it does not supply such a family in dimension six or 
 
 ## Source status
 
-papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-C29 claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/25_mub/mub6/theory_of_finite_mub6.jsonl record MUB6-C29 claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -61,27 +61,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/25_mub/tfq_1276_mub6_concrete_projectors.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6.md`
 
-- file: [dag/derivations/25_mub/tfq_1276_mub6_concrete_projectors.md](../../../dag/derivations/25_mub/tfq_1276_mub6_concrete_projectors.md)
-- sha256 (`lf-normalised`): `c9dc1a2be8e700a8cc46985019c2799ba0c21a3f62f98870a93ef9cc6c858228`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1276
-- counts toward the grade: no
-
-### Documents and data: `papers/core/mub6/mub6.md`
-
-- file: [papers/core/mub6/mub6.md](../../../papers/core/mub6/mub6.md)
+- file: [dag/derivations/25_mub/mub6/mub6.md](../../../dag/derivations/25_mub/mub6/mub6.md)
 - sha256 (`lf-normalised`): `31ddd89d2594bb5ad401aadb99a3a91edb6ea8e33158386031a40b1dc36f7223`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
+### Documents and data: `dag/derivations/25_mub/mub6/mub6_claim_ledger.md`
 
-- file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
+- file: [dag/derivations/25_mub/mub6/mub6_claim_ledger.md](../../../dag/derivations/25_mub/mub6/mub6_claim_ledger.md)
+- sha256 (`lf-normalised`): `b4860d325cad8aba746008e05faad7679f560d99e9967da0503ce80d2af36807`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/25_mub/tfq_1276_mub6_concrete_projectors.md`
+
+- file: [dag/derivations/25_mub/tfq_1276_mub6_concrete_projectors.md](../../../dag/derivations/25_mub/tfq_1276_mub6_concrete_projectors.md)
+- sha256 (`lf-normalised`): `1da3893204f6dccbdc069de86e908b0e127f55e77725bf07923e29e9a112604e`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1276
+- counts toward the grade: no
 
 ## Routes
 

@@ -13,8 +13,8 @@ target:
     of the stated envelope is not written out.
   source_refs:
   - dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md
-  - papers/core/majorana/the_majorana_problem.md
-  - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  - dag/derivations/28_majorana/majorana/the_majorana_problem.md
+  - dag/derivations/28_majorana/majorana/the_majorana_problem_claim_ledger.md
   paper_refs:
   - dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md
   source_claim_label: OPEN
@@ -36,7 +36,7 @@ operation_candidates:
   name: NonMarkovianTransferBound
   line: 323
   signature_excerpt: structure NonMarkovianTransferBound
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -47,7 +47,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem non_markovian_transfer_defect_pos (B : NonMarkovianTransferBound) :
         B.coupling_alpha * B.braid_time > 0
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -59,7 +59,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem pareto_denominator_pos (p : Nat) (h_p : p > 0) :
         p + 2 > 0
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -72,7 +72,7 @@ relation_candidates:
     theorem non_markovian_pareto_defect_pos (c_lz alpha_coupling p : Nat)
         (h_lz : c_lz > 0) (h_alpha : alpha_coupling > 0) (h_p : p > 0) :
         c_lz + alpha_coupling + p > 0
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
@@ -84,53 +84,53 @@ relation_candidates:
   signature_excerpt: |-
     theorem sub_ohmic_exponent_shift (p_sub p_ohm : Nat) (h_sub : p_sub > p_ohm) :
         p_sub + 2 > p_ohm + 2
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  source: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::NonMarkovianTransferBound
+- original_ref: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::NonMarkovianTransferBound
   availability: local
   symbol: NonMarkovianTransferBound
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  path: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   declaration_status: declaration_found_not_proof_checked
   line: 323
   role: source_lead_only
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::non_markovian_transfer_defect_pos
+- original_ref: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::non_markovian_transfer_defect_pos
   availability: local
   symbol: non_markovian_transfer_defect_pos
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  path: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   declaration_status: declaration_found_not_proof_checked
   line: 337
   role: source_lead_only
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::pareto_denominator_pos
+- original_ref: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::pareto_denominator_pos
   availability: local
   symbol: pareto_denominator_pos
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  path: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   declaration_status: declaration_found_not_proof_checked
   line: 341
   role: source_lead_only
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::non_markovian_pareto_defect_pos
+- original_ref: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::non_markovian_pareto_defect_pos
   availability: local
   symbol: non_markovian_pareto_defect_pos
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  path: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   declaration_status: declaration_found_not_proof_checked
   line: 345
   role: source_lead_only
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::sub_ohmic_exponent_shift
+- original_ref: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean::sub_ohmic_exponent_shift
   availability: local
   symbol: sub_ohmic_exponent_shift
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  path: dag/derivations/28_majorana/majorana/lean4/MajoranaCore.lean
   repository: this_repository
   sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
   declaration_status: declaration_found_not_proof_checked

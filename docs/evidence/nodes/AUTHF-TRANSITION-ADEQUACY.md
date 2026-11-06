@@ -32,7 +32,7 @@ A finite adequacy example; whether any report is adequate for a semantic propert
 
 ## Source status
 
-papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record full_configuration_report_adequate_for_marked_cell_contract claims PROVED_LEAN; audited status PROVED_LEAN
+dag/derivations/04_authorization/authorization_incompleteness/evidence/original/formal_binding_manifest.md record full_configuration_report_adequate_for_marked_cell_contract claims PROVED_LEAN; audited status PROVED_LEAN
 
 ## Review
 
@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1355_authf_transition_adequacy.md`
 
 - file: [dag/derivations/29_computation/tfq_1355_authf_transition_adequacy.md](../../../dag/derivations/29_computation/tfq_1355_authf_transition_adequacy.md)
-- sha256 (`lf-normalised`): `fe769f13f590b8508c5a365fe727c30ebe56b52d5ed9674290bc1cd035e10bdf`
+- sha256 (`lf-normalised`): `950196a3aa384efea6160feca1a2d150d5d6796c3f47d168ba09bfa6a197076b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1355
 - counts toward the grade: no

@@ -32,7 +32,7 @@ No such bound is stated or derived; the source says the papers do not yet justif
 
 ## Source status
 
-papers/core/majorana/the_majorana_problem.md record MAJ-OPEN-LOCALITY-VIABILITY claims OPEN; audited status OPEN
+dag/derivations/28_majorana/majorana/the_majorana_problem.md record MAJ-OPEN-LOCALITY-VIABILITY claims OPEN; audited status OPEN
 
 ## Review
 
@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Documents and data: `dag/derivations/28_majorana/tfq_1149_maj_open_lieb_robinson_locality.md`
+### Documents and data: `dag/derivations/28_majorana/majorana/the_majorana_problem.md`
 
-- file: [dag/derivations/28_majorana/tfq_1149_maj_open_lieb_robinson_locality.md](../../../dag/derivations/28_majorana/tfq_1149_maj_open_lieb_robinson_locality.md)
-- sha256 (`lf-normalised`): `3595e258696587c3516f9a66daf09bd8f1210b375de8bf740ba10e3bdbc2189f`
-- generated view: listed, not counted
-- cited in: node.source, record TFQ-1149
-- counts toward the grade: no
-
-### Documents and data: `papers/core/majorana/the_majorana_problem.md`
-
-- file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
+- file: [dag/derivations/28_majorana/majorana/the_majorana_problem.md](../../../dag/derivations/28_majorana/majorana/the_majorana_problem.md)
 - sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
+
+### Documents and data: `dag/derivations/28_majorana/tfq_1149_maj_open_lieb_robinson_locality.md`
+
+- file: [dag/derivations/28_majorana/tfq_1149_maj_open_lieb_robinson_locality.md](../../../dag/derivations/28_majorana/tfq_1149_maj_open_lieb_robinson_locality.md)
+- sha256 (`lf-normalised`): `7a10cf935a95158b70a71130d93047ade2ff6852389cd956071153012341cf58`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1149
+- counts toward the grade: no
 
 ## Routes
 
