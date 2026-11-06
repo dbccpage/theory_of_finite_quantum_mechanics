@@ -250,7 +250,7 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0540`](./06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md) | wdp-asymmetry-injection-ledger | `DEFINITION` | [`TFQ-0536`](./06_wdp/tfq_0536_wdp_failed_sameness.md) |
 | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) | wdp-retention-packet | `DEFINITION` | [`TFQ-0539`](./06_wdp/tfq_0539_wdp_seven_witness_roles.md) |
 | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) | wdp-graph-cochain-host | `DEFINITION` | [`TFQ-0360`](./06_wdp/tfq_0360_supply_the_admitted_cut_x_e_tau_k_as_data_and_do.md) |
-| [`TFQ-0543`](./06_wdp/tfq_0543_wdp_incidence_orientation_transport.md) | wdp-incidence-orientation-transport | `OPEN_OBLIGATION` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
+| [`TFQ-0543`](./06_wdp/tfq_0543_wdp_incidence_orientation_transport.md) | wdp-incidence-orientation-transport | `PROVED_LEAN` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
 | [`TFQ-0544`](./06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md) | wdp-phi-well-defined-l1-duality | `PROVED_LEAN` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
 | [`TFQ-0545`](./06_wdp/tfq_0545_wdp_closure_needs_degree.md) | wdp-closure-needs-degree | `DEFINITION` | [`TFQ-0542`](./06_wdp/tfq_0542_wdp_graph_cochain_host.md) |
 | [`TFQ-0546`](./06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) | wdp-exact-sequence-h1-q1 | `PROVED_LEAN` | [`TFQ-0004`](./06_wdp/tfq_0004_witnessed_difference_degree_1_window.md) |
@@ -262,10 +262,10 @@ Folder: [`06_wdp/`](./06_wdp/)
 | [`TFQ-0552`](./06_wdp/tfq_0552_wdp_finite_valuations.md) | wdp-finite-valuations | `DEFINITION` | [`TFQ-0541`](./06_wdp/tfq_0541_wdp_retention_packet.md) |
 | [`TFQ-0553`](./06_wdp/tfq_0553_wdp_observer_quotient_passivity.md) | wdp-observer-quotient-passivity | `DEFINITION` | [`TFQ-0339`](./06_wdp/tfq_0339_preserve_a_protected_answer_exactly_on_report_fibers_and_do_not_derive.md) |
 | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) | wdp-genesis-bridges-ledger | `SOURCE_RECORD` | [`TFQ-0553`](./06_wdp/tfq_0553_wdp_observer_quotient_passivity.md) |
-| [`TFQ-0555`](./06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md) | wdp-bridge-ongoing-to-window | `OPEN_OBLIGATION` | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) |
+| [`TFQ-0555`](./06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md) | wdp-bridge-ongoing-to-window | `PROVED_LEAN` | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) |
 | [`TFQ-0556`](./06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) | wdp-bridge-report-fiber-observer | `PROVED_LEAN` | [`TFQ-0554`](./06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) |
 | [`TFQ-0557`](./06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) | wdp-synthesis-trunk-tiers | `SOURCE_RECORD` | [`TFQ-0556`](./06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) |
-| [`TFQ-0558`](./06_wdp/tfq_0558_wdp_handoff_to_l1.md) | wdp-handoff-to-l1 | `OPEN_OBLIGATION` | [`TFQ-0557`](./06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) |
+| [`TFQ-0558`](./06_wdp/tfq_0558_wdp_handoff_to_l1.md) | wdp-handoff-to-l1 | `PROVED_LEAN` | [`TFQ-0557`](./06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) |
 | [`TFQ-0559`](./06_wdp/tfq_0559_wd2_word_kernel_agreement.md) | wd2-word-kernel-agreement | `PROVED_LEAN` | [`TFQ-0558`](./06_wdp/tfq_0558_wdp_handoff_to_l1.md) |
 | [`TFQ-0560`](./06_wdp/tfq_0560_wd2_refinement_stabilization.md) | wd2-refinement-stabilization | `PROVED_LEAN` | [`TFQ-0559`](./06_wdp/tfq_0559_wd2_word_kernel_agreement.md) |
 | [`TFQ-0561`](./06_wdp/tfq_0561_wd2_sharp_stabilization_bound.md) | wd2-sharp-stabilization-bound | `PROVED_LEAN` | [`TFQ-0560`](./06_wdp/tfq_0560_wd2_refinement_stabilization.md) |

@@ -89,7 +89,7 @@ These 10 nodes have written mathematical proofs in the WDP monograph or `docs/01
 | `PGW-WDP-BORN-RULE-NONSELECTION` | `TFQ-0579` | `PROVED_LEAN` | Discharged in `WdpBatch3.lean::deformed_probability_normalized`, `deformed_probability_nonnegative`, and `born_rule_nonselection_gen_wdp_65`. |
 | `PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION` | `TFQ-0580` | `PROVED_LEAN` | Discharged in `FiniteProcessComposition.lean::nat_two_mul_sq_ne_sq`, `int_two_mul_sq_ne_sq`, and `WdpBatch4.lean::exact_scalar_hadamard_and_t_obstruction`. |
 
-### 3.3 Tier A3 & Tier B: 14 Finite Computational / Conditional / Open Algebraic Bridges (4 Discharged in Batch 4, 10 Remaining)
+### 3.3 Tier A3 & Tier B: 14 Finite Computational / Conditional / Open Algebraic Bridges (9 Discharged in Batches 4–5, 5 Remaining)
 
 These 14 obligations are purely finite (combinatorial, linear-algebraic over $\mathbb{Q}$, or cochain-level) and can be discharged or answered by a finite countermodel in-repo before merging with `omega_codex`:
 
@@ -99,11 +99,11 @@ These 14 obligations are purely finite (combinatorial, linear-algebraic over $\m
 | `PG-GEN-SAMENESS-REFINEMENTS` | `TFQ-0391` | `PROVED_LEAN` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Discharged in `Twentysecond..Twentyfifth` Lean modules and `WdpBatch4.lean::same23_preserves_around`, `same24_balances_iff`, and `same25_balances_iff`. |
 | `PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY` | `TFQ-0544` | `PROVED_LEAN` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Discharged in `WdpBatch4.lean::weighted_residual_shift_invariant`, `weighted_l1_weak_duality_triangle`, and `certified_primal_dual_optimality`. |
 | `PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER` | `TFQ-0556` | `PROVED_LEAN` | `FINITE_TRACTABLE_LEAN_MECHANIZATION` | Discharged in `WdpBatch4.lean::report_fiber_decoder_iff`, `event_multiset_loses_final_state`, and `final_state_loses_occurrence_count`. |
-| `L1-IMP-COMPLEX-FIELD` | `TFQ-0293` | `CONDITIONAL` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Formalize the exact finite realification/Hermitianization condition selecting J^2 = -I up to orientation sign. |
-| `PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT` | `TFQ-0543` | `OPEN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Prove finite edge-sign cochain isomorphism under orientation reversal in Lean 4. |
-| `PGW-WDP-BRIDGE-ONGOING-TO-WINDOW` | `TFQ-0555` | `OPEN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Formalize the finite carrier-change counterexample and fixed-carrier cochain bridge in Lean 4. |
-| `PGW-WDP-HANDOFF-TO-L1` | `TFQ-0558` | `OPEN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Construct the finite rational weighted-l1 and LGGR quotient-evidence adapter beyond the single triangle witness. |
-| `L1-WDP-CH08-C01-REPLICA-L1` | `TFQ-0357` | `OPEN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Mechanize finite disjoint-union replica additivity of l1 vs l2 valuation in Lean 4. |
+| `L1-IMP-COMPLEX-FIELD` | `TFQ-0293` | `PROVED_LEAN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Discharged in `WdpBatch5.lean::gaussian_int_one_plus_i_not_invertible`, `gaussian_rat_one_plus_i_inverse`, and `skew_complex_structure_two_orientations`. |
+| `PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT` | `TFQ-0543` | `PROVED_LEAN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Discharged in `WdpBatch5.lean::perm_intertwines_d0`, `perm_intertwines_d1`, `edge_sign_transport_preserves_d1_d0_zero`, and `edge_sign_transport_preserves_l1_residual`. |
+| `PGW-WDP-BRIDGE-ONGOING-TO-WINDOW` | `TFQ-0555` | `PROVED_LEAN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Discharged in `WdpBatch5.lean::antisym_excess_raising_is_coboundary`, `symmetric_excess_invisible_to_antisym`, `partial_filled_kernel_strictly_larger`, and `carrier_identification_breaks_same23_loop`. |
+| `PGW-WDP-HANDOFF-TO-L1` | `TFQ-0558` | `PROVED_LEAN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Discharged in `WdpBatch5.lean::lggrQuotientVerdict` and `boundary_leakage_ne_quotient_on_harmonic_cycle`. |
+| `L1-WDP-CH08-C01-REPLICA-L1` | `TFQ-0357` | `PROVED_LEAN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Discharged in `WdpBatch5.lean::l1_and_l2sq_disjoint_replica_additive`, `l1_degree_one_homogeneous`, `l2sq_fails_degree_one_homogeneity`, and `unsquared_l2_fails_disjoint_additivity`. |
 | `PGW-WDP-AFFINE-THICKENING-CONJECTURE` | `TFQ-0581` | `OPEN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Construct a finite dyadic-cell partition and NO_RULE abstention witness for rational affine supports thickened by rational epsilon > 0. |
 | `PGW-WDP-MERON-M4-NATIVE-ADAPTERS` | `TFQ-0585` | `OPEN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Construct finite cochain syndrome-to-repair adapter tables for finite lattice fermion/spin windows. |
 | `PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR` | `TFQ-0586` | `OPEN` | `FINITE_TRACTABLE_ALGEBRAIC_DERIVATION` | Formalize the Chapter 23 finite toric-code restricted-error rank and syndrome kernel theorem in Lean 4. |
