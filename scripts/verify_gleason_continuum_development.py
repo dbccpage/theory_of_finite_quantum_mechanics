@@ -412,6 +412,276 @@ def verify_part_d_infinite_dim_and_trace_escape() -> dict[str, Any]:
     }
 
 
+def embed3d_vec(
+    e1: list[GaussRat],
+    e2: list[GaussRat],
+    e3: list[GaussRat],
+    x: GVec3,
+) -> list[GaussRat]:
+    """Computes embed3D(e1, e2, e3, x) = x[0]*e1 + x[1]*e2 + x[2]*e3 in Q(i)^d."""
+    d = len(e1)
+    assert len(e2) == d and len(e3) == d
+    return [x[0] * e1[i] + x[1] * e2[i] + x[2] * e3[i] for i in range(d)]
+
+
+def inner_d(u: list[GaussRat], v: list[GaussRat]) -> GaussRat:
+    assert len(u) == len(v)
+    return sum((u[i].conj() * v[i] for i in range(len(u))), start=GaussRat(0, 0))
+
+
+def norm_sq_d(u: list[GaussRat]) -> Fraction:
+    return sum((u[i].norm_sq() for i in range(len(u))), start=Fraction(0, 1))
+
+
+def replace_basis_3d(
+    basis: list[list[GaussRat]],
+    i0: int,
+    i1: int,
+    i2: int,
+    u0: list[GaussRat],
+    u1: list[GaussRat],
+    u2: list[GaussRat],
+) -> list[list[GaussRat]]:
+    """Matches `replaceBasis3D` in `GleasonContinuumDevelopment.lean`."""
+    out: list[list[GaussRat]] = []
+    for idx, vec in enumerate(basis):
+        if idx == i0:
+            out.append(u0)
+        elif idx == i1:
+            out.append(u1)
+        elif idx == i2:
+            out.append(u2)
+        else:
+            out.append(vec)
+    return out
+
+
+def is_orthonormal_basis_d(basis: list[list[GaussRat]]) -> bool:
+    d = len(basis)
+    for i in range(d):
+        if norm_sq_d(basis[i]) != Fraction(1, 1):
+            return False
+        for j in range(d):
+            if i != j and inner_d(basis[i], basis[j]) != GaussRat(0, 0):
+                return False
+    return True
+
+
+def verify_part_e_dim_d_subspace_lift() -> dict[str, Any]:
+    """Verifies Part E: d = 3 to d >= 3 isometric subspace embedding, 3-slot basis replacement,
+    parallelogram law, and continuity-free pure-state Born rule on 3D subspaces of C^4 and C^5."""
+    # Non-coordinate orthonormal basis B4 of C^4 over Q(i)
+    e1_4 = [GaussRat(Fraction(3, 5), 0), GaussRat(0, 0), GaussRat(0, Fraction(4, 5)), GaussRat(0, 0)]
+    e2_4 = [GaussRat(Fraction(4, 5), 0), GaussRat(0, 0), GaussRat(0, Fraction(-3, 5)), GaussRat(0, 0)]
+    e3_4 = [GaussRat(0, 0), GaussRat(Fraction(3, 5), 0), GaussRat(0, 0), GaussRat(Fraction(4, 5), 0)]
+    e4_4 = [GaussRat(0, 0), GaussRat(Fraction(4, 5), 0), GaussRat(0, 0), GaussRat(Fraction(-3, 5), 0)]
+    basis_4 = [e1_4, e2_4, e3_4, e4_4]
+    assert is_orthonormal_basis_d(basis_4)
+
+    # Non-coordinate orthonormal triple in C^5 over Q(i)
+    f1_5 = [
+        GaussRat(Fraction(3, 5), 0),
+        GaussRat(0, Fraction(4, 5)),
+        GaussRat(0, 0),
+        GaussRat(0, 0),
+        GaussRat(0, 0),
+    ]
+    f2_5 = [
+        GaussRat(Fraction(4, 5), 0),
+        GaussRat(0, Fraction(-3, 5)),
+        GaussRat(0, 0),
+        GaussRat(0, 0),
+        GaussRat(0, 0),
+    ]
+    f3_5 = [
+        GaussRat(0, 0),
+        GaussRat(0, 0),
+        GaussRat(Fraction(5, 13), 0),
+        GaussRat(0, Fraction(12, 13)),
+        GaussRat(0, 0),
+    ]
+    assert norm_sq_d(f1_5) == Fraction(1, 1)
+    assert norm_sq_d(f2_5) == Fraction(1, 1)
+    assert norm_sq_d(f3_5) == Fraction(1, 1)
+    assert inner_d(f1_5, f2_5) == GaussRat(0, 0)
+    assert inner_d(f1_5, f3_5) == GaussRat(0, 0)
+    assert inner_d(f2_5, f3_5) == GaussRat(0, 0)
+
+    sample_x: list[GVec3] = [
+        (GaussRat(1, 0), GaussRat(2, -1), GaussRat(0, 3)),
+        (GaussRat(2, 1), GaussRat(-1, 2), GaussRat(1, -1)),
+        (GaussRat(Fraction(3, 5), 0), GaussRat(0, Fraction(4, 5)), GaussRat(0, 0)),
+    ]
+    for x in sample_x:
+        emb4_x = embed3d_vec(e1_4, e2_4, e3_4, x)
+        emb5_x = embed3d_vec(f1_5, f2_5, f3_5, x)
+        assert norm_sq_d(emb4_x) == norm_sq3(x)
+        assert norm_sq_d(emb5_x) == norm_sq3(x)
+        for y in sample_x:
+            emb4_y = embed3d_vec(e1_4, e2_4, e3_4, y)
+            emb5_y = embed3d_vec(f1_5, f2_5, f3_5, y)
+            assert inner_d(emb4_x, emb4_y) == inner3(x, y)
+            assert inner_d(emb5_x, emb5_y) == inner3(x, y)
+
+    # 3-slot basis replacement in C^4 (`replaceBasis3D` & `sum_replaceBasis3D_sub`)
+    rot_x: GVec3 = (GaussRat(Fraction(3, 5), 0), GaussRat(0, Fraction(4, 5)), GaussRat(0, 0))
+    rot_y: GVec3 = (GaussRat(Fraction(4, 5), 0), GaussRat(0, Fraction(-3, 5)), GaussRat(0, 0))
+    rot_z: GVec3 = (GaussRat(0, 0), GaussRat(0, 0), GaussRat(1, 0))
+    assert norm_sq3(rot_x) == Fraction(1, 1)
+    assert norm_sq3(rot_y) == Fraction(1, 1)
+    assert norm_sq3(rot_z) == Fraction(1, 1)
+    assert inner3(rot_x, rot_y) == GaussRat(0, 0)
+    assert inner3(rot_x, rot_z) == GaussRat(0, 0)
+    assert inner3(rot_y, rot_z) == GaussRat(0, 0)
+
+    u0 = embed3d_vec(e1_4, e2_4, e3_4, rot_x)
+    u1 = embed3d_vec(e1_4, e2_4, e3_4, rot_y)
+    u2 = embed3d_vec(e1_4, e2_4, e3_4, rot_z)
+    basis_4_rep = replace_basis_3d(basis_4, 0, 1, 2, u0, u1, u2)
+    assert is_orthonormal_basis_d(basis_4_rep)
+
+    # Also test non-contiguous, non-monotonic slot indices (i0, i1, i2) = (3, 0, 2)
+    v0_302 = embed3d_vec(e4_4, e1_4, e3_4, rot_x)
+    v1_302 = embed3d_vec(e4_4, e1_4, e3_4, rot_y)
+    v2_302 = embed3d_vec(e4_4, e1_4, e3_4, rot_z)
+    basis_4_rep_302 = replace_basis_3d(basis_4, 3, 0, 2, v0_302, v1_302, v2_302)
+    assert is_orthonormal_basis_d(basis_4_rep_302)
+    assert basis_4_rep_302[3] == v0_302
+    assert basis_4_rep_302[0] == v1_302
+    assert basis_4_rep_302[2] == v2_302
+    assert basis_4_rep_302[1] == e2_4
+
+    herm4 = [
+        [GaussRat(Fraction(1, 4), 0), GaussRat(Fraction(1, 8), Fraction(1, 16)), GaussRat(0, Fraction(-1, 8)), GaussRat(Fraction(1, 10), 0)],
+        [GaussRat(Fraction(1, 8), Fraction(-1, 16)), GaussRat(Fraction(1, 4), 0), GaussRat(Fraction(1, 12), 0), GaussRat(0, Fraction(1, 9))],
+        [GaussRat(0, Fraction(1, 8)), GaussRat(Fraction(1, 12), 0), GaussRat(Fraction(1, 4), 0), GaussRat(Fraction(-1, 7), Fraction(1, 14))],
+        [GaussRat(Fraction(1, 10), 0), GaussRat(0, Fraction(-1, 9)), GaussRat(Fraction(-1, 7), Fraction(-1, 14)), GaussRat(Fraction(1, 4), 0)],
+    ]
+
+    def quad_d(mat: list[list[GaussRat]], vec: list[GaussRat]) -> Fraction:
+        acc = GaussRat(0, 0)
+        d_len = len(vec)
+        for i in range(d_len):
+            for j in range(d_len):
+                acc = acc + vec[i].conj() * (mat[i][j] * vec[j])
+        assert acc.im == 0
+        return acc.re
+
+    def rayleigh_d(mat: list[list[GaussRat]], vec: list[GaussRat]) -> Fraction:
+        nsq = norm_sq_d(vec)
+        assert nsq > 0
+        return quad_d(mat, vec) / nsq
+
+    sum_orig = sum((rayleigh_d(herm4, b) for b in basis_4), start=Fraction(0, 1))
+    sum_rep = sum((rayleigh_d(herm4, b) for b in basis_4_rep), start=Fraction(0, 1))
+    sum_rep_302 = sum((rayleigh_d(herm4, b) for b in basis_4_rep_302), start=Fraction(0, 1))
+    subspace_trace_orig = rayleigh_d(herm4, e1_4) + rayleigh_d(herm4, e2_4) + rayleigh_d(herm4, e3_4)
+    subspace_trace_rep = rayleigh_d(herm4, u0) + rayleigh_d(herm4, u1) + rayleigh_d(herm4, u2)
+    assert sum_orig == Fraction(1, 1)
+    assert sum_rep == Fraction(1, 1)
+    assert sum_rep_302 == Fraction(1, 1)
+    assert subspace_trace_orig == subspace_trace_rep
+    assert (sum_rep - sum_orig) == (subspace_trace_rep - subspace_trace_orig)
+
+    # Non-coordinate compressed 3x3 matrix (`subspaceMatrix3D` & `complexRayleighD_embed3D_eq_subspaceMatrix3D`)
+    triple_e = (e1_4, e2_4, e3_4)
+    subspace_mat_e: GaussMatrix3 = tuple(
+        tuple(
+            sum(
+                (
+                    triple_e[a][r].conj() * (herm4[r][c] * triple_e[b][c])
+                    for r in range(4)
+                    for c in range(4)
+                ),
+                start=GaussRat(0, 0),
+            )
+            for b in range(3)
+        )
+        for a in range(3)
+    )  # type: ignore[assignment]
+    for a in range(3):
+        for b in range(3):
+            assert subspace_mat_e[a][b] == subspace_mat_e[b][a].conj()
+    for x in sample_x:
+        emb_e = embed3d_vec(e1_4, e2_4, e3_4, x)
+        assert quad_d(herm4, emb_e) == herm_quad_form(subspace_mat_e, x)
+        assert rayleigh_d(herm4, emb_e) == herm_rayleigh(subspace_mat_e, x)
+
+    # d-dimensional parallelogram law (`complexQuadFormD_parallelogram`)
+    u_vec4 = [GaussRat(1, 1), GaussRat(2, -1), GaussRat(0, 1), GaussRat(-1, 2)]
+    v_vec4 = [GaussRat(2, 0), GaussRat(-1, 1), GaussRat(1, -2), GaussRat(0, 3)]
+    u_plus_v = [u_vec4[i] + v_vec4[i] for i in range(4)]
+    u_minus_v = [u_vec4[i] - v_vec4[i] for i in range(4)]
+    lhs_par = quad_d(herm4, u_plus_v) + quad_d(herm4, u_minus_v)
+    rhs_par = 2 * quad_d(herm4, u_vec4) + 2 * quad_d(herm4, v_vec4)
+    assert lhs_par == rhs_par
+
+    # Coordinate embedding matches 3x3 principal submatrix (`complexQuadFormD_embed3D_single_eq_submatrix3D`
+    # and `complexRayleighD_embed3D_single_eq_submatrix3D`)
+    std0 = [GaussRat(1, 0), GaussRat(0, 0), GaussRat(0, 0), GaussRat(0, 0)]
+    std2 = [GaussRat(0, 0), GaussRat(0, 0), GaussRat(1, 0), GaussRat(0, 0)]
+    std3 = [GaussRat(0, 0), GaussRat(0, 0), GaussRat(0, 0), GaussRat(1, 0)]
+    sub_023: GaussMatrix3 = tuple(
+        tuple(herm4[r][c] for c in (0, 2, 3))
+        for r in (0, 2, 3)
+    )  # type: ignore[assignment]
+    for x in sample_x:
+        emb_std = embed3d_vec(std0, std2, std3, x)
+        assert quad_d(herm4, emb_std) == herm_quad_form(sub_023, x)
+        assert rayleigh_d(herm4, emb_std) == herm_rayleigh(sub_023, x)
+
+    # Continuity-free pure-state Born rule on 3D subspace (`pure_state_nonneg_gleason_subspace3D`
+    # and `pure_state_nonneg_gleason_basis3D`), tested at both W_sub = 1 and partial weight W_sub = 3/5 != 1
+    pole_p0: GVec3 = rot_x
+    psi_4 = embed3d_vec(e1_4, e2_4, e3_4, pole_p0)
+    pure_mat4 = [[psi_4[i] * psi_4[j].conj() for j in range(4)] for i in range(4)]
+    w_subspace = rayleigh_d(pure_mat4, e1_4) + rayleigh_d(pure_mat4, e2_4) + rayleigh_d(pure_mat4, e3_4)
+    assert w_subspace == Fraction(1, 1)
+    assert rayleigh_d(pure_mat4, psi_4) == w_subspace
+
+    # Partial-weight state rho_partial = (3/5)|psi_4><psi_4| + (2/5)|e4_4><e4_4| of total trace 1
+    # whose 3D restriction to span(e1_4, e2_4, e3_4) has subspace weight W_sub = 3/5 != 1
+    w_partial = Fraction(3, 5)
+    w_orth = Fraction(2, 5)
+    partial_mat4 = [
+        [
+            GaussRat(w_partial, 0) * (psi_4[i] * psi_4[j].conj())
+            + GaussRat(w_orth, 0) * (e4_4[i] * e4_4[j].conj())
+            for j in range(4)
+        ]
+        for i in range(4)
+    ]
+    w_subspace_partial = (
+        rayleigh_d(partial_mat4, e1_4)
+        + rayleigh_d(partial_mat4, e2_4)
+        + rayleigh_d(partial_mat4, e3_4)
+    )
+    assert w_subspace_partial == Fraction(3, 5)
+    assert rayleigh_d(partial_mat4, psi_4) == w_subspace_partial
+    for x in sample_x:
+        emb_x = embed3d_vec(e1_4, e2_4, e3_4, x)
+        lhs_born = rayleigh_d(pure_mat4, emb_x)
+        rhs_born = w_subspace * inner3(pole_p0, x).norm_sq() / norm_sq3(x)
+        assert lhs_born == rhs_born
+        lhs_born_partial = rayleigh_d(partial_mat4, emb_x)
+        rhs_born_partial = w_subspace_partial * inner3(pole_p0, x).norm_sq() / norm_sq3(x)
+        assert lhs_born_partial == rhs_born_partial
+
+    return {
+        "verified": True,
+        "c4_isometric_embed3D_verified": True,
+        "c5_isometric_embed3D_verified": True,
+        "replaceBasis3D_orthonormal_verified": True,
+        "replaceBasis3D_noncontiguous_slots_verified": True,
+        "subspace_3frame_trace_preserved": str(subspace_trace_orig),
+        "subspaceMatrix3D_rayleigh_match_verified": True,
+        "parallelogram_law_d4_value": str(lhs_par),
+        "coordinate_embed3D_matches_submatrix3D": True,
+        "pure_state_subspace3D_born_rule_verified": True,
+        "pure_state_subspace3D_partial_weight": str(w_subspace_partial),
+    }
+
+
 def build_receipt() -> dict[str, Any]:
     lean_sha256 = hashlib.sha256(LEAN_MODULE_PATH.read_bytes()).hexdigest()
     return {
@@ -427,6 +697,7 @@ def build_receipt() -> dict[str, Any]:
             "part_b_all_finite_dimensions": verify_part_b_all_finite_dimensions(),
             "part_c_continuum_automatic_regularity": verify_part_c_continuum_regularity(),
             "part_d_infinite_dimensional_and_trace_escape": verify_part_d_infinite_dim_and_trace_escape(),
+            "part_e_dim_d_subspace_lift": verify_part_e_dim_d_subspace_lift(),
         },
     }
 
