@@ -1,6 +1,6 @@
 # [TFQ-0574] wdp-out-4-rejection-rule-reuse
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `6e3ce04e-c201-5ffa-bd30-c589d8bcee57`  
 > **Parent Derivation**: [TFQ-0573](tfq_0573_wdp_out_3_realizable_future_observation.md)
 
@@ -26,14 +26,18 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Solved for declared nine-element image carriers in rejection_rule_reuse.md; recursive re-entry across changing checkers and institutional legitimacy (GEN-WDP-O05) remain open.
+> Mechanized on the nine-element image carriers in Lean 4 (reuse_decode_encode2, reuse_encode_decode_image, reuse_soundness_iff, reuse_coverage_iff, and reuse_scan_thresholds_and_task2_trap in WdpBatch3.lean) and checked in Python authority.py.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean::inscription_distinct_marks_apart`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.reuse_coverage_iff`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.reuse_decode_encode2`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.reuse_encode_decode_image`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.reuse_scan_thresholds_and_task2_trap`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.reuse_soundness_iff`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: checked by Python rejection-rule reuse witnesses`

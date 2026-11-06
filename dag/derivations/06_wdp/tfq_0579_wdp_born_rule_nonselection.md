@@ -1,6 +1,6 @@
 # [TFQ-0579] wdp-born-rule-nonselection
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `1e971fe2-779f-561d-949d-d1ab30fb174e`  
 > **Parent Derivation**: [TFQ-0578](tfq_0578_wdp_finite_hermitianization.md)
 
@@ -23,7 +23,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> FiniteStateEffectReadout.lean formalizes factored Gaussian-rational trace readouts; the full one-parameter affine non-trace countermodel family is proved in prose and Python fixtures.
+> Mechanized in Lean 4 (born_numerator_identity and probability_normalized in FiniteStateEffectReadout.lean plus deformed_probability_normalized, deformed_probability_nonnegative, and born_rule_nonselection_gen_wdp_65 in WdpBatch3.lean) and checked in Python quantum.py.
 
 ---
 
@@ -32,6 +32,9 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteStateEffectReadout.lean::WDP.FiniteStateEffectReadout.born_numerator_identity`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteStateEffectReadout.lean)
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteStateEffectReadout.lean::WDP.FiniteStateEffectReadout.probability_normalized`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/FiniteStateEffectReadout.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.born_rule_nonselection_gen_wdp_65`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.deformed_probability_nonnegative`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.deformed_probability_normalized`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: checked in Lean 4 and Python state-effect readout fixtures`

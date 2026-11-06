@@ -687,14 +687,14 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0569` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION` (OPEN) | - |
 | `TFQ-0570` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` (OPEN) | - |
 | `TFQ-0571` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` (PROVED_LEAN) | - |
-| `TFQ-0572` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE` (PROVED_PROSE) | - |
-| `TFQ-0573` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION` (PROVED_PROSE) | - |
-| `TFQ-0574` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-OUT-4-REJECTION-RULE-REUSE` (PROVED_PROSE) | - |
-| `TFQ-0575` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION` (PROVED_PROSE) | - |
+| `TFQ-0572` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE` (PROVED_LEAN) | - |
+| `TFQ-0573` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION` (PROVED_LEAN) | - |
+| `TFQ-0574` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-4-REJECTION-RULE-REUSE` (PROVED_LEAN) | - |
+| `TFQ-0575` | `WDP` | `PROVED_LEAN` | `PGW-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION` (PROVED_LEAN) | - |
 | `TFQ-0576` | `WDP` | `PROVED_LEAN` | `PGW-WDP-ADDITIVE-TENSOR-COMPLETION` (PROVED_LEAN) | - |
 | `TFQ-0577` | `WDP` | `PROVED_LEAN` | `PGW-WDP-DAGGER-OBSERVER-GRAM-RADICAL` (PROVED_LEAN) | - |
 | `TFQ-0578` | `WDP` | `PROVED_LEAN` | `PGW-WDP-FINITE-HERMITIANIZATION` (PROVED_LEAN) | - |
-| `TFQ-0579` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-BORN-RULE-NONSELECTION` (PROVED_PROSE) | - |
+| `TFQ-0579` | `WDP` | `PROVED_LEAN` | `PGW-WDP-BORN-RULE-NONSELECTION` (PROVED_LEAN) | - |
 | `TFQ-0580` | `WDP` | `SOURCE_RECORD` | `PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION` (PROVED_PROSE) | - |
 | `TFQ-0581` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-AFFINE-THICKENING-CONJECTURE` (OPEN) | - |
 | `TFQ-0582` | `WDP` | `OPEN_OBLIGATION` | `PGW-WDP-MERON-M1-CORRELATION-ESTIMATES` (OPEN) | - |
@@ -3716,7 +3716,7 @@ Obligation: Mechanize the sharp subspace-dimension row-count formula GEN-WDP-70 
 
 - UUID: `2f6fe02f-efdc-5714-9869-0265dd64bc70`
 - Parent: `TFQ-0571`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Outstanding Derivation Target 2 (GEN-WDP-69): if the legal complete histories of a Source_25 causal ideal form a star-shaped guard with respect to one legal center schedule, every legal swap loop is contractible inside the guard.
 
@@ -3726,7 +3726,7 @@ Obligation: Mechanize the star-shaped guarded swap coherence theorem GEN-WDP-69 
 
 - UUID: `3792e832-719b-5413-bbc3-06c0417cc849`
 - Parent: `TFQ-0572`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Outstanding Derivation Target 3 (GEN-WDP-71): in the declared eight-state future-operation table model, realizable static observation costs strictly exceed unrestricted partition costs, and adaptive two-step policies reduce average cost without reducing worst-case depth.
 
@@ -3736,7 +3736,7 @@ Obligation: Mechanize the eight-state realizable observation table theorem in Le
 
 - UUID: `6e3ce04e-c201-5ffa-bd30-c589d8bcee57`
 - Parent: `TFQ-0573`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Outstanding Derivation Target 4 (GEN-WDP-72): a sound rejection rule pushed forward along a representation map remains sound on the target image only under fiber-constant target questions and explicit out-of-image abstention (NO_RULE).
 
@@ -3746,7 +3746,7 @@ Obligation: Mechanize the nine-element rejection-rule reuse theorem and false-re
 
 - UUID: `21bb2bf6-e9a6-59ec-8da3-65fe7b01a6fe`
 - Parent: `TFQ-0574`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Outstanding Derivation Target 5 (GEN-WDP-73): on the bounded five-edit native carrier (at most 3 literal terms, count total at most 4, horizon h=2), clipped signed counts and a 13-coordinate integer report determine all horizon-2 future observations.
 
@@ -3786,7 +3786,7 @@ Obligation: Maintain zero-axiom Lean 4 verification of Gaussian-rational Hermiti
 
 - UUID: `1e971fe2-779f-561d-949d-d1ab30fb174e`
 - Parent: `TFQ-0578`
-- Status: `SOURCE_RECORD`
+- Status: `PROVED_LEAN`
 
 Positivity, normalization, phase invariance, and affinity admit a one-parameter family of state-effect readouts distinct from trace pairing, showing in this finite model that trace Born weights require an additional assumption (GEN-WDP-65).
 

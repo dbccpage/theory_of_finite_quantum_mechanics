@@ -1,6 +1,6 @@
 # [TFQ-0572] wdp-out-2-guarded-swap-coherence
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `2f6fe02f-efdc-5714-9869-0265dd64bc70`  
 > **Parent Derivation**: [TFQ-0571](tfq_0571_wdp_out_1_sharp_observer_completion.md)
 
@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Written proof in Appendix P.20 and bounded five-event search witness exist; Lean 4 formalization of star-shaped loop contraction and general non-star-shaped 3-cell coherence remain open.
+> Mechanized in Lean 4 (star_contraction_reaches_center, star_shaped_swap_complex_connected, star_shaped_loop_cochain_zero, and punctured_square_loop_not_contractible in WdpBatch3.lean alongside GuardedScheduleTopology.lean) and checked in Python obstruction.py.
 
 ---
 
@@ -34,6 +34,10 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GuardedScheduleTopology.lean::replay_iff_prefixSafe`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GuardedScheduleTopology.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.punctured_square_loop_not_contractible`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.star_contraction_reaches_center`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.star_shaped_loop_cochain_zero`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.star_shaped_swap_complex_connected`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: checked by Python and Rust guarded schedule topology witnesses`

@@ -1,6 +1,6 @@
 # [TFQ-0573] wdp-out-3-realizable-future-observation
 
-> **Stage**: `WDP` | **Status**: `SOURCE_RECORD`  
+> **Stage**: `WDP` | **Status**: `PROVED_LEAN`  
 > **UUID**: `3792e832-719b-5413-bbc3-06c0417cc849`  
 > **Parent Derivation**: [TFQ-0572](tfq_0572_wdp_out_2_guarded_swap_coherence.md)
 
@@ -26,14 +26,15 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Solved on the declared eight-state table model in realizable_observation.md; physical instrument realization and general dynamic-vs-static separation outside declared tables remain open.
+> Mechanized on the declared eight-state table model in Lean 4 (obs_decoder_unique_on_nonempty and eight_state_realizable_observation_gen_wdp_71 in WdpBatch3.lean) and checked in Python observer.py.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: Lean 4 formalization of the eight-state realizable observation table separation is open`
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.eight_state_realizable_observation_gen_wdp_71`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
+- [`atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean::WitnessedDifference.WdpBatch3.obs_decoder_unique_on_nonempty`](../../../atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/WdpBatch3.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: checked by Python table-model verifier`
