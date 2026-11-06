@@ -241,17 +241,21 @@ def historySum2x2 (T1 : Layer2x2) (D1 : Diag2) (T0 : Layer2x2) (D0 : Diag2) : In
   let h11 := D0.d1 * T0.t11 * D1.d1 * T1.t11
   h00 + h01 + h10 + h11
 
+theorem mul4_rev (a b c d : Int) : a * b * c * d = d * c * b * a := by
+  rw [Int.mul_comm (a * b * c) d, Int.mul_comm (a * b) c, Int.mul_comm a b]
+  simp only [Int.mul_assoc]
+
 /-- Finite signed-history identity (`meron_spacetime_finite_checks.py::require_identity`):
     the ordered transfer trace equals the occupation-history sum identically. -/
 theorem finite_history_sum_eq_ordered_trace
     (T1 : Layer2x2) (D1 : Diag2) (T0 : Layer2x2) (D0 : Diag2) :
     orderedTrace2x2 T1 D1 T0 D0 = historySum2x2 T1 D1 T0 D0 := by
-  rcases T1 with ⟨a00, a01, a10, a11⟩
-  rcases D1 with ⟨d10, d11⟩
-  rcases T0 with ⟨b00, b01, b10, b11⟩
-  rcases D0 with ⟨d00, d01⟩
-  simp only [orderedTrace2x2, historySum2x2]
-  grind
+  simp only [orderedTrace2x2, historySum2x2,
+    mul4_rev T1.t00 D1.d0 T0.t00 D0.d0,
+    mul4_rev T1.t01 D1.d1 T0.t10 D0.d0,
+    mul4_rev T1.t10 D1.d0 T0.t01 D0.d1,
+    mul4_rev T1.t11 D1.d1 T0.t11 D0.d1]
+  omega
 
 /-- Flipping the Jordan–Wigner fermion sign on boundary-hop matrix element `T1.t01`
     changes the trace by `2 * T1.t01 * D1.d1 * T0.t10 * D0.d0`, so the signed CAR trace
@@ -261,12 +265,8 @@ theorem signed_vs_unsigned_trace_discrepancy
     orderedTrace2x2 T1 D1 T0 D0 -
       orderedTrace2x2 { T1 with t01 := -T1.t01 } D1 T0 D0 =
       2 * (T1.t01 * D1.d1 * T0.t10 * D0.d0) := by
-  rcases T1 with ⟨a00, a01, a10, a11⟩
-  rcases D1 with ⟨d10, d11⟩
-  rcases T0 with ⟨b00, b01, b10, b11⟩
-  rcases D0 with ⟨d00, d01⟩
-  simp only [orderedTrace2x2]
-  grind
+  simp only [orderedTrace2x2, Int.neg_mul]
+  omega
 
 /-- Exact rational temperature disk check `M * (q - 1) ≤ 1 / 192` cross-multiplied for
     `q = qNum / qDen` (`meron_spacetime_finite_checks.py::require_disk`). -/

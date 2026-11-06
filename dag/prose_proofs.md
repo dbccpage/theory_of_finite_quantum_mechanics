@@ -28,22 +28,26 @@ status are not claimed as proved and have no proof section.
 
 ## GENESIS
 
-36 of 36 with a prose proof.
+36 of 58 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
+| `PG-GEN-COLLAPSE-AND-FIRST-SEPARATION` | PROVED_LEAN | *none yet* |
 | `PG-GEN-IRREFLEXIVE-DISTINCT` | PROVED_LEAN | [genesis_proofs: 2.1 Relatedness, distinctness and irreflexivity](../dag/derivations/02_genesis/genesis_proofs.md#21-relatedness-distinctness-and-irreflexivity) |
 | `PG-GEN-NO-RETURN` | PROVED_LEAN | [genesis_proofs: 3.14 Runs do not return](../dag/derivations/02_genesis/genesis_proofs.md#314-runs-do-not-return) |
 | `PG-GEN-ONGOING-FEWEST-CHANGES` | PROVED_LEAN | [genesis_proofs: 4.2 The fewest changes](../dag/derivations/02_genesis/genesis_proofs.md#42-the-fewest-changes) |
 | `PG-GEN-ONGOING-OBSTRUCTION` | PROVED_LEAN | [genesis_proofs: 4.1 Obstruction](../dag/derivations/02_genesis/genesis_proofs.md#41-obstruction) |
 | `PG-GEN-REWRITING-COMMUTATION` | PROVED_LEAN | [genesis_proofs: 4.4 The second and third seeds: carrying maps and rewriting](../dag/derivations/02_genesis/genesis_proofs.md#44-the-second-and-third-seeds-carrying-maps-and-rewriting) |
+| `PG-GEN-SAMENESS-REFINEMENTS` | PROVED_LEAN | *none yet* |
 | `PG-GEN-SUPPLY-ERASURE` | PROVED_LEAN | [genesis_proofs: 3.1 Supply is a no-op, and supply events can be erased](../dag/derivations/02_genesis/genesis_proofs.md#31-supply-is-a-no-op-and-supply-events-can-be-erased) |
 | `PG-GEN-SUPPLY-NO-OP` | PROVED_LEAN | [genesis_proofs: 3.1 Supply is a no-op, and supply events can be erased](../dag/derivations/02_genesis/genesis_proofs.md#31-supply-is-a-no-op-and-supply-events-can-be-erased) |
+| `PGW-C1-ENGINE-CLASS-144` | PROVED_LEAN | *none yet* |
 | `PGW-C2-RUN-FORWARD-EVERY-HISTORY` | PROVED_LEAN | [genesis_proofs: 3.14 Runs do not return](../dag/derivations/02_genesis/genesis_proofs.md#314-runs-do-not-return) |
 | `PGW-CANONICAL-KEY-CLASSIFICATION` | PROVED_LEAN | [genesis_proofs: 3.13 Canonical keys classify regimes](../dag/derivations/02_genesis/genesis_proofs.md#313-canonical-keys-classify-regimes) |
 | `PGW-CHALLENGE0-INERTIA-SECOND-TOKEN` | PROVED_LEAN | [genesis_proofs: 3.3 Challenge 0: nothing derivable, and the second token](../dag/derivations/02_genesis/genesis_proofs.md#33-challenge-0-nothing-derivable-and-the-second-token) |
 | `PGW-CHALLENGE2-ADMITTED-BUT-COLLAPSED` | PROVED_LEAN | [genesis_proofs: 3.4 Challenge 2: admitted but collapsed](../dag/derivations/02_genesis/genesis_proofs.md#34-challenge-2-admitted-but-collapsed) |
 | `PGW-CHALLENGE3-CURRENT-REGIME-FAILS` | PROVED_LEAN | [genesis_proofs: 3.4 Challenge 2: admitted but collapsed](../dag/derivations/02_genesis/genesis_proofs.md#34-challenge-2-admitted-but-collapsed) |
+| `PGW-CLOSED-BASELINE-TERMINATES` | PROVED_LEAN | *none yet* |
 | `PGW-COLLAPSE-WITHOUT-INSTANCES` | PROVED_LEAN | [genesis_proofs: 3.2 Collapse without instances](../dag/derivations/02_genesis/genesis_proofs.md#32-collapse-without-instances) |
 | `PGW-COLLECTION-EXTENSIONALITY` | PROVED_LEAN | [genesis_proofs: 3.12 Lists and sets](../dag/derivations/02_genesis/genesis_proofs.md#312-lists-and-sets) |
 | `PGW-CONTEXT-COUNT-FORMULA` | PROVED_LEAN | [genesis_proofs: 3.5 The number of contexts](../dag/derivations/02_genesis/genesis_proofs.md#35-the-number-of-contexts) |
@@ -51,6 +55,8 @@ status are not claimed as proved and have no proof section.
 | `PGW-D2-INITIAL-POINTED` | PROVED_LEAN | [genesis_proofs: 2.2 The pointed two-element graph](../dag/derivations/02_genesis/genesis_proofs.md#22-the-pointed-two-element-graph) |
 | `PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS` | PROVED_LEAN | [genesis_proofs: 3.15 Endogenous demands, exogenous payments](../dag/derivations/02_genesis/genesis_proofs.md#315-endogenous-demands-exogenous-payments) |
 | `PGW-FAITHFUL-DESCENT-ROUND-TRIP` | PROVED_LEAN | [genesis_proofs: 1.6 Faithful common descent and round trips](../dag/derivations/02_genesis/genesis_proofs.md#16-faithful-common-descent-and-round-trips) |
+| `PGW-FORCED-CENSUS-COLUMN` | PROVED_LEAN | *none yet* |
+| `PGW-GENESIS-THREE-AXIS-VERDICT` | PROVED_LEAN | *none yet* |
 | `PGW-GO-CONTRACTION-STEP2-STEP3` | PROVED_LEAN | [genesis_proofs: 4.4 The second and third seeds: carrying maps and rewriting](../dag/derivations/02_genesis/genesis_proofs.md#44-the-second-and-third-seeds-carrying-maps-and-rewriting) |
 | `PGW-GO-H1-CANCELLATION-EXCESS` | PROVED_LEAN | [genesis_proofs: 4.8 H1: cancellation and the excess](../dag/derivations/02_genesis/genesis_proofs.md#48-h1-cancellation-and-the-excess) |
 | `PGW-GO-H2-STATE-RAISING-GAUGE` | PROVED_LEAN | [genesis_proofs: 4.9 H2: raising and the gauge](../dag/derivations/02_genesis/genesis_proofs.md#49-h2-raising-and-the-gauge) |
@@ -59,19 +65,35 @@ status are not claimed as proved and have no proof section.
 | `PGW-GO-MULTIPLICITY-MONOTONE` | PROVED_LEAN | [genesis_proofs: 4.5 The fourth seed: multiplicities only rise](../dag/derivations/02_genesis/genesis_proofs.md#45-the-fourth-seed-multiplicities-only-rise) |
 | `PGW-GO-REACH-CEILING` | PROVED_LEAN | [genesis_proofs: 4.3 Every finite legal state is reachable](../dag/derivations/02_genesis/genesis_proofs.md#43-every-finite-legal-state-is-reachable) |
 | `PGW-GO-TWO-RELATIONS-SWAP` | PROVED_LEAN | [genesis_proofs: 4.6 Two relations and the swap](../dag/derivations/02_genesis/genesis_proofs.md#46-two-relations-and-the-swap) |
+| `PGW-IDENTITY-IS-INDEX-NOT-PROFILE` | PROVED_LEAN | *none yet* |
 | `PGW-INCIDENCE-CONSTRUCTION-BETTI` | PROVED_LEAN | [genesis_proofs: 3.17 The incidence reading and its Betti numbers](../dag/derivations/02_genesis/genesis_proofs.md#317-the-incidence-reading-and-its-betti-numbers) |
+| `PGW-MINIMAL-OR-INITIAL-REFUSED` | PROVED_LEAN | *none yet* |
 | `PGW-MU1-ARITY-INDEXED-TIE-FAMILY` | PROVED_LEAN | [genesis_proofs: 3.6 Cost two, and the shape of the minima](../dag/derivations/02_genesis/genesis_proofs.md#36-cost-two-and-the-shape-of-the-minima) |
 | `PGW-MU1-MINIMUM-NOT-UNIQUE-L` | PROVED_LEAN | [genesis_proofs: 3.6 Cost two, and the shape of the minima](../dag/derivations/02_genesis/genesis_proofs.md#36-cost-two-and-the-shape-of-the-minima) |
+| `PGW-NO-ENDOGENOUS-DEMAND-GENERATOR` | PROVED_LEAN | *none yet* |
 | `PGW-ORBIT-BRANCHING-REPAIRS-LEAST-PAIR` | PROVED_LEAN | [genesis_proofs: 3.11 Least-pair selection is not equivariant](../dag/derivations/02_genesis/genesis_proofs.md#311-least-pair-selection-is-not-equivariant) |
 | `PGW-POLICY-ENDPOINT-ALL-SEPARATED` | PROVED_LEAN | [genesis_proofs: 3.8 Policy terminals separate every pair](../dag/derivations/02_genesis/genesis_proofs.md#38-policy-terminals-separate-every-pair) |
 | `PGW-PRUNING-LEMMAS-COST-TWO` | PROVED_LEAN | [genesis_proofs: 3.9 Pruning: rules, unmentioned instances and fresh items](../dag/derivations/02_genesis/genesis_proofs.md#39-pruning-rules-unmentioned-instances-and-fresh-items) |
 | `PGW-QUOTIENT-RETENTION` | PROVED_LEAN | [genesis_proofs: 1.5 Quotient retention](../dag/derivations/02_genesis/genesis_proofs.md#15-quotient-retention) |
 | `PGW-RESPONSE-EXISTENCE-MARK-PROGRESS` | PROVED_LEAN | [genesis_proofs: 3.7 A fresh mark always responds](../dag/derivations/02_genesis/genesis_proofs.md#37-a-fresh-mark-always-responds) |
+| `PGW-RUNG0-INHERITANCE-REPLAY` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG10-RESPONDER-ADJACENCY-REACH` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG2A-STAKE-DECLARED-LABEL` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG2B-STAKE-MENU` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG3-FIRST-DEMAND-INDEX` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG4-INDEX-UP-TO-ISOMORPHISM` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG5-SYMMETRY-ALONG-HISTORY` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG6-SUCCESSION-ELEMENT-COUNT` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG7-DURATION-UNDER-CHANGING` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG8-ELEMENT-COUNT-ACROSS-ISO` | PROVED_LEAN | *none yet* |
+| `PGW-RUNG9-TWO-NESS-OBSERVATIONAL-CLASSES` | PROVED_LEAN | *none yet* |
+| `PGW-SEALED-TERMINAL-STATEMENT` | PROVED_LEAN | *none yet* |
 | `PGW-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD` | PROVED_LEAN | [genesis_proofs: 3.16 A proposal record confers no execution](../dag/derivations/02_genesis/genesis_proofs.md#316-a-proposal-record-confers-no-execution) |
+| `TFQ-0385` | PROVED_LEAN | *none yet* |
 
 ## MSSN_SN
 
-12 of 12 with a prose proof.
+12 of 14 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
@@ -82,42 +104,86 @@ status are not claimed as proved and have no proof section.
 | `PGW-SN-E12-CIRCULATION-FUNCTIONAL` | PROVED_LEAN | [genesis_proofs: 6.1 The triangle circulation](../dag/derivations/02_genesis/genesis_proofs.md#61-the-triangle-circulation) |
 | `PGW-SN-ENDPOINT-LEMMA` | PROVED_LEAN | [genesis_proofs: 2.1 Relatedness, distinctness and irreflexivity](../dag/derivations/02_genesis/genesis_proofs.md#21-relatedness-distinctness-and-irreflexivity) |
 | `PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL` | PROVED_LEAN | [genesis_proofs: 5.1 The restricted lift and its retraction](../dag/derivations/02_genesis/genesis_proofs.md#51-the-restricted-lift-and-its-retraction) |
+| `PGW-SN-POSTNIKOV-REFUSAL` | PROVED_LEAN | *none yet* |
 | `PGW-SN-REPRESENTATION-QUOTIENT` | PROVED_LEAN | [genesis_proofs: 5.3 The complex balancing map as a representation quotient](../dag/derivations/02_genesis/genesis_proofs.md#53-the-complex-balancing-map-as-a-representation-quotient) |
 | `PGW-SN0-GROUND-INERTIA` | PROVED_LEAN | [genesis_proofs: 3.3 Challenge 0: nothing derivable, and the second token](../dag/derivations/02_genesis/genesis_proofs.md#33-challenge-0-nothing-derivable-and-the-second-token) |
 | `PGW-SN1-SUPPLY-NOT-ADMISSION` | PROVED_LEAN | [genesis_proofs: 3.2 Collapse without instances](../dag/derivations/02_genesis/genesis_proofs.md#32-collapse-without-instances) |
 | `PGW-SN2-OPAQUE-COLLAPSE` | PROVED_LEAN | [genesis_proofs: 3.4 Challenge 2: admitted but collapsed](../dag/derivations/02_genesis/genesis_proofs.md#34-challenge-2-admitted-but-collapsed) |
 | `PGW-SN3-COST-TWO-UNARY-MARK` | PROVED_LEAN | [genesis_proofs: 3.6 Cost two, and the shape of the minima](../dag/derivations/02_genesis/genesis_proofs.md#36-cost-two-and-the-shape-of-the-minima) |
+| `PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE` | PROVED_LEAN | *none yet* |
 
 ## WDP
 
-6 of 6 with a prose proof.
+6 of 44 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
+| `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` | PROVED_LEAN | *none yet* |
 | `PG-WDP-GROWTH-NO-REPAIR` | PROVED_LEAN | [genesis_proofs: 6.4 Growth does not repair](../dag/derivations/02_genesis/genesis_proofs.md#64-growth-does-not-repair) |
 | `PG-WDP-PROTECTED-QUESTIONS` | PROVED_LEAN | [genesis_proofs: 2.3 No point is fixed by every permutation](../dag/derivations/02_genesis/genesis_proofs.md#23-no-point-is-fixed-by-every-permutation) |
 | `PG-WDP-QUOTIENT-EXACT-SEQUENCE` | PROVED_LEAN | [genesis_proofs: 6.3 The exact sequence of the closure charge](../dag/derivations/02_genesis/genesis_proofs.md#63-the-exact-sequence-of-the-closure-charge) |
+| `PGW-WD2-FACTORED-REPORT-PRESERVATION` | PROVED_LEAN | *none yet* |
+| `PGW-WD2-MINIMAL-DETERMINISTIC-QUOTIENT` | PROVED_LEAN | *none yet* |
+| `PGW-WD2-NO-ESCAPE-UPDATE-CONGRUENCE` | PROVED_LEAN | *none yet* |
+| `PGW-WD2-REFINEMENT-STABILIZATION` | PROVED_LEAN | *none yet* |
+| `PGW-WD2-SHARP-STABILIZATION-BOUND` | PROVED_LEAN | *none yet* |
+| `PGW-WD2-SHORTEST-SEPARATING-WORD` | PROVED_LEAN | *none yet* |
+| `PGW-WD2-WORD-KERNEL-AGREEMENT` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-ADDITIVE-TENSOR-COMPLETION` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-AFFINE-THICKENING-CONJECTURE` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-BORN-RULE-NONSELECTION` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-BRIDGE-O01-CARRIER-CUT-GENESIS` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-BRIDGE-O02-OBSERVER-REPAIR` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-BRIDGE-O03-GUARDED-HISTORY-COHERENCE` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-BRIDGE-O04-TENSOR-RECONSTRUCTION` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-BRIDGE-O05-AUTHORIZATION-FIREWALL` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-BRIDGE-ONGOING-TO-WINDOW` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-DAGGER-OBSERVER-GRAM-RADICAL` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-DEGREE-K-TORSION-BALANCE` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-EXACT-SCALAR-HADAMARD-OBSTRUCTION` | PROVED_LEAN | *none yet* |
 | `PGW-WDP-EXACT-SEQUENCE-H1-Q1` | PROVED_LEAN | [genesis_proofs: 6.3 The exact sequence of the closure charge](../dag/derivations/02_genesis/genesis_proofs.md#63-the-exact-sequence-of-the-closure-charge) |
+| `PGW-WDP-FAILED-SAMENESS` | PROVED_LEAN | *none yet* |
 | `PGW-WDP-FILLED-TRIANGLE` | PROVED_LEAN | [genesis_proofs: 6.5 The filled triangle](../dag/derivations/02_genesis/genesis_proofs.md#65-the-filled-triangle) |
+| `PGW-WDP-FINITE-HERMITIANIZATION` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-HANDOFF-TO-L1` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-MERON-M1-CORRELATION-ESTIMATES` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-MERON-M2-CUMULANT-BOUNDS` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-MERON-M3-SPECTRAL-GAP-BYPASS` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-MERON-M4-NATIVE-ADAPTERS` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-MERON-M5-TORIC-NOISE-REPAIR` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-MERON-SPACETIME-LIMIT` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-OUT-1-SHARP-OBSERVER-COMPLETION` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-OUT-2-GUARDED-SWAP-COHERENCE` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-OUT-3-REALIZABLE-FUTURE-OBSERVATION` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-OUT-4-REJECTION-RULE-REUSE` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-OUT-5-FUTURE-FAITHFUL-COMPRESSION` | PROVED_LEAN | *none yet* |
+| `PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY` | PROVED_LEAN | *none yet* |
 | `PGW-WDP-POINTED-APARTNESS` | PROVED_LEAN | [genesis_proofs: 2.1 Relatedness, distinctness and irreflexivity](../dag/derivations/02_genesis/genesis_proofs.md#21-relatedness-distinctness-and-irreflexivity) |
+| `PGW-WDP-TRICHOTOMY-BOUNDS` | PROVED_LEAN | *none yet* |
 
 ## L1_EMERGENCE
 
-1 of 1 with a prose proof.
+1 of 3 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `L1-FRAMEWORK-KKT-CERT` | PROVED_LEAN | [genesis_proofs: 6.2 Weighted $\ell^1$ duality](../dag/derivations/02_genesis/genesis_proofs.md#62-weighted-ell1-duality) |
+| `L1-GS000-EDGEWISE-L1` | PROVED_LEAN | *none yet* |
+| `L1-WDP-CH08-C01-REPLICA-L1` | PROVED_LEAN | *none yet* |
 
 ## L1_TO_L2
 
-3 of 3 with a prose proof.
+3 of 5 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
+| `L1-IMP-COMPLEX-FIELD` | PROVED_LEAN | *none yet* |
 | `L1-QM020-THM1-DIRECT-NORMALIZATION` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.5 Normalization is redundant after the ray quotient](../dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics_proofs.md#15-normalization-is-redundant-after-the-ray-quotient) |
 | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.6 The $\ell^1$ additivity defect](../dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics_proofs.md#16-the-ell1-additivity-defect) |
 | `L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.3 Interference does not descend to the phase-blind quotient](../dag/derivations/10_finite_qm_core/sources/finite_quantum_mechanics_proofs.md#13-interference-does-not-descend-to-the-phase-blind-quotient) |
+| `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` | PROVED_LEAN | *none yet* |
 
 ## FINITE_QM_CORE
 
@@ -189,10 +255,12 @@ status are not claimed as proved and have no proof section.
 
 ## IMPLEMENTATION
 
-2 of 4 with a prose proof.
+2 of 6 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
+| `FQ-IMPL-REALIFICATION-ADAPTER` | PROVED_LEAN | *none yet* |
+| `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` | PROVED_LEAN | *none yet* |
 | `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.1 The switching normal form of an edge signing](../dag/derivations/26_fsp/sources/fermion_sign_and_majorana_proofs.md#11-the-switching-normal-form-of-an-edge-signing) |
 | `IMPL-LGGR-FINITE-RESULTS-LEAN` | PROVED_LEAN | [frontier_finite_targets_proofs: 5.2 Parity cycles: holonomy, sections and joint measures](../dag/derivations/19_finite_qg/sources/frontier_finite_targets_proofs.md#52-parity-cycles-holonomy-sections-and-joint-measures) |
 | `IMPL-THYMUS-SCREENING-SOUNDNESS` | PROVED_LEAN | *none yet* |

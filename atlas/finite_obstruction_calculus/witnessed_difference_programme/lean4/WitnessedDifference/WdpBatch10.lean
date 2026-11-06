@@ -24,27 +24,43 @@ open WitnessedDifference.WdpBatch9
 def carrierDimK (d n : Nat) : Nat :=
   n + d * (n * (n - 1) / 2)
 
-/-- Gaussian rational `a + b i` with `a, b : Rat`. -/
+/-- Gaussian integer `a + b i` with `a, b : Int` (exact numerator stand-in for `ℚ(i)`). -/
 structure GaussianRat10 where
-  re : Rat
-  im : Rat
+  re : Int
+  im : Int
   deriving DecidableEq, Repr
 
 def gratMul (z w : GaussianRat10) : GaussianRat10 :=
   ⟨z.re * w.re - z.im * w.im, z.re * w.im + z.im * w.re⟩
 
-def gratNormSq (z : GaussianRat10) : Rat :=
+def gratConj (z : GaussianRat10) : GaussianRat10 :=
+  ⟨z.re, -z.im⟩
+
+def gratNormSq (z : GaussianRat10) : Int :=
   z.re * z.re + z.im * z.im
 
-def gratInv (z : GaussianRat10) : GaussianRat10 :=
-  let n := gratNormSq z
-  ⟨z.re / n, -z.im / n⟩
+theorem mul_cross_swap (a b c d : Int) : (a * b) * (c * d) = (a * c) * (b * d) := by
+  rw [Int.mul_assoc a b (c * d), ← Int.mul_assoc b c d, Int.mul_comm b c,
+      Int.mul_assoc c b d, ← Int.mul_assoc a c (b * d)]
 
 /-- Gaussian norm is multiplicative: `N(z * w) = N(z) * N(w)`. -/
 theorem gratNormSq_mul (z w : GaussianRat10) :
     gratNormSq (gratMul z w) = gratNormSq z * gratNormSq w := by
+  rcases z with ⟨a, b⟩
+  rcases w with ⟨c, d⟩
   simp only [gratNormSq, gratMul]
-  grind
+  have hx : (a * c) * (a * c) = (a * a) * (c * c) := mul_cross_swap a c a c
+  have hy : (b * d) * (b * d) = (b * b) * (d * d) := mul_cross_swap b d b d
+  have hu : (a * d) * (a * d) = (a * a) * (d * d) := mul_cross_swap a d a d
+  have hv : (b * c) * (b * c) = (b * b) * (c * c) := mul_cross_swap b c b c
+  have hxy : (a * c) * (b * d) = (a * d) * (b * c) := by
+    rw [mul_cross_swap a c b d, mul_cross_swap a d b c, Int.mul_comm c d]
+  have hyx : (b * d) * (a * c) = (a * d) * (b * c) := by
+    rw [Int.mul_comm (b * d) (a * c), hxy]
+  have hvu : (b * c) * (a * d) = (a * d) * (b * c) := Int.mul_comm (b * c) (a * d)
+  simp only [Int.sub_mul, Int.mul_sub, Int.add_mul, Int.mul_add,
+    hx, hy, hu, hv, hxy, hyx, hvu]
+  omega
 
 /-- Composite dimension multiplicativity `K_d(4) = K_d(2) * K_d(2)` over positive `d > 0`
     uniquely selects `d = 2` (refuting `d = 1` real where `10 ≠ 9` and `d = 4` quaternionic
@@ -55,7 +71,7 @@ theorem composite_dimension_multiplicativity_selects_d_eq_two (d : Nat) (hd : 0 
   have h4 : 4 * (4 - 1) / 2 = 6 := by decide
   simp only [carrierDimK, h2, h4, Nat.mul_one]
   match d with
-  | 0 => omega
+  | 0 => exact absurd (Nat.lt_irrefl 0 hd) False.elim
   | 1 => decide
   | 2 => decide
   | k + 3 =>
@@ -64,13 +80,14 @@ theorem composite_dimension_multiplicativity_selects_d_eq_two (d : Nat) (hd : 0 
       simp only [Nat.add_mul, Nat.mul_add]; omega
     have h3 : 3 * (k + 3) ≤ (k + 3) * (k + 3) :=
       Nat.mul_le_mul_right (k + 3) (by omega)
-    omega
+    constructor <;> intro h <;> omega
 
 /-- Representative theorem for `L1-IMP-COMPLEX-FIELD`:
     under composite dimension multiplicativity `K_d(4) = K_d(2)^2`, `d = 2` is the unique
     positive parameter (`d = 1` fails with `10 ≠ 9`, `d = 4` fails with `28 ≠ 36`),
     Gaussian norm is multiplicative (`N(1+i) * N(2+i) = 2 * 5 = 10`), and `1 + i` and `2 + i`
-    have non-unit integer norms `2` and `5` while admitting exact reciprocals in `ℚ(i)`. -/
+    have non-unit integer norms `2` and `5` with exact conjugate-inverse numerators
+    `z * conj(z) = ⟨N(z), 0⟩`. -/
 theorem l1_imp_complex_field_selection_and_gaussian_standin :
     (∀ d : Nat, 0 < d → (carrierDimK d 4 = carrierDimK d 2 * carrierDimK d 2 ↔ d = 2)) ∧
     carrierDimK 1 4 = 10 ∧ carrierDimK 1 2 * carrierDimK 1 2 = 9 ∧
@@ -79,13 +96,11 @@ theorem l1_imp_complex_field_selection_and_gaussian_standin :
     (∀ z w : GaussianRat10, gratNormSq (gratMul z w) = gratNormSq z * gratNormSq w) ∧
     gratNormSq ⟨1, 1⟩ = 2 ∧
     gratNormSq ⟨2, 1⟩ = 5 ∧
-    gratMul ⟨1, 1⟩ (gratInv ⟨1, 1⟩) = ⟨1, 0⟩ ∧
-    gratMul ⟨2, 1⟩ (gratInv ⟨2, 1⟩) = ⟨1, 0⟩ := by
-  refine ⟨composite_dimension_multiplicativity_selects_d_eq_two,
+    gratMul ⟨1, 1⟩ (gratConj ⟨1, 1⟩) = ⟨2, 0⟩ ∧
+    gratMul ⟨2, 1⟩ (gratConj ⟨2, 1⟩) = ⟨5, 0⟩ := by
+  exact ⟨composite_dimension_multiplicativity_selects_d_eq_two,
     by decide, by decide, by decide, by decide, by decide, by decide,
-    gratNormSq_mul, ?_, ?_, ?_, ?_⟩ <;>
-  · simp only [gratNormSq, gratMul, gratInv, GaussianRat10.mk.injEq]
-    grind
+    gratNormSq_mul, by decide, by decide, by decide, by decide⟩
 
 /-! ## 2. PGW-RUNG2A-STAKE-DECLARED-LABEL (GENESIS) -/
 
@@ -130,7 +145,7 @@ def hasDemandBool (stake : Stake) (r : RungRegime) : Bool :=
 /-- Under the `freeStake`, no demand ever stands at any pair or regime. -/
 theorem free_stake_carries_no_demand (r : RungRegime) (i j : Nat) :
     demandAtPairBool freeStake r i j = false := by
-  simp [demandAtPairBool, freeStake, honoursLabelBool]
+  simp only [demandAtPairBool, freeStake, honoursLabelBool, Bool.not_true, Bool.and_false]
 
 /-- A `supply` event preserves all demands under any stake. -/
 theorem supply_preserves_demands (stake : Stake) (r : RungRegime) (t i j : Nat) :
@@ -143,14 +158,17 @@ theorem unarySeparatedBool_false_of_no_insts (r : RungRegime) (hi : r.insts = []
   unfold unarySeparatedBool
   rw [List.any_eq_false]
   intro f _
-  have hEq : derivableRung r (f, [i]) ↔ derivableRung r (f, [j]) := by
-    have hc := collapsedRung_of_no_insts r hi i j ⟨f, [none]⟩
-    simpa [plugCtx] using hc
-  by_cases h1 : derivableRung r (f, [i])
-  · have h2 : derivableRung r (f, [j]) := hEq.mp h1
-    simp [h1, h2]
-  · have h2 : ¬ derivableRung r (f, [j]) := fun h => h1 (hEq.mpr h)
-    simp [h1, h2]
+  have hEq : derivableRung r (f, [i]) ↔ derivableRung r (f, [j]) :=
+    collapsedRung_of_no_insts r hi i j ⟨f, [none]⟩
+  cases Decidable.em (derivableRung r (f, [i])) with
+  | inl h1 =>
+    have h2 : derivableRung r (f, [j]) := hEq.mp h1
+    rw [decide_eq_true h1, decide_eq_true h2]
+    decide
+  | inr h1 =>
+    have h2 : ¬ derivableRung r (f, [j]) := fun h => h1 (hEq.mpr h)
+    rw [decide_eq_false h1, decide_eq_false h2]
+    decide
 
 /-- Growth (`admitDatum`) from a regime with `r.insts = []` and `0 < r.data` generates an
     `.apart` demand at `(0, r.data)` whenever `stake 0 r.data = .apart`. -/
@@ -161,8 +179,16 @@ theorem growth_generates_apart_of_no_insts
   refine ⟨{ r with data := r.data + 1 }, rfl, ?_⟩
   have hSep : unarySeparatedBool { r with data := r.data + 1 } 0 r.data = false :=
     unarySeparatedBool_false_of_no_insts { r with data := r.data + 1 } hi 0 r.data
-  have hBounds : 0 < r.data + 1 ∧ r.data < r.data + 1 ∧ (0 : Nat) ≠ r.data := by omega
-  simp [demandAtPairBool, hBounds, hLbl, honoursLabelBool, hSep]
+  have hBounds : 0 < r.data + 1 ∧ r.data < r.data + 1 ∧ (0 : Nat) ≠ r.data :=
+    ⟨by omega, by omega, by omega⟩
+  have hDec : decide (0 < r.data + 1 ∧ r.data < r.data + 1 ∧ (0 : Nat) ≠ r.data) = true :=
+    decide_eq_true hBounds
+  unfold demandAtPairBool
+  dsimp only
+  rw [hDec, hLbl]
+  unfold honoursLabelBool
+  rw [hSep]
+  rfl
 
 /-- Representative theorem for `PGW-RUNG2A-STAKE-DECLARED-LABEL`:
     the `freeStake` carries no demand, `supply` preserves all demands, and growth (`admitDatum`)
@@ -268,14 +294,20 @@ theorem uniform_stake_transports_demand_pair
     (hSep : ∀ i j : Nat, unarySeparatedBool r₁ i j = unarySeparatedBool r₂ (π i) (π j))
     (i j : Nat) :
     demandAtPairBool stake r₁ i j = demandAtPairBool stake r₂ (π i) (π j) := by
-  by_cases hValid : i < r₁.data ∧ j < r₁.data ∧ i ≠ j
-  · have hValid2 : π i < r₂.data ∧ π j < r₂.data ∧ π i ≠ π j := (hBound i j).mp hValid
+  cases Decidable.em (i < r₁.data ∧ j < r₁.data ∧ i ≠ j) with
+  | inl hValid =>
+    have hValid2 : π i < r₂.data ∧ π j < r₂.data ∧ π i ≠ π j := (hBound i j).mp hValid
     have hL1 : stake i j = L0 := hUnif i j hValid.2.2
     have hL2 : stake (π i) (π j) = L0 := hUnif (π i) (π j) hValid2.2.2
-    simp [demandAtPairBool, hValid, hValid2, hL1, hL2, honoursLabelBool, hSep i j]
-  · have hValid2 : ¬ (π i < r₂.data ∧ π j < r₂.data ∧ π i ≠ π j) :=
+    have hDec1 : decide (i < r₁.data ∧ j < r₁.data ∧ i ≠ j) = true := decide_eq_true hValid
+    have hDec2 : decide (π i < r₂.data ∧ π j < r₂.data ∧ π i ≠ π j) = true := decide_eq_true hValid2
+    simp only [demandAtPairBool, hDec1, hDec2, hL1, hL2, honoursLabelBool, hSep i j]
+  | inr hValid =>
+    have hValid2 : ¬ (π i < r₂.data ∧ π j < r₂.data ∧ π i ≠ π j) :=
       fun h => hValid ((hBound i j).mpr h)
-    simp [demandAtPairBool, hValid, hValid2]
+    have hDec1 : decide (i < r₁.data ∧ j < r₁.data ∧ i ≠ j) = false := decide_eq_false hValid
+    have hDec2 : decide (π i < r₂.data ∧ π j < r₂.data ∧ π i ≠ π j) = false := decide_eq_false hValid2
+    simp only [demandAtPairBool, hDec1, hDec2, Bool.false_and]
 
 /-- The non-uniform `chainStake` reader: labels `(i, j)` as `.apart` iff `i + 1 == j`. -/
 def chainStake : Stake := fun i j => if i + 1 == j then .apart else .free
@@ -328,60 +360,74 @@ theorem stepRung_eq_or_elems_succ {r r' : RungRegime} {e : RungEvent}
   | admitDatum =>
       simp only [stepRung, Option.some.injEq] at h
       subst h
-      refine Or.inr ⟨?_, by simp [rungElems]; omega⟩
+      refine Or.inr ⟨?_, by simp only [rungElems]; omega⟩
       intro heq
       have hd : r.data + 1 = r.data := congrArg RungRegime.data heq
       omega
   | admitForm a =>
       simp only [stepRung] at h
-      split at h
-      · simp only [Option.some.injEq] at h
+      cases Decidable.em (1 ≤ a) with
+      | inl hc =>
+        rw [if_pos hc] at h
+        simp only [Option.some.injEq] at h
         subst h
-        refine Or.inr ⟨?_, by simp [rungElems]; omega⟩
+        refine Or.inr ⟨?_, by simp only [rungElems, List.length_append, List.length_cons, List.length_nil]; omega⟩
         intro heq
         have hf : (r.forms ++ [a]).length = r.forms.length :=
           congrArg (fun x => x.forms.length) heq
-        simp at hf
-      · cases h
+        simp only [List.length_append, List.length_cons, List.length_nil] at hf
+        omega
+      | inr hc =>
+        rw [if_neg hc] at h; cases h
   | admitInst f args =>
       simp only [stepRung] at h
-      split at h
-      · simp only [Option.some.injEq] at h
+      cases Decidable.em (f < r.forms.length ∧ args.length = r.forms.getD f 0 ∧
+          (∀ x ∈ args, x < r.data)) with
+      | inl hc =>
+        rw [if_pos hc] at h
+        simp only [Option.some.injEq] at h
         subst h
         rcases insertNew_eq_or_succ r.insts (f, args) with heq | hlen
         · rw [heq]; exact Or.inl ⟨rfl, rfl⟩
-        · refine Or.inr ⟨?_, by simp [rungElems, hlen]; omega⟩
+        · refine Or.inr ⟨?_, by simp only [rungElems, hlen]; omega⟩
           intro hReg
           have hi : (insertNew r.insts (f, args)).length = r.insts.length :=
             congrArg (fun x => x.insts.length) hReg
           omega
-      · cases h
+      | inr hc =>
+        rw [if_neg hc] at h; cases h
   | admitRuleAll f =>
       simp only [stepRung] at h
-      split at h
-      · simp only [Option.some.injEq] at h
+      cases Decidable.em (f < r.forms.length) with
+      | inl hc =>
+        rw [if_pos hc] at h
+        simp only [Option.some.injEq] at h
         subst h
         rcases insertNew_eq_or_succ r.rules f with heq | hlen
         · rw [heq]; exact Or.inl ⟨rfl, rfl⟩
-        · refine Or.inr ⟨?_, by simp [rungElems, hlen]; omega⟩
+        · refine Or.inr ⟨?_, by simp only [rungElems, hlen]; omega⟩
           intro hReg
           have hrul : (insertNew r.rules f).length = r.rules.length :=
             congrArg (fun x => x.rules.length) hReg
           omega
-      · cases h
+      | inr hc =>
+        rw [if_neg hc] at h; cases h
   | impose i j =>
       simp only [stepRung] at h
-      split at h
-      · simp only [Option.some.injEq] at h
+      cases Decidable.em (i < j ∧ j < r.data) with
+      | inl hc =>
+        rw [if_pos hc] at h
+        simp only [Option.some.injEq] at h
         subst h
         rcases insertNew_eq_or_succ r.reqs (i, j) with heq | hlen
         · rw [heq]; exact Or.inl ⟨rfl, rfl⟩
-        · refine Or.inr ⟨?_, by simp [rungElems, hlen]; omega⟩
+        · refine Or.inr ⟨?_, by simp only [rungElems, hlen]; omega⟩
           intro hReg
           have hreq : (insertNew r.reqs (i, j)).length = r.reqs.length :=
             congrArg (fun x => x.reqs.length) hReg
           omega
-      · cases h
+      | inr hc =>
+        rw [if_neg hc] at h; cases h
 
 /-- Check whether a datum permutation `π : List Nat` (on `0 .. r.data - 1`) preserves
     unary instances in `r.insts` (fixes form `0` and maps each `[d]` to `[π[d]]`). -/

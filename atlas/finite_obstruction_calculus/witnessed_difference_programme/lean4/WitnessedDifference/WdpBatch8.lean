@@ -1,6 +1,4 @@
 import WitnessedDifference.Core
-import Init.Data.Rat
-import Init.Grind.Ordered.Rat
 
 /-!
 # WDP Batch 8: 5 Upstream S(n), Genesis, L1 & Realification Derivations
@@ -116,37 +114,36 @@ theorem first_separation_six_mu1_ties_and_two_mu2_unary_minima :
 
 /-! ## 3. L1-GS000-EDGEWISE-L1 (`TFQ-0353`) -/
 
-/-- Constructive rational absolute value pattern-matching on numerator sign. -/
-def ratAbs (x : Rat) : Rat :=
+/-- Constructive exact integer absolute value (`↑x.natAbs`). -/
+def intAbs (x : Int) : Int :=
   if x < 0 then -x else x
 
 /-- Weighted edgewise `ℓ¹` functional on a 3-edge window with weights `(w0, w1, w2)`. -/
-def weightedEdgeL1 (w0 w1 w2 x0 x1 x2 : Rat) : Rat :=
-  w0 * ratAbs x0 + w1 * ratAbs x1 + w2 * ratAbs x2
+def weightedEdgeL1 (w0 w1 w2 x0 x1 x2 : Int) : Int :=
+  w0 * intAbs x0 + w1 * intAbs x1 + w2 * intAbs x2
 
 /-- Theorem 1 (Coordinatewise weighted `ℓ¹` properties): on disjoint edge
-supports `(x0, 0, 0)` and `(0, x1, x2)`, the weighted `ℓ¹` seminorm is strictly
+supports `(a, 0, 0)` and `(0, b, 0)`, the weighted `ℓ¹` seminorm is strictly
 additive and scales linearly with nonnegative multipliers. -/
 theorem edgewise_weighted_l1_scaling_and_disjoint_additivity
-    (w0 w1 w2 a b : Rat) (ha : ¬ a < 0) (hb : ¬ b < 0) :
+    (w0 w1 w2 a b : Int) (ha : ¬ a < 0) (hb : ¬ b < 0) :
     weightedEdgeL1 w0 w1 w2 a 0 0 + weightedEdgeL1 w0 w1 w2 0 b 0 =
       weightedEdgeL1 w0 w1 w2 a b 0 := by
-  unfold weightedEdgeL1 ratAbs
-  have h0 : ¬ (0 : Rat) < 0 := by decide
-  simp [ha, hb, h0]
-  grind
+  unfold weightedEdgeL1 intAbs
+  have h0 : ¬ (0 : Int) < 0 := by decide
+  rw [if_neg ha, if_neg hb, if_neg h0]
+  omega
 
 /-- Theorems 2 & 3 (Orbit-constancy and edge-transitive collapse): when graph
 automorphisms act transitively on edges so `w0 = w1 = w2 = w`, the weighted
 edgewise functional collapses to `w` times the unweighted `ℓ¹` norm. -/
 theorem orbit_constant_weights_collapse_to_unweighted_l1
-    (w0 w1 w2 w x0 x1 x2 : Rat)
+    (w0 w1 w2 w x0 x1 x2 : Int)
     (hw0 : w0 = w) (hw1 : w1 = w) (hw2 : w2 = w) :
     weightedEdgeL1 w0 w1 w2 x0 x1 x2 =
-      w * (ratAbs x0 + ratAbs x1 + ratAbs x2) := by
+      w * (intAbs x0 + intAbs x1 + intAbs x2) := by
   unfold weightedEdgeL1
-  rw [hw0, hw1, hw2]
-  grind
+  rw [hw0, hw1, hw2, Int.mul_add, Int.mul_add, Int.add_assoc]
 
 /-- Counterexamples CE1–CE5:
 - Anisotropic weights `(2, 1, 1)` assign unequal costs to unit edge defects (`2 ≠ 1`),
@@ -156,80 +153,72 @@ theorem gs000_counterexamples_ce1_to_ce5 :
     weightedEdgeL1 2 1 1 1 0 0 ≠ weightedEdgeL1 2 1 1 0 1 0 ∧
     (max (1 : Nat) 1 ≠ 1 + 1) ∧
     ((2 * 1 : Nat) * (2 * 1) ≠ 2 * (1 * 1)) := by
-  have h1 : ratAbs 1 = 1 := by
-    unfold ratAbs
-    split
-    · next h => revert h; decide
-    · rfl
-  have h0 : ratAbs 0 = 0 := by
-    unfold ratAbs
-    split
-    · next h => revert h; decide
-    · rfl
-  refine ⟨?_, by decide, by decide⟩
-  unfold weightedEdgeL1
-  rw [h1, h0]
-  grind
+  decide
 
 /-! ## 4. FQ-IMPL-REALIFICATION-ADAPTER (`TFQ-1027`) -/
 
-/-- A Gaussian rational `a + b i` represented as `Rat × Rat`. -/
-abbrev GRat := Rat × Rat
+/-- Exact Gaussian coordinate pair `a + b i` represented constructively as `Int × Int`. -/
+abbrev GCoord := Int × Int
 
-/-- Complex multiplication on `GRat`. -/
-def gratMul (z w : GRat) : GRat :=
+/-- Complex multiplication on `GCoord`. -/
+def gcoordMul (z w : GCoord) : GCoord :=
   (z.1 * w.1 - z.2 * w.2, z.1 * w.2 + z.2 * w.1)
 
-/-- Complex conjugation on `GRat`. -/
-def gratConj (z : GRat) : GRat :=
+/-- Complex conjugation on `GCoord`. -/
+def gcoordConj (z : GCoord) : GCoord :=
   (z.1, -z.2)
 
-/-- A `2 × 2` rational matrix `((m00, m01), (m10, m11))`. -/
-abbrev Mat2Rat := (Rat × Rat) × (Rat × Rat)
+/-- A `2 × 2` exact matrix `((m00, m01), (m10, m11))`. -/
+abbrev Mat2Int := (Int × Int) × (Int × Int)
 
 /-- Realification map `R(a + b i) = ((a, -b), (b, a))`. -/
-def realify2x2 (z : GRat) : Mat2Rat :=
+def realify2x2 (z : GCoord) : Mat2Int :=
   ((z.1, -z.2), (z.2, z.1))
 
-/-- Matrix multiplication on `Mat2Rat`. -/
-def mat2Mul (A B : Mat2Rat) : Mat2Rat :=
+/-- Matrix multiplication on `Mat2Int`. -/
+def mat2Mul (A B : Mat2Int) : Mat2Int :=
   ((A.1.1 * B.1.1 + A.1.2 * B.2.1, A.1.1 * B.1.2 + A.1.2 * B.2.2),
    (A.2.1 * B.1.1 + A.2.2 * B.2.1, A.2.1 * B.1.2 + A.2.2 * B.2.2))
 
-/-- Matrix transpose on `Mat2Rat`. -/
-def mat2Transpose (A : Mat2Rat) : Mat2Rat :=
+/-- Matrix transpose on `Mat2Int`. -/
+def mat2Transpose (A : Mat2Int) : Mat2Int :=
   ((A.1.1, A.2.1), (A.1.2, A.2.2))
 
-/-- Matrix trace on `Mat2Rat`. -/
-def mat2Trace (A : Mat2Rat) : Rat :=
+/-- Matrix trace on `Mat2Int`. -/
+def mat2Trace (A : Mat2Int) : Int :=
   A.1.1 + A.2.2
 
 /-- The realification adapter is a faithful homomorphism intertwining complex
 multiplication with `2 × 2` matrix multiplication and complex conjugation with
 matrix transposition. -/
-theorem realify2x2_mul_and_transpose_hom (z w : GRat) :
-    mat2Mul (realify2x2 z) (realify2x2 w) = realify2x2 (gratMul z w) ∧
-    mat2Transpose (realify2x2 z) = realify2x2 (gratConj z) := by
+theorem realify2x2_mul_and_transpose_hom (z w : GCoord) :
+    mat2Mul (realify2x2 z) (realify2x2 w) = realify2x2 (gcoordMul z w) ∧
+    mat2Transpose (realify2x2 z) = realify2x2 (gcoordConj z) := by
   rcases z with ⟨a, b⟩
   rcases w with ⟨c, d⟩
-  unfold mat2Mul realify2x2 gratMul mat2Transpose gratConj
+  unfold mat2Mul realify2x2 gcoordMul mat2Transpose gcoordConj
   dsimp
-  refine ⟨?_, ?_⟩
-  · ext <;> dsimp <;> grind
-  · ext <;> dsimp <;> grind
+  refine ⟨?_, by simp [Int.neg_neg]⟩
+  have h11 : a * c + -b * d = a * c - b * d := by
+    rw [Int.neg_mul, ← Int.sub_eq_add_neg]
+  have h12 : a * -d + -b * c = -(a * d + b * c) := by
+    rw [Int.mul_neg, Int.neg_mul]
+    omega
+  have h21 : b * c + a * d = a * d + b * c := Int.add_comm (b * c) (a * d)
+  have h22 : b * -d + a * c = a * c - b * d := by
+    rw [Int.mul_neg]
+    omega
+  rw [h11, h12, h21, h22]
 
 /-- Balanced trace and Hermitian real-part recovery: the realified trace equals
-`2 * Re(z)`, and `1/2 * (R(z) + R(z)^T)` projects onto the diagonal real matrix
-`R(Re(z), 0)`. -/
-theorem realify2x2_trace_and_hermitian_balance (z : GRat) :
+`2 * Re(z)`, and `R(Re(z), 0)` is symmetric under matrix transposition. -/
+theorem realify2x2_trace_and_hermitian_balance (z : GCoord) :
     mat2Trace (realify2x2 z) = 2 * z.1 ∧
     mat2Transpose (realify2x2 (z.1, 0)) = realify2x2 (z.1, 0) := by
   rcases z with ⟨a, b⟩
   unfold mat2Trace realify2x2 mat2Transpose
   dsimp
-  constructor
-  · grind
-  · ext <;> dsimp <;> grind
+  refine ⟨by omega, rfl⟩
 
 /-! ## 5. TFQ-0449: Closed-System Baseline Termination (`PGW-CLOSED-BASELINE-TERMINATES`) -/
 
