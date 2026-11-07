@@ -10,6 +10,7 @@ Level: L5
 from __future__ import annotations
 
 import hashlib
+import json
 import sys
 from pathlib import Path
 
@@ -334,3 +335,122 @@ def test_real_tree_smoke():
     assert types.findings["FORM"] == []
     assert types.findings["UNKNOWN"] == []
     assert types.findings["CLAIM"] == []
+
+
+# ------------------------------------------------------------------------------------------------------------
+# rules added after the review of the types: composition, one type file per folder, catch-all forms, counts,
+# format, invariants, gitlinks and glob grammar
+# ------------------------------------------------------------------------------------------------------------
+
+def test_one_type_file_per_folder_and_composition(tmp_path):
+    types = crt.Types(write_types(tmp_path, base_root(), {"alpha": alpha_doc(), "beta": beta_doc()}))
+    files = FILES + ["gamma/loose.md"]
+    result = crt.evaluate(types, files)
+    form = "\n".join(result.findings["FORM"])
+    assert "top-level folder gamma has no gamma.type.yaml" in form
+    assert "beta.type.yaml names no top-level folder" in form  # beta claims beta_one and beta_two, no folder beta
+    # a class no attribute names, and a class that claims a folder outside its owner
+    root = base_root()
+    root["classes"][0]["attributes"] = [a for a in root["classes"][0]["attributes"] if a.get("class") != "AlphaFolder"]
+    alpha = alpha_doc()
+    alpha["classes"][0]["attributes"].append({"name": "stray", "class": "BetaFolders", "required": False})
+    types = crt.Types(write_types(tmp_path / "two", root, {"alpha": alpha, "beta": beta_doc()}))
+    result = crt.evaluate(types, FILES)
+    form = "\n".join(result.findings["FORM"])
+    assert "class AlphaFolder is part of no class" in form
+    assert "AlphaFolder.stray: BetaFolders claims a folder outside" in form
+
+
+def test_class_without_files_is_dead(tmp_path):
+    alpha = alpha_doc()
+    alpha["classes"].append({"class": "Ghost", "path": "alpha/ghost", "summary": "g", "role": "record", "counts": {"now": 0, "target": 0}, "collections": [member("any", "*", "Data")]})
+    alpha["classes"][0]["attributes"].append({"name": "ghost", "class": "Ghost", "required": False})
+    types = crt.Types(write_types(tmp_path, base_root(), {"alpha": alpha, "beta": beta_doc()}))
+    result = crt.evaluate(types, FILES)
+    assert "class Ghost" in result.findings["DEAD"]
+
+
+def test_catch_all_forms():
+    assert crt.is_catch_all("**", "md") and crt.is_catch_all("**/*", "md") and crt.is_catch_all("**/*.*", "md") and crt.is_catch_all("*", "md")
+    assert crt.is_catch_all("notes/*.md", "any")
+    assert not crt.is_catch_all("folder/**", "md") and not crt.is_catch_all("**/*.md", "md")
+
+
+def test_glob_grammar_form(tmp_path):
+    alpha = alpha_doc()
+    alpha["classes"][0]["collections"].append(member("bad_star", "notes/**.md", "Note"))
+    alpha["classes"][0]["collections"].append(member("bad_brace", "notes/{a,b.md", "Note"))
+    alpha["classes"][0]["collections"].append(member("bad_set", "notes/[ab.md", "Note"))
+    types = crt.Types(write_types(tmp_path, base_root(), {"alpha": alpha, "beta": beta_doc()}))
+    form = "\n".join(types.findings["FORM"])
+    assert "bad_star" in form and "whole segment" in form
+    assert "bad_brace" in form and "unbalanced braces" in form
+    assert "bad_set" in form and "unterminated character set" in form
+
+
+def test_counts_are_compared_with_the_tree(tmp_path):
+    root = base_root()
+    root["classes"][0]["counts"] = {"now": 1, "target": 3}
+    root["classes"][0]["totals"] = {"files_now": 1, "files_target": 1}
+    root["classes"][0]["attributes"][-1]["now"] = 99  # readme
+    types = crt.Types(write_types(tmp_path, root, {"alpha": alpha_doc(), "beta": beta_doc()}))
+    result = crt.evaluate(types, FILES)
+    count = "\n".join(result.findings["COUNT"])
+    assert "Repository.readme: now 99, tree 1" in count
+    assert "Repository: counts.now 1, tree 2" in count and "Repository: counts.target 3, tree 2" in count
+    assert f"Repository: totals.files_now 1, tree {len(FILES)}" in count
+    assert "COUNT" not in crt.STRICT_KINDS
+
+
+def test_format_against_extension(tmp_path):
+    alpha = alpha_doc()
+    alpha["classes"][0]["collections"].insert(0, member("wrong", "set/*.txt", "Data"))  # Data is json
+    types = crt.Types(write_types(tmp_path, base_root(), {"alpha": alpha, "beta": beta_doc()}))
+    result = crt.evaluate(types, FILES)
+    assert any("alpha/set/a1.txt: leaf Data" in f for f in result.findings["FORMAT"])
+    assert not any("alpha/inner" in f for f in result.findings["FORMAT"])  # format any is never checked
+    assert crt.file_extension("x/LICENSE") == "LICENSE" and crt.file_extension("x/.gitattributes") == ".gitattributes"
+    assert crt.file_extension("x/lean-toolchain") == "lean-toolchain" and crt.file_extension("x/Makefile") == "(none)"
+    assert crt.format_extensions("json, jsonl, yaml or text") == {"json", "jsonl", "yaml", "yml", "txt", "text", "log", "(none)"}
+    assert crt.format_extensions("any") is None and crt.format_extensions("GitHub Actions workflow") is None
+
+
+def test_invariant_rules(tmp_path):
+    alpha = alpha_doc()
+    alpha["classes"][0]["invariants"] = [
+        {"id": "a.same", "statement": "s", "holds_now": "unknown", "checked_by": "unchecked"},
+        {"id": "a.same", "statement": "s", "holds_now": "unknown", "checked_by": "unchecked"},
+        {"id": "a.true_unchecked", "statement": "s", "holds_now": True, "checked_by": "unchecked"},
+        {"id": "a.ghost_path", "statement": "s", "holds_now": False, "checked_by": "python alpha/notes/nonexistent_tool.py --check"},
+        {"id": "a.real_path", "statement": "s", "holds_now": False, "checked_by": "python alpha/notes/a.md"},
+    ]
+    types = crt.Types(write_types(tmp_path, base_root(), {"alpha": alpha, "beta": beta_doc()}))
+    result = crt.evaluate(types, FILES)
+    form = "\n".join(result.findings["FORM"])
+    assert "invariant id a.same is used twice" in form
+    assert "a.true_unchecked says holds_now true but is unchecked" in form
+    assert "a.ghost_path checked_by names alpha/notes/nonexistent_tool.py, which is not tracked" in form
+    assert "a.real_path" not in form
+
+
+def test_gitlinks_are_untyped(tmp_path):
+    types = crt.Types(write_types(tmp_path, base_root(), {"alpha": alpha_doc(), "beta": beta_doc()}))
+    result = crt.evaluate(types, FILES + ["alpha/notes/sub"], gitlinks={"alpha/notes/sub"})
+    assert "alpha/notes/sub (a gitlink, not a file)" in result.findings["UNTYPED"]
+
+
+def test_provenance_report(tmp_path):
+    repo = tmp_path / "repo"
+    (repo / "atlas" / "pkg").mkdir(parents=True)
+    (repo / "atlas" / "pkg" / "same.txt").write_bytes(b"same")
+    (repo / "atlas" / "pkg" / "changed.txt").write_bytes(b"new bytes")
+    (repo / "atlas" / "pkg" / "unlisted.txt").write_bytes(b"x")
+    ledger = {"files": [
+        {"path": "pkg/same.txt", "sha256": hashlib.sha256(b"same").hexdigest()},
+        {"path": "pkg/changed.txt", "sha256": hashlib.sha256(b"old bytes").hexdigest()},
+        {"path": "pkg/gone.txt", "sha256": "0" * 64},
+    ]}
+    (repo / "atlas" / "PROVENANCE.json").write_text(json.dumps(ledger), encoding="utf-8")
+    tree = {"atlas/PROVENANCE.json": "b0", "atlas/pkg/same.txt": "b1", "atlas/pkg/changed.txt": "b2", "atlas/pkg/unlisted.txt": "b3"}
+    unlisted, untracked, differing, count = crt.provenance_report(repo, tree)
+    assert (unlisted, untracked, differing, count) == (["pkg/unlisted.txt"], ["pkg/gone.txt"], ["pkg/changed.txt"], 3)

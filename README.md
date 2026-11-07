@@ -70,7 +70,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | Axioms named in those receipts | propext 228, Quot.sound 170, Classical.choice 140; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 156) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 5181 (plus 0 in `evidence/results` snapshots) | `git ls-files '*.py'` |
+| Python test functions (`def test_`) | 5190 (plus 0 in `evidence/results` snapshots) | `git ls-files '*.py'` |
 | Rust test functions (`#[test]`) | 16447 (plus 0 in `evidence/results` snapshots) | `git ls-files '*.rs'` |
 | Contract/score companions | combined_files = 3507, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
 

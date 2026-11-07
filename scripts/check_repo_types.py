@@ -11,14 +11,19 @@ beside the recorded `now` and `target`, followed by the findings:
     MISSING  a required attribute with no instance
     UNKNOWN  a member, attribute or relation naming a leaf type or class no type file defines
     CLAIM    two classes claiming one folder, or one class or leaf name defined twice
-    FORM     a field missing or outside the grammar of block `meta`
+    FORM     a field missing or outside the grammar of block `meta`; a type file that names no top-level folder or a
+             folder without one; a class that no attribute names or that claims a folder outside its owner's; an
+             invariant whose checked_by names an untracked file
+    FORMAT   a matched file whose extension the leaf's `format` does not admit
+    COUNT    a `now`, `target`, `counts` or `totals` value that differs from the tree (reported, never strict)
 
 Options:
-    --strict                 exit 1 on any of the six findings
+    --strict                 exit 1 on any UNTYPED, DEAD, MISSING, UNKNOWN, CLAIM, FORM or FORMAT finding
     --report naming          files and folders whose names break their naming rule
     --report public-text     files that hit the public_text rule (paths and categories only)
     --report duplicates      groups of tracked files sharing one blob that no relation or allow entry declares
     --report library         paths of library.yaml that do not exist
+    --report provenance      atlas/PROVENANCE.json against the tree (unlisted, untracked and differing files)
     --plan Snn               the files the epic's appendix removes, keeps or moves in story Snn
     --summary FILE           append a Markdown summary (for the CI step summary)
 
@@ -29,6 +34,7 @@ from __future__ import annotations
 import argparse
 import collections
 import hashlib
+import json
 import os
 import re
 import subprocess
@@ -41,7 +47,64 @@ ROOT = Path(__file__).resolve().parents[1]
 TYPES_DIR = "governance/types"
 ROOT_TYPE_FILE = "repository.type.yaml"
 EPIC_FILE = "repository_typing_epic.md"
-FINDING_KINDS = ("UNTYPED", "DEAD", "MISSING", "UNKNOWN", "CLAIM", "FORM")
+FINDING_KINDS = ("UNTYPED", "DEAD", "MISSING", "UNKNOWN", "CLAIM", "FORM", "FORMAT", "COUNT")
+STRICT_KINDS = ("UNTYPED", "DEAD", "MISSING", "UNKNOWN", "CLAIM", "FORM", "FORMAT")
+CATCH_ALL_MATCHES = ("*", "**", "**/*", "**/*.*")
+# leaf `format` tokens and the file-name extensions each one admits; a token not listed here is descriptive text
+FORMAT_TOKENS = {
+    "any": None,
+    "md": {"md"}, "markdown": {"md"}, "tex": {"tex"}, "pdf": {"pdf"}, "txt": {"txt"}, "log": {"log"},
+    "text": {"txt", "text", "log", "(none)"}, "json": {"json"}, "jsonl": {"jsonl"}, "yaml": {"yaml", "yml"},
+    "yml": {"yml", "yaml"}, "toml": {"toml"}, "lock": {"lock"}, "ini": {"ini"}, "cff": {"cff"}, "csv": {"csv"},
+    "tsv": {"tsv"}, "xml": {"xml"}, "sql": {"sql"}, "py": {"py"}, "rs": {"rs"}, "lean": {"lean"}, "ps1": {"ps1"},
+    "psm1": {"psm1"}, "lua": {"lua"}, "gp": {"gp"}, "ms": {"ms"}, "par": {"par"}, "mjs": {"mjs"}, "js": {"js"},
+    "cjs": {"cjs"}, "bat": {"bat"}, "sh": {"sh"}, "ebnf": {"ebnf"}, "ipynb": {"ipynb"}, "svg": {"svg"},
+    "png": {"png"}, "zip": {"zip"}, "gz": {"gz"}, "blob": {"blob"}, "legacy": {"legacy"}, "parked": {"parked"},
+    "patch": {"patch"}, "lstree": {"lstree"}, "sha256": {"sha256"}, "sha256sum": {"sha256", "SHA256SUMS", "sha256sums"},
+    "gitattributes": {".gitattributes"}, "gitignore": {".gitignore"}, "toolchain": {"lean-toolchain"},
+    "lakefile": {"lean", "toml"}, "requirements": {"txt"}, "licence": {"LICENSE", "LICENSE-CODE"},
+    "license": {"LICENSE", "LICENSE-CODE"},
+}
+EXTENSIONLESS_NAMES = ("LICENSE", "LICENSE-CODE", "SHA256SUMS", "sha256sums", "lean-toolchain")
+
+
+def file_extension(path: str) -> str:
+    """The token FORMAT compares with a leaf's format: a suffix, a known extension-less name or a dot file."""
+    base = path.rsplit("/", 1)[-1]
+    if base in EXTENSIONLESS_NAMES:
+        return base
+    if base.startswith(".") and base.count(".") == 1:
+        return base
+    return base.rsplit(".", 1)[-1] if "." in base else "(none)"
+
+
+def format_extensions(fmt: str) -> set[str] | None:
+    """The extensions a leaf's `format` admits; None when the format is `any` or names no known token."""
+    tokens = re.split(r"[^a-z0-9]+", str(fmt).lower())
+    if "any" in tokens:
+        return None
+    admitted: set[str] = set()
+    for token in tokens:
+        if token in FORMAT_TOKENS and FORMAT_TOKENS[token]:
+            admitted |= FORMAT_TOKENS[token]
+    return admitted or None
+
+
+def is_catch_all(match: str, leaf_format: str | None) -> bool:
+    """Block meta: a member whose match is `*`, `**`, `**/*` or `**/*.*`, or whose leaf has format `any`."""
+    return str(match) in CATCH_ALL_MATCHES or leaf_format == "any"
+
+
+def glob_problem(pattern: str) -> str | None:
+    """A grammar error of a meta glob, or None: `**` inside a segment, or an unterminated `{` or `[`."""
+    if pattern.count("{") != pattern.count("}"):
+        return "unbalanced braces"
+    if pattern.count("[") != pattern.count("]"):
+        return "unterminated character set"
+    for segment in pattern.replace("{", "/").replace("}", "/").replace(",", "/").split("/"):
+        if "**" in segment and segment != "**":
+            return "`**` must be a whole segment"
+    return None
 ROLES = ("source", "proof", "check", "evidence", "record", "document", "tooling", "config", "vendored", "generated")
 COMPANIONS = ("none", "policy", "review_ledger", "convention")
 RELATION_KINDS = ("cites", "imports", "builds", "checks", "generates", "renders", "consumes", "derives_from")
@@ -146,6 +209,7 @@ class Types:
         self.root = self.docs.get(ROOT_TYPE_FILE) or {}
         self.naming_rules = dict(self.root.get("naming_rules") or {})
         self.public_text = dict(self.root.get("public_text") or {})
+        self.invariant_ids: set[str] = set()
         self._check_form()
 
     # -- grammar ------------------------------------------------------------------------------------------------
@@ -223,10 +287,13 @@ class Types:
                     if not re.match(r"^(hand\b|generated:|imported:)", str(authored)):
                         self.form(f"{mwhere}: authored {authored!r} outside the grammar")
                     leaf = self.leaves.get(member.get("leaf"), (None, {}))[1]
-                    is_catch_all = member.get("match") == "**" or leaf.get("format") == "any"
-                    if is_catch_all and not (member.get("catch_all") is True and str(authored).startswith("imported:")):
+                    problem = glob_problem(str(member.get("match", "")))
+                    if problem:
+                        self.form(f"{mwhere}: match {member.get('match')!r}: {problem}")
+                    catch_all = is_catch_all(member.get("match", ""), leaf.get("format"))
+                    if catch_all and not (member.get("catch_all") is True and str(authored).startswith("imported:")):
                         self.form(f"{mwhere}: a catch-all needs catch_all: true and authored imported:")
-                    if member.get("catch_all") and not is_catch_all:
+                    if member.get("catch_all") and not catch_all:
                         self.form(f"{mwhere}: catch_all on a member that is no catch-all")
             for relation in cls.get("relations") or []:
                 if relation.get("kind") not in RELATION_KINDS:
@@ -239,6 +306,11 @@ class Types:
                         self.form(f"{where}: invariant {inv.get('id')} lacks {field}")
                 if inv.get("holds_now") not in (True, False, "unknown"):
                     self.form(f"{where}: invariant {inv.get('id')} holds_now {inv.get('holds_now')!r}")
+                if inv.get("id") in self.invariant_ids:
+                    self.form(f"{where}: invariant id {inv.get('id')} is used twice")
+                self.invariant_ids.add(inv.get("id"))
+                if inv.get("holds_now") is True and inv.get("checked_by") == "unchecked":
+                    self.form(f"{where}: invariant {inv.get('id')} says holds_now true but is unchecked")
             for entry in cls.get("allow") or []:
                 if not (isinstance(entry, dict) and "match" in entry and "reason" in entry):
                     self.form(f"{where}: allow entries need match and reason")
@@ -281,9 +353,7 @@ def git_tracked(repo_root: Path) -> dict[str, str]:
             continue
         meta, path = record.split("\t", 1)
         mode, blob, _stage = meta.split()
-        if mode == "160000":
-            continue
-        tree[path] = blob
+        tree[path] = ("gitlink:" + blob) if mode == "160000" else blob
     return tree
 
 
@@ -305,7 +375,13 @@ class Result:
         self.unclaimed_top: list[str] = []
 
 
-def evaluate(types: Types, files: list[str]) -> Result:
+def class_folders(cls: dict) -> list[str]:
+    if cls.get("path") == ".":
+        return []
+    return [f.rstrip("/") for f in ([cls["path"]] if "path" in cls else []) + list(cls.get("paths") or [])]
+
+
+def evaluate(types: Types, files: list[str], gitlinks: set[str] | None = None) -> Result:
     result = Result()
     for kind in FINDING_KINDS:
         result.findings[kind].extend(types.findings[kind])
@@ -316,14 +392,14 @@ def evaluate(types: Types, files: list[str]) -> Result:
         if cls.get("path") == ".":
             root_class = cname
             continue
-        for folder in ([cls["path"]] if "path" in cls else []) + list(cls.get("paths") or []):
-            folder = folder.rstrip("/")
+        for folder in class_folders(cls):
             if folder in claimed:
                 result.findings["CLAIM"].append(f"folder {folder} claimed by {claimed[folder]} and {cname}")
                 continue
             claimed[folder] = cname
             roots.append((folder, cname))
     tops = sorted({top_folder(f) for f in files if top_folder(f)})
+    glob_instances: dict[str, list[str]] = collections.defaultdict(list)
     for cname, (_fname, cls) in types.classes.items():
         if "path_glob" in cls:
             regex = glob_regex(cls["path_glob"])
@@ -331,10 +407,104 @@ def evaluate(types: Types, files: list[str]) -> Result:
                 if regex.match(top) and top not in claimed:
                     claimed[top] = cname
                     roots.append((top, cname))
+                    glob_instances[cname].append(top)
     result.claimed = claimed
     if root_class is None:
         result.findings["FORM"].append("no root class (path '.')")
         return result
+    # one type file per top-level folder that is not a dot folder, and the root names every folder class
+    type_files = {name[: -len(".type.yaml")] for name in types.docs if name != ROOT_TYPE_FILE}
+    for top in tops:
+        if not top.startswith(".") and top not in type_files:
+            result.findings["FORM"].append(f"top-level folder {top} has no {top}.type.yaml")
+    for name in sorted(type_files):
+        if name not in tops:
+            result.findings["FORM"].append(f"{name}.type.yaml names no top-level folder of the tree")
+    named_by: dict[str, str] = {}
+    for cname, (_fname, cls) in types.classes.items():
+        own_folders = class_folders(cls) + glob_instances.get(cname, [])
+        for attr in cls.get("attributes") or []:
+            target = attr.get("class")
+            if not target or target not in types.classes:
+                continue
+            named_by[target] = cname
+            tcls = types.classes[target][1]
+            targets = class_folders(tcls) + glob_instances.get(target, [])
+            if cls.get("path") == ".":
+                if any(f.count("/") for f in targets):
+                    result.findings["FORM"].append(f"{cname}.{attr['name']}: root attributes name top-level folders, {target} claims {targets}")
+            elif not all(any(t == o or t.startswith(o + "/") for o in own_folders) for t in targets):
+                result.findings["FORM"].append(f"{cname}.{attr['name']}: {target} claims a folder outside {own_folders}")
+    for cname, (_fname, cls) in types.classes.items():
+        if cls.get("path") == "." or cname in named_by:
+            continue
+        result.findings["FORM"].append(f"class {cname} is part of no class (no attribute names it)")
+    roots.sort(key=lambda item: -item[0].count("/"))
+    for path in files:
+        owner, rel = root_class, path
+        for folder, cname in roots:
+            if path.startswith(folder + "/"):
+                owner, rel = cname, path[len(folder) + 1 :]
+                break
+        result.owned[owner].append((path, rel))
+    result.unclaimed_top = [t for t in tops if t not in claimed]
+    for cname, (_fname, cls) in types.classes.items():
+        members = types.members(cls)
+        compiled = [(m, glob_regex(str(m.get("match", "")))) for m in members]
+        for path, rel in result.owned.get(cname, []):
+            if gitlinks and path in gitlinks:
+                result.findings["UNTYPED"].append(f"{path} (a gitlink, not a file)")
+                continue
+            for member, regex in compiled:
+                if regex.match(rel):
+                    result.match[path] = (cname, member["name"], member.get("leaf"))
+                    result.member_counts[(cname, member["name"])] += 1
+                    break
+            else:
+                result.findings["UNTYPED"].append(path)
+    leaf_use = collections.Counter(leaf for _c, _m, leaf in result.match.values())
+    tracked = set(files)
+    for cname, (_fname, cls) in types.classes.items():
+        if cls.get("path") != "." and not result.owned.get(cname):
+            result.findings["DEAD"].append(f"class {cname}")
+        for member in types.members(cls):
+            got = result.member_counts[(cname, member["name"])]
+            if got == 0:
+                result.findings["DEAD"].append(f"member {cname}.{member['name']}")
+            for field in ("now", "target"):
+                if isinstance(member.get(field), int) and member[field] != got:
+                    result.findings["COUNT"].append(f"{cname}.{member['name']}: {field} {member[field]}, tree {got}")
+        counts = cls.get("counts") or {}
+        owned = len(result.owned.get(cname, []))
+        for field in ("now", "target"):
+            if isinstance(counts.get(field), int) and counts[field] != owned:
+                result.findings["COUNT"].append(f"{cname}: counts.{field} {counts[field]}, tree {owned}")
+        totals = cls.get("totals") or {}
+        for field in ("files_now", "files_target"):
+            if isinstance(totals.get(field), int) and totals[field] != len(files):
+                result.findings["COUNT"].append(f"{cname}: totals.{field} {totals[field]}, tree {len(files)}")
+        for attr in cls.get("attributes") or []:
+            if not attr.get("required"):
+                continue
+            if "match" in attr and result.member_counts[(cname, attr["name"])] == 0:
+                result.findings["MISSING"].append(f"{cname}.{attr['name']}")
+            if "class" in attr and not result.owned.get(attr["class"]):
+                result.findings["MISSING"].append(f"{cname}.{attr['name']}")
+        for inv in cls.get("invariants") or []:
+            for token in re.findall(r"[A-Za-z0-9_./-]+/[A-Za-z0-9_.-]+", str(inv.get("checked_by", ""))):
+                token = token.strip(".,;:()")
+                looks_like_path = "." in token.rsplit("/", 1)[-1] and (top_folder(token) in tops or token.startswith(".github/"))
+                if looks_like_path and "*" not in token and "<" not in token and token not in tracked:
+                    result.findings["FORM"].append(f"{cname}: invariant {inv.get('id')} checked_by names {token}, which is not tracked")
+    for lname in types.leaves:
+        if leaf_use[lname] == 0:
+            result.findings["DEAD"].append(f"leaf {lname}")
+    for path, (cname, mname, lname) in result.match.items():
+        leaf = types.leaves.get(lname, (None, {}))[1]
+        admitted = format_extensions(leaf.get("format", ""))
+        if admitted is not None and file_extension(path) not in admitted:
+            result.findings["FORMAT"].append(f"{path}: leaf {lname} (format {leaf.get('format')}) does not admit {file_extension(path)}")
+    return result
     roots.sort(key=lambda item: -item[0].count("/"))
     for path in files:
         owner, rel = root_class, path
@@ -535,6 +705,33 @@ def duplicates_report(types: Types, tree: dict[str, str], result: Result) -> lis
     return undeclared
 
 
+def provenance_report(repo_root: Path, tree: dict[str, str]) -> tuple[list[str], list[str], list[str], int]:
+    """atlas/PROVENANCE.json against the tree: tracked atlas files it does not list, listed paths that are not
+    tracked, listed files whose current sha256 differs from the ledger, and the number of entries."""
+    ledger = repo_root / "atlas" / "PROVENANCE.json"
+    if not ledger.exists():
+        return [], [], [], 0
+    with open(ledger, encoding="utf-8") as handle:
+        entries = (json.load(handle) or {}).get("files") or []
+    listed = {e.get("path"): e for e in entries if isinstance(e, dict)}
+    atlas_files = [p[len("atlas/"):] for p in tree if p.startswith("atlas/") and p not in ("atlas/PROVENANCE.json", "atlas/README.md")]
+    unlisted = sorted(p for p in atlas_files if p not in listed)
+    untracked = sorted(p for p in listed if "atlas/" + p not in tree)
+    differing = []
+    for rel in atlas_files:
+        entry = listed.get(rel)
+        if not entry or not entry.get("sha256"):
+            continue
+        try:
+            with open(repo_root / "atlas" / rel, "rb") as handle:
+                digest = hashlib.sha256(handle.read()).hexdigest()
+        except OSError:
+            continue
+        if digest != entry["sha256"]:
+            differing.append(rel)
+    return unlisted, untracked, differing, len(entries)
+
+
 def library_report(repo_root: Path, files: list[str]) -> list[str]:
     """Paths and entry points of library.yaml that no tracked file or folder provides."""
     catalog = repo_root / "library.yaml"
@@ -681,8 +878,8 @@ def summary_markdown(types: Types, result: Result, files: list[str]) -> str:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--repo-root", default=str(ROOT))
-    parser.add_argument("--strict", action="store_true", help="exit 1 on any UNTYPED, DEAD, MISSING, UNKNOWN, CLAIM or FORM finding")
-    parser.add_argument("--report", choices=["naming", "public-text", "duplicates", "library"])
+    parser.add_argument("--strict", action="store_true", help="exit 1 on any UNTYPED, DEAD, MISSING, UNKNOWN, CLAIM, FORM or FORMAT finding (COUNT is reported only)")
+    parser.add_argument("--report", choices=["naming", "public-text", "duplicates", "library", "provenance"])
     parser.add_argument("--plan", metavar="Snn", help="list the files the epic's appendix removes, keeps or moves in one story")
     parser.add_argument("--summary", metavar="FILE", help="append a Markdown summary to FILE")
     args = parser.parse_args(argv)
@@ -690,6 +887,7 @@ def main(argv: list[str] | None = None) -> int:
     types = Types(repo_root / TYPES_DIR)
     tree = git_tracked(repo_root)
     files = sorted(tree)
+    gitlinks = {p for p, blob in tree.items() if blob.startswith("gitlink:")}
 
     if args.plan:
         if not STORY_ID.match(args.plan):
@@ -714,7 +912,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"COUNT {problem}")
         return 1 if problems or plan.unparsed else 0
 
-    result = evaluate(types, files)
+    result = evaluate(types, files, gitlinks)
 
     if args.report == "naming":
         rows = naming_report(types, files, result)
@@ -742,6 +940,13 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"    {path}")
         print(f"duplicates: {len(groups)} undeclared blob groups, {sum(len(g) for g in groups)} files")
         return 0
+    if args.report == "provenance":
+        unlisted, untracked, differing, count = provenance_report(repo_root, tree)
+        for label, items in (("unlisted", unlisted), ("untracked", untracked), ("differs", differing)):
+            for item in items:
+                print(f"{label:<10} atlas/{item}")
+        print(f"provenance: {count} entries; {len(unlisted)} tracked atlas files unlisted, {len(untracked)} listed paths untracked, {len(differing)} listed files with another sha256")
+        return 0
     if args.report == "library":
         missing = library_report(repo_root, files)
         for item in missing:
@@ -756,11 +961,12 @@ def main(argv: list[str] | None = None) -> int:
     for line in finding_lines(result):
         print(line)
     total = sum(len(v) for v in result.findings.values())
-    print(f"check_repo_types: {len(files)} tracked files, {total} findings (" + ", ".join(f"{k} {len(result.findings[k])}" for k in FINDING_KINDS) + ")")
+    strict_total = sum(len(result.findings[k]) for k in STRICT_KINDS)
+    print(f"check_repo_types: {len(files)} tracked files, {total} findings (" + ", ".join(f"{k} {len(result.findings[k])}" for k in FINDING_KINDS) + "); --strict fails on " + ", ".join(STRICT_KINDS))
     if args.summary:
         with open(args.summary, "a", encoding="utf-8") as handle:
             handle.write(summary_markdown(types, result, files))
-    return 1 if args.strict and total else 0
+    return 1 if args.strict and strict_total else 0
 
 
 if __name__ == "__main__":
