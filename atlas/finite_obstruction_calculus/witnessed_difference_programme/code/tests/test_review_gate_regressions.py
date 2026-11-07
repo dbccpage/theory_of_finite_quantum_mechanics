@@ -15,7 +15,6 @@ from scripts import check_ideal_swaps as swaps
 from scripts import check_causal_execution as causal
 from scripts import verify_finite_derivations as lean_gate
 from scripts import verify_genesis_bridge_sources as genesis
-from scripts import verify_observer_source_archive as observer
 
 
 def _pinned(tmp_path):
@@ -111,7 +110,7 @@ def test_exact_schedule_and_price_identifiers_reject_boolean_aliases():
                 checker.strict_json(text)
 
 
-@pytest.mark.parametrize('reader', [observer.regular, genesis.regular, causal.sha])
+@pytest.mark.parametrize('reader', [genesis.regular, causal.sha])
 def test_custody_rejects_a_linked_ancestor(tmp_path, reader):
     real = tmp_path / 'real'
     real.mkdir()

@@ -9,44 +9,12 @@ import pytest
 from sympy import Matrix
 
 from additive_tensor.model import tensor_product
-from coda_application.domain.authority import ExternalAuthority
-from coda_application.domain.budget import NonTerminalBudgetGuard
-from coda_application.domain.contracts import ProposalContract
-from coda_application.domain.entities import TerminalKind
-from coda_application.domain.firewall_engine import AuthorityFirewallEngine
-from coda_application.infrastructure.native_functional_adapter import NativeFunctionalEvaluator
-from coda_application.tests.adversarial._support import make_problem
-from coda_application.application import evaluate_evidence
 from hermitianization.model import GaussianRational
 from locality_smearing.checker import check_alternating, check_subdivision
 from observer_completion.distinct_image import M, produce_completion, check_completion, produce_shelf, check_shelf
 from state_effect_readout.model import StateFactor, BinaryEffectFactor, born_probability, depolarized_probability
 from trotter_characteristic_polynomials import compute_exact_response_matrix
 from witnessed_difference.cochains import FiniteComplex
-
-
-def test_authority_binds_the_proposed_source_before_spending_grant():
-    evaluated = make_problem(defect_cochain=Matrix([0, 0]))
-    proposed = replace(evaluated, defect_cochain=Matrix([1, 1]))
-    evidence = evaluate_evidence(evaluated)
-    authority = ExternalAuthority("review-control", b"this-is-a-test-key-only")
-    grant = authority.grant(evidence, "proposer")
-    keys = authority.keyring()
-    common = dict(evaluation=evidence, problem=evaluated, external_license_granted=grant,
-                  keyring=keys, functional_evaluator=NativeFunctionalEvaluator())
-    bad = AuthorityFirewallEngine.evaluate_authority(ProposalContract("proposer", proposed), **common)
-    assert bad.terminal_kind is TerminalKind.REFUSED
-    assert not keys.is_spent(grant)
-    good = AuthorityFirewallEngine.evaluate_authority(ProposalContract("proposer", evaluated), **common)
-    assert good.terminal_kind is TerminalKind.AUTHORIZED
-
-
-def test_decision_seal_scope_is_explicit():
-    evidence = evaluate_evidence(make_problem())
-    assert evidence.is_sealed
-    record = replace(evidence.layer_records[0], diagnostic_message="unsealed annotation")
-    assert replace(evidence, layer_records=(record, *evidence.layer_records[1:])).is_sealed
-    assert not replace(evidence, is_mathematically_valid=not evidence.is_mathematically_valid).is_sealed
 
 
 @pytest.mark.parametrize("target", ["quotient", "both"])
@@ -80,14 +48,6 @@ def test_shelf_claims_are_checked(field, value):
         check_shelf(source, repair, observer, shelf, costs, "both", witness)
 
 
-@pytest.mark.parametrize("value", [-100, 0.5, True])
-def test_budget_ticks_cannot_remove_or_fractionalize_fuel(value):
-    guard = NonTerminalBudgetGuard(max_steps=1)
-    with pytest.raises(ValueError):
-        guard.tick(value)
-    assert guard.step_count == 0
-
-
 def test_exact_boundaries_and_immutable_rectangular_factors():
     for value in (0.5, True):
         with pytest.raises(TypeError):
@@ -106,14 +66,6 @@ def test_exact_boundaries_and_immutable_rectangular_factors():
         tensor_product({"a|b": 1, "a": 1}, {"c": 1, "b|c": 1})
     with pytest.raises(ValueError):
         FiniteComplex((0, 1, 2), ((0, 1), (1, 2), (0, 2)), ((0, 1, 2), (2, 1, 0)))
-
-
-def test_exported_quotient_adapter_refuses_inexact_inputs():
-    owner = NativeFunctionalEvaluator()
-    for value in (1.0, True):
-        with pytest.raises(TypeError):
-            owner.solve([{}], 1, [value])
-    assert owner.solve([{}], 1, [F(1)]).distance == 1
 
 
 @pytest.mark.parametrize("M,r", [(0, F(1, 10)), (True, F(1, 10)), (1, 0.1), (1, -1)])
@@ -177,33 +129,6 @@ def test_native_certificate_containers_do_not_change_after_construction():
     vertices[0], edges[0][0], values[("a", "b")] = "changed", "changed", F(100)
     assert request.vertices == ("a", "b") and request.edges == (("a", "b"),)
     assert hash(request) == before and request.cochain[("a", "b")] == 1
-
-
-def test_partial_projection_and_source_substitution_are_refused():
-    from coda_application.domain.intake import intake, IntakeError
-    from coda_application.domain.layers.layer3_cs import Layer3CS
-    original = make_problem()
-    assert Layer3CS.evaluate(original)[1]
-    assert not Layer3CS.evaluate(replace(original, projection_map={0: 0}))[1]
-    assert intake(original).digest != intake(replace(original, raw_data="different source")).digest
-    with pytest.raises(IntakeError):
-        intake(replace(original, raw_data={"not": "declared string"}))
-
-
-def test_audit_checks_reported_gamma_and_zero_value_dual():
-    from coda_application.application import _certificate_checks
-    from coda_application.application import evaluate_coda_pipeline
-    from coda_application.domain.value_objects import ExactRational
-    from coda_application.domain.entities import ResidualPair
-    from coda_application.tests.adversarial._support import witness
-    problem = make_problem()
-    outcome = evaluate_coda_pipeline(problem)
-    assert all(ok for _, ok, _ in _certificate_checks(problem, outcome))
-    wrong_gamma = replace(outcome, residual_pair=ResidualPair(ExactRational(0, 1), ExactRational(1, 1)))
-    assert ("gamma2", False) in [(name, ok) for name, ok, _ in _certificate_checks(problem, wrong_gamma)]
-    wrong_dual = replace(outcome, dual_witness=witness(2, 2))
-    assert not all(ok for _, ok, _ in _certificate_checks(problem, wrong_dual))
-
 
 
 def test_mutation_runner_rejects_path_escape_and_misattributed_failure(tmp_path, monkeypatch):

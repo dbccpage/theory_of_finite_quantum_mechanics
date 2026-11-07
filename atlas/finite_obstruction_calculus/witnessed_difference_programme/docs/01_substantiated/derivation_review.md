@@ -79,7 +79,7 @@ python scripts/verify_release.py --check
 python scripts/regen_sha256sums.py --check
 ```
 
-Local Genesis primitives and the meta-theory research report remain available. External access to 19L57G1 is unnecessary for these derivations. The original CODA repository supplied the exact recorded source texts; [the recovery report](source_recovery_report.md) records its public read-only receipts. Offline `verify_observer_source_archive.py` checks all 44 bundled originals and their 573-occurrence indexed source review. The original Genesis six and education six are distinct source presentations, both with explicit adapters.
+Local Genesis primitives and the meta-theory research report remain available. External access to 19L57G1 is unnecessary for these derivations. The original CODA repository supplied the exact recorded source texts; [the recovery report](source_recovery_report.md) records its public read-only receipts. The offline checker of the 44 bundled originals and their 573-occurrence indexed source review left the tree with the observer source archive (git history keeps both). The original Genesis six and education six are distinct source presentations, both with explicit adapters.
 
 ## First-principles continuation
 

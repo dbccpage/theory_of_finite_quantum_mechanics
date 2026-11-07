@@ -24,7 +24,7 @@ the distinction between changing a representative and solving the original task.
 | FDA | P.6 and §§20.2–20.3 | Terminal paths and evidence-derived guards have their own standing definition. |
 | GTLA | P.5–P.6 and P.19 | History erasure, comparison cost, and terminal routing remain distinct constructions. |
 | Prime algorithms | P.19 and §§20.6–20.10 | Admission, transport soundness, coverage, fuel accounting, and authorization are separate obligations. |
-| Finite CODA application | `code/coda_application` | Selected rational checks and a caller-supplied grant; no native Rust execution is inferred. |
+| Finite CODA application | `code/coda_application` (deleted from the tree; in git history) | Selected rational checks and a caller-supplied grant; no native Rust execution is inferred. |
 
 The ten complete CODA component packages are retained under
 [source custody index](coda_component_source_index.md). The Prime

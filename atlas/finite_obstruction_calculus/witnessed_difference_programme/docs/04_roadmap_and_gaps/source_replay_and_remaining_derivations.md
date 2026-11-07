@@ -150,8 +150,8 @@ No source replay supplies undeclared positivity, scalar or composition axioms.
 
 ## 6. Actual policy enforcement and institutional limits
 
-The current CODA authority boundary is
-[`authority.py`](../code/coda_application/domain/authority.py): a keyring
+The CODA authority boundary was
+`authority.py` of `code/coda_application` (deleted from the tree; in git history): a keyring
 configured with recognized grantors verifies a grant bound to a problem,
 evidence, licensee and nonce; each nonce is spent once. Token minting checks
 both verification and prior spending. The two fresh selected tests reject

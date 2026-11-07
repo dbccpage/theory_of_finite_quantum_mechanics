@@ -7,7 +7,6 @@ docs/
 ├── README.md                   <-- You are here: Master Documentation Navigation Matrix
 ├── 01_substantiated/           <-- Quadrant 1: Exists / Substantiated (Verified proofs, core notes)
 ├── 02_requiring_derivation/    <-- Quadrant 2: Requires Derivation (Open proofs, active conjectures)
-├── 03_deletion_and_archive/    <-- Quadrant 3: Can Be Deleted / Quarantined (Withdrawn swarms, archives)
 └── 04_roadmap_and_gaps/        <-- Quadrant 4: Remains to be Derived (Bridge register, continuum limits)
 ```
 
@@ -19,7 +18,7 @@ docs/
 |---|---|---|---|
 | **`01_substantiated/`** | **Exists / Grounded**<br>Formally verified proofs, completed derivations, and confirmed claim ledgers. | Verified proofs (`guarded_schedule_topology.md`, `sparse_guarded_chain_transport.md`, etc.), 20 completed derivation notes in `derivations/`, execution receipts, and absorbed WD2 classical Moore machine package. | [Quadrant 1 Guide](01_substantiated/README.md) |
 | **`02_requiring_derivation/`** | **Requires Derivation**<br>Open conjectures, partial formulations, and active targets. | The 5 Outstanding Derivations (`five_outstanding_derivations.md`), Meron field limit derivations (`meron_field_limit_derivations/`), affine thickening conjecture (`affine_thickening_conjecture.md`), and WD2 open Lean targets (`wd2_open_targets.md`). | [Quadrant 2 Guide](02_requiring_derivation/README.md) |
-| **`03_deletion_and_archive/`** | **Quarantined / Obsolete**<br>Superseded swarms, historical snapshots, and deletion candidates. | 14 withdrawn swarm transcripts (`superseded_swarms/`), historical code snapshots (`source_archive/coda_component_packages`), and informal essays. | [Quadrant 3 Guide](03_deletion_and_archive/README.md) |
+| *(third quadrant)* | **Deleted**<br>Superseded swarms, historical snapshots and deletion candidates. | The 14 withdrawn swarm transcripts, the historical code snapshots and the informal essays were deleted from the tree; git history keeps them. | none |
 | **`04_roadmap_and_gaps/`** | **Remains to be Derived**<br>Unclosed bridge obligations and physical limits. | Genesis bridge obligations (`genesis_bridge_register.md` for `GEN-WDP-O01`..`O05`), DAG alignment (`PG-WDP-GENESIS-BRIDGE-OBLIGATIONS`), and long-term continuum limits. | [Quadrant 4 Guide](04_roadmap_and_gaps/README.md) |
 
 ---
@@ -33,4 +32,4 @@ docs/
    - Consult `02_requiring_derivation/` and `04_roadmap_and_gaps/`.
    - Check `dag/derivation_dag.json` for corresponding node IDs (`TFQ-0559` through `TFQ-0580`).
 3. **When indexing code or building symbol trees:**
-   - Exclude `03_deletion_and_archive/` to avoid symbol pollution from duplicate historical snapshots.
+   - The historical snapshots that once sat in a third quadrant are no longer in the tree.

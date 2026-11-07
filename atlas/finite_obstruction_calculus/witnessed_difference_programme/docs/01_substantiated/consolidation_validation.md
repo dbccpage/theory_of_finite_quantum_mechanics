@@ -57,7 +57,7 @@ completion, continuum reconstruction or publication readiness.
 | F005 into WDP and retirement | The custody map covers all 596 tracked F005 assets. The source root is absent; Appendix P and the integration map identify the mathematical owners. |
 | Education 130 into 070 | Prime reading route, domains, levels and original 1300/1310 laboratory tracks live in course 070. The original root is a redirect. |
 | Prime atlas into WDP | Its 48 tracked assets are retained under the Prime source package; P.19 states the integrated finite obligations. The original root was a redirect; it was retired on 2026-10-06. |
-| CODA application integration | Its 57 tracked assets are retained under `code/coda_application`, with repaired imports and explicit Python-only fallback. The original research root is absent. |
+| CODA application integration | Its 57 tracked assets were retained under `code/coda_application` until that folder was deleted from the tree (git history keeps it). The original research root is absent. |
 | Source review and five PFP papers | The paper-series source table records the requested findings, 021/022 and the four education strands. Drafts 023–027 contain proofs, five two-level teaching packets and 37 replay controls. |
 | One seven-day plan | `plans/derivations_7day_plan.md` (formerly `ow/plans/codex_7day_plan.md`; the three supporting catalogs were merged into it on 2026-10-06) controls the five bounded derivation lanes. Three supporting catalogs retain all 52 fenced examples and link to existing current owners. |
 
