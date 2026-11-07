@@ -1,4 +1,4 @@
-"""Read-only scanner that resolves `lean4/...::Decl` and `path.lean` references in `dag/`, `papers/`, and `problem_sets/`.
+"""Read-only scanner that resolves `lean4/...::Decl` and `path.lean` references in `dag/`, `papers/`, and `education/problem_sets/`.
 
 AuthorityEffect: None. Read-only inventory and resolution check against files on disk.
 """
@@ -128,7 +128,7 @@ def scan(root: Path = ROOT) -> dict[str, Any]:
     editable_broken: list[dict[str, Any]] = []
     pinned_broken_counts = Counter()
 
-    for folder in ("dag", "papers", "problem_sets"):
+    for folder in ("dag", "papers", "education/problem_sets"):
         base = root / folder
         if not base.exists():
             continue

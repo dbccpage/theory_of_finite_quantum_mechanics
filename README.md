@@ -53,7 +53,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | DAG stages (declared / with nodes) | 36 / 35 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | DAG validator | `nodes=989 routes=997 records=1041 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
 | TFQ records | 1041 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
-| Derivation papers | 1333 in 36 stage folders | [`dag/derivations`](dag/derivations) |
+| Derivation papers | 1316 in 36 stage folders | [`dag/derivations`](dag/derivations) |
 | Lean references in DAG nodes | 3674 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Rust references in DAG nodes | 384 resolve to a file in this checkout, 0 do not, 575 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Nodes with executed review results | 177 nodes, 182 review directories | `evidence/results/*/reviews/` |
@@ -62,7 +62,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 51, caveat_added 37, statement_narrowed 24, status_lowered 65 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Outside-corpus records audited | 267 records from 9 corpora | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Of those, claimed `PROVED_LEAN` by their source | 173: kept 88, refuted 2, recorded lower 83 (OPEN 36, IMPORTED_ASSUMPTION 17, COMPUTATIONALLY_CHECKED 15, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
-| Tracked `.lean` files | lean4 1107, papers 34, code 66, other 100 (the `dag` files are run snapshots) | `git ls-files` |
+| Tracked `.lean` files | lean4 1107, papers 34, code 66, other 92 (the `dag` files are run snapshots) | `git ls-files` |
 | Lake libraries / module roots in `lean4/lakefile.lean` | 195 / 1053 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
 | Lean toolchain | `leanprover/lean4:v4.35.0` | [`lean4/lean-toolchain`](lean4/lean-toolchain) |
 | Mathlib | `v4.35.0` (manifest rev `56a005855ea1`) | [`lean4/lakefile.lean`](lean4/lakefile.lean), [`lean4/lake-manifest.json`](lean4/lake-manifest.json) |

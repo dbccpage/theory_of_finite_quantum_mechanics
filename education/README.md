@@ -25,16 +25,23 @@ MSS-N, Genesis, then the Witnessed Difference Programme. The two Genesis folders
 `research/` (6 and 7) moved here at the same time; they were written in this repository and are
 not part of the import.
 
-| Folder | Stage | Files |
+| Folder | Stage | Tracked files |
 | --- | --- | ---: |
-| [1_pregenesis_empty_mark](1_pregenesis_empty_mark/README.md) | Pre-Genesis | 26 imported |
-| [2_symmetric_group_presentations](2_symmetric_group_presentations/README.md) | S(n) | 97 imported |
-| [3_minimal_symbol_systems](3_minimal_symbol_systems/README.md) | MSS-N | 346 imported |
-| [4_genesis_primitives](4_genesis_primitives/README.md) | Genesis | 158 imported |
-| [5_genesis_reading_notes](5_genesis_reading_notes/README.md) | Genesis | 77 imported |
+| [1_pregenesis_empty_mark](1_pregenesis_empty_mark/README.md) | Pre-Genesis | 22 imported |
+| [2_symmetric_group_presentations](2_symmetric_group_presentations/README.md) | S(n) | 96 imported |
+| [3_minimal_symbol_systems](3_minimal_symbol_systems/README.md) | MSS-N | 333 imported |
+| [4_genesis_primitives](4_genesis_primitives/README.md) | Genesis | 156 imported |
+| [5_genesis_reading_notes](5_genesis_reading_notes/README.md) | Genesis | 65 imported |
 | [6_genesis_foundations](6_genesis_foundations/this_repo.md) | Genesis | 3, written here |
 | [7_genesis_language](7_genesis_language/SPEC.md) | Genesis | 1, written here |
-| [8_witnessed_difference_programme](8_witnessed_difference_programme/README.md) | WDP | 329 imported |
+| [8_witnessed_difference_programme](8_witnessed_difference_programme/README.md) | WDP | 306 imported |
+| [999_external_publications_general_media](999_external_publications_general_media/) | outside publications | 21 imported |
+| [problem_sets](problem_sets/problems/undergraduate_qm_25.yaml) | undergraduate problem set | 46, written here |
+| [hamilton_noether_sources](hamilton_noether_sources/start_here.md) | Hamilton-Noether teaching pack | 43, written here |
+
+The imported counts are the files tracked today; the import manifest records what was copied and
+`post_import_edits` records every later edit or removal. The problem set and the teaching pack were
+written in this repository and moved here from the root and from `dag/derivations`.
 
 This destination import does not establish that the upstream files were deleted,
 that ownership transferred, or that all included mathematics or code is correct.

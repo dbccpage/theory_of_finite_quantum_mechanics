@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md](../../../dag/derivations/11_finite_qm_dynamics/dynamics_hamilton_noether.md)
-- sha256 (`lf-normalised`): `7f59f6870f54dead1f7d1bca037c0691d6fd1fd7c927551f1e7bd6fe85820866`
+- sha256 (`lf-normalised`): `719934c30f6d56ffb62f14bf1c583d0af3c37adeb645ace29ed4ee3d6fe15c0d`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -43,7 +43,7 @@ adapters, general signed transport, and domain packets now migrated into native 
 
 This directory houses the foundational genesis primitives, seed configurations, normal forms, and carrier generation specifications for the Symbol Game and Minimal Symbol System architectures:
 
-- [`genesis.md`](genesis.md): **Genesis: admission, observation and continuation**, the current source-grounded synthesis. The [preceding long account](archive/README.md) and its derivations remain available as history.
+- [`genesis.md`](genesis.md): **Genesis: admission, observation and continuation**, the current source-grounded synthesis. The preceding long account and its derivations are in git history (the archive folder was removed).
 - [`levels/`](levels/): **Modular Level-by-Level Documentation (Level 00 to Level 100)**:
   - [`levels/README.md`](levels/README.md): **Master Index & Evidential Stratification** cataloging all 33 modular level specifications with independent carrier, premise and evidence scopes. Levels 00–21 are not a uniformly sealed theorem population.
   - Individual lessons name their supplied assumptions, precise statement, pinned source, evidence class and remaining implementation obligation.

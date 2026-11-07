@@ -226,7 +226,7 @@ between two independent derivations, not a result about the mathematics.
   foreign key because the name forms differ (module-qualified versus
   namespace-qualified).
 * **Other repository facts.** `evidence/results/**`, `dag/fragments`, the TFQ JSONL,
-  `dag/prompts`, Lean, Rust and Python source, `papers/`, `problem_sets/`,
+  `dag/prompts`, Lean, Rust and Python source, `papers/`, `education/problem_sets/`,
   `rules/`, `docs/`, `evidence/` and the git history have no tables.
 * **Contracts.** Only identity, status, citation, `non_claims` and provenance
   are rows. `declarations_required`, `validation_criteria`, `terminal_routes`,

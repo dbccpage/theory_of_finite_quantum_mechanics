@@ -21,8 +21,8 @@ constructing mathematical representations. Its row number does not identify a
 stage in the frozen Genesis derivation.
 
 The active combined manuscript is [From Pre-Genesis to MSS-N](/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
-The former paper packages have been consolidated and removed. The retained
-[papers directory](papers/README.md) points to the replacement manuscript.
+The former paper packages have been consolidated and removed; that manuscript
+replaces them.
 The first-publication [Genesis paper](/atlas/finite_obstruction_calculus/genesis/paper.md)
 addresses the source derivation itself.
 
@@ -35,7 +35,7 @@ addresses the source derivation itself.
 | [Alphabet and encoding note](levels/level_insert_38_symbol_ladder_and_transfinite_forms.md) | Exact alphabet inclusions, free-monoid non-isomorphism and a decodable countable code. |
 | [Grammar](grammar/README.md) | The 22 named public starts and their lexical conventions. |
 | [Code](code/README.md) | Grammar checker, codecs and targeted test commands. |
-| [Lean inventory](lean4/README.md) | Actual algebraic theorems, syntax sketches and fixture checks, distinguished by scope. |
+| [Lean inventory](../../atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/) | The Lean modules of this module were byte copies of the atlas package; the copies were removed and the package is the one to read. |
 | [Domain packages](domains/README.md) | Finite examples and model-specific obligations. |
 | [Publication review](publication_review.md) | Corrections, validation scope and remaining obligations. |
 

@@ -6,7 +6,7 @@ Genesis is part of the mathematical and engineering foundation of Project Anomal
 
 Start with the opaque inscription `<>`. Its visible glyphs do not declare a pair, ambient space or relation. In the source admission model, showing a token is a presentation event and leaves the regime unchanged. Admitting a datum, form, instance, uniform rule or separation requirement is a separate operation. The host types used to implement these operations describe the model; they are not silently admitted as structure possessed by the initial inscription.
 
-The [preceding synthesis and historical reports](archive/README.md) remain available without rewriting their receipts. This account supersedes their present-tense status paragraphs. [All 33 lessons](levels/README.md), the [19 selected families](primitives/README.md), the [14 draft contracts](normal_forms/README.md), the [source crosswalk](source_crosswalk.md) and [WDP integration](wdp_integration.md) preserve the routes into the detailed work.
+The preceding synthesis and historical reports are in git history (the archive folder was removed) without rewriting their receipts. This account supersedes their present-tense status paragraphs. [All 33 lessons](levels/README.md), the [19 selected families](primitives/README.md), the [14 draft contracts](normal_forms/README.md), the [source crosswalk](source_crosswalk.md) and [WDP integration](wdp_integration.md) preserve the routes into the detailed work.
 
 ## The admission calculation
 

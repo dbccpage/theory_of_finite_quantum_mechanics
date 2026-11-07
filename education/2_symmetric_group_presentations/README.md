@@ -38,7 +38,6 @@ admitted data. Supply and admission remain distinct operations.
 | [lean4](lean4/SnTheorems.lean) | Typed syntax, declared finite carriers and image-recovery proofs |
 | [normal_forms](normal_forms/README.md) | Draft contract specifications and schema |
 | [domains](domains/README.md) | Declared database, protocol and geometric applications |
-| [papers](papers/README.md) | Navigation to the consolidated paper |
 | [_images](_images) | Schematics retained with the corresponding lesson identifiers |
 
 The active combined paper is [From Pre-Genesis to MSS-N](/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md).
