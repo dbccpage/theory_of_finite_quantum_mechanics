@@ -381,7 +381,7 @@ class TemporalCycleTests(unittest.TestCase):
         self.assertEqual(result['checks'],140)
         self.assertEqual(result['checks'],len(observed))
         self.assertEqual(observed.count('native determinant differs'),27)
-        baseline=CHECKS.parent/'reviews/repository_file_review/2026-11-05-temporal-cycle-initial-review.json'
+        baseline=CHECKS/'review_ledger/2026-11-05-temporal-cycle-initial-review.json'
         expected=json.loads(json.loads(baseline.read_bytes())['runs'][0]['stdout'])
         self.assertEqual(result['payload'],expected)
         self.assertEqual(self.accepted(controls.verify()),result)
@@ -429,7 +429,7 @@ class TemporalCycleTests(unittest.TestCase):
         with contextlib.redirect_stdout(io.StringIO()) as output:
             module=load()
         self.assertEqual(output.getvalue(),'')
-        baseline=CHECKS.parent/'reviews/repository_file_review/2026-11-05-temporal-cycle-initial-review.json'
+        baseline=CHECKS/'review_ledger/2026-11-05-temporal-cycle-initial-review.json'
         expected=json.loads(baseline.read_bytes())['runs'][0]['stdout']
         with contextlib.redirect_stdout(io.StringIO()) as output:
             self.assertEqual(module.main(),0)

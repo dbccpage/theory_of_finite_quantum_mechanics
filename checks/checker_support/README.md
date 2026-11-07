@@ -37,7 +37,7 @@ model. `MutationCase` is the immutable request value for fault-injection runs.
 One-hole replacement is composed into `domains.py`; both Wilson fixtures are
 composed into `wilson_operator.py`. Five standalone helper files have been
 removed after updating their consumers. Their contract histories are retained
-under `reviews/repository_file_review/retired_support_contracts`.
+in git history (the retired_support_contracts folder of the review ledger was removed on 2026-11-06).
 
 The resource limits are explicit: 4,096 ordinary sequence entries, 12 refinement
 levels (4,096 leaves), 64 bits per refined word, six cells per sign-table
@@ -88,7 +88,7 @@ separately; the raw execution record remains unchanged.
 The November 3 evidence records the exact source bytes, tool versions, normal
 and optimized execution, statement tracing, per-function complexity, consumer
 imports, requirements, tests and mutation outcomes. The row-swap mutation has a
-separate [domain-specific equivalence argument](../../reviews/repository_file_review/2026-11-03-wilson-swap-equivalence.md).
+separate [domain-specific equivalence argument](../review_ledger/2026-11-03-wilson-swap-equivalence.md).
 
 Contracts beside each source bind the current bytes and fresh evidence.
 Historical assessments and receipts remain historical. The required L4B floor

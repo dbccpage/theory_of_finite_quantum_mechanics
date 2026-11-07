@@ -34,7 +34,7 @@ from checker_support.orthogonal_gaussian_pair import OrthogonalGaussianPair as P
 from checker_support.outcome import Outcome
 
 APP = CHECKS/'independent/fq-gleason-qi3-tomography.py'
-REVIEW = CHECKS.parent/'reviews/repository_file_review'
+REVIEW = CHECKS/'review_ledger'
 T = TypeVar('T')
 
 
