@@ -7,7 +7,7 @@ file_for: atlas
 classes:
   - class: AtlasFolder
     path: atlas
-    summary: Source corpora of the papers the DAG cites by path, kept with their code, Lean and hash manifests; the projection-obstruction packages here are the canonical editions (CI runs them and the DAG cites them).
+    summary: Source corpora of the papers the DAG cites by path, kept with their code, Lean and hash manifests; the projection-obstruction packages here are the canonical editions (CI runs two of the nine and the DAG cites them).
     role: source
     counts: {now: 2, target: 2}
     attributes:
@@ -19,11 +19,12 @@ classes:
       - {name: genesis_ongoing, class: GenesisOngoingRun, required: true}
       - {name: studies, class: AtlasStudy, required: true}
     invariants:
-      - {id: atlas.provenance_lists_tree, statement: "atlas/PROVENANCE.json names every tracked file under atlas/ with its sha256, and names no file that is not tracked", holds_now: false, checked_by: unchecked, note: "at the merged tip, as at 88fa973cc, it has 5,279 entries; 1,251 tracked atlas files are not listed and 981 listed paths are not tracked (folders reorganised after the import); a story that removes or renames atlas files drops or repoints their entries; dag/tests/test_foc035_observer_presheaf.py:142 reads two restored_sources entries"}
+      - {id: atlas.provenance_lists_tree, statement: "atlas/PROVENANCE.json names every tracked file under atlas/ with its current sha256, and names no file that is not tracked", holds_now: false, checked_by: "python -I -X utf8 scripts/check_repo_types.py --report provenance", note: "on this branch: 5,139 entries; 425 tracked atlas files are not listed, 1,042 listed paths are not tracked (folders reorganised after the import) and 203 listed files have another sha256 (genesis_ongoing 78, witnessed_difference_programme 65, higher_cell 26, projection_obstruction_paper 24, others 10); dag/tests/test_foc035_observer_presheaf.py:142 reads two restored_sources entries"}
+      - {id: atlas.imported_bytes_bound, statement: "a file whose member says authored imported:atlas/PROVENANCE.json appears in that ledger with its current sha256 or under a post_copy_edits record", holds_now: false, checked_by: "python -I -X utf8 scripts/check_repo_types.py --report provenance", note: "the ledger binds the copied bytes; the unlisted and differing files of the report are the exceptions (documents 139 of 227 unlisted, lean_support 63 of 116, and 203 differing files)"}
       - {id: atlas.ci_packages_run, statement: "the projection_obstruction_paper and higher_cell packages pass their pytest suite, replay check and deposit integrity check", holds_now: unknown, checked_by: ".github/workflows/projection-obstruction.yml (on changes under those two packages)"}
-      - {id: atlas.no_papers_twins, statement: "no projection-obstruction package has a second copy under papers/", holds_now: false, checked_by: "scripts/check_repo_types.py --report duplicates", note: "seven papers/ copies at the merged tip; deleted in story S08"}
+      - {id: atlas.no_papers_twins, statement: "no projection-obstruction package has a second copy under papers/", holds_now: true, checked_by: "git ls-files papers | cut -d/ -f2-3 | sort -u (no name of a package under atlas/projection_obstruction appears)", note: "the seven copies were deleted in story S08; the 13 papers files that still share a blob with an atlas file are LICENSE and LICENSE-CODE, deposit_paths.py, lean-toolchain and one lint report"}
     relations:
-      - {kind: checks, to: ProjectionObstructionSeries, via: ".github/workflows/projection-obstruction.yml:6-7,26"}
+      - {kind: checks, to: PaperDeposit, via: ".github/workflows/projection-obstruction.yml:5-6,45,48 (projection_obstruction_paper and higher_cell_cochain_projection_and_retraction_dynamics, 2 of the 13 deposits)"}
 
   - class: FiniteObstructionCalculus
     path: atlas/finite_obstruction_calculus
@@ -40,7 +41,7 @@ classes:
     counts: {now: 23, target: 23}
     collections:
       - {name: series_files, match: "*.json", leaf: JsonRecord, now: 4, target: 4, note: "series index records"}
-      - {name: end_to_end_suite, match: "end_to_end_verification_suite/**", leaf: DepositFile, authored: "imported:atlas/PROVENANCE.json", catch_all: true, now: 19, target: 19}
+      - {name: end_to_end_suite, match: "end_to_end_verification_suite/**/*.py", leaf: DepositPythonModule, authored: "imported:atlas/PROVENANCE.json", now: 19, target: 19}
 
   - class: PaperDeposit
     paths:
@@ -62,7 +63,7 @@ classes:
     counts: {now: 2585, target: 2585}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: false, now: 13, target: 13}
-      - {name: licence, match: "{LICENSE,LICENSE-CODE}", leaf: LicenceText, required: false, now: 25, target: 25}
+      - {name: licence, match: "**/{LICENSE,LICENSE-CODE}", leaf: LicenceText, required: false, now: 28, target: 28}
       - {name: manifests, match: "{MANIFEST.sha256,SHA256SUMS,*.sha256}", leaf: DepositManifest, required: false, now: 25, target: 25}
       - {name: zenodo_metadata, match: zenodo_metadata.json, leaf: ZenodoMetadata, required: false, now: 12, target: 12}
       - {name: verifier, match: verify_deposit.py, leaf: DepositVerifier, required: false, now: 12, target: 12}
@@ -73,16 +74,19 @@ classes:
       - {name: deposit_records, match: "*.{json,jsonl,yaml,txt}", leaf: JsonRecord, authored: "imported:atlas/PROVENANCE.json", now: 16, target: 16}
       - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 29, target: 29, note: "outside the governed populations (governance/policy.json excludes atlas/**); kept as records"}
       - {name: tests, match: "**/{test_*.py,conftest.py}", leaf: PythonTest, now: 445, target: 445}
-      - {name: lean_modules, match: "lean4/**/*.lean", leaf: DepositLeanModule, authored: "imported:atlas/PROVENANCE.json", now: 362, target: 362}
-      - {name: lean_support, match: "lean4/**", leaf: DepositLeanSupport, authored: "imported:atlas/PROVENANCE.json", now: 116, target: 116, note: "lakefiles, toolchain pins, axiom reports, build receipts"}
-      - {name: python_code, match: "code/**/*.py", leaf: DepositPythonModule, authored: "imported:atlas/PROVENANCE.json", now: 660, target: 660}
+      - {name: lean_modules, match: "{lean4,code}/**/*.lean", leaf: DepositLeanModule, authored: "imported:atlas/PROVENANCE.json", now: 365, target: 365}
+      - {name: lean_support, match: "lean4/**", leaf: DepositLeanSupport, authored: "hand; imported:atlas/PROVENANCE.json for the listed files", now: 115, target: 115, note: "lakefiles, toolchain pins, axiom reports, build receipts, README and provenance notes"}
+      - {name: python_code, match: "{code,docs,end_to_end_verification_suite}/**/*.py", leaf: DepositPythonModule, authored: "imported:atlas/PROVENANCE.json", now: 664, target: 664}
       - {name: rust_code, match: "code/**/*.rs", leaf: DepositRustSource, authored: "imported:atlas/PROVENANCE.json", now: 91, target: 91}
-      - {name: code_records, match: "code/**", leaf: DepositCodeRecord, authored: "imported:atlas/PROVENANCE.json", now: 301, target: 301, note: "fixtures, receipts, per-control notes, Cargo files inside code/"}
-      - {name: documents, match: "docs/**", leaf: DepositDocument, authored: "imported:atlas/PROVENANCE.json", now: 227, target: 227}
+      - {name: code_records, match: "code/**", leaf: DepositCodeRecord, authored: "imported:atlas/PROVENANCE.json", now: 296, target: 296, note: "fixtures, receipts, per-control notes, grammars and Cargo files inside code/"}
+      - {name: documents, match: "docs/**", leaf: DepositDocument, authored: "hand; imported:atlas/PROVENANCE.json for the listed files", now: 223, target: 223}
       - {name: evidence, match: "{evidence,manifests,artifacts,results}/**", leaf: DepositEvidence, authored: "imported:atlas/PROVENANCE.json", now: 25, target: 25}
-      - {name: notebooks, match: "jupyter_notebooks/**", leaf: Notebook, now: 38, target: 38}
+      - {name: notebook_readmes, match: "jupyter_notebooks/**/README.md", leaf: FolderReadme, now: 2, target: 2}
+      - {name: notebooks, match: "jupyter_notebooks/**", leaf: Notebook, now: 36, target: 36}
       - {name: tools, match: "{scripts,tools,checks}/**", leaf: DepositTool, now: 82, target: 82}
-      - {name: remainder, match: "**", leaf: DepositFile, authored: "imported:atlas/PROVENANCE.json", catch_all: true, now: 24, target: 24}
+      - {name: shell_scripts, match: "**/*.{bat,sh}", leaf: DepositTool, now: 20, target: 20, note: "public_export run scripts"}
+      - {name: release_bundles, match: "**/*.zip", leaf: ReleaseBundle, now: 1, target: 1}
+      - {name: figures, match: "**/*.png", leaf: SvgFigure, now: 3, target: 3}
     invariants:
       - {id: deposit.manifest_matches, statement: "MANIFEST.sha256 and SHA256SUMS list exactly the package files with their current sha256", holds_now: false, checked_by: "sha256sum -c --quiet MANIFEST.sha256 and SHA256SUMS from the package root (CI runs verify_deposit.py --integrity-only only for projection_obstruction_paper and higher_cell; only those two, genesis and the WDP accept that flag)", note: "after stories S07, S09, S10 and S14 both files pass in 5 of the 13 deposits (witnessed_difference_programme, symmetric_groups_and_minimal_symbol_systems, certified_adaptive_quantum_dynamics, projection_obstruction_paper, higher_cell_cochain_projection_and_retraction_dynamics); the other 8 keep their stale entries (genesis 8, pregenesis_to_minimal_symbol_systems 3, coordinate_wise_additivity 19, covering_edge_descent_to_functorial_presheaves 15 and 16, m_compatible_gauge_classification 18, so_k_invariant_gauge_classification 39, vector_and_quantum_observer_geometries 35, zero_container_relational_spacetime_and_witness_holonomy 5 in SHA256SUMS and no MANIFEST.sha256)"}
       - {id: deposit.tests_pass, statement: "the package's pytest suite passes from the package root", holds_now: unknown, checked_by: "python -m pytest inside the package (testpaths in its pyproject.toml); CI only for the two projection packages"}
@@ -100,16 +104,21 @@ classes:
       - {name: census_manifests, match: "evidence/**/MANIFEST.sha256", leaf: DepositManifest, authored: "generated:python code/<generator>.py (run from the genesis_ongoing folder)", now: 25, target: 25}
       - {name: census_tables, match: "evidence/**/*.{csv,jsonl}", leaf: CensusTable, authored: "generated:python code/generate*.py or code/run_*.py; --check compares with a fresh run", now: 516, target: 516}
       - {name: census_records, match: "evidence/**", leaf: CensusRecord, authored: "generated:the same generators (summary, given, counts, lean_axioms)", now: 105, target: 105}
-      - {name: generators, match: "code/**/*.py", leaf: CensusGenerator, now: 318, target: 318}
+      - {name: generators, match: "code/{generate,run_}*.py", leaf: CensusGenerator, now: 25, target: 25, note: "the 25 wrappers that import <ordinal>/__main__.py"}
+      - {name: generator_packages, match: "code/**/*.py", leaf: DepositPythonModule, now: 293, target: 293}
       - {name: tests, match: "tests/**", leaf: PythonTest, now: 168, target: 168}
-      - {name: lean, match: "{lean4,lean4_core}/**", leaf: DepositLeanSupport, now: 185, target: 185}
+      - {name: lean_modules, match: "{lean4,lean4_core}/**/*.lean", leaf: DepositLeanModule, now: 179, target: 179}
+      - {name: lean_support, match: "{lean4,lean4_core}/**", leaf: DepositLeanSupport, now: 6, target: 6}
       - {name: run_ci, match: "{ci/**,.github/**}", leaf: DepositTool, now: 8, target: 8, note: "nested workflow never runs (GitHub reads only the root .github); owner question Q10"}
       - {name: paper_notes, match: "paper/**", leaf: DepositPaperText, now: 75, target: 75}
       - {name: prompts, match: "prompt/**", leaf: MarkdownNote, now: 50, target: 50}
-      - {name: research, match: "research/**", leaf: DepositFile, authored: "imported:atlas/PROVENANCE.json", catch_all: true, now: 56, target: 56}
-      - {name: review_records, match: "meta/**", leaf: DepositFile, authored: "imported:atlas/PROVENANCE.json", catch_all: true, now: 258, target: 258, note: "review summaries kept; the raw .log transcripts go in story S10"}
+      - {name: review_manifests, match: "meta/**/*.sha256", leaf: DepositManifest, now: 12, target: 12}
+      - {name: run_code, match: "{research,meta}/**/*.py", leaf: DepositPythonModule, now: 78, target: 78}
+      - {name: run_lean, match: "{research,meta}/**/*.lean", leaf: DepositLeanModule, now: 12, target: 12}
+      - {name: review_notes, match: "{research,meta}/**/*.md", leaf: DepositDocument, now: 154, target: 154, note: "research notes, review summaries, plans and rulings (imported with the run; two upper-case names)"}
+      - {name: review_data, match: "{research,meta}/**/*.{json,csv,patch,txt}", leaf: ReviewRunData, now: 58, target: 58, note: "claim audits, suite summaries, patches; the raw .log transcripts left in story S10"}
     invariants:
-      - {id: genesis_ongoing.census_reproducible, statement: "every generator's --check reports that the committed tables match a fresh regeneration", holds_now: true, checked_by: "python -X utf8 code/<generator>.py --check from the genesis_ongoing folder (no CI job)", note: "all 25 generators matched a fresh regeneration during this review (2026-11-06); see the epic sign-off"}
+      - {id: genesis_ongoing.census_reproducible, statement: "every generator's --check reports that the committed tables match a fresh regeneration", holds_now: unknown, checked_by: "python -X utf8 code/<generator>.py --check from the genesis_ongoing folder, without -I (the wrappers need code/ on sys.path; no CI job; a run takes about 4,041 s in all)", note: "the senior review of 2026-11-06 reported all 25 matching; the run was not repeated on this branch"}
 
   - class: AtlasStudy
     paths:
@@ -136,17 +145,13 @@ leaf_types:
   - {name: ZenodoMetadata, format: json, naming: lower, schema: "Zenodo deposit metadata", companions: none, authored: hand}
   - {name: DepositVerifier, format: py, naming: lower, schema: none, companions: none, authored: hand}
   - {name: DepositPythonProject, format: "toml, lock or requirements", naming: lower, schema: none, companions: none, authored: hand}
-  - {name: DepositPaperText, format: "md or tex", naming: imported, schema: none, companions: none, authored: hand}
-  - {name: DepositPackaging, format: "gitattributes or gitignore", naming: lower, schema: none, companions: none, authored: hand}
   - {name: DepositLeanModule, format: lean, naming: lean_module or lower, schema: none, companions: none, authored: hand}
-  - {name: DepositLeanSupport, format: "lean, lakefile, toolchain, json or text", naming: imported, schema: none, companions: none, authored: hand}
-  - {name: DepositPythonModule, format: py, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: DepositLeanSupport, format: "lakefile, toolchain, json, md, toml, licence or text", naming: imported, schema: none, companions: none, authored: hand}
   - {name: DepositRustSource, format: rs, naming: lower, schema: none, companions: none, authored: hand}
-  - {name: DepositCodeRecord, format: "json, md, toml, lock, yaml or text", naming: imported, schema: none, companions: none, authored: hand}
-  - {name: DepositDocument, format: "md, txt, json, tex or pdf", naming: imported, schema: none, companions: none, authored: hand}
+  - {name: DepositCodeRecord, format: "json, md, toml, lock, yaml, ebnf, licence or text", naming: imported, schema: none, companions: none, authored: hand}
+  - {name: DepositDocument, format: "md, txt, log, json, yaml, tex or pdf", naming: imported, schema: none, companions: none, authored: hand}
   - {name: DepositEvidence, format: "json, csv or text", naming: imported, schema: none, companions: none, authored: hand}
-  - {name: DepositTool, format: "py, md, json or yml", naming: imported, schema: none, companions: none, authored: hand}
-  - {name: DepositFile, format: any, naming: imported, schema: none, companions: none, authored: "imported:atlas/PROVENANCE.json"}
+  - {name: ReviewRunData, format: "json, csv, patch or text", naming: imported, schema: none, companions: none, authored: hand}
   - {name: RunContract, format: md, naming: lower, schema: none, companions: none, authored: hand}
   - {name: CensusTable, format: "csv or jsonl", naming: lower, schema: none, companions: none, authored: "generated:python code/<generator>.py"}
   - {name: CensusRecord, format: "json or text", naming: lower, schema: none, companions: none, authored: "generated:python code/<generator>.py"}

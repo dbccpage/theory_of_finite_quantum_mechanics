@@ -1,12 +1,12 @@
 # code/: the executable half of the theory. Every .rs and .py file under code/ is a governed source
-# (governance/policy.json populations) and carries a .contract.score.yaml companion. AuthorityEffect: None.
+# (governance/policy.json populations); all but two carry a .contract.score.yaml companion. AuthorityEffect: None.
 schema: repo-type/1
 file_for: code
 
 classes:
   - class: CodeFolder
     path: code
-    summary: Reference implementations in Python and exact rational certifiers in Rust, with their tests and the scoring campaign's quality records; every source carries a contract-score companion.
+    summary: Reference implementations in Python and exact rational certifiers in Rust, with their tests and the scoring campaign's quality records; a governed source carries a contract-score companion or is listed in governance/baseline.json.
     role: check
     counts: {now: 2, target: 2}
     attributes:
@@ -15,14 +15,14 @@ classes:
       - {name: deposit_paths, match: deposit_paths.py, leaf: PythonModule, required: true, now: 1, target: 1, note: "the root verify_deposit.py binds this file first (verify_deposit.py:31-35) and lists it as a required deposit file (line 84)"}
       - {name: deposit_paths_companion, match: deposit_paths.contract.score.yaml, leaf: ContractScoreCompanion, required: true, now: 1, target: 1}
     invariants:
-      - {id: code.companion_per_source, statement: "every .rs and .py file under code/ has its companion named by governance/policy.json companion.naming", holds_now: true, checked_by: "governance-check --root . check (CI governance.yml, on main and on changed files in pull requests)"}
+      - {id: code.companion_per_source, statement: "every .rs and .py file under code/ has its companion named by governance/policy.json companion.naming", holds_now: false, checked_by: "governance-check --root . check (CI governance.yml, on main and on changed files in pull requests)", note: "2 of 2,384 sources have none (code/python/src/qm/chsh_norm_admission.py and its test, added by #577 and not grandfathered); the check reports them as MISSING_COMPANION"}
       - {id: code.population_agrees, statement: "the Rust and the Python implementation of the governed population list the same files", holds_now: true, checked_by: "governance.yml step 'Rust and Python agree on the governed population'"}
     relations:
       - {kind: consumes, to: VendorFolder, via: "code/rust/Cargo.toml path dependencies on vendor/engine (14 direct, lines 49-62)"}
 
   - class: PythonTree
     path: code/python
-    summary: Python packages under src/ (25 packages, imported by the tests), the scoring operations, and the root pytest suite (pyproject.toml testpaths = code/python/tests).
+    summary: Python packages under src/ (25 folders, imported by the tests), the scoring operations, and the root pytest suite (pyproject.toml testpaths = code/python/tests).
     role: check
     counts: {now: 1802, target: 1802}
     collections:
@@ -35,6 +35,9 @@ classes:
       - {name: sql, match: "src/**/*.sql", leaf: SqlSchema, now: 19, target: 19}
       - {name: fixtures, match: "src/**/*.json", leaf: DataFixture, now: 18, target: 18}
       - {name: notes, match: "src/**/*.md", leaf: MarkdownNote, now: 4, target: 4}
+    relations:
+      - {kind: imports, to: ChecksFolder, via: "seven tests under code/python/tests import checks/exact_checkers by module name (for example test_born_boundary_exact.py)"}
+      - {kind: checks, to: PaperPackage, via: "code/python/tests/mub/test_publication_release.py:23,39 reads papers/core/mub6 and its zenodo copy"}
 
   - class: RustWorkspace
     path: code/rust
@@ -49,17 +52,19 @@ classes:
     collections:
       - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 1412, target: 1412}
       - {name: doc_companions, match: "**/*.doc.yaml", leaf: DocCompanion, now: 72, target: 72}
-      - {name: crate_manifests, match: "src/**/{Cargo.toml,Cargo.lock,clippy.toml}", leaf: CargoManifest, now: 22, target: 22}
+      - {name: crate_manifests, match: "src/**/{Cargo.toml,clippy.toml}", leaf: CargoManifest, now: 21, target: 21}
+      - {name: crate_locks, match: "src/**/Cargo.lock", leaf: CargoLock, now: 1, target: 1}
       - {name: crate_build_hooks, match: "src/**/build.rs", leaf: BuildHook, authored: "imported:governance/policy.json pinned_boilerplate (byte copies of governance/hook/build.rs)", now: 19, target: 19}
       - {name: unwired_sources, match: "src/{wdp/derivation_controls/**,wdp/bin/**,wdp/mod.rs,mub/bin/**,mub/native/**}", leaf: UnwiredRustSource, now: 299, target: 299, note: "UNSURE: no manifest target or mod declaration reaches them; story S15 wires or deletes each family after a compile check"}
       - {name: rust_sources, match: "src/**/*.rs", leaf: RustSource, now: 986, target: 986}
       - {name: rust_data, match: "src/**/*.json", leaf: DataFixture, now: 48, target: 48, note: "read with include_str! relative to the source file"}
-      - {name: source_extras, match: "src/**/*.{py,md}", leaf: MarkdownNote, now: 3, target: 3}
+      - {name: python_fixtures, match: "src/**/*.py", leaf: PythonModule, now: 2, target: 2, note: "code/rust/src/wdp/fixtures/{model,observe}.py, governed sources beside the Rust fixtures"}
+      - {name: source_notes, match: "src/**/*.md", leaf: MarkdownNote, now: 1, target: 1}
       - {name: unwired_tests, match: "tests/mub/**/*.rs", leaf: UnwiredRustSource, now: 50, target: 50, note: "UNSURE: no [[test]] entry and no tests/mub/main.rs; only fixture_receipts.rs is wired, by #[path] from quality/fixture_register"}
-      - {name: test_artifacts, match: "tests/**/*.{json,md}", leaf: TestArtifact, authored: "generated:the MUB(6) runs", now: 241, target: 241}
+      - {name: test_artifacts, match: "tests/**/*.{json,md}", leaf: TestArtifact, authored: "generated:cargo test --locked in code/rust (the MUB(6) integration tests write them)", now: 241, target: 241}
       - {name: integration_tests, match: "tests/*.rs", leaf: RustTest, now: 33, target: 33, note: "cargo integration tests; no workflow builds this workspace (owner question Q11)"}
     invariants:
-      - {id: rust.every_source_reachable, statement: "every .rs file under src/ and tests/ is reached from a manifest target, a mod declaration or a #[path] attribute", holds_now: false, checked_by: unchecked, note: "533 files are not (reviewer 2, r2/reach.py); story S15"}
+      - {id: rust.every_source_reachable, statement: "every .rs file under src/ and tests/ is reached from a manifest target, a mod declaration or a #[path] attribute", holds_now: false, checked_by: unchecked, note: "the typed unwired families hold 349 files (unwired_sources 299, unwired_tests 50); a reviewer's static mod-graph walk, whose script is not in the repository, counted 533 unreachable files, so 184 more are not named here; story S15"}
       - {id: rust.builds, statement: "cargo test --workspace --locked passes from code/rust", holds_now: unknown, checked_by: unchecked, note: "no CI job builds the workspace; only the governance crate is built (governance.yml:60,63)"}
 
   - class: RustQualityRecords
@@ -70,7 +75,8 @@ classes:
     collections:
       - {name: readmes, match: "**/README.md", leaf: FolderReadme, now: 5, target: 5}
       - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 172, target: 172}
-      - {name: cargo_files, match: "**/{Cargo.toml,Cargo.lock}", leaf: CargoManifest, now: 4, target: 4, note: "fixture_register and category_homology/rust_metrics declare their own workspaces"}
+      - {name: cargo_files, match: "**/Cargo.toml", leaf: CargoManifest, now: 2, target: 2, note: "fixture_register and category_homology/rust_metrics declare their own workspaces"}
+      - {name: cargo_locks, match: "**/Cargo.lock", leaf: CargoLock, now: 2, target: 2}
       - {name: lean_rank_proofs, match: "category_homology/**/*.lean", leaf: QualityLeanProof, now: 66, target: 66, note: "outside lean4/ and outside every lakefile root; checked by category_homology/run_rank_proof.py"}
       - {name: tools, match: "**/*.{py,ps1}", leaf: QualityTool, now: 126, target: 126, note: "scalar_port_faults.py stays in S13: six kept modules import it (l4a_six/mutations.py:205 and five fault-recipe modules)"}
       - {name: candidate_sources, match: "**/*.rs", leaf: QualityCandidateSource, now: 46, target: 46}

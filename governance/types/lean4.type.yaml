@@ -1,6 +1,6 @@
 # lean4/: the Lake package of the theory (Lean and Mathlib v4.35.0). Every .lean file here is a governed source
-# (governance/policy.json population lean4/**/*.lean). AuthorityEffect: None; a module is evidence only through
-# a replay receipt in evidence/lean_receipts.
+# (governance/policy.json population lean4/**/*.lean); the 355 without a companion are listed in the baseline or
+# new. AuthorityEffect: None; a module is evidence only through a replay receipt in evidence/lean_receipts.
 schema: repo-type/1
 file_for: lean4
 
@@ -11,8 +11,8 @@ classes:
     role: proof
     counts: {now: 1691, target: 1691}
     attributes:
-      - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1, note: "describes another repository's layout; story S04 rewrites it"}
-      - {name: lakefile, match: lakefile.lean, leaf: LakeFile, required: true, now: 1, target: 1, note: "194 lean_lib targets, 1,052 roots; lines 986 and 1016 name the missing folder atlas/papers (story S16)"}
+      - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1, note: "describes this folder (rewritten in story S04)"}
+      - {name: lakefile, match: lakefile.lean, leaf: LakeFile, required: true, now: 1, target: 1, note: "195 lean_lib targets, 1,053 roots; lines 986 and 1016 name the missing folder atlas/papers (left by story S16 for the owner)"}
       - {name: lake_manifest, match: lake-manifest.json, leaf: LakeManifest, required: true, now: 1, target: 1}
       - {name: toolchain, match: lean-toolchain, leaf: LeanToolchainPin, required: true, now: 1, target: 1}
       - {name: attributes, match: .gitattributes, leaf: GitAttributes, required: true, now: 1, target: 1, note: "seals the bytes of the Prompt*Scope modules"}
@@ -26,9 +26,10 @@ classes:
       - {name: mutation_harness, match: "{test_majorana_boundary.py,majorana_claim_oracle.py}", leaf: LeanMutationHarness, now: 2, target: 2, note: "reads _DIR/'MajoranaCore.lean'; stays beside the module it mutates"}
       - {name: reading_guides, match: "qm_*.md", leaf: LeanReadingGuide, now: 16, target: 16, note: "UNSURE: 16 Lean texts saved as .md that dag/derivations prose names; the other 124 go in story S04"}
     invariants:
-      - {id: lean4.every_module_built, statement: "every module is a root of, or imported by a root of, some lean_lib in lakefile.lean", holds_now: false, checked_by: unchecked, note: "49 modules are built by no target; 40 of them are the sealed Prompt*Scope modules"}
+      - {id: lean4.every_module_built, statement: "every module is a root of, or imported by a root of, some lean_lib in lakefile.lean", holds_now: false, checked_by: unchecked, note: "an import closure over the lean_lib roots and their submodule globs leaves 51 modules unbuilt (46 flat, 5 under Imported), 40 of them the sealed Prompt*Scope modules; a first count gave 49"}
       - {id: lean4.srcdirs_resolve, statement: "every srcDir in lakefile.lean names an existing folder", holds_now: false, checked_by: unchecked, note: "lakefile.lean:986 and :1016 point to atlas/papers/finite_obstruction_calculus/... which does not exist; left by story S16 for the owner: the srcDir edit needs fresh replays of the 12 receipts that pin the lakefile"}
-      - {id: lean4.ci_targets_build, statement: "the nine targets of lean-gleason.yml build with only propext, Classical.choice and Quot.sound", holds_now: unknown, checked_by: ".github/workflows/lean-gleason.yml:109"}
+      - {id: lean4.ci_targets_build, statement: "the nine targets of lean-gleason.yml build with only propext, Classical.choice and Quot.sound", holds_now: unknown, checked_by: ".github/workflows/lean-gleason.yml (build-args at line 108; the axiom check is the verify step after it)"}
+      - {id: lean4.companion_per_source, statement: "every .lean file under lean4/ has its companion named by governance/policy.json companion.naming", holds_now: false, checked_by: "governance-check --root . check (CI governance.yml)", note: "355 of 1,107 modules have none: the 315 under Imported/ and 40 flat modules (for example CHSHNormAdmission.lean); the governed check lists them as MISSING_COMPANION or grandfathers them"}
       - {id: lean4.no_admissions, statement: "no added Lean line carries sorry, admit, native_decide, unsafe or an axiom declaration", holds_now: true, checked_by: "scripts/auto/anti_pattern_lint.py --changed-since origin/main (CI overclaim.yml, blocking)"}
     relations:
       - {kind: builds, to: LeanFolder, via: "lakefile.lean lean_lib roots"}

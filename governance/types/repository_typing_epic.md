@@ -835,6 +835,32 @@ story commit. Governance re-pins: none; the only rebinds are the three S14 compa
 (rule 6): both manifest checks pass in 5 of the 13 deposits after the stories that touched them; the other 8 were not
 touched and keep their stale entries (atlas.type.yaml, `deposit.manifest_matches`).
 
+### Review fixes to the types (after S22)
+
+Three read-only reviews of the type files against the implemented tree were applied on the same branch (commits
+prefixed `Review fixes:`): the dot-folder class became three folder classes; the catch-all collections of the atlas
+deposits, the genesis run, the education modules, the teaching pack, vendor/ and normal_forms/ became typed members;
+every `holds_now` was set from a command run on this tree; and `scripts/check_repo_types.py` now enforces the rest of
+block `meta` (one type file per folder, root-to-class composition, the four catch-all forms, counts against the tree,
+`checked_by` paths, invariant ids, `holds_now: true` needs a command, leaf `format` against the file extension, glob
+grammar, gitlinks) with tests beside the existing ones. Follow-up work for the owner, recorded here because records are
+not edited to make an invariant true (rule 3.8):
+
+- `checks/review_ledger`: 121 checker companions cite 9,194 records by the pre-S14 path `reviews/repository_file_review/`
+  (9,126 resolve by basename, 68 do not) and 204 of the 665 ledger rows point at paths that no longer exist; a rename map
+  beside the ledger, not a rewrite of hash-pinned histories, is the repair (`review_ledger.cited_bytes`).
+- `dag/derivation_dag.json`: 31 record-field paths (lean4, python, rust fields) name no tracked file; the validator does
+  not open record fields (`dag.record_paths_exist`).
+- `dag/derivations/master_derivation_ledger.md` differs from what `scripts/build_master_derivation_ledger.py` writes
+  (1,011 steps recorded, 1,041 generated) and the script has no `--check` (`dag.master_ledger_current`).
+- `atlas/PROVENANCE.json`: 425 tracked atlas files unlisted, 1,042 listed paths untracked, 203 listed files with another
+  sha256 (`scripts/check_repo_types.py --report provenance`); `education/hamilton_noether_sources/import_manifest.json`
+  names 36 files that left the pack and 2 that changed; `normal_forms/contracts/PROVENANCE.json` differs for 2 files.
+- Six upper-case file names written in this repository are listed under naming rule `exception` (a foundations note, the
+  language SPEC, two verifier logs, two recovery notes); renaming them with their links is a small follow-up.
+- The seven `derives_from`-declared byte-twin classes and the 283 undeclared blob groups (791 files) still need per-class
+  `allow` lists before `repo.byte_duplicates_declared` can hold.
+
 ## Adversarial review
 
 Method: a scratch evaluator written from block `meta` alone and run on HEAD, the S01 commit and the projected

@@ -12,7 +12,7 @@ classes:
     counts: {now: 71, target: 71}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
-      - {name: reading_note, match: derivation_dag_reading_note.md, leaf: DagReadingNote, required: true, now: 1, target: 1, note: "absorbs theory_of_finite_qm.jsonl.README.md in story S07"}
+      - {name: reading_note, match: derivation_dag_reading_note.md, leaf: DagReadingNote, required: true, now: 1, target: 1, note: "its section 'The generated views' holds the former JSONL readme"}
       - {name: graph, match: derivation_dag.json, leaf: DerivationGraph, required: true, now: 1, target: 1}
       - {name: operad_binding, match: derivation_dag_operads.binding.yaml, leaf: OperadBinding, required: true, now: 1, target: 1}
       - {name: validator, match: validate_derivation_dag.py, leaf: DagTool, required: true, now: 1, target: 1}
@@ -26,21 +26,26 @@ classes:
       - {name: tool_companions, match: "{tools,tests,evidence}/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 20, target: 20}
       - {name: tool_docs, match: "{tools,tests}/*.doc.yaml", leaf: DocCompanion, now: 6, target: 6}
       - {name: tools, match: "tools/*.py", leaf: DagTool, now: 10, target: 10}
-      - {name: tests, match: "tests/*.py", leaf: DagTest, now: 13, target: 13, note: "tests of the graph and its tools only; story S12 moves out the four that test scripts/, docs/, the README and a checker"}
-      - {name: evidence_map_tools, match: "evidence/*.py", leaf: DagTool, now: 3, target: 3}
+      - {name: tests, match: "tests/*.py", leaf: DagTest, now: 13, target: 13, note: "tests of the graph and its tools only"}
+      - {name: evidence_map_test, match: "evidence/test_*.py", leaf: DagTest, now: 1, target: 1, note: "run by dag.yml:29 (report only)"}
+      - {name: evidence_map_tools, match: "evidence/*.py", leaf: DagTool, now: 2, target: 2}
       - {name: evidence_map, match: "evidence/evidence_map.json", leaf: EvidenceMap, authored: "generated:python -I -X utf8 dag/evidence/build_evidence.py --write", now: 1, target: 1}
     invariants:
-      - {id: dag.validator_passes, statement: "the validator reports failures=0 and every path a node, route or record cites exists", holds_now: true, checked_by: "python -I -X utf8 dag/validate_derivation_dag.py --repo-root . (CI dag.yml; at the merged tip: nodes=989 routes=997 records=1041 failures=0)"}
+      - {id: dag.validator_passes, statement: "the validator reports failures=0: every node source, lean, rust and pfp_review path and every route source path exists", holds_now: true, checked_by: "python -I -X utf8 dag/validate_derivation_dag.py --repo-root . (CI dag.yml): nodes=989 routes=997 records=1041 failures=0"}
+      - {id: dag.record_paths_exist, statement: "every path in a record's lean4, python or rust field exists", holds_now: false, checked_by: unchecked, note: "the validator does not open record fields; 31 record-field strings that start with a top-level folder name no tracked file (for example code/python/src/majorana/majorana/core/gf2_diagnostic.py), beside prose entries marked absent"}
       - {id: dag.one_paper_per_record, statement: "every TFQ record has one dag/derivations/*/tfq_NNNN_*.md and every such page names a record", holds_now: true, checked_by: "dag/validate_derivation_dag.py"}
       - {id: dag.views_are_renders, statement: "theory_of_finite_qm.jsonl and theory_of_finite_qm.md equal what render_dag_views.py makes of derivation_dag.json, and prose_proofs.md equals what prose_proofs.py makes of the proof sections", holds_now: true, checked_by: "dag/validate_derivation_dag.py (the two views); python -I -X utf8 dag/tools/prose_proofs.py and dag/tests/test_prose_proofs.py:69 (prose_proofs.md, rendered from papers/**/*.md, atlas and derivation proof files)"}
-      - {id: dag.evidence_map_current, statement: "evidence_map.json and docs/evidence/ equal what build_evidence.py renders from the DAG and the files it cites", holds_now: false, checked_by: "python -I -X utf8 dag/evidence/build_evidence.py --check (no CI job; story S02 adds one)", note: "exits 1 at 341d2e3dc with 11 stale files, among them the missing page of the node that #577 added without --write; at 88fa973cc it was 34 files (commits 56e16ec03 and 0ed4ea6c9), which the label sweep regenerated; not a line-ending effect"}
-      - {id: dag.sync_fixed_point, statement: "each sync tool run with no flag changes nothing on a clean tree", holds_now: unknown, checked_by: "python -X utf8 -m pytest -q dag/tests (no CI job; story S02 adds one)"}
-      - {id: dag.no_parallel_graph, statement: "no second graph file repeats nodes, routes or records of derivation_dag.json", holds_now: false, checked_by: unchecked, note: "wdp_derivation_dag.json repeats 151 nodes, 148 routes and 173 records field for field; deleted in story S07"}
+      - {id: dag.evidence_map_current, statement: "evidence_map.json and docs/evidence/ equal what build_evidence.py renders from the DAG and the files it cites", holds_now: true, checked_by: "python -I -X utf8 dag/evidence/build_evidence.py --check (CI dag.yml:26, blocking)"}
+      - {id: dag.sync_fixed_point, statement: "each sync tool run with no flag changes nothing on a clean tree", holds_now: false, checked_by: "python -X utf8 -m pytest -q dag/tests dag/evidence/test_evidence.py (dag.yml:28-31, report only; the generated-files-match-fragment tests)", note: "on this branch sync_pfp_results.py rewrites the statement and bottleneck of FQ-TSIRELSON-SOS-Q-SQRT2 and sync_application_branches.py moves FQ-CHSH-NORM-ADMISSION-COMPARISON (story S10 ran and reverted them); 13 of those tests fail"}
+      - {id: dag.no_parallel_graph, statement: "no second graph file repeats nodes, routes or records of derivation_dag.json", holds_now: true, checked_by: "git ls-files 'dag/*dag*.json' (prints derivation_dag.json only)", note: "wdp_derivation_dag.json was deleted in story S07"}
+      - {id: dag.master_ledger_current, statement: "dag/derivations/master_derivation_ledger.md equals the output of scripts/build_master_derivation_ledger.py", holds_now: false, checked_by: unchecked, note: "the generator has no --check and its output differs from the tracked page (1,011 primary derivation steps recorded, 1,041 generated; a reviewer ran it and restored the page)"}
     relations:
-      - {kind: cites, to: LeanFolder, via: "node lean fields (595 distinct lean4/ strings, 512 resolve to tracked files; the others are marked or prose)"}
-      - {kind: cites, to: AtlasFolder, via: "node source and test fields"}
-      - {kind: cites, to: EvidenceFolder, via: "pfp_review paths with sha256 into evidence/results/<ID>/reviews"}
-      - {kind: cites, to: CodeFolder, via: "node rust and python fields (174 code files named literally)"}
+      - {kind: cites, to: LeanFolder, via: "node lean fields and record lean4 fields (502 distinct lean4/ strings in derivation_dag.json, 501 tracked)"}
+      - {kind: cites, to: AtlasFolder, via: "node source and lean fields and record fields (273 distinct atlas/ strings, 186 tracked; the rest are prose or pre-fold paths)"}
+      - {kind: cites, to: EvidenceFolder, via: "pfp_review paths with sha256 into evidence/results/<ID>/reviews (380 distinct evidence/ strings, 372 tracked)"}
+      - {kind: cites, to: CodeFolder, via: "node rust fields and record python and rust fields (194 distinct code/ strings, 163 tracked)"}
+      - {kind: cites, to: ChecksFolder, via: "record python fields name 127 distinct checks/ paths, all tracked"}
+      - {kind: cites, to: DocsFolder, via: "12 distinct docs/ paths, all tracked"}
       - {kind: cites, to: PapersFolder, via: "node source fields"}
       - {kind: cites, to: EducationFolder, via: "16 education files cited from dag/ (six in derivation_dag.json itself)"}
       - {kind: renders, to: DocsFolder, via: "dag/evidence/render_evidence.py writes docs/evidence/"}
@@ -60,7 +65,7 @@ classes:
       - {name: record_papers, match: "[0-9][0-9]_*/tfq_[0-9][0-9][0-9][0-9]_*.md", leaf: DerivationPaper, authored: "generated:dag/tools/sync_*.py for sync-owned slices; hand-written for the rest", now: 1041, target: 1041}
       - {name: independent_notes, match: "independent/*.md", leaf: IndependentNote, now: 175, target: 175}
       - {name: stage_sources, match: "[0-9][0-9]_*/sources/**", leaf: StageSource, now: 87, target: 87}
-      - {name: stage_notes, match: "[0-9][0-9]_*/*.md", leaf: StageNote, now: 19, target: 19, note: "33 are named by nothing (UNSURE, reviewer 4)"}
+      - {name: stage_notes, match: "[0-9][0-9]_*/*.md", leaf: StageNote, now: 19, target: 19, note: "UNSURE: a reviewer found the stage notes and sources named by nothing; the 19 here were not counted one by one"}
 
 leaf_types:
   - {name: DagReadingNote, format: md, naming: lower, schema: none, companions: none, authored: hand}
