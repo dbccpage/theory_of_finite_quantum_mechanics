@@ -164,7 +164,7 @@ Throughout:
 4. keep every non-isomorphic alternative unless a proof eliminates it, including readings of ambiguous sentences;
 5. cite and re-check every earlier result used through a valid state/step map or a fresh computation.
 
-Do not steer toward a known theory. Only the final section of the paper may name nearest known results. Keep `ci/check_prose_watchlist.py` clean. Use only this repository, with no network, other files, or questions. Do not modify `prompt/`. First append a plan and stopping conditions to `CLAUDE.md` and commit that plan alone if this proposal is later installed as a derivation.
+Do not steer toward a known theory. Only the final section of the paper may name nearest known results. Keep `ci/check_prose_watchlist.py` clean. Use only this repository, with no network, other files, or questions. Do not modify `prompt/`. First append a plan and stopping conditions to `run_contract.md` and commit that plan alone if this proposal is later installed as a derivation.
 
 ## Folders
 

@@ -18,7 +18,7 @@ Do not steer toward a known theory. The final section of the fourteenth paper na
 
 Use only this repository. No network, other files, or questions. Do not modify `prompt/`. Change an earlier derivation's files only to correct a defect, and record each such change in the relevant `change_log.md`.
 
-First add your plan and stopping conditions for the fourteenth derivation to `CLAUDE.md`, and commit them.
+First add your plan and stopping conditions for the fourteenth derivation to `run_contract.md`, and commit them.
 
 ## Folders
 

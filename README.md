@@ -225,11 +225,11 @@ Before changing the DAG, read [`dag/derivation_dag_reading_note.md`](dag/derivat
 |---|---|
 | [`dag/`](dag) | The derivation DAG, the TFQ JSONL, generators, the validator and their tests |
 | [`dag/derivations/`](dag/derivations) | One Markdown paper per derivation step, by stage |
-| [`evidence/results/`](dag/results) | Host review records that DAG nodes cite |
-| [`dag/research/`](dag/research), [`dag/fragments/`](dag/fragments) | Research notes, axiom receipts and the fragment files the generators read |
+| [`evidence/results/`](evidence/results) | Host review records that DAG nodes cite |
+| [`dag/fragments/`](dag/fragments) | The fragment files the generators read (the axiom receipts of the retired research folder are under `evidence/lean_receipts/`) |
 | [`lean4/`](lean4) | The Lake project (Lean 4 + Mathlib) |
 | [`code/rust/`](code/rust), [`code/python/`](code/python) | Exact Rust certifiers and independent Python checkers, with tests |
-| [`atlas/papers/`](atlas/papers) | Source corpora (FSP, MUB(6), Majorana, foundations) and their own Lean packages and axiom reports |
+| [`atlas/`](atlas) | Source corpora (the finite obstruction calculus, projection obstruction and Everett packages) with their own Lean packages and axiom reports |
 | [`scripts/`](scripts) | Repository tools: contract/score companions, master ledger, README facts |
 | [`evidence/`](evidence) | Migration receipts and evidence dossiers |
 | [`SCORING.md`](SCORING.md) | The scoring rubric |

@@ -1,6 +1,6 @@
 # Change log
 
-1. **Plan in `CLAUDE.md`, committed alone** with the nineteenth and
+1. **Plan in `run_contract.md`, committed alone** with the nineteenth and
    twenty-first plans.
 
 2. **`lean4/lakefile.toml`: library `Twentieth`.** Shared file. Recorded in

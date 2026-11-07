@@ -117,10 +117,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md`
+### Documents and data: `atlas/finite_obstruction_calculus/genesis_ongoing/run_contract.md`
 
-- file: [atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md)
-- sha256 (`lf-normalised`): `d8c3f8489c516b84e95d515cf5eff9f58d5dc30596b716d3f5ac0500e4e0abde`
+- file: [atlas/finite_obstruction_calculus/genesis_ongoing/run_contract.md](../../../atlas/finite_obstruction_calculus/genesis_ongoing/run_contract.md)
+- sha256 (`lf-normalised`): `fc831dfb1ad1e60db868714fb801c437532ac6aa5443e2b3845c303c9c463392`
 - cited in: node.source
 - counts toward the grade: yes
 

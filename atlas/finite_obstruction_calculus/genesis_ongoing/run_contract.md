@@ -1,4 +1,4 @@
-# CLAUDE.md — plan and stopping conditions
+# run_contract.md — plan and stopping conditions
 
 This file was written before any other work, as `prompt/prompt.md` requires.
 It is the working contract for the run. Later edits are logged in
@@ -5174,7 +5174,7 @@ from this seed, and the ledger's re-check column says how — *no change*,
 *re-proved*, *imported* (a `lean4_core/Twentythird` or
 `lean4_core/Twentysecond` theorem used as it stands, its statement mentioning
 nothing this seed changes), or *computed again*. This derivation and its
-sibling land on one branch: in the files they share (`CLAUDE.md`,
+sibling land on one branch: in the files they share (`run_contract.md`,
 `lean4_core/lakefile.toml`, `ci/check_mutation_bite.py`,
 `ci/check_axiom_citations.py`, `ci/check_definitional_citations.py`, an earlier
 derivation's `change_log.md`) this derivation only adds; nothing already there
@@ -5514,7 +5514,7 @@ earlier result used is cited, its proof re-checked from this seed, and the
 ledger's re-check column says how — *no change*, *re-proved*, *imported* (a
 `lean4_core/Twentythird` or `lean4_core/Twentysecond` theorem used as it
 stands, its statement mentioning nothing this seed changes), or *computed
-again*. Files other derivations share (`CLAUDE.md`,
+again*. Files other derivations share (`run_contract.md`,
 `lean4_core/lakefile.toml`, `ci/check_mutation_bite.py`,
 `ci/check_axiom_citations.py`, an earlier derivation's `change_log.md`) are
 only added to: nothing already there is reordered, reworded or reformatted.

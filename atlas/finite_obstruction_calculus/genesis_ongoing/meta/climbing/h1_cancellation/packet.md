@@ -150,7 +150,7 @@ the `/meta/` pattern is rewritten into a Windows path. This was tested on
    to files.
 
    If another runner is used, it reads `AGENTS.md`, which points to
-   `CLAUDE.md`. Its own network switch must be off, and its grade records
+   `run_contract.md`. Its own network switch must be off, and its grade records
    how isolation was enforced.
 5. **During the run,** nothing is sent to the session. The run asks no
    questions.
@@ -181,4 +181,4 @@ full local suite of about 90 minutes, about 2 hours of meta work, and 1 to
 | D3 | The H1 parent: the ninth (no ban, loops allowed; the cleanest signed counts) or the fifth (one relation, the ban kept; closer to cells with distinct ends). | The ninth, as packeted: one sentence, and loops keep the smallest witnesses small. Record the fifth as the unchosen variant. It needs a sentence letting a multiplicity fall below zero, and it changes round 3's prediction. |
 | D4 | In round 2, accept that adding a term breaks the raising sameness (growth creates survivors), or fix the set of terms during repair with a finite-letters sentence. | Accept it for H2: this calculus's own growth is data. The run expands results and forms the classes afterwards. Run the fixed-term-set variant as an L6 sibling, because any later question about whether survivors run out needs a fixed set of terms. |
 | D5 | Freeze the extension class (`meta/climbing/extension_class.md`), including whether native rungs aim at results needing division plus further supplied arithmetic laws. | Freeze it with H1's launch, once each member's sentence is written out in full. H1 needs only "cancel" to be in it. Exclude that arithmetic band from native rungs, and leave it to supplied encodings. |
-| D6 | The clean-room protocol, and what to do with `AGENTS.md`. | Adopt the protocol in `meta/climbing/blindness.md`. `AGENTS.md` is handled in the P0 change: the stale untracked copy moved out of the checkout, and a tracked pointer to `CLAUDE.md` was added. Confirm both. |
+| D6 | The clean-room protocol, and what to do with `AGENTS.md`. | Adopt the protocol in `meta/climbing/blindness.md`. `AGENTS.md` is handled in the P0 change: the stale untracked copy moved out of the checkout, and a tracked pointer to `run_contract.md` was added. Confirm both. |

@@ -15,7 +15,7 @@ Do not steer toward a known theory. The final section of the paper names the nea
 
 Use only this repository. No network, other files, or questions. Do not modify `prompt/`.
 
-First create `CLAUDE.md` with your plan and stopping conditions, and commit it.
+First create `run_contract.md` with your plan and stopping conditions, and commit it.
 
 ## Folders
 

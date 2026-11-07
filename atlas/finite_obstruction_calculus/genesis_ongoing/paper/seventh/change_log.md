@@ -7,7 +7,7 @@ brought to `origin/main` — which had merged the sixth derivation and
 installed the seventh and eighth seeds — before any work of the seventh
 derivation).
 
-1. **`CLAUDE.md` gained the seventh derivation's plan and stopping conditions,
+1. **`run_contract.md` gained the seventh derivation's plan and stopping conditions,
    committed before any other work.** Reason: required by
    `prompt/seventh/prompt.md`. The earlier plans above it are unchanged.
 

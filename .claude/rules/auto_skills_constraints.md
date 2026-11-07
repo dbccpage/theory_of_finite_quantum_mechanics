@@ -9,7 +9,7 @@ paths:
 # Constraints for the auto-* skills
 
 **AuthorityEffect:** None. The repository-wide rules are CONTRIBUTING.md's honesty rules, the honesty gate in
-`checks/exact_checkers/campaign/README.md`, the overclaim rubric (`.claude/skills/overclaim-hunter/rubric.md`) and SCORING.md. Where
+the retired campaign README (in git history before a992b578d), the overclaim rubric (`.claude/skills/overclaim-hunter/rubric.md`) and SCORING.md. Where
 these constraints and those rules differ, those rules win.
 
 ## Authority

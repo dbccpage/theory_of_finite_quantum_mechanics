@@ -384,7 +384,7 @@ The one-term states of total `t` number `t + 1` (`ara` `p` times, `asa`
 `[r = 0] + [r ≥ 1]·r + [r ≥ 2]·two_term_count(r − 2)`, i.e.
 `[r = 0] + [r ≥ 1]·r + [r ≥ 2]·(C(r + 5, 7) + [r even]·C(r/2 + 2, 3)) / 2`:
 1, 1, 3, 7, 24, 65, 176, … — of order `r^7`, so the seed's 100 rounds with
-two terms would hold about 10^11 results. (The CLAUDE.md formula is this
+two terms would hold about 10^11 results. (The run_contract.md formula is this
 one; the two-term contribution at `r = 4` is 20, not 19.)
 
 ### Shortest sequences: the two relations interleave
@@ -406,7 +406,7 @@ result, the empty one included, so *no* statement holds in every result:
 8:D14 "at least one term" (on either part) fails at round 0. Witnesses for
 what does not follow are listed below.
 
-## Expected consequences (from the ninth plan in `CLAUDE.md`)
+## Expected consequences (from the ninth plan in `run_contract.md`)
 
 To be proved or refuted from this seed, not assumed from the seventh or the
 eighth:

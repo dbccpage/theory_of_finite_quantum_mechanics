@@ -18,7 +18,7 @@ Throughout:
 
 Do not steer toward a known theory. The final section of the paper names the nearest known results and how the findings differ; keep the prose watchlist (`ci/check_prose_watchlist.py`) clean.
 
-Use only this repository. No network, other files, or questions. Do not modify `prompt/`. First add your plan and stopping conditions to `CLAUDE.md`, and commit them.
+Use only this repository. No network, other files, or questions. Do not modify `prompt/`. First add your plan and stopping conditions to `run_contract.md`, and commit them.
 
 ## Folders
 

@@ -3,7 +3,7 @@
 Each material change, and its reason. Newest last. Commits are on the branch
 `worktree-sixteenth-derivation`.
 
-1. **`CLAUDE.md` gained the sixteenth derivation's plan and stopping conditions,
+1. **`run_contract.md` gained the sixteenth derivation's plan and stopping conditions,
    committed before any other work.** Reason: required by
    `prompt/sixteenth/prompt.md`. The earlier plans above it are unchanged.
 

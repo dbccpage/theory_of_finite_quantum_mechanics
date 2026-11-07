@@ -3,7 +3,7 @@
 Each material change, and its reason. Newest last. Commits are on the branch
 `derivation/twentyfourth`; nothing is pushed.
 
-1. **`CLAUDE.md` gained the twenty-fourth derivation's plan and stopping
+1. **`run_contract.md` gained the twenty-fourth derivation's plan and stopping
    conditions (AM1–AM10), committed alone before any other work.** Reason:
    required by `prompt/twentyfourth/prompt.md`. Words of the plan were probed
    against the prose watchlist (`--probe`) before it was written, and the

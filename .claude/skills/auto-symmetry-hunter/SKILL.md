@@ -22,7 +22,7 @@ The reference copy of each invariant is the code that enforces it:
 
 | Invariant | Enforcing code | Prose copies (examples) |
 |---|---|---|
-| Allowed Lean axioms | `ALLOWED_AXIOMS` in `scripts/overclaim_scan.py` | CONTRIBUTING.md rule 3, `checks/exact_checkers/campaign/README.md`, overclaim skill and rubric, `HP_LN_001` |
+| Allowed Lean axioms | `ALLOWED_AXIOMS` in `scripts/overclaim_scan.py` | CONTRIBUTING.md rule 3, the retired campaign README (git history), overclaim skill and rubric, `HP_LN_001` |
 | Forbidden Lean tokens | `LEAN_ADMISSION_TOKENS` plus axiom declarations in `scripts/overclaim_scan.py`; `LEAN_FORBIDDEN` in `scripts/auto/anti_pattern_lint.py` | CONTRIBUTING.md rule 5, the campaign honesty gate, `AP_LN_001` |
 | Status order | `PFP_STATUS_RANK` in `dag/validate_derivation_dag.py` | the overclaim rubric's honesty rule |
 | Forbidden DAG words | `FORBIDDEN` in `dag/validate_derivation_dag.py` | CONTRIBUTING.md rule 8, the rubric's verdict wording |

@@ -4,7 +4,7 @@ Each material change, and its reason. Newest last. Commits are on the branch
 the run started on (`second-derivation`). Nothing was pushed during the run;
 the branch was pushed afterwards at the user's request (item 12).
 
-1. **`CLAUDE.md` gained the second derivation's plan and stopping conditions,
+1. **`run_contract.md` gained the second derivation's plan and stopping conditions,
    committed before any other work.** Reason: required by
    `prompt/second/prompt.md`. The first derivation's plan above it is
    unchanged.
@@ -76,7 +76,7 @@ the branch was pushed afterwards at the user's request (item 12).
 
 12. **The branch `second-derivation` was pushed to `origin` after the run, at
     the user's request** (commits `31c0850` … `7d752e4`, then this entry).
-    `CLAUDE.md`'s "nothing is pushed" describes the run itself and is left as
+    `run_contract.md`'s "nothing is pushed" describes the run itself and is left as
     written; no pull request was opened. Nothing else changed.
 
 13. **Review fix: an illegal state is unreachable, so its cost is `None`
@@ -101,7 +101,7 @@ the branch was pushed afterwards at the user's request (item 12).
 14. **Review fix: the plan and notes were reworded to the seed's own words.**
     `paper.md` already honoured the rule that outside results are named only in
     its final section (§9); but a few forward-looking lines of the Phase-0 plan
-    (`CLAUDE.md`, second-derivation section), the reading notes
+    (`run_contract.md`, second-derivation section), the reading notes
     (`research/second/reading_the_seed.md`), and this log had named outside
     notions directly — for the shape of reachability between results, for the
     term-map reachability criterion and the sequence invariant, for how this

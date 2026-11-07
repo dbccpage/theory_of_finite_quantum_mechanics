@@ -1,6 +1,6 @@
 ---
 name: overclaim-hunter
-description: Hunt for claims in this repository that exceed what is proved. Use before merging any PR that changes DAG statuses, node statements, Lean files, replay receipts or public prose; after every batch of the derivation campaign (checks/exact_checkers/campaign); and weekly on main. Runs the mechanical scanner (scripts/overclaim_scan.py), then does a human-judgement statement-vs-theorem review of every flagged node and every node whose status changed, rechecks every number with exact arithmetic, and writes a review file plus a PR comment. Not for writing derivations or raising statuses.
+description: Hunt for claims in this repository that exceed what is proved. Use before merging any PR that changes DAG statuses, node statements, Lean files, replay receipts or public prose; after every batch of the derivation campaign (its checks/exact_checkers/campaign folder is retired); and weekly on main. Runs the mechanical scanner (scripts/overclaim_scan.py), then does a human-judgement statement-vs-theorem review of every flagged node and every node whose status changed, rechecks every number with exact arithmetic, and writes a review file plus a PR comment. Not for writing derivations or raising statuses.
 ---
 
 # Overclaim hunter

@@ -6,7 +6,7 @@ Reference for `SKILL.md`. Nothing here changes a status.
 
 ## The honesty rule
 
-A node may carry PROVED_LEAN only if Lean declarations **in this repository** state the node's **full** statement and compile with only `propext`, `Classical.choice` and `Quot.sound` (the rule of `checks/exact_checkers/campaign/README.md` and `evidence/reviews/frontier_targets/frontier_targets_lean_review.md`). The status order is OPEN < IMPORTED_ASSUMPTION < CONDITIONAL < COMPUTATIONALLY_CHECKED < PROVED_PROSE < PROVED_LEAN (`PFP_STATUS_RANK` in `dag/validate_derivation_dag.py`). A review lowers or keeps; it never raises.
+A node may carry PROVED_LEAN only if Lean declarations **in this repository** state the node's **full** statement and compile with only `propext`, `Classical.choice` and `Quot.sound` (the rule of the retired campaign README, in git history before a992b578d, and of `evidence/reviews/frontier_targets/frontier_targets_lean_review.md`). The status order is OPEN < IMPORTED_ASSUMPTION < CONDITIONAL < COMPUTATIONALLY_CHECKED < PROVED_PROSE < PROVED_LEAN (`PFP_STATUS_RANK` in `dag/validate_derivation_dag.py`). A review lowers or keeps; it never raises.
 
 ## What the scanner rules mean, and what to do
 

@@ -28,9 +28,9 @@ Do not steer toward a known theory. The final section of the paper names the nea
 
 Use only this repository. No network, other files, or questions. Do not modify `prompt/`. Change an earlier derivation's files only to correct a defect, and record each such change in the relevant `change_log.md`. Commit on your branch and do not push; the operator pushes.
 
-This derivation and its sibling land on one branch. Where you register this derivation in a file that other derivations share (`CLAUDE.md`, `lean4_core/lakefile.toml`, `ci/check_mutation_bite.py`, `ci/check_axiom_citations.py`, an earlier derivation's `change_log.md`), only add to it: do not reorder, reword or reformat what is already there.
+This derivation and its sibling land on one branch. Where you register this derivation in a file that other derivations share (`run_contract.md`, `lean4_core/lakefile.toml`, `ci/check_mutation_bite.py`, `ci/check_axiom_citations.py`, an earlier derivation's `change_log.md`), only add to it: do not reorder, reword or reformat what is already there.
 
-First add your plan and stopping conditions for the twenty-fourth derivation to the end of `CLAUDE.md`, and commit them.
+First add your plan and stopping conditions for the twenty-fourth derivation to the end of `run_contract.md`, and commit them.
 
 Before you finish, run every gate in "Done" in the foreground and wait for each to end. Do not finish while a check you started is still running.
 

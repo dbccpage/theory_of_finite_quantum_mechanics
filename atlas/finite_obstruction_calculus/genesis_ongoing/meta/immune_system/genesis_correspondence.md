@@ -2,7 +2,7 @@
 
 This analysis is outside the derivational seal. Genesis was read through
 `gh api` at `dbccpage/19L57G1@89fc568a61eb22100edf4070d40eb1449c350ed4`;
-no Genesis file was copied here. Its README, `CLAUDE.md`, paper §§1–3 and
+no Genesis file was copied here. Its README, `run_contract.md`, paper §§1–3 and
 11–12, `paper/anti_skill_inbox.md`, `paper/skill_inbox.md`, the primitive,
 transition, observation, trace, controller, higher-cell and refusal sources,
 their named artifacts, and seven skills were read. A **chosen** analogy is

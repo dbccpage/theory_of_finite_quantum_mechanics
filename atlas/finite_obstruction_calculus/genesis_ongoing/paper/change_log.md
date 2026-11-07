@@ -3,7 +3,7 @@
 Each material change, and its reason. Newest last. Commits are on the branch
 the run started on; nothing was pushed.
 
-1. **`CLAUDE.md` written and committed before anything else.**
+1. **`run_contract.md` written and committed before anything else.**
    Reason: required by `prompt/prompt.md`.
 
 2. **`lean4/lakefile.toml`: added a `lean_lib` target and `defaultTargets`.**
@@ -75,7 +75,7 @@ the run started on; nothing was pushed.
 14. **Paper, D3: "603 writings" corrected to "69 legal states".** Reason: the
     first number was wrong (1 + 4 + 64 = 69 legal states written on 1–3 terms).
 
-15. **`CLAUDE.md`: a "How to run" section appended.** Reason: the commands
+15. **`run_contract.md`: a "How to run" section appended.** Reason: the commands
     changed (items 11, 12). The plan and stopping conditions are unchanged.
 
 16. **Not in the repository:** `.claude/settings.local.json` (ignored by git)
@@ -95,7 +95,7 @@ reading of the seed.
     changed `.claude/settings.json` during the run, adding `defaultMode:
     bypassPermissions` and an allow-list of tools. The header's "nothing was
     pushed" held when written; the branch was pushed at the user's request after
-    the run. `CLAUDE.md` "How to run" gains `--check` (item 19).
+    the run. `run_contract.md` "How to run" gains `--check` (item 19).
 
 18. **Claims narrowed to their evidence** (paper and ledger):
     - N4: the first rounds differ by beginning (1, 2, 1, 1 without `bra`;
@@ -435,7 +435,7 @@ reading of the seed.
     `ci/check_mutation_bite.py` (the eighteenth, twentieth and twenty-first
     panels gain or change bite cases for the repaired checks; the seventeenth
     to twenty-first panels are put in order, with the blank lines between
-    them restored), `lean4/lakefile.toml` (a final newline), and `CLAUDE.md`
+    them restored), `lean4/lakefile.toml` (a final newline), and `run_contract.md`
     (the eighteenth plan moved after the seventeenth's, where the merge had
     put it before). Nothing in `lean4/H3V7N5QF/` … `lean4/Seventeenth/`,
     `code/xry/` … `code/seventeenth/`, or `evidence/` through
@@ -472,15 +472,15 @@ reading of the seed.
     `push` and `remote`, `gh`, package installs, `lake update`, outside
     connectors and servers, edits to `.claude/`), and reads outside the
     working directory are blocked again. The review plan appended to
-    `CLAUDE.md` for item 40 moved verbatim to
+    `run_contract.md` for item 40 moved verbatim to
     `meta/review/plan_2026-09-23.md`, and the two closing design-note
     sections of `ci/OEWAS_GATES.md` moved verbatim to
     `meta/review/detector_design_notes.md`, so that no file a derivation
     loads or reads for its gates carries review or analogy vocabulary.
-    `CLAUDE.md` gains a short operator note on isolation, the docstring of
+    `run_contract.md` gains a short operator note on isolation, the docstring of
     `ci/check_prose_watchlist.py` no longer names another repository, and a
-    tracked `AGENTS.md` now only points to `CLAUDE.md` (an untracked stale
-    copy of an older `CLAUDE.md` was removed from the main checkout). The
+    tracked `AGENTS.md` now only points to `run_contract.md` (an untracked stale
+    copy of an older `run_contract.md` was removed from the main checkout). The
     watchlist pin is regenerated for these moves only; every per-paper pin
     is unchanged. The prompts of the sixteenth through twenty-first
     derivations also carry phrasing from outside this repository; `prompt/`
@@ -518,7 +518,7 @@ reading of the seed.
     `main`. `ci/check_prose_watchlist.py` therefore sets aside the pins
     under a tree that no tracked file lies in (`meta/`), and refuses to
     regenerate there; `tests/test_prose_watchlist.py` covers both sides by
-    injection. `CLAUDE.md`'s operator note says the same. No earlier prompt,
+    injection. `run_contract.md`'s operator note says the same. No earlier prompt,
     code, Lean, evidence, or paper file changes.
 
 44. **The twenty-fourth and twenty-fifth seeds installed (2026-09-25).**

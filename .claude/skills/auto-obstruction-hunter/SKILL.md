@@ -54,5 +54,5 @@ consolidated report.
 ## Rules for this skill
 
 - Never select a repair and never edit a status or a route. A route correction is a DAG change through the owning
-  fragment and the sync order in `checks/exact_checkers/campaign/README.md`.
+  fragment and the sync order in `dag/README.md` (section "Change").
 - No Lean build, no cargo. Say "not rebuilt" where a receipt is relied on.

@@ -3,7 +3,7 @@
 Each material change, and its reason. Newest last. Commits are on the branch
 `worktree-fourteenth-derivation`.
 
-1. **`CLAUDE.md` gained the fourteenth derivation's plan and stopping conditions,
+1. **`run_contract.md` gained the fourteenth derivation's plan and stopping conditions,
    committed before any other work.** Reason: required by
    `prompt/fourteenth/prompt.md`. The earlier plans above it are unchanged.
 

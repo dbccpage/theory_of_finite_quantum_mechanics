@@ -95,7 +95,7 @@ from Git Bash and from the PowerShell commands above) and the clone steps of
   `2b36371 Snapshot`.
 - There was one ref, no reflog, no remote, no file under `meta/` tracked or
   on disk, and no trace of the source path in `.git/`.
-- Two commits made in the clone (a `CLAUDE.md` append and a new file) were
+- Two commits made in the clone (a `run_contract.md` append and a new file) were
   fetched and cherry-picked onto `origin/main` with no conflict.
   `git range-diff` showed both as `=`, and the tip's tree equalled the
   clone's tip outside `meta/`.
@@ -111,6 +111,6 @@ found:
 - the watchlist clean, with 14 `meta/` pins set aside;
 - `tests/test_prose_watchlist.py` passing (18 tests).
 
-A throwaway commit (a `CLAUDE.md` append and a new file) then landed by §4:
+A throwaway commit (a `run_contract.md` append and a new file) then landed by §4:
 `git range-diff` showed `=`, and the trees were identical outside `meta/`.
 Everything was removed afterwards.
