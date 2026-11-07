@@ -8,7 +8,7 @@ classes:
     path: checks
     summary: Independent checkers that recompute the finite claims of DAG nodes with exact rational arithmetic, the shared support code, the tests and mutation records CI runs, and the review ledger that pins every reviewed source by sha256.
     role: check
-    counts: {now: 478, target: 480}
+    counts: {now: 480, target: 480}
     attributes:
       - {name: mypy_config, match: mypy.ini, leaf: CheckerTypingConfig, required: true, now: 1, target: 1}
       - {name: review_ledger, class: ReviewLedger, required: true}
@@ -18,38 +18,39 @@ classes:
       - {name: support_modules, match: "checker_support/*.py", leaf: CheckerSupportModule, now: 36, target: 36}
       - {name: exact_checker_companions, match: "exact_checkers/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 3, target: 3}
       - {name: exact_checker_docs, match: "exact_checkers/*.doc.yaml", leaf: DocCompanion, now: 3, target: 3}
-      - {name: exact_checkers, match: "exact_checkers/*.py", leaf: ExactChecker, now: 10, target: 10, note: "imported by name from code/python/tests; the literal-path inventory misses those imports"}
-      - {name: graph_dressing, match: "finite_graph_dressing/*", leaf: ExactChecker, now: 3, target: 3}
+      - {name: exact_json_support, match: "exact_checkers/{exact_json,review_exact_json}.py", leaf: CheckerSupportModule, now: 2, target: 2}
+      - {name: exact_checkers, match: "exact_checkers/*.py", leaf: ExactChecker, now: 8, target: 8, note: "imported by name from code/python/tests; the literal-path inventory misses those imports"}
+      - {name: graph_dressing_test, match: "finite_graph_dressing/test_*.py", leaf: CheckerTest, now: 1, target: 1}
+      - {name: graph_dressing, match: "finite_graph_dressing/*", leaf: ExactChecker, now: 2, target: 2}
       - {name: independent_companions, match: "independent/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 97, target: 97}
       - {name: independent_checkers, match: "independent/*.py", leaf: IndependentChecker, now: 158, target: 158, note: "one per node stem; pairs with dag/derivations/independent/<stem>.md"}
       - {name: independent_data, match: "independent/{data/*.json,requirements.txt}", leaf: CheckerData, now: 2, target: 2}
       - {name: tests_readme, match: "tests/README.md", leaf: FolderReadme, now: 1, target: 1}
-      - {name: test_companions, match: "tests/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 43, target: 44}
-      - {name: tests, match: "tests/*.py", leaf: CheckerTest, now: 43, target: 44, note: "named one by one in .github/workflows/reviewed-checkers.yml; story S12 adds test_foc035_lp_certificates.py from dag/tests"}
-      - {name: mutation_records, match: "tests/*.json", leaf: MutationRecord, authored: "generated:checks/tests/run_support_mutations.py and the per-checker mutation tests", now: 40, target: 40}
+      - {name: test_companions, match: "tests/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 44, target: 44}
+      - {name: tests, match: "tests/*.py", leaf: CheckerTest, now: 44, target: 44, note: "named one by one in .github/workflows/reviewed-checkers.yml (test_foc035_lp_certificates.py at line 303)"}
+      - {name: mutation_records, match: "tests/*.json", leaf: MutationRecord, authored: "generated:python checks/tests/run_support_mutations.py and the per-checker mutation tests under checks/tests", now: 40, target: 40}
       - {name: test_requirements, match: "tests/requirements.txt", leaf: CheckerData, now: 1, target: 1}
     invariants:
-      - {id: checks.ledger_hashes, statement: "every assessed row of the review ledger has the sha256 of its source and companion in the checkout, and the companion holds a complete L4 or L5 score with every gate at B or better", holds_now: true, checked_by: ".github/workflows/reviewed-checkers.yml step 'Verify reviewed sources and companion histories' (lines 35-68)"}
+      - {id: checks.ledger_hashes, statement: "every assessed row of the review ledger (121 of 665 rows) has the sha256 of its source and companion in the checkout, and the companion holds a complete L4 or L5 score with every gate at B or better", holds_now: true, checked_by: ".github/workflows/reviewed-checkers.yml step 'Verify reviewed sources and companion histories' (lines 35-68)", note: "the other 544 rows are outside the check; 204 of them point at paths that no longer exist (statuses such as referenced_review_or_publication_evidence, referenced_exact_historical_archive, composed_and_removed)"}
       - {id: checks.ci_tests_pass, statement: "every test named in reviewed-checkers.yml passes in normal and optimised mode on Python 3.12 and 3.14", holds_now: unknown, checked_by: ".github/workflows/reviewed-checkers.yml"}
       - {id: checks.independent_pairing, statement: "every independent/<stem>.py has dag/derivations/independent/<stem>.md and the reverse", holds_now: false, checked_by: unchecked, note: "146 of 175 notes pair; 12 checkers and 29 notes do not (reviewer 4)"}
       - {id: checks.independent_run, statement: "every independent checker is run by CI or by a test", holds_now: false, checked_by: unchecked, note: "116 of 158 are run by neither (owner question Q12)"}
     relations:
-      - {kind: checks, to: DagFolder, via: "independent/<stem>.py recomputes the node whose id is the upper-cased stem"}
-      - {kind: imports, to: ChecksFolder, via: "code/python/tests import checks/exact_checkers by module name"}
+      - {kind: checks, to: DagFolder, via: "independent/<stem>.py recomputes the node whose id is the upper-cased stem (141 of 158 stems; 17 stems name no node id)"}
 
   - class: ReviewLedger
     path: checks/review_ledger
-    summary: The ledger of reviewed checker sources (current_file_scores.json) with the dated review reports, requirement lists, mutation manifests and pre-repair byte snapshots that the checker companions cite by sha256.
+    summary: The ledger of reviewed checker sources (current_file_scores.json) with the dated review reports, requirement lists, mutation manifests and pre-repair byte snapshots that the checker companions cite by their pre-S14 path and sha256.
     role: record
-    counts: {now: 0, target: 423}
+    counts: {now: 423, target: 423}
     attributes:
-      - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 0, target: 1}
-      - {name: ledger, match: current_file_scores.json, leaf: ReviewLedgerFile, required: true, now: 0, target: 1}
+      - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
+      - {name: ledger, match: current_file_scores.json, leaf: ReviewLedgerFile, required: true, now: 1, target: 1}
     collections:
-      - {name: dated_reports, match: "????-??-??-*.{json,md}", leaf: CheckerReviewRecord, now: 0, target: 323}
-      - {name: byte_snapshots, match: "????-??-??-*.txt", leaf: ReviewByteSnapshot, authored: "hand; byte copy of a source before repair", now: 0, target: 98, note: "UNSURE: pinned by companion histories only (owner question Q2)"}
+      - {name: dated_reports, match: "????-??-??-*.{json,md}", leaf: CheckerReviewRecord, now: 323, target: 323}
+      - {name: byte_snapshots, match: "????-??-??-*.txt", leaf: ReviewByteSnapshot, now: 98, target: 98, note: "UNSURE: pinned by companion histories only (owner question Q2)"}
     invariants:
-      - {id: review_ledger.cited_bytes, statement: "every review record a checks/ companion cites with a sha256 exists here with that sha256", holds_now: unknown, checked_by: unchecked}
+      - {id: review_ledger.cited_bytes, statement: "every review record a checks/ companion cites as reviews/repository_file_review/<name> exists as checks/review_ledger/<name> with the cited sha256", holds_now: false, checked_by: "git grep -o -h -E 'reviews/repository_file_review/[A-Za-z0-9_.-]+' -- 'checks/**/*.contract.score.yaml' | sort -u, each basename against git ls-files checks/review_ledger", note: "121 companions hold 9,194 such references; 9,126 resolve by basename into checks/review_ledger/, 68 do not; the histories are hash-pinned (rule 3.8), so a rename map, not a rewrite, is the repair"}
 
 leaf_types:
   - {name: CheckerTypingConfig, format: ini, naming: lower, schema: none, companions: none, authored: hand}
@@ -61,4 +62,4 @@ leaf_types:
   - {name: MutationRecord, format: json, naming: lower, schema: none, companions: none, authored: "generated:the mutation tests in checks/tests"}
   - {name: ReviewLedgerFile, format: json, naming: lower, schema: "{files: [{path, sha256, status, scoring_token}]}", companions: none, authored: hand}
   - {name: CheckerReviewRecord, format: "json or md", naming: lower, schema: none, companions: none, authored: hand}
-  - {name: ReviewByteSnapshot, format: text, naming: lower, schema: none, companions: none, authored: hand}
+  - {name: ReviewByteSnapshot, format: text, naming: lower, schema: none, companions: none, authored: "hand; a byte copy of a source before its repair"}

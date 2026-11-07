@@ -9,10 +9,10 @@ the review can resume without treating a committed receipt as a fresh result.
   local `origin/main` resolved to the same commit. Remote freshness has not
   been checked because the task restricts network use.
 - Branch: `review/whole-repo-2026-09-23`.
-- Plan-only commit: `8f2c517` (`CLAUDE.md` only).
+- Plan-only commit: `8f2c517` (`run_contract.md` only).
 - `git diff --stat -- prompt/` returned empty before that commit.
 - The user-provided `AGENTS.md` is untracked and left untouched.
-- Read the pasted task, all of `CLAUDE.md`, and `ci/OEWAS_GATES.md`.
+- Read the pasted task, all of `run_contract.md`, and `ci/OEWAS_GATES.md`.
 
 ## Phase 1 — next
 
@@ -87,7 +87,7 @@ the 21-derivation review and `meta/review/findings.md`.
   935 passed; coverage gate: 99.78% line, 99.60% branch. All 21 evidence
   `--check` runs and 21 report writers passed. `git diff` over
   `code/ paper/ evidence/ ci/ lean4/ prompt/` against main is empty; only
-  `CLAUDE.md` is changed by the Phase-0 commit and `meta/` is untracked.
+  `run_contract.md` is changed by the Phase-0 commit and `meta/` is untracked.
 - The claim index has 782 rows and no blank evidence cell for a
   derived/computed/refuted claim or unresolved local path. The manual
   derivation and defect-panel review is in `meta/review/derivation_review.md`;
@@ -108,7 +108,7 @@ the 21-derivation review and `meta/review/findings.md`.
 - The read-only lookup resolved `main` to
   `89fc568a61eb22100edf4070d40eb1449c350ed4`. All subsequent Genesis
   `gh api` reads use `?ref=` with that SHA. Read so far: `README.md`,
-  `CLAUDE.md`, requested `paper/paper.md` sections 1–3 and 11–12,
+  `run_contract.md`, requested `paper/paper.md` sections 1–3 and 11–12,
   `paper/anti_skill_inbox.md`, `paper/skill_inbox.md`, `observe.py`,
   `higher_structure.py`, `HigherStructure.lean`, and the primitive,
   controller, refusal and transition/trace sources named in the task.
@@ -168,7 +168,7 @@ the 21-derivation review and `meta/review/findings.md`.
 
 - Local branch `review/whole-repo-2026-09-23-meta` is at plan-only commit
   `8f2c5179159b7dbdb9db06d39c47cb084abddb0f`. Its tracked diff from
-  starting main is only `CLAUDE.md`; the repair branch remains at `e5d02dd`.
+  starting main is only `run_contract.md`; the repair branch remains at `e5d02dd`.
   No `prompt/` or `.lake/` path changed.
 - `python meta/review/claim_audit.py` regenerated the baseline
   `claim_audit.csv`: 782 rows, no missing evidence for a required status,

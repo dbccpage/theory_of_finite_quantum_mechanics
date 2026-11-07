@@ -8,4 +8,4 @@ Use replay.py --release --metrics --doctests for a fresh isolated offline snapsh
 
 The 20261020T192034Z recovery run preserves deliberately interrupted doctest and extra-challenge work separately; see recovery/review.md and recovery/expedite-interruption.json. A failed or cancelled command is not a passing result, and the incomplete mutation build is not a certification input.
 
-Companion storage now uses one `<source-stem>.contract.score.yaml`. Original receipt-addressed records and all scoring versions are retained inside that file; old physical companions are removed. See [the migration guide](../../../../docs/CONTRACT_SCORING_HISTORY.md). Legacy quality-tool path addresses resolve through the scoped reader/writer adapter.
+Companion storage now uses one `<source-stem>.contract.score.yaml`. Original receipt-addressed records and all scoring versions are retained inside that file; old physical companions are removed. See [the migration guide](../../../../governance/contract_scoring_history.md). Legacy quality-tool path addresses resolve through the scoped reader/writer adapter.

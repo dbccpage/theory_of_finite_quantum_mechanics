@@ -84,7 +84,7 @@ Each `prompt.md` follows H2's task, with these differences:
   this seed makes … the same" becomes "If this seed makes … the same", so
   the task does not presuppose a merge.
 - It says that both twins land on one branch. So the run only adds to shared
-  files and appends its plan to the end of `CLAUDE.md`.
+  files and appends its plan to the end of `run_contract.md`.
 - It keeps H2's instruction to run the final gates in the foreground and
   wait for them.
 
@@ -220,7 +220,7 @@ git -C $R range-diff "snapshot/twentyfifth..run/twentyfifth" "$A..derivation/twe
 - **The first twin lands as in `../launch.md`.** If it conflicts, `main`
   moved: stop and report.
 - **The second twin is expected to conflict** in the files both runs
-  register in: `CLAUDE.md` (both append), `lean4_core/lakefile.toml`,
+  register in: `run_contract.md` (both append), `lean4_core/lakefile.toml`,
   `ci/check_mutation_bite.py`, `ci/check_axiom_citations.py`, and an earlier
   derivation's `change_log.md`.
 - **Resolving it.** `git -C $L diff --name-only --diff-filter=U` must list

@@ -85,7 +85,7 @@ nearby admission records have different policy roles.
 
 ## Native owners and the finite application
 
-The [Python application](../code/coda_application/README.md) begins
+The Python application (`code/coda_application`, deleted from the tree and kept in git history) began
 with supplied finite cochain data. It solves the unweighted rational repair
 problem, checks selected layer conditions and enforces a local HMAC grant
 contract. Its Rust bridge prepares payloads; it does not call a native solver.

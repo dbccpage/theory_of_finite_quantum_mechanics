@@ -4,19 +4,19 @@ Each material change, and its reason. Newest last. Commits are on the branch
 `derivation/twentythird`; nothing is pushed.
 
 1. **The run first stopped at a blocker, before any work.** At the start of the
-   session every write (even to `CLAUDE.md`) and every `python` or `lake` call
+   session every write (even to `run_contract.md`) and every `python` or `lake` call
    was refused by the session's permissions (the read-block setting asks the
    person for any command it cannot analyse, and no approval could be given),
-   so the plan could not be written. Following the blocker rule of `CLAUDE.md`,
+   so the plan could not be written. Following the blocker rule of `run_contract.md`,
    the run stopped and reported it. The operator then allowed writes, `python`
    and `lake`, and the run resumed from Phase 0. Nothing was written or
    committed before that.
 
-2. **`CLAUDE.md` gained the twenty-third derivation's plan and stopping
+2. **`run_contract.md` gained the twenty-third derivation's plan and stopping
    conditions (AL1–AL10), committed alone before any other work.** Reason:
    required by `prompt/twentythird/prompt.md`. The plan's text was checked
    against the prose watchlist (`--probe`) before it was written, since
-   `CLAUDE.md` carries no pinned hit.
+   `run_contract.md` carries no pinned hit.
 
 3. **Layout: a new package `code/twentythird/`, launchers
    `code/run_twentythird.py` and `code/lean_report_twentythird.py`; no earlier

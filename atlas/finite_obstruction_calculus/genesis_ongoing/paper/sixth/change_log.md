@@ -7,7 +7,7 @@ branch was brought to `origin/main` — which had merged the fifth derivation,
 installed the sixth seed, and tightened the coverage gate to require every
 evidence module fully covered — before any work of the sixth derivation).
 
-1. **`CLAUDE.md` gained the sixth derivation's plan and stopping conditions,
+1. **`run_contract.md` gained the sixth derivation's plan and stopping conditions,
    committed before any other work.** Reason: required by
    `prompt/sixth/prompt.md`. The earlier plans above it are unchanged.
 

@@ -81,8 +81,8 @@ counts describe that import operation.
 For historical source citations beginning with `atlas/papers/`, the current
 local prefix is `atlas/`. Imported snapshots and their recorded byte hashes
 preserve the original citation text. Mutable education and derivation links
-have a separate [relocation receipt](../reviews/repository_file_review/2026-11-05-atlas-reference-cleanup.json).
+have a separate [relocation receipt](../checks/review_ledger/2026-11-05-atlas-reference-cleanup.json).
 
-The [publication relocation audit](../reviews/repository_file_review/2026-11-05-publication-atlas.json) checks this PR tree. Earlier November 5 cleanup receipts record observations in the maintainer's older source checkout; their mismatches and missing files do not describe this publication checkout. The later `everett_mw` notes are outside the original 5,613-file import manifest.
+The [publication relocation audit](../checks/review_ledger/2026-11-05-publication-atlas.json) checks this PR tree. Earlier November 5 cleanup receipts record observations in the maintainer's older source checkout; their mismatches and missing files do not describe this publication checkout. The later `everett_mw` notes are outside the original 5,613-file import manifest.
 
 The publication audit matches 5,606 of the original 5,613 import records. Seven requirements/lock files already differed from those recorded import bytes on the PR base; the move preserves those files and the original manifest digests. All 5,613 manifest destinations are present.

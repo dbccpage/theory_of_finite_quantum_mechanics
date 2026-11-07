@@ -8,26 +8,28 @@ classes:
     path: scripts
     summary: Python and PowerShell tools that CI and maintainers run - the overclaim scanner and the auto-* audit checks, governance and contract-score tools, replay verifiers, page generators and their tests.
     role: tooling
-    counts: {now: 69, target: 67}
+    counts: {now: 67, target: 67}
     attributes:
-      - {name: type_checker, match: check_repo_types.py, leaf: RepositoryTypeChecker, required: true, now: 0, target: 1, note: "added by story S01"}
-      - {name: type_checker_test, match: test_check_repo_types.py, leaf: ScriptTest, required: true, now: 0, target: 1, note: "added by story S01"}
+      - {name: type_checker, match: check_repo_types.py, leaf: RepositoryTypeChecker, required: true, now: 1, target: 1, note: "added by story S01"}
+      - {name: type_checker_test, match: test_check_repo_types.py, leaf: ScriptTest, required: true, now: 1, target: 1, note: "added by story S01"}
     collections:
-      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 22, target: 20, note: "scripts/ is outside the governed populations; the companions are kept by convention"}
+      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 20, target: 20, note: "scripts/ is outside the governed populations; the companions are kept by convention"}
       - {name: doc_companions, match: "*.doc.yaml", leaf: DocCompanion, now: 1, target: 1}
-      - {name: tests, match: "**/test_*.py", leaf: ScriptTest, now: 12, target: 14, note: "run by explicit path in governance.yml, overclaim.yml and status.yml"}
+      - {name: tests, match: "**/test_*.py", leaf: ScriptTest, now: 14, target: 14, note: "run by explicit path in dag.yml, governance.yml, overclaim.yml, status.yml and lean-gleason.yml; test_readme_facts.py is run by no workflow"}
       - {name: auto_checks, match: "auto/*.py", leaf: ScriptTool, now: 5, target: 5, note: "provenance header required (estate_audit.py header check)"}
-      - {name: replay_campaign, match: "lean_replay_campaign/*.py", leaf: ScriptTool, now: 2, target: 1}
-      - {name: tools, match: "*.{py,ps1}", leaf: ScriptTool, now: 25, target: 24}
+      - {name: replay_campaign, match: "lean_replay_campaign/*.py", leaf: ScriptTool, now: 1, target: 1}
+      - {name: tools, match: "*.{py,ps1}", leaf: ScriptTool, now: 24, target: 24}
     invariants:
       - {id: scripts.called, statement: "every tool is run by CI, imported by a CI tool, run by a test, or named by a kept document as a maintainer command", holds_now: false, checked_by: unchecked, note: "after story S04, scripts/adversarial_witness_stress_test.py is still called by nothing (owner question Q13)"}
-      - {id: scripts.tests_pass, statement: "the script tests named in governance.yml, overclaim.yml and status.yml pass", holds_now: unknown, checked_by: ".github/workflows/governance.yml, overclaim.yml, status.yml"}
+      - {id: scripts.tests_pass, statement: "the script tests named in dag.yml, governance.yml, overclaim.yml, status.yml and lean-gleason.yml pass", holds_now: unknown, checked_by: ".github/workflows/dag.yml, governance.yml, overclaim.yml, status.yml, lean-gleason.yml"}
     relations:
       - {kind: checks, to: DagFolder, via: "scripts/overclaim_scan.py, scripts/build_status.py, scripts/build_master_derivation_ledger.py"}
       - {kind: checks, to: CodeFolder, via: "scripts/score_scope_contracts.py and scripts/contract_scores.py (governance.yml)"}
+      - {kind: checks, to: LeanFolder, via: "scripts/gleason_lean_audit.py, scripts/verify_gleason_*.py and scripts/replay_*_lean.py build and audit lean4/ modules (lean-gleason.yml, governance.yml)"}
+      - {kind: checks, to: EvidenceFolder, via: "scripts/replay_fqcd_lean.py --verify-receipt and scripts/replay_pr492_lean.py --verify-receipts verify the receipts under evidence/lean_receipts (governance.yml:70-71)"}
       - {kind: renders, to: Repository, via: "scripts/build_readme_facts.py --write rewrites the facts block of README.md"}
 
 leaf_types:
   - {name: RepositoryTypeChecker, format: py, naming: lower, schema: none, companions: none, authored: hand}
-  - {name: ScriptTest, format: py, naming: lower, schema: "pytest module", companions: none, authored: hand}
-  - {name: ScriptTool, format: "py or ps1", naming: lower, schema: none, companions: none, authored: hand}
+  - {name: ScriptTest, format: py, naming: lower, schema: "pytest module", companions: convention, authored: hand}
+  - {name: ScriptTool, format: "py or ps1", naming: lower, schema: none, companions: convention, authored: hand}

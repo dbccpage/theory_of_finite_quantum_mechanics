@@ -6,7 +6,7 @@ repository in which the third and fourth derivations were made; the branch
 was brought to `origin/main` — which had merged the fourth derivation and
 installed the fifth seed — before any work of the fifth derivation).
 
-1. **`CLAUDE.md` gained the fifth derivation's plan and stopping conditions,
+1. **`run_contract.md` gained the fifth derivation's plan and stopping conditions,
    committed before any other work.** Reason: required by
    `prompt/fifth/prompt.md`. The earlier plans above it are unchanged.
 

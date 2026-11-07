@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-hubbard-protected-representations.md`
 
 - file: [dag/derivations/independent/fsp-hubbard-protected-representations.md](../../../dag/derivations/independent/fsp-hubbard-protected-representations.md)
-- sha256 (`lf-normalised`): `78292dc1629e52f01ba4443b0f84a9da52b05a09d1e697d0bb946ed42bf3f352`
+- sha256 (`lf-normalised`): `31382daa2c06d268fff853b0e1c68b7a0d727d0e9e804cb9a4280d6b10ab605a`
 - cited in: node.source
 - counts toward the grade: yes
 

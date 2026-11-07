@@ -2,7 +2,7 @@
 
 **Status (chosen):** this is an audit record outside the derivational seal,
 not a new derivation. The inputs are the 21 local seeds and their parent diffs,
-the 21 plans in `CLAUDE.md`, each paper, ledger, change log, evidence summary,
+the 21 plans in `run_contract.md`, each paper, ledger, change log, evidence summary,
 `code/**/evidence.py`, Lean sources, and committed axiom report. The
 meta branch kept the baseline derivation tree when this audit was written;
 references below to a repair mean the separately validated commit `e5d02dd`.

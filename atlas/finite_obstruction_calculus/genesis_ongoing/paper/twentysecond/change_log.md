@@ -3,7 +3,7 @@
 Each material change, and its reason. Newest last. Commits are on the branch
 `derivation/twentysecond`; nothing is pushed.
 
-1. **`CLAUDE.md` gained the twenty-second derivation's plan and stopping
+1. **`run_contract.md` gained the twenty-second derivation's plan and stopping
    conditions (AK1–AK10), committed alone before any other work.** Reason:
    required by `prompt/twentysecond/prompt.md`. The earlier plans above it are
    unchanged.

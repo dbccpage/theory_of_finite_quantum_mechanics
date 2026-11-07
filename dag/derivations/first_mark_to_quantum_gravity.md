@@ -58,7 +58,7 @@ bytes and are not asserted to match a newer Markdown revision.
 The Hamilton/Noether draft is reduced to its two mathematical arguments in
 stage 11. Its reviewed drawings, all review responses, intermediate versions,
 renderers and the Everett companion are preserved together in
-[the teaching source package](11_finite_qm_dynamics/hamilton_noether_sources/start_here.md).
+[the teaching source package](../../education/hamilton_noether_sources/start_here.md).
 That package is historical supporting material, not a second canonical route.
 
 [The source crosswalk](../../docs/maintenance/source_consolidation/source_crosswalk.md) gives destinations and DAG matches.

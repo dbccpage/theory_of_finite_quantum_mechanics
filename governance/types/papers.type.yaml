@@ -1,7 +1,6 @@
 # papers/: the written papers that are not atlas deposits - the core finite-QM companions, the conditional
-# density-lift paper and the foundations paper - with their code, Lean and deposit manifests. The seven
-# projection-obstruction copies and the witnessed-difference copy that sat here are deleted in story S08 (the
-# atlas editions are canonical). AuthorityEffect: None.
+# density-lift paper and the foundations paper - with their code, Lean and deposit manifests (the atlas editions
+# of the projection-obstruction and witnessed-difference papers are canonical). AuthorityEffect: None.
 schema: repo-type/1
 file_for: papers
 
@@ -10,16 +9,14 @@ classes:
     path: papers
     summary: The core papers (MUB(6), fermion sign, Majorana, constraint closure, two sign-problem papers), the conditional density-lift paper and the authorization-incompleteness foundations paper, cited by the DAG by path.
     role: document
-    counts: {now: 604, target: 4}
+    counts: {now: 4, target: 4}
     attributes:
       - {name: packages, class: PaperPackage, required: true}
     collections:
       - {name: core_tools, match: "core/tools/*", leaf: DepositTool, now: 4, target: 4}
     invariants:
-      - {id: papers.no_atlas_twins, statement: "no paper folder is a copy of an atlas deposit", holds_now: false, checked_by: "scripts/check_repo_types.py --report duplicates", note: "eight copies at the merged tip; story S08"}
+      - {id: papers.no_atlas_twins, statement: "no paper folder is a copy of an atlas deposit", holds_now: true, checked_by: "git ls-files papers | cut -d/ -f2-3 | sort -u (no name of an atlas deposit appears)", note: "the eight copies were deleted in story S08; the 13 files that still share a blob with atlas/ are licences, deposit_paths.py, lean-toolchain and one lint report"}
       - {id: papers.release_bundles_verified, statement: "the MUB(6) release bundles match their checksums", holds_now: unknown, checked_by: "code/python/tests/mub/test_publication_release.py:23,39 (root pytest; no CI job)"}
-    relations:
-      - {kind: checks, to: PapersFolder, via: "code/python/tests/mub/test_publication_release.py reads papers/core/mub6 and its zenodo copy"}
 
   - class: PaperPackage
     paths:
@@ -33,27 +30,28 @@ classes:
       - papers/foundations/authorization_incompleteness
     summary: One paper package - the paper and its claim ledger and change log, code and tests, Lean sources, research notes, artifacts and the release manifests.
     role: document
-    counts: {now: 642, target: 619}
+    counts: {now: 619, target: 619}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: false, now: 8, target: 8}
       - {name: licence, match: "{LICENSE,LICENSE-CODE,**/LICENSE,**/LICENSE-CODE}", leaf: LicenceText, required: false, now: 9, target: 9}
-      - {name: manifests, match: "{MANIFEST.sha256,SHA256SUMS,sha256sums,*.sha256,**/SHA256SUMS,**/sha256sums,**/*.sha256}", leaf: DepositManifest, required: false, now: 14, target: 11}
+      - {name: manifests, match: "{MANIFEST.sha256,SHA256SUMS,sha256sums,*.sha256,**/SHA256SUMS,**/sha256sums,**/*.sha256}", leaf: DepositManifest, required: false, now: 11, target: 11}
       - {name: citation, match: "{*.cff,**/*.cff}", leaf: CitationFile, required: false, now: 3, target: 3}
       - {name: verifier, match: verify_deposit.py, leaf: DepositVerifier, required: false, now: 4, target: 4}
     collections:
       - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 2, target: 2}
       - {name: doc_companions, match: "**/*.doc.yaml", leaf: DocCompanion, now: 1, target: 1}
-      - {name: tests, match: "**/{test_*.py,conftest.py}", leaf: PythonTest, now: 44, target: 43}
+      - {name: tests, match: "**/{test_*.py,conftest.py}", leaf: PythonTest, now: 43, target: 43}
       - {name: lean, match: "**/*.lean", leaf: LeanModule, now: 34, target: 34, note: "outside the governed populations; lean4/ holds the built copies"}
-      - {name: paper_text, match: "**/*.{md,tex}", leaf: DepositPaperText, now: 176, target: 167}
-      - {name: renders, match: "**/*.pdf", leaf: PdfRender, authored: "generated:the paper's LaTeX build", now: 7, target: 6}
+      - {name: paper_text, match: "**/*.{md,tex}", leaf: PaperText, now: 167, target: 167}
+      - {name: renders, match: "**/*.pdf", leaf: PdfRender, authored: "generated:the paper's LaTeX build", now: 6, target: 6}
       - {name: notebooks, match: "**/*.ipynb", leaf: Notebook, now: 6, target: 6}
-      - {name: code, match: "**/*.{py,ps1,psm1,mjs,lua,gp,sql,toml,ms,par,bat,sh,lock}", leaf: DepositPythonModule, now: 141, target: 140}
-      - {name: release_bundles, match: "**/*.{zip,gz}", leaf: ReleaseBundle, authored: "generated:the package's release script", now: 5, target: 3}
-      - {name: records, match: "**/*.{json,jsonl,yaml,txt}", leaf: JsonRecord, now: 184, target: 178}
+      - {name: code, match: "**/*.py", leaf: DepositPythonModule, now: 115, target: 115}
+      - {name: scripts, match: "**/*.{ps1,psm1,mjs,lua,gp,sql,toml,ms,par,bat,sh,lock}", leaf: DepositTool, now: 25, target: 25, note: "build and replay scripts beside the Python code"}
+      - {name: release_bundles, match: "**/*.{zip,gz}", leaf: ReleaseBundle, authored: "generated:the package's release script", now: 3, target: 3}
+      - {name: records, match: "**/*.{json,jsonl,yaml,txt}", leaf: JsonRecord, now: 178, target: 178}
       - {name: packaging, match: "**/{.gitattributes,.gitignore,lean-toolchain}", leaf: DepositPackaging, now: 4, target: 4}
     invariants:
       - {id: package.manifest_matches, statement: "SHA256SUMS or sha256sums lists exactly the package files with their current sha256", holds_now: unknown, checked_by: "python verify_deposit.py inside the package"}
 
 leaf_types:
-  - {name: ReleaseBundle, format: "zip or tar.gz", naming: lower, schema: none, companions: none, authored: "generated:the package's release script"}
+  - {name: PaperText, format: "md or tex", naming: lower or exception, schema: none, companions: none, authored: hand, note: "written in this repository (no import ledger); the two upper-case recovery notes are listed under the exception rule"}

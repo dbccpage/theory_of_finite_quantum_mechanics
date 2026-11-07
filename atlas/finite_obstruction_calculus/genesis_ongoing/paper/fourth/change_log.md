@@ -5,7 +5,7 @@ the run started on (`worktree-third-derivation`, the worktree of this
 repository in which the third derivation was made; the branch was brought to
 `origin/main` before any work of the fourth derivation).
 
-1. **`CLAUDE.md` gained the fourth derivation's plan and stopping conditions,
+1. **`run_contract.md` gained the fourth derivation's plan and stopping conditions,
    committed before any other work.** Reason: required by
    `prompt/fourth/prompt.md`. The earlier plans above it are unchanged.
 

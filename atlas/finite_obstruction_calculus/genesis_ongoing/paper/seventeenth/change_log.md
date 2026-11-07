@@ -1,6 +1,6 @@
 # Change log
 
-1. Plan and stopping conditions recorded in `CLAUDE.md` before other work
+1. Plan and stopping conditions recorded in `run_contract.md` before other work
    (the prompt requires that commit on its own).
 2. Reading of the seed against the base, in `research/seventeenth/`. Not
    evidence. Two readings of an obstructed change (enter it, or not) and

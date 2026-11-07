@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ads-cft-duality-import.md`
 
 - file: [dag/derivations/independent/ads-cft-duality-import.md](../../../dag/derivations/independent/ads-cft-duality-import.md)
-- sha256 (`lf-normalised`): `2856f844cf7c11b0b0b5348271a92f8dc5f50670e6926a32083b0a1c58a36afb`
+- sha256 (`lf-normalised`): `79770e5bd3abd87c28d196b514161a60be2da5d15cf19aabe98718bb9e9f6df1`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -6,13 +6,13 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 988 nodes in 36 stages. Evidence grades: E0 70, E1 274, E2 94, E3 549, E4 1.
+The DAG has 989 nodes in 36 stages. Evidence grades: E0 70, E1 274, E2 95, E3 549, E4 1.
 
 ### What is proved here, what is imported, what is open
 
 | Group | Statuses | Nodes | Meaning |
 |---|---|---|---|
-| Proved in this repository, kernel-checked Lean | `PROVED_LEAN` | 288 | Lean declarations are cited as stating the node. Whether they lie in this repository and have a current replay receipt is in the grade table. |
+| Proved in this repository, kernel-checked Lean | `PROVED_LEAN` | 289 | Lean declarations are cited as stating the node. Whether they lie in this repository and have a current replay receipt is in the grade table. |
 | Proved in prose | `PROVED_PROSE` | 28 | A written proof exists; no machine check is claimed. |
 | Checked by computation | `COMPUTATIONALLY_CHECKED` | 184 | An exact finite computation is recorded. |
 | Conditional on named hypotheses | `CONDITIONAL` | 37 | Holds given hypotheses that the node names; the hypotheses are not derived. |
@@ -22,19 +22,19 @@ The DAG has 988 nodes in 36 stages. Evidence grades: E0 70, E1 274, E2 94, E3 54
 | Open | `OPEN` | 190 | No derivation is recorded. |
 | Refuted | `REFUTED` | 7 | A counterexample is recorded. |
 
-Of the 288 `PROVED_LEAN` nodes, 240 reach grade E3 or E4 (83 percent); 48 do not. The second group is listed in [mismatches](mismatches.md).
+Of the 289 `PROVED_LEAN` nodes, 240 reach grade E3 or E4 (83 percent); 49 do not. The second group is listed in [mismatches](mismatches.md).
 
 Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 1 nodes meet all three. Among the 549 nodes at E3, 123 have a qualifying review, 27 of those cite in-repo Rust or Python code that is not a test, and 61 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 3161 distinct Lean declarations that lie in files of this checkout. 2865 of them are in a file whose current sha256 matches a passing replay receipt; 283 are in files with no receipt in `evidence/lean_receipts/`; 0 are in files whose receipt no longer matches; 13 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1497 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 3193 distinct Lean declarations that lie in files of this checkout. 2865 of them are in a file whose current sha256 matches a passing replay receipt; 315 are in files with no receipt in `evidence/lean_receipts/`; 0 are in files whose receipt no longer matches; 13 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1525 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
 | Status | E0 | E1 | E2 | E3 | E4 | Total |
 |---|---|---|---|---|---|---|
-| `PROVED_LEAN` | 0 | 0 | 48 | 240 | 0 | 288 |
+| `PROVED_LEAN` | 0 | 0 | 49 | 240 | 0 | 289 |
 | `PROVED_PROSE` | 3 | 13 | 8 | 4 | 0 | 28 |
 | `COMPUTATIONALLY_CHECKED` | 5 | 86 | 22 | 71 | 0 | 184 |
 | `CONDITIONAL` | 0 | 11 | 0 | 25 | 1 | 37 |
@@ -44,7 +44,7 @@ The `lean` fields of nodes cite 3161 distinct Lean declarations that lie in file
 | `SOURCE_RECORD` | 39 | 43 | 0 | 1 | 0 | 83 |
 | `OPEN` | 15 | 72 | 7 | 96 | 0 | 190 |
 | `REFUTED` | 0 | 4 | 1 | 2 | 0 | 7 |
-| Total | 70 | 274 | 94 | 549 | 1 | 988 |
+| Total | 70 | 274 | 95 | 549 | 1 | 989 |
 
 ### Stage by evidence grade
 
@@ -56,7 +56,7 @@ The `lean` fields of nodes cite 3161 distinct Lean declarations that lie in file
 | [WDP](stages/WDP.md) | 0 | 1 | 33 | 24 | 0 | 58 | 44 | 35 |
 | [L1_EMERGENCE](stages/L1_EMERGENCE.md) | 0 | 0 | 0 | 9 | 0 | 9 | 3 | 0 |
 | [L1_TO_L2](stages/L1_TO_L2.md) | 10 | 0 | 0 | 38 | 0 | 48 | 5 | 13 |
-| [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 0 | 0 | 37 | 1 | 39 | 12 | 16 |
+| [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 0 | 1 | 37 | 1 | 40 | 13 | 17 |
 | [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 0 | 4 | 0 | 20 | 0 | 24 | 1 | 18 |
 | [FINITE_QM_STRUCTURE](stages/FINITE_QM_STRUCTURE.md) | 0 | 0 | 0 | 44 | 0 | 44 | 11 | 26 |
 | [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 1 | 1 | 1 | 7 | 0 | 10 | 6 | 4 |
@@ -153,11 +153,11 @@ and run `lake env lean Check.lean`. The expected output lists only `propext`, `C
 
 ## Where status and evidence disagree
 
-278 flags on 232 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
+279 flags on 233 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
 
 | Flag | Count | Meaning |
 |---|---|---|
-| `proved_lean_below_e3` | 48 | PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt |
+| `proved_lean_below_e3` | 49 | PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt |
 | `proved_lean_external_only` | 0 | PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout |
 | `receipt_not_current` | 24 | A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit |
 | `computational_no_runnable_test` | 148 | COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited |

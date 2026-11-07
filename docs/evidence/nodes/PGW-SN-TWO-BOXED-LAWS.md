@@ -54,9 +54,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Documents and data: `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/source_archive/000_sn/paper_claim_ledger.md`
+### Documents and data: `atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/docs/sn_predecessor_claim_ledger.md`
 
-- file: [atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/source_archive/000_sn/paper_claim_ledger.md](../../../atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/source_archive/000_sn/paper_claim_ledger.md)
+- file: [atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/docs/sn_predecessor_claim_ledger.md](../../../atlas/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/docs/sn_predecessor_claim_ledger.md)
 - sha256 (`lf-normalised`): `e6e075190c6de2815dc0997bdecf3e1d34ec1fec0baded0aceb47bc64320c637`
 - cited in: node.source
 - counts toward the grade: yes
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md](../../../dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md)
-- sha256 (`lf-normalised`): `4203e59d22b2befd1266fa22c5cd9268ef575226f994fd0a7764477a05710b70`
+- sha256 (`lf-normalised`): `90751bb6bf8e396bf6fb9109c318d5e3f84a59efc936d7cedeebaccd7c40ca60`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0510
 - counts toward the grade: no

@@ -4,14 +4,12 @@ on:
   pull_request:
     paths:
       - 'checks/**'
-      - 'reviews/repository_file_review/**'
       - 'scripts/score_scope_contracts.py'
       - '.github/workflows/reviewed-checkers.yml'
   push:
     branches: [main]
     paths:
       - 'checks/**'
-      - 'reviews/repository_file_review/**'
       - 'scripts/score_scope_contracts.py'
       - '.github/workflows/reviewed-checkers.yml'
   workflow_dispatch:
@@ -43,7 +41,7 @@ jobs:
           sys.path.insert(0, str(Path("scripts").resolve()))
           from score_scope_contracts import validate_document, valid_current_entry
 
-          entries = json.loads(Path("reviews/repository_file_review/current_file_scores.json").read_bytes())["files"]
+          entries = json.loads(Path("checks/review_ledger/current_file_scores.json").read_bytes())["files"]
           rows = {row["path"]: row for row in entries}
           assessed = [row for row in entries if row.get("status") == "reviewed_repaired_verified" or row.get("scoring_token")]
           if len(rows) != len(entries) or not assessed:
@@ -302,7 +300,7 @@ jobs:
           python -I -B -O -X utf8 checks/tests/test_cech_complex.py
           python -I -B -X utf8 checks/tests/test_observer_presheaf.py
           python -I -B -O -X utf8 checks/tests/test_observer_presheaf.py
-          python -I -B -m pytest -q -p no:cacheprovider dag/tests/test_foc035_lp_certificates.py
+          python -I -B -m pytest -q -p no:cacheprovider checks/tests/test_foc035_lp_certificates.py
       - name: Strict Gaussian modulo-two certificate typing
         run: >-
           python -I -B -m mypy --config-file checks/mypy.ini

@@ -1,12 +1,12 @@
-# normal_forms/: the imported normal-form contracts, byte-identical to their origin files and bound by
-# normal_forms/contracts/PROVENANCE.json, plus the SQL slice that loads them. AuthorityEffect: None.
+# normal_forms/: the imported normal-form contracts (bound by normal_forms/contracts/PROVENANCE.json; 62 of 64
+# copies still byte-identical) plus the SQL slice that loads them. AuthorityEffect: None.
 schema: repo-type/1
 file_for: normal_forms
 
 classes:
   - class: NormalFormsFolder
     path: normal_forms
-    summary: Fifty-seven normal-form contracts imported unchanged, their schema and provenance, and a four-file SQL slice that loads them into one universe for queries.
+    summary: Fifty-seven normal-form contracts, three golden schema files and two index files imported with their provenance, and a four-file SQL slice that loads them into one universe for queries.
     role: source
     counts: {now: 70, target: 70}
     attributes:
@@ -17,14 +17,18 @@ classes:
       - {name: sql_readme, match: sql/README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
       - {name: universe_schema, match: sql/universe.sql, leaf: SqlSchema, required: true, now: 1, target: 1}
     collections:
-      - {name: contracts, match: "contracts/*.yaml", leaf: NormalFormContract, authored: "imported:normal_forms/contracts/PROVENANCE.json", now: 62, target: 62}
-      - {name: loader, match: "sql/*.py", leaf: PythonModule, now: 2, target: 2, note: "load_universe.py builds contracts_dir from the repository root and globs evidence/lean_receipts (line 420)"}
+      - {name: contracts, match: "contracts/nf.*.yaml", leaf: NormalFormContract, authored: "imported:normal_forms/contracts/PROVENANCE.json", now: 57, target: 57}
+      - {name: golden_files, match: "contracts/{normal_form_contract_schema,normal_form_definitions,standard}.yaml", leaf: ContractGoldenFile, authored: "imported:normal_forms/contracts/PROVENANCE.json", now: 3, target: 3}
+      - {name: indexes, match: "contracts/{index,nf_domain_index}.yaml", leaf: ContractIndex, authored: "imported:normal_forms/contracts/PROVENANCE.json", now: 2, target: 2}
+      - {name: loader_test, match: "sql/test_*.py", leaf: PythonTest, now: 1, target: 1}
+      - {name: loader, match: "sql/*.py", leaf: PythonModule, now: 1, target: 1, note: "load_universe.py builds contracts_dir from the repository root and globs evidence/lean_receipts (line 420)"}
     invariants:
-      - {id: normal_forms.bytes_bound, statement: "every contract's sha256 equals the value in contracts/PROVENANCE.json", holds_now: unknown, checked_by: unchecked}
+      - {id: normal_forms.bytes_bound, statement: "every copied file's sha256 equals the value in contracts/PROVENANCE.json copied[]", holds_now: false, checked_by: "python -I -X utf8 -c \"import json,hashlib; d=json.load(open('normal_forms/contracts/PROVENANCE.json')); print([e['copied_to'] for e in d['copied'] if hashlib.sha256(open(e['copied_to'],'rb').read()).hexdigest()!=e['sha256']])\"", note: "62 of 64 match; nf.mssn.yaml and nf.mssn.bqnf.yaml differ (last changed in the rename commit c7db46071)"}
       - {id: normal_forms.loader_test, statement: "the SQL universe loads and its test passes", holds_now: unknown, checked_by: "python -m pytest normal_forms/sql/test_universe.py (no CI job)"}
     relations:
       - {kind: consumes, to: EvidenceFolder, via: "normal_forms/sql/load_universe.py:420 globs evidence/lean_receipts/*lean_replay*.json"}
 
 leaf_types:
   - {name: ImportedSourceReadme, format: md, naming: imported, schema: none, companions: none, authored: "imported:normal_forms/contracts/PROVENANCE.json"}
-  - {name: NormalFormContract, format: yaml, naming: lower, schema: "normal-form contract (normal_forms_schema.sql)", companions: none, authored: "imported:normal_forms/contracts/PROVENANCE.json"}
+  - {name: ContractGoldenFile, format: yaml, naming: lower, schema: "the contract schema, the definitions and the standard the contracts cite by schema_ref", companions: none, authored: "imported:normal_forms/contracts/PROVENANCE.json"}
+  - {name: ContractIndex, format: yaml, naming: lower, schema: none, companions: none, authored: "imported:normal_forms/contracts/PROVENANCE.json"}

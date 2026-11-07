@@ -1,6 +1,6 @@
 # Change log
 
-1. **Plan in `CLAUDE.md`, committed alone.** The nineteenth, twentieth, and
+1. **Plan in `run_contract.md`, committed alone.** The nineteenth, twentieth, and
    twenty-first plans share that commit because the three seeds were run
    together. Each diffs the base.
 

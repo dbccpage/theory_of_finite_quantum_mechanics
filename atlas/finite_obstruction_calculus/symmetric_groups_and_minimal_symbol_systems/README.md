@@ -4,7 +4,7 @@
 
 Read the [combined manuscript](paper.md), [claim ledger](paper_claim_ledger.md), [source map](source_map.md), [change log](paper_change_log.md) and [source provenance](source_provenance.json).
 
-This is the active manuscript combining the former education `000_sn`, `000_mssn` and corrected `001_pregenesis_through_mssn` packages. Those packages have moved to the [source archive](source_archive/README.md); the education paths contain compatibility pointers. Grammar, executable examples and teaching material retain their education owners.
+This is the active manuscript combining the former education `000_sn`, `000_mssn` and corrected `001_pregenesis_through_mssn` packages. Those predecessor manuscripts were deleted from the tree (git history keeps them); the claim ledger of `000_sn`, which the derivation graph cites, stays as [docs/sn_predecessor_claim_ledger.md](docs/sn_predecessor_claim_ledger.md). The education paths contain compatibility pointers. Grammar, executable examples and teaching material retain their education owners.
 
 The paper retains the chain-retraction obstruction theorem, finite demand accounting, typed recovery, free-monoid distinctions, graph examples and profile contracts. It separates declared architecture from implementation evidence and does not reintroduce the withdrawn physics certificates.
 

@@ -7,31 +7,29 @@ file_for: evidence
 classes:
   - class: EvidenceFolder
     path: evidence
-    summary: Lean replay receipts and axiom reports, per-node review results (pinned by sha256 in the DAG pfp_review fields), per-PR validation records, governance and quality run records, and custody records of earlier imports and deletions.
+    summary: Lean replay receipts and axiom reports, per-node review results (pinned by sha256 in the DAG pfp_review fields), campaign and pull-request validation records, governance and quality run records, and custody records of earlier imports and deletions.
     role: evidence
-    counts: {now: 1181, target: 876}
+    counts: {now: 876, target: 876}
     attributes:
       - {name: scope_audit, match: contract_score_coverage_scope_audit.json, leaf: ScopeAudit, required: true, now: 1, target: 1}
     collections:
       - {name: axiom_reports, match: "axiom_reports/*.txt", leaf: AxiomReport, authored: "generated:a Lean #print axioms run", now: 2, target: 2}
       - {name: verification_packages, match: "chsh_norm_admission/**", leaf: NodeVerificationPackage, now: 6, target: 6, note: "a node's verify.py with its outputs and README (added on main by #577)"}
       - {name: custody, match: "custody/**", leaf: CustodyRecord, now: 5, target: 5, note: "the audit trail of earlier imports and deletions"}
-      - {name: dossiers, match: "dossiers/*.md", leaf: EvidenceDossier, now: 13, target: 2}
-      - {name: governance_runs, match: "governance/**", leaf: GovernanceRunRecord, authored: "generated:governance/tools/capture_evidence.py", now: 9, target: 6}
+      - {name: dossiers, match: "dossiers/*.md", leaf: EvidenceDossier, now: 2, target: 2}
+      - {name: governance_runs, match: "governance/**", leaf: GovernanceRunRecord, authored: "generated:governance/tools/capture_evidence.py", now: 6, target: 6}
       - {name: lean_receipts, match: "lean_receipts/**", leaf: LeanReplayReceipt, authored: "generated:the replay tools (scripts/replay_*.py, scripts/lean_replay_campaign)", now: 391, target: 391, note: "globbed by name (*lean_replay*.json) in dag/evidence/build_evidence.py, normal_forms/sql/load_universe.py:420 and scripts/overclaim_scan.py:288"}
-      - {name: quality_runs, match: "quality/**", leaf: QualityRunRecord, now: 310, target: 98}
-      - {name: results_index, match: "results/README.md", leaf: FolderReadme, now: 1, target: 1, note: "stale heading and paths (dag/results, dag/research); story S06 rewrites it"}
-      - {name: node_reviews, match: "results/*/reviews/**", leaf: NodeReviewResult, now: 202, target: 185, note: "inputs of dag/tools/sync_pfp_results.py; pinned by sha256 in dag/derivation_dag.json pfp_review"}
-      - {name: node_runs, match: "results/*/runs/**", leaf: NodeRunRecord, now: 86, target: 74, note: "the TENSOR runs are read by code/python/tests/test_operational_*.py through RUN constants; the jordan_classical_qubit run stays because dag/derivation_dag.json:5423 (pfp_review.superseded_by) cites it"}
-      - {name: batch_fixtures, match: "results/batches/*/tools/*", leaf: NodeRunRecord, now: 6, target: 3, note: "read by code/python/tests/test_born_boundary_exact.py:7-9 and test_l1_import_exact.py:12-13, which build the path"}
-      - {name: projection_reviews, match: "reviews/projection_obstruction_{outside_review_2026-11-05,review}/*", leaf: PrValidationRecord, now: 0, target: 5, note: "arrive from reviews/ in story S14"}
-      - {name: pr_reviews, match: "reviews/**", leaf: PrValidationRecord, now: 133, target: 97}
+      - {name: quality_runs, match: "quality/**", leaf: QualityRunRecord, now: 98, target: 98, note: "one folder per quality run (functor_shell_pr 26, code_2026_10_26 20, full_functor_validation 17, pr215_l4_repair 11, functor_shell_validation 8, full_functor_validation_attempt1 8, foc035_observer_presheaf 4) and four per-PR review files"}
+      - {name: results_index, match: "results/README.md", leaf: FolderReadme, now: 1, target: 1}
+      - {name: node_reviews, match: "results/*/reviews/**", leaf: NodeReviewResult, now: 185, target: 185, note: "inputs of dag/tools/sync_pfp_results.py; pinned by sha256 in dag/derivation_dag.json pfp_review"}
+      - {name: node_runs, match: "results/*/runs/**", leaf: NodeRunRecord, now: 74, target: 74, note: "the TENSOR runs are read by code/python/tests/test_operational_*.py through RUN constants; the jordan_classical_qubit run stays because dag/derivation_dag.json:5423 (pfp_review.superseded_by) cites it"}
+      - {name: batch_fixtures, match: "results/batches/*/tools/*", leaf: NodeRunRecord, now: 3, target: 3, note: "read by code/python/tests/test_born_boundary_exact.py:7-9 and test_l1_import_exact.py:12-13, which build the path"}
+      - {name: reviews, match: "reviews/**", leaf: CampaignValidationRecord, now: 102, target: 102, note: "campaign_<node>_review_validation.json, foc035 and dfm L4 records, per-PR validations, and the two projection-obstruction review folders that story S14 moved here"}
     invariants:
       - {id: evidence.pinned_reviews_match, statement: "every pfp_review path in dag/derivation_dag.json exists here with the sha256 the DAG records", holds_now: true, checked_by: "python -I -X utf8 dag/validate_derivation_dag.py --repo-root . and dag/tests/test_pfp_results.py"}
-      - {id: evidence.receipts_current, statement: "a replay receipt's recorded source sha256 equals the current file for every PROVED_LEAN citation", holds_now: unknown, checked_by: "python -I -X utf8 scripts/overclaim_scan.py (rule R4; CI overclaim.yml)"}
-      - {id: evidence.named_by_something, statement: "every file is named by a DAG field, a generated page, a test, a tool glob, a kept document or a companion history", holds_now: false, checked_by: unchecked, note: "S06 deletes 312 files that nothing reads; files named only by hash-pinned companion histories stay UNSURE (owner question Q2)"}
+      - {id: evidence.receipts_current, statement: "for every receipt a PROVED_LEAN node cites, the recorded source exists with the recorded sha256 and the recorded axioms are within propext, Classical.choice and Quot.sound", holds_now: true, checked_by: "python -I -X utf8 scripts/overclaim_scan.py --strict (rule R4 is HIGH; CI overclaim.yml:51): HIGH 0 on this branch"}
+      - {id: evidence.named_by_something, statement: "every file is named by a DAG field, a generated page, a test, a tool glob, a kept document or a companion history", holds_now: false, checked_by: unchecked, note: "story S06 deleted 312 files that nothing read; files named only by hash-pinned companion histories stay UNSURE (owner question Q2)"}
     relations:
-      - {kind: cites, to: EvidenceFolder, via: "docs/evidence pages link 530 evidence files"}
       - {kind: checks, to: LeanFolder, via: "receipts record lake runs over lean4/ modules with source sha256 and axiom lists"}
 
 leaf_types:
@@ -42,7 +40,7 @@ leaf_types:
   - {name: EvidenceDossier, format: md, naming: lower, schema: none, companions: none, authored: hand}
   - {name: GovernanceRunRecord, format: "json, log or csv", naming: lower, schema: none, companions: none, authored: "generated:governance/tools/capture_evidence.py"}
   - {name: LeanReplayReceipt, format: "json or log", naming: lower, schema: "lean replay receipt (sha256, exit code, axioms)", companions: none, authored: "generated:the replay scripts in scripts/"}
-  - {name: QualityRunRecord, format: "json, log, xml, tsv, md or py", naming: lower, schema: none, companions: none, authored: hand}
+  - {name: QualityRunRecord, format: "json, log, xml, tsv, md, py, yaml, gitattributes or sha256sum", naming: lower, schema: none, companions: none, authored: "hand; the logs and XML are tool output kept as records"}
   - {name: NodeReviewResult, format: "json, md or py", naming: lower, schema: none, companions: none, authored: hand}
   - {name: NodeRunRecord, format: "json, md, py or lean", naming: imported, schema: none, companions: none, authored: hand}
-  - {name: PrValidationRecord, format: "json, md, lean or py", naming: lean_module or lower, schema: none, companions: none, authored: hand}
+  - {name: CampaignValidationRecord, format: "json, md, lean or py", naming: lean_module or lower, schema: none, companions: none, authored: hand}

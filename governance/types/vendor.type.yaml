@@ -19,15 +19,19 @@ classes:
       - {name: contract_corpus, match: "engine/engine_contracts/corpus/**", leaf: VendoredCorpus, authored: "imported:vendor/engine/README.md", now: 594, target: 594, note: "read by engine_contracts/build.rs:31 and audit.rs:32"}
       - {name: tests, match: "engine/tests/**", leaf: VendoredTest, authored: "imported:vendor/engine/README.md", now: 801, target: 801, note: "[[test]] targets of the crates (for example engine/constants/Cargo.toml:12)"}
       - {name: sources, match: "engine/**/*.rs", leaf: VendoredRustSource, authored: "imported:vendor/engine/README.md", now: 1546, target: 1546}
-      - {name: remainder, match: "engine/**", leaf: VendoredFile, authored: "imported:vendor/engine/README.md", catch_all: true, now: 21, target: 21}
+      - {name: parked_sources, match: "engine/**/*.{legacy,parked}", leaf: VendoredParkedSource, authored: "imported:vendor/engine/README.md", now: 2, target: 2, note: "UNSURE: two Rust sources set aside upstream (mod.rs.legacy, prompt_intake_engine.rs.parked)"}
+      - {name: fixtures, match: "engine/**/{fixtures,receipts}/**", leaf: VendoredFixture, authored: "imported:vendor/engine/README.md", now: 18, target: 18, note: "contract fixtures, scaling fixtures, two Python fixtures and one receipt"}
+      - {name: scripts, match: "engine/**/*.py", leaf: VendoredTool, authored: "imported:vendor/engine/README.md", now: 1, target: 1}
     invariants:
-      - {id: vendor.all_crates_reached, statement: "every vendored crate is a path dependency of some manifest outside vendor/", holds_now: true, checked_by: unchecked, note: "all 33 are reached from 29 non-vendor manifests (reviewer 3)"}
+      - {id: vendor.all_crates_reached, statement: "every vendored crate is reachable by path dependencies from a manifest outside vendor/", holds_now: true, checked_by: "git grep -l -E \"vendor/engine/|engine/engine_\" -- '*Cargo.toml' ':!vendor/' (15 manifests) against the 33 engine/*/Cargo.toml names", note: "26 crates are direct dependencies of 15 manifests outside vendor/ (14 in code/rust and the WDP deposit's code/rust/Cargo.toml); the other 7 (engine_category_theory, engine_fusion_categories, engine_homotopy_type_theory, engine_lifts, engine_majorana, engine_operad_theory, engine_prompt_evolution) are reached only through other vendored crates"}
       - {id: vendor.upstream_faithful, statement: "vendored bytes equal the upstream revision named in engine/README.md", holds_now: unknown, checked_by: unchecked, note: "rewriting private-product wording here changes these bytes (owner question Q5)"}
     relations:
       - {kind: builds, to: VendorFolder, via: "vendor/engine/Cargo.toml builds the 33 crates as one workspace; code/rust consumes them (see CodeFolder)"}
 
 leaf_types:
   - {name: VendoredCorpus, format: "yaml, json or md", naming: imported, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
-  - {name: VendoredTest, format: "rs, json, blob, text or md", naming: imported, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
+  - {name: VendoredTest, format: "rs, json, blob, text, md, py or gitattributes", naming: imported, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
   - {name: VendoredRustSource, format: rs, naming: lower, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
-  - {name: VendoredFile, format: any, naming: imported, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
+  - {name: VendoredParkedSource, format: "legacy or parked", naming: imported, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
+  - {name: VendoredFixture, format: "yaml, json, py or text", naming: imported, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}
+  - {name: VendoredTool, format: py, naming: lower, schema: none, companions: none, authored: "imported:vendor/engine/README.md"}

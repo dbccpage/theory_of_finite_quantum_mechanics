@@ -1,14 +1,14 @@
 # Witnessed Difference Programme (WDP & WD2) Derivation DAG & `omega_codex` Pre-Merge Ledger
 
 **AuthorityEffect:** None  
-**Machine-Readable DAG:** [`dag/wdp_derivation_dag.json`](./wdp_derivation_dag.json) (sibling to [`dag/derivation_dag.json`](./derivation_dag.json))  
+**Machine-Readable DAG:** the nodes of [`dag/derivation_dag.json`](../../../../../dag/derivation_dag.json) with stage `WDP`  
 **Master Package:** `atlas/finite_obstruction_calculus/witnessed_difference_programme`
 
 ---
 
 ## 1. Executive Summary: What WDP Still Owes Before Merging with `omega_codex`
 
-The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction carriers) spans **68 core WDP/WD2 nodes** (plus **83 upstream Pre-Genesis / Genesis / Authorization / `S(n)` / `MSS-N` prerequisite nodes** included in `wdp_derivation_dag.json` for self-contained 151-node Kahn topological closure).
+The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction carriers) spans **68 core WDP/WD2 nodes** (plus **83 upstream Pre-Genesis / Genesis / Authorization / `S(n)` / `MSS-N` prerequisite nodes** included in this reading for self-contained 151-node Kahn topological closure).
 
 ### 1.1 Core WDP/WD2 Node Status Census (68 Core Nodes)
 
@@ -33,7 +33,7 @@ The Witnessed Difference Programme (`WDP` + absorbed `WD2` finite distinction ca
 | `COMPUTATIONALLY_CHECKED` | 0 | **All 10 Discharged in Lean 4** (2 core WDP + 8 upstream Genesis/L1/Impl across Batches 4, 8, and 9). |
 | `CONDITIONAL` | 0 | **All 15 Discharged in Lean 4** (across Batches 4, 5, 9, 10, 11, and 12). |
 | `OPEN` | 0 | **All 14 Discharged in Lean 4** (across Batches 5, 6, 12, and 13). |
-| **Total `wdp_derivation_dag.json` Nodes** | **151** | **151 Discharged/Definitions/Primitives (114 `PROVED_LEAN`, 33 `DEFINITION`, 2 `ADMITTED_PRIMITIVE`, 2 `SOURCE_RECORD`, 0 Remaining)** |
+| **Total nodes of this reading (stage `WDP` of `dag/derivation_dag.json` with its upstream prerequisites)** | **151** | **151 Discharged/Definitions/Primitives (114 `PROVED_LEAN`, 33 `DEFINITION`, 2 `ADMITTED_PRIMITIVE`, 2 `SOURCE_RECORD`, 0 Remaining)** |
 
 ---
 
@@ -252,9 +252,6 @@ These 8 obligations involve infinite-volume/continuum limits ($L, M \to \infty$)
 ## 6. Verification Commands
 
 ```powershell
-# Validate the standalone WDP derivation DAG schema, acyclicity, and Claim Hygiene
-python dag/validate_derivation_dag.py --dag dag/wdp_derivation_dag.json --no-files --no-views
-
 # Validate the master estate derivation DAG and its synchronized JSONL/Markdown views
 python dag/validate_derivation_dag.py --no-files
 ```

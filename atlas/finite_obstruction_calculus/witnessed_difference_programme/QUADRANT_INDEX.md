@@ -38,7 +38,6 @@ witnessed_difference_programme/
 │   ├── README.md                                   <-- Master Documentation Navigation Matrix
 │   ├── 01_substantiated/                           <-- Quadrant 1: Exists / Substantiated (Verified proofs & notes)
 │   ├── 02_requiring_derivation/                    <-- Quadrant 2: Requires Derivation (Open proofs & active targets)
-│   ├── 03_deletion_and_archive/                    <-- Quadrant 3: Can Be Deleted / Quarantined (Withdrawn & historical)
 │   └── 04_roadmap_and_gaps/                        <-- Quadrant 4: Remains to be Derived (Bridge register & continuum)
 │
 ├── lean4/                                          <-- Formal Lean 4 Verification Spine
@@ -61,8 +60,8 @@ witnessed_difference_programme/
 |---|---|---|---|
 | **Dimension 1: What Exists** | `code/witnessed_difference/`<br>`lean4/WitnessedDifference/`<br>`docs/01_substantiated/`<br>`witnessed_difference_programme.md` | **SUBSTANTIATED**<br>Formally proved theorems, passing test suites, and verified claims. | **TRUST & REUSE**<br>Use as verified ground truth for imports, type definitions, and proven theorems. |
 | **Dimension 2: Requires Derivation** | `docs/02_requiring_derivation/`<br>`code/derivation_controls/` | **OPEN / ACTIVE CONJECTURE**<br>Continuum Meron field limits, physical hardware actuation, and external institutional standing beyond finite closure. | **SOLVE & FALSIFY**<br>Active targets for continuum/external derivation; finite reductions are discharged in `FiniteDistinction.lean` and `WdpBatch2..WdpBatch6`. |
-| **Dimension 3: Can Be Deleted / Archive** | `docs/03_deletion_and_archive/`<br>`lean4/axioms/`<br>*(Purged `.aux`, `.log`, `.toc`)* | **QUARANTINED / OBSOLETE**<br>14 withdrawn swarm transcripts, historical code snapshots, transient build files. | **IGNORE IN GENERAL SEARCH**<br>Exclude from symbol indexing and retrieval to prevent false positive matches. |
-| **Dimension 4: Remains to be Derived** | `docs/04_roadmap_and_gaps/`<br>`dag/wdp_derivation_dag.json`<br>`dag/derivation_dag.json` | **UNCLOSED GAP / ROADMAP**<br>Enlarged Genesis bridge obligations (GEN-WDP-O01..O05), `omega_codex` pre-merge tractability gate, and continuum limits. | **PLAN & TRACK**<br>Long-term architectural milestones; consult `dag/wdp_derivation_dag.json` and `docs/04_roadmap_and_gaps/WDP_DERIVATION_DAG.md` for pre-merge debt accounting. |
+| **Dimension 3: Can Be Deleted / Archive** | *(deleted from the tree)*<br>`lean4/axioms/`<br>*(Purged `.aux`, `.log`, `.toc`)* | **DELETED**<br>The 14 withdrawn swarm transcripts, historical code snapshots and transient build files are in git history only. | **NOTHING TO INDEX**<br>No quarantined folder remains in the deposit. |
+| **Dimension 4: Remains to be Derived** | `docs/04_roadmap_and_gaps/`<br>`dag/derivation_dag.json` (stage `WDP`) | **UNCLOSED GAP / ROADMAP**<br>Enlarged Genesis bridge obligations (GEN-WDP-O01..O05), `omega_codex` pre-merge tractability gate, and continuum limits. | **PLAN & TRACK**<br>Long-term architectural milestones; consult the `WDP` stage of `dag/derivation_dag.json` and `docs/04_roadmap_and_gaps/WDP_DERIVATION_DAG.md` for pre-merge debt accounting. |
 
 ---
 
@@ -122,14 +121,15 @@ witnessed_difference_programme/
 - Transient LaTeX build artifacts purged from root: `witnessed_difference_programme.aux` (122 KB), `.log` (101 KB), `.toc` (41 KB).
 - Omitted redundant standalone satellite release packaging: `032_...zip` (118 KB), duplicate standalone `pyproject.toml`, and duplicate standalone licenses.
 
-### 5.2 Quarantined Superseded Swarms (`docs/03_deletion_and_archive/superseded_swarms/`)
-- 14 historical multi-agent swarm transcripts from earlier exploratory passes, withdrawn in `README.md` and retained only for archive provenance:
+### 5.2 Superseded Swarms (deleted)
+- 14 historical multi-agent swarm transcripts from earlier exploratory passes, withdrawn in `README.md`; deleted from the tree and kept in git history:
   `swarm_empirical_repair.md`, `swarm_functional_classification.md`, `swarm_higher_category.md`, `swarm_legacy_observers.md`, `swarm_observer_adapter_completeness.md`, `swarm_observer_descent.md`, `swarm_original_genesis_observer.md`, `swarm_original_genesis_observer_formal.md`, `swarm_policy_observer_adapter.md`, `swarm_qm_reconstruction.md`, `swarm_quantum_measurement.md`, `swarm_relational_retention.md`, `swarm_retention_choices.md`, `swarm_self_reference_bridges.md`.
 
 ### 5.3 Consolidated Lean Axiom Clutter (`lean4/axioms/`)
 - 55 historical individual `*_axioms.txt` logs moved from `lean4/` root into `lean4/axioms/`, restoring `lean4/` to a clean, canonical state.
 
-### 5.4 Quarantined Source Archives (`docs/03_deletion_and_archive/source_archive/`)
+### 5.4 Source Archives (deleted)
+- The historical snapshots below were deleted from the tree with the third quadrant and are kept in git history:
 - `coda_component_packages/`: 113 `.lean` and 214 `.py` files from historical snapshots.
 - `meron_model_generation_history/`: Exploratory prompt logs.
 - `toric_code_chapter_23_import.md`: Working draft absorbed into Chapter 23.
@@ -146,7 +146,7 @@ witnessed_difference_programme/
 - **`GEN-WDP-O05` (`TFQ-0570` — Tier C Open):** Non-implication firewall mechanized in `WdpBatch6.lean::receipt_verification_independent_of_jurisdiction`; external institutional jurisdiction remains outside software receipts.
 
 ### 6.2 Master Derivation DAG & Standalone WDP Pre-Merge DAG Synchronization
-- Standalone WDP DAG: `dag/wdp_derivation_dag.json` and `dag/wdp_derivation_dag.md` (mirrored at `docs/04_roadmap_and_gaps/WDP_DERIVATION_DAG.md`), classifying all 68 core WDP/WD2 nodes into **60 Discharged/Definitions** (42 `PROVED_LEAN` including all 30 finite & tractable obligations across Batches 1–6, plus 18 `DEFINITION`) and **8 Deferred Continuum/External Obligations** (`Tier C`).
+- WDP DAG: the nodes of `dag/derivation_dag.json` with stage `WDP` (read in `docs/04_roadmap_and_gaps/WDP_DERIVATION_DAG.md`), classifying all 68 core WDP/WD2 nodes into **60 Discharged/Definitions** (42 `PROVED_LEAN` including all 30 finite & tractable obligations across Batches 1–6, plus 18 `DEFINITION`) and **8 Deferred Continuum/External Obligations** (`Tier C`).
 - Master Gate `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` in `dag/derivation_dag.json` (Status: `OPEN` for Tier C continuum/hardware/institutional items).
 - Corresponds to derivation records `TFQ-0559` through `TFQ-0587`.
 - Orientation-sensitive pair-defect nonreflection is mechanized in `WdpBatch6.lean::orientation_sensitive_pair_defect_nonreflection`.
@@ -162,5 +162,5 @@ witnessed_difference_programme/
 This four-quadrant redefinition is fully compliant with:
 1. **Clean Architecture Layer Isolation:** Zero host I/O in Lean or Python mathematical kernels.
 2. **Claim Hygiene Rule:** No ungrounded claims, no hype verbs, all open questions explicitly marked as unverified targets.
-3. **Estate Derivation DAG Consistency:** Fully aligned with `dag/derivation_dag.json` and standalone `dag/wdp_derivation_dag.json` records `TFQ-0559` through `TFQ-0587`.
+3. **Estate Derivation DAG Consistency:** Fully aligned with `dag/derivation_dag.json` (stage `WDP`) records `TFQ-0559` through `TFQ-0587`.
 4. **Tooling & Test Invariance:** 100% pass rate maintained across `pytest` suites and `lake build`.

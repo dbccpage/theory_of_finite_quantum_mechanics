@@ -6,7 +6,7 @@ derivation on `worktree-third-derivation` (whose pull request was still open,
 so the eighth's pull request is opened against that branch); the worktree is
 the one in which the third to seventh derivations were made.
 
-1. **`CLAUDE.md` gained the eighth derivation's plan and stopping conditions,
+1. **`run_contract.md` gained the eighth derivation's plan and stopping conditions,
    committed before any other work.** Reason: required by
    `prompt/eighth/prompt.md`. The earlier plans above it are unchanged.
 

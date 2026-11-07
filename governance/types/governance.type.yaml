@@ -9,7 +9,7 @@ classes:
     path: governance
     summary: The single home of repository rules - the contract-score policy, grandfather baseline, approved exceptions, the governance-check crate manifest and build hook, the companion schema, and the repository types with their epic.
     role: config
-    counts: {now: 63, target: 64}
+    counts: {now: 64, target: 64}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
       - {name: policy, match: policy.json, leaf: GovernancePolicy, required: true, now: 1, target: 1}
@@ -20,7 +20,7 @@ classes:
       - {name: companion_schema, match: schema/contract-score.v1.json, leaf: CompanionSchema, required: true, now: 1, target: 1}
       - {name: build_hook, match: hook/build.rs, leaf: BuildHook, required: true, now: 1, target: 1, note: "template of every code/rust build.rs; its sha256 is pinned in policy.json pinned_boilerplate"}
       - {name: build_hook_companion, match: hook/build.contract.score.yaml, leaf: ContractScoreCompanion, required: true, now: 1, target: 1}
-      - {name: scoring_history, match: contract_scoring_history.md, leaf: GovernanceGuide, required: true, now: 0, target: 1, note: "moves here from docs/ in story S06"}
+      - {name: scoring_history, match: contract_scoring_history.md, leaf: GovernanceGuide, required: true, now: 1, target: 1, note: "moves here from docs/ in story S06"}
       - {name: types, class: RepositoryTypes, required: true}
     collections:
       - {name: approvals, match: "approvals/*.{json,md}", leaf: ApprovalRecord, now: 47, target: 47, note: "maintainer-approved exceptions; policy.json and the README cite them"}
@@ -28,8 +28,8 @@ classes:
       - {name: tool_companions, match: "tools/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 3, target: 3}
       - {name: tools, match: "tools/*.py", leaf: GovernanceTool, now: 3, target: 3}
     invariants:
-      - {id: governance.policy_single_source, statement: "the companion suffix, populations, floor and exclusions are stated only in policy.json; other files cite it", holds_now: false, checked_by: unchecked, note: "rules/rules.yaml rule_2 restates a different companion set; story S03 deletes it"}
-      - {id: governance.baseline_only_shrinks, statement: "baseline.json gains no entry without a reason", holds_now: true, checked_by: "governance-check --root . check --changed-since <base> (CI governance.yml)"}
+      - {id: governance.policy_single_source, statement: "the companion suffix, populations, floor and exclusions are stated only in policy.json; other files cite it", holds_now: true, checked_by: "git ls-files rules (prints nothing: the rules folder that restated a companion set was deleted by story S03); governance-check and scripts/score_scope_contracts.py read the regime from policy.json"}
+      - {id: governance.baseline_adds_need_reason, statement: "baseline.json gains no entry without a reason", holds_now: true, checked_by: "governance-check --root . check --changed-since <base> (CI governance.yml)"}
       - {id: governance.crate_tests, statement: "the governance crate tests and the Python policy tests pass", holds_now: unknown, checked_by: "cargo test --locked --manifest-path governance/Cargo.toml and pytest scripts/test_governance_policy.py (CI governance.yml)"}
     relations:
       - {kind: checks, to: CodeFolder, via: "governance-check and every workspace build.rs read policy.json and baseline.json"}
@@ -47,11 +47,11 @@ classes:
     collections:
       - {name: folder_types, match: "*.type.yaml", leaf: RepositoryTypeFile, now: 13, target: 13}
     invariants:
-      - {id: types.one_file_per_folder, statement: "there is exactly one <folder>.type.yaml per top-level folder that is not a dot folder, and each defines the class the root attribute names", holds_now: true, checked_by: "scripts/check_repo_types.py (story S01)"}
+      - {id: types.one_file_per_folder, statement: "there is exactly one <folder>.type.yaml per top-level folder that is not a dot folder, every class other than the root is named by one attribute of its owner, and a class claims only folders below its owner", holds_now: true, checked_by: "python -I -X utf8 scripts/check_repo_types.py --strict (FORM findings; CI dag.yml)"}
 
 leaf_types:
   - {name: GovernancePolicy, format: json, naming: lower, schema: tfqm.governance-policy.v1, companions: none, authored: hand}
-  - {name: GovernanceBaseline, format: json, naming: lower, schema: "one entry per line {path: {deficit, sha256, reason?}}", companions: none, authored: "generated:governance-check baseline --write (shrinks only)"}
+  - {name: GovernanceBaseline, format: json, naming: lower, schema: "tfqm.governance-baseline.v1: one object with schema_version, AuthorityEffect, policy, rule, summary and entries, which maps a path to {deficit, sha256, reason?}, one entry per line", companions: none, authored: "generated:governance-check baseline --write (drops entries; an addition needs --allow-add --reason)"}
   - {name: CompanionSchema, format: "json schema", naming: lower, schema: "JSON Schema draft", companions: none, authored: hand}
   - {name: GovernanceGuide, format: md, naming: lower, schema: none, companions: none, authored: hand}
   - {name: ApprovalRecord, format: "json or md", naming: lower, schema: none, companions: none, authored: hand}

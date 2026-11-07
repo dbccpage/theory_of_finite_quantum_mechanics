@@ -22,6 +22,6 @@ interpretation makes identical predictions under every possible extension.
 Sources: [decoherent histories](sources/qm_043_gellmann_hartle_cochain_decoherence.md),
 [relative states](sources/qm_094_everettian_relative_state_contact.md),
 [interpretation boundaries](sources/qm_090_interpretations_as_authority_shadows.md),
-[the reviewed two-route experiment](../11_finite_qm_dynamics/hamilton_noether_sources/everett/README.md).
+[the reviewed two-route experiment](../../../education/hamilton_noether_sources/everett/README.md).
 The canonical quantum model assumptions belong to
 [finite quantum states](../10_finite_qm_core/finite_quantum_states.md).

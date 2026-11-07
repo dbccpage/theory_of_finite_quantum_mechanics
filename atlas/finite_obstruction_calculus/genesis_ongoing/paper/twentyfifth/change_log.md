@@ -3,7 +3,7 @@
 Each material change, and its reason. Newest last. Commits are on the branch
 `derivation/twentyfifth`; nothing is pushed.
 
-1. **`CLAUDE.md` gained the twenty-fifth derivation's plan and stopping
+1. **`run_contract.md` gained the twenty-fifth derivation's plan and stopping
    conditions (AN1–AN11), appended and committed alone before any other work.**
    Reason: required by `prompt/twentyfifth/prompt.md`. The text was checked
    against the prose watchlist before it was committed (clean), and `git diff`

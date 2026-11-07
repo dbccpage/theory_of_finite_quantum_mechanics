@@ -52,7 +52,7 @@ population. To replay an AdS candidate:
    including unrun candidates after interruption, with source/test hashes and
    captured output. Dispose of the snapshot even on failure or cancellation.
 
-The November 3 raw and follow-up receipts under `reviews/repository_file_review`
+The November 3 raw and follow-up receipts under `checks/review_ledger`
 preserve the original 66/68 result, the two additional regression challenges,
 and the final 68/68 detection result. These finite campaigns are not exhaustive
 proofs of correctness.
@@ -69,7 +69,7 @@ Replay `strong_coupling_mutations.json` with `StrongCouplingCheckerTests` using
 the same snapshot protocol. The 73 retained candidates have 72 detected faults
 and one algebraically equivalent internal gamma-sign change. Original survivors,
 additive test repairs, exact prior-manifest copies and the equivalence proof are
-retained under `reviews/repository_file_review`; no candidate was discarded.
+retained under `checks/review_ledger`; no candidate was discarded.
 
 `test_lineon_checker.py` verifies path snapshots, site/edge witnesses, exact
 holonomy, symbolic curvature, literal toy rules and the TFQ-1219 receipt.
@@ -85,7 +85,7 @@ with `ComputationControlTests`. All 64 retained candidates are detected.
 Three originally selected tests missed faults caught by existing fixed-control
 or independent graph tests; both original and amended selections are retained.
 The old six source/companion pairs have byte-preserved archives and a migration
-map in `reviews/repository_file_review/2026-11-03-computation-retirement.json`.
+map in `checks/review_ledger/2026-11-03-computation-retirement.json`.
 
 `test_cqft_checkers.py` verifies bounded rational matrices, integer operator
 products, the four-point order and exact qubit unfoldings with separate SymPy
@@ -237,7 +237,7 @@ The observer-presheaf checker composes owned measurement scenarios, empirical
 models, exact linear programs/certificates and a bounded Cech complex. Run
 `test_exact_linear_program.py` (9 groups), `test_empirical_model.py` (8),
 `test_cech_complex.py` (8) and `test_observer_presheaf.py` (8) in both ordinary
-and optimized modes, plus `dag/tests/test_foc035_lp_certificates.py` (20 existing
+and optimized modes, plus `checks/tests/test_foc035_lp_certificates.py` (20 existing
 adapter cases). Each generated property uses80 deterministic examples.
 The app retains50 named CLI check groups and the legacy scalar/ValueError
 certificate adapter. LP witnesses distinguish optimum, infeasibility and

@@ -2,7 +2,7 @@
 
 **Status:** chosen, outside the derivational seal, adopted 2026-09-24. It
 governs which seed an operator may propose for the climbing track. It binds
-no run: a run is bound by `CLAUDE.md` and its own `prompt.md`, and the
+no run: a run is bound by `run_contract.md` and its own `prompt.md`, and the
 packet writes every rule a run must follow into that prompt. It is not a
 theorem, and a rung that meets it proves nothing by meeting it.
 
@@ -123,7 +123,7 @@ evidence path for every field:
 
 ## Acceptance before merge (operator)
 
-- The native gates of `CLAUDE.md`: pytest, `python code/xry/gate.py
+- The native gates of `run_contract.md`: pytest, `python code/xry/gate.py
   coverage.json`, `python -m mypy`, the four `ci/check_*.py` gates, and
   every evidence `--check`.
 - `lake +leanprover/lean4:v4.33.1 -d lean4_core build`, with its exit code

@@ -285,7 +285,7 @@ class HubbardTransferTests(unittest.TestCase):
         with contextlib.redirect_stdout(io.StringIO()) as output:
             module=load()
         self.assertEqual(output.getvalue(),'')
-        baseline=CHECKS.parent/'reviews/repository_file_review/2026-11-05-hubbard-initial-review.json'
+        baseline=CHECKS/'review_ledger/2026-11-05-hubbard-initial-review.json'
         expected=json.loads(baseline.read_bytes())['runs'][0]['stdout']
         for _ in range(2):
             with contextlib.redirect_stdout(io.StringIO()) as output:

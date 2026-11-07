@@ -44,6 +44,6 @@ exponentiation, continuity, a clock and physical energy are additional matters.
 Sources: [finite transport](sources/qm_030_finite_weighted_transport_calculus.md),
 [path sums](sources/qm_031_finite_path_sum_as_graded_transport.md),
 [core dynamics proofs](../10_finite_qm_core/sources/finite_quantum_mechanics_proofs.md#4-dynamics),
-[reviewed mathematical sheet](hamilton_noether_sources/math_sheet_v5.md).
-The [review history and drawings](hamilton_noether_sources/start_here.md)
+[reviewed mathematical sheet](../../../education/hamilton_noether_sources/math_sheet_v5.md).
+The [review history and drawings](../../../education/hamilton_noether_sources/start_here.md)
 remain available as teaching evidence; reader comprehension is untested.

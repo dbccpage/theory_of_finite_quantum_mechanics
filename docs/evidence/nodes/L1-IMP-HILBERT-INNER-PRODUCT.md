@@ -143,7 +143,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0296_hilbert_inner_product_is_admitted_structure.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0296_hilbert_inner_product_is_admitted_structure.md](../../../dag/derivations/08_l1_to_l2/tfq_0296_hilbert_inner_product_is_admitted_structure.md)
-- sha256 (`lf-normalised`): `30e8d00b43162f12a44ebb55a2bab28bef73981285f69aa71b48208f4823f2b7`
+- sha256 (`lf-normalised`): `b6655d349b40d6297852d414c2c931e298188d1e192135441b42517292dd94b0`
 - generated view: listed, not counted
 - cited in: record TFQ-0296
 - counts toward the grade: no

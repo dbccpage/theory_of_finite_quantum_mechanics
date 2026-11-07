@@ -19,7 +19,7 @@ This directory holds `derivation_dag.json`, a derivation graph that starts at th
 - `index_document`: the hand-authored text of the Markdown index. `header_markdown` is the title and introduction, `record_count_note` follows the record count, `stage_index` lists the trunk stages in index order, and `coda_atlas_packages` is the Coda atlas package table. Two parts are written by syncs: `application_stages`, by `sync_application_branches.py` from its fragment, and `source_corpus_restatements`, by `sync_unified_dag.py` from `fragments/unified_dag.json`;
 - `schema_notes`: this layout, the ownership rules and the run order.
 
-`theory_of_finite_qm.jsonl` and `theory_of_finite_qm.md` are generated, read-only views of `derivation_dag.json`, kept for the readers that use them (receipts, `scripts/build_master_derivation_ledger.py`, the tests, `code/python`). `render_dag_views.py` renders them: the JSONL has one line per record, in the order of `records`, as JSON with sorted keys and non-ASCII characters kept, ended by CRLF; the Markdown index shows the header, the stage index, the Coda atlas table, the record-to-node crosswalk and one section per stage, every per-record line coming from `records` and the nodes. Do not edit either view by hand. The views carry no "generated" banner of their own, because adding one would change their bytes and break the byte identity with the pipeline that produced them before `derivation_dag.json` became the single source; this note and [`theory_of_finite_qm.jsonl.README.md`](theory_of_finite_qm.jsonl.README.md) say so instead. `validate_derivation_dag.py` fails when a view on disk differs from what the renderer makes of `derivation_dag.json`.
+`theory_of_finite_qm.jsonl` and `theory_of_finite_qm.md` are generated, read-only views of `derivation_dag.json`, kept for the readers that use them (receipts, `scripts/build_master_derivation_ledger.py`, the tests, `code/python`). `render_dag_views.py` renders them: the JSONL has one line per record, in the order of `records`, as JSON with sorted keys and non-ASCII characters kept, ended by CRLF; the Markdown index shows the header, the stage index, the Coda atlas table, the record-to-node crosswalk and one section per stage, every per-record line coming from `records` and the nodes. Do not edit either view by hand. The views carry no "generated" banner of their own, because adding one would change their bytes and break the byte identity with the pipeline that produced them before `derivation_dag.json` became the single source; this note (section "The generated views" below) says so instead. `validate_derivation_dag.py` fails when a view on disk differs from what the renderer makes of `derivation_dag.json`.
 
 Edits: change a node, a route, a base record or the index text in `derivation_dag.json` directly, or change the fragment that a sync owns. A sync owns the records of its `source_slice` (`unified_dag`, `application_branches`, `pregenesis_to_wdp`) and `sync_pfp_results.py` owns the `pfp_review_refs` of base records. `sync_frontier_branches.py` owns the `frontier_branches` slice (see below). `sync_genesis_to_higher.py` owns the `genesis_to_higher` slice. `sync_foc035_observer_presheaf.py` owns the `foc035_observer_presheaf` slice. After a hand edit of `derivation_dag.json`, run `python -I -X utf8 dag/tools/render_dag_views.py --write` (or the full sync cycle below, whose scripts call the renderer).
 
@@ -108,3 +108,31 @@ The [FOC-035 fragment](fragments/foc035_observer_presheaf.json) adds one stage, 
 ## Application branches added 2026-10-20
 
 The [application fragment](fragments/application_branches.json) connects dressing fields, MUBs and FSP to the existing DAG. Regenerate the DAG, its views and the derivation index with `python dag/tools/sync_application_branches.py`; use `--check` for a read-only synchronization check. The [master index](derivations/README.md) links all branch papers. The new graph-dressing theorem admits its group and forest; MUB dimension-six and general FSP sampling obligations remain open. Historical extraction notes above do not override current node status or the stated theorem hypotheses.
+
+## The generated views
+
+`theory_of_finite_qm.jsonl` and `theory_of_finite_qm.md` are generated views. Do not edit either by hand. Both are
+read-only views of `derivation_dag.json` (schema `derivation_dag.v2`), which is the single source of the
+derivation graph: its top-level key `records` holds every TFQ record, and `index_document` holds the hand-authored
+text of the Markdown index. `tools/render_dag_views.py` renders both views:
+
+- the JSONL view has one line per record, in the order of `records`, each the record as JSON with sorted keys
+  and non-ASCII characters kept, ended by CRLF;
+- the Markdown view is the index: header, stage index, Coda atlas packages, record-to-node crosswalk and one
+  section per stage.
+
+To change a record, edit `derivation_dag.json` (or the fragment whose sync owns the record) and run the sync
+cycle, which ends by rendering the views:
+
+```
+python -I -X utf8 dag/tools/sync_pfp_results.py
+python -I -X utf8 dag/tools/sync_unified_dag.py
+python -I -X utf8 dag/tools/sync_application_branches.py
+python -I -X utf8 dag/tools/sync_pregenesis_to_wdp.py
+python -I -X utf8 dag/tools/sync_frontier_branches.py
+python -I -X utf8 dag/tools/render_dag_views.py --check
+```
+
+The views carry no banner of their own because a banner inside them would change their bytes; the views are kept
+byte-identical to the files the earlier pipeline wrote. `validate_derivation_dag.py` fails when a view on disk
+differs from the renderer.

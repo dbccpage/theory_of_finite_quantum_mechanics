@@ -3,7 +3,7 @@
 **Status:** the author's act. On 2026-09-25 the author adopted, as written,
 the six recommendations in `h1_cancellation/packet.md` §8, and said to
 launch H1. This file records them and says where each is implemented. None
-binds a run directly: a run is bound by `CLAUDE.md` and its own `prompt.md`.
+binds a run directly: a run is bound by `run_contract.md` and its own `prompt.md`.
 
 | # | ruling | where it is implemented |
 |---|---|---|
@@ -12,4 +12,4 @@ binds a run directly: a run is bound by `CLAUDE.md` and its own `prompt.md`.
 | D3 | **H1's parent is the ninth seed.** The fifth is the unchosen variant: one relation with the ban kept, plus a sentence letting a multiplicity fall below zero. It would change round 3's prediction. | `prompt/twentysecond/` is the ninth seed with the cancel sentence. The fifth variant is recorded here and is not packeted. |
 | D4 | **Growth creates survivors in H2.** Adding a term breaks the raising sameness, and H2 accepts that as data: the run expands results and forms the classes afterwards. | The H2 packet will carry it. The fixed-term-set variant (a finite-letters sentence) is an L6 sibling, run after H2 merges. Any later question about whether survivors run out needs a fixed set of terms. |
 | D5 | **The extension class is frozen with H1's launch,** with every member's sentences written out in full. The native track does not aim at results needing division together with further supplied arithmetic laws; those are left to supplied encodings. | `extension_class.md`, frozen, with its SHA-256 in `extension_class.sha256`. H1 installs "cancel", its smallest member for H1's demand. |
-| D6 | **The clean-room protocol is adopted.** The stale `AGENTS.md` handling of the P0 change is confirmed. | `blindness.md` gives the protocol, and `CLAUDE.md`'s operator note says the same in procedural words. `h1_cancellation/packet.md` §6 gives the launch. A watchlist run in the run's sparse worktree sets aside the pins of `meta/` files it does not hold, rather than failing on them. |
+| D6 | **The clean-room protocol is adopted.** The stale `AGENTS.md` handling of the P0 change is confirmed. | `blindness.md` gives the protocol, and `run_contract.md`'s operator note says the same in procedural words. `h1_cancellation/packet.md` §6 gives the launch. A watchlist run in the run's sparse worktree sets aside the pins of `meta/` files it does not hold, rather than failing on them. |

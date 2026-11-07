@@ -44,13 +44,13 @@ To ensure that human researchers and automated agents can immediately distinguis
 
 1. **Quadrant 1: Substantiated Assets (`docs/01_substantiated/`)**: Formally proved theorems, core Lean modules (`lean4/WitnessedDifference/`), verified Python modules (`code/witnessed_difference/`), passing tests, and confirmed claim ledgers (`witnessed_difference_programme_claim_ledger.md`, `wd2_finite_distinction_carriers_and_history_escape_claim_ledger.md`).
 2. **Quadrant 2: Requiring Derivation (`docs/02_requiring_derivation/`)**: Open derivations, active conjectures, the [Five Outstanding Derivations](docs/02_requiring_derivation/five_outstanding_derivations.md), Meron field limit derivations (`docs/02_requiring_derivation/meron_field_limit_derivations/`), the [affine thickening conjecture](docs/02_requiring_derivation/affine_thickening_conjecture.md), and [WD2 open general targets](docs/02_requiring_derivation/wd2_open_targets.md).
-3. **Quadrant 3: Deletion and Archive (`docs/03_deletion_and_archive/`)**: Obsolete, superseded swarms (`docs/03_deletion_and_archive/superseded_swarms/`), historical code snapshots (`docs/03_deletion_and_archive/source_archive/`), and purged transient build files.
+3. **Quadrant 3: Deletion and Archive**: the obsolete swarm transcripts, historical code snapshots and transient build files that this quadrant once held were deleted from the tree (git history keeps them); the quadrant has no folder.
 4. **Quadrant 4: Roadmap and Gaps (`docs/04_roadmap_and_gaps/`)**: The [Genesis bridge obligations](docs/04_roadmap_and_gaps/genesis_bridge_register.md) (`GEN-WDP-O01` through `GEN-WDP-O05`), DAG gate alignment (`PG-WDP-GENESIS-BRIDGE-OBLIGATIONS`), and long-term continuum limits.
 
 The [claim ledger](witnessed_difference_programme_claim_ledger.md),
 [current evidence guide](docs/01_substantiated/current_claim_evidence.md),
 [change log](witnessed_difference_programme_change_log.md) and
-[source errata](docs/03_deletion_and_archive/source_errata_20261008.md) distinguish written results,
+source errata (deleted with the third quadrant; in git history) distinguish written results,
 selected formalizations, executable checks and retained historical claims.
 Code correctness does not supply a physical interpretation or authorize an
 action. Proposal, evaluation and authorization have separate inputs and roles.
@@ -176,7 +176,7 @@ Paper, figures and documentation: [CC BY 4.0](https://creativecommons.org/licens
 Python, Lean and release tooling: Apache 2.0. The packaged Rust crate declares
 PolyForm Noncommercial 1.0.0; see [its license](code/rust/LICENSE).
 Retained sources preserve their original notices and are subject to the
-[current errata](docs/03_deletion_and_archive/source_errata_20261008.md).
+source errata that left the tree with the third quadrant (git history keeps them).
 
 The earlier published v0.5.0 deposit is [10.5281/zenodo.23114399](https://doi.org/10.5281/zenodo.23114399),
 in the [version family](https://doi.org/10.5281/zenodo.22880466). This correction

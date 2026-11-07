@@ -18,7 +18,7 @@ Do not steer toward a known theory. The final section of the second paper names 
 
 Use only this repository. No network, other files, or questions. Do not modify `prompt/`. Change the first derivation's files only to correct a defect, and record each such change in `paper/change_log.md`.
 
-First add your plan and stopping conditions for the second derivation to `CLAUDE.md`, and commit them.
+First add your plan and stopping conditions for the second derivation to `run_contract.md`, and commit them.
 
 ## Folders
 
