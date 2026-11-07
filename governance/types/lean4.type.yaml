@@ -9,7 +9,7 @@ classes:
     path: lean4
     summary: The Lake package FiniteQuantum - flat PascalCase modules with contract-score companions, two namespace folders, and the imported modules under Imported/ with the manifests that bind them to their originals.
     role: proof
-    counts: {now: 1818, target: 1691}
+    counts: {now: 1691, target: 1691}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1, note: "describes another repository's layout; story S04 rewrites it"}
       - {name: lakefile, match: lakefile.lean, leaf: LakeFile, required: true, now: 1, target: 1, note: "194 lean_lib targets, 1,052 roots; lines 986 and 1016 name the missing folder atlas/papers (story S16)"}
@@ -20,14 +20,14 @@ classes:
       - {name: provenance_note, match: provenance.md, leaf: MarkdownNote, required: true, now: 1, target: 1}
       - {name: imported, class: ImportedLeanModules, required: true}
     collections:
-      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 753, target: 752}
+      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 752, target: 752}
       - {name: doc_companions, match: "**/*.doc.yaml", leaf: DocCompanion, now: 123, target: 123, note: "no tool reads them (owner question Q7)"}
       - {name: modules, match: "{*.lean,AuthIncompleteness/*.lean,FQCD/*.lean}", leaf: LeanModule, now: 791, target: 791}
       - {name: mutation_harness, match: "{test_majorana_boundary.py,majorana_claim_oracle.py}", leaf: LeanMutationHarness, now: 2, target: 2, note: "reads _DIR/'MajoranaCore.lean'; stays beside the module it mutates"}
-      - {name: reading_guides, match: "qm_*.md", leaf: LeanReadingGuide, now: 140, target: 16, note: "UNSURE: 16 Lean texts saved as .md that dag/derivations prose names; the other 124 go in story S04"}
+      - {name: reading_guides, match: "qm_*.md", leaf: LeanReadingGuide, now: 16, target: 16, note: "UNSURE: 16 Lean texts saved as .md that dag/derivations prose names; the other 124 go in story S04"}
     invariants:
       - {id: lean4.every_module_built, statement: "every module is a root of, or imported by a root of, some lean_lib in lakefile.lean", holds_now: false, checked_by: unchecked, note: "49 modules are built by no target; 40 of them are the sealed Prompt*Scope modules"}
-      - {id: lean4.srcdirs_resolve, statement: "every srcDir in lakefile.lean names an existing folder", holds_now: false, checked_by: unchecked, note: "lakefile.lean:986 and :1016 point to atlas/papers/finite_obstruction_calculus/... which does not exist; story S16"}
+      - {id: lean4.srcdirs_resolve, statement: "every srcDir in lakefile.lean names an existing folder", holds_now: false, checked_by: unchecked, note: "lakefile.lean:986 and :1016 point to atlas/papers/finite_obstruction_calculus/... which does not exist; left by story S16 for the owner: the srcDir edit needs fresh replays of the 12 receipts that pin the lakefile"}
       - {id: lean4.ci_targets_build, statement: "the nine targets of lean-gleason.yml build with only propext, Classical.choice and Quot.sound", holds_now: unknown, checked_by: ".github/workflows/lean-gleason.yml:109"}
       - {id: lean4.no_admissions, statement: "no added Lean line carries sorry, admit, native_decide, unsafe or an axiom declaration", holds_now: true, checked_by: "scripts/auto/anti_pattern_lint.py --changed-since origin/main (CI overclaim.yml, blocking)"}
     relations:
@@ -37,7 +37,7 @@ classes:
     path: lean4/Imported
     summary: Modules imported from the paper deposits with their import lines rewritten into the Imported namespace; the two manifests record each module's original sha256.
     role: proof
-    counts: {now: 319, target: 317}
+    counts: {now: 317, target: 317}
     attributes:
       - {name: import_manifest, match: import_manifest.json, leaf: ImportManifest, required: true, now: 1, target: 1}
       - {name: import_manifest_programmes, match: import_manifest_programmes.json, leaf: ImportManifest, required: true, now: 1, target: 1}

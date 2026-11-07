@@ -793,6 +793,48 @@ KEEP lean4/qm_wave7_completion.md
 KEEP lean4/qm_wave7_completion_axiom_audit.md
 ```
 
+## 9. Implementation status
+
+Implemented on the project-thread branch from 07b3454d1 (main after #578, which modified 18 files and
+added none), one commit per story, in order. Every count below was measured with the commands of section 3 on this
+branch. Tree: 24,350 tracked files and 688.5 MB before S01; 21,988 files and 648.0 MB after S22 (the epic's 21,986
+plus the two S01 files; 2,366 files removed, 526 moved, 2 renamed, exactly the appendix).
+
+| Story | State | Commit | What is left |
+|---|---|---|---|
+| S01 | done | 67fcad678 | - (UNTYPED 1,178, DEAD 26, MISSING 7, FORM 0 at the commit; `--plan` reproduced every appendix count) |
+| S02 | done | 3dff38265 | 13 tests of `dag/tests` fail at that commit on main already (listed in the commit); the step is report-only |
+| S03 | done | d8d75a3af | - |
+| S04 | done | 2ae056c72 | - |
+| S05 | done | 9b4b6082e | `governance-check baseline --write` was not used: on this tree it also drops 43 unrelated entries (41 files that now pass and the two whose bytes changed on main, `code/rust/src/fsp/lib.rs` and `lean4/lakefile.lean`) and relabels 527 deficits; the 15 entries of the removed sources were removed by hand with the summary counts. Owner decision: run the full rewrite or keep the hand shrink |
+| S06 | done | b14c918ea | the moved guide keeps a link that was already broken (`evidence/contract_score_migration/index.json`) |
+| S07 | done | ffb688e51 | - |
+| S08 | done | 1441995be | - |
+| S09 | done | 946a5de36 | - |
+| S10 | done | 5c345411c | only the owning sync (`sync_pregenesis_to_wdp.py`) was applied; the other six syncs of `dag/README.md` are not a fixed point on main (`sync_pfp_results.py` rewrites a node statement, `sync_application_branches.py` moves a node), which rule 3.2 forbids here |
+| S11 | done | 2ec9eda85 | the 25 solution files' `problem_file` backlink and `normal_forms/sql/README.md` were edited too (the verifier compares the backlink with the catalog path); the problem-set verifier stops at its Rust step on this machine before and after (MSVC `cc-rs` build), its YAML checks pass |
+| S12 | done | aecd62ecf | - |
+| S13 | done | 896b45f82 | baseline shrunk by hand (73 entries), as in S05 |
+| S14 | done | 0f3d5ea41 | - (three companions rebound with unchanged L4B grades by the helper call; six ledger hashes updated) |
+| S15 | not done | - | registering a family needs `[[bin]]`, `[[test]]` or `mod` edits of governed manifests and roots (`Cargo.toml`, `lib.rs`), whose grandfathering then needs an owner-approved re-pin (rule 3.5), and Q11's CI first; nothing was wired or removed |
+| S16 | partial | 0a92bf457 | the lakefile `srcDir` repair, its baseline re-pin and companion rebind: 12 receipts under `evidence/lean_receipts` pin `lean4/lakefile.lean` and their migration rule accepts only added `lean_lib` stanzas, so the edit needs fresh replays on a machine with Lean and Mathlib, or the owner's extension of that rule. Also left: the eight independent notes that name the retired campaign queue (any edit raises overclaim rule R8 because their first lines do not carry the standard header), `.gitattributes:151` (a dead `dag/research` attribute) and `education/6_genesis_foundations/this_repo.md:18`, which are outside the files S16 names |
+| S17 | done | d3ba0bbb8 | - (`--report naming` lists only `exception` 2 and `imported`) |
+| S18 | not done | - | 789 files still hit after S20 (375 in `code/`, 223 in `dag/`, 124 in `papers/`, 25 in `docs/`, 14 in `lean4/`, 9 in `scripts/`, 19 elsewhere); stage A alone is several hundred prose files to reword by hand against a term list the public tree does not hold |
+| S19 | not done | - | governed sources need owner approval per batch (rule 5); DAG sources need rule 2, whose sync chain is not a fixed point on main (see S10) |
+| S20 | done | with S22 | 13 allow entries per Q2, Q5 and Q14 (companions, manifests, `evidence/`, the review ledger, overclaim and maintenance records, `vendor/`, `atlas/`, the imported education modules, `normal_forms/contracts/`, `lean4/Imported/`, the agent-configuration folder): hits 2,956 to 789 |
+| S21 | not done | - | optional; the recommendation needs the 25 generators changed to compare against `MANIFEST.sha256`, a full census run (about 4,041 s) and a CI job |
+| S22 | done | with S20 | every `now` and `target` refreshed to the final tree; the dag.yml step is blocking with `--strict` (0 findings); the naming and public-text reports stay non-blocking until S18 and S19 |
+
+Checks at the end (the same commands as before S01): C1 `nodes=989 routes=997 records=1041 failures=0`; C2 `evidence map
+current`; C3 the governance crate builds, the replay pins verify (`all_passed: true`), `contract_scores.py check` and
+`score_scope_contracts.py check` pass, and `governance-check --root . check` reports the same 7 failures as main
+(the #577 and #578 sources and the lakefile binding) - because `governance/baseline.json` changed, the PR's
+`--changed-since` step now selects every source and shows those 7; C4 111 tests pass, overclaim HIGH 0 MEDIUM 0 LOW 4,
+lint 0, skill audit 0 HIGH 0 MEDIUM 3 LOW (7 LOW before S01); C5 `README facts current`; C6 0 findings; C7 and C8 per
+story commit. Governance re-pins: none; the only rebinds are the three S14 companions (unchanged grades). Deposits
+(rule 6): both manifest checks pass in 5 of the 13 deposits after the stories that touched them; the other 8 were not
+touched and keep their stale entries (atlas.type.yaml, `deposit.manifest_matches`).
+
 ## Adversarial review
 
 Method: a scratch evaluator written from block `meta` alone and run on HEAD, the S01 commit and the projected

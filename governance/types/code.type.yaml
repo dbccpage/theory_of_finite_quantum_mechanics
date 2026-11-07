@@ -24,10 +24,10 @@ classes:
     path: code/python
     summary: Python packages under src/ (25 packages, imported by the tests), the scoring operations, and the root pytest suite (pyproject.toml testpaths = code/python/tests).
     role: check
-    counts: {now: 1804, target: 1802}
+    counts: {now: 1802, target: 1802}
     collections:
       - {name: readmes, match: "**/README.md", leaf: FolderReadme, now: 3, target: 3}
-      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 862, target: 861}
+      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 861, target: 861}
       - {name: doc_companions, match: "**/*.doc.yaml", leaf: DocCompanion, now: 73, target: 73}
       - {name: root_tests, match: "tests/**/*.py", leaf: PythonTest, now: 285, target: 285, note: "collected by the root pytest config; no workflow runs them today (owner question Q11)"}
       - {name: in_package_tests, match: "src/**/{test_*.py,conftest.py}", leaf: PythonTest, now: 132, target: 132, note: "outside testpaths; dag/evidence/evidence_map.json cites them by explicit pytest command"}
@@ -40,19 +40,19 @@ classes:
     path: code/rust
     summary: One Cargo workspace (root crate plus 20 member crates under src/) of exact rational certifiers, its integration tests, and the quality records of the scoring campaign.
     role: check
-    counts: {now: 3220, target: 3188}
+    counts: {now: 3188, target: 3188}
     attributes:
       - {name: manifest, match: Cargo.toml, leaf: CargoManifest, required: true, now: 1, target: 1}
       - {name: lock, match: Cargo.lock, leaf: CargoLock, required: true, now: 1, target: 1}
       - {name: build_hook, match: build.rs, leaf: BuildHook, required: true, now: 1, target: 1}
       - {name: quality, class: RustQualityRecords, required: true}
     collections:
-      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 1426, target: 1412}
+      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 1412, target: 1412}
       - {name: doc_companions, match: "**/*.doc.yaml", leaf: DocCompanion, now: 72, target: 72}
-      - {name: crate_manifests, match: "src/**/{Cargo.toml,Cargo.lock,clippy.toml}", leaf: CargoManifest, now: 23, target: 22}
+      - {name: crate_manifests, match: "src/**/{Cargo.toml,Cargo.lock,clippy.toml}", leaf: CargoManifest, now: 22, target: 22}
       - {name: crate_build_hooks, match: "src/**/build.rs", leaf: BuildHook, authored: "imported:governance/policy.json pinned_boilerplate (byte copies of governance/hook/build.rs)", now: 19, target: 19}
       - {name: unwired_sources, match: "src/{wdp/derivation_controls/**,wdp/bin/**,wdp/mod.rs,mub/bin/**,mub/native/**}", leaf: UnwiredRustSource, now: 299, target: 299, note: "UNSURE: no manifest target or mod declaration reaches them; story S15 wires or deletes each family after a compile check"}
-      - {name: rust_sources, match: "src/**/*.rs", leaf: RustSource, now: 1000, target: 986}
+      - {name: rust_sources, match: "src/**/*.rs", leaf: RustSource, now: 986, target: 986}
       - {name: rust_data, match: "src/**/*.json", leaf: DataFixture, now: 48, target: 48, note: "read with include_str! relative to the source file"}
       - {name: source_extras, match: "src/**/*.{py,md}", leaf: MarkdownNote, now: 3, target: 3}
       - {name: unwired_tests, match: "tests/mub/**/*.rs", leaf: UnwiredRustSource, now: 50, target: 50, note: "UNSURE: no [[test]] entry and no tests/mub/main.rs; only fixture_receipts.rs is wired, by #[path] from quality/fixture_register"}
@@ -66,15 +66,15 @@ classes:
     path: code/rust/quality
     summary: The scoring campaign's per-module quality packages - assessments, candidate sources, Lean rank proofs, runners and replay tools that the companions and evidence/quality receipts cite.
     role: evidence
-    counts: {now: 1126, target: 975}
+    counts: {now: 975, target: 975}
     collections:
-      - {name: readmes, match: "**/README.md", leaf: FolderReadme, now: 6, target: 5}
-      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 245, target: 172}
+      - {name: readmes, match: "**/README.md", leaf: FolderReadme, now: 5, target: 5}
+      - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 172, target: 172}
       - {name: cargo_files, match: "**/{Cargo.toml,Cargo.lock}", leaf: CargoManifest, now: 4, target: 4, note: "fixture_register and category_homology/rust_metrics declare their own workspaces"}
       - {name: lean_rank_proofs, match: "category_homology/**/*.lean", leaf: QualityLeanProof, now: 66, target: 66, note: "outside lean4/ and outside every lakefile root; checked by category_homology/run_rank_proof.py"}
-      - {name: tools, match: "**/*.{py,ps1}", leaf: QualityTool, now: 132, target: 126, note: "scalar_port_faults.py stays in S13: six kept modules import it (l4a_six/mutations.py:205 and five fault-recipe modules)"}
-      - {name: candidate_sources, match: "**/*.rs", leaf: QualityCandidateSource, now: 113, target: 46}
-      - {name: assessments, match: "**/*.json", leaf: AssessmentRecord, now: 560, target: 556}
+      - {name: tools, match: "**/*.{py,ps1}", leaf: QualityTool, now: 126, target: 126, note: "scalar_port_faults.py stays in S13: six kept modules import it (l4a_six/mutations.py:205 and five fault-recipe modules)"}
+      - {name: candidate_sources, match: "**/*.rs", leaf: QualityCandidateSource, now: 46, target: 46}
+      - {name: assessments, match: "**/*.json", leaf: AssessmentRecord, now: 556, target: 556}
 
 leaf_types:
   - {name: SqlSchema, format: sql, naming: lower, schema: none, companions: none, authored: hand}

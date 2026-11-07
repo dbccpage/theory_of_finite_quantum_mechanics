@@ -9,7 +9,7 @@ classes:
     path: governance
     summary: The single home of repository rules - the contract-score policy, grandfather baseline, approved exceptions, the governance-check crate manifest and build hook, the companion schema, and the repository types with their epic.
     role: config
-    counts: {now: 63, target: 64}
+    counts: {now: 64, target: 64}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
       - {name: policy, match: policy.json, leaf: GovernancePolicy, required: true, now: 1, target: 1}
@@ -20,7 +20,7 @@ classes:
       - {name: companion_schema, match: schema/contract-score.v1.json, leaf: CompanionSchema, required: true, now: 1, target: 1}
       - {name: build_hook, match: hook/build.rs, leaf: BuildHook, required: true, now: 1, target: 1, note: "template of every code/rust build.rs; its sha256 is pinned in policy.json pinned_boilerplate"}
       - {name: build_hook_companion, match: hook/build.contract.score.yaml, leaf: ContractScoreCompanion, required: true, now: 1, target: 1}
-      - {name: scoring_history, match: contract_scoring_history.md, leaf: GovernanceGuide, required: true, now: 0, target: 1, note: "moves here from docs/ in story S06"}
+      - {name: scoring_history, match: contract_scoring_history.md, leaf: GovernanceGuide, required: true, now: 1, target: 1, note: "moves here from docs/ in story S06"}
       - {name: types, class: RepositoryTypes, required: true}
     collections:
       - {name: approvals, match: "approvals/*.{json,md}", leaf: ApprovalRecord, now: 47, target: 47, note: "maintainer-approved exceptions; policy.json and the README cite them"}
@@ -28,7 +28,7 @@ classes:
       - {name: tool_companions, match: "tools/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 3, target: 3}
       - {name: tools, match: "tools/*.py", leaf: GovernanceTool, now: 3, target: 3}
     invariants:
-      - {id: governance.policy_single_source, statement: "the companion suffix, populations, floor and exclusions are stated only in policy.json; other files cite it", holds_now: false, checked_by: unchecked, note: "rules/rules.yaml rule_2 restates a different companion set; story S03 deletes it"}
+      - {id: governance.policy_single_source, statement: "the companion suffix, populations, floor and exclusions are stated only in policy.json; other files cite it", holds_now: true, checked_by: unchecked, note: "rules/rules.yaml, whose rule_2 restated a different companion set, was deleted by story S03"}
       - {id: governance.baseline_only_shrinks, statement: "baseline.json gains no entry without a reason", holds_now: true, checked_by: "governance-check --root . check --changed-since <base> (CI governance.yml)"}
       - {id: governance.crate_tests, statement: "the governance crate tests and the Python policy tests pass", holds_now: unknown, checked_by: "cargo test --locked --manifest-path governance/Cargo.toml and pytest scripts/test_governance_policy.py (CI governance.yml)"}
     relations:

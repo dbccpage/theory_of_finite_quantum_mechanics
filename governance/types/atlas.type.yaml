@@ -59,7 +59,7 @@ classes:
       - atlas/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy
     summary: One paper deposit (Zenodo-style package) - the paper in Markdown, TeX and PDF, its claim ledger and change log, code with tests, Lean sources, evidence and the hash manifests that seal the package.
     role: source
-    counts: {now: 3481, target: 2584}
+    counts: {now: 2585, target: 2585}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: false, now: 13, target: 13}
       - {name: licence, match: "{LICENSE,LICENSE-CODE}", leaf: LicenceText, required: false, now: 25, target: 25}
@@ -72,28 +72,28 @@ classes:
       - {name: paper_pdf, match: "*.pdf", leaf: PdfRender, authored: "imported:atlas/PROVENANCE.json", now: 12, target: 12}
       - {name: deposit_records, match: "*.{json,jsonl,yaml,txt}", leaf: JsonRecord, authored: "imported:atlas/PROVENANCE.json", now: 16, target: 16}
       - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 29, target: 29, note: "outside the governed populations (governance/policy.json excludes atlas/**); kept as records"}
-      - {name: tests, match: "**/{test_*.py,conftest.py}", leaf: PythonTest, now: 547, target: 445}
+      - {name: tests, match: "**/{test_*.py,conftest.py}", leaf: PythonTest, now: 445, target: 445}
       - {name: lean_modules, match: "lean4/**/*.lean", leaf: DepositLeanModule, authored: "imported:atlas/PROVENANCE.json", now: 362, target: 362}
       - {name: lean_support, match: "lean4/**", leaf: DepositLeanSupport, authored: "imported:atlas/PROVENANCE.json", now: 116, target: 116, note: "lakefiles, toolchain pins, axiom reports, build receipts"}
-      - {name: python_code, match: "code/**/*.py", leaf: DepositPythonModule, authored: "imported:atlas/PROVENANCE.json", now: 699, target: 660}
+      - {name: python_code, match: "code/**/*.py", leaf: DepositPythonModule, authored: "imported:atlas/PROVENANCE.json", now: 660, target: 660}
       - {name: rust_code, match: "code/**/*.rs", leaf: DepositRustSource, authored: "imported:atlas/PROVENANCE.json", now: 91, target: 91}
-      - {name: code_records, match: "code/**", leaf: DepositCodeRecord, authored: "imported:atlas/PROVENANCE.json", now: 305, target: 301, note: "fixtures, receipts, per-control notes, Cargo files inside code/"}
-      - {name: documents, match: "docs/**", leaf: DepositDocument, authored: "imported:atlas/PROVENANCE.json", now: 966, target: 227}
+      - {name: code_records, match: "code/**", leaf: DepositCodeRecord, authored: "imported:atlas/PROVENANCE.json", now: 301, target: 301, note: "fixtures, receipts, per-control notes, Cargo files inside code/"}
+      - {name: documents, match: "docs/**", leaf: DepositDocument, authored: "imported:atlas/PROVENANCE.json", now: 227, target: 227}
       - {name: evidence, match: "{evidence,manifests,artifacts,results}/**", leaf: DepositEvidence, authored: "imported:atlas/PROVENANCE.json", now: 25, target: 25}
       - {name: notebooks, match: "jupyter_notebooks/**", leaf: Notebook, now: 38, target: 38}
-      - {name: tools, match: "{scripts,tools,checks}/**", leaf: DepositTool, now: 83, target: 82}
-      - {name: remainder, match: "**", leaf: DepositFile, authored: "imported:atlas/PROVENANCE.json", catch_all: true, now: 35, target: 23}
+      - {name: tools, match: "{scripts,tools,checks}/**", leaf: DepositTool, now: 82, target: 82}
+      - {name: remainder, match: "**", leaf: DepositFile, authored: "imported:atlas/PROVENANCE.json", catch_all: true, now: 24, target: 24}
     invariants:
-      - {id: deposit.manifest_matches, statement: "MANIFEST.sha256 and SHA256SUMS list exactly the package files with their current sha256", holds_now: false, checked_by: "sha256sum -c --quiet MANIFEST.sha256 and SHA256SUMS from the package root (CI runs verify_deposit.py --integrity-only only for projection_obstruction_paper and higher_cell; only those two, genesis and the WDP accept that flag)", note: "at the merged tip, as at 88fa973cc, only the WDP, higher_cell and projection_obstruction_paper pass; failing entries: genesis 8, pregenesis 3, symmetric_groups 6, certified_adaptive 11 and 12, coordinate_wise 19, covering_edge 15 and 16, m_compatible 18, so_k 39, observer_geometries 35, zero_container 5 (SHA256SUMS only)"}
+      - {id: deposit.manifest_matches, statement: "MANIFEST.sha256 and SHA256SUMS list exactly the package files with their current sha256", holds_now: false, checked_by: "sha256sum -c --quiet MANIFEST.sha256 and SHA256SUMS from the package root (CI runs verify_deposit.py --integrity-only only for projection_obstruction_paper and higher_cell; only those two, genesis and the WDP accept that flag)", note: "after stories S07, S09, S10 and S14 both files pass in 5 of the 13 deposits (witnessed_difference_programme, symmetric_groups_and_minimal_symbol_systems, certified_adaptive_quantum_dynamics, projection_obstruction_paper, higher_cell_cochain_projection_and_retraction_dynamics); the other 8 keep their stale entries (genesis 8, pregenesis_to_minimal_symbol_systems 3, coordinate_wise_additivity 19, covering_edge_descent_to_functorial_presheaves 15 and 16, m_compatible_gauge_classification 18, so_k_invariant_gauge_classification 39, vector_and_quantum_observer_geometries 35, zero_container_relational_spacetime_and_witness_holonomy 5 in SHA256SUMS and no MANIFEST.sha256)"}
       - {id: deposit.tests_pass, statement: "the package's pytest suite passes from the package root", holds_now: unknown, checked_by: "python -m pytest inside the package (testpaths in its pyproject.toml); CI only for the two projection packages"}
 
   - class: GenesisOngoingRun
     path: atlas/finite_obstruction_calculus/genesis_ongoing
     summary: The ongoing genesis run - census generators and their committed census tables, Lean sources, the run's paper notes, prompts, research notes and review records.
     role: source
-    counts: {now: 1896, target: 1767}
+    counts: {now: 1767, target: 1767}
     attributes:
-      - {name: run_contract, match: run_contract.md, leaf: RunContract, required: true, now: 0, target: 1, note: "renamed in story S16 from the upper-case file at the run root; the DAG cites it"}
+      - {name: run_contract, match: run_contract.md, leaf: RunContract, required: true, now: 1, target: 1, note: "renamed in story S16 from the upper-case file at the run root; the DAG cites it"}
       - {name: python_project, match: pyproject.toml, leaf: DepositPythonProject, required: true, now: 1, target: 1}
       - {name: toolchain, match: lean-toolchain, leaf: LeanToolchainPin, required: true, now: 1, target: 1}
     collections:
@@ -107,7 +107,7 @@ classes:
       - {name: paper_notes, match: "paper/**", leaf: DepositPaperText, now: 75, target: 75}
       - {name: prompts, match: "prompt/**", leaf: MarkdownNote, now: 50, target: 50}
       - {name: research, match: "research/**", leaf: DepositFile, authored: "imported:atlas/PROVENANCE.json", catch_all: true, now: 56, target: 56}
-      - {name: review_records, match: "meta/**", leaf: DepositFile, authored: "imported:atlas/PROVENANCE.json", catch_all: true, now: 386, target: 258, note: "review summaries kept; the raw .log transcripts go in story S10"}
+      - {name: review_records, match: "meta/**", leaf: DepositFile, authored: "imported:atlas/PROVENANCE.json", catch_all: true, now: 258, target: 258, note: "review summaries kept; the raw .log transcripts go in story S10"}
     invariants:
       - {id: genesis_ongoing.census_reproducible, statement: "every generator's --check reports that the committed tables match a fresh regeneration", holds_now: true, checked_by: "python -X utf8 code/<generator>.py --check from the genesis_ongoing folder (no CI job)", note: "all 25 generators matched a fresh regeneration during this review (2026-11-06); see the epic sign-off"}
 

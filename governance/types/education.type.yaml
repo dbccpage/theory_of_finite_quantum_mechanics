@@ -37,42 +37,42 @@ classes:
       - education/999_external_publications_general_media
     summary: One curriculum module - levels, domains and curriculum notes, figures, grammar, normal forms, small code and Lean examples.
     role: document
-    counts: {now: 1054, target: 1003}
+    counts: {now: 1003, target: 1003}
     collections:
-      - {name: readmes, match: "**/README.md", leaf: FolderReadme, authored: "imported:education/IMPORT_PROVENANCE.json", now: 76, target: 70}
-      - {name: lean_examples, match: "**/*.lean", leaf: LeanModule, authored: "imported:education/IMPORT_PROVENANCE.json", now: 60, target: 52, note: "not in any lakefile root; reading examples"}
-      - {name: lean_toolchain, match: "**/lean-toolchain", leaf: LeanToolchainPin, now: 5, target: 4}
+      - {name: readmes, match: "**/README.md", leaf: FolderReadme, authored: "imported:education/IMPORT_PROVENANCE.json", now: 70, target: 70}
+      - {name: lean_examples, match: "**/*.lean", leaf: LeanModule, authored: "imported:education/IMPORT_PROVENANCE.json", now: 52, target: 52, note: "not in any lakefile root; reading examples"}
+      - {name: lean_toolchain, match: "**/lean-toolchain", leaf: LeanToolchainPin, now: 4, target: 4}
       - {name: grammars, match: "**/*.ebnf", leaf: Grammar, authored: "imported:education/IMPORT_PROVENANCE.json", now: 5, target: 5}
       - {name: figures, match: "**/*.{svg,png}", leaf: SvgFigure, authored: "imported:education/IMPORT_PROVENANCE.json", now: 135, target: 135}
       - {name: notebooks, match: "**/*.ipynb", leaf: Notebook, authored: "imported:education/IMPORT_PROVENANCE.json", now: 44, target: 44}
-      - {name: notes, match: "**/*.md", leaf: CurriculumNote, authored: "imported:education/IMPORT_PROVENANCE.json", now: 400, target: 398}
+      - {name: notes, match: "**/*.md", leaf: CurriculumNote, authored: "imported:education/IMPORT_PROVENANCE.json", now: 398, target: 398}
       - {name: examples, match: "**/*.{py,rs,sql,cjs,toml,lock}", leaf: CurriculumCode, authored: "imported:education/IMPORT_PROVENANCE.json", now: 209, target: 209}
-      - {name: remainder, match: "**", leaf: CurriculumData, authored: "imported:education/IMPORT_PROVENANCE.json", catch_all: true, now: 120, target: 86, note: "yaml normal forms, json, pdf, lstree"}
+      - {name: remainder, match: "**", leaf: CurriculumData, authored: "imported:education/IMPORT_PROVENANCE.json", catch_all: true, now: 86, target: 86, note: "yaml normal forms, json, pdf, lstree"}
 
   - class: ProblemSet
     path: education/problem_sets
     summary: A 25-problem undergraduate quantum mechanics set with solutions, a verifier, a Rust runner and recorded results; self-contained.
     role: document
-    counts: {now: 0, target: 46}
+    counts: {now: 46, target: 46}
     collections:
-      - {name: packaging, match: ".gitattributes", leaf: DepositPackaging, now: 0, target: 1}
-      - {name: problems, match: "problems/*.yaml", leaf: ProblemSheet, now: 0, target: 1}
-      - {name: solutions, match: "solutions/*.yaml", leaf: ProblemSolution, now: 0, target: 25}
-      - {name: verifier, match: "results/*/{verify.py,test_verify.py}", leaf: CurriculumCode, now: 0, target: 2}
-      - {name: runner, match: "results/*/rust_runner/**", leaf: CurriculumCode, now: 0, target: 3}
-      - {name: results, match: "results/**", leaf: ProblemResult, authored: "generated:python results/undergraduate_qm_25/verify.py", now: 0, target: 14}
+      - {name: packaging, match: ".gitattributes", leaf: DepositPackaging, now: 1, target: 1}
+      - {name: problems, match: "problems/*.yaml", leaf: ProblemSheet, now: 1, target: 1}
+      - {name: solutions, match: "solutions/*.yaml", leaf: ProblemSolution, now: 25, target: 25}
+      - {name: verifier, match: "results/*/{verify.py,test_verify.py}", leaf: CurriculumCode, now: 2, target: 2}
+      - {name: runner, match: "results/*/rust_runner/**", leaf: CurriculumCode, now: 3, target: 3}
+      - {name: results, match: "results/**", leaf: ProblemResult, authored: "generated:python results/undergraduate_qm_25/verify.py", now: 14, target: 14}
 
   - class: TeachingPack
     path: education/hamilton_noether_sources
     summary: The Hamilton-Noether picture and math sheets (versions 3 to 5), their renderers, manifests and adversarial reviews; moved from dag/derivations because it is teaching material, not a derivation paper.
     role: document
-    counts: {now: 0, target: 43}
+    counts: {now: 43, target: 43}
     collections:
-      - {name: readmes, match: "**/README.md", leaf: FolderReadme, now: 0, target: 2}
-      - {name: renderers, match: "**/*.py", leaf: CurriculumCode, now: 0, target: 4, note: "render_sheets_v5.py imports v4 and v3; the pack moves whole"}
-      - {name: sheets, match: "**/*.{md,svg,png,pdf}", leaf: CurriculumNote, authored: "generated:python render_sheets_v5.py (sheets); hand (notes)", now: 0, target: 31}
-      - {name: records, match: "**/*.{json,txt}", leaf: CurriculumData, now: 0, target: 5}
-      - {name: packaging, match: ".gitattributes", leaf: DepositPackaging, now: 0, target: 1}
+      - {name: readmes, match: "**/README.md", leaf: FolderReadme, now: 2, target: 2}
+      - {name: renderers, match: "**/*.py", leaf: CurriculumCode, now: 4, target: 4, note: "render_sheets_v5.py imports v4 and v3; the pack moves whole"}
+      - {name: sheets, match: "**/*.{md,svg,png,pdf}", leaf: CurriculumNote, authored: "generated:python render_sheets_v5.py (sheets); hand (notes)", now: 31, target: 31}
+      - {name: records, match: "**/*.{json,txt}", leaf: CurriculumData, now: 5, target: 5}
+      - {name: packaging, match: ".gitattributes", leaf: DepositPackaging, now: 1, target: 1}
 
 leaf_types:
   - {name: ImportProvenance, format: json, naming: imported, schema: none, companions: none, authored: hand}

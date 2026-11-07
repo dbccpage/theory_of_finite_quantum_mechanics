@@ -30,6 +30,11 @@ jobs:
       - name: README facts are current (report only)
         continue-on-error: true
         run: python -I -X utf8 scripts/build_readme_facts.py --check
-      - name: Repository types (report only)
+      - name: Repository types
+        run: python -m pip install --disable-pip-version-check pyyaml pytest && python -I -X utf8 -m pytest scripts/test_check_repo_types.py -q -p no:cacheprovider && python -I -X utf8 scripts/check_repo_types.py --strict --summary "$GITHUB_STEP_SUMMARY"
+      - name: Repository types, naming report (report only)
         continue-on-error: true
-        run: python -m pip install --disable-pip-version-check pyyaml pytest && python -I -X utf8 -m pytest scripts/test_check_repo_types.py -q -p no:cacheprovider && python -I -X utf8 scripts/check_repo_types.py --summary "$GITHUB_STEP_SUMMARY"
+        run: python -I -X utf8 scripts/check_repo_types.py --report naming | tail -n 20
+      - name: Repository types, public-text report (report only)
+        continue-on-error: true
+        run: python -I -X utf8 scripts/check_repo_types.py --report public-text | tail -n 1

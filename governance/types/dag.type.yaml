@@ -9,7 +9,7 @@ classes:
     path: dag
     summary: The derivation graph (989 nodes, 997 routes, 1,041 TFQ records at the merged tip), the derivation paper of every record, the independent-check notes, and the sync, render, validate and evidence-map tools.
     role: record
-    counts: {now: 80, target: 71}
+    counts: {now: 71, target: 71}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
       - {name: reading_note, match: derivation_dag_reading_note.md, leaf: DagReadingNote, required: true, now: 1, target: 1, note: "absorbs theory_of_finite_qm.jsonl.README.md in story S07"}
@@ -23,10 +23,10 @@ classes:
       - {name: derivations, class: DerivationPapers, required: true}
     collections:
       - {name: fragments, match: "fragments/*.json", leaf: SyncFragment, now: 9, target: 9, note: "one owning sync tool per file (dag/tools/sync_*.py)"}
-      - {name: tool_companions, match: "{tools,tests,evidence}/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 22, target: 20}
+      - {name: tool_companions, match: "{tools,tests,evidence}/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 20, target: 20}
       - {name: tool_docs, match: "{tools,tests}/*.doc.yaml", leaf: DocCompanion, now: 6, target: 6}
       - {name: tools, match: "tools/*.py", leaf: DagTool, now: 10, target: 10}
-      - {name: tests, match: "tests/*.py", leaf: DagTest, now: 17, target: 13, note: "tests of the graph and its tools only; story S12 moves out the four that test scripts/, docs/, the README and a checker"}
+      - {name: tests, match: "tests/*.py", leaf: DagTest, now: 13, target: 13, note: "tests of the graph and its tools only; story S12 moves out the four that test scripts/, docs/, the README and a checker"}
       - {name: evidence_map_tools, match: "evidence/*.py", leaf: DagTool, now: 3, target: 3}
       - {name: evidence_map, match: "evidence/evidence_map.json", leaf: EvidenceMap, authored: "generated:python -I -X utf8 dag/evidence/build_evidence.py --write", now: 1, target: 1}
     invariants:
@@ -50,7 +50,7 @@ classes:
     path: dag/derivations
     summary: One numbered folder per DAG stage holding one derivation paper per TFQ record, the stage notes and source extracts, plus the independent-check notes and four whole-graph indexes.
     role: record
-    counts: {now: 1369, target: 1326}
+    counts: {now: 1326, target: 1326}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: true, now: 1, target: 1}
       - {name: master_ledger, match: master_derivation_ledger.md, leaf: GeneratedDagView, required: true, now: 1, target: 1, note: "generated:python -I -X utf8 scripts/build_master_derivation_ledger.py"}

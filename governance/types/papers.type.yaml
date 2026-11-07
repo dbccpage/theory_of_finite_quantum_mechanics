@@ -10,7 +10,7 @@ classes:
     path: papers
     summary: The core papers (MUB(6), fermion sign, Majorana, constraint closure, two sign-problem papers), the conditional density-lift paper and the authorization-incompleteness foundations paper, cited by the DAG by path.
     role: document
-    counts: {now: 604, target: 4}
+    counts: {now: 4, target: 4}
     attributes:
       - {name: packages, class: PaperPackage, required: true}
     collections:
@@ -33,24 +33,24 @@ classes:
       - papers/foundations/authorization_incompleteness
     summary: One paper package - the paper and its claim ledger and change log, code and tests, Lean sources, research notes, artifacts and the release manifests.
     role: document
-    counts: {now: 642, target: 619}
+    counts: {now: 619, target: 619}
     attributes:
       - {name: readme, match: README.md, leaf: FolderReadme, required: false, now: 8, target: 8}
       - {name: licence, match: "{LICENSE,LICENSE-CODE,**/LICENSE,**/LICENSE-CODE}", leaf: LicenceText, required: false, now: 9, target: 9}
-      - {name: manifests, match: "{MANIFEST.sha256,SHA256SUMS,sha256sums,*.sha256,**/SHA256SUMS,**/sha256sums,**/*.sha256}", leaf: DepositManifest, required: false, now: 14, target: 11}
+      - {name: manifests, match: "{MANIFEST.sha256,SHA256SUMS,sha256sums,*.sha256,**/SHA256SUMS,**/sha256sums,**/*.sha256}", leaf: DepositManifest, required: false, now: 11, target: 11}
       - {name: citation, match: "{*.cff,**/*.cff}", leaf: CitationFile, required: false, now: 3, target: 3}
       - {name: verifier, match: verify_deposit.py, leaf: DepositVerifier, required: false, now: 4, target: 4}
     collections:
       - {name: companions, match: "**/*.contract.score.yaml", leaf: ContractScoreCompanion, now: 2, target: 2}
       - {name: doc_companions, match: "**/*.doc.yaml", leaf: DocCompanion, now: 1, target: 1}
-      - {name: tests, match: "**/{test_*.py,conftest.py}", leaf: PythonTest, now: 44, target: 43}
+      - {name: tests, match: "**/{test_*.py,conftest.py}", leaf: PythonTest, now: 43, target: 43}
       - {name: lean, match: "**/*.lean", leaf: LeanModule, now: 34, target: 34, note: "outside the governed populations; lean4/ holds the built copies"}
-      - {name: paper_text, match: "**/*.{md,tex}", leaf: DepositPaperText, now: 176, target: 167}
-      - {name: renders, match: "**/*.pdf", leaf: PdfRender, authored: "generated:the paper's LaTeX build", now: 7, target: 6}
+      - {name: paper_text, match: "**/*.{md,tex}", leaf: DepositPaperText, now: 167, target: 167}
+      - {name: renders, match: "**/*.pdf", leaf: PdfRender, authored: "generated:the paper's LaTeX build", now: 6, target: 6}
       - {name: notebooks, match: "**/*.ipynb", leaf: Notebook, now: 6, target: 6}
-      - {name: code, match: "**/*.{py,ps1,psm1,mjs,lua,gp,sql,toml,ms,par,bat,sh,lock}", leaf: DepositPythonModule, now: 141, target: 140}
-      - {name: release_bundles, match: "**/*.{zip,gz}", leaf: ReleaseBundle, authored: "generated:the package's release script", now: 5, target: 3}
-      - {name: records, match: "**/*.{json,jsonl,yaml,txt}", leaf: JsonRecord, now: 184, target: 178}
+      - {name: code, match: "**/*.{py,ps1,psm1,mjs,lua,gp,sql,toml,ms,par,bat,sh,lock}", leaf: DepositPythonModule, now: 140, target: 140}
+      - {name: release_bundles, match: "**/*.{zip,gz}", leaf: ReleaseBundle, authored: "generated:the package's release script", now: 3, target: 3}
+      - {name: records, match: "**/*.{json,jsonl,yaml,txt}", leaf: JsonRecord, now: 178, target: 178}
       - {name: packaging, match: "**/{.gitattributes,.gitignore,lean-toolchain}", leaf: DepositPackaging, now: 4, target: 4}
     invariants:
       - {id: package.manifest_matches, statement: "SHA256SUMS or sha256sums lists exactly the package files with their current sha256", holds_now: unknown, checked_by: "python verify_deposit.py inside the package"}
