@@ -230,4 +230,4 @@ provider-context checks refresh four unchanged consumers and preserve their leve
 Structural maxima are10/9/3. The ledger has175 completed assessments and147
 incomplete sources; braided.rs is the remaining incomplete fusion source.
 
-Companion storage now uses one `<source-stem>.contract.score.yaml`. Original receipt-addressed records and all scoring versions are retained inside that file; old physical companions are removed. See [the migration guide](../../../../docs/CONTRACT_SCORING_HISTORY.md). Legacy quality-tool path addresses resolve through the scoped reader/writer adapter.
+Companion storage now uses one `<source-stem>.contract.score.yaml`. Original receipt-addressed records and all scoring versions are retained inside that file; old physical companions are removed. See [the migration guide](../../../../governance/contract_scoring_history.md). Legacy quality-tool path addresses resolve through the scoped reader/writer adapter.

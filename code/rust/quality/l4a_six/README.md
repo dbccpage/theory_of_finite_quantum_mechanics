@@ -10,4 +10,4 @@ Use replay.py --metrics --doctests and records.py --receipt RECEIPT (then --chec
 
 The source snapshot bounds differ from actual-root consumer coverage. Public API integration is checked separately. No general quantum reconstruction, universal panic freedom, whole-workspace test success or automatic Rust-to-Lean refinement is claimed.
 
-Companion storage now uses one `<source-stem>.contract.score.yaml`. Original receipt-addressed records and all scoring versions are retained inside that file; old physical companions are removed. See [the migration guide](../../../../docs/CONTRACT_SCORING_HISTORY.md). Legacy quality-tool path addresses resolve through the scoped reader/writer adapter.
+Companion storage now uses one `<source-stem>.contract.score.yaml`. Original receipt-addressed records and all scoring versions are retained inside that file; old physical companions are removed. See [the migration guide](../../../../governance/contract_scoring_history.md). Legacy quality-tool path addresses resolve through the scoped reader/writer adapter.

@@ -1,12 +1,12 @@
-# dag/results
+# evidence/results
 
-One folder per DAG node. The tree keeps only what is cited:
+One folder per DAG node, named by the node id. The tree keeps only what is cited:
 
-- `<NODE-ID>/reviews/*/`: the review of the node. `dag/sync_pfp_results.py` reads these files and checks their sha256.
-- `<NODE-ID>/runs/*/` and `batches/*/`: only those files that the DAG, a receipt in `dag/research/`, a test or a tool cites.
-- `custody/`: the filename-repair snapshot that `dag/pfp/test_generate_prompts.py` copies.
+- `<NODE-ID>/reviews/*/`: the review of the node. `dag/tools/sync_pfp_results.py` reads these files, checks
+  their sha256 and writes the `pfp_review` object of the node in `dag/derivation_dag.json`.
+- `<NODE-ID>/runs/*/` and `batches/*/`: only the files that the DAG (`pfp_review.superseded_by`), a receipt, a
+  test (`code/python/tests/test_born_boundary_exact.py`, `test_l1_import_exact.py`) or a tool cites.
 
-Raw run output, staged input copies and batch working files are regenerable and ignored (see `.gitignore`).
-They were removed from the tree after commit `92a639ddc`. The `source_pins` in `dag/operads/*.yaml`
-and `dag/pfp/compare/` still name files in those staged copies. Each pin carries the file's sha256, and
-the bytes can be recovered with `git show 92a639ddc:<path>`.
+Raw run output, staged input copies and batch working files are regenerable and ignored (see `.gitignore`);
+a cited run file is added with `git add -f`. The review folders are counted by `scripts/build_readme_facts.py`
+for the facts block of the front page.
