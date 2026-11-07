@@ -44,7 +44,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`papers/035_zero_container_relational_spacetime_and_witness_holonomy/code/continuum_lorentz_causality.py`](../../code/python/)
+- [`atlas/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy/code/continuum_lorentz_causality.py`](../../atlas/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy/code/continuum_lorentz_causality.py)
 
 ---
 
