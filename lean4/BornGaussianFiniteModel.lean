@@ -237,7 +237,7 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
 11. **Multi-Axis Frame Cancellation vs. `Θ(1/k)` Step-Drift Counterexamples (`TFQ-1057`)**:
     * **11A. Nonnegative & One-Sided Zero-Weight Residuals: Unconditional 3-Frame Cancellation &
       `HasSublinearChainDriftFrom`**:
-      proves that every nonnegative (or nonpositive) zero-weight frame residual `g` on
+      shows in this model that every nonnegative (or nonpositive) zero-weight frame residual `g` on
       `ℚ(i)³ \ {0}` vanishes identically and satisfies `HasSublinearChainDriftFrom g v₀ x` for all
       nonzero `v₀, x ∈ ℚ(i)³ \ {0}` via single-frame 3-axis cancellation
       (`zero_of_nonneg_zeroWeightFrameFunction`, `zero_of_nonpos_zeroWeightFrameFunction`,
@@ -246,7 +246,7 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
       `quadRay_eq_of_one_sided_residual_nonneg`, `zero_on_fifteen_plane_of_nonneg_on_plane`).
     * **11B. Multi-Axis Frame Cancellation Along Signed Meridian Chains vs. Collar-Probe
       Orthogonality & Equatorial Trapping Obstructions**:
-      proves exact 2-step planar cancellation (`two_step_planar_canceled_meridian_drift_eq_zero`),
+      formalizes exact 2-step planar cancellation (`two_step_planar_canceled_meridian_drift_eq_zero`),
       exact 3-step orthogonal-frame cancellation (`three_step_frame_canceled_meridian_drift_eq_zero`),
       and bounded-uncanceled-step sufficiency (`HasBoundedUncanceledChainDriftFrom`,
       `zero_and_hasSublinearChainDriftFrom_of_boundedUncanceledChainDrift`), paired with the two
@@ -258,17 +258,16 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
       `no_fixed_anchor_meridian_step_reaches_witness123`).
     * **11C. Constructive Pointwise-Continuous Non-Quadratic Ray Counterexamples & Exact `Θ(1/k)`
       Step-Drift Realization**:
-      proves that on `ℚ(i)³ \ {0}`, `dedekindRayCut` (`not_hasSublinearChainDriftFrom_dedekindRayCut`)
+      establishes that on `ℚ(i)³ \ {0}`, `dedekindRayCut` (`not_hasSublinearChainDriftFrom_dedekindRayCut`)
       and the explicit nonnegative scale-invariant quartic profile
       `quarticRayProfile u := (raySinSq u tomo_e1) ^ 2` are everywhere pointwise ray-continuous and
       non-quadratic (`quarticRayProfile_isUniformlyRayContinuous`,
       `quarticRayProfile_isPointwiseRayContinuous`, `quarticRayProfile_meridian_defect_ne_zero`,
-      `quarticRayProfile_not_quadratic`, `not_hasSublinearChainDriftFrom_quarticRayProfile`), and
-      along the explicit `k`-step rational meridian grid chain `meridianGridRay k j = (k - j, j, 0)`
-      (`meridianGridRay_normSqVec_ge_half_sq`, `meridianGridRay_step_raySinSq_le_four_div_sq`),
-      `quarticRayProfile` exhibits `Θ(1/k)` per-step drift (`≤ 16 / k` at every step while no uniform
-      step bound `< 1 / k` is possible) with constant terminal discrepancy `1`
-      (`meridianGridRay_quarticRayProfile_step_drift_le`,
+      `quarticRayProfile_not_quadratic`), and along the explicit `k`-step rational meridian grid chain
+      `meridianGridRay k j = (k - j, j, 0)` (`meridianGridRay_normSqVec_ge_half_sq`,
+      `meridianGridRay_step_raySinSq_le_four_div_sq`), `quarticRayProfile` exhibits `Θ(1/k)` per-step
+      drift (`≤ 16 / k` at every step while no uniform step bound `< 1 / k` is possible) with constant
+      terminal discrepancy `1` (`meridianGridRay_quarticRayProfile_step_drift_le`,
       `tfq1057_sublinear_drift_and_counterexample_dichotomy`).
 -/
 
