@@ -9,7 +9,6 @@ This folder is the derivation graph from `<>` to finite quantum mechanics. It ho
 | Path | What it is | Edit? |
 |---|---|---|
 | `derivation_dag.json` | The single source: nodes, routes, TFQ records, index text | yes, or through a fragment |
-| `wdp_derivation_dag.json`, `wdp_derivation_dag.md` | The standalone Witnessed Difference Programme graph and its reading | yes |
 | `fragments/*.json` | Slices owned by one sync tool each | yes |
 | `derivations/NN_stage/` | One numbered folder per stage: `tfq_*.md` record pages, stage notes, `sources/` | yes (pages a sync owns are rewritten by it) |
 | `theory_of_finite_qm.jsonl`, `theory_of_finite_qm.md` | Generated views of `derivation_dag.json` | no |
