@@ -17,6 +17,7 @@ catalog:
   - Lifecycle labels describe editorial organization, not proof completion or byte integrity.
 
 shelves:
+
 - key: papers
   title: Papers
   why_here: Written papers (Markdown, TeX, PDF) with their Lean sources and claim ledgers.
@@ -27,19 +28,13 @@ shelves:
     title: Papers (whole)
     lifecycle: active
     why_here: Every paper folder below, plus the proof notes for computation and genesis and the dressing-field dossier.
-    entry_points: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md, papers/computation/computation_proofs.md, dag/derivations/02_genesis/genesis_proofs.md]
+    entry_points: [dag/derivations/24_dressing_field/ravera_dfm_dossier.md, dag/derivations/02_genesis/genesis_proofs.md]
   - key: papers_core
     path: papers/core
     kind: paper
     title: Finite Quantum Mechanics (core paper and companions)
     lifecycle: active
     why_here: The main paper plus the MUB(6), fermion sign, Majorana, constraint-closure and sign-problem companions.
-    entry_points:
-    - papers/core/finite_quantum_mechanics.md
-    - papers/core/finite_quantum_mechanics.pdf
-    - papers/core/finite_qm_guide_map.md
-    - papers/core/master_derivation_ledger.md
-    - papers/core/finite_quantum_mechanics_claim_ledger.md
     related: [dag, lean4_root]
   - key: paper_mub6
     path: papers/core/mub6
@@ -47,7 +42,7 @@ shelves:
     title: Mutually unbiased bases in dimension 6
     lifecycle: active
     why_here: The MUB(6) paper, its completion supplement and artifacts.
-    entry_points: [papers/core/mub6/mub6.md, papers/core/mub6/mub6.pdf, papers/core/mub6_proofs.md]
+    entry_points: [papers/core/mub6/mub6.md, papers/core/mub6/mub6.pdf]
     related: [dag_25_mub]
   - key: paper_fsp
     path: papers/core/fsp
@@ -63,7 +58,7 @@ shelves:
     title: The Majorana problem
     lifecycle: active
     why_here: Majorana fermions in the finite setting.
-    entry_points: [papers/core/majorana/the_majorana_problem.md, papers/core/fermion_sign_and_majorana_proofs.md]
+    entry_points: [papers/core/majorana/the_majorana_problem.md]
     related: [dag_28_majorana]
   - key: paper_constraint_closure
     path: papers/core/constraint_closure
@@ -156,18 +151,6 @@ shelves:
     title: Quantum foundations notes (QM-002 onward)
     lifecycle: active
     why_here: Shorter foundations papers on quotient bridges, residual densities and obstruction management.
-  - key: paper_complexity
-    path: papers/complexity
-    kind: paper
-    title: Complexity notes
-    lifecycle: scaffold
-    why_here: Notes relating complexity questions to the finite programme.
-  - key: papers_drafts
-    path: papers/drafts
-    kind: paper
-    title: Drafts
-    lifecycle: scaffold
-    why_here: Early drafts; finite lattice gauge theory is indexed under dag_17_finite_qcd.
 
 - key: dag
   title: Derivation DAG
@@ -584,31 +567,25 @@ shelves:
     nonclaims:
     - Imported claims retain their source wording; active notes have their own checks. Neither changes a DAG status.
   - key: atlas_finite_obstruction_calculus
-    path: atlas/papers/finite_obstruction_calculus
+    path: atlas/finite_obstruction_calculus
     kind: source_archive
     title: Finite obstruction calculus sources
     lifecycle: copied_source
     why_here: Genesis, genesis-ongoing, witnessed-difference, local-green-global-red and symbol-system source folders.
   - key: atlas_projection_obstruction
-    path: atlas/papers/projection_obstruction
+    path: atlas/projection_obstruction
     kind: source_archive
     title: Projection obstruction sources
     lifecycle: copied_source
     why_here: Source folder for the projection-obstruction paper.
     related: [paper_000_projection_obstruction]
   - key: atlas_everett
-    path: atlas/papers/everett_mw
+    path: atlas/everett_mw
     kind: paper
     title: Everett and double-slit notes
     lifecycle: active
     why_here: Double-slit measurement and Everett interpretation drafts and audits.
-    entry_points: [atlas/papers/everett_mw/double_slit_measurement_and_interpretation.md]
-  - key: sources_atlas
-    path: sources/atlas
-    kind: source_archive
-    title: Source paper atlas
-    lifecycle: copied_source
-    why_here: Source papers cited by the DAG.
+    entry_points: [atlas/everett_mw/double_slit_measurement_and_interpretation.md]
 
 - key: evidence
   title: Evidence, reviews and governance
@@ -646,12 +623,6 @@ shelves:
     lifecycle: active
     why_here: Policy, baseline and the build hooks that enforce them.
     entry_points: [governance/README.md, governance/policy.json]
-  - key: rules
-    path: rules
-    kind: governance
-    title: Repository rules
-    lifecycle: active
-    why_here: Machine-readable rules.
   - key: scripts
     path: scripts
     kind: tooling
