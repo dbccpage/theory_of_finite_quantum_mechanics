@@ -473,9 +473,9 @@ this trilogy does not supply it by changing its publication order.
 
 The [claim ledger](paper_claim_ledger.md) records the scope of each main result.
 The [source map](source_map.md) assigns the three predecessor papers to the
-sections above and names claims that were narrowed or omitted. The
-[source archive](source_archive/README.md) preserves those manuscripts and their
-ledgers/change logs. The education paths now point here; they are not competing
+sections above and names claims that were narrowed or omitted. Those
+manuscripts and their ledgers/change logs are in git history; the `000_sn` claim
+ledger stays as [docs/sn_predecessor_claim_ledger.md](docs/sn_predecessor_claim_ledger.md). The education paths now point here; they are not competing
 active manuscripts.
 
 The [source manifest](source_provenance.json) records the baseline, original blob
