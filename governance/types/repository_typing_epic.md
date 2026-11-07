@@ -594,6 +594,8 @@ S14  reviews/repository_file_review/ -> checks/review_ledger/
 S14  reviews/projection_obstruction_outside_review_2026-11-05/ -> evidence/reviews/projection_obstruction_outside_review_2026-11-05/
 S14  reviews/projection_obstruction_review/ -> evidence/reviews/projection_obstruction_review/
 S16  the run-contract file at the genesis_ongoing root (blob e5d97eed) -> atlas/finite_obstruction_calculus/genesis_ongoing/run_contract.md
+S17  code/rust/src/wdp/PO000_24G2.md -> code/rust/src/wdp/po000_24g2.md
+S17  evidence/quality/full_functor_validation/REVIEW.md -> evidence/quality/full_functor_validation/review.md
 ```
 
 ### Removals (2,366 files) and kept exceptions
