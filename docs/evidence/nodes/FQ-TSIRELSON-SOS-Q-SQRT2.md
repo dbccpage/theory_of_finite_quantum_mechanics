@@ -4,14 +4,14 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `COMPUTATIONALLY_C
 
 ## Statement
 
-> On the declared bipartite carrier with A0=Z, A1=X, B0=(Z+X)/sqrt2, B1=(Z-X)/sqrt2 and |Phi+\>, the CHSH operator satisfies two exact SOS inequalities and attains 2sqrt2; the witness lives in the real field Q(sqrt2) and is static, so complex U(1) phase and continuous time are not needed. Lean: unit-norm-squared-4 vectors over Z\[sqrt2\] with scaled CHSH sum 8.
+> On the declared bipartite carrier with A0=Z, A1=X, B0=(Z+X)/sqrt2, B1=(Z-X)/sqrt2 and |Phi+\>, the CHSH operator satisfies two exact SOS inequalities and attains 2sqrt2; the witness lives in the real field Q(sqrt2) and is static, so complex U(1) phase and continuous time are not needed. Lean additionally checks rational four-coordinate scaled quadratic SOS inequalities and an attaining ratio for the fixed operator; this is not the full matrix-to-real transport.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
@@ -30,11 +30,11 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Bottleneck
 
-Lean exhibits four vectors over Z\[sqrt2\] with squared norm 4 whose scaled CHSH sum is 8 sqrt2 (q2_tsirelson_attainment). The two SOS operator inequalities are native exact checks, not Lean.
+The reviewed Lean work includes rational four-coordinate scaled SOS inequalities and attainment for the fixed quadratic form (PromptStructure.tsirelson_fixed_bound and tsirelson_scaled_attainment), as well as the Z\[sqrt2\] vector witness. The concrete Q(sqrt2)-matrix to real quadratic-form transport remains open, so this node stays COMPUTATIONALLY_CHECKED; arbitrary observables and physical tensor/probability selection are not derived.
 
 ## Source status
 
-paper s13.8.2: exact SOS certificates -2sqrt2 I \<= B_CHSH \<= 2sqrt2 I and attaining witness over Q(sqrt2); QM-218
+paper s13.8.2: exact SOS certificates -2sqrt2 I \<= B_CHSH \<= 2sqrt2 I and attaining witness over Q(sqrt2); QM-218; scope reconciled with the existing 20261019 structure-audit receipt: fixed rational quadratic inequalities are kernel checked, full concrete matrix transport remains open.
 
 ## Review
 
@@ -71,6 +71,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
   - receipt [evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json](../../../evidence/lean_receipts/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 - counts toward the grade: no
+
+### Lean: `lean4/PromptStructure.lean`
+
+- file: [lean4/PromptStructure.lean](../../../lean4/PromptStructure.lean)
+- sha256 (`bytes`): `d3732bee553471dc9a1dd11e55c4af9ecfd77bd56bf414040cbcec8efaa01158`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build PromptStructure`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `tsirelson_fixed_bound` | yes | yes | yes | - | `#print axioms tsirelson_fixed_bound` |
+| `tsirelson_minus_sos` | yes | yes | yes | - | `#print axioms tsirelson_minus_sos` |
+| `tsirelson_plus_sos` | yes | yes | yes | - | `#print axioms tsirelson_plus_sos` |
+| `tsirelson_scaled_attainment` | yes | yes | yes | - | `#print axioms tsirelson_scaled_attainment` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/QuantumCorrelation.lean`
 
