@@ -604,6 +604,49 @@ class TestGleasonFiniteCertificates(unittest.TestCase):
                 eps5,
             )
 
+    def test_tfq_1057_section11_frame_cancellation_and_inv_k_counterexample(self) -> None:
+        sec11 = (
+            cert.verify_tfq_1057_section11_frame_cancellation_and_inv_k_counterexample()
+        )
+        sub11a = sec11["subsection_11a_nonneg_zero_weight_unconditional_cancellation"]
+        self.assertTrue(sub11a["nonneg_zero_weight_residual_vanishes_identically"])
+        self.assertTrue(sub11a["nonpos_zero_weight_residual_vanishes_identically"])
+        self.assertTrue(sub11a["nonneg_zero_weight_satisfies_sublinear_chain_drift"])
+        self.assertEqual(sub11a["frame_completion_sign_change_checks"], 40)
+
+        sub11b = sec11["subsection_11b_multi_axis_cancellation_and_geometric_obstructions"]
+        self.assertEqual(sub11b["two_step_planar_cancellation_checks"], 60)
+        self.assertEqual(sub11b["three_step_frame_cancellation_checks"], 5)
+        self.assertEqual(sub11b["same_anchor_collar_non_orthogonality_checks"], 6)
+        self.assertEqual(
+            sub11b["witness_123_min_equatorial_ray_sin_sq_across_t15"], "1/28"
+        )
+        self.assertEqual(sub11b["equatorial_trapping_threshold_delta"], "1/28")
+        self.assertTrue(
+            sub11b["fixed_anchor_meridian_step_trapped_below_one_twentyeighth"]
+        )
+        self.assertEqual(len(sub11b["equatorial_trapping_by_anchor"]), 15)
+
+        sub11c = sec11["subsection_11c_pointwise_continuous_nonquadratic_and_inv_k_drift"]
+        self.assertTrue(sub11c["dedekind_ray_cut_refutes_sublinear_drift"])
+        self.assertGreaterEqual(sub11c["quartic_ray_profile_lipschitz_pairs_checked"], 180)
+        self.assertEqual(sub11c["quartic_ray_profile_meridian_defect"], "-1/2")
+        self.assertEqual(len(sub11c["meridian_grid_inv_k_step_drift_certificates"]), 6)
+        self.assertEqual(sub11c["status"], "PASS")
+
+        # Direct checks of quartic_ray_profile and meridian_grid_ray
+        self.assertEqual(cert.quartic_ray_profile(cert.TOMO_E1), Fraction(0))
+        self.assertEqual(cert.quartic_ray_profile(cert.TOMO_E2), Fraction(1))
+        self.assertEqual(cert.quartic_ray_profile(cert.TOMO_E12), Fraction(1, 4))
+        self.assertEqual(cert.quartic_ray_profile(cert.WITNESS_111), Fraction(4, 9))
+        for j in range(10):
+            wj = cert.meridian_grid_ray(10, j)
+            wj1 = cert.meridian_grid_ray(10, j + 1)
+            self.assertLessEqual(cert.ray_sin_sq(wj1, wj), Fraction(4, 100))
+            drift_j = cert.quartic_ray_profile(wj1) - cert.quartic_ray_profile(wj)
+            self.assertGreaterEqual(drift_j, Fraction(0))
+            self.assertLessEqual(drift_j, Fraction(16, 10))
+
 
 if __name__ == "__main__":
     unittest.main()

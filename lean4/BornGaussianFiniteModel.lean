@@ -233,6 +233,43 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
       `linearDriftChain (Δ / k)` has per-step error `ε_k = Δ / k → 0` yet maintains a constant
       terminal discrepancy `Δ > 0` at step `k` (`linearDriftChain_constant_gap_of_inv_k_step`,
       `sublinear_vs_inv_k_chain_drift_dichotomy`).
+
+11. **Multi-Axis Frame Cancellation vs. `Θ(1/k)` Step-Drift Counterexamples (`TFQ-1057`)**:
+    * **11A. Nonnegative & One-Sided Zero-Weight Residuals: Unconditional 3-Frame Cancellation &
+      `HasSublinearChainDriftFrom`**:
+      proves that every nonnegative (or nonpositive) zero-weight frame residual `g` on
+      `ℚ(i)³ \ {0}` vanishes identically and satisfies `HasSublinearChainDriftFrom g v₀ x` for all
+      nonzero `v₀, x ∈ ℚ(i)³ \ {0}` via single-frame 3-axis cancellation
+      (`zero_of_nonneg_zeroWeightFrameFunction`, `zero_of_nonpos_zeroWeightFrameFunction`,
+      `hasSublinearChainDriftFrom_of_zero_endpoints`,
+      `hasSublinearChainDriftFrom_of_nonneg_zeroWeightFrameFunction`,
+      `quadRay_eq_of_one_sided_residual_nonneg`, `zero_on_fifteen_plane_of_nonneg_on_plane`).
+    * **11B. Multi-Axis Frame Cancellation Along Signed Meridian Chains vs. Collar-Probe
+      Orthogonality & Equatorial Trapping Obstructions**:
+      proves exact 2-step planar cancellation (`two_step_planar_canceled_meridian_drift_eq_zero`),
+      exact 3-step orthogonal-frame cancellation (`three_step_frame_canceled_meridian_drift_eq_zero`),
+      and bounded-uncanceled-step sufficiency (`HasBoundedUncanceledChainDriftFrom`,
+      `zero_and_hasSublinearChainDriftFrom_of_boundedUncanceledChainDrift`), paired with the two
+      sharp geometric obstructions to naive fixed-anchor collar cancellation: collar probes around
+      non-orthogonal anchors cannot be orthogonal (`collar_probes_not_ortho_of_raySinSq_anchors_lt`),
+      and `witness_123` is bounded away by `≥ 1 / 28` from all 15 anchor/bisector equators so no
+      fixed-anchor meridian-Kelvin step with `δ ≤ 1 / 28` can ever land on `witness_123`
+      (`witness123_raySinSq_fifteen_equators_ge_one_twentyeighth`,
+      `no_fixed_anchor_meridian_step_reaches_witness123`).
+    * **11C. Constructive Pointwise-Continuous Non-Quadratic Ray Counterexamples & Exact `Θ(1/k)`
+      Step-Drift Realization**:
+      proves that on `ℚ(i)³ \ {0}`, `dedekindRayCut` (`not_hasSublinearChainDriftFrom_dedekindRayCut`)
+      and the explicit nonnegative scale-invariant quartic profile
+      `quarticRayProfile u := (raySinSq u tomo_e1) ^ 2` are everywhere pointwise ray-continuous and
+      non-quadratic (`quarticRayProfile_isUniformlyRayContinuous`,
+      `quarticRayProfile_isPointwiseRayContinuous`, `quarticRayProfile_meridian_defect_ne_zero`,
+      `quarticRayProfile_not_quadratic`, `not_hasSublinearChainDriftFrom_quarticRayProfile`), and
+      along the explicit `k`-step rational meridian grid chain `meridianGridRay k j = (k - j, j, 0)`
+      (`meridianGridRay_normSqVec_ge_half_sq`, `meridianGridRay_step_raySinSq_le_four_div_sq`),
+      `quarticRayProfile` exhibits `Θ(1/k)` per-step drift (`≤ 16 / k` at every step while no uniform
+      step bound `< 1 / k` is possible) with constant terminal discrepancy `1`
+      (`meridianGridRay_quarticRayProfile_step_drift_le`,
+      `tfq1057_sublinear_drift_and_counterexample_dichotomy`).
 -/
 
 namespace BornFinite.GaussianFiniteModel
@@ -5682,6 +5719,751 @@ theorem sublinear_vs_inv_k_chain_drift_dichotomy :
      ⟨(linearDriftChain_constant_gap_of_inv_k_step hΔ hk).2.1,
       (linearDriftChain_constant_gap_of_inv_k_step hΔ hk).2.2.1⟩⟩
 
+/-!
+## 11. Multi-Axis Frame Cancellation vs. `Θ(1/k)` Step-Drift Counterexamples (`TFQ-1057`)
+
+This section resolves the next `TFQ-1057` question: whether nonnegative pointwise-continuous
+zero-weight residuals `g` on `ℚ(i)³ \ {0}` satisfy `HasSublinearChainDriftFrom` via multi-axis
+frame cancellation, and how multi-axis frame cancellation separates vanishing residuals from
+pointwise-continuous non-quadratic counterexamples exhibiting `Θ(1/k)` step drift.
+-/
+
+/-! ### Subsection 11A: Nonnegative & One-Sided Zero-Weight Residuals — Unconditional 3-Frame Cancellation & `HasSublinearChainDriftFrom` -/
+
+/-- **Unconditional Vanishing of Nonnegative Zero-Weight Frame Residuals
+(`zero_of_nonneg_zeroWeightFrameFunction`)**:
+if `g : GVec → ℚ` is a zero-weight frame function (`IsZeroWeightFrameFunction g`) that is
+nonnegative on all nonzero rays (`∀ v : GVec, v.NonZero → 0 ≤ g v`), then `g x = 0` for every
+nonzero ray `x ∈ ℚ(i)³ \ {0}` via single-frame 3-axis cancellation (`g x + g u + g v = 0`). -/
+theorem zero_of_nonneg_zeroWeightFrameFunction {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g)
+    (hnn : ∀ v : GVec, v.NonZero → 0 ≤ g v) :
+    ∀ x : GVec, x.NonZero → g x = 0 := by
+  intro x hx
+  obtain ⟨u, v, hfr, _⟩ := exists_frame_completion hx
+  have hu : u.NonZero := hfr.2.1
+  have hv : v.NonZero := hfr.2.2.1
+  have hsum : g x + g u + g v = 0 := hg x u v hfr
+  have hgx : 0 ≤ g x := hnn x hx
+  have hgu : 0 ≤ g u := hnn u hu
+  have hgv : 0 ≤ g v := hnn v hv
+  linarith
+
+/-- **Unconditional Vanishing of Nonpositive Zero-Weight Frame Residuals
+(`zero_of_nonpos_zeroWeightFrameFunction`)**:
+dually, if `g : GVec → ℚ` is a zero-weight frame function (`IsZeroWeightFrameFunction g`) that is
+nonpositive on all nonzero rays (`∀ v : GVec, v.NonZero → g v ≤ 0`), then `g x = 0` for every
+nonzero ray `x ∈ ℚ(i)³ \ {0}`. -/
+theorem zero_of_nonpos_zeroWeightFrameFunction {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g)
+    (hnp : ∀ v : GVec, v.NonZero → g v ≤ 0) :
+    ∀ x : GVec, x.NonZero → g x = 0 := by
+  intro x hx
+  obtain ⟨u, v, hfr, _⟩ := exists_frame_completion hx
+  have hu : u.NonZero := hfr.2.1
+  have hv : v.NonZero := hfr.2.2.1
+  have hsum : g x + g u + g v = 0 := hg x u v hfr
+  have hgx : g x ≤ 0 := hnp x hx
+  have hgu : g u ≤ 0 := hnp u hu
+  have hgv : g v ≤ 0 := hnp v hv
+  linarith
+
+/-- **Zero-Endpoint Sufficiency for `HasSublinearChainDriftFrom`
+(`hasSublinearChainDriftFrom_of_zero_endpoints`)**:
+for any function `g : GVec → ℚ` and any rays `v₀, x : GVec`, if `g v₀ = 0` and `g x = 0`, then
+`HasSublinearChainDriftFrom g v₀ x` holds (witnessed by the 1-step chain `[x]` and `ε = η / 2`). -/
+theorem hasSublinearChainDriftFrom_of_zero_endpoints {g : GVec → ℚ} {v₀ x : GVec}
+    (hv₀ : g v₀ = 0) (hx : g x = 0) :
+    HasSublinearChainDriftFrom g v₀ x := by
+  intro η hη
+  refine ⟨η / 2, [x], half_pos hη, rfl, by rw [hv₀, abs_zero], ?_, ?_⟩
+  · refine ⟨?_, trivial⟩
+    rw [hx, hv₀, sub_self, abs_zero]
+    exact (half_pos hη).le
+  · simp only [List.length_singleton, Nat.cast_one, one_mul]
+    linarith
+
+/-- **Unconditional `HasSublinearChainDriftFrom` for Nonnegative Zero-Weight Frame Residuals
+(`hasSublinearChainDriftFrom_of_nonneg_zeroWeightFrameFunction`)**:
+every nonnegative zero-weight frame residual `g` on `ℚ(i)³ \ {0}` satisfies `g x = 0` and
+`HasSublinearChainDriftFrom g v₀ x` for all nonzero rays `v₀, x ∈ ℚ(i)³ \ {0}` via 3-axis frame
+cancellation (even without requiring pointwise continuity). -/
+theorem hasSublinearChainDriftFrom_of_nonneg_zeroWeightFrameFunction {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g)
+    (hnn : ∀ v : GVec, v.NonZero → 0 ≤ g v)
+    {v₀ x : GVec} (hv₀ : v₀.NonZero) (hx : x.NonZero) :
+    g x = 0 ∧ HasSublinearChainDriftFrom g v₀ x := by
+  have hall := zero_of_nonneg_zeroWeightFrameFunction hg hnn
+  have h0 : g v₀ = 0 := hall v₀ hv₀
+  have hx0 : g x = 0 := hall x hx
+  exact ⟨hx0, hasSublinearChainDriftFrom_of_zero_endpoints h0 hx0⟩
+
+/-- **Quadratic Rigidity from One-Sided Tomography Lower Bound
+(`quadRay_eq_of_one_sided_residual_nonneg`)**:
+if `f : GVec → ℚ` is a frame function (`IsFrameFunction f`) that is bounded from below on all
+nonzero rays by its 9-ray tomography quadratic form (`∀ v : GVec, v.NonZero → quadRay (tomographyForm f) v ≤ f v`),
+then `GaussianTomography.residual f` is a nonnegative zero-weight frame function, so for all nonzero
+`v₀, x ∈ ℚ(i)³ \ {0}`, `GaussianTomography.residual f x = 0`, `f x = quadRay (tomographyForm f) x`,
+and `HasSublinearChainDriftFrom (GaussianTomography.residual f) v₀ x`. -/
+theorem quadRay_eq_of_one_sided_residual_nonneg {f : GVec → ℚ}
+    (hf : IsFrameFunction f)
+    (hge : ∀ v : GVec, v.NonZero → quadRay (tomographyForm f) v ≤ f v)
+    {v₀ x : GVec} (hv₀ : v₀.NonZero) (hx : x.NonZero) :
+    GaussianTomography.residual f x = 0 ∧
+    f x = quadRay (tomographyForm f) x ∧
+    HasSublinearChainDriftFrom (GaussianTomography.residual f) v₀ x := by
+  have hres_zw : IsZeroWeightFrameFunction (GaussianTomography.residual f) :=
+    residual_is_zero_weight hf
+  have hres_nn : ∀ v : GVec, v.NonZero → 0 ≤ GaussianTomography.residual f v := by
+    intro v hv
+    unfold GaussianTomography.residual
+    linarith [hge v hv]
+  obtain ⟨hx0, hsub⟩ :=
+    hasSublinearChainDriftFrom_of_nonneg_zeroWeightFrameFunction hres_zw hres_nn hv₀ hx
+  have hfx : f x = quadRay (tomographyForm f) x := by
+    unfold GaussianTomography.residual at hx0
+    linarith
+  exact ⟨hx0, hfx, hsub⟩
+
+/-- **Planar Vanishing & `HasSublinearChainDriftFrom` from Single-Plane Nonnegativity
+(`zero_on_fifteen_plane_of_nonneg_on_plane`)**:
+for any zero-weight frame function `g` vanishing on `nineAnchorsList` and any symmetry normal
+`b ∈ fifteenAnchorBisectorList`, if `g` is nonnegative on the orthogonal 2-plane `b⊥ \ {0}`
+(`∀ u : GVec, u.NonZero → GVec.inner u b = 0 → 0 ≤ g u`), then 2-axis planar antisymmetry forces
+`g u = 0` and `HasSublinearChainDriftFrom g b u` for every nonzero `u ∈ b⊥`. -/
+theorem zero_on_fifteen_plane_of_nonneg_on_plane {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) (h9 : VanishesOnNineRays g)
+    {b : GVec} (hb : b ∈ fifteenAnchorBisectorList)
+    (hplane : ∀ u : GVec, u.NonZero → GVec.inner u b = 0 → 0 ≤ g u)
+    {u : GVec} (hu : u.NonZero) (hub : GVec.inner u b = 0) :
+    g u = 0 ∧ HasSublinearChainDriftFrom g b u := by
+  have hb_nz : b.NonZero := fifteenAnchorBisectorList_nonZero b hb
+  have hfr_hc : IsFrame u b (hermCross u b) := isFrame_hermCross hu hb_nz hub
+  have hw_nz : (hermCross u b).NonZero := hfr_hc.2.2.1
+  have huw : GVec.inner u (hermCross u b) = 0 := hfr_hc.2.2.2.2.1
+  have hbw : GVec.inner b (hermCross u b) = 0 := hfr_hc.2.2.2.2.2
+  have hwb : GVec.inner (hermCross u b) b = 0 := inner_eq_zero_symm hbw
+  have hanti :=
+    fifteen_plane_ortho_antisymmetry hg h9 hb hu hw_nz huw hub hwb
+  have hgu : 0 ≤ g u := hplane u hu hub
+  have hgw : 0 ≤ g (hermCross u b) := hplane (hermCross u b) hw_nz hwb
+  have hgu0 : g u = 0 := by linarith [hanti.2.1]
+  have hgb0 : g b = 0 := fifteenAnchorBisector_zero_of_zeroWeight_and_nine hg h9 b hb
+  exact ⟨hgu0, hasSublinearChainDriftFrom_of_zero_endpoints hgb0 hgu0⟩
+
+/-! ### Subsection 11B: Multi-Axis Frame Cancellation Along Signed Meridian Chains vs. Collar-Probe Orthogonality & Equatorial Trapping Obstructions -/
+
+/-- **Two-Step Planar-Canceled Meridian Drift Identity
+(`two_step_planar_canceled_meridian_drift_eq_zero`)**:
+for any zero-weight frame residual `g` vanishing on `nineAnchorsList`, any two nonzero anchors
+`a₁, a₂` with `g a₁ = 0` and `g a₂ = 0`, any nonzero equatorial tangent vectors `y₁ ∈ a₁⊥` and
+`y₂ ∈ a₂⊥`, and any symmetry normal `b ∈ fifteenAnchorBisectorList`, if the two polar probes
+`p₁ = a₁ + y₁` and `p₂ = a₂ + y₂` are orthogonal inside `b⊥`, then the two equatorial
+meridian-Kelvin step drifts cancel identically:
+`(g y₁ - g (anchorMeridianOrtho a₁ y₁)) + (g y₂ - g (anchorMeridianOrtho a₂ y₂)) = 0`. -/
+theorem two_step_planar_canceled_meridian_drift_eq_zero {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) (h9 : VanishesOnNineRays g)
+    {a₁ y₁ a₂ y₂ b : GVec}
+    (ha₁ : a₁.NonZero) (hy₁ : y₁.NonZero) (hay₁ : GVec.inner a₁ y₁ = 0)
+    (ha₂ : a₂.NonZero) (hy₂ : y₂.NonZero) (hay₂ : GVec.inner a₂ y₂ = 0)
+    (hga₁ : g a₁ = 0) (hga₂ : g a₂ = 0)
+    (hb : b ∈ fifteenAnchorBisectorList)
+    (hp₁p₂ : GVec.inner (GVec.add a₁ y₁) (GVec.add a₂ y₂) = 0)
+    (hp₁b : GVec.inner (GVec.add a₁ y₁) b = 0)
+    (hp₂b : GVec.inner (GVec.add a₂ y₂) b = 0) :
+    (g y₁ - g (anchorMeridianOrtho a₁ y₁)) +
+      (g y₂ - g (anchorMeridianOrtho a₂ y₂)) = 0 := by
+  have hp₁_nz : (GVec.add a₁ y₁).NonZero := addVec_a_y_ne_zero_of_ortho a₁ y₁ ha₁ hay₁
+  have hp₂_nz : (GVec.add a₂ y₂).NonZero := addVec_a_y_ne_zero_of_ortho a₂ y₂ ha₂ hay₂
+  have hbr₁ := (anchor_meridian_zeroWeight_bridge hg ha₁ hy₁ hay₁).2.1
+  have hbr₂ := (anchor_meridian_zeroWeight_bridge hg ha₂ hy₂ hay₂).2.1
+  have hanti :=
+    (fifteen_plane_ortho_antisymmetry hg h9 hb hp₁_nz hp₂_nz hp₁p₂ hp₁b hp₂b).2.1
+  linarith
+
+/-- **Three-Step Orthogonal-Frame-Canceled Meridian Drift Identity
+(`three_step_frame_canceled_meridian_drift_eq_zero`)**:
+for any zero-weight frame residual `g`, any three nonzero anchors `a₁, a₂, a₃` with
+`g a₁ = g a₂ = g a₃ = 0`, and any nonzero equatorial tangent vectors `yᵢ ∈ aᵢ⊥` (`i = 1, 2, 3`),
+if the three polar probes `pᵢ = aᵢ + yᵢ` form an orthogonal 3-frame
+`IsFrame (a₁ + y₁) (a₂ + y₂) (a₃ + y₃)`, then the three equatorial meridian-Kelvin step drifts
+cancel identically:
+`(g y₁ - g (anchorMeridianOrtho a₁ y₁)) + (g y₂ - g (anchorMeridianOrtho a₂ y₂)) + (g y₃ - g (anchorMeridianOrtho a₃ y₃)) = 0`. -/
+theorem three_step_frame_canceled_meridian_drift_eq_zero {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g)
+    {a₁ y₁ a₂ y₂ a₃ y₃ : GVec}
+    (ha₁ : a₁.NonZero) (hy₁ : y₁.NonZero) (hay₁ : GVec.inner a₁ y₁ = 0)
+    (ha₂ : a₂.NonZero) (hy₂ : y₂.NonZero) (hay₂ : GVec.inner a₂ y₂ = 0)
+    (ha₃ : a₃.NonZero) (hy₃ : y₃.NonZero) (hay₃ : GVec.inner a₃ y₃ = 0)
+    (hga₁ : g a₁ = 0) (hga₂ : g a₂ = 0) (hga₃ : g a₃ = 0)
+    (hfr : IsFrame (GVec.add a₁ y₁) (GVec.add a₂ y₂) (GVec.add a₃ y₃)) :
+    (g y₁ - g (anchorMeridianOrtho a₁ y₁)) +
+      (g y₂ - g (anchorMeridianOrtho a₂ y₂)) +
+      (g y₃ - g (anchorMeridianOrtho a₃ y₃)) = 0 := by
+  have hbr₁ := (anchor_meridian_zeroWeight_bridge hg ha₁ hy₁ hay₁).2.1
+  have hbr₂ := (anchor_meridian_zeroWeight_bridge hg ha₂ hy₂ hay₂).2.1
+  have hbr₃ := (anchor_meridian_zeroWeight_bridge hg ha₃ hy₃ hay₃).2.1
+  have hsum : g (GVec.add a₁ y₁) + g (GVec.add a₂ y₂) + g (GVec.add a₃ y₃) = 0 :=
+    hg _ _ _ hfr
+  linarith
+
+/-- **Bounded Uncanceled Chain-Drift Condition (`HasBoundedUncanceledChainDriftFrom`)**:
+states that `g : GVec → ℚ` has chain drift from `v₀` to `x` with at most `R₀ ≥ 0` uncanceled
+`ε`-steps if `g v₀ = 0` and for every `ε > 0` there exists a finite ray chain `steps : List GVec`
+(of arbitrary length `steps.length`, which may diverge as `ε → 0`) terminating at
+`steps.getLastD v₀ = x` whose net endpoint variation after multi-axis frame cancellation satisfies
+`|g (steps.getLastD v₀) - g v₀| ≤ R₀ * ε`. -/
+def HasBoundedUncanceledChainDriftFrom (g : GVec → ℚ) (R₀ : ℚ) (v₀ x : GVec) : Prop :=
+  0 ≤ R₀ ∧
+  g v₀ = 0 ∧
+  ∀ ε : ℚ, 0 < ε → ∃ steps : List GVec,
+    steps.getLastD v₀ = x ∧
+    |g (steps.getLastD v₀) - g v₀| ≤ R₀ * ε
+
+/-- **Vanishing & `HasSublinearChainDriftFrom` from Bounded Uncanceled Chain Drift
+(`zero_and_hasSublinearChainDriftFrom_of_boundedUncanceledChainDrift`)**:
+if `HasBoundedUncanceledChainDriftFrom g R₀ v₀ x` holds (so all but at most `R₀` step errors along
+arbitrary-length chains cancel via multi-axis frame relations), then `g x = 0` and
+`HasSublinearChainDriftFrom g v₀ x` holds. -/
+theorem zero_and_hasSublinearChainDriftFrom_of_boundedUncanceledChainDrift
+    {g : GVec → ℚ} {R₀ : ℚ} {v₀ x : GVec}
+    (hb : HasBoundedUncanceledChainDriftFrom g R₀ v₀ x) :
+    g x = 0 ∧ HasSublinearChainDriftFrom g v₀ x := by
+  rcases hb with ⟨hR₀, hv₀, hchains⟩
+  have hx0 : g x = 0 := by
+    by_contra hne
+    have hpos : 0 < |g x| := abs_pos.mpr hne
+    have hR1 : 0 < R₀ + 1 := by linarith
+    let ε := |g x| / (2 * (R₀ + 1))
+    have hε : 0 < ε := div_pos hpos (by positivity)
+    obtain ⟨steps, hlast, hle⟩ := hchains ε hε
+    rw [hlast, hv₀, sub_zero] at hle
+    have hR_eps : R₀ * ε ≤ |g x| / 2 := by
+      calc R₀ * ε ≤ (R₀ + 1) * ε := by nlinarith
+        _ = |g x| / 2 := by
+          dsimp [ε]
+          field_simp
+    linarith
+  exact ⟨hx0, hasSublinearChainDriftFrom_of_zero_endpoints hv₀ hx0⟩
+
+/-- **First Geometric Obstruction to Collar Frame Cancellation: Collar Probes Around Non-Orthogonal
+Anchors Cannot Be Orthogonal (`collar_probes_not_ortho_of_raySinSq_anchors_lt`)**:
+for any two nonzero anchors `a₁, a₂ ∈ ℚ(i)³ \ {0}` and any collar radius `δ > 0` satisfying
+`3 * δ + 2 * raySinSq a₁ a₂ ≤ 1` (in particular, around the same anchor `a₁ = a₂` whenever
+`δ ≤ 1 / 3`), no two nonzero collar probes `p₁ ∈ B_δ(a₁)` and `p₂ ∈ B_δ(a₂)` can be orthogonal
+(`GVec.inner p₁ p₂ ≠ 0`). -/
+theorem collar_probes_not_ortho_of_raySinSq_anchors_lt
+    {a₁ a₂ p₁ p₂ : GVec} {δ : ℚ}
+    (ha₁ : a₁.NonZero) (ha₂ : a₂.NonZero)
+    (hp₁ : p₁.NonZero) (hp₂ : p₂.NonZero)
+    (hsin₁ : raySinSq p₁ a₁ < δ) (hsin₂ : raySinSq p₂ a₂ < δ)
+    (hsep : 3 * δ + 2 * raySinSq a₁ a₂ ≤ 1) :
+    GVec.inner p₁ p₂ ≠ 0 := by
+  intro hortho
+  have hge1 : 1 ≤ raySinSq p₁ a₁ + raySinSq p₂ a₁ :=
+    ortho_raySinSq_add_ge_one hp₁ hp₂ ha₁ hortho
+  have htri : raySinSq p₂ a₁ ≤ 2 * (raySinSq p₂ a₂ + raySinSq a₂ a₁) :=
+    raySinSq_le_two_mul_add hp₂ ha₂ ha₁
+  have hsymm : raySinSq a₂ a₁ = raySinSq a₁ a₂ := raySinSq_comm a₂ a₁
+  linarith
+
+/-- **Second Geometric Obstruction (Equatorial Separation of `witness_123` from All 15 Equators,
+`witness123_raySinSq_fifteen_equators_ge_one_twentyeighth`)**:
+for every anchor/bisector ray `a ∈ fifteenAnchorBisectorList` and every nonzero equatorial vector
+`y ∈ a⊥` (`GVec.inner a y = 0`), `witness_123 = (1, 2, 3)` lies at projective ray distance
+`1 / 28 ≤ raySinSq witness_123 y` from `y`. -/
+theorem witness123_raySinSq_fifteen_equators_ge_one_twentyeighth
+    {a y : GVec} (ha : a ∈ fifteenAnchorBisectorList)
+    (hy : y.NonZero) (hay : GVec.inner a y = 0) :
+    1 / 28 ≤ raySinSq witness_123 y := by
+  have ha_nz : a.NonZero := fifteenAnchorBisectorList_nonZero a ha
+  have hge1 : 1 ≤ raySinSq a witness_123 + raySinSq y witness_123 :=
+    ortho_raySinSq_add_ge_one ha_nz hy witness_123_nonZero hay
+  have hle_a : raySinSq witness_123 a ≤ 27 / 28 := by
+    simp only [fifteenAnchorBisectorList, List.mem_append] at ha
+    rcases ha with h9 | h6
+    · have h13_14 := witness123_raySinSq_nineAnchors_le a h9
+      linarith
+    · exact witness123_raySinSq_sixBisectors_le a h6
+  rw [raySinSq_comm a witness_123, raySinSq_comm y witness_123] at hge1
+  linarith
+
+/-- **Equatorial Collar Trapping Theorem for `witness_123`
+(`no_fixed_anchor_meridian_step_reaches_witness123`)**:
+for every fixed anchor/bisector `a ∈ fifteenAnchorBisectorList`, every nonzero equatorial vector
+`y ∈ a⊥`, and every collar radius `0 < δ ≤ 1 / 28`, if the polar probe `a + y` lies in the
+`δ`-collar `raySinSq (a + y) a < δ`, then the resulting meridian-Kelvin output ray
+`anchorMeridianOrtho a y` stays within `< δ ≤ 1 / 28` of `y ∈ a⊥` and therefore cannot reach the
+ray of `witness_123 = (1, 2, 3)`: `0 < raySinSq (anchorMeridianOrtho a y) witness_123`. -/
+theorem no_fixed_anchor_meridian_step_reaches_witness123
+    {a y : GVec} {δ : ℚ}
+    (ha : a ∈ fifteenAnchorBisectorList)
+    (hy : y.NonZero) (hay : GVec.inner a y = 0)
+    (hδ_le : δ ≤ 1 / 28)
+    (hcollar : raySinSq (GVec.add a y) a < δ) :
+    (anchorMeridianOrtho a y).NonZero ∧
+    raySinSq (anchorMeridianOrtho a y) y < 1 / 28 ∧
+    0 < raySinSq (anchorMeridianOrtho a y) witness_123 := by
+  have ha_nz : a.NonZero := fifteenAnchorBisectorList_nonZero a ha
+  have hm_nz : (anchorMeridianOrtho a y).NonZero :=
+    anchorMeridianOrtho_ne_zero_of_ortho a y ha_nz hy hay
+  have hstep_lt : raySinSq (anchorMeridianOrtho a y) y < δ :=
+    (anchorMeridianOrtho_raySinSq_lt_four_mul ha_nz hy hay hcollar).1
+  have hlt_28 : raySinSq (anchorMeridianOrtho a y) y < 1 / 28 :=
+    lt_of_lt_of_le hstep_lt hδ_le
+  have hge_28 : 1 / 28 ≤ raySinSq witness_123 y :=
+    witness123_raySinSq_fifteen_equators_ge_one_twentyeighth ha hy hay
+  have hpos : 0 < raySinSq (anchorMeridianOrtho a y) witness_123 := by
+    rcases (raySinSq_nonneg hm_nz witness_123_nonZero).eq_or_lt with h0 | hgt
+    · exfalso
+      have heq := raySinSq_eq_of_raySinSq_eq_zero y hm_nz witness_123_nonZero h0.symm
+      linarith
+    · exact hgt
+  exact ⟨hm_nz, hlt_28, hpos⟩
+
+/-! ### Subsection 11C: Constructive Pointwise-Continuous Non-Quadratic Ray Counterexamples & Exact `Θ(1/k)` Step-Drift Realization -/
+
+/-- **Failure of `HasSublinearChainDriftFrom` for the Pointwise-Continuous Ray Function
+`dedekindRayCut` (`not_hasSublinearChainDriftFrom_dedekindRayCut`)**:
+`dedekindRayCut` is scale-invariant and everywhere pointwise ray-continuous on `ℚ(i)³ \ {0}`,
+satisfies `dedekindRayCut tomo_e1 = 0` and `dedekindRayCut pellHiRay = 1`, and fails
+`HasSublinearChainDriftFrom dedekindRayCut tomo_e1 pellHiRay`. -/
+theorem not_hasSublinearChainDriftFrom_dedekindRayCut :
+    IsPointwiseRayContinuous dedekindRayCut ∧
+    dedekindRayCut tomo_e1 = 0 ∧
+    dedekindRayCut pellHiRay = 1 ∧
+    ¬ HasSublinearChainDriftFrom dedekindRayCut tomo_e1 pellHiRay := by
+  have he1 : dedekindRayCut tomo_e1 = 0 := by
+    norm_num [dedekindRayCut, tomo_e1, gv, normSqVec, GaussRat.normSq]
+  have hpell : dedekindRayCut pellHiRay = 1 := by
+    norm_num [dedekindRayCut, pellHiRay, normSqVec, GaussRat.normSq]
+  refine ⟨dedekindRayCut_isPointwiseRayContinuous, he1, hpell, ?_⟩
+  intro hsub
+  have h0 := zero_of_hasSublinearChainDriftFrom hsub
+  linarith
+
+/-- **Constructive Nonnegative Smooth Quartic Ray Profile (`quarticRayProfile`)**:
+`quarticRayProfile u := (raySinSq u tomo_e1) ^ 2`. On `ℚ(i)³ \ {0}`, `quarticRayProfile` is
+nonnegative (`0 ≤ quarticRayProfile u ≤ 1`), scale-invariant on rays, and everywhere uniformly
+(hence pointwise) ray-continuous, yet is non-quadratic and exhibits `Θ(1/k)` step drift. -/
+def quarticRayProfile (u : GVec) : ℚ :=
+  (raySinSq u tomo_e1) ^ 2
+
+/-- Bounds and axis values of `quarticRayProfile`: `0 ≤ quarticRayProfile u ≤ 1` for all nonzero
+`u ∈ ℚ(i)³ \ {0}`, with `quarticRayProfile tomo_e1 = 0` and `quarticRayProfile tomo_e2 = 1`. -/
+theorem quarticRayProfile_bounds :
+    quarticRayProfile tomo_e1 = 0 ∧
+    quarticRayProfile tomo_e2 = 1 ∧
+    ∀ u : GVec, u.NonZero → 0 ≤ quarticRayProfile u ∧ quarticRayProfile u ≤ 1 := by
+  refine ⟨?_, ?_, ?_⟩
+  · norm_num [quarticRayProfile, tomo_e1, gv, raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
+  · norm_num [quarticRayProfile, tomo_e1, tomo_e2, gv, raySinSq, normSqVec, GVec.inner,
+      GaussRat.normSq]
+  · intro u hu
+    unfold quarticRayProfile
+    have h0 : 0 ≤ raySinSq u tomo_e1 := raySinSq_nonneg hu tomo_e1_nonZero
+    have h1 : raySinSq u tomo_e1 ≤ 1 := raySinSq_le_one u tomo_e1
+    exact ⟨sq_nonneg _, by nlinarith⟩
+
+/-- Lipschitz bound reducing differences of `quarticRayProfile` to differences of the Born rank-1
+projector Rayleigh quotient `quadRay (rayProj tomo_e1)`:
+`|quarticRayProfile u - quarticRayProfile v| ≤ 2 * |quadRay (rayProj tomo_e1) u - quadRay (rayProj tomo_e1) v|`. -/
+theorem abs_quarticRayProfile_sub_le_two_mul_abs_quadRay_sub {u v : GVec}
+    (hu : u.NonZero) (hv : v.NonZero) :
+    |quarticRayProfile u - quarticRayProfile v| ≤
+      2 * |quadRay (rayProj tomo_e1) u - quadRay (rayProj tomo_e1) v| := by
+  unfold quarticRayProfile
+  have hu0 : 0 ≤ raySinSq u tomo_e1 := raySinSq_nonneg hu tomo_e1_nonZero
+  have hu1 : raySinSq u tomo_e1 ≤ 1 := raySinSq_le_one u tomo_e1
+  have hv0 : 0 ≤ raySinSq v tomo_e1 := raySinSq_nonneg hv tomo_e1_nonZero
+  have hv1 : raySinSq v tomo_e1 ≤ 1 := raySinSq_le_one v tomo_e1
+  have hsum_nn : 0 ≤ raySinSq u tomo_e1 + raySinSq v tomo_e1 := add_nonneg hu0 hv0
+  have hsum_le : raySinSq u tomo_e1 + raySinSq v tomo_e1 ≤ 2 := by linarith
+  have hfac : (raySinSq u tomo_e1) ^ 2 - (raySinSq v tomo_e1) ^ 2 =
+      (raySinSq u tomo_e1 + raySinSq v tomo_e1) * (raySinSq u tomo_e1 - raySinSq v tomo_e1) := by
+    ring
+  have hq_diff : raySinSq u tomo_e1 - raySinSq v tomo_e1 =
+      -(quadRay (rayProj tomo_e1) u - quadRay (rayProj tomo_e1) v) := by
+    rw [quadRay_rayProj_eq_one_sub_raySinSq u tomo_e1,
+        quadRay_rayProj_eq_one_sub_raySinSq v tomo_e1]
+    ring
+  rw [hfac, abs_mul, abs_of_nonneg hsum_nn, hq_diff, abs_neg]
+  exact mul_le_mul_of_nonneg_right hsum_le (abs_nonneg _)
+
+/-- **Uniform & Pointwise Ray Continuity of `quarticRayProfile`
+(`quarticRayProfile_isUniformlyRayContinuous` & `quarticRayProfile_isPointwiseRayContinuous`)**:
+`quarticRayProfile` is uniformly ray-continuous (and therefore everywhere pointwise ray-continuous)
+on `ℚ(i)³ \ {0}`. -/
+theorem quarticRayProfile_isUniformlyRayContinuous :
+    IsUniformlyRayContinuous quarticRayProfile := by
+  intro ε hε
+  have hε2 : 0 < ε / 2 := half_pos hε
+  obtain ⟨δ, hδ, hb⟩ := isUniformlyRayContinuous_quadRay (rayProj tomo_e1) (ε / 2) hε2
+  refine ⟨δ, hδ, ?_⟩
+  intro u v hu hv hsin
+  have hlt := hb u v hu hv hsin
+  have hlip := abs_quarticRayProfile_sub_le_two_mul_abs_quadRay_sub hu hv
+  linarith
+
+theorem quarticRayProfile_isPointwiseRayContinuous :
+    IsPointwiseRayContinuous quarticRayProfile :=
+  isPointwiseRayContinuous_of_isUniformlyRayContinuous quarticRayProfile_isUniformlyRayContinuous
+
+/-- **Meridian–Kelvin Frame Defect & Non-Quadraticity of `quarticRayProfile`
+(`quarticRayProfile_meridian_defect_ne_zero` & `quarticRayProfile_not_quadratic`)**:
+on the coordinate-axis meridian `(tomo_e1, tomo_e2)` with bisectors `tomo_e12 = (1, 1, 0)` and
+`bisector_12_neg = (1, -1, 0)`,
+`quarticRayProfile tomo_e12 + quarticRayProfile bisector_12_neg = 1 / 2 ≠ 1 = quarticRayProfile tomo_e1 + quarticRayProfile tomo_e2`.
+Consequently, `quarticRayProfile` is neither a frame function nor the Rayleigh quotient of any
+Hermitian form `ρ : HermForm3`, and fails `HasSublinearChainDriftFrom quarticRayProfile tomo_e1 tomo_e2`. -/
+theorem quarticRayProfile_meridian_defect_ne_zero :
+    quarticRayProfile tomo_e12 + quarticRayProfile bisector_12_neg = 1 / 2 ∧
+    quarticRayProfile tomo_e1 + quarticRayProfile tomo_e2 = 1 ∧
+    ¬ IsFrameFunction quarticRayProfile := by
+  have hbis : quarticRayProfile tomo_e12 + quarticRayProfile bisector_12_neg = 1 / 2 := by
+    norm_num [quarticRayProfile, tomo_e1, tomo_e12, bisector_12_neg, gv,
+      raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
+  have haxes : quarticRayProfile tomo_e1 + quarticRayProfile tomo_e2 = 1 := by
+    norm_num [quarticRayProfile, tomo_e1, tomo_e2, gv,
+      raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
+  refine ⟨hbis, haxes, ?_⟩
+  intro hf
+  have hfr_axes : IsFrame tomo_e1 tomo_e2 tomo_e3 :=
+    ⟨tomo_e1_nonZero, tomo_e2_nonZero, tomo_e3_nonZero,
+     by apply GaussRat.ext <;> simp [GVec.inner, tomo_e1, tomo_e2, gv],
+     by apply GaussRat.ext <;> simp [GVec.inner, tomo_e1, tomo_e3, gv],
+     by apply GaussRat.ext <;> simp [GVec.inner, tomo_e2, tomo_e3, gv]⟩
+  have hfr_bis : IsFrame tomo_e12 bisector_12_neg tomo_e3 := by
+    obtain ⟨he12, he3, hbis_nz, h12_3, h12_bis, h3_bis⟩ := isFrame_tomo_e12_e3_bisector
+    exact ⟨he12, hbis_nz, he3, h12_bis, h12_3, inner_eq_zero_symm h3_bis⟩
+  have hsum1 := hf tomo_e1 tomo_e2 tomo_e3 hfr_axes
+  have hsum2 := hf tomo_e12 bisector_12_neg tomo_e3 hfr_bis
+  linarith
+
+theorem quarticRayProfile_not_quadratic :
+    (¬ ∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → quarticRayProfile v = quadRay ρ v) ∧
+    ¬ HasSublinearChainDriftFrom quarticRayProfile tomo_e1 tomo_e2 := by
+  refine ⟨?_, ?_⟩
+  · rintro ⟨ρ, hρ⟩
+    have he1 := hρ tomo_e1 tomo_e1_nonZero
+    have he2 := hρ tomo_e2 tomo_e2_nonZero
+    have he12 := hρ tomo_e12 (nonZero_of_x (by simp [tomo_e12, gv]))
+    have hbis := hρ bisector_12_neg (nonZero_of_x (by simp [bisector_12_neg]))
+    have hfr_axes : IsFrame tomo_e1 tomo_e2 tomo_e3 :=
+      ⟨tomo_e1_nonZero, tomo_e2_nonZero, tomo_e3_nonZero,
+       by apply GaussRat.ext <;> simp [GVec.inner, tomo_e1, tomo_e2, gv],
+       by apply GaussRat.ext <;> simp [GVec.inner, tomo_e1, tomo_e3, gv],
+       by apply GaussRat.ext <;> simp [GVec.inner, tomo_e2, tomo_e3, gv]⟩
+    have hfr_bis : IsFrame tomo_e12 bisector_12_neg tomo_e3 := by
+      obtain ⟨he12_nz, he3_nz, hbis_nz, h12_3, h12_bis, h3_bis⟩ := isFrame_tomo_e12_e3_bisector
+      exact ⟨he12_nz, hbis_nz, he3_nz, h12_bis, h12_3, inner_eq_zero_symm h3_bis⟩
+    have hq_axes := quadRay_frame_sum ρ hfr_axes
+    have hq_bis := quadRay_frame_sum ρ hfr_bis
+    have hdef := quarticRayProfile_meridian_defect_ne_zero
+    linarith [hdef.1, hdef.2.1]
+  · intro hsub
+    have h0 := zero_of_hasSublinearChainDriftFrom hsub
+    have h1 := quarticRayProfile_bounds.2.1
+    linarith
+
+/-- **Explicit Rational Meridian Grid Chain (`meridianGridRay`)**:
+for any grid resolution `k ≥ 1` and step index `0 ≤ j ≤ k`,
+`meridianGridRay k j = (k - j, j, 0) ∈ ℚ(i)³ \ {0}` interpolates in `k` rational steps from
+`meridianGridRay k 0 = (k, 0, 0) ~ tomo_e1` to `meridianGridRay k k = (0, k, 0) ~ tomo_e2`. -/
+def meridianGridRay (k j : ℕ) : GVec :=
+  ⟨⟨(k : ℚ) - (j : ℚ), 0⟩, ⟨(j : ℚ), 0⟩, 0⟩
+
+/-- Squared Euclidean norm lower bound `(k : ℚ) ^ 2 / 2 ≤ normSqVec (meridianGridRay k j)` and
+nonzeroness `(meridianGridRay k j).NonZero` for all `k ≥ 1` and `j : ℕ`. -/
+theorem meridianGridRay_normSqVec_ge_half_sq {k : ℕ} (hk : 1 ≤ k) (j : ℕ) :
+    normSqVec (meridianGridRay k j) = ((k : ℚ) - (j : ℚ)) ^ 2 + (j : ℚ) ^ 2 ∧
+    (k : ℚ) ^ 2 / 2 ≤ normSqVec (meridianGridRay k j) ∧
+    (meridianGridRay k j).NonZero := by
+  have hnorm : normSqVec (meridianGridRay k j) = ((k : ℚ) - (j : ℚ)) ^ 2 + (j : ℚ) ^ 2 := by
+    simp [meridianGridRay, normSqVec, GaussRat.normSq]
+  have hge : (k : ℚ) ^ 2 / 2 ≤ normSqVec (meridianGridRay k j) := by
+    rw [hnorm]
+    have hsq : 0 ≤ ((k : ℚ) - 2 * (j : ℚ)) ^ 2 := sq_nonneg _
+    linarith
+  have hk_pos : (0 : ℚ) < (k : ℚ) := Nat.cast_pos.mpr (by omega)
+  have hpos : 0 < normSqVec (meridianGridRay k j) :=
+    lt_of_lt_of_le (div_pos (pow_pos hk_pos 2) two_pos) hge
+  exact ⟨hnorm, hge, nonZero_of_normSqVec_pos hpos⟩
+
+/-- **Angular Step Bound Along `meridianGridRay` (`meridianGridRay_step_raySinSq_le_four_div_sq`)**:
+for every `k ≥ 1` and every `j : ℕ`, the projective ray distance between consecutive meridian grid
+rays satisfies the exact identity
+`raySinSq (meridianGridRay k (j + 1)) (meridianGridRay k j) = (k : ℚ) ^ 2 / (normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j))`
+and the upper bound
+`raySinSq (meridianGridRay k (j + 1)) (meridianGridRay k j) ≤ 4 / (k : ℚ) ^ 2`. -/
+theorem meridianGridRay_step_raySinSq_le_four_div_sq {k : ℕ} (hk : 1 ≤ k) (j : ℕ) :
+    raySinSq (meridianGridRay k (j + 1)) (meridianGridRay k j) =
+      (k : ℚ) ^ 2 /
+        (normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j)) ∧
+    raySinSq (meridianGridRay k (j + 1)) (meridianGridRay k j) ≤ 4 / (k : ℚ) ^ 2 := by
+  obtain ⟨hn1, hge1, hnz1⟩ := meridianGridRay_normSqVec_ge_half_sq hk (j + 1)
+  obtain ⟨hn0, hge0, hnz0⟩ := meridianGridRay_normSqVec_ge_half_sq hk j
+  have hk_pos : (0 : ℚ) < (k : ℚ) := Nat.cast_pos.mpr (by omega)
+  have hk2_pos : (0 : ℚ) < (k : ℚ) ^ 2 := pow_pos hk_pos 2
+  have hn1_ne : normSqVec (meridianGridRay k (j + 1)) ≠ 0 := normSqVec_ne_zero_of_nonZero hnz1
+  have hn0_ne : normSqVec (meridianGridRay k j) ≠ 0 := normSqVec_ne_zero_of_nonZero hnz0
+  have hid : raySinSq (meridianGridRay k (j + 1)) (meridianGridRay k j) =
+      (k : ℚ) ^ 2 /
+        (normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j)) := by
+    unfold raySinSq
+    have hinner : (GVec.inner (meridianGridRay k (j + 1)) (meridianGridRay k j)).normSq =
+        (((k : ℚ) - ((j : ℚ) + 1)) * ((k : ℚ) - (j : ℚ)) + ((j : ℚ) + 1) * (j : ℚ)) ^ 2 := by
+      simp [meridianGridRay, GVec.inner, GaussRat.normSq]
+    rw [hinner]
+    field_simp [hn1_ne, hn0_ne]
+    rw [hn1, hn0]
+    push_cast
+    ring
+  have hprod_ge : (k : ℚ) ^ 4 / 4 ≤
+      normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j) := by
+    have hmul := mul_le_mul hge1 hge0 (by positivity) (le_trans (by positivity) hge1)
+    linarith
+  have hle : (k : ℚ) ^ 2 /
+      (normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j)) ≤
+      4 / (k : ℚ) ^ 2 := by
+    have h1 : (k : ℚ) ^ 2 /
+        (normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j)) ≤
+        (k : ℚ) ^ 2 / ((k : ℚ) ^ 4 / 4) :=
+      div_le_div_of_nonneg_left hk2_pos.le (by positivity) hprod_ge
+    have h2 : (k : ℚ) ^ 2 / ((k : ℚ) ^ 4 / 4) = 4 / (k : ℚ) ^ 2 := by
+      field_simp
+    linarith
+  exact ⟨hid, by rw [hid]; exact hle⟩
+
+/-- **Exact `Θ(1/k)` Step-Drift Realization of `quarticRayProfile` Along `meridianGridRay`
+(`meridianGridRay_quarticRayProfile_step_drift_le`)**:
+for every grid resolution `k ≥ 1`:
+1. `quarticRayProfile (meridianGridRay k 0) = 0` and `quarticRayProfile (meridianGridRay k k) = 1`,
+   so the `k`-step chain maintains the constant terminal gap
+   `quarticRayProfile (meridianGridRay k k) - quarticRayProfile (meridianGridRay k 0) = 1`;
+2. For every step `0 ≤ j < k`, both `raySinSq (meridianGridRay k ·) tomo_e1` and `quarticRayProfile`
+   increase monotonically with `Θ(1/k)` step bounds:
+   `0 ≤ raySinSq (meridianGridRay k (j + 1)) tomo_e1 - raySinSq (meridianGridRay k j) tomo_e1 ≤ 8 / (k : ℚ)`
+   and
+   `0 ≤ quarticRayProfile (meridianGridRay k (j + 1)) - quarticRayProfile (meridianGridRay k j) ≤ 16 / (k : ℚ)`;
+3. Conversely, no uniform step bound `ε < 1 / (k : ℚ)` can hold across all `j < k` (so the maximum
+   per-step drift across the `k` steps is tightly sandwiched in `[1 / k, 16 / k] = Θ(1/k)`). -/
+theorem meridianGridRay_quarticRayProfile_step_drift_le {k : ℕ} (hk : 1 ≤ k) :
+    quarticRayProfile (meridianGridRay k 0) = 0 ∧
+    quarticRayProfile (meridianGridRay k k) = 1 ∧
+    quarticRayProfile (meridianGridRay k k) - quarticRayProfile (meridianGridRay k 0) = 1 ∧
+    (∀ j : ℕ, j < k →
+      0 ≤ raySinSq (meridianGridRay k (j + 1)) tomo_e1 -
+            raySinSq (meridianGridRay k j) tomo_e1 ∧
+      raySinSq (meridianGridRay k (j + 1)) tomo_e1 -
+        raySinSq (meridianGridRay k j) tomo_e1 ≤ 8 / (k : ℚ) ∧
+      0 ≤ quarticRayProfile (meridianGridRay k (j + 1)) -
+            quarticRayProfile (meridianGridRay k j) ∧
+      quarticRayProfile (meridianGridRay k (j + 1)) -
+        quarticRayProfile (meridianGridRay k j) ≤ 16 / (k : ℚ)) ∧
+    (∀ ε : ℚ,
+      (∀ j : ℕ, |quarticRayProfile (meridianGridRay k (j + 1)) -
+        quarticRayProfile (meridianGridRay k j)| ≤ ε) →
+      1 / (k : ℚ) ≤ ε) := by
+  have hk_pos : (0 : ℚ) < (k : ℚ) := Nat.cast_pos.mpr (by omega)
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_pos
+  have hsin_formula : ∀ m : ℕ,
+      raySinSq (meridianGridRay k m) tomo_e1 =
+        (m : ℚ) ^ 2 / normSqVec (meridianGridRay k m) := by
+    intro m
+    obtain ⟨hnm, _, hnzm⟩ := meridianGridRay_normSqVec_ge_half_sq hk m
+    have hnm_ne : normSqVec (meridianGridRay k m) ≠ 0 := normSqVec_ne_zero_of_nonZero hnzm
+    unfold raySinSq
+    have hin : (GVec.inner (meridianGridRay k m) tomo_e1).normSq = ((k : ℚ) - (m : ℚ)) ^ 2 := by
+      simp [meridianGridRay, tomo_e1, gv, GVec.inner, GaussRat.normSq]
+    have he1 : normSqVec tomo_e1 = 1 := by
+      simp [tomo_e1, gv, normSqVec, GaussRat.normSq]
+    rw [hin, he1, mul_one]
+    field_simp [hnm_ne]
+    rw [hnm]
+    ring
+  have hq0 : quarticRayProfile (meridianGridRay k 0) = 0 := by
+    unfold quarticRayProfile
+    rw [hsin_formula 0]
+    simp
+  have hqk : quarticRayProfile (meridianGridRay k k) = 1 := by
+    unfold quarticRayProfile
+    rw [hsin_formula k, (meridianGridRay_normSqVec_ge_half_sq hk k).1]
+    simp only [sub_self, zero_pow (by decide : 2 ≠ 0), zero_add]
+    rw [div_self (pow_ne_zero 2 hk_ne), one_pow]
+  refine ⟨hq0, hqk, by rw [hqk, hq0, sub_zero], ?_, ?_⟩
+  · intro j hj
+    obtain ⟨hn1, hge1, hnz1⟩ := meridianGridRay_normSqVec_ge_half_sq hk (j + 1)
+    obtain ⟨hn0, hge0, hnz0⟩ := meridianGridRay_normSqVec_ge_half_sq hk j
+    have hn1_ne : normSqVec (meridianGridRay k (j + 1)) ≠ 0 := normSqVec_ne_zero_of_nonZero hnz1
+    have hn0_ne : normSqVec (meridianGridRay k j) ≠ 0 := normSqVec_ne_zero_of_nonZero hnz0
+    have hdiff_eq :
+        raySinSq (meridianGridRay k (j + 1)) tomo_e1 -
+          raySinSq (meridianGridRay k j) tomo_e1 =
+        ((k : ℚ) * (((j : ℚ) + 1) * ((k : ℚ) - (j : ℚ)) +
+          (j : ℚ) * ((k : ℚ) - (j : ℚ) - 1))) /
+        (normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j)) := by
+      rw [hsin_formula (j + 1), hsin_formula j, Nat.cast_add, Nat.cast_one]
+      field_simp [hn1_ne, hn0_ne]
+      rw [hn1, hn0]
+      push_cast
+      ring
+    have hj_nn : (0 : ℚ) ≤ (j : ℚ) := Nat.cast_nonneg j
+    have hj1_le_k : (j : ℚ) + 1 ≤ (k : ℚ) := by exact_mod_cast (show j + 1 ≤ k by omega)
+    have hkj1_nn : (0 : ℚ) ≤ (k : ℚ) - (j : ℚ) - 1 := by linarith
+    have hkj_nn : (0 : ℚ) ≤ (k : ℚ) - (j : ℚ) := by linarith
+    have hkj_le_k : (k : ℚ) - (j : ℚ) ≤ (k : ℚ) := by linarith
+    have hkj1_le_k : (k : ℚ) - (j : ℚ) - 1 ≤ (k : ℚ) := by linarith
+    have hj_le_k : (j : ℚ) ≤ (k : ℚ) := by linarith
+    have hterm1_nn : 0 ≤ ((j : ℚ) + 1) * ((k : ℚ) - (j : ℚ)) :=
+      mul_nonneg (by linarith) hkj_nn
+    have hterm2_nn : 0 ≤ (j : ℚ) * ((k : ℚ) - (j : ℚ) - 1) :=
+      mul_nonneg hj_nn hkj1_nn
+    have hterm1_le : ((j : ℚ) + 1) * ((k : ℚ) - (j : ℚ)) ≤ (k : ℚ) ^ 2 := by
+      calc ((j : ℚ) + 1) * ((k : ℚ) - (j : ℚ)) ≤ (k : ℚ) * (k : ℚ) :=
+        mul_le_mul hj1_le_k hkj_le_k hkj_nn hk_pos.le
+        _ = (k : ℚ) ^ 2 := by ring
+    have hterm2_le : (j : ℚ) * ((k : ℚ) - (j : ℚ) - 1) ≤ (k : ℚ) ^ 2 := by
+      calc (j : ℚ) * ((k : ℚ) - (j : ℚ) - 1) ≤ (k : ℚ) * (k : ℚ) :=
+        mul_le_mul hj_le_k hkj1_le_k hkj1_nn hk_pos.le
+        _ = (k : ℚ) ^ 2 := by ring
+    have hnum_nn :
+        0 ≤ (k : ℚ) * (((j : ℚ) + 1) * ((k : ℚ) - (j : ℚ)) +
+          (j : ℚ) * ((k : ℚ) - (j : ℚ) - 1)) :=
+      mul_nonneg hk_pos.le (add_nonneg hterm1_nn hterm2_nn)
+    have hnum_le :
+        (k : ℚ) * (((j : ℚ) + 1) * ((k : ℚ) - (j : ℚ)) +
+          (j : ℚ) * ((k : ℚ) - (j : ℚ) - 1)) ≤ 2 * (k : ℚ) ^ 3 := by
+      have hsum_le :
+          ((j : ℚ) + 1) * ((k : ℚ) - (j : ℚ)) + (j : ℚ) * ((k : ℚ) - (j : ℚ) - 1) ≤
+            2 * (k : ℚ) ^ 2 := by linarith
+      calc (k : ℚ) * (((j : ℚ) + 1) * ((k : ℚ) - (j : ℚ)) +
+            (j : ℚ) * ((k : ℚ) - (j : ℚ) - 1))
+          ≤ (k : ℚ) * (2 * (k : ℚ) ^ 2) := mul_le_mul_of_nonneg_left hsum_le hk_pos.le
+        _ = 2 * (k : ℚ) ^ 3 := by ring
+    have hprod_ge : (k : ℚ) ^ 4 / 4 ≤
+        normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j) := by
+      have hmul := mul_le_mul hge1 hge0 (by positivity) (le_trans (by positivity) hge1)
+      linarith
+    have hden_pos :
+        0 < normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j) :=
+      lt_of_lt_of_le (by positivity) hprod_ge
+    have hsin_diff_nn :
+        0 ≤ raySinSq (meridianGridRay k (j + 1)) tomo_e1 -
+              raySinSq (meridianGridRay k j) tomo_e1 := by
+      rw [hdiff_eq]
+      exact div_nonneg hnum_nn hden_pos.le
+    have hsin_diff_le :
+        raySinSq (meridianGridRay k (j + 1)) tomo_e1 -
+          raySinSq (meridianGridRay k j) tomo_e1 ≤ 8 / (k : ℚ) := by
+      rw [hdiff_eq]
+      calc ((k : ℚ) * (((j : ℚ) + 1) * ((k : ℚ) - (j : ℚ)) +
+              (j : ℚ) * ((k : ℚ) - (j : ℚ) - 1))) /
+            (normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j))
+          ≤ (2 * (k : ℚ) ^ 3) /
+            (normSqVec (meridianGridRay k (j + 1)) * normSqVec (meridianGridRay k j)) :=
+            div_le_div_of_nonneg_right hnum_le hden_pos.le
+        _ ≤ (2 * (k : ℚ) ^ 3) / ((k : ℚ) ^ 4 / 4) :=
+            div_le_div_of_nonneg_left (by positivity) (by positivity) hprod_ge
+        _ = 8 / (k : ℚ) := by
+            field_simp
+            ring
+    have ht1_nn : 0 ≤ raySinSq (meridianGridRay k (j + 1)) tomo_e1 :=
+      raySinSq_nonneg hnz1 tomo_e1_nonZero
+    have ht1_le : raySinSq (meridianGridRay k (j + 1)) tomo_e1 ≤ 1 :=
+      raySinSq_le_one _ tomo_e1
+    have ht0_nn : 0 ≤ raySinSq (meridianGridRay k j) tomo_e1 :=
+      raySinSq_nonneg hnz0 tomo_e1_nonZero
+    have ht0_le : raySinSq (meridianGridRay k j) tomo_e1 ≤ 1 :=
+      raySinSq_le_one _ tomo_e1
+    have hq_fac :
+        quarticRayProfile (meridianGridRay k (j + 1)) -
+          quarticRayProfile (meridianGridRay k j) =
+        (raySinSq (meridianGridRay k (j + 1)) tomo_e1 +
+          raySinSq (meridianGridRay k j) tomo_e1) *
+        (raySinSq (meridianGridRay k (j + 1)) tomo_e1 -
+          raySinSq (meridianGridRay k j) tomo_e1) := by
+      unfold quarticRayProfile
+      ring
+    have hq_diff_nn :
+        0 ≤ quarticRayProfile (meridianGridRay k (j + 1)) -
+              quarticRayProfile (meridianGridRay k j) := by
+      rw [hq_fac]
+      exact mul_nonneg (add_nonneg ht1_nn ht0_nn) hsin_diff_nn
+    have hq_diff_le :
+        quarticRayProfile (meridianGridRay k (j + 1)) -
+          quarticRayProfile (meridianGridRay k j) ≤ 16 / (k : ℚ) := by
+      rw [hq_fac]
+      calc (raySinSq (meridianGridRay k (j + 1)) tomo_e1 +
+              raySinSq (meridianGridRay k j) tomo_e1) *
+            (raySinSq (meridianGridRay k (j + 1)) tomo_e1 -
+              raySinSq (meridianGridRay k j) tomo_e1)
+          ≤ 2 * (8 / (k : ℚ)) :=
+            mul_le_mul (by linarith) hsin_diff_le hsin_diff_nn (by norm_num)
+        _ = 16 / (k : ℚ) := by ring
+    exact ⟨hsin_diff_nn, hsin_diff_le, hq_diff_nn, hq_diff_le⟩
+  · intro ε hstep
+    have hacc := chain_step_error_accumulates
+      (fun j => quarticRayProfile (meridianGridRay k j)) hstep k
+    rw [hqk, hq0, sub_zero, abs_one] at hacc
+    exact (div_le_iff₀' hk_pos).mpr hacc
+
+/-- **Master `TFQ-1057` Sublinear Chain-Drift & `Θ(1/k)` Counterexample Dichotomy
+(`tfq1057_sublinear_drift_and_counterexample_dichotomy`)**:
+synthesizes the complete resolution of the Section 11 `TFQ-1057` question:
+1. **Nonnegative Zero-Weight Residuals Vanish & Satisfy `HasSublinearChainDriftFrom`**:
+   every nonnegative zero-weight frame residual `g` on `ℚ(i)³ \ {0}` satisfies `g x = 0` and
+   `HasSublinearChainDriftFrom g v₀ x` for all nonzero `v₀, x` via 3-axis frame cancellation;
+2. **Multi-Axis Frame Cancellation vs. Geometric Collar Obstructions**:
+   bounded uncanceled chain drift (`HasBoundedUncanceledChainDriftFrom`) forces `g x = 0` and
+   `HasSublinearChainDriftFrom`, whereas fixed-anchor `δ`-collar steps are blocked from orthogonal
+   pairing around close anchors (`collar_probes_not_ortho_of_raySinSq_anchors_lt`) and trapped
+   within `< δ` of the 15 equators (`no_fixed_anchor_meridian_step_reaches_witness123` for `δ ≤ 1 / 28`);
+3. **Constructive Pointwise-Continuous Non-Quadratic `Θ(1/k)` Step-Drift Counterexample**:
+   on `ℚ(i)³ \ {0}`, `quarticRayProfile` is nonnegative, scale-invariant, everywhere uniformly and
+   pointwise ray-continuous, and non-quadratic (`¬ IsFrameFunction quarticRayProfile`), fails
+   `HasSublinearChainDriftFrom quarticRayProfile tomo_e1 tomo_e2`, and exhibits `Θ(1/k)` step drift
+   (sandwiched in `[1 / k, 16 / k]`) with constant terminal gap `1` along `meridianGridRay k`. -/
+theorem tfq1057_sublinear_drift_and_counterexample_dichotomy :
+    (∀ (g : GVec → ℚ), IsZeroWeightFrameFunction g →
+      (∀ v : GVec, v.NonZero → 0 ≤ g v) →
+      ∀ v₀ x : GVec, v₀.NonZero → x.NonZero →
+        g x = 0 ∧ HasSublinearChainDriftFrom g v₀ x) ∧
+    ((∀ (g : GVec → ℚ) (R₀ : ℚ) (v₀ x : GVec),
+        HasBoundedUncanceledChainDriftFrom g R₀ v₀ x →
+        g x = 0 ∧ HasSublinearChainDriftFrom g v₀ x) ∧
+     (∀ a ∈ fifteenAnchorBisectorList, ∀ y : GVec, y.NonZero → GVec.inner a y = 0 →
+        ∀ δ : ℚ, δ ≤ 1 / 28 → raySinSq (GVec.add a y) a < δ →
+          0 < raySinSq (anchorMeridianOrtho a y) witness_123)) ∧
+    (IsPointwiseRayContinuous quarticRayProfile ∧
+     (¬ IsFrameFunction quarticRayProfile) ∧
+     (¬ ∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → quarticRayProfile v = quadRay ρ v) ∧
+     (¬ HasSublinearChainDriftFrom quarticRayProfile tomo_e1 tomo_e2) ∧
+     (∀ k : ℕ, 1 ≤ k →
+        quarticRayProfile (meridianGridRay k k) - quarticRayProfile (meridianGridRay k 0) = 1 ∧
+        (∀ j : ℕ, j < k →
+          0 ≤ quarticRayProfile (meridianGridRay k (j + 1)) -
+                quarticRayProfile (meridianGridRay k j) ∧
+          quarticRayProfile (meridianGridRay k (j + 1)) -
+            quarticRayProfile (meridianGridRay k j) ≤ 16 / (k : ℚ)) ∧
+        (∀ ε : ℚ,
+          (∀ j : ℕ, |quarticRayProfile (meridianGridRay k (j + 1)) -
+            quarticRayProfile (meridianGridRay k j)| ≤ ε) →
+          1 / (k : ℚ) ≤ ε))) := by
+  refine ⟨fun _ hg hnn _ _ hv₀ hx =>
+    hasSublinearChainDriftFrom_of_nonneg_zeroWeightFrameFunction hg hnn hv₀ hx,
+    ⟨fun _ _ _ _ hb => zero_and_hasSublinearChainDriftFrom_of_boundedUncanceledChainDrift hb,
+     fun _ ha _ hy hay _ hδ hcol =>
+       (no_fixed_anchor_meridian_step_reaches_witness123 ha hy hay hδ hcol).2.2⟩,
+    ⟨quarticRayProfile_isPointwiseRayContinuous,
+     quarticRayProfile_meridian_defect_ne_zero.2.2,
+     quarticRayProfile_not_quadratic.1,
+     quarticRayProfile_not_quadratic.2,
+     fun _ hk => by
+       have hd := meridianGridRay_quarticRayProfile_step_drift_le hk
+       exact ⟨hd.2.2.1, fun j hj => ⟨(hd.2.2.2.1 j hj).2.2.1, (hd.2.2.2.1 j hj).2.2.2⟩,
+         hd.2.2.2.2⟩⟩⟩
+
 end BornFinite.GaussianFiniteModel
 
 #print axioms BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario
@@ -5905,3 +6687,26 @@ end BornFinite.GaussianFiniteModel
 #print axioms BornFinite.GaussianFiniteModel.zero_of_hasSublinearChainDriftFromAnchors
 #print axioms BornFinite.GaussianFiniteModel.linearDriftChain_constant_gap_of_inv_k_step
 #print axioms BornFinite.GaussianFiniteModel.sublinear_vs_inv_k_chain_drift_dichotomy
+#print axioms BornFinite.GaussianFiniteModel.zero_of_nonneg_zeroWeightFrameFunction
+#print axioms BornFinite.GaussianFiniteModel.zero_of_nonpos_zeroWeightFrameFunction
+#print axioms BornFinite.GaussianFiniteModel.hasSublinearChainDriftFrom_of_zero_endpoints
+#print axioms BornFinite.GaussianFiniteModel.hasSublinearChainDriftFrom_of_nonneg_zeroWeightFrameFunction
+#print axioms BornFinite.GaussianFiniteModel.quadRay_eq_of_one_sided_residual_nonneg
+#print axioms BornFinite.GaussianFiniteModel.zero_on_fifteen_plane_of_nonneg_on_plane
+#print axioms BornFinite.GaussianFiniteModel.two_step_planar_canceled_meridian_drift_eq_zero
+#print axioms BornFinite.GaussianFiniteModel.three_step_frame_canceled_meridian_drift_eq_zero
+#print axioms BornFinite.GaussianFiniteModel.zero_and_hasSublinearChainDriftFrom_of_boundedUncanceledChainDrift
+#print axioms BornFinite.GaussianFiniteModel.collar_probes_not_ortho_of_raySinSq_anchors_lt
+#print axioms BornFinite.GaussianFiniteModel.witness123_raySinSq_fifteen_equators_ge_one_twentyeighth
+#print axioms BornFinite.GaussianFiniteModel.no_fixed_anchor_meridian_step_reaches_witness123
+#print axioms BornFinite.GaussianFiniteModel.not_hasSublinearChainDriftFrom_dedekindRayCut
+#print axioms BornFinite.GaussianFiniteModel.quarticRayProfile_bounds
+#print axioms BornFinite.GaussianFiniteModel.abs_quarticRayProfile_sub_le_two_mul_abs_quadRay_sub
+#print axioms BornFinite.GaussianFiniteModel.quarticRayProfile_isUniformlyRayContinuous
+#print axioms BornFinite.GaussianFiniteModel.quarticRayProfile_isPointwiseRayContinuous
+#print axioms BornFinite.GaussianFiniteModel.quarticRayProfile_meridian_defect_ne_zero
+#print axioms BornFinite.GaussianFiniteModel.quarticRayProfile_not_quadratic
+#print axioms BornFinite.GaussianFiniteModel.meridianGridRay_normSqVec_ge_half_sq
+#print axioms BornFinite.GaussianFiniteModel.meridianGridRay_step_raySinSq_le_four_div_sq
+#print axioms BornFinite.GaussianFiniteModel.meridianGridRay_quarticRayProfile_step_drift_le
+#print axioms BornFinite.GaussianFiniteModel.tfq1057_sublinear_drift_and_counterexample_dichotomy

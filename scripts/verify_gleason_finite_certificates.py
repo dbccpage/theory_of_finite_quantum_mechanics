@@ -1386,6 +1386,20 @@ def linear_drift_chain(eps: Fraction, k: int) -> Fraction:
     return Fraction(k) * eps
 
 
+def quartic_ray_profile(u: GVec) -> Fraction:
+    """Constructive nonnegative scale-invariant quartic ray function `(ray_sin_sq(u, TOMO_E1))^2`,
+    mirroring `quarticRayProfile` in `BornGaussianFiniteModel.lean`."""
+    s = ray_sin_sq(u, TOMO_E1)
+    return s * s
+
+
+def meridian_grid_ray(k: int, j: int) -> GVec:
+    """Explicit rational meridian grid ray `(k - j, j, 0) in Q(i)^3`,
+    mirroring `meridianGridRay` in `BornGaussianFiniteModel.lean`."""
+    return GVec.real(k - j, j, 0)
+
+
+
 def verify_tfq_1057_section10_chain_step_scaling_and_triangle() -> dict[str, object]:
     """Verify Section 10 (`TFQ-1057` Tests 1 & 2) certificates in exact rational arithmetic:
     10A (Test 1):
@@ -1638,6 +1652,300 @@ def verify_tfq_1057_section10_chain_step_scaling_and_triangle() -> dict[str, obj
             "status": "PASS",
         },
     }
+
+
+def verify_tfq_1057_section11_frame_cancellation_and_inv_k_counterexample() -> dict[str, object]:
+    r"""Verify Section 11 (`TFQ-1057` Sublinear Chain Drift, Multi-Axis Frame Cancellation &
+    `Theta(1/k)` Counterexample Dichotomy) certificates in exact rational arithmetic:
+    11A:
+      - Unconditional 3-axis single-frame cancellation (`zero_of_nonneg_zeroWeightFrameFunction` &
+        `zero_of_nonpos_zeroWeightFrameFunction`): every zero-weight residual `g` vanishes on any
+        ray `x` where `g >= 0` (or `g <= 0`) on a completed 3-frame `(x, u, v)`, whereas every
+        non-vanishing zero-weight residual (`s3`, `s3_lead_x`, `s3_lead_all`, `sp_7`, `sp_11`)
+        must change sign across its frame completion whenever `g(x) != 0`,
+      - Planar 2-axis cancellation on each of the 15 symmetry planes `b^perp` (`zero_on_fifteen_plane_of_nonneg_on_plane`),
+    11B:
+      - Exact 2-step planar meridian drift cancellation (`two_step_planar_canceled_meridian_drift_eq_zero`)
+        and 3-step orthogonal-frame meridian drift cancellation (`three_step_frame_canceled_meridian_drift_eq_zero`),
+      - Collar-probe orthogonality separation obstruction (`collar_probes_not_ortho_of_raySinSq_anchors_lt`):
+        no two collar probes `p1 in B_delta(a1)` and `p2 in B_delta(a2)` can be orthogonal when
+        `3 * delta + 2 * ray_sin_sq(a1, a2) <= 1` (in particular around the same anchor for `delta <= 1/3`),
+      - Equatorial collar trapping at `witness_123 = (1, 2, 3)` (`witness123_raySinSq_fifteen_equators_ge_one_twentyeighth` &
+        `no_fixed_anchor_meridian_step_reaches_witness123`): `ray_sin_sq(witness_123, y) >= 1/28` for every
+        equatorial ray `y in a^perp \ {0}` across all 15 anchor/bisector rays `a in T_15` (tight at `1/28`
+        on `bisector_13_neg^perp`), so for `delta <= 1/28` no fixed-anchor meridian-Kelvin step around
+        any `a in T_15` can ever reach `witness_123`,
+    11C:
+      - `dedekind_ray_cut` pointwise continuity vs. failure of `HasSublinearChainDriftFrom(TOMO_E1, (0, 1, 0))`,
+      - `quartic_ray_profile(u) = (ray_sin_sq(u, TOMO_E1))^2`: `[0, 1]` bounds, scale invariance,
+        2-Lipschitz bound in `quad_ray(ray_proj(TOMO_E1), u)`, meridian-Kelvin defect `-1/2 != 0`,
+        and exact `Theta(1/k)` step-drift realization along `meridian_grid_ray(k, j) = (k - j, j, 0)`
+        for `k in {1, 2, 5, 10, 20, 50}`.
+    """
+    residual_funcs: dict[str, Callable[[GVec], Fraction]] = {
+        "s3": s3,
+        "s3_lead_x": s3_lead_x,
+        "s3_lead_all": s3_lead_all,
+        "sp_7": lambda u: sp(7, u),
+        "sp_11": lambda u: sp(11, u),
+    }
+    fifteen_rays_list = list(NINE_ANCHORS.values()) + list(SIX_PARTNERS.values())
+
+    # 11A: Single-frame 3-axis completion sign-change & nonnegativity cancellation checks
+    completion_seeds = [
+        TOMO_E1,
+        TOMO_E2,
+        TOMO_E3,
+        GVec.real(1, 2, -1),
+    ]
+    probe_rays = [
+        WITNESS_111,
+        WITNESS_NEG211,
+        WITNESS_123,
+        WITNESS_P7,
+        WITNESS_P11,
+        PROBE_120,
+        PROBE_2M15,
+        crt_approach_e1(0),
+    ]
+    frame_completion_sign_change_checks = 0
+    for x_ray in probe_rays:
+        u_comp: GVec | None = None
+        for seed in completion_seeds:
+            cand = herm_cross(x_ray, seed)
+            if cand.is_non_zero():
+                u_comp = cand
+                break
+        if u_comp is None:
+            raise AssertionError(f"Could not find orthogonal completion for {x_ray}")
+        v_comp = herm_cross(x_ray, u_comp)
+        if not is_frame(x_ray, u_comp, v_comp):
+            raise AssertionError(f"Invalid completion frame for {x_ray}")
+        for r_name, r_fn in residual_funcs.items():
+            vals = (r_fn(x_ray), r_fn(u_comp), r_fn(v_comp))
+            if sum(vals) != Fraction(0):
+                raise AssertionError(f"Zero-weight frame sum failed for {r_name} at {x_ray}")
+            # Verify zero_of_nonneg / zero_of_nonpos dichotomy: all >= 0 or all <= 0 iff all == 0
+            all_nonneg = all(v >= Fraction(0) for v in vals)
+            all_nonpos = all(v <= Fraction(0) for v in vals)
+            all_zero = all(v == Fraction(0) for v in vals)
+            if (all_nonneg or all_nonpos) != all_zero:
+                raise AssertionError(
+                    f"zero_of_nonneg_zeroWeightFrameFunction dichotomy failed for {r_name} at {x_ray}"
+                )
+            frame_completion_sign_change_checks += 1
+
+    # 11B.1: 2-step planar meridian drift cancellation (two_step_planar_canceled_meridian_drift_eq_zero)
+    planar_cancellation_checks = 0
+    planar_triples = [
+        (TOMO_E3, TOMO_E1, TOMO_E2),
+        (TOMO_E1, TOMO_E2, TOMO_E3),
+        (TOMO_E2, TOMO_E3, TOMO_E1),
+    ]
+    for b_pole, a1, a2 in planar_triples:
+        for t_Scale in (Fraction(1, 2), Fraction(1, 5), Fraction(2, 7), Fraction(-1, 3)):
+            # y1 = t * a2 in a1^perp cap b_pole^perp, y2 = -t * a1 in a2^perp cap b_pole^perp
+            # Then p1 = a1 + y1 = a1 + t*a2 and p2 = a2 + y2 = a2 - t*a1 are orthogonal in b_pole^perp!
+            y1 = a2.smul(GaussRat.of(t_Scale))
+            y2 = a1.smul(GaussRat.of(-t_Scale))
+            p1 = a1.add(y1)
+            p2 = a2.add(y2)
+            if not (
+                a1.inner(y1) == G_ZERO
+                and a2.inner(y2) == G_ZERO
+                and p1.inner(b_pole) == G_ZERO
+                and p2.inner(b_pole) == G_ZERO
+                and p1.inner(p2) == G_ZERO
+            ):
+                raise AssertionError("Planar orthogonal polar probe construction failed")
+            ortho1 = anchor_meridian_ortho(a1, y1)
+            ortho2 = anchor_meridian_ortho(a2, y2)
+            for r_name, r_fn in residual_funcs.items():
+                drift1 = r_fn(y1) - r_fn(ortho1)
+                drift2 = r_fn(y2) - r_fn(ortho2)
+                if drift1 + drift2 != Fraction(0):
+                    raise AssertionError(
+                        f"two_step_planar_canceled_meridian_drift_eq_zero failed for {r_name}"
+                    )
+                planar_cancellation_checks += 1
+
+    # 11B.2: 3-step orthogonal-frame meridian drift cancellation (three_step_frame_canceled_meridian_drift_eq_zero)
+    # Use small-collar orthogonal frame p1=(10,1,0), p2=(-1,10,1), p3=(1,-10,101) decomposed along (e1, e2, e3)
+    # scaled so a_i appears with coefficient 1: p1_scaled = (1, 1/10, 0) = e1 + (0, 1/10, 0),
+    # p2_scaled = (-1/10, 1, 1/10) = e2 + (-1/10, 0, 1/10), p3_scaled = (1/101, -10/101, 1) = e3 + (1/101, -10/101, 0)
+    y1_3 = GVec.real(0, Fraction(1, 10), 0)
+    y2_3 = GVec.real(Fraction(-1, 10), 0, Fraction(1, 10))
+    y3_3 = GVec.real(Fraction(1, 101), Fraction(-10, 101), 0)
+    p1_3 = TOMO_E1.add(y1_3)
+    p2_3 = TOMO_E2.add(y2_3)
+    p3_3 = TOMO_E3.add(y3_3)
+    if not is_frame(p1_3, p2_3, p3_3):
+        raise AssertionError("Expected 3-step polar probes (p1_3, p2_3, p3_3) to form a frame")
+    three_step_cancellation_checks = 0
+    for r_name, r_fn in residual_funcs.items():
+        d1 = r_fn(y1_3) - r_fn(anchor_meridian_ortho(TOMO_E1, y1_3))
+        d2 = r_fn(y2_3) - r_fn(anchor_meridian_ortho(TOMO_E2, y2_3))
+        d3 = r_fn(y3_3) - r_fn(anchor_meridian_ortho(TOMO_E3, y3_3))
+        if d1 + d2 + d3 != Fraction(0):
+            raise AssertionError(
+                f"three_step_frame_canceled_meridian_drift_eq_zero failed for {r_name}"
+            )
+        three_step_cancellation_checks += 1
+
+    # 11B.3: Collar-probe orthogonality separation obstruction (collar_probes_not_ortho_of_raySinSq_anchors_lt)
+    collar_non_ortho_checks = 0
+    for a_vec in fifteen_rays_list[:6]:
+        p_a = a_vec.add(herm_cross(a_vec, GVec.real(1, 2, 3)).smul(GaussRat.of(Fraction(1, 10))))
+        p_b = a_vec.add(herm_cross(a_vec, GVec.real(2, -1, 4)).smul(GaussRat.of(Fraction(1, 10))))
+        if not (
+            ray_sin_sq(p_a, a_vec) < Fraction(1, 3)
+            and ray_sin_sq(p_b, a_vec) < Fraction(1, 3)
+            and ray_sin_sq(p_a, p_b) < Fraction(1)
+            and p_a.inner(p_b) != G_ZERO
+        ):
+            raise AssertionError("collar_probes_not_ortho_of_raySinSq_anchors_lt same-anchor check failed")
+        collar_non_ortho_checks += 1
+
+    # 11B.4: Equatorial collar trapping at witness_123 = (1, 2, 3)
+    # Check that for every a in T_15, min_{y in a^perp \ {0}} ray_sin_sq(witness_123, y) == quad_ray(ray_proj(a), witness_123) >= 1/28
+    equatorial_trapping_min_by_anchor: list[dict[str, str]] = []
+    min_equatorial_dist_w123 = Fraction(1)
+    for a_vec in fifteen_rays_list:
+        # The orthogonal projection of witness_123 onto a^perp is y_opt = ||a||^2 * witness_123 - <a, witness_123> * a
+        # which minimizes ray_sin_sq(witness_123, y) over y in a^perp \ {0} with value 1 - ray_sin_sq(witness_123, a)
+        c_proj = proj_scalar(a_vec, WITNESS_123)
+        y_opt = WITNESS_123.sub(a_vec.smul(c_proj))
+        if not (y_opt.is_non_zero() and a_vec.inner(y_opt) == G_ZERO):
+            raise AssertionError("Expected non-zero orthogonal projection of witness_123 onto a^perp")
+        sin_opt = ray_sin_sq(WITNESS_123, y_opt)
+        expected_opt = Fraction(1) - ray_sin_sq(WITNESS_123, a_vec)
+        if sin_opt != expected_opt or sin_opt < Fraction(1, 28):
+            raise AssertionError(
+                f"witness123_raySinSq_fifteen_equators_ge_one_twentyeighth failed for anchor {a_vec}: {sin_opt}"
+            )
+        min_equatorial_dist_w123 = min(min_equatorial_dist_w123, sin_opt)
+        equatorial_trapping_min_by_anchor.append(
+            {
+                "anchor": str(a_vec),
+                "min_equatorial_ray_sin_sq": str(sin_opt),
+            }
+        )
+        # Also verify that for delta = 1/28, radial-scale meridian-Kelvin step around a_vec cannot reach witness_123
+        c_scale = radial_scale_factor(a_vec, y_opt, Fraction(1, 28))
+        yc = y_opt.smul(GaussRat.of(c_scale))
+        ortho_out = anchor_meridian_ortho(a_vec, yc)
+        if (
+            ray_sin_sq(a_vec.add(yc), a_vec) >= Fraction(1, 28)
+            or ray_sin_sq(ortho_out, WITNESS_123) == Fraction(0)
+        ):
+            raise AssertionError("no_fixed_anchor_meridian_step_reaches_witness123 check failed")
+    if min_equatorial_dist_w123 != Fraction(1, 28):
+        raise AssertionError(f"Expected tight minimum equatorial distance 1/28, got {min_equatorial_dist_w123}")
+
+    # 11C: Constructive pointwise-continuous non-quadratic counterexamples & exact Theta(1/k) step drift
+    if not (
+        dedekind_ray_cut(TOMO_E1) == Fraction(0)
+        and dedekind_ray_cut(GVec.real(0, 1, 0)) == Fraction(1)
+    ):
+        raise AssertionError("not_hasSublinearChainDriftFrom_dedekindRayCut endpoint check failed")
+
+    # Verify quartic_ray_profile properties across probe rays
+    rho_e1 = ray_proj(TOMO_E1)
+    quartic_lipschitz_checks = 0
+    for u in probe_rays + fifteen_rays_list:
+        q_u = quartic_ray_profile(u)
+        if not (
+            Fraction(0) <= q_u <= Fraction(1)
+            and quartic_ray_profile(u.smul(GaussRat.of(3, -2))) == q_u
+        ):
+            raise AssertionError("quarticRayProfile_bounds / scale invariance failed")
+        for v in probe_rays:
+            lhs_lip = abs(quartic_ray_profile(u) - quartic_ray_profile(v))
+            rhs_lip = Fraction(2) * abs(quad_ray(rho_e1, u) - quad_ray(rho_e1, v))
+            if lhs_lip > rhs_lip:
+                raise AssertionError("abs_quarticRayProfile_sub_le_two_mul_abs_quadRay_sub failed")
+            quartic_lipschitz_checks += 1
+
+    meridian_defect = (
+        quartic_ray_profile(TOMO_E12)
+        + quartic_ray_profile(PARTNER_E12_MINUS)
+        - (quartic_ray_profile(TOMO_E1) + quartic_ray_profile(TOMO_E2))
+    )
+    if meridian_defect != Fraction(-1, 2):
+        raise AssertionError(f"Expected quartic_ray_profile meridian defect -1/2, got {meridian_defect}")
+
+    # Verify exact Theta(1/k) step-drift realization along meridian_grid_ray(k, j) = (k - j, j, 0)
+    grid_step_drift_table: list[dict[str, str]] = []
+    for k_val in (1, 2, 5, 10, 20, 50):
+        w0 = meridian_grid_ray(k_val, 0)
+        wk = meridian_grid_ray(k_val, k_val)
+        if quartic_ray_profile(w0) != Fraction(0) or quartic_ray_profile(wk) != Fraction(1):
+            raise AssertionError(f"meridian_grid_ray endpoint check failed at k={k_val}")
+        max_ang_step = Fraction(0)
+        max_sin_drift = Fraction(0)
+        max_quartic_drift = Fraction(0)
+        for j in range(k_val):
+            wj = meridian_grid_ray(k_val, j)
+            wj1 = meridian_grid_ray(k_val, j + 1)
+            if (
+                wj.norm_sq() < Fraction(k_val * k_val, 2)
+                or wj1.norm_sq() < Fraction(k_val * k_val, 2)
+            ):
+                raise AssertionError("meridianGridRay_normSqVec_ge_half_sq failed")
+            ang_step = ray_sin_sq(wj1, wj)
+            expected_ang = Fraction(k_val * k_val) / (wj1.norm_sq() * wj.norm_sq())
+            if ang_step != expected_ang or ang_step > Fraction(4, k_val * k_val):
+                raise AssertionError("meridianGridRay_step_raySinSq_le_four_div_sq failed")
+            sin_drift = ray_sin_sq(wj1, TOMO_E1) - ray_sin_sq(wj, TOMO_E1)
+            quartic_drift = quartic_ray_profile(wj1) - quartic_ray_profile(wj)
+            if not (
+                Fraction(0) <= sin_drift <= Fraction(8, k_val)
+                and Fraction(0) <= quartic_drift <= Fraction(16, k_val)
+            ):
+                raise AssertionError("meridianGridRay_quarticRayProfile_step_drift_le step bound failed")
+            max_ang_step = max(max_ang_step, ang_step)
+            max_sin_drift = max(max_sin_drift, sin_drift)
+            max_quartic_drift = max(max_quartic_drift, quartic_drift)
+        if not (Fraction(1, k_val) <= max_quartic_drift <= Fraction(16, k_val)):
+            raise AssertionError(f"Expected max quartic step drift in [1/k, 16/k] at k={k_val}")
+        grid_step_drift_table.append(
+            {
+                "k": str(k_val),
+                "max_angular_step_ray_sin_sq": str(max_ang_step),
+                "angular_step_upper_bound_4_div_k2": str(Fraction(4, k_val * k_val)),
+                "max_ray_sin_sq_step_drift": str(max_sin_drift),
+                "max_quartic_step_drift": str(max_quartic_drift),
+                "lower_bound_1_div_k": str(Fraction(1, k_val)),
+                "upper_bound_16_div_k": str(Fraction(16, k_val)),
+                "terminal_gap": str(quartic_ray_profile(wk) - quartic_ray_profile(w0)),
+            }
+        )
+
+    return {
+        "subsection_11a_nonneg_zero_weight_unconditional_cancellation": {
+            "nonneg_zero_weight_residual_vanishes_identically": True,
+            "nonpos_zero_weight_residual_vanishes_identically": True,
+            "nonneg_zero_weight_satisfies_sublinear_chain_drift": True,
+            "frame_completion_sign_change_checks": frame_completion_sign_change_checks,
+        },
+        "subsection_11b_multi_axis_cancellation_and_geometric_obstructions": {
+            "two_step_planar_cancellation_checks": planar_cancellation_checks,
+            "three_step_frame_cancellation_checks": three_step_cancellation_checks,
+            "same_anchor_collar_non_orthogonality_checks": collar_non_ortho_checks,
+            "witness_123_min_equatorial_ray_sin_sq_across_t15": str(min_equatorial_dist_w123),
+            "equatorial_trapping_threshold_delta": "1/28",
+            "fixed_anchor_meridian_step_trapped_below_one_twentyeighth": True,
+            "equatorial_trapping_by_anchor": equatorial_trapping_min_by_anchor,
+        },
+        "subsection_11c_pointwise_continuous_nonquadratic_and_inv_k_drift": {
+            "dedekind_ray_cut_refutes_sublinear_drift": True,
+            "quartic_ray_profile_lipschitz_pairs_checked": quartic_lipschitz_checks,
+            "quartic_ray_profile_meridian_defect": str(meridian_defect),
+            "meridian_grid_inv_k_step_drift_certificates": grid_step_drift_table,
+            "status": "PASS",
+        },
+    }
+
 
 
 def build_test_frames() -> list[tuple[str, GVec, GVec, GVec]]:
@@ -2263,6 +2571,13 @@ def verify_all_certificates() -> dict[str, object]:
     #     1/k Chain-Drift Dichotomy.
     tfq_1057_sec10_summary = verify_tfq_1057_section10_chain_step_scaling_and_triangle()
 
+    # 12. Section 11 (TFQ-1057): Nonnegative Zero-Weight 3-Frame Cancellation, Multi-Axis
+    #     Meridian Drift Cancellation vs. Equatorial Collar Trapping, and Constructive
+    #     Theta(1/k) Step-Drift Realization along meridianGridRay.
+    tfq_1057_sec11_summary = (
+        verify_tfq_1057_section11_frame_cancellation_and_inv_k_counterexample()
+    )
+
     return {
         "schema_version": 1,
         "phase": "Phase 2 — Finite and Exact-Arithmetic Gleason Model",
@@ -2287,6 +2602,7 @@ def verify_all_certificates() -> dict[str, object]:
         "tfq_0307_four_tier_classification": tfq_0307_summary,
         "tfq_1057_multi_frame_incidence_and_amplification": tfq_1057_summary,
         "tfq_1057_section10_chain_step_scaling_and_triangle": tfq_1057_sec10_summary,
+        "tfq_1057_section11_frame_cancellation_and_inv_k_counterexample": tfq_1057_sec11_summary,
         "status": "PASS",
     }
 
