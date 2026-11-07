@@ -10,7 +10,7 @@ The block sits between the markers ``<!-- facts:begin -->`` and
 
 ``--skip-contracts`` reuses the contract/score row already in README.md instead
 of running ``scripts/contract_scores.py check`` (about a minute); the fast test
-in ``dag/tests/test_readme_facts.py`` uses it. Counts are inventory counts: a test
+in ``scripts/test_readme_facts.py`` uses it. Counts are inventory counts: a test
 function count is not a pass result, and a Lean file count is not a build.
 """
 from __future__ import annotations

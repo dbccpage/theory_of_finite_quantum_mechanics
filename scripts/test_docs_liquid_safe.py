@@ -3,7 +3,7 @@ anywhere in a page (code spans included) fails the whole site build. Write them 
 import re
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 LIQUID = re.compile(r'\{\{|\{%')
 
 

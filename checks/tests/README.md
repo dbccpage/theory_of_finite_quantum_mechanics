@@ -237,7 +237,7 @@ The observer-presheaf checker composes owned measurement scenarios, empirical
 models, exact linear programs/certificates and a bounded Cech complex. Run
 `test_exact_linear_program.py` (9 groups), `test_empirical_model.py` (8),
 `test_cech_complex.py` (8) and `test_observer_presheaf.py` (8) in both ordinary
-and optimized modes, plus `dag/tests/test_foc035_lp_certificates.py` (20 existing
+and optimized modes, plus `checks/tests/test_foc035_lp_certificates.py` (20 existing
 adapter cases). Each generated property uses80 deterministic examples.
 The app retains50 named CLI check groups and the legacy scalar/ValueError
 certificate adapter. LP witnesses distinguish optimum, infeasibility and
